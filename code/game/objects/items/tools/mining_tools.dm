@@ -22,7 +22,7 @@
 
 /obj/item/tool/pickaxe/hammer
 	name = "sledgehammer"
-	//icon_state = "sledgehammer" Waiting on sprite
+	icon_state = "sledgehammer"
 	desc = "A mining hammer made of reinforced metal. You feel like smashing your boss in the face with this."
 
 /obj/item/tool/pickaxe/silver
@@ -97,11 +97,11 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_PURPLE
+	tool_behaviour = TOOL_PLASMACUTTER
 	var/cutting_sound = 'sound/items/welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
 	var/obj/item/cell/rtg/large/cell //The plasma cutter cell is unremovable and recharges over time
-	tool_behaviour = TOOL_WELD_CUTTER
 
 /obj/item/tool/pickaxe/plasmacutter/Initialize(mapload)
 	. = ..()
@@ -277,7 +277,7 @@
 		if(!start_cut(user, target.name, target, 0, span_notice("You start melting the [target.name] with [src].")))
 			return
 		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, T, BUSY_ICON_BUILD))
+		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
 			return
 		if(!powered)
 			fizzle_message(user)
@@ -290,20 +290,3 @@
 		ST.update_appearance()
 		ST.update_sides()
 		cut_apart(user, target.name, target, 0, "You melt the snow with [src]. ") //costs nothing
-
-
-
-/obj/item/tool/pickaxe/plasmacutter/attack_obj(obj/O, mob/living/user)
-	if(!powered || user.do_actions || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(O.resistance_flags, PLASMACUTTER_IMMUNE))
-		..()
-		return TRUE
-
-	if(!start_cut(user, O.name, O))
-		return TRUE
-
-	if(!do_after(user, calc_delay(user), NONE, O, BUSY_ICON_HOSTILE))
-		return TRUE
-
-	cut_apart(user, O.name, O)
-	O.deconstruct(TRUE)
-	return TRUE

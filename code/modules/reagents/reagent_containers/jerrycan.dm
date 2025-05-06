@@ -16,7 +16,7 @@
 	if(get_dist(user,src) > 2)
 		. += span_warning("You're too far away to see [src]'s reagent amount!")
 		return
-	. += "There is [volume] units of fuel remaining."
+	. += "There is [reagents.reagent_list ? reagents.total_volume : 0] units of fuel remaining."
 
 /obj/item/reagent_containers/jerrycan/attack_turf(turf/A, mob/user)
 	. = ..()

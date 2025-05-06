@@ -165,6 +165,11 @@
 	results = list(/datum/reagent/hypervene = 3)
 	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/ethylredoxrazine = 1)
 
+/datum/chemical_reaction/aphrotoxin
+	name = "Aphrotoxin"
+	results = list(/datum/reagent/toxin/xeno_aphrotoxin = 5)
+	required_reagents = list(/datum/reagent/medicine/quickclot = 1, /datum/reagent/toxin/phoron = 1, /datum/reagent/iron = 1, /datum/reagent/medicine/tramadol = 1, /datum/reagent/consumable/sugar = 1)
+
 /datum/chemical_reaction/neuraline
 	name = "Neuraline"
 	results = list(/datum/reagent/medicine/neuraline = 4, /datum/reagent/toxin/huskpowder = 1)
@@ -200,7 +205,7 @@
 /datum/chemical_reaction/bihexajuline
 	name = "Bihexajuline"
 	results = list(/datum/reagent/medicine/bihexajuline = 5)
-	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/consumable/drink/milk = 1, /datum/reagent/iron = 2)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/consumable/milk = 1, /datum/reagent/iron = 2)
 
 /datum/chemical_reaction/quietus
 	name = "Quietus"
@@ -210,7 +215,7 @@
 /datum/chemical_reaction/somolent
 	name = "Somolent"
 	results = list(/datum/reagent/medicine/research/somolent = 4)
-	required_reagents = list(/datum/reagent/toxin/sleeptoxin = 1, /datum/reagent/medicine/tricordrazine = 1, /datum/reagent/consumable/drink/doctor_delight = 1, /datum/reagent/medicine/paracetamol = 1)
+	required_reagents = list(/datum/reagent/toxin/sleeptoxin = 1, /datum/reagent/medicine/tricordrazine = 1, /datum/reagent/consumable/doctor_delight = 1, /datum/reagent/medicine/paracetamol = 1)
 	required_catalysts = list(/datum/reagent/medicine/lemoline = 5)
 
 /datum/chemical_reaction/medicalnanites

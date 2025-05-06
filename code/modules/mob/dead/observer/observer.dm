@@ -1,14 +1,12 @@
 GLOBAL_LIST_EMPTY(ghost_images_default) //this is a list of the default (non-accessorized, non-dir) images of the ghosts themselves
 GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as the simple white ghost
 
-
 GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
-
 
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!"
-	icon = 'icons/mob/mob.dmi'
+	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
 	layer = GHOST_LAYER
 	stat = DEAD
@@ -26,7 +24,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/atom/movable/following = null
 	var/datum/orbit_menu/orbit_menu
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
-
 
 	//We store copies of the ghost display preferences locally so they can be referred to even if no client is connected.
 	//If there's a bug with changing your ghost settings, it's probably related to this.
@@ -52,6 +49,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
+	var/unobserve_timer
 
 /mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility
@@ -203,7 +201,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				SSticker.mode.attempt_to_join_as_larva(ghost.client)
+				var/mob/living/carbon/human/original_corpse = ghost.can_reenter_corpse.resolve()
+				if(SSticker.mode.attempt_to_join_as_larva(ghost.client) && ishuman(original_corpse))
+					original_corpse?.set_undefibbable()
 		return
 
 	else if(href_list["preference"])
@@ -270,6 +270,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.client?.init_verbs()
 	ghost.mind?.current = ghost
 	ghost.faction = faction
+	ghost.ooc_notes = ooc_notes
+	ghost.ooc_notes_likes = ooc_notes_likes
+	ghost.ooc_notes_dislikes = ooc_notes_dislikes
+	ghost.ooc_notes_maybes = ooc_notes_maybes
+	ghost.ooc_notes_favs = ooc_notes_favs
+	ghost.ooc_notes_style = ooc_notes_style
 
 	if(!T)
 		T = SAFEPICK(GLOB.latejoin)
@@ -301,10 +307,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		GLOB.key_to_time_of_xeno_death[ghost.key] = world.time //If you ghost as a xeno that is not a minion, sets respawn timer
 
 
-/mob/dead/observer/Move(atom/newloc, direct)
+/mob/dead/observer/Move(atom/newloc, direct, glide_size_override = 32)
 	if(updatedir)
 		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
-
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 	if(newloc)
 		abstract_move(newloc)
 		update_parallax_contents()
@@ -795,11 +802,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/verb/view_manifest()
 	set category = "Ghost"
-	set name = "View Crew Manifest"
+	set name = "View Game Manifest"
 
-	var/dat = GLOB.datacore.get_manifest()
+	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
-	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Game Manifest</div>", 370, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
@@ -849,11 +856,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
 		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
-		if(istype(human_current))
+		if(ishuman(human_current))
 			human_current.set_undefibbable(TRUE)
-
 		can_reenter_corpse = null
-		to_chat(usr, span_notice("You can no longer be revived."))
+		to_chat(usr, span_boldwarning("You can no longer be revived."))
 		return
 
 	to_chat(usr, span_warning("You already can't be revived."))
@@ -887,10 +893,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
-	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
+	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. This will make you unrevivable. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
 
 	if(!choice)
 		return
+
+	var/mob/living/carbon/human/original_corpse = can_reenter_corpse?.resolve()
+	if(ishuman(original_corpse))
+		original_corpse?.set_undefibbable(TRUE)
 
 	if(choice == "Xenomorph")
 		var/mob/living/carbon/xenomorph/xeno_choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What xenomorph would you like to have?", "Join Valhalla", GLOB.all_xeno_types)
@@ -972,3 +982,17 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		client.holder.spatial_agent()
 	else
 		target_ghost.change_mob_type(/mob/living/carbon/human, delete_old_mob = TRUE)
+
+/mob/dead/observer/proc/observe_time_out()
+	client.screen.Cut()
+	var/mob/new_player/M = new /mob/new_player()
+	if(SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
+		M.faction = faction
+
+	M.key = key
+
+	to_chat(M, span_warning("Your time is up."))
+
+	if(!(M.client))
+		qdel(M)
+		return

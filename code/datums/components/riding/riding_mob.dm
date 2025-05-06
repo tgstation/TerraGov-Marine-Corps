@@ -68,7 +68,7 @@
 		former_rider.log_message("is no longer riding [living_parent]", LOG_ATTACK, color="pink")
 	return ..()
 
-/datum/component/riding/creature/driver_move(atom/movable/movable_parent, mob/living/user, direction)
+/datum/component/riding/creature/driver_move(atom/movable/movable_parent, mob/living/user, direction, glide_size_override)
 	if(!COOLDOWN_CHECK(src, vehicle_move_cooldown))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	if(!keycheck(user))
@@ -76,11 +76,12 @@
 			var/obj/item/key = keytype
 			to_chat(user, "<span class='warning'>You need a [initial(key.name)] to ride [movable_parent]!</span>")
 		return COMPONENT_DRIVER_BLOCK_MOVE
-	var/mob/living/living_parent = parent
-	var/turf/next = get_step(living_parent, direction)
-	step(living_parent, direction)
-	last_move_diagonal = ((direction & (direction - 1)) && (living_parent.loc == next))
-	COOLDOWN_START(src, vehicle_move_cooldown, (last_move_diagonal? 2 : 1) * vehicle_move_delay)
+	last_move_diagonal = ISDIAGONALDIR(direction)
+	var/new_delay = (last_move_diagonal ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1) * vehicle_move_delay
+	glide_size_override = DELAY_TO_GLIDE_SIZE(new_delay)
+	. = ..()
+	step(movable_parent, direction)
+	COOLDOWN_START(src, vehicle_move_cooldown, new_delay)
 
 /// Yeets the rider off, used for animals and cyborgs, redefined for humans who shove their piggyback rider off
 /datum/component/riding/creature/proc/force_dismount(mob/living/rider, gentle = FALSE)
@@ -315,7 +316,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(vehicle_turned))
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
-	RegisterSignals(parent, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_XENOMORPH_ATTACK_OBJ, COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH), PROC_REF(check_widow_attack))
+	RegisterSignals(parent, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_XENOMORPH_ATTACK_OBJ), PROC_REF(check_widow_attack))
 
 /datum/component/riding/creature/widow/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
 	unequip_buckle_inhands(parent)
@@ -348,3 +349,27 @@
 	if(widow.stat == UNCONSCIOUS)
 		dir = SOUTH
 	return ..()
+
+// ***************************************
+// *********** Saddled Rouny
+// ***************************************
+
+/datum/component/riding/creature/crusher/runner
+	can_be_driven = FALSE
+
+/datum/component/riding/creature/crusher/runner/handle_specials()
+	. = ..()
+	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(5, 8), TEXT_WEST = list(-5, 8)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
+
+/// If the rouny gets knocked over, toss the riding human off aswell
+/datum/component/riding/creature/crusher/runner/check_carrier_fall_over(mob/living/carbon/xenomorph/runner/carrying_runner)
+	for(var/mob/living/rider AS in carrying_runner.buckled_mobs)
+		carrying_runner.unbuckle_mob(rider)
+		rider.Knockdown(1 SECONDS)
+		carrying_runner.visible_message(span_danger("[rider] topples off of [carrying_runner] as they both fall to the ground!"), \
+					span_danger("You fall to the ground, bringing [rider] with you!"), span_hear("You hear two consecutive thuds."))
+		to_chat(rider, span_danger("[carrying_runner] falls to the ground, bringing you with [carrying_runner.p_them()]!"))

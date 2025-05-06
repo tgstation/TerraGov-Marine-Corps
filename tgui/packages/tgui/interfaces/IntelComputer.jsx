@@ -109,7 +109,7 @@ export const IntelComputercontent = (props) => {
     'Installing...',
     'Installing...',
     'Installation complete...',
-    'Connected to TGMC_Raptor_mainframe.mfg',
+    'Connected to NTC_Raptor_mainframe.mfg',
     'Connection established',
   ];
 

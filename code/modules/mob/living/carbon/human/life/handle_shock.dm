@@ -26,7 +26,7 @@
 			add_slowdown(1)
 		if(60 to 79)
 			if(!lying_angle && prob(20))
-				emote("me", 1, " is having trouble standing.")
+				emote("me", 1, "is having trouble standing.")
 			blur_eyes(2)
 			set_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			Stagger(3 SECONDS)

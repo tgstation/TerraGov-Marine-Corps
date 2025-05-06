@@ -15,6 +15,21 @@
 	icon_state = "red_sign"
 	bound_width = 64
 	bound_height = 64
+	density = TRUE
+
+/obj/structure/kutjevo_sign
+	name = "Kutjevo Sign"
+	desc = "A large sign that reads 'Kutjevo pop-', the rest of it is obscured by claw marks."
+	icon = 'icons/obj/landing_signs.dmi'
+	icon_state = "kut_sign"
+	bound_width = 64
+	bound_height = 32
+	density = TRUE
+
+/obj/structure/kutjevo_sign/Initialize(mapload)
+	. = ..()
+	icon_state = "kut_ingame"
+	overlays += image(icon, src, "kut_sign_top", layer = ABOVE_ALL_MOB_LAYER, pixel_y = 32)
 
 /obj/structure/prison_sign
 	name = "UA Prison Docking Sign"

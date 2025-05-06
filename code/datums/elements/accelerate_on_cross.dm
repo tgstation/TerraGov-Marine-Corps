@@ -10,4 +10,4 @@
 	SIGNAL_HANDLER
 	if(isxeno(crosser))
 		var/mob/living/carbon/xenomorph/X = crosser
-		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+		X.next_move_slowdown += X?.xeno_caste?.weeds_speed_mod

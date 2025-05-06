@@ -2,6 +2,7 @@
 	name = "computer"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
+	dir = 2
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
@@ -85,12 +86,12 @@
 				set_broken()
 
 
-/obj/machinery/computer/bullet_act(obj/projectile/Proj)
+/obj/machinery/computer/bullet_act(obj/projectile/proj)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		visible_message("[Proj] ricochets off [src]!")
+		visible_message("[proj] ricochets off [src]!")
 		return 0
 	else
-		if(prob(round(Proj.ammo.damage /2)))
+		if(prob(round(proj.ammo.damage /2)))
 			set_broken()
 		..()
 		return 1
@@ -115,12 +116,20 @@
 		return
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
+	if(dir == NORTH)
+		return
 	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
 	density = FALSE
+	update_icon()
+
+/obj/machinery/computer/proc/repair()
+	machine_stat &= ~BROKEN
+	density = TRUE
+	durability = initial(durability)
 	update_icon()
 
 /obj/machinery/computer/proc/decode(text)
@@ -152,7 +161,7 @@
 	span_notice("You begin repairing the damage to [src]."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	if(!welder.remove_fuel(2, user))
@@ -181,7 +190,7 @@
 
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		var/obj/structure/computerframe/A = new(loc)
@@ -210,6 +219,7 @@
 
 	else
 		return attack_hand(user)
+	update_icon()
 
 
 /obj/machinery/computer/attack_hand(mob/living/user)

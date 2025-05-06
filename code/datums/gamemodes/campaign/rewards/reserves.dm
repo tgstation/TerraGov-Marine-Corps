@@ -36,6 +36,7 @@
 	ui_icon = "respawn"
 	uses = 1
 	cost = 5
+	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_SL_AVAILABLE
 
 /datum/campaign_asset/tactical_reserves/activation_checks()
 	. = ..()

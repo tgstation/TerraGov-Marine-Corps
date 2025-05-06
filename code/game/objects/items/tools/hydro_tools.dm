@@ -1,4 +1,3 @@
-
 // *************************************
 // Hydroponics Tools
 // *************************************
@@ -17,7 +16,6 @@
 	var/weed_kill_str = 0
 
 /obj/item/tool/plantspray/weeds // -- Skie
-
 	name = "weed-spray"
 	desc = "It's a toxic mixture, in spray form, to kill small weeds."
 	icon_state = "weedspray"
@@ -79,13 +77,10 @@
 	toxicity = 8
 	weed_kill_str = 7
 
-
-
-
 /obj/item/tool/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "hoe"
 	worn_icon_state = "hoe"
 	atom_flags = CONDUCT
@@ -95,19 +90,16 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
-
-
-
 //Hatchets and things to kill kudzu
 /obj/item/tool/hatchet
 	name = "hatchet"
 	desc = "A sharp hand hatchet, commonly used to cut things apart, be it timber or other objects. Often found in the hands of woodsmen, scouts, and looters."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "hatchet"
 	atom_flags = CONDUCT
-	force = 25
+	force = 35
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 20
+	throwforce = 25
 	throw_speed = 4
 	throw_range = 4
 	sharp = IS_SHARP_ITEM_BIG
@@ -118,13 +110,12 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
-
 /obj/item/tool/scythe
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "scythe"
-	force = 13
+	force = 35
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 3

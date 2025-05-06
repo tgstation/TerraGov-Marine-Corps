@@ -117,6 +117,15 @@
 			return has_limb(CHEST)
 		if(SLOT_IN_R_POUCH)
 			return has_limb(CHEST)
+		// NTF EDIT START
+		if(SLOT_UNDERWEAR)
+			return has_limb(CHEST)
+		if(SLOT_SOCKS)
+			return has_limb(FOOT_RIGHT) && has_limb(FOOT_LEFT)
+		if(SLOT_SHIRT)
+			return has_limb(CHEST)
+		if(SLOT_BRA)
+			return has_limb(CHEST)
 
 /mob/living/carbon/human/put_in_l_hand(obj/item/W)
 	var/datum/limb/O = get_limb("l_hand")
@@ -232,7 +241,28 @@
 		I.unequipped(src, SLOT_S_STORE)
 		update_inv_s_store()
 		. = ITEM_UNEQUIP_UNEQUIPPED
-
+	// NTF EDIT START
+	else if(I == w_underwear)
+		w_underwear = null
+		I.unequipped(src, ITEM_SLOT_UNDERWEAR)
+		update_inv_underwear()
+		. = ITEM_UNEQUIP_UNEQUIPPED
+	else if(I == w_socks)
+		w_socks = null
+		I.unequipped(src, ITEM_SLOT_SOCKS)
+		update_inv_socks()
+		. = ITEM_UNEQUIP_UNEQUIPPED
+	else if(I == w_undershirt)
+		w_undershirt = null
+		I.unequipped(src, ITEM_SLOT_SHIRT)
+		update_inv_undershirt()
+		. = ITEM_UNEQUIP_UNEQUIPPED
+	else if(I == bra)
+		bra = null
+		I.unequipped(src, ITEM_SLOT_BRA)
+		update_inv_bra()
+		. = ITEM_UNEQUIP_UNEQUIPPED
+	// NTF EDIT END
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
 	name = get_visible_name() // doing this without a check, still cheaper than doing it every Life() tick -spookydonut
@@ -248,36 +278,12 @@
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
 /mob/living/carbon/human/equip_to_slot(obj/item/item_to_equip, slot, bitslot = FALSE)
-	if(!slot)
-		return
-	if(!istype(item_to_equip))
-		return
+	. = ..()
 	if(bitslot)
 		var/oldslot = slot
 		slot = slotbit2slotdefine(oldslot)
 	if(!has_limb_for_slot(slot))
 		return
-
-	if(item_to_equip == l_hand)
-		l_hand = null
-		item_to_equip.unequipped(src, SLOT_L_HAND)
-		update_inv_l_hand()
-
-	else if(item_to_equip == r_hand)
-		r_hand = null
-		item_to_equip.unequipped(src, SLOT_R_HAND)
-		update_inv_r_hand()
-
-	//removes item's actions, may be readded once re-equipped to the new slot
-	for(var/datum/action/A AS in item_to_equip.actions)
-		A.remove_action(src)
-
-	item_to_equip.screen_loc = null
-	item_to_equip.loc = src
-	item_to_equip.layer = ABOVE_HUD_LAYER
-	item_to_equip.plane = ABOVE_HUD_PLANE
-
-	item_to_equip.forceMove(src)
 
 	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into, if applicable
 
@@ -392,6 +398,23 @@
 			selected_slot = r_store
 		if(SLOT_IN_ACCESSORY)
 			selected_slot = w_uniform
+		// NTF EDIT START
+		if(SLOT_UNDERWEAR)
+			w_underwear = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_underwear()
+		if(SLOT_SOCKS)
+			w_socks = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_socks()
+		if(SLOT_SHIRT)
+			w_undershirt = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_undershirt()
+		if(SLOT_BRA)
+			bra = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_bra()
 		else
 			CRASH("[src] tried to equip [item_to_equip] to [slot] in equip_to_slot().")
 
@@ -473,6 +496,16 @@
 			return r_store
 		if(SLOT_IN_HEAD)
 			return head
+		/// NTF EDIT START
+		if(ITEM_SLOT_UNDERWEAR)
+			return w_underwear
+		if(ITEM_SLOT_SOCKS)
+			return w_socks
+		if(ITEM_SLOT_SHIRT)
+			return w_undershirt
+		if(ITEM_SLOT_BRA)
+			return bra
+		/// NTF EDIT END
 
 /mob/living/carbon/human/get_item_by_slot_bit(slot_bit)
 	switch(slot_bit)
@@ -510,6 +543,16 @@
 			return l_hand
 		if(ITEM_SLOT_R_HAND)
 			return r_hand
+		/// NTF EDIT START
+		if(ITEM_SLOT_UNDERWEAR)
+			return w_underwear
+		if(ITEM_SLOT_SOCKS)
+			return w_socks
+		if(ITEM_SLOT_SHIRT)
+			return w_undershirt
+		if(ITEM_SLOT_BRA)
+			return bra
+		/// NTF EDIT END
 
 /mob/living/carbon/human/get_equipped_slot(obj/equipped_item)
 	if(..())
@@ -547,7 +590,7 @@
 
 	M.visible_message(span_danger("[src] tries to remove [M]'s [I.name]."), \
 					span_userdanger("[src] tries to remove [M]'s [I.name]."), null, 5)
-	if(do_after(src, HUMAN_STRIP_DELAY, NONE, M, BUSY_ICON_HOSTILE))
+	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
 			log_combat(src, M, "removed [key_name(I)] ([slot_to_process])")

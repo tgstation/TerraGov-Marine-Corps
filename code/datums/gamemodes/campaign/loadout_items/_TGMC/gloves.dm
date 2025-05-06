@@ -29,15 +29,9 @@
 /datum/loadout_item/gloves/marine_gloves
 	name = "Combat gloves"
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
-	item_typepath = /obj/item/clothing/gloves/marine
+	item_typepath = /obj/item/clothing/gloves/marine/tdf
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
-
-/datum/loadout_item/gloves/marine_black_gloves
-	name = "Blk combat gloves"
-	desc = "Standard issue marine tactical gloves but black! It reads: 'knit by Marine Widows Association'."
-	item_typepath = /obj/item/clothing/gloves/marine/black
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/gloves/marine_fingerless
 	name = "Fingerless gloves"

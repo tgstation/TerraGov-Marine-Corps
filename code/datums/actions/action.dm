@@ -26,6 +26,8 @@ KEYBINDINGS
 	var/action_type = ACTION_CLICK
 	///Used for keeping track of the addition of the selected/active frames
 	var/toggled = FALSE
+	///Is this action explicitly hidden from the owner
+	var/hidden = FALSE
 
 /datum/action/New(Target)
 	target = Target
@@ -67,8 +69,9 @@ KEYBINDINGS
 	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 
+///Whether the owner can see this action
 /datum/action/proc/should_show()
-	return TRUE
+	return !hidden
 
 ///Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
 /datum/action/proc/set_toggle(value)
@@ -187,7 +190,6 @@ KEYBINDINGS
 	owner.actions += src
 	if(owner.client)
 		owner.client.screen += button
-	owner.update_action_buttons()
 	owner.actions_by_path[type] = src
 	for(var/type in keybinding_signals)
 		var/signal = keybinding_signals[type]
@@ -198,6 +200,7 @@ KEYBINDINGS
 				update_map_text(our_kb.get_keys_formatted(M.client), signal)
 
 	SEND_SIGNAL(M, ACTION_GIVEN)
+	owner.update_action_buttons()
 
 /datum/action/proc/remove_action(mob/M)
 	for(var/type in keybinding_signals)
@@ -208,9 +211,9 @@ KEYBINDINGS
 		M.client.screen -= button
 	M.actions_by_path[type] = null
 	M.actions -= src
-	M.update_action_buttons()
 	owner = null
 	SEND_SIGNAL(M, ACTION_REMOVED)
+	M.update_action_buttons()
 
 ///Should a AI element occasionally see if this ability should be used?
 /datum/action/proc/ai_should_start_consider()

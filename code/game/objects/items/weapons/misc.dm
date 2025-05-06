@@ -17,7 +17,6 @@
 /obj/item/weapon/cane
 	name = "cane"
 	desc = "A cane used by a true gentlemen. Or a clown."
-	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "cane"
 	worn_icon_state = "cane"
 	atom_flags = CONDUCT
@@ -108,13 +107,13 @@
 				span_userdanger("[user] punches you!"))
 		return ..()
 	if(M == user)
-		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
+		user.apply_damage(force * setting + (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD), BRUTE, user.zone_selected, MELEE)
 		to_chat(user, span_userdanger("You punch yourself!"))
 		playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 		playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 		cell.charge -= powerused
 		return ..()
-	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
+	M.apply_damage(force * setting + (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD), BRUTE, user.zone_selected, MELEE)
 	M.visible_message(span_danger("[user]'s powerfist shudders as they punch [M.name], flinging them away!"), \
 		span_userdanger("[user]'s punch flings you backwards!"))
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
@@ -190,3 +189,4 @@
 	singular_name = "stone"
 	atom_flags = DIRLOCK
 	sharp = IS_NOT_SHARP_ITEM
+	update_on_throwing = FALSE

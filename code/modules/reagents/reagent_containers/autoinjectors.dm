@@ -5,7 +5,7 @@
 	worn_icon_state = "hypo"
 	w_class = WEIGHT_CLASS_TINY
 	skilllock = 0
-	init_reagent_flags = DRAWABLE
+	reagent_flags = DRAWABLE
 	amount_per_transfer_from_this = 10
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
@@ -27,6 +27,8 @@
 		. += span_notice("It is currently loaded.")
 	else
 		. += span_notice("It is spent.")
+
+	. += span_notice("Use to inject into yourself. Unique Action to configure injection amount.")
 
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
@@ -123,6 +125,7 @@
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 20)
 	description_overlay = "Ox"
+	free_refills = FALSE
 
 /obj/item/reagent_containers/hypospray/autoinjector/kelotane
 	name = "kelotane autoinjector"
@@ -189,6 +192,15 @@
 	list_reagents = list(/datum/reagent/hypervene = 9)
 	description_overlay = "Hy"
 
+/obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin
+	name = "Aphrotoxin autoinjector"
+	desc = "An auto-injector loaded with 3 uses of aphrotoxin, produced from xenomorphs. Causes weakness on the legs and intense lust."
+	icon_state = "Mystery"
+	amount_per_transfer_from_this = 10
+	volume = 50
+	list_reagents = list(/datum/reagent/toxin/xeno_aphrotoxin = 30)
+	description_overlay = "Apr"
+
 /obj/item/reagent_containers/hypospray/autoinjector/virilyth //not accessible during normal play, only for valhalla
 	name = "virilyth autoinjector"
 	desc = "A large auto-injector freshly loaded with virilynth."
@@ -203,11 +215,11 @@
 	name = "rezadone autoinjector"
 	desc = "A large auto-injector freshly loaded with rezadone."
 	icon_state = "autoinjector-8"
-	amount_per_transfer_from_this = 10
-	volume = 50
+	amount_per_transfer_from_this = 5
 	list_reagents = list(
-		/datum/reagent/medicine/rezadone = 50,
+		/datum/reagent/medicine/rezadone = 30,
 	)
+	description_overlay = "Rz"
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
 	name = "synaptizine autoinjector"
@@ -275,6 +287,13 @@
 	volume = 20
 	list_reagents = list(/datum/reagent/medicine/polyhexanide = 20)
 
+/obj/item/reagent_containers/hypospray/autoinjector/polyacid
+	name = "polytrinic acid autoinjector"
+	desc = "An auto-injector loaded with Polytrinic acid. an extremely corrosive chemical substance. Most likely a war crime."
+	icon_state = "autoinjector-10"
+	amount_per_transfer_from_this = 30
+	volume = 30
+	list_reagents = list(/datum/reagent/toxin/acid/polyacid = 30)
 /obj/item/reagent_containers/hypospray/autoinjector/isotonic
 	name = "isotonic solution autoinjector"
 	desc = "An auto-injector loaded with 2 doses of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."
@@ -284,6 +303,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/saline_glucose = 30,
 	)
+	description_overlay = "Is"
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
 	name = "roulettium autoinjector"
@@ -295,7 +315,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/elite //only deathsquad should be able to get this
 	name = "elite autoinjector"
-	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous Nanotrasen deathsquads"
+	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous Ninetails deathsquads"
 	icon_state = "autoinjector-7"
 	volume = 37.5
 	amount_per_transfer_from_this = 12.4
@@ -321,6 +341,7 @@
 	volume = 100
 
 	list_reagents = list(/datum/reagent/toxin/pain = 100)
+
 /obj/item/reagent_containers/hypospray/autoinjector/spacedrugs //CL goodie
 	name = "space drugs autoinjector"
 	desc = "An auto-injector loaded with sweet, sweet space drugs... Hard to get as a marine."
@@ -329,6 +350,7 @@
 	volume = 25
 
 	list_reagents = list(/datum/reagent/space_drugs = 25)
+
 /obj/item/reagent_containers/hypospray/autoinjector/mindbreaker //made for debugging
 	name = "mindbreaker toxin autoinjector"
 	desc = "An auto-injector loaded with the hardest, deadliest drug around. May cure PTSD. May cause it."
@@ -338,3 +360,25 @@
 
 	list_reagents = list(/datum/reagent/toxin/mindbreaker = 50)
 
+/obj/item/reagent_containers/hypospray/autoinjector/antitox_mix
+	name = "Anti-toxin mix 4"
+	desc = "An auto-injector loaded a cocktail of chemicals intended for rapid treatment of severe toxin damage. Do not use without proper medical supervision."
+	icon_state = "Toxic"
+	amount_per_transfer_from_this = 15
+	list_reagents = list(
+		/datum/reagent/medicine/hyronalin = 7.5,
+		/datum/reagent/medicine/dylovene = 7.5,
+		/datum/reagent/medicine/tricordrazine = 7.5,
+		/datum/reagent/medicine/arithrazine = 7.5,
+	)
+	description_overlay = "Tx4"
+
+/obj/item/reagent_containers/hypospray/autoinjector/regrow
+	name = "Re-Grow autoinjector"
+	desc = "An auto-injector loaded with Re-Grow - able to rapidly regrow missing limbs."
+	icon_state = "AngelLight"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/regrow = 30,
+	)
+	description_overlay = "Grw"

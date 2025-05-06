@@ -8,7 +8,8 @@
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
-	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
+	if(z)
+		LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 
 	for(var/action in GLOB.human_init_actions)
 		var/datum/action/human_action = new action(src)
@@ -76,7 +77,7 @@
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acid_spray_entered))
 	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, PROC_REF(async_do_quick_equip))
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, PROC_REF(do_unique_action))
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(grabbed_self_attack)) // Fireman carry & mounting saddled xenos
 	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
 
 /mob/living/carbon/human/Destroy()
@@ -621,11 +622,10 @@
 		if(istype(I))
 			I.examine(usr)
 
-	return ..()
+	return
 
-
-/mob/living/carbon/human/proc/fireman_carry_grabbed()
-	SIGNAL_HANDLER
+/mob/living/carbon/human/grabbed_self_attack()
+	. = ..()
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE
@@ -646,7 +646,7 @@
 	visible_message(span_notice("[src] starts lifting [target] onto [p_their()] back..."),
 	span_notice("You start to lift [target] onto your back..."))
 	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent(SKILL_MEDICAL, SKILL_MEDICAL_MASTER))
-	if(!do_after(src, delay, NONE, target, target_display = BUSY_ICON_HOSTILE))
+	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
 	//Second check to make sure they're still valid to be carried
@@ -667,7 +667,7 @@
 
 	if(!species.has_organ["eyes"]) return 2//No eyes, can't hurt them.
 
-	var/datum/internal_organ/eyes/I = internal_organs_by_name["eyes"]
+	var/datum/internal_organ/eyes/I = get_organ_slot(ORGAN_SLOT_EYES)
 	if(!I)
 		return 2
 	if(I.robotic == ORGAN_ROBOT)
@@ -708,11 +708,11 @@
 
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
-	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
+	var/datum/internal_organ/lungs/L = get_organ_slot(ORGAN_SLOT_LUNGS)
 	return L?.organ_status == ORGAN_BRUISED
 
 /mob/living/carbon/human/proc/rupture_lung()
-	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
+	var/datum/internal_organ/lungs/L = get_organ_slot(ORGAN_SLOT_LUNGS)
 
 	if(L?.organ_status == ORGAN_BRUISED)
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
@@ -747,7 +747,7 @@
 
 	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
 
-	if(!do_after(usr, 6 SECONDS, NONE, src))
+	if(!do_mob(usr, src, 6 SECONDS))
 		to_chat(usr, span_warning("You failed to check the pulse. Try again."))
 		return
 
@@ -758,7 +758,7 @@
 	set name = "View Crew Manifest"
 	set category = "IC"
 
-	var/dat = GLOB.datacore.get_manifest()
+	var/dat = GLOB.datacore.get_manifest(ooc = FALSE, viewfaction = job?.faction)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
@@ -773,7 +773,13 @@
 		new_species = race
 	return ..()
 
+/// Turns our human into a selected species `new_species`
+/// new_species must be either a string or a species datum
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
+	// Here we'll convert the species into a string. It's a bandaid fix
+	if(istype(new_species, /datum/species))
+		var/datum/species/old_type = new_species
+		new_species = old_type.name
 
 	if(!new_species)
 		new_species = "Human"
@@ -1116,6 +1122,7 @@
 	return ..()
 
 /mob/living/carbon/human/get_up()
-	if(!do_after(src, 2 SECONDS, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
+	var/get_up_time = (HAS_TRAIT(src, TRAIT_QUICK_GETUP) ? 5 : 20)
+	if(!do_after(src, get_up_time, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
 		return
 	return ..()

@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "d" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bigred,
@@ -18,6 +14,10 @@
 /area/bigredv2/caves/southwest)
 "l" = (
 /turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
+"m" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "p" = (
 /obj/effect/ai_node,
@@ -35,10 +35,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"u" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
 "w" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
@@ -46,14 +42,6 @@
 "A" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
-"B" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"C" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "E" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -368,7 +356,7 @@ l
 l
 S
 l
-c
+l
 d
 Q
 Q
@@ -402,7 +390,7 @@ Q
 Q
 Q
 Q
-C
+l
 V
 l
 E
@@ -586,7 +574,7 @@ l
 V
 l
 U
-Y
+m
 i
 l
 l
@@ -633,7 +621,7 @@ l
 q
 l
 l
-B
+l
 Q
 Q
 Q
@@ -859,7 +847,7 @@ l
 l
 l
 l
-u
+Y
 Q
 Q
 Q
@@ -1366,7 +1354,7 @@ K
 "}
 (29,1,1) = {"
 Q
-Q
+l
 l
 l
 l
@@ -1411,7 +1399,7 @@ K
 "}
 (30,1,1) = {"
 Q
-Q
+l
 l
 i
 l
@@ -1638,7 +1626,7 @@ K
 Q
 l
 l
-Q
+l
 Q
 Q
 Q
@@ -1683,7 +1671,7 @@ K
 Q
 l
 l
-Q
+l
 Q
 Q
 Q
@@ -1728,7 +1716,7 @@ K
 l
 l
 l
-Q
+l
 Q
 Q
 Q
@@ -1773,7 +1761,7 @@ K
 l
 l
 l
-Q
+l
 Q
 Q
 Q
@@ -1818,7 +1806,7 @@ K
 l
 l
 l
-Q
+l
 Q
 Q
 Q
@@ -1863,7 +1851,7 @@ K
 l
 i
 l
-Q
+l
 Q
 Q
 Q

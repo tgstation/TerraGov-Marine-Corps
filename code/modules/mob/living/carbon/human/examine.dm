@@ -1,3 +1,6 @@
+/mob/living/carbon/human/get_examine_icon(mob/user)
+	return null // carbon human icons either don't work or are super fucked up
+
 /mob/living/carbon/human/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	var/skipgloves = 0
@@ -32,12 +35,10 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 
-	var/msg = "<span class='info'>This is "
+	var/msg = ""
 
-	if(icon)
-		msg += "[icon2html(icon, user)] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
-
-	msg += "<EM>[src.name]</EM>!\n"
+	msg += "<span class='info'>"
+	msg += separator_hr("Outfit")
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
@@ -150,7 +151,7 @@
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [t_has] [icon2html(wear_mask, user)] \a little one on [t_his] face!")]\n"
 			else
-				msg += "[span_warning("[t_He] [t_has] [icon2html(wear_mask, user)] \a [wear_mask] on [t_his] face!")]\n"
+				msg += "[span_boldwarning("[t_He] [t_has] [icon2html(wear_mask, user)] \a [wear_mask] on [t_his] face!")]\n"
 		else if(wear_mask.blood_overlay)
 			msg += "[span_alert("[t_He] [t_has] [icon2html(wear_mask, user)] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != "#030303") ? "blood" : "oil"]-stained [wear_mask.name] on [t_his] face!")]\n"
 		else
@@ -170,6 +171,8 @@
 	//ID
 	if(wear_id)
 		msg += "[t_He] [t_is] wearing [icon2html(wear_id, user)] \a [wear_id].\n"
+
+	msg += separator_hr("Status")
 
 	//jitters
 	if(stat != DEAD)
@@ -203,7 +206,9 @@
 		if(stat == DEAD)
 			msg += "[span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life")]"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
-				msg += "[span_deadsay(" and [t_he] won't be coming back...")]\n"
+				msg += "[span_deadsay(" and [t_he] [t_has] degraded beyond revival...")]\n"
+			else if(!mind && !get_ghost(FALSE))
+				msg += "[span_deadsay(" and [t_his] soul has departed, [t_he] might come back later...")]\n"
 			else
 				msg += "[span_deadsay("...")]\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
@@ -223,39 +228,66 @@
 
 	if((!species.has_organ["brain"] || has_brain()) && stat != DEAD)
 		if(!key)
-			msg += "[span_deadsay("[t_He] [t_is] fast asleep. It doesn't look like [t_he] [t_is] waking up anytime soon.")]\n"
+			msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
 		else if(!client)
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [p_do()]n't seem responsive.")]\n"
 			else
-				msg += "[span_deadsay("[t_He] [t_is] completely unresponsive to anything and has fallen asleep, as if affected by Space Sleep Disorder. [t_He] may snap out of it soon.")]\n"
+				msg += "[span_deadsay("[t_He] [t_is] completely unresponsive to anything and [t_has] fallen asleep, as if affected by Space Sleep Disorder. [t_He] may snap out of it soon.")]\n"
 
 	var/total_brute = getBruteLoss()
 	var/total_burn = getFireLoss()
 	var/total_clone = getCloneLoss()
 	if(total_brute)
 		if (total_brute < 25)
-			msg += "[span_warning("[t_He] [t_has] minor bruising.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] minor denting.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] minor bruising.")]\n"
 		else if (total_brute < 50)
-			msg += "[span_warning("[t_He] [t_has] <b>moderate</b> bruising.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> denting.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> bruising.")]\n"
 		else
-			msg += "[span_warning("<B>[t_He] [t_has] severe bruising.</B>")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("<B>[t_He] [t_has] severe denting!</B>")]\n"
+			else
+				msg += "[span_warning("<B>[t_He] [t_has] severe bruising!</B>")]\n"
 
 	if(total_burn)
 		if (total_burn < 25)
-			msg += "[span_warning("[t_He] [t_has] minor burns.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] minor scorching.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] minor burns.")]\n"
 		else if (total_burn < 50)
-			msg += "[span_warning("[t_He] [t_has] <b>moderate</b> burns.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> scorching.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> burns.")]\n"
 		else
-			msg += "[span_warning("<B>[t_He] [t_has] severe burns.</B>")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("<B>[t_He] [t_has] severe scorching!</B>")]\n"
+			else
+				msg += "[span_warning("<B>[t_He] [t_has] severe burns!</B>")]\n"
 
 	if(total_clone)
 		if(total_clone < 25)
-			msg += "<span class='tinydeadsay'><i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage.</i></span>\n"
+			if(isrobot(src))
+				msg += "[span_tinydeadsay("<i>[t_He] [t_has] minor structural damage, with some solder visibly frayed...</i>")]\n"
+			else
+				msg += "[span_tinydeadsay("<i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage...</i>")]\n"
 		else if (total_clone < 50)
-			msg += "[span_deadsay("<i>[t_He] [t_is] significantly disfigured, with growing clouds of cellular damage.</i>")]\n"
+			if(isrobot(src))
+				msg += "[span_deadsay("<i>[t_He] look[p_s()] very shaky, with significant damage to [t_his] overall structure...</i>")]\n"
+			else
+				msg += "[span_deadsay("<i>[t_He] [t_is] significantly disfigured, with growing clouds of cellular damage...</i>")]\n"
 		else
-			msg += "[span_deadsay("<b><i>[t_He] [t_is] absolutely fucked up, with streaks of sickening, deformed flesh on [t_his] skin.</b></i>")]\n"
+			if(isrobot(src))
+				msg += "[span_deadsay("<b><i>[t_He] look[p_s()] barely functional, nearly collapsing with each step!</b></i>")]\n"
+			else
+				msg += "[span_deadsay("<b><i>[t_He] [t_is] absolutely fucked up, with streaks of sickening, deformed flesh on [t_his] skin!</b></i>")]\n"
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
@@ -462,17 +494,21 @@
 
 	if(chestburst == CARBON_CHEST_BURSTED)
 		if(isxeno(user))
-			msg += "[span_xenowarning("A larva escaped from [t_him]!")]\n"
-		else
-			msg += "[span_boldwarning("[t_He] [t_has] a giant hole in [t_his] chest!")]\n"
+			msg += "[span_xenowarning("A larva was born from [t_him]!")]\n"
 
 	for(var/i in embedded_objects)
+		msg += EXAMINE_SECTION_BREAK
 		var/obj/item/embedded = i
 		if(!(embedded.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT))
 			continue
 		msg += "[span_boldwarning("[t_He] [t_has] \a [embedded] sticking out of [t_his] flesh!")]\n"
 
+	/*if(flavor_text)
+		msg += separator_hr("Flavor Text")
+		msg += "</span>[flavor_text]<span class='info'>"*/
+
 	if(hasHUD(user,"security"))
+		msg += separator_hr("Security HUD")
 		var/perpname = "wot"
 		var/criminal = "None"
 
@@ -493,6 +529,7 @@
 			msg += "[span_deptradio("Security records:")] <a href='?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(user,"medical"))
+		msg += separator_hr("Medical HUD")
 		var/cardcolor = holo_card_color
 		if(!cardcolor)
 			cardcolor = "none"
@@ -511,37 +548,66 @@
 				msg += "[span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>Body scan from [N.fields["last_scan_time"]]</a>")]\n"
 
 	if(hasHUD(user,"squadleader"))
+		msg += separator_hr("SL Utilities")
 		var/mob/living/carbon/human/H = user
 		if(assigned_squad) //examined mob is a marine in a squad
 			if(assigned_squad == H.assigned_squad) //same squad
 				msg += "<a href='?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
-	msg += "[flavor_text]<br>"
+	msg += "\n[span_collapsible("Flavor Text", "[flavor_text]")]"
+	if(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes)
+		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+	if(profile_pic)
+		msg += "<span class='info'><img src=[profile_pic] width=250 height=250/></span>"
 
+// removed hollow examine from humans
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))
 		if(isxeno(user))
-			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] hollow. Useless.</span>\n"
-		else
-			msg += "[span_deadsay("<b>[t_He] [t_is] hollowed out!</b>")]\n"
+			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] was hollowed before. Useless.</span>\n"
+//		else
+//			msg += "[span_warning("<b>[t_He] [t_is] hollowed out!</b>")]\n"
 
 	if(isxeno(user))
+		var/embryocount
+		for(var/obj/item/alien_embryo/implanted in contents)
+			embryocount ++
+			if(!implanted)
+				break
+		msg += separator_hr("Xeno Info")
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] [t_is] not organic.")]\n"
 		if(status_flags & XENO_HOST)
-			msg += "[t_He] [t_is] impregnated.\n"
+			msg += "[t_He] [t_is] impregnated with [embryocount] larva(s) and [t_he] [t_is][reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : " not"] inoculated with Larval Accelerant.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)] doses of Tricordrazine [t_is] still inside the infected host, healing this one slowly.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)] doses of Inaprovaline [t_is] still inside the infected host, keeping this one stabilized for now.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/dexalin))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/dexalin)] doses of Dexalin [t_is] still inside the infected host, making this one breathe easier.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)] doses of Spaceacillin [t_is] still inside the infected host, curing infections on this one.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly)] doses of Growth toxin [t_is] still inside the infected host, making the little one within grow faster.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/acid))
+			msg += "[reagents.get_reagent_amount(/datum/reagent/toxin/acid)] doses of acid in their bloodstream, melting this one from within.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 			msg += "Hemodile: Slows down the target, doubling in power with each other xeno-based toxin present.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 			msg += "Transvitox: Converts burns to toxin over time, as well as causing incoming brute damage to deal additional toxin damage. Both effects intensifying with each xeno-based toxin present. Toxin damage is capped at 180.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin))
+			msg += "Aphrotoxin: A strong aphrodisiac and larval growth toxin, will cause legs to go weak and boost larva growth.\n"
+		if(embryocount < 1)
+			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+				msg += "Growth toxin: Makes the little ones grow faster while affected, but the host has no little ones inside..\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
 			msg += "Ozelomelyn: Rapidly purges all medicine in the body, causes toxin damage capped at 40. Metabolizes very quickly.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
 			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
-
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
-		msg += span_highdanger("<b>This player has been slept by staff. Best to leave them be.</b>\n")
+		msg += separator_hr("[span_boldwarning("Admin Slept")]")
+		msg += span_userdanger("This player has been slept by staff. Best to leave them be.\n")
 
 	msg += "</span>"
 	return list(msg)

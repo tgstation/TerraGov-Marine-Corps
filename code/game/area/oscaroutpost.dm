@@ -54,6 +54,7 @@
 	name = "Enclosed Area"
 	icon_state = "transparent"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	area_flags = CANNOT_NUKE
 
 /area/oscar_outpost/outside/road
 	name = "Oscar Outpost Roadway"

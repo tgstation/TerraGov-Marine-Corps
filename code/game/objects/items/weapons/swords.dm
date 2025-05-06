@@ -2,6 +2,7 @@
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
+	icon = 'icons/obj/items/weapons/swords.dmi'
 	worn_icon_state = "claymore"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -52,14 +53,16 @@
 
 /datum/action/ability/activable/weapon_skill/sword_lunge/use_ability(atom/A)
 	var/mob/living/carbon/carbon_owner = owner
+	var/dash_distance = round(6 - owner.cached_multiplicative_slowdown)
+	var/dash_speed = ROUND_UP(4 - owner.cached_multiplicative_slowdown)
 
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_BUMP, PROC_REF(lunge_impact))
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
-	playsound(owner, "sound/effects/alien_tail_swipe2.ogg", 50, 0, 4)
-	carbon_owner.throw_at(A, 2, 1, carbon_owner)
+	playsound(owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 0, 4)
+	carbon_owner.throw_at(A, dash_distance, dash_speed, carbon_owner)
 	succeed_activate()
 	add_cooldown()
 
@@ -74,25 +77,26 @@
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
 
 ///Sig handler for atom impacts during lunge
-/datum/action/ability/activable/weapon_skill/sword_lunge/proc/lunge_impact(datum/source, obj/target, speed)
+/datum/action/ability/activable/weapon_skill/sword_lunge/proc/lunge_impact(datum/source, atom/movable/target, speed)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(do_lunge_impact), source, target)
 	charge_complete()
 
 ///Actual effects of lunge impact
-/datum/action/ability/activable/weapon_skill/sword_lunge/proc/do_lunge_impact(datum/source, obj/target)
+/datum/action/ability/activable/weapon_skill/sword_lunge/proc/do_lunge_impact(datum/source, atom/movable/target)
 	var/mob/living/carbon/carbon_owner = source
-	if(!ishuman(target))
+	if(isobj(target))
 		var/obj/obj_victim = target
 		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
-		if(!obj_victim.anchored && obj_victim.move_resist < MOVE_FORCE_VERY_STRONG)
-			obj_victim.knockback(carbon_owner, 1, 2)
-	else
-		var/mob/living/carbon/human/human_victim = target
-		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
-		human_victim.adjust_stagger(1 SECONDS)
-		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
-		shake_camera(human_victim, 2, 1)
+		obj_victim.knockback(carbon_owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
+		return
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/human_victim = target
+	human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+	human_victim.adjust_stagger(1 SECONDS)
+	playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
+	shake_camera(human_victim, 2, 1)
 
 /obj/item/weapon/sword/mercsword
 	name = "combat sword"
@@ -127,7 +131,6 @@
 	icon_state = "machete_alt"
 
 //FC's sword.
-
 /obj/item/weapon/sword/officersword
 	name = "officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
@@ -136,6 +139,7 @@
 	force = 75
 	attack_speed = 11
 	penetration = 15
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/weapon/sword/officersword/Initialize(mapload)
 	. = ..()

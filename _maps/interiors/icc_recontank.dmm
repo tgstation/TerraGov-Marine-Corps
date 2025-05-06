@@ -1,0 +1,135 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/interior/apc/nineteen,
+/area/interior/tank)
+"b" = (
+/turf/closed/interior/tank/door,
+/area/interior/tank)
+"f" = (
+/obj/structure/bed/chair/vehicle_crew/gunner,
+/turf/open/interior/apc/twentynine,
+/area/interior/tank)
+"h" = (
+/turf/closed/interior/apc/five,
+/area/interior/tank)
+"j" = (
+/turf/closed/interior/apc/one,
+/area/interior/tank)
+"l" = (
+/obj/structure/bed/chair/loader_seat{
+	pixel_y = -5
+	},
+/obj/structure/periscope,
+/turf/open/interior/apc/nine,
+/area/interior/tank)
+"r" = (
+/turf/closed/interior/tank/twentythree,
+/area/interior/tank)
+"t" = (
+/turf/closed/interior/apc/twentyfour,
+/area/interior/tank)
+"u" = (
+/obj/structure/gun_breech/lvrt{
+	pixel_x = -13;
+	pixel_y = -8
+	},
+/obj/structure/gun_breech/secondary/lvrt{
+	pixel_x = -21;
+	pixel_y = 4
+	},
+/turf/closed/interior/tank/seventeen,
+/area/interior/tank)
+"v" = (
+/turf/open/interior/apc/twentynine,
+/area/interior/tank)
+"w" = (
+/turf/closed/interior/apc/twenty,
+/area/interior/tank)
+"x" = (
+/turf/open/interior/apc/nine,
+/area/interior/tank)
+"z" = (
+/turf/closed/interior/apc/thirteen,
+/area/interior/tank)
+"A" = (
+/turf/closed/interior/apc/two,
+/area/interior/tank)
+"D" = (
+/turf/closed/interior/apc/twentyeight,
+/area/interior/tank)
+"E" = (
+/turf/closed/interior/apc/twelve,
+/area/interior/tank)
+"L" = (
+/obj/structure/ammo_rack/primary/icc{
+	pixel_x = -1;
+	pixel_y = -9
+	},
+/obj/structure/ammo_rack/secondary/icc{
+	pixel_x = 0;
+	pixel_y = -18
+	},
+/turf/closed/interior/apc/two,
+/area/interior/tank)
+"M" = (
+/turf/closed/interior/apc/twentyseven,
+/area/interior/tank)
+"S" = (
+/obj/structure/bed/chair/vehicle_crew/driver{
+	pixel_y = -6
+	},
+/turf/open/interior/apc/eleven,
+/area/interior/tank)
+"V" = (
+/turf/closed/interior/apc/twentythree,
+/area/interior/tank)
+"X" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
+/turf/closed/interior/apc/six,
+/area/interior/tank)
+"Z" = (
+/turf/closed/interior/apc/four,
+/area/interior/tank)
+
+(1,1,1) = {"
+j
+z
+b
+z
+a
+"}
+(2,1,1) = {"
+A
+x
+v
+v
+M
+"}
+(3,1,1) = {"
+Z
+l
+v
+f
+M
+"}
+(4,1,1) = {"
+L
+x
+u
+r
+M
+"}
+(5,1,1) = {"
+h
+S
+M
+V
+w
+"}
+(6,1,1) = {"
+X
+E
+t
+t
+D
+"}

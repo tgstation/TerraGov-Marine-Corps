@@ -23,7 +23,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 380
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -54,24 +54,33 @@
 	bomb_delay = 32 SECONDS
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_damage = 16
-	acid_spray_damage_on_hit = 35
+	acid_spray_damage = 30
+	acid_spray_damage_on_hit = 60
 	acid_spray_structure_damage = 45
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/xeno_action/create_boiler_bomb,
 		/datum/action/ability/activable/xeno/bombard,
 		/datum/action/ability/xeno_action/toggle_long_range,
 		/datum/action/ability/xeno_action/toggle_bomb,
 		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
+		/datum/action/ability/activable/xeno/acid_shroud,
 	)
 
 /datum/xeno_caste/boiler/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/boiler/sizzler/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/boiler/primordial
@@ -85,8 +94,12 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/xeno_action/create_boiler_bomb,
@@ -94,4 +107,56 @@
 		/datum/action/ability/xeno_action/toggle_long_range,
 		/datum/action/ability/xeno_action/toggle_bomb,
 		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
+		/datum/action/ability/activable/xeno/acid_shroud,
+	)
+
+/datum/xeno_caste/boiler/sizzler
+	caste_type_path = /mob/living/carbon/xenomorph/boiler/sizzler
+	upgrade_name = ""
+	caste_name = "Sizzler Boiler"
+	display_name = "Sizzler"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "Gross! The large creature is venting a hot steam."
+
+		// *** Ranged Attack *** //
+	spit_delay = 0.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/acid/airburst)
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/xeno_action/smokescreen_spit,
+		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
+		/datum/action/ability/xeno_action/steam_rush,
+	)
+
+/datum/xeno_caste/boiler/sizzler/primordial
+	upgrade_name = "Primordial"
+	upgrade = XENO_UPGRADE_PRIMO
+	caste_desc = "A living steam engine. Its body spews hot gas."
+	primordial_message = "Our steam is ceaseless. We are the hive's living engine. May our enemies perish in our scalding radiance."
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/xeno_action/smokescreen_spit,
+		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
+		/datum/action/ability/xeno_action/steam_rush,
+		/datum/action/ability/activable/xeno/high_pressure_spit,
 	)

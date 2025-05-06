@@ -58,7 +58,7 @@
 /datum/config_entry/flag/limbs_can_break
 
 /datum/config_entry/number/revive_grace_period
-	config_entry_value = 5 MINUTES
+	config_entry_value = 1 HOURS
 	min_val = 0
 
 /datum/config_entry/flag/bones_can_break
@@ -109,6 +109,8 @@
 	config_entry_value = 30 MINUTES
 	max_val = 30 MINUTES
 	min_val = 0
+
+/datum/config_entry/flag/tts_no_whisper
 
 /datum/config_entry/string/tts_http_url
 	protection = CONFIG_ENTRY_LOCKED

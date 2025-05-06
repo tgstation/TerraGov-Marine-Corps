@@ -1,12 +1,11 @@
 /obj/item/weapon/energy
 	atom_flags = NOBLOODY
+	icon = 'icons/obj/items/weapons/energy.dmi'
 
 /obj/item/weapon/energy/suicide_act(mob/user)
 	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku."), \
 						span_danger("[user] is falling on the [name]! It looks like [user.p_theyre()] trying to commit suicide.")))
 	return (BRUTELOSS|FIRELOSS)
-
-
 
 /obj/item/weapon/energy/axe
 	name = "energy axe"
@@ -40,8 +39,6 @@
 		icon_state = "axe0"
 		w_class = WEIGHT_CLASS_HUGE
 		heat = 0
-
-
 
 /obj/item/weapon/energy/sword
 	name = "energy sword"
@@ -158,6 +155,29 @@
 		set_light_on(FALSE)
 
 /obj/item/weapon/energy/sword/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	standing.overlays.Add(emissive_overlay)
+
+/obj/item/weapon/energy/sword/ntc
+	name = "NTC Energy blade"
+	icon_state = "sword"
+	desc = "A NTC energy sword, it should cut through anything."
+	active_force = 50
+	sword_color = "red"
+
+/obj/item/weapon/energy/sword/ntc/Initialize(mapload)
+	. = ..()
+	set_light_range_power_color(2, 0.5, COLOR_RED)
+
+/obj/item/weapon/energy/sword/ntc/switch_state(datum/source, mob/living/user)
+	. = ..()
+	if(active)
+		set_light_on(TRUE)
+	else
+		set_light_on(FALSE)
+
+/obj/item/weapon/energy/sword/ntc/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
 	standing.overlays.Add(emissive_overlay)

@@ -4,20 +4,16 @@
 	icon_state = "computer_small"
 	screen_overlay = "cameras"
 	broken_icon = "computer_small_red_broken"
-
 	circuit = /obj/item/circuitboard/computer/security
-
 	var/list/network = list("marinemainship")
 	var/list/watchers = list() //who's using the console, associated with the camera they're on.
 	var/long_ranged = FALSE
-
 
 /obj/machinery/computer/security/Initialize(mapload)
 	. = ..()
 	for(var/i in network)
 		network -= i
 		network += lowertext(i)
-
 
 /obj/machinery/computer/security/check_eye(mob/living/user)
 	if(!istype(user))
@@ -44,18 +40,15 @@
 		user.unset_interaction()
 		return
 
-
 /obj/machinery/computer/security/on_unset_interaction(mob/user)
 	watchers.Remove(user)
 	user.reset_perspective(null)
-
 
 /obj/machinery/computer/security/Destroy()
 	if(length(watchers))
 		for(var/mob/M in watchers)
 			M.unset_interaction() //to properly reset the view of the users if the console is deleted.
 	return ..()
-
 
 /obj/machinery/computer/security/attack_hand(mob/living/user)
 	. = ..()
@@ -89,7 +82,6 @@
 	playsound(src, 'sound/machines/terminal_on.ogg', 25, 0)
 	user.set_interaction(src)
 	use_camera_console(user)
-
 
 /obj/machinery/computer/security/proc/use_camera_console(mob/living/user)
 	if(!istype(user))
@@ -133,7 +125,6 @@
 	else
 		user.unset_interaction()
 
-
 //returns the list of cameras accessible from this computer
 /obj/machinery/computer/security/proc/get_available_cameras()
 	var/list/all_cams = list()
@@ -157,7 +148,6 @@
 			valid_cams["[C.c_tag]"] = C
 	return valid_cams
 
-
 /obj/machinery/computer/security/telescreen
 	name = "Telescreen"
 	desc = "Used for watching an empty arena."
@@ -167,13 +157,11 @@
 	density = FALSE
 	circuit = null
 
-
 /obj/machinery/computer/security/telescreen/update_icon_state()
 	. = ..()
 	icon_state = initial(icon_state)
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state += "b"
-
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
@@ -188,7 +176,6 @@
 	icon_state = "security_det"
 	screen_overlay = "security_det_screen"
 	circuit = null
-
 
 /obj/machinery/computer/security/mining
 	name = "Outpost Cameras"
@@ -216,14 +203,12 @@
 	network = list("NUKE")
 	circuit = null
 
-
 /obj/machinery/computer/security/marinemainship
 	name = "Ship Security Cameras"
 	density = FALSE
 	icon_state = "computer_small"
 	screen_overlay = "security_cam"
 	network = list("marinemainship")
-
 
 /obj/machinery/computer/security/marinemainship_network
 	network = list("marinemainship")
@@ -241,18 +226,15 @@
 	name = "abstract dropship camera computer"
 	desc = "A computer to monitor cameras linked to the dropship."
 	density = TRUE
-	icon = 'icons/Marine/shuttle-parts.dmi'
-	icon_state = "consoleleft"
-	screen_overlay = "consoleleft_emissive"
+	icon_state = "dropship_console_left"
+	screen_overlay = "dropship_console_left_emissive"
 	circuit = null
 	resistance_flags = RESIST_ALL
-
 
 /obj/machinery/computer/security/dropship/one
 	name = "\improper 'Alamo' camera controls"
 	network = list("dropship1")
 	opacity = FALSE
-
 
 /obj/machinery/computer/security/dropship/two
 	name = "\improper 'Normandy' camera controls"
@@ -261,4 +243,3 @@
 /obj/machinery/computer/security/dropship/three
 	name = "\improper 'Triump' camera controls"
 	network = list("dropship3")
-

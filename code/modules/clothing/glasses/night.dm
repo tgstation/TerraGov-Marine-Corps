@@ -66,7 +66,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	darkness_view = 5
+	darkness_view = 7
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
@@ -86,7 +86,7 @@
 
 /obj/item/clothing/glasses/night/optgoggles
 	name = "\improper Optical imager ballistic goggles"
-	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal optical imaging scanner."
+	desc = "Standard issue NTC goggles. This pair has been fitted with an internal optical imaging scanner."
 	icon_state = "optgoggles"
 	worn_icon_state = "optgoggles"
 	deactive_state = "degoggles_optgoggles"
@@ -105,5 +105,18 @@
 
 /obj/item/clothing/glasses/night/optgoggles/prescription
 	name = "\improper Optical imager prescription ballistic goggles"
-	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal optical imaging scanner."
+	desc = "Standard issue NTC prescription goggles. This pair has been fitted with an internal optical imaging scanner."
 	prescription = TRUE
+
+/obj/item/clothing/glasses/night/vsd
+	name = "\improper CM-12 night vision goggles"
+	desc = "V.S.D's night vision goggles, For the extra tacticool feel, Crash Core and your superior officers are not responsible for blindness and burning."
+	icon = 'icons/mob/clothing/eyes.dmi'
+	icon_state = "vsd_nvg"
+	worn_icon_state = "vsd_nvg"
+	deactive_state = "vsd_nvg_off"
+	darkness_view = 9
+	toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+	tint = COLOR_GREEN
+	worn_layer = COLLAR_LAYER

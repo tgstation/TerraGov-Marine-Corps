@@ -394,7 +394,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "qI" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/camera,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
@@ -550,6 +550,7 @@
 /area/bigredv2/outside/admin_building)
 "wQ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "wR" = (
@@ -771,7 +772,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "BV" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
@@ -1072,7 +1073,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "LH" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
@@ -1189,6 +1190,7 @@
 /area/bigredv2/outside/admin_building)
 "PN" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "Qc" = (
@@ -1301,7 +1303,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "TY" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
@@ -1312,12 +1314,13 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/admin_building)
 "Ud" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/binoculars,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "UC" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "UF" = (
@@ -1401,7 +1404,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "Xb" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "Xq" = (

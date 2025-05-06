@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	. += GLOB.glass_recipes
 
 GLOBAL_LIST_INIT(glass_radial_images, list(
-	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
+	"recipes" = image('icons/obj/structures/barricades/misc.dmi', icon_state = "plus"),
 	"directional window" = image('icons/obj/structures/windows.dmi', "window"),
 	"fulltile window" = image('icons/obj/structures/windows.dmi', "window0"),
 	"windoor" = image('icons/obj/doors/windoor.dmi', icon_state = "left")

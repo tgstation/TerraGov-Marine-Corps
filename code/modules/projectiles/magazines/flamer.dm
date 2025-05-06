@@ -6,6 +6,7 @@
 	name = "incinerator tank"
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-240 incinerator unit. Handle with care."
 	icon_state = "flametank"
+	icon = 'icons/obj/items/ammo/flamer.dmi'
 	max_rounds = 50 //Per turf.
 	current_rounds = 50
 	reload_delay = 2 SECONDS
@@ -86,7 +87,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
 	name = "Gargantuan flamethrower X-tank"
-	desc = "Using Bluespace technology, Nanotrasen has managed to fit in way more x-fuel than you would ever hope to need in a single lifetime into this specialized tank."
+	desc = "Using Bluespace technology, Ninetails has managed to fit in way more x-fuel than you would ever hope to need in a single lifetime into this specialized tank."
 	max_rounds = 225
 	current_rounds = 225
 	reload_delay = 2 SECONDS

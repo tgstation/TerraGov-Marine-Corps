@@ -31,10 +31,10 @@
 	if(ispath(ingredient_typepath, /datum/reagent))
 		var/datum/reagent/reagent = ingredient_typepath
 		preview_item = initial(reagent.default_container)
-		//var/datum/glass_style/style = GLOB.glass_style_singletons[preview_item]?[reagent] ---- For now commenting out glass styles, I will need this later
-		//if(istype(style))
-		//	icon_file = style.icon
-		//	icon_state = style.icon_state
+		var/datum/glass_style/style = GLOB.glass_style_singletons[preview_item]?[reagent]
+		if(istype(style))
+			icon_file = style.icon
+			icon_state = style.icon_state
 
 	icon_file ||= initial(preview_item.icon_preview) || initial(preview_item.icon)
 	icon_state ||= initial(preview_item.icon_state_preview) || initial(preview_item.icon_state)

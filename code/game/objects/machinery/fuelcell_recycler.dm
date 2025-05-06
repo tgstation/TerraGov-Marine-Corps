@@ -1,7 +1,7 @@
 /obj/machinery/fuelcell_recycler
 	name = "fuel cell recycler"
 	desc = "A large machine with whirring fans and two cylindrical holes in the top. Used to regenerate fuel cells."
-	icon = 'icons/Marine/fusion_eng.dmi'
+	icon = 'icons/obj/machines/fusion_engine.dmi'
 	icon_state = "recycler"
 	anchored = TRUE
 	density = TRUE

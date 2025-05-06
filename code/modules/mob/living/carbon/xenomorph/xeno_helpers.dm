@@ -13,8 +13,18 @@
 	SHOULD_CALL_PARENT(FALSE)
 	return FALSE
 
+/mob/living/carbon/xenomorph/get_crit_threshold()
+	. = ..()
+	if(!endure)
+		return
+	var/datum/action/ability/xeno_action/endure/endure_ability = actions_by_path[/datum/action/ability/xeno_action/endure]
+	return endure_ability.endure_threshold
+
 /mob/living/carbon/xenomorph/get_death_threshold()
-	return xeno_caste.crit_health
+	if(!endure)
+		return xeno_caste.crit_health
+	var/datum/action/ability/xeno_action/endure/endure_ability = actions_by_path[/datum/action/ability/xeno_action/endure]
+	return endure_ability.endure_threshold
 
 ///Helper proc for giving the rally abilities
 /mob/living/carbon/xenomorph/proc/give_rally_abilities()

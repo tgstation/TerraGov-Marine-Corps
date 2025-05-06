@@ -40,18 +40,16 @@
 	var/atom/movable/screen/pull_icon
 	var/atom/movable/screen/throw_icon
 	var/atom/movable/screen/rest_icon
-	var/atom/movable/screen/oxygen_icon
-	var/atom/movable/screen/pressure_icon
-	var/atom/movable/screen/toxin_icon
 	var/atom/movable/screen/healths
 	var/atom/movable/screen/stamina_hud/staminas
-	var/atom/movable/screen/fire_icon
-	var/atom/movable/screen/bodytemp_icon
 
 	var/atom/movable/screen/gun_setting_icon
 	var/atom/movable/screen/gun_item_use_icon
 	var/atom/movable/screen/gun_move_icon
 	var/atom/movable/screen/gun_run_icon
+
+	/// Displays a HUD element that indicates the current combo, as well as what has been inputted so far.
+	var/atom/movable/screen/combo/combo_display
 
 	var/list/atom/movable/screen/ammo_hud_list = list()
 
@@ -135,18 +133,15 @@
 	zone_sel = null
 	pull_icon = null
 	throw_icon = null
-	oxygen_icon = null
-	pressure_icon = null
-	toxin_icon = null
 	healths = null
 	staminas = null
-	fire_icon = null
-	bodytemp_icon = null
 
 	gun_setting_icon = null
 	gun_item_use_icon = null
 	gun_move_icon = null
 	gun_run_icon = null
+
+	QDEL_NULL(combo_display)
 
 	QDEL_LIST_ASSOC_VAL(plane_masters)
 

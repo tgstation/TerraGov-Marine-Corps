@@ -166,7 +166,7 @@
 		/obj/item/tool/kitchen/utensil/knife = 20,
 		/obj/item/tool/kitchen/utensil/pknife = 20,
 		/obj/item/tool/kitchen/rollingpin = 10,
-		/obj/item/tool/kitchen/tray = 5,
+		/obj/item/storage/kitchen_tray = 5,
 	)
 
 /obj/effect/spawner/random/food_or_drink/drink_cans
@@ -315,7 +315,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/sodawater,
 		/obj/item/reagent_containers/food/drinks/flask/barflask,
 		/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
-		/obj/item/reagent_containers/food/drinks/drinkingglass,
+		/obj/item/reagent_containers/cup/glass/drinkingglass,
 		/obj/item/reagent_containers/food/drinks/ice,
 		/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
 		/obj/item/reagent_containers/food/drinks/bottle/bluecuracao,

@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	req_access = list(ACCESS_MARINE_MECH)
 
 	///current selected name for the mech
-	var/selected_name = "TGMC Combat Mech"
+	var/selected_name = "NTC Combat Mech"
 	///STRING-STRING list of mech_slot-primary_color_palette
 	var/list/selected_primary = list(
 		MECH_GREY_TORSO = MECH_GREY_PRIMARY_DEFAULT,

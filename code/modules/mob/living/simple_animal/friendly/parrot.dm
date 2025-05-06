@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 		icon_state = icon_living
 
 
-/mob/living/simple_animal/parrot/bullet_act(obj/projectile/Proj)
+/mob/living/simple_animal/parrot/bullet_act(obj/projectile/proj)
 	. = ..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)
@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 		drop_held_item(0)
 
 
-/mob/living/simple_animal/parrot/Life()
+/mob/living/simple_animal/parrot/Life(seconds_per_tick, times_fired)
 	. = ..()
 
 	//Sprite update for when a parrot gets pulled
@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	return ..()
 
 
-/mob/living/simple_animal/parrot/Poly/Life()
+/mob/living/simple_animal/parrot/Poly/Life(seconds_per_tick, times_fired)
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE
@@ -588,6 +588,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 				parrot_source.available_channels.Add(RADIO_TOKEN_COMMAND)
 			if(RADIO_CHANNEL_CAS)
 				parrot_source.available_channels.Add(RADIO_TOKEN_CAS)
+			if(RADIO_CHANNEL_SEC)
+				parrot_source.available_channels.Add(RADIO_TOKEN_SEC)
 			if(RADIO_CHANNEL_MEDICAL)
 				parrot_source.available_channels.Add(RADIO_TOKEN_MEDICAL)
 			if(RADIO_CHANNEL_REQUISITIONS)

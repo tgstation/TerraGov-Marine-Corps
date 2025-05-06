@@ -340,8 +340,41 @@
 	var/area/A = get_area(src)
 	return A.lightswitch && A.power_light
 
-///flicker lights on and off
-/obj/machinery/light/proc/flicker(toggle_flicker = FALSE)
+///Flickers the lights for a set amount of time and flicker delays.
+/obj/machinery/light/proc/set_flicker(amount, flicker_time_lower = 1, flicker_time_upper = 2, flicker_delay = 0.3 SECONDS, ignore_flickering = TRUE)
+	if(status != LIGHT_OK)
+		return
+	if(!has_power())
+		return
+	///Timer id for flickering.
+	var/theflicker
+	if(!ignore_flickering && flickering) //is it flickering when set_flicker-ed
+		//get rid of the stuff to start over so we dont mess stuff up.
+		deltimer(theflicker)
+		resetflickers()
+	random_flicker = TRUE
+	flickering = TRUE
+	if(flicker_time_lower)
+		flicker_time_lower_min = flicker_time_lower
+	if(flicker_time_upper)
+		flicker_time_upper_max = flicker_time_upper
+	flicker(FALSE, FALSE, flicker_delay)
+	theflicker = addtimer(CALLBACK(src, PROC_REF(resetflickers), amount))
+
+///sets values as they were for the light, before set_flicker.
+/obj/machinery/light/proc/resetflickers()
+	flicker_time_lower_min = initial(flicker_time_lower_min)
+	flicker_time_upper_max = initial(flicker_time_upper_max)
+	random_flicker = initial(random_flicker)
+	flickering = FALSE
+	if(!has_power())
+		lightambient.stop(src)
+		return
+	if(status == LIGHT_OK)
+		lightambient.start(src)
+
+///flicker lights on and off. longer_off_time var makes the lights be off more than they are on, the default behavior for this proc.
+/obj/machinery/light/proc/flicker(toggle_flicker = FALSE, longer_off_time = TRUE, flicker_delay = 0.3 SECONDS)
 	if(!has_power())
 		lightambient.stop(src)
 		return
@@ -365,11 +398,12 @@
 	if(!light_flicker_state)
 		flick("[base_icon_state]_flick_off", src)
 		//delay the power change long enough to get the flick() animation off
-		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), flicker_delay)
 	else
 		flick("[base_icon_state]_flick_on", src)
-		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
-		flicker_time = flicker_time * 2 //for effect it's best if the amount of time we spend off is more than the time we spend on
+		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), flicker_delay)
+		if(longer_off_time)
+			flicker_time = flicker_time * 2 //for effect it's best if the amount of time we spend off is more than the time we spend on
 	if(!flickering)
 		return
 	addtimer(CALLBACK(src, PROC_REF(flicker)), flicker_time)
@@ -439,6 +473,10 @@
 	bulb_power = 0.5
 	bulb_colour = LIGHT_COLOR_FLARE
 
+/obj/machinery/light/bluegreen
+	light_color = LIGHT_COLOR_BLUEGREEN
+	bulb_colour = LIGHT_COLOR_BLUEGREEN
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
@@ -460,6 +498,30 @@
 	status = LIGHT_EMPTY
 	update(FALSE)
 
+/obj/machinery/light/blue
+	base_icon_state = "btube"
+	icon_state = "tube_empty"
+	light_color = LIGHT_COLOR_BLUE_FLAME
+	bulb_colour = LIGHT_COLOR_BLUE_FLAME
+	desc = "A lighting fixture that is fitted with a bright blue fluorescent light tube. Looking at it for too long makes your eyes go watery."
+	light_type = /obj/item/light_bulb/tube/blue
+
+/obj/machinery/light/small/blue
+	light_color = LIGHT_COLOR_BLUE_FLAME
+	bulb_colour = LIGHT_COLOR_BLUE_FLAME
+	fitting = "bbulb"
+	brightness = 4
+	desc = "A small lighting fixture that is fitted with a bright blue fluorescent light bulb. Looking at it for too long makes your eyes go watery."
+	light_type = /obj/item/light_bulb/bulb/blue
+
+/obj/machinery/light/spot/blue
+	name = "spotlight"
+	light_color = LIGHT_COLOR_BLUE_FLAME
+	bulb_colour = LIGHT_COLOR_BLUE_FLAME
+	desc = "A wide light fixture fitted with a large, blue, very bright fluorescent light tube. You want to sneeze just looking at it."
+	fitting = "large tube"
+	light_type = /obj/item/light_bulb/tube/large
+	brightness = 12
 
 /obj/machinery/light/small/built/Initialize(mapload)
 	. = ..()

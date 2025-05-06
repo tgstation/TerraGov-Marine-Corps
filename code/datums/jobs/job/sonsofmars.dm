@@ -1,19 +1,17 @@
 /datum/job/som
-	job_category = JOB_CAT_MARINE
-	access = ALL_ANTAGONIST_ACCESS
-	minimal_access = ALL_ANTAGONIST_ACCESS
+	job_category = JOB_CAT_MARINESOM
+	access = ACCESS_SOM_DEFAULT
+	minimal_access = ACCESS_SOM_DEFAULT
 	faction = FACTION_SOM
 
 
 /datum/outfit/job/som/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.underwear = 10
-	H.undershirt = H.undershirt ? 10 : 0
 	H.regenerate_icons()
 
 //Base job for normal gameplay SOM, not ERT.
 /datum/job/som/squad
-	access = ALL_ANTAGONIST_ACCESS
+	access = ACCESS_SOM_DEFAULT
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	supervisors = "the acting squad leader"
 	selection_color = "#ffeeee"
@@ -23,9 +21,9 @@
 	. = ..()
 	if(istype(SSticker.mode, /datum/game_mode/hvh/combat_patrol))
 		if(issensorcapturegamemode(SSticker.mode))
-			to_chat(M, span_highdanger("Your platoon has orders to defend sensor towers in the AO and prevent them from reactivation by TerraGov forces until heavy reeinforcement arrives. High Command considers the successful prevention of the reactivation of the sensor towers a major victory"))
+			to_chat(M, span_userdanger("Your platoon has orders to defend sensor towers in the AO and prevent them from reactivation by corpo forces until heavy reeinforcement arrives. High Command considers the successful prevention of the reactivation of the sensor towers a major victory"))
 		else
-			to_chat(M, span_highdanger("Your platoon has orders to patrol a remote territory illegally claimed by TerraGov imperialists. Intel suggests TGMC units are similarly trying to press their claims by force. Work with your team and eliminate all TGMC you encounter while preserving your own strength! High Command considers wiping out all enemies a major victory, or inflicting more casualties a minor victory."))
+			to_chat(M, span_userdanger("Your platoon has orders to patrol a remote territory illegally claimed by corpos. Intel suggests TGMC units are similarly trying to press their claims by force. Work with your team and eliminate all TGMC you encounter while preserving your own strength! High Command considers wiping out all enemies a major victory, or inflicting more casualties a minor victory."))
 		return
 
 /datum/job/som/squad/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
@@ -50,6 +48,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 //SOM Standard
 /datum/job/som/squad/standard
 	title = SOM_SQUAD_MARINE
+	access = list (ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS)
 	paygrade = "SOM_E1"
 	comm_title = "Mar"
 	minimap_icon = "private"
@@ -102,11 +101,69 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	name = "SOM Standard"
 	jobtype = /datum/job/som/squad/standard
 
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/standard
 
+
+/datum/job/som/squad/slut
+	title = SOM_SQUAD_SLUT
+	access = list (ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS)
+	paygrade = "SOM_E1"
+	comm_title = "Slt"
+	minimap_icon = "slut"
+	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
+	total_positions = -1
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	outfit = /datum/outfit/job/som/squad/slut
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Easy<br /><br />
+		<b>You answer to the</b> acting Squad Leader<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Combat patrol and Sensor Capture<br /><br /><br />
+		The backbone of the Sons of Mars are their rank and file marines, trained and equipped to fight the conventional military of their former oppressors. They are fitted with the standard arsenal that the SOM offers, equipped with traditional projectile weaponry as well are less common but more deadly volkite weapons as the SOM's industry allows. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against the Sons of Mars.
+		<br /><br />
+		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the Sons of Mars.
+	"}
+
+/datum/job/som/squad/slut/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // starting
+			new_human.wear_id.paygrade = "SOM_E1"
+		if(601 to 6000) // 10hrs
+			new_human.wear_id.paygrade = "SOM_E2"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "SOM_E3"
+		if(18001 to 30000) // 300 hrs
+			new_human.wear_id.paygrade = "SOM_E4"
+		if(30001 to 60000) // 500 hrs
+			new_human.wear_id.paygrade = "SOM_E5"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "SOM_S1"
+
+/datum/job/som/squad/slut/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"\nYou are a rank-and-file soldier of the Sons of Mars, and that is your strength.
+What you lack alone, you gain standing shoulder to shoulder with the men and women of the SOM. For Mars!"})
+
+/datum/outfit/job/som/squad/slut
+	name = "SOM Slut"
+	jobtype = /datum/job/som/squad/slut
+
+	id = /obj/item/card/id/dogtag/som
 
 /datum/job/som/squad/engineer
 	title = SOM_SQUAD_ENGINEER
+	access = list (ACCESS_SOM_DEFAULT,ACCESS_SOM_REQUESITIONS,ACCESS_SOM_ENGINEERING,ALL_ANTAGONIST_ACCESS)
 	paygrade = "SOM_E3"
 	comm_title = "Eng"
 	total_positions = 12
@@ -158,11 +215,12 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	name = "SOM Engineer"
 	jobtype = /datum/job/som/squad/engineer
 
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/engineer
 
 
 /datum/job/som/squad/medic
 	title = SOM_SQUAD_CORPSMAN
+	access = list (ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ALL_ANTAGONIST_ACCESS)
 	paygrade = "SOM_E3"
 	comm_title = "Med"
 	total_positions = 16
@@ -214,15 +272,16 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	name = "SOM Medic"
 	jobtype = /datum/job/som/squad/medic
 
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/medic
 
 
 /datum/job/som/squad/veteran
 	title = SOM_SQUAD_VETERAN
+	access = list (ACCESS_SOM_DEFAULT,ACCESS_SOM_VETERAN,ALL_ANTAGONIST_ACCESS)
 	paygrade = "SOM_S1"
 	comm_title = "Vet"
 	total_positions = 8
-	skills_type = /datum/skills/crafty //smarter than the average bear
+	skills_type = /datum/skills/specialist
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	minimap_icon = "smartgunner"
 	outfit = /datum/outfit/job/som/squad/veteran
@@ -265,10 +324,11 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/outfit/job/som/squad/veteran
 	name = "SOM Veteran"
 	jobtype = /datum/job/som/squad/veteran
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/veteran
 
 /datum/job/som/squad/leader
 	title = SOM_SQUAD_LEADER
+	access = list (ACCESS_SOM_DEFAULT,ACCESS_SOM_REQUESITIONS,ACCESS_SOM_SQUADLEADER,ALL_ANTAGONIST_ACCESS, ACCESS_SOM_TADPOLE)
 	req_admin_notify = TRUE
 	paygrade = "SOM_S3"
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
@@ -330,4 +390,4 @@ You are also in charge of communicating with command and letting them know about
 	name = "SOM Leader"
 	jobtype = /datum/job/som/squad/leader
 
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/leader

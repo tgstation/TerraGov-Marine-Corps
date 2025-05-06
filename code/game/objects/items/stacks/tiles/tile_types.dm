@@ -12,10 +12,18 @@
 	///The turf type this tile creates
 	var/turf/open/floor/turf_type
 
-/obj/item/stack/tile/Initialize(mapload)
+/obj/item/stack/tile/Initialize(mapload, amount, new_turf_type)
 	. = ..()
 	pixel_x = rand(1, 14)
 	pixel_y = rand(1, 14)
+	if(new_turf_type)
+		set_turf_type(new_turf_type)
+
+/obj/item/stack/tile/proc/set_turf_type(new_turf_type)
+	var/turf/open/floor/floor_type = new_turf_type
+	name = "[initial(floor_type.name)] tile"
+	singular_name = name
+	turf_type = new_turf_type
 
 /obj/item/stack/tile/attack_turf(turf/T, mob/living/user)
 	if(!turf_type)

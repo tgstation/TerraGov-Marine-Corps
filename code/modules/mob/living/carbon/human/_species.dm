@@ -11,6 +11,8 @@
 	var/species_type = SPECIES_HUMAN
 	///Special effects that are inherent to our species
 	var/species_flags = NONE
+	///used in limb code to find which bodytype files to pull from, yes this code can defenitely be improved
+	var/limb_type = SPECIES_LIMB_GENERIC
 
 	//----Icon stuff here
 	///Normal icon file
@@ -68,13 +70,13 @@
 	///how much the stunned effect is reduced per Life call
 	var/knock_out_reduction = 1
 	///How much slowdown is innate to our species
-	var/slowdown = 0
+	var/slowdown = -1
 	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example
 	var/list/no_equip = list()
 
 	//----Related to dying in some way
 	///species-specific gibbing animation
-	var/gibbed_anim = "gibbed-h"
+	var/gibbed_anim
 	///species-specific dusting animation
 	var/dusted_anim = "dust-h"
 	///used to determine what item is left behind in /spawn_dust_remains()
@@ -137,6 +139,11 @@
 	var/list/burstscreams = list()
 	///List of sounds for certain emotes [/datum/emote/living/carbon/human/warcry/get_sound]
 	var/list/warcries = list()
+	//stupid erp panel shit
+	var/list/groans = list()
+	var/list/chokes = list()
+	var/list/sexymoanhvys = list()
+	var/list/sexymoanlights = list()
 
 	///Generic traits tied to having the species
 	var/list/inherent_traits = list()
@@ -161,6 +168,10 @@
 	var/joinable_roundstart = FALSE
 	///If this species counts as a human
 	var/count_human = FALSE
+	/// Whether this species can select genital overlays
+	var/has_genital_selection = FALSE
+	/// NTF ADDITION START
+	var/has_underwear_slots = FALSE
 
 /datum/species/New()
 	if(hud_type)
@@ -364,7 +375,7 @@
 	///Extra empty hand attack damage
 	var/damage = 0
 	///Sound that plays when you land a punch
-	var/attack_sound = "punch"
+	var/attack_sound = SFX_PUNCH
 	///Sound that plays when you miss a punch
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
 	///Calls the old attack_alien() behavior on objects/mobs when on harm intent
@@ -436,12 +447,6 @@
 	var/has_m_intent = TRUE
 	///Set to draw environment warnings
 	var/has_warnings = TRUE
-	///Draw the pressure indicator
-	var/has_pressure = TRUE
-	///Draw the nutrition indicator
-	var/has_nutrition = TRUE
-	///Draw the bodytemp indicator
-	var/has_bodytemp = TRUE
 	///Set to draw shand
 	var/has_hands = TRUE
 	///Set to draw drop button
@@ -503,9 +508,12 @@
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
-
-/datum/hud_data/robotic
-	has_nutrition = FALSE
+		// NTF EDIT START
+		equip_slots |= SLOT_BRA
+		equip_slots |= SLOT_SOCKS
+		equip_slots |= SLOT_UNDERWEAR
+		equip_slots |= SLOT_SHIRT
+		// NTF EDIT END
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)

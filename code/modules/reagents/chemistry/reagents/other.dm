@@ -27,9 +27,20 @@
 	color = "#0064C8" // rgb: 0, 100, 200
 	overdose_threshold = REAGENTS_OVERDOSE * 2
 	custom_metabolism = REAGENTS_METABOLISM * 5 //1.0/tick
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable, /datum/reagent/zombium)
 	purge_rate = 1
 	taste_description = "water"
+	default_container = /obj/item/reagent_containers/cup/glass/waterbottle
+
+/datum/glass_style/shot_glass/water
+	required_drink_type = /datum/reagent/water
+	icon_state = "shotglassclear"
+
+/datum/glass_style/drinking_glass/water
+	required_drink_type = /datum/reagent/water
+	name = "glass of water"
+	desc = "The father of all refreshments."
+	icon_state = "glass_clear"
 
 /datum/reagent/water/reaction_turf(turf/T, volume)
 	if(volume >= 3)
@@ -45,6 +56,9 @@
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
+		var/datum/status_effect/stacking/melting_fire/burning = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(burning)
+			qdel(burning)
 		if(L.fire_stacks <= 0)
 			L.ExtinguishMob()
 
@@ -71,6 +85,13 @@
 	name = "Holy Water"
 	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
 	color = "#E0E8EF" // rgb: 224, 232, 239
+	default_container = /obj/item/reagent_containers/cup/glass/bottle/holywater
+
+/datum/glass_style/drinking_glass/holywater
+	required_drink_type = /datum/reagent/water/holywater
+	name = "glass of holy water"
+	desc = "A glass of holy water."
+	icon_state = "glass_clear"
 
 /datum/reagent/lube
 	name = "Space Lube"
@@ -440,48 +461,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/space_cleaner/reaction_obj(obj/O, volume)
-	if(istype(O,/obj/effect/decal/cleanable))
-		qdel(O)
-	else if(O)
-		O.clean_blood()
+	. = ..()
+	O.wash()
 
 /datum/reagent/space_cleaner/reaction_turf(turf/T, volume)
+	. = ..()
 	if(volume >= 1)
-		T.clean_blood()
-		for(var/obj/effect/decal/cleanable/C in T.contents)
-			reaction_obj(C, volume)
-			qdel(C)
+		T.wash()
 
 /datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.r_hand)
-			C.r_hand.clean_blood()
-		if(C.l_hand)
-			C.l_hand.clean_blood()
-		if(C.wear_mask)
-			if(C.wear_mask.clean_blood())
-				C.update_inv_wear_mask(0)
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = C
-			if(H.head)
-				if(H.head.clean_blood())
-					H.update_inv_head(0)
-			if(H.wear_suit)
-				if(H.wear_suit.clean_blood())
-					H.update_inv_wear_suit(0)
-			else if(H.w_uniform)
-				if(H.w_uniform.clean_blood())
-					H.update_inv_w_uniform(0)
-			if(H.shoes)
-				H.clean_blood(FALSE)
-				if(H.shoes.clean_blood())
-					H.update_inv_shoes(0)
-			else
-				H.clean_blood(TRUE)
-			return
-	L.clean_blood()
+	L.wash()
 
 /datum/reagent/space_cleaner/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)

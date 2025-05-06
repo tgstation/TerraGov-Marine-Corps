@@ -18,10 +18,24 @@
 	var/base_state = "mflash"
 
 /obj/machinery/flasher/cell1
-	name = "Cell 1 Flash"
+	name = "Containment Cell 1 Flash"
+	id = "Containment Cell 1"
 
 /obj/machinery/flasher/cell2
-	name = "Cell 2 Flash"
+	name = "Containment Cell 2 Flash"
+	id = "Containment Cell 2"
+
+/obj/machinery/flasher/brig/cell1
+	name = "Brig Cell 1 Flash"
+	id = "Brig Cell 1"
+
+/obj/machinery/flasher/brig/cell2
+	name = "Brig Cell 2 Flash"
+	id = "Brig Cell 2"
+
+/obj/machinery/flasher/brig/cell3
+	name = "Brig Cell 3 Flash"
+	id = "Brig Cell 3"
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"
@@ -76,7 +90,7 @@
 			var/mob/living/carbon/human/H = L
 			if(H.get_eye_protection() > 0)
 				continue
-			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+			var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 			if(E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
 				H.flash_act()
 				E.take_damage(rand(1, 5))

@@ -18,7 +18,7 @@
 
 
 /datum/recipe/jellydonut
-	reagents = list(/datum/reagent/consumable/drink/berryjuice = 5, /datum/reagent/consumable/sugar = 5)
+	reagents = list(/datum/reagent/consumable/berryjuice = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 	)
@@ -201,7 +201,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/xenomeatbread
 
 /datum/recipe/bananabread
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 15)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 15)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -220,7 +220,7 @@
 	result = /obj/item/reagent_containers/food/snacks/omelette
 
 /datum/recipe/muffin
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 	)
@@ -254,7 +254,7 @@
 	result = /obj/item/reagent_containers/food/snacks/soylentgreen
 
 /datum/recipe/carrotcake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 15)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 15)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -266,7 +266,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/carrotcake
 
 /datum/recipe/cheesecake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 15)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 15)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -277,7 +277,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/cheesecake
 
 /datum/recipe/plaincake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 15)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 15)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -419,7 +419,7 @@
 
 
 /datum/recipe/cookie
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/chocolatebar,
@@ -673,7 +673,7 @@
 	result = /obj/item/reagent_containers/food/snacks/fishandchips
 
 /datum/recipe/birthdaycake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -778,7 +778,7 @@
 	result = /obj/item/reagent_containers/food/snacks/soup/boiledrice
 
 /datum/recipe/ricepudding
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/rice = 10)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/rice = 10)
 	result = /obj/item/reagent_containers/food/snacks/soup/ricepudding
 
 /datum/recipe/pastatomato
@@ -844,7 +844,7 @@
 	result = /obj/item/reagent_containers/food/snacks/pastries/applepie
 
 /datum/recipe/applecake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -878,7 +878,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sandwiches/jellysandwich/cherry
 
 /datum/recipe/orangecake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/flour,
@@ -892,7 +892,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/orangecake
 
 /datum/recipe/limecake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/flour,
@@ -906,7 +906,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/limecake
 
 /datum/recipe/lemoncake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/flour,
@@ -920,7 +920,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/lemoncake
 
 /datum/recipe/chocolatecake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/flour,
@@ -942,7 +942,7 @@
 	result = /obj/item/reagent_containers/food/snacks/soup/bloodsoup
 
 /datum/recipe/braincake
-	reagents = list(/datum/reagent/consumable/drink/milk = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/flour,
@@ -988,7 +988,7 @@
 	result = /obj/item/reagent_containers/food/snacks/soup/mysterysoup
 
 /datum/recipe/pumpkinpie
-	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 5)
+	reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/grown/pumpkin,
@@ -1005,7 +1005,7 @@
 	result = /obj/item/reagent_containers/food/snacks/plumphelmetbiscuit
 
 /datum/recipe/mushroomsoup
-	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/drink/milk = 5)
+	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/milk = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
 	)
@@ -1029,7 +1029,7 @@
 	result = /obj/item/reagent_containers/food/snacks/soup/beetsoup
 
 /datum/recipe/appletart
-	reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/drink/milk = 5)
+	reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/milk = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/flour,

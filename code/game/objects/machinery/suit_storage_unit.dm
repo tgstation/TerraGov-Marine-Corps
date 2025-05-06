@@ -213,13 +213,13 @@
 	if(gc_destroyed)
 		return
 	if(inserted_helmet)
-		inserted_helmet.clean_blood()
+		inserted_helmet.wash()
 	if(inserted_suit)
-		inserted_suit.clean_blood()
+		inserted_suit.wash()
 	if(inserted_mask)
-		inserted_mask.clean_blood()
+		inserted_mask.wash()
 	if(inserted_tank)
-		inserted_tank.clean_blood()
+		inserted_tank.wash()
 	isUV = 0 //Cycle ends
 	update_icon()
 	updateUsrDialog()

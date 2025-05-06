@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/candle,
 /obj/item/tool/match{
 	pixel_x = 4;
@@ -118,7 +118,7 @@
 /area/lv624/ground/caves/central1)
 "po" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
@@ -138,7 +138,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "ru" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/ammo/machinegun{
 	pixel_x = -5;
 	pixel_y = 6
@@ -197,7 +197,7 @@
 /area/lv624/ground/caves/central2)
 "zz" = (
 /obj/item/flashlight/lantern,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "zN" = (
@@ -264,7 +264,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "IO" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ammo_casing/shell,
 /obj/item/ammo_casing/shell,
 /obj/item/flashlight/lantern,
@@ -280,7 +280,7 @@
 /area/lv624/ground/caves/central2)
 "KV" = (
 /obj/item/ammo_casing/shell,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = 2;
 	pixel_y = 4
@@ -317,7 +317,7 @@
 /turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Np" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/fancy/candle_box,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
@@ -430,7 +430,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "YM" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = -2;
 	pixel_y = 6
@@ -441,7 +441,7 @@
 "Zg" = (
 /obj/item/stack/sheet/wood,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)

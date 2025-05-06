@@ -213,8 +213,8 @@
 	name = "Shocktrooper Tutorial"
 	info = {"As a shock trooper, you are a versatile yet powerful frontliner, and aim to change up tactics often to gain the advantage.\
 	You use the multimodal laser rifle, an experimental battery-powered weapon with an underbarrel flamethrower.\
-	Your belt contains spare energy cells for your laser rifle. Your right pocket and body armor contain a powerpack to recharge energy cells.\
-	Your body armor also contains a box of flares. Your left pocket contains a flare gun holster and several flares.\
+	Your belt contains spare energy cells for your laser rifle. Your right pocket contain a powerpack to recharge energy cells.\
+	Your body armor contains two boxes of flares. Your left pocket contains a flare gun holster and several flares.\
 	Your backpack contains a large amount of miniature fuel tanks for use with your underbarrel flamethrower, as well as an inaprovaline autoinjector.\
 	Your webbing contains Bicaridine (heals brute damage), Kelotane (heals burn damage), Tramadol (a painkiller), Tricordrazine (heals all damage, but slowly),\
 	and gauze and ointment, which also heal brute and burn damage, respectively. Your helmet contains protein bars and your boots contain an MRE, in case you get hungry.<BR>
@@ -249,7 +249,7 @@
 	On a similar note, your suit's light can be toggled in the top left - you should almost always keep this on to help your visibility.<BR>
 	<BR>
 	By pressing unique action (default: space bar), you can cycle between the different modes of your laser gun.\
-	Standard mode rapidly fires laser beams, Overcharge mode fires more powerful beams at a lower rate of fire, weakening mode slows the target mildly\
+	Standard mode rapidly fires laser beams, Overcharge mode fires more powerful beams at a lower rate of fire, weakening mode slows the target mildly \
 	as well as draining their plasma, and microwave applies a stacking debuff (up to five times) that deals armor-piercing damage over time.\
 	Note that different modes consume battery charge at different rates.<BR>
 	<BR>

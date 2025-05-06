@@ -2,7 +2,7 @@
 /datum/action/ability
 	///If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	desc = "This ability can not be found in codex."
-	action_icon = 'icons/Xeno/actions.dmi'
+	action_icon = 'icons/Xeno/actions/general.dmi'
 	///The cost of using this ability. Typically a plasma cost for xenos
 	var/ability_cost = 0
 	///bypass use limitations checked by can_use_action()
@@ -98,11 +98,22 @@
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while burrowed")
 		return FALSE
 
-	if(!(to_check_flags & ABILITY_USE_CLOSEDTURF) && isclosedturf(get_turf(carbon_owner)))
-		if(!silent)
-			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
-			to_chat(owner, span_warning("We can't do this while in a solid object!"))
-		return FALSE
+	if(!(to_check_flags & ABILITY_USE_SOLIDOBJECT))
+		var/turf/current_turf = get_turf(carbon_owner)
+		if(!current_turf) //we are in nullspace when first spawning in
+			return FALSE
+		if(isclosedturf(current_turf))
+			if(!silent)
+				//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
+				to_chat(owner, span_warning("We can't do this while in a solid object!"))
+			return FALSE
+		for(var/obj/turf_object in current_turf.contents)
+			if(!turf_object.density || !turf_object.opacity)
+				continue
+			if(!silent)
+				//Same as above.
+				to_chat(owner, span_warning("We can't do this while in a solid object!"))
+			return FALSE
 
 	return TRUE
 

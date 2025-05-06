@@ -215,8 +215,8 @@
 	var/obj/effect/sliding_puzzle/source
 	var/icon/puzzle_icon
 
-/obj/structure/puzzle_element/Move(nloc, dir)
-	if(!isturf(nloc) || (dir - 1) & dir || get_dist(get_step(src,dir),get_turf(source)) > 1)
+/obj/structure/puzzle_element/Move(atom/newloc, direction, glide_size_override)
+	if(!isturf(newloc) || (dir - 1) & dir || get_dist(get_step(src,dir),get_turf(source)) > 1)
 		return 0
 	else
 		return ..()
@@ -295,7 +295,7 @@
 
 //Some armor so it's harder to kill someone by mistake.
 /obj/structure/puzzle_element/prison
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
 /obj/structure/puzzle_element/prison/relaymove(mob/living/user, direction)
 	return

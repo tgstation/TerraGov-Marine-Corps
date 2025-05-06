@@ -10,8 +10,8 @@ Stepping directly on the mine will also blow it up
 */
 /obj/item/explosive/mine
 	name = "\improper M20 Claymore anti-personnel mine"
-	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
-	icon = 'icons/obj/items/grenade.dmi'
+	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the Nine Tailed Fox."
+	icon = 'icons/obj/items/mines.dmi'
 	icon_state = "m20"
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -74,7 +74,7 @@ Stepping directly on the mine will also blow it up
 
 	if(armed)
 		return
-	if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
 		user.visible_message(span_notice("[user] stops deploying [src]."), \
 	span_notice("You stop deploying \the [src]."))
 		return
@@ -111,7 +111,7 @@ Stepping directly on the mine will also blow it up
 	user.visible_message(span_notice("[user] starts disarming [src]."), \
 	span_notice("You start disarming [src]."))
 
-	if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 8 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 		"<span class='warning'>You stop disarming [src].")
 		return
@@ -140,11 +140,16 @@ Stepping directly on the mine will also blow it up
 	var/mob/living/living_victim
 	if((target_mode & MINE_LIVING_ONLY) && isliving(victim))
 		living_victim = victim
-	else if((target_mode & MINE_VEHICLE_ONLY) && isvehicle(victim))
-		var/obj/vehicle/vehicle_victim = victim
-		if(!length(vehicle_victim.occupants))
-			return FALSE
-		living_victim = vehicle_victim.occupants[1]
+	else if(target_mode & MINE_VEHICLE_ONLY)
+		if(ishitbox(victim))
+			var/obj/hitbox/hitbox = victim
+			victim = hitbox.root
+		if(isvehicle(victim))
+			var/obj/vehicle/vehicle_victim = victim
+			var/list/driver_list = vehicle_victim.return_drivers()
+			if(!length(driver_list))
+				return FALSE
+			living_victim = driver_list[1]
 
 	if(!living_victim)
 		return FALSE
@@ -230,12 +235,12 @@ Stepping directly on the mine will also blow it up
 /// PMC specific mine, with IFF for PMC units
 /obj/item/explosive/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
+	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the Nine Tailed Fox. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
 
 /obj/item/explosive/mine/anti_tank
 	name = "\improper M92 Valiant anti-tank mine"
-	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the TerraGov Marine Corps against heavy armour, both tanks and mechs."
+	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the Nine Tailed Fox against heavy armour, both tanks and mechs."
 	icon_state = "m92"
 	target_mode = MINE_VEHICLE_ONLY
 
@@ -250,6 +255,9 @@ Stepping directly on the mine will also blow it up
 	explosion(tripwire ? tripwire.loc : loc, 2, 0, 0, 4)
 	QDEL_NULL(tripwire)
 	qdel(src)
+
+/obj/item/explosive/mine/anti_tank/emp_act()
+	return
 
 /obj/item/explosive/mine/anti_tank/ex_act(severity)
 	switch(severity)

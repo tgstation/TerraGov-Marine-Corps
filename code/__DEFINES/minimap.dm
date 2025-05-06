@@ -2,13 +2,16 @@
 #define MINIMAP_FLAG_XENO (1<<0)
 #define MINIMAP_FLAG_MARINE (1<<1)
 #define MINIMAP_FLAG_MARINE_SOM (1<<2)
-#define MINIMAP_FLAG_EXCAVATION_ZONE (1<<3)
-#define MINIMAP_FLAG_ALL (1<<4) - 1
+#define MINIMAP_FLAG_MARINE_CLF (1<<3)
+#define MINIMAP_FLAG_EXCAVATION_ZONE (1<<4)
+#define MINIMAP_FLAG_SURVIVOR (1<<5)
+#define MINIMAP_FLAG_ALL (1<<6) - 1
 
 GLOBAL_LIST_INIT(faction_to_minimap_flag, list(
 	FACTION_XENO = MINIMAP_FLAG_XENO,
 	FACTION_TERRAGOV = MINIMAP_FLAG_MARINE,
 	FACTION_SOM = MINIMAP_FLAG_MARINE_SOM,
+	FACTION_CLF = MINIMAP_FLAG_MARINE_CLF,
 ))
 
 ///Converts the overworld x and y to minimap x and y values
@@ -33,6 +36,7 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_FENCE "#8c2294ee"
 #define MINIMAP_LAVA "#db4206d0"
 #define MINIMAP_DIRT "#9c906dd0"
+#define MINIMAP_SHALE "#706955d0"
 #define MINIMAP_SNOW "#c4e3e9d0"
 #define MINIMAP_MARS_DIRT "#aa5f44d0"
 #define MINIMAP_ICE "#93cae0d0"
@@ -57,6 +61,7 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_AREA_REQ_CAVE "#503914d0"
 #define MINIMAP_AREA_PREP "#5b92e5d0"
 #define MINIMAP_AREA_ESCAPE "#446791d0"
+#define MINIMAP_AREA_ESCAPE_CAVE "#2a3f58d0"
 #define MINIMAP_AREA_LIVING "#2a9201d0"
 #define MINIMAP_AREA_LIVING_CAVE "#195700d0"
 

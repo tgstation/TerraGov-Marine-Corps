@@ -8,7 +8,6 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 /obj/item/minimap_tablet
 	name = "minimap tablet"
 	desc = "A drawing tablet with included touch pen. While high command may treat you like a child, being able to plan effectively might be a worthy trade."
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	/// List of references to the tools we will be using to shape what the map looks like
 	var/list/atom/movable/screen/drawing_tools = list(

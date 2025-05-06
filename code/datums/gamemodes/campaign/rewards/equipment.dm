@@ -12,16 +12,16 @@
 		new object(spawn_location)
 
 /datum/campaign_asset/equipment/power_armor
-	name = "B18 consignment"
-	desc = "Three sets of B18 power armor"
-	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
+	name = "Ace class hardsuit consignment"
+	desc = "Three sets of ace class hardsuits"
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of ace class hardsuit sets, available at your request. The ace class is TDF's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
 	ui_icon = "b18"
 	uses = 3
 	cost = 25
 	equipment_to_spawn = list(
-		/obj/item/clothing/head/helmet/marine/specialist,
-		/obj/item/clothing/gloves/marine/specialist,
-		/obj/item/clothing/suit/storage/marine/specialist,
+		/obj/item/clothing/head/helmet/marine/specialist/tdf,
+		/obj/item/clothing/gloves/marine/specialist/tdf,
+		/obj/item/clothing/suit/storage/marine/specialist/tdf,
 	)
 
 /datum/campaign_asset/equipment/gorgon_armor
@@ -42,9 +42,11 @@
 	desc = "An assortment of medical supplies"
 	detailed_desc = "Activatable by squad leaders. An assortment of basic medical supplies and some stimulants."
 	ui_icon = "medkit"
-	uses = 3
-	cost = 1
+	uses = 1
+	cost = 3
 	equipment_to_spawn = list(
+		/obj/item/storage/pouch/firstaid/basic,
+		/obj/item/storage/pouch/firstaid/basic,
 		/obj/item/storage/pouch/firstaid/basic,
 		/obj/item/storage/pouch/firstaid/basic,
 		/obj/item/storage/pouch/firstaid/basic,
@@ -60,6 +62,8 @@
 /datum/campaign_asset/equipment/medkit_basic/som
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	equipment_to_spawn = list(
+		/obj/item/storage/pouch/firstaid/som/full,
+		/obj/item/storage/pouch/firstaid/som/full,
 		/obj/item/storage/pouch/firstaid/som/full,
 		/obj/item/storage/pouch/firstaid/som/full,
 		/obj/item/storage/pouch/firstaid/som/full,
@@ -154,7 +158,7 @@
 	detailed_desc = "A BR-8 scout rifle and assorted ammo. An accurate, powerful rifle with integrated IFF."
 	ui_icon = "scout"
 	uses = 2
-	cost = 6
+	cost = 10
 	equipment_to_spawn = list(
 		/obj/effect/supply_drop/scout,
 	)

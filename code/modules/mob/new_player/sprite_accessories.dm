@@ -58,7 +58,7 @@
 	var/gender = NEUTER // Determines if the accessory will be skipped or included in random hair generations
 	var/locked = FALSE		//Is this part locked from roundstart selection? Used for parts that apply effects
 
-	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn") // Restrict some styles to specific species
+	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn", "Mothellian", "Prototype Supersoldier") // Restrict some styles to specific species
 	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
 
 	var/datum/greyscale_config/greyscale_config
@@ -73,7 +73,7 @@
 */
 
 /datum/sprite_accessory/hair
-	species_allowed = list("Human","Synthetic","Early Synthetic", "Vat-Grown", "Vatborn")
+	species_allowed = list("Human","Synthetic","Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian", "Prototype Supersoldier")
 	icon = 'icons/mob/Human_face.dmi'
 
 /datum/sprite_accessory/hair/bald
@@ -184,6 +184,11 @@
 /datum/sprite_accessory/hair/bobcutalt
 	name = "Bobcut Alternate"
 	icon_state = "hair_bobcutalt"
+	gender = FEMALE
+
+/datum/sprite_accessory/hair/bobshy
+	name = "Bobcut Shy"
+	icon_state = "hair_bobshy"
 	gender = FEMALE
 
 /datum/sprite_accessory/hair/boddicker
@@ -604,11 +609,6 @@
 	icon_state = "hair_mflattop"
 	gender = FEMALE
 
-/datum/sprite_accessory/hair/marine_mohawk
-	name = "Marine Mohawk"
-	icon_state = "hair_mmarinemohawk"
-	gender = MALE
-
 /datum/sprite_accessory/hair/marysue
 	name = "Mary Sue"
 	icon_state = "hair_marysue"
@@ -915,6 +915,10 @@
 	name = "Short Hair 2"
 	icon_state = "hair_short2"
 
+/datum/sprite_accessory/hair/short2_alt
+	name = "Short Hair 2 Alt"
+	icon_state = "hair_short2_alt"
+
 /datum/sprite_accessory/hair/short3
 	name = "Short Hair 3"
 	icon_state = "hair_short3"
@@ -1060,6 +1064,11 @@
 	icon_state = "hair_wisp"
 	gender = FEMALE
 
+/datum/sprite_accessory/hair/ladylike
+	name = "Ladylike"
+	icon_state = "hair_ladylike"
+	gender = FEMALE
+
 /datum/sprite_accessory/hair/wheeler
 	name = "Wheeler"
 	icon_state = "hair_wheeler"
@@ -1170,7 +1179,7 @@
 /datum/sprite_accessory/hair_gradient
 	icon = 'icons/mob/hair_gradients.dmi'
 	gender = NEUTER
-	species_allowed = list("Human","Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn")
+	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian")
 
 /datum/sprite_accessory/hair_gradient/none
 	name = "None"
@@ -1221,7 +1230,7 @@
 	name = "Shaved"
 	icon_state = "bald"
 	gender = NEUTER
-	species_allowed = list("Human","Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn")
+	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian")
 
 /datum/sprite_accessory/facial_hair/watson
 	name = "Watson Mustache"
@@ -1316,8 +1325,8 @@
 	icon_state = "facial_brokenman_s"
 	greyscale_config = /datum/greyscale_config/broken_man
 
-	
-	
+
+
 //skin styles - WIP
 //going to have to re-integrate this with surgery
 //let the icon_state hold an icon preview for now
@@ -1327,15 +1336,15 @@
 /datum/sprite_accessory/skin/human
 	name = "Default human skin"
 	icon_state = "default"
-	species_allowed = list("Human")
+	species_allowed = list("Human", "Prototype Supersoldier")
 
 /datum/sprite_accessory/skin/human_tatt01
 	name = "Tatt01 human skin"
 	icon_state = "tatt1"
-	species_allowed = list("Human")
+	species_allowed = list("Human", "Prototype Supersoldier")
 
 /datum/sprite_accessory/moth_wings
-	species_allowed = list("Moth")
+	species_allowed = list("Mothellian")
 	do_colouration = FALSE
 	icon = 'icons/mob/species/moth/wings.dmi'
 

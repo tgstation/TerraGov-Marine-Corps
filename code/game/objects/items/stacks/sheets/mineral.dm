@@ -131,11 +131,18 @@ GLOBAL_LIST_INIT(plastic_recipes, list ( \
 	new/datum/stack_recipe("plastic spoon", /obj/item/tool/kitchen/utensil/pspoon, 1, crafting_flags = CRAFT_ON_SOLID_GROUND), \
 	new/datum/stack_recipe("plastic knife", /obj/item/tool/kitchen/utensil/pknife, 1, crafting_flags = CRAFT_ON_SOLID_GROUND), \
 	new/datum/stack_recipe("plastic bag", /obj/item/storage/bag/plasticbag, 3, crafting_flags = CRAFT_ON_SOLID_GROUND), \
+	new/datum/stack_recipe("shower curtains", /obj/structure/curtain/shower, 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF, skill_req = SKILL_CONSTRUCTION_METAL), \
 	))
 
 /obj/item/stack/sheet/mineral/plastic/get_main_recipes()
 	. = ..()
 	. += GLOB.plastic_recipes
+	
+/obj/item/stack/sheet/mineral/plastic/five
+	amount = 5
+
+/obj/item/stack/sheet/mineral/plastic/large_stack
+	amount = 50
 
 /obj/item/stack/sheet/mineral/plastic/cyborg
 	name = "plastic sheets"

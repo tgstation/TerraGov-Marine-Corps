@@ -1,7 +1,6 @@
 /mob/living/silicon/ai/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE) // TODO ai and human examine dont send examine signal
 	var/msg = "<span class='info'><br>"
-	msg += "This is [icon2html(src, user)] <b>[src]</b>!<br>"
 
 	if(stat == DEAD)
 		msg += "[span_deadsay("It appears to be powered-down.")]<br>"
@@ -25,11 +24,9 @@
 			msg += "[src]/Core.exe has stopped responding! Searching for a solution to the problem...<br>"
 
 		msg += "</span>"
+	if(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes)
+		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 
 	msg += "</span>"
 
 	return list(msg)
-
-/mob/living/silicon/ai/get_examine_string(mob/user, thats)
-	return null
-

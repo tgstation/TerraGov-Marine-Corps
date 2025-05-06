@@ -1,17 +1,17 @@
 // Skill defines
-///CQC skill; higher disarm chance on humans(+5% per level); slight increase in punch damage.
-#define SKILL_CQC "cqc"
+///UNARMED skill; higher disarm chance on humans(+5% per level); slight increase in punch damage.
+#define SKILL_UNARMED "unarmed"
 
-#define SKILL_CQC_WEAK -1
-#define SKILL_CQC_DEFAULT 0
-#define SKILL_CQC_TRAINED 1
-#define SKILL_CQC_MP 2
-#define SKILL_CQC_MASTER 5
+#define SKILL_UNARMED_WEAK -1
+#define SKILL_UNARMED_DEFAULT 0
+#define SKILL_UNARMED_TRAINED 1
+#define SKILL_UNARMED_MP 2
+#define SKILL_UNARMED_MASTER 5
 
-///Unarmed damage mod from CQC skill
-#define CQC_SKILL_DAMAGE_MOD 5
-///Disarm chance mod from CQC skill
-#define CQC_SKILL_DISARM_MOD 5
+///Unarmed damage mod from UNARMED skill
+#define UNARMED_SKILL_DAMAGE_MOD 5
+///Disarm chance mod from UNARMED skill
+#define UNARMED_SKILL_DISARM_MOD 5
 
 ///Melee skill; 15% extra damage per skill level
 #define SKILL_MELEE_WEAPONS "melee_weapons"
@@ -24,15 +24,15 @@
 ///The amount of extra damage per melee skill level
 #define MELEE_SKILL_DAM_BUFF 0.15
 
-///Firearms skill; Increase or decrase accuracy, recoil, damage, and firing delay of most guns; ability to tac reload
-#define SKILL_FIREARMS "firearms"
+///Combat skill; Increase or decrase accuracy, recoil, damage, and firing delay of most guns; ability to tac reload
+#define SKILL_COMBAT "combat"
 
-#define SKILL_FIREARMS_UNTRAINED 0
-#define SKILL_FIREARMS_DEFAULT 1
-#define SKILL_FIREARMS_TRAINED 2
+#define SKILL_COMBAT_UNTRAINED 0
+#define SKILL_COMBAT_DEFAULT 1
+#define SKILL_COMBAT_TRAINED 2
 
 ///Damage mod for having the weapon specific skill above 0
-#define FIREARM_SKILL_DAM_MOD 0.05
+#define COMBAT_SKILL_DAM_MOD 0.05
 
 ///Pistols skill; Increase accuracy, recoil, and damage of pistols and revolvers.
 #define SKILL_PISTOLS "pistols"
@@ -135,7 +135,7 @@
 #define SKILL_POLICE_FLASH 1
 #define SKILL_POLICE_MP 2
 
-///Powerloader skill; movespeed when using a powerloader (broken currently)
+///Powerloader skill; movespeed when using a powerloader
 #define SKILL_POWERLOADER "powerloader"
 
 #define SKILL_POWERLOADER_DEFAULT 0

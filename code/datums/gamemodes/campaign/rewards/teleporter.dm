@@ -36,7 +36,7 @@
 	return TRUE
 
 /datum/campaign_asset/teleporter_enabled/activated_effect()
-	linked_teleporter.teleporter_status = TELEPORTER_ARRAY_READY
+	linked_teleporter.enable_teleporter()
 	to_chat(faction.faction_leader, span_warning("Teleporter Array powered up. Link to Bluespace drive confirmed. Ready for teleportation."))
 
 //adds more charges
@@ -46,7 +46,7 @@
 	detailed_desc = "Central command have allocated the battalion with six additional uses of the Teleporter Array, with two added per use. Its extremely costly to run and demand is high across the conflict zone, so make them count."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_scientist
 	ui_icon = "tele_uses"
-	uses = 6
+	uses = 3
 	cost = 6
 
 /datum/campaign_asset/teleporter_charges/activated_effect()

@@ -7,7 +7,7 @@
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = "mecha_equip"
 	force = 5
-	max_integrity = 300
+	max_integrity = 100
 	/// Determines what "slot" this attachment will try to attach to on a mech
 	var/equipment_slot = MECHA_WEAPON
 	///Cooldown in ticks required between activations of the equipment
@@ -60,7 +60,7 @@
 		if("repair")
 			ui.close() // allow watching for baddies and the ingame effects
 			chassis.balloon_alert(usr, "starting repair")
-			while(do_after(usr, 1 SECONDS, NONE, chassis) && obj_integrity < max_integrity)
+			while(do_after(usr, 1 SECONDS, chassis) && obj_integrity < max_integrity)
 				repair_damage(30)
 			if(obj_integrity == max_integrity)
 				balloon_alert(usr, "repair complete")
@@ -110,11 +110,11 @@
 	if(!chassis)
 		return FALSE
 	chassis.use_power(energy_drain)
-	return do_after(user, equip_cooldown, NONE, target, extra_checks = CALLBACK(src, PROC_REF(do_after_checks)))
+	return do_after(user, equip_cooldown, target, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), target))
 
 ///Do after wrapper for mecha equipment
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_mecha(atom/target, mob/user, delay)
-	return do_after(user, delay, NONE, target, extra_checks = CALLBACK(src, PROC_REF(do_after_checks)))
+	return do_after(user, delay, target, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), target))
 
 /// do after checks for the mecha equipment do afters
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_checks(atom/target)

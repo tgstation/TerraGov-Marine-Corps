@@ -1,3 +1,4 @@
+// Defines for TTS modes.
 // Used for translating channels to tokens on examination
 GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_REQUISITIONS = RADIO_TOKEN_REQUISITIONS,
@@ -5,10 +6,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_MEDICAL = RADIO_TOKEN_MEDICAL,
 	RADIO_CHANNEL_ENGINEERING = RADIO_TOKEN_ENGINEERING,
 	RADIO_CHANNEL_CAS = RADIO_TOKEN_CAS,
+	RADIO_CHANNEL_SEC = RADIO_TOKEN_SEC,
 	RADIO_CHANNEL_ALPHA = RADIO_TOKEN_ALPHA,
 	RADIO_CHANNEL_BRAVO = RADIO_TOKEN_BRAVO,
 	RADIO_CHANNEL_CHARLIE = RADIO_TOKEN_CHARLIE,
-	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA
+	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA,
+	RADIO_CHANNEL_PMC = RADIO_TOKEN_PMC
 ))
 
 
@@ -26,7 +29,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
-
 
 /obj/item/radio/headset/Initialize(mapload)
 	if(keyslot)
@@ -183,6 +185,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/faction = FACTION_TERRAGOV
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
+	var/locator_disabled_timer = null
 
 /obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
@@ -210,7 +213,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 ///Explodes the headset if you put on an enemy's headset
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	balloon_alert_to_viewers("Explodes")
-	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
+	playsound(user, 'sound/effects/explosion/micro1.ogg', 50, 1)
 	if(wearer)
 		wearer.ex_act(EXPLODE_LIGHT)
 	qdel(src)
@@ -273,11 +276,26 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	mini.give_action(wearer)
 	INVOKE_NEXT_TICK(src, PROC_REF(update_minimap_icon)) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 
+/obj/item/radio/headset/mainship/proc/disable_locator(var/time)
+	if(wearer)
+		SSminimaps.remove_marker(wearer)
+	if(locator_disabled_timer)
+		if(time < timeleft(locator_disabled_timer))
+			return
+		else
+			deltimer(locator_disabled_timer)
+	locator_disabled_timer = addtimer(CALLBACK(src, PROC_REF(reenable_locator)), time, TIMER_STOPPABLE)
+
+/obj/item/radio/headset/mainship/proc/reenable_locator()
+	locator_disabled_timer = null
+	if(wearer)
+		update_minimap_icon()
+
 ///Updates the wearer's minimap icon
 /obj/item/radio/headset/mainship/proc/update_minimap_icon()
 	SIGNAL_HANDLER
 	SSminimaps.remove_marker(wearer)
-	if(!wearer.job || !wearer.job.minimap_icon)
+	if(!wearer.job || !wearer.job.minimap_icon || locator_disabled_timer)
 		return
 	var/marker_flags = initial(minimap_type.marker_flags)
 	if(wearer.stat == DEAD)
@@ -296,6 +314,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		var/image/overlay = image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon)
 		overlay.color = wearer.assigned_squad.color
 		underlay.overlays += overlay
+
+		if(wearer.assigned_squad?.squad_leader == wearer)
+			var/image/leader_trim = image('icons/UI_icons/map_blips.dmi', null, "leader_trim")
+			underlay.overlays += leader_trim
+
 		SSminimaps.add_marker(wearer, marker_flags, underlay)
 		return
 	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon))
@@ -545,7 +568,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine charlie engineer radio headset"
 	keyslot2 = /obj/item/encryptionkey/engi
 
-
 /obj/item/radio/headset/mainship/marine/charlie/med
 	name = "marine charlie corpsman radio headset"
 	keyslot2 = /obj/item/encryptionkey/med
@@ -589,6 +611,24 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "sec_headset"
 	keyslot2 = /obj/item/encryptionkey/cas
 
+/obj/item/radio/headset/mainship/marine/generic/sec
+	name = "marine security headset"
+	icon_state = "sec_headset"
+	keyslot2 = /obj/item/encryptionkey/sec
+
+/obj/item/radio/headset/mainship/marine/pmc
+	name = "pmc radio headset"
+	icon_state = "headset_marine_generic"
+	keyslot = /obj/item/encryptionkey/PMC
+	keyslot2 = /obj/item/encryptionkey/mcom
+	frequency = FREQ_PMC
+
+/obj/item/radio/headset/mainship/marine/icc
+	name = "shiphands headset"
+	icon_state = "headset_marine_generic"
+	keyslot = /obj/item/encryptionkey/icc
+	frequency = FREQ_ICC
+
 //Distress headsets.
 /obj/item/radio/headset/distress
 	name = "operative headset"
@@ -600,7 +640,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "colonist headset"
 	keyslot = /obj/item/encryptionkey/dutch
 	frequency = FREQ_COLONIST
-
 
 /obj/item/radio/headset/distress/pmc
 	name = "contractor headset"
@@ -653,6 +692,16 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "retirement home headset"
 	keyslot = /obj/item/encryptionkey/retired
 	frequency = FREQ_RETIRED
+
+/obj/item/radio/headset/distress/vsd
+	name = "security detail headset"
+	keyslot = /obj/item/encryptionkey/vsd
+	frequency = FREQ_VSD
+
+/obj/item/radio/headset/distress/erp
+	name = "prankster headset"
+	keyslot = /obj/item/encryptionkey/erp
+	frequency = FREQ_ERP
 
 //SOM headsets
 

@@ -15,6 +15,7 @@
 /obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
+	code = rand(1, 100)
 
 /obj/item/assembly/signaler/Destroy()
 	SSradio.remove_object(src,frequency)

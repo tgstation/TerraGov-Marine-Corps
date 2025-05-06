@@ -1202,6 +1202,13 @@
 	template_width = 46
 	template_height = 46
 
+/datum/map_template/modular/factionbase/ntcgroundhq
+	name = "NTC ground hq"
+	mappath = "_maps/modularmaps/groundhq/ntcgroundhq.dmm"
+	modular_id = "ntcgroundhq"
+	template_width = 166
+	template_height = 105
+
 /datum/map_template/modular/jungle_outpost/westtowerone
 	name = "Western Dome"
 	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower1.dmm"
@@ -1320,3 +1327,27 @@
 	modular_id = "joengineering"
 	template_width = 21
 	template_height = 21
+
+/datum/map_template/modular/corsat/bigreddome
+	name = "Sigma Dome"
+	mappath = "_maps/modularmaps/corsatdome/corsatdomebigred.dmm"
+	modular_id = "corsatdome"
+	template_width = 80
+	template_height = 80
+	keepcentered = TRUE
+
+/datum/map_template/modular/corsat/lvdome
+	name = "Sigma Dome"
+	mappath = "_maps/modularmaps/corsatdome/corsatdomelv.dmm"
+	modular_id = "corsatdome"
+	template_width = 80
+	template_height = 80
+	keepcentered = TRUE
+
+/datum/map_template/modular/corsat/icecolonydome
+	name = "Sigma Dome"
+	mappath = "_maps/modularmaps/corsatdome/corsatdomeicecolony.dmm"
+	modular_id = "corsatdome"
+	template_width = 80
+	template_height = 80
+	keepcentered = TRUE

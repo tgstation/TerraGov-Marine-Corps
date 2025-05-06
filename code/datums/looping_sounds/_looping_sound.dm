@@ -39,6 +39,8 @@
 	var/timer_id
 	///(num) world.time when the datum started looping
 	var/start_time = 0
+	///Is this considered an ambient sound for pref purposes
+	var/ambient_sound = FALSE
 
 /datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
 	if(!mid_sounds)
@@ -106,7 +108,7 @@
 		if(direct)
 			SEND_SOUND(thing, S)
 		else
-			playsound(thing, S, volume, vary, range, falloff)
+			playsound(thing, S, volume, vary, range, falloff, ambient_sound = src.ambient_sound)
 
 /**
  * Picks and returns soundfile

@@ -391,7 +391,7 @@
 
 	return obscured
 
-//proc to get the item in the active hand.
+/// Proc to get the item in the active hand.
 /mob/proc/get_held_item()
 	if(status_flags & INCORPOREAL)
 		return
@@ -400,6 +400,15 @@
 	else
 		return r_hand
 
+/// Get a list of all held items
+/mob/proc/get_held_items()
+	. = list()
+	if(status_flags & INCORPOREAL)
+		return
+	if(r_hand)
+		. += r_hand
+	if(l_hand)
+		. += l_hand
 
 //Checks if we're holding a tool that has given quality
 //Returns the tool that has the best version of this quality
@@ -415,15 +424,15 @@
 	return best_item
 
 
-// The mob is trying to strip an item from someone
+/// The mob is trying to strip an item from someone
 /mob/proc/stripPanelUnequip(obj/item/I, mob/M)
 	return
 
-//returns the item in a given slot
+/// Returns the item in a given slot
 /mob/proc/get_item_by_slot(slot_id)
 	return
 
-//returns the item in a given bit slot
+/// Returns the item in a given bit slot
 /mob/proc/get_item_by_slot_bit(slot_bit)
 	return
 

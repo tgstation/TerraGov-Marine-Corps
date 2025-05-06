@@ -55,6 +55,7 @@
 			data["synthetic_name"] = synthetic_name
 			data["synthetic_type"] = synthetic_type
 			data["robot_type"] = robot_type
+			data["moth_wings"] = moth_wings
 			data["random_name"] = random_name
 			data["ai_name"] = ai_name
 			data["age"] = age
@@ -71,11 +72,14 @@
 			data["f_style"] = f_style
 		if(BACKGROUND_INFORMATION)
 			data["slot"] = default_slot
-			data["flavor_text"] = flavor_text
-			data["med_record"] = med_record
-			data["gen_record"] = gen_record
-			data["sec_record"] = sec_record
-			data["exploit_record"] = exploit_record
+			data["flavor_text"] = html_decode(flavor_text)
+			data["xeno_desc"] = html_decode(xeno_desc)
+			data["profile_pic"] = html_decode(profile_pic)
+			data["xenoprofile_pic"] = html_decode(xenoprofile_pic)
+			data["med_record"] = html_decode(med_record)
+			data["gen_record"] = html_decode(gen_record)
+			data["sec_record"] = html_decode(sec_record)
+			data["exploit_record"] = html_decode(exploit_record)
 		if(GEAR_CUSTOMIZATION)
 			data["gearsets"] = list()
 			for(var/g in GLOB.gear_datums)
@@ -106,6 +110,8 @@
 			data["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			data["sound_tts"] = sound_tts
 			data["volume_tts"] = volume_tts
+			data["radio_tts_flags"] = radio_tts_flags
+			data["accessible_tgui_themes"] = accessible_tgui_themes
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
 			data["tgui_input"] = tgui_input
@@ -118,7 +124,15 @@
 			data["see_rc_emotes"] = see_rc_emotes
 			data["mute_others_combat_messages"] = mute_others_combat_messages
 			data["mute_self_combat_messages"] = mute_self_combat_messages
+			data["show_xeno_rank"] = show_xeno_rank
 			data["show_typing"] = show_typing
+			data["toggle_adminhelp_sound"] = !!(toggles_sound & SOUND_ADMINHELP)
+			data["toggle_admin_music"] = !!(toggles_sound & SOUND_MIDI)
+			data["toggle_ambience_sound"] = !!(toggles_sound & SOUND_AMBIENCE)
+			data["toggle_lobby_music"] = !!(toggles_sound & SOUND_LOBBY)
+			data["toggle_instruments_sound"] = !(toggles_sound & SOUND_INSTRUMENTS_OFF)
+			data["toggle_weather_sound"] = !!(toggles_sound & SOUND_WEATHER)
+			data["toggle_round_end_sounds"] = !(toggles_sound & SOUND_NOENDOFROUND)
 			data["tooltips"] = tooltips
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
@@ -162,16 +176,6 @@
 			.["mapRef"] = "player_pref_map"
 		if(GEAR_CUSTOMIZATION)
 			.["clothing"] = list(
-				"underwear" = list(
-					"male" = GLOB.underwear_m,
-					"female" = GLOB.underwear_f,
-					"plural" = GLOB.underwear_f + GLOB.underwear_m,
-				),
-				"undershirt" = list(
-					"male" = GLOB.undershirt_m,
-					"female" = GLOB.undershirt_f,
-					"plural" = GLOB.undershirt_m + GLOB.undershirt_f,
-				),
 				"backpack" = GLOB.backpacklist,
 				)
 			.["gearsets"] = list()
@@ -203,6 +207,7 @@
 				"Latejoin Xenomorph" = BE_ALIEN,
 				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
 				"End of Round Deathmatch" = BE_DEATHMATCH,
+				"Eligible for Hive Target" = BE_HIVE_TARGET,
 				"Prefer Squad over Role" = BE_SQUAD_STRICT
 			)
 		if(KEYBIND_SETTINGS)
@@ -229,6 +234,7 @@
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
+			update_preview_icon()
 
 		if("tab_change")
 			tab_index = params["tabIndex"]
@@ -237,6 +243,7 @@
 		if("random")
 			randomize_appearance_for()
 			save_character()
+			update_preview_icon()
 
 		if("name_real")
 			var/newValue = params["newValue"]
@@ -255,6 +262,7 @@
 
 		if("randomize_appearance")
 			randomize_appearance_for()
+			update_preview_icon()
 
 		if("synthetic_name")
 			var/newValue = params["newValue"]
@@ -269,12 +277,21 @@
 			if(!choice)
 				return
 			synthetic_type = choice
+			update_preview_icon()
 
 		if("robot_type")
 			var/choice = tgui_input_list(ui.user, "What model of robot do you want to play with?", "Robot model choice", ROBOT_TYPES)
 			if(!choice)
 				return
 			robot_type = choice
+			update_preview_icon()
+
+		if("moth_wings")
+			var/choice = tgui_input_list(ui.user, "What kind of moth wings do you want to play with? Only useable as a moth.", "Moth with type choice", GLOB.moth_wings_list)
+			if(!choice)
+				return
+			moth_wings = choice
+			update_preview_icon()
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -311,6 +328,7 @@
 				f_style = "Shaved"
 			else
 				underwear = 1
+			update_preview_icon()
 
 
 		if("ethnicity")
@@ -318,6 +336,7 @@
 			if(!choice)
 				return
 			ethnicity = choice
+			update_preview_icon()
 
 		if("species")
 			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
@@ -326,6 +345,7 @@
 			species = choice
 			var/datum/species/S = GLOB.all_species[species]
 			real_name = S.random_name(gender)
+			update_preview_icon()
 
 		if("toggle_eyesight")
 			good_eyesight = !good_eyesight
@@ -336,6 +356,7 @@
 
 		if("jobselect")
 			UpdateJobPreference(user, params["job"], text2num(params["level"]))
+			update_preview_icon()
 
 		if("jobalternative")
 			var/newValue = text2num(params["newValue"])
@@ -346,6 +367,9 @@
 			preferred_squad = "None"
 			preferred_squad_som = "None"
 			alternate_option = 2 // return to lobby
+			update_preview_icon()
+
+		/** NTF removal - we are using our own fancy underwear system
 
 		if("underwear")
 			var/list/underwear_options
@@ -358,6 +382,7 @@
 			if(!new_underwear)
 				return
 			underwear = new_underwear
+			update_preview_icon()
 
 		if("undershirt")
 			var/list/undershirt_options
@@ -370,12 +395,15 @@
 			if(!new_undershirt)
 				return
 			undershirt = new_undershirt
+			update_preview_icon()
+		*/
 
 		if("backpack")
 			var/new_backpack = GLOB.backpacklist.Find(params["newValue"])
 			if(!new_backpack)
 				return
 			backpack = new_backpack
+			update_preview_icon()
 
 		if("loadoutadd")
 			var/choice = params["gear"]
@@ -444,6 +472,7 @@
 			if(!choice)
 				return
 			h_style = choice
+			update_preview_icon()
 
 		if("haircolor")
 			var/new_color = input(user, "Choose your character's hair colour:", "Hair Color") as null|color
@@ -452,6 +481,7 @@
 			r_hair = hex2num(copytext(new_color, 2, 4))
 			g_hair = hex2num(copytext(new_color, 4, 6))
 			b_hair = hex2num(copytext(new_color, 6, 8))
+			update_preview_icon()
 
 		if("grad_color")
 			var/new_grad = input(user, "Choose your character's secondary hair color:", "Gradient Color") as null|color
@@ -460,6 +490,7 @@
 			r_grad = hex2num(copytext(new_grad, 2, 4))
 			g_grad = hex2num(copytext(new_grad, 4, 6))
 			b_grad = hex2num(copytext(new_grad, 6, 8))
+			update_preview_icon()
 
 		if("grad_style")
 			var/list/valid_grads = list()
@@ -473,6 +504,7 @@
 			var/choice = tgui_input_list(ui.user, "What hair grad style do you want?", "Hair grad style choice", valid_grads)
 			if(choice)
 				grad_style = choice
+			update_preview_icon()
 
 		if("facial_style")
 			var/list/valid_facialhairstyles = list()
@@ -489,6 +521,7 @@
 			if(!choice)
 				return
 			f_style = choice
+			update_preview_icon()
 
 		if("facialcolor")
 			var/facial_color = input(user, "Choose your character's facial-hair colour:", "Facial Hair Color") as null|color
@@ -497,6 +530,7 @@
 			r_facial = hex2num(copytext(facial_color, 2, 4))
 			g_facial = hex2num(copytext(facial_color, 4, 6))
 			b_facial = hex2num(copytext(facial_color, 6, 8))
+			update_preview_icon()
 
 		if("eyecolor")
 			var/eyecolor = input(user, "Choose your character's eye colour:", "Character Preference") as null|color
@@ -505,6 +539,7 @@
 			r_eyes = hex2num(copytext(eyecolor, 2, 4))
 			g_eyes = hex2num(copytext(eyecolor, 4, 6))
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
+			update_preview_icon()
 
 		if("citizenship")
 			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Place of Origin", CITIZENSHIP_CHOICES)
@@ -585,6 +620,31 @@
 				return
 			flavor_text = new_record
 
+		if("xeno_desc")
+			var/new_record = trim(html_encode(params["xenoDesc"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xeno_desc = new_record
+
+		if("profile_pic")
+			var/new_record = trim(html_encode(params["profilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			profile_pic = new_record
+
+		if("xenoprofile_pic")
+			var/new_record = trim(html_encode(params["xenoprofilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xenoprofile_pic = new_record
+
+		if("xenogender")
+			var/new_xgender = text2num(params["newValue"])
+			if(!isnum(new_xgender))
+				return
+			new_xgender = round(new_xgender)
+			xenogender = new_xgender
+
 		if("windowflashing")
 			windowflashing = !windowflashing
 
@@ -608,6 +668,36 @@
 				return
 			new_vol = round(new_vol)
 			volume_tts = clamp(new_vol, 0, 100)
+
+		if("toggle_radio_tts_setting")
+			switch(params["newsetting"])
+				if("sl")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL)
+					if(!CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SL)) //When SL radio is being disabled, disable squad radio too
+						DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD)
+
+				if("squad")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD)
+					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD))
+						ENABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL) //Enable SL TTS if not already enabled
+
+				if("command")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_COMMAND)
+
+				if("hivemind")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_HIVEMIND)
+
+				if("all")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
+					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)) //Enable all other channels when 'ALL' is enabled
+						for(var/flag in GLOB.all_radio_tts_options)
+							ENABLE_BITFIELD(radio_tts_flags, flag)
+
+			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND|RADIO_TTS_HIVEMIND))
+				DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
+
+		if("accessible_tgui_themes")
+			accessible_tgui_themes = !accessible_tgui_themes
 
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
@@ -652,6 +742,9 @@
 		if("mute_others_combat_messages")
 			mute_others_combat_messages = !mute_others_combat_messages
 
+		if("show_xeno_rank")
+			show_xeno_rank = !show_xeno_rank
+
 		if("change_quick_equip")
 			var/editing_slot = params["selection"]
 			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
@@ -692,6 +785,37 @@
 				closeToolTip(usr)
 			else if(!current_client.tooltips && tooltips)
 				current_client.tooltips = new /datum/tooltip(current_client)
+
+		if("toggle_adminhelp_sound")
+			toggles_sound ^= SOUND_ADMINHELP
+
+		if("toggle_admin_music")
+			toggles_sound ^= SOUND_MIDI
+			if(!(toggles_sound & SOUND_MIDI))
+				user.stop_sound_channel(CHANNEL_MIDI)
+
+		if("toggle_ambience_sound")
+			toggles_sound ^= SOUND_AMBIENCE
+			current_client.update_ambience_pref()
+			if(!(toggles_sound & SOUND_AMBIENCE))
+				user.stop_sound_channel(CHANNEL_AMBIENCE)
+
+		if("toggle_lobby_music")
+			toggles_sound ^= SOUND_LOBBY
+			if(isnewplayer(user)) // can't do early return here, because buttons won't update properly outside of lobby
+				if(toggles_sound & SOUND_LOBBY)
+					current_client.play_title_music()
+				else
+					user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+
+		if("toggle_instruments_sound")
+			toggles_sound ^= SOUND_INSTRUMENTS_OFF
+
+		if("toggle_weather_sound")
+			toggles_sound ^= SOUND_WEATHER
+
+		if("toggle_round_end_sounds")
+			toggles_sound ^= SOUND_NOENDOFROUND
 
 		if("fullscreen_mode")
 			fullscreen_mode = !fullscreen_mode
@@ -768,7 +892,7 @@
 			emote.spoken_emote = !emote.spoken_emote
 
 		if("reset-keybindings")
-			key_bindings = GLOB.hotkey_keybinding_list_by_key
+			key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 			current_client.set_macros()
 			save_keybinds()
 
@@ -789,9 +913,6 @@
 			if(ban_details["expiration_time"])
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
 			to_chat(user, span_danger("You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [params["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]"))
-
-		if("update-character-preview")
-			update_preview_icon()
 
 		if("widescreenpref")
 			widescreenpref = !widescreenpref
@@ -856,7 +977,6 @@
 	save_preferences()
 	save_character()
 	save_keybinds()
-	update_preview_icon()
 	ui_interact(user, ui)
 	SEND_SIGNAL(current_client, COMSIG_CLIENT_PREFERENCES_UIACTED)
 	return TRUE

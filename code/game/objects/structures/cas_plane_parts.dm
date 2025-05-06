@@ -1,7 +1,7 @@
 //Use turfs for solid parts BUT use structures otherwise so we can see through
 /turf/closed/shuttle/cas
 	name = "\improper Condor Jet"
-	icon = 'icons/Marine/casship.dmi'
+	icon = 'icons/turf/cas.dmi'
 	icon_state = "1"
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER
 	layer = OBJ_LAYER
@@ -81,10 +81,10 @@
 
 /turf/closed/shuttle/cas/computer/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "7", ABOVE_MOB_LAYER)
+	var/image/overlay = image('icons/turf/cas.dmi', src, "7", ABOVE_MOB_LAYER)
 	overlay.pixel_x = -32
 	add_overlay(overlay)
-	overlay = image('icons/Marine/casship.dmi', src, "2", ABOVE_MOB_LAYER)
+	overlay = image('icons/turf/cas.dmi', src, "2", ABOVE_MOB_LAYER)
 	overlay.pixel_x = 32
 	add_overlay(overlay)
 
@@ -93,10 +93,10 @@
 
 /turf/closed/shuttle/cas/centertop/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "5", ABOVE_MOB_LAYER)
+	var/image/overlay = image('icons/turf/cas.dmi', src, "5", ABOVE_MOB_LAYER)
 	overlay.pixel_x = -32
 	add_overlay(overlay)
-	overlay = image('icons/Marine/casship.dmi', src, "4", ABOVE_MOB_LAYER)
+	overlay = image('icons/turf/cas.dmi', src, "4", ABOVE_MOB_LAYER)
 	overlay.pixel_x = 32
 	add_overlay(overlay)
 
@@ -105,10 +105,10 @@
 
 /turf/closed/shuttle/cas/centertop2/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "27", ABOVE_MOB_LAYER)
+	var/image/overlay = image('icons/turf/cas.dmi', src, "27", ABOVE_MOB_LAYER)
 	overlay.pixel_x = -32
 	add_overlay(overlay)
-	overlay = image('icons/Marine/casship.dmi', src, "12", ABOVE_MOB_LAYER)
+	overlay = image('icons/turf/cas.dmi', src, "12", ABOVE_MOB_LAYER)
 	overlay.pixel_x = 32
 	add_overlay(overlay)
 
@@ -117,10 +117,10 @@
 
 /turf/closed/shuttle/cas/leftwingfar/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "32", ABOVE_MOB_LAYER)
+	var/image/overlay = image('icons/turf/cas.dmi', src, "32", ABOVE_MOB_LAYER)
 	overlay.pixel_y = 32
 	add_overlay(overlay)
-	overlay = image('icons/Marine/casship.dmi', src, "34", ABOVE_MOB_LAYER)
+	overlay = image('icons/turf/cas.dmi', src, "34", ABOVE_MOB_LAYER)
 	overlay.pixel_y = -32
 	add_overlay(overlay)
 
@@ -129,7 +129,7 @@
 
 /turf/closed/shuttle/cas/leftwingmid/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "35", ABOVE_MOB_LAYER)
+	var/image/overlay = image('icons/turf/cas.dmi', src, "35", ABOVE_MOB_LAYER)
 	overlay.pixel_y = -32
 	add_overlay(overlay)
 
@@ -138,7 +138,7 @@
 
 /turf/closed/shuttle/cas/leftwingclose/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "36", ABOVE_MOB_LAYER)
+	var/image/overlay = image('icons/turf/cas.dmi', src, "36", ABOVE_MOB_LAYER)
 	overlay.pixel_y = -32
 	add_overlay(overlay)
 
@@ -147,10 +147,10 @@
 
 /turf/closed/shuttle/cas/rightwingfar/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "17", ABOVE_MOB_LAYER)
+	var/image/overlay = image('icons/turf/cas.dmi', src, "17", ABOVE_MOB_LAYER)
 	overlay.pixel_y = 32
 	add_overlay(overlay)
-	overlay = image('icons/Marine/casship.dmi', src, "76", ABOVE_MOB_LAYER)
+	overlay = image('icons/turf/cas.dmi', src, "76", ABOVE_MOB_LAYER)
 	overlay.pixel_y = -32
 	add_overlay(overlay)
 
@@ -159,7 +159,7 @@
 
 /turf/closed/shuttle/cas/rightwingmid/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "23", ABOVE_MOB_LAYER)
+	var/image/overlay = image('icons/turf/cas.dmi', src, "23", ABOVE_MOB_LAYER)
 	overlay.pixel_y = -32
 	add_overlay(overlay)
 
@@ -168,7 +168,7 @@
 
 /turf/closed/shuttle/cas/rightwingclose/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "24", ABOVE_MOB_LAYER)
+	var/image/overlay = image('icons/turf/cas.dmi', src, "24", ABOVE_MOB_LAYER)
 	overlay.pixel_y = -32
 	add_overlay(overlay)
 
@@ -176,7 +176,7 @@
 ///Base cas plane structure, we use this instead of turfs if we want to peek onto the turfs below
 /obj/structure/caspart
 	name = "\improper Condor Jet"
-	icon = 'icons/Marine/casship.dmi'
+	icon = 'icons/turf/cas.dmi'
 	icon_state = "2"
 	layer = OBJ_LAYER
 	resistance_flags = RESIST_ALL
@@ -191,7 +191,7 @@
 
 /obj/structure/caspart/leftprong/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "29")
+	var/image/overlay = image('icons/turf/cas.dmi', src, "29")
 	overlay.pixel_y = 32
 	add_overlay(overlay)
 
@@ -200,7 +200,7 @@
 
 /obj/structure/caspart/rightprong/Initialize(mapload)
 	. = ..()
-	var/image/overlay = image('icons/Marine/casship.dmi', src, "14")
+	var/image/overlay = image('icons/turf/cas.dmi', src, "14")
 	overlay.pixel_y = 32
 	add_overlay(overlay)
 

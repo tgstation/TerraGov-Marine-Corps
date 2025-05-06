@@ -9,17 +9,17 @@
 	wound_type = "wraith" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 24
 
 	// *** Speed *** //
-	speed = -1.25
+	speed = -1.1
 
 	// *** Plasma *** //
 	plasma_max = 400
-	plasma_gain = 25
+	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 340
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -33,7 +33,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "wraith"
@@ -41,8 +41,12 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/blink,
 		/datum/action/ability/activable/xeno/banish,
 		/datum/action/ability/xeno_action/recall,
@@ -61,13 +65,16 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/blink,
 		/datum/action/ability/activable/xeno/banish,
 		/datum/action/ability/xeno_action/recall,
-		/datum/action/ability/xeno_action/portal,
 		/datum/action/ability/activable/xeno/rewind,
+		/datum/action/ability/xeno_action/portal,
 		/datum/action/ability/xeno_action/timestop,
 	)
-

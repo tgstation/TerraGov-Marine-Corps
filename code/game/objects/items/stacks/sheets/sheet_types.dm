@@ -12,7 +12,7 @@
 */
 GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_METAL), \
-	new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 2, 1, 20, time = 1 SECONDS, crafting_flags = NONE, skill_req = SKILL_CONSTRUCTION_METAL), \
+	new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 1, 1, 20, time = 1 SECONDS, crafting_flags = NONE, skill_req = SKILL_CONSTRUCTION_METAL), \
 	new/datum/stack_recipe("razor wire", /obj/item/stack/razorwire, 4, 2, 20, time = 5 SECONDS, crafting_flags = NONE, skill_req = SKILL_CONSTRUCTION_METAL), \
 	null, \
 	new/datum/stack_recipe("apc frame", /obj/item/frame/apc, 2, crafting_flags = NONE), \
@@ -25,6 +25,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("chair", /obj/structure/bed/chair, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
 	new/datum/stack_recipe("comfy chair", /obj/structure/bed/chair/comfy/beige, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
 	new/datum/stack_recipe("office chair",/obj/structure/bed/chair/office/dark, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
+	new/datum/stack_recipe("kinky bed",/obj/item/construction_kit/bdsm/bed, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
+	new/datum/stack_recipe("x stand",/obj/item/construction_kit/bdsm/x_stand, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
+	new/datum/stack_recipe("stripper pole",/obj/item/construction_kit/pole, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
 	new/datum/stack_recipe("light fixture frame", /obj/item/frame/light_fixture, req_amount = 2, crafting_flags = NONE), \
 	new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light_fixture/small, crafting_flags = NONE), \
 	new/datum/stack_recipe("table parts", /obj/item/frame/table, crafting_flags = NONE), \
@@ -52,10 +55,10 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 
 
 GLOBAL_LIST_INIT(metal_radial_images, list(
-	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
-	"barricade" = image('icons/Marine/barricades.dmi', icon_state = "metal_0"),
-	"razorwire" = image('icons/obj/structures/barbedwire.dmi', icon_state = "barbedwire_assembly"),
-	"barbedwire" = image('icons/Marine/marine-items.dmi', icon_state = "barbed_wire")
+	"recipes" = image('icons/obj/structures/barricades/misc.dmi', icon_state = "plus"),
+	"barricade" = image('icons/obj/structures/barricades/metal.dmi', icon_state = "metal_0"),
+	"razorwire" = image('icons/obj/structures/barricades/barbedwire.dmi', icon_state = "barbedwire_assembly"),
+	"barbedwire" = image('icons/obj/stack_objects.dmi', icon_state = "barbed_wire")
 	))
 
 /obj/item/stack/sheet/metal
@@ -102,7 +105,7 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 		if("barricade")
 			create_object(user, new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_METAL), 1)
 		if("barbedwire")
-			create_object(user, new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 2, 1, 20, time = 1 SECONDS, crafting_flags = NONE, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+			create_object(user, new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 1, 1, 20, time = 1 SECONDS, crafting_flags = NONE, skill_req = SKILL_CONSTRUCTION_METAL), 1)
 		if("razorwire")
 			create_object(user, new/datum/stack_recipe("razor wire", /obj/item/stack/razorwire, 4, 2, 20, time = 5 SECONDS, crafting_flags = NONE, skill_req = SKILL_CONSTRUCTION_METAL), 1)
 
@@ -149,8 +152,8 @@ GLOBAL_LIST_INIT(plasteel_recipes, list( \
 * Wood
 */
 GLOBAL_LIST_INIT(wood_radial_images, list(
-	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
-	"barricade" = image('icons/Marine/barricades.dmi', icon_state = "wooden"),
+	"recipes" = image('icons/obj/structures/barricades/misc.dmi', icon_state = "plus"),
+	"barricade" = image('icons/obj/structures/barricades/misc.dmi', icon_state = "wooden"),
 	"chair" = image('icons/obj/objects.dmi', icon_state = "wooden_chair"),
 	"tile" = image('icons/obj/stack_objects.dmi', icon_state = "tile-wood"),
 	"crate" = image('icons/obj/structures/crates.dmi', icon_state = "secure_crate")
@@ -229,7 +232,25 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	desc = "This roll of cloth is made from only the finest chemicals and bunny rabbits."
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
+	
+/obj/item/stack/sheet/cloth/attack_self(mob/user)
+	. = ..()
+	if(LAZYLEN(recipes)==1)
+		create_object(user, recipes[1], 1)
 
+GLOBAL_LIST_INIT(cloth_recipes, list ( \
+	new/datum/stack_recipe("fabric curtains", /obj/structure/curtain/temple, 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF, skill_req = SKILL_CONSTRUCTION_METAL), \
+	))
+
+/obj/item/stack/sheet/cloth/get_main_recipes()
+	. = ..()
+	. += GLOB.cloth_recipes
+
+/obj/item/stack/sheet/cloth/five
+	amount = 5
+
+/obj/item/stack/sheet/cloth/large_stack
+	amount = 50
 
 /*
 * Cardboard

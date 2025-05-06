@@ -10,7 +10,7 @@
 	desc = "Just your average condiment container."
 	icon = 'icons/obj/items/food/condiment.dmi'
 	icon_state = "emptycondiment"
-	init_reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	possible_transfer_amounts = list(1,5,10)
 	center_of_mass = list("x"=16, "y"=6)
 	volume = 50
@@ -42,7 +42,7 @@
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			M.visible_message(span_warning("[user] attempts to feed [M] [src]."))
-			if(!do_after(user, 3 SECONDS, NONE, M, BUSY_ICON_FRIENDLY))
+			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
 				return
 			M.visible_message(span_warning("[user] feeds [M] [src]."))
 			var/rgt_list_text = get_reagent_list_text()

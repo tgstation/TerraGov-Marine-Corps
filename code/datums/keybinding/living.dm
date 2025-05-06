@@ -19,7 +19,7 @@
 	return TRUE
 
 /datum/keybinding/living/attempt_jump
-	hotkey_keys = list("Space")
+	hotkey_keys = list("C")
 	name = "Jump"
 	full_name = "Jump"
 	description = "Jumps, if your mob is capable of doing so."

@@ -145,10 +145,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
-"cq" = (
-/obj/structure/patrol_point/tgmc_13,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base)
 "cv" = (
 /obj/effect/landmark/start/job/som/squadcorpsman,
 /turf/open/floor/mainship/office,
@@ -202,10 +198,6 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/patrol_base)
-"dq" = (
-/obj/structure/patrol_point/tgmc_24,
-/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "dr" = (
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -807,10 +799,6 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
-"ml" = (
-/obj/structure/patrol_point/som_13,
-/turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som)
 "mt" = (
 /obj/structure/largecrate/supply,
 /turf/open/floor/mainship/red{
@@ -863,7 +851,7 @@
 	},
 /area/mainship/patrol_base)
 "nx" = (
-/obj/structure/patrol_point/tgmc_22,
+/obj/structure/patrol_point/tgmc_21,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "nz" = (
@@ -1020,10 +1008,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
-"qm" = (
-/obj/structure/patrol_point/som_14,
-/turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som)
 "qo" = (
 /obj/machinery/telecomms/server/presets/zulu,
 /turf/open/floor/mainship,
@@ -1059,10 +1043,6 @@
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"qO" = (
-/obj/structure/patrol_point/tgmc_14,
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base)
 "qY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1080,10 +1060,6 @@
 	dir = 8
 	},
 /area/mainship/patrol_base)
-"rb" = (
-/obj/structure/patrol_point/som_12,
-/turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som)
 "rg" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/mainship/black{
@@ -1938,7 +1914,7 @@
 	},
 /area/mainship/patrol_base/som)
 "CI" = (
-/obj/structure/patrol_point/tgmc_12,
+/obj/structure/patrol_point/tgmc_11,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "CR" = (
@@ -2123,10 +2099,6 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"FA" = (
-/obj/structure/patrol_point/tgmc_23,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base)
 "FL" = (
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull,
 /turf/open/floor/mainship/mono,
@@ -2323,10 +2295,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"IQ" = (
-/obj/structure/patrol_point/som_24,
-/turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som)
 "Jb" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -2540,10 +2508,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"LR" = (
-/obj/structure/patrol_point/som_22,
-/turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som)
 "LS" = (
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull,
 /turf/open/floor/plating/ground/concrete,
@@ -3208,10 +3172,6 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som)
-"Te" = (
-/obj/structure/patrol_point/som_23,
-/turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "Tm" = (
 /obj/structure/table/mainship/nometal,
@@ -4072,7 +4032,7 @@ My
 aP
 aP
 SW
-Te
+SW
 aP
 aP
 zO
@@ -4080,7 +4040,7 @@ zO
 aP
 aP
 LA
-ml
+LA
 aP
 aP
 fz
@@ -4133,16 +4093,16 @@ LN
 My
 rn
 ZW
-LR
-IQ
+SW
+SW
 ah
 RA
 zO
 zO
 rn
 ZW
-rb
-qm
+LA
+LA
 ah
 RA
 fz
@@ -10072,8 +10032,8 @@ wz
 hk
 kl
 kA
-cq
-qO
+tb
+CI
 Ii
 wz
 nm
@@ -10506,8 +10466,8 @@ wz
 hk
 kl
 kA
-FA
-dq
+Pw
+nx
 Ii
 wz
 nm

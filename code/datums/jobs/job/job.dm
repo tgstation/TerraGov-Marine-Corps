@@ -58,8 +58,10 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/multiple_outfits = FALSE
 	///list of outfit variants
 	var/list/datum/outfit/job/outfits = list()
-
+	///Skills for this job
 	var/skills_type = /datum/skills
+	///Any special traits that are assigned for this job
+	var/list/job_traits
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 	var/job_flags = NONE
@@ -71,6 +73,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	///string; typepath for the icon that this job will show on the minimap
 	var/minimap_icon
+	var/list/shadow_languages = list()
 
 /datum/job/New()
 	if(outfit)
@@ -160,16 +163,17 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/map_check()
 	return TRUE
 
-
-/datum/job/proc/radio_help_message(mob/M)
-	to_chat(M, {"
-[span_role_header("You are the [title].")]
-[span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")]
-"})
+/// The message you get when spawning in as this job, called by [/datum/job/proc/after_spawn]
+/datum/job/proc/radio_help_message(mob/new_player)
+	var/list/message = list()
+	message += span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
-		to_chat(M, "<span class='role_body'>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</span>")
+		message += separator_hr("[span_role_body("<b>Radio</b>")]")
+		message += span_role_body("Prefix your message with <b>;</b> to speak on the default radio channel, in most cases this is your squad radio. For additional prefixes, examine your headset.")
 	if(req_admin_notify)
-		to_chat(M, "<span class='role_body'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
+		message += separator_hr("[span_role_header("This is an important job.")]")
+		message += span_role_body("If you have to disconnect, please take a hypersleep pod. If you can't make it there, <b><u>adminhelp</u></b> using F1 or the Adminhelp verb.")
+	to_chat(new_player, fieldset_block("[span_role_header("You are the [title].")]", jointext(message, ""), "examine_block"))
 
 /datum/outfit/job
 	var/jobtype
@@ -186,20 +190,18 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/outfit/job/proc/handle_id(mob/living/carbon/human/H)
 	var/datum/job/job = H.job ? H.job : SSjob.GetJobType(jobtype)
 	var/obj/item/card/id/id = H.wear_id
-	if(istype(id))
-		id.access = job.get_access()
-		id.iff_signal = GLOB.faction_to_iff[job.faction]
-		shuffle_inplace(id.access) // Shuffle access list to make NTNet passkeys less predictable
-		id.registered_name = H.real_name
-		id.assignment = job.title
-		id.rank = job.title
-		id.paygrade = job.paygrade
-		id.update_label()
-		if(H.mind?.initial_account) // In most cases they won't have a mind at this point.
-			id.associated_account_number = H.mind.initial_account.account_number
-
-	H.update_action_buttons()
-
+	if(!istype(id))
+		return
+	id.access = job.get_access()
+	id.iff_signal = GLOB.faction_to_iff[job.faction]
+	shuffle_inplace(id.access) // Shuffle access list to make NTNet passkeys less predictable
+	id.registered_name = H.real_name
+	id.assignment = job.title
+	id.rank = job.title
+	id.paygrade = job.paygrade
+	id.update_label()
+	if(H.mind?.initial_account) // In most cases they won't have a mind at this point.
+		id.associated_account_number = H.mind.initial_account.account_number
 
 /datum/job/proc/get_special_name(client/preference_source)
 	return
@@ -208,15 +210,16 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(amount <= 0)
 		CRASH("occupy_job_positions() called with amount: [amount]")
 	current_positions += amount
-	for(var/index in jobworth)
+	var/adjusted_jobworth_list = SSticker.mode?.get_adjusted_jobworth_list(jobworth) || jobworth
+	for(var/index in adjusted_jobworth_list)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(index in SSticker.mode.valid_job_types))
 			continue
 		if(isxenosjob(scaled_job))
 			if(respawn && (SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN))
 				continue
-			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
-		scaled_job.add_job_points(jobworth[index])
+			GLOB.round_statistics.larva_from_marine_spawning += adjusted_jobworth_list[index] / scaled_job.job_points_needed
+		scaled_job.add_job_points(adjusted_jobworth_list[index])
 	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	normal_hive.update_tier_limits()
 	return TRUE
@@ -287,11 +290,14 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!SSticker.HasRoundStarted() && !(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START) && previous_amount < total_positions)
 		LAZYADD(SSjob.occupations_reroll, src)
 
-
 // Spawning mobs.
-/mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
+/mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, /datum/language/dt, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
 	set_skills(getSkillsType(job.return_skills_type(player?.prefs)))
+	for(var/shadowlang AS in assigned_role.shadow_languages)
+		language_holder.grant_language(shadowlang, TRUE)
+	if(islist(job.job_traits))
+		add_traits(job.job_traits, INNATE_TRAIT)
 	faction = job.faction
 	job.announce(src)
 	GLOB.round_statistics.total_humans_created[faction]++
@@ -334,6 +340,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	hud_set_job(faction)
 
 ///finds and equips a valid outfit for a specified job and species
+
 /mob/living/carbon/human/proc/equip_role_outfit(datum/job/assigned_role)
 	if(!assigned_role.multiple_outfits)
 		assigned_role.outfit.equip(src)
@@ -384,3 +391,28 @@ GLOBAL_PROTECT(exp_specialmap)
 		CRASH("Occupy xenomorph position was call with amount = [amount] and respawn =[respawn ? "TRUE" : "FALSE"] \n \
 		This would have created a negative larva situation")
 	return ..()
+
+/datum/job/return_spawn_type(datum/preferences/prefs)
+	switch(prefs?.species)
+		if("Combat Robot")
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
+				switch(prefs?.robot_type)
+					if("Basic")
+						return /mob/living/carbon/human/species/robot
+					if("Hammerhead")
+						return /mob/living/carbon/human/species/robot/alpharii
+					if("Chilvaris")
+						return /mob/living/carbon/human/species/robot/charlit
+					if("Ratcher")
+						return /mob/living/carbon/human/species/robot/deltad
+					if("Sterling")
+						return /mob/living/carbon/human/species/robot/bravada
+			to_chat(prefs.parent, span_danger("nonhuman joins are currently disabled, your species has been defaulted to Human"))
+			return /mob/living/carbon/human
+		if("Mothellian")
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
+				return /mob/living/carbon/human/species/moth
+		if("Vatborn")
+			return /mob/living/carbon/human/species/vatborn
+		else
+			return /mob/living/carbon/human

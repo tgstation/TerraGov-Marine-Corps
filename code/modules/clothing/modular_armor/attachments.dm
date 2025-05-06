@@ -83,6 +83,7 @@
 	parent.slowdown += slowdown
 	if(CHECK_BITFIELD(attach_features_flags, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_actions))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(handle_unequip_actions))
 	base_icon = icon_state
 	if(length(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
@@ -99,10 +100,15 @@
 	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
-	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
+	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 	parent = null
 	icon_state = initial(icon_state)
 	update_icon()
+
+///called when the item is dropped: relevant when item is forcedropped from a non-hand slot so we can remove the actions.
+/obj/item/armor_module/proc/handle_unequip_actions(datum/source, mob/user)
+	SIGNAL_HANDLER
+	handle_actions(source, user, null)
 
 ///Adds or removes actions based on whether the parent is in the correct slot.
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)

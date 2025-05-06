@@ -12,7 +12,7 @@
 	},
 /area/bigredv2/outside/e)
 "cB" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/dice/d20,
 /obj/item/paper/crumpled,
 /turf/open/floor/wood,
@@ -32,7 +32,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle{
 	pixel_x = 1;
@@ -149,9 +149,7 @@
 	},
 /area/bigredv2/outside/library)
 "nr" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -187,7 +185,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/library)
 "rO" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pizzabox/meat{
 	pixel_x = -5;
 	pixel_y = 12
@@ -209,9 +207,7 @@
 	},
 /area/bigredv2/outside/library)
 "uy" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "uM" = (
@@ -238,7 +234,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "vX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pizzabox/meat{
 	pixel_x = -5;
 	pixel_y = 12
@@ -255,7 +251,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "xB" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/dice/d20,
 /obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle{
@@ -309,7 +305,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Ez" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice{
 	pixel_x = -3;
 	pixel_y = 4
@@ -374,7 +370,7 @@
 /turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "Nb" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
@@ -445,14 +441,12 @@
 	},
 /area/bigredv2/outside/library)
 "Tw" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "UU" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -460,7 +454,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "VU" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /obj/item/paper/crumpled,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle{

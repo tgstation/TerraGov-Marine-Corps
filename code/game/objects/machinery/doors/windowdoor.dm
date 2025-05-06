@@ -40,7 +40,7 @@
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
-	playsound(src, "shatter", 50, 1)
+	playsound(src, SFX_SHATTER, 50, 1)
 	return ..()
 
 
@@ -50,6 +50,10 @@
 		return
 	icon_state = density ? base_state : "[base_state]open"
 
+/obj/machinery/door/window/emp_act(severity)
+	. = ..()
+	if(prob(30 / severity))
+		open()
 
 /obj/machinery/door/window/proc/open_and_close()
 	open()
@@ -139,7 +143,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts to remove the electronics from the windoor.", "You start to remove electronics from the windoor.")
 
-		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		to_chat(user, span_notice("You removed the windoor electronics!"))

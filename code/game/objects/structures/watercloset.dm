@@ -129,7 +129,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-	desc = "The HS-451. Installed in the 2050s by the Nanotrasen Hygiene Division."
+	desc = "The HS-451. Installed in the 2050s by the Ninetails Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
@@ -167,14 +167,15 @@
 	if(.)
 		return
 	on = !on
-	update_mist()
+	user.visible_message(span_notice("[user] [on ? "turns [src] on" : "turns [src] off"]."), span_notice("You [on ? "turn [src] on" : "turn [src] off"]."))
+	update_icon()
 	if(on)
 		start_processing()
 		if (user.loc == loc)
-			wash(user)
+			wash_atom(user)
 			check_heat(user)
 		for (var/atom/movable/G in src.loc)
-			G.clean_blood()
+			G.wash()
 	else
 		stop_processing()
 
@@ -199,44 +200,44 @@
 				watertemp = "boiling"
 			if(WATER_TEMP_BOILING)
 				watertemp = "normal"
+		handle_mist()
 		user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I]."))
 
-/obj/machinery/shower/proc/update_mist()
-//this is terribly unreadable, but basically it makes the shower mist up once it's been on for a while
-	update_icon()
-	if(mymist)
+/obj/machinery/shower/update_icon()
+	. = ..()
+	overlays.Cut()
+	handle_mist()
+	if(on)
+		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+
+/obj/machinery/shower/proc/handle_mist()
+    // check if there's no mist, if the shower is on and if it's not freezing
+	// if so, add a 5 second timer to make mist
+	if(!mymist && on && watertemp != "freezing")
+		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS)
+	// check if there's mist, and if the shower is off, freezing or both
+	// if so, add a 25 second timer to clear mist
+	if(mymist && (!on || watertemp == "freezing"))
+		addtimer(CALLBACK(src, PROC_REF(clear_mist)), 25 SECONDS)
+
+/obj/machinery/shower/proc/make_mist()
+	// timer elapsed
+	// check again to make sure there's still no mist, the shower is still on and it's still not freezing
+	// if so, create a new mist effect
+	if(!mymist && on && watertemp != "freezing")
+		mymist = new /obj/effect/mist(loc)
+
+/obj/machinery/shower/proc/clear_mist()
+	// timer elapsed
+	// check again to make sure there's still mist, and if the shower is still off, freezing or both
+	// if so, delete mist
+	if(mymist && (!on || watertemp == "freezing"))
 		qdel(mymist)
 		mymist = null
 
-	if(on)
-		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
-		if(watertemp == WATER_TEMP_FREEZING)
-			return
-		if(!ismist)
-			spawn(50)
-				if(src && on)
-					ismist = TRUE
-					mymist = new /obj/effect/mist(loc)
-		else
-			ismist = TRUE
-			mymist = new /obj/effect/mist(loc)
-	else if(ismist)
-		ismist = TRUE
-		mymist = new /obj/effect/mist(loc)
-		spawn(250)
-			if(src && !on)
-				qdel(mymist)
-				mymist = null
-				ismist = FALSE
-
-/obj/machinery/shower/update_overlays()
-	. = ..()
-	if(on)
-		. += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
-
 /obj/machinery/shower/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
-	wash(O)
+	wash_atom(O)
 	if(ismob(O))
 		mobpresent += 1
 		check_heat(O)
@@ -246,7 +247,7 @@
 		mobpresent -= 1
 
 //Yes, showers are super powerful as far as washing goes.
-/obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
+/obj/machinery/shower/proc/wash_atom(atom/movable/O as obj|mob)
 	if(!on)
 		return
 
@@ -255,9 +256,9 @@
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
 		to_chat(L, span_warning("You've been drenched in water!"))
-		L.clean_mob()
+		L.wash()
 	else
-		O.clean_blood()
+		O.wash()
 
 /obj/machinery/shower/process()
 	if(!on)
@@ -274,7 +275,7 @@
 	is_washing = TRUE
 	addtimer(VARSET_CALLBACK(src, is_washing, FALSE), 10 SECONDS)
 	var/turf/T = get_turf(src)
-	T.clean_turf()
+	T.wash()
 
 /obj/machinery/shower/proc/check_heat(mob/M)
 	if(!on || watertemp == WATER_TEMP_NORMAL)
@@ -344,7 +345,7 @@
 		return
 	busy = FALSE
 
-	user.clean_blood()
+	user.wash()
 	user:update_inv_gloves()
 	balloon_alert_to_viewers("Washes their hands")
 
@@ -357,7 +358,6 @@
 	if(busy)
 		to_chat(user, span_warning("Someone's already washing here."))
 		return
-
 	var/obj/item/reagent_containers/RG = I
 	if(istype(RG) && RG.is_open_container() && RG.reagents.total_volume < RG.reagents.maximum_volume)
 		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
@@ -398,7 +398,7 @@
 	if(user.loc != location || user.get_active_held_item() != I)
 		return
 
-	I.clean_blood()
+	I.wash()
 	user.visible_message( \
 		span_notice(" [user] washes \a [I] using \the [src]."), \
 		span_notice(" You wash \a [I] using \the [src]."))

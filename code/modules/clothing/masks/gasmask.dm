@@ -31,9 +31,7 @@
 	for(var/M in get_hearers_in_view(hearing_range, src))
 		if(ismob(M))
 			var/mob/HM = M
-			if(HM?.client?.prefs?.toggles_sound & SOUND_GAS_MASK)
-				continue
-			HM.playsound_local(user, "gasbreath", 20, 1)
+			HM.playsound_local(user, SFX_GASBREATH, 20, 1)
 			TIMER_COOLDOWN_START(src, COOLDOWN_GAS_BREATH, 10 SECONDS)
 
 /obj/item/clothing/mask/gas/tactical
@@ -82,6 +80,12 @@
 	name = "\improper Modelle/60 gas mask"
 	desc = "A gasmask worn by ICC personnel."
 	icon_state = "icc"
+
+/obj/item/clothing/mask/gas/vsd
+	name = "\improper Vyacheslav armored commando balaclava"
+	desc = "Old balaclava's handed down to V.S.D."
+	inv_hide_flags = HIDEEARS|HIDEFACE|HIDEALLHAIR
+	icon_state = "upp_mask"
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor

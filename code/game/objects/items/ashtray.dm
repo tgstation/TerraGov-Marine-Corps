@@ -38,7 +38,7 @@
 		visible_message("[user] places [I] in [src].")
 
 
-/obj/item/ashtray/deconstruct(disassembled = TRUE)
+/obj/item/ashtray/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	visible_message(span_warning("[src] shatters, spilling its contents!"))
 	for(var/i in contents)
 		var/atom/movable/AM = i

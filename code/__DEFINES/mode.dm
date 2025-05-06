@@ -50,11 +50,13 @@
 #define MODE_ALLOW_XENO_QUICKBUILD (1<<14)
 #define MODE_DISALLOW_RAILGUN (1<<15)
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
+#define MODE_SURVIVAL (1<<17)
+#define MODE_NO_GHOSTS (1<<18)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
-#define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
+#define MODE_INFESTATION_M_MAJOR "Ninetails Major Victory"
 #define MODE_INFESTATION_X_MINOR "Xenomorph Minor Victory"
-#define MODE_INFESTATION_M_MINOR "Marine Minor Victory"
+#define MODE_INFESTATION_M_MINOR "Ninetails Minor Victory"
 #define MODE_INFESTATION_DRAW_DEATH "DRAW: Mutual Annihilation"
 
 #define MODE_GENERIC_DRAW_NUKE "DRAW: Nuclear Explosion"
@@ -102,10 +104,10 @@
 #define COOLDOWN_COMM_MESSAGE 1 MINUTES
 #define COOLDOWN_COMM_CENTRAL 30 SECONDS
 
-#define SUPPLY_POINT_MARINE_SPAWN 25
+#define SUPPLY_POINT_MARINE_SPAWN 50
 
 #define AFK_TIMER 5 MINUTES
-#define TIME_BEFORE_TAKING_BODY 1 MINUTES
+#define TIME_BEFORE_TAKING_BODY 2 MINUTES
 
 #define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
 #define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
@@ -145,10 +147,11 @@
 #define INFESTATION_MARINE_CRASHING 1
 #define INFESTATION_DROPSHIP_CAPTURED_XENOS 2
 
-#define NUCLEAR_WAR_LARVA_POINTS_NEEDED 8
+#define NUCLEAR_WAR_LARVA_POINTS_NEEDED 10
 #define CRASH_LARVA_POINTS_NEEDED 10
 
-#define FREE_XENO_AT_START 2
+#define FREE_XENO_AT_START 8
+#define FREE_XENO_AT_START_CORRUPT 3
 
 #define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.1
 

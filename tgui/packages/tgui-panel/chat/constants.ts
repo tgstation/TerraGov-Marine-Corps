@@ -28,6 +28,7 @@ export const MESSAGE_TYPE_INFO = 'info';
 export const MESSAGE_TYPE_WARNING = 'warning';
 export const MESSAGE_TYPE_DEADCHAT = 'deadchat';
 export const MESSAGE_TYPE_OOC = 'ooc';
+export const MESSAGE_TYPE_LOOC = 'looc';
 export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
@@ -53,14 +54,14 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote',
+    selector: '.say, .emote, .psychicout, .psychicin',
   },
   {
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
     selector:
-      '.alert, .minorannounce, .radio, .deptradio, .syndradio, .comradio, .casradio, .engradio, .medradio, .sciradio, .supradio, .alpharadio, .bravoradio, .charlieradio, .deltaradio, .zuluradio, .yankeeradio, .xrayradio, .whiskeyradio, .newscaster, .binarysay, .hivemind',
+      '.radio, .deptradio, .syndradio, .comradio, .casradio, .engradio, .medradio, .sciradio, .supradio, .alpharadio, .bravoradio, .charlieradio, .deltaradio, .zuluradio, .yankeeradio, .xrayradio, .whiskeyradio, .newscaster, .binarysay, .hivemind',
   },
   {
     type: MESSAGE_TYPE_INFO,
@@ -72,9 +73,10 @@ export const MESSAGE_TYPES = [
   {
     type: MESSAGE_TYPE_WARNING,
     name: 'Warnings',
-    description: 'Urgent messages from the game and items',
+    description:
+      'Urgent messages from the game and items, usually combat messages',
     selector:
-      '.warning, .xenowarning, .danger, .xenodanger, .highdanger, .xenohighdanger, .xenoannounce',
+      '.alert, .warning, .boldwarning, .xenowarning, .danger, .xenodanger, .userdanger, .xenouserdanger, .xenoannounce',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
@@ -85,9 +87,16 @@ export const MESSAGE_TYPES = [
   {
     type: MESSAGE_TYPE_OOC,
     name: 'OOC',
-    description: 'The bluewall of global OOC messages',
+    description: 'OOC messages, admin announcements and round announcements',
     selector:
-      '.ooc, .colorooc, .looc, .adminooc, .hostooc, .projleadooc, .headcoderooc, .headminooc, .headmentorooc, .trialminooc, .candiminooc, .mentorooc, .maintainerooc, .contributorooc, .otherooc',
+      '.ooc, .colorooc, .adminooc, .hostooc, .projleadooc, .headcoderooc, .headminooc, .headmentorooc, .trialminooc, .candiminooc, .mentorooc, .maintainerooc, .contributorooc, .otherooc, .ooc_alert_ooc, .ooc_alert_game',
+  },
+  {
+    type: MESSAGE_TYPE_LOOC,
+    name: 'LOOC',
+    description:
+      'Out-of-character messages from in-view players. Useful for roleplay.',
+    selector: '.looc',
   },
   {
     type: MESSAGE_TYPE_ADMINPM,
@@ -100,7 +109,7 @@ export const MESSAGE_TYPES = [
     name: 'Combat Log',
     description: 'Urist McTraitor has stabbed you with a knife!',
     selector:
-      '.danger, .highdanger, .xenodanger, .xenohighdanger, .attack, .moderate, .disarm, .passive',
+      '.danger, .userdanger, .xenodanger, .xenouserdanger, .attack, .moderate, .disarm, .passive',
   },
   {
     type: MESSAGE_TYPE_UNKNOWN,

@@ -28,7 +28,7 @@
 	var/constrdir = REVERSE_DIR(user.dir)
 	var/constrloc = user.loc
 
-	if(!do_after(user, 30, NONE, wall, BUSY_ICON_BUILD))
+	if(!do_after(user, 30, TRUE, wall, BUSY_ICON_BUILD))
 		return
 
 	new /obj/structure/camera_assembly(constrloc, constrdir)
@@ -174,7 +174,7 @@
 	return FALSE
 
 
-/obj/structure/camera_assembly/deconstruct(disassembled = TRUE)
+/obj/structure/camera_assembly/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc)
 	return ..()

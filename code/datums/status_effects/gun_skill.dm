@@ -1,5 +1,6 @@
 /datum/status_effect/gun_skill
 	id = "gun_skill"
+	alert_type = null
 	///reference to particle effect holder is present for this stack, initially a reference to the type to use
 	var/obj/effect/abstract/particle_holder/particles = /particles/gun_skill
 
@@ -90,6 +91,8 @@
 
 /particles/gun_skill/accuracy/buff
 	gradient = list(1, "#00ff00", 2, "#ff0", "loop")
+	count = 10
+	spawning = 1
 
 /particles/gun_skill/accuracy/debuff
 	gradient = list(1, "#f00", 2, "#ff0", "loop")
@@ -99,6 +102,8 @@
 /particles/gun_skill/scatter/buff
 	icon_state = "up_arrow"
 	gradient = list(1, "#00ff00", 2, "#ff0", "loop")
+	count = 10
+	spawning = 1
 
 /particles/gun_skill/scatter/debuff
 	icon_state = "down_arrow"

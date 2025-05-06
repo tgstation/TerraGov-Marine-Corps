@@ -250,7 +250,7 @@
 		M_job = html_encode(M_job)
 		var/M_name = html_encode(M.name)
 		var/M_rname = html_encode(M.real_name)
-		var/M_key = html_encode(M.key)
+		var/M_key = html_encode(key_name(M, include_link = FALSE, include_name = FALSE))
 		var/M_cid = html_encode(M.computer_id)
 		var/M_ip = html_encode(M.ip_address)
 
@@ -315,7 +315,7 @@
 		if(!M.ckey)
 			continue
 
-		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
+		dat += "<tr><td>[key_name(M, include_link = FALSE, include_name = FALSE)]</td>"
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>AI</td>"
@@ -369,9 +369,8 @@
 	var/body
 
 	body += "<b>[M.name]</b>"
-
+	body += " played by <b>[key_name(M, include_link = FALSE, include_name = FALSE)]</b> "
 	if(M.client)
-		body += " played by <b>[M.client]</b> "
 		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key];close=1'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
 	if(isnewplayer(M))
@@ -424,7 +423,7 @@
 	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a> | "
 	body += "<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a>"
 
-	if(M.client)
+	if(M.key)
 		body += "| <a href='?src=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"
 
 	body += "<br>"
@@ -464,6 +463,7 @@
 		<a href='?src=[ref];transform=early_synth;mob=[REF(M)]'>Early_Synth</a> |
 		<a href='?src=[ref];transform=vatborn;mob=[REF(M)]'>Vatborn</a> |
 		<a href='?src=[ref];transform=vatgrown;mob=[REF(M)]'>Vatgrown</a> |
+		<a href='?src=[ref];transform=prototype_supersoldier;mob=[REF(M)]'>Prototype Supersoldier</a> |
 		<a href='?src=[ref];transform=combat_robot;mob=[REF(M)]'>Combat_Robot</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
 		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
@@ -475,6 +475,7 @@
 		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
 		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
 		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> |
+		<a href='?src=[ref];transform=baneling;mob=[REF(M)]'>Baneling</a> |
 		<br> Alien Tier 2:
 		<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
 		<a href='?src=[ref];transform=bull;mob=[REF(M)]'>Bull</a> |
@@ -484,6 +485,8 @@
 		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> |
 		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a> |
 		<a href='?src=[ref];transform=puppeteer;mob=[REF(M)]'>Puppeteer</a> |
+		<a href='?src=[ref];transform=pyrogen;mob=[REF(M)]'>Pyrogen</a> |
+
 		<br> Alien Tier 3:
 		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
 		<a href='?src=[ref];transform=widow;mob=[REF(M)]'>Widow</a> |
@@ -499,6 +502,7 @@
 		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |
 		<a href='?src=[ref];transform=hivemind;mob=[REF(M)]'>Hivemind</a> |
 		<a href='?src=[ref];transform=king;mob=[REF(M)]'>King</a> |
+		<a href='byond://?src=[ref];transform=dragon;mob=[REF(M)]'>Dragon</a> |
 		<br>
 	"}
 
@@ -521,6 +525,10 @@
 				body += "<a href='?src=[ref];rankequip=[REF(M)]'>Rank and Equipment</a> | "
 				body += "<a href='?src=[ref];editappearance=[REF(M)]'>Edit Appearance</a> | "
 				body += "<a href='?src=[ref];randomname=[REF(M)]'>Randomize Name</a>"
+			if(isxeno(M))
+				body += "<br>"
+				body += "<a href='?src=[ref];togglerouny=[REF(M)]'>Toggle Rouny Sprites</a>"
+
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
 

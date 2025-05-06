@@ -9,6 +9,7 @@
 	hud_state = "pistol"
 	hud_state_empty = "pistol_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 3.5
 	damage = 20
 	penetration = 5
 	accurate_range = 5
@@ -33,13 +34,16 @@
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
 	hud_state = "pistol_tranq"
-	damage = 25
+	armor_type = "bullet"
+	damage = 75
 	damage_type = STAMINA
+	shell_speed = 1.8
+	shrapnel_chance = 0.2
 
-/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/victim, obj/projectile/proj)
-	if(iscarbon(victim))
-		var/mob/living/carbon/carbon_victim = victim
-		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/potassium_chlorophoride, 1)
+/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(iscarbon(target_mob))
+		var/mob/living/carbon/carbon_victim = target_mob
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, 3, no_overdose = TRUE)
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
@@ -48,16 +52,16 @@
 	shrapnel_chance = 45
 	sundering = 2
 
-/datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
+/datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
 	hud_state = "pistol_ap"
 	damage = 20
-	penetration = 12.5
+	penetration = 10
 	shrapnel_chance = 15
-	sundering = 0.5
+	sundering = 1.5
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
@@ -67,6 +71,13 @@
 	shrapnel_chance = 25
 	sundering = 2.15
 
+/datum/ammo/bullet/pistol/heavy/ap
+	name = "heavy armor-penetrating pistol bullet"
+	hud_state = "pistol_ap"
+	damage = 30
+	penetration = 10
+	sundering = 2
+
 /datum/ammo/bullet/pistol/superheavy
 	name = "high impact pistol bullet"
 	hud_state = "pistol_superheavy"
@@ -75,15 +86,15 @@
 	sundering = 3
 	damage_falloff = 0.75
 
-/datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 0.5 SECONDS, slowdown = 0.5, knockback = 1)
+/datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, stagger = 0.5 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
 	handful_icon_state = "derringer"
 
-/datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, slowdown = 0.5)
+/datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, slowdown = 0.5)
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
@@ -114,7 +125,7 @@
 	damage = 15
 
 
-/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M, obj/projectile/P)
-	if(!M.stat && !ismonkey(M))
-		P.visible_message(span_danger("The [src] chimpers furiously!"))
-		new /mob/living/carbon/human/species/monkey(P.loc)
+/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!target_mob.stat && !ismonkey(target_mob))
+		proj.visible_message(span_danger("The [src] chimpers furiously!"))
+		new /mob/living/carbon/human/species/monkey(proj.loc)

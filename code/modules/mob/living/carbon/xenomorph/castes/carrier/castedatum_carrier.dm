@@ -11,17 +11,17 @@
 	wound_type = "carrier" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 800
-	plasma_gain = 38
+	plasma_max = 1000
+	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 425
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -36,7 +36,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 5, FIRE = 15, ACID = 5)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 5, FIRE = 25, ACID = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
@@ -45,17 +45,23 @@
 	minimap_icon = "carrier"
 
 	// *** Carrier Abilities *** //
-	huggers_max = 7
-	hugger_delay = 1.5 SECONDS
+	huggers_max = 8
+	hugger_delay = 1.25 SECONDS
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/throw_hugger,
 		/datum/action/ability/activable/xeno/call_younger,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/place_trap,
 		/datum/action/ability/xeno_action/spawn_hugger,
@@ -78,12 +84,18 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/throw_hugger,
 		/datum/action/ability/activable/xeno/call_younger,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/place_trap,
 		/datum/action/ability/xeno_action/spawn_hugger,

@@ -33,7 +33,7 @@
 	var/firing
 
 ///Change minimap icon if its firing or not firing
-/obj/structure/xeno/xeno_turret/proc/update_minimap_icon()
+/obj/structure/xeno/xeno_turret/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]"))
 
@@ -68,7 +68,7 @@
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
-	playsound(loc,'sound/effects/xeno_turret_death.ogg', 70)
+	playsound(loc,'sound/effects/alien/turret_death.ogg', 70)
 	return ..()
 
 /obj/structure/xeno/xeno_turret/ex_act(severity)
@@ -110,7 +110,7 @@
 			set_last_hostile(null)
 		return
 	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
-		GLOB.hive_datums[hivenumber].xeno_message("Our [name] is attacking a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /atom/movable/screen/arrow/turret_attacking_arrow)
+		GLOB.hive_datums[hivenumber].xeno_message("Our [name] is attacking a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien/help1.ogg', FALSE, null, /atom/movable/screen/arrow/turret_attacking_arrow)
 		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
 	if(hostile != last_hostile)
 		set_last_hostile(hostile)
@@ -128,15 +128,9 @@
 	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
-	if(isplasmacutter(I) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
-
 	damage *= max(0, multiplier)
-	take_damage(damage, BRUTE, MELEE)
-	playsound(src, "alien_resin_break", 25)
+	take_damage(damage, I.damtype, MELEE)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 
 ///Signal handler for hard del of hostile
 /obj/structure/xeno/xeno_turret/proc/unset_hostile()

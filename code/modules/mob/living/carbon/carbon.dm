@@ -30,7 +30,7 @@
 
 	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
-	playsound(loc, "sparks", 25, TRUE)
+	playsound(loc, SFX_SPARKS, 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
 			span_warning(" [src] was shocked by the [source]!"), \
@@ -90,7 +90,7 @@
 		return
 
 	if(IsAdminSleeping())
-		to_chat(shaker, span_highdanger("This player has been admin slept, do not interfere with them."))
+		to_chat(shaker, span_userdanger("This player has been admin slept, do not interfere with them."))
 		return
 
 	if(lying_angle || IsSleeping())
@@ -200,6 +200,8 @@
 
 /mob/living/carbon/fire_act(burn_level)
 	. = ..()
+	if(!.)
+		return
 	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
 //generates realistic-ish pulse output based on preset levels
@@ -356,14 +358,6 @@
 				see_invisible = min(G.invis_view, see_invisible)
 			if(!isnull(G.lighting_alpha))
 				lighting_alpha = min(lighting_alpha, G.lighting_alpha)
-			if(G.tint && !fullscreens["glasses"])
-				var/atom/movable/screen/fullscreen/screen = overlay_fullscreen("glasses", /atom/movable/screen/fullscreen/flash)
-				screen.color = G.tint
-				screen.alpha = 50
-		else
-			clear_fullscreen("glasses")
-	else
-		clear_fullscreen("glasses")
 
 	if(see_override)
 		see_invisible = see_override
@@ -392,3 +386,9 @@
 		return
 	if(. == UNCONSCIOUS)
 		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)
+
+/// Handles when the player clicks on themself with the grab item
+/mob/living/carbon/proc/grabbed_self_attack(mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
+	SIGNAL_HANDLER
+	return NONE

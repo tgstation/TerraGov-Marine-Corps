@@ -92,6 +92,21 @@
 	icon_state = "trooper_visor"
 	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
+/obj/item/armor_module/armor/visor/marine/kabuto
+	name = "\improper Style Pattern Kabuto visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Kabuto class of helmet."
+	icon_state = "kabuto_visor"
+
+/obj/item/armor_module/armor/visor/marine/hotaru
+	name = "\improper Style Pattern Hotaru visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Hotaru class of helmet."
+	icon_state = "hotaru_visor"
+
+/obj/item/armor_module/armor/visor/marine/dashe
+	name = "\improper Style Pattern Dashe visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
+	icon_state = "dashe_visor"
+
 /obj/item/armor_module/armor/visor/marine/mjolnir
 	name = "\improper Jaeger Pattern Mjolnir visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Mjolnir class of helmet."
@@ -216,4 +231,3 @@
 	name = "\improper FleckTex Mark I helmet visor"
 	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark I Raider class of helmet."
 	icon_state = "markone_visor"
-

@@ -312,7 +312,7 @@
 			Hologram.copy_overlays(user, TRUE)
 			//codersprite some holo effects here
 			Hologram.alpha = 100
-			Hologram.add_atom_colour("#77abff", FIXED_COLOUR_PRIORITY)
+			Hologram.add_atom_colour("#77abff", FIXED_COLOR_PRIORITY)
 			Hologram.Impersonation = user
 
 		Hologram.copy_known_languages_from(user,replace = TRUE)

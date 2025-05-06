@@ -80,7 +80,7 @@
 		if(!is_xeno)
 			//Everyone will be made aware of your nasty habits!
 			visible_message(span_alert("[user] is putting [user.p_their()] mouth on [src]'s nozzle. Gross!"))
-		if(!do_after(user, 0.5 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER))
+		if(!do_after(user, 0.5 SECONDS, FALSE, src, BUSY_ICON_DANGER))
 			return FALSE
 		if(is_xeno)
 			visible_message(span_alert("[user] sips from [src]'s nozzle. Adorable."))
@@ -109,11 +109,11 @@
 	update_icon()
 
 /obj/machinery/deployable/reagent_tank/disassemble(mob/user)
-	. = ..()
 	var/obj/item/storage/internal_bag = get_internal_item()
 	for(var/mob/watching in internal_bag?.storage_datum.content_watchers)
 		internal_bag.storage_datum.close(watching)
 	playsound(src, 'sound/machines/elevator_openclose.ogg', 50)
+	return ..()
 
 /obj/item/storage/reagent_tank
 	name = "portable reagent dispenser"

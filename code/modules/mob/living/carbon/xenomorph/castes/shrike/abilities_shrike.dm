@@ -7,6 +7,7 @@
 	name = "Call of the Burrowed"
 	desc = "Attempts to summon all currently burrowed larva."
 	action_icon_state = "larva_growth"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	ability_cost = 400
 	cooldown_duration = 2 MINUTES
 	keybinding_signals = list(
@@ -16,33 +17,29 @@
 
 
 /datum/action/ability/xeno_action/call_of_the_burrowed/action_activate()
-	var/mob/living/carbon/xenomorph/shrike/caller = owner
-	if(!isnormalhive(caller.hive))
-		to_chat(caller, span_warning("Burrowed larva? What a strange concept... It's not for our hive."))
-		return FALSE
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(!stored_larva)
-		to_chat(caller, span_warning("Our hive currently has no burrowed to call forth!"))
+		to_chat(xeno_owner, span_warning("Our hive currently has no burrowed to call forth!"))
 		return FALSE
 
-	playsound(caller,'sound/magic/invoke_general.ogg', 75, TRUE)
-	new /obj/effect/temp_visual/telekinesis(get_turf(caller))
-	caller.visible_message(span_xenowarning("A strange buzzing hum starts to emanate from \the [caller]!"), \
+	playsound(xeno_owner,'sound/magic/invoke_general.ogg', 75, TRUE)
+	new /obj/effect/temp_visual/telekinesis(get_turf(xeno_owner))
+	xeno_owner.visible_message(span_xenowarning("A strange buzzing hum starts to emanate from \the [xeno_owner]!"), \
 	span_xenodanger("We call forth the larvas to rise from their slumber!"))
 
 	if(stored_larva)
-		RegisterSignals(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
-		caller.hive.give_larva_to_next_in_queue()
-		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
-		addtimer(CALLBACK(src, PROC_REF(calling_larvas_end), caller), CALLING_BURROWED_DURATION)
+		RegisterSignals(xeno_owner.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
+		xeno_owner.hive.give_larva_to_next_in_queue()
+		notify_ghosts("\The <b>[xeno_owner]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = xeno_owner, action = NOTIFY_JOIN_AS_LARVA)
+		addtimer(CALLBACK(src, PROC_REF(calling_larvas_end), xeno_owner), CALLING_BURROWED_DURATION)
 
 	succeed_activate()
 	add_cooldown()
 
 
-/datum/action/ability/xeno_action/call_of_the_burrowed/proc/calling_larvas_end(mob/living/carbon/xenomorph/shrike/caller)
-	UnregisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
+/datum/action/ability/xeno_action/call_of_the_burrowed/proc/calling_larvas_end(mob/living/carbon/xenomorph/xeno_owner)
+	UnregisterSignal(xeno_owner.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 
 
 /datum/action/ability/xeno_action/call_of_the_burrowed/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos) //Should only register while a viable candidate.
@@ -50,6 +47,8 @@
 	if(!owner.incapacitated())
 		mothers += owner //Adding them to the list.
 
+/datum/action/ability/xeno_action/call_of_the_burrowed/free
+	ability_cost = 0
 
 // ***************************************
 // *********** Psychic Fling
@@ -57,6 +56,7 @@
 /datum/action/ability/activable/xeno/psychic_fling
 	name = "Psychic Fling"
 	action_icon_state = "fling"
+	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	desc = "Sends an enemy or an item flying. A close ranged ability."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
@@ -71,13 +71,15 @@
 	return ..()
 
 
-/datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/movable/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
 	if(!isitem(target) && !ishuman(target) && !isdroid(target))	//only items, droids, and mobs can be flung.
+		return FALSE
+	if(target.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return FALSE
 	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!line_of_sight(owner, target, max_dist))
@@ -104,16 +106,10 @@
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
-		//Held facehuggers get killed for balance reasons
-	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	//Held facehuggers get killed for balance reasons
+	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
+		hugger.kill_hugger()
+		owner.dropItemToGround(hugger)
 
 	succeed_activate()
 	add_cooldown()
@@ -140,6 +136,7 @@
 /datum/action/ability/activable/xeno/unrelenting_force
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
@@ -159,8 +156,7 @@
 	succeed_activate()
 	add_cooldown()
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
-	var/mob/living/carbon/xenomorph/xeno = owner
-	owner.icon_state = "[xeno.xeno_caste.caste_name][(xeno.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Screeching"
+	owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno_owner.is_a_rouny ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 
@@ -187,6 +183,8 @@
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(duration = 0.5 SECONDS)
 				continue
+			if(affected.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
@@ -205,18 +203,12 @@
 	span_xenowarning("We send out a huge blast of psychic energy!"))
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
-	playsound(owner, "alien_roar", 50)
+	playsound(owner, SFX_ALIEN_ROAR, 50)
 
-			//Held facehuggers get killed for balance reasons
-	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	//Held facehuggers get killed for balance reasons
+	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
+		hugger.kill_hugger()
+		owner.dropItemToGround(hugger)
 
 
 // ***************************************
@@ -225,6 +217,7 @@
 /datum/action/ability/activable/xeno/psychic_cure
 	name = "Psychic Cure"
 	action_icon_state = "heal_xeno"
+	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "Heal and remove debuffs from a target."
 	cooldown_duration = 1 MINUTES
 	ability_cost = 200
@@ -232,7 +225,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
 	var/heal_range = SHRIKE_HEAL_RANGE
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET|ABILITY_HUMAN_TARGET
 
 
 /datum/action/ability/activable/xeno/psychic_cure/on_cooldown_finish()
@@ -244,26 +237,28 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!ismob(target))
+		return FALSE
 	if(QDELETED(target))
 		return FALSE
 	if(!check_distance(target, silent))
 		return FALSE
-	if(!isxeno(target))
-		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
+	var/mob/living/patient = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
-			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
+			to_chat(owner, span_warning("It's too late. This won't be coming back."))
 		return FALSE
 
 
 /datum/action/ability/activable/xeno/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
-		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
+		if(!silent)
+			to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
 	else if(!line_of_sight(owner, target))
-		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
+		if(!silent)
+			to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
 
@@ -271,8 +266,9 @@
 /datum/action/ability/activable/xeno/psychic_cure/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
-
-	if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	if(!can_use_ability(target, TRUE))
 		return FALSE
 
 	if(owner.client)
@@ -288,15 +284,17 @@
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
-	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
-	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
-	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
-		patient.SetUnconscious(0)
-		patient.SetStun(0)
-		patient.SetParalyzed(0)
-		patient.set_stagger(0)
-		patient.set_slowdown(0)
-	patient.updatehealth()
+	if(isxeno(target))
+		patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+		patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
+		if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
+			patient.SetUnconscious(0)
+			patient.SetStun(0)
+			patient.SetParalyzed(0)
+			patient.set_stagger(0)
+			patient.set_slowdown(0)
+	else
+		patient.psychic_cure()
 
 	owner.changeNext_move(CLICK_CD_RANGE)
 
@@ -306,12 +304,21 @@
 	add_cooldown()
 
 
+/mob/living/proc/psychic_cure()
+	var/amount = 100
+	var/remainder = max(0, amount - getBruteLoss())
+	if(ishuman(src))
+		adjustBruteLoss(-amount)
+		adjustFireLoss(-remainder, updating_health = TRUE)
+
+
 // ***************************************
 // *********** Construct Acid Well
 // ***************************************
 /datum/action/ability/xeno_action/place_acidwell
 	name = "Place acid well"
 	action_icon_state = "place_trap"
+	action_icon = 'icons/Xeno/actions/construction.dmi'
 	desc = "Place an acid well that can put out fires."
 	ability_cost = 400
 	cooldown_duration = 2 MINUTES
@@ -328,13 +335,12 @@
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(!owner_xeno.loc_weeds_type)
+	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
-	if(!T.check_alien_construction(owner, silent))
+	if(!T.check_alien_construction(owner, silent, /obj/structure/xeno/acidwell))
 		return FALSE
 
 	if(!T.check_disallow_alien_fortification(owner, silent))
@@ -344,7 +350,7 @@
 	var/turf/T = get_turf(owner)
 	succeed_activate()
 
-	playsound(T, "alien_resin_build", 25)
+	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
 	new /obj/structure/xeno/acidwell(T, owner)
 
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
@@ -362,7 +368,9 @@
 /datum/action/ability/activable/xeno/psychic_vortex
 	name = "Pyschic vortex"
 	action_icon_state = "vortex"
+	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
+
 	ability_cost = 600
 	cooldown_duration = 2 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -389,11 +397,11 @@
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
-	if(do_after(owner, VORTEX_INITIAL_CHARGE, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_pull()
-	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_push()
-	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_pull()
 	QDEL_NULL(particle_holder)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)

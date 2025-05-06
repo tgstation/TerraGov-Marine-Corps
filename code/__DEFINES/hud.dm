@@ -57,16 +57,9 @@
 #define ui_alert3 "EAST-1:28,CENTER+3:23"
 #define ui_alert4 "EAST-1:28,CENTER+2:21"
 #define ui_alert5 "EAST-1:28,CENTER+1:19"
-
-//Upper-middle right (damage indicators)
-#define ui_toxin "EAST-1:28,13:27"
-#define ui_fire "EAST-1:28,12:25"
-#define ui_oxygen "EAST-1:28,11:23"
-#define ui_pressure "EAST-1:28,10:21"
+#define ui_combo "CENTER+1:19,CENTER+4:25"
 
 //Middle right (status indicators)
-#define ui_nutrition "EAST-1:28,5:11"
-#define ui_temp "EAST-1:28,6:13"
 #define UI_STAMINA "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
 #define ui_ammo1 "EAST-1:28,CENTER+1:25"

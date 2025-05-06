@@ -69,6 +69,21 @@
 	GLOB.latejoinsom += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/start/latejoinclf/Initialize(mapload)
+	. = ..()
+	GLOB.latejoinclf += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/start/latejoinsurvivor/Initialize(mapload)
+	. = ..()
+	GLOB.latejoinsurvivor += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/start/latejoinmoff/Initialize(mapload)
+	. = ..()
+	GLOB.latejoinmoff += loc
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/start/latejoin_gateway/Initialize(mapload)
 	. = ..()
 	GLOB.latejoin_gateway += loc
@@ -430,7 +445,7 @@
 	icon_state = "weapon6"
 	weapon_list = list(	/obj/item/weapon/gun/pistol/chimp,
 						/obj/item/weapon/banhammer,
-						/obj/item/weapon/chainsword,
+						/obj/item/weapon/twohanded/chainsaw/sword,
 						)
 
 /obj/effect/landmark/sensor_tower
@@ -462,6 +477,10 @@
 /obj/effect/landmark/valhalla/marine_spawner_landmark
 	name = "Marine spawner landmark"
 	spawns = "marine"
+
+/obj/effect/landmark/valhalla/vehicle_spawner_landmark
+	name = "Vehicle spawner landmark"
+	spawns = "vehicle"
 
 /obj/effect/landmark/eord_roomba
 	name = "EORD roomba spawn point"

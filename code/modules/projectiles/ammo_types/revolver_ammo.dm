@@ -10,12 +10,13 @@
 	hud_state_empty = "revolver_empty"
 	handful_amount = 7
 	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 3.5
 	damage = 45
 	penetration = 10
 	sundering = 3
 
-/datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
+/datum/ammo/bullet/revolver/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
@@ -23,16 +24,16 @@
 	penetration = 15
 	sundering = 1
 
-/datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, knockback = 1)
+/datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, knockback = 1)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
 	hud_state = "revolver_small"
 	damage = 30
 
-/datum/ammo/bullet/revolver/small/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, slowdown = 0.5)
+/datum/ammo/bullet/revolver/small/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
@@ -61,6 +62,11 @@
 	penetration = 5
 	accuracy = -10
 
+/datum/ammo/bullet/revolver/heavy/incen
+	name = "incendiary heavy revolver bullet"
+	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_BALLISTIC
+
+
 /datum/ammo/bullet/revolver/t76
 	name = "magnum bullet"
 	handful_amount = 5
@@ -68,8 +74,12 @@
 	penetration = 40
 	sundering = 0.5
 
-/datum/ammo/bullet/revolver/t76/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 2 SECONDS, knockback = 1)
+/datum/ammo/bullet/revolver/t76/on_hit_mob(mob/target_mob, obj/projectile/proj)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, weaken = 0, knockback = 1)
+    else
+        staggerstun(target_mob, proj, weaken = 2 SECONDS, knockback = 1)
+
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
@@ -79,8 +89,11 @@
 	penetration = 20
 	sundering = 3
 
-/datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+/datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/target_mob, obj/projectile/proj)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, weaken = 0, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+    else
+        staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
@@ -98,8 +111,8 @@
 /datum/ammo/bullet/revolver/ricochet/four
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/three
 
-/datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, slowdown = 0.5)
+/datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, slowdown = 0.5)
 
-/datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
-	reflect(T, proj, 10)
+/datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	reflect(target_turf, proj, 10)

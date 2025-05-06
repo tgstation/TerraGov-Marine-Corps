@@ -11,6 +11,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accuracy_var_low = 7
 	accuracy_var_high = 7
+	shell_speed = 3.5
 	damage = 20
 	accurate_range = 4
 	damage_falloff = 1
@@ -20,9 +21,9 @@
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
-	damage = 15
-	penetration = 30
-	sundering = 3
+	damage = 20
+	penetration = 10
+	sundering = 1.5
 
 /datum/ammo/bullet/smg/ap/hv
 	name = "high velocity armor-piercing submachinegun bullet"
@@ -50,11 +51,11 @@
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 3 SECONDS
 
-/datum/ammo/bullet/smg/squash/on_hit_mob(mob/M, obj/projectile/proj)
-	if(!isliving(M))
+/datum/ammo/bullet/smg/squash/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!isliving(target_mob))
 		return
 
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 
@@ -73,10 +74,10 @@
 	penetration = 15
 	sundering = 1
 
-/datum/ammo/bullet/smg/rad/on_hit_mob(mob/M, obj/projectile/proj)
-	if(!isliving(M))
+/datum/ammo/bullet/smg/rad/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!isliving(target_mob))
 		return
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	if(!prob(living_victim.modify_by_armor(proj.damage, BIO, penetration, proj.def_zone)))
 		return
 	living_victim.apply_radiation(2, 2)

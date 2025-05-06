@@ -62,13 +62,14 @@
 	name = "PMC security detail"
 	desc = "An elite PMC team to assist in a joint operation"
 	detailed_desc = "A small number of PMC job slots are opened at no attrition cost. \
-	NanoTrasen have authorised a small team of their PMC contractors to assist us in combat. With superior arms and armor, they a powerful tactical asset."
+	Ninetails have authorised a small team of their PMC contractors to assist us in combat. With superior arms and armor, they a powerful tactical asset."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/pmc_reinforcement
 	ui_icon = "pmc"
 	bonus_job_list = list(
 		/datum/job/pmc/leader/campaign_bonus = 1,
 		/datum/job/pmc/gunner/campaign_bonus = 2,
 		/datum/job/pmc/standard/campaign_bonus = 4,
+		/datum/job/pmc/medic/campaign_bonus = 2,
 	)
 
 /datum/campaign_asset/bonus_job/combat_robots
@@ -81,4 +82,20 @@
 	cost = 6
 	bonus_job_list = list(
 		/datum/job/terragov/squad/standard/campaign_robot = 4,
+	)
+
+/datum/campaign_asset/bonus_job/vsd
+	name = "V.S.D. PMC squad"
+	desc = "A syndicate squadron to assist the ICC joint operation"
+	detailed_desc = "A medium amount of Security Detail squadron have been opened at a no attrition cost. \
+	The Syndicate have sent their most trusted PMC squadron to assist in your aid. Complete with Ballistic armor and Old world weaponry."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/vsd_reinforcement
+	ui_icon = "vsd"
+	bonus_job_list = list(
+		/datum/job/vsd/leader/campaign_bonus = 1,
+		/datum/job/vsd/medic/campaign_bonus = 2,
+		/datum/job/vsd/engineer/campaign_bonus = 2,
+		/datum/job/vsd/standard/campaign_bonus = 4,
+		/datum/job/vsd/spec/campaign_bonus = 1,
+		/datum/job/vsd/juggernaut/campaign_bonus = 2,
 	)

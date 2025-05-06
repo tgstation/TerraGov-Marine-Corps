@@ -55,6 +55,7 @@
 /area/bigredv2/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/caves/north
 	name = "Northern Caves"
@@ -122,12 +123,12 @@
 	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/outside/nanotrasen_lab/outside
-	name = "Nanotrasen Compound"
+	name = "Ninetails Compound"
 	icon_state = "yellow"
 	ceiling = CEILING_NONE
 
 /area/bigredv2/outside/nanotrasen_lab/inside
-	name = "Nanotrasen Research Lab"
+	name = "Ninetails Research Lab"
 	icon_state = "engine"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
@@ -247,6 +248,7 @@
 	icon_state = "ass_line"
 	ceiling = CEILING_UNDERGROUND_METAL
 	outside = FALSE
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/engineering
 	name = "West Engineering Complex"

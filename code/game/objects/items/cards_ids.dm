@@ -85,7 +85,7 @@
 	///How many points you can use to buy items
 	var/marine_points = list()
 
-	///What category of items can you buy - used for armor and poucehs
+	///What category of items can you buy - used for armor and pouches
 	var/marine_buy_choices = list()
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
@@ -94,7 +94,7 @@
 	var/dorm = 0		// determines if this ID has claimed a dorm already
 	var/paygrade = null  // Marine's paygrade
 
-	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.
+	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by Squad Operatives.
 	/// Iff bitfield to determines hit and misses
 	var/iff_signal = NONE
 
@@ -141,6 +141,36 @@
 	desc = "A silver card which shows honour and dedication."
 	icon_state = "silver"
 	worn_icon_state = "silver_id"
+
+/obj/item/card/id/silver/standard
+	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/smartgun
+	marine_points = list(
+		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/specialist
+	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/engineer
+	marine_points = list(
+		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/leader
+	marine_points = list(
+		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/medic
+	marine_points = list(
+		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+	)
 
 /obj/item/card/id/gold
 	name = "identification card"
@@ -215,16 +245,33 @@
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
 	access = list(ACCESS_ILLEGAL_PIRATE)
-
+	iff_signal = SOM_IFF
 
 /obj/item/card/id/captains_spare
-	name = "captain's spare ID"
-	desc = "The spare ID of the High Lord himself."
+	name = CAPTAIN + "'s spare ID"
+	desc = "The spare ID of the "+CAPTAIN+" himself."
 	icon_state = "gold"
 	worn_icon_state = "gold_id"
 	registered_name = CAPTAIN
 	assignment = CAPTAIN
 	access = ALL_MARINE_ACCESS
+	iff_signal = TGMC_LOYALIST_IFF
+
+/obj/item/card/id/captains_spare/som
+	name = SOM_COMMANDER + "'s spare ID"
+	desc = "The spare ID of the "+SOM_COMMANDER+" himself."
+	icon_state = "gold"
+	worn_icon_state = "gold_id"
+	registered_name = SOM_COMMANDER
+	assignment = SOM_COMMANDER
+	access = ALL_SOM_ACCESS
+	iff_signal = SOM_IFF
+
+/obj/item/card/id/captains_spare/survival
+	name = "identification card"
+	desc = "A colonist generalized ID card."
+	icon_state = "silver"
+	worn_icon_state = "silver_id"
 
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)
@@ -282,9 +329,24 @@
 	return TRUE
 
 // Vendor points for job override
+/obj/item/card/id/dogtag/standard
+	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/smartgun
 	marine_points = list(
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/specialist
+	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/card/silver/vanguard
+	marine_points = list(
+		CAT_CDSUP = DEFAULT_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/engineer
@@ -309,6 +371,8 @@
 
 /obj/item/card/id/dogtag/full
 	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
@@ -323,6 +387,37 @@
 	worn_icon_state = "dogtag_som"
 	iff_signal = SOM_IFF
 
+/obj/item/card/id/dogtag/som/standard
+	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/veteran
+	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/engineer
+	marine_points = list(
+		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/leader
+	marine_points = list(
+		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/medic
+	marine_points = list(
+		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/clf
+	name = "\improper CLF dogtag"
+	desc = "Used by the CLF."
+	icon_state = "dogtag"
+	worn_icon_state = "dogtag"
+	iff_signal = CLF_IFF
 
 /obj/item/card/id/dogtag/examine(mob/user)
 	. = ..()

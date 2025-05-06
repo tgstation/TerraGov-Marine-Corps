@@ -12,18 +12,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"ae" = (
-/obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
-"af" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"ag" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "ah" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -82,10 +70,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"aG" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
 "aH" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
@@ -109,6 +93,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
+"gB" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "hG" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -367,7 +355,7 @@ aR
 aR
 hG
 aR
-ae
+aR
 aH
 aH
 aH
@@ -401,7 +389,7 @@ aH
 aH
 aH
 aj
-ag
+aB
 aB
 aB
 az
@@ -634,7 +622,7 @@ aB
 ar
 aB
 aB
-aB
+gB
 aB
 aB
 aB
@@ -909,7 +897,7 @@ aB
 aB
 aB
 aB
-af
+aB
 aH
 aH
 aH
@@ -1082,7 +1070,7 @@ aR
 aB
 aB
 aB
-aG
+aR
 aH
 aH
 aB
@@ -1376,7 +1364,7 @@ au
 "}
 (29,1,1) = {"
 aH
-aH
+aB
 aB
 aB
 aB
@@ -1421,7 +1409,7 @@ au
 "}
 (30,1,1) = {"
 aH
-aH
+aB
 aB
 aQ
 aB
@@ -1648,7 +1636,7 @@ au
 aH
 aB
 aB
-aH
+aB
 aH
 aH
 aH
@@ -1693,7 +1681,7 @@ au
 aH
 aB
 aB
-aH
+aB
 aH
 aH
 aH
@@ -1738,7 +1726,7 @@ au
 aB
 aB
 aB
-aH
+aB
 aH
 aH
 aH
@@ -1783,7 +1771,7 @@ au
 aB
 aB
 aB
-aH
+aB
 aH
 aH
 aH
@@ -1828,7 +1816,7 @@ au
 aB
 aB
 aB
-aH
+aB
 aH
 aH
 aH
@@ -1873,7 +1861,7 @@ au
 aB
 aQ
 aB
-aH
+aB
 aH
 aH
 aH

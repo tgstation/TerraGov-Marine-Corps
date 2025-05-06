@@ -17,7 +17,7 @@
 	icon_state = "pie"
 	trash = /obj/item/trash/plate
 	filling_color = "#FBFFB8"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/drink/banana = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 5)
 	tastes = list("pie" = 1)
 	bitesize = 3
 
@@ -34,7 +34,7 @@
 	desc = "No black birds, this is a good sign."
 	icon_state = "berryclafoutis"
 	trash = /obj/item/trash/plate
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/drink/berryjuice = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/berryjuice = 5)
 	tastes = list("pie" = 1, "blackberries" = 1)
 	bitesize = 3
 
@@ -50,7 +50,7 @@
 	desc = "A favorite desert of a certain wascally wabbit. Not a lie."
 	icon_state = "carrotcake"
 	slice_path = /obj/item/reagent_containers/food/snacks/pastries/carrotcakeslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/drink/carrotjuice = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/carrotjuice = 10)
 	filling_color = "#FFD675"
 	tastes = list("cake" = 5, "sweetness" = 2, "carrot" = 1)
 
@@ -370,14 +370,14 @@
 	desc = "A spaceman's trumpet frosted cake."
 	icon_state = "trumpetcake"
 	slice_path = /obj/item/reagent_containers/food/snacks/pastries/cakeslicetrumpet
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/drink/berryjuice = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/milk = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/berryjuice = 5)
 	tastes = list("cake" = 4, "violets" = 2, "jam" = 2)
 
 /obj/item/reagent_containers/food/snacks/pastries/cakeslicetrumpet
 	name = "spaceman's cake"
 	desc = "A spaceman's trumpet frosted cake."
 	icon_state = "trumpetcakeslice"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/drink/milk = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/drink/berryjuice = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/milk = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/berryjuice = 1)
 	tastes = list("cake" = 4, "violets" = 2, "jam" = 2)
 
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/brioche
@@ -533,7 +533,7 @@
 	icon_state = "mimetart"
 	filling_color = "#e8e1e9"
 	trash = /obj/item/trash/plate
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/drink/nothing = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/nothing = 10)
 	tastes = list("nothing" = 3)
 
 /obj/item/reagent_containers/food/snacks/pastries/berrytart

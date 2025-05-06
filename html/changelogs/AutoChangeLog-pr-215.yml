@@ -1,0 +1,4 @@
+author: "W0LF-101"
+delete-after: True
+changes:
+  - balance: "Overhauls bullet speed across the board, most bullets now have 0.5 higher shell_speed"

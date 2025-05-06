@@ -33,10 +33,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south/garbledradio)
-"t" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/garbledradio)
 "u" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -82,10 +78,6 @@
 "U" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"W" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "X" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -543,7 +535,7 @@ U
 H
 H
 H
-W
+H
 H
 H
 H
@@ -1052,7 +1044,7 @@ u
 M
 M
 M
-t
+M
 M
 T
 e

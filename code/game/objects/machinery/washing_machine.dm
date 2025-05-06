@@ -41,7 +41,7 @@
 	update_icon()
 	sleep(20 SECONDS)
 	for(var/atom/A in contents)
-		A.clean_blood()
+		A.wash()
 
 	//Tanning!
 	for(var/obj/item/stack/sheet/hairlesshide/HH in contents)
@@ -57,15 +57,11 @@
 		state = 4
 	update_icon()
 
-/obj/machinery/washing_machine/verb/climb_out()
-	set name = "Climb out"
-	set category = "Object"
-	set src in usr.loc
-
-	sleep(2 SECONDS)
-	if(state in list(1,3,6) )
-		usr.loc = src.loc
-
+/obj/machinery/washing_machine/resisted_against(mob/living/source)
+	if(!do_after(source, 2 SECONDS, NONE, src))
+		return
+	if(state in list(1,3,6))
+		source.forceMove(loc)
 
 /obj/machinery/washing_machine/update_icon_state()
 	. = ..()

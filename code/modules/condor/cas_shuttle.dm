@@ -27,9 +27,9 @@
 	///Action to stop the eye
 	var/datum/action/innate/camera_off/cas/off_action
 	///Number for how much fuel we have left, this x15 seconds is how much time we have while flying
-	var/fuel_left = 40
+	var/fuel_left = 500
 	///How much fuel we can hold maximum
-	var/fuel_max = 40
+	var/fuel_max = 500
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/cas/weapon/active_weapon
 	///Minimap for the pilot to know where the marines have ran off to
@@ -65,7 +65,7 @@
 		SSshuttle.moveShuttle(id, SHUTTLE_CAS_DOCK, TRUE)
 		currently_returning = TRUE
 		end_cas_mission(chair.occupant)
-	if (fuel_left <= 0)
+	if(fuel_left <= 0)
 		fuel_left = 0
 		turn_off_engines()
 	#endif
@@ -76,9 +76,7 @@
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_on", 4.2)
-		engine_overlay.pixel_x = engine.x_offset
-		engine_overlay.layer += 0.1
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_on", ABOVE_MOB_PROP_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_prearrival()
@@ -89,18 +87,14 @@
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_idle", 4.2)
-		engine_overlay.pixel_x = engine.x_offset
-		engine_overlay.layer += 0.1
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_idle", ABOVE_MOB_PROP_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
 
 ///Updates state and overlay to make te engines on
 /obj/docking_port/mobile/marine_dropship/casplane/proc/turn_on_engines()
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_idle", 4.2)
-		engine_overlay.pixel_x = engine.x_offset
-		engine_overlay.layer += 0.1
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_idle", ABOVE_MOB_PROP_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
 	state = PLANE_STATE_PREPARED
 	START_PROCESSING(SSslowprocess, src)
@@ -155,7 +149,7 @@
 	SSmonitor.process_human_positions()
 
 	#ifndef TESTING
-	if(SSmonitor.human_on_ground <= 5)
+	if(SSmonitor.human_on_ground <= 1)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	#endif
@@ -170,7 +164,9 @@
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
 		user.client.screen += map
 		var/list/polled_coords = map.get_coords_from_click(user)
-		user.client.screen -= map
+		user?.client?.screen -= map
+		if(!polled_coords)
+			return
 		starting_point = locate(polled_coords[1], polled_coords[2], 2)
 
 	if(GLOB.minidropship_start_loc && !starting_point) //and if this somehow fails (it shouldn't) we just go to the default point
@@ -191,7 +187,7 @@
 
 	SSmonitor.process_human_positions()
 	#ifndef TESTING
-	if(SSmonitor.human_on_ground <= 5)
+	if(SSmonitor.human_on_ground <= 1)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	#endif
@@ -252,7 +248,18 @@
 	user.unset_interaction()
 
 ///Handles clicking on a target while in CAS mode
-/obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, turf/location, control, params)
+/obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, params)
+	SIGNAL_HANDLER
+	var/list/modifiers = params2list(params)
+	if	(	(	modifiers["right"] \
+			) \
+			|| \
+			(	(modifiers["left"]) \
+				&& \
+				(modifiers["shift"] || modifiers["alt"]) \
+			) \
+		)
+		return
 	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		end_cas_mission(source)
 		return

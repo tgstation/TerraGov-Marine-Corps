@@ -5,9 +5,9 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper_words"
 	w_class = WEIGHT_CLASS_TINY
-	var/cqc
+	var/unarmed
 	var/melee_weapons
-	var/firearms
+	var/combat
 	var/pistols
 	var/shotguns
 	var/rifles
@@ -36,7 +36,7 @@
 			return
 	if(!do_after(user, 5 SECONDS, NONE, user))
 		return
-	user.set_skills(user.skills.modifyRating(cqc, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
+	user.set_skills(user.skills.modifyRating(unarmed, melee_weapons, combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
 	engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina))
 	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)
@@ -48,3 +48,8 @@
 	large_vehicle = 1
 	max_skills = list(SKILL_LARGE_VEHICLE = SKILL_LARGE_VEHICLE_TRAINED)
 
+/obj/item/pamphlet/tank_crew
+	name = "tank crew instruction manual"
+	desc = "Operating tanks for dummies."
+	large_vehicle = 3
+	max_skills = list(SKILL_LARGE_VEHICLE = SKILL_LARGE_VEHICLE_VETERAN)

@@ -59,7 +59,7 @@
 	)
 
 	///Point limit to win the game via objectives
-	var/capture_point_target = 400
+	var/capture_point_target = 375
 	///starting team's point count
 	var/start_team_cap_points = 0
 	///hostile team's point count

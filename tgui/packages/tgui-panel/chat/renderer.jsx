@@ -7,7 +7,7 @@
 import { EventEmitter } from 'common/events';
 import { classes } from 'common/react';
 import { render } from 'react-dom';
-import { Tooltip } from 'tgui/components';
+import { Collapsible, Tooltip } from 'tgui/components';
 import { createLogger } from 'tgui/logging';
 
 import {
@@ -34,6 +34,7 @@ const SCROLL_TRACKING_TOLERANCE = 24;
 
 // List of injectable component names to the actual type
 export const TGUI_CHAT_COMPONENTS = {
+  Collapsible,
   Tooltip,
 };
 

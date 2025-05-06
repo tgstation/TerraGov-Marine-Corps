@@ -27,6 +27,30 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dheight = 2
 	height = 5
 
+/obj/docking_port/stationary/supplyhq
+	id = "supply_hq"
+	roundstart_template = /datum/map_template/shuttle/supplyhq
+	width = 5
+	dwidth = 2
+	dheight = 2
+	height = 5
+
+/obj/docking_port/stationary/supplysom
+	id = "supply_som"
+	roundstart_template = /datum/map_template/shuttle/supplysom
+	width = 3
+	dwidth = 1
+	dheight = 0
+	height = 1
+
+/obj/docking_port/stationary/supplyclf
+	id = "supply_clf"
+	roundstart_template = /datum/map_template/shuttle/supplyclf
+	width = 3
+	dwidth = 1
+	dheight = 0
+	height = 1
+
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = SHUTTLE_SUPPLY
@@ -203,7 +227,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			var/datum/export_report = AM.supply_export(faction)
+			var/list/datum/export_report = AM.supply_export(faction)
 			if(export_report)
 				SSpoints.export_history += export_report
 			qdel(AM)
@@ -211,7 +235,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/item/supplytablet
 	name = "ASRS tablet"
 	desc = "A tablet for an Automated Storage and Retrieval System"
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_MARINE_CARGO)
 	equip_slot_flags = ITEM_SLOT_POCKET
@@ -334,7 +357,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
-			packs += SP.type
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["deniedrequests"] = list()
@@ -346,7 +372,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
-			packs += SP.type
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["approvedrequests"] = list()
@@ -356,8 +385,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			continue
 		var/list/packs = list()
 		var/cost = 0
-		for(var/datum/supply_packs/SP AS in SO.pack)
-			packs += SP.type
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["awaiting_delivery"] = list()
@@ -366,16 +399,30 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/datum/supply_order/SO = LAZYACCESSASSOC(SSpoints.shoppinglist, faction, key)
 		.["awaiting_delivery_orders"]++
 		var/list/packs = list()
-		for(var/datum/supply_packs/SP AS in SO.pack)
-			packs += SP.type
-		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
+			cost += SP.cost
+		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["export_history"] = list()
 	var/id = 0
+	var/lastexport = ""
 	for(var/datum/export_report/report AS in SSpoints.export_history)
 		if(report.faction != user.faction)
 			continue
-		.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points))
-		id++
+		if(report.points == 0)
+			continue
+		if(report.export_name == lastexport)
+			.["export_history"][id]["amount"] += 1
+			.["export_history"][id]["total"] += report.points
+		else
+			.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points, "amount" = 1, total = report.points))
+			id++
+			lastexport = report.export_name
 	.["shopping_history"] = list()
 	for(var/datum/supply_order/SO AS in SSpoints.shopping_history)
 		if(SO.faction != user.faction)
@@ -384,7 +431,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
-			packs += SP.type
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["shopping_history"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["shopping_list_cost"] = 0
@@ -397,21 +447,21 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["shopping_list"][SP.type] = list("count" = SSpoints.shopping_cart[SP.type])
 	if(supply_shuttle)
 		if(supply_shuttle?.mode == SHUTTLE_CALL)
-			if(is_mainship_level(supply_shuttle.destination.z))
+			if(is_mainship_level(supply_shuttle.destination.z) || is_antagmainship_level(supply_shuttle.destination.z))
 				.["elevator"] = "Raising"
 				.["elevator_dir"] = "up"
 			else
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
 		else if(supply_shuttle?.mode == SHUTTLE_IDLE)
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				.["elevator"] = "Raised"
 				.["elevator_dir"] = "down"
 			else
 				.["elevator"] = "Lowered"
 				.["elevator_dir"] = "up"
 		else
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
 			else
@@ -462,7 +512,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if("send")
 			if(supply_shuttle.mode != SHUTTLE_IDLE)
 				return
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				if (!supply_shuttle.check_blacklist())
 					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
@@ -530,7 +580,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
-			packs += SP.type
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["deniedrequests"] = list()
@@ -542,7 +595,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
-			packs += SP.type
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["approvedrequests"] = list()
@@ -554,7 +610,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
-			packs += SP.type
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	if(!SSpoints.request_shopping_cart[user.ckey])
@@ -600,7 +659,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	return SU.interact(user)
 
 /obj/item/storage/backpack/marine/radiopack
-	name = "\improper TGMC radio operator backpack"
+	name = "\improper NTC radio operator backpack"
 	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops."
 	icon_state = "radiopack"
 	worn_icon_state = "radiopack"
@@ -609,7 +668,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack/Initialize(mapload, ...)
 	. = ..()
-	AddComponent(/datum/component/beacon)
+	AddComponent(/datum/component/beacon, FALSE, 0, icon_state + "_active")
 
 /obj/item/storage/backpack/marine/radiopack/examine(mob/user)
 	. = ..()
@@ -622,6 +681,40 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		supply_interface = new(src)
 	return supply_interface.interact(user)
 
+/obj/machinery/computer/supplycomp/som
+	shuttle_id = "supplysom"
+	faction = FACTION_SOM
+	home_id = "supply_som"
+	req_access = list(213)
+
+/obj/machinery/computer/supplycomp/clf
+	shuttle_id = "supplyclf"
+	faction = FACTION_CLF
+	home_id = "supply_clf"
+	req_access = null
+
+/obj/docking_port/mobile/supply/som
+	dir = 1
+	height = 1
+	home_id = "supply_som"
+	id = "supplysom"
+	name = "som supply shuttle"
+	dheight = 0
+	dwidth = 0
+	width = 3
+	faction = FACTION_SOM
+
+/obj/docking_port/mobile/supply/clf
+	dir = 1
+	height = 1
+	home_id = "supply_clf"
+	id = "supplyclf"
+	name = "clf supply shuttle"
+	dheight = 0
+	dwidth = 0
+	width = 3
+	faction = FACTION_CLF
+
 /obj/docking_port/mobile/supply/vehicle
 	railing_gear_name = "vehicle"
 	id = SHUTTLE_VEHICLE_SUPPLY
@@ -632,13 +725,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!veh_ui || !veh_ui.current_veh_type)
 		return
 	var/obj/vehicle/sealed/armored/tanktype = veh_ui.current_veh_type
-	var/is_assault = initial(tanktype.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
-	if(GLOB.purchased_tanks[user.faction]?["[is_assault]"])
-		to_chat(usr, span_danger("A vehicle of this type has already been purchased!"))
-		return
-	if(!GLOB.purchased_tanks[user.faction])
-		GLOB.purchased_tanks[user.faction] = list()
-	GLOB.purchased_tanks[user.faction]["[is_assault]"] += 1
 	var/obj/vehicle/sealed/armored/tank = new tanktype(loc)
 	if(veh_ui.current_primary)
 		var/obj/item/armored_weapon/gun = new veh_ui.current_primary(loc)
@@ -662,6 +748,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/ammo in veh_ui.secondary_ammo)
 			for(var/i=1 to veh_ui.secondary_ammo[ammo])
 				new ammo(dumploc)
+	SStgui.close_user_uis(user, veh_ui)
 
 /obj/docking_port/stationary/supply/vehicle
 	id = "vehicle_home"
@@ -672,7 +759,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 GLOBAL_LIST_EMPTY(armored_gunammo)
 GLOBAL_LIST_EMPTY(armored_modtypes)
 GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
-GLOBAL_LIST_EMPTY(purchased_tanks)
 #define DEFAULT_MAX_ARMORED_AMMO 20
 
 ///im a lazy bum who cant use initial on lists, so we just load everything into a list
@@ -680,12 +766,27 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 	. = list()
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
 		vehtype = new vehtype
-		GLOB.armored_modtypes[vehtype.type] = vehtype.permitted_mods
-		.[vehtype.type] = vehtype.permitted_weapons
+
+		GLOB.armored_modtypes[vehtype.type] = list()
+		for(var/obj/item/tank_module/module AS in vehtype.permitted_mods)
+			if(module::tank_mod_flags & TANK_MOD_NOT_FABRICABLE)
+				continue
+			GLOB.armored_modtypes[vehtype.type] += module
+
+		.[vehtype.type] = list()
+		for(var/obj/item/armored_weapon/weapon AS in vehtype.permitted_weapons)
+			if(weapon::armored_weapon_flags & MODULE_NOT_FABRICABLE)
+				continue
+			.[vehtype.type] += weapon
 		qdel(vehtype)
+
 	for(var/obj/item/armored_weapon/gun AS in typesof(/obj/item/armored_weapon))
 		gun = new gun
-		GLOB.armored_gunammo[gun.type] = gun.accepted_ammo
+		GLOB.armored_gunammo[gun.type] = list()
+		for(var/obj/item/ammo_magazine/magazine AS in gun.accepted_ammo)
+			if(magazine::magazine_flags & MAGAZINE_NOT_FABRICABLE)
+				continue
+			GLOB.armored_gunammo[gun.type] += magazine
 		qdel(gun)
 
 /datum/supply_ui/vehicles
@@ -727,7 +828,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 		for(var/obj/item/armored_weapon/gun AS in GLOB.armored_guntypes[vehtype])
 			var/primary_selected = (current_primary == gun)
 			var/secondary_selected = (current_secondary == gun)
-			if(initial(gun.weapon_slot) & MODULE_PRIMARY)
+			if(initial(gun.armored_weapon_flags) & MODULE_PRIMARY)
 				data["primaryWeapons"] += list(list(
 					"name" = initial(gun.name),
 					"desc" = initial(gun.desc),
@@ -743,7 +844,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 							"max" = DEFAULT_MAX_ARMORED_AMMO, //TODO make vehicle ammo dynamic instead of fixed number
 						))
 
-			if(initial(gun.weapon_slot) & MODULE_SECONDARY)
+			if(initial(gun.armored_weapon_flags) & MODULE_SECONDARY)
 				data["secondaryWeapons"] += list(list(
 					"name" = initial(gun.name),
 					"desc" = initial(gun.desc),
@@ -817,12 +918,13 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 			var/newtype = text2path(params["type"])
 			if(!ispath(newtype, /obj/vehicle/sealed/armored))
 				return
-			var/obj/vehicle/sealed/armored/tank_type = newtype
-			var/is_assault = initial(tank_type.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
-			if(GLOB.purchased_tanks[usr.faction]?["[is_assault]"])
-				to_chat(usr, span_danger("A vehicle of this type has already been purchased!"))
-				return
 			current_veh_type = newtype
+			current_primary = null
+			current_secondary = null
+			current_driver_mod = null
+			current_gunner_mod = null
+			primary_ammo = list()
+			secondary_ammo = list()
 			. = TRUE
 
 		if("setprimary")
@@ -902,17 +1004,6 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 				return
 			current_gunner_mod = newtype
 			. = TRUE
-
-		if("deploy")
-			if(supply_shuttle.mode != SHUTTLE_IDLE)
-				to_chat(usr, span_danger("Elevator moving!"))
-				return
-			if(is_mainship_level(supply_shuttle.z))
-				to_chat(usr, span_danger("Elevator raised. Lower to deploy vehicle."))
-				return
-			supply_shuttle.buy(usr, src)
-			ui_act("send", params, ui, state)
-			SStgui.close_user_uis(usr, src)
 
 	if(.)
 		update_static_data(usr)

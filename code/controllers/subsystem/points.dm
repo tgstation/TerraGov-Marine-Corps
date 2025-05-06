@@ -1,14 +1,16 @@
 // points per minute
-#define DROPSHIP_POINT_RATE 18 * (GLOB.current_orbit/3)
-#define SUPPLY_POINT_RATE 20 * (GLOB.current_orbit/3)
+#define DROPSHIP_POINT_RATE 5 * (GLOB.current_orbit/3)
+#define SUPPLY_POINT_RATE 5 * (GLOB.current_orbit/3)
+#define HUMAN_FACTION_MAX_POINTS 7500
+#define XENO_FACTION_MAX_POINTS 2500
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
 
 	priority = FIRE_PRIORITY_POINTS
-	flags = SS_KEEP_TIMING
+	flags = SS_KEEP_TIMING|SS_NO_FIRE
 
-	wait = 10 SECONDS
+	//wait = 10 SECONDS
 	var/dropship_points = 0
 	///Assoc list of supply points
 	var/supply_points = list()

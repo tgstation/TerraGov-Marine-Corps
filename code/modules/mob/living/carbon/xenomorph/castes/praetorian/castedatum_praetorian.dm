@@ -16,10 +16,10 @@
 
 	// *** Plasma *** //
 	plasma_max = 1000
-	plasma_gain = 80
+	plasma_gain = 100
 
 	// *** Health *** //
-	max_health = 360
+	max_health = 390
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -35,12 +35,12 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/toxin/aphrotoxin/heavy, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_range = 5
-	acid_spray_damage = 16
-	acid_spray_damage_on_hit = 47
+	acid_spray_damage = 25
+	acid_spray_damage_on_hit = 55
 	acid_spray_structure_damage = 69
 
 	// *** Pheromones *** //
@@ -52,12 +52,17 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/spray_acid/cone,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -75,13 +80,90 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/spray_acid/cone,
-		/datum/action/ability/activable/xeno/charge/acid_dash,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/xeno_action/sticky_grenade,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
+
+/datum/xeno_caste/praetorian/dancer
+	caste_type_path = /mob/living/carbon/xenomorph/praetorian/dancer
+	upgrade_name = ""
+	caste_name = "Dancer Praetorian"
+	display_name = "Dancer"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "A giant melee monster. It looks pretty strong."
+
+	// +2 melee damage
+	melee_damage = 25
+
+	// +30 hp
+	max_health = 420
+
+	// Gains more speed (-0.2).
+	speed = -0.7
+
+	// +10 melee armor
+	soft_armor = list(MELEE = 55, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 50, ACID = 40)
+
+	// Loses ranged spit abilities for close combat combo abilities.
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/dodge,
+		/datum/action/ability/activable/xeno/tail_hook,
+		/datum/action/ability/activable/xeno/tail_trip,
+		/datum/action/ability/activable/xeno/impale,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
+
+/datum/xeno_caste/praetorian/dancer/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/praetorian/dancer/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "An aberrant creature extremely proficient with its body and tail. Keep your distance if you don't wish to be finessed."
+	upgrade = XENO_UPGRADE_PRIMO
+	primordial_message = "With a flick of our tail, we dance through the shadows, striking with lethal precision."
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/devour, // Primo Dancer can devour, as a treat.
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/dodge,
+		/datum/action/ability/activable/xeno/tail_hook,
+		/datum/action/ability/activable/xeno/tail_trip,
+		/datum/action/ability/activable/xeno/impale,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/baton_pass,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,

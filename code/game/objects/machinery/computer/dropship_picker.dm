@@ -35,6 +35,8 @@
 	for (var/datum/map_template/shuttle/minidropship/shuttle_template AS in SSmapping.minidropship_templates)
 		if(!shuttle_template.admin_enable && !SSticker.mode.enable_fun_tads)
 			continue
+		if(!shuttle_template.pickable)
+			continue
 		shuttles += list(list(
 			"name" = shuttle_template.display_name,
 			"description" = shuttle_template.description,
@@ -65,6 +67,7 @@
 		"_combat_tad" = 'icons/ui_icons/dropshippicker/_combat_tad.png',
 		"_mobile_bar" = 'icons/ui_icons/dropshippicker/_mobile_bar.png',
 		"_umbilical" = 'icons/ui_icons/dropshippicker/_umbilical.png',
+		"_outrider" = 'icons/ui_icons/dropshippicker/_outrider.png',
 	)
 
 /obj/machinery/computer/dropship_picker/ui_act(action, list/params, datum/tgui/ui)
@@ -81,11 +84,11 @@
 		if("confirm")
 			if(!current_template_ref)
 				return FALSE
+			dropship_selected = TRUE
 			var/datum/map_template/shuttle/template = locate(current_template_ref) in SSmapping.minidropship_templates
 			var/obj/docking_port/mobile/shuttle = SSshuttle.action_load(template)
 			SSshuttle.moveShuttleQuickToDock(template.shuttle_id, dock_id)
 			shuttle.setTimer(0)
-			dropship_selected = TRUE
 			balloon_alert(usr, "shuttle selected, locking")
 			ui.close()
 	return TRUE

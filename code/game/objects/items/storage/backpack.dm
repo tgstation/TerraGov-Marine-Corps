@@ -6,6 +6,7 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	icon = 'icons/obj/items/storage/backpack.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
@@ -232,17 +233,17 @@
 
 /obj/item/storage/backpack/marine
 	name = "\improper lightweight IMP backpack"
-	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
+	desc = "The standard-issue pack of the NTC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
 	worn_icon_state = "marinepack"
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
-	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
+	desc = "The standard-issue pack of the NTC forces. Designed to slug gear into the battlefield."
 
 /obj/item/storage/backpack/marine/corpsman
-	name = "\improper TGMC corpsman backpack"
-	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in."
+	name = "\improper NTC corpsman backpack"
+	desc = "The standard-issue backpack worn by NTC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinepackm"
 	worn_icon_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
@@ -306,6 +307,7 @@
 			if(charge_difference) //If the defib has less than max charge, recharge it.
 				use_charge(user, charge_difference) //consume an appropriate amount of charge
 				defib.dcell.charge += min(charge_difference, cell.charge) //Recharge the defibrillator battery with the lower of the difference between its present and max cap, or the remaining charge
+				defib.update_icon()
 			else
 				to_chat(user, span_warning("This defibrillator is already at maximum charge!"))
 		else
@@ -327,34 +329,34 @@
 
 
 /obj/item/storage/backpack/marine/tech
-	name = "\improper TGMC technician backpack"
+	name = "\improper NTC technician backpack"
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
 	icon_state = "marinepackt"
 	worn_icon_state = "marinepackt"
 	storage_type = /datum/storage/backpack/tech
 
 /obj/item/storage/backpack/marine/satchel
-	name = "\improper TGMC satchel"
-	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
+	name = "\improper NTC satchel"
+	desc = "A heavy-duty satchel carried by some NTC soldiers and support personnel."
 	icon_state = "marinesat"
 	worn_icon_state = "marinesat"
 	storage_type = /datum/storage/backpack/satchel
 
 /obj/item/storage/backpack/marine/satchel/green
-	name = "\improper TGMC satchel"
+	name = "\improper NTC satchel"
 	icon_state = "marinesat_green"
 
 /obj/item/storage/backpack/marine/corpsman/satchel
-	name = "\improper TGMC corpsman satchel"
-	desc = "A heavy-duty satchel carried by some TGMC corpsmen. You can recharge defibrillators by plugging them in."
+	name = "\improper NTC corpsman satchel"
+	desc = "A heavy-duty satchel carried by some NTC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinesatm"
 	worn_icon_state = "marinesatm"
 	storage_type = /datum/storage/backpack/satchel
 	cell = /obj/item/cell/apc
 
 /obj/item/storage/backpack/marine/satchel/tech
-	name = "\improper TGMC technician satchel"
-	desc = "A heavy-duty satchel carried by some TGMC technicians. Can hold the ST-580 point defense sentry and ammo."
+	name = "\improper NTC technician satchel"
+	desc = "A heavy-duty satchel carried by some NTC technicians. Can hold the ST-580 point defense sentry and ammo."
 	icon_state = "marinesatt"
 	worn_icon_state = "marinesatt"
 	storage_type = /datum/storage/backpack/satchel/tech
@@ -364,6 +366,82 @@
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
 	storage_type = /datum/storage/backpack/no_delay
+
+/obj/item/storage/backpack/marine/smock/lite
+	name = "\improper M2 sniper's smock-lite"
+	desc = "A specially designed smock with pockets for all your sniper needs. This one has smaller storage similiar to a satchel but it is mass produced for standard use."
+	icon_state = "smock"
+	storage_type = /datum/storage/backpack/satchel
+
+/obj/item/storage/backpack/marine/duffelbag
+	name = "\improper TGMC Duffelbag"
+	desc = "A hard to reach backpack with no draw delay but is hard to access. \
+	Any squadmates can easily access the storage with right-click."
+	icon = 'icons/obj/items/storage/duffelbag.dmi'
+	icon_state = "duffel"
+	worn_icon_state = "duffel"
+	storage_type = /datum/storage/backpack/duffelbag
+
+/obj/item/storage/backpack/marine/duffelbag/equipped(mob/equipper, slot)
+	. = ..()
+	if(slot == SLOT_BACK)
+		RegisterSignal(equipper, COMSIG_CLICK_RIGHT, PROC_REF(on_rclick_duffel_wearer))
+		RegisterSignal(equipper, COMSIG_MOVABLE_MOVED, PROC_REF(on_wearer_move))
+		for(var/mob/M AS in storage_datum.content_watchers)
+			storage_datum.close(M)
+
+/obj/item/storage/backpack/marine/duffelbag/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, list(COMSIG_CLICK_RIGHT, COMSIG_MOVABLE_MOVED))
+
+/obj/item/storage/backpack/marine/duffelbag/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
+	if(item_flags & IN_INVENTORY && loc.Adjacent(neighbor)) //Special check to ensure that worn duffels are adjacent
+		return TRUE
+	return ..()
+
+///Allows non-wearers to access this inventory
+/obj/item/storage/backpack/marine/duffelbag/proc/on_rclick_duffel_wearer(datum/source, mob/clicker)
+	SIGNAL_HANDLER
+	if(clicker == loc || !source.Adjacent(clicker)) //Wearer can't use this to bypass restrictions
+		return
+	storage_datum.open(clicker)
+
+///Closes the duffelbag when our wearer moves if it's worn on user's back
+/obj/item/storage/backpack/marine/duffelbag/proc/on_wearer_move(datum/source)
+	SIGNAL_HANDLER
+	if(!iscarbon(source))
+		return
+	var/mob/living/carbon/carbon_user = source
+	if(carbon_user.back == src && carbon_user.s_active == storage_datum)
+		storage_datum.close(carbon_user)
+
+/datum/storage/backpack/duffelbag
+	access_delay = 0
+
+/datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
+	//Taking off the duffelbag has a channel
+	if(user.back != parent || !do_after(user, 3 SECONDS))
+		return
+
+	switch(over_object.name)
+		if("r_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
+		if("l_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
+
+/datum/storage/backpack/duffelbag/open(mob/user)
+	if(!iscarbon(user))
+		return TRUE
+	var/mob/living/carbon/carbon_user = user
+	if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS))
+		return TRUE
+	return ..()
+
+/datum/storage/backpack/duffelbag/attempt_draw_object(mob/living/carbon/user, start_from_left)
+	if(user.back == parent && user.s_active != src)
+		to_chat(user, span_notice("You can't grab anything out of [parent] while it's on your back."))
+		return
+	return ..()
 
 //CLOAKS
 
@@ -394,8 +472,14 @@
 
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
-	name = "\improper M68 Thermal Cloak"
-	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments. Serves as a satchel."
+	name = "\improper NT-CyberGhost Prototype"
+	desc = "NineTails Brand Prototype presence reduction device, it is attached at the back of most plate carriers and other armor, it was made generally as a testing platform before the technology could be fit into a smaller package and integrated into cybernetic addition to one's body, this device does not perform as well as the real thing, and it's sorta bulky. Unlike the real cyberware, this lacks the ability to wipe user's image from observation tools in-real-time."
+	icon = 'ntf_modular/icons/obj/storage/storage.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+		slot_s_store_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+	)
 	icon_state = "scout_cloak"
 	var/camo_active = 0
 	var/camo_active_timer = 0
@@ -404,7 +488,7 @@
 	var/camo_last_shimmer = null
 	var/camo_energy = 100
 	var/mob/living/carbon/human/wearer = null
-	var/shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA
+	var/shimmer_alpha = 128
 	var/stealth_delay = null
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -437,8 +521,9 @@
 		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA
 		return
 	//Stationary stealth
-	else if( wearer.last_move_intent < stealth_delay ) //If we're standing still and haven't shimmed in the past 3 seconds we become almost completely invisible
-		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA //95% invisible
+	// Note from DrCrawler: No more stationary stealth on an item that is supposed to allow repositioning during stealth. Changed the defines.
+	else if( wearer.last_move_intent < stealth_delay )
+		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA
 		camo_adjust_energy(wearer, SCOUT_CLOAK_ACTIVE_RECOVERY)
 
 ///Handles the wearer moving with the cloak active
@@ -448,16 +533,16 @@
 		return
 	if(camo_last_shimmer > world.time - SCOUT_CLOAK_STEALTH_DELAY) //Shimmer after taking aggressive actions
 		source.alpha = SCOUT_CLOAK_RUN_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 	else if(camo_last_stealth > world.time - SCOUT_CLOAK_STEALTH_DELAY) //We have an initial reprieve at max invisibility allowing us to reposition, albeit at a high drain rate
 		source.alpha = SCOUT_CLOAK_STILL_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 	else if(source.m_intent == MOVE_INTENT_WALK)
 		source.alpha = SCOUT_CLOAK_WALK_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_WALK_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_WALK_DRAIN)
 	else
 		source.alpha = SCOUT_CLOAK_RUN_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 
 ///Activates the cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
@@ -482,14 +567,14 @@
 		return FALSE
 
 	if (camo_cooldown_timer)
-		to_chat(M, "<span class='warning'>Your thermal cloak is still recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
+		to_chat(M, "<span class='warning'>Your CyberGhost is still recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		return
 
 	camo_active = TRUE
 	camo_last_stealth = world.time
 	wearer = M
 
-	M.visible_message("[M] fades into thin air!", span_notice("You activate your cloak's camouflage."))
+	M.visible_message("[M] fades into thin air!", span_notice("You activate your CyberGhost's camouflage."))
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
@@ -548,7 +633,7 @@
 
 	camo_active = FALSE
 
-	user.visible_message(span_warning("[user.name] shimmers into existence!"), span_danger("Your cloak's camouflage has deactivated!"))
+	user.visible_message(span_warning("[user.name] shimmers into existence!"), span_danger("Your CyberGhost's camouflage has deactivated!"))
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
@@ -562,7 +647,7 @@
 	var/cooldown = round( (initial(camo_energy) - camo_energy) / SCOUT_CLOAK_INACTIVE_RECOVERY * 10) //Should be 20 seconds after a full depletion with inactive recovery at 5
 	if(cooldown)
 		camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
-		to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
+		to_chat(user, "<span class='warning'>Your CyberGhost is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		process_camo_cooldown(user, cooldown)
 
 	UnregisterSignal(user, list(
@@ -586,7 +671,7 @@
 	camo_energy = initial(camo_energy)
 	playsound(loc,'sound/effects/EMPulse.ogg', 25, 0, 1)
 	if(wearer)
-		to_chat(wearer, span_danger("Your thermal cloak has recalibrated and is ready to cloak again."))
+		to_chat(wearer, span_danger("Your CyberGhost has recalibrated and is ready to cloak again."))
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
 	. = ..()
@@ -614,19 +699,19 @@
 	camo_energy = clamp(camo_energy - drain,0,initial(camo_energy))
 
 	if(!camo_energy) //Turn off the camo if we run out of energy.
-		to_chat(user, span_danger("Your thermal cloak lacks sufficient energy to remain active."))
+		to_chat(user, span_danger("Your CyberGhost lacks sufficient energy to remain active."))
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
-		to_chat(wearer, span_danger("Your cloak shimmers from the damage!"))
+		to_chat(wearer, span_danger("Your camo shimmers from the damage!"))
 		apply_shimmer()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken() //This is used by multiple signals passing different parameters.
 	SIGNAL_HANDLER
-	to_chat(wearer, span_danger("Your cloak shimmers from your actions!"))
+	to_chat(wearer, span_danger("Your camo shimmers from your actions!"))
 	apply_shimmer()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/apply_shimmer()
@@ -636,6 +721,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper
 	name = "\improper M68-B Thermal Cloak"
 	icon_state = "smock"
+	icon = 'icons/obj/items/storage/backpack.dmi'
 	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
@@ -663,8 +749,8 @@
 // Welder Backpacks //
 
 /obj/item/storage/backpack/marine/engineerpack
-	name = "\improper TGMC technician welderpack"
-	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling."
+	name = "\improper NTC technician welderpack"
+	desc = "A specialized backpack worn by NTC technicians. It carries a fueltank for quick welder refueling."
 	icon_state = "engineerpack"
 	worn_icon_state = "engineerpack"
 	var/max_fuel = 260
@@ -720,6 +806,18 @@
 		to_chat(user, span_notice("You refill [RS] with fuel."))
 		RS.update_icon()
 
+	else if(istype(I, /obj/item/weapon/twohanded/chainsaw))
+		var/obj/item/weapon/twohanded/chainsaw/saw = I
+		if(saw.reagents.get_reagent_amount(/datum/reagent/fuel) == saw.max_fuel || !reagents.total_volume)
+			return ..()
+
+		var/fuel_transfer_amount = min(reagents.total_volume, (saw.max_fuel - saw.reagents.get_reagent_amount(/datum/reagent/fuel)))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		saw.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [saw] with fuel."))
+		saw.update_icon()
+
 	else
 		return ..()
 
@@ -740,6 +838,12 @@
 	. = ..()
 	. += "[reagents.total_volume] units of fuel left!"
 
+/obj/item/storage/backpack/marine/engineerpack/som
+	name = "\improper SOM technician welderpack"
+	desc = "A specialized backpack worn by SOM technicians. It carries a fueltank for quick welder refueling."
+	icon_state = "som_engineer_pack"
+	worn_icon_state = "som_engineer_pack"
+	storage_type = /datum/storage/backpack/satchel
 
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"
@@ -749,7 +853,7 @@
 
 /obj/item/storage/backpack/commando
 	name = "commando bag"
-	desc = "A heavy-duty bag carried by Nanotrasen commandos."
+	desc = "A heavy-duty bag carried by Ninetails commandos."
 	icon_state = "commandopack"
 	storage_type = /datum/storage/backpack/commando
 
@@ -774,3 +878,8 @@
 	name = "\improper Modello/190"
 	desc = "A small lightweight buttpack made for use in a wide variety of operations, made with a synthetic black fibre."
 	icon_state = "icc_bag_guard"
+
+/obj/item/storage/backpack/lightpack/vsd
+	name = "\improper Crasher branded combat backpack"
+	desc = "A backpack design from 21st century still proves to be a good design in the 25th century."
+	icon_state = "vsd_bag0"

@@ -5,11 +5,11 @@
 	icon_state = "xeno_cocoon"
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
-	hit_sound = 'sound/effects/alien_resin_break2.ogg'
-	max_integrity = 400
+	hit_sound = 'sound/effects/alien/resin_break2.ogg'
+	max_integrity = 100
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	///Which hive it belongs too
 	var/hivenumber
 	///What is inside the cocoon
@@ -57,7 +57,7 @@
 	new /obj/structure/bed/nest(loc)
 	anchored = FALSE
 	update_icon()
-	playsound(loc, "alien_resin_move", 35)
+	playsound(loc, SFX_ALIEN_RESIN_MOVE, 35)
 
 ///Stop producing points and release the victim if needed
 /obj/structure/cocoon/proc/life_draining_over(datum/source, must_release_victim = FALSE)
@@ -87,7 +87,7 @@
 ///Open the cocoon and move the victim out
 /obj/structure/cocoon/proc/release_victim(gib = FALSE)
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-	playsound(loc, "alien_resin_move", 35)
+	playsound(loc, SFX_ALIEN_RESIN_MOVE, 35)
 	victim.forceMove(loc)
 	victim.setDir(NORTH)
 	victim.med_hud_set_status()
@@ -105,7 +105,7 @@
 		busy = TRUE
 		var/channel = SSsounds.random_available_channel()
 		playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
-		if(!do_after(user, 8 SECONDS, NONE, src))
+		if(!do_after(user, 8 SECONDS, TRUE, src))
 			busy = FALSE
 			user.stop_sound_channel(channel)
 			return

@@ -24,8 +24,8 @@
 		if(prob(A.crash_break_probability))
 			A.overload_lighting()
 			A.set_broken()
-		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
-			alarmplayer.deltalarm.stop(alarmplayer)	//quiet the delta klaxon alarms
+		for(var/obj/effect/soundplayer/deltaplayer/alarmplayer AS in GLOB.ship_alarms)
+			alarmplayer.loop_sound.stop(alarmplayer)	//quiet the delta klaxon alarms
 		CHECK_TICK
 
 	for(var/i in GLOB.alive_living_list) //knock down mobs
@@ -46,7 +46,7 @@
 		AI.anchored = FALSE
 		CHECK_TICK
 
-	GLOB.enter_allowed = FALSE //No joining after dropship crash
+	//GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 	//clear areas around the shuttle with explosions
 	var/turf/C = return_center_turf()
@@ -124,6 +124,31 @@
 	height = 13
 	width = 9
 
+/obj/docking_port/stationary/marine_dropship/shipelevator/floor1
+	name = "Floor 1"
+	id = "elevatorfloor1"
+	roundstart_template = /datum/map_template/shuttle/shipelevator
+
+/obj/docking_port/stationary/marine_dropship/shipelevator/floor2
+	name = "Floor 2"
+	id = "elevatorfloor2"
+	roundstart_template = null
+
+/obj/docking_port/stationary/marine_dropship/elevator/floor1
+	name = "Floor 1"
+	id = "floor1"
+	roundstart_template = /datum/map_template/shuttle/elevator
+
+/obj/docking_port/stationary/marine_dropship/elevator/floor2
+	name = "Floor 2"
+	id = "floor2"
+	roundstart_template = null
+
+/obj/docking_port/stationary/marine_dropship/elevator/floor3
+	name = "Floor 3"
+	id = "floor3"
+	roundstart_template = null
+
 #define HIJACK_STATE_NORMAL "hijack_state_normal"
 #define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
 #define HIJACK_STATE_CRASHING "hijack_state_crashing"
@@ -139,20 +164,15 @@
 	dheight = 10
 	width = 11
 	height = 21
-
 	ignitionTime = 10 SECONDS
 	callTime = 38 SECONDS // same as old transit time with flight optimisation
 	rechargeTime = 2 MINUTES
 	prearrivalTime = 12 SECONDS
-
 	var/list/left_airlocks = list()
 	var/list/right_airlocks = list()
 	var/list/rear_airlocks = list()
-
 	var/obj/docking_port/stationary/hijack_request
-
 	var/list/equipments = list()
-
 	var/hijack_state = HIJACK_STATE_NORMAL
 	///If the automatic cycle system is activated
 	var/automatic_cycle_on = FALSE
@@ -273,15 +293,66 @@
 	name = "Normandy"
 	id = SHUTTLE_NORMANDY
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
-	callTime = 28 SECONDS //smaller shuttle go whoosh
-	rechargeTime = 1.5 MINUTES
+	callTime = 18 SECONDS //smaller shuttle go whoosh
+	rechargeTime = 30 SECONDS
 	dheight = 6
 	dwidth = 4
 	height = 13
 	width = 9
 
-// queen calldown
 
+/obj/machinery/computer/shuttle/shuttle_control/shipelevator
+	name = "Elevator Control Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
+	possible_destinations = "elevatorfloor2;elevatorfloor1"
+	shuttleId = SHUTTLE_SHIPELEVATOR
+
+/obj/docking_port/mobile/shuttle/shipelevator
+	name = "Ship Elevator"
+	id = SHUTTLE_SHIPELEVATOR
+	callTime = 0 SECONDS
+	rechargeTime = 2 SECONDS
+	dheight = 2
+	dwidth = 2
+	height = 5
+	width = 5
+	ignitionTime = 0.5
+	shuttle_flags = GAMEMODE_IMMUNE
+	ignition_sound = 'sound/effects/escape_pod_launch.ogg'
+	landing_sound = 'sound/effects/droppod_impact.ogg'
+	prearrivalTime = 0.05
+	port_direction = 1
+	dir = 2
+
+/obj/machinery/computer/shuttle/shuttle_control/elevator
+	name = "Elevator Control Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
+	possible_destinations = "floor3;floor2;floor1"
+	shuttleId = SHUTTLE_ELEVATOR
+
+/obj/docking_port/mobile/shuttle/elevator
+	name = "elevator"
+	id = SHUTTLE_ELEVATOR
+	callTime = 0 SECONDS
+	rechargeTime = 2 SECONDS
+	dheight = 1
+	dwidth = 1
+	height = 3
+	width = 3
+	ignitionTime = 0.5
+	shuttle_flags = GAMEMODE_IMMUNE
+	ignition_sound = 'sound/effects/escape_pod_launch.ogg'
+	landing_sound = 'sound/effects/droppod_impact.ogg'
+	prearrivalTime = 0.5
+	port_direction = 1
+	dir = 2
+
+
+// queen calldown
 /obj/docking_port/mobile/marine_dropship/afterShuttleMove(turf/oldT, rotation)
 	. = ..()
 	if(hijack_state != HIJACK_STATE_CALLED_DOWN)
@@ -307,10 +378,8 @@
 			playsound(loc,'sound/effects/alert.ogg', 50)
 			addtimer(CALLBACK(src, PROC_REF(request_to), S), 15 SECONDS)
 
-
 /obj/docking_port/mobile/marine_dropship/proc/do_start_hijack_timer(hijack_time = LOCKDOWN_TIME)
 	addtimer(CALLBACK(src, PROC_REF(reset_hijack)), hijack_time)
-
 
 /obj/docking_port/mobile/marine_dropship/proc/request_to(obj/docking_port/stationary/S)
 	set_idle()
@@ -327,7 +396,6 @@
 	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
 		if(light.linked_port == destination)
 			light.turn_on()
-
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
@@ -362,7 +430,7 @@
 		return
 
 	to_chat(src, span_warning("You begin calling down the shuttle."))
-	if(!do_after(src, 80, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+	if(!do_after(src, 80, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 		to_chat(src, span_warning("You stop."))
 		return
 
@@ -425,7 +493,7 @@
 		if(D.hijack_state != HIJACK_STATE_NORMAL)
 			return FALSE
 		to_chat(user, span_warning("We begin overriding the shuttle lockdown. This will take a while..."))
-		if(!do_after(user, 30 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+		if(!do_after(user, 30 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 			to_chat(user, span_warning("We cease overriding the shuttle lockdown."))
 			return FALSE
 		if(!is_ground_level(D.z))
@@ -438,7 +506,7 @@
 			to_chat(user, span_warning("We were unable to prevent the bird from flying as it is already taking off."))
 		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
-		playsound(user, "alien_roar", 50)
+		playsound(user, SFX_ALIEN_ROAR, 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control.", "Dropship Lock Alert", type = ANNOUNCEMENT_PRIORITY, color_override = "red")
 		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
@@ -490,9 +558,8 @@
 
 // control computer
 /obj/machinery/computer/shuttle/marine_dropship
-	icon = 'icons/Marine/shuttle-parts.dmi'
-	icon_state = "console"
-	screen_overlay = "console_emissive"
+	icon_state = "dropship_console"
+	screen_overlay = "dropship_console_emissive"
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
@@ -514,6 +581,7 @@
 		shuttle.set_idle()
 		shuttle.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 		shuttle.do_start_hijack_timer()
+		shuttle.unlock_all()
 	interact(xeno_attacker) //Open the UI
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_state(mob/user)
@@ -749,7 +817,6 @@
 			to_chat(user, span_warning("ERROR. This shouldn't happen, please report it."))
 			CRASH("moveShuttleToDock() returned a non-zero-nor-one value.")
 
-
 /obj/machinery/computer/shuttle/marine_dropship/one
 	name = "\improper 'Alamo' flight controls"
 	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
@@ -764,12 +831,13 @@
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-	icon_state = "console2"
+	icon_state = "dropship_console2"
+	screen_overlay = "dropship_console2_emissive"
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
-	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
+	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_ANTAG_MAIN_SHIP, ZTRAIT_GROUND)))
 		open()
 	else
 		close()
@@ -848,6 +916,16 @@
 	resistance_flags = RESIST_ALL
 	opacity = TRUE
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	explosion_block = EXPLOSION_BLOCK_PROC
+
+/obj/structure/dropship_piece/GetExplosionBlock(explosion_dir)
+	if(!density)
+		return 0
+	if(opacity)
+		return 2
+	if(allow_pass_flags & PASS_GLASS)
+		return 2
+	return 0
 
 /obj/structure/dropship_piece/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -1004,7 +1082,7 @@
 
 /obj/structure/dropship_piece/glassone/tadpole
 	icon_state = "shuttle_glass1"
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
@@ -1015,7 +1093,7 @@
 /obj/structure/dropship_piece/glasstwo/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_glass2"
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
@@ -1023,7 +1101,7 @@
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_single_window"
 	allow_pass_flags = PASS_GLASS
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 
 /obj/structure/dropship_piece/tadpole/cockpit
@@ -1273,6 +1351,39 @@
 	icon_state = "brown_rearwing_rrrb"
 	opacity = FALSE
 
+/obj/structure/dropship_piece/four/dropshipfront
+	icon_state = "dropshipfrontwhite1"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/dropshipventone
+	icon_state = "dropshipvent1"
+
+/obj/structure/dropship_piece/four/dropshipventtwo
+	icon_state = "dropshipvent2"
+
+/obj/structure/dropship_piece/four/dropshipwingtopone
+	icon_state = "dropshipwingtop1"
+
+/obj/structure/dropship_piece/four/dropshipwingtoptwo
+	icon_state = "dropshipwingtop2"
+
+/obj/structure/dropship_piece/four/dropshipventthree
+	icon_state = "dropshipvent3"
+
+/obj/structure/dropship_piece/four/dropshipventfour
+	icon_state = "dropshipvent4"
+
+/obj/structure/dropship_piece/four/rearwing/lefttop
+	icon_state = "white_rearwing_lt"
+
+/obj/structure/dropship_piece/four/rearwing/righttop
+	icon_state = "white_rearwing_rt"
+
+/obj/structure/dropship_piece/four/rearwing/leftbottom
+	icon_state = "white_rearwing_lb"
+
+/obj/structure/dropship_piece/four/rearwing/rightbottom
+	icon_state = "white_rearwing_rb"
 
 //Dropship control console
 
@@ -1440,12 +1551,11 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_small"
 	screen_overlay = "shuttle"
-	resistance_flags = RESIST_ALL
+//	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	shuttleId = SHUTTLE_ALAMO
 	possible_destinations = "lz1;lz2;alamo"
 	compatible_control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
-
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two
 	name = "\improper 'Normandy' dropship console"

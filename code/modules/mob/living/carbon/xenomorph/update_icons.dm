@@ -23,21 +23,23 @@
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_UPDATE_ICONS, state_change)
 	if(state_change)
 		if(stat == DEAD)
-			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
 		else if(HAS_TRAIT(src, TRAIT_BURROWED))
-			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Burrowed"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
 		else if(lying_angle)
 			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
 			else
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
 		else if(!handle_special_state())
 			if(m_intent == MOVE_INTENT_RUN)
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
 			else
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
+	update_xeno_gender()
+	update_snowflake_overlays()
 
 	hud_set_sunder()
 	hud_set_firestacks()
@@ -131,20 +133,63 @@
 
 	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK)
 		var/image/wounded_mask = image(icon, null, "alpha_[overlay_to_show]")
-		wounded_mask.render_target = "*[REF(src)]"
+		wounded_mask.render_target = "*wound[REF(src)]"
 		overlays_standing[WOUND_LAYER] = wounded_mask
 		apply_overlay(WOUND_LAYER)
-		add_filter("wounded_filter", 1, alpha_mask_filter(0, 0, null, "*[REF(src)]", MASK_INVERSE))
+		add_filter("wounded_filter", 1, alpha_mask_filter(0, 0, null, "*wound[REF(src)]", MASK_INVERSE))
 
 	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
+
+///Updates the niche overlays of a xenomorph, like the backpack overlay
+/mob/living/carbon/xenomorph/proc/update_snowflake_overlays()
+	if(!backpack_overlay)
+		return
+	if(!istype(back,/obj/item/storage/backpack/marine/duffelbag/xenosaddle))
+		backpack_overlay.icon_state = ""
+		return
+	var/obj/item/storage/backpack/marine/duffelbag/xenosaddle/saddle = back
+	if(stat == DEAD)
+		backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""] Dead"
+		return
+	if(lying_angle)
+		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
+			backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""] Sleeping"
+			return
+		backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""] Knocked Down"
+		return
+	backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""]"
 
 /mob/living/carbon/xenomorph/update_transform()
 	..()
 	return update_icons()
 
-///Used to display the xeno wounds without rapidly switching overlays
+///Used to display xeno wounds & equipment without rapidly switching overlays
+
+/atom/movable/vis_obj/xeno_wounds/backpack_overlay
+	layer = ABOVE_MOB_LAYER
+	icon = 'icons/Xeno/saddles/runnersaddle.dmi' //this should probally be something more generic if saddles r ever added to anything other than rounies
+	///The xeno this overlay belongs to
+	var/mob/living/carbon/xenomorph/owner
+
+/atom/movable/vis_obj/xeno_wounds/genital_overlay
+	layer = ABOVE_MOB_LAYER
+	icon = null
+	var/mob/living/carbon/xenomorph/owner
+
+/atom/movable/vis_obj/xeno_wounds/genital_overlay/Initialize(mapload, new_owner)
+	owner = new_owner
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
+	return ..()
+
 /atom/movable/vis_obj/xeno_wounds
-	vis_flags = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID
+
+/atom/movable/vis_obj/xeno_wounds/backpack_overlay/Initialize(mapload, new_owner)
+	owner = new_owner
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
+	return ..()
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	light_system = MOVABLE_LIGHT
@@ -199,5 +244,3 @@
 	else
 		set_light_range_power_color(intensity, 0.5, LIGHT_COLOR_FIRE)
 		set_light_on(TRUE)
-
-

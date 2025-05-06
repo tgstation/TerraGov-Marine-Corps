@@ -55,7 +55,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/sodawater = -1,
 		/obj/item/reagent_containers/food/drinks/flask/barflask = -1,
 		/obj/item/reagent_containers/food/drinks/flask/vacuumflask = -1,
-		/obj/item/reagent_containers/food/drinks/drinkingglass = -1,
+		/obj/item/reagent_containers/cup/glass/drinkingglass = -1,
 		/obj/item/reagent_containers/food/drinks/ice = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/melonliquor = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/bluecuracao = -1,
@@ -100,7 +100,7 @@
 /obj/machinery/vending/snack
 	name = "Hot Foods Machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
-	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Nanotrasen brand packaged hamburger.;Eat a Nanotrasen brand packaged hot dog.;Eat a Nanotrasen brand packaged burrito.;"
+	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Ninetails brand packaged hamburger.;Eat a Ninetails brand packaged hot dog.;Eat a Ninetails brand packaged burrito.;"
 	icon_state = "snack"
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
@@ -125,7 +125,7 @@
 	name = "Souto Softdrinks"
 	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
 	icon_state = "Cola_Machine"
-	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
+	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Ninetails Fruit Beer. Nothing came from that lawsuit!;Ninetails Spring Water. It came from a spring!"
 	icon_deny = "Cola_Machine-deny"
 	icon_vend = "Cola_Machine-vend"
 	products = list(
@@ -146,8 +146,8 @@
 		wrenchable = FALSE
 
 /obj/machinery/vending/medical
-	name = "NanotrasenMed Plus"
-	desc = "Medical Pharmaceutical dispenser.  Provided by Nanotrasen Pharmaceuticals Division(TM)."
+	name = "NovaMed Plus"
+	desc = "Medical Pharmaceutical dispenser.  Provided by Novamed Pharmaceuticals."
 	icon_state = "med"
 	icon_deny = "med-deny"
 	icon_vend = "med-vend"
@@ -169,16 +169,18 @@
 			/obj/item/storage/pill_bottle/imidazoline = 6,
 			/obj/item/storage/pill_bottle/quickclot = 6,
 			/obj/item/storage/pill_bottle/hypervene = 6,
+			/obj/item/storage/pill_bottle/aphrotoxin = 6,
 		),
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
-			/obj/item/reagent_containers/hypospray/advanced = 5,
+			/obj/item/reagent_containers/hypospray/advanced = 30,
 			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 5,
 			/obj/item/reagent_containers/hypospray/advanced/kelotane = 5,
 			/obj/item/reagent_containers/hypospray/advanced/tramadol = 5,
 			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 5,
 			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
+			/obj/item/reagent_containers/hypospray/advanced/aphrotoxin = 5,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
@@ -194,6 +196,7 @@
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 6,
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 6,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 6,
+			/obj/item/reagent_containers/glass/bottle/aphrotoxin = 6,
 		),
 		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
@@ -211,6 +214,7 @@
 		),
 		"Misc" = list(
 			/obj/item/tool/research/xeno_analyzer = 2,
+//			/obj/item/tool/research/xeno_probe = -1,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
@@ -221,6 +225,11 @@
 		),
 	)
 	idle_power_usage = 211
+
+/obj/machinery/vending/medical/som
+	name = "Stolen Medicament Vendor"
+	desc = "Medical Pharmaceutical dispenser. 'Provided' by Novamed Pharmaceuticals."
+	req_access = ACCESS_SOM_MEDICAL
 
 /obj/machinery/vending/medical/shipside
 	isshared = TRUE
@@ -429,6 +438,10 @@
 		/obj/item/radio/headset = 6,
 		/obj/item/clothing/glasses/sunglasses = 2,
 		/obj/item/storage/donut_box = 2,
+		/obj/item/clothing/under/lewd/stripper/slutcurity = -1,
+		/obj/item/storage/belt/security = -1,
+		/obj/item/explosive/grenade/smokebomb/sleep = 4,
+		/obj/item/roller/bedroll/sec = -1,
 	)
 
 /obj/machinery/vending/hydronutrients
@@ -526,10 +539,10 @@
 	icon_vend = "dinnerware-vend"
 	icon_deny = "dinnerware-deny"
 	products = list(
-		/obj/item/tool/kitchen/tray = 8,
+		/obj/item/storage/kitchen_tray = 8,
 		/obj/item/tool/kitchen/utensil/fork = 6,
 		/obj/item/tool/kitchen/knife = 3,
-		/obj/item/reagent_containers/food/drinks/drinkingglass = 8,
+		/obj/item/reagent_containers/cup/glass/drinkingglass = 8,
 		/obj/item/clothing/suit/storage/chef/classic = 2,
 		/obj/item/tool/kitchen/utensil/spoon = 2,
 		/obj/item/tool/kitchen/utensil/knife = 2,
@@ -544,8 +557,8 @@
 	icon_state = "sovietsoda"
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(
-		/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30,
-		/obj/item/reagent_containers/food/drinks/drinkingglass/cola = 20,
+		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda = 30,
+		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/cola = 20,
 	)
 	idle_power_usage = 211
 

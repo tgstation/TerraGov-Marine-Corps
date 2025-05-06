@@ -4,8 +4,11 @@
 ///Respawn time in campaign mode
 #define CAMPAIGN_RESPAWN_TIME 2 MINUTES
 
-///stats/points/etc recorded by faction
-#define MISSION_SELECTION_ALLOWED  (1<<0)
+///This faction is allowed to select the next mission
+#define CAMPAIGN_TEAM_MISSION_SELECT_ALLOWED (1<<0)
+///This faction has already set attrition this mission
+#define CAMPAIGN_TEAM_HAS_SET_ATTRITION (1<<1)
+
 ///How long after a mission ends players are returned to base
 #define AFTER_MISSION_TELEPORT_DELAY 10 SECONDS
 ///How long after a mission ends a new leader is picked
@@ -20,6 +23,12 @@
 #define CAMPAIGN_LOSS_BONUS 0.15
 ///Max losing bonus
 #define CAMPAIGN_MAX_LOSS_BONUS 0.45
+///Limited loadout items can be multiplied by up to this mult, based on pop
+#define CAMPAIGN_LOADOUT_MULT_MAX 3
+///Pop floor to for base loadout amount
+#define CAMPAIGN_LOADOUT_POP_MIN 40
+///Pop required to reach max loadout mult
+#define CAMPAIGN_LOADOUT_POP_MAX 100
 
 //mission defines
 ///Mission has not been loaded

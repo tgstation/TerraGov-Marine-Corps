@@ -10,7 +10,7 @@
 	desc = "A kit for a table, including a large, flat metal surface and four legs. Some assembly required."
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
-	icon_state = "table_parts"
+	icon_state = "tan_table_parts"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
@@ -20,6 +20,8 @@
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	var/table_type = /obj/structure/table //what type of table it creates when assembled
 	var/deconstruct_type = /obj/item/stack/sheet/metal
+	/// How much of `deconstruct_type` will be spawned on wrench?
+	var/deconstruct_amount = 1
 
 /obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -28,7 +30,7 @@
 
 	var/turf/table_turf = get_turf(src)
 	if(iswrench(I) && deconstruct_type)
-		new deconstruct_type(table_turf)
+		new deconstruct_type(table_turf, deconstruct_amount)
 		qdel(src)
 
 	else if(istype(I, /obj/item/stack/rods))
@@ -70,15 +72,21 @@
 /obj/item/frame/table/nometal
 	deconstruct_type = null
 
+/obj/item/frame/table/black
+	icon_state = "black_table_parts"
+	table_type = /obj/structure/table/black
+
 /*
 * Mainship Table Parts
 */
 
 /obj/item/frame/table/mainship
+	icon_state = "table_parts"
 	table_type = /obj/structure/table/mainship
 
 /obj/item/frame/table/mainship/nometal
 	deconstruct_type = null
+	icon_state = "table_parts"
 	table_type = /obj/structure/table/mainship/nometal
 
 /*
@@ -91,6 +99,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "reinf_tableparts"
 	table_type = /obj/structure/table/reinforced
+	deconstruct_amount = 2
 
 /*
 * Wooden Table Parts
@@ -101,7 +110,7 @@
 	desc = "A kit for a table, including a large, flat wooden surface and four legs. Some assembly required."
 	icon_state = "wood_tableparts"
 	atom_flags = null
-	table_type = /obj/structure/table/woodentable
+	table_type = /obj/structure/table/wood
 	deconstruct_type = /obj/item/stack/sheet/wood
 
 /obj/item/frame/table/wood/attackby(obj/item/I, mob/user, params)
@@ -120,9 +129,11 @@
 
 /obj/item/frame/table/fancywood
 	icon_state = "fwood_tableparts"
+	table_type = /obj/structure/table/wood/fancy
 
 /obj/item/frame/table/rusticwood
 	icon_state = "pwood_tableparts"
+	table_type = /obj/structure/table/wood/rustic
 
 /*
 * Gambling Table Parts
@@ -133,7 +144,7 @@
 	desc = "A kit for a table, including a large, flat wooden and carpet surface and four legs. Some assembly required."
 	icon_state = "gamble_tableparts"
 	atom_flags = null
-	table_type = /obj/structure/table/gamblingtable
+	table_type = /obj/structure/table/wood/gambling
 	deconstruct_type = /obj/item/stack/sheet/wood
 
 /obj/item/frame/table/gambling/attackby(obj/item/I, mob/user, params)

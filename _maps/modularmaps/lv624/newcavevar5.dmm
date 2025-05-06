@@ -39,12 +39,12 @@
 /turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "eF" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/rifle/standard_lmg,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "eH" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted{
 	pixel_y = 6
@@ -127,7 +127,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "kK" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/meat,
 /obj/item/reagent_containers/food/snacks/meat{
 	pixel_y = 3
@@ -147,7 +147,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "mh" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/ammo/machinegun,
 /obj/effect/spawner/random/weaponry/ammo/machinegun{
 	pixel_x = -5;
@@ -156,7 +156,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "ne" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/carpet/side{
 	dir = 10
@@ -167,7 +167,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "os" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/microwave,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
@@ -191,14 +191,14 @@
 /area/lv624/ground/caves/central2)
 "pP" = (
 /obj/item/flashlight/lantern,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "qq" = (
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "qD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/candle,
 /obj/item/tool/match{
 	pixel_x = 5;
@@ -207,7 +207,7 @@
 /turf/open/floor/carpet/side,
 /area/lv624/ground/caves/central2)
 "qI" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
@@ -302,7 +302,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "xm" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/ammo/machinegun,
 /obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = -2;
@@ -315,7 +315,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "xI" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/carpet/side{
 	dir = 1
@@ -346,7 +346,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "BP" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lantern,
 /turf/open/floor/carpet/side{
 	dir = 6
@@ -385,7 +385,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "GS" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/candle,
 /obj/item/stack/sheet/metal{
 	pixel_x = 3
@@ -468,7 +468,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Md" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/ammo/machinegun,
 /obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = -2;
@@ -549,7 +549,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "UX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/weaponry/ammo/machinegun,
 /obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = 2;
@@ -558,12 +558,12 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Vi" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lantern,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Vo" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/stack/sheet/metal{
 	pixel_x = 3;
 	pixel_y = 1
@@ -571,7 +571,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Vt" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "VE" = (
@@ -583,7 +583,7 @@
 /area/lv624/ground/caves/central1)
 "Wl" = (
 /obj/structure/barricade/sandbags,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lantern,
 /obj/item/weapon/baseballbat/metal,
 /turf/open/floor/wood,
@@ -593,7 +593,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Xu" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/candle,
 /turf/open/floor/carpet/side{
 	dir = 5

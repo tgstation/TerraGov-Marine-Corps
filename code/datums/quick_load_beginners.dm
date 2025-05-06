@@ -1,11 +1,13 @@
-//Any loadout that is intended for the new player loadout vendor
-///When making new loadouts, remember to also add the typepath to the list under init_beginner_loadouts() or else it won't show up in the vendor
+/*!
+ * Any loadout that is intended for the new player loadout vendor
+ */
 
+///When making new loadouts, remember to also add the typepath to the list under init_beginner_loadouts() or else it won't show up in the vendor
 
 /datum/outfit/quick/beginner
 	name = "Beginner loadout base"
 	desc = "The base loadout for beginners. You shouldn't be able to see this"
-	jobtype = "Squad Marine"
+	jobtype = SQUAD_MARINE
 
 	w_uniform = /obj/item/clothing/under/marine
 	shoes = /obj/item/clothing/shoes/marine/full
@@ -30,8 +32,8 @@
 	Wields the AR-12, a versatile all-rounder assault rifle with a powerful underbarrel grenade launcher attached. \
 	Also carries the strong P-23 sidearm and a variety of flares, medical equipment, and more for every situation."
 
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/hodgrenades
-	head = /obj/item/clothing/head/modular/m10x/hod
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten
+	head = /obj/item/clothing/head/modular/m10x
 	w_uniform = /obj/item/clothing/under/marine/holster
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 	l_hand = /obj/item/paper/tutorial/beginner_rifleman
@@ -228,7 +230,7 @@
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BACKPACK)
 
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/powerpack/marine, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
 	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
 
 	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_ACCESSORY)
@@ -322,7 +324,7 @@
 	belt = /obj/item/storage/belt/grenade
 	mask = /obj/item/clothing/mask/gas
 	w_uniform = /obj/item/clothing/under/marine/corpman_vest
-	head = /obj/item/clothing/head/modular/m10x/hod
+	head = /obj/item/clothing/head/modular/m10x
 	shoes = /obj/item/clothing/shoes/marine
 	l_hand = /obj/item/paper/tutorial/beginner_chad
 

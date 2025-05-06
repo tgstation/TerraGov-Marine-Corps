@@ -40,6 +40,8 @@
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -102,7 +104,7 @@
 	if(!rig)
 		return
 	user.visible_message("[user] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 	user.visible_message(span_notice("[user] detaches [rig] from \the [src]."), span_notice("You detach [rig] from \the [src]."))
 	rig.forceMove(get_turf(user))
@@ -153,7 +155,7 @@
 		return
 
 	user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_HOSTILE) || rig)
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
 		return
 
 	user.visible_message(span_notice("[user] rigs [I] to \the [src]."), span_notice("You rig [I] to \the [src]."))
@@ -167,14 +169,14 @@
 	add_overlay(overlay)
 
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/Proj)
+/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/proj)
 	if(exploding)
 		return FALSE
-
 	. = ..()
-
-	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
-		log_attack("[key_name(Proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
+	if(QDELETED(src))
+		return
+	if(proj.damage > 10 && prob(60) && (proj.ammo.damage_type in list(BRUTE, BURN)))
+		log_attack("[key_name(proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
@@ -246,6 +248,11 @@
 
 	qdel(src)
 
+/obj/structure/reagent_dispensers/fueltank/spacefuel
+	name = "spacecraft fuel-mix tank"
+	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi';
+
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
 	desc = "A machine that dispenses water to drink."
@@ -258,6 +265,8 @@
 	list_reagents = list(/datum/reagent/water = 500)
 	coverage = 20
 
+/obj/structure/reagent_dispensers/water_cooler/nondense
+	density = FALSE
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

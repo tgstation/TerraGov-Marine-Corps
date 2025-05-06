@@ -67,10 +67,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast/garbledradio)
-"y" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "z" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
@@ -78,10 +74,6 @@
 /area/bigredv2/caves/southeast/garbledradio)
 "A" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
-"C" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "D" = (
@@ -114,10 +106,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast/garbledradio)
-"T" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "U" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bigred,
@@ -2372,7 +2360,7 @@ r
 r
 r
 r
-C
+I
 I
 I
 I
@@ -2778,7 +2766,7 @@ I
 A
 I
 I
-T
+I
 r
 r
 r
@@ -2994,7 +2982,7 @@ U
 n
 I
 I
-I
+L
 I
 I
 U
@@ -3203,7 +3191,7 @@ l
 A
 I
 g
-L
+I
 U
 r
 r
@@ -3539,7 +3527,7 @@ r
 r
 r
 r
-y
+I
 I
 I
 R

@@ -1,25 +1,25 @@
-#define SKILLSID "skills-[cqc]-[melee_weapons]\
--[firearms]-[pistols]-[shotguns]-[rifles]-[smgs]-[heavy_weapons]-[smartgun]\
+#define SKILLSID "skills-[unarmed]-[melee_weapons]\
+-[combat]-[pistols]-[shotguns]-[rifles]-[smgs]-[heavy_weapons]-[smartgun]\
 -[engineer]-[construction]-[leadership]-[medical]-[surgery]-[pilot]-[police]-[powerloader]-[large_vehicle]-[stamina]"
 
-#define SKILLSIDSRC(S) "skills-[S.cqc]-[S.melee_weapons]\
--[S.firearms]-[S.pistols]-[S.shotguns]-[S.rifles]-[S.smgs]-[S.heavy_weapons]-[S.smartgun]\
+#define SKILLSIDSRC(S) "skills-[S.unarmed]-[S.melee_weapons]\
+-[S.combat]-[S.pistols]-[S.shotguns]-[S.rifles]-[S.smgs]-[S.heavy_weapons]-[S.smartgun]\
 -[S.engineer]-[S.construction]-[S.leadership]-[S.medical]-[S.surgery]-[S.pilot]-[S.police]-[S.powerloader]-[S.large_vehicle]-[S.stamina]"
 
-/proc/getSkills(cqc = 0, melee_weapons = 0,\
-firearms = 0, pistols = 0, shotguns = 0, rifles = 0, smgs = 0, heavy_weapons = 0, smartgun = 0,\
+/proc/getSkills(unarmed = 0, melee_weapons = 0,\
+combat = 0, pistols = 0, shotguns = 0, rifles = 0, smgs = 0, heavy_weapons = 0, smartgun = 0,\
 engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0, stamina = 0)
 	. = locate(SKILLSID)
 	if(!.)
-		. = new /datum/skills(cqc, melee_weapons,\
-			firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
+		. = new /datum/skills(unarmed, melee_weapons,\
+			combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
 			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
 
 /proc/getSkillsType(skills_type = /datum/skills)
 	var/datum/skills/new_skill = skills_type
-	var/cqc = initial(new_skill.cqc)
+	var/unarmed = initial(new_skill.unarmed)
 	var/melee_weapons = initial(new_skill.melee_weapons)
-	var/firearms = initial(new_skill.firearms)
+	var/combat = initial(new_skill.combat)
 	var/pistols = initial(new_skill.pistols)
 	var/shotguns = initial(new_skill.shotguns)
 	var/rifles = initial(new_skill.rifles)
@@ -43,10 +43,10 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 /datum/skills
 	datum_flags = DF_USE_TAG
 	var/name = "Default/Custom"
-	var/cqc = SKILL_CQC_DEFAULT
+	var/unarmed = SKILL_UNARMED_DEFAULT
 	var/melee_weapons = SKILL_MELEE_DEFAULT
 
-	var/firearms = SKILL_FIREARMS_DEFAULT
+	var/combat = SKILL_COMBAT_DEFAULT
 	var/pistols = SKILL_PISTOLS_DEFAULT
 	var/shotguns = SKILL_SHOTGUNS_DEFAULT
 	var/rifles = SKILL_RIFLES_DEFAULT
@@ -67,15 +67,15 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/stamina = SKILL_STAMINA_DEFAULT
 
 
-/datum/skills/New(cqc, melee_weapons,\
-firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
+/datum/skills/New(unarmed, melee_weapons,\
+combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
 engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
-	if(!isnull(cqc))
-		src.cqc = cqc
+	if(!isnull(unarmed))
+		src.unarmed = unarmed
 	if(!isnull(melee_weapons))
 		src.melee_weapons = melee_weapons
-	if(!isnull(firearms))
-		src.firearms = firearms
+	if(!isnull(combat))
+		src.combat = combat
 	if(!isnull(pistols))
 		src.pistols = pistols
 	if(!isnull(shotguns))
@@ -111,12 +111,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	tag = SKILLSIDSRC(src)
 
 /// returns/gets a new skills datum with values changed according to the args passed
-/datum/skills/proc/modifyRating(cqc, melee_weapons,\
-firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
+/datum/skills/proc/modifyRating(unarmed, melee_weapons,\
+combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
 engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
-	return getSkills(src.cqc+cqc,\
+	return getSkills(src.unarmed+unarmed,\
 	src.melee_weapons+melee_weapons,\
-	src.firearms+firearms,\
+	src.combat+combat,\
 	src.pistols+pistols,\
 	src.shotguns+shotguns,\
 	src.rifles+rifles,\
@@ -136,9 +136,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /// acts as [/proc/modifyRating] but instead modifies all values rather than several specific ones
 /datum/skills/proc/modifyAllRatings(difference)
-	return getSkills(src.cqc+difference,\
+	return getSkills(src.unarmed+difference,\
 	src.melee_weapons+difference,\
-	src.firearms+difference,\
+	src.combat+difference,\
 	src.pistols+difference,\
 	src.shotguns+difference,\
 	src.rifles+difference,\
@@ -157,12 +157,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.stamina+difference)
 
 /// acts as [/proc/modifyRating] but sets the rating directly rather than modify it
-/datum/skills/proc/setRating(cqc, melee_weapons,\
-firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
+/datum/skills/proc/setRating(unarmed, melee_weapons,\
+combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
 engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
-	return getSkills((isnull(cqc) ? src.cqc : cqc),\
+	return getSkills((isnull(unarmed) ? src.unarmed : unarmed),\
 		(isnull(melee_weapons) ? src.melee_weapons : melee_weapons),\
-		(isnull(firearms) ? src.firearms : firearms),\
+		(isnull(combat) ? src.combat : combat),\
 		(isnull(pistols) ? src.pistols : pistols),\
 		(isnull(shotguns) ? src.shotguns : shotguns),\
 		(isnull(rifles) ? src.rifles : rifles),\
@@ -199,9 +199,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /// returns an assoc list (SKILL_X = VALUE) of all skills for this skill datum
 /datum/skills/proc/getList()
 	return list(
-		SKILL_CQC = cqc,
+		SKILL_UNARMED = unarmed,
 		SKILL_MELEE_WEAPONS = melee_weapons,
-		SKILL_FIREARMS = firearms,
+		SKILL_COMBAT = combat,
 		SKILL_PISTOLS = pistols,
 		SKILL_SHOTGUNS = shotguns,
 		SKILL_RIFLES = rifles,
@@ -220,49 +220,67 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		SKILL_STAMINA = stamina,
 	)
 
+/datum/skills/slut
+	name = SQUAD_SLUT
+	medical = SKILL_MEDICAL_NOVICE //gotta keep that puss tended
+	combat = SKILL_COMBAT_DEFAULT //can still use guns
+	construction = SKILL_CONSTRUCTION_METAL //build a cum shack
+	stamina = SKILL_STAMINA_TRAINED //fucking is hard work
+
 /datum/skills/civilian
 	name = "Civilian"
-	cqc = SKILL_CQC_WEAK
-	firearms = SKILL_FIREARMS_UNTRAINED
+	unarmed = SKILL_UNARMED_WEAK
+	combat = SKILL_COMBAT_UNTRAINED
 	melee_weapons = SKILL_MELEE_WEAK
 
 /datum/skills/civilian/survivor
 	name = "Survivor"
 	engineer = SKILL_ENGINEER_ENGI //to hack airlocks so they're never stuck in a room.
-	firearms = SKILL_FIREARMS_DEFAULT
+	combat = SKILL_COMBAT_DEFAULT
 	construction = SKILL_CONSTRUCTION_METAL
 	medical = SKILL_MEDICAL_NOVICE
 
+/datum/skills/civilian/worker
+	name = "Survivor"
+	combat = SKILL_COMBAT_UNTRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	medical = SKILL_MEDICAL_COMPETENT
+	construction = SKILL_CONSTRUCTION_MASTER
+	engineer = SKILL_ENGINEER_ENGI
+	powerloader = SKILL_POWERLOADER_MASTER
+
 /datum/skills/civilian/survivor/master
 	name = "Survivor"
-	firearms = SKILL_FIREARMS_DEFAULT
-	medical = SKILL_MEDICAL_EXPERT
-	surgery = SKILL_SURGERY_EXPERT
-	construction = SKILL_CONSTRUCTION_EXPERT
-	engineer = SKILL_ENGINEER_EXPERT
+	combat = SKILL_COMBAT_DEFAULT
+	medical = SKILL_MEDICAL_PRACTICED
+	construction = SKILL_CONSTRUCTION_ADVANCED
+	engineer = SKILL_ENGINEER_ENGI
 	powerloader = SKILL_POWERLOADER_MASTER
-	police = SKILL_POLICE_FLASH
+	rifles = SKILL_RIFLES_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/civilian/survivor/doctor
 	name = "Survivor Doctor"
 	medical = SKILL_MEDICAL_COMPETENT
 	surgery = SKILL_SURGERY_EXPERT
-	firearms = SKILL_FIREARMS_UNTRAINED
+	combat = SKILL_COMBAT_UNTRAINED
 
 /datum/skills/civilian/survivor/scientist
 	name = "Survivor Scientist"
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_PROFESSIONAL
-	firearms = SKILL_FIREARMS_UNTRAINED
+	combat = SKILL_COMBAT_UNTRAINED
 
 /datum/skills/civilian/survivor/chef
 	name = "Survivor Chef"
 	melee_weapons = SKILL_MELEE_TRAINED
-	firearms = SKILL_FIREARMS_UNTRAINED
+	combat = SKILL_COMBAT_UNTRAINED
 
 /datum/skills/civilian/survivor/miner
 	name = "Survivor Miner"
 	powerloader = SKILL_POWERLOADER_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
 
 /datum/skills/civilian/survivor/atmos
 	name = "Survivor Atmos Tech"
@@ -271,8 +289,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/civilian/survivor/marshal
 	name = "Survivor Marshal"
-	cqc = SKILL_CQC_MP
-	firearms = SKILL_FIREARMS_DEFAULT
+	unarmed = SKILL_UNARMED_MP
+	combat = SKILL_COMBAT_DEFAULT
 	melee_weapons = SKILL_MELEE_DEFAULT
 	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
@@ -284,6 +302,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_BEGINNER
 	powerloader = SKILL_POWERLOADER_DABBLING
 
+/datum/skills/combat_engineer/pmc
+	name = "PMC Engineer"
+	unarmed = SKILL_UNARMED_TRAINED
+	medical = SKILL_MEDICAL_NOVICE
+	stamina = SKILL_STAMINA_TRAINED
+
 /datum/skills/combat_medic
 	name = SQUAD_CORPSMAN
 	leadership = SKILL_LEAD_BEGINNER
@@ -294,6 +318,15 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Crafty Combat Medic"
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
+	surgery = SKILL_SURGERY_PROFESSIONAL
+
+/datum/skills/combat_medic/pmc
+	name = "PMC Medic"
+	unarmed = SKILL_UNARMED_TRAINED
+	engineer = SKILL_ENGINEER_METAL
+	construction = SKILL_ENGINEER_METAL
+	stamina = SKILL_STAMINA_TRAINED
+	medical = SKILL_MEDICAL_EXPERT
 
 /datum/skills/combat_medic/special_forces
 	name = "Special Operations Medic"
@@ -303,24 +336,24 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/doctor
 	name = "Doctor"
-	cqc = SKILL_CQC_WEAK
-	firearms = SKILL_FIREARMS_UNTRAINED
+	unarmed = SKILL_UNARMED_WEAK
+	combat = SKILL_COMBAT_UNTRAINED
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
 	melee_weapons = SKILL_MELEE_WEAK
 
 /datum/skills/researcher
 	name = "Researcher"
-	cqc = SKILL_CQC_WEAK
-	firearms = SKILL_FIREARMS_UNTRAINED
+	unarmed = SKILL_UNARMED_WEAK
+	combat = SKILL_COMBAT_UNTRAINED
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_PROFESSIONAL
 	melee_weapons = SKILL_MELEE_WEAK
 
 /datum/skills/cmo
 	name = "CMO"
-	cqc = SKILL_CQC_WEAK
-	firearms = SKILL_FIREARMS_UNTRAINED
+	unarmed = SKILL_UNARMED_WEAK
+	combat = SKILL_COMBAT_UNTRAINED
 	leadership = SKILL_LEAD_TRAINED
 	medical = SKILL_MEDICAL_MASTER
 	surgery = SKILL_SURGERY_MASTER
@@ -331,7 +364,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "AI"
 	engineer = SKILL_ENGINEER_EXPERT
 	construction = SKILL_CONSTRUCTION_EXPERT
-	firearms = SKILL_FIREARMS_UNTRAINED
+	combat = SKILL_COMBAT_UNTRAINED
 	medical = SKILL_MEDICAL_EXPERT
 	leadership = SKILL_LEAD_MASTER
 	surgery = SKILL_SURGERY_EXPERT
@@ -343,12 +376,11 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = SYNTHETIC
 	engineer = SKILL_ENGINEER_EXPERT
 	construction = SKILL_CONSTRUCTION_EXPERT
-	firearms = SKILL_FIREARMS_UNTRAINED
+	combat = SKILL_COMBAT_DEFAULT
 	medical = SKILL_MEDICAL_EXPERT
-	cqc = SKILL_CQC_MASTER
+	unarmed = SKILL_UNARMED_MASTER
 	surgery = SKILL_SURGERY_EXPERT
 	pilot = SKILL_PILOT_TRAINED
-	melee_weapons = SKILL_MELEE_WEAK
 	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
@@ -357,9 +389,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Early Synthetic"
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
-	firearms = SKILL_FIREARMS_UNTRAINED
+	combat = SKILL_COMBAT_UNTRAINED
 	medical = SKILL_MEDICAL_COMPETENT
-	cqc = SKILL_CQC_MASTER
+	unarmed = SKILL_UNARMED_MASTER
 	surgery = SKILL_SURGERY_PROFESSIONAL
 	pilot = SKILL_PILOT_TRAINED
 	melee_weapons = SKILL_MELEE_WEAK
@@ -376,9 +408,27 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	powerloader = SKILL_POWERLOADER_MASTER
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 
+/datum/skills/ceo
+	name = CHIEF_EXECUTIVE_OFFICER
+	leadership = SKILL_LEAD_MASTER
+	police = SKILL_POLICE_MP
+	medical = SKILL_MEDICAL_MASTER
+	surgery = SKILL_SURGERY_MASTER
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_ADVANCED
+	powerloader = SKILL_POWERLOADER_MASTER
+	unarmed = SKILL_UNARMED_MASTER
+	melee_weapons = SKILL_MELEE_SUPER
+	combat = SKILL_COMBAT_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_TRAINED
 
 /datum/skills/fo
 	name = FIELD_COMMANDER
@@ -386,10 +436,18 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_PRACTICED
-	surgery = SKILL_SURGERY_AMATEUR
+	surgery = SKILL_SURGERY_TRAINED
+	melee_weapons = SKILL_MELEE_SUPER
+	combat = SKILL_COMBAT_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
-	cqc = SKILL_CQC_TRAINED
+	unarmed = SKILL_UNARMED_MASTER
+	smartgun = SKILL_SMART_TRAINED
 
 /datum/skills/veteran
 	name = "TGMC Retired Veteran"
@@ -400,8 +458,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
-	cqc = SKILL_CQC_TRAINED
-	firearms = SKILL_FIREARMS_TRAINED
+	unarmed = SKILL_UNARMED_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	rifles = SKILL_RIFLES_TRAINED
 
 /datum/skills/veteran_captain
@@ -413,7 +471,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	powerloader = SKILL_POWERLOADER_MASTER
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	rifles = SKILL_RIFLES_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 
@@ -421,17 +479,21 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = STAFF_OFFICER
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_PLASTEEL
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	powerloader = SKILL_POWERLOADER_TRAINED
 	police = SKILL_POLICE_MP
+	smartgun = SKILL_SMART_TRAINED
 
 /datum/skills/pilot
 	name = PILOT_OFFICER
 	pilot = SKILL_PILOT_TRAINED
 	powerloader = SKILL_POWERLOADER_PRO
 	leadership = SKILL_LEAD_TRAINED
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
 
 /datum/skills/transportofficer
 	name = TRANSPORT_OFFICER
@@ -442,8 +504,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/mech_pilot
 	name = MECH_PILOT
-	engineer = SKILL_ENGINEER_METAL
-	construction = SKILL_CONSTRUCTION_METAL
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_ADVANCED
 	powerloader = SKILL_POWERLOADER_PRO
 	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
 
@@ -486,6 +548,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "PMC Private"
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
+	unarmed = SKILL_UNARMED_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	leadership = SKILL_LEAD_BEGINNER
+	medical = SKILL_MEDICAL_NOVICE
 
 /datum/skills/crafty
 	name = "Crafty Private"
@@ -506,7 +575,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/sl
 	name = SQUAD_LEADER
-	cqc = SKILL_CQC_TRAINED
+	unarmed = SKILL_UNARMED_TRAINED
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_PLASTEEL
 	leadership = SKILL_LEAD_EXPERT
@@ -521,7 +590,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/sl/upp
 	name = "UPP Leader"
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	pistols = SKILL_PISTOLS_TRAINED
@@ -532,12 +601,17 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/sl/pmc
 	name = "PMC Leader"
-	firearms = SKILL_FIREARMS_TRAINED
+	unarmed = SKILL_UNARMED_MP
+	melee_weapons = SKILL_MELEE_TRAINED
+	medical = SKILL_MEDICAL_PRACTICED
+	police = SKILL_POLICE_MP
+	combat = SKILL_COMBAT_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
 	smgs = SKILL_SMGS_TRAINED
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/sl/pmc/special_forces
 	name = "Special Force Leader"
@@ -546,28 +620,60 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/sl/icc
 	name = "ICC Leader"
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_ENGI
+	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/specialist
 	name = SQUAD_SPECIALIST
-	cqc = SKILL_CQC_TRAINED
+	unarmed = SKILL_UNARMED_MASTER
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL //to use c4 in scout set.
 	smartgun = SKILL_SMART_TRAINED
+	medical = SKILL_MEDICAL_PRACTICED
 	leadership = SKILL_LEAD_BEGINNER
 	melee_weapons = SKILL_MELEE_TRAINED
+	stamina = SKILL_STAMINA_TRAINED
+
+/datum/skills/specialist/vanguard
+	name = VANGUARD
+	unarmed = SKILL_UNARMED_MASTER
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_ENGI
+	medical = SKILL_MEDICAL_COMPETENT
+	surgery = SKILL_SURGERY_TRAINED
+	leadership = SKILL_LEAD_EXPERT
+	police = SKILL_POLICE_MP
+	stamina = SKILL_STAMINA_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	combat = SKILL_COMBAT_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_TRAINED
 
 /datum/skills/specialist/pmc
 	name = "PMC Specialist"
-	engineer = SKILL_ENGINEER_METAL
+	combat = SKILL_COMBAT_TRAINED
+	melee_weapons = SKILL_MELEE_SUPER
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	surgery = SKILL_SURGERY_TRAINED
+	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/specialist/upp
 	name = "UPP Specialist"
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
 	smgs = SKILL_SMGS_TRAINED
 	rifles = SKILL_RIFLES_TRAINED
@@ -581,24 +687,25 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/smartgunner/pmc
 	name = "PMC Smartgunner"
-	cqc = SKILL_CQC_TRAINED
+	unarmed = SKILL_UNARMED_MP
+	engineer = SKILL_ENGINEER_METAL
 	construction = SKILL_CONSTRUCTION_METAL
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
+	medical = SKILL_MEDICAL_NOVICE
 	melee_weapons = SKILL_MELEE_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
 	smgs = SKILL_SMGS_TRAINED
-	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 
 /datum/skills/commando
 	name = "Commando"
-	cqc = 3
+	unarmed = 3
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_PLASTEEL
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
@@ -620,10 +727,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/mercenary
 	name = "Mercenary"
-	cqc = SKILL_CQC_MP
+	unarmed = SKILL_UNARMED_MP
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_PLASTEEL
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
@@ -647,10 +754,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Spatial Agent"
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 	medical = SKILL_MEDICAL_MASTER
-	cqc = SKILL_CQC_MASTER
+	unarmed = SKILL_UNARMED_MASTER
 	surgery = SKILL_SURGERY_EXPERT
 	melee_weapons = SKILL_MELEE_SUPER
 	leadership = SKILL_LEAD_MASTER
@@ -667,9 +774,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /* Deathsquad */
 /datum/skills/deathsquad
 	name = "Deathsquad Elite"
-	cqc = SKILL_CQC_TRAINED
+	unarmed = SKILL_UNARMED_TRAINED
 	construction = SKILL_CONSTRUCTION_METAL
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
 	melee_weapons = SKILL_MELEE_TRAINED
@@ -683,9 +790,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/smartgunner/deathsquad
 	name = "Deathsquad Elite Gunner"
-	cqc = SKILL_CQC_TRAINED
+	unarmed = SKILL_UNARMED_TRAINED
 	construction = SKILL_CONSTRUCTION_METAL
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	smartgun = SKILL_SMART_MASTER
 	leadership = SKILL_LEAD_BEGINNER
 	melee_weapons = SKILL_MELEE_TRAINED
@@ -699,9 +806,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/sl/deathsquad
 	name = "Deathsquad Elite Captain"
-	cqc = SKILL_CQC_TRAINED
+	unarmed = SKILL_UNARMED_TRAINED
 	construction = SKILL_CONSTRUCTION_METAL
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_MASTER
 	melee_weapons = SKILL_MELEE_TRAINED
@@ -717,10 +824,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/imperial
 	name = "Guardsman"
-	cqc = SKILL_CQC_TRAINED
+	unarmed = SKILL_UNARMED_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
 
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	rifles = SKILL_RIFLES_TRAINED
 
 /datum/skills/imperial/sl
@@ -744,10 +851,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/imperial/astartes
 	name = "Space Marine"
-	cqc = SKILL_CQC_MASTER
+	unarmed = SKILL_UNARMED_MASTER
 	melee_weapons = SKILL_MELEE_SUPER
 
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	rifles = SKILL_RIFLES_TRAINED
@@ -765,7 +872,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/imperial/astartes/apothecary
 	name = "Space Marine Apothecary" // a slightly less stronger space marine with medical skills
-	cqc = 4 // below SKILL_CQC_MASTER, no define for it
+	unarmed = 4 // below SKILL_UNARMED_MASTER, no define for it
 	melee_weapons = SKILL_MELEE_TRAINED
 
 	medical = SKILL_MEDICAL_EXPERT
@@ -778,17 +885,17 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/vatgrown/early
 	name = "Vat Grown"
-	cqc = SKILL_CQC_WEAK
-	firearms = SKILL_FIREARMS_UNTRAINED
+	unarmed = SKILL_UNARMED_WEAK
+	combat = SKILL_COMBAT_UNTRAINED
 	melee_weapons = SKILL_MELEE_WEAK
 
 /datum/skills/sectoid
 	name = "Sectoid"
 
-	cqc = SKILL_CQC_WEAK
+	unarmed = SKILL_UNARMED_WEAK
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_PLASTEEL
-	firearms = SKILL_FIREARMS_TRAINED
+	combat = SKILL_COMBAT_TRAINED
 	medical = SKILL_MEDICAL_COMPETENT
 	surgery = SKILL_SURGERY_EXPERT//how else will they probe marines?
 	melee_weapons = SKILL_MELEE_WEAK
@@ -800,5 +907,74 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/skeleton
 	name = "Skeleton"
-	cqc = SKILL_CQC_TRAINED
+	unarmed = SKILL_UNARMED_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
+
+/datum/skills/security_officer
+	name = SECURITY_OFFICER
+
+	unarmed = SKILL_UNARMED_MP
+	combat = SKILL_COMBAT_DEFAULT
+	smgs = SKILL_SMGS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	melee_weapons = SKILL_MELEE_DEFAULT
+	pistols = SKILL_PISTOLS_TRAINED
+	police = SKILL_POLICE_MP
+
+//SOM veterans
+/datum/skills/som_veteran
+	name = "SOM Veteran"
+	leadership = SKILL_LEAD_BEGINNER
+	unarmed = SKILL_UNARMED_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	construction = SKILL_CONSTRUCTION_METAL
+	engineer = SKILL_ENGINEER_METAL
+	combat = SKILL_COMBAT_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	medical = SKILL_MEDICAL_NOVICE
+	surgery = SKILL_SURGERY_AMATEUR
+	stamina = SKILL_STAMINA_TRAINED
+
+/datum/skills/som_veteran/sl
+	name = "SOM Leader"
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_PLASTEEL
+	leadership = SKILL_LEAD_EXPERT
+
+/datum/skills/som_veteran/medic
+	name = "SOM Medic"
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_TRAINED
+
+//ERP Pranksters
+/datum/skills/prankster
+	name = "ERP Prankster"
+	unarmed = SKILL_UNARMED_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	combat = SKILL_COMBAT_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_DEFAULT
+	smartgun = SKILL_SMART_DEFAULT
+
+/datum/skills/prankster/boobookisser
+	name = "ERP Boo-boo Kisser"
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_TRAINED
+
+/datum/skills/prankster/piethrower
+	name = "ERP Pie thrower"
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+
+/datum/skills/prankster/masterprankster
+	name = "ERP Master Prankster"
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_PLASTEEL
+	leadership = SKILL_LEAD_EXPERT

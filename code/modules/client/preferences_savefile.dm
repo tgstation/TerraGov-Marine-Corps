@@ -4,7 +4,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 45
+#define SAVEFILE_VERSION_MAX 46
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -52,6 +52,11 @@
 		WRITE_FILE(S["mute_xeno_health_alert_messages"], TRUE)
 		mute_xeno_health_alert_messages = TRUE
 		to_chat(parent, span_userdanger("Preferences for Mute xeno health alert messages have been reverted to default settings; these are now muted. Go into Preferences and set Mute xeno health alert messages to No if you wish to get xeno critical health alerts."))
+	if(current_version < 46)
+		toggles_sound |= SOUND_WEATHER
+		WRITE_FILE(S["toggles_sound"], toggles_sound)
+		to_chat(parent, span_userdanger("Due to a fix, preferences for weather sound have been reverted to default settings; these are now ON. Go into Preferences and set sound toggles to OFF if you wish to not hear these sounds."))
+
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -164,17 +169,22 @@
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["sound_tts"], sound_tts)
 	READ_FILE(S["volume_tts"], volume_tts)
+	READ_FILE(S["radio_tts_flags"], radio_tts_flags)
 	READ_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
 
 	READ_FILE(S["key_bindings"], key_bindings)
+	READ_FILE(S["slot_draw_order"], slot_draw_order_pref)
 	READ_FILE(S["custom_emotes"], custom_emotes)
 	READ_FILE(S["chem_macros"], chem_macros)
+	READ_FILE(S["status_toggle_flags"], status_toggle_flags)
 
 	READ_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	READ_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 	READ_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
+	READ_FILE(S["show_xeno_rank"], show_xeno_rank)
 
+	READ_FILE(S["stim_sequences"], stim_sequences)
 	// Runechat options
 	READ_FILE(S["chat_on_map"], chat_on_map)
 	READ_FILE(S["max_chat_length"], max_chat_length)
@@ -221,16 +231,26 @@
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_inlist(sound_tts, GLOB.all_tts_options, initial(sound_tts))
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
+	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND))
 
 	key_bindings = sanitize_islist(key_bindings, list())
+	if (!length(key_bindings))
+		key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
+
 	custom_emotes = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros = sanitize_islist(chem_macros, list())
 	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER, MAX_QUICK_EQUIP_SLOTS, TRUE, VALID_EQUIP_SLOTS)
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
+	status_toggle_flags = sanitize_integer(status_toggle_flags, NONE, MAX_BITFLAG, initial(status_toggle_flags))
 
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
+	show_xeno_rank = sanitize_integer(show_xeno_rank, FALSE, TRUE, initial(show_xeno_rank))
+
+	stim_sequences = sanitize_islist(stim_sequences, list())
+	for(var/spell_sequence in stim_sequences)
+		stim_sequences[spell_sequence] = sanitize_islist(stim_sequences[spell_sequence], list(), null, TRUE, GLOB.stim_type_lookup)
 
 	chat_on_map = sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
 	max_chat_length = sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
@@ -293,10 +313,18 @@
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_inlist(sound_tts, GLOB.all_tts_options, initial(sound_tts))
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
+	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND))
 
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
+	show_xeno_rank = sanitize_integer(show_xeno_rank, FALSE, TRUE, initial(show_xeno_rank))
+	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
+	status_toggle_flags = sanitize_integer(status_toggle_flags, NONE, MAX_BITFLAG, initial(status_toggle_flags))
+
+	stim_sequences = sanitize_islist(stim_sequences, list())
+	for(var/spell_sequence in stim_sequences)
+		stim_sequences[spell_sequence] = sanitize_islist(stim_sequences[spell_sequence], list(), null, TRUE, GLOB.stim_type_lookup)
 
 	// Runechat
 	chat_on_map = sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
@@ -344,10 +372,16 @@
 	WRITE_FILE(S["tooltips"], tooltips)
 	WRITE_FILE(S["sound_tts"], sound_tts)
 	WRITE_FILE(S["volume_tts"], volume_tts)
+	WRITE_FILE(S["radio_tts_flags"], radio_tts_flags)
+	WRITE_FILE(S["slot_draw_order"], slot_draw_order_pref)
+	WRITE_FILE(S["status_toggle_flags"], status_toggle_flags)
 
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 	WRITE_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
+	WRITE_FILE(S["show_xeno_rank"], show_xeno_rank)
+
+	WRITE_FILE(S["stim_sequences"], stim_sequences)
 
 	// Runechat options
 	WRITE_FILE(S["chat_on_map"], chat_on_map)
@@ -454,7 +488,22 @@
 	READ_FILE(S["gen_record"], gen_record)
 	READ_FILE(S["exploit_record"], exploit_record)
 	READ_FILE(S["flavor_text"], flavor_text)
+	READ_FILE(S["xeno_desc"], xeno_desc)
+	READ_FILE(S["profile_pic"], profile_pic)
+	READ_FILE(S["xenoprofile_pic"], xenoprofile_pic)
+	READ_FILE(S["xenogender"], xenogender)
+	READ_FILE(S["genitalia_ass"], genitalia_ass)
+	READ_FILE(S["genitalia_boobs"], genitalia_boobs)
+	READ_FILE(S["genitalia_cock"], genitalia_cock)
+	READ_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
+	READ_FILE(S["burst_screams_enabled"], burst_screams_enabled)
 
+	READ_FILE(S["metadata"], metadata)
+	READ_FILE(S["metadata_likes"], metadata_likes)
+	READ_FILE(S["metadata_dislikes"], metadata_dislikes)
+	READ_FILE(S["metadata_maybes"], metadata_maybes)
+	READ_FILE(S["metadata_favs"], metadata_favs)
+	READ_FILE(S["metadata_ooc_style"], metadata_ooc_style)
 
 	be_special = sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
@@ -480,12 +529,16 @@
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], quick_equip_slots)
 	gear = sanitize_islist(gear, default = list(), check_valid = TRUE, possible_input_list = GLOB.gear_datums)
-	if(gender == MALE)
-		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
-		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
-	else
-		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
+	// NTF EDIT START
+	//if(gender == MALE)
+	//	underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+	//	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
+	//else
+	//	underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
+	//	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
+	underwear = initial(underwear)
+	undershirt = initial(undershirt)
+	// NTF EDIT END
 	backpack = sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
 
 	h_style = sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
@@ -520,6 +573,29 @@
 	gen_record = sanitize_text(gen_record, initial(gen_record))
 	exploit_record = sanitize_text(exploit_record, initial(exploit_record))
 	flavor_text = sanitize_text(flavor_text, initial(flavor_text))
+	xeno_desc = sanitize_text(xeno_desc, initial(xeno_desc))
+	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
+	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
+	xenogender = sanitize_text(xenogender, initial(xenogender))
+	genitalia_ass = sanitize_text(genitalia_ass, initial(genitalia_ass))
+	genitalia_boobs = sanitize_text(genitalia_boobs, initial(genitalia_boobs))
+	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
+	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
+	burst_screams_enabled = sanitize_text(burst_screams_enabled, initial(burst_screams_enabled))
+
+	metadata = sanitize_text(metadata, initial(metadata))
+	metadata_likes = sanitize_text(metadata_likes, initial(metadata_likes))
+	metadata_dislikes = sanitize_text(metadata_dislikes, initial(metadata_dislikes))
+	metadata_maybes = sanitize_text(metadata_maybes, initial(metadata_maybes))
+	metadata_favs = sanitize_text(metadata_favs, initial(metadata_favs))
+	metadata_ooc_style = sanitize_integer(metadata_ooc_style, FALSE, TRUE, initial(metadata_ooc_style))
+	if(isnewplayer(parent.mob))
+		parent.mob.ooc_notes = metadata
+		parent.mob.ooc_notes_likes = metadata_likes
+		parent.mob.ooc_notes_dislikes = metadata_dislikes
+		parent.mob.ooc_notes_maybes = metadata_maybes
+		parent.mob.ooc_notes_favs = metadata_favs
+		parent.mob.ooc_notes_style = metadata_ooc_style
 
 	if(!synthetic_name)
 		synthetic_name = "David"
@@ -610,6 +686,22 @@
 	gen_record = sanitize_text(gen_record, initial(gen_record))
 	exploit_record = sanitize_text(exploit_record, initial(exploit_record))
 	flavor_text = sanitize_text(flavor_text, initial(flavor_text))
+	xeno_desc = sanitize_text(xeno_desc, initial(xeno_desc))
+	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
+	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
+	xenogender = sanitize_text(xenogender, initial(xenogender))
+	genitalia_ass = sanitize_text(genitalia_ass, initial(genitalia_ass))
+	genitalia_boobs = sanitize_text(genitalia_boobs, initial(genitalia_boobs))
+	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
+	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
+	burst_screams_enabled = sanitize_text(burst_screams_enabled, initial(burst_screams_enabled))
+
+	metadata = sanitize_text(metadata, initial(metadata))
+	metadata_likes = sanitize_text(metadata_likes, initial(metadata_likes))
+	metadata_dislikes = sanitize_text(metadata_dislikes, initial(metadata_dislikes))
+	metadata_maybes = sanitize_text(metadata_maybes, initial(metadata_maybes))
+	metadata_favs = sanitize_text(metadata_favs, initial(metadata_favs))
+	metadata_ooc_style = sanitize_integer(metadata_ooc_style, FALSE, TRUE, initial(metadata_ooc_style))
 
 	WRITE_FILE(S["be_special"], be_special)
 
@@ -668,6 +760,22 @@
 	WRITE_FILE(S["gen_record"], gen_record)
 	WRITE_FILE(S["exploit_record"], exploit_record)
 	WRITE_FILE(S["flavor_text"], flavor_text)
+	WRITE_FILE(S["xeno_desc"], xeno_desc)
+	WRITE_FILE(S["profile_pic"], profile_pic)
+	WRITE_FILE(S["xenoprofile_pic"], xenoprofile_pic)
+	WRITE_FILE(S["xenogender"], xenogender)
+	WRITE_FILE(S["genitalia_ass"], genitalia_ass)
+	WRITE_FILE(S["genitalia_boobs"], genitalia_boobs)
+	WRITE_FILE(S["genitalia_cock"], genitalia_cock)
+	WRITE_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
+	WRITE_FILE(S["burst_screams_enabled"], burst_screams_enabled)
+
+	WRITE_FILE(S["metadata"], metadata)
+	WRITE_FILE(S["metadata_likes"], metadata_likes)
+	WRITE_FILE(S["metadata_dislikes"], metadata_dislikes)
+	WRITE_FILE(S["metadata_maybes"], metadata_maybes)
+	WRITE_FILE(S["metadata_favs"], metadata_favs)
+	WRITE_FILE(S["metadata_ooc_style"], metadata_ooc_style)
 
 	return TRUE
 

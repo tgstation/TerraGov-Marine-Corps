@@ -23,7 +23,7 @@
 			modetext = "<a href='?src=[REF(src)];setexpfalloff=1'>Exponential Falloff Factor</a>: [sustain_exponential_dropoff]% per decisecond<br>"
 	. += "<a href='?src=[REF(src)];setsustainmode=1'>Sustain Mode</a>: [smt]<br>"
 	. += modetext
-	. += using_instrument?.ready()? "Status: [span_good("Ready")]<br>" : "Status: [span_bad("!Instrument Definition Error!")]<br>"
+	. += using_instrument?.ready()? "Status: [span_green("Ready")]<br>" : "Status: [span_bad("!Instrument Definition Error!")]<br>"
 	. += "Instrument Type: [legacy? "Legacy" : "Synthesized"]<br>"
 	. += "<a href='?src=[REF(src)];setvolume=1'>Volume</a>: [volume]<br>"
 	. += "<a href='?src=[REF(src)];setdropoffvolume=1'>Volume Dropoff Threshold</a>: [sustain_dropoff_volume]<br>"

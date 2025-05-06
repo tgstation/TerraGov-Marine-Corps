@@ -85,7 +85,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) && species.has_organ["lungs"])
-		var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
+		var/datum/internal_organ/lungs/L = get_organ_slot(ORGAN_SLOT_LUNGS)
 		L?.take_damage(1, TRUE)
 
 
@@ -176,8 +176,8 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(applied_damage - 5) && stat == CONSCIOUS)
-					apply_effect(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				if(prob(applied_damage - 15) && stat == CONSCIOUS)
+					ParalyzeNoChain(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
 					hit_report += "(KO)"
@@ -194,8 +194,8 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((applied_damage + 5)) && !incapacitated())
-					apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				if(prob((applied_damage - 5)) && stat == CONSCIOUS)
+					ParalyzeNoChain(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked down!"),
 									span_danger("You have been knocked down!"), null, 5)
 					hit_report += "(KO)"
@@ -208,7 +208,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		hit_report += "(delimbed [affecting.display_name])"
 
 	record_melee_damage(user, applied_damage, affecting.limb_status & LIMB_DESTROYED)
-	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) [hit_report.Join(" ")]")
+	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(I.damtype)]) [hit_report.Join(" ")]")
 	if(damage && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
 		user.ff_check(damage, src)
@@ -294,7 +294,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		//thrown weapon embedded object code.
 		if(affecting.limb_status & LIMB_DESTROYED)
 			hit_report += "(delimbed [affecting.display_name])"
-		else if(thrown_item.damtype == BRUTE && is_sharp(thrown_item) && prob(thrown_item.embedding.embed_chance))
+		else if(thrown_item.embedding && thrown_item.damtype == BRUTE && is_sharp(thrown_item) && prob(thrown_item.embedding.embed_chance))
 			thrown_item.embed_into(src, affecting)
 			hit_report += "(embedded in [affecting.display_name])"
 
@@ -394,21 +394,21 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
 	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
 		return ..()
-	if(!internal_organs_by_name["heart"])
+	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("[src] no longer has a heart."))
 		return
 	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
 	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
-	if(!do_after(user, 2 SECONDS, NONE, src))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return
-	if(!internal_organs_by_name["heart"])
+	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("The heart is no longer here!"))
 		return
 	log_combat(user, src, "ripped [src]'s heart", I)
 	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
-	internal_organs_by_name -= "heart"
+	remove_organ_slot(ORGAN_SLOT_HEART)
 	var/obj/item/organ/heart/heart = new
 	heart.die()
 	user.put_in_hands(heart)
@@ -450,7 +450,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
 
 	add_overlay(GLOB.welding_sparks)
-	while(do_after(user, repair_time, NONE, src, BUSY_ICON_BUILD) && I.use_tool(src, user, volume = 50, amount = 2))
+	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(src, user, volume = 50, amount = 2))
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
 			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))

@@ -37,7 +37,7 @@
 		if(!action.ai_should_use(atom_to_walk_to))
 			continue
 		//xeno_action/activable is activated with a different proc for keybinded actions, so we gotta use the correct proc
-		if(istype(action, /datum/action/ability/activable/xeno))
+		if(istype(action, /datum/action/ability/xeno_action))
 			var/datum/action/ability/activable/xeno/xeno_action = action
 			xeno_action.use_ability(atom_to_walk_to)
 		else
@@ -159,7 +159,7 @@
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
 ///Signal handler to try to attack our target
-/datum/ai_behavior/xeno/proc/attack_target(datum/soure, atom/attacked)
+/datum/ai_behavior/xeno/proc/attack_target(datum/source, atom/attacked)
 	SIGNAL_HANDLER
 	if(world.time < mob_parent.next_move)
 		return

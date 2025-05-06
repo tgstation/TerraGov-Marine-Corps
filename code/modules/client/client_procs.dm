@@ -2,9 +2,9 @@
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
 
-#define MIN_RECOMMENDED_CLIENT 1575
-#define REQUIRED_CLIENT_MAJOR 514
-#define REQUIRED_CLIENT_MINOR 1493
+#define MIN_RECOMMENDED_CLIENT 1635
+#define REQUIRED_CLIENT_MAJOR 515
+#define REQUIRED_CLIENT_MINOR 1590
 
 #define LIMITER_SIZE 5
 #define CURRENT_SECOND 1
@@ -241,7 +241,7 @@
 
 	if(byond_version < REQUIRED_CLIENT_MAJOR || (byond_build && byond_build < REQUIRED_CLIENT_MINOR))
 		//to_chat(src, span_userdanger("Your version of byond is severely out of date."))
-		to_chat(src, span_userdanger("TGMC now requires the first stable [REQUIRED_CLIENT_MAJOR] build, please update your client to [REQUIRED_CLIENT_MAJOR].[MIN_RECOMMENDED_CLIENT]."))
+		to_chat(src, span_userdanger("NTC now requires the first stable [REQUIRED_CLIENT_MAJOR] build, please update your client to [REQUIRED_CLIENT_MAJOR].[MIN_RECOMMENDED_CLIENT]."))
 		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
@@ -253,12 +253,8 @@
 		return
 
 	if(byond_build < MIN_RECOMMENDED_CLIENT)
-		to_chat(src, span_userdanger("Your version of byond has known client crash issues, it's recommended you update your version."))
-		to_chat(src, span_danger("Please download a new version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 514.[MIN_RECOMMENDED_CLIENT]."))
-
-	if(byond_build < 1555)
-		to_chat(src, span_userdanger("Your version of byond might have rendering lag issues, it is recommended you update your version to above Byond version 1555 if you encounter them."))
-		to_chat(src, span_danger("You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+		to_chat(src, span_userdanger("Your version of byond is getting out of date, it's recommended you update your version."))
+		to_chat(src, span_danger("Please download a new version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 515.[MIN_RECOMMENDED_CLIENT]."))
 
 	if(num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond version")
@@ -267,14 +263,15 @@
 		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
+		
+	if(byond_version > 515)
+		to_chat(src, span_userdanger("Your byond version may be incompatible with this server."))
+		to_chat(src, span_danger("If you notice many menus showing up only as white boxes, please downgrade to the latest build of byond 515."))
+		to_chat(src, span_danger("You can find byond builds at <a href=\"https://secure.byond.com/download/build\">BYOND's website</a>. Builds of byond 515 specifically can be found at <a href=\"https://secure.byond.com/download/build/515/\">https://secure.byond.com/download/build/515/</a>."))
+		to_chat(src, span_danger("It is possible to have multiple versions of byond installed, in case you use other servers that require different versions of byond."))
 
 	if(GLOB.custom_info)
-		to_chat(src, assemble_alert(
-			title = "Custom Information",
-			subtitle = "The following custom information has been set for this round.",
-			message = GLOB.custom_info,
-			color_override = "red"
-		))
+		custom_info()
 
 	connection_time = world.time
 	connection_realtime = world.realtime
@@ -302,7 +299,6 @@
 
 	send_resources()
 
-	generate_clickcatcher()
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
@@ -873,6 +869,7 @@
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[msay]")
 					else
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
+	calculate_move_dir()
 
 /client/proc/change_view(new_size)
 	if(isnull(new_size))
@@ -903,15 +900,11 @@
 	winset(src, "mainwindow", "is-maximized=true")
 
 
-/client/proc/generate_clickcatcher()
-	if(void)
-		return
-	void = new()
-	screen += void
-
-
+///Creates and applies a clickcatcher
 /client/proc/apply_clickcatcher()
-	generate_clickcatcher()
+	if(!void)
+		void = new()
+	screen |= void
 	var/list/actualview = getviewsize(view)
 	void.UpdateGreed(actualview[1], actualview[2])
 
@@ -944,9 +937,6 @@ GLOBAL_VAR_INIT(automute_on, null)
 	var/weight = SPAM_TRIGGER_WEIGHT_FORMULA(message)
 	total_message_weight += weight
 
-	var/message_cache = total_message_count
-	var/weight_cache = total_message_weight
-
 	if(last_message_time && world.time > last_message_time)
 		last_message_time = 0
 		total_message_count = 0
@@ -954,6 +944,10 @@ GLOBAL_VAR_INIT(automute_on, null)
 
 	else if(!last_message_time)
 		last_message_time = world.time + SPAM_TRIGGER_TIME_PERIOD
+
+	// Having this before the if instead of after requires every long messsage to be sent twice or else have it get locked out.
+	var/message_cache = total_message_count
+	var/weight_cache = total_message_weight
 
 	last_message = message
 
@@ -965,6 +959,8 @@ GLOBAL_VAR_INIT(automute_on, null)
 			to_chat(src, span_danger("You have exceeded the spam filter. An auto-mute was applied."))
 			create_message("note", ckey(key), "SYSTEM", "Automuted due to spam. Last message: '[last_message]'", null, null, FALSE, TRUE, null, FALSE, "Minor")
 			mute(src, mute_type, TRUE)
+		else
+			to_chat(src, span_danger("You have hit the spam filter limit."))
 		return TRUE
 
 	if(warning && GLOB.automute_on && !check_rights(R_ADMIN, FALSE))

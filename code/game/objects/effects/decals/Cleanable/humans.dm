@@ -109,6 +109,57 @@
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
 	amount = 2
 
+/obj/effect/decal/cleanable/blood/splatter/cum
+	name = "cum"
+	basecolor = "#ffffff"
+	desc = "Some semen or something, yuck."
+	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	alpha = 150
+	amount = 2
+
+/obj/effect/decal/cleanable/blood/splatter/cum/dry()
+	name = "dried [name]"
+	desc = "Some semen or something, yuck. It seems to have dried."
+	color = adjust_brightness(color, -75)
+
+/obj/effect/decal/cleanable/blood/splatter/robotcum
+	name = "synthetic cum"
+	basecolor = "#272727"
+	desc = "It's literally oil-y cum."
+	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	amount = 2
+
+/obj/effect/decal/cleanable/blood/splatter/robotcum/dry()
+	name = "dried [name]"
+	desc = "It's literally oil-y cum. It seems to have dried."
+	color = adjust_brightness(color, -75)
+
+/obj/effect/decal/cleanable/blood/splatter/xenocum
+	name = "xeno cum"
+	basecolor = "#62ff8a"
+	desc = "Some acidic xeno semen or something, yuck."
+	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	amount = 2
+
+/obj/effect/decal/cleanable/blood/splatter/xenocum/dry()
+	name = "dried [name]"
+	desc = "Some semen or something, yuck. It seems to have dried."
+	color = adjust_brightness(color, -75)
+
+
+/obj/effect/decal/cleanable/blood/splatter/girlcum
+	name = "pussyjuice"
+	basecolor = "#999999"
+	desc = "Some pussy juice or something, yuck."
+	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	alpha = 100
+	amount = 2
+
+/obj/effect/decal/cleanable/blood/splatter/girlcum/dry()
+	name = "dried [name]"
+	desc = "Some pussy juice or something, yuck. It seems to have dried."
+	color = adjust_brightness(color, -75)
+
 /obj/effect/decal/cleanable/blood/drip
 	name = "drips of blood"
 	desc = "Some small drips of blood."
@@ -200,11 +251,12 @@
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 
-/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
+/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions, mapload = FALSE)
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
-			sleep(0.3 SECONDS)
+			if(!mapload)
+				sleep(0.3 SECONDS)
 			if (i > 0)
 				var/obj/effect/decal/cleanable/blood/b = new /obj/effect/decal/cleanable/blood/splatter(src.loc)
 				b.basecolor = src.basecolor

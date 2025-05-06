@@ -44,6 +44,13 @@
 		human_user.adjust_mob_accuracy(accuracy_mod)
 	if(armor_features_flags & ARMOR_FIRE_RESISTANT)
 		ADD_TRAIT(human_user, TRAIT_NON_FLAMMABLE, src)
+	if(armor_features_flags & MELEE_ONLY_ARMOR)
+		ADD_TRAIT(human_user, TRAIT_KNIGHT, src)
+		ADD_TRAIT(human_user, TRAIT_SWORD_EXPERT, src)
+		ADD_TRAIT(human_user, TRAIT_AXE_EXPERT, src)
+		human_user.set_skills(human_user.skills.modifyRating(unarmed=1))
+		human_user.set_skills(human_user.skills.modifyRating(melee_weapons=1))
+		human_user.set_skills(human_user.skills.modifyRating(stamina=1))
 
 
 /obj/item/clothing/unequipped(mob/unequipper, slot)
@@ -56,6 +63,13 @@
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
 	if(armor_features_flags & ARMOR_FIRE_RESISTANT)
 		REMOVE_TRAIT(human_unequipper, TRAIT_NON_FLAMMABLE, src)
+	if(armor_features_flags & MELEE_ONLY_ARMOR)
+		REMOVE_TRAIT(human_unequipper, TRAIT_KNIGHT, src)
+		REMOVE_TRAIT(human_unequipper, TRAIT_AXE_EXPERT, src)
+		REMOVE_TRAIT(human_unequipper, TRAIT_SWORD_EXPERT, src)
+		human_unequipper.set_skills(human_unequipper.skills.modifyRating(unarmed=-1))
+		human_unequipper.set_skills(human_unequipper.skills.modifyRating(melee_weapons=-1))
+		human_unequipper.set_skills(human_unequipper.skills.modifyRating(stamina=-1))
 	return ..()
 
 /obj/item/clothing/vendor_equip(mob/user)
@@ -65,6 +79,9 @@
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
+
+/obj/item/clothing/examine_descriptor(mob/user)
+	return "clothing item"
 
 /obj/item/clothing/update_greyscale()
 	. = ..()
@@ -144,14 +161,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
-	var/supporting_limbs = NONE
-	var/blood_overlay_type = "suit"
-	var/shield_state = "shield-blue"
-
-	// Strength of the armor light used by [proc/set_light()]
 	light_power = 3
 	light_range = 4
 	light_system = MOVABLE_LIGHT
+	///Blood overlay icon_state
+	var/blood_overlay_type = "suit"
 
 /obj/item/clothing/suit/Initialize(mapload)
 	. = ..()
@@ -265,6 +279,15 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
 
+/obj/item/clothing/mask/examine_descriptor(mob/user)
+	return "mask"
+
+/obj/item/clothing/mask/examine_tags(mob/user)
+	. = ..()
+	if(anti_hug)
+		.["larval hugger proof"] = "It will protect the wearer from [anti_hug] larval hugger attack\s."
+	else if(initial(anti_hug) > 0 && !anti_hug)
+		.[span_warning("not larval hugger protective")] = "It won't protect the wearer from larval hugger attacks anymore. Replace it as soon as possible."
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes
@@ -281,7 +304,6 @@
 	armor_protection_flags = FEET
 	equip_slot_flags = ITEM_SLOT_FEET
 	permeability_coefficient = 0.50
-	slowdown = SHOES_SLOWDOWN
 	blood_sprite_state = "shoeblood"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 5, FIRE = 5, ACID = 20)
 

@@ -44,7 +44,7 @@
 	var/list/surgery_todo_list = list() //a list of surgeries to do.
 //	var/surgery_t = 0 //Surgery timer in seconds.
 	var/surgery = FALSE
-	var/surgery_mod = 1 //What multiple to increase the surgery timer? This is used for any non-WO maps or events that are done.
+	var/surgery_mod = 0.5 //What multiple to increase the surgery timer? This is used for any non-WO maps or events that are done.
 	var/filtering = 0
 	var/blood_transfer = 0
 	var/heal_brute = 0
@@ -279,7 +279,7 @@
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_GERMS)
 			if(L.surgery_open_stage)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
-	var/datum/internal_organ/I = M.internal_organs_by_name["eyes"]
+	var/datum/internal_organ/I = M.get_organ_slot(ORGAN_SLOT_EYES)
 	if(I && (M.disabilities & NEARSIGHTED || M.disabilities & BLIND || I.damage > 0))
 		surgery_list += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,I)
 	if(M.getBruteLoss() > 0)
@@ -355,9 +355,9 @@
 		sleep(-1)
 		var/datum/autodoc_surgery/S = surgery_todo_list[currentsurgery]
 		if(automaticmode)
-			surgery_mod = 1.5 // automatic mode takes longer
+			surgery_mod = 1 // automatic mode takes longer
 		else
-			surgery_mod = 1 // might need tweaking
+			surgery_mod = 0.5 // might need tweaking
 
 		switch(S.type_of_surgery)
 			if(ORGAN_SURGERY)
@@ -743,7 +743,7 @@
 		usr.visible_message(span_notice("[usr] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
+		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
 			return
 	if(surgery)
 		surgery = 0
@@ -772,12 +772,12 @@
 		target.visible_message(span_notice("[target] fumbles around figuring out how to get into \the [src]."),
 		span_notice("You fumble around figuring out how to get into \the [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(target, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(target, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	target.visible_message(span_notice("[target] starts climbing into \the [src]."),
 	span_notice("You start climbing into \the [src]."))
-	if(do_after(target, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
+	if(do_after(target, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
 			to_chat(user, span_notice("[src] is already occupied!"))
 			return
@@ -1226,7 +1226,7 @@
 			N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_GERMS)
 
 		if(href_list["eyes"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,connected.occupant.internal_organs_by_name["eyes"])
+			N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,connected.occupant.get_organ_slot(ORGAN_SLOT_EYES))
 
 		if(href_list["organdamage"])
 			for(var/i in connected.occupant.limbs)

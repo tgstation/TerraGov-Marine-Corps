@@ -1,5 +1,5 @@
 /obj/machinery/deployable
-	atom_flags = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
 	allow_pass_flags = PASS_AIR
@@ -7,6 +7,7 @@
 	var/default_icon_state
 	///Weakref to item that is deployed to create src.
 	var/datum/weakref/internal_item
+	var/ownerflag = MINIMAP_FLAG_MARINE
 
 /obj/machinery/deployable/Initialize(mapload, _internal_item, mob/deployer)
 	. = ..()
@@ -29,6 +30,13 @@
 
 	prepare_huds()
 	if(istype(deployer))
+		switch (deployer.faction)
+			if(FACTION_TERRAGOV)
+				ownerflag = MINIMAP_FLAG_MARINE
+			if(FACTION_SOM)
+				ownerflag = MINIMAP_FLAG_MARINE_SOM
+			if(FACTION_CLF)
+				ownerflag = MINIMAP_FLAG_MARINE_CLF
 		var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[deployer.faction]] //we find the faction squad hud
 		if(sentry_status_hud)
 			sentry_status_hud.add_to_hud(src)
@@ -49,20 +57,11 @@
 /obj/machinery/deployable/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 120, 5 SECONDS)
 
-///Dissassembles the device
-/obj/machinery/deployable/proc/disassemble(mob/user)
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return
-	var/obj/item/item = get_internal_item()
-	if(!item)
+/obj/machinery/deployable/disassemble(mob/user)
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
 		return
-	if(CHECK_BITFIELD(item.item_flags, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "Cannot disassemble")
-		return
-	operator?.unset_interaction()
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+	return ..()
 
 /obj/machinery/deployable/Destroy()
 	operator?.unset_interaction()

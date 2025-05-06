@@ -1,0 +1,150 @@
+2024-08-01:
+  2whatever2:
+  - balance: The FK-88 now has a fullscope instead of the old HSG sight it had.
+  Cheese, Cre, Stardust:
+  - rscadd: Praetorian Rouny Sprites
+  Cheese, Stardust, & Cre:
+  - rscadd: Rounified version of queen sprites
+  - rscadd: Royal Xeno queen plushie; Get one now from the arcade consoles, or from
+      Req.
+  Lumipharon:
+  - bugfix: fixed patrol points in Campaign
+  - bugfix: fixed timeshift not ended if the wraith died early
+  Runian:
+  - rscadd: The amount of req points gained from xenomorph sales are recorded and
+      displayed in round-end screen.
+  - rscadd: Vehicle interior door is on-par with its exterior door as it now allows
+      you to take out non-mobs (like crates).
+  - spellcheck: Removes unnecessary space from shock's "is having trouble standing".
+  - balance: Drop pods now warns nearby marines of where it'll land with an overlay.
+  - imageadd: Droppod warning overlay.
+  breadhunt:
+  - rscadd: Adds rappel system, turning POs into glorified elevators once more.
+  - rscadd: Adds the spare rappel cord box. Required to repair the rappel system.
+  - imageadd: rappel system sprite, rappel cord box
+  fleewave:
+  - qol: All harvester weapons now autoload chems after attacking.
+2024-08-06:
+  Cheese:
+  - balance: Xenos are now able to place acid instantly during prep phase
+  Lumipharon:
+  - bugfix: fixed an issue with airburst projectiles
+  - imageadd: V-31 AP mag has an extra stripe for visual clarity
+  - code_imp: Cleaned up some fullscreen overlay code. In particular this should improve
+      projectile impact screen overlays
+  - bugfix: fixed a few visual issues with action buttons
+  - qol: Projectile hit messages for objects and turfs now only show up if the damage
+      if high enough, reducing lag from chat spam
+  Neocloudy:
+  - rscadd: Health analyzers have new themes for humans and robots.
+  - rscadd: You can now use health analyzers in hand to change the theme back to the
+      original before this PR.
+  - spellcheck: Fixed the treatment advice for using trauma kits.
+  - bugfix: Various fixes to health analyzer tooltips.
+  RipGrayson:
+  - bugfix: Fixed a window frame going invisible.
+  YehnBeep:
+  - bugfix: Fixed looping power issue with the SMES units on the Pillar of Spring.
+  yyzsong:
+  - spellcheck: the meatball emoji is now named meatball
+2024-08-08:
+  Lumipharon:
+  - admin: 'Campaign: Added a team shuffle button to the campaign panel'
+  - rscadd: Added deployable flags. Defend the colours!
+  - code_imp: Cleaned up some deployable component code
+  - bugfix: fixed some fullscreen overlays not working
+  - bugfix: fixed barricade decon dropping incorrect quantities of mats
+  Runian:
+  - bugfix: Resin silos now grant their spawned minions the correct hive number.
+2024-08-09:
+  Lumipharon:
+  - bugfix: fixed AI mobs getting stuck in place for no reason
+  - bugfix: fixed AI mobs not attacking their target or doing anything at all, if
+      on the same tile as their target
+2024-08-11:
+  Lumipharon:
+  - bugfix: fixed kits being consumed on undamaged bodyparts
+  - bugfix: fixed an exploit to kit an entire body with one kit
+2024-08-13:
+  Koenigsegg:
+  - rscadd: Added a valhalla reqtorio vendor
+  - rscadd: Added the reqtorio valhalla vendor to the vehicle pit in valhalla
+  Lumipharon:
+  - qol: Xeno fire and wound overlays no longer appear in the right click menu
+  - bugfix: fixed all xeno abilities that use damage or ap mods on attack
+  - bugfix: fixed AI mobs having cursed glide size in many cases
+  Vondiech/Citruses:
+  - rscadd: Adds ERP, Emergency Response Pranksters, a new possible distress beacon
+      spawn of clowns! Aligned with TGMC
+  - bugfix: GOATS no longer get an EVIL-looking GLEAM in their EYE when getting HIT
+      while UNCONSCIOUS/DEAD.
+2024-08-15:
+  Vondiech/Citruses:
+  - bugfix: Geotherm gens/SMES on LV-759 now are properly wired to power grid making
+      them actually able to power the map.
+  - bugfix: Fixes the consoles of a body scanner & sleeper on the Arachne shipmap.
+  yyzsong:
+  - balance: removes podlocks from the outer windows of the "Outrider" and "Umbilical"
+      tadpole variants
+2024-08-17:
+  breadhunt:
+  - qol: The "acting SL" of a squad will now get a golden trim around their squad
+      icon/minimap icon
+  - rscadd: Latejoining SLs will no longer "take over" the acting SL status of any
+      existing squad leaders/aSLs in the squad
+2024-08-19:
+  ICE-IS-NICE:
+  - bugfix: '"Launch evacuation pod" button is now fixed and usable.'
+  Lumipharon:
+  - qol: You can update detpack freq and code by hitting it with a signaler, or hitting
+      the signaler with the detpack
+  - balance: 'Campaign: Smartgunners have access to the SH-34 as a belt option, and
+      SH-35 as a perk unlockable backslot option'
+  - bugfix: Fixed the hovertank coilgun hotkey
+  - bugfix: fixed sentry targetting being blocked by tanks
+  - bugfix: Airlocks will no longer shock mech pilots
+  - bugfix: Putting a sentry back up will no longer make it dense if it wasn't orignally
+      so
+  - balance: 'Campaign: Buffed Hovertank coilgun low and medium power modes slightly'
+  - bugfix: fixed campaign autobalance sometimes triggering far later than intended
+  Neocloudy:
+  - refactor: Screen warnings for fire, nutrition, temperature, pressure, suffocation,
+      etc now use thrown alerts.
+  - refactor: Updated HTML tooltip code to TG standards.
+  - bugfix: Tooltips aren't offset to halfway down your screen anymore.
+  Pariah919:
+  - balance: SVD and HPR now cost 300 points to buy in Requisitions instead of 150
+      to reflect their status.
+  jonash07:
+  - bugfix: fixed retractable railings smoothing with walls for some reason
+  yyzsong:
+  - bugfix: Valhalla reqtorio vendor may now vend unboxers.
+2024-08-20:
+  Lumipharon:
+  - balance: Crest defence makes the user immune to light explosion tosses
+  XElectricX:
+  - bugfix: Xenos cannot damage resin doors again.
+  ivanmixo:
+  - bugfix: Fixed ghosts being able to make huggers jump out of bags
+  - code_imp: Hugger code is a little bit better
+2024-08-25:
+  ICE-IS-NICE:
+  - rscadd: Suppressor makes bullets less visible.
+  Lumipharon:
+  - bugfix: fixed AGLS frag rounds detonating under mobs
+  yyzsong:
+  - balance: SG-29 reqtorio drum refill 250 -> 350 points
+  - balance: SG-85 reqtorio bin refill 250 -> 350 points
+  - balance: SG-62 reqtorio magazine refill 250 -> 400 points
+  - balance: SG-62 reqtorio ammo bin refill 250 -> 400 points
+2024-08-26:
+  Isy232:
+  - qol: Research Outpost LZ 1 Minor Expansion for Vehicles
+2024-08-30:
+  Joe13413:
+  - rscadd: New survivor armor and melee weapon
+  - balance: Survivors now spawn with job specific gear, radios, flashlights, and
+      crowbars.
+2024-08-31:
+  Lumipharon:
+  - bugfix: fixed mobs getting perma space debuff when riding tanks across z-levels

@@ -43,7 +43,7 @@
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/old/open
-	name = "Jaeger Mk.I Pattern Infantry Helmet"
+	name = "Jaeger Mk.I Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk1/infantry/old

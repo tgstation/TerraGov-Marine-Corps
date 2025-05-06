@@ -10,7 +10,7 @@
 	possible_transfer_amounts = list(1,2,3,4,5)
 	w_class = WEIGHT_CLASS_TINY
 	volume = 5
-	init_reagent_flags = TRANSPARENT
+	reagent_flags = TRANSPARENT
 	var/filled = 0
 
 /obj/item/reagent_containers/dropper/afterattack(obj/target, mob/user , flag)
@@ -34,7 +34,7 @@
 			var/time = 20 //2/3rds the time of a syringe
 			visible_message(span_danger("[user] is trying to squirt something into [target]'s eyes!"))
 
-			if(!do_after(user, time, NONE, target, BUSY_ICON_HOSTILE))
+			if(!do_mob(user, target, time, BUSY_ICON_HOSTILE))
 				return
 
 			if(ishuman(target))

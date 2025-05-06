@@ -207,6 +207,10 @@
 	var/turf/firedturf = get_turf(src)
 	firedturf.AICtrlShiftClick(user)
 
+/obj/alien/weeds/AICtrlClick(mob/living/silicon/ai/user)
+	var/turf/firedturf = get_turf(src)
+	firedturf.AICtrlClick(user)
+
 /* Xenos */
 /mob/living/carbon/xenomorph/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_NORMAL)
@@ -247,6 +251,9 @@
 
 /obj/structure/xeno/trap/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_NORMAL)
+
+/obj/structure/xeno/baneling_pod/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_LOW)
 
 /* acid */
 
@@ -306,7 +313,7 @@
 	if(HAS_TRAIT(user, TRAIT_IS_FIRING_RAILGUN))
 		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
 		return
-	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A)) //can't fire the railgun off the ground level, or at the DS
+	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A) || A.area_flags & MARINE_BASE) //can't fire the railgun off the ground level, at the DS, or in FOB
 		to_chat(user, span_warning("Incompatible target location."))
 		return
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
@@ -330,7 +337,7 @@
 	var/obj/effect/overlay/temp/laser_target/RGL = new (src, 0, user.name)
 	laser = RGL
 	playsound(src, 'sound/effects/angry_beep.ogg', 55)
-	if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, NONE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+	if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, TRUE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 		QDEL_NULL(laser)
 		REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 		return
@@ -341,7 +348,7 @@
 			QDEL_NULL(laser)
 			REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 			return
-		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, NONE, laser, BUSY_ICON_GENERIC)) //delay between shots
+		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, TRUE, laser, BUSY_ICON_GENERIC)) //delay between shots
 			QDEL_NULL(laser)
 			REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 			break

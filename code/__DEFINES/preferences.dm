@@ -28,6 +28,7 @@
 #define BE_DEATHMATCH (1<<3)
 #define BE_SQUAD_STRICT (1<<4)
 #define BE_ALIEN_UNREVIVABLE (1<<5)
+#define BE_HIVE_TARGET (1<<6)
 
 #define BE_SPECIAL_DEFAULT (BE_DEATHMATCH)
 
@@ -46,9 +47,8 @@
 #define SOUND_AMBIENCE (1<<2)
 #define SOUND_LOBBY (1<<3)
 #define SOUND_INSTRUMENTS_OFF (1<<4)
-#define SOUND_GAS_MASK (1<<5)
-#define SOUND_WEATHER (1<<6)
-#define SOUND_NOENDOFROUND (1<<7)
+#define SOUND_WEATHER (1<<5)
+#define SOUND_NOENDOFROUND (1<<6)
 
 #define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|SOUND_WEATHER)
 
@@ -113,9 +113,10 @@
 #define DRAW_ORDER 7
 
 #define CITIZENSHIP_CHOICES list(\
-	"Earth Born",\
-	"Sol Born",\
-	"Colony Born"\
+	"Phantom City (Earth)",\
+	"Nomad (Earth)",\
+	"Local (Colony born)",\
+	"Foreign (Another Planet Somehow)"\
 	)
 
 
@@ -194,8 +195,17 @@
 	)
 
 #define BE_SPECIAL_FLAGS list(\
-	"Latejoin Xenomorph" = BE_ALIEN,\
-	"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,\
+	"Join as Chestburster" = BE_ALIEN,\
+	"Take Own Chestburster" = BE_ALIEN_UNREVIVABLE,\
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
+	"Eligible for Hive Target" = BE_HIVE_TARGET,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT\
 	)
+
+#define HIVE_STATUS_SHOW_EMPTY (1<<0)
+#define HIVE_STATUS_COMPACT_MODE (1<<1)
+#define HIVE_STATUS_SHOW_GENERAL (1<<2)
+#define HIVE_STATUS_SHOW_POPULATION (1<<3)
+#define HIVE_STATUS_SHOW_XENO_LIST (1<<4)
+#define HIVE_STATUS_SHOW_STRUCTURES (1<<5)
+#define HIVE_STATUS_DEFAULTS (HIVE_STATUS_SHOW_EMPTY | HIVE_STATUS_SHOW_GENERAL | HIVE_STATUS_SHOW_POPULATION | HIVE_STATUS_SHOW_XENO_LIST | HIVE_STATUS_SHOW_STRUCTURES)

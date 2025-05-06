@@ -29,6 +29,7 @@
 /obj/item/detpack/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
+	code = rand(1, 100)
 
 
 /obj/item/detpack/examine(mob/user)
@@ -82,30 +83,11 @@
 	. = ..()
 	if(.)
 		return
-
-	if(ismultitool(I) && armed)
-		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
-			user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
-			span_notice("You fumble around figuring out how to use [src]."))
-			var/fumbling_time = 30
-			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-				return
-
-			if(prob((SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER)) * 20))
-				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
-				timer = 0 //Oops. Now you fucked up. Immediate detonation.
-
-		user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
-		span_notice("You begin disarming [src] with [I]."))
-
-		if(!do_after(user, 30, NONE, src, BUSY_ICON_FRIENDLY))
-			return
-
-		user.visible_message(span_notice("[user] disarms [src]."),
-		span_notice("You disarm [src]."))
-		armed = FALSE
-		update_icon()
-
+	if(issignaler(I))
+		var/obj/item/assembly/signaler/signaler = I
+		code = signaler.code
+		set_frequency(signaler.frequency)
+		to_chat(user, "You transfer the frequency and code of [signaler] to [src].")
 
 /obj/item/detpack/attack_hand(mob/living/user)
 	if(armed)
@@ -114,12 +96,36 @@
 	if(plant_target)
 		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
 		span_notice("You begin unsecuring [src] from [plant_target]."))
-		if(!do_after(user, 30, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message(span_notice("[user] unsecures [src] from [plant_target]."),
 		span_notice("You unsecure [src] from [plant_target]."))
 		nullvars()
 	return ..()
+
+/obj/item/detpack/multitool_act(mob/living/user, obj/item/I)
+	if(!armed && !on)
+		balloon_alert(user, "Inactive")
+		return
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
+		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
+		span_notice("You fumble around figuring out how to use [src]."))
+		var/fumbling_time = 3 SECONDS
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+			return
+
+		if(prob((SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER)) * 20))
+			to_chat(user, span_userdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this."))
+			timer = 0 //Oops. Now you fucked up. Immediate detonation.
+
+	user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
+	span_notice("You begin disarming [src] with [I]."))
+
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
+		return
+
+	balloon_alert_to_viewers("Disarmed")
+	disarm()
 
 /obj/item/detpack/proc/nullvars()
 	if(ismovableatom(plant_target) && plant_target.loc)
@@ -163,7 +169,6 @@
 	else
 		armed = FALSE
 		disarm()
-		update_icon()
 
 
 /obj/item/detpack/Topic(href, href_list)
@@ -201,7 +206,7 @@
 		return FALSE
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
 	return TRUE
@@ -245,10 +250,21 @@
 /obj/item/detpack/afterattack(atom/target, mob/user, flag)
 	if(!flag)
 		return FALSE
+	if(issignaler(target))
+		var/obj/item/assembly/signaler/signaler = target
+		code = signaler.code
+		set_frequency(signaler.frequency)
+		to_chat(user, "You transfer the frequency and code of [signaler] to [src].")
+		return
 	if(istype(target, /obj/item) || istype(target, /mob))
 		return FALSE
 	if(target.resistance_flags & INDESTRUCTIBLE)
 		return FALSE
+	if(istype(target, /obj/vehicle/unmanned))
+		var/obj/vehicle/unmanned/unmanned_target = target
+		if(!unmanned_target.allow_explosives)
+			to_chat(user, "[span_warning("[src] doesnt fit on [unmanned_target]")]!")
+			return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
 		if(!W.damageable)
@@ -261,13 +277,13 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		if(!do_after(user, 5 SECONDS, NONE, target, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_UNSKILLED))
 			return
 
 	user.visible_message(span_warning("[user] is trying to plant [name] on [target]!"),
 	span_warning("You are trying to plant [name] on [target]!"))
 
-	if(do_after(user, 3 SECONDS, NONE, target, BUSY_ICON_HOSTILE))
+	if(do_after(user, 3 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
 			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return
@@ -319,6 +335,8 @@
 	if(detonation_pending)
 		deltimer(detonation_pending)
 		detonation_pending = null
+	armed = FALSE
+	on = FALSE
 	update_icon()
 
 /obj/item/detpack/proc/do_detonate()

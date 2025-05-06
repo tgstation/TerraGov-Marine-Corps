@@ -45,7 +45,7 @@
 
 	if(istype(I, /obj/item/cell) && anchored)
 		if(istype(I, /obj/item/cell/night_vision_battery))
-			balloon_alert(user, "Not rechargeable")
+			to_chat(user, span_warning("This brand of cell is not rechargeable."))
 			return
 
 		if(charging)
@@ -103,7 +103,7 @@
 	if((machine_stat & (BROKEN|NOPOWER)) || !anchored)
 		return
 
-	if (charging && !charging.fully_charged())
+	if (charging && !charging.is_fully_charged())
 		charging.give(active_power_usage*GLOB.CELLRATE)
 
 		updateicon()

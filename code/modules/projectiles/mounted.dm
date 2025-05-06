@@ -77,10 +77,9 @@
 	if(!ishuman(user))
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return
 
 	reload(user, I)
 
@@ -277,7 +276,7 @@
 	setDir(angle)
 	user.set_interaction(src)
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
+	operator.visible_message("[operator] rotates the [src].","You rotate [src].")
 	update_pixels(user, TRUE)
 
 	if(current_scope?.deployed_scope_rezoom)
@@ -338,7 +337,7 @@
 
 	if(anchor_time)
 		balloon_alert(user, "You begin [anchored ? "unanchoring" : "anchoring"] [src]")
-		if(!do_after(user, anchor_time, NONE, src))
+		if(!do_after(user, anchor_time, TRUE, src))
 			balloon_alert(user, "Interrupted!")
 			return
 

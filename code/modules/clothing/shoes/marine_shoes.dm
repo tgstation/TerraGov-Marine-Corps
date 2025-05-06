@@ -1,5 +1,5 @@
 /obj/item/clothing/shoes/marine
-	name = "marine combat boots"
+	name = "Operative combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "marine"
 	worn_icon_state = "marine"
@@ -40,8 +40,54 @@
 /obj/item/clothing/shoes/marine/full
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 
+/obj/item/clothing/shoes/marine/sneakingboots
+	name = "Operative sneaking boots"
+	desc = "An expensive specially-padded pair-of boots that eliminate footsteps, issued to Senior Operatives of NTC."
+	icon_state = "marine"
+	worn_icon_state = "marine"
+	armor_protection_flags = FEET
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
+	inventory_flags = NOQUICKEQUIP|NOSLIPPING
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
+
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/boot,
+		/obj/item/armor_module/storage/boot/full,
+		/obj/item/armor_module/storage/boot/som_knife,
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
+/obj/item/clothing/shoes/marine/sneakingboots/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/shoes/marine/sneakingboots/update_icon_state()
+	icon_state = initial(icon_state)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+	for(var/atom/item_in_pocket AS in armor_storage.contents)
+		if(istype(item_in_pocket, /obj/item/weapon/combat_knife) || istype(item_in_pocket, /obj/item/attachable/bayonetknife) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
+			icon_state += "-knife"
+
+/obj/item/clothing/shoes/marine/sneakingboots/equipped(mob/user, shoes)
+	. = ..()
+	ADD_TRAIT(user, TRAIT_LIGHT_STEP, ARMOR_TRAIT)
+
+/obj/item/clothing/shoes/marine/sneakingboots/unequipped(mob/unequipper, shoes)
+	. = ..()
+	REMOVE_TRAIT(unequipper, TRAIT_LIGHT_STEP, ARMOR_TRAIT)
+
 /obj/item/clothing/shoes/marine/brown
-	name = "brown marine combat boots"
+	name = "brown Operative combat boots"
 	icon_state = "marine_brown"
 	worn_icon_state = "marine_brown"
 
@@ -63,7 +109,7 @@
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/marinechief/captain
-	name = "captain's shoes"
+	name = "Commander's shoes"
 	desc = "Has special soles for better trampling those underneath."
 
 /obj/item/clothing/shoes/marinechief/som
@@ -75,9 +121,7 @@
 	name = "spatial agent's shoes"
 	desc = "Shoes worn by a spatial agent."
 
-/obj/item/clothing/shoes/veteran
-
-/obj/item/clothing/shoes/veteran/pmc
+/obj/item/clothing/shoes/marine/pmc
 	name = "polished shoes"
 	desc = "The height of fashion, but these look to be woven with protective fiber."
 	icon_state = "jackboots"
@@ -90,6 +134,9 @@
 	heat_protection_flags = FEET
 	inventory_flags = NOSLIPPING
 	siemens_coefficient = 0.6
+
+/obj/item/clothing/shoes/marine/pmc/full
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 
 /obj/item/clothing/shoes/marine/deathsquad
 	name = "\improper PMC commando boots"
@@ -150,6 +197,15 @@
 	icon_state = "boots"
 	worn_icon_state = "boots"
 
+/obj/item/clothing/shoes/marine/vsd
+	name = "\improper combat boots"
+	desc = "V.S.D's standard issue combat boots"
+	icon_state = "boots"
+	worn_icon_state = "boots"
+
+/obj/item/clothing/shoes/marine/vsd/full
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
 /obj/item/clothing/shoes/marine/clf/full
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 
@@ -167,4 +223,28 @@
 	icon_state = "icc_guard"
 
 /obj/item/clothing/shoes/marine/icc/guard/knife
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
+/obj/item/clothing/shoes/marine/tdf
+	icon_state = "tdf"
+
+/obj/item/clothing/shoes/marine/tdf/full
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
+/obj/item/clothing/shoes/marine/srf //Basically SWAT shoes combined with galoshes.
+	name = "combat boots"
+	desc = "When you REALLY want to turn up the heat"
+	icon_state = "swat"
+	worn_icon_state = "swat"
+	item_flags = SYNTH_RESTRICTED
+	soft_armor = list(MELEE = 80, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 50, BIO = 10, FIRE = 25, ACID = 25)
+	inventory_flags = NOSLIPPING
+	siemens_coefficient = 0.6
+
+	cold_protection_flags = FEET
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection_flags = FEET
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/shoes/marine/srf/full
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)

@@ -45,15 +45,15 @@
 ///Handles updating the cockpit overlay
 /obj/structure/caspart/caschair/proc/set_cockpit_overlay(new_state)
 	cut_overlays()
-	cockpit = image('icons/Marine/cas_plane_cockpit.dmi', src, new_state)
+	cockpit = image('icons/obj/structures/cas_cockpit.dmi', src, new_state)
 	cockpit.pixel_x = -16
 	cockpit.pixel_y = -32
 	cockpit.layer = ABOVE_ALL_MOB_LAYER
 	add_overlay(cockpit)
-	var/image/side = image('icons/Marine/casship.dmi', src, "3")
+	var/image/side = image('icons/turf/cas.dmi', src, "3")
 	side.pixel_x = 32
 	add_overlay(side)
-	side = image('icons/Marine/casship.dmi', src, "6")
+	side = image('icons/turf/cas.dmi', src, "6")
 	side.pixel_x = -32
 	add_overlay(side)
 
@@ -84,7 +84,7 @@
 				return
 
 			to_chat(user, span_notice("You start climbing into the cockpit..."))
-			if(!do_after(user, 2 SECONDS, NONE, src))
+			if(!do_after(user, 2 SECONDS, TRUE, src))
 				return
 
 			user.visible_message(span_notice("[user] climbs into the plane cockpit!"), span_notice("You get in the seat!"))
@@ -135,7 +135,7 @@
 			to_chat(occupant, span_notice("Getting out of the cockpit while flying seems like a bad idea to you."))
 			return
 		to_chat(occupant, span_notice("You start getting out of the cockpit."))
-		if(!do_after(occupant, 2 SECONDS, NONE, src))
+		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return
 	set_cockpit_overlay("cockpit_opening")
 	addtimer(CALLBACK(src, PROC_REF(set_cockpit_overlay), "cockpit_open"), 7)

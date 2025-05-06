@@ -346,8 +346,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /datum/ai_behavior/proc/ai_do_move()
 	if(!mob_parent?.canmove || mob_parent.do_actions)
 		return
-	/// This allows minions to be buckled to their atom_to_escort without disrupting the movement of atom_to_escort
-	if(get_dist(mob_parent, atom_to_walk_to) <= 0)
+	//This allows minions to be buckled to their atom_to_escort without disrupting the movement of atom_to_escort
+	if(current_action == ESCORTING_ATOM && (get_dist(mob_parent, atom_to_walk_to) <= 0)) //todo: Entirely remove this shitcode snowflake check for one specific interaction that doesn't specifically relate to ai_behavior
 		return
 	mob_parent.next_move_slowdown = 0
 	var/step_dir
@@ -361,6 +361,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			else if(ISDIAGONALDIR(step_dir))
 				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown //Not perfect but good enough
+				mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
 			return
 		if(prob(sidestep_prob))
 			step_dir = pick(LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to)))
@@ -369,6 +370,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			else if(ISDIAGONALDIR(step_dir))
 				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
+				mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
 		return
 	if(get_dist(mob_parent, atom_to_walk_to) < distance_to_maintain) //We're too close, back it up
 		step_dir = get_dir(atom_to_walk_to, mob_parent)
@@ -384,3 +386,4 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
 	else if(ISDIAGONALDIR(step_dir))
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
+	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))

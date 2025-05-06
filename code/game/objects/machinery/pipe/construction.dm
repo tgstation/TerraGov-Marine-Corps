@@ -59,7 +59,7 @@ Buildable meters
 /obj/item/pipe/proc/make_from_existing(obj/machinery/atmospherics/make_from)
 	setDir(make_from.dir)
 	pipename = make_from.name
-	add_atom_colour(make_from.color, FIXED_COLOUR_PRIORITY)
+	add_atom_colour(make_from.color, FIXED_COLOR_PRIORITY)
 	pipe_type = make_from.type
 
 /obj/item/pipe/trinary/flippable/make_from_existing(obj/machinery/atmospherics/components/trinary/make_from)

@@ -8,6 +8,7 @@
 	equip_slot_flags = NONE
 	caliber = CALIBER_44
 	icon_state = "m44"
+	icon = 'icons/obj/items/ammo/revolver.dmi'
 	icon_state_mini = "mag_revolver_bronze"
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 6

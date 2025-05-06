@@ -5,6 +5,7 @@ import {
   LabeledList,
   Section,
   Stack,
+  Tooltip,
 } from '../../components';
 import {
   LoopingSelectionPreference,
@@ -41,6 +42,25 @@ export const GameSettings = (props) => {
   const { act, data } = useBackend<GameSettingData>();
   const { ui_style_color, scaling_method, pixel_size, parallax, is_admin } =
     data;
+
+  // Remember to update this alongside defines
+  // todo: unfuck. Bruh why is this being handled in the tsx?
+  const TTSRadioSetting = ['sl', 'squad', 'command', 'hivemind', 'all'];
+  const TTSRadioSettingToBitfield = {
+    sl: 1 << 0,
+    squad: 1 << 1,
+    command: 1 << 2,
+    all: 1 << 3,
+    hivemind: 1 << 4,
+  };
+  const TTSRadioSettingToName = {
+    sl: 'Squad Leader',
+    squad: 'Squad',
+    command: 'Command/Hive Leader',
+    hivemind: 'Hivemind',
+    all: 'All Channels',
+  };
+
   return (
     <Section title="Game Settings">
       <Stack fill>
@@ -77,6 +97,31 @@ export const GameSettings = (props) => {
                 label="Text to speech volume"
                 value="volume_tts"
               />
+              <LabeledList.Item label={'Text to Speech radio configuration'}>
+                {TTSRadioSetting.map((setting) => (
+                  <Button.Checkbox
+                    inline
+                    key={setting}
+                    content={TTSRadioSettingToName[setting]}
+                    checked={
+                      TTSRadioSettingToBitfield[setting] &
+                      data['radio_tts_flags']
+                    }
+                    onClick={() =>
+                      act('toggle_radio_tts_setting', {
+                        newsetting: setting,
+                      })
+                    }
+                  />
+                ))}
+              </LabeledList.Item>
+              <Tooltip content="Use more accessible TGUI themes/layouts wherever possible.">
+                <ToggleFieldPreference
+                  label="Accessible TGUI themes"
+                  value="accessible_tgui_themes"
+                  action="accessible_tgui_themes"
+                />
+              </Tooltip>
               <ToggleFieldPreference
                 label="Fullscreen mode"
                 value="fullscreen_mode"
@@ -214,6 +259,15 @@ export const GameSettings = (props) => {
                 rightValue={1}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Show xeno rank"
+                value="show_xeno_rank"
+                action="show_xeno_rank"
+                leftValue={1}
+                leftLabel={'Enabled'}
+                rightValue={0}
+                rightLabel={'Disabled'}
+              />
             </LabeledList>
           </Section>
         </Stack.Item>
@@ -289,6 +343,54 @@ export const GameSettings = (props) => {
             </LabeledList>
           </Section>
         </Stack.Item>
+        <Stack.Item grow>
+          <Section title="Sound settings">
+            <LabeledList>
+              <ToggleFieldPreference
+                label="Toggle admin music"
+                value="toggle_admin_music"
+                action="toggle_admin_music"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle ambience sound"
+                value="toggle_ambience_sound"
+                action="toggle_ambience_sound"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle lobby music"
+                value="toggle_lobby_music"
+                action="toggle_lobby_music"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle instruments sound"
+                value="toggle_instruments_sound"
+                action="toggle_instruments_sound"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle weather sound"
+                value="toggle_weather_sound"
+                action="toggle_weather_sound"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle round end sounds"
+                value="toggle_round_end_sounds"
+                action="toggle_round_end_sounds"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+            </LabeledList>
+          </Section>
+        </Stack.Item>
       </Stack>
       {!!is_admin && (
         <Stack>
@@ -306,6 +408,13 @@ export const GameSettings = (props) => {
                   label="Split admin tabs"
                   value="split_admin_tabs"
                   action="split_admin_tabs"
+                  leftLabel={'Enabled'}
+                  rightLabel={'Disabled'}
+                />
+                <ToggleFieldPreference
+                  label="Toggle adminhelp sound"
+                  value="toggle_adminhelp_sound"
+                  action="toggle_adminhelp_sound"
                   leftLabel={'Enabled'}
                   rightLabel={'Disabled'}
                 />

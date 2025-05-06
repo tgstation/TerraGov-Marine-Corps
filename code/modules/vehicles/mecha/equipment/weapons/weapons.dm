@@ -71,7 +71,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30, TRUE)
-		if(!do_after(source, windup_delay, NONE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
+		if(!do_after(source, windup_delay, TRUE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -145,6 +145,11 @@
 		if(head)
 			projectile_to_fire.accuracy *= head.accuracy_mod //todo: we can probably just make the accuracy_mod apply directly to the gun like attachments do
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
+	if(!isliving(firer))
+		return
+	var/mob/living/living_firer = firer
+	if(living_firer.IsStaggered())
+		projectile_to_fire.damage *= STAGGER_DAMAGE_MULTIPLIER
 	if((projectile_to_fire.ammo.ammo_behavior_flags & AMMO_IFF) && ishuman(firer))
 		var/mob/living/carbon/human/human_firer = firer
 		var/obj/item/card/id/id = human_firer.get_idcard()

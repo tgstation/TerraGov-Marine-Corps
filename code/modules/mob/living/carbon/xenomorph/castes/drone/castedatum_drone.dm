@@ -12,18 +12,18 @@
 	gib_flick = "gibbed-a-small"
 
 	// *** Melee Attacks *** //
-	melee_damage = 18
+	melee_damage = 19
 
 	// *** Speed *** //
 	speed = -1.2
-	weeds_speed_mod = -0.4
+	weeds_speed_mod = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 1000
-	plasma_gain = 40
+	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 380
 
 	// *** Evolution *** //
 	evolution_threshold = 100
@@ -47,15 +47,21 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/essence_link,
-		/datum/action/ability/activable/xeno/psychic_cure/acidic_salve,
+		/datum/action/ability/activable/xeno/psychic_cure/resin_salve,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,
 		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 		/datum/action/ability/xeno_action/create_jelly/slow,
@@ -77,15 +83,21 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/essence_link,
-		/datum/action/ability/activable/xeno/psychic_cure/acidic_salve,
+		/datum/action/ability/activable/xeno/psychic_cure/resin_salve,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,
 		/datum/action/ability/xeno_action/sow,
 		/datum/action/ability/xeno_action/enhancement,

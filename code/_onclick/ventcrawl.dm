@@ -57,8 +57,9 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			if(iscarbon(src))//It must have atleast been 1 to get this far
 				var/failed = FALSE
 				var/list/items_list = get_equipped_items() //include_pockets = TRUE)
-				if(length(items_list))
-					failed = TRUE
+				if(!ishuman(src))
+					if(length(items_list))
+						failed = TRUE
 				if(failed)
 					to_chat(src, span_warning("You can't crawl around in the ventilation ducts with items!"))
 					return
@@ -67,7 +68,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			visible_message(span_notice("[stealthy ? "[src] scrambles into the ventilation ducts!" : ""]"),span_notice("You climb into the ventilation ducts."))
 
 			if(!stealthy) //Xenos with stealth vent crawling can silently enter/exit vents.
-				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+				playsound(src, SFX_ALIEN_VENTPASS, 35, TRUE)
 
 			forceMove(vent_found)
 			update_pipe_vision()

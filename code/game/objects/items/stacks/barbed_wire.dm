@@ -2,7 +2,6 @@
 /obj/item/stack/barbed_wire
 	name = "barbed wire"
 	desc = "A spiky length of wire."
-	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "barbed_wire"
 	item_flags = NOBLUDGEON
 	singular_name = "length"
@@ -52,7 +51,7 @@
 /obj/item/stack/razorwire
 	name = "razor wire assembly"
 	desc = "A bundle of barbed wire supported by metal rods. Used to deny access to areas under pain of entanglement and injury. A classic fortification since the 1900s."
-	icon = 'icons/obj/structures/barbedwire.dmi'
+	icon = 'icons/obj/structures/barricades/barbedwire.dmi'
 	icon_state = "barbedwire_assembly"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
@@ -102,7 +101,7 @@
 	if(user.skills.getRating(SKILL_ENGINEER)) //Higher skill lowers the delay.
 		delay_assembly -= 0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER) * 2
 
-	if(do_after(user, delay_assembly, NONE, src, BUSY_ICON_BUILD))
+	if(do_after(user, delay_assembly, TRUE, src, BUSY_ICON_BUILD))
 		var/obj/structure/razorwire/M = new /obj/structure/razorwire(target)
 		M.setDir(user.dir)
 		user.visible_message(span_notice("[user] assembles a [M]."),

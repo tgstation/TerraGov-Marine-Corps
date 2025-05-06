@@ -37,7 +37,7 @@
 
 /obj/item/storage/belt/utility
 	name = "\improper M276 pattern toolbelt rig" //Carn: utility belt is nicer, but it bamboozles the text parsing.
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version lacks any combat functionality, and is commonly used by engineers to transport important tools."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version lacks any combat functionality, and is commonly used by engineers to transport important tools."
 	icon_state = "utilitybelt"
 	worn_icon_state = "utility"
 	storage_type = /datum/storage/belt/utility
@@ -62,14 +62,14 @@
 
 /obj/item/storage/belt/medical_small
 	name = "\improper M276 pattern light medical rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This lightweight configuration is often used for bulk carrying of medical supplies by marines."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This lightweight configuration is often used for bulk carrying of medical supplies by marines."
 	icon_state = "medicalbelt_small"
 	worn_icon_state = "medicbag"
 	storage_type = /datum/storage/belt/medical_small
 
 /obj/item/storage/belt/lifesaver
 	name = "\improper M276 pattern lifesaver bag"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
 	icon_state = "medicalbag"
 	worn_icon_state = "medicbag"
 	storage_type = /datum/storage/belt/lifesaver
@@ -100,26 +100,26 @@
 
 /obj/item/storage/belt/lifesaver/quick/Initialize(mapload)  //quick load for combat patrol
 	. = ..()
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/splint(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/alkysine(src)
 	new /obj/item/storage/pill_bottle/imidazoline(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/storage/pill_bottle/meralyne(src)
 	new /obj/item/storage/pill_bottle/dermaline(src)
-	new /obj/item/storage/pill_bottle/hypervene(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/lifesaver/beginner/Initialize(mapload, ...) //For beginner vendor
@@ -189,20 +189,20 @@
 	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/alkysine(src)
 	new /obj/item/storage/pill_bottle/imidazoline(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/storage/pill_bottle/meralyne(src)
 	new /obj/item/storage/pill_bottle/dermaline(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/lifesaver/icc
@@ -210,6 +210,30 @@
 	desc = "A medical belt made from synthetic tan fibres, carries just about anything you would need to respond to traumatic injury in combat."
 	icon_state = "medicbag_icc"
 	worn_icon_state = "medicbag_icc"
+
+/obj/item/storage/belt/lifesaver/icc/full/PopulateContents()  //The belt, with all it's magic inside!
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/isotonic(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/storage/pill_bottle/alkysine(src)
+	new /obj/item/storage/pill_bottle/imidazoline(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/lifesaver/icc/ert/PopulateContents()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -236,7 +260,7 @@
 
 /obj/item/storage/belt/rig
 	name = "\improper M276 pattern medical storage rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies and heavier medical tools."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies and heavier medical tools."
 	icon_state = "medicalbelt"
 	worn_icon_state = "medical"
 	storage_type = /datum/storage/belt/rig
@@ -281,7 +305,7 @@
 
 /obj/item/storage/belt/hypospraybelt
 	name = "\improper M276 pattern hypospray belt"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers. You could probably fit a syringe case too."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers. You could probably fit a syringe case too."
 	icon_state = "hypospraybelt"
 	worn_icon_state = "medicbag"
 	storage_type = /datum/storage/belt/hypospraybelt
@@ -332,7 +356,7 @@
 
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This configuration is commonly seen among TGMC Military Police and peacekeepers, though it can hold some light munitions."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This configuration is commonly seen among NTC Military Police and peacekeepers, though it can hold some light munitions."
 	icon_state = "securitybelt"
 	worn_icon_state = "security"//Could likely use a better one.
 	storage_type = /datum/storage/belt/security
@@ -346,7 +370,7 @@
 
 /obj/item/storage/belt/marine
 	name = "\improper M276 pattern ammo load rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	icon_state = "marinebelt"
 	worn_icon_state = "marinebelt"
 	w_class = WEIGHT_CLASS_BULKY
@@ -533,6 +557,14 @@
 	new /obj/item/cell/lasgun/volkite(src)
 	new /obj/item/cell/lasgun/volkite(src)
 
+/obj/item/storage/belt/marine/som/big/PopulateContents()
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+
 /obj/item/storage/belt/marine/som/mpi_plum/PopulateContents()
 	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
@@ -601,7 +633,7 @@
 
 
 			to_chat(user, span_notice("You start refilling [src] with [M]."))
-			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
 			for(var/x in 1 to (storage_datum.storage_slots - length(contents)))
@@ -609,7 +641,7 @@
 				if(!cont)
 					break
 
-			playsound(user.loc, "rustle", 15, TRUE, 6)
+			playsound(user.loc, SFX_RUSTLE, 15, TRUE, 6)
 			to_chat(user, span_notice("You refill [src] with [M]."))
 			return TRUE
 
@@ -711,20 +743,20 @@
 
 /obj/item/storage/belt/shotgun/icc/mixed/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
 
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
@@ -777,12 +809,26 @@
 	existing_handful.create_handful(user, 1)
 	update_icon()
 
+/obj/item/storage/belt/shotgun/martini/full/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+
 /obj/item/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"
-	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is specially designed with six holsters to store throwing knives. Not commonly issued, but kept in service."
+	desc="The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is specially designed with six holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knifebelt"
 	worn_icon_state="knifebelt"
-	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/belt/knifepouch
 
 /obj/item/storage/belt/knifepouch/PopulateContents()
@@ -795,7 +841,7 @@
 
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
-	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
+	desc="The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt"
 	worn_icon_state="grenadebelt"
 	w_class = WEIGHT_CLASS_BULKY

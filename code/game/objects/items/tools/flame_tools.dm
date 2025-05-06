@@ -253,7 +253,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/clothing/mask/cigarette))
 		var/obj/item/clothing/mask/cigarette/C = W
-		if(C.lit)
+		if(C.heat)
 			light(span_notice("[user] lights [user.p_their()] [src] with the [C] after a few attempts."))
 
 	else if(istype(W, /obj/item/tool/candle))
@@ -377,7 +377,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return TRUE
 
 /obj/item/clothing/mask/cigarette/attack_turf(turf/target_turf, mob/living/user)
-	if(!lit && locate(/obj/flamer_fire) in target_turf.contents)
+	if(!lit && locate(/obj/fire/flamer) in target_turf.contents)
 		light(span_notice("[user] lights [user.p_their()] [src] with the burning ground."))
 		return TRUE
 	return ..()

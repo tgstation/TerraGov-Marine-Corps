@@ -20,6 +20,8 @@
 // /datum/action/ability/xeno_action. Additional references
 /// A mutable appearance to add the "empowered" frame around the edges
 #define VREF_MUTABLE_EMPOWERED_FRAME "VREF_EMPOWERED_FRAME"
+/// A reference for baneling's respawn charges
+#define VREF_MUTABLE_BANE_CHARGES "VREF_BANE_CHARGES"
 /// A reference for the build counter of a xeno
 #define VREF_MUTABLE_BUILDING_COUNTER "VREF_BUILD_COUNTER"
 //A reference for the special resin build counter of a xeno
@@ -32,6 +34,12 @@
 #define VREF_MUTABLE_SAVAGE_COOLDOWN "VREF_SAVAGE_COOLDOWN"
 // extra define for jab charges
 #define VREF_MUTABLE_JAB "VREF_JAB"
+// extra reference for how many boiler neuro globs we have
+#define VREF_MUTABLE_NEUROGLOB_COUNTER "VREF_NEUROGLOB_COUNTER"
+// extra reference for how many boiler acid globs we have
+#define VREF_MUTABLE_CORROSIVEGLOB_COUNTER "VREF_CORROSIVEGLOB_COUNTER"
+// extra reference for how many boiler acid globs we have
+#define VREF_MUTABLE_AMMO_COUNTER "VREF_AMMO_COUNTER"
 
 
 /// Actions that toggle on click/trigger

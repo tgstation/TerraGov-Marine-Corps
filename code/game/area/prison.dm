@@ -7,7 +7,6 @@
 /area/prison/security
 	name = "Security Department"
 	icon_state = "security"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/prison/security/briefing
@@ -55,7 +54,6 @@
 
 /area/prison/security/monitoring/highsec
 	name = "High-Security Monitoring"
-	ceiling = CEILING_METAL
 
 /area/prison/security/monitoring/maxsec
 	name = "Maximum-Security Monitoring"
@@ -95,7 +93,6 @@
 
 /area/prison/security/checkpoint/maxsec_highsec
 	name = "Maximum-to-High-Security Checkpoint"
-	ceiling = CEILING_UNDERGROUND_METAL
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/prison/security/checkpoint/hangar
@@ -118,12 +115,10 @@
 
 /area/prison/recreation
 	icon_state = "party"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/recreation/staff
 	name = "Staff Recreation"
-	ceiling = CEILING_GLASS
 
 /area/prison/recreation/medsec
 	name = "Medium-Security Recreation"
@@ -137,12 +132,10 @@
 /area/prison/execution
 	name = "Execution"
 	icon_state = "dark"
-	ceiling = CEILING_METAL
 
 /area/prison/store
 	name = "Prison Store"
 	icon_state = "bar"
-	ceiling = CEILING_METAL
 
 /area/prison/chapel
 	name = "Chapel"
@@ -150,7 +143,6 @@
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/holding
-	ceiling = CEILING_METAL
 
 /area/prison/holding/holding1
 	name = "Holding Cell 1"
@@ -163,7 +155,6 @@
 /area/prison/cleaning
 	name = "Custodial Supplies"
 	icon_state = "janitor"
-	ceiling = CEILING_METAL
 
 /area/prison/command/office
 	name = "Warden's Office"
@@ -182,7 +173,6 @@
 
 /area/prison/toilet
 	icon_state = "restrooms"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/toilet/canteen
@@ -199,7 +189,6 @@
 
 /area/prison/maintenance
 	icon_state = "asmaint"
-	ceiling = CEILING_METAL
 
 /area/prison/maintenance/residential/nw
 	name = "Northwest Civilian Residences Maintenance"
@@ -215,11 +204,9 @@
 
 /area/prison/maintenance/residential/access/north
 	name = "North Civilian Residences Access"
-	ceiling = CEILING_GLASS
 
 /area/prison/maintenance/residential/access/south
 	name = "South Civilian Residences Access"
-	ceiling = CEILING_GLASS
 
 /area/prison/maintenance/staff_research
 	name = "Staff-Research Maintenance"
@@ -243,13 +230,11 @@
 /area/prison/kitchen
 	name = "Kitchen"
 	icon_state = "kitchen"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/laundry
 	name = "Laundry"
 	icon_state = "bluenew"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/library
@@ -260,7 +245,6 @@
 /area/prison/engineering
 	name = "Engineering"
 	icon_state = "engine"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/prison/engineering/atmos
@@ -270,12 +254,10 @@
 /area/prison/intake
 	name = "Intake Processing"
 	icon_state = "green"
-	ceiling = CEILING_METAL
 
 /area/prison/parole/main
 	name = "Parole"
 	icon_state = "blue2"
-	ceiling = CEILING_METAL
 
 /area/prison/parole/protective_custody
 	name = "Protective Custody Parole"
@@ -284,7 +266,6 @@
 /area/prison/visitation
 	name = "Visitation"
 	icon_state = "yellow"
-	ceiling = CEILING_METAL
 
 /area/prison/yard
 	name = "Yard"
@@ -292,7 +273,6 @@
 	ceiling = CEILING_NONE
 
 /area/prison/hallway
-	ceiling = CEILING_METAL
 
 /area/prison/hallway/entrance
 	name = "Entrance Hallway"
@@ -315,7 +295,6 @@
 	icon_state = "dk_yellow"
 
 /area/prison/quarters
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/quarters/staff
@@ -332,7 +311,6 @@
 	icon_state = "purple"
 
 /area/prison/cellblock/
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_CELL_LOW
 
 /area/prison/cellblock/lowsec/nw
@@ -422,12 +400,10 @@
 /area/prison/disposal
 	name = "Disposals"
 	icon_state = "disposal"
-	ceiling = CEILING_METAL
 
 /area/prison/medbay
 	name = "Infirmary"
 	icon_state = "medbay"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/prison/medbay/foyer
@@ -523,19 +499,16 @@
 /area/prison/hangar_storage/main
 	name = "Main Hangar Storage"
 	icon_state = "quartstorage"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_REQ
 
 /area/prison/hangar_storage/research
 	name = "Research Hangar Storage"
 	icon_state = "toxstorage"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/prison/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomsatcham"
-	ceiling = CEILING_METAL
 
 /area/prison/pirate
 	name = "Tramp Freighter \"Rocinante\""
@@ -551,4 +524,3 @@
 
 /area/prison/console
 	name = "Shuttle Console"
-	ceiling = CEILING_METAL

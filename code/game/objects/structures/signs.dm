@@ -1,15 +1,22 @@
 /obj/structure/sign
-	icon = 'icons/obj/decals_arrow.dmi'
+	icon = 'icons/obj/decals_arrow.dmi' // a copy of icons/obj/decals.dmi with directional arrows on the sprites, so a mapper knows which way a sign is facing
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
 	layer = WALL_OBJ_LAYER
 	var/directional = TRUE //if true init to a given x/y offset on a wall, if not leave floating in space. used for multiple signs on a wall to prevent them all from moving to the same offset and overlapping/becoming unreadable
+	/// The clean version of the sprite, which we replace in initialize when the sign loads in game
+	var/base_icon = 'icons/obj/decals.dmi'
+	///if true try to automatically find the nearest wall and put ourselves on it
+	var/autoplace = TRUE
 
 /obj/structure/sign/Initialize(mapload)
 	. = ..()
-	icon = 'icons/obj/decals.dmi'
 	if(!directional) //if not directional do not initialize to a x or y offset
+		return
+	icon = base_icon
+	if(autoplace)
+		place_poster()
 		return
 	switch(dir)
 		if(NORTH)
@@ -20,6 +27,48 @@
 			pixel_x = 30
 		if(WEST)
 			pixel_x = -30
+
+//automatically adjust place and offset to make sure sign isn't floating in the middle of nowhere
+/obj/structure/sign/proc/place_poster()
+	if(isclosedturf(get_step(loc, dir)))
+		switch(dir)
+			if(NORTH)
+				pixel_y = 32
+			if(SOUTH)
+				pixel_y = -32
+			if(EAST)
+				pixel_x = 30
+			if(WEST)
+				pixel_x = -30
+		return
+	if(isclosedturf(get_turf(loc)))
+		return
+	for(var/i in CARDINAL_ALL_DIRS)
+		if(!isclosedturf(get_step(loc, i)))
+			continue
+		else
+			switch(i)
+				if(NORTH)
+					pixel_y = 32
+				if(NORTHEAST)
+					pixel_y = 32
+					pixel_x = 30
+				if(NORTHWEST)
+					pixel_y = 32
+					pixel_x = -30
+				if(SOUTH)
+					pixel_y = -32
+				if(SOUTHWEST)
+					pixel_y = -32
+					pixel_x = -30
+				if(SOUTHEAST)
+					pixel_y = -32
+					pixel_x = 30
+				if(EAST)
+					pixel_x = 30
+				if(WEST)
+					pixel_x = -30
+			return
 
 /obj/structure/sign/ex_act(severity)
 	if(severity == EXPLODE_WEAK)
@@ -379,6 +428,16 @@
 	desc = "A direction sign, pointing out which way the Mining department is."
 	icon_state = "direction_mining"
 
+/obj/structure/sign/fixedinplace/hangar
+	name = "\improper Hangar bay"
+	desc = "A direction sign, pointing out which way the Hangar bay is."
+	icon_state = "direction_hangar"
+
+/obj/structure/sign/fixedinplace/cryo
+	name = "\improper Cryogenics bay"
+	desc = "A direction sign, pointing out which way the Cryogenics bay is."
+	icon_state = "direction_cryo"
+
 //end nondirectional signs
 
 /obj/structure/sign/safety/
@@ -541,7 +600,7 @@
 //Marine signs
 
 /obj/structure/sign/ROsign
-	name = "\improper TGMC requisitions office guidelines"
+	name = "\improper NTC requisitions office guidelines"
 	desc = " 1. You are not entitled to service or equipment. Attachments are a privilege, not a right.\n 2. You must be fully dressed to obtain service. Cryosleep underwear is non-permissible.\n 3. The Requsitions Officer has the final say and the right to decline service. Only the Acting Captain may override his decisions.\n 4. Please treat your Requsitions staff with respect. They work hard."
 	icon_state = "roplaque"
 
@@ -551,13 +610,13 @@
 	icon_state = "prop1"
 
 /obj/structure/sign/prop2
-	name = "\improper TGMC poster"
-	desc = "A deeply faded poster of a group of glamorous TerraGov Marine Corps in uniform. Probably taken pre-Alpha."
+	name = "\improper NTC poster"
+	desc = "A deeply faded poster of a group of glamorous Nine Tailed Fox in uniform. Probably taken pre-Alpha."
 	icon_state = "prop2"
 
 /obj/structure/sign/prop3
-	name = "\improper TGMC poster"
-	desc = "An old recruitment poster for the TGMC. Looking at it floods you with a mixture of pride and sincere regret."
+	name = "\improper NTC poster"
+	desc = "An old recruitment poster for the NTC. Looking at it floods you with a mixture of pride and sincere regret."
 	icon_state = "prop3"
 
 /obj/structure/sign/prop4

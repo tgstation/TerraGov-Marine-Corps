@@ -98,11 +98,14 @@
 
 		if("announce")
 			if(authenticated == 2)
+				if(TIMER_COOLDOWN_CHECK(usr, COOLDOWN_HUD_ORDER))
+					to_chat(usr, span_warning("You've sent an announcement or message too recently!"))
+					return
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					to_chat(usr, span_warning("Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements."))
 					return FALSE
 
-				var/input = tgui_input_text(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "",multiline = TRUE, encode = FALSE)
+				var/input = tgui_input_text(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "",multiline = TRUE, encode = FALSE, max_length = 100)
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
@@ -122,6 +125,7 @@
 				priority_announce(input, subtitle = "Sent by [sender.get_paygrade(0) ? sender.get_paygrade(0) : sender.job.title] [sender.real_name]", type = ANNOUNCEMENT_COMMAND)
 				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
 				log_game("[key_name(usr)] has just sent a command announcement.")
+				TIMER_COOLDOWN_START(usr, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
 				cooldown_message = world.time
 
 		if("award")
@@ -129,7 +133,7 @@
 				to_chat(usr, span_warning("Only the Captain can award medals."))
 				return
 			var/mob/living/user = usr
-			if(!ismarinecaptainjob(user.job))
+			if(!ismarinecommandjob(user.job))
 				to_chat(usr, span_warning("Only the Captain can award medals."))
 				return
 
@@ -139,7 +143,7 @@
 		if("evacuation_start")
 			if(state == STATE_EVACUATION)
 				if(world.time < EVACUATION_TIME_LOCK) //Cannot call it early in the round.
-					to_chat(usr, span_warning("TGMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again."))
+					to_chat(usr, span_warning("NTC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again."))
 					return FALSE
 
 				if(!SSticker?.mode)
@@ -155,7 +159,7 @@
 					return FALSE
 
 				if(SSevacuation.scuttle_flags & FLAGS_EVACUATION_DENY)
-					to_chat(usr, span_warning("The TGMC has placed a lock on deploying the evacuation pods."))
+					to_chat(usr, span_warning("The NTC has placed a lock on deploying the evacuation pods."))
 					return FALSE
 
 				if(!SSevacuation.initiate_evacuation())
@@ -218,7 +222,7 @@
 				var/AllXenos[] = All[2]
 				if((AllXenos < round(AllMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
 					to_chat(usr, span_warning("The sensors aren't picking up enough of a threat to warrant a distress beacon."))
-					return FALSE
+					return TRUE
 
 				SSticker.mode.distress_cancelled = FALSE
 				just_called = TRUE
@@ -294,20 +298,20 @@
 		if("setmsg2")
 			stat_msg2 = reject_bad_text(tgui_input_text(usr, "Line 2", "Enter Message Text", stat_msg2, 40, encode = FALSE))
 
-		if("messageTGMC")
+		if("messageNTC")
 			if(authenticated == 2)
 				if(world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
 					to_chat(usr, span_warning("Arrays recycling.  Please stand by."))
 					return FALSE
 
-				var/msg = tgui_input_text(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "", encode = FALSE)
+				var/msg = tgui_input_text(usr, "Please choose a message to transmit to the NTC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "", encode = FALSE)
 				if(!msg || !usr.Adjacent(src) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
 					return FALSE
 
 
 				tgmc_message(msg, usr)
 				to_chat(usr, span_notice("Message transmitted."))
-				usr.log_talk(msg, LOG_SAY, tag = "TGMC announcement")
+				usr.log_talk(msg, LOG_SAY, tag = "NTC announcement")
 				cooldown_central = world.time
 
 		if("securitylevel")
@@ -351,7 +355,7 @@
 
 				if(authenticated == 2)
 					dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=announce'>Make an announcement</A> \]"
-					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=[text_ref(src)];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
+					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=[text_ref(src)];operation=messageNTC'>Send a message to NTC</A> \]" : "<BR>\[ NTC communication offline \]"
 					dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=award'>Award a medal</A> \]"
 					if(CONFIG_GET(flag/infestation_ert_allowed)) // We only add the UI if the flag is allowed
 						dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=distress'>Send Distress Beacon</A> \]"
@@ -447,6 +451,8 @@
 	log_game("[key_name(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
 
+/obj/machinery/computer/communications/antag
+	req_access = null
 
 #undef STATE_DEFAULT
 #undef STATE_MESSAGELIST

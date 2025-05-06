@@ -190,6 +190,13 @@
 		bullethole_overlay = image('icons/effects/bulletholes.dmi', src, "bhole_[bullethole_variation]_[current_bulletholes]")
 	. += bullethole_overlay
 
+/turf/closed/wall/do_acid_melt()
+	. = ..()
+	if(acided_hole)
+		ScrapeAway()
+		return
+	new /obj/effect/acid_hole(src)
+
 ///Applies damage to the wall
 /turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, armour_penetration = 0)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
@@ -224,6 +231,7 @@
 	if(user?.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.integrity_repaired += repair_amount
+		personal_statistics.mission_integrity_repaired += repair_amount
 		personal_statistics.times_repaired++
 	wall_integrity += repair_amount
 	update_icon()
@@ -337,7 +345,7 @@
 		span_notice("You start repairing the damage to [src]."))
 		add_overlay(GLOB.welding_sparks)
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
+		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
 			cut_overlay(GLOB.welding_sparks)
 			return
 
@@ -357,7 +365,7 @@
 					span_notice("You begin slicing through the outer plating."))
 					add_overlay(GLOB.welding_sparks)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						cut_overlay(GLOB.welding_sparks)
 						return
 
@@ -375,7 +383,7 @@
 					span_notice("You begin removing the support lines."))
 					playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -392,7 +400,7 @@
 					add_overlay(GLOB.welding_sparks)
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						cut_overlay(GLOB.welding_sparks)
 						return
 
@@ -410,7 +418,7 @@
 					span_notice("You struggle to pry off the cover."))
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -425,7 +433,7 @@
 					span_notice("You start loosening the anchoring bolts securing the support rods."))
 					playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -440,7 +448,7 @@
 					span_notice("You begin uncrimping the hydraulic lines."))
 					playsound(src, 'sound/items/wirecutter.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -455,7 +463,7 @@
 					span_notice("You struggle to pry off the inner sheath."))
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -472,7 +480,7 @@
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 					add_overlay(GLOB.welding_sparks)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						cut_overlay(GLOB.welding_sparks)
 						return
 
@@ -500,7 +508,7 @@
 
 	var/mob/living/grabbed_mob = grab.grabbed_thing
 	step_towards(grabbed_mob, src)
-	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	var/state = user.grab_state
 	switch(state)
 		if(GRAB_PASSIVE)
@@ -522,5 +530,5 @@
 			user.drop_held_item()
 	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
 	take_damage(damage, BRUTE, MELEE)
-	playsound(src, get_sfx("slam"), 40)
+	playsound(src, SFX_SLAM, 40)
 	return TRUE

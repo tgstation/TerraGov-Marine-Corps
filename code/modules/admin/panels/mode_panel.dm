@@ -12,7 +12,7 @@
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
-	dat += "Round Duration: <B>[worldtime2text()]</B><BR>"
+	dat += "Round Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B><BR>"
 
 	var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
 	if(rulerless_countdown)
@@ -56,7 +56,7 @@
 
 	dat += "<br><br>"
 
-	dat += "<br><table cellspacing=5><tr><td><B>Corporate Liaisons</B></td><td></td><td></td></tr>"
+	dat += "<br><table cellspacing=5><tr><td><B>Operations Officers</B></td><td></td><td></td></tr>"
 	for(var/i in GLOB.human_mob_list)
 		var/mob/living/carbon/human/H = i
 		if(!iscorporateliaisonjob(H.job))

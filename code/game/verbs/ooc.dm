@@ -368,9 +368,11 @@
 	if(!mob)
 		return
 
+/*
 	if(mob.stat == DEAD && !admin)
 		to_chat(src, span_warning("You must be alive to use LOOC."))
 		return
+*/
 
 	if(IsGuestKey(key))
 		to_chat(src, "Guests may not use LOOC.")
@@ -430,8 +432,11 @@
 			to_chat(M, message)
 	else
 		message = span_looc("[span_prefix("LOOC:")] [mob.name]: [span_message("[msg]")]")
-		for(var/mob/M in range(mob))
-			to_chat(M, message)
+		var/turf/mobturf = get_turf(mob)
+		for(var/mob/M in GLOB.player_list)
+			var/turf/Mturf = get_turf(M)
+			if(mobturf.z == Mturf.z && get_dist(Mturf,mobturf) <= world.view)
+				to_chat(M, message)
 
 	for(var/client/C AS in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)

@@ -54,7 +54,7 @@
 	///Whether the contents on the meds_beaker will be injected into the wearer when the system is turned on
 	var/automatic_meds_use = TRUE
 	///Image that gets added to the wearer's overlays and gets changed based on resource_storage_current
-	var/static/image/resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
+	var/static/image/resource_overlay = image('icons/mob/hud/human.dmi', icon_state = "chemsuit_vis")
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
 	///Information about how reagents boost the system's effects.
 	var/reagent_info = ""
@@ -199,7 +199,7 @@
 		to_chat(wearer, span_bold("WARNING: You have [(200 - (vali_necro_timer))/10] seconds before necrotic tissue forms on your limbs."))
 	if(vali_necro_timer > 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /atom/movable/screen/fullscreen/animated/infection, 1)
-		to_chat(wearer, span_highdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
+		to_chat(wearer, span_userdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
 
 /**
  *	Opens the radial menu with everything
@@ -341,7 +341,7 @@
 
 	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT, TRUE, 0, NONE, TRUE, 4)
 	wearer.balloon_alert(wearer, "You begin connecting [held_item]")
-	if(!do_after(wearer, 1 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_mob(wearer, held_item, 1 SECONDS, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_flags = IGNORE_USER_LOC_CHANGE))
 		wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
 		wearer.balloon_alert(wearer, "You were interrupted")
 		return
@@ -411,7 +411,7 @@
 		return
 
 	wearer.balloon_alert(wearer, "You begin filling [held_item]")
-	if(!do_after(wearer, 1 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_mob(wearer, held_item, 1 SECONDS, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
 	update_resource(-volume)
@@ -445,7 +445,7 @@
 	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume) //Pills should never be empty so we don't worry about loading into them
 		var/pick = tgui_input_list(wearer, "Unload internal reagent storage into held container:", "Vali system", list("Yes", "No"))
 		if(pick == "Yes")
-			if(!do_after(wearer, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+			if(!do_mob(wearer, held_item, 0.5 SECONDS, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_flags = IGNORE_USER_LOC_CHANGE))
 				return
 			meds_beaker.reagents.trans_to(held_beaker, 30)
 			to_chat(wearer, get_meds_beaker_contents())
@@ -455,7 +455,7 @@
 		wearer.balloon_alert(wearer, "The system's reagent storage is full")
 		return
 
-	if(!do_after(wearer, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_mob(wearer, held_item, 0.5 SECONDS, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_flags = IGNORE_USER_LOC_CHANGE))
 		return
 
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)

@@ -190,7 +190,7 @@
 		return TRUE
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	user.visible_message( \
@@ -203,7 +203,7 @@
 /obj/machinery/atmospherics/proc/can_unwrench(mob/user)
 	return can_unwrench
 
-/obj/machinery/atmospherics/deconstruct(disassembled = TRUE)
+/obj/machinery/atmospherics/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		if(can_unwrench)
 			var/obj/item/pipe/stored = new construction_type(loc, null, dir, src)
@@ -229,7 +229,7 @@
 
 /obj/machinery/atmospherics/on_construction(obj_color, set_layer)
 	if(can_unwrench)
-		add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
+		add_atom_colour(obj_color, FIXED_COLOR_PRIORITY)
 		pipe_color = obj_color
 	setPipingLayer(set_layer)
 	var/turf/T = get_turf(src)
@@ -264,14 +264,14 @@
 	if(!silent_crawl) //Xenos with silent crawl can silently enter/exit/move through vents.
 		visible_message(span_warning("You hear something squeezing through the ducts."))
 	to_chat(user, span_notice("You begin to climb out of [src]"))
-	if(!do_after(user, vent_crawl_exit_time, IGNORE_HELD_ITEM, src))
+	if(!do_after(user, vent_crawl_exit_time, FALSE, src))
 		return FALSE
 	user.remove_ventcrawl()
 	user.forceMove(T)
 	user.visible_message(span_warning("[user] climbs out of [src].</span>"), \
 	span_notice("You climb out of [src].</span>"))
 	if(!silent_crawl)
-		playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+		playsound(src, SFX_ALIEN_VENTPASS, 35, TRUE)
 
 
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)
@@ -301,7 +301,7 @@
 				if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTSOUND) || silent_crawl)
 					return
 				TIMER_COOLDOWN_START(user, COOLDOWN_VENTSOUND, 3 SECONDS)
-				playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, TRUE, -3)
+				playsound(src, pick('sound/effects/alien/ventcrawl1.ogg','sound/effects/alien/ventcrawl2.ogg'), 50, TRUE, -3)
 	else if((direction & initialize_directions) || is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 		climb_out(user, src.loc)
 

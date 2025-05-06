@@ -18,11 +18,11 @@
 	name = "PMC Standard"
 	jobtype = /datum/job/pmc/standard
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/silver/standard
 	belt = /obj/item/storage/belt/marine
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
@@ -68,6 +68,55 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
+//PMC medic
+/datum/job/pmc/medic
+	title = "PMC Medic"
+	paygrade = "PMC2"
+	skills_type = /datum/skills/combat_medic/pmc
+	outfit = /datum/outfit/job/pmc/medic
+
+//medic loadout
+/datum/outfit/job/pmc/medic
+	name = "PMC Medic"
+	jobtype = /datum/job/pmc/medic
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/lifesaver/quick
+	ears = /obj/item/radio/headset/mainship/marine/pmc
+	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
+	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
+	gloves = /obj/item/clothing/gloves/defibrillator
+	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
+	mask = /obj/item/clothing/mask/gas/pmc
+	glasses = /obj/item/clothing/glasses/hud/health
+	suit_store = /obj/item/weapon/gun/smg/m25/elite/pmc
+	r_store = /obj/item/storage/pouch/medical_injectors/medic
+	l_store =/obj/item/storage/pouch/pressurized_reagent_pouch/bktt
+	back = /obj/item/storage/backpack/lightpack
+
+/datum/outfit/job/pmc/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/ap, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers_advanced, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(H), SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+
+
 
 //PMC Gunner
 /datum/job/pmc/gunner
@@ -83,9 +132,9 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/belt_harness/marine
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
@@ -142,9 +191,9 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/webbing
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/sniper
@@ -193,9 +242,9 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/leader/holster
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/leader

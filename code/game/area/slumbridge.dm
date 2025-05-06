@@ -12,6 +12,7 @@
 /area/slumbridge/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /area/slumbridge/caves/rock/nearlz
 	icon_state = "blue"
@@ -82,6 +83,8 @@
 	name = "\improper Southwest Snowlands"
 	icon_state = "away1"
 	minimap_color = MINIMAP_AREA_PREP
+	max_ambience_cooldown = 180 SECONDS
+	min_ambience_cooldown = 180 SECONDS
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = ICE_COLONY_TEMPERATURE
 

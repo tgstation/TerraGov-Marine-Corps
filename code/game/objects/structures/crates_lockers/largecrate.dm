@@ -8,16 +8,24 @@
 	var/dropmetal = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
+	allow_pass_flags = PASSABLE|PASS_WALKOVER|PASS_LOW_STRUCTURE
 	max_integrity = 40
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
 
+/obj/structure/largecrate/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/structure/largecrate/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
 
-/obj/structure/largecrate/deconstruct(disassembled = TRUE)
+/obj/structure/largecrate/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	spawn_stuff()
 	return ..()
 
@@ -122,7 +130,7 @@
 	desc = "A stack of black storage cases."
 	icon_state = "case_double"
 
-/obj/structure/largecrate/random/case/double/deconstruct(disassembled = TRUE)
+/obj/structure/largecrate/random/case/double/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	new /obj/structure/largecrate/random/case(loc)
 	new /obj/structure/largecrate/random/case(loc)
 	return ..()
@@ -132,8 +140,75 @@
 	desc = "Two small black storage cases."
 	icon_state = "case_small"
 
+/obj/structure/largecrate/random/mini
+	name = "small crate"
+	desc = "The large supply crate's cousin, 1st removed."
+	icon_state = "mini_crate"
+	density = FALSE
 
-/obj/structure/largecrate/random/barrel/deconstruct(disassembled = TRUE)
+/obj/structure/largecrate/random/mini/chest
+	desc = "A small plastic crate wrapped with securing elastic straps."
+	icon_state = "mini_chest"
+	name = "small chest"
+
+/obj/structure/largecrate/random/mini/chest/b
+	icon_state = "mini_chest_b"
+	name = "small chest"
+
+/obj/structure/largecrate/random/mini/chest/c
+	icon_state = "mini_chest_c"
+	name = "small chest"
+
+/obj/structure/largecrate/random/mini/wooden
+	desc = "A small wooden crate. Two supporting ribs cross this one's frame."
+	icon_state = "mini_wooden"
+	name = "wooden crate"
+
+/obj/structure/largecrate/random/mini/small_case
+	desc = "A small hard-shell case. What could be inside?"
+	icon_state = "mini_case"
+	name = "small case"
+
+/obj/structure/largecrate/random/mini/small_case/b
+	icon_state = "mini_case_b"
+	name = "small case"
+
+/obj/structure/largecrate/random/mini/small_case/c
+	icon_state = "mini_case_c"
+	name = "small case"
+
+/obj/structure/largecrate/random/mini/ammo
+	desc = "A small metal crate. Here, Freeman ammo!"
+	name = "small ammocase"
+	icon_state = "mini_ammo"
+	stuff = list(
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/rifle/extended,
+		/obj/item/ammo_magazine/shotgun,
+		/obj/item/ammo_magazine/shotgun/buckshot,
+		/obj/item/ammo_magazine/shotgun/flechette,
+	)
+
+/obj/structure/largecrate/random/mini/med
+	desc = "A small metal crate containing medical supplies."
+	icon_state = "mini_medcase"
+	name = "small medcase"
+	num_things = 1 //funny lootbox tho.
+	stuff = list(
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
+		/obj/item/tool/crowbar/red,
+		/obj/item/flashlight,
+		/obj/item/storage/pill_bottle/packet/tramadol,
+		/obj/item/stack/medical/splint,
+		/obj/item/healthanalyzer,
+		/obj/item/tool/extinguisher/mini,
+		/obj/item/tool/shovel/etool,
+		/obj/item/tool/screwdriver,
+	)
+
+/obj/structure/largecrate/random/barrel/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(dropmetal)
 		new /obj/item/stack/sheet/metal/small_stack(src)
 	return ..()
@@ -142,7 +217,7 @@
 /obj/structure/largecrate/random/barrel/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
 	if(!welder.isOn())
 		return FALSE
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 	if(!welder.remove_fuel(1, user))
 		return TRUE
@@ -193,6 +268,16 @@
 	desc = "A white storage barrel"
 	icon_state = "barrel_white"
 
+/obj/structure/largecrate/random/barrel/black
+	name = "black barrel"
+	desc = "A black storage barrel"
+	icon_state = "barrel_black"
+
+/obj/structure/largecrate/random/barrel/brown
+	name = "black brown"
+	desc = "A black storage barrel"
+	icon_state = "barrel_brown"
+
 /obj/structure/largecrate/random/secure
 	name = "secure supply crate"
 	desc = "A secure crate."
@@ -209,7 +294,7 @@
 /obj/structure/largecrate/random/secure/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	to_chat(user, span_notice("You begin to cut the straps off \the [src]..."))
-	if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	to_chat(user, span_notice("You cut the straps away."))
@@ -223,7 +308,7 @@
 	. += span_notice("You need something sharp to cut off the straps.")
 
 /obj/structure/largecrate/guns
-	name = "\improper TGMC firearms crate (x3)"
+	name = "\improper NTC firearms crate (x3)"
 	var/num_guns = 3
 	var/num_mags = 3
 	var/list/stuff = list(

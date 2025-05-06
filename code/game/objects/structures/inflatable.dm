@@ -11,7 +11,7 @@
 /obj/item/inflatable/attack_self(mob/user)
 	. = ..()
 	balloon_alert(user, "Inflating...")
-	if(!do_after(user, 3 SECONDS, NONE, src))
+	if(!do_after(user, 3 SECONDS, TRUE, src))
 		balloon_alert(user, "Interrupted!")
 		return
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
@@ -51,7 +51,7 @@
 	var/popped_variant
 
 
-/obj/structure/inflatable/deconstruct(disassembled = TRUE)
+/obj/structure/inflatable/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!deflated)
 		deflate(!disassembled)
 	return ..()

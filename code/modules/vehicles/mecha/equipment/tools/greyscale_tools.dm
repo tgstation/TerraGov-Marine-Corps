@@ -31,7 +31,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"
-	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The lightest engine mechs can use at a cost of recharge rate and max fuel capacity."
+	desc = "An advanced Ninetails phoron engine core prototype designed for NTC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The lightest engine mechs can use at a cost of recharge rate and max fuel capacity."
 	icon_state = "phoron_engine"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	rechargerate = 5
@@ -48,7 +48,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/energy_optimizer
 	name = "energy optimizer"
-	desc = "A Nanotrasen-brand computer that uses predictive algorithms to reduce the power consumption of all steps by 50%."
+	desc = "A Ninetails-brand computer that uses predictive algorithms to reduce the power consumption of all steps by 50%."
 	icon_state = "optimizer"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	equipment_slot = MECHA_POWER

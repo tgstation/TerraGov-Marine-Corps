@@ -4,11 +4,11 @@
 	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
 
 	telegraph_duration = 400
-	telegraph_message = span_highdanger("Thunder rumbles far above. You hear acidic droplets hissing against the canopy. Seek shelter!")
+	telegraph_message = span_userdanger("Thunder rumbles far above. You hear acidic droplets hissing against the canopy. Seek shelter!")
 	telegraph_overlay = "rain_med"
 	telegraph_sound = 'sound/effects/siren.ogg'
 
-	weather_message = span_highdanger("<i>Acidic rain pours down around you! Get inside!</i>")
+	weather_message = span_userdanger("<i>Acidic rain pours down around you! Get inside!</i>")
 	weather_overlay = "acid_rain"
 	weather_duration_lower = 600
 	weather_duration_upper = 1500
@@ -23,7 +23,7 @@
 
 	barometer_predictable = TRUE
 
-	probability = 40
+	probability = 10
 	repeatable = FALSE
 
 	var/datum/looping_sound/acidrain/sound_active_acidrain = new(list(), FALSE, TRUE)
@@ -31,7 +31,7 @@
 /datum/weather/acid_rain/telegraph()
 	. = ..()
 	for(var/mob/impacted_mob AS in GLOB.player_list)
-		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+		if(!(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER))
 			continue
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
@@ -47,13 +47,14 @@
 	. = ..()
 	sound_active_acidrain.stop()
 
-/datum/weather/acid_rain/weather_act(mob/living/L)
+/datum/weather/acid_rain/weather_act(mob/living/carbon/human/L)
 	if(L.stat == DEAD)
 		return
-	if(prob(L.modify_by_armor(100, ACID)))
-		L.adjustFireLoss(7)
-		to_chat(L, span_danger("You feel the acid rain melting you away!"))
-	L.clean_mob()
+	if(!isxeno(L))
+		if(prob(L.modify_by_armor(100, ACID)))
+			L.adjustFireLoss(7)
+			to_chat(L, span_danger("You feel the acid rain melting you away!"))
+	L.wash()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
@@ -72,9 +73,11 @@
 
 	probability = 60
 	repeatable = TRUE
+	weather_duration_lower = 2000
+	weather_duration_upper = 2500
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
-	L.clean_mob()
+	L.wash()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 		if(prob(20))

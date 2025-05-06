@@ -9,8 +9,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 ///base marine drop pod. can be controlled by an attached [/obj/structure/droppod/leader] or [/obj/machinery/computer/droppod_control]
 /obj/structure/droppod
-	name = "\improper TGMC Zeus orbital drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment."
+	name = "\improper NTC Zeus orbital drop pod"
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment."
 	icon = 'icons/obj/structures/droppod.dmi'
 	icon_state = "singlepod_green"
 	density = TRUE
@@ -45,6 +45,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/list/datum/action/innate/interaction_actions
 	///after the pod finishes it's travelhow long it spends falling
 	var/falltime = 0.6 SECONDS
+	var/respawns = FALSE
 
 /obj/structure/droppod/Initialize(mapload)
 	. = ..()
@@ -68,8 +69,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
-	if(drop_state == DROPPOD_READY)
-		GLOB.droppod_list -= src
+	GLOB.droppod_list -= src
 	return ..()
 
 
@@ -194,10 +194,12 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(!(LAZYLEN(buckled_mobs) || LAZYLEN(contents)))
 		return
 	#ifndef TESTING
-	if(!operation_started && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
-		if(user)
-			to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area."))
-		return
+	if(!operation_started)
+		var/time_until_ready = SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY - world.time
+		if(time_until_ready > 0)
+			if(user)
+				to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area.  Deployment possible in [DisplayTimeText(time_until_ready)]"))
+			return
 	#endif
 
 	if(!locate(/obj/structure/drop_pod_launcher) in get_turf(src))
@@ -269,8 +271,16 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
 	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
+	if(respawns)
+		var/obj/structure/droppod/respawned = new type(loc)
+		respawned.respawns = TRUE
 	forceMove(pick(reserved_area.reserved_turfs))
 	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
+
+	var/turf/target = locate(target_x, target_y, 2)
+	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new /obj/effect/overlay/blinking_laser/marine/pod_warning(target)
+	laserpod.dir = target
+	QDEL_IN(laserpod, DROPPOD_TRANSIT_TIME + 1)
 
 /// Moves the droppod into its target turf, which it updates if needed
 /obj/structure/droppod/proc/finish_drop(mob/user)
@@ -306,8 +316,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 
 /obj/structure/droppod/leader
-	name = "\improper TGMC Zeus command drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one comes with command capabilities."
+	name = "\improper NTC Zeus command drop pod"
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment. This one comes with command capabilities."
 	icon_state = "singlepod_red"
 	light_color = LIGHT_COLOR_EMISSIVE_RED
 
@@ -410,6 +420,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	stored_object = package
 	package.forceMove(src)
 	RegisterSignal(package, COMSIG_MOVABLE_MOVED, PROC_REF(unload_package))
+	RegisterSignal(package, COMSIG_QDELETING, PROC_REF(on_package_del))
 	update_icon()
 
 ///Handles removing the stored object from the pod
@@ -423,9 +434,15 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	stored_object = null
 	update_icon()
 
+///Handles if the package is deleted inside the pod
+/obj/structure/droppod/nonmob/proc/on_package_del()
+	SIGNAL_HANDLER
+	stored_object = null
+	update_icon()
+
 /obj/structure/droppod/nonmob/supply_pod
-	name = "\improper TGMC Zeus supply drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one is designed to carry supplies."
+	name = "\improper NTC Zeus supply drop pod"
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment. This one is designed to carry supplies."
 	icon_state = "supplypod"
 	light_color = LIGHT_COLOR_EMISSIVE_ORANGE
 
@@ -442,7 +459,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 			return
 		var/obj/structure/closet/clamped_closet = attached_clamp.loaded
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!do_after(user, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 			return
 		if(length(contents) || attached_clamp.loaded != clamped_closet || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
 			return
@@ -453,7 +470,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		to_chat(user, span_notice("You load [clamped_closet] into [src]."))
 	else if(stored_object)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		if(!do_after(user, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 			return
 		if(!stored_object || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
 			return
@@ -466,8 +483,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return ..()
 
 /obj/structure/droppod/nonmob/turret_pod
-	name = "\improper TGMC Zeus sentry drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one carries a self deploying sentry system."
+	name = "\improper NTC Zeus sentry drop pod"
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment. This one carries a self deploying sentry system."
 	icon_state = "sentrypod"
 	light_color = LIGHT_COLOR_EMISSIVE_RED
 
@@ -479,7 +496,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	load_package(contents[1])
 
 /obj/structure/droppod/nonmob/mech_pod
-	name = "\improper TGMC Zeus mech drop pod"
+	name = "\improper NTC Zeus mech drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This is a larger model designed specifically to carry mechs. Shift click to enter when inside a mech."
 	icon = 'icons/obj/structures/big_droppod.dmi'
 	icon_state = "mechpod"
@@ -561,23 +578,28 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(!pod.target_z)
 		to_chat(owner, span_danger("No active combat zone detected."))
 		return
-	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
+	var/minimapflag = MINIMAP_FLAG_MARINE
+	if(owner.faction == FACTION_SOM)
+		minimapflag = MINIMAP_FLAG_MARINE_SOM
+	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, minimapflag)
+
 	owner.client.screen += map
 	choosing = TRUE
 	var/list/polled_coords = map.get_coords_from_click(owner)
-	if(!polled_coords)
-		owner?.client?.screen -= map
-		choosing = FALSE
-		return
-	owner.client?.screen -= map
+	owner?.client?.screen -= map
 	choosing = FALSE
+	if(!polled_coords)
+		return
 	pod.set_target(polled_coords[1], polled_coords[2])
 
 /datum/action/innate/set_drop_target/remove_action(mob/M)
 	if(choosing)
 		var/obj/structure/droppod/pod = target
-		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
-		owner?.client?.screen -= map
+		var/minimapflag = MINIMAP_FLAG_MARINE
+		if(owner.faction == FACTION_SOM)
+			minimapflag = MINIMAP_FLAG_MARINE_SOM
+		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, minimapflag)
+		owner.client?.screen -= map
 		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 		choosing = FALSE
 	return ..()
@@ -631,3 +653,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/drop_pod_launcher/sentry
 	pod_type = /obj/structure/droppod/nonmob/turret_pod
+
+#undef DROPPOD_TRANSIT_TIME
+#undef LEADER_POD_DISPERSION
+#undef DROPPOD_BASE_DISPERSION

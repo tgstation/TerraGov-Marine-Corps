@@ -3,15 +3,28 @@
 /obj/structure/curtain
 	icon = 'icons/obj/structures/curtain.dmi'
 	name = "curtain"
-	icon_state = "medicalcurtain"
+	icon_state = "curtain"
 	///used to reset curtain back to default state when closing
-	var/initial_icon_state = "medicalcurtain"
+	var/initial_icon_state = "curtain"
 	layer = ABOVE_MOB_LAYER
 	opacity = TRUE
 	density = FALSE
+	///possible sounds we play when opening the curtain
+	var/list/possiblesounds = list(
+		'sound/effects/medcurtain1.ogg',
+		'sound/effects/medcurtain2.ogg',
+	)
+	var/stack_type = /obj/item/stack/sheet/mineral/plastic
+	var/destroyed_stack_amount = 4
+
+/obj/structure/curtain/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	if(stack_type)
+		if(destroyed_stack_amount)
+			new stack_type (loc, destroyed_stack_amount)
+	return ..()
 
 /obj/structure/curtain/open
-	icon_state = "medicalcurtain_open"
+	icon_state = "curtain_open"
 	layer = OBJ_LAYER
 	opacity = FALSE
 
@@ -20,7 +33,7 @@
 	. = ..()
 	if(.)
 		return
-	playsound(get_turf(loc), "rustle", 15, 1, 6)
+	playsound(get_turf(loc), pick(possiblesounds), 15, 1, 6)
 	toggle()
 
 /obj/structure/curtain/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
@@ -29,7 +42,7 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	xeno_attacker.visible_message(span_danger("\The [xeno_attacker] pulls [src] down and slices it apart!"), \
 	span_danger("You pull the [src] down and rip it to shreds!"), null, 5)
-	qdel(src)
+	deconstruct(src)
 
 /obj/structure/curtain/proc/toggle()
 	opacity = !opacity
@@ -47,10 +60,12 @@
 
 /obj/structure/curtain/black
 	name = "black curtain"
-	color = "#222222"
+	color = "#6d6d6d"
 
 /obj/structure/curtain/medical
 	name = "plastic curtain"
+	icon_state = "medicalcurtain"
+	initial_icon_state = "medicalcurtain"
 	color = "#B8F5E3"
 	alpha = 200
 
@@ -60,6 +75,10 @@
 	icon_state = "fabric_curtain"
 	initial_icon_state = "fabric_curtain"
 	alpha = 230
+	possiblesounds = list(
+		'sound/effects/clothcurtain.ogg',
+	)
+	stack_type = /obj/item/stack/sheet/cloth
 
 /obj/structure/curtain/open/shower
 	name = "shower curtain"
@@ -75,6 +94,7 @@
 	color = "#690000"
 	icon_state = "fabric_curtain_open"
 	alpha = 230
+	stack_type = /obj/item/stack/sheet/cloth
 
 /obj/structure/curtain/open/medical
 	name = "plastic curtain"

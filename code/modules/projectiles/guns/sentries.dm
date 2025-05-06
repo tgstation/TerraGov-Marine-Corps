@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/sentry
 	name = "sentry"
 	desc = "sentry"
-	icon = 'icons/Marine/sentry.dmi'
+	icon = 'icons/obj/machines/deployable/sentry/sentry.dmi'
 
 	fire_sound = 'sound/weapons/guns/fire/smg_heavy.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smartgun_unload.ogg'
@@ -17,12 +17,7 @@
 	burst_scatter_mult = 0
 	burst_amount = 4
 
-	ignored_terrains = list(
-		/obj/machinery/deployable/mounted,
-		/obj/machinery/miner,
-	)
-
-	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_ALERTS
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	deployable_item = /obj/machinery/deployable/mounted/sentry
@@ -68,7 +63,7 @@
 /obj/item/weapon/gun/sentry/pod_sentry
 	name = "\improper ST-583 sentry gun"
 	desc = "A fully automatic turret with AI targeting capabilities, designed specifically for deploying inside a paired drop pod shell. Armed with a M30 autocannon and a 500-round drum magazine. Designed to sweeping a landing area to support orbital assaults."
-	icon_state = "podsentry"
+	icon_state = "pod_sentry"
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	item_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	sentry_iff_signal = TGMC_LOYALIST_IFF
@@ -89,7 +84,7 @@
 	name = "\improper COPE sentry"
 	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portable, automated weapon system utilised by the SOM. It is activated in hand then thrown into place before it deploys, where it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use, but can take normal volkite cells in a pinch."
 	icon_state = "cope"
-	icon = 'icons/Marine/sentry.dmi'
+	icon = 'icons/obj/machines/deployable/sentry/cope.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
@@ -97,7 +92,6 @@
 	max_integrity = 225
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
-	undeploy_time = 1 SECONDS
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
 	turret_range = 9
@@ -105,11 +99,6 @@
 	sentry_iff_signal = SOM_IFF
 
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
-
-	ignored_terrains = list(
-		/obj/machinery/deployable/mounted,
-		/obj/machinery/miner,
-	)
 
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //doesn't autoeject its recharging battery
@@ -154,7 +143,10 @@
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
-	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
+	var/obj/item/card/id/user_id = user?.get_idcard(TRUE)
+	if(user_id)
+		sentry_iff_signal = user_id?.iff_signal
+	addtimer(CALLBACK(src, PROC_REF(prime), user), det_time)
 
 ///Reverts the gun back to it's unarmed state, allowing it to be activated again
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/reset()
@@ -162,31 +154,41 @@
 	icon_state = initial(icon_state)
 
 ///Deploys the weapon into a sentry after activation
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/prime()
-	if(!istype(loc, /turf)) //no deploying out of bags or in hand
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/prime(mob/user)
+	if(!isturf(loc)) //no deploying out of bags or in hand
 		reset()
 		return
+	do_deploy(user)
 
-	var/obj/deployed_machine
-
-	deployed_machine = new deployable_item(loc, src, usr)//Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
-	deployed_machine.setDir(SOUTH)
-
-	deployed_machine.max_integrity = max_integrity //Syncs new machine or structure integrity with that of the item.
-	deployed_machine.obj_integrity = obj_integrity
-
-	deployed_machine.update_appearance()
-
-	forceMove(deployed_machine) //Moves the Item into the machine or structure
-
-	ENABLE_BITFIELD(item_flags, IS_DEPLOYED)
-
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/do_deploy(mob/user, turf/location)
+	. = ..()
+	spawn(1)
+		if(!(CHECK_BITFIELD(item_flags, IS_DEPLOYED)))
+			reset()
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
+/obj/item/storage/box/crate/volkite/cope
+	name = "\improper COPE sentry crate"
+	desc = "A large case containing all you need to set up a COPE sentry."
+	icon_state = "sentry_mini_case"
+	w_class = WEIGHT_CLASS_HUGE
+
+/obj/item/storage/box/crate/volkite/cope/Initialize(mapload, ...)
+	. = ..()
+	storage_datum.storage_slots = 6
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope,
+		/obj/item/cell/lasgun/volkite/turret,
+	))
+
+/obj/item/storage/box/crate/volkite/cope/PopulateContents()
+	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope(src)
+	new /obj/item/cell/lasgun/volkite/turret(src)
+
 /obj/item/weapon/gun/sentry/big_sentry/premade
 	sentry_iff_signal = TGMC_LOYALIST_IFF
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
+	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial
 	turret_range = 9
@@ -233,7 +235,8 @@
 /obj/item/weapon/gun/sentry/mini
 	name = "\improper ST-580 point defense sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 300-round drum magazine."
-	icon_state = "minisentry"
+	icon_state = "mini_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/mini.dmi'
 
 	max_shells = 300
 	knockdown_threshold = 80
@@ -248,7 +251,7 @@
 	extra_delay = 0.3 SECONDS
 	scatter = 3
 
-	deploy_time = 3 SECONDS
+	deploy_time = 1 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
 /obj/item/weapon/gun/sentry/mini/combat_patrol
@@ -259,7 +262,7 @@
 	name = "SG-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
 	icon_state = "sentry"
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL|TURRET_SAFETY
 	max_shells = 100
 
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
@@ -295,7 +298,8 @@
 /obj/item/weapon/gun/sentry/sniper_sentry
 	name = "\improper SRT-574 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
-	icon_state = "snipersentry"
+	icon_state = "sniper_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/sniper.dmi'
 
 	turret_range = 12
 	deploy_time = 10 SECONDS
@@ -347,7 +351,8 @@
 /obj/item/weapon/gun/sentry/shotgun_sentry
 	name = "\improper SHT-573 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber SM-10 shotgun and a 100-round drum magazine."
-	icon_state = "shotgunsentry"
+	icon_state = "shotgun_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/shotgun.dmi'
 
 	turret_range = 8
 	deploy_time = 5 SECONDS
@@ -399,7 +404,8 @@
 /obj/item/weapon/gun/sentry/flamer_sentry
 	name = "\improper SFT-573 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy flamethrower and a 200-round drum magazine."
-	icon_state = "flamersentry"
+	icon_state = "flamer_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/flamer.dmi'
 
 	turret_range = 8
 	deploy_time = 5 SECONDS

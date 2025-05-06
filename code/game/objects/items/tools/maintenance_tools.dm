@@ -131,6 +131,7 @@
 
 /obj/item/tool/weldingtool/examine(mob/user)
 	. += ..()
+	. += EXAMINE_SECTION_BREAK
 	. +=  "It contains [get_fuel()]/[max_fuel] units of fuel!"
 
 
@@ -427,6 +428,18 @@
 		balloon_alert(user, "Refills")
 		RS.update_icon()
 
+	else if(istype(I, /obj/item/weapon/twohanded/chainsaw))
+		var/obj/item/weapon/twohanded/chainsaw/saw = I
+		if(saw.reagents.get_reagent_amount(/datum/reagent/fuel) == saw.max_fuel || !reagents.total_volume)
+			return ..()
+
+		var/fuel_transfer_amount = min(reagents.total_volume, (saw.max_fuel - saw.reagents.get_reagent_amount(/datum/reagent/fuel)))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		saw.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [saw] with fuel."))
+		saw.update_icon()
+
 	else
 		balloon_alert(user, "Only works with welders and flamethrowers")
 
@@ -496,7 +509,7 @@
 		balloon_alert(user, "Too busy")
 		return
 
-	while(do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		cell.charge = min(cell.charge + 200, cell.maxcharge)
 		balloon_alert(user, "Charges the cell")
 		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)

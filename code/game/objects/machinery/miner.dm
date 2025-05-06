@@ -10,14 +10,14 @@
 #define MINER_RESISTANT "reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
-#define PHORON_CRATE_SELL_AMOUNT 150
-#define PLATINUM_CRATE_SELL_AMOUNT 300
+#define PHORON_CRATE_SELL_AMOUNT 25
+#define PLATINUM_CRATE_SELL_AMOUNT 75
 #define PHORON_DROPSHIP_BONUS_AMOUNT 15
-#define PLATINUM_DROPSHIP_BONUS_AMOUNT 30
+#define PLATINUM_DROPSHIP_BONUS_AMOUNT 25
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
-	name = "\improper Nanotrasen phoron Mining Well"
-	desc = "Top-of-the-line Nanotrasen research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
+	name = "\improper Ninetails phoron Mining Well"
+	desc = "Top-of-the-line Ninetails research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
 	icon_state = "mining_drill_active"
@@ -55,15 +55,21 @@
 	return //Marker will be set by itself once processing pauses when it detects this miner is broke.
 
 /obj/machinery/miner/damaged/platinum
-	name = "\improper Nanotrasen platinum Mining Well"
-	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
+	name = "\improper Ninetails platinum Mining Well"
+	desc = "A Ninetails platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
 	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
 /obj/machinery/miner/Initialize(mapload)
 	. = ..()
+	GLOB.miner_list += src
 	init_marker()
 	start_processing()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
+
+/obj/machinery/miner/Destroy()
+	. = ..()
+	GLOB.miner_list -= src
+	SSminimaps.remove_marker(src)
 
 /**
  * This proc is called during Initialize() and should be used to initially setup the minimap marker of a functional miner.
@@ -98,11 +104,11 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out how to install the module on [src]."),
 		span_notice("You fumble around figuring out how to install the module on [src]."))
 		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	user.visible_message(span_notice("[user] begins attaching a module to [src]'s sockets."))
 	to_chat(user, span_info("You begin installing the [upgrade] on the miner."))
-	if(!do_after(user, 15 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	switch(upgrade.uptype)
 		if(MINER_RESISTANT)
@@ -112,7 +118,7 @@
 			required_ticks = 60
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
-				SSpoints.supply_points[faction] += mineral_value * stored_mineral
+				SSpoints.supply_points[faction] = clamp((SSpoints.supply_points[faction]+=mineral_value*stored_mineral),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps req points.
 				SSpoints.dropship_points += dropship_bonus * stored_mineral
 				GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
@@ -146,7 +152,7 @@
 			return FALSE
 		to_chat(user, span_info("You begin uninstalling the [miner_upgrade_type] from the miner!"))
 		user.visible_message(span_notice("[user] begins dismantling the [miner_upgrade_type] from the miner."))
-		if(!do_after(user, 30 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return FALSE
 		user.visible_message(span_notice("[user] dismantles the [miner_upgrade_type] from the miner!"))
 		var/obj/item/upgrade
@@ -204,12 +210,12 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
 		span_notice("You fumble around figuring out [src]'s wiring."))
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
-	if(!do_after(user, 120, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return FALSE
@@ -228,12 +234,12 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
 		span_notice("You fumble around figuring out [src]'s tubing and plating."))
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
-	if(!do_after(user, 150, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return FALSE
@@ -249,6 +255,8 @@
 
 /obj/machinery/miner/examine(mob/user)
 	. = ..()
+	if(faction)
+		. += span_info("[src]'s terminal inform you it belongs to [faction]")
 	if(!ishuman(user) && !isobserver(user))
 		return
 	if(!miner_upgrade_type)
@@ -277,7 +285,7 @@
 		to_chat(user, span_warning("[src] is not ready to produce a shipment yet!"))
 		return
 
-	SSpoints.supply_points[faction] += mineral_value * stored_mineral
+	SSpoints.supply_points[faction] = clamp((SSpoints.supply_points[faction]+=mineral_value*stored_mineral),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps req points.
 	SSpoints.dropship_points += dropship_bonus * stored_mineral
 	GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
@@ -298,7 +306,7 @@
 			for(var/direction in GLOB.cardinals)
 				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
 					continue
-				SSpoints.supply_points[faction] += mineral_value
+				SSpoints.supply_points[faction] = clamp((SSpoints.supply_points[faction]+=mineral_value),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps req points.
 				SSpoints.dropship_points += dropship_bonus
 				GLOB.round_statistics.points_from_mining += mineral_value
 				do_sparks(5, TRUE, src)
@@ -331,12 +339,35 @@
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
 		span_danger("We slash \the [src]!"), null, 5)
-		playsound(loc, "alien_claw_metal", 25, TRUE)
+		playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
 		miner_integrity -= 25
 		set_miner_status()
 		if(miner_status == MINER_DESTROYED && xeno_attacker.client)
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
 			personal_statistics.miner_sabotages_performed++
+
+/obj/machinery/miner/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(faction == user.faction)
+		user.visible_message(span_notice("This miner belongs to your faction already."))
+		return
+	if(user.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack physically.
+		return
+	if(miner_upgrade_type == MINER_RESISTANT)
+		user.visible_message(span_notice("[user]'s [I] can't get through [src]'s reinforced plating."),
+		span_notice("You can't sabotage through [src]'s reinforced plating!"))
+		return
+	while(miner_status != MINER_DESTROYED)
+		if(user.do_actions)
+			return balloon_alert(user, "busy")
+		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+			return
+		user.do_attack_animation(src, ATTACK_EFFECT_LASERSWORD)
+		user.visible_message(span_danger("[user] sabotages \the [src]!"), \
+		span_danger("You sabotage \the [src]!"), null, 5)
+		playsound(loc, "alien_claw_metal", 25, TRUE)
+		miner_integrity -= 25
+		set_miner_status()
 
 /obj/machinery/miner/proc/set_miner_status()
 	var/health_percent = round((miner_integrity / max_miner_integrity) * 100)

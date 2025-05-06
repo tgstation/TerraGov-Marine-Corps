@@ -24,6 +24,7 @@
 	inventory_flags = NOSLIPPING
 	item_flags = SYNTH_RESTRICTED
 	siemens_coefficient = 0.6
+	slowdown = -0.5 //extra speed tradeoff for not being able to use a boot weapon, HoS only boots anyways
 
 /obj/item/clothing/shoes/ruggedboot
 	name = "Rugged Boots"
@@ -33,20 +34,6 @@
 	inventory_flags = NOSLIPPING
 	item_flags = SYNTH_RESTRICTED
 	siemens_coefficient = 0.6
-
-/obj/item/clothing/shoes/combat //Basically SWAT shoes combined with galoshes.
-	name = "combat boots"
-	desc = "When you REALLY want to turn up the heat"
-	icon_state = "swat"
-	item_flags = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 80, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 50, BIO = 10, FIRE = 25, ACID = 25)
-	inventory_flags = NOSLIPPING
-	siemens_coefficient = 0.6
-
-	cold_protection_flags = FEET
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection_flags = FEET
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/shoes/space_ninja
 	name = "ninja shoes"
@@ -80,20 +67,29 @@
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
 	inventory_flags = NOSLIPPING
-	slowdown = SHOES_SLOWDOWN+1
 
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
 	worn_icon_state = "clown"
-	slowdown = SHOES_SLOWDOWN + 1
+	slowdown = SHOES_SLOWDOWN+1
 
 
 /obj/item/clothing/shoes/clown_shoes/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg', 'sound/effects/clownstep2.ogg'), 50)
 
+/obj/item/clothing/shoes/clown_shoes/erp
+	desc ="The prankster's military-standard-issue clowning shoes. Damn they're huge! And reinforced!"
+	name = "reinforced clown shoes"
+	armor_protection_flags = FEET
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
+	inventory_flags = NOQUICKEQUIP|NOSLIPPING
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
 
 /obj/item/clothing/shoes/jackboots
 	name = "jackboots"
@@ -138,6 +134,16 @@
 	desc = "The height of fashion, and they're pre-polished!"
 	icon_state = "laceups"
 
+/obj/item/clothing/shoes/high_heels
+	name = "high heels"
+	desc = "A pair of high-heeled shoes."
+	icon_state = "heels"
+
+/obj/item/clothing/shoes/high_heels/red
+	name = "red heels"
+	desc = "A pair of red high-heeled shoes."
+	icon_state = "heels_red"
+
 /obj/item/clothing/shoes/swimmingfins
 	desc = "Help you swim good."
 	name = "swimming fins"
@@ -162,5 +168,3 @@
 	icon_state = "tp_boots"
 	worn_icon_state = "tp_boots"
 	inventory_flags = NOSLIPPING
-
-

@@ -1,7 +1,7 @@
 /obj/item/pinpointer
 	name = "Xeno structure pinpointer"
-	icon = 'icons/Marine/marine-navigation.dmi'
-	icon_state = "pinoff"
+	icon = 'icons/obj/items/pinpointer.dmi'
+	icon_state = "pinpointer_off"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_TINY
@@ -60,13 +60,11 @@
 		target = null
 		return
 
-
 /obj/item/pinpointer/attack_self(mob/living/user)
 	if(active)
 		deactivate(user)
 	else
 		activate(user)
-
 
 /obj/item/pinpointer/proc/activate(mob/living/user)
 	set_target(user)
@@ -76,29 +74,26 @@
 	START_PROCESSING(SSobj, src)
 	balloon_alert(user, "Pinpointer activated")
 
-
 /obj/item/pinpointer/proc/deactivate(mob/living/user)
 	active = FALSE
 	target = null
 	STOP_PROCESSING(SSobj, src)
-	icon_state = "pinoff"
+	icon_state = "pinpointer_off"
 	balloon_alert(user, "Pinpointer deactivated")
-
 
 /obj/item/pinpointer/process()
 	if(QDELETED(target))
 		active = FALSE
-		icon_state = "pinonnull"
+		icon_state = "pinpointer_null"
 		return PROCESS_KILL
 
 	setDir(get_dir(src, target))
 	switch(get_dist(src, target))
 		if(0)
-			icon_state = "pinondirect"
+			icon_state = "pinpointer_direct"
 		if(1 to 8)
-			icon_state = "pinonclose"
+			icon_state = "pinpointer_close"
 		if(9 to 16)
-			icon_state = "pinonmedium"
+			icon_state = "pinpointer_medium"
 		if(16 to INFINITY)
-			icon_state = "pinonfar"
-
+			icon_state = "pinpointer_far"

@@ -2,7 +2,7 @@
 	anchored = FALSE
 	density = TRUE
 	icon = 'icons/obj/machines/atmos.dmi'
-	icon_state = "sheater0"
+	icon_state = "sheater"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
@@ -20,12 +20,14 @@
 	update_icon()
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/space_heater/update_icon_state()
 	. = ..()
-	icon_state = "sheater[on]"
+	icon_state = "[initial(icon_state)]_on"
 
 /obj/machinery/space_heater/update_overlays()
 	. = ..()
@@ -122,3 +124,12 @@
 
 
 	cell.use(50*GLOB.CELLRATE)
+
+/obj/machinery/space_heater/radiator
+	name = "radiator"
+	desc = "It's a radiator. It heats the room through convection with hot water. This one has a red handle."
+	icon_state = "radiator"
+	density = FALSE
+
+/obj/machinery/space_heater/radiator/red
+	icon_state = "radiator-r"

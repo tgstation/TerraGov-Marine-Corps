@@ -113,6 +113,10 @@
 	shuttle_id = SHUTTLE_NORMANDY
 	name = "Normandy"
 
+/datum/map_template/shuttle/shipelevator
+	shuttle_id = SHUTTLE_SHIPELEVATOR
+	name = "Elevator"
+
 /datum/map_template/shuttle/cas
 	shuttle_id = SHUTTLE_CAS
 	name = "Condor Jet"
@@ -125,10 +129,12 @@
 	///shuttle switch console name
 	var/display_name = "Tadpole Standard Model"
 	var/admin_enable = TRUE
+	/// For now - prevents picking templates that should not be picked by the NTF.
+	var/pickable = TRUE
 
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"
-	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
+	description = "Tadpole-01, the old model barely in service for NTC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
 	display_name = "Tadpole Carrier Model"
 
 /datum/map_template/shuttle/minidropship/food
@@ -152,6 +158,16 @@
 	suffix = "_umbilical"
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
 	display_name = "Tadpole Umbilical Model"
+
+/datum/map_template/shuttle/minidropship/outrider
+	suffix = "_outrider"
+	description = "An asymmetric tadpole designed with vehicle transport in mind. Built with a wide umbilical to allow fluid heavy-vehicle movement."
+	display_name = "Tadpole Outrider Model"
+
+/datum/map_template/shuttle/minidropship/som
+	suffix = "_som"
+	display_name = "Tadpole Carrier Model"
+	pickable = FALSE
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
@@ -180,6 +196,26 @@
 /datum/map_template/shuttle/supply
 	shuttle_id = SHUTTLE_SUPPLY
 	name = SHUTTLE_SUPPLY
+
+/datum/map_template/shuttle/supplyhq
+	shuttle_id = "supplyhq"
+	name = "HQ Supply Shuttle"
+
+/datum/map_template/shuttle/supplyclf
+	shuttle_id = "supplyclf"
+	name = "Clf Supply Shuttle"
+
+/datum/map_template/shuttle/supplysom
+	shuttle_id = "supplysom"
+	name = "Som Supply Shuttle"
+
+/datum/map_template/shuttle/shipelevator
+	shuttle_id = SHUTTLE_SHIPELEVATOR
+	name = "Ship Elevator"
+
+/datum/map_template/shuttle/elevator
+	shuttle_id = SHUTTLE_ELEVATOR
+	name = "Elevator"
 
 /datum/map_template/shuttle/supply/vehicle
 	shuttle_id = SHUTTLE_VEHICLE_SUPPLY

@@ -26,6 +26,10 @@
 /obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"h" = (
+/obj/structure/largecrate/supply/ammo/standard_ammo,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "i" = (
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
@@ -60,6 +64,12 @@
 /area/shuttle/minidropship)
 "o" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"q" = (
+/obj/item/stack/barbed_wire{
+	amount = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "r" = (
@@ -205,7 +215,7 @@ b
 A
 b
 b
-b
+S
 S
 b
 b
@@ -217,7 +227,7 @@ f
 Z
 b
 s
-c
+h
 k
 n
 i
@@ -228,9 +238,9 @@ y
 c
 D
 o
-c
-J
 g
+J
+c
 C
 "}
 (5,1,1) = {"
@@ -239,7 +249,7 @@ v
 u
 b
 m
-c
+q
 t
 L
 i
@@ -249,7 +259,7 @@ b
 A
 b
 b
-b
+S
 S
 b
 x

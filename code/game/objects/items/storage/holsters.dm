@@ -8,7 +8,7 @@
 /obj/item/storage/holster
 	name = "holster"
 	desc = "Holds stuff, and sometimes goes swoosh."
-	icon_state = "backpack"
+	icon = 'icons/obj/items/storage/holster.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BACK
 	storage_type = /datum/storage/holster
@@ -91,6 +91,7 @@
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too."
+	icon = 'icons/obj/items/storage/backholster.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
@@ -119,7 +120,7 @@
 
 ///RR bag
 /obj/item/storage/holster/backholster/rpg
-	name = "\improper TGMC rocket bag"
+	name = "\improper NTC rocket bag"
 	desc = "This backpack can hold 4 67mm shells, in addition to a recoiless launcher."
 	icon_state = "marine_rocket"
 	w_class = WEIGHT_CLASS_HUGE
@@ -195,7 +196,7 @@
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/mortar
-	name = "\improper TGMC mortar bag"
+	name = "\improper NTC mortar bag"
 	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
 	icon_state = "marinepackt"
 	w_class = WEIGHT_CLASS_BULKY
@@ -215,7 +216,7 @@
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/flamer
-	name = "\improper TGMC flamethrower bag"
+	name = "\improper NTC flamethrower bag"
 	desc = "This backpack can carry its accompanying flamethrower as well as a modest general storage capacity. Automatically refuels it's accompanying flamethrower."
 	icon_state = "pyro_bag"
 	w_class = WEIGHT_CLASS_BULKY
@@ -310,6 +311,10 @@
 	var/obj/item/new_item = new /obj/item/weapon/sword/machete(src)
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
+/obj/item/storage/holster/blade/machete/full_alt/PopulateContents()
+	var/obj/item/new_item = new /obj/item/weapon/sword/machete/alt(src)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+
 /obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 
@@ -353,12 +358,13 @@
 
 /obj/item/storage/holster/m37
 	name = "\improper L44 shotgun scabbard"
-	desc = "A large leather holster allowing the storage of any shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	desc = "A large leather holster allowing the storage of any shotgun. It contains harnesses that allow it to be secured to the back for easy storage. Has pockets for some handfuls of shells"
 	icon_state = "m37_holster"
 	holsterable_allowed = list(
-		/obj/item/weapon/gun/shotgun/combat,
-		/obj/item/weapon/gun/shotgun/pump,
+		/obj/item/weapon/gun/shotgun,
+		/obj/item/weapon/gun/rifle/standard_autoshotgun,
 	)
+	storage_type = /datum/storage/holster/m37
 
 /obj/item/storage/holster/m37/full/Initialize(mapload)
 	. = ..()
@@ -377,7 +383,6 @@
 	icon_state = "t35_holster"
 	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/pump/t35)
 
-
 /obj/item/storage/holster/t35/full/Initialize(mapload)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(
@@ -390,18 +395,18 @@
 
 /obj/item/storage/holster/m25
 	name = "\improper M276 pattern M25 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued. It has pouches for mags."
 	icon_state = "m25_holster"
-	icon = 'icons/obj/clothing/belts.dmi'
 	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/m25/holstered,
 	)
+	storage_type = /datum/storage/holster/m25
 
-/obj/item/storage/holster/m25/full/Initialize(mapload)
+/obj/item/storage/holster/m25/Initialize(mapload)
 	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25))
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25,/obj/item/ammo_magazine/smg/m25,/obj/item/ammo_magazine/smg/m25/ap,/obj/item/ammo_magazine/smg/m25/extended,))
 
 /obj/item/storage/holster/m25/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/m25(src)
@@ -409,9 +414,8 @@
 
 /obj/item/storage/holster/t19
 	name = "\improper M276 pattern MP-19 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "t19_holster"
-	icon = 'icons/obj/clothing/belts.dmi'
 	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/smg/standard_machinepistol,
@@ -428,7 +432,7 @@
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
 	equip_slot_flags = ITEM_SLOT_POCKET
-	icon = 'icons/Marine/marine-pouches.dmi'
+	icon = 'icons/obj/clothing/pouches.dmi'
 	icon_state = "flare"
 	holsterable_allowed = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine)
 	storage_type = /datum/storage/holster/flarepouch
@@ -456,6 +460,7 @@
 	name = "\improper ML-41 scabbard (10x26mm)"
 	desc = "A backpack holster allowing the storage of any a ML-41 Assault Machinegun, also carries ammo for the other portion of the system."
 	icon_state = "icc_bagmg"
+	icon = 'icons/obj/items/storage/backholster.dmi'
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/rifle/icc_mg,
 	)
@@ -474,7 +479,6 @@
 /obj/item/storage/holster/belt
 	name = "pistol belt"
 	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
-	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "m4a3_holster"
 	equip_slot_flags = ITEM_SLOT_BELT
 	item_flags = HAS_UNDERLAY
@@ -497,16 +501,6 @@
 /obj/item/storage/holster/belt/pistol/m4a3
 	name = "\improper M4A3 holster rig"
 	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
-
-/obj/item/storage/holster/belt/pistol/m4a3/full/Initialize(mapload)
-	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(
-		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/cell/lasgun/lasrifle,
-		/obj/item/cell/lasgun/plasma,
-	))
 
 /obj/item/storage/holster/belt/pistol/m4a3/full/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
@@ -536,6 +530,28 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/pistol/m4a3/specops/Initialize(mapload)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom/specops(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/pistol/g22/tranq/Initialize(mapload)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/g22/tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/vp70/PopulateContents()
@@ -573,7 +589,7 @@
 	desc = "A belt with origins dating back to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 
-/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
+/obj/item/storage/holster/belt/pistol/m4a3/som/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
@@ -612,23 +628,16 @@
 
 /obj/item/storage/holster/belt/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
-
-/obj/item/storage/holster/belt/pistol/stand/Initialize(mapload, ...)
-	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(
-		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol,
-	))
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 
 /obj/item/storage/holster/belt/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
+	desc = "The T457 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips."
 	icon_state = "tp14_holster"
 
 /obj/item/storage/holster/belt/revolver/standard_revolver
 	name = "\improper T457 pattern revolver holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
+	desc = "The T457 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips."
 	icon_state = "tp44_holster"
 
 /obj/item/storage/holster/belt/revolver/standard_revolver/Initialize(mapload, ...)
@@ -643,7 +652,7 @@
 
 /obj/item/storage/holster/belt/m44
 	name = "\improper M276 pattern M44 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
 	icon_state = "m44_holster"
 	storage_type = /datum/storage/holster/belt/m44
 
@@ -659,7 +668,7 @@
 
 /obj/item/storage/holster/belt/mateba
 	name = "\improper M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
+	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
 	icon_state = "mateba_holster"
 	storage_type = /datum/storage/holster/belt/mateba
 
@@ -677,7 +686,7 @@
 	icon_state = "c_mateba_holster"
 
 /obj/item/storage/holster/belt/mateba/officer/full/PopulateContents()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/custom(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/custom/officer(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -741,7 +750,7 @@
 
 /obj/item/storage/holster/belt/pistol/smart_pistol
 	name = "\improper SP-13 holster rig"
-	desc = "A holster belt, which holds SP-13 smartpistol and magazines for it."
+	desc = "A holster belt, which holds SP-13 smart machinepistol and magazines for it."
 
 /obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize(mapload)
 	. = ..()

@@ -11,14 +11,14 @@
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 925
-	plasma_gain = 45
+	plasma_gain = 60
 
 	// *** Health *** //
 	max_health = 400
@@ -49,10 +49,15 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
@@ -62,7 +67,6 @@
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/psychic_cure,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,
-		/datum/action/ability/xeno_action/psychic_whisper,
 		/datum/action/ability/activable/xeno/psychic_fling,
 		/datum/action/ability/activable/xeno/unrelenting_force,
 		/datum/action/ability/xeno_action/pheromones,
@@ -73,6 +77,7 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/psionic_interact,
 	)
 
 /datum/xeno_caste/shrike/normal
@@ -86,10 +91,15 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
@@ -99,8 +109,6 @@
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/psychic_cure,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,
-		/datum/action/ability/xeno_action/sow,
-		/datum/action/ability/xeno_action/psychic_whisper,
 		/datum/action/ability/activable/xeno/psychic_fling,
 		/datum/action/ability/activable/xeno/unrelenting_force,
 		/datum/action/ability/xeno_action/pheromones,
@@ -111,5 +119,6 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/psionic_interact,
 		/datum/action/ability/activable/xeno/psychic_vortex,
 	)

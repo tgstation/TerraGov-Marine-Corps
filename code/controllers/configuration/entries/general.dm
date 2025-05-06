@@ -17,6 +17,11 @@ Basics, the most important.
 
 /datum/config_entry/string/wikiurl
 
+/datum/config_entry/flag/log_job_debug
+
+/datum/config_entry/flag/log_as_human_readable
+	config_entry_value = TRUE
+
 /datum/config_entry/string/forumurl
 
 /datum/config_entry/string/rulesurl
@@ -34,7 +39,7 @@ Basics, the most important.
 
 /// Host of the webmap
 /datum/config_entry/string/webmap_host
-	config_entry_value = "https://affectedarc07.co.uk/tgmc.php?m="
+	config_entry_value = "https://webmap.affectedarc07.co.uk/maps/tgmc/"
 
 /datum/config_entry/string/python_path
 
@@ -217,6 +222,8 @@ Administrative related.
 Voting
 */
 /datum/config_entry/flag/allow_vote_restart
+
+/datum/config_entry/flag/allow_vote_endround
 
 /datum/config_entry/flag/allow_vote_mode
 

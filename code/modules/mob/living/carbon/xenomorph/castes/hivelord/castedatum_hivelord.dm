@@ -16,12 +16,12 @@
 
 	// *** Plasma *** //
 	plasma_max = 2400
-	plasma_gain = 65
+	plasma_gain = 80
 	plasma_regen_limit = 0.5
 	plasma_icon_state = "hivelord_plasma"
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 410
 
 
 	// *** Evolution *** //
@@ -37,7 +37,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -55,12 +55,18 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/healing_infusion,
+		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind,
 		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/activable/xeno/secrete_resin/hivelord,
 		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
@@ -91,12 +97,18 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/healing_infusion,
+		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind,
 		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/activable/xeno/secrete_resin/hivelord,
 		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,

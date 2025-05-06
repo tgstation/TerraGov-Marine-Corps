@@ -101,7 +101,7 @@
 
 /obj/item/riding_offhand
 	name = "offhand"
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/weapons/misc.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ITEM_ABSTRACT | DELONDROP | NOBLUDGEON

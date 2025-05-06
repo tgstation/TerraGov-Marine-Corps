@@ -54,6 +54,24 @@
 			continue
 		. += nearby_mech
 
+///Returns a list of vehicles via get_dist and same z level method, very cheap compared to range()
+/proc/cheap_get_tanks_near(atom/movable/source, distance)
+	. = list()
+	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
+	for(var/obj/vehicle/sealed/armored/nearby_tank AS in GLOB.tank_list)
+		if(isnull(nearby_tank))
+			continue
+		if(source_turf.z != nearby_tank.z)
+			continue
+		var/bound_max = 1
+		if(nearby_tank.hitbox)
+			bound_max = max(nearby_tank.hitbox.bound_height, nearby_tank.hitbox.bound_width) / 32
+		if(get_dist(source_turf, nearby_tank) > distance + bound_max - 1)
+			continue
+		. += nearby_tank
+
 ///Returns the nearest target that has the right target flag
 /proc/get_nearest_target(atom/source, distance, target_flags, attacker_faction, attacker_hive)
 	if(!source)
@@ -65,6 +83,10 @@
 	if(target_flags & TARGET_HUMAN)
 		for(var/mob/living/nearby_human AS in cheap_get_humans_near(source, distance))
 			if(nearby_human.stat == DEAD || nearby_human.faction == attacker_faction || nearby_human.alpha <= SCOUT_CLOAK_RUN_ALPHA)
+				continue
+			if(source.issamexenohive(nearby_human))
+				continue
+			if(isnestedhost(nearby_human))
 				continue
 			if(get_dist(source, nearby_human) < shorter_distance)
 				nearest_target = nearby_human
@@ -83,6 +105,8 @@
 				shorter_distance = get_dist(source, nearby_xeno)
 	if(target_flags & TARGET_HUMAN_TURRETS)
 		for(var/atom/nearby_turret AS in GLOB.marine_turrets)
+			if(source.issamexenohive(nearby_turret))
+				continue
 			if(source.z != nearby_turret.z)
 				continue
 			if(!(get_dist(source, nearby_turret) < shorter_distance))

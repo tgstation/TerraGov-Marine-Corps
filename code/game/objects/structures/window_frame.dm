@@ -41,6 +41,8 @@
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -74,7 +76,7 @@
 		span_notice("You start installing a new window on the frame."))
 		playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_notice("[user] installs a new glass window on the frame."), \
@@ -146,11 +148,24 @@
 /obj/structure/window_frame/colony/reinforced/weakened
 	max_integrity = 150
 
+/obj/structure/window_frame/colony/cm_frame
+	icon = 'icons/obj/smooth_objects/cmwindowframe.dmi'
+	icon_state = "cmwindowframe-0"
+	basestate = "cmwindowframe"
+	base_icon_state = "cmwindowframe"
+	max_integrity = 300
+
 /obj/structure/window_frame/chigusa
 	icon = 'icons/obj/smooth_objects/chigusa_window_frame.dmi'
 	icon_state = "chigusa_window_frame-0"
 	basestate = "chigusa_window_frame"
 	base_icon_state = "chigusa_window_frame"
+
+/obj/structure/window_frame/kutjevo
+	icon = 'icons/obj/smooth_objects/kutjevo_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+	basestate = "col_window_frame"
 
 /obj/structure/window_frame/wood
 	icon = 'icons/obj/smooth_objects/wood_window_frame.dmi'
@@ -184,3 +199,33 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_CANTERBURY,
 	)
+
+/obj/structure/window_frame/kutjevo
+	icon = 'icons/obj/smooth_objects/kutjevo_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+	basestate = "col_window_frame"
+
+/obj/structure/window_frame/hybrisa
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FRAME, SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+
+/obj/structure/window_frame/junk_frame
+	icon = 'icons/obj/smooth_objects/junk_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+	basestate = "col_window_frame"
+
+/obj/structure/window_frame/urban
+	icon = 'icons/obj/smooth_objects/urban_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+
+/obj/structure/window_frame/urban/colony/engineering/reinforced

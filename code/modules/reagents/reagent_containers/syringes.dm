@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-/// Syringes.
-////////////////////////////////////////////////////////////////////////////////
+/*!
+ * Contains Syringes and subtypes
+ */
 #define SYRINGE_DRAW 0
 #define SYRINGE_INJECT 1
 #define SYRINGE_BROKEN 2
@@ -15,9 +15,9 @@
 	)
 	worn_icon_state = "syringe_0"
 	icon_state = "0"
-	init_reagent_flags = AMOUNT_SKILLCHECK
+	reagent_flags = AMOUNT_SKILLCHECK
 	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = null //list(5,10,15)
+	possible_transfer_amounts = list(5,10,15)
 	volume = 15
 	w_class = WEIGHT_CLASS_TINY
 	item_flags = NOBLUDGEON
@@ -155,7 +155,7 @@
 					else
 						user.visible_message(span_danger("[user] begins hunting for an injection port on [target]'s suit!"))
 
-					if(!do_after(user, injection_time, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
 
 					user.visible_message(span_warning("[user] injects [target] with the syringe!"))
@@ -313,7 +313,7 @@
 
 			if(ismob(target) && target != user)
 				user.visible_message(span_danger("[user] is trying to inject [target] with a giant syringe!"))
-				if(!do_after(user, 30 SECONDS, NONE, target, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+				if(!do_mob(user, target, 30 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 					return
 				user.visible_message(span_warning("[user] injects [target] with a giant syringe!"))
 			spawn(5)
@@ -392,3 +392,7 @@
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
+
+#undef SYRINGE_DRAW
+#undef SYRINGE_INJECT
+#undef SYRINGE_BROKEN

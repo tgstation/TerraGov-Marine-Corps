@@ -9,17 +9,20 @@
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 22
+	melee_damage = 25
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.4
 
 	// *** Plasma *** //
-	plasma_max = 100
-	plasma_gain = 10
+	plasma_max = 150
+	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 400
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.9
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -33,15 +36,20 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 55, LASER = 55, ENERGY = 40, BOMB = 20, BIO = 50, FIRE = 55, ACID = 50)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 50, FIRE = 55, ACID = 50)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "warrior"
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/toggle_agility,
 		/datum/action/ability/activable/xeno/warrior/lunge,
 		/datum/action/ability/activable/xeno/warrior/fling,
@@ -60,9 +68,13 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/xeno_action/empower,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/toggle_agility,
 		/datum/action/ability/activable/xeno/warrior/lunge,
 		/datum/action/ability/activable/xeno/warrior/fling,

@@ -13,6 +13,12 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	hotkey_keys = list("J")
 
+/datum/keybinding/xeno/larval_growth_sting
+	name = "larval_growth_sting"
+	full_name = "Larval Growth Sting"
+	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
+	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
+
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
 	full_name = "Regurgitate / Cocoon"
@@ -26,6 +32,13 @@
 	description = "Opens the Queen Mothers Blessings menu, where hive upgrades are bought"
 	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
 	hotkey_keys = list("P")
+
+/datum/keybinding/xeno/tail_stab
+	name = "tail_stab"
+	full_name = "Tail Stab"
+	description = "Allows the xeno to launch a 2 range attack with some armor piercing and bonus damage on grab or to structures."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_STAB
+	hotkey_keys = list("ShiftE")
 
 /datum/keybinding/xeno/drop_weeds
 	name = "drop_weeds"
@@ -123,7 +136,12 @@
 	description = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
 	keybind_signal = COMSIG_XENOABILITY_HIDE
 	hotkey_keys = list("C")
-
+/datum/keybinding/xeno/tail_stab
+	name = "tail_stab"
+	full_name = "Tail Stab"
+	description = "Allows the xeno to launch a 2 range attack with some armor piercing and bonus damage on grab or to structures."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_STAB
+	hotkey_keys = list("ShiftE")
 /datum/keybinding/xeno/neurotox_sting
 	name = "neurotox_sting"
 	full_name = "Neurotoxin Sting"
@@ -177,6 +195,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
+/datum/keybinding/xeno/impregnate
+	name = "Impregnate"
+	full_name = "Impregnate"
+	description = "Infect an adjacent host with a larva without needing a hugger. This will burn them a bit due to acidic release."
+	keybind_signal = COMSIG_XENOABILITY_IMPREGNATE
+
 /datum/keybinding/xeno/lay_egg
 	name = "lay_egg"
 	full_name = "Lay Egg"
@@ -225,6 +249,41 @@
 	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
 	hotkey_keys = list("C")
 
+/datum/keybinding/xeno/dash_explosion
+	name = "Dash Explosion"
+	full_name = "Baneling: Dash Explode"
+	description = "Aim in a direction, charge up and dash, knocking down any humans hit and detonate yourself. "
+	keybind_signal = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/spawn_pod
+	name = "Spawn Pod"
+	full_name = "Baneling: Spawn Pod"
+	description = "Spawn a pod on your current position, when you die from any source you will respawn on this pod. Activate again to change its location. "
+	keybind_signal = COMSIG_XENOABILITY_BANELING_SPAWN_POD
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/baneling_explode
+	name = "Explode"
+	full_name = "Baneling: Explode"
+	description = "Detonate yourself, spreading your currently selected reagent. Size depends on current stored plasma, more plasma is more reagent."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_EXPLODE
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/select_reagent/baneling
+	name = "Select Reagent"
+	full_name = "Baneling: Select Reagent"
+	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/long_range_sight
+	name = "long_range_sight"
+	full_name = "Boiler: Long Range Sight"
+	description = "Toggles the zoom in."
+	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
 	full_name = "Boiler: Toggle Bombard Type"
@@ -251,6 +310,40 @@
 	description = "Fire globules."
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 	hotkey_keys = list("R")
+
+/datum/keybinding/xeno/acid_shroud
+	name = "acid_shroud"
+	full_name = "Boiler: Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/acid_shroud_select
+	name = "select_acid_shroud"
+	full_name = "Boiler: Select Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD_SELECT
+
+/datum/keybinding/xeno/smokescreen_spit
+	name = "smokescreen_spit"
+	full_name = "Boiler - Sizzler: Smokescreen Spit"
+	description = "Empowers your next spit to create a smokescreen."
+	keybind_signal = COMSIG_XENOABILITY_SMOKESCREEN_SPIT
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/steam_rush
+	name = "steam_rush"
+	full_name = "Boiler - Sizzler: Steam Rush"
+	description = "Speeds up and increases slash damage."
+	keybind_signal = COMSIG_XENOABILITY_STEAM_RUSH
+	hotkey_keys = list("Space")
+
+/datum/keybinding/xeno/high_pressure_spit
+	name = "high_pressure_spit"
+	full_name = "Boiler - Sizzler: High Pressure Spit"
+	description = "Fires a high pressure glob of acid that shatters and massively knocksback the target."
+	keybind_signal = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
@@ -439,11 +532,11 @@
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
-/datum/keybinding/xeno/acidic_salve
-	name = "acidic_salve"
-	full_name = "Drone: Acidic Salve"
+/datum/keybinding/xeno/resin_salve
+	name = "resin_salve"
+	full_name = "Drone: Resin Salve"
 	description = "Heal a xenomorph with this."
-	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE
+	keybind_signal = COMSIG_XENOABILITY_RESIN_SALVE
 	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/essence_link
@@ -469,10 +562,10 @@
 
 /datum/keybinding/xeno/devour
 	name = "devour"
-	full_name = "Gorger: Devour"
+	full_name = "Devour"
 	description = "Devour your victim to be able to carry it faster."
 	keybind_signal = COMSIG_XENOABILITY_DEVOUR
-	hotkey_keys = list("X")
+	hotkey_keys = null
 
 /datum/keybinding/xeno/drain
 	name = "drain"
@@ -570,6 +663,13 @@
 	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/displacement
+	name = "displacement"
+	full_name = "Hunter: Displacement"
+	description = "Change form to/from incorporeal."
+	keybind_signal = COMSIG_XENOMORPH_HUNTER_DISPLACEMENT
+	hotkey_keys = list("F")
+
 /datum/keybinding/xeno/teleport_minimap
 	name = "teleport_minimap"
 	full_name = "Hivemind: Open teleportation minimap"
@@ -584,11 +684,25 @@
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_POUNCE
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/hunter_lunge
+	name = "hunter_lunge"
+	full_name = "Hunter: Lunge"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_LUNGE
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/toggle_phaseout
+	name = "toggle_phaseout"
+	full_name = "Phase Out"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_PHASEOUT
 	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/toggle_disguise
@@ -667,6 +781,60 @@
 	description = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 
+/datum/keybinding/xeno/conqueror_dash
+	name = "Conqueror's Dash"
+	full_name = "Conqueror: Dash"
+	description = "Move in a burst of speed. Double tap any movement direction to dash towards it."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DASH
+
+/datum/keybinding/xeno/conqueror_will
+	name = "Conqueror's Will"
+	full_name = "Conqueror: Conqueror's Will"
+	description = "Imbue your punches with charged plasma. Upgrades attacks, and allows you to execute powerful combos while this ability is selected."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_WILL
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/conqueror_endurance_hold
+	name = "Conqueror's Endurance (Hold)"
+	full_name = "Conqueror: Endurance (Hold)"
+	description = "While the button is held, you will block attacks with your forearms, reducing damage received."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_HOLD
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/conqueror_endurance_hold/up(client/user)
+	SEND_SIGNAL(user, COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_UP, TRUE)
+	return ..()
+
+/datum/keybinding/xeno/conqueror_endurance_toggle
+	name = "Conqueror's Endurance (Toggle)"
+	full_name = "Conqueror: Endurance (Toggle)"
+	description = "While toggled, you will block attacks with your forearms, reducing damage received."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_TOGGLE
+
+/datum/keybinding/xeno/conqueror_dominance
+	name = "Conqueror's Domination"
+	full_name = "Conqueror: Domination"
+	description = "Teleport towards a target location, distorting reality, and creating powerful shockwaves upon reappearing."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DOMINATION
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/conqueror_obliteration_hold
+	name = "Conqueror's Obliteration (Hold)"
+	full_name = "Conqueror: Obliteration (Hold)"
+	description = "Unleash your latent power. While the button is held, you will create an area of effect that will slowly expand. Releasing the button will attack everyone caught within it."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_HOLD
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/conqueror_obliteration_hold/up(client/user)
+	SEND_SIGNAL(user, COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_UP, TRUE)
+	return ..()
+
+/datum/keybinding/xeno/conqueror_obliteration_toggle
+	name = "Conqueror's Obliteration (Toggle)"
+	full_name = "Conqueror: Obliteration (Toggle)"
+	description = "Unleash your latent power. While enabled, you will create an area of effect that will slowly expand. Using the ability again will attack everyone caught within it."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_TOGGLE
+
 /datum/keybinding/xeno/acid_dash
 	name = "acid_dash"
 	full_name = "Praetorian: Acid Dash"
@@ -674,12 +842,48 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/dodge
+	name = "Dodge"
+	full_name = "Praetorian: Dodge"
+	description = "Flood your body with adrenaline, gaining a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
+	keybind_signal = COMSIG_XENOABILITY_DODGE
+
+/datum/keybinding/xeno/impale
+	name = "Impale"
+	full_name = "Praetorian: Impale"
+	description = "Skewer an object next to you with your tail. The more debuffs on a living target, the greater the damage done. Penetrates the armor of marked targets."
+	keybind_signal = COMSIG_XENOABILITY_IMPALE
+
+/datum/keybinding/xeno/tail_trip
+	name = "Tail Trip"
+	full_name = "Praetorian: Tail Trip"
+	description = "Target a marine within two tiles of you to disorient and slows them. Marked enemies receive stronger debuffs and are stunned for a second."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_TRIP
+
+/datum/keybinding/xeno/tail_hook
+	name = "Tail Hook"
+	full_name = "Praetorian: Tail Hook"
+	description = "Swing your tail high, sending the hooked edge gouging into any targets within 2 tiles. Hooked marines have their movement slowed and are dragged, spinning, towards you. Marked marines are slowed for longer and briefly knocked over."
+	keybind_signal = COMSIG_XENOABILITY_TAILHOOK
+
+/datum/keybinding/xeno/baton_pass
+	name = "Baton Pass"
+	full_name = "Praetorian: Baton Pass"
+	description = "Inject another xenomorph with your built-up adrenaline, increasing their movement speed considerably for 6 seconds. Puts dodge on cooldown when used. Less effect on quick xenos."
+	keybind_signal = COMSIG_XENOABILITY_BATONPASS
+
 /datum/keybinding/xeno/screech
 	name = "screech"
 	full_name = "Queen: Screech"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/screech_switch
+	name = "screech_switch"
+	full_name = "Queen: Screech Switch"
+	description = "Switches the type of Screech that will be performed."
+	keybind_signal = COMSIG_XENOABILITY_SCREECH_SWITCH
 
 /datum/keybinding/xeno/toggle_queen_zoom
 	name = "toggle_queen_zoom"
@@ -1115,6 +1319,12 @@
 	description = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE
 
+/datum/keybinding/xeno/cancel_landslide
+	name = "Cancel Landslide"
+	full_name = "Behemoth: Cancel Landslide"
+	description = "Cancels landslide without having to select the ability"
+	keybind_signal = COMSIG_XENOABILITY_CANCEL_LANDSLIDE
+
 /datum/keybinding/xeno/earth_riser
 	name = "Earth Riser"
 	full_name = "Behemoth: Earth Riser"
@@ -1138,3 +1348,69 @@
 	full_name = "Behemoth: Primal Wrath"
 	description = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
 	keybind_signal = COMSIG_XENOABILITY_PRIMAL_WRATH
+
+/datum/keybinding/xeno/firecharge
+	name = "Fire Charge"
+	full_name = "Pyrogen: Fire Charge"
+	description = "Charge forward and attack a marine, extinguishing them if they're on fire, but dealing extra burn damage depending on how many firestacks they have."
+	keybind_signal = COMSIG_XENOABILITY_FIRECHARGE
+
+/datum/keybinding/xeno/firenado
+	name = "Fire Storm"
+	full_name = "Pyrogen: Fire Storm"
+	description = "Unleash 3 firenados that will slowly move towards your targeted turf."
+	keybind_signal = COMSIG_XENOABILITY_FIRENADO
+
+/datum/keybinding/xeno/fireball
+	name = "Fireball"
+	full_name = "Pyrogen: Fireball"
+	description = "Unleash a fireball after a small windup."
+	keybind_signal = COMSIG_XENOABILITY_FIREBALL
+
+/datum/keybinding/xeno/heatray
+	name = "Heatray"
+	full_name = "Pyrogen: Heatray"
+	description = "After a windup, unleash a heat ray that will cook any marine it comes across."
+	keybind_signal = COMSIG_XENOABILITY_HEATRAY
+
+/datum/keybinding/xeno/backhand
+	name = "Backhand"
+	full_name = "Dragon: Backhand"
+	description = "Smack a group of marines in front of you away and stun them."
+	keybind_signal = COMSIG_XENOABILITY_BACKHAND
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/fly
+	name = "Fly"
+	full_name = "Dragon: Fly"
+	description = "After a windup, begin to fly away. If you're already flying, land."
+	keybind_signal = COMSIG_XENOABILITY_FLY
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/dragon_breath
+	name = "Dragon Breath"
+	full_name = "Dragon: Dragon Breath"
+	description = "After a windup, continuously blast fire in a cardinal direction."
+	keybind_signal = COMSIG_XENOABILITY_DRAGON_BREATH
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/wind_current
+	name = "Wind Current"
+	full_name = "Dragon: Wind Current"
+	description = "After a windup, clear gas and knock away marines in a cone in front of you."
+	keybind_signal = COMSIG_XENOABILITY_WIND_CURRENT
+	hotkey_keys = list("V")
+
+/datum/keybinding/xeno/grab
+	name = "Grab"
+	full_name = "Dragon: Grab"
+	description = "After a windup, firmly grab an nearby marine in front of you and prevent them from moving away."
+	keybind_signal = COMSIG_XENOABILITY_GRAB
+	hotkey_keys = list("B")
+
+/datum/keybinding/xeno/scorched_land
+	name = "Scorched Land"
+	full_name = "Dragon: Scorched Land"
+	description = "While flying, blast a line of fire in a direction."
+	keybind_signal = COMSIG_XENOABILITY_SCORCHED_LAND
+	hotkey_keys = list("G")

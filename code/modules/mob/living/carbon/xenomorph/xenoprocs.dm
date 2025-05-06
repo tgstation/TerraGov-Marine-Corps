@@ -97,11 +97,17 @@
 
 ///returns TRUE if we are permitted to evo to the next caste FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
+	if(!(upgrade in GLOB.xenoupgradetiers))
+		stack_trace("Upgrade isn't in upgrade list, incorrect define provided")
+		return FALSE
 	if(HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return FALSE
 	if(upgrade == XENO_UPGRADE_NORMAL)
 		return hive.purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
-	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_PRIMO)
+	if(upgrade == XENO_UPGRADE_INVALID || upgrade == XENO_UPGRADE_PRIMO || upgrade == XENO_UPGRADE_BASETYPE)
+		return FALSE
+	stack_trace("Logic for handling this Upgrade tier wasn't written")
+	return FALSE
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -125,7 +131,7 @@
 	if(xeno_caste.plasma_max > 0)
 		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
 
-	. += "Sunder: [100-sunder]% armor left"
+	. += "Armor: [100-sunder]%"
 
 	. += "Regeneration power: [max(regen_power * 100, 0)]%"
 
@@ -235,11 +241,11 @@
 //Stealth handling
 
 
-/mob/living/carbon/xenomorph/proc/update_progression()
+/mob/living/carbon/xenomorph/proc/update_progression(seconds_per_tick)
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	upgrade_stored += 1 + (stored_larva/6) + hive.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
+	upgrade_stored += (1 + (stored_larva/6) + hive.get_upgrade_boost()) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Do this regardless of whether we can upgrade so age accrues at primo
 	if(!upgrade_possible())
 		return
 	if(upgrade_stored < xeno_caste.upgrade_threshold)
@@ -249,7 +255,7 @@
 	upgrade_xeno(upgrade_next())
 
 
-/mob/living/carbon/xenomorph/proc/update_evolving()
+/mob/living/carbon/xenomorph/proc/update_evolving(seconds_per_tick)
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return
 	if(!hive.check_ruler() && caste_base_type != /datum/xeno_caste/larva) // Larva can evolve without leaders at round start.
@@ -259,14 +265,15 @@
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
-	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
+	var/evolution_points_lag = evolution_points * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
+	evolution_stored = min(evolution_stored + evolution_points_lag, xeno_caste.evolution_threshold)
 
 	if(!client || !ckey)
 		return
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
 		to_chat(src, span_xenodanger("Our carapace crackles and our tendons strengthen. We are ready to evolve!"))
-		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
+		SEND_SOUND(src, sound('sound/effects/alien/evolve_ready.ogg'))
 
 
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
@@ -304,13 +311,16 @@
 			else
 				new_lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 
+	var/datum/game_mode/mode = SSticker.mode
 	switch(new_lighting_alpha)
 		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE, LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE, LIGHTING_PLANE_ALPHA_INVISIBLE)
-			ENABLE_BITFIELD(sight, SEE_MOBS)
+			if(!(mode.round_type_flags & MODE_SURVIVAL))
+				ENABLE_BITFIELD(sight, SEE_MOBS)
 			ENABLE_BITFIELD(sight, SEE_OBJS)
 			ENABLE_BITFIELD(sight, SEE_TURFS)
 		if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
-			ENABLE_BITFIELD(sight, SEE_MOBS)
+			if(!(mode.round_type_flags & MODE_SURVIVAL))
+				ENABLE_BITFIELD(sight, SEE_MOBS)
 			DISABLE_BITFIELD(sight, SEE_OBJS)
 			DISABLE_BITFIELD(sight, SEE_TURFS)
 
@@ -320,7 +330,7 @@
 
 
 /mob/living/carbon/xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)
-	if(stat || resting)
+	if(stat)
 		if(xeno_flags & XENO_ZOOMED)
 			zoom_out()
 			return
@@ -434,7 +444,7 @@
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
 
-/obj/flamer_fire/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/fire/flamer/acid_spray_act(mob/living/carbon/xenomorph/X)
 	qdel(src)
 
 /obj/hitbox/acid_spray_act(mob/living/carbon/xenomorph/X)
@@ -466,23 +476,41 @@
 	to_chat(src, span_notice("You have [(xeno_flags & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
 
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, list/toxin = list(/datum/reagent/toxin/xeno_neurotoxin), channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4, no_overdose = FALSE)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
-	if(!do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+	if(!length(toxin) && islist(toxin))
+		return FALSE
+	if(!islist(toxin))
+		toxin = list(toxin)
+	var/chemical_string = ""
+	// populate the string and fill the assoc list transfer amounts
+	for(var/chem in toxin)
+		var/datum/reagent/chemical = chem
+		toxin[chemical] = transfer_amount
+		var/string_append = ", "
+		// use and if we're before the last chemical
+		var/last_chem = toxin[length(toxin)]
+		var/last_chem_index = toxin.Find(last_chem)
+		if(length(toxin) > 1 && chem == toxin[last_chem_index - 1])
+			string_append = " and "
+		else if(chem == toxin[last_chem_index])
+			string_append = ""
+		chemical_string += "[initial(chemical.name)][string_append]"
+	if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 		return FALSE
 	var/i = 1
 	to_chat(C, span_danger("You feel a tiny prick."))
-	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
+	to_chat(src, span_xenowarning("Our stinger injects our victim with [chemical_string]!"))
 	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-	playsound(C, "alien_drool", 15, TRUE)
+	playsound(C, SFX_ALIEN_DROOL, 15, TRUE)
 	do
 		face_atom(C)
 		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
-		C.reagents.add_reagent(toxin, transfer_amount)
-	while(i++ < count && do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+		C.reagents.add_reagent_list(toxin, transfer_amount, no_overdose = no_overdose)
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 /atom/proc/can_sting()
@@ -554,7 +582,7 @@
 ///Handles icon updates when leadered/unleadered. Evolution.dm also uses this
 /mob/living/carbon/xenomorph/proc/update_leader_icon(makeleader = TRUE)
 	// Xenos with specialized icons (Queen, King, Shrike) do not get their icon changed
-	if(istype(xeno_caste, /datum/xeno_caste/queen) || istype(xeno_caste, /datum/xeno_caste/shrike) || istype(xeno_caste, /datum/xeno_caste/king))
+	if(istype(xeno_caste, /datum/xeno_caste/queen) || istype(xeno_caste, /datum/xeno_caste/shrike) || istype(xeno_caste, /datum/xeno_caste/king) || istype(xeno_caste, /datum/xeno_caste/dragon))
 		return
 
 	SSminimaps.remove_marker(src)
@@ -573,3 +601,51 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+/mob/living/carbon/xenomorph/verb/swapgender()
+	set name = "Swap Gender"
+	set desc = "Swap between xeno genders in an instant, nothing compared to evolving."
+	set category = "Alien"
+
+	update_xeno_gender(src, TRUE)
+
+/mob/living/carbon/xenomorph/proc/update_xeno_gender(mob/living/carbon/xenomorph/user = src, swapping = FALSE)
+	remove_overlay(GENITAL_LAYER)
+	if(!user)
+		return
+	var/xgen = user?.client?.prefs?.xenogender
+	if(swapping) //flips to next in selection
+		xgen += 1
+	if(xgen >= 5) //revert to start if over max.
+		xgen = 1
+	//updates the overlays
+	user.client?.prefs?.xenogender = xgen
+	genital_overlay.layer = layer + 0.3
+	genital_overlay.vis_flags |= VIS_HIDE
+	genital_overlay.icon = src.icon
+	genital_overlay.icon_state = "none"
+	switch(xgen)
+		if(1) //blank
+			genital_overlay.icon_state = null
+			gender=NEUTER
+			if(swapping)
+				user.balloon_alert(user, "None")
+		if(2)
+			genital_overlay.icon_state = "[icon_state]_female"
+			gender=FEMALE
+			if(swapping)
+				user.balloon_alert(user, "Female")
+		if(3)
+			genital_overlay.icon_state = "[icon_state]_male"
+			gender=MALE
+			if(swapping)
+				user.balloon_alert(user, "Male")
+		if(4)
+			genital_overlay.icon_state = "[icon_state]_futa"
+			gender=FEMALE
+			if(swapping)
+				user.balloon_alert(user, "Futa")
+
+	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK) //ig if u cant see wounds u shouldnt see tiddies too maybe for things like being ethereal
+		apply_overlay(GENITAL_LAYER)
+	genital_overlay.vis_flags &= ~VIS_HIDE // Show the overlay

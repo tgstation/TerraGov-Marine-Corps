@@ -153,7 +153,7 @@
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/ground/compound
-	name = "\improper Nanotrasen Compound"
+	name = "\improper Ninetails Compound"
 	icon_state = "green"
 
 /area/lv624/ground/compound/ne
@@ -209,6 +209,7 @@
 	name = "Enclosed Area"
 	icon_state = "transparent"
 	minimap_color = null
+	area_flags = CANNOT_NUKE
 
 /area/lv624/ground/caves/west1
 	name = "Western Caves"

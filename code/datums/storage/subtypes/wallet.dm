@@ -25,7 +25,7 @@
 		/obj/item/tool/stamp,
 	))
 
-/datum/storage/wallet/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+/datum/storage/wallet/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE)
 	. = ..()
 	var/obj/item/storage/wallet/parent_wallet = parent
 	if(item == parent_wallet.front_id)

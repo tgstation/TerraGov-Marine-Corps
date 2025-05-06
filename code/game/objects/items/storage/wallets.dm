@@ -2,6 +2,7 @@
 	name = "wallet"
 	desc = "It can hold a few small and personal things."
 	icon_state = "wallet"
+	icon = 'icons/obj/items/storage/wallet.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	equip_slot_flags = ITEM_SLOT_ID
 	var/obj/item/card/id/front_id = null

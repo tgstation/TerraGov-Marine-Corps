@@ -117,7 +117,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/assault_rifle
 	name = "\improper Cronus assault rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "The stock-and-standard extra-sized multipurpose rifle for TGMC mech units."
+	desc = "The stock-and-standard extra-sized multipurpose rifle for NTC mech units."
 	icon_state = "assaultrifle"
 	fire_sound = 'sound/mecha/weapons/mech_rifle.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
@@ -126,7 +126,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 80
 	projectiles_cache = 960
 	projectiles_cache_max = 960
@@ -141,7 +141,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun
 	name = "\improper Phoebe shotgun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "The TGMC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
+	desc = "The NTC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
 	icon_state = "shotgun"
 	fire_sound = 'sound/mecha/weapons/mech_shotgun.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
@@ -150,7 +150,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-4), "E" = list(61,36), "W" = list(-31,16)),
 	)
 	ammotype = /datum/ammo/bullet/shotgun/mech
-	max_integrity = 350
+	max_integrity = 150
 	projectiles = 10
 	projectiles_cache = 120
 	projectiles_cache_max = 120
@@ -174,7 +174,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech/lmg
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 120
 	projectiles_cache = 1200
 	projectiles_cache_max = 1200
@@ -198,7 +198,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-15), "E" = list(80,24), "W" = list(-50,4)),
 	)
 	ammotype = /datum/ammo/tx54/mech
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 30
 	projectiles_cache = 300
 	projectiles_cache_max = 300
@@ -222,7 +222,7 @@
 		MECHA_L_ARM = list("N" = list(0,68), "S" = list(32,-6), "E" = list(80,33), "W" = list(-50,13)),
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech
-	max_integrity = 400
+	max_integrity = 200
 	energy_drain = 10
 	variance = 0
 	projectile_delay = 0.4 SECONDS
@@ -242,7 +242,7 @@
 		MECHA_L_ARM = list("N" = list(0,52), "S" = list(32,-6), "E" = list(75,31), "W" = list(-45,11)),
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/burst
-	max_integrity = 400
+	max_integrity = 200
 	energy_drain = 5
 	variance = 0
 	projectile_delay = 0.6 SECONDS
@@ -264,7 +264,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/smg
-	max_integrity = 400
+	max_integrity = 200
 	energy_drain = 5
 	variance = 0
 	projectile_delay = 0.2 SECONDS
@@ -284,7 +284,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/apfsds
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 1
 	projectiles_cache = 15
 	projectiles_cache_max = 15
@@ -309,7 +309,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/minigun/mech
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 200
 	projectiles_cache = 800
 	projectiles_cache_max = 800
@@ -348,13 +348,13 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher
 	name = "\improper Hyperion grenade launcher"
-	desc = "The TGMC's definitive answer to whether a bigger boom is better. Fires standard HEDP grenades."
+	desc = "The NTC's definitive answer to whether a bigger boom is better. Fires standard HEDP grenades."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	icon_state = "grenadelauncher"
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /obj/item/explosive/grenade
-	max_integrity = 350
+	max_integrity = 150
 	projectiles = 10
 	projectiles_cache = 40
 	projectiles_cache_max = 40
@@ -386,7 +386,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
-	max_integrity = 250
+	max_integrity = 50
 	projectiles = 20
 	projectiles_cache = 20 // low ammo counts so player cant just spam fire while rushing infinitely
 	projectiles_cache_max = 20
@@ -410,7 +410,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/rocket/mech
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 1
 	projectiles_cache = 1
 	projectiles_cache_max = 1
@@ -432,10 +432,10 @@
 /obj/item/mecha_parts/mecha_equipment/laser_sword
 	name = "\improper Moonlight particle cutter"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
+	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of NTC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	max_integrity = 400
+	max_integrity = 200
 	slowdown = 0
 	harmful = TRUE
 	equip_cooldown = 3 SECONDS
@@ -475,7 +475,8 @@
 	cutter = source
 	chassis.atom_flags |= DIRLOCK
 	RegisterSignal(chassis, COMSIG_MOVABLE_MOVED, PROC_REF(drop_afterimage))
-	chassis.throw_at(target, laser_dash_range, 1, flying = TRUE)
+	RegisterSignal(chassis, COMSIG_MOVABLE_BUMP, PROC_REF(on_bump))
+	chassis.throw_at(target, laser_dash_range, 1)
 	return ..()
 
 ///signal handler, drops afterimage every move executed while dashing
@@ -483,10 +484,22 @@
 	SIGNAL_HANDLER
 	new /obj/effect/temp_visual/after_image(chassis.loc, chassis)
 
+///Wrapper for mob bump attacks mid lunge
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/on_bump(datum/source, atom/bumped)
+	SIGNAL_HANDLER
+	if(!ismob(bumped))
+		return
+	INVOKE_ASYNC(src, PROC_REF(do_bump_attack), bumped)
+	return COMPONENT_BUMP_RESOLVED
+
+///Hits a mob in the way
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/do_bump_attack(mob/living/bumped_mob)
+	bumped_mob.attackby(src, cutter)
+
 ///Ends dash and executes attack
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/end_dash(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_BUMP))
 	chassis.remove_filter("dash_blur")
 	icon_state = initial(icon_state)
 	chassis.update_icon()
@@ -515,14 +528,14 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear
 	name = "\improper Sunbeam particle piercer"
-	desc = "A spear made of compressed energy for the TGMC Combat Mech. A melee weapon for strong defense at short-to-medium range. Extends a spear of superheated plasma upon activation, piericing everything in its path. A melee core will increase both its range and power. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
+	desc = "A spear made of compressed energy for the NTC Combat Mech. A melee weapon for strong defense at short-to-medium range. Extends a spear of superheated plasma upon activation, piericing everything in its path. A melee core will increase both its range and power. It is a top-of-the-line melee weapon of NTC's fine line of mecha close-range offensive capability."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	icon_state = "lance"
 	fire_sound = 'sound/mecha/weapons/laser_sword.ogg'
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.OGG'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/lance_strike
-	max_integrity = 400
+	max_integrity = 200
 	slowdown = 0.15
 	windup_delay = 0.6 SECONDS
 	harmful = TRUE

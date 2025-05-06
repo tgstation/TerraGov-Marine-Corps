@@ -7,6 +7,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_COMMAND]" = "comradio",
 	"[FREQ_AI]" = "airadio",
 	"[FREQ_CAS]" = "casradio",
+	"[FREQ_SEC]" = "secradio",
 	"[FREQ_ENGINEERING]" = "engradio",
 	"[FREQ_MEDICAL]" = "medradio",
 	"[FREQ_REQUISITIONS]" = "supradio",
@@ -20,7 +21,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	))
 
 
-/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, range = 7)
 	if(!can_speak())
 		return
 
@@ -32,7 +33,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(!language)
 		language = get_default_language()
 
-	send_speech(message, 7, src, , spans, message_language = language)
+	send_speech(message, range, src, , spans, message_language = language)
 
 
 /atom/movable/proc/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
@@ -45,16 +46,16 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return TRUE
 
 
-/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language, list/message_mods = list(), tts_message, list/tts_filter)
+/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language, message_mode, tts_message, list/tts_filter)
 	var/found_client = FALSE
-	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
+	var/rendered = compose_message(src, message_language, message, , spans, message_mode)
 	var/list/listeners = get_hearers_in_view(range, source)
 	var/list/listened = list()
 	for(var/atom/movable/hearing_movable as anything in listeners)
 		if(!hearing_movable)//theoretically this should use as anything because it shouldnt be able to get nulls but there are reports that it does.
 			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
 			continue
-		if(hearing_movable.Hear(rendered, src, message_language, message, , spans, message_mods))
+		if(hearing_movable.Hear(rendered, src, message_language, message, , spans, message_mode))
 			listened += hearing_movable
 		if(!found_client && length(hearing_movable.client_mobs_in_contents))
 			found_client = TRUE
@@ -75,7 +76,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(use_radio)
 		special_filter += TTS_FILTER_RADIO
 
-	if(voice && found_client)
+	if(voice && found_client && (!CONFIG_GET(flag/tts_no_whisper) || message_mode != MODE_WHISPER))
 		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = range, pitch = pitch, special_filters = special_filter.Join("|"))
 
 #define CMSG_FREQPART compose_freq(speaker, radio_freq)
