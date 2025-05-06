@@ -1,7 +1,7 @@
 {
-    "map_name": "Desparity",
+    "map_name": "Larvae Pits",
     "map_path": "map_files/desparity",
-    "map_file": "desparity.dmm",
+    "map_file": "desparity2.dmm",
 	"disk_sets": {
 		"basic": 1
 	},
