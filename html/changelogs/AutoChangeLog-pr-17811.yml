@@ -1,0 +1,4 @@
+author: "Abopos"
+delete-after: True
+changes:
+  - bugfix: "Whiskey outpost turrets now have iff"
