@@ -106,10 +106,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
-"fp" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/engineering)
 "fr" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -575,10 +571,6 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
-"DG" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering/east)
 "DH" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor,
@@ -602,10 +594,6 @@
 	name = "\improper Engineering Workshop"
 	},
 /turf/open/floor,
-/area/bigredv2/outside/engineering)
-"EW" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
 /area/bigredv2/outside/engineering)
 "Fi" = (
 /obj/effect/ai_node,
@@ -1100,7 +1088,7 @@ GH
 GH
 GH
 GH
-EW
+Pt
 Ds
 uk
 Wo
@@ -1192,7 +1180,7 @@ EH
 wt
 wt
 wt
-fp
+GH
 GH
 GH
 LF
@@ -1245,7 +1233,7 @@ Pt
 Az
 Pt
 Pt
-EW
+Pt
 vR
 Ge
 Jq
@@ -1310,7 +1298,7 @@ Wo
 tR
 Wo
 Wo
-fp
+GH
 LF
 LF
 LF
@@ -1420,7 +1408,7 @@ bN
 wt
 Ie
 Jv
-DG
+Ao
 Ao
 Ao
 jf
@@ -1446,7 +1434,7 @@ qm
 (14,1,1) = {"
 Wo
 wW
-EW
+Pt
 Oa
 DH
 Ao
@@ -1533,7 +1521,7 @@ su
 (17,1,1) = {"
 Pt
 Pt
-EW
+Pt
 WD
 cD
 Ao
@@ -1594,7 +1582,7 @@ GE
 Ih
 ua
 ax
-DG
+Ao
 Ao
 Ao
 jf
@@ -1706,7 +1694,7 @@ su
 "}
 (23,1,1) = {"
 Ao
-DG
+Ao
 Gp
 Of
 KV

@@ -1,6 +1,0 @@
-author: "Isy232"
-delete-after: True
-changes:
-  - rscadd: "Completion of a disk cycle rewards marines requisitions points scaling with player count."
-  - balance: "To counterbalance, xenomorph sell prices halved."
-  - balance: "Fulton packs uses 3 => 6."

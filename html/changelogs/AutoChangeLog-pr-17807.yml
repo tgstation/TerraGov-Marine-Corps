@@ -1,0 +1,5 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - bugfix: "Moved bluespace gen warning lights around on big red (removed from previous location moving to the new one)"
+  - bugfix: "Moved bluespace gen a little on research outpost and added cables so it works"
