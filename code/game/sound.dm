@@ -176,17 +176,14 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 	if(isturf(turf_source))
 		// 3D sounds, the technology is here!
-		var/turf/T = get_turf(src)
-
-		//sound volume falloff with distance
-		var/distance = get_dist(turf_loc, turf_source) * distance_multiplier
+		var/turf/turf_loc = get_turf(src)
 
 		if(sound_to_use.volume < SOUND_AUDIBLE_VOLUME_MIN)
 			return //Too quiet to be audible
 
-		var/dx = turf_source.x - T.x // Hearing from the right/left
+		var/dx = turf_source.x - turf_loc.x // Hearing from the right/left
 		sound_to_use.x = dx * distance_multiplier
-		var/dz = turf_source.y - T.y // Hearing from infront/behind
+		var/dz = turf_source.y - turf_loc.y // Hearing from infront/behind
 		sound_to_use.z = dz * distance_multiplier
 		//The y value is for above your head, but there is no ceiling in 2d spessmens.
 		sound_to_use.y = 1
