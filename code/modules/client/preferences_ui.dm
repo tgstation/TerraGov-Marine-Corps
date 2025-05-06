@@ -241,7 +241,8 @@
 				"Latejoin Xenomorph" = BE_ALIEN,
 				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
 				"End of Round Deathmatch" = BE_DEATHMATCH,
-				"Prefer Squad over Role" = BE_SQUAD_STRICT
+				"Prefer Squad over Role" = BE_SQUAD_STRICT,
+				"Use random name when taking SSD mobs" = BE_SSD_RANDOM_NAME
 			)
 		if(KEYBIND_SETTINGS)
 			.["all_keybindings"] = list()
