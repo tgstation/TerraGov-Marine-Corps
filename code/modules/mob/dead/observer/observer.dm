@@ -483,8 +483,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!istype(target))
 		return
 
-	var/icon/I = icon(target.icon, target.icon_state, target.dir)
-
 	var/orbitsize = (target.get_cached_width() + target.get_cached_height()) * 0.5
 	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
 
