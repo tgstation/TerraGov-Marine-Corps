@@ -4730,10 +4730,8 @@
 	},
 /area/whiskey_outpost/outside/north)
 "yK" = (
+/obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
-/obj/effect/turf_decal/grassdecal/corner2{
-	dir = 8
-	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "yN" = (
@@ -17052,11 +17050,11 @@ LO
 kn
 kn
 jX
-yK
+lq
 xZ
 cm
 kn
-Gj
+yK
 kn
 kn
 vv
