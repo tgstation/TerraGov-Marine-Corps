@@ -179,20 +179,19 @@
 		return
 	if(xeno_attacker.incapacitated())
 		return
-	INVOKE_ASYNC(src, PROC_REF(pat_out), xeno_attacker)
 
-///Pats out the fire
-/obj/fire/flamer/proc/pat_out(mob/living/patter)
-	if(!do_after(patter, 0.5 SECONDS, target = src, user_display = BUSY_ICON_FRIENDLY))
-		return
-
+	xeno_attacker.changeNext_move(xeno_attacker.xeno_caste.attack_delay)
 	burn_ticks -= 10
-	if(burn_ticks <= 0)
-		playsound(loc, 'sound/effects/smoke_extinguish.ogg', 20)
-		qdel(src)
-		return
-	update_appearance(UPDATE_ICON)
+	playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] tries to put out the fire!"), \
+		span_warning("We try to put out the fire!"), null, 5)
+	if(burn_ticks > 0)
+		update_appearance(UPDATE_ICON)
+		return
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] has successfully extinguished the fire!"), \
+		span_notice("We extinguished the fire."), null, 5)
+	qdel(src)
 
 ///////////////////////////////
 //        MELTING FIRE       //
