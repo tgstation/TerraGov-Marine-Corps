@@ -280,7 +280,7 @@ export const BackgroundInformation = (props) => {
               value={xenoprofilePic}
               onChange={(e, value) => setXenoProfilePic(value)}
             />
-            <img src={xenoprofile_pic} width={250} height={250} />
+            <img src={xenoprofile_pic} width={350} height={400} />
           </Section>
         </Stack.Item>
       </Stack>
