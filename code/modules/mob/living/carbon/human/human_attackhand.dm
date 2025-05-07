@@ -27,7 +27,7 @@
 				return TRUE
 
 			var/datum/status_effect/stacking/melting_fire/burning = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-			if(burning)
+			if(burning && human_user != src)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
 				span_warning("You try to put out the fire on [src]!"), null, 5)
