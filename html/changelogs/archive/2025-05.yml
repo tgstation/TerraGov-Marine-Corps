@@ -101,3 +101,22 @@
   - rscdel: Removed some dead code for storage
   Wisemonster:
   - balance: Removes second hardpoint on panoptical tadpole model
+2025-05-07:
+  Abopos:
+  - bugfix: Whiskey outpost turrets now have iff
+  Atropos:
+  - bugfix: Moved bluespace gen warning lights around on big red (removed from previous
+      location moving to the new one)
+  - bugfix: Moved bluespace gen a little on research outpost and added cables so it
+      works
+  Looking4bros:
+  - bugfix: Harvester right click attack works
+  Lumipharon:
+  - balance: Hunter attacks now always break stealth
+  Runian:
+  - bugfix: Resisting while having a low amount of melting fire on you now correctly
+      paralyzes you instead of only spinning you.
+  TiviPlus:
+  - code_imp: Optimized fetching a sprites size
+  - code_imp: improved some xeno code
+  - code_imp: improved playsound code more

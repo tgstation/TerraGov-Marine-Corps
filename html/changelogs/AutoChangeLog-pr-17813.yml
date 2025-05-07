@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Resisting while having a low amount of melting fire on you now correctly paralyzes you instead of only spinning you."
