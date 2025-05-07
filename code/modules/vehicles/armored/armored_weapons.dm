@@ -72,7 +72,9 @@
 	if(!ammo || ammo.current_rounds <= 0)
 		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+	if(source.incapacitated(TRUE))
+		return
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return
 
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
@@ -83,7 +85,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30)
-		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)) || TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)) || TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -96,6 +98,7 @@
 		var/fire_return // todo fix: code expecting return values from async
 		ASYNC
 			fire_return = fire()
+			current_firer.say("On the way!")
 		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
@@ -187,6 +190,10 @@
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/armored_weapon/proc/fire()
 	if(!current_target)
+		return
+	if(windup_checked == WEAPON_WINDUP_CHECKING)
+		return
+	if(current_firer.incapacitated(TRUE))
 		return
 	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
 	if(armored_weapon_flags & MODULE_FIXED_FIRE_ARC)
@@ -361,7 +368,7 @@
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/autocannon, /obj/item/ammo_magazine/tank/autocannon/high_explosive)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 2
-	projectile_delay = 0.35 SECONDS
+	projectile_delay = 0.45 SECONDS
 	rearm_time = 9 SECONDS
 	hud_state_empty = "hivelo_empty"
 

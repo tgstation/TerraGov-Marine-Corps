@@ -3,6 +3,8 @@
 	set category = "OOC"
 
 	var/count_observers = 0
+	var/count_newplayers = 0
+	var/count_afknewplayers = 0
 	var/count_nonadmin_observers = 0
 	var/count_humans = 0
 	var/count_marine_humans = 0
@@ -15,6 +17,10 @@
 			count_observers++
 			if(!check_other_rights(C, R_ADMIN, FALSE))
 				count_nonadmin_observers++
+		else if(isnewplayer(C.mob))
+			count_newplayers++
+			if(C.is_afk())
+				count_afknewplayers++
 		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob))
 				count_humans++
@@ -53,13 +59,14 @@
 					else
 						entry += " - <b>DEAD</b>"
 			entry += " (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+			entry += " ([round(C.avgping, 1)]ms)"
 			Lines += entry
 	else
 		for(var/client/C in GLOB.clients)
 			if(C.holder?.fakekey)
-				Lines += C.holder.fakekey
+				Lines += "[C.holder.fakekey] ([round(C.avgping, 1)]ms)"
 			else
-				Lines += C.key
+				Lines += "[C.key] ([round(C.avgping, 1)]ms)"
 
 	for(var/line in sortList(Lines))
 		msg += "[line]<br>"
@@ -68,8 +75,9 @@
 		var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		msg += "<b>Total Players: [length(Lines)]</b>"
 		msg += "<br><b>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
-		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Sons of Mars: ~[count_som_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b><br>"
+		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Sons of Mars: ~[count_som_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b>"
 		msg += "<br><b>Xenos: [count_aliens]</b> <b>(Ruler: [hive.living_xeno_ruler ? "Alive" : "Dead"])</b>"
+		msg += "<br><b>Lobby: [count_newplayers]</b> <b>(AFK: [count_afknewplayers])</b>"
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"
 

@@ -221,9 +221,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle)
 "vW" = (
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
 	},
@@ -368,7 +366,9 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "Ol" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/liquid/water,
 /area/campaign/jungle_outpost/ground/jungle)
 "Oz" = (

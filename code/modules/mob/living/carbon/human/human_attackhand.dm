@@ -67,7 +67,7 @@
 
 			human_user.visible_message(span_danger("[human_user] is trying perform CPR on [src]!"), null, null, 4)
 
-			if(!do_after(human_user, HUMAN_STRIP_DELAY, NONE, src, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			if(!do_after(human_user, 4 SECONDS, NONE, src, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 				return TRUE
 
 			if(health > get_death_threshold() && health < get_crit_threshold())
@@ -78,7 +78,7 @@
 					span_boldnotice("You feel a breath of fresh air enter your lungs. It feels good."),
 					vision_distance = 3)
 				to_chat(human_user, span_warning("Repeat at least every 7 seconds."))
-			else if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_CPR))
+			else if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && TIMER_COOLDOWN_FINISHED(src, COOLDOWN_CPR))
 				TIMER_COOLDOWN_START(src, COOLDOWN_CPR, 7 SECONDS)
 				dead_ticks -= 5
 				visible_message(span_warning("[human_user] performs CPR on [src]!"), vision_distance = 3)

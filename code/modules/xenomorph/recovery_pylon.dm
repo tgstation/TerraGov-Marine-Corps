@@ -28,7 +28,8 @@
 /obj/structure/xeno/recovery_pylon/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
 	. = ..()
 	delete_effects()
-	create_effects()
+	if(new_turf?.z)
+		create_effects()
 
 /obj/structure/xeno/recovery_pylon/update_minimap_icon()
 	SSminimaps.remove_marker(src)

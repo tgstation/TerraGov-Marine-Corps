@@ -195,7 +195,7 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if (xeno_attacker.fortify || xeno_attacker.behemoth_charging)
+	if (xeno_attacker.fortify || xeno_attacker.behemoth_charging || xeno_attacker.endurance_active)
 		return FALSE
 
 	switch(xeno_attacker.a_intent)
@@ -212,6 +212,7 @@
 			return attack_alien_grab(xeno_attacker)
 
 		if(INTENT_HARM, INTENT_DISARM)
+			SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_PRE_ATTACK_ALIEN_HARM, src, isrightclick)
 			return attack_alien_harm(xeno_attacker)
 	return FALSE
 

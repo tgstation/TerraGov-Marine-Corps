@@ -37,6 +37,16 @@ DECLARE_LOG_NAMED(harddel_log, "harddels", START_LOG)
 DECLARE_LOG_NAMED(test_log, "tests", START_LOG)
 #endif
 
+/// Picture logging
+GLOBAL_VAR(picture_log_directory)
+GLOBAL_PROTECT(picture_log_directory)
+
+GLOBAL_VAR_INIT(picture_logging_id, 1)
+GLOBAL_PROTECT(picture_logging_id)
+
+GLOBAL_VAR(picture_logging_prefix)
+GLOBAL_PROTECT(picture_logging_prefix)
+
 /// All admin related log lines minus their categories
 GLOBAL_LIST_EMPTY(admin_activities)
 GLOBAL_PROTECT(admin_activities)

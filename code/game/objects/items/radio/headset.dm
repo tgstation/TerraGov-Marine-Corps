@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	atom_flags = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	freerange = TRUE
 	faction = FACTION_TERRAGOV
-	var/obj/machinery/camera/camera
+	var/obj/machinery/camera/headset/camera
 	var/datum/atom_hud/squadhud = null
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(faction == FACTION_SOM)
 		camera = new /obj/machinery/camera/headset/som(src)
 	else
-		camera = new /obj/machinery/camera/headset(src)
+		camera = new(src)
 
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
@@ -201,6 +201,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		RegisterSignals(user, list(COMSIG_MOB_REVIVE, COMSIG_MOB_DEATH, COMSIG_HUMAN_SET_UNDEFIBBABLE), PROC_REF(update_minimap_icon))
 	if(camera)
 		camera.c_tag = user.name
+		if(user.job)
+			camera.role_name = user.job.title
 		if(user.assigned_squad)
 			camera.network |= lowertext(user.assigned_squad.name)
 	possibly_deactivate_in_loc()

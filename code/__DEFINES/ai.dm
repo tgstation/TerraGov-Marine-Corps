@@ -56,8 +56,18 @@
 #define MAX_NODE_RANGE 15
 #define PATHFINDER_MAX_TRIES 200
 
+///The AI will maintain a combat target within this range, even without LOS
+#define AI_COMBAT_TARGET_BLIND_DISTANCE 4 //required since byond LOS is not the same as true LOS, but also since either can be easily broken by stepping behind a corner etc
+
 //AI will escort an ATOM up to this distance away from them
 #define AI_ESCORTING_MAX_DISTANCE 10
+///AI will give up escorting something beyond this distance
+#define AI_ESCORTING_BREAK_DISTANCE 20
+
+#define AI_ESCORT_RATING_FACTION_GOAL 10
+#define AI_ESCORT_RATING_SQUAD_LEAD 13
+#define AI_ESCORT_RATING_CLOSE_FRIENDLY 15
+#define AI_ESCORT_RATING_BUDDY 16
 
 GLOBAL_LIST_EMPTY(all_nodes)
 

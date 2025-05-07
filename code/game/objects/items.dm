@@ -210,6 +210,11 @@
 /obj/item/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
 
+/obj/item/update_filters()
+	. = ..()
+	for(var/datum/action/A AS in actions)
+		A.update_button_icon()
+
 /obj/item/proc/update_item_state(mob/user)
 	worn_icon_state = "[initial(icon_state)][item_flags & WIELDED ? "_w" : ""]"
 
@@ -880,14 +885,6 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTION, user)
 
 
-/mob/living/carbon/verb/showoff()
-	set name = "Show Held Item"
-	set category = "IC.Object"
-
-	var/obj/item/I = get_active_held_item()
-	if(I && !(I.item_flags & ITEM_ABSTRACT))
-		visible_message("[src] holds up [I]. <a HREF=?src=[REF(usr)];lookitem=[REF(I)]>Take a closer look.</a>")
-
 /*
 For zooming with scope or binoculars. This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
@@ -905,7 +902,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		viewsize = zoom_viewsize
 
 	if(zoom) //If we are zoomed out, reset that parameter.
-		if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
+		if(TIMER_COOLDOWN_FINISHED(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
 			user.visible_message(span_notice("[user] looks up from [zoom_device]."),
 			span_notice("You look up from [zoom_device]."))
 
@@ -945,7 +942,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.client.view_size.add(viewsize)
 		change_zoom_offset(user, zoom_offset = tileoffset)
 
-	if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM))
+	if(TIMER_COOLDOWN_FINISHED(user, COOLDOWN_ZOOM))
 		user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
 		span_notice("You peer through \the [zoom_device]."))
 	zoom = TRUE
@@ -1264,8 +1261,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	standing = center_image(standing, inhands ? inhand_x_dimension : worn_x_dimension, inhands ? inhand_y_dimension : worn_y_dimension)
 
-	standing.pixel_x += inhands ? inhand_x_offset : worn_x_offset
-	standing.pixel_y += inhands ? inhand_y_offset : worn_y_offset
+	standing.pixel_w += inhands ? inhand_x_offset : worn_x_offset
+	standing.pixel_z += inhands ? inhand_y_offset : worn_y_offset
 	standing.alpha = alpha
 	standing.color = color
 
@@ -1333,7 +1330,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 ///Checks to see if you successfully perform a trick, and what kind
 /obj/item/proc/do_trick(mob/living/carbon/human/user)
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ITEM_TRICK))
+	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_ITEM_TRICK))
 		return FALSE
 	if(!istype(user))
 		return FALSE
@@ -1546,3 +1543,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.balloon_alert(user, "Refilled") //If all checks passed, it's safe to throw the balloon alert
 	return TRUE
 
+/// Returns the strip delay of the item.
+/obj/item/proc/getstripdelay()
+	return strip_delay

@@ -96,10 +96,10 @@
 /obj/machinery/bodyscanner/proc/go_out()
 	if (!occupant || locked)
 		return
-	for(var/obj/O in src)
-		O.loc = loc
 	occupant.forceMove(loc)
 	occupant = null
+	for(var/obj/O in src)
+		O.forceMove(loc)
 	update_icon()
 
 /obj/machinery/bodyscanner/attack_hand(mob/living/user)
@@ -169,14 +169,14 @@
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			for(var/atom/movable/A AS in src)
-				A.loc = src.loc
+				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(EXPLODE_HEAVY)
 			if (prob(50))
 				for(var/atom/movable/A AS in src)
-					A.loc = src.loc
+					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
@@ -184,7 +184,7 @@
 			if(!prob(75))
 				return
 			for(var/atom/movable/A AS in src)
-				A.loc = src.loc
+				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 

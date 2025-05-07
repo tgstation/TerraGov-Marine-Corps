@@ -125,6 +125,16 @@
 	max_range = 7
 	hitscan_effect_icon = "beam_heavy"
 
+/datum/ammo/energy/assault_armor
+	name = "assault armor bolt"
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN
+	hud_state = "laser_overcharge"
+	armor_type = LASER
+	damage = 200
+	penetration = 30
+	max_range = 7
+	hitscan_effect_icon = "beam_heavy"
+
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
 	icon_state = "laser"
@@ -757,7 +767,7 @@
 
 /datum/ammo/energy/plasma_pistol
 	name = "ionized plasma bolt"
-	icon_state = "overchargedlaser"
+	icon_state = "overchargedlaser_green"
 	hud_state = "electrothermal"
 	hud_state_empty = "electrothermal_empty"
 	damage = 40

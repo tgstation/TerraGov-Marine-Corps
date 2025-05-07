@@ -85,6 +85,11 @@
 			if(W)
 				W.update_icon()
 
+/obj/alien/weeds/ex_act(severity)
+	if(severity == EXPLODE_WEAK)
+		return
+	return ..()
+
 ///Check if we have a parent node, if not, qdel ourselve
 /obj/alien/weeds/proc/check_for_parent_node()
 	if(parent_node)
@@ -148,9 +153,9 @@
 	if(crosser.throwing || crosser.buckled)
 		return
 
-	if(isvehicle(crosser))
-		var/obj/vehicle/vehicle = crosser
-		vehicle.last_move_time += WEED_SLOWDOWN
+	if(issealedvehicle(crosser))
+		var/obj/vehicle/sealed/vehicle = crosser
+		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, WEED_SLOWDOWN)
 		return
 
 	if(isxeno(crosser))

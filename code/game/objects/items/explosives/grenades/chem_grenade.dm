@@ -6,6 +6,7 @@
 	name = "chemical grenade"
 	desc = "A custom made grenade."
 	icon_state = "chemg"
+	icon_state_mini = "grenade"
 	worn_icon_state = "flashbang"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2

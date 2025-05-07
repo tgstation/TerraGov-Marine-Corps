@@ -17,7 +17,7 @@
 	/// how much energy we use per step when boosting
 	var/boost_consumption = 55
 	///cooldown between dash activations
-	var/dash_cooldown = 5 SECONDS
+	var/dash_cooldown = 4 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
@@ -44,9 +44,9 @@
 	icon_state = "armor_acid"
 	iconstate_name = "armor_acid"
 	protect_name = "Lightweight Booster"
-	weight = 45
+	weight = 30
 	dash_consumption = 300
-	speed_mod = 0.7
+	speed_mod = 0.5
 	dash_range = 5
 	boost_consumption = 35
 	dash_cooldown = 7 SECONDS
@@ -59,7 +59,7 @@
 	rechargerate = 0
 	slowdown = 0
 	max_fuel = 0
-	weight = 150
+	weight = 180
 	/// cell type to attach. this does the actual passive energy regen, if we have it
 	var/cell_type = /obj/item/cell/mecha
 
@@ -75,14 +75,14 @@
 	name = "fusion engine"
 	desc = "A highly experimental phoron fusion core. Optimized for energy generation."
 	icon_state = "phoron_engine_adv"
-	weight = 150
+	weight = 110
 	cell_type = /obj/item/cell/mecha/medium
 
 /obj/item/mecha_parts/mecha_equipment/melee_core
 	name = "melee core"
 	desc = "A bluespace orion-sperkov converter. Through science you can't be bothered to understand, makes mechs faster and their weapons able to draw more power, making them more dangerous. However this comes at the cost of not being able to use projectile and laser weaponry."
 	icon_state = "melee_core"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	equipment_slot = MECHA_UTILITY
 
 /obj/item/mecha_parts/mecha_equipment/melee_core/attach(obj/vehicle/sealed/mecha/M, attach_right)
@@ -102,24 +102,15 @@
 	var/flag_controller = NONE
 	///typepath of ability we want to grant
 	var/ability_to_grant
-	///reference to image that is used as an overlay
-	var/image/overlay
-
-/obj/item/mecha_parts/mecha_equipment/ability/Initialize(mapload)
-	. = ..()
-	if(icon_state)
-		overlay = image('icons/mecha/mecha_ability_overlays.dmi', icon_state = icon_state, layer = 10)
 
 /obj/item/mecha_parts/mecha_equipment/ability/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
-	M.add_overlay(overlay)
 	if(flag_controller)
 		M.initialize_controller_action_type(ability_to_grant, flag_controller)
 	else
 		M.initialize_passenger_action_type(ability_to_grant)
 
 /obj/item/mecha_parts/mecha_equipment/ability/detach(atom/moveto)
-	chassis.cut_overlay(overlay)
 	if(flag_controller)
 		chassis.destroy_controller_action_type(ability_to_grant, flag_controller)
 	else
@@ -130,7 +121,7 @@
 	name = "enhanced zoom"
 	desc = "A magnifying module that allows the pilot to see much further than with the standard optics. Night vision not included."
 	icon_state = "zoom"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_zoom
 
 /obj/item/mecha_parts/mecha_equipment/ability/smoke
@@ -170,6 +161,30 @@
 	name = "smoke generator"
 	desc = "A multiple launch module that generates a large amount of cloaking smoke to disguise nearby friendlies. Sadly, huge robots are too difficult to hide with it."
 	icon_state = "smoke_gas"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/tactical
+
+/obj/item/mecha_parts/mecha_equipment/ability/assault_armor
+	name = "assault armor"
+	desc = "A laser core that allows a core purge to emit a burst of lasers around the mecha. Slows mecha while charging."
+	weight = 80
+	icon_state = "assaultarmor"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/assault_armor
+
+/obj/item/mecha_parts/mecha_equipment/ability/cloak
+	name = "cloak module"
+	desc = "A mech stealth cloaking device. Cannot fire while cloaked, and cloaking drains energy."
+	weight = 70
+	icon_state = "cloak"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/cloak
+
+/obj/item/mecha_parts/mecha_equipment/ability/overboost
+	name = "overboost module"
+	desc = "A mech overboost device. Allows overloading the leg accumulators to dash in a direction, throwing back anyone hit by the mech."
+	weight = 70
+	icon_state = "overboost"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/overboost

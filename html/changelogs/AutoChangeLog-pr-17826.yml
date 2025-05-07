@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "R-76 scope has been added to the attachment section to Valhalla's automated weapon racks."

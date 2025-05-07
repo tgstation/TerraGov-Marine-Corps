@@ -57,6 +57,7 @@
 #define ui_alert3 "EAST-1:28,CENTER+3:23"
 #define ui_alert4 "EAST-1:28,CENTER+2:21"
 #define ui_alert5 "EAST-1:28,CENTER+1:19"
+#define ui_combo "CENTER+1:19,CENTER+4:25"
 
 //Middle right (status indicators)
 #define UI_STAMINA "EAST-1:28,CENTER-2:13"
@@ -104,6 +105,8 @@
 #define ui_ai_bioscan "SOUTH:6,WEST+7"
 #define ui_ai_multicam "SOUTH:6,WEST+17"
 #define ui_ai_add_multicam "SOUTH:6,WEST+18"
+#define ui_ai_floor_indicator "BOTTOM+5,RIGHT"
+#define ui_ai_godownup "BOTTOM+5,RIGHT-1"
 
 // Plane group keys, used to group swaths of plane masters that need to appear in subwindows
 /// The primary group, holds everything on the main window

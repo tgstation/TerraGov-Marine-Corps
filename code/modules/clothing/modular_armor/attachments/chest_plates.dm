@@ -10,6 +10,7 @@
 
 /obj/item/armor_module/armor/chest/marine
 	name = "\improper Jaeger Pattern Medium Infantry chestplates"
+	gender = PLURAL
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
 	soft_armor = list(MELEE = 25, BULLET = 45, LASER = 45, ENERGY = 35, BOMB = 30, BIO = 30, FIRE = 30, ACID = 35)
 	slowdown = 0.3
@@ -72,7 +73,7 @@
 	)
 	current_variant = "normal"
 	greyscale_colors = ARMOR_PALETTE_BLACK
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest/webbing)
 

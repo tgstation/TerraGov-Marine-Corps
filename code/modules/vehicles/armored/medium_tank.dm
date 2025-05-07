@@ -9,8 +9,8 @@
 	interior = null
 	icon_state = "tank"
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_UNDERLAY
-	pixel_w = -16
-	pixel_z = -32
+	pixel_x = -16
+	pixel_y = -32
 	obj_integrity = 1300
 	max_integrity = 1300
 	max_occupants = 3

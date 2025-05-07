@@ -40,7 +40,7 @@
 	if(istype(activator.l_hand, /obj/item/weapon/shield/riot) || istype(activator.r_hand, /obj/item/weapon/shield/riot) || istype(activator.back, /obj/item/weapon/shield/riot))
 		balloon_alert(user, "Can't, your shield prevents you")
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BOMBVEST_SHIELD_DROP))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BOMBVEST_SHIELD_DROP))
 		balloon_alert(user, "Can't, dropped shield too recently")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))

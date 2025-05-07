@@ -488,7 +488,7 @@
 	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
 	eyeobj.use_static = FALSE
 	ai.camera_visibility(eyeobj)
-	eyeobj.loc = ai.loc
+	eyeobj.abstract_move(ai.loc)
 
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()
@@ -521,7 +521,7 @@
 	if(owner.stat)
 		to_chat(owner, span_warning("You cannot give orders in your current state."))
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
+	if(TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_HUD_ORDER))
 		to_chat(owner, span_warning("Your last order was too recent."))
 		return FALSE
 
@@ -555,7 +555,7 @@
 	var/list/receivers = (GLOB.alive_human_list)
 	if(is_mainship_level(A.z)) //if our target is shipside, we always use the lowest cooldown between pings
 		cooldown = COOLDOWN_AI_PING_EXTRA_LOW
-	if(!COOLDOWN_CHECK(src, last_pinged_marines)) //delay between alerts, both for balance and to prevent chat spam from overeager AIs
+	if(!COOLDOWN_FINISHED(src, last_pinged_marines)) //delay between alerts, both for balance and to prevent chat spam from overeager AIs
 		to_chat(src, span_alert("You must wait before issuing an alert again"))
 		return
 	COOLDOWN_START(src, last_pinged_marines, cooldown)

@@ -37,16 +37,15 @@
 	animate_movement = NO_STEPS
 	light_system = MOVABLE_LIGHT
 	light_range = 1.5
-	light_power = 2
+	light_power = 1
 	light_color = COLOR_VERY_SOFT_YELLOW
+	appearance_flags = KEEP_TOGETHER
 
 	///greyscale support
 	greyscale_config
 	greyscale_colors
 	///Any special effects applied to this projectile
 	var/projectile_behavior_flags = NONE
-	///Hit impact sound
-	var/hitsound
 	///The ammo data which holds most of the actual info
 	var/datum/ammo/ammo
 	///The bodypart you're trying to hit
@@ -200,7 +199,7 @@
 	if(source)
 		shot_from = source
 	if(loc_override)
-		loc = loc_override
+		abstract_move(loc_override)
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc
@@ -355,11 +354,15 @@
 		if(ammo.bullet_color)
 			set_light_color(ammo.bullet_color)
 			set_light_on(TRUE)
+			update_appearance(UPDATE_OVERLAYS)
 	else
 		alpha = 64
 
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 
+/obj/projectile/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src, layer, reset_transform = FALSE)
 
 /obj/projectile/process()
 	if(QDELETED(src))
@@ -857,12 +860,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(sniped.check_duration())
 				return ..()
 
-			proj.damage = proj.damage * 0.1
-			///The -1 is because we don't want to take away damage from guns firing on cooldown
-			sniped.duration = max(world.time + shooter.fire_delay - 1, sniped.duration)
+			sniped.duration = max(world.time + shooter.fire_delay, sniped.duration)
+
+			if(sniped.shooter != WEAKREF(shooter)) //different gun shot us, apply the effect.
+				proj.damage = proj.damage * 0.1
+
+			sniped.shooter = WEAKREF(shooter)
 			return ..()
 
-		apply_status_effect(STATUS_EFFECT_SNIPED, shooter.fire_delay - 1)
+		apply_status_effect(STATUS_EFFECT_SNIPED, shooter.fire_delay, WEAKREF(shooter))
 	return ..()
 
 ///visual and audio feedback for hits

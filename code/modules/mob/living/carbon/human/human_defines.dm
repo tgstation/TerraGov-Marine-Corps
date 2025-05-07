@@ -54,6 +54,9 @@
 	///Character's age (pure fluff)
 	var/age = 30
 
+	/// Which body type to use
+	var/physique = MALE
+
 	///Which underwear the player wants
 	var/underwear = 1
 	///Which undershirt the player wants.

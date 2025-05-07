@@ -22,7 +22,7 @@
 	mouse_over_pointer = MOUSE_HAND_POINTER
 	power_channel = ENVIRON
 	// Indestructible until someone wants to make these constructible, with all the chaos that implies
-	resistance_flags = ALL
+	resistance_flags = RESIST_ALL
 
 	/// Were we instantiated at mapload? Used to determine when we should link / throw errors
 	var/maploaded = FALSE
@@ -52,8 +52,12 @@
 	light_color = LIGHT_COLOR_DARK_BLUE
 	var/light_mask = "elev-light-mask"
 
+	interaction_flags = INTERACT_MACHINE_TGUI
+
 /obj/machinery/elevator_control_panel/Initialize(mapload)
 	. = ..()
+
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "el_panel", MINIMAP_LABELS_LAYER))
 
 	var/static/list/tool_behaviors = list(
 		TOOL_MULTITOOL = list(SCREENTIP_CONTEXT_LMB = "Reset Panel"),
@@ -62,10 +66,12 @@
 	maploaded = mapload
 	// Maploaded panels link in post_machine_initialize...
 	if(mapload)
-		return
+		return INITIALIZE_HINT_LATELOAD
 
 	// And non-mapload panels link in Initialize
 	link_with_lift(log_error = FALSE)
+
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/elevator_control_panel/LateInitialize()
 	. = ..()
@@ -99,7 +105,7 @@
 
 	balloon_alert(user, "resetting panel...")
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
-	if(!do_after(user, 6 SECONDS, src))
+	if(!do_after(user, 6 SECONDS, NONE, src))
 		balloon_alert(user, "interrupted!")
 		return TRUE
 

@@ -5,6 +5,9 @@
 	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
+		/turf/closed/wall/resin/regenerating/special/bulletproof,
+		/turf/closed/wall/resin/regenerating/special/fireproof,
+		/turf/closed/wall/resin/regenerating/special/hardy,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
@@ -116,7 +119,7 @@
 	return ..()
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
-/obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victim, atom/newloc)
+/obj/structure/xeno/aoe_leash/proc/check_dist(atom/source, atom/newloc, direction)
 	SIGNAL_HANDLER
 	if(get_dist(newloc, src) >= leash_radius)
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE

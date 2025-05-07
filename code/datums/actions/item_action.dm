@@ -73,6 +73,18 @@
 /datum/action/item_action/toggle/suit_toggle
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_KB_SUITLIGHT)
 
+/datum/action/item_action/toggle/suit_toggle/light/ai_should_start_consider()
+	if(SSticker?.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
+		return FALSE //HvH doesn't have full dark so its just a detriment
+	return TRUE
+
+/datum/action/item_action/toggle/suit_toggle/light/ai_should_use(atom/target)
+	if(!holder_item)
+		return FALSE
+	if(holder_item.light_on)
+		return FALSE
+	return TRUE
+
 /datum/action/item_action/firemode
 	// just here so players see what key is it bound to
 	keybinding_signals = list(

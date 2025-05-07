@@ -267,7 +267,7 @@
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)
 		to_chat(source, span_warning("No ammo remaining!"))
 		return
-	if(!COOLDOWN_CHECK(active_weapon, last_fired))
+	if(!COOLDOWN_FINISHED(active_weapon, last_fired))
 		to_chat(source, span_warning("[active_weapon] just fired, wait for it to cool down."))
 		return
 	active_weapon.open_fire(target, attackdir)

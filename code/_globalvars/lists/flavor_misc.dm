@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(status_display_icons, list(
 GLOBAL_LIST_INIT(backpacklist, list("Nothing", "Backpack", "Satchel"))
 
 
-GLOBAL_LIST_INIT(genders, list(MALE, FEMALE, NEUTER))
+GLOBAL_LIST_INIT(genders, list(MALE, FEMALE, NEUTER, PLURAL))
 
 GLOBAL_LIST_INIT(playable_icons, list(
 	"boiler",

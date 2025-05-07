@@ -4705,7 +4705,7 @@
 /area/corsat/sigma/south/complex/teleporter)
 "cho" = (
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
@@ -5915,7 +5915,9 @@
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/residential/east)
 "cHZ" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/south)
@@ -8132,7 +8134,7 @@
 /area/corsat/gamma/hangar/security)
 "dET" = (
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -8784,7 +8786,9 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/dark2,
 /area/corsat/gamma/residential/east)
 "dUU" = (
@@ -8824,7 +8828,9 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/dark2,
 /area/corsat/gamma/residential/east)
 "dWG" = (
@@ -13809,7 +13815,7 @@
 /area/corsat/gamma/hangar)
 "gim" = (
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/corsat/sigma/dorms)
@@ -15540,7 +15546,9 @@
 /turf/open/floor/wood,
 /area/corsat/gamma/residential/lounge)
 "gWv" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
@@ -17093,7 +17101,9 @@
 /turf/open/floor/plating,
 /area/corsat/gamma/hangar/security)
 "hIz" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/dark2,
 /area/corsat/gamma/residential/east)
 "hII" = (
@@ -19556,7 +19566,7 @@
 /area/corsat/omega/hangar/office)
 "iQX" = (
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/tile/bar,
@@ -21323,7 +21333,9 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/southeast)
 "jEy" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hallwaysouth)
@@ -21651,7 +21663,9 @@
 	},
 /area/corsat/hangar_storage/research/ship)
 "jLA" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/structure/platform{
 	dir = 4
 	},
@@ -21694,7 +21708,9 @@
 /turf/open/floor/wood,
 /area/corsat/sigma/dorms)
 "jMN" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/structure/platform{
 	dir = 8
 	},
@@ -22694,7 +22710,7 @@
 /area/corsat/gamma/rnr/bar)
 "kjF" = (
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/dorms)
@@ -22754,7 +22770,9 @@
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/omega/offices)
 "klg" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -22823,7 +22841,9 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/hangar/monorail)
 "kmF" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/structure/platform{
 	dir = 8
 	},
@@ -22847,7 +22867,7 @@
 /area/corsat/dropzone/landingzonethree)
 "kmR" = (
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -22923,7 +22943,9 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/corsat/gamma/residential/researcher)
 "koJ" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -23619,7 +23641,9 @@
 /turf/open/floor/grayscale/round/black,
 /area/corsat/dropzone/landingzonethree)
 "kCT" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
@@ -29759,7 +29783,9 @@
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering)
 "neR" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/tile/white,
 /area/corsat/sigma/dorms)
 "nfq" = (
@@ -34779,7 +34805,9 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/cargo)
 "pqf" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -40857,7 +40885,9 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/medbay/morgue)
 "rYv" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/dorms)
@@ -46726,7 +46756,9 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/south/complex)
 "upG" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -46979,7 +47011,9 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/foyer)
 "uuJ" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/west)
 "uuS" = (
@@ -47278,7 +47312,7 @@
 /area/corsat/gamma/security)
 "uAD" = (
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hallwaysouth)

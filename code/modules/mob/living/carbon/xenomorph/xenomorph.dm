@@ -482,11 +482,11 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	if(!resting_action || !resting_action.can_use_action())
 		return
 	if(resting)
-		if(!COOLDOWN_CHECK(src, xeno_resting_cooldown))
+		if(!COOLDOWN_FINISHED(src, xeno_resting_cooldown))
 			balloon_alert(src, "Cannot get up so soon after resting!")
 			return
 
-	if(!COOLDOWN_CHECK(src, xeno_unresting_cooldown))
+	if(!COOLDOWN_FINISHED(src, xeno_unresting_cooldown))
 		balloon_alert(src, "Cannot rest so soon after getting up!")
 		return
 	return ..()

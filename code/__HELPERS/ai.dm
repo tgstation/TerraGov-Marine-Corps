@@ -20,6 +20,8 @@
 	for(var/mob/living/carbon/human/nearby_human AS in GLOB.humans_by_zlevel["[source_turf.z]"])
 		if(isnull(nearby_human))
 			continue
+		if(nearby_human.z != source_turf.z)
+			continue
 		if(get_dist(source_turf, nearby_human) > distance)
 			continue
 		. += nearby_human

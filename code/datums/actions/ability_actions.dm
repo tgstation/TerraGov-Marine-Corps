@@ -47,7 +47,7 @@
 /datum/action/ability/handle_button_status_visuals()
 	if(!can_use_action(TRUE, ABILITY_IGNORE_COOLDOWN))
 		button.color = "#80000080" // rgb(128,0,0,128)
-	else if(!action_cooldown_check())
+	else if(!action_cooldown_finished())
 		button.color = "#f0b400c8" // rgb(240,180,0,200)
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
@@ -58,7 +58,7 @@
 		return FALSE
 	var/to_check_flags = use_state_flags|override_flags
 
-	if(!(to_check_flags & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!(to_check_flags & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_finished())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Wait [cooldown_remaining()] sec")
 		return FALSE
@@ -119,6 +119,7 @@
 
 /datum/action/ability/fail_activate()
 	update_button_icon()
+	return FALSE
 
 ///ability cost override allows for actions/abilities to override the normal ability costs
 /datum/action/ability/proc/succeed_activate(ability_cost_override)
@@ -132,7 +133,7 @@
 		carbon_owner.deduct_ability_cost(ability_cost_override)
 
 ///checks if the linked ability is on some cooldown. The action can still be activated by clicking the button
-/datum/action/ability/proc/action_cooldown_check()
+/datum/action/ability/proc/action_cooldown_finished()
 	return !cooldown_timer
 
 ///Removes the cooldown

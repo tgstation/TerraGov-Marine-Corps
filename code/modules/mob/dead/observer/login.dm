@@ -19,8 +19,6 @@
 	if(ghost_squadhud)
 		H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 		H.add_hud_to(src)
-		H = GLOB.huds[MACHINE_HEALTH_HUD]
-		H.add_hud_to(src)
 		H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 		H.add_hud_to(src)
 	if(ghost_xenohud)

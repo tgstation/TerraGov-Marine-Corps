@@ -107,7 +107,7 @@
 		link_owner.balloon_alert(link_owner, was_within_range ? ("Link reestablished") : ("Link faltering"))
 		link_target.balloon_alert(link_target, was_within_range ? ("Link reestablished") : ("Link faltering"))
 
-	if(stacks < max_stacks && COOLDOWN_CHECK(src, attunement_increase))
+	if(stacks < max_stacks && COOLDOWN_FINISHED(src, attunement_increase))
 		add_stacks(1)
 
 	var/remaining_health = link_target.maxHealth - (link_target.getBruteLoss() + link_target.getFireLoss())
@@ -116,7 +116,7 @@
 	var/heal_amount = link_target.maxHealth * (DRONE_ESSENCE_LINK_REGEN * stacks)
 	var/ability_cost = heal_amount * 2
 	if(link_owner.plasma_stored < ability_cost)
-		if(!COOLDOWN_CHECK(src, plasma_warning))
+		if(!COOLDOWN_FINISHED(src, plasma_warning))
 			return
 		link_owner.balloon_alert(link_owner, "No plasma for link")
 		link_target.balloon_alert(link_target, "No plasma for link")

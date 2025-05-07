@@ -23,7 +23,7 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		return
 
-	if(!COOLDOWN_CHECK(src, selling_cooldown))
+	if(!COOLDOWN_FINISHED(src, selling_cooldown))
 		to_chat(user, span_warning("The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(src, selling_cooldown) / 10)] seconds."))
 		return
 	var/can_sell = FALSE

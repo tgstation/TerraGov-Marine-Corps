@@ -124,20 +124,20 @@
 	worn_icon_state = "mod_medic_bag_som_a"
 
 /obj/item/armor_module/storage/injector
-	name = "injector Storage module"
+	name = "injector storage module"
 	desc = "Designed for mounting on the TGMC's modular armor systems. Can hold a substantial variety of injectors."
 	icon_state = "mod_injector_bag"
 	storage_type = /datum/storage/internal/injector
 
 /obj/item/armor_module/storage/integrated
-	name = "IS Pattern Storage module"
+	name = "bulk storage module"
 	desc = "Designed for mounting on the TGMC's modular armor systems. Impedes movement somewhat, but holds about as much as a satchel could."
 	icon_state = "mod_is_bag"
 	storage_type = /datum/storage/internal/integrated
 	slowdown = 0.2
 
 /obj/item/armor_module/storage/grenade
-	name = "Grenade Storage module"
+	name = "grenade storage module"
 	desc = "Designed for mounting on the TGMC's modular armor systems. Can hold a respectable amount of grenades."
 	icon_state = "mod_grenade_harness"
 	storage_type = /datum/storage/internal/grenade
@@ -156,7 +156,7 @@
 	new /obj/item/attachable/bayonet/som(src)
 
 /obj/item/armor_module/storage/helmet
-	name = "Jaeger Pattern helmet storage"
+	name = "helmet storage module"
 	desc = "A small set of bands and straps to allow easy storage of small items."
 	icon_state = ""
 	storage_type = /datum/storage/internal/marinehelmet

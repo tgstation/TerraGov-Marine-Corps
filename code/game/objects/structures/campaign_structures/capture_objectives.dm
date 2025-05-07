@@ -149,7 +149,7 @@
 	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Used to hack into colony control."
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
-	obj_flags = NONE
+	obj_flags = BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower/Initialize(mapload)

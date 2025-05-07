@@ -24,8 +24,13 @@
 		link_up(up)
 	if(down)
 		link_down(down)
-
-	return INITIALIZE_HINT_LATELOAD
+	var/turf/open/openspace/downturf = get_step_multiz(get_turf(src), DOWN)
+	var/turf/open/openspace/upturf = get_step_multiz(get_turf(src), UP)
+	if(!downturf && !upturf) //we only add markers to multi-z ladders, sorry Sulaco
+		return INITIALIZE_HINT_LATELOAD
+	else
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "ladder", MINIMAP_LABELS_LAYER))
+		return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/ladder/examine(mob/user)
 	. = ..()
@@ -236,7 +241,7 @@
 		INVOKE_ASYNC(src, PROC_REF(start_travelling), user, going_up)
 	else
 		travel(user, going_up)
-	add_fingerprint(user)
+	add_fingerprint(user, "climb ladder")
 
 /obj/structure/ladder/proc/start_travelling(mob/user, going_up)
 	show_initial_fluff_message(user, going_up)

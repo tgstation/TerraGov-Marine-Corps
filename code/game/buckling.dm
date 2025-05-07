@@ -154,14 +154,14 @@
 	if(!silent)
 		if(buckled_mob == user)
 			buckled_mob.visible_message(
-				span_notice("[buckled_mob] unbuckled [buckled_mob.p_them()]self from [src]."),
+				span_notice("[buckled_mob] unbuckles [buckled_mob.p_them()]self from [src]."),
 				span_notice("You unbuckle yourself from [src]."),
 				span_notice("You hear metal clanking"))
 		else
-			var/by_user = user ? " by [user]" : ""
+			var/by_user = user ? "by [user]" : ""
 			buckled_mob.visible_message(
-				span_notice("[buckled_mob] was unbuckled[by_user]!"),
-				span_notice("You were unbuckled from [src][by_user]]."),
+				span_notice("[buckled_mob] was unbuckled [by_user]!"),
+				span_notice("You were unbuckled from [src] [by_user]]."),
 				span_notice("You hear metal clanking."))
 	add_fingerprint(user, "unbuckle")
 	if(isliving(unbuckling_living.pulledby))

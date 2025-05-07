@@ -151,7 +151,7 @@
 		e_icon = E.icon_name
 
 	for(var/datum/limb/L in limbs)
-		L.icon_name = get_limb_icon_name(species, gender, L.display_name, e_icon)
+		L.icon_name = get_limb_icon_name(species, physique, L.display_name, e_icon)
 
 /mob/living/carbon/human/get_reagent_tags()
 	. = ..()

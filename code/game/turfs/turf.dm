@@ -237,16 +237,16 @@
 		if(null)
 			return
 		if(/turf/baseturf_bottom)
-			path = SSmapping.level_trait(z, ZTRAIT_BASETURF) || /turf/open/floor/plating
+			path = SSmapping.level_trait(z, ZTRAIT_BASETURF) || /turf/open/space
 			if (!ispath(path))
 				path = text2path(path)
 				if (!ispath(path))
 					warning("Z-level [z] has invalid baseturf '[SSmapping.level_trait(z, ZTRAIT_BASETURF)]'")
-					path = /turf/open/floor/plating
+					path = /turf/open/space
 		if(/turf/open/space/basic)
 			// basic doesn't initialize and this will cause issues
 			// no warning though because this can happen naturaly as a result of it being built on top of
-			path = /turf/open/floor/plating
+			path = /turf/open/space
 
 	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP) && (baseturfs == new_baseturfs)) // Don't no-op if the map loader requires it to be reconstructed
 		return src
@@ -525,6 +525,9 @@
 	return FALSE
 
 /turf/open/space/is_weedable()
+	return FALSE
+
+/turf/open/openspace/is_weedable()
 	return FALSE
 
 /turf/open/ground/grass/is_weedable()

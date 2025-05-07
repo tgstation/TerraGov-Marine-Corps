@@ -6,10 +6,11 @@
 	icon_state = "arm"
 	slot = ATTACHMENT_SLOT_SHOULDER
 	greyscale_config = /datum/greyscale_config/armor_mk1/infantry
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 
 /obj/item/armor_module/armor/arms/marine
 	name = "\improper Jaeger Pattern Infantry arm plates"
+	gender = PLURAL
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Infantry armor piece."
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 	slowdown = 0.1

@@ -11,6 +11,7 @@
 	/// Typepath list of what to ignore smashing through, controls all lifts
 	var/static/list/ignored_smashthroughs = list(
 		/obj/structure/fluff/tram_rail,
+		/obj/machinery/nuclearbomb,
 	)
 
 	///whether the lift handled by this transport_controller datum is multitile as opposed to nxm platforms per z level

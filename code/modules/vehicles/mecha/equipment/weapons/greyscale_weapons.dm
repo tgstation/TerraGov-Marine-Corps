@@ -17,7 +17,7 @@
 	desc = "The smallest weapon available to mechs. It packs a small punch, but allows the mech to achieve higher mobility."
 	icon_state = "pistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_light"
+	muzzle_iconstate = "muzzle_flash"
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,16), "E" = list(44,16), "W" = list(-13,36)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,16), "E" = list(44,36), "W" = list(-13,16)),
@@ -42,7 +42,7 @@
 	desc = "A burstfiring weapon fitted for mechs. Offers higher mobility and accuracy than larger weapons, but reduced damage."
 	icon_state = "burstpistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_light"
+	muzzle_iconstate = "muzzle_flash"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,8), "E" = list(52,8), "W" = list(-21,28)),
@@ -67,27 +67,33 @@
 	name = "\improper Coeus submachine gun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "As the smallest autofiring weapon, it offers improved mobility but less firepower than most of it's larger cousins."
-	muzzle_iconstate = "muzzle_flash_light"
 	icon_state = "smg"
+	muzzle_iconstate = "muzzle_flash"
 	fire_sound = 'sound/mecha/weapons/mech_smg.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,12), "E" = list(54,14), "W" = list(-20,34)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,12), "E" = list(52,34), "W" = list(-22,14)),
 	)
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(14,29), "E" = list(70,32), "W" = list(-13,34)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(50,29), "E" = list(77,33), "W" = list(-8,32)),
+	)
 	ammotype = /datum/ammo/bullet/smg/mech
 	max_integrity = 400
 	projectiles = 60
-	projectiles_cache = 900
-	projectiles_cache_max = 900
+	projectiles_cache = 780
+	projectiles_cache_max = 780
 	variance = 15
 	projectile_delay = 0.15 SECONDS
 	slowdown = 0
+	rearm_time = 1.5 SECONDS
 	harmful = TRUE
 	weight = 65
 	ammo_type = MECHA_AMMO_SMG
 	hud_icons = list("smg", "smg_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
+	cooldown_key = MECH_COOLDOWN_KEY_RAPIDFIRE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstrifle
 	name = "\improper Tethys burst rifle"
@@ -126,6 +132,10 @@
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-6), "E" = list(64,17), "W" = list(-34,37)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(14,29), "E" = list(70,29), "W" = list(-19,34)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(50,29), "E" = list(70,34), "W" = list(-19,29)),
+	)
 	ammotype = /datum/ammo/bullet/rifle/mech
 	max_integrity = 400
 	projectiles = 30
@@ -135,10 +145,12 @@
 	projectile_delay = 0.25 SECONDS
 	slowdown = 0
 	harmful = TRUE
+	rearm_time = 3 SECONDS
 	weight = 65
 	ammo_type = MECHA_AMMO_RIFLE
 	hud_icons = list("rifle", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
+	cooldown_key = MECH_COOLDOWN_KEY_RAPIDFIRE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun
 	name = "\improper Phoebe shotgun"
@@ -151,6 +163,10 @@
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-4), "E" = list(61,16), "W" = list(-31,36)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-4), "E" = list(61,36), "W" = list(-31,16)),
 	)
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(12,25), "E" = list(84,29), "W" = list(-19,29)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(52,25), "E" = list(84,32), "W" = list(-19,34)),
+	)
 	ammotype = /datum/ammo/bullet/shotgun/mech
 	max_integrity = 350
 	projectiles = 9
@@ -160,10 +176,12 @@
 	projectile_delay = 2.5 SECONDS
 	slowdown = 0
 	harmful = TRUE
-	weight = 90
+	rearm_time = 4 SECONDS
+	weight = 80
 	ammo_type = MECHA_AMMO_SHOTGUN
 	hud_icons = list("shotgun_buckshot", "shotgun_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
+	cooldown_key = MECH_COOLDOWN_KEY_HIGHALPHASTRIKE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/greyscale_lmg
 	name = "\improper Briareus LMG"
@@ -349,33 +367,29 @@
 	hud_icons = list("sniper_supersonic", "sniper_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher
-	name = "\improper Hyperion grenade launcher"
-	desc = "The TGMC's definitive answer to whether a bigger boom is better. Fires standard HEDP grenades."
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavyrocket
+	name = "\improper Hyperion heavy rocket launcher"
+	desc = "The TGMC's definitive answer to whether a bigger boom is better. Fires heavy AP rockets."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	icon_state = "grenadelauncher"
-	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	ammotype = /obj/item/explosive/grenade
+	icon_state = "rocketlauncher"
+	fire_sound = 'sound/mecha/weapons/mech_rpg.ogg'
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	equipment_slot = MECHA_BACK
+	ammotype = /datum/ammo/rocket/mech/heavy
 	max_integrity = 350
-	projectiles = 10
-	projectiles_cache = 40
-	projectiles_cache_max = 40
-	projectile_delay = 1.5 SECONDS
-	missile_speed = 1.5
+	projectiles = 1
+	projectiles_cache = 10
+	projectiles_cache_max = 10
+	projectile_delay = 6 SECONDS
+	variance = 0
 	equip_cooldown = 2 SECONDS
-	slowdown = 0.4
-	ammo_type = MECHA_AMMO_GRENADE
-	hud_icons = list("grenade_he", "grenade_empty")
+	weight = 130
+	slowdown = 0
+	rearm_time = 5 SECONDS
+	windup_delay = 1 SECONDS
+	ammo_type = MECHA_AMMO_RPG
+	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher/proj_init(obj/item/explosive/grenade/nade, mob/user)
-	var/turf/T = get_turf(src)
-	log_game("[key_name(user)] fired a [nade] in [AREACOORD(T)]")
-	nade.det_time = min(1 SECONDS, nade.det_time)
-	nade.launched = TRUE
-	nade.activate(user)
-	nade.throwforce += nade.launchforce
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/flamethrower
 	name = "\improper Helios flamethrower"
@@ -387,17 +401,21 @@
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-11), "E" = list(77,3), "W" = list(-47,23)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-11), "E" = list(77,23), "W" = list(-47,3)),
 	)
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(11,25), "E" = list(84,29), "W" = list(-19,29)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(51,25), "E" = list(84,32), "W" = list(-19,34)),
+	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
 	max_integrity = 250
-	projectiles = 50
-	projectiles_cache = 300
-	projectiles_cache_max = 300
+	projectiles = 10
+	projectiles_cache = 60
+	projectiles_cache_max = 60
 	variance = 10
-	projectile_delay = 0.2 SECONDS
+	projectile_delay = 2 SECONDS
 	slowdown = 0
 	harmful = TRUE
-	weight = 100
+	weight = 90
 	ammo_type = MECHA_AMMO_FLAMER
 	hud_icons = list("flame", "flame_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -412,19 +430,56 @@
 		MECHA_R_ARM = list("N" = list(36,48), "S" = list(-1,1), "E" = list(56,20), "W" = list(-26,36)),
 		MECHA_L_ARM = list("N" = list(-4,48), "S" = list(33,1), "E" = list(56,36), "W" = list(-26,20)),
 	)
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(12,25), "E" = list(84,29), "W" = list(-19,29)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(52,25), "E" = list(84,32), "W" = list(-19,34)),
+	)
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ammotype = /datum/ammo/rocket/mech
 	max_integrity = 400
-	projectiles = 1
-	projectiles_cache = 1
-	projectiles_cache_max = 1
-	variance = 0
-	projectile_delay = 2 SECONDS
-	slowdown = 0.7
+	projectiles = 2
+	projectiles_cache = 20
+	projectiles_cache_max = 20
+	variance = 15
+	projectile_delay = 5 SECONDS
+	slowdown = 0
+	weight = 95
+	rearm_time = 4 SECONDS
+	windup_delay = 0.5 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RPG
 	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
+	cooldown_key = MECH_COOLDOWN_KEY_HIGHALPHASTRIKE
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/microrocket
+	name = "\improper Asteria microrocket pod"
+	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
+	desc = "A mech micromissile pod. Launches a barrage of microrockets that home on the target."
+	icon_state = "tow"
+	fire_sound = 'sound/mecha/weapons/mech_rpg.ogg'
+	flash_offsets_core = list(
+		MECHA_R_BACK = list("N" = list(40,60), "S" = list(22,55), "E" = list(26,55), "W" = list(32,62)),
+		MECHA_L_BACK = list("N" = list(22,60), "S" = list(40,55), "E" = list(35,62), "W" = list(39,55)),
+	)
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	equipment_slot = MECHA_BACK
+	ammotype = /datum/ammo/rocket/homing/microrocket/mech
+	max_integrity = 400
+	projectiles = 6
+	projectiles_cache = 48
+	projectiles_cache_max = 48
+	variance = 20
+	projectile_delay = 6 SECONDS
+	burst_amount = 3
+	projectile_burst_delay = 0.2 SECONDS
+	slowdown = 0
+	weight = 90
+	rearm_time = 8 SECONDS
+	harmful = TRUE
+	ammo_type = MECHA_AMMO_RPG
+	hud_icons = list("rocket_he", "rocket_empty")
+	fire_mode = GUN_FIREMODE_BURSTFIRE
 
 //////////////////////////
 //NON GUNS BEYOND HERE
@@ -438,7 +493,7 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	max_integrity = 400
 	slowdown = 0
 	harmful = TRUE

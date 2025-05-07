@@ -15,9 +15,9 @@
 #define TRANSPARENT (1<<4)
 /// For non-transparent containers that still have the general amount of reagents in them visible.
 #define AMOUNT_VISIBLE (1<<5)
-///For containers which apply a skill check for wheter showing their reagents to the user or not.
+/// For containers which apply a skill check for wheter showing their reagents to the user or not.
 #define AMOUNT_SKILLCHECK (1<<6)
-///For containers without volume meters on (e.g. drinking glasses, cans, sprays)
+/// For containers without volume meters on (e.g. drinking glasses, cans, sprays)
 #define AMOUNT_ESTIMEE (1<<7)
 
 #define NO_REACT (1<<8)
@@ -32,11 +32,11 @@
 #define HEARTSTOPPER (1<<2)
 #define CHEARTSTOPPER (1<<3)
 
-#define TOUCH 1	// splashing
-#define INGEST 2	// ingestion
-#define VAPOR 3	// foam, spray, blob attack
-#define PATCH 4	// patches
-#define INJECT 5	// injection
+#define TOUCH 1  // splashing
+#define INGEST 2 // ingestion
+#define VAPOR 3  // foam, spray, blob attack
+#define PATCH 4  // patches
+#define INJECT 5 // injection
 
 #define DEL_REAGENT 1	// reagent deleted (fully cleared)
 #define ADD_REAGENT 2	// reagent added
@@ -59,3 +59,13 @@
 #define SPECIFIC_HEAT_DEFAULT 200
 
 #define SPECIFIC_HEAT_PLASMA 500
+
+// Reagent ordering, lower the number the higher the priority
+#define REAGENT_UI_IMMEDIATE 1 // Reagents that should be seen immediatly
+#define REAGENT_UI_TOXINS 2    // Xenomorph chems and other deliberatly hostile chems
+#define REAGENT_UI_UNIQUE 3    // Unique healing chems that should come before others
+#define REAGENT_UI_BKTT 4      // Chems that are normally in use by patients
+#define REAGENT_UI_SPACEA 5    // Normally taken chems that last a long time
+#define REAGENT_UI_MEDICINE 6  // Generic positive effect chems
+#define REAGENT_UI_BASE 7      // Base /datum/reagent order level
+#define REAGENT_UI_MUNDANE 10  // Who cares about these chems?

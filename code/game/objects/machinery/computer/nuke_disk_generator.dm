@@ -1,3 +1,6 @@
+#define DISK_CYCLE_REWARD_MIN 100
+#define DISK_CYCLE_REWARD_MAX 300
+
 ///How much faster disk generators get while the colony power speed boost is active
 #define OVERCLOCK_MULTIPLIER 3
 
@@ -9,7 +12,7 @@
 
 /obj/machinery/computer/nuke_disk_generator
 	name = "nuke disk generator"
-	desc = "Used to generate the correct auth discs for the nuke."
+	desc = "A secure terminal used to retrieve nuclear authentication codes and print them onto disks."
 	icon_state = "computer"
 	screen_overlay = "nuke_red"
 	broken_icon = "computer_red_broken"
@@ -145,20 +148,22 @@
 			if(completed_segments == total_segments) //If we're done, there's no need to run a segment again
 				busy = TRUE
 
-				usr.visible_message("[usr] started a program to generate a new copy of the program.", "You started a program to generate a new copy of the program.")
+				usr.visible_message(span_notice("[usr] inserts a floppy disk into the [src] and begins to type..."),
+				span_notice("You insert a floppy disk into the [src] and begin to type..."))
 				if(!do_after(usr, printing_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 					busy = FALSE
 					return
 
 				new disk_type(get_turf(src))
-				visible_message(span_notice("[src] beeps as it finishes printing the disc."))
+				visible_message(span_notice("[src] beeps, and spits out a [disk_color] floppy disk!"))
 				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_GENERATED, src)
 				busy = FALSE
 				return
 
 			busy = TRUE
 
-			usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
+			usr.visible_message(span_notice("[usr] begins typing away at the [src]'s keyboard..."),
+			span_notice("You begin typing away at the [src]'s keyboard..."))
 			if(!do_after(usr, start_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				busy = FALSE
 				return
@@ -177,14 +182,34 @@
 	deltimer(current_timer)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
+
+	// If the gamemode is crash, Add 5 Vendor points to all marines.
+	if(iscrashgamemode(SSticker.mode))
+		for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
+			if(!H.job)
+				continue
+			var/obj/item/card/id/user_id =  H.get_idcard()
+			for(var/i in user_id.marine_points)
+				user_id.marine_points[i] += 2
+
 	update_minimap_icon()
 	running = FALSE
 
 	if(completed_segments == total_segments)
-		visible_message(span_notice("[src] beeps as it ready to print."))
+		say("Program retrieval successful. Standing by to print...")
 		return
 
-	visible_message(span_notice("[src] beeps as it's program requires attention."))
+	say("Program run has concluded! Standing by...")
+
+	// Requisitions points bonus per cycle.
+	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
+	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
+
+	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
+	SSpoints.dropship_points += disk_cycle_reward/10
+	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
+
+	say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()

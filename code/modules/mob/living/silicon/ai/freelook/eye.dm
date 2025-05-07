@@ -86,14 +86,6 @@
 		ai.master_multicam.refresh_view()
 	update_parallax_contents()
 
-/mob/camera/aiEye/abstract_move(atom/new_loc)
-	var/turf/old_turf = get_turf(src)
-	var/turf/new_turf = get_turf(new_loc)
-	if(old_turf?.z != new_turf?.z)
-		var/same_z_layer = (GET_TURF_PLANE_OFFSET(old_turf) == GET_TURF_PLANE_OFFSET(new_turf))
-		on_changed_z_level(old_turf, new_turf, same_z_layer) // todo these call seems redundant
-	return ..()
-
 
 /mob/camera/aiEye/Move(atom/newloc, direction, glide_size_override)
 	return FALSE

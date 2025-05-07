@@ -226,7 +226,7 @@
 		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/ar11/full = 1,
-		/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/lasrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/sh15/slug/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = 1,
@@ -413,7 +413,7 @@
 
 		var/obj/machinery/autodoc/event/E = new (T)
 		var/obj/machinery/computer/autodoc_console/C = new (T)
-		C.loc = get_step(T, EAST)
+		C.forceMove(get_step(T, EAST))
 		E.connected = C
 		C.connected = E
 
@@ -452,6 +452,6 @@
 
 		var/obj/machinery/sleeper/E = new (T)
 		var/obj/machinery/computer/sleep_console/C = new (T)
-		C.loc = get_step(T, EAST)
+		C.forceMove(get_step(T, EAST))
 		E.connected = C
 		C.connected = E

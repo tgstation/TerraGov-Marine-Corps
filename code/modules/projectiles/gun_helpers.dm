@@ -16,7 +16,8 @@
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)
 	. = ..()
 	if(!active_attachable)
-		return toggle_gun_safety()
+		balloon_alert(user, "no attachment to unload")
+		return
 
 	var/mob/living/living_user = user
 	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)

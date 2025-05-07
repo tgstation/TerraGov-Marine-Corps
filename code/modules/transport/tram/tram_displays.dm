@@ -5,7 +5,7 @@
 	icon_state = "desto_blank"
 	base_icon_state = "desto"
 	use_power = NO_POWER_USE
-	resistance_flags = ALL
+	resistance_flags = RESIST_ALL
 	anchored = TRUE
 	density = FALSE
 	layer = SIGN_LAYER

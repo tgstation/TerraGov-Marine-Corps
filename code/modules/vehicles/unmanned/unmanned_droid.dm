@@ -87,7 +87,7 @@
 	if(cloaktimer)
 		deactivate_cloak()
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DRONE_CLOAK))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_DRONE_CLOAK))
 		return
 	apply_wibbly_filters(src)
 	playsound(src, 'sound/effects/seedling_chargeup.ogg', 100, TRUE)
@@ -154,7 +154,7 @@
 	if(is_ground_level(z) && !isdropshiparea(get_area(src))) //AI powerloader is confined to shipside or the alamo
 		to_chat(user, "Connection too weak, return the droid shipside first.")
 		return
-	if(!COOLDOWN_CHECK(src, clamp_cooldown))
+	if(!COOLDOWN_FINISHED(src, clamp_cooldown))
 		return
 	if(cargo && Adjacent(target) && istype(target, /obj/structure/closet))
 		var/obj/structure/closet/attackedcloset = clamptarget

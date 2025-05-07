@@ -206,7 +206,6 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	muzzleflash_iconstate = "muzzle_flash_medium"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_dmr37.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_dmr37_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -287,7 +286,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_br64.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_br64_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -355,7 +354,7 @@
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "m412"
 	worn_icon_state = "m412"
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	fire_sound = 'sound/weapons/guns/fire/M412.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -536,7 +535,7 @@
 	icon_state = "ak47"
 	worn_icon_state = "ak47"
 	caliber = CALIBER_762X39 //codex
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	max_shells = 40 //codex
 	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
@@ -654,7 +653,7 @@
 	)
 	fire_animation = "rpd_fire"
 	caliber = CALIBER_762X39 //codex
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	max_shells = 100  //codex
 	wield_delay = 1.4 SECONDS
 	aim_slowdown = 0.95
@@ -758,7 +757,7 @@
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "m16a4"
 	worn_icon_state = "m16a4"
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	caliber = CALIBER_556X45 //codex
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/m16.ogg'
@@ -827,7 +826,7 @@
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "famas"
 	worn_icon_state = "famas"
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	caliber = CALIBER_556X45 //codex
 	max_shells = 24 //codex
 	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
@@ -1105,7 +1104,7 @@
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "type71"
 	worn_icon_state = "type71"
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	caliber = CALIBER_762X39 //codex
 	max_shells = 42 //codex
 	fire_sound = 'sound/weapons/guns/fire/type71.ogg'
@@ -1334,6 +1333,9 @@
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
 	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/rifle/standard_smartmachinegun/basic
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
 
 //-------------------------------------------------------
 //SG Target Rifle, has underbarreled spotting rifle that applies effects.
@@ -1806,7 +1808,7 @@
 	icon_state = "mkh98"
 	worn_icon_state = "mkh98"
 	caliber = CALIBER_762X39 //codex
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
@@ -2250,7 +2252,7 @@
 	worn_icon_state = "v35"
 	ammo_level_icon = "v35"
 
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
@@ -2390,7 +2392,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	fire_sound = SFX_FAL_FIRE
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/fal_unload.ogg'
@@ -2651,7 +2653,7 @@
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "l88"
 	worn_icon_state = "l88"
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	caliber = CALIBER_556X45 //codex
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
@@ -2773,7 +2775,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 	caliber = CALIBER_556X45 //codex
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	max_shells = 200  //codex
 	wield_delay = 1.4 SECONDS
 	aim_slowdown = 0.95

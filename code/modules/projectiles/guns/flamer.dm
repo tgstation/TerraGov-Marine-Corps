@@ -139,8 +139,8 @@
 		return
 
 	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
-	lit_overlay.pixel_x += lit_overlay_offset_x
-	lit_overlay.pixel_y += lit_overlay_offset_y
+	lit_overlay.pixel_w += lit_overlay_offset_x
+	lit_overlay.pixel_z += lit_overlay_offset_y
 	. += lit_overlay
 
 /obj/item/weapon/gun/flamer/turn_light(mob/user, toggle_on)

@@ -48,7 +48,7 @@
 	var/obj/item/attachable/bayonet/converted/F = new(src.loc)
 	user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 	if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-		F.loc = get_turf(src)
+		F.forceMove(get_turf(src))
 	qdel(src) //Delete da old knife
 
 /obj/item/weapon/combat_knife/Initialize(mapload)

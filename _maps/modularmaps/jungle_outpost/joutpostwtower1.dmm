@@ -110,7 +110,9 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "x" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "y" = (

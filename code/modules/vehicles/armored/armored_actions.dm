@@ -144,7 +144,7 @@
 /datum/action/vehicle/sealed/armored/horn/action_activate(trigger_flags)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_HORN))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_ARMORED_HORN))
 		return
 
 	chassis.visible_message("[chassis] honks its horn!")
@@ -186,7 +186,7 @@
 /datum/action/vehicle/sealed/armored/smoke_screen/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_SMOKE))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_ARMORED_SMOKE))
 		return
 	if(!shots_remaining)
 		playsound(chassis.loc, 'sound/weapons/guns/interact/m92_cocked.ogg', 40, TRUE)

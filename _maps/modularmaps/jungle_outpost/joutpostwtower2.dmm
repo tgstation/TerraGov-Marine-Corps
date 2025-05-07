@@ -187,7 +187,9 @@
 /turf/closed/wall/wood,
 /area/campaign/jungle_outpost/outpost/bar)
 "Ge" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "Gj" = (

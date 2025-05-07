@@ -18316,9 +18316,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bfX" = (
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/prison/maintenance/residential/sw)
 "bfZ" = (
@@ -41887,9 +41885,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/prison/maintenance/hangar_barracks)
 "irK" = (
@@ -44026,9 +44022,7 @@
 "mKT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/prison/maintenance/residential/sw)
 "mLn" = (
@@ -46397,7 +46391,9 @@
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "rqK" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/prison/maintenance/residential/nw)
 "rqN" = (
@@ -47607,7 +47603,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/prison/maintenance/residential/nw)
 "tDl" = (
@@ -49050,13 +49048,6 @@
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/prison/disposal)
-"wHE" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2;
-	name = "Protective Custody Parole Waiting"
-	},
-/turf/open/space/basic,
-/area/prison/material_processing)
 "wHI" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/med_data/laptop,
@@ -93400,7 +93391,7 @@ thJ
 thJ
 thJ
 tcs
-wHE
+twn
 thJ
 thJ
 thJ

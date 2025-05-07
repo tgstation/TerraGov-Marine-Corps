@@ -60,13 +60,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	obj_flags &= ~EMAGGED
 */
 /obj/machinery/button/elevator/attack_hand(mob/living/user)
-	if(!COOLDOWN_CHECK(src, elevator_cooldown))
+	if(!COOLDOWN_FINISHED(src, elevator_cooldown))
 		return
 
 	// Actually try to call the elevator - this sleeps.
 	// If we failed to call it, play a buzz sound.
 	if(!call_elevator(user))
-		playsound(loc, 'sound/machines/buzz-two.ogg', 50, TRUE)
+		playsound(user, 'sound/machines/buzz-two.ogg', 50, TRUE)
 
 	// Finally, give people a chance to get off after it's done before going back off cooldown
 	COOLDOWN_START(src, elevator_cooldown, 2 SECONDS)
@@ -78,30 +78,30 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	// We can't call an elevator that doesn't exist
 	var/datum/transport_controller/linear/lift = lift_weakref?.resolve()
 	if(!lift)
-		loc.balloon_alert(activator, "no elevator connected!")
+		balloon_alert(activator, "no elevator connected!")
 		return FALSE
 
 	// We can't call an elevator that's moving. You may say "you totally can do that", but that's not modelled
 	if(lift.controller_status & CONTROLS_LOCKED)
-		loc.balloon_alert(activator, "elevator is moving!")
+		balloon_alert(activator, "elevator is moving!")
 		return FALSE
 
 	// If the elevator is already here, open the doors.
 	var/obj/structure/transport/linear/prime_lift = lift.return_closest_platform_to_z(loc.z)
 	if(prime_lift.z == loc.z)
 		INVOKE_ASYNC(lift, TYPE_PROC_REF(/datum/transport_controller/linear, open_lift_doors_callback))
-		loc.balloon_alert(activator, "elevator is here!")
+		balloon_alert(activator, "elevator is here!")
 		return TRUE
 
 	// At this point, we can start moving.
 
 	// Give the user, if supplied, a balloon alert.
 	if(activator)
-		loc.balloon_alert(activator, "elevator called")
+		balloon_alert(activator, "elevator called")
 
 	// Actually try to move the lift. This will sleep.
 	if(!lift.move_to_zlevel(loc.z, CALLBACK(src, PROC_REF(check_button))))
-		loc.balloon_alert(activator, "elevator out of service!")
+		balloon_alert(activator, "elevator out of service!")
 		return FALSE
 
 	// From here on all returns are TRUE, as we successfully moved the lift, even if we maybe didn't reach our floor
@@ -113,19 +113,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	// Our lift platform survived, but it didn't reach our landing z.
 	if(!QDELETED(prime_lift) && prime_lift.z != loc.z)
 		if(!QDELETED(activator))
-			loc.balloon_alert(activator, "elevator out of service!")
-		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
+			balloon_alert(activator, "elevator out of service!")
+		playsound(activator, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 		return TRUE
 
 	// Everything went according to plan
 	if(!QDELETED(activator))
-		loc.balloon_alert(activator, "elevator arrived")
+		balloon_alert(activator, "elevator arrived")
 
 	return TRUE
 
 /// Callback for move_to_zlevel / general proc to check if we're still in a button
 /obj/machinery/button/elevator/proc/check_button()
-	if(QDELETED(src) || !istype(loc, /obj/machinery/button))
+	if(QDELETED(src) || !istype(src, /obj/machinery/button))
 		return FALSE
 	return TRUE
 

@@ -8,28 +8,21 @@
 	name = "healing splatter"
 	icon_state = "mech_toxin"
 
-GLOBAL_LIST_EMPTY(blood_particles)
 /particles/splatter
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smoke5"
 	width = 500
 	height = 500
-	count = 5
-	spawning = 15
+	count = 10
+	spawning = 10
 	lifespan = 0.5 SECONDS
-	fade = 0.4 SECONDS
-	grow = 0.065
-	drift = generator(GEN_CIRCLE, 5, 5)
-	scale = 0.2
+	fade = 0.2 SECONDS
+	drift = generator(GEN_CIRCLE, 3, 3)
+	scale = 0.25
 	spin = generator(GEN_NUM, -20, 20)
 	velocity = list(50, 0)
-	friction = generator(GEN_NUM, 0.1, 0.3)
+	friction = generator(GEN_NUM, 0.3, 0.6)
 	position = generator(GEN_CIRCLE, 4, 4)
-
-/particles/splatter/New(set_color)
-	..()
-	if(set_color != "red") // we're already red colored by default
-		color = set_color
 
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
@@ -43,12 +36,12 @@ GLOBAL_LIST_EMPTY(blood_particles)
 /obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, angle, blood_color)
 	if(!blood_color)
 		CRASH("Tried to create a blood splatter without a blood_color")
-	var/x_component = sin(angle) * -15
-	var/y_component = cos(angle) * -15
-	if(!GLOB.blood_particles[blood_color])
-		GLOB.blood_particles[blood_color] = new /particles/splatter(blood_color)
-	particles = GLOB.blood_particles[blood_color]
-	particles.velocity = list(x_component, y_component)
+	var/x_component = sin(angle) * -20
+	var/y_component = cos(angle) * -20
+	var/obj/effect/abstract/particle_holder/reset_transform/splatter_visuals
+	splatter_visuals = new(src, /particles/splatter)
+	splatter_visuals.particles.velocity = list(x_component, y_component)
+	splatter_visuals.particles.color = blood_color
 	color = blood_color
 	icon_state = "[splatter_type][pick(1, 2, 3, 4, 5, 6)]"
 	. = ..()
@@ -57,53 +50,55 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	switch(angle)
 		if(0, 360)
 			target_pixel_x = 0
-			target_pixel_y = 8
+			target_pixel_y = -8
 		if(1 to 44)
-			target_pixel_x = round(4 * ((angle) / 45))
-			target_pixel_y = 8
+			target_pixel_x = round(-4 * ((angle) / 45))
+			target_pixel_y = -8
 		if(45)
-			target_pixel_x = 8
-			target_pixel_y = 8
+			target_pixel_x = -8
+			target_pixel_y = -8
 		if(46 to 89)
-			target_pixel_x = 8
-			target_pixel_y = round(4 * ((90 - angle) / 45))
+			target_pixel_x = -8
+			target_pixel_y = round(-4 * ((90 - angle) / 45))
 		if(90)
-			target_pixel_x = 8
+			target_pixel_x = -8
 			target_pixel_y = 0
 		if(91 to 134)
-			target_pixel_x = 8
-			target_pixel_y = round(-3 * ((angle - 90) / 45))
+			target_pixel_x = -8
+			target_pixel_y = round(3 * ((angle - 90) / 45))
 		if(135)
-			target_pixel_x = 8
-			target_pixel_y = -6
+			target_pixel_x = -8
+			target_pixel_y = 6
 		if(136 to 179)
-			target_pixel_x = round(4 * ((180 - angle) / 45))
-			target_pixel_y = -6
+			target_pixel_x = round(-4 * ((180 - angle) / 45))
+			target_pixel_y = 6
 		if(180)
 			target_pixel_x = 0
-			target_pixel_y = -6
+			target_pixel_y = 6
 		if(181 to 224)
-			target_pixel_x = round(-6 * ((angle - 180) / 45))
-			target_pixel_y = -6
+			target_pixel_x = round(6 * ((angle - 180) / 45))
+			target_pixel_y = 6
 		if(225)
-			target_pixel_x = -6
-			target_pixel_y = -6
+			target_pixel_x = 6
+			target_pixel_y = 6
 		if(226 to 269)
-			target_pixel_x = -6
-			target_pixel_y = round(-6 * ((270 - angle) / 45))
+			target_pixel_x = 6
+			target_pixel_y = round(6 * ((270 - angle) / 45))
 		if(270)
-			target_pixel_x = -6
+			target_pixel_x = 6
 			target_pixel_y = 0
 		if(271 to 314)
-			target_pixel_x = -6
-			target_pixel_y = round(8 * ((angle - 270) / 45))
+			target_pixel_x = 6
+			target_pixel_y = round(-8 * ((angle - 270) / 45))
 		if(315)
-			target_pixel_x = -6
-			target_pixel_y = 8
+			target_pixel_x = 6
+			target_pixel_y = -8
 		if(316 to 359)
-			target_pixel_x = round(-6 * ((360 - angle) / 45))
-			target_pixel_y = 8
-	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
+			target_pixel_x = round(6 * ((360 - angle) / 45))
+			target_pixel_y = -8
+	transform = matrix().Turn(angle)
+	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, time = 0.25 SECONDS)
+	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/transfer_plasma
 	name = "transfer plasma"
@@ -239,6 +234,12 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon_state = "splatter"
 	duration = 0.8 SECONDS
 
+/obj/effect/temp_visual/xadar_blast
+	name = "acid cascade"
+	icon = 'icons/Xeno/96x96.dmi'
+	icon_state = "xadar_splash"
+	duration = 0.4 SECONDS
+
 /obj/effect/temp_visual/acid_bath
 	name = "acid bath"
 	icon = 'icons/obj/items/projectiles.dmi'
@@ -315,3 +316,23 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	duration = 0.5 SECONDS
+
+/// looping lightning effect useful for showing chargeup of [/obj/effect/temp_visual/lightning_discharge]
+/obj/effect/overlay/lightning_charge
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "lightning_charge"
+	layer = ABOVE_TREE_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_ID
+	color = COLOR_RED_LIGHT
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/effect/temp_visual/lightning_discharge
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "lightning_discharge"
+	layer = ABOVE_TREE_LAYER
+	color = COLOR_RED_LIGHT
+	duration = 3
+	pixel_x = -32
+	pixel_y = -32

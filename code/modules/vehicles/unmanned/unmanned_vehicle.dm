@@ -268,7 +268,7 @@
 
 ///Check if we have/create a new bullet and fire it at an atom target
 /obj/vehicle/unmanned/proc/fire_shot(atom/target, mob/user)
-	if(!COOLDOWN_CHECK(src, fire_cooldown))
+	if(!COOLDOWN_FINISHED(src, fire_cooldown))
 		return FALSE
 	if(load_into_chamber() && istype(in_chamber, /obj/projectile))
 		//Setup projectile
