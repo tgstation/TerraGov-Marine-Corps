@@ -615,6 +615,7 @@
 		"Pouches" = list(
 			/obj/item/storage/pouch/grenade/som = -1,
 			/obj/item/storage/pouch/general/som = -1,
+			/obj/item/storage/pouch/general/large/som = -1,
 			/obj/item/storage/pouch/magazine/large/som = -1,
 			/obj/item/storage/pouch/pistol/som = -1,
 			/obj/item/storage/pouch/shotgun/som = -1,
