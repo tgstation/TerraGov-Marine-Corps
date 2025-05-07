@@ -592,10 +592,16 @@
 	. = ..()
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	var/veh_multi = 4
-	if(isgreyscalemecha(src))
-		veh_multi = 3
-	attack_generic(xeno, punch_damage * (veh_multi), BRUTE, effects = FALSE)
+	attack_generic(xeno, punch_damage * 4, BRUTE, effects = FALSE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	Shake(duration = 0.5 SECONDS)
+	return TRUE
+
+/obj/vehicle/sealed/mecha/combat/greyscale/punch_act(...)
+	. = ..()
+	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	attack_generic(xeno, punch_damage * 3, BRUTE, effects = FALSE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(duration = 0.5 SECONDS)
 	return TRUE
