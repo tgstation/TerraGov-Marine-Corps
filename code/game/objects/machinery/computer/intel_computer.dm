@@ -60,11 +60,11 @@
 		return
 	printing = FALSE
 	printing_complete = TRUE
+	//NTF edit. Printing a disk instead of instantly giving the points.
+	new /obj/item/disk/intel_disk(get_turf(src), supply_reward, dropship_reward, faction, get_area(src))
+	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
 	update_minimap_icon()
-	SSpoints.supply_points[faction] = clamp((SSpoints.supply_points[faction]+=supply_reward),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps req points.
-
-	SSpoints.dropship_points += dropship_reward
-	minor_announce("Classified transmission recieved from [get_area(src)]. Bonus awarded to [faction] as [supply_reward] supply points and [dropship_reward] dropship points.", title = "Intel Division")
+	minor_announce("Classified data extraction has been completed in [get_area(src)].", title = "Intel Division")
 	SSminimaps.remove_marker(src)
 	SStgui.close_uis(src)
 	active = FALSE
@@ -147,3 +147,44 @@
 	active = TRUE
 	update_icon()
 	update_minimap_icon()
+
+// SOL edit start
+/obj/item/disk/intel_disk
+	name = "classified data disk"
+	desc = "Probably, contains some important data."
+	icon_state = "nucleardisk"
+	w_class = WEIGHT_CLASS_TINY
+	/// The faction
+	var/who_printed
+	var/where_printed
+	/// The world.time when the disk was printed.
+	var/printed_at
+	/// Supply reward. Set up during init. Is set up by an intel computer.
+	var/supply_reward
+	/// Dropship reward. Set up during init. Is set up by an intel computer.
+	var/dropship_reward
+	/// After this time, the disk will yield no req points.
+	var/duration = 20 MINUTES
+
+/obj/item/disk/intel_disk/Initialize(mapload, supply_reward, dropship_reward, who_printed, where_printed)
+	. = ..()
+	icon_state = "datadisk[rand(1, 7)]"
+	src.supply_reward = supply_reward
+	src.dropship_reward = dropship_reward
+	src.who_printed = who_printed
+	src.where_printed = where_printed
+	printed_at = world.time
+	desc += " According to the label, this disk was printed by [who_printed] in \the [where_printed]. The time stamp suggests that it was printed at [stationTimestamp("hh:mm", printed_at)]. The data will cease to have value at [stationTimestamp("hh:mm", printed_at + duration)]."
+
+/obj/item/disk/intel_disk/get_export_value()
+	if(world.time > printed_at + duration)
+		. = null
+	else
+		. = list(supply_reward, dropship_reward)
+
+/obj/item/disk/intel_disk/supply_export(faction_selling)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	minor_announce("Clasified data disk received from [faction_selling]. Bonus awarded: [supply_reward] supply points and [dropship_reward] dropship points.", title = "Intel Division")
