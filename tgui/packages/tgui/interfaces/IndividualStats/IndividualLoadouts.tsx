@@ -197,7 +197,7 @@ export const IndividualLoadouts = (props) => {
           </Section>
         </Section>
       </Stack.Item>
-      <Stack.Item>
+      <Stack.Item grow>
         <Section
           title={selectedJob + ' loadout'}
           textColor={
