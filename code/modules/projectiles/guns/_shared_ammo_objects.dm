@@ -33,6 +33,7 @@
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landing),
+		COMSIG_XENOMORPH_ATTACK_TURF = PROC_REF(on_xeno_attack),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/submerge_modifier, 10)
@@ -144,6 +145,11 @@
 	SIGNAL_HANDLER
 	affect_atom(jumper)
 
+///Xeno attack interaction with this fire
+/obj/fire/proc/on_xeno_attack(datum/source, mob/living/carbon/xenomorph/xeno_attacker)
+	SIGNAL_HANDLER
+	return
+
 ///Applies effects to an atom
 /obj/fire/proc/affect_atom(atom/affected)
 	return
@@ -165,6 +171,28 @@
 	if(burn_level <= 0)
 		qdel(src)
 		return PROCESS_KILL
+
+/obj/fire/flamer/on_xeno_attack(datum/source, mob/living/carbon/xenomorph/xeno_attacker)
+	if(xeno_attacker.a_intent != INTENT_DISARM)
+		return
+	if(xeno_attacker.do_actions)
+		return
+	if(xeno_attacker.incapacitated())
+		return
+	INVOKE_ASYNC(src, PROC_REF(pat_out), xeno_attacker)
+
+///Pats out the fire
+/obj/fire/flamer/proc/pat_out(mob/living/patter)
+	if(!do_after(patter, 0.5 SECONDS, target = src, user_display = BUSY_ICON_FRIENDLY))
+		return
+
+	burn_ticks -= 10
+	if(burn_ticks <= 0)
+		playsound(loc, 'sound/effects/smoke_extinguish.ogg', 20)
+		qdel(src)
+		return
+	update_appearance(UPDATE_ICON)
+
 
 ///////////////////////////////
 //        MELTING FIRE       //
