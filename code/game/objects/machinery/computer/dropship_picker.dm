@@ -68,6 +68,7 @@
 		"_outrider" = 'icons/ui_icons/dropshippicker/_outrider.png',
 		"_urbantower" = 'icons/ui_icons/dropshippicker/_urbantower.png',
 		"_panopticon" = 'icons/ui_icons/dropshippicker/_panopticon.png',
+		"_greatvalue" = 'icons/ui_icons/dropshippicker/_greatvalue.png',
 	)
 
 /obj/machinery/computer/dropship_picker/ui_act(action, list/params, datum/tgui/ui)

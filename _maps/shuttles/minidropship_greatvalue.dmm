@@ -1,0 +1,182 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"d" = (
+/obj/machinery/door/airlock/mainship/command{
+	dir = 1;
+	opacity = 0
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"l" = (
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/effect/attach_point/crew_weapon/minidropship,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"A" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/camera/autoname/mainship/dropship_two,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"D" = (
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 1
+	},
+/obj/machinery/light,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"E" = (
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed/tadpolemed{
+	dir = 1
+	},
+/obj/machinery/door_control{
+	dir = 1;
+	id = "minidropship_podlock";
+	name = "inner door-control"
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"P" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23;
+	pixel_y = -14
+	},
+/turf/closed/wall/mainship/outer,
+/area/shuttle/minidropship)
+"R" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = -23;
+	pixel_y = -14
+	},
+/turf/closed/wall/mainship/outer,
+/area/shuttle/minidropship)
+"T" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"Y" = (
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/machinery/cic_maptable,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+l
+D
+R
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+A
+T
+d
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+Y
+E
+P
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

@@ -173,6 +173,11 @@
 	description = "A spherical tadpole model made with the intent to achieve an (almost) total 360 degree view of any field it lands onto."
 	display_name = "Tadpole Panoptical Model"
 
+/datum/map_template/shuttle/minidropship/greatvalue
+	suffix = "_greatvalue"
+	description = "An economically-sized tadpole model made to maximise the greatest amount of value in the most concentrated package."
+	display_name = "Tadpole Great-Value Model"
+
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
 	name = "Escape Pod"
