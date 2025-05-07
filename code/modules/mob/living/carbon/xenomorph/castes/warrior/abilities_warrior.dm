@@ -597,7 +597,7 @@
 	Shake(duration = 0.5 SECONDS)
 	return TRUE
 
-/obj/vehicle/sealed/mecha/combat/greyscale/punch_act(...)
+/obj/vehicle/sealed/mecha/combat/greyscale/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage, ...)
 	. = ..()
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
