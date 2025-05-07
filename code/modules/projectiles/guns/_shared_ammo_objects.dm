@@ -150,7 +150,7 @@
 
 ///Reduces duration of fire
 /obj/fire/proc/reduce_fire(amount = 1)
-	if(amount >= 0)
+	if(amount <= 0)
 		return
 	burn_ticks -= amount
 	if(burn_ticks > 0)
