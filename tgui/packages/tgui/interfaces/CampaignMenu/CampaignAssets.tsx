@@ -1,9 +1,4 @@
-import {
-  Button,
-  LabeledList,
-  Section,
-  Stack,
-} from 'tgui-core/components';
+import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import { useBackend, useLocalState } from '../../backend';
