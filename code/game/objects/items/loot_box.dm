@@ -565,7 +565,6 @@
 /obj/item/storage/box/crate/loot/infiltration_pack_spec/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
-	new /obj/item/clothing/gloves/marine/insulated(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/bodybag/tarp/snow(src)
@@ -597,8 +596,6 @@
 	new /obj/item/storage/pouch/medkit/firstaid(src)
 	new /obj/item/roller/medevac(src)
 	new /obj/item/medevac_beacon(src)
-	new /obj/item/clothing/shoes/marine/sneakingboots(src)
-	new /obj/item/clothing/under/marine/spec_operative(src)
 
 /obj/item/storage/box/crate/loot/infiltration_lethal_pack_spec/Initialize(mapload)
 	. = ..()
@@ -613,7 +610,6 @@
 	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
 	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
 	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
-	new /obj/item/clothing/gloves/marine/insulated(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/bodybag/tarp/snow(src)
@@ -637,8 +633,6 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/polyacid(src)
 	new /obj/item/tweezers_advanced(src)
 	new /obj/item/storage/pouch/medkit/firstaid(src)
-	new /obj/item/clothing/shoes/marine/sneakingboots(src)
-	new /obj/item/clothing/under/marine/spec_operative(src)
 
 /obj/item/storage/box/crate/loot/infiltration_lethal_tback_pack_spec/Initialize(mapload)
 	. = ..()

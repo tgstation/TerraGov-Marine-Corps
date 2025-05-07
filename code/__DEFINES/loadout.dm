@@ -210,31 +210,12 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 
 	/obj/effect/vendor_bundle/specialist = list(CAT_ESS, "Essential Specialist Set", 0, "white"),
-	/obj/item/armor_module/module/hod_head = list(CAT_SPSUP, "HOD Ballistic Helmet Module", 3, "black"),
-	/obj/item/armor_module/module/ballistic_armor = list(CAT_SPSUP, "HOD Ballistic Armor Module", 7, "black"),
-	/obj/effect/supply_drop/grenadier = list(CAT_SPSUP, "Heavy Grenadier Pack", 30, "black"),
 	/obj/item/storage/backpack/marine/satchel/scout_cloak = list(CAT_SPSUP, "Scout Cloak", 15, "black"),
 	/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = list(CAT_SPSUP, "Sniper Cloak", 5, "black"),
 	/obj/item/clothing/glasses/thermal/m64_thermal_goggles = list(CAT_SPSUP, "M64 Thermal Goggles", 25, "black"),
 	/obj/item/clothing/glasses/night/m42_night_goggles = list(CAT_SPSUP, "M42 Night Vision Goggles", 15, "orange"),
-	/obj/item/storage/box/crate/loot/operator_pack = list(CAT_SPSUP, "Operator Pack (PR-412E + AP & Incen Mags)", 35, "orange"),
-	/obj/item/storage/box/crate/loot/m25e_pack = list(CAT_SPSUP, "CQC Pack (SMG-25BE + AP-Mags)", 35, "orange"),
-	/obj/item/storage/box/crate/loot/scoutrifle_pack_spec = list(CAT_SPSUP, "Scout Rifle Pack (BR-8 + Mixed Mags + Packet + NVG)", 30, "orange"),
-	/obj/item/storage/box/crate/loot/autosniper_pack_spec = list(CAT_SPSUP, "Autosniper Pack (SR-81 + Mags + Packet + NVG Scope)", 25, "black"),
-	/obj/item/storage/box/crate/loot/recoilless_pack_spec = list(CAT_SPSUP, "Recoilless Rifle Pack (1 Launcher + Mixed Rockets)", 15, "black"),
-	/obj/item/storage/box/crate/loot/infiltration_pack_spec = list(CAT_SPSUP, "Infiltrator Pack (Nonlethal gear + NVG + scout cloak)", 45, "black"),
-	/obj/item/storage/box/crate/loot/infiltration_lethal_pack_spec = list(CAT_SPSUP, "Assassin Pack (Lethal gear + NVG + scout cloak)", 45, "black"),
-	/obj/item/storage/box/crate/loot/infiltration_tback_pack_spec = list(CAT_SPSUP, "Infiltrator Pack (Leotard variant)", 45, "black"),
-	/obj/item/storage/box/crate/loot/infiltration_lethal_tback_pack_spec = list(CAT_SPSUP, "Assassin Pack (Leotard variant)", 45, "black"),
-	/obj/item/storage/box/crate/loot/smartpistol_spec = list(CAT_SPSUP, "Smartpistol Pack (Smartpistol + mags)", 5, "black"),
-	/obj/item/ammo_magazine/rifle/extended = list(CAT_SPSUP, "PR-412 Extended Magazine", 1, "black"),
-	/obj/item/ammo_magazine/rifle/autosniper = list(CAT_SPSUP, "SR-81 Autosniper Magazine", 1, "black"),
-	/obj/item/ammo_magazine/packet/autosniper = list(CAT_SPSUP, "Box of low-pressure 8.6x70mm", 2, "black"),
-	/obj/item/ammo_magazine/rifle/tx8 = list(CAT_SPSUP, "BR-8 High Velocity Magazine", 1, "black"),
-	/obj/item/ammo_magazine/rifle/tx8/impact = list(CAT_SPSUP, "BR-8 High Velocity Impact Magazine", 1, "black"),
-	/obj/item/ammo_magazine/rifle/tx8/incendiary = list(CAT_SPSUP, "BR-8 High Velocity Incendiary Magazine", 1, "black"),
-	/obj/item/ammo_magazine/packet/scout_rifle = list(CAT_SPSUP, "Box of A19 high velocity bullets", 2, "black"),
-	/obj/item/ammo_magazine/smg/m25/extended = list(CAT_SPSUP, "SMG-25 Extended magazine", 1, "black"),
+	/obj/item/storage/box/crate/loot/infiltration_pack_spec = list(CAT_SPSUP, "Infiltrator Pack (G22 Tranq Pistol, Nonlethal Gear + NVG + Scout Cloak)", 45, "black"),
+	/obj/item/storage/box/crate/loot/infiltration_lethal_pack_spec = list(CAT_SPSUP, "Assassin Pack (M4A3 AP Pistol, Lethal Gear + NVG + Scout Cloak)", 45, "black"),
 	))
 
 
