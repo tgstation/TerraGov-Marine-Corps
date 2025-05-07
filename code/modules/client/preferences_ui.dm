@@ -645,18 +645,24 @@
 			var/new_record = trim(html_encode(params["profilePic"]), MAX_MESSAGE_LEN)
 			if(!new_record)
 				return
+			if(new_record == "!clear")
+				new_record = ""
 			profile_pic = new_record
 
 		if("nsfwprofile_pic")
 			var/new_record = trim(html_encode(params["nsfwprofilePic"]), MAX_MESSAGE_LEN)
 			if(!new_record)
 				return
+			if(new_record == "!clear")
+				new_record = ""
 			nsfwprofile_pic = new_record
 
 		if("xenoprofile_pic")
 			var/new_record = trim(html_encode(params["xenoprofilePic"]), MAX_MESSAGE_LEN)
 			if(!new_record)
 				return
+			if(new_record == "!clear")
+				new_record = ""
 			xenoprofile_pic = new_record
 
 		if("xenogender")
