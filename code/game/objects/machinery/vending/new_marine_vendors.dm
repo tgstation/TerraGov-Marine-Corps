@@ -1340,18 +1340,18 @@
 
 /obj/effect/vendor_bundle/specialist
 	gear_to_spawn = list(
-		/obj/item/supply_beacon,
-		/obj/item/compass,
+		/obj/item/clothing/under/marine/spec_operative,
+		/obj/item/clothing/gloves/marine/insulated,
+		/obj/item/clothing/shoes/marine/sneakingboots,
 		/obj/item/binoculars/tactical/scout,
-		/obj/item/explosive/plastique,
 	)
 
 /obj/effect/vendor_bundle/specialistleotard
 	gear_to_spawn = list(
-		/obj/item/supply_beacon,
-		/obj/item/compass,
+		/obj/item/clothing/under/marine/spec_operative,
+		/obj/item/clothing/gloves/marine/insulated,
+		/obj/item/clothing/shoes/marine/sneakingboots,
 		/obj/item/binoculars/tactical/scout,
-		/obj/item/explosive/plastique,
 	)
 
 /obj/effect/vendor_bundle/commander
