@@ -633,7 +633,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL //to use c4 in scout set.
 	smartgun = SKILL_SMART_TRAINED
-	medical = SKILL_MEDICAL_DEFAULT
 	leadership = SKILL_LEAD_BEGINNER
 	melee_weapons = SKILL_MELEE_DEFAULT
 	stamina = SKILL_STAMINA_DEFAULT
@@ -653,7 +652,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	pistols = SKILL_PISTOLS_DEFAULT
 	smgs = SKILL_SMGS_DEFAULT
 	rifles = SKILL_RIFLES_DEFAULT
-	shotguns = SKILL_SHOTGUNS_DEFUALT
 	heavy_weapons = SKILL_HEAVY_WEAPONS_DEFAULT
 	smartgun = SKILL_SMART_TRAINED
 
