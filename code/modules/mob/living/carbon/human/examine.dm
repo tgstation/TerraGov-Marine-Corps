@@ -171,6 +171,8 @@
 
 	msg += separator_hr("Status")
 
+	msg += "[t_He] [t_is] a [species.name]."
+
 	//jitters
 	if(stat != DEAD)
 		if(jitteriness >= 300)
@@ -367,9 +369,7 @@
 				healthy = FALSE
 
 			var/overall_desc = ""
-			if(healthy)
-				overall_desc = span_tinynotice("[t_He] [t_has] a healthy [temp_limb.display_name].")
-			else
+			if(!healthy)
 				overall_desc = "[t_He] [t_has] a [germ_desc][temp_limb.display_name]"
 				if(brute_desc || burn_desc)
 					overall_desc += " with [brute_desc]"
@@ -377,7 +377,7 @@
 						overall_desc += " and "
 					overall_desc += burn_desc
 				overall_desc = span_warning(overall_desc + ".")
-			wound_flavor_text["[temp_limb.display_name]"] = overall_desc + "\n"
+				wound_flavor_text["[temp_limb.display_name]"] = overall_desc + "\n"
 
 	//Handles the text strings being added to the actual description.
 	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.
