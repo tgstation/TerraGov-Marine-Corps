@@ -156,7 +156,7 @@
 	if(burn_ticks > 0)
 		update_appearance(UPDATE_ICON)
 	else
-		qdel(fire)
+		qdel(src)
 
 /////////////////////////////
 //      FLAMER FIRE        //
