@@ -440,12 +440,18 @@
 				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB)
 				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
-			else if(isvehicle(victim) || ishitbox(victim))
+				continue
+			if(isvehicle(victim) || ishitbox(victim))
 				var/obj/obj_victim = victim
 				var/dam_mult = 0.5
 				if(ismecha(obj_victim))
 					dam_mult = 5
 				obj_victim.take_damage(PSY_CRUSH_DAMAGE * dam_mult, BRUTE, BOMB)
+				continue
+			if(isfire(victim))
+				var/obj/fire/fire = victim
+				fire.reduce_fire(10)
+				continue
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
