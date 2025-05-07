@@ -73,6 +73,7 @@
 			data["flavor_text"] = html_decode(flavor_text)
 			data["xeno_desc"] = html_decode(xeno_desc)
 			data["profile_pic"] = html_decode(profile_pic)
+			data["nsfwprofile_pic"] = html_decode(nsfwprofile_pic)
 			data["xenoprofile_pic"] = html_decode(xenoprofile_pic)
 			data["med_record"] = html_decode(med_record)
 			data["gen_record"] = html_decode(gen_record)
@@ -645,6 +646,12 @@
 			if(!new_record)
 				return
 			profile_pic = new_record
+
+		if("nsfwprofile_pic")
+			var/new_record = trim(html_encode(params["nsfwprofilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			nsfwprofile_pic = new_record
 
 		if("xenoprofile_pic")
 			var/new_record = trim(html_encode(params["xenoprofilePic"]), MAX_MESSAGE_LEN)

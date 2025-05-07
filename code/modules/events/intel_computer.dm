@@ -23,5 +23,5 @@
 	I.active = TRUE
 
 	SSminimaps.add_marker(I, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel", ABOVE_FLOAT_LAYER))
-	minor_announce("Our data sifting algorithm has detected valuable classified information on a access point in [get_area(I)]. Should this data be recovered by ground forces, a reward will be given in the form of increased assets.", title = "NTC Intel Division")
+	minor_announce("Our data sifting algorithm has detected valuable classified information on a access point in [get_area(I)]. Should this data be recovered by ground forces, a reward will be given in the form of increased assets. Watch out for hostile forces, this is now a likely conflict zone.", title = "NTC Intel Division")
 	xeno_message("We sense a looming threat from [get_area(I)]. We must keep the hosts away from there.")
