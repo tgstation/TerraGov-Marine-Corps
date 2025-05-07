@@ -141,7 +141,7 @@
 			qdel(src)
 			
 /obj/alien/egg/hugger/attack_hand(mob/living/user)
-	if(!issamexenohive(user))
+	if(!issamexenohive(user) && !user.faction == FACTION_CLF)
 		return ..()
 	switch(maturity_stage)
 		if(1)
