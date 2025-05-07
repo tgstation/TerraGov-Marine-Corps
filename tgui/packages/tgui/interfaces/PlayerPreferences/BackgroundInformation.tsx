@@ -194,9 +194,11 @@ export const BackgroundInformation = (props) => {
             />
           </Section>
         </Stack.Item>
+      </Stack>
+      <Stack>
         <Stack.Item grow>
           <Section
-            title="Human NonNakie Picture"
+            title="Human Picture"
             buttons={
               <Box>
                 <Button
@@ -218,7 +220,7 @@ export const BackgroundInformation = (props) => {
               value={profilePic}
               onChange={(e, value) => setProfilePic(value)}
             />
-            <img src={profile_pic} width={250} height={250} />
+            <img src={profile_pic} width={350} height={400} />
           </Section>
         </Stack.Item>
         <Stack.Item grow>
@@ -248,7 +250,7 @@ export const BackgroundInformation = (props) => {
               value={nsfwprofilePic}
               onChange={(e, value) => setNSFWProfilePic(value)}
             />
-            <img src={profile_pic} width={250} height={250} />
+            <img src={nsfwprofile_pic} width={350} height={400} />
           </Section>
         </Stack.Item>
         <Stack.Item grow>

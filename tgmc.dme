@@ -2322,6 +2322,4 @@ F// DM Environment file for baystation12.dme.
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
 #include "ntf_modular\include.dm"
-#include "ntf_modular\code\_DEFINES\ntf_defines.dm"
-#include "ntf_modular\code\modules\pixel_shift\code\pixel_shift.dm"
 // END_INCLUDE
