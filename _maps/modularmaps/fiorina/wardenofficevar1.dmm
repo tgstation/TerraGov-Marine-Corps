@@ -72,6 +72,9 @@
 "E" = (
 /turf/open/floor/wood,
 /area/fiorina/station/security/wardens)
+"G" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
 "K" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -149,7 +152,7 @@ x
 x
 "}
 (3,1,1) = {"
-a
+G
 E
 y
 R
@@ -185,7 +188,7 @@ K
 x
 "}
 (7,1,1) = {"
-a
+G
 E
 N
 N

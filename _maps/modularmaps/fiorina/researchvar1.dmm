@@ -81,6 +81,9 @@
 /obj/item/clothing/head/helmet/marine/som,
 /turf/open/floor/prison/darkpurple/full,
 /area/fiorina/station/research_cells)
+"eM" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/station/research_cells)
 "eQ" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -916,10 +919,10 @@ TE
 "}
 (10,1,1) = {"
 MD
-GR
+eM
 Ik
 xQ
-GR
+eM
 gR
 Mo
 LM
@@ -936,10 +939,10 @@ LM
 "}
 (11,1,1) = {"
 NI
-GR
+eM
 XR
 cM
-GR
+eM
 Qc
 nw
 LM
@@ -956,10 +959,10 @@ LM
 "}
 (12,1,1) = {"
 PS
-GR
+eM
 cV
 oc
-GR
+eM
 Wo
 Bl
 LM

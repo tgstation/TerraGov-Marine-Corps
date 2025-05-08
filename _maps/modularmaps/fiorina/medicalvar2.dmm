@@ -49,7 +49,7 @@
 /area/fiorina/station/medbay)
 "cl" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "ct" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -124,7 +124,7 @@
 	desc = "Enlist in the Penal Battalions today! The USCM 3rd Fleet features a subset of UA sanctioned penal battalions, drawing from inmate popualtions across the colonies. Mostly New Argentina though."
 	},
 /obj/structure/platform,
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "gC" = (
 /obj/structure/platform{
@@ -353,7 +353,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "wi" = (
 /obj/effect/ai_node,
@@ -435,7 +435,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "CG" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies,
@@ -689,7 +689,7 @@
 	},
 /area/fiorina/station/medbay)
 "Od" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "OH" = (
 /obj/structure/bed/chair,

@@ -46,7 +46,7 @@
 /area/fiorina/station/security/wardens)
 "w" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 4;
+	dir = 4
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -60,6 +60,9 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
+"B" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
 "C" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet/red,
@@ -120,7 +123,7 @@
 	pixel_x = -9;
 	pixel_y = -7
 	},
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "O" = (
 /obj/structure/bed/chair/comfy{
@@ -217,7 +220,7 @@ x
 x
 "}
 (3,1,1) = {"
-c
+B
 E
 y
 R

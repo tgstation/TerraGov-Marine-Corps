@@ -289,6 +289,9 @@
 	},
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/power_ring)
+"W" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
 "X" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
@@ -357,7 +360,7 @@ a
 z
 M
 s
-T
+W
 T
 T
 "}
@@ -366,7 +369,7 @@ z
 k
 L
 C
-T
+W
 m
 F
 H
@@ -378,7 +381,7 @@ z
 x
 S
 c
-T
+W
 K
 q
 H

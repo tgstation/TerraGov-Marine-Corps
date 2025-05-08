@@ -409,7 +409,7 @@
 /area/fiorina/tumor/ship)
 "Iu" = (
 /obj/structure/sign/safety/hazard,
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "IF" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
@@ -593,7 +593,7 @@
 /turf/open/floor/mainship/plate,
 /area/fiorina/tumor/ship)
 "Vh" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "VB" = (
 /obj/machinery/light/small,

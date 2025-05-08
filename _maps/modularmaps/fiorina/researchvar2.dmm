@@ -205,6 +205,9 @@
 /obj/structure/bed,
 /turf/open/floor/prison/whitepurple,
 /area/fiorina/station/research_cells)
+"oZ" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/station/research_cells)
 "pP" = (
 /turf/open/floor/prison/whitepurple/corner{
 	dir = 8
@@ -1008,10 +1011,10 @@ TE
 "}
 (10,1,1) = {"
 MD
-GR
+oZ
 hk
 Wv
-GR
+oZ
 gR
 Mo
 Mo
@@ -1028,10 +1031,10 @@ LM
 "}
 (11,1,1) = {"
 NI
-GR
+oZ
 qf
 cM
-GR
+oZ
 tW
 nw
 SL
@@ -1048,10 +1051,10 @@ LM
 "}
 (12,1,1) = {"
 PS
-GR
+oZ
 ei
 Lw
-GR
+oZ
 Wo
 om
 zH

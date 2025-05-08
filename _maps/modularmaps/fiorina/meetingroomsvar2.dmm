@@ -10,7 +10,7 @@
 	},
 /area/fiorina/tumor/servers)
 "da" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "dv" = (
 /obj/structure/table/reinforced/prison,

@@ -124,7 +124,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "gC" = (
 /obj/structure/platform{
@@ -410,7 +410,7 @@
 /area/fiorina/station/medbay)
 "CA" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "Df" = (
 /obj/structure/largecrate/supply/supplies/water,
@@ -611,7 +611,7 @@
 	},
 /area/fiorina/station/medbay)
 "Od" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/fiorina/oob)
 "Ou" = (
 /obj/structure/bed/chair{

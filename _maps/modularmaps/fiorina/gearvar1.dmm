@@ -190,9 +190,6 @@
 "U" = (
 /turf/open/floor/prison/plate,
 /area/fiorina/station/security)
-"V" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/fiorina/station/security)
 "W" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/item/clothing/shoes/black{
@@ -270,7 +267,7 @@ a
 (6,1,1) = {"
 L
 L
-V
+a
 t
 l
 g
@@ -290,7 +287,7 @@ f
 (8,1,1) = {"
 U
 F
-V
+a
 d
 W
 I
@@ -298,12 +295,12 @@ a
 u
 "}
 (9,1,1) = {"
-V
-V
-V
 a
-V
-V
+a
+a
+a
+a
+a
 a
 m
 "}
