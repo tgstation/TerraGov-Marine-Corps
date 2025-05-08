@@ -70,3 +70,59 @@
   - rscadd: SLs are no longer put in a squad if it has another SL in it. SLs can still
       transfer to whatever squad they want, regardless of whether there's a squaddie
       in it
+2025-05-06:
+  Atropos:
+  - bugfix: fixed holes (that let you go out of bounds) on meridian riptide
+  TiviPlus:
+  - code_imp: Improved fullscreen mode code
+  - refactor: The "gender" preference has been split into "gender" (determines voiced
+      sound effects and pronouns in messages) and "physique" (determines sprite and
+      underwear appearance)
+  - bugfix: as a result of the above neuter and plural characters will have their
+      underwear again, and will default to male options if physique is not set
+  - refactor: TGUI is updated to the v6 standard
+  - code_imp: Fully dropped internet explorer support
+  - code_imp: updated tgui-core to the lastest version
+  - code_imp: Replaced the build tooling for tgui with a faster & more modern alternative
+  - code_imp: As a result of the above, TGUI will load, run and especially compile
+      faster
+  - code_imp: Replaced SCSS with the 2010s technology CSS variables and removed some
+      unused css, which has drastically cut down on the CSS size sent to players
+  - bugfix: Fixed focusing tgui-say again
+  - bugfix: Custom colors for health analyzers work again
+  - code_imp: TGUI now supports custom cursors with CSS
+  - qol: Non-Say TGUI Inputs have been improved, and will now respond faster
+  - qol: Cargo UI will now by default focus the search and reason bars (This means
+      you don't need to click them when opening the UI you just start typing into
+      them immediately)
+  - qol: Loadout UI will now focus the import and name inputs (This means you don't
+      need to click them when opening the UI you just start typing into them immediately)
+      and the icons are now centered correctly
+  - rscdel: Removed some dead code for storage
+  Wisemonster:
+  - balance: Removes second hardpoint on panoptical tadpole model
+2025-05-07:
+  Abopos:
+  - bugfix: Whiskey outpost turrets now have iff
+  Atropos:
+  - bugfix: Moved bluespace gen warning lights around on big red (removed from previous
+      location moving to the new one)
+  - bugfix: Moved bluespace gen a little on research outpost and added cables so it
+      works
+  Looking4bros:
+  - bugfix: Harvester right click attack works
+  Lumipharon:
+  - balance: Hunter attacks now always break stealth
+  Runian:
+  - bugfix: Resisting while having a low amount of melting fire on you now correctly
+      paralyzes you instead of only spinning you.
+  TiviPlus:
+  - code_imp: Optimized fetching a sprites size
+  - code_imp: improved some xeno code
+  - code_imp: improved playsound code more
+2025-05-08:
+  Looking4bros:
+  - bugfix: Can no longer pat out melting fire on yourself
+  Runian:
+  - rscadd: R-76 scope has been added to the attachment section to Valhalla's automated
+      weapon racks.

@@ -1614,8 +1614,7 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 	if(!height_diff && !depth_diff)
 		return
 
-	var/icon/AM_icon = icon(icon)
-	var/height_to_use = (64 - AM_icon.Height()) * 0.5 //gives us the right height based on AM's icon height relative to the 64 high alpha mask
+	var/height_to_use = (64 - get_cached_height()) * 0.5 //gives us the right height based on AM's icon height relative to the 64 high alpha mask
 
 	if(!new_height && !new_depth)
 		GLOB.submerge_filter_timer_list[ref(src)] = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, remove_filter), AM_SUBMERGE_MASK), duration, TIMER_STOPPABLE)

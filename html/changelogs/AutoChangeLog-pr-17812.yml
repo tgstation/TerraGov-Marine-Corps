@@ -1,0 +1,7 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Examining the escape pod controller now will tell you how long until you can manually launch and how long until it automatically launches."
+  - balance: "Marines can no longer immediately launch escape pods when they are activated."
+  - balance: "Escape pods can be manually launched after 7.5 minutes after evacuation is called."
+  - balance: "Escape pods automatically launch 10 minutes after evacuation is called rather than 8 minutes."

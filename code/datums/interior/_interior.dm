@@ -99,6 +99,32 @@
 	if(get_area(source) != this_area)
 		mob_leave(source, FALSE)
 
+///Pseudo-playsound() primarily intended for laying actual playsounds to the interior
+/datum/interior/proc/play_outside_sound(
+		turf/turf_source,
+		soundin,
+		vol,
+		vary = FALSE,
+		frequency,
+		falloff,
+		is_global,
+		channel,
+		ambient_sound,
+		sound/S,
+	)
+	. = list()
+	var/turf/middle_turf = loaded_turfs[floor(length(loaded_turfs) * 0.5)]
+	var/turf/origin_point = locate(clamp(middle_turf.x - container.x + turf_source.x, 1, world.maxx), clamp(middle_turf.y - container.y + turf_source.y, 1, world.maxy), middle_turf.z)
+	//origin point is regardless of owning atoms orientation for player QOL and simple sanity
+
+	for(var/mob/crew AS in occupants)
+		if(!crew.client)
+			continue
+		if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
+			continue
+		crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
+		. += crew
+
 #undef INTERIOR_BUFFER_TILES
 
 /area/interior

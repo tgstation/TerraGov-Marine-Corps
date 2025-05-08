@@ -599,6 +599,7 @@
 			/obj/item/attachable/reddot = -1,
 			/obj/item/attachable/motiondetector = -1,
 			/obj/item/attachable/scope/marine = -1,
+			/obj/item/attachable/scope/standard_magnum = -1,
 			/obj/item/attachable/scope/mini = -1,
 			/obj/item/attachable/angledgrip = -1,
 			/obj/item/attachable/verticalgrip = -1,

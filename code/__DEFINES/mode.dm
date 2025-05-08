@@ -23,7 +23,8 @@
 #define EVACUATION_STATUS_IN_PROGRESS 2
 #define EVACUATION_STATUS_COMPLETE 3
 
-#define EVACUATION_AUTOMATIC_DEPARTURE 8 MINUTES //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
+#define EVACUATION_MANUAL_DEPARTURE 7.5 MINUTES
+#define EVACUATION_AUTOMATIC_DEPARTURE 10 MINUTES // All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
 #define EVACUATION_ESTIMATE_DEPARTURE ((evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1)
 #define EVACUATION_POD_LAUNCH_COOLDOWN 5 SECONDS
 

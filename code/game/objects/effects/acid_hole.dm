@@ -51,7 +51,7 @@
 	if(!user.CanReach(src))
 		return
 	if(holed_wall)
-		if(user.mob_size == MOB_SIZE_BIG)
+		if(HAS_TRAIT(user, TRAIT_CAN_TEAR_HOLE))
 			expand_hole(user)
 			return
 		use_wall_hole(user)
@@ -66,8 +66,8 @@
 		user.emote("roar")
 
 /obj/effect/acid_hole/proc/use_wall_hole(mob/user)
-
-	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying_angle || user.buckled || user.anchored)
+	// todo this should be an allow trait
+	if(HAS_TRAIT(user, TRAIT_CAN_TEAR_HOLE) || user.incapacitated() || user.lying_angle || user.buckled || user.anchored)
 		return
 
 	var/mob_dir = get_dir(user, src)

@@ -41,7 +41,7 @@ const ColorDisplay = (props) => {
         <LabeledList.Item label="Full Color String">
           <Input
             value={colors.map((item) => item.value).join('')}
-            onChange={(_, value) =>
+            onChange={(value) =>
               act('recolor_from_string', { color_string: value })
             }
           />
@@ -59,7 +59,7 @@ const ColorDisplay = (props) => {
             />
             <Input
               value={item.value}
-              onChange={(_, value) =>
+              onChange={(value) =>
                 act('recolor', { color_index: item.index, new_color: value })
               }
             />
