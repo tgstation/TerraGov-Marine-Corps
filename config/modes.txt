@@ -41,6 +41,7 @@ endmode
 
 mode Zombie Crash
 	requiredplayers 2
+	votable 0
 endmode
 
 mode Combat Patrol
