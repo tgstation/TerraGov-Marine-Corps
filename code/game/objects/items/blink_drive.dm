@@ -126,14 +126,14 @@
 	if(!target_turf.can_teleport_here())
 		//user.emote("gored")
 		//user.gib() //telegibbed
-		user.take_damage(50, TRUE)
+		user.take_overall_damage(50, BRUTE)
 		user.emote("scream")
 		if(pulled_target && ismob(pulled_target))
-			var/mob/mob_target = pulled_target
+			var/mob/living/mob_target = pulled_target
 			//mob_target.emote("gored")
 			//mob_target.gib()
-			user.take_damage(50, TRUE)
-			user.emote("scream")
+			mob_target.take_overall_damage(50, BRUTE)
+			mob_target.emote("scream")
 		return
 
 	COOLDOWN_START(src, blink_stability_cooldown, 1 SECONDS)
