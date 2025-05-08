@@ -278,7 +278,6 @@
 /area/prison/beach
 	name = "Beach recreation"
 	icon_state = "thunder"
-	minimap_color = MINIMAP_AREA_LIVING
 	ceiling = CEILING_NONE
 
 /area/prison/hallway
