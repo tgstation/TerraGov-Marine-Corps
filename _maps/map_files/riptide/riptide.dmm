@@ -5114,21 +5114,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
-"dBS" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_rifle,
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	max_integrity = 50;
-	name = "weakened sandbag barricade";
-	pixel_y = 3
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	max_integrity = 50;
-	name = "weakened sandbag barricade"
-	},
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "dCa" = (
 /obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/blood,
@@ -7022,10 +7007,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
-"eTb" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "eTf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -7347,7 +7328,6 @@
 /turf/open/floor/tile/darkish,
 /area/riptide/inside/medical/surgery)
 "fcn" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear,
 /obj/item/stack/sandbags,
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -22631,20 +22611,6 @@
 /obj/structure/cable,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southjungle)
-"pMV" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear,
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	max_integrity = 50;
-	name = "weakened sandbag barricade"
-	},
-/obj/structure/barricade/sandbags{
-	max_integrity = 50;
-	name = "weakened sandbag barricade";
-	pixel_y = -7
-	},
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "pMY" = (
 /obj/structure/window/reinforced/tinted,
 /obj/effect/decal/cleanable/dirt,
@@ -24596,20 +24562,6 @@
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southbeach)
-"qVW" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_rifle,
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	max_integrity = 50;
-	name = "weakened sandbag barricade"
-	},
-/obj/structure/barricade/sandbags{
-	max_integrity = 50;
-	name = "weakened sandbag barricade";
-	pixel_y = -7
-	},
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "qVX" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -71987,7 +71939,7 @@ iDQ
 kQT
 aWa
 oRC
-eTb
+xDe
 gov
 wue
 msl
@@ -73239,13 +73191,13 @@ xCu
 xCu
 xCu
 aWa
-dBS
+iho
 wue
 hiY
 jPO
 nAC
 xDe
-qVW
+nRB
 ngq
 tTZ
 fbD
@@ -73602,7 +73554,7 @@ fcn
 hof
 jZV
 xDe
-pMV
+nRB
 pON
 jPD
 uEx
