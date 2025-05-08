@@ -182,7 +182,7 @@
 
 	xeno_attacker.changeNext_move(xeno_attacker.xeno_caste.attack_delay)
 	burn_ticks -= 10
-	playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
 	xeno_attacker.visible_message(span_danger("[xeno_attacker] tries to put out the fire!"), \
 		span_warning("We try to put out the fire!"), null, 5)
