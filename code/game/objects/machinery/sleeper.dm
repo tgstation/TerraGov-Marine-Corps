@@ -273,7 +273,7 @@
 		return
 	if(!occupant)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 	. += mutable_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)

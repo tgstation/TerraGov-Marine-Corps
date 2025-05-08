@@ -55,7 +55,7 @@
 			continue
 
 		//Aghosted admins don't get picked
-		if(O.mind?.current && isclientedaghost(O.mind.current))
+		if(isaghost(O))
 			continue
 
 		if(!picked)

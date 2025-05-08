@@ -238,6 +238,12 @@
 		if(!togglelock(user, TRUE))
 			toggle(user)
 
+/obj/structure/closet/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(user in src)
+		return
+	togglelock(user)
+
 /obj/structure/closet/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	. = ..()
 	if(.)
@@ -470,6 +476,9 @@
 		return FALSE
 	destination.item_size_counter += item_size
 	return TRUE
+
+/obj/vehicle/sealed/closet_insertion_allowed(obj/structure/closet/destination)
+	return FALSE
 
 ///Action delay when going out of a closet
 /mob/living/proc/on_closet_dump(obj/structure/closet/origin)

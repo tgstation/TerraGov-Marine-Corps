@@ -93,8 +93,8 @@ export type MechPower = {
 };
 
 type SelectedEquip = {
-  mecha_l_arm: string;
-  mecha_r_arm: string;
+  mecha_l_arm?: string;
+  mecha_r_arm?: string;
   mecha_l_back?: string;
   mecha_r_back?: string;
   mecha_utility: string[];

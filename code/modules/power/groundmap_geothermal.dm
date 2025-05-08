@@ -288,7 +288,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 	COOLDOWN_DECLARE(toggle_power)
 
-/obj/machinery/power/geothermal/tbg/Initialize()
+/obj/machinery/power/geothermal/tbg/Initialize(mapload)
 	. = ..()
 	GLOB.all_bluespace_generators += src
 	for(var/direction in GLOB.cardinals)

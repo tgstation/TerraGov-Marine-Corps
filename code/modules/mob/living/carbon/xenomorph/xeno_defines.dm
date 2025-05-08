@@ -76,9 +76,9 @@
 	///Bitwise flags denoting things a caste is or is not. Uses defines.
 	var/caste_flags = CASTE_EVOLUTION_ALLOWED
 	///Bitwise flags denoting things a caste can and cannot do. Uses defines.
-	var/can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	var/can_flags = CASTE_CAN_BE_LEADER
 	///list of traits granted to the owner by becoming this caste
-	var/list/caste_traits = list(TRAIT_CAN_VENTCRAWL)
+	var/list/caste_traits = list(TRAIT_CAN_HOLD_JELLY)
 	// How long the hive must wait before a new one of this caste can evolve
 	var/death_evolution_delay = 0
 	///whether or not a caste can hold eggs, and either 1 or 2 eggs at a time.
@@ -410,6 +410,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/steam_rush = FALSE
 
 	// *** Conqueror vars *** //
+	/// If Endurance is currently active.
+	var/endurance_active = FALSE
 	/// The amount of remaining health that Endurance has.
 	var/endurance_health = 1
 	/// The maximum amount of health that Endurance can have.

@@ -112,6 +112,8 @@
 #define KEYBIND_SETTINGS 6
 #define DRAW_ORDER 7
 
+#define USE_GENDER "use_gender"
+
 #define CITIZENSHIP_CHOICES list(\
 	"Earth Born",\
 	"Sol Born",\

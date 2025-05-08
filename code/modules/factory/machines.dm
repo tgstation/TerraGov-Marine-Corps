@@ -28,7 +28,7 @@
 /obj/machinery/factory/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	. += "It is currently facing [dir2text(dir)] and [anchored ? "" : "un"]secured."
-	. += "Processes one package every [cooldown_time*10] seconds."
+	. += "Processes one package every [cooldown_time / 10] seconds."
 
 /obj/machinery/factory/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored

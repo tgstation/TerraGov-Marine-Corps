@@ -300,7 +300,7 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(xeno_attacker.xeno_caste.can_flags & CASTE_CAN_HOLD_JELLY)
+	if(HAS_TRAIT(src, TRAIT_CAN_HOLD_JELLY))
 		return attack_hand(xeno_attacker)
 	if(xeno_attacker.do_actions || !isnull(current_user))
 		return

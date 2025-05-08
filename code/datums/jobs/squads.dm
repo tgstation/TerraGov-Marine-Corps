@@ -398,10 +398,8 @@
 //This reserves a player a spot in the squad by using a mind variable.
 //It is necessary so that they can smoothly reroll a squad role in case of the strict preference.
 /datum/squad/proc/assign_initial(mob/new_player/player, datum/job/job, latejoin = FALSE)
-	if(!(job.title in current_positions))
-		CRASH("Attempted to insert [job.title] into squad [name]")
-	if(!latejoin)
-		current_positions[job.title]++
+	if(!check_entry(job))
+		return FALSE
 	player.assigned_squad = src
 	return TRUE
 

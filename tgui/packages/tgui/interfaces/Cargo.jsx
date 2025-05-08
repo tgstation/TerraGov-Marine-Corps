@@ -363,7 +363,7 @@ const Pack = (props) => {
 
   return !!contains && contains.constructor === Object ? (
     <Collapsible
-      color="gray"
+      color="transparent"
       title={<PackName cost={cost} name={name} pl={0} amount={amount} />}
     >
       <b>{item_notes ? 'Notes: ' : null} </b> {item_notes}
@@ -463,10 +463,13 @@ const ShoppingCart = (props) => {
             Reason:{' '}
           </Box>
           <Input
+            autoFocus
+            placeholder="Reason"
             width="89%"
             inline
+            expensive
             value={reason}
-            onInput={(e, value) => setReason(value)}
+            onChange={setReason}
           />
         </>
       )}
@@ -540,12 +543,13 @@ const Category = (props) => {
       <Stack vertical>
         {should_filter && (
           <Stack.Item>
-            <Flex>
-              <Flex.Item width="60px">Search :</Flex.Item>
-              <Flex.Item grow={1}>
-                <Input fluid onInput={(_e, value) => setFilter(value)} />
-              </Flex.Item>
-            </Flex>
+            <Input
+              autoFocus
+              placeholder="Search..."
+              fluid
+              expensive
+              onChange={setFilter}
+            />
           </Stack.Item>
         )}
         <Stack.Item>

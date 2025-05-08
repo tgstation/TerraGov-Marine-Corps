@@ -18,7 +18,7 @@ const MultiZPerfToString = (integer) => {
   let returnval = '';
   switch (integer) {
     case -1:
-      returnval = 'Standard';
+      returnval = 'No Culling';
       break;
     case 0:
       returnval = 'Low';
@@ -148,7 +148,15 @@ export const GameSettings = (props) => {
                 action="accessible_tgui_themes"
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
-                tooltip="Try to use more accessible or default TGUI themes/layouts wherever possible."
+                tooltip="Prefer more accessible/default TGUI themes wherever implemented and possible."
+              />
+              <ToggleFieldPreference
+                label="Allow health scan sharing"
+                value="allow_being_shown_health_scan"
+                action="allow_being_shown_health_scan"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Governs if others can show you your health scan."
               />
               <ToggleFieldPreference
                 label="Fullscreen mode"
@@ -186,7 +194,7 @@ export const GameSettings = (props) => {
                 label="Multi-Z Detail"
                 value={MultiZPerfToString(multiz_performance)}
                 action="multiz_performance"
-                tooltip="How detailed multi-z is. Lower this to improve performance."
+                tooltip="How many Multi-Z levels are rendered before they start getting culled. Decrease this to improve performance in case of lag on multi-z maps."
               />
               <ToggleFieldPreference
                 label="TGUI Window Mode"
@@ -310,6 +318,15 @@ export const GameSettings = (props) => {
                 label="Show typing indicator"
                 value="show_typing"
                 action="show_typing"
+                leftValue={1}
+                leftLabel={'Enabled'}
+                rightValue={0}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle bump attacking"
+                value="toggle_bump_attacking"
+                action="toggle_bump_attacking"
                 leftValue={1}
                 leftLabel={'Enabled'}
                 rightValue={0}

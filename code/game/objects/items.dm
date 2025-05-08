@@ -210,6 +210,11 @@
 /obj/item/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
 
+/obj/item/update_filters()
+	. = ..()
+	for(var/datum/action/A AS in actions)
+		A.update_button_icon()
+
 /obj/item/proc/update_item_state(mob/user)
 	worn_icon_state = "[initial(icon_state)][item_flags & WIELDED ? "_w" : ""]"
 
@@ -880,14 +885,6 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTION, user)
 
 
-/mob/living/carbon/verb/showoff()
-	set name = "Show Held Item"
-	set category = "IC.Object"
-
-	var/obj/item/I = get_active_held_item()
-	if(I && !(I.item_flags & ITEM_ABSTRACT))
-		visible_message("[src] holds up [I]. <a HREF=?src=[REF(usr)];lookitem=[REF(I)]>Take a closer look.</a>")
-
 /*
 For zooming with scope or binoculars. This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
@@ -1264,8 +1261,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	standing = center_image(standing, inhands ? inhand_x_dimension : worn_x_dimension, inhands ? inhand_y_dimension : worn_y_dimension)
 
-	standing.pixel_x += inhands ? inhand_x_offset : worn_x_offset
-	standing.pixel_y += inhands ? inhand_y_offset : worn_y_offset
+	standing.pixel_w += inhands ? inhand_x_offset : worn_x_offset
+	standing.pixel_z += inhands ? inhand_y_offset : worn_y_offset
 	standing.alpha = alpha
 	standing.color = color
 

@@ -30,8 +30,8 @@
 	deevolves_to = /datum/xeno_caste/bull
 
 	// *** Flags *** //
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
-	caste_traits = list(TRAIT_STOPS_TANK_COLLISION)
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_traits = list(TRAIT_STOPS_TANK_COLLISION, TRAIT_CAN_HOLD_JELLY)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 50, ACID = 100)

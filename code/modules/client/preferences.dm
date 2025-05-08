@@ -72,6 +72,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/real_name = ""
 	var/random_name = FALSE
 	var/gender = MALE
+	///for humans, will display this body type
+	var/physique = USE_GENDER
 	var/age = 20
 	var/species = "Human"
 	var/ethnicity = "Western"
@@ -156,6 +158,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Preference for letting people make TGUI windows use more accessible (basically, default) themes, where needed/possible.
 	/// Example application: health analyzers using this to choose between default themes or the NtOS themes.
 	var/accessible_tgui_themes = FALSE
+	/// If we can be shown a health scan by friends with right click
+	var/allow_being_shown_health_scan = TRUE
 
 	/// Chat on map
 	var/chat_on_map = TRUE
@@ -214,6 +218,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
+
+	///Bump attacking preference
+	var/toggle_bump_attacking = TRUE
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -283,3 +290,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	job_preferences[job.title] = level
 	return TRUE
 
+///returns the physique the user wants to be using
+/datum/preferences/proc/get_physique()
+	if(physique == USE_GENDER)
+		if(gender == FEMALE)
+			return FEMALE
+		else
+			return MALE
+	return physique

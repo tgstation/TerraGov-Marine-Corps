@@ -66,10 +66,10 @@
 	var/shadow_filter = movable_to_move.get_filter(PATROL_POINT_RAPPEL_EFFECT)
 
 	var/current_layer = movable_to_move.layer
-	movable_to_move.pixel_y += RAPPEL_HEIGHT
+	movable_to_move.pixel_z += RAPPEL_HEIGHT
 	movable_to_move.layer = FLY_LAYER
 
-	animate(movable_to_move, pixel_y = movable_to_move.pixel_y - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
+	animate(movable_to_move, pixel_z = movable_to_move.pixel_z - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
 	animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
 
 	addtimer(CALLBACK(src, PROC_REF(end_rappel), movable_to_move, current_layer, mobs_moving), RAPPEL_DURATION)
