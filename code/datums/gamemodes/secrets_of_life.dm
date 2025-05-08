@@ -71,7 +71,7 @@
 		/datum/job/som/squad/medic = 4,
 		/datum/job/som/squad/engineer = 4,
 		/datum/job/som/squad/leader = 4,
-		/datum/job/som/squad/veteran = 2,
+		/datum/job/som/squad/veteran = 4,
 		/datum/job/other/prisonersom = 2,
 		/datum/job/clf/breeder = 2,
 		/datum/job/clf/standard = 2,
