@@ -173,7 +173,7 @@
 		return PROCESS_KILL
 
 /obj/fire/flamer/on_xeno_attack(datum/source, mob/living/carbon/xenomorph/xeno_attacker)
-	if(xeno_attacker.a_intent != INTENT_DISARM)
+	if(xeno_attacker.a_intent != INTENT_HELP)
 		return
 	if(xeno_attacker.do_actions)
 		return
