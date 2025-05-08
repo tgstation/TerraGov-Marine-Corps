@@ -8926,6 +8926,11 @@
 "UH" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/gun/rifle/icc_sharpshooter,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "UJ" = (
@@ -9418,6 +9423,11 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "WZ" = (
