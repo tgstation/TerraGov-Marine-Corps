@@ -7,7 +7,7 @@
 
 /datum/job/icc_squad/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You're a part of a militia group known as the "+ FACTION_ICC + ". Your goal is protect colonists and ward off xenomorphs. NTC may interfere with your operations, let them, until it is immoral."})
+	to_chat(M, "You're a part of a militia group known as the "+ FACTION_ICC + ". Your goal is protect colonists and ward off xenomorphs. NTC may interfere with your operations, let them, until it is immoral.")
 
 //ICC Standard
 /datum/job/icc_squad/standard
