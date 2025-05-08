@@ -225,7 +225,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		disable_squadhud()
-		squadhud.remove_hud_from(user)
+		if(squadhud)
+			squadhud.remove_hud_from(user)
 		user.hud_used.SL_locator.alpha = 0
 		wearer = null
 		squadhud = null
