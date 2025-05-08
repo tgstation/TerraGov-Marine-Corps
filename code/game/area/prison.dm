@@ -279,6 +279,7 @@
 	name = "Beach recreation"
 	icon_state = "thunder"
 	ceiling = CEILING_NONE
+	always_unpowered = TRUE
 
 /area/prison/hallway
 
