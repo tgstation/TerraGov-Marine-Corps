@@ -619,14 +619,14 @@
 	name = "\improper Terra Experimental laser carbine"
 	desc = "A TerraGov standard issue laser carbine, otherwise known as TE-C for short. Has multiple firemodes for tactical flexibility. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	icon_state = "tec"
 	worn_icon_state = "tec"
-	max_shots = 12
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/blast
-	rounds_per_shot = 50
-	gun_firemode = GUN_FIREMODE_SEMIAUTO
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	max_shots = 50
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/carbine
+	rounds_per_shot = 12
+	gun_firemode = GUN_FIREMODE_AUTOBURST
+	gun_firemode_list = list(GUN_FIREMODE_AUTOBURST)
 	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -655,7 +655,8 @@
 	wield_delay = 0.5 SECONDS
 	scatter = 1
 	scatter_unwielded = 10
-	fire_delay = 1.5 SECONDS
+	fire_delay = 0.2 SECONDS
+	burst_amount = 4
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.15 SECONDS
 	autoburst_delay = 0.35 SECONDS
@@ -1057,27 +1058,13 @@
 	damage_falloff_mult = 0.9
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
-	light_range = 0.1
-	light_power = 0.1
 	light_color = LIGHT_COLOR_ORANGE
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon()
-	. = ..()
-	if(rounds)
-		turn_light(null, TRUE)
-	else
-		turn_light(null, FALSE)
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/turn_light(mob/user, toggle_on)
-	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-	set_light_on(toggle_on)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[worn_icon_state]_emissive")
-	standing.overlays.Add(emissive_overlay)
+	if(rounds)
+		var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[worn_icon_state]_emissive", src)
+		standing.overlays.Add(emissive_overlay)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
 	name = "\improper VX-12 Serpenta"
