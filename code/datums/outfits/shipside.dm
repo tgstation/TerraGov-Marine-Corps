@@ -19,7 +19,7 @@
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	shoes = null
 	gloves = null
-	head = /obj/item/clothing/head/modular/robot
+	head = /obj/item/clothing/head/beret/marine/captain
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/leadership
 
@@ -49,10 +49,10 @@
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
-	wear_suit = /obj/item/clothing/suit/modular/robot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten
 	shoes = null
 	gloves = null
-	head = /obj/item/clothing/head/modular/robot
+	head = /obj/item/clothing/head/tgmcberet/fc
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
@@ -83,7 +83,7 @@
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	shoes = null
 	gloves = null
-	head = /obj/item/clothing/head/modular/robot
+	head = /obj/item/clothing/head/tgmccap/ro
 	r_pocket = /obj/item/storage/pouch/general/large
 	l_pocket = /obj/item/binoculars/tactical
 
