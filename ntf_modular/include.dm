@@ -90,3 +90,4 @@
 #include "modules\underwear\underwear\shirts.dm"
 #include "modules\underwear\underwear\socks.dm"
 #include "modules\underwear\underwear\underwear.dm"
+#include "code\modules\projectiles\guns\rifles.dm"

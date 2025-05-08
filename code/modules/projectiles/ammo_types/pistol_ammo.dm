@@ -37,13 +37,13 @@
 	armor_type = "bullet"
 	damage = 75
 	damage_type = STAMINA
-	shell_speed = 1.8
+	shell_speed = 3.3
 	shrapnel_chance = 0.2
 
 /datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(iscarbon(target_mob))
 		var/mob/living/carbon/carbon_victim = target_mob
-		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, 3, no_overdose = TRUE)
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, rand(3,5), no_overdose = TRUE)
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"

@@ -207,15 +207,28 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary = list(CAT_SGSUP, "SG-153 Spotting Rifle Incendiary Magazine", 1, "black"),
 	))
 
+//specialists are 2 classes pretty much, was gonna be 3 but people keep bitching.
+//Enforcer (unimplemented): Heavy chunky boys for direct warfare.
+//Recon: Long range specialists, usually snipers, able to find targets with thermals.
+//Infiltrator: Versatile Stealth spec ops able to kidnap or assassinate targets, or perform other high risk ops. They get sneaking suit and boots.
 GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 
 	/obj/effect/vendor_bundle/specialist = list(CAT_ESS, "Essential Specialist Set", 0, "white"),
-	/obj/item/storage/backpack/marine/satchel/scout_cloak = list(CAT_SPSUP, "Scout Cloak", 15, "black"),
-	/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = list(CAT_SPSUP, "Sniper Cloak", 5, "black"),
-	/obj/item/clothing/glasses/thermal/m64_thermal_goggles = list(CAT_SPSUP, "M64 Thermal Goggles", 25, "black"),
-	/obj/item/clothing/glasses/night/m42_night_goggles = list(CAT_SPSUP, "M42 Night Vision Goggles", 15, "orange"),
-	/obj/item/storage/box/crate/loot/infiltration_pack_spec = list(CAT_SPSUP, "Infiltrator Pack (G22 Tranq Pistol, Nonlethal Gear + NVG + Scout Cloak)", 45, "black"),
-	/obj/item/storage/box/crate/loot/infiltration_lethal_pack_spec = list(CAT_SPSUP, "Assassin Pack (M4A3 AP Pistol, Lethal Gear + NVG + Scout Cloak)", 45, "black"),
+	/obj/item/storage/box/crate/loot/autosniper_lethal_pack_spec = list(CAT_SPSUP, "Recon L Class (SR-81 Autosniper, Mines, Thermals, Sniper cloak)", 25, "black"),
+	/obj/item/storage/box/crate/loot/scoutrifle_pack_spec = list(CAT_SPSUP, "Recon L Class 2 (Scout Rifle, Mines, Thermals)", 25, "black"),
+	/obj/item/storage/box/crate/loot/moonbeam_pack_spec = list(CAT_SPSUP, "Recon NL Class (Moonbeam Nonlethal sniper, Mines, Thermals, Sniper cloak)", 25, "black"),
+	/obj/item/storage/box/crate/loot/infiltration_pack_spec = list(CAT_SPSUP, "Infiltrator NL Class (Sneaking gear, G22 Tranq Pistol, Nonlethal Gear, NVG, Scout Cloak)", 25, "black"),
+	/obj/item/storage/box/crate/loot/infiltration_lethal_pack_spec = list(CAT_SPSUP, "Infiltrator L Class (Sneaking gear, M4A3 AP Pistol, Lethal Gear, NVG, Scout Cloak)", 25, "black"),
+	/obj/item/storage/box/crate/loot/infiltration_tback_pack_spec = list(CAT_SPSUP, "Infiltrator NL Class (Nonlethal Leotard variant)", 25, "black"),
+	/obj/item/storage/box/crate/loot/infiltration_lethal_tback_pack_spec = list(CAT_SPSUP, "Assassin  L Class (Lethal Leotard variant)", 25, "black"),
+	/obj/item/ammo_magazine/pistol/g22tranq = list(CAT_SPSUP, "G22 Tranq Magazine", 1, "black"),
+	/obj/item/ammo_magazine/pistol/m1911/ap = list(CAT_SPSUP, "M4A3 AP Magazine", 1, "black"),
+	/obj/item/ammo_magazine/rifle/autosniper = list(CAT_SPSUP, "SR-81 Autosniper Magazine", 1, "black"),
+	/obj/item/ammo_magazine/packet/autosniper = list(CAT_SPSUP, "Box of low-pressure 8.6x70mm", 2, "black"),
+	/obj/item/ammo_magazine/rifle/tx8 = list(CAT_SPSUP, "BR-8 High Velocity Magazine", 1, "black"),
+	/obj/item/ammo_magazine/rifle/tx8/impact = list(CAT_SPSUP, "BR-8 High Velocity Impact Magazine", 1, "black"),
+	/obj/item/ammo_magazine/rifle/tx8/incendiary = list(CAT_SPSUP, "BR-8 High Velocity Incendiary Magazine", 1, "black"),
+	/obj/item/ammo_magazine/rifle/chamberedrifle/tranq = list(CAT_SPSUP, "Moonbeam tranq sniper magazine", 1, "black"),
 	))
 
 

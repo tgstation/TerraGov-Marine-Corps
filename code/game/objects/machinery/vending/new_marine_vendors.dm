@@ -1233,22 +1233,6 @@
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/vendor_bundle/basic_specialist
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/spec_operative,
-		/obj/item/clothing/shoes/marine/sneakingboots,
-		/obj/item/clothing/gloves/marine/hyperscale,
-		/obj/item/storage/box/MRE,
-	)
-
-/obj/effect/vendor_bundle/basic_specialist/tback
-	gear_to_spawn = list(
-		/obj/item/clothing/under/spec_operative/tback,
-		/obj/item/clothing/shoes/marine/sneakingboots,
-		/obj/item/clothing/gloves/marine/hyperscale,
-		/obj/item/storage/box/MRE,
-	)
-
 /obj/effect/vendor_bundle/basic_jaeger_commander
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
@@ -1340,18 +1324,9 @@
 
 /obj/effect/vendor_bundle/specialist
 	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/spec_operative,
 		/obj/item/clothing/gloves/marine/insulated,
-		/obj/item/clothing/shoes/marine/sneakingboots,
 		/obj/item/binoculars/tactical/scout,
-	)
-
-/obj/effect/vendor_bundle/specialistleotard
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/spec_operative,
-		/obj/item/clothing/gloves/marine/insulated,
-		/obj/item/clothing/shoes/marine/sneakingboots,
-		/obj/item/binoculars/tactical/scout,
+		/obj/item/explosive/plastique,
 	)
 
 /obj/effect/vendor_bundle/commander
