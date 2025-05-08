@@ -120,3 +120,9 @@
   - code_imp: Optimized fetching a sprites size
   - code_imp: improved some xeno code
   - code_imp: improved playsound code more
+2025-05-08:
+  Looking4bros:
+  - bugfix: Can no longer pat out melting fire on yourself
+  Runian:
+  - rscadd: R-76 scope has been added to the attachment section to Valhalla's automated
+      weapon racks.
