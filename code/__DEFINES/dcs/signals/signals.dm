@@ -907,6 +907,9 @@
 #define COMSIG_ABILITY_SUCCEED_ACTIVATE "xeno_action_succeed_activate"
 	#define SUCCEED_ACTIVATE_CANCEL (1<<0)
 
+#define COMSIG_DO_OVERWATCH_RADIAL "do_overwatch_radial"					//from base of mob/living/Mute()
+	#define OVERWATCH_RADIAL_HIDE (1<<0)
+
 //Signals for CIC orders
 #define COMSIG_ORDER_SELECTED "order_selected"
 #define COMSIG_CIC_ORDER_SENT "order_updated"

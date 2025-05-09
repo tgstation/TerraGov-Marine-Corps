@@ -36,9 +36,10 @@ GLOBAL_LIST_INIT(designator_types, list (
 /datum/action/ability/activable/build_designator/on_selection()
 	RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_rotate))
+	RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
 
 /datum/action/ability/activable/build_designator/on_deselection()
-	UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE))
+	UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE, COMSIG_DO_OVERWATCH_RADIAL))
 	cleanup_hologram()
 
 /datum/action/ability/activable/build_designator/use_ability(atom/A)
@@ -51,9 +52,13 @@ GLOBAL_LIST_INIT(designator_types, list (
 /datum/action/ability/activable/build_designator/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(select_structure))
 
+/datum/action/ability/activable/build_designator/proc/override_cic_radial(datum/source) //move this
+	SIGNAL_HANDLER
+	return OVERWATCH_RADIAL_HIDE
+
 ///Selects the pattern from a radial menu
 /datum/action/ability/activable/build_designator/proc/select_structure()
-	var/construct_choice = show_radial_menu(owner, owner, GLOB.designator_images_list, radius = 48)
+	var/construct_choice = show_radial_menu(owner, owner?.client?.eye, GLOB.designator_images_list, radius = 48) //change anchor
 	if(!construct_choice)
 		return
 	construct_type = construct_choice
@@ -95,13 +100,15 @@ GLOBAL_LIST_INIT(designator_types, list (
 	var/obj/effect/build_hologram/new_hologram = new(target_turf, selected)
 	new_hologram.alpha = 0
 	new_hologram.layer = ABOVE_OBJ_LAYER
-	new_hologram.step_size = 4 * ICON_SIZE_ALL
+	new_hologram.glide_size = 32
 	animate(new_hologram, 1 SECONDS, alpha = initial(new_hologram.alpha))
 	new_hologram.setDir(owner.dir)
 	hologram = new_hologram
 
 //Updates the hologram position and validity
 /datum/action/ability/activable/build_designator/proc/update_hologram(turf/target_turf = hologram.loc, new_dir = owner.dir)
+	if(!hologram)
+		return
 	if(hologram.loc != target_turf)
 		hologram.abstract_move(target_turf)
 
@@ -152,8 +159,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 	smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
 	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
 	alpha = 190
-	var/material_type
-	var/recipe
+	var/obj/material_type
+	var/datum/stack_recipe/recipe
 
 /obj/effect/build_designator/Initialize(mapload, obj/construct_type, new_dir) //construct_type is a TYPE but typecast for initial values below
 	if(!construct_type)
@@ -168,6 +175,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 	base_icon_state = construct_type::base_icon_state
 	color = construct_type::color
 	smoothing_flags = construct_type::smoothing_flags
+	name = "holo [construct_type::name]"
+	desc = "A holographic representation of a [construct_type::name]. Apply [recipe.req_amount] [material_type::name] to build it."
 	. = ..()
 	makeHologram(0.7, FALSE)
 	QDEL_IN(src, 4 MINUTES)
