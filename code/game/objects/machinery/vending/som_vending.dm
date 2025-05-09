@@ -31,7 +31,7 @@
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = 15,
 			/obj/item/weapon/gun/rifle/icc_assaultcarbine = -1,
-			/obj/item/ammo_magazine/rifle/icc_battlecarbine = -1,
+			/obj/item/ammo_magazine/rifle/icc_assaultcarbine = -1,
 			/obj/item/ammo_magazine/rifle/som_big = -1,
 			/obj/item/ammo_magazine/rifle/som_big/incendiary = 10,
 			/obj/item/ammo_magazine/rifle/som_big/anti_armour = 10,
@@ -615,6 +615,7 @@
 		"Pouches" = list(
 			/obj/item/storage/pouch/grenade/som = -1,
 			/obj/item/storage/pouch/general/som = -1,
+			/obj/item/storage/pouch/general/large/som = -1,
 			/obj/item/storage/pouch/magazine/large/som = -1,
 			/obj/item/storage/pouch/pistol/som = -1,
 			/obj/item/storage/pouch/shotgun/som = -1,

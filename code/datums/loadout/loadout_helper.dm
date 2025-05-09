@@ -131,6 +131,9 @@
 	if(user.job.outfit.ears)
 		user.equip_to_slot_or_del(new user.job.outfit.ears(user), SLOT_EARS, override_nodrop = TRUE)
 		return
+	if(user.faction == FACTION_ICC)
+		user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine/icc(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
+		return
 	if(!user.assigned_squad)
 		return
 	if(user.faction == FACTION_SOM)

@@ -81,7 +81,7 @@
 	update_appearance(UPDATE_ICON)
 
 ///Handles the actual teleportation
-/obj/item/blink_drive/proc/teleport(atom/A, mob/user)
+/obj/item/blink_drive/proc/teleport(atom/A, mob/living/carbon/human/user)
 	if(charges <= 0)
 		user.balloon_alert(user, "no charge")
 		playsound(src, 'sound/items/blink_empty.ogg', 25, 1)
@@ -124,12 +124,16 @@
 	teleport_debuff_aoe(user)
 
 	if(!target_turf.can_teleport_here())
-		user.emote("gored")
-		user.gib() //telegibbed
+		//user.emote("gored")
+		//user.gib() //telegibbed
+		user.take_overall_damage(50, BRUTE)
+		user.emote("scream")
 		if(pulled_target && ismob(pulled_target))
-			var/mob/mob_target = pulled_target
-			mob_target.emote("gored")
-			mob_target.gib()
+			var/mob/living/mob_target = pulled_target
+			//mob_target.emote("gored")
+			//mob_target.gib()
+			mob_target.take_overall_damage(50, BRUTE)
+			mob_target.emote("scream")
 		return
 
 	COOLDOWN_START(src, blink_stability_cooldown, 1 SECONDS)

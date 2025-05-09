@@ -9,6 +9,7 @@
 	paincries = list(MALE = SFX_MALE_PAIN, FEMALE = SFX_FEMALE_PAIN)
 	goredcries = list(MALE = SFX_MALE_GORED, FEMALE = SFX_FEMALE_GORED)
 	gasps = list(MALE = SFX_MALE_GASP, FEMALE = SFX_FEMALE_GASP)
+	chokes = list(FEMALE = SFX_FEMALE_CHOKE)
 	coughs = list(MALE = SFX_MALE_COUGH, FEMALE = SFX_FEMALE_COUGH)
 	groans = list(FEMALE = SFX_FEMALE_GROAN)
 	chokes = list(FEMALE = SFX_FEMALE_CHOKE)

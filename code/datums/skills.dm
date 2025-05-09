@@ -629,32 +629,22 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/specialist
 	name = SQUAD_SPECIALIST
-	unarmed = SKILL_UNARMED_MASTER
+	unarmed = SKILL_UNARMED_MASTER //Snake, remember some of the basics of CQC.
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL //to use c4 in scout set.
+	medical = SKILL_MEDICAL_NOVICE
 	smartgun = SKILL_SMART_TRAINED
-	medical = SKILL_MEDICAL_PRACTICED
 	leadership = SKILL_LEAD_BEGINNER
-	melee_weapons = SKILL_MELEE_TRAINED
-	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/specialist/vanguard
 	name = VANGUARD
 	unarmed = SKILL_UNARMED_MASTER
-	construction = SKILL_CONSTRUCTION_PLASTEEL
-	engineer = SKILL_ENGINEER_ENGI
-	medical = SKILL_MEDICAL_COMPETENT
+	construction = SKILL_CONSTRUCTION_DEFAULT
+	engineer = SKILL_ENGINEER_DEFAULT
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
 	leadership = SKILL_LEAD_EXPERT
 	police = SKILL_POLICE_MP
-	stamina = SKILL_STAMINA_TRAINED
-	melee_weapons = SKILL_MELEE_TRAINED
-	combat = SKILL_COMBAT_TRAINED
-	pistols = SKILL_PISTOLS_TRAINED
-	smgs = SKILL_SMGS_TRAINED
-	rifles = SKILL_RIFLES_TRAINED
-	shotguns = SKILL_SHOTGUNS_TRAINED
-	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 
 /datum/skills/specialist/pmc

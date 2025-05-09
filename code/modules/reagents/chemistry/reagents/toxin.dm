@@ -230,7 +230,8 @@
 			L.blur_eyes(10)
 		if(7 to 10)
 			if(prob(10))
-				L.Sleeping(10 SECONDS)
+				L.emote("yawn")
+				L.KnockdownNoChain(10 SECONDS)
 			L.drowsyness = max(L.drowsyness, 20)
 		if(11 to 80)
 			L.Sleeping(30 SECONDS) //previously knockdown, no good for a soporific.
@@ -469,7 +470,7 @@
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
-			
+
 	var/stamina_loss_limit = L.maxHealth * 2
 	var/applied_damage = clamp(power, 0, (stamina_loss_limit - L.getStaminaLoss()))
 	var/damage_overflow = power - applied_damage

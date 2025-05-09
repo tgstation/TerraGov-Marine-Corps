@@ -80,6 +80,10 @@ map lawanka
 	minplayers 1
 endmap
 
+map larvae_pits
+	minplayers 1
+endmap
+
 map slumbridge
 	minplayers 1
 endmap

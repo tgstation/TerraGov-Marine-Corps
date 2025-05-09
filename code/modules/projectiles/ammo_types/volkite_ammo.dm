@@ -38,10 +38,10 @@
 /datum/ammo/energy/volkite/medium
 	max_range = 25
 	accurate_range = 12
-	damage = 20
+	damage = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	fire_burst_damage = 15
+	fire_burst_damage = 20
 	deflagrate_multiplier = 0.9
 
 /datum/ammo/energy/volkite/medium/custom
@@ -60,7 +60,6 @@
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	penetration = 5
-	fire_burst_damage = 10
 	deflagrate_multiplier = 0.9
 
 /datum/ammo/energy/volkite/demi_culverin

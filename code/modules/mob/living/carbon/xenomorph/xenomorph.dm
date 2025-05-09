@@ -262,7 +262,7 @@
 		. += "\n<span class='info'>[span_collapsible("Flavor Text", "[xeno_desc]")]</span>"
 
 	if(xenoprofile_pic)
-		. += "<span class='info'><img src=[xenoprofile_pic] width=250 height=250/></span>"
+		. += "<span class='info'><img src=[xenoprofile_pic] width=300 height=350/></span>"
 
 	if(stat == DEAD)
 		. += "<span class='deadsay'>[p_they(TRUE)] is DEAD. Kicked the bucket. Off to that great hive in the sky.</span>"

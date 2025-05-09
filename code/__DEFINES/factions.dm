@@ -10,7 +10,7 @@
 #define FACTION_NANOTRASEN "Ninetails"
 #define FACTION_SECTOIDS "Sectoids"
 #define FACTION_SOM "Sons of Mars"
-#define FACTION_ICC "Independent Colonial Confederation"
+#define FACTION_ICC "Independent Colonial Coalition"
 #define FACTION_USL "United Space Lepidoptera"
 #define FACTION_ALIEN "Alien"
 #define FACTION_SPIDER "Spider"

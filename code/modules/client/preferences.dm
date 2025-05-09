@@ -129,6 +129,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/exploit_record = ""
 	var/xeno_desc = ""
 	var/profile_pic = ""
+	var/nsfwprofile_pic = ""
 	var/xenoprofile_pic = ""
 	var/xenogender = 1
 	var/harmful_sex_allowed = TRUE

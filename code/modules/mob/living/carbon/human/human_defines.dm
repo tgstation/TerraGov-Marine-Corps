@@ -108,6 +108,7 @@
 	///This human's custom exploit record. Fluff.
 	var/exploit_record = ""
 	var/profile_pic = ""
+	var/nsfwprofile_pic = ""
 
 
 	//Life variables

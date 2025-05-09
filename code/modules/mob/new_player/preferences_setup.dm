@@ -176,6 +176,7 @@
 
 	character.flavor_text = flavor_text
 	character.profile_pic = profile_pic
+	character.nsfwprofile_pic = nsfwprofile_pic
 
 	character.med_record = med_record
 	character.sec_record = sec_record

@@ -200,7 +200,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			safety_protocol(user)
 			return
 		wearer = user
-		squadhud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+		var/data_hud = GLOB.faction_to_data_hud[faction]
+		if(data_hud)
+			squadhud = GLOB.huds[data_hud]
+		else
+			squadhud = null
 		enable_squadhud()
 		RegisterSignals(user, list(COMSIG_MOB_REVIVE, COMSIG_MOB_DEATH, COMSIG_HUMAN_SET_UNDEFIBBABLE), PROC_REF(update_minimap_icon))
 	if(camera)
@@ -221,7 +225,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		disable_squadhud()
-		squadhud.remove_hud_from(user)
+		if(squadhud)
+			squadhud.remove_hud_from(user)
 		user.hud_used.SL_locator.alpha = 0
 		wearer = null
 		squadhud = null
@@ -248,20 +253,22 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/mainship/proc/enable_squadhud()
-	squadhud.add_hud_to(wearer)
 	headset_hud_on = TRUE
-	if(!camera.status)
-		camera.toggle_cam(null, FALSE)
-	if(wearer.mind && wearer.assigned_squad && !sl_direction)
-		enable_sl_direction()
+	if(squadhud)
+		squadhud.add_hud_to(wearer)
+		if(!camera.status)
+			camera.toggle_cam(null, FALSE)
+		if(wearer.mind && wearer.assigned_squad && !sl_direction)
+			enable_sl_direction()
 	add_minimap()
 	balloon_alert(wearer, "toggles squad HUD on")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
 /obj/item/radio/headset/mainship/proc/disable_squadhud()
-	squadhud.remove_hud_from(wearer)
 	headset_hud_on = FALSE
+	if(squadhud)
+		squadhud.remove_hud_from(wearer)
 	if(camera.status)
 		camera.toggle_cam(null, FALSE)
 	if(sl_direction)
@@ -628,6 +635,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_generic"
 	keyslot = /obj/item/encryptionkey/icc
 	frequency = FREQ_ICC
+	faction = FACTION_ICC
 
 //Distress headsets.
 /obj/item/radio/headset/distress

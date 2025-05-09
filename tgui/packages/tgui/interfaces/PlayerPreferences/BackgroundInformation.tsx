@@ -6,7 +6,6 @@ import { Box, Button, Section, Stack, TextArea } from '../../components';
 export const BackgroundInformation = (props) => {
   const { act, data } = useBackend<BackgroundInformationData>();
   const {
-    slot,
     flavor_text,
     med_record,
     gen_record,
@@ -14,6 +13,7 @@ export const BackgroundInformation = (props) => {
     exploit_record,
     xeno_desc,
     profile_pic,
+    nsfwprofile_pic,
     xenoprofile_pic,
   } = data;
   const [characterDesc, setCharacterDesc] = useState(flavor_text);
@@ -23,6 +23,7 @@ export const BackgroundInformation = (props) => {
   const [exploitsDesc, setExploitsDesc] = useState(exploit_record);
   const [xenoDesc, setXenoDesc] = useState(xeno_desc);
   const [profilePic, setProfilePic] = useState(profile_pic);
+  const [nsfwprofilePic, setNSFWProfilePic] = useState(nsfwprofile_pic);
   const [xenoprofilePic, setXenoProfilePic] = useState(xenoprofile_pic);
   return (
     <Section title="Background information">
@@ -193,9 +194,11 @@ export const BackgroundInformation = (props) => {
             />
           </Section>
         </Stack.Item>
+      </Stack>
+      <Stack>
         <Stack.Item grow>
           <Section
-            title="Human Profile Picture"
+            title="Human Picture"
             buttons={
               <Box>
                 <Button
@@ -217,7 +220,37 @@ export const BackgroundInformation = (props) => {
               value={profilePic}
               onChange={(e, value) => setProfilePic(value)}
             />
-            <img src={profile_pic} width={250} height={250} />
+            <img src={profile_pic} width={350} height={400} />
+          </Section>
+        </Stack.Item>
+        <Stack.Item grow>
+          <Section
+            title="Human Nakie Picture"
+            buttons={
+              <Box>
+                <Button
+                  icon="save"
+                  disabled={nsfwprofilePic === nsfwprofile_pic}
+                  onClick={() => act('nsfwprofile_pic', { nsfwprofilePic })}
+                >
+                  Save
+                </Button>
+                <Button
+                  icon="times"
+                  onClick={() => setProfilePic(nsfwprofile_pic)}
+                >
+                  Reset
+                </Button>
+              </Box>
+            }
+          >
+            <TextArea
+              height="100px"
+              maxLength={2048}
+              value={nsfwprofilePic}
+              onChange={(e, value) => setNSFWProfilePic(value)}
+            />
+            <img src={nsfwprofile_pic} width={350} height={400} />
           </Section>
         </Stack.Item>
         <Stack.Item grow>
@@ -247,7 +280,7 @@ export const BackgroundInformation = (props) => {
               value={xenoprofilePic}
               onChange={(e, value) => setXenoProfilePic(value)}
             />
-            <img src={xenoprofile_pic} width={250} height={250} />
+            <img src={xenoprofile_pic} width={350} height={400} />
           </Section>
         </Stack.Item>
       </Stack>

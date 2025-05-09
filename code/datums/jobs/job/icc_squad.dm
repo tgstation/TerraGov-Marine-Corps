@@ -1,13 +1,13 @@
 /datum/job/icc_squad
 	job_category =  JOB_CAT_UNASSIGNED
-	supervisors = "ICC high command and NTC authorities"
+	supervisors = "ICC high command"
 	selection_color = "#ffeeee"
-	faction = FACTION_TERRAGOV
+	faction = FACTION_ICC
 	minimap_icon = "icc"
 
 /datum/job/icc_squad/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You're apart of a militia group known as the Independant Colonial Confederation. Your goal is protect colonists and ward off xenomorphs. NTC may interfere with your operations, let them, until it is immoral."})
+	to_chat(M, "You're a part of a militia group known as the "+ FACTION_ICC + ". Your goal is protect colonists and ward off xenomorphs. NTC may interfere with your operations, let them, until it is immoral.")
 
 //ICC Standard
 /datum/job/icc_squad/standard
