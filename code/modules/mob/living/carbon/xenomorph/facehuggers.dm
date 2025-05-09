@@ -637,7 +637,7 @@
 		return
 	kill_hugger()
 
-/obj/item/clothing/mask/facehugger/bullet_act(obj/projectile/proj)
+/obj/item/clothing/mask/facehugger/bullet_act(atom/movable/projectile/proj)
 	..()
 	if(proj.ammo.ammo_behavior_flags & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.

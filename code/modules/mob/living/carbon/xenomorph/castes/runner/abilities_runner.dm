@@ -184,7 +184,7 @@
  * Called when the owner is hit by a flamethrower projectile.
  * Reduces evasion stacks based on the damage received.
 */
-/datum/action/ability/xeno_action/evasion/proc/evasion_flamer_hit(datum/source, obj/projectile/proj)
+/datum/action/ability/xeno_action/evasion/proc/evasion_flamer_hit(datum/source, atom/movable/projectile/proj)
 	SIGNAL_HANDLER
 	if(!(proj.ammo.ammo_behavior_flags & AMMO_FLAME))
 		return
@@ -242,7 +242,7 @@
 	return COMPONENT_PRE_THROW_IMPACT_HIT
 
 /// This is where the dodgy magic happens
-/datum/action/ability/xeno_action/evasion/proc/evasion_dodge(datum/source, obj/projectile/proj, cardinal_move, uncrossing)
+/datum/action/ability/xeno_action/evasion/proc/evasion_dodge(datum/source, atom/movable/projectile/proj, cardinal_move, uncrossing)
 	SIGNAL_HANDLER
 	if(!evade_active) //If evasion is not active we don't dodge
 		return FALSE

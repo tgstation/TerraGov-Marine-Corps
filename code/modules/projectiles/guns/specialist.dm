@@ -105,7 +105,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/do_fire(obj/object_to_fire)
 	if(laser_target)
-		var/obj/projectile/projectile_to_fire = object_to_fire
+		var/atom/movable/projectile/projectile_to_fire = object_to_fire
 		projectile_to_fire.projectile_behavior_flags |= PROJECTILE_PRECISE_TARGET
 	return ..()
 
@@ -629,7 +629,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	var/backblastdamage = TRUE
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
-/obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
+/obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(atom/movable/projectile/projectile_to_fire, atom/target)
 	. = ..()
 	var/turf/blast_source = get_turf(src)
 	var/thrown_dir = REVERSE_DIR(get_dir(blast_source, target))

@@ -36,7 +36,7 @@
 	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
 	var/datum/effect_system/smoke_spread/xeno/trail_spread_system
 
-/datum/ammo/xeno/boiler_gas/on_leave_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
 	if(isxeno(proj.firer))
 		var/mob/living/carbon/xenomorph/X = proj.firer
 		trail_spread_system.strength = X.xeno_caste.bomb_strength
@@ -73,7 +73,7 @@
 /datum/ammo/xeno/boiler_gas/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
-/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob), proj.firer)
 	if(target_mob.stat == DEAD || !ishuman(target_mob))
 		return
@@ -92,16 +92,16 @@
 
 	human_victim.reagents.add_reagent_list(spit_reagents)
 
-/datum/ammo/xeno/boiler_gas/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	if(ismecha(target_obj))
 		proj.damage *= 7 //Globs deal much higher damage to mechs.
 	var/turf/target_turf = get_turf(target_obj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_turf, proj.firer)
 
-/datum/ammo/xeno/boiler_gas/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
-/datum/ammo/xeno/boiler_gas/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj.firer)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
@@ -145,7 +145,7 @@
 	trap.smoke.set_up(1, get_turf(trap))
 	return TRUE
 
-/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/target_mob, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/target_mob, atom/movable/projectile/proj)
 	airburst(target_mob, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
