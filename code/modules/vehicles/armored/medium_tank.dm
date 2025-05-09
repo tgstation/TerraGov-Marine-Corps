@@ -14,6 +14,7 @@
 	obj_integrity = 1300
 	max_integrity = 1300
 	max_occupants = 3
+	allow_decals = FALSE
 
 /obj/vehicle/sealed/armored/multitile/medium/enter_locations(atom/movable/entering_thing)
 	return list(get_step(src, REVERSE_DIR(dir)))
