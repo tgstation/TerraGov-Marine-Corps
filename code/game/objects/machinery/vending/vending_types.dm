@@ -419,6 +419,7 @@
 	density = FALSE
 	wrenchable = FALSE
 	layer = ABOVE_OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE
 	products = list(
 		"Rifles" = list(
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = 30,
