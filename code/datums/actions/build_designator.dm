@@ -21,8 +21,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 	action_icon = 'icons/Xeno/patterns.dmi'
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_PATTERN,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SELECT_PATTERN,
+		KEYBINDING_NORMAL = COMSIG_ABILITY_PLACE_HOLOGRAM,
+		KEYBINDING_ALTERNATE = COMSIG_ABILITY_SELECT_BUILDTYPE,
 	)
 	///personal hologram designator
 	var/obj/effect/build_hologram/hologram
@@ -32,6 +32,19 @@ GLOBAL_LIST_INIT(designator_types, list (
 	var/cleanup_time = 4 SECONDS
 	///The typepath of what we want to construct. Typecast for initial var values
 	var/obj/construct_type
+
+/datum/action/ability/activable/build_designator/should_show()
+	. = ..()
+	if(!.)
+		return
+	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
+
+/datum/action/ability/activable/build_designator/can_use_action()
+	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
+
+/datum/action/ability/activable/build_designator/fail_activate()
+	if(owner)
+		owner << span_warning("You are not competent enough to do that.") // This message shouldn't show since incompetent people shouldn't have the button, but JIC.
 
 /datum/action/ability/activable/build_designator/on_selection()
 	RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
