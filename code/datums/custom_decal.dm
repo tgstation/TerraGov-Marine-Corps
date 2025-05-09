@@ -41,7 +41,7 @@
 	///the current selected color for drawing
 	var/selected_color = "#ffffff"
 	/// empty canvas color
-	var/default_color = "#ffffff00"
+	var/default_color = "#ffffff"
 	var/finalized = FALSE
 	/// width of the drawing grid as set by the user
 	var/grid_width = MAX_DECAL_SIZE

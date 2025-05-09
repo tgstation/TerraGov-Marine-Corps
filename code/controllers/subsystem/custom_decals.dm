@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(custom_decals)
 /datum/controller/subsystem/custom_decals/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "DecalManager", "Decal Managment")
+		ui = new(user, src, "DecalManager", "Decal Management")
 		ui.open()
 
 /datum/controller/subsystem/custom_decals/ui_data(mob/user)
