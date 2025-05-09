@@ -7,24 +7,6 @@
 *		Cardboard
 */
 
-#define METAL_BARRICADE /obj/structure/barricade/solid
-#define METAL_BARBED_WIRE /obj/item/stack/barbed_wire
-#define METAL_RAZORWIRE /obj/item/stack/razorwire
-#define METAL_BARRICADE_FOLDABLE /obj/structure/barricade/folding/metal
-
-#define PLASTEEL_BARRICADE_FOLDABLE /obj/structure/barricade/folding
-#define PLASTEEL_BARRICADE /obj/structure/barricade/solid/plasteel
-
-#define WOOD_BARRICADE /obj/structure/barricade/wooden
-#define WOOD_CHAIR /obj/structure/bed/chair/wood/normal
-#define WOOD_TILE /obj/item/stack/tile/wood
-#define WOOD_CRATE /obj/structure/largecrate/packed
-
-GLOBAL_LIST_INIT(designator_types, list (
-	METAL_BARRICADE = /obj/item/stack/sheet/metal,
-	METAL_RAZORWIRE = /obj/item/stack/sheet/metal,
-	PLASTEEL_BARRICADE = /obj/item/stack/sheet/plasteel,
-))
 /*
 * Metal
 */
@@ -120,13 +102,13 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 		if("recipes")
 			return TRUE
 		if("barricade")
-			create_object(user, GLOB.metal_recipes[METAL_BARRICADE], 1)
+			create_object(user, GLOB.metal_recipes[/obj/structure/barricade/solid], 1)
 		if("barbedwire")
-			create_object(user, GLOB.metal_recipes[METAL_BARBED_WIRE], 1)
+			create_object(user, GLOB.metal_recipes[/obj/item/stack/barbed_wire], 1)
 		if("razorwire")
-			create_object(user, GLOB.metal_recipes[METAL_RAZORWIRE], 1)
+			create_object(user, GLOB.metal_recipes[/obj/item/stack/razorwire], 1)
 		if("foldingmetal")
-			create_object(user, GLOB.metal_recipes[METAL_BARRICADE_FOLDABLE], 1)
+			create_object(user, GLOB.metal_recipes[/obj/structure/barricade/folding/metal], 1)
 	return FALSE
 
 /*
@@ -168,9 +150,9 @@ GLOBAL_LIST_INIT(plasteel_recipes, list( \
 
 	switch (choice)
 		if("folding")
-			create_object(user, GLOB.plasteel_recipes[PLASTEEL_BARRICADE_FOLDABLE], 1)
+			create_object(user, GLOB.plasteel_recipes[/obj/structure/barricade/folding], 1)
 		if("normal")
-			create_object(user, GLOB.plasteel_recipes[PLASTEEL_BARRICADE], 1)
+			create_object(user, GLOB.plasteel_recipes[/obj/structure/barricade/solid/plasteel], 1)
 
 	return FALSE
 
@@ -240,13 +222,13 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 		if("recipes")
 			return TRUE
 		if("barricade")
-			create_object(user, GLOB.wood_recipes[WOOD_BARRICADE], 1)
+			create_object(user, GLOB.wood_recipes[/obj/structure/barricade/wooden], 1)
 		if("chair")
-			create_object(user, GLOB.wood_recipes[WOOD_CHAIR], 1)
+			create_object(user, GLOB.wood_recipes[/obj/structure/bed/chair/wood/normal], 1)
 		if("tile")
-			create_object(user, GLOB.wood_recipes[WOOD_TILE], 1)
+			create_object(user, GLOB.wood_recipes[/obj/item/stack/tile/wood], 1)
 		if("crate")
-			create_object(user, GLOB.wood_recipes[WOOD_CRATE], 1)
+			create_object(user, GLOB.wood_recipes[/obj/structure/largecrate/packed], 1)
 
 	return FALSE
 

@@ -304,20 +304,29 @@
 	qdel(src)
 
 /////////////////////////////////
-// pattern building
+// Construction Designator
 /////////////////////////////////
 
 
-//List of all images used for Patterns, in the radial selection menu
+//List of all images used for constuction designating, in the radial selection menu
 GLOBAL_LIST_INIT(designator_images_list, list(
 	/obj/structure/barricade/solid = image('icons/obj/structures/barricades/metal.dmi', icon_state = "metal_0"),
-	/obj/item/stack/razorwire = image('icons/obj/structures/barricades/barbedwire.dmi', icon_state = "barbedwire_assembly"),
 	/obj/structure/barricade/solid/plasteel = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
+	/obj/structure/barricade/folding/metal = image('icons/obj/structures/barricades/metal.dmi', icon_state = "folding_metal_0"),
+	/obj/structure/barricade/folding = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
+))
+
+///Assoc list of construction types to source material
+GLOBAL_LIST_INIT(designator_types, list (
+	/obj/structure/barricade/solid = /obj/item/stack/sheet/metal,
+	/obj/structure/barricade/solid/plasteel = /obj/item/stack/sheet/plasteel,
+	/obj/structure/barricade/folding/metal = /obj/item/stack/sheet/metal,
+	/obj/structure/barricade/folding = /obj/item/stack/sheet/plasteel,
 ))
 
 /datum/action/ability/activable/build_designator
-	name = "Place Pattern"
-	desc = "Place a pattern of hive walls."
+	name = "Construction Designator"
+	desc = "Place a designator for construction."
 	action_icon_state = "square2x2"
 	action_icon = 'icons/Xeno/patterns.dmi'
 	target_flags = ABILITY_TURF_TARGET
@@ -325,13 +334,13 @@ GLOBAL_LIST_INIT(designator_images_list, list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_PATTERN,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SELECT_PATTERN,
 	)
-
+	///personal hologram designator
 	var/obj/effect/build_hologram/hologram
 	/// timerid before we cleanup the hologram
 	var/cleanup_timer
 	/// how long a hologram lasts without movement
 	var/cleanup_time = 4 SECONDS
-
+	///The typepath of what we want to construct
 	var/construct_type
 
 /datum/action/ability/activable/build_designator/alternate_action_activate()
