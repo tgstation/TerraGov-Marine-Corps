@@ -594,6 +594,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 		var/datum/vending_product/record = product_records[random_product]
 		if(record.amount > 0)
 			record.amount = 0
+			src.visible_message(span_danger("All of the [record.product_name] get lost in the malfunction!"))
 			break
 		random_product = (random_product % product_records.len) + 1
 
