@@ -14,9 +14,9 @@
 		/obj/structure/grille/broken = 1,
 	)
 
-/obj/effect/spawner/random/misc/structure//obj/structure/barricade/wooden //does not support any direction but south, so only use on wood barricades facing south
+/obj/effect/spawner/random/misc/structure/wood_barricade //does not support any direction but south, so only use on wood barricades facing south
 	name = "wood barricade spawner"
-	icon_state = "random_/obj/structure/barricade/wooden"
+	icon_state = "random_wood_barricade"
 	spawn_loot_chance = 30
 	loot = list(
 		/obj/effect/spawner/random/engineering/wood = 6,

@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 
 /obj/item/stack/sheet/metal/cyborg
 
-/obj/item/stack/sheet/metal/get_main_recipes() //todo: other stacks, make this generic
+/obj/item/stack/sheet/metal/get_main_recipes()
 	. = ..()
 	for(var/item in GLOB.metal_recipes)
 		. += GLOB.metal_recipes[item]

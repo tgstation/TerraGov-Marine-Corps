@@ -199,7 +199,7 @@
 /datum/action/ability/activable/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
-/datum/action/ability/activable/build_designator/action_activate()
+/datum/action/ability/activable/action_activate()
 	. = ..()
 	if(!.)
 		return

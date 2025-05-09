@@ -6,10 +6,6 @@
 *		Reinforced Phoron Glass Sheets (AKA Holy fuck strong windows)
 */
 
-#define GLASS_WINDOW /obj/structure/window
-#define GLASS_WINDOW_FULL /obj/structure/window/full
-#define GLASS_WINDOOR /obj/structure/windoor_assembly
-
 /*
 * Glass sheets
 */
@@ -54,11 +50,11 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 		if("recipes")
 			return TRUE
 		if("directional window")
-			create_object(user, GLOB.glass_recipes[GLASS_WINDOW], 1)
+			create_object(user, GLOB.glass_recipes[/obj/structure/window], 1)
 		if("fulltile window")
-			create_object(user, GLOB.glass_recipes[GLASS_WINDOW_FULL], 1)
+			create_object(user, GLOB.glass_recipes[/obj/structure/window/full], 1)
 		if("windoor")
-			create_object(user, GLOB.glass_recipes[GLASS_WINDOOR], 1)
+			create_object(user, GLOB.glass_recipes[/obj/structure/windoor_assembly], 1)
 
 	return FALSE
 
