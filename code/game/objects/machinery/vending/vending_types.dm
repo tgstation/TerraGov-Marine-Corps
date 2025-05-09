@@ -596,6 +596,25 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 			break
 		random_product = (random_product % product_records.len) + 1
 
+/obj/machinery/vending/nanoammo/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
+		return FALSE
+
+	if(xeno_attacker.a_intent == INTENT_HARM)
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		if(prob(damage_amount))
+			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+			xeno_attacker.visible_message(span_danger("\The [xeno_attacker] smashes \the [src] and destroys some supplies inside!"), \
+			span_danger("We enter a frenzy and smash \the [src], destroying some supplies inside!"), null, 5)
+			malfunction()
+			return TRUE
+		else
+			xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
+			span_danger("We slash \the [src]!"), null, 5)
+			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+		attack_generic(xeno_attacker, damage_amount, damage_type, armor_type, FALSE, armor_penetration)
+		return TRUE
+
 /obj/machinery/vending/security
 	name = "\improper SecTech"
 	desc = "A security equipment vendor."
