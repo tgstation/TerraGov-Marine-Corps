@@ -430,9 +430,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 /// Triggers generator meltdown process
 /obj/machinery/power/geothermal/tbg/proc/initiate_meltdown()
-	if(iscrashgamemode(SSticker.mode)) //Explosions disabled on crash!
-		return
-
 	buildstate = GENERATOR_EXPLODING
 	update_icon()
 	var/area/generator_area = get_area(src)
