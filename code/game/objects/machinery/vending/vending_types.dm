@@ -588,11 +588,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 	return 10 SECONDS	// Acid application time is 1 second without this, way too short for a tadpole item
 
 /obj/machinery/vending/nanoammo/malfunction()
+	// Randomizes which product is deleted (not dispensed, to avoid client lag) and does not break on malfunction
 	var/random_product = rand(1, product_records.len)
 	for(var/i in product_records)	// i is unused, this just ensures we don't have an infinite loop on an empty vendor
 		var/datum/vending_product/record = product_records[random_product]
 		if(record.amount > 0)
-			record.amount = 0	// Deletes ammo instead of dispensing it, to reduce lag on tadpole
+			record.amount = 0
 			break
 		random_product = (random_product % product_records.len) + 1
 
