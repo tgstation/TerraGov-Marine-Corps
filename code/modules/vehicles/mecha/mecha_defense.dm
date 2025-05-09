@@ -60,7 +60,7 @@
 	user.visible_message(span_danger("[user] hits [src]. Nothing happens."), null, null, COMBAT_MESSAGE_RANGE)
 	log_message("Attack by hand/paw (no damage). Attacker - [user].", LOG_MECHA, color="red")
 
-/obj/vehicle/sealed/mecha/bullet_act(obj/projectile/proj, def_zone, piercing_hit) //wrapper
+/obj/vehicle/sealed/mecha/bullet_act(atom/movable/projectile/proj, def_zone, piercing_hit) //wrapper
 	var/known_firer = key_name(proj.firer)
 	if(known_firer)
 		known_firer += " fired by [known_firer]"

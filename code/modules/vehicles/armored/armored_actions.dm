@@ -205,7 +205,7 @@
 	var/datum/ammo/ammo_type = /datum/ammo/bullet/micro_rail/smoke_burst/tank
 	for(var/turf/source_turf in source_turfs)
 		var/turf/target_turf = get_ranged_target_turf(source_turf, get_dir(chassis, source_turf), 5)
-		var/obj/projectile/projectile_to_fire = new /obj/projectile(source_turf)
+		var/atom/movable/projectile/projectile_to_fire = new /atom/movable/projectile(source_turf)
 		projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo_type])
 		if(chassis.hitbox?.tank_desants)
 			projectile_to_fire.hit_atoms += chassis.hitbox.tank_desants

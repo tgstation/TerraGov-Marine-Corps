@@ -118,7 +118,7 @@
 
 	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
 
-	var/obj/projectile/newspit = new /obj/projectile(get_turf(xeno_owner))
+	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
 	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner))
 	newspit.def_zone = xeno_owner.get_limbzone_target()
 
@@ -588,7 +588,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 	var/datum/ammo/rocket/he/xadar/shell = GLOB.ammo_list[/datum/ammo/rocket/he/xadar]
 
-	var/obj/projectile/newshell = new(get_turf(xeno_owner))
+	var/atom/movable/projectile/newshell = new(get_turf(xeno_owner))
 	newshell.generate_bullet(shell)
 	newshell.def_zone = xeno_owner.get_limbzone_target()
 

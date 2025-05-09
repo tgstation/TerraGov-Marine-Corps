@@ -132,6 +132,8 @@ Administrative related.
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
+/datum/config_entry/flag/allow_admin_asaycolor // Allows admins to customize their ASAY color.
+
 /datum/config_entry/flag/usewhitelist
 
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database

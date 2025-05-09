@@ -204,7 +204,7 @@
 		update_minimap_icon()
 		return
 	face_atom(hostile)
-	var/obj/projectile/newshot = new(loc)
+	var/atom/movable/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
 	newshot.def_zone = pick(GLOB.base_miss_chance)
 	newshot.fire_at(hostile, null, src, ammo.max_range, ammo.shell_speed)

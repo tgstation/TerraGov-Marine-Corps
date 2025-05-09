@@ -195,6 +195,12 @@ NOTIFY_NEW_ACCOUNT_AGE 7
 ## Allows admins to bypass job playtime requirements.
 #USE_EXP_RESTRICTIONS_ADMIN_BYPASS
 
+## Comment this out to stop admins being able to choose their personal ooccolor
+ALLOW_ADMIN_OOCCOLOR
+
+## Comment this out to stop admins being able to choose their personal asay color
+ALLOW_ADMIN_ASAYCOLOR
+
 ## Use XP restrictions for command roles
 #USE_EXP_RESTRICTIONS_COMMAND
 
