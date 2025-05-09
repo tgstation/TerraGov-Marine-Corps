@@ -429,9 +429,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 		return FALSE
 	if(isspaceturf(target_turf))
 		return FALSE
-	var/border_obj = FALSE
-	if(construct_type::atom_flags & ON_BORDER)
-		border_obj = TRUE
+	var/border_obj = (construct_type::atom_flags & ON_BORDER) ? TRUE : FALSE
 	for(var/obj/object in target_turf)
 		if(!object.density)
 			continue
