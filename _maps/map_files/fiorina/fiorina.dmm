@@ -22984,11 +22984,6 @@
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/civres)
-"mxb" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/fiorina/oob)
 "mxd" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -68001,7 +67996,7 @@ mkr
 xcz
 gFn
 fGj
-mxb
+gFn
 puC
 xVG
 dqq
@@ -69273,7 +69268,7 @@ vrm
 xcz
 gFn
 fGj
-mxb
+gFn
 puC
 dAR
 lJX
@@ -79092,7 +79087,7 @@ mXr
 lGw
 mXr
 mpT
-uFF
+mXr
 mXr
 mXr
 mXr
