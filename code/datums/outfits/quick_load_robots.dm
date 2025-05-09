@@ -23,9 +23,9 @@
 	 * * Recommended: Some flares/inaprovaline, this enforces good behaviour in beginners to carry items that don't directly benefit them
 	 */
 	w_uniform = /obj/item/clothing/under/marine/robotic
-	wear_suit = /obj/item/clothing/suit/modular/robot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten
 	glasses = null
-	head = /obj/item/clothing/head/modular/robot
+	head = /obj/item/clothing/head/modular/m10x
 
 	l_pocket = null
 	r_pocket = null
