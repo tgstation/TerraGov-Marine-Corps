@@ -124,7 +124,7 @@
 					continue
 				animate(living_in_range, pixel_z = living_in_range.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = living_in_range.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
-		grabbed_human.take_overall_damage(get_damage() * 2.5, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE) // 150
+		grabbed_human.take_overall_damage(get_damage() * 1.7, BRUTE, MELEE, max_limbs = 3, updating_health = TRUE) // 76.5
 		xeno_owner.gain_plasma(250)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
@@ -398,7 +398,7 @@
 			debuff.add_stacks(10)
 		else
 			grabbed_human.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 10)
-		grabbed_human.take_overall_damage(get_damage() * 10, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
+		grabbed_human.take_overall_damage(get_damage() * 5.5, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE) // 110
 		grabbed_human.knockback(xeno_owner, 5, 1)
 		xeno_owner.gain_plasma(250)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
