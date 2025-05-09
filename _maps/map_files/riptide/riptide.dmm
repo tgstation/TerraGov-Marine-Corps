@@ -554,6 +554,11 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/syndicatefoyer)
+"auh" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/space/sea,
+/area/riptide/caves/sea)
 "auy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -1619,6 +1624,7 @@
 /obj/structure/shuttle/engine/propulsion/burst/right{
 	dir = 8
 	},
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/inside/cargoboat)
 "bjL" = (
@@ -4829,6 +4835,10 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/riptide/caves/pmc/rnd)
+"duq" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/closed/wall/r_wall/unmeltable/regular,
+/area/riptide/inside/cargoboat)
 "dus" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave/darker{
@@ -10391,6 +10401,7 @@
 /area/riptide/caves/rock)
 "hnJ" = (
 /obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/ai_node,
 /turf/open/ground,
 /area/riptide/outside/southislands)
 "hnW" = (
@@ -10623,6 +10634,10 @@
 	dir = 8
 	},
 /area/riptide/outside/beachlzone)
+"hvR" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/closed/wall/r_wall/unmeltable,
+/area/riptide/inside/landingzoneone)
 "hvS" = (
 /obj/machinery/landinglight,
 /obj/machinery/landinglight{
@@ -11071,6 +11086,7 @@
 	dir = 1;
 	id = "SouthTowerShutters"
 	},
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/plating,
 /area/riptide/inside/southtower)
 "hLR" = (
@@ -11399,6 +11415,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/westjungle)
+"ibN" = (
+/obj/structure/desertdam/decals/road,
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "ibQ" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -12237,6 +12258,12 @@
 	},
 /turf/open/floor/prison/plate,
 /area/riptide/inside/syndicatefoyer)
+"iJs" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/ground/coast{
+	dir = 10
+	},
+/area/riptide/outside/southislands)
 "iJE" = (
 /obj/item/reagent_containers/food/drinks/bottle/kahlua,
 /obj/item/reagent_containers/food/drinks/bottle/vodka{
@@ -13347,6 +13374,12 @@
 	},
 /turf/open/floor/tile/brown,
 /area/riptide/inside/engineering)
+"jxR" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/ground/coast{
+	dir = 9
+	},
+/area/riptide/outside/westislands)
 "jxV" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
@@ -13551,6 +13584,12 @@
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/shuttle/dropship/floor,
 /area/riptide/caves/tram)
+"jGC" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
+	dir = 8
+	},
+/area/riptide/outside/westislands)
 "jGJ" = (
 /turf/open/floor/prison/sterilewhite,
 /area/riptide/caves/syndicatemining)
@@ -15858,7 +15897,7 @@
 /turf/open/floor/tile/green,
 /area/riptide/inside/lighttowermaint)
 "len" = (
-/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/coast,
 /area/riptide/outside/southislands)
 "lep" = (
@@ -15973,6 +16012,7 @@
 /obj/structure/shuttle/engine/propulsion/burst/left{
 	dir = 8
 	},
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/inside/cargoboat)
 "lhV" = (
@@ -17050,6 +17090,12 @@
 	},
 /turf/open/floor/prison,
 /area/riptide/caves/pmc/prison)
+"lTF" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/ground/coast{
+	dir = 10
+	},
+/area/riptide/outside/westislands)
 "lTY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -19757,6 +19803,12 @@
 	},
 /turf/open/floor/plating,
 /area/riptide/caves/north)
+"nNw" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/ground/coast{
+	dir = 8
+	},
+/area/riptide/outside/westislands)
 "nNB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -20574,6 +20626,12 @@
 "ouy" = (
 /turf/open/floor/prison/sterilewhite,
 /area/riptide/inside/syndicatestarboard)
+"ouE" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/closed/wall/r_wall/unmeltable{
+	color = "#C5C6C7"
+	},
+/area/riptide/inside/southtower)
 "ouO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22574,6 +22632,13 @@
 /obj/effect/ai_node,
 /turf/open/ground,
 /area/riptide/outside/eastbeach)
+"pLo" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "pLC" = (
 /obj/structure/flora/ausbushes/pointybush{
 	pixel_x = 7;
@@ -23757,6 +23822,13 @@
 "qtg" = (
 /turf/open/floor/mainship,
 /area/riptide/inside/breachedfob)
+"qtP" = (
+/obj/structure/desertdam/decals/road{
+	dir = 1
+	},
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "qus" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced/weak,
@@ -24102,10 +24174,20 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/engineering/bridge)
+"qCL" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
+	dir = 1
+	},
+/area/riptide/outside/westislands)
 "qCM" = (
 /obj/item/ammo_casing,
 /turf/open/floor/wood,
 /area/riptide/outside/southbeach)
+"qCQ" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/riptide/outside/southislands)
 "qCZ" = (
 /obj/machinery/light{
 	dir = 8
@@ -25663,6 +25745,11 @@
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southbeach)
+"rEq" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "rEI" = (
 /turf/closed/wall{
 	color = "#f5d08c"
@@ -26755,6 +26842,12 @@
 "soJ" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/riptide/outside/northislands)
+"soZ" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
+	dir = 4
+	},
+/area/riptide/outside/westislands)
 "spc" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -35281,9 +35374,9 @@ bfg
 rvF
 rvF
 lhB
-cQc
+duq
 rvF
-cQc
+duq
 bjE
 rvF
 rvF
@@ -35321,12 +35414,12 @@ rvF
 rvF
 rvF
 rvF
-rNB
-eTW
-dQr
-uyR
-uVx
-rNB
+hvR
+qtP
+rEq
+pLo
+ibN
+hvR
 rvF
 rvF
 rvF
@@ -35391,19 +35484,19 @@ bfg
 bfg
 rvF
 rvF
-mKA
-rkg
-lXK
-mDj
-mDj
-mDj
-mDj
-mDj
-mDj
-mDj
-mDj
-hxI
-kLp
+jGC
+soZ
+jxR
+nNw
+nNw
+nNw
+nNw
+nNw
+nNw
+nNw
+nNw
+lTF
+qCL
 rvF
 rvF
 rvF
@@ -44576,7 +44669,7 @@ sQD
 rEK
 kNN
 rvF
-bfg
+rvF
 "}
 (53,1,1) = {"
 wCv
@@ -44755,7 +44848,7 @@ pSm
 cbZ
 kNN
 kNN
-bfg
+rvF
 "}
 (54,1,1) = {"
 wCv
@@ -44934,7 +45027,7 @@ fhC
 rVV
 gaf
 kNN
-kNN
+ouE
 "}
 (55,1,1) = {"
 wCv
@@ -45650,7 +45743,7 @@ vdH
 aBC
 qQs
 cbZ
-kNN
+ouE
 "}
 (59,1,1) = {"
 wCv
@@ -46366,7 +46459,7 @@ xBa
 utn
 aBC
 kfH
-kNN
+ouE
 "}
 (63,1,1) = {"
 wCv
@@ -47082,7 +47175,7 @@ nMF
 gaf
 icJ
 kNN
-kNN
+ouE
 "}
 (67,1,1) = {"
 wCv
@@ -47261,7 +47354,7 @@ ruH
 kfH
 kNN
 kNN
-bfg
+rvF
 "}
 (68,1,1) = {"
 wCv
@@ -47439,8 +47532,8 @@ gaf
 rVV
 rEK
 kNN
+auh
 rvF
-bfg
 "}
 (69,1,1) = {"
 wCv
@@ -55674,7 +55767,7 @@ pwP
 kwa
 cUT
 dZW
-vtG
+xYT
 "}
 (115,1,1) = {"
 wCv
@@ -55852,8 +55945,8 @@ pwP
 pwP
 pwP
 kwa
-cUT
-lxo
+iJs
+ozb
 "}
 (116,1,1) = {"
 wCv
@@ -56032,7 +56125,7 @@ hNS
 pwP
 hnJ
 len
-lxo
+ozb
 "}
 (117,1,1) = {"
 wCv
@@ -56210,8 +56303,8 @@ jGR
 hNS
 hNS
 pwP
-gDI
-lxo
+len
+ozb
 "}
 (118,1,1) = {"
 wCv
@@ -56389,8 +56482,8 @@ ixe
 jGR
 utv
 pwP
-gDI
-lxo
+len
+ozb
 "}
 (119,1,1) = {"
 wCv
@@ -56568,8 +56661,8 @@ ixe
 jGR
 hNS
 pwP
-gDI
-lxo
+len
+ozb
 "}
 (120,1,1) = {"
 wCv
@@ -56747,8 +56840,8 @@ ixe
 yhr
 hNS
 pwP
-gDI
-lxo
+len
+ozb
 "}
 (121,1,1) = {"
 wCv
@@ -56925,9 +57018,9 @@ jGR
 rCs
 jGR
 hNS
-pwP
+qCQ
 len
-lxo
+ozb
 "}
 (122,1,1) = {"
 wCv
@@ -57105,8 +57198,8 @@ hRa
 jGR
 hNS
 pwP
-gDI
-lxo
+len
+ozb
 "}
 (123,1,1) = {"
 wCv
@@ -57284,8 +57377,8 @@ aWE
 hRa
 hNS
 pwP
-gDI
-lxo
+len
+ozb
 "}
 (124,1,1) = {"
 wCv
@@ -57463,8 +57556,8 @@ hNS
 hNS
 hNS
 pwP
-gDI
-lxo
+len
+ozb
 "}
 (125,1,1) = {"
 wCv
@@ -57642,8 +57735,8 @@ pwP
 pwP
 fEO
 pwP
-gDI
-lxo
+len
+ozb
 "}
 (126,1,1) = {"
 wCv
@@ -57822,7 +57915,7 @@ aVD
 aVD
 aVD
 uQm
-lxo
+ozb
 "}
 (127,1,1) = {"
 wCv
@@ -58001,7 +58094,7 @@ pwP
 pwP
 qqb
 opA
-hKz
+ozb
 "}
 (128,1,1) = {"
 wCv
@@ -58180,7 +58273,7 @@ iNw
 qqb
 opA
 txa
-uCJ
+nMe
 "}
 (129,1,1) = {"
 wCv
@@ -61230,9 +61323,9 @@ wCv
 bfg
 bfg
 bfg
-bfg
-bfg
-bfg
+rvF
+rvF
+rvF
 rvF
 rvF
 xnV
@@ -61406,10 +61499,10 @@ ngS
 "}
 (147,1,1) = {"
 wCv
-bfg
-bfg
-bfg
-bfg
+rvF
+rvF
+rvF
+rvF
 ngS
 ngS
 ngS

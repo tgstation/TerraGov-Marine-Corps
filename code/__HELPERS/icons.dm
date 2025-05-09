@@ -1334,3 +1334,21 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 		var/icon/my_icon = icon(icon_path)
 		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
 	return GLOB.icon_dimensions[icon_path]
+
+#define CACHED_WIDTH_INDEX "width"
+#define CACHED_HEIGHT_INDEX "height"
+
+/atom/proc/get_cached_width()
+	if (isnull(icon))
+		return 0
+	var/list/dimensions = get_icon_dimensions(icon)
+	return dimensions[CACHED_WIDTH_INDEX]
+
+/atom/proc/get_cached_height()
+	if (isnull(icon))
+		return 0
+	var/list/dimensions = get_icon_dimensions(icon)
+	return dimensions[CACHED_HEIGHT_INDEX]
+
+#undef CACHED_WIDTH_INDEX
+#undef CACHED_HEIGHT_INDEX

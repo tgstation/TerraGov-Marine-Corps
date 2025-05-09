@@ -571,6 +571,10 @@
 				continue
 			if(!isobj(impacted_atom))
 				continue
+			if(isfire(impacted_atom))
+				var/obj/fire/fire = impacted_atom
+				fire.reduce_fire(20)
+				continue
 			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
 			var/obj/impacted_obj = impacted_atom

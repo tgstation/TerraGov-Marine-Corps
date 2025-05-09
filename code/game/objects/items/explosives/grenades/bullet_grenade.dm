@@ -26,11 +26,11 @@
 
 /obj/item/explosive/grenade/bullet/prime()
 	var/list/bullets = list()
-	var/proj_type = /obj/projectile
+	var/proj_type = /atom/movable/projectile
 	if(initial(ammo_type.ammo_behavior_flags) & AMMO_HITSCAN)
-		proj_type = /obj/projectile/hitscan
+		proj_type = /atom/movable/projectile/hitscan
 	for(var/i=1 to projectile_count)
-		var/obj/projectile/proj = new proj_type(src, initial(ammo_type.hitscan_effect_icon))
+		var/atom/movable/projectile/proj = new proj_type(src, initial(ammo_type.hitscan_effect_icon))
 		proj.generate_bullet(ammo_type)
 		bullets += proj
 

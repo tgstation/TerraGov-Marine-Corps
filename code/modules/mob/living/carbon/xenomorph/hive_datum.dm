@@ -1567,7 +1567,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 // Everything below can have a hivenumber set and these ensure easy hive comparisons can be made
 
-// atom level because of /obj/projectile/var/atom/firer
+// atom level because of /atom/movable/projectile/var/atom/firer
 /atom/proc/issamexenohive(atom/A)
 	if(!get_xeno_hivenumber() || !A?.get_xeno_hivenumber())
 		return FALSE

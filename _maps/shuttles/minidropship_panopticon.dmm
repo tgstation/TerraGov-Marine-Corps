@@ -37,6 +37,7 @@
 /area/shuttle/minidropship)
 "r" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
+/obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "t" = (
@@ -102,10 +103,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "Q" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
-"R" = (
-/obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "S" = (
@@ -175,7 +172,7 @@ a
 S
 L
 O
-R
+Q
 O
 O
 S
@@ -197,7 +194,7 @@ a
 S
 K
 O
-R
+Q
 O
 O
 S

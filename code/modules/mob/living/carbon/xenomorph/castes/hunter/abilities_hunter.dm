@@ -178,6 +178,7 @@
 /datum/action/ability/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	if(!can_sneak_attack)
+		cancel_stealth()
 		return
 
 	var/staggerslow_stacks = 2

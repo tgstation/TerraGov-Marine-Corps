@@ -760,8 +760,7 @@
 	var/image/holder = hud_list[ORDER_HUD]
 	if(!holder)
 		return
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = get_cached_height() - world.icon_size
 	if(internal_damage)
 		holder.icon_state = "hudwarn"
 	holder.icon_state = null

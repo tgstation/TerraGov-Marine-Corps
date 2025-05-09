@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Game preferences
 	var/lastchangelog = ""	//Hashed changelog
 	var/ooccolor = "#b82e00"
+	var/asay_color = "#FF3300"
 	var/be_special = BE_SPECIAL_DEFAULT	//Special role selection
 	var/ui_style = "Midnight"
 	var/ui_style_color = "#ffffff"
@@ -72,6 +73,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/real_name = ""
 	var/random_name = FALSE
 	var/gender = MALE
+	///for humans, will display this body type
+	var/physique = USE_GENDER
 	var/age = 20
 	var/species = "Human"
 	var/ethnicity = "Western"
@@ -288,3 +291,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	job_preferences[job.title] = level
 	return TRUE
 
+///returns the physique the user wants to be using
+/datum/preferences/proc/get_physique()
+	if(physique == USE_GENDER)
+		if(gender == FEMALE)
+			return FEMALE
+		else
+			return MALE
+	return physique
