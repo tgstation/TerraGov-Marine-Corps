@@ -199,14 +199,15 @@
 /datum/action/ability/activable/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
-/datum/action/ability/activable/action_activate()
+/datum/action/ability/activable/build_designator/action_activate()
 	. = ..()
 	if(!.)
 		return
 	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability == src)
-		return
 	if(carbon_owner.selected_ability)
+		if(carbon_owner.selected_ability == src)
+			deselect()
+			return
 		carbon_owner.selected_ability.deselect()
 	select()
 

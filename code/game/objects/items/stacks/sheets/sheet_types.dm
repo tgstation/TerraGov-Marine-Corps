@@ -20,6 +20,11 @@
 #define WOOD_TILE /obj/item/stack/tile/wood
 #define WOOD_CRATE /obj/structure/largecrate/packed
 
+GLOBAL_LIST_INIT(designator_types, list (
+	METAL_BARRICADE = /obj/item/stack/sheet/metal,
+	METAL_RAZORWIRE = /obj/item/stack/sheet/metal,
+	PLASTEEL_BARRICADE = /obj/item/stack/sheet/plasteel,
+))
 /*
 * Metal
 */

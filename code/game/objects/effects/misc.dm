@@ -291,13 +291,129 @@
 	smoothing_flags = construct_type::smoothing_flags
 	. = ..()
 	makeHologram(0.7, FALSE)
+	QDEL_IN(src, 1 MINUTES)
 
-/obj/effect/build_designator/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
+/obj/effect/build_designator/attackby(obj/item/I, mob/user, params)
 	if(!user.dextrous)
 		return ..()
-	if(attacking_item.type != material_type)
+	if(!istype(I, material_type))
 		return ..()
-	var/obj/item/stack/stack = attacking_item
+	var/obj/item/stack/stack = I
 	if(!stack.create_object(user, recipe, 1, loc, dir))
 		return
 	qdel(src)
+
+/////////////////////////////////
+// pattern building
+/////////////////////////////////
+
+
+//List of all images used for Patterns, in the radial selection menu
+GLOBAL_LIST_INIT(designator_images_list, list(
+	/obj/structure/barricade/solid = image('icons/obj/structures/barricades/metal.dmi', icon_state = "metal_0"),
+	/obj/item/stack/razorwire = image('icons/obj/structures/barricades/barbedwire.dmi', icon_state = "barbedwire_assembly"),
+	/obj/structure/barricade/solid/plasteel = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
+))
+
+/datum/action/ability/activable/build_designator
+	name = "Place Pattern"
+	desc = "Place a pattern of hive walls."
+	action_icon_state = "square2x2"
+	action_icon = 'icons/Xeno/patterns.dmi'
+	target_flags = ABILITY_TURF_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_PATTERN,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SELECT_PATTERN,
+	)
+
+	var/obj/effect/build_hologram/hologram
+	/// timerid before we cleanup the hologram
+	var/cleanup_timer
+	/// how long a hologram lasts without movement
+	var/cleanup_time = 4 SECONDS
+
+	var/construct_type
+
+/datum/action/ability/activable/build_designator/alternate_action_activate()
+	INVOKE_ASYNC(src, PROC_REF(select_structure))
+
+/datum/action/ability/activable/build_designator/on_selection()
+	RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
+
+/datum/action/ability/activable/build_designator/on_deselection()
+	UnregisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED)
+	cleanup_hologram()
+
+// don't slow down the other signals
+/datum/action/ability/activable/build_designator/proc/show_hologram_call(mob/user, atom/target)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(show_hologram), user, target)
+
+/// move or create a hologram on mousemove, and also start the cleanup timer and check turf validity
+/datum/action/ability/activable/build_designator/proc/show_hologram(mob/user, atom/target)
+	SIGNAL_HANDLER
+	var/turf/target_turf = get_turf(target)
+	if(!target_turf)
+		cleanup_hologram()
+		return
+
+	if(hologram)
+		hologram.abstract_move(target_turf)
+		hologram.setDir(owner.dir)
+	else
+		create_hologram(target_turf)
+	check_turf_validity(target_turf, hologram)
+	start_cleanup_timer()
+
+
+/// check if the turf is valid or not for the selected build type, and apply a matrix color if not
+/datum/action/ability/activable/build_designator/proc/check_turf_validity(turf/target_turf, obj/effect/hologram)
+	hologram.remove_filter("invalid_turf_filter")
+	if(target_turf.density)
+		hologram.add_filter("invalid_turf_filter", 1, color_matrix_filter(rgb(233, 23, 23)))
+		return
+	//TODO: ADD MORE
+
+
+/// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
+/datum/action/ability/activable/build_designator/proc/create_hologram(turf/target_turf)
+	var/atom/selected = construct_type
+	var/obj/effect/build_hologram/new_hologram = new(target_turf, selected)
+	new_hologram.alpha = 0
+	new_hologram.layer = ABOVE_OBJ_LAYER
+	new_hologram.step_size = 4 * ICON_SIZE_ALL
+	animate(new_hologram, 1 SECONDS, alpha = initial(new_hologram.alpha))
+	new_hologram.setDir(owner.dir)
+	hologram = new_hologram
+
+/datum/action/ability/activable/build_designator/proc/start_cleanup_timer()
+	delete_timer()
+	cleanup_timer = addtimer(CALLBACK(src, PROC_REF(cleanup_hologram)), cleanup_time, TIMER_STOPPABLE)
+
+/datum/action/ability/activable/build_designator/proc/delete_timer()
+	deltimer(cleanup_timer)
+	cleanup_timer = null
+
+/datum/action/ability/activable/build_designator/proc/cleanup_hologram()
+	delete_timer()
+	QDEL_NULL(hologram)
+
+///Selects the pattern from a radial menu
+/datum/action/ability/activable/build_designator/proc/select_structure()
+	var/construct_choice = show_radial_menu(owner, owner, GLOB.designator_images_list, radius = 48)
+	if(!construct_choice)
+		return
+	construct_type = construct_choice
+
+	owner.balloon_alert(owner, "[construct_choice]")
+	cleanup_hologram()
+	show_hologram(owner, get_turf(owner))
+
+/datum/action/ability/activable/build_designator/use_ability(atom/A)
+	if(!isopenturf(A) || isspaceturf(A))
+		owner.balloon_alert(owner, "no valid ground found")
+		return FALSE
+	// check if one is successful, if none, we output a visible error
+	//var/success = FALSE
+	new /obj/effect/build_designator(A, GLOB.designator_types[construct_type], construct_type, owner.dir)
+	return TRUE

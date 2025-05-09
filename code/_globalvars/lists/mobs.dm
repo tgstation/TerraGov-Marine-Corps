@@ -217,4 +217,5 @@ GLOBAL_LIST_INIT(human_init_actions, list(
 	/datum/action/innate/order/retreat_order/personal,
 	/datum/action/innate/order/rally_order/personal,
 	/datum/action/innate/message_squad,
+	/datum/action/ability/activable/build_designator,
 ))
