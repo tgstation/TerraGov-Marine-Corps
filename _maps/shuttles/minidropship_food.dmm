@@ -11,13 +11,7 @@
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "d" = (
-/obj/machinery/door_control{
-	dir = 8;
-	id = "minidropship_podlock";
-	name = "inner door-control";
-	pixel_x = 25;
-	pixel_y = 8
-	},
+/obj/machinery/vending/nanoammo/directional/west,
 /obj/item/clothing/suit/storage/chef/classic,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
@@ -206,6 +200,13 @@
 	},
 /area/shuttle/minidropship)
 "P" = (
+/obj/machinery/door_control{
+	dir = 4;
+	id = "minidropship_podlock";
+	name = "inner door-control";
+	pixel_x = -25;
+	pixel_y = 8
+	},
 /obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;

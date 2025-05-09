@@ -187,6 +187,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "I" = (
+/obj/machinery/vending/nanoammo/directional/north,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
