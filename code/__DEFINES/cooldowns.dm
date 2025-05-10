@@ -12,6 +12,7 @@
 #define COOLDOWN_ZOOM "zoom"
 #define COOLDOWN_BUMP "bump"
 #define COOLDOWN_ENTANGLE "entangle"
+#define COOLDOWN_ELECTROCUTED "cooldown_electrocuted"
 #define COOLDOWN_NEST "nest"
 #define COOLDOWN_BUMP_ATTACK "bump_attack"
 #define COOLDOWN_TASTE "taste"
