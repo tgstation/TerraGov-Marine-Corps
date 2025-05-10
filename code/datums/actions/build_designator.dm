@@ -59,13 +59,14 @@ GLOBAL_LIST_INIT(designator_types, list (
 	if(!isturf(A) || !update_hologram(A))
 		owner.balloon_alert(owner, "Invalid spot")
 		return FALSE
-	new /obj/effect/build_designator(A, construct_type, owner.dir)
+	new /obj/effect/build_designator(A, construct_type, owner)
 	return TRUE
 
 /datum/action/ability/activable/build_designator/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(select_structure))
 
-/datum/action/ability/activable/build_designator/proc/override_cic_radial(datum/source) //move this
+///Tells overwatch we're overriding the radial selection
+/datum/action/ability/activable/build_designator/proc/override_cic_radial(datum/source)
 	SIGNAL_HANDLER
 	return OVERWATCH_RADIAL_HIDE
 
@@ -78,7 +79,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 	owner.balloon_alert(owner, "[construct_type::name]")
 	cleanup_hologram()
-	//show_hologram(owner, get_turf(owner))
 
 ///Signal handler for the owner rotating
 /datum/action/ability/activable/build_designator/proc/on_owner_rotate(datum/source, dir, newdir)
@@ -177,7 +177,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 	///The visual effect we're attaching
 	var/image/holder
 
-/obj/effect/build_designator/Initialize(mapload, obj/construct_type, new_dir) //construct_type is a TYPE but typecast for initial values below
+/obj/effect/build_designator/Initialize(mapload, obj/construct_type, mob/builder) //construct_type is a TYPE but typecast for initial values below
 	if(!construct_type)
 		return INITIALIZE_HINT_QDEL
 
@@ -187,13 +187,15 @@ GLOBAL_LIST_INIT(designator_types, list (
 	//Because we only want this hologram visible via the right hud, but we want all the nice effects, we fully configure the appearance,
 	//steal it for the hud image, then wipe the objects appearance entirely
 
-	dir = new_dir
+	dir = builder.dir
 	icon = construct_type::icon
 	icon_state = construct_type::icon_state
+	faction = builder.faction
 
 	name = "holo [construct_type::name]"
 	desc = "A holographic representation of a [construct_type::name]. Apply [recipe.req_amount] [material_type::name] to build it."
 	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HOLO_BUILD_INITIALIZED, src)
 	prepare_huds()
 	makeHologram(0.7)
 

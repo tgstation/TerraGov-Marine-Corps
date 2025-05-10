@@ -154,6 +154,8 @@
 ///from /datum/emote/living/carbon/human/medic/run_emote()
 #define COMSIG_GLOB_MOB_CALL_MEDIC "!mob_call_medic"
 
+///from /mob/living/carbon/proc/on_crit()
+#define COMSIG_GLOB_HOLO_BUILD_INITIALIZED "!holo_build_initialized"
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
