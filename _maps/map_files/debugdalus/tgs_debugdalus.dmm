@@ -3390,6 +3390,13 @@
 	},
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
+"tlw" = (
+/obj/machinery/landinglight/tadpole{
+	dir = 1
+	},
+/obj/machinery/dropship_part_fabricator/tadpole,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "tmK" = (
 /obj/effect/landmark/start/job/crash/squadleader,
 /obj/structure/cable,
@@ -4532,7 +4539,7 @@ bOu
 bOu
 bOu
 bOu
-ljw
+tlw
 dwY
 bgb
 bgb

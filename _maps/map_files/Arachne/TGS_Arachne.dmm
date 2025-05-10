@@ -1,4 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aap" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/tool/weldpack,
+/obj/item/storage/belt/utility/full,
+/obj/item/tool/weldingtool,
+/obj/item/clothing/head/welding,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "aat" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -3862,13 +3875,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "dmG" = (
-/obj/structure/rack,
-/obj/item/tool/weldingtool,
-/obj/item/clothing/head/welding,
-/obj/item/tool/weldpack,
-/obj/item/storage/belt/utility/full,
 /turf/open/floor/mainship/orange{
-	dir = 6
+	dir = 5
 	},
 /area/mainship/hallways/hangar)
 "dmK" = (
@@ -4096,13 +4104,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
 "dxv" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "dxQ" = (
@@ -4630,7 +4634,7 @@
 "dSy" = (
 /obj/machinery/computer/dropship_picker,
 /turf/open/floor/mainship/orange{
-	dir = 10
+	dir = 9
 	},
 /area/mainship/hallways/hangar)
 "dTG" = (
@@ -4876,10 +4880,10 @@
 	},
 /area/mainship/squads/req)
 "ehy" = (
-/obj/vehicle/ridden/powerloader,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/machinery/dropship_part_fabricator/tadpole,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "eik" = (
@@ -6099,17 +6103,12 @@
 	},
 /area/mainship/medical/upper_medical)
 "fcW" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
 /area/mainship/hallways/hangar)
 "feu" = (
 /obj/structure/disposalpipe/segment{
@@ -6472,7 +6471,7 @@
 	amount = 25
 	},
 /turf/open/floor/mainship/orange{
-	dir = 5
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "ftG" = (
@@ -8978,15 +8977,12 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "htw" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
+/turf/open/floor/mainship/orange{
+	dir = 4
 	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "htX" = (
 /obj/structure/morgue{
@@ -14649,14 +14645,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 6
 	},
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -15323,7 +15316,7 @@
 "mtB" = (
 /obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
 /turf/open/floor/mainship/orange{
-	dir = 9
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "mtK" = (
@@ -20328,6 +20321,19 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
+"qzH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/tadpole{
+	dir = 8;
+	pixel_x = 4
+	},
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "qAM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -22026,11 +22032,12 @@
 	dir = 4;
 	pixel_x = -4
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 9
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 10
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -36044,7 +36051,7 @@ qsj
 qsj
 qvX
 tfU
-qsj
+qzH
 qsj
 qsj
 ttG
@@ -36244,7 +36251,7 @@ tys
 tys
 ftJ
 cWr
-kBf
+aap
 kBf
 lTg
 kBf

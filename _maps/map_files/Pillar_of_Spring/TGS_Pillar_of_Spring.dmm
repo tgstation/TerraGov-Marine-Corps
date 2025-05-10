@@ -4903,6 +4903,17 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
+"fTz" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/tadpole{
+	dir = 8;
+	pixel_x = 4
+	},
+/obj/machinery/dropship_part_fabricator/tadpole,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "fTZ" = (
 /obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/mono,
@@ -53757,7 +53768,7 @@ wWG
 sAl
 wWG
 sAl
-wWG
+fTz
 tQa
 fXg
 eFA

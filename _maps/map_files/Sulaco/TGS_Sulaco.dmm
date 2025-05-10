@@ -17010,6 +17010,17 @@
 /obj/structure/ship_ammo/cas/bomblet,
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
+"kJM" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/tadpole{
+	dir = 1;
+	pixel_y = -4
+	},
+/obj/machinery/dropship_part_fabricator/tadpole,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "kKg" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
@@ -66949,7 +66960,7 @@ dtI
 dtI
 dtI
 vuZ
-qqt
+kJM
 aPF
 aPF
 aPF
