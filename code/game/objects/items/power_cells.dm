@@ -365,15 +365,10 @@
 	worn_icon_state = "trashmelt"
 	w_class = WEIGHT_CLASS_HUGE
 	self_recharge = TRUE
-	maxcharge = 1000
-	charge_amount = 30
+	maxcharge = 1400
+	charge_amount = 150
 
 /obj/item/cell/mecha/medium
 	name = "medium radiotope cell"
-	maxcharge = 1250
-	charge_amount = 40
-
-/obj/item/cell/mecha/large
-	name = "large radiotope cell"
-	maxcharge = 1500
-	charge_amount = 50
+	maxcharge = 650
+	charge_amount = 200

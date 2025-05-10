@@ -470,6 +470,9 @@
 	destination.item_size_counter += item_size
 	return TRUE
 
+/obj/vehicle/sealed/closet_insertion_allowed(obj/structure/closet/destination)
+	return FALSE
+
 ///Action delay when going out of a closet
 /mob/living/proc/on_closet_dump(obj/structure/closet/origin)
 	SetStun(origin.closet_stun_delay)

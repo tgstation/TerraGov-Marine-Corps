@@ -382,7 +382,7 @@
 
 /datum/action/innate/shuttledocker_rotate
 	name = "Rotate"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "mech_cycle_equip_off"
 
 /datum/action/innate/shuttledocker_rotate/Activate()
@@ -395,7 +395,7 @@
 
 /datum/action/innate/shuttledocker_place
 	name = "Place"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "mech_zoom_off"
 
 /datum/action/innate/shuttledocker_place/Activate()
