@@ -135,9 +135,12 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 /// check if the turf is valid or not for the selected build type, and apply a matrix color if not
 /datum/action/ability/activable/build_designator/proc/check_turf_validity(turf/target_turf)
-	if(!isturf(target_turf))
+	if(!isopenturf(target_turf))
 		return FALSE
-	if(target_turf.density)
+	if(!target_turf.allow_construction)
+		return FALSE
+	var/area/area = get_area(target_turf)
+	if(area.area_flags & NO_CONSTRUCTION)
 		return FALSE
 	if(isspaceturf(target_turf))
 		return FALSE
