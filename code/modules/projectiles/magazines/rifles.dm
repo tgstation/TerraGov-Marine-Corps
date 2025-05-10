@@ -743,19 +743,58 @@
 	name = "\improper L26 box mag (5.56x45mm)"
 	desc = "A 200 round box mag for the L26."
 	caliber = CALIBER_556X45
-	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	default_ammo = /datum/ammo/bullet/rifle
 	icon_state = "l26"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum_big_long"
 	bonus_overlay = "l26_100"
 	max_rounds = 200
 
+//CC/67
+
 /obj/item/ammo_magazine/rifle/vsd_rifle
-	name = "\improper C550 magazine (10x27mm)"
+	name = "\improper CC/67 magazine (10x27mm)"
 	desc = "A 10x27mm rifle magazine."
 	caliber = CALIBER_10x27_CASELESS
 	icon_state = "c550"
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	max_rounds = 30
+
+//CC/74
+
+/obj/item/ammo_magazine/rifle/vsd_mg_main
+	name = "\improper CC/74 box mag (7.62x39mm)"
+	desc = "A 150 round box mag for the CC/74."
+	caliber = CALIBER_762X39
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	icon_state = "c74"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
+	icon_state_mini = "mag_gpmg"
+	bonus_overlay = "c74_100"
+	max_rounds = 150
+
+//CC/67
+
+/obj/item/ammo_magazine/rifle/vsd_carbine
+	name = "\improper CC/67 magazine (10x24mm)"
+	desc = "A 10x27mm rifle magazine."
+	caliber = CALIBER_10X24_CASELESS
+	icon_state = "c67"
+	icon_state_mini = "mag_rifle_big"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 45
+
+
+
+/obj/item/ammo_magazine/rifle/cb31
+	name = "\improper CC/B/31 breaching slug magazine (12 gauge)"
+	desc = "A magazine of 16 gauge slugs, for the SH-15."
+	caliber = CALIBER_16G
+	icon_state = "cb31"
+	icon_state_mini = "mag_tx15_slug"
+	default_ammo = /datum/ammo/bullet/shotgun/breaching
+	max_rounds = 25
+	bonus_overlay = "cb31"
