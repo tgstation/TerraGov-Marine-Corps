@@ -17,8 +17,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 /datum/action/ability/activable/build_designator
 	name = "Construction Designator"
 	desc = "Place a designator for construction."
-	action_icon_state = "square2x2"
-	action_icon = 'icons/Xeno/patterns.dmi'
+	action_icon_state = "build_designator"
+	action_icon = 'icons/mob/actions.dmi'
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_PLACE_HOLOGRAM,
@@ -169,8 +169,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 /obj/effect/build_designator
 	anchored = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
-	smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
-	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
 	hud_possible = list(ORDER_HUD)
 	///Material needed for the recipe
 	var/obj/material_type
