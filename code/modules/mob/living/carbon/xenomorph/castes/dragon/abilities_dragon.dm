@@ -370,12 +370,10 @@
 	/// The timer id for the timer that occurs every tick while the ability is active.
 	var/tick_timer
 
-/datum/action/ability/activable/xeno/backhand/dragon_breath/can_use_ability(atom/A, silent, override_flags)
-	if(ability_timer)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "already breathing fire")
-		return FALSE
-	return ..()
+/datum/action/ability/activable/xeno/backhand/dragon_breath/use_ability(atom/target)
+	if(!ability_timer)
+		return ..()
+	end_ability()
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/get_damage()
 	return 20 * xeno_owner.xeno_melee_damage_modifier
@@ -413,6 +411,7 @@
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(15)
 	ADD_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	RegisterSignal(xeno_owner, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_stat_changed))
 	starting_direction = get_cardinal_dir(xeno_owner, target)
 	visual_effect = new /obj/effect/temp_visual/dragon/fire_breath(get_step(xeno_owner, target), starting_direction)
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), 10 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
@@ -481,13 +480,20 @@
 	for(var/something_in_turf in get_turf(fire_in_turf))
 		fire_in_turf.affect_atom(something_in_turf)
 
+/// Ends the ability if they are not conscious.
+/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/on_stat_changed(datum/source, old_stat, new_stat)
+	SIGNAL_HANDLER
+	if(new_stat == CONSCIOUS)
+		return
+	end_ability()
+
 /// Undoes everything associated with starting the ability.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/end_ability()
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-15)
 	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
-	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED))
 	starting_direction = null
 	affected_turfs_in_order.Cut()
 	QDEL_NULL(visual_effect)
@@ -564,6 +570,10 @@
 				impacted_living.animation_spin(0.5 SECONDS, 1, impacted_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
 				continue
 			if(!isobj(impacted_atom))
+				continue
+			if(isfire(impacted_atom))
+				var/obj/fire/fire = impacted_atom
+				fire.reduce_fire(20)
 				continue
 			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue

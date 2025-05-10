@@ -1034,6 +1034,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		return usr.client.holder.create_mob(usr)
 
+	else if(href_list["dupe_marked_datum"])
+		if(!check_rights(R_SPAWN))
+			return
+		return duplicate_object(marked_datum, spawning_location = get_turf(usr))
 
 	else if(href_list["modemenu"])
 		if(!check_rights(R_SERVER))
@@ -1860,6 +1864,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				previous = H.gender
 				H.gender = change
+			if("physique")
+				change = input("Select the physique.", "Edit Appearance") as null|anything in list(MALE, FEMALE)
+				if(!change || !istype(H))
+					return
+				previous = H.physique
+				H.physique = change
 			if("ethnicity")
 				change = input("Select the ethnicity.", "Edit Appearance") as null|anything in sortList(GLOB.ethnicities_list)
 				if(!change || !istype(H))
@@ -2188,3 +2198,13 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!datum_to_mark)
 			return
 		return usr.client?.mark_datum(datum_to_mark)
+
+	else if(href_list["play_internet"])
+		if(!check_rights(R_SOUND))
+			return
+
+		var/link_url = href_list["play_internet"]
+		if(!link_url)
+			return
+
+		web_sound(usr, link_url)

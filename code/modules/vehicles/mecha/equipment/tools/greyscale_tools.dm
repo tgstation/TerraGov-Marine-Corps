@@ -180,3 +180,11 @@
 	icon_state = "cloak"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/cloak
+
+/obj/item/mecha_parts/mecha_equipment/ability/overboost
+	name = "overboost module"
+	desc = "A mech overboost device. Allows overloading the leg accumulators to dash in a direction, throwing back anyone hit by the mech."
+	weight = 70
+	icon_state = "overboost"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/overboost

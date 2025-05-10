@@ -115,7 +115,7 @@
 /turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(acided_hole && (xeno_attacker.mob_size == MOB_SIZE_BIG || xeno_attacker.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
+	if(acided_hole && HAS_TRAIT(xeno_attacker, TRAIT_CAN_TEAR_HOLE)) //Strong and/or big xenos can tear open acided walls
 		acided_hole.expand_hole(xeno_attacker)
 	else
 		return ..()

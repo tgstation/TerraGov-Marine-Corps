@@ -646,17 +646,14 @@
 	if(length(debuff_owner.do_actions))
 		return
 	debuff_owner.spin(30, 1.5)
-	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST)
 	debuff_owner.Paralyze(3 SECONDS)
-	if(stacks > 0)
+	if((stacks - PYROGEN_MELTING_FIRE_STACKS_PER_RESIST) > 0)
 		debuff_owner.visible_message(span_danger("[debuff_owner] rolls on the floor, trying to put themselves out!"), \
 		span_notice("You stop, drop, and roll!"), null, 5)
-		return
-	debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
-	span_notice("You extinguish yourself."), null, 5)
-	qdel(src)
-
-
+	else
+		debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
+		span_notice("You extinguish yourself."), null, 5)
+	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST) // If their stacks hit zero, it is qdel'd right here.
 
 // ***************************************
 // *********** dread
@@ -997,6 +994,8 @@
 	id = "sniped"
 	/// Used for the sniped effect
 	var/obj/vis_sniped/visual_sniped
+	/// Weakref to the gun that applied this effect
+	var/datum/weakref/shooter
 
 /obj/vis_sniped
 	name = "sniped"
@@ -1007,11 +1006,16 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 
-/datum/status_effect/incapacitating/recently_sniped/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/incapacitating/recently_sniped/on_creation(mob/living/new_owner, set_duration, datum/weakref/_shooter)
 	. = ..()
 
 	if(!. || new_owner.stat != CONSCIOUS)
 		return
+
+	if(!_shooter)
+		CRASH("_shooter not passed into sniped status effect.")
+
+	shooter = _shooter
 
 	visual_sniped = new
 	visual_sniped.icon_state = "sniper_zoom"

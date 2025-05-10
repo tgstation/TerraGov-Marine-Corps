@@ -138,7 +138,7 @@ export const IndividualLoadouts = (props) => {
             Equipment options
           </Stack>
           <Section fill scrollable width={'240px'} height={'555px'}>
-            <Stack width={'220px'} wrap>
+            <Stack width={'240px'} wrap>
               {available_loadouts_data
                 .filter((potentialitem) => potentialitem.job === selectedJob)
                 .filter(
@@ -197,7 +197,7 @@ export const IndividualLoadouts = (props) => {
           </Section>
         </Section>
       </Stack.Item>
-      <Stack.Item>
+      <Stack.Item grow>
         <Section
           title={selectedJob + ' loadout'}
           textColor={

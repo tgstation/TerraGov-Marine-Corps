@@ -1,5 +1,3 @@
-#define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
-
 /****************************************************
 				EXTERNAL ORGANS
 ****************************************************/
@@ -898,7 +896,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		e_icon = E.icon_name
 
-	return icon(race_icon, "[get_limb_icon_name(owner.species, owner.gender, icon_name, e_icon)]")
+	return icon(race_icon, "[get_limb_icon_name(owner.species, owner.physique, icon_name, e_icon)]")
 
 
 /datum/limb/proc/is_usable()

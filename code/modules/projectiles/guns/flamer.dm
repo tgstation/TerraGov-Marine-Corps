@@ -139,8 +139,8 @@
 		return
 
 	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
-	lit_overlay.pixel_x += lit_overlay_offset_x
-	lit_overlay.pixel_y += lit_overlay_offset_y
+	lit_overlay.pixel_w += lit_overlay_offset_x
+	lit_overlay.pixel_z += lit_overlay_offset_y
 	. += lit_overlay
 
 /obj/item/weapon/gun/flamer/turn_light(mob/user, toggle_on)
@@ -158,7 +158,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/weapon/gun/flamer/do_fire(obj/projectile/projectile_to_fire)
+/obj/item/weapon/gun/flamer/do_fire(atom/movable/projectile/projectile_to_fire)
 	playsound(loc, fire_sound, 50, 1)
 	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
 	var/burn_type = nozzle.stream_type
@@ -422,7 +422,7 @@
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/weapon/gun/flamer/hydro_cannon)
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(atom/movable/projectile/projectile_to_fire)
 	if(!target)
 		return
 	if(gun_user?.skills.getRating(SKILL_COMBAT) < 0)

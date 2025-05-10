@@ -169,6 +169,7 @@
 	cell = new_cell
 	if(cell)
 		RegisterSignal(cell, COMSIG_QDELETING, PROC_REF(on_cell_deletion))
+	update_appearance(UPDATE_ICON)
 
 
 ///Called by the deletion of the referenced powercell.
@@ -452,9 +453,9 @@
 			lighting = autoset(lighting, 2)
 			environ = autoset(environ, 1)
 			area.poweralert(0, src)
-		else if(cell.percent() < 30 && longtermpower < 0)			// <30%, turn off equipment
-			equipment = autoset(equipment, 2)
-			lighting = autoset(lighting, 1)
+		else if(cell.percent() < 30 && longtermpower < 0)			// <30%, turn off lighting
+			equipment = autoset(equipment, 1)
+			lighting = autoset(lighting, 2)
 			environ = autoset(environ, 1)
 			area.poweralert(0, src)
 		else									// otherwise all can be on

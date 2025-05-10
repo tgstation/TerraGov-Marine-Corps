@@ -185,12 +185,6 @@
 			return
 	return ..()
 
-/datum/ai_behavior/xeno/unregister_action_signals(action_type)
-	switch(action_type)
-		if(MOVING_TO_ATOM)
-			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-	return ..()
-
 ///Will try finding and resting on weeds
 /datum/ai_behavior/xeno/proc/try_to_heal()
 	var/mob/living/carbon/xenomorph/living_mob = mob_parent

@@ -20,7 +20,7 @@
 	area_type = /area
 	protect_indoors = TRUE
 	target_trait = ZTRAIT_ACIDRAIN
-
+	use_glow = FALSE
 	barometer_predictable = TRUE
 	play_screen_indicator = TRUE
 	probability = 40

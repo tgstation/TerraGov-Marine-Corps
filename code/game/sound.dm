@@ -74,7 +74,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 	if(!frequency)
 		frequency = GET_RANDOM_FREQ
-	var/sound/S = sound(get_sfx(soundin))
+	var/sound/S = isdatum(soundin) ? soundin : sound(get_sfx(soundin))
 	var/source_z = turf_source.z
 
 	var/list/listeners
@@ -105,7 +105,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			if(get_dist(listening_ghost, turf_source) <= audible_distance)
 				listeners += listening_ghost
 
-	/// snowflake, note this ignores walls cus I cant be assed rn
+	// snowflake, ai eyes dont have a client
+	// this also ignores walls cus I cant be assed rn
 	for(var/mob/ai_eye AS in GLOB.aiEyes)
 		var/turf/eye_turf = get_turf(ai_eye)
 		if(!eye_turf || eye_turf.z != turf_source.z)
@@ -113,31 +114,37 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if(get_dist(eye_turf, turf_source) <= audible_distance)
 			listeners += ai_eye
 
-	//We do tanks separately, since they are not actually on the source z, and we need some other stuff to get accurate directional sound
-	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
-		var/is_same_z = (armor.z == source_z) || (armor.z == above_turf?.z) || (armor.z == below_turf?.z)
-		if(!armor.interior || !is_same_z || get_dist(armor.loc, turf_source) > sound_range)
-			continue
-		if(armor == source) // sounds vehicles with interiors make must be played inside the tank, see /obj/vehicle/sealed/armored/proc/play_interior_sound(...)
-			continue
-		if(!length(armor.interior.occupants))
-			continue
-		var/turf/middle_turf = armor.interior.loaded_turfs[floor(length(armor.interior.loaded_turfs) * 0.5)]
-		var/turf/origin_point = locate(clamp(middle_turf.x - armor.x + turf_source.x, 1, world.maxx), clamp(middle_turf.y - armor.y + turf_source.y, 1, world.maxy), middle_turf.z)
-		//origin point is regardless of vehicle orientation for player QOL and simple sanity
-
-		for(var/mob/crew AS in armor.interior.occupants)
-			if(!crew.client)
-				continue
-			if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
-				continue
-			crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
 
 	for(var/mob/listener AS in listeners)
 		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
 			continue
 		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
+	//We do tanks separately, since they are not actually on the source z, and we need some other stuff to get accurate directional sound
+	//todo stop ignoring walls
+	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
+		var/is_same_z = (armor.z == source_z) || (armor.z == above_turf?.z) || (armor.z == below_turf?.z)
+		if(!armor.interior || !is_same_z || get_dist(armor.loc, turf_source) > sound_range)
+			continue
+		// sounds vehicles with interiors make must be played inside the tank, see /obj/vehicle/sealed/armored/proc/play_interior_sound(...)
+		if(armor == source)
+			continue
+		if(!length(armor.interior.occupants))
+			continue
+		listeners += armor.interior.play_outside_sound(
+			turf_source,
+			soundin,
+			vol*0.5,
+			vary,
+			frequency,
+			falloff,
+			is_global,
+			channel,
+			ambient_sound,
+			S
+		)
+
+	return listeners
 
 /**
  * Plays a sound locally
@@ -169,19 +176,14 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 	if(isturf(turf_source))
 		// 3D sounds, the technology is here!
-		var/turf/T = get_turf(src)
+		var/turf/turf_loc = get_turf(src)
 
-		//sound volume falloff with distance
-		var/distance = get_dist(T, turf_source)
+		if(sound_to_use.volume < SOUND_AUDIBLE_VOLUME_MIN)
+			return //Too quiet to be audible
 
-		distance *= distance_multiplier
-
-		if(sound_to_use.volume <= 2*distance)
-			return FALSE //no volume or too far away to hear such a volume level.
-
-		var/dx = turf_source.x - T.x // Hearing from the right/left
+		var/dx = turf_source.x - turf_loc.x // Hearing from the right/left
 		sound_to_use.x = dx * distance_multiplier
-		var/dz = turf_source.y - T.y // Hearing from infront/behind
+		var/dz = turf_source.y - turf_loc.y // Hearing from infront/behind
 		sound_to_use.z = dz * distance_multiplier
 		//The y value is for above your head, but there is no ceiling in 2d spessmens.
 		sound_to_use.y = 1

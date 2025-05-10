@@ -28,6 +28,7 @@
 #define BE_DEATHMATCH (1<<3)
 #define BE_SQUAD_STRICT (1<<4)
 #define BE_ALIEN_UNREVIVABLE (1<<5)
+#define BE_SSD_RANDOM_NAME (1<<6)
 
 #define BE_SPECIAL_DEFAULT (BE_DEATHMATCH)
 
@@ -111,6 +112,8 @@
 #define GAME_SETTINGS 5
 #define KEYBIND_SETTINGS 6
 #define DRAW_ORDER 7
+
+#define USE_GENDER "use_gender"
 
 #define CITIZENSHIP_CHOICES list(\
 	"Earth Born",\
@@ -197,7 +200,8 @@
 	"Join as Chestburster" = BE_ALIEN,\
 	"Take Own Chestburster" = BE_ALIEN_UNREVIVABLE,\
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
-	"Prefer Squad over Role" = BE_SQUAD_STRICT\
+	"Prefer Squad over Role" = BE_SQUAD_STRICT,\
+	"Use random name when taking SSD mobs" = BE_SSD_RANDOM_NAME\
 	)
 
 #define HIVE_STATUS_SHOW_EMPTY (1<<0)

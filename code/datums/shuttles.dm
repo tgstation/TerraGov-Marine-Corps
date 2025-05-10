@@ -168,6 +168,11 @@
 	description = "An asymmetric tadpole designed with vehicle transport in mind. Built with a wide umbilical to allow fluid heavy-vehicle movement."
 	display_name = "Tadpole Outrider Model"
 
+/datum/map_template/shuttle/minidropship/panopticon
+	suffix = "_panopticon"
+	description = "A spherical tadpole model made with the intent to achieve an (almost) total 360 degree view of any field it lands onto."
+	display_name = "Tadpole Panoptical Model"
+
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
 	name = "Escape Pod"

@@ -21,7 +21,7 @@
 	penetration = 20
 	sundering = 7.5
 
-/datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
 
 
@@ -36,7 +36,7 @@
 	shrapnel_chance = 0
 	accuracy = 5
 
-/datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 4 SECONDS, knockback = 1, slowdown = 2, hard_size_threshold = 1)
 
 /datum/ammo/bullet/shotgun/incendiary
@@ -51,7 +51,7 @@
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, knockback = 2, slowdown = 1)
 
 /datum/ammo/bullet/shotgun/flechette
@@ -91,7 +91,7 @@
 	damage = 40
 	damage_falloff = 4
 
-/datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/hefa_buckshot
@@ -107,7 +107,7 @@
 	damage = 30
 	damage_falloff = 3
 
-/datum/ammo/bullet/hefa_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/hefa_buckshot/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, knockback = 2, max_range = 4)
 
 /datum/ammo/bullet/shotgun/spread
@@ -138,16 +138,16 @@
 /datum/ammo/bullet/shotgun/frag/drop_nade(turf/T)
 	explosion(T, weak_impact_range = 2, tiny = TRUE, explosion_cause=src)
 
-/datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob))
 
-/datum/ammo/bullet/shotgun/frag/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/frag/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
-/datum/ammo/bullet/shotgun/frag/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/frag/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/bullet/shotgun/frag/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/frag/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/bullet/shotgun/frag/frag_spread
@@ -186,7 +186,7 @@
 	damage = 50
 	damage_falloff = 4
 
-/datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/shotgun/barrikada_slug
@@ -200,7 +200,7 @@
 	penetration = 50
 	sundering = 15
 
-/datum/ammo/bullet/shotgun/barrikada/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/barrikada/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
 
 /datum/ammo/bullet/shotgun/heavy_spread
@@ -240,7 +240,7 @@
 	damage = 40
 	penetration = 20
 
-/datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/shotgun/tx15_flechette
@@ -272,7 +272,7 @@
 	penetration = 30
 	sundering = 3.5
 
-/datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, slowdown = 2, knockback = 1)
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot
@@ -315,7 +315,7 @@
 	damage = 5
 	penetration = 100
 
-/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
 /datum/ammo/bullet/shotgun/tracker
@@ -328,7 +328,7 @@
 	damage = 5
 	penetration = 100
 
-/datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
 //I INSERT THE SHELLS IN AN UNKNOWN ORDER

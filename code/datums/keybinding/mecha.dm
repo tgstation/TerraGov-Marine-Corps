@@ -92,3 +92,11 @@
 	description = "Toggle mech cloaking device."
 	keybind_signal = COMSIG_MECHABILITY_CLOAK
 	hotkey_keys = list("Q")
+
+/datum/keybinding/mecha/mech_overboost
+	name = "mech_overboost"
+	full_name = "Mecha activate overboost"
+	description = "Toggle mech overboost module."
+	keybind_signal = COMSIG_MECHABILITY_OVERBOOST
+	hotkey_keys = list("Q")
+
