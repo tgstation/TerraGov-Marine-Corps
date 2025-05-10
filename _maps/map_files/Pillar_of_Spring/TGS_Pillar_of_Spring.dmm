@@ -2928,6 +2928,15 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
+"dAV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/yellow_cargo,
+/area/mainship/hallways/hangar)
 "dBm" = (
 /obj/structure/table/wood,
 /obj/item/toy/deck/kotahi,
@@ -4315,6 +4324,11 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/firing_range)
+"fnB" = (
+/turf/open/floor/mainship/yellow_cargo/arrow{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "fnS" = (
 /obj/structure/closet,
 /obj/item/clothing/under/rank/prisoner,
@@ -5214,6 +5228,12 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
+"gja" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "gjA" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
@@ -8401,6 +8421,16 @@
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
+"kHy" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/landinglight/alamo{
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "kHN" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -10728,6 +10758,9 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "nku" = (
@@ -11689,6 +11722,12 @@
 /obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
+"oBQ" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "oCo" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -12450,6 +12489,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
+"psX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "ptb" = (
 /obj/structure/dropship_equipment/cas/weapon/heavygun,
 /turf/open/floor/mainship/floor,
@@ -17074,6 +17125,17 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
+"ves" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/dropship_part_fabricator/tadpole,
+/obj/machinery/dropship_part_fabricator/tadpole,
+/turf/open/floor/mainship/yellow_cargo,
 /area/mainship/hallways/hangar)
 "vfH" = (
 /turf/closed/wall/mainship,
@@ -48592,7 +48654,7 @@ ufq
 wEZ
 tyN
 nkm
-dpY
+oBQ
 cPE
 kDx
 kDx
@@ -48848,9 +48910,9 @@ sVR
 ufq
 uud
 tyN
-ePE
-dpY
-cPE
+ves
+fnB
+kHy
 kDx
 kDx
 kDx
@@ -49105,9 +49167,9 @@ sVR
 ufq
 wEZ
 tyN
-ePE
-dpY
-cPE
+dAV
+fnB
+kHy
 xDq
 xDq
 qWy
@@ -49362,8 +49424,8 @@ tyN
 tyN
 bDH
 tyN
-ePE
-dpY
+psX
+gja
 cPE
 kDx
 kDx
