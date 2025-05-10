@@ -59,6 +59,8 @@
 	if(mob_parent?.skills?.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_PRACTICED) //placeholder setter. Some jobs have high med but aren't medics...
 		medical_rating = AI_MED_MEDIC
 		RegisterSignals(SSdcs, list(COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC), PROC_REF(mob_need_heal))
+	if(mob_parent?.skills?.getRating(SKILL_CONSTRUCTION) >= SKILL_CONSTRUCTION_PLASTEEL) //placeholder setter. Some jobs have high construction but aren't engineers...
+		RegisterSignal(SSdcs, COMSIG_GLOB_HOLO_BUILD_INITIALIZED, PROC_REF(on_holo_build_init))
 	if(human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS)
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, PROC_REF(add_hazard))
 		RegisterSignal(mob_parent, COMSIG_MOVABLE_Z_CHANGED, (PROC_REF(on_change_z)))
@@ -98,6 +100,9 @@
 		return
 
 	if((medical_rating >= AI_MED_MEDIC) && medic_process())
+		return
+
+	if((mob_parent?.skills?.getRating(SKILL_CONSTRUCTION) >= SKILL_CONSTRUCTION_PLASTEEL) && engineer_process())
 		return
 
 	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list) && (human_parent.nutrition + (37.5 * human_parent.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)) < NUTRITION_WELLFED))
@@ -286,7 +291,7 @@
 	else
 		remove_from_heal_list(old_target)
 	if((human_ai_state_flags & HUMAN_AI_HEALING) && !revive_target)
-		on_heal_end(old_target)
+		on_heal_end(old_target) //this is problematic apparently
 	return ..()
 
 ///Sets run move intent if able
@@ -340,6 +345,9 @@
 		if(mob_parent.faction != human.faction)
 			return
 		INVOKE_ASYNC(src, PROC_REF(try_heal_other), human)
+		return TRUE
+	if(istype(interactee, /obj/effect/build_designator))
+		INVOKE_ASYNC(src, PROC_REF(try_build_holo), interactee)
 		return TRUE
 	interactee.do_ai_interact(mob_parent)
 	return TRUE

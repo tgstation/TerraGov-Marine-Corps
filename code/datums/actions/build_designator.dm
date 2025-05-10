@@ -134,12 +134,12 @@ GLOBAL_LIST_INIT(designator_types, list (
 	return TRUE
 
 /// check if the turf is valid or not for the selected build type, and apply a matrix color if not
-/datum/action/ability/activable/build_designator/proc/check_turf_validity(turf/target_turf)
-	if(!isturf(target_turf))
-		return FALSE
-	if(target_turf.density)
+/datum/action/ability/activable/build_designator/proc/check_turf_validity(turf/open/target_turf)
+	if(!isopenturf(target_turf))
 		return FALSE
 	if(isspaceturf(target_turf))
+		return FALSE
+	if(!target_turf.allow_construction)
 		return FALSE
 	var/border_obj = (construct_type::atom_flags & ON_BORDER) ? TRUE : FALSE
 	for(var/obj/object in target_turf)
@@ -225,6 +225,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 	if(!istype(I, material_type))
 		return ..()
 	var/obj/item/stack/stack = I
-	if(!stack.create_object(user, recipe, 1, loc, dir))
+	if(!stack.create_object(user, recipe, 1, loc, dir, TRUE)) //override stack loc for NPC use. It should be impossible to reach this without being an npc
 		return
 	qdel(src)
