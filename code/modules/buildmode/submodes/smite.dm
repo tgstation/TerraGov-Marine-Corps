@@ -1,7 +1,7 @@
 /datum/buildmode_mode/smite
 	key = "smite"
 
-	/// The holder for the currently selected smite datum 
+	/// The holder for the currently selected smite datum
 	var/datum/smite/selected_smite
 
 /datum/buildmode_mode/smite/Destroy()
@@ -9,10 +9,9 @@
 	return ..()
 
 /datum/buildmode_mode/smite/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Select smite to use")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Smite the mob")] -> Left Mouse Button on mob/living"))
-	)
 
 /datum/buildmode_mode/smite/change_settings(client/user)
 	var/punishment = input(user, "Choose a punishment", "DIVINE SMITING") as null|anything in GLOB.smites

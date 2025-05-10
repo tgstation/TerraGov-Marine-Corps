@@ -222,7 +222,7 @@
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
 	var/list/final_msg = list()
-	balloon_alert_to_viewers("Examines [p_them()]self.", "You examine yourself")
+	visible_message(span_notice("[src] examines [p_them()]sel[gender == PLURAL ? "ves" : "f"]."))
 	final_msg += span_notice("<b>You check yourself for injuries.</b>")
 
 	for(var/datum/limb/org in limbs)
@@ -333,4 +333,4 @@
 		else
 			final_msg += span_info(pick("There's a full layer of dirt covering you. Maybe it'll work as camo?", "You could go for a shower.", "You've reached a more complete understanding of grime."))
 
-	to_chat(src, examine_block(final_msg.Join("\n")))
+	to_chat(src, custom_boxed_message("blue_box", final_msg.Join("\n")))

@@ -102,11 +102,27 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	name = "Alert"
 	desc = "Something seems to have gone wrong with this alert, so report this bug please"
 	mouse_opacity = MOUSE_OPACITY_ICON
+	boxed_message_style = "boxed_message blue_box"
 	var/timeout = 0 //If set to a number, this alert will clear itself after that many deciseconds
 	var/severity = 0
 	var/alerttooltipstyle = ""
 	var/override_alerts = FALSE //If it is overriding other alerts of the same type
 	var/mob/owner //Alert owner
+
+/atom/movable/screen/alert/Click(location, control, params)
+	if(!usr?.client)
+		return
+	var/paramslist = params2list(params)
+	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff (but 100% fucking should) so we'll cheat
+		to_chat(usr, fieldset_block(name, desc, boxed_message_style))
+		return
+	if(master)
+		return usr.client.Click(master, location, control, params)
+
+/atom/movable/screen/alert/Destroy()
+	master = null
+	owner = null
+	return ..()
 
 //GHOSTS
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages
@@ -115,6 +131,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	desc = "A new notification. You can enter it."
 	icon_state = "template"
 	timeout = 15 SECONDS
+	boxed_message_style = "boxed_message purple_box"
 	var/atom/target = null
 	var/action = NOTIFY_JUMP
 
@@ -146,7 +163,6 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 				if("Jump to it")
 					G.forceMove(get_turf(target))
 
-
 //OBJECT-BASED
 
 /atom/movable/screen/alert/restrained/buckled
@@ -157,13 +173,13 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 /atom/movable/screen/alert/restrained/handcuffed
 	name = "Handcuffed"
 	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/restrained/Click()
 	if(!isliving(usr) || usr != owner)
 		return
 	var/mob/living/L = usr
 	return L.do_resist()
-
 
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 
@@ -204,47 +220,37 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 			reorganize_alerts(obs)
 	return TRUE
 
-/atom/movable/screen/alert/Click(location, control, params)
-	if(!usr?.client)
-		return
-	var/paramslist = params2list(params)
-	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		to_chat(usr, examine_block("<big>[span_boldnotice(name)]</big>\n[span_info(desc)]"))
-		return
-	if(master)
-		return usr.client.Click(master, location, control, params)
-
-/atom/movable/screen/alert/Destroy()
-	master = null
-	owner = null
-	return ..()
-
 //MECHS
 /atom/movable/screen/alert/nocell
 	name = "Missing Power Cell"
 	desc = "Unit has no power cell. No modules available until a power cell is reinstalled. Robotics may provide assistance."
 	icon_state = "no_cell"
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/emptycell
 	name = "Out of Power"
 	desc = "Unit's power cell has no charge remaining. No modules available until power cell is recharged."
 	icon_state = "empty_cell"
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/lowcell
 	name = "Low Charge"
 	desc = "Unit's power cell is running low."
 	icon_state = "low_cell"
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/low_mech_integrity
 	name = "Mech Damaged"
 	desc = "Mech integrity is low."
 	icon_state = "low_mech_integrity"
+	boxed_message_style = "boxed_message red_box"
 
 // HUMAN WARNINGS
 /atom/movable/screen/alert/fire
 	name = "On Fire"
 	desc = "You're on fire. Stop, drop and roll to put the fire out, or use a fire extinguisher."
 	icon_state = "fire"
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/fire/Click()
 	. = ..()
@@ -282,13 +288,16 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	name = "Hungry"
 	desc = "You could use a bite to eat. Movement speed reduced."
 	icon_state = "hungry"
+	boxed_message_style = "boxed_message"
 
 /atom/movable/screen/alert/starving
 	name = "Starving"
 	desc = "You could eat a horse right now. Movement speed significantly reduced."
 	icon_state = "starving"
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/stuffed
 	name = "Stuffed"
 	desc = "You had a bit too much to eat. Work out to lose the extra nutrition. Movement speed reduced."
 	icon_state = "stuffed"
+	boxed_message_style = "boxed_message green_box"

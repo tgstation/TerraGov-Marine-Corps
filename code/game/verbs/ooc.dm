@@ -220,7 +220,7 @@
 			display_name = display_key
 
 		var/avoid_highlight = recv_client == src
-		to_chat(recv_client, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_client, "<font color='#a330a7'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
@@ -236,7 +236,7 @@
 			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_staff, "<font color='#a330a7'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/mooc_wrapper()
@@ -327,7 +327,7 @@
 			display_name = display_key
 
 		var/avoid_highlight = recv_client == src
-		to_chat(recv_client, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_client, "<font color='#ca6200'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
@@ -343,7 +343,7 @@
 			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_staff, "<font color='#ca6200'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 /client/verb/looc_wrapper()
 	set hidden = TRUE

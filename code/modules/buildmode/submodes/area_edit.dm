@@ -11,11 +11,10 @@
 	return ..()
 
 /datum/buildmode_mode/selection/area_edit/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Select corner")] -> Left Mouse Button on obj/turf/mob\n\
 		[span_bold("Pick area to expand")] -> Right Mouse Button on obj/turf/mob\n\
 		[span_bold("Select area type to paint")] -> Right Mouse Button on buildmode button"))
-	)
 
 /datum/buildmode_mode/selection/area_edit/enter_mode(datum/buildmode/BM)
 	BM.holder.images += areaimage
@@ -45,7 +44,7 @@
 	selected_area.power_light = 0
 	selected_area.power_environ = 0
 	selected_area.always_unpowered = 0
-	selected_area.name = (areaname == "Area" ? initial(chosen_area.name) : areaname) 
+	selected_area.name = (areaname == "Area" ? initial(chosen_area.name) : areaname)
 	areaimage.loc = selected_area // color our area
 
 /datum/buildmode_mode/selection/area_edit/handle_click(client/user, params, object)
@@ -53,7 +52,7 @@
 
 	if(!LAZYACCESS(modifiers, RIGHT_CLICK))
 		return ..()
-	
+
 	var/turf/T = get_turf(object)
 	selected_area = get_area(T)
 	areaimage.loc = selected_area // color our area

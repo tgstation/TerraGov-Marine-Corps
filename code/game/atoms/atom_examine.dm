@@ -7,6 +7,9 @@
 	/// Text that appears preceding the name in [/atom/proc/examine_title].
 	/// Don't include spaces after this, since that proc adds a space on its own.
 	var/examine_thats = "That's"
+	/// Boxed message style when examining this atom.
+	/// Must be `boxed_message` or `boxed_message [red/green/blue/purple]_box`.
+	var/boxed_message_style = "boxed_message"
 
 /mob/living/carbon/human
 	examine_thats = "This is"

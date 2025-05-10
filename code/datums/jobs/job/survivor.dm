@@ -50,14 +50,15 @@
 		else
 			to_chat(M, span_notice("Through a miracle you managed to survive the attack. But are you truly safe now?"))
 
-/datum/job/survivor/radio_help_message(mob/M)
+/datum/job/survivor/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"In whatever case you have been through, you are here to survive and get yourself rescued.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"In whatever case you have been through, you are here to survive and get yourself rescued.
 You appreciate the support of TerraGov and Nanotrasen should you be rescued.
 You are not hostile to TGMC, nor you should oppose or disrupt their objective, unless an admin says otherwise.
 If you find any other survivors in the area, cooperate with them to increase your chances of survival.
 Depending on the job you've undertook, you may have additional skills to help others when needed.
-Good luck, but do not expect to survive."})
+Good luck, but do not expect to survive."}
 
 
 //Scientist

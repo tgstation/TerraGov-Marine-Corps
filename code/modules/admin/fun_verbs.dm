@@ -101,7 +101,7 @@ ADMIN_VERB(command_report, R_FUN, "Command Report", "Create a custom command rep
 	var/input = tgui_input_text(user, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
 	if(!input)
 		return
-	var/override = tgui_input_list(user, "Pick a color for the report.", "Color", faction_alert_colors - "default", default = "blue")
+	var/override = tgui_input_list(user, "Pick a color for the report.", "Color", FACTION_ALERT_COLORS - "default", default = "blue")
 
 	if(tgui_alert(user, "Do you want to print out a paper at the communications consoles?", null, list("Yes", "No")) == "Yes")
 		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)

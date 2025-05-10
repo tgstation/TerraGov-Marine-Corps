@@ -76,8 +76,11 @@ SUBSYSTEM_DEF(ticker)
 				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
-			to_chat(world, span_round_body("Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!"))
-			to_chat(world, span_role_body("Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds."))
+			to_chat(world,
+				custom_boxed_message("red_box",
+				"[span_alert("<b><big>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</big></b>")]<hr>\
+				You can now set up your character and select READY to join roundstart.<br>The game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds."\
+			))
 			current_state = GAME_STATE_PREGAME
 			to_chat(world, SSpersistence.seasons_info_message())
 			fire()
@@ -338,7 +341,7 @@ SUBSYSTEM_DEF(ticker)
 		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
-		to_chat(world, fieldset_block("[span_tip("<big>Tip of the round</big>")]", html_encode(tip), "examine_block"))
+		to_chat(world, fieldset_block("[span_tip("Tip of the round")]", html_encode(tip), "boxed_message purple_box"))
 
 
 /datum/controller/subsystem/ticker/proc/check_queue()

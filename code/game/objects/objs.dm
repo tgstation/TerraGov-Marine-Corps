@@ -91,7 +91,7 @@
 		.["indestructible"] = "It's completely invulnerable to damage or complete destruction. Some objects still have special interactions for xenos."
 		return // we do not want to say it's indestructible and then list 500 fucktillion things that are implied by the word "indestructible"
 	if(resistance_flags & UNACIDABLE)
-		.["[isxeno(user) ? span_xenonotice("acid-proof") : "acid-proof"]"] = "Acid does not stick to or affect this object."
+		.["[isxeno(user) ? span_xenonotice("acid-proof") : "acid-proof"]"] = "Corrosive acid does not stick to or affect this object."
 	if(resistance_flags & PLASMACUTTER_IMMUNE)
 		.["plasma cutter-proof"] = "Plasma cutters cannot destroy this object."
 	if(!isitem(src) && (resistance_flags & PROJECTILE_IMMUNE))
