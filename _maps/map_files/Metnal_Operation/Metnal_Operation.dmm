@@ -22118,6 +22118,7 @@
 "oOy" = (
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /obj/machinery/floor_warn_light/toggleable/generator,
+/obj/effect/landmark/gargoyle,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "oOU" = (
