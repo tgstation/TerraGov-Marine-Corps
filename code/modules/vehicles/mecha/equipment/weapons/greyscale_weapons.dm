@@ -492,7 +492,7 @@
 	name = "\improper Bright laser blade"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A specialized mech laser blade made out of plasma. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with the superheated plasma beam."
-	icon_state = "moonlight"
+	icon_state = "lasersword"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	max_integrity = 400
 	slowdown = 0
@@ -502,6 +502,7 @@
 	range = MECHA_MELEE|MECHA_RANGED
 	force = 200
 	weight = 60
+	var/image/slash_extra_image
 	///ravager slash VFX but red
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// holder var for the mob that is attacking right now
@@ -530,8 +531,17 @@
 	var/laser_dash_range = HAS_TRAIT(chassis, TRAIT_MELEE_CORE) ? LASER_DASH_RANGE_ENHANCED : LASER_DASH_RANGE_NORMAL
 
 	chassis.add_filter("dash_blur", 1, radial_blur_filter(0.3))
-	icon_state += "_on"
-	chassis.update_icon()
+	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale/core))
+		icon_state += "_on"
+		chassis.update_appearance(UPDATE_ICON)
+	else
+		var/obj/vehicle/sealed/mecha/combat/greyscale/core/slasher = chassis
+		var/hand_used = slasher.equip_by_category[MECHA_L_ARM] == src ? "_left" : "_right"
+		var/image_iconstate = "active" + icon_state + hand_used
+		if(chassis.leg_overload_mode)
+			image_iconstate = "b_" + image_iconstate
+		slash_extra_image = image('icons/mecha/mech_core_weapons.dmi', null, image_iconstate)
+		chassis.add_overlay(slash_extra_image)
 	new /obj/effect/temp_visual/after_image(chassis.loc, chassis)
 	RegisterSignal(chassis, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
 	cutter = source
@@ -564,7 +574,8 @@
 	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_BUMP))
 	chassis.remove_filter("dash_blur")
 	icon_state = initial(icon_state)
-	chassis.update_icon()
+	chassis.cut_overlay(slash_extra_image)
+	chassis.update_appearance(UPDATE_ICON)
 	execute_melee(cutter)
 	cutter = null
 	chassis.atom_flags &= ~DIRLOCK
