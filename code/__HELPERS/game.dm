@@ -7,9 +7,11 @@
 
 /// Checks all conditions if a spot is valid for construction , will return TRUE
 /proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, planned_building)
-
 	if(!target || !istype(target))
 		return ERROR_JUST_NO
+	if(ispath(planned_building, /turf/closed/wall/resin) && istype(target, /turf/closed/wall/resin))
+		if(planned_building != target.type)
+			return NO_ERROR
 	var/obj/alien/weeds/alien_weeds = locate() in target
 	if(!target.check_disallow_alien_fortification(null, TRUE))
 		return ERROR_NOT_ALLOWED
@@ -53,7 +55,7 @@
 			continue
 
 		//Aghosted admins don't get picked
-		if(O.mind?.current && isclientedaghost(O.mind.current))
+		if(isaghost(O))
 			continue
 
 		if(!picked)

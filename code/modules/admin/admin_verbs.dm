@@ -347,11 +347,10 @@ ADMIN_VERB(asay, R_ASAY, "asay", "Speak in the private admin channel", ADMIN_CAT
 
 	user.mob.log_talk(msg, LOG_ASAY)
 
-	var/color = "asay"
-	if(check_other_rights(user, R_DBRANKS, FALSE))
-		color = "headminasay"
+	var/asay_color = user.prefs.asay_color
+	var/custom_asay_color = (CONFIG_GET(flag/allow_admin_asaycolor) && asay_color) ? "<font color=[asay_color]>" : "<font color='[DEFAULT_ASAY_COLOR]'>"
+	msg = "[span_adminsay("[span_prefix("ADMIN:")][ADMIN_TPMONTY(user.mob)]: [custom_asay_color]<span class='message linkify'>[msg]")]</span>[custom_asay_color ? "</font>":null]"
 
-	msg = "<span class='[color]'>[span_prefix("ADMIN:")] [ADMIN_TPMONTY(user.mob)]: <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C,
@@ -1200,7 +1199,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(show_traitor_panel, R_ADMIN, "Show Objective Panel",
 	target_mind.traitor_panel()
 
 ADMIN_VERB(set_xeno_stat_buffs, R_ADMIN, "Set Xeno Buffs", "Allows you to change stats for all xenos. It is a multiplicator buff, so input 100 to put everything back to normal", ADMIN_CATEGORY_MAIN)
-	var/multiplicator_buff_wanted = tgui_input_number(user, "Input the factor in percentage that will multiply xeno stat", "100 is normal stat, 200 is doubling health, regen and melee attack")
+	var/multiplicator_buff_wanted = tgui_input_number(user, "Input the factor in percentage that will multiply xeno stat", "100 is normal stat, 200 is doubling health, regen and melee attack", default = GLOB.xeno_stat_multiplicator_buff * 100)
 
 	if(!multiplicator_buff_wanted)
 		return

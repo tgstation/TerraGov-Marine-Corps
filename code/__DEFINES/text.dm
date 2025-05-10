@@ -26,7 +26,7 @@
 
 #define CENTER_ALIGN_TEXT "center"
 #define LEFT_ALIGN_TEXT "left"
-
+#define RIGHT_ALIGN_TEXT "right"
 
 
 #define MAPTEXT_HUDMESSAGE_TITLE(text, alignment) {"<span style='font-family: \"F25 Bank\"; font-size: 12pt; line-height: 1.25; text-align: [##alignment]'><u>[##text]</u></span>"}

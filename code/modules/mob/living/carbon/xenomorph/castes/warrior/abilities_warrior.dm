@@ -96,7 +96,7 @@
 // ***************************************
 // *********** Parent Ability
 // ***************************************
-#define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 0.5
+#define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 1.0
 #define WARRIOR_DISPLACE_KNOCKDOWN 0.4 SECONDS
 
 /datum/action/ability/activable/xeno/warrior/use_ability(atom/A)
@@ -121,7 +121,7 @@
 	living_target.Knockdown(WARRIOR_DISPLACE_KNOCKDOWN)
 	new /obj/effect/temp_visual/warrior/impact(get_turf(living_target), get_dir(living_target, xeno_owner))
 	// mob/living/turf_collision() does speed * 5 damage on impact with a turf, and we don't want to go overboard, so we deduce that here.
-	var/thrown_damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) - (impact_speed * 5)) * WARRIOR_IMPACT_DAMAGE_MULTIPLIER
+	var/thrown_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_IMPACT_DAMAGE_MULTIPLIER
 	living_target.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
 	if(isliving(hit_atom))
 		var/mob/living/hit_living = hit_atom
@@ -452,6 +452,7 @@
 // ***************************************
 #define WARRIOR_PUNCH_SLOWDOWN 3
 #define WARRIOR_PUNCH_STAGGER 3 SECONDS
+#define WARRIOR_PUNCH_DAMAGE_MULTIPLIER 1.2
 #define WARRIOR_PUNCH_EMPOWER_MULTIPLIER 1.5
 #define WARRIOR_PUNCH_GRAPPLED_DAMAGE_MULTIPLIER 1.5
 #define WARRIOR_PUNCH_GRAPPLED_DEBUFF_MULTIPLIER 1.5
@@ -510,7 +511,7 @@
 
 /// Does the ability. Exists because Punch is the parent of another ability, so this lets us separate functionality and avoid repeating a few lines of code.
 /datum/action/ability/activable/xeno/warrior/punch/proc/do_ability(atom/A)
-	var/punch_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
+	var/punch_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_PUNCH_DAMAGE_MULTIPLIER
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
 	if(empower_action?.check_empower(A))
 		punch_damage *= WARRIOR_PUNCH_EMPOWER_MULTIPLIER
@@ -592,6 +593,15 @@
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	attack_generic(xeno, punch_damage * 4, BRUTE, effects = FALSE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	Shake(duration = 0.5 SECONDS)
+	return TRUE
+
+/obj/vehicle/sealed/mecha/combat/greyscale/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage, ...)
+	. = ..()
+	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	attack_generic(xeno, punch_damage * 3, BRUTE, effects = FALSE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(duration = 0.5 SECONDS)
 	return TRUE

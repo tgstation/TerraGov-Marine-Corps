@@ -214,12 +214,12 @@
 	if((allow_pass_flags & PASS_TANK) && (mover.pass_flags & PASS_TANK))
 		return TRUE
 
-/obj/hitbox/projectile_hit(obj/projectile/proj)
+/obj/hitbox/projectile_hit(atom/movable/projectile/proj)
 	if(proj.shot_from == root)
 		return FALSE
 	return root.projectile_hit(arglist(args))
 
-/obj/hitbox/bullet_act(obj/projectile/proj)
+/obj/hitbox/bullet_act(atom/movable/projectile/proj)
 	SHOULD_CALL_PARENT(FALSE) // this is an abstract object: we have to avoid everything on parent
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
 	return root.bullet_act(proj)
@@ -316,29 +316,29 @@
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -32
-			root.pixel_w = -65
-			root.pixel_z = -48
+			root.pixel_x = -65
+			root.pixel_y = -48
 		if(SOUTH)
 			bound_height = vehicle_length
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -64
-			root.pixel_w = -65
-			root.pixel_z = -80
+			root.pixel_x = -65
+			root.pixel_y = -80
 		if(WEST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -64
 			bound_y = -32
-			root.pixel_w = -80
-			root.pixel_z = -56
+			root.pixel_x = -80
+			root.pixel_y = -56
 		if(EAST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -32
 			bound_y = -32
-			root.pixel_w = -48
-			root.pixel_z = -56
+			root.pixel_x = -48
+			root.pixel_y = -56
 
 	var/angle_change = dir2angle(new_dir) - dir2angle(old_dir)
 	//north needing to be considered 0 OR 360 is inconvenient, I'm sure there is a non ungabrain way to do this

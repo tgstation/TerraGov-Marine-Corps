@@ -30,8 +30,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
-	caste_traits = null
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 15, ACID = 10)
@@ -55,7 +54,6 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin/widow,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/activable/xeno/web_spit,
 		/datum/action/ability/xeno_action/burrow,
 		/datum/action/ability/activable/xeno/leash_ball,
@@ -100,7 +98,6 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin/widow,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/activable/xeno/web_spit,
 		/datum/action/ability/xeno_action/burrow,
 		/datum/action/ability/activable/xeno/leash_ball,

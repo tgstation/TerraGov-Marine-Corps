@@ -114,6 +114,7 @@
 #define LOG_CATEGORY_GAME_XOOC "game-xooc"
 #define LOG_CATEGORY_GAME_MOOC "game-mooc"
 #define LOG_CATEGORY_GAME_PRAYER "game-prayer"
+#define LOG_CATEGORY_GAME_INTERNET_REQUEST "game-internet-request"
 #define LOG_CATEGORY_GAME_SAY "game-say"
 #define LOG_CATEGORY_GAME_TOPIC "game-topic"
 #define LOG_CATEGORY_GAME_VOTE "game-vote"

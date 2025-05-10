@@ -131,6 +131,7 @@
 #define LANDSLIDE_KNOCKDOWN_DURATION 1 SECONDS
 #define LANDSLIDE_DAMAGE_MULTIPLIER 1.2
 #define LANDSLIDE_DAMAGE_VEHICLE_MODIFIER 20
+#define LANDSLIDE_DAMAGE_MECH_MODIFIER 2
 #define LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD 150
 
 #define LANDSLIDE_ENDED_CANCELLED (1<<0)
@@ -385,6 +386,9 @@
 					continue
 				if(isvehicle(affected_atom))
 					var/obj/vehicle/veh_victim = affected_atom
+					if(ismecha(veh_victim))
+						veh_victim.take_damage(damage * LANDSLIDE_DAMAGE_MECH_MODIFIER, MELEE)
+						continue
 					veh_victim.take_damage(damage * LANDSLIDE_DAMAGE_VEHICLE_MODIFIER, MELEE)
 					continue
 				var/obj/affected_object = affected_atom
@@ -446,6 +450,9 @@
 					continue
 				if(isvehicle(affected_atom))
 					var/obj/vehicle/veh_victim = affected_atom
+					if(ismecha(veh_victim))
+						veh_victim.take_damage(damage * LANDSLIDE_DAMAGE_MECH_MODIFIER, MELEE)
+						continue
 					veh_victim.take_damage(damage * LANDSLIDE_DAMAGE_VEHICLE_MODIFIER, MELEE)
 					continue
 				var/obj/affected_object = affected_atom
@@ -1301,7 +1308,7 @@
 	new /obj/effect/temp_visual/behemoth/landslide/hit(source_turf)
 	qdel(src)
 	var/datum/ammo/xeno/earth_pillar/projectile = landslide? GLOB.ammo_list[/datum/ammo/xeno/earth_pillar/landslide] : GLOB.ammo_list[/datum/ammo/xeno/earth_pillar]
-	var/obj/projectile/new_projectile = new /obj/projectile(source_turf)
+	var/atom/movable/projectile/new_projectile = new /atom/movable/projectile(source_turf)
 	new_projectile.generate_bullet(projectile)
 	new_projectile.fire_at(get_turf(target_atom), usr, source_turf, new_projectile.ammo.max_range)
 
@@ -1333,13 +1340,13 @@
 	damage_type = BRUTE
 	armor_type = MELEE
 
-/datum/ammo/xeno/earth_pillar/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return rock_broke(target_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	return rock_broke(target_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	if(istype(target_obj, /obj/structure/reagent_dispensers/fueltank))
 		var/obj/structure/reagent_dispensers/fueltank/hit_tank = target_obj
 		hit_tank.explode()
@@ -1347,7 +1354,7 @@
 		return on_hit_anything(get_turf(target_obj), proj)
 	return rock_broke(get_turf(target_obj), proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(!isxeno(proj.firer) || !isliving(target_mob))
 		return
 	var/mob/living/carbon/xenomorph/xeno_firer = proj.firer
@@ -1358,24 +1365,24 @@
 	return on_hit_anything(get_turf(target_mob), proj)
 
 /// VFX + SFX for when the rock doesn't hit anything.
-/datum/ammo/xeno/earth_pillar/proc/rock_broke(turf/hit_turf, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/proc/rock_broke(turf/hit_turf, atom/movable/projectile/proj)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(hit_turf)
 	playsound(hit_turf, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
 
 /// Does some stuff if the rock DOES hit something.
-/datum/ammo/xeno/earth_pillar/proc/on_hit_anything(turf/hit_turf, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/proc/on_hit_anything(turf/hit_turf, atom/movable/projectile/proj)
 	playsound(hit_turf, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/destroyed(hit_turf)
 	var/list/turf/affected_turfs = filled_turfs(hit_turf, EARTH_PILLAR_SPREAD_RADIUS, include_edge = FALSE, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
 	behemoth_area_attack(proj.firer, affected_turfs, damage_multiplier = EARTH_PILLAR_SPREAD_DAMAGE_MULTIPLIER)
 
-/datum/ammo/xeno/earth_pillar/landslide/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/landslide/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return on_hit_anything(target_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/landslide/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/landslide/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	return on_hit_anything(target_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/landslide/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/landslide/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	. = ..()
 	return on_hit_anything(get_turf(target_obj), proj)
 
@@ -1432,7 +1439,7 @@
 					var/obj/obj_victim = affected_atom
 					var/damage_add = 0
 					if(ismecha(obj_victim))
-						damage_add = 9.5
+						damage_add = 1.6
 					obj_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
 					continue
 				if(istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))

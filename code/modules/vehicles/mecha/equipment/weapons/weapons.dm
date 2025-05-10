@@ -63,6 +63,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(current_firer.incapacitated(TRUE))
+		return FALSE
 	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE) && !CHECK_BITFIELD(range, MECHA_MELEE))
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
@@ -79,13 +81,16 @@
 	if(!current_target)
 		return
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), src)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		if(windup_sound)
 			playsound(chassis.loc, windup_sound, 30, TRUE)
 		if(!do_after(source, windup_delay, NONE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
+		LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 	if(QDELETED(current_target))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
@@ -100,7 +105,7 @@
 
 	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
 	//feel free to improve if think of a better way to make sure cooldowns are shared
-	LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type), src)
+	LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), src)
 	// dont wanna call parent because it would override this timer
 	chassis.use_power(energy_drain)
 
@@ -163,13 +168,13 @@
 	current_firer?.client?.mouse_pointer_icon = chassis.mouse_pointer
 	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
 	//feel free to improve if think of a better way to make sure cooldowns are shared
-	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type))
-	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
+	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), equip_cooldown)
 	set_target(null)
 	current_firer = null
 
 ///does any effects and changes to the projectile when it is fired
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(atom/movable/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
 	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
 		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
@@ -203,8 +208,8 @@
 		else
 			return AUTOFIRE_CONTINUE
 
-	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /atom/movable/projectile/hitscan : /atom/movable/projectile
+	var/atom/movable/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammotype])
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
@@ -460,7 +465,7 @@
 	projectiles--
 	proj_init(O, source)
 	O.throw_at(target, missile_range, missile_speed, source, FALSE)
-	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), equip_cooldown)
 	chassis.use_power(energy_drain)
 	if(smoke_effect)
 		var/firing_angle = Get_Angle(get_turf(src), target)

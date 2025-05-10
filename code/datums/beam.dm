@@ -170,7 +170,7 @@
 		if(!living)
 			xenos -= living
 			continue
-		if(living.stat == DEAD || (living.status_flags & INCORPOREAL|GODMODE))
+		if(living.stat == DEAD || (living.status_flags & (INCORPOREAL|GODMODE)))
 			xenos -= living
 			continue
 		if(living in blacklistmobs)

@@ -57,7 +57,7 @@
 			return
 	return ..(user)
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -242,17 +242,17 @@
 			var/image/access_overlay = image('icons/obj/doors/overlays.dmi', "unres_[heading]", layer = DOOR_HELPER_LAYER, pixel_y = -4)
 			switch(heading)
 				if(NORTH)
-					access_overlay.pixel_x = 0
-					access_overlay.pixel_y = 32
+					access_overlay.pixel_w = 0
+					access_overlay.pixel_z = 32
 				if(SOUTH)
-					access_overlay.pixel_x = 0
-					access_overlay.pixel_y = -32
+					access_overlay.pixel_w = 0
+					access_overlay.pixel_z = -32
 				if(EAST)
-					access_overlay.pixel_x = 32
-					access_overlay.pixel_y = 0
+					access_overlay.pixel_w = 32
+					access_overlay.pixel_z = 0
 				if(WEST)
-					access_overlay.pixel_x = -32
-					access_overlay.pixel_y = 0
+					access_overlay.pixel_w = -32
+					access_overlay.pixel_z = 0
 			. += access_overlay
 
 /obj/machinery/door/airlock/do_animate(animation)
@@ -342,7 +342,7 @@
 	if(!issilicon(user) && isElectrified())
 		shock(user, 100)
 
-/obj/machinery/door/airlock/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/machinery/door/airlock/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	. = ..()
 	if(. && is_mainship_level(z)) //log shipside greytiders
 		log_attack("[key_name(proj.firer)] shot [src] with [proj] at [AREACOORD(src)]")

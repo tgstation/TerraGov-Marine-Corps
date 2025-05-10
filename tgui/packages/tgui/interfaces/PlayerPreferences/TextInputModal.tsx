@@ -19,7 +19,7 @@ export const TextInputModal = (props: TextInputModalData) => {
             width={areaWidth}
             backgroundColor="black"
             textColor="white"
-            onInput={(_, value) => {
+            onChange={(value) => {
               setInput(value.substring(0, 300));
             }}
             value={input}

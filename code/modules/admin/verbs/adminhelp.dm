@@ -453,6 +453,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		AddInteraction("<font color='#ff8c8c'>Made admin ticket by: [key_name_admin(usr)].</font>")
 		message_admins("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
 		to_chat(initiator, span_adminhelp("Your ticket has been tiered to an adminhelp."))
+		for(var/client/admin_client in GLOB.admins)
+			if(is_mentor(admin_client))
+				continue
+			if(admin_client.prefs.toggles_sound & SOUND_ADMINHELP)
+				SEND_SOUND(admin_client, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
+			window_flash(admin_client)
 	else if(tier == TICKET_ADMIN)
 		tier = TICKET_MENTOR
 		msg = "a mentor ticket"
@@ -460,13 +466,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
 		to_chat(initiator, span_adminhelp("Your ticket has been tiered to a mentorhelp."))
 		if(!irc)
-			for(var/client/X in GLOB.admins)
-				if(!is_mentor(X))
+			for(var/client/admin_client in GLOB.admins)
+				if(!is_mentor(admin_client))
 					continue
-				if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-					SEND_SOUND(X, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
-				window_flash(X)
+				if(admin_client.prefs.toggles_sound & SOUND_ADMINHELP)
+					SEND_SOUND(admin_client, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
+				window_flash(admin_client)
 	tier_cooldown = world.time + 5 SECONDS
+	marked = null
 	log_admin_private("Ticket (#[id]) has been made [msg] by [key_name(usr)].")
 
 
