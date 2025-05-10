@@ -1,19 +1,19 @@
 #define SKILLSID "skills-[unarmed]-[melee_weapons]\
 -[combat]-[pistols]-[shotguns]-[rifles]-[smgs]-[heavy_weapons]-[smartgun]\
--[engineer]-[construction]-[leadership]-[medical]-[surgery]-[pilot]-[police]-[powerloader]-[large_vehicle]-[stamina]"
+-[engineer]-[construction]-[leadership]-[medical]-[surgery]-[pilot]-[police]-[powerloader]-[large_vehicle]-[mech]-[stamina]"
 
 #define SKILLSIDSRC(S) "skills-[S.unarmed]-[S.melee_weapons]\
 -[S.combat]-[S.pistols]-[S.shotguns]-[S.rifles]-[S.smgs]-[S.heavy_weapons]-[S.smartgun]\
--[S.engineer]-[S.construction]-[S.leadership]-[S.medical]-[S.surgery]-[S.pilot]-[S.police]-[S.powerloader]-[S.large_vehicle]-[S.stamina]"
+-[S.engineer]-[S.construction]-[S.leadership]-[S.medical]-[S.surgery]-[S.pilot]-[S.police]-[S.powerloader]-[S.large_vehicle]-[S.mech]-[S.stamina]"
 
 /proc/getSkills(unarmed = 0, melee_weapons = 0,\
 combat = 0, pistols = 0, shotguns = 0, rifles = 0, smgs = 0, heavy_weapons = 0, smartgun = 0,\
-engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0, stamina = 0)
+engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0, mech = 0, stamina = 0)
 	. = locate(SKILLSID)
 	if(!.)
 		. = new /datum/skills(unarmed, melee_weapons,\
 			combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
+			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina)
 
 /proc/getSkillsType(skills_type = /datum/skills)
 	var/datum/skills/new_skill = skills_type
@@ -36,6 +36,7 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/powerloader = initial(new_skill.powerloader)
 	var/large_vehicle = initial(new_skill.large_vehicle)
 	var/stamina = initial(new_skill.stamina)
+	var/mech = initial(new_skill.mech)
 	. = locate(SKILLSID)
 	if(!.)
 		. = new skills_type
@@ -63,13 +64,15 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/police = SKILL_POLICE_DEFAULT
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
+	///whether we can use greyscale mechs or not
+	var/mech = SKILL_MECH_DEFAULT
 	///Effects stamina regen rate and regen delay
 	var/stamina = SKILL_STAMINA_DEFAULT
 
 
 /datum/skills/New(unarmed, melee_weapons,\
 combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina)
 	if(!isnull(unarmed))
 		src.unarmed = unarmed
 	if(!isnull(melee_weapons))
@@ -106,6 +109,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		src.powerloader = powerloader
 	if(!isnull(large_vehicle))
 		src.large_vehicle = large_vehicle
+	if(!isnull(mech))
+		src.mech = mech
 	if(!isnull(stamina))
 		src.stamina = stamina
 	tag = SKILLSIDSRC(src)
@@ -113,7 +118,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /// returns/gets a new skills datum with values changed according to the args passed
 /datum/skills/proc/modifyRating(unarmed, melee_weapons,\
 combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina)
 	return getSkills(src.unarmed+unarmed,\
 	src.melee_weapons+melee_weapons,\
 	src.combat+combat,\
@@ -132,6 +137,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.police+police,\
 	src.powerloader+powerloader,\
 	src.large_vehicle+large_vehicle,\
+	src.mech+mech,\
 	src.stamina+stamina)
 
 /// acts as [/proc/modifyRating] but instead modifies all values rather than several specific ones
@@ -154,12 +160,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.police+difference,\
 	src.powerloader+difference,\
 	src.large_vehicle+difference,\
+	src.mech+difference,\
 	src.stamina+difference)
 
 /// acts as [/proc/modifyRating] but sets the rating directly rather than modify it
 /datum/skills/proc/setRating(unarmed, melee_weapons,\
 combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina)
 	return getSkills((isnull(unarmed) ? src.unarmed : unarmed),\
 		(isnull(melee_weapons) ? src.melee_weapons : melee_weapons),\
 		(isnull(combat) ? src.combat : combat),\
@@ -178,6 +185,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		(isnull(police) ? src.police : police),\
 		(isnull(powerloader) ? src.powerloader : powerloader),\
 		(isnull(large_vehicle) ? src.large_vehicle : large_vehicle),\
+		(isnull(mech) ? src.mech : mech),\
 		(isnull(stamina) ? src.stamina : stamina))
 
 /datum/skills/vv_edit_var(var_name, var_value)
@@ -217,6 +225,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		SKILL_POLICE = police,
 		SKILL_POWERLOADER = powerloader,
 		SKILL_LARGE_VEHICLE = large_vehicle,
+		SKILL_MECH = mech,
 		SKILL_STAMINA = stamina,
 	)
 
@@ -507,7 +516,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	powerloader = SKILL_POWERLOADER_PRO
-	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
+	mech = SKILL_MECH_TRAINED
 
 /datum/skills/assault_crewman
 	name = ASSAULT_CREWMAN
@@ -515,6 +524,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_METAL
 	powerloader = SKILL_POWERLOADER_PRO
 	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
+	mech = SKILL_MECH_TRAINED
 
 /datum/skills/transport_crewman
 	name = TRANSPORT_CREWMAN
@@ -760,6 +770,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
+	mech = SKILL_MECH_TRAINED
 
 /* Deathsquad */
 /datum/skills/deathsquad

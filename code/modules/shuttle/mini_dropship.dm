@@ -348,7 +348,7 @@
 
 /datum/action/innate/shuttledocker_land
 	name = "Land"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "land"
 
 /datum/action/innate/shuttledocker_land/Activate()

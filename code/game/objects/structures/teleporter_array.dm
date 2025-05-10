@@ -155,7 +155,7 @@
 
 /datum/action/innate/activate_teleporter
 	name = "Activate teleporter array"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "land"
 
 /datum/action/innate/activate_teleporter/Activate()
@@ -165,7 +165,7 @@
 
 /datum/action/innate/set_teleport_target
 	name = "Set teleportation target"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "mech_zoom_on"
 	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
 	var/choosing = FALSE

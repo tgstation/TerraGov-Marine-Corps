@@ -12,6 +12,8 @@
 		damage_amount = round(modify_by_armor(damage_amount, armor_type, armour_penetration, null, attack_dir), DAMAGE_PRECISION)
 	if(damage_amount < DAMAGE_PRECISION)
 		return
+	if(SEND_SIGNAL(src, COMSIG_ATOM_TAKE_DAMAGE, damage_amount, damage_type, armor_type, effects, attack_dir, armour_penetration, blame_mob) & COMPONENT_NO_TAKE_DAMAGE)
+		return
 	. = damage_amount
 	obj_integrity = max(obj_integrity - damage_amount, 0)
 	update_icon()
@@ -26,6 +28,8 @@
 
 ///Increase obj_integrity and record it to the repairer's stats
 /obj/proc/repair_damage(repair_amount, mob/user)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_REPAIR_DAMAGE, repair_amount, user) & COMPONENT_NO_REPAIR)
+		return
 	repair_amount = min(repair_amount, max_integrity - obj_integrity)
 	if(user?.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]

@@ -128,7 +128,8 @@
 
 	new /obj/effect/skyfall_landingzone(get_turf(chassis), chassis)
 	chassis.resistance_flags |= INDESTRUCTIBLE //not while jumping at least
-	chassis.mecha_flags |= QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT
+	chassis.mecha_flags |= QUIET_TURNS|CANNOT_INTERACT
+	ADD_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	chassis.phasing = "flying"
 	chassis.move_delay = 1
 	chassis.density = FALSE
@@ -158,7 +159,8 @@
 	chassis.visible_message(span_danger("[chassis] lands from above!"))
 	playsound(chassis, 'sound/effects/explosion/large1.ogg', 50, 1)
 	chassis.resistance_flags &= ~INDESTRUCTIBLE
-	chassis.mecha_flags &= ~(QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT)
+	chassis.mecha_flags &= ~(QUIET_TURNS|CANNOT_INTERACT)
+	REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	chassis.phasing = initial(chassis.phasing)
 	chassis.move_delay = initial(chassis.move_delay)
 	chassis.density = TRUE

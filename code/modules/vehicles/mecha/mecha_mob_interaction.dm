@@ -81,26 +81,34 @@
 	RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, PROC_REF(on_mouseclick), TRUE)
 	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(display_speech_bubble), TRUE)
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against), TRUE)
+	RegisterSignal(M, COMSIG_MOVABLE_KEYBIND_FACE_DIR, PROC_REF(on_turn), TRUE)
 	. = ..()
 	update_icon()
 	//tgmc addition start
-	if(istype(equip_by_category[MECHA_R_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
-		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_R_ARM]
-		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
-	if(istype(equip_by_category[MECHA_L_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
-		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_L_ARM]
-		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
+	//bottom to top order
+	var/list/ammo_huds = list(MECHA_R_BACK, MECHA_L_BACK, MECHA_R_ARM, MECHA_L_ARM, )
+	for(var/cat in ammo_huds)
+		if(istype(equip_by_category[cat], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+			var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[cat]
+			M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
 	//tgmc addition end
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
 	//tgmc addition start
 	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
 	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
+	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_R_BACK])
+	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_L_BACK])
+	if(leg_overload_mode)
+		for(var/mob/booster AS in occupant_actions)
+			var/action_type = /datum/action/vehicle/sealed/mecha/mech_overload_mode
+			var/datum/action/vehicle/sealed/mecha/mech_overload_mode/overload = occupant_actions[booster][action_type]
+			if(!overload)
+				continue
+			overload.action_activate(NONE, FALSE)
+			break
 	//tgmc addition end
-	UnregisterSignal(M, COMSIG_MOB_DEATH)
-	UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
-	UnregisterSignal(M, COMSIG_MOB_SAY)
-	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
+	UnregisterSignal(M, list(COMSIG_MOB_DEATH, COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_SAY, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_KEYBIND_FACE_DIR))
 	M.clear_alert(ALERT_CHARGE)
 	M.clear_alert(ALERT_MECH_DAMAGE)
 	if(M.client)

@@ -2252,14 +2252,11 @@
 			/obj/item/mecha_ammo/vendable/flamer = -1,
 		),
 		"Equipment" = list(
-			/obj/item/mecha_parts/mecha_equipment/armor/melee = -1,
-			/obj/item/mecha_parts/mecha_equipment/armor/acid = -1,
-			/obj/item/mecha_parts/mecha_equipment/armor/explosive = -1,
+			/obj/item/mecha_parts/mecha_equipment/armor/booster = -1,
+			/obj/item/mecha_parts/mecha_equipment/armor/booster/lightweight = -1,
 			/obj/item/mecha_parts/mecha_equipment/generator/greyscale = -1,
-			/obj/item/mecha_parts/mecha_equipment/generator/greyscale/upgraded = -1,
-			/obj/item/mecha_parts/mecha_equipment/energy_optimizer = -1,
+			/obj/item/mecha_parts/mecha_equipment/generator/greyscale/heavy = -1,
 			/obj/item/mecha_parts/mecha_equipment/melee_core = -1,
-			/obj/item/mecha_parts/mecha_equipment/ability/dash = -1,
 			/obj/item/mecha_parts/mecha_equipment/ability/smoke/cloak_smoke = -1,
 		),
 	)

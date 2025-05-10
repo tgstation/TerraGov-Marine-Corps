@@ -343,7 +343,7 @@
 	if(obj_integrity <= max_integrity * repair_threshold)
 		return BELOW_INTEGRITY_THRESHOLD
 
-	if(obj_integrity >= max_integrity)
+	if(!needs_welder_repair(user))
 		balloon_alert(user, "already repaired")
 		return TRUE
 
@@ -359,7 +359,7 @@
 	repair_time *= welder.toolspeed
 	balloon_alert_to_viewers("starting repair...")
 	handle_weldingtool_overlay()
-	while(obj_integrity < max_integrity)
+	while(needs_welder_repair(user))
 		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 		welder.eyecheck(user)
 		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_FRIENDLY))
@@ -367,7 +367,7 @@
 			balloon_alert(user, "interrupted!")
 			return TRUE
 
-		if(obj_integrity <= max_integrity * repair_threshold || obj_integrity >= max_integrity)
+		if(obj_integrity <= max_integrity * repair_threshold || !needs_welder_repair(user))
 			handle_weldingtool_overlay(TRUE)
 			return TRUE
 
@@ -383,6 +383,10 @@
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	handle_weldingtool_overlay(TRUE)
 	return TRUE
+
+//Returns true if we want to try to repair this object with welder_repair_act, false otherwise
+/obj/proc/needs_welder_repair(mob/user)
+	return obj_integrity < max_integrity
 
 /obj/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	if(isxeno(user))

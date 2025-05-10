@@ -192,7 +192,7 @@
 /datum/action/vehicle/action_activate()
 	if(HAS_TRAIT(owner, TRAIT_IMMOBILE))
 		return FALSE
-	if(!owner.stat)
+	if(owner.stat)
 		return FALSE
 	return ..()
 
