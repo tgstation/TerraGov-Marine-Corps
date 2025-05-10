@@ -254,7 +254,7 @@
 	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
 	alpha = 190
 
-/obj/effect/build_hologram/Initialize(mapload, atom/copy_type)
+/obj/effect/build_hologram/Initialize(mapload, atom/copy_type, modify_color = FALSE)
 	if(ispath(copy_type))
 		icon = initial(copy_type.icon)
 		icon_state = initial(copy_type.icon_state)
@@ -262,4 +262,4 @@
 		color = initial(copy_type.color)
 		smoothing_flags = initial(copy_type.smoothing_flags)
 	. = ..()
-	makeHologram(0.7, FALSE)
+	makeHologram(0.7, modify_color)
