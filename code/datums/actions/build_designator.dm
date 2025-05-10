@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 /// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
 /datum/action/ability/activable/build_designator/proc/create_hologram(turf/target_turf)
 	var/atom/selected = construct_type
-	var/obj/effect/build_hologram/new_hologram = new(target_turf, selected)
+	var/obj/effect/build_hologram/new_hologram = new(target_turf, selected, TRUE)
 	new_hologram.alpha = 0
 	new_hologram.layer = ABOVE_OBJ_LAYER
 	new_hologram.glide_size = 32
@@ -171,9 +171,13 @@ GLOBAL_LIST_INIT(designator_types, list (
 	layer = ABOVE_ALL_MOB_LAYER
 	smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
 	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
-	alpha = 190
+	hud_possible = list(ORDER_HUD)
+	///Material needed for the recipe
 	var/obj/material_type
+	///Recipe for what we are building
 	var/datum/stack_recipe/recipe
+	///The visual effect we're attaching
+	var/image/holder
 
 /obj/effect/build_designator/Initialize(mapload, obj/construct_type, new_dir) //construct_type is a TYPE but typecast for initial values below
 	if(!construct_type)
@@ -181,18 +185,39 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 	material_type = GLOB.designator_types[construct_type]
 	recipe = GLOB.stack_recipes[material_type][construct_type]
-	dir = new_dir
 
+	//Because we only want this hologram visible via the right hud, but we want all the nice effects, we fully configure the appearance,
+	//steal it for the hud image, then wipe the objects appearance entirely
+
+	dir = new_dir
 	icon = construct_type::icon
 	icon_state = construct_type::icon_state
-	base_icon_state = construct_type::base_icon_state
-	color = construct_type::color
-	smoothing_flags = construct_type::smoothing_flags
+
 	name = "holo [construct_type::name]"
 	desc = "A holographic representation of a [construct_type::name]. Apply [recipe.req_amount] [material_type::name] to build it."
 	. = ..()
-	makeHologram(0.7, FALSE)
+	prepare_huds()
+	makeHologram(0.7)
+
+	holder = hud_list[ORDER_HUD]
+	holder.appearance = appearance
+	holder.dir = dir
+	holder.alpha = 190
+	hud_list[ORDER_HUD] = holder
+
+	icon = null
+	cut_overlays()
+
+	var/datum/atom_hud/order/order_hud = GLOB.huds[DATA_HUD_ORDER]
+	order_hud.add_to_hud(src)
+
 	QDEL_IN(src, 4 MINUTES)
+
+/obj/effect/build_designator/Destroy()
+	var/datum/atom_hud/order/order_hud = GLOB.huds[DATA_HUD_ORDER]
+	order_hud.remove_from_hud(src)
+	QDEL_NULL(holder)
+	return ..()
 
 /obj/effect/build_designator/attackby(obj/item/I, mob/user, params)
 	if(!user.dextrous)
