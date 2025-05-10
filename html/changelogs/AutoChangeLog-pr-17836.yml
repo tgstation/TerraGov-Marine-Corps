@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - bugfix: "Drones can again receive plasma from queen"
