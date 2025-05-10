@@ -37,15 +37,6 @@ ADMIN_VERB(set_ooc_color_self, R_COLOR, "OOC Text Color", "Set your own color fo
 	user.prefs.ooccolor = new_ooccolor
 	user.prefs.save_preferences()
 
-ADMIN_VERB(set_asay_color_self, R_COLOR, "ASAY Text Color", "Set your own color for ASAY", ADMIN_CATEGORY_FUN)
-	var/new_asay_color = input(user, "Please select your ASAY colour", "ASAY colour") as color|null
-	if(!new_asay_color) // todo dleete this and just put it in the admin tab on the pref ui
-		return
-
-	user.prefs.load_preferences()
-	user.prefs.asay_color = new_asay_color
-	user.prefs.save_preferences()
-
 ADMIN_VERB(toggle_prayers, R_MENTOR|R_ADMIN, "Toggle Prayers", "Toggle IC prayers from players", ADMIN_CATEGORY_MAIN)
 	user.prefs.toggles_chat ^= CHAT_PRAYER // todo dleete this and just put it in the admin tab on the pref ui
 	user.prefs.save_preferences()

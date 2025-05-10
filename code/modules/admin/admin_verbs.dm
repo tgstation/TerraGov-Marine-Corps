@@ -347,10 +347,11 @@ ADMIN_VERB(asay, R_ASAY, "asay", "Speak in the private admin channel", ADMIN_CAT
 
 	user.mob.log_talk(msg, LOG_ASAY)
 
-	var/asay_color = user.prefs.asay_color
-	var/custom_asay_color = (CONFIG_GET(flag/allow_admin_asaycolor) && asay_color) ? "<font color=[asay_color]>" : "<font color='[DEFAULT_ASAY_COLOR]'>"
-	msg = "[span_adminsay("[span_prefix("ADMIN:")][ADMIN_TPMONTY(user.mob)]: [custom_asay_color]<span class='message linkify'>[msg]")]</span>[custom_asay_color ? "</font>":null]"
+	var/color = "asay"
+	if(check_other_rights(user, R_DBRANKS, FALSE))
+		color = "headminasay"
 
+	msg = "<span class='[color]'>[span_prefix("ADMIN:")] [ADMIN_TPMONTY(user.mob)]: <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C,

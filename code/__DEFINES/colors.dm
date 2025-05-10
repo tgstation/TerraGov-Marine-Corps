@@ -9,8 +9,6 @@
 #define FIXED_COLOR_PRIORITY 4
 ///how many colour priority levels there are.
 #define COLOR_PRIORITY_AMOUNT 4
-/// The default color for admin say, used as a fallback when the preference is not enabled
-#define DEFAULT_ASAY_COLOR COLOR_MOSTLY_PURE_RED
 
 //Filters
 #define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, color="#04080FAA")
