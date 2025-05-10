@@ -137,9 +137,12 @@ GLOBAL_LIST_INIT(designator_types, list (
 /datum/action/ability/activable/build_designator/proc/check_turf_validity(turf/open/target_turf)
 	if(!isopenturf(target_turf))
 		return FALSE
-	if(isspaceturf(target_turf))
-		return FALSE
 	if(!target_turf.allow_construction)
+		return FALSE
+	var/area/area = get_area(target_turf)
+	if(area.area_flags & NO_CONSTRUCTION)
+		return FALSE
+	if(isspaceturf(target_turf))
 		return FALSE
 	var/border_obj = (construct_type::atom_flags & ON_BORDER) ? TRUE : FALSE
 	for(var/obj/object in target_turf)
