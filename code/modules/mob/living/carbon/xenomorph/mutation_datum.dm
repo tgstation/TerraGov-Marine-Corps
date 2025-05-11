@@ -198,24 +198,21 @@
 	required_structure = MUTATION_STRUCTURE_SPUR
 	status_effect = /datum/status_effect/mutation_spur_upgrade
 
-/datum/mutation_upgrade/spur/on_gain()
-	RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_SPUR, PROC_REF(on_building_update))
-	..()
-
-/datum/mutation_upgrade/spur/on_lose()
-	UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_SPUR)
-	..()
-
 // Defender
-/datum/mutation_upgrade/spur/sharpening_claws
-	name = "Sharpening Claws"
-	desc = "For every 10% missing armor, you gain 2/3/4 armor piercing for your slash attacks."
+/datum/mutation_upgrade/spur/breathtaking_spin
+	name = "Breathtaking Spin"
+	desc = "Tail Swipe no longer stuns and deals only stamina damage. It deals an additional 3x/3.75x/4.5x stamina damage."
 
-/datum/mutation_upgrade/spur/sharpening_claws/on_gain()
+/datum/mutation_upgrade/spur/breathtaking_spin/on_building_update(previous_amount, new_amount)
 	..()
-
-/datum/mutation_upgrade/spur/sharpening_claws/on_lose()
-	..()
+	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
+	if(!ability)
+		return
+	if(previous_amount > 0)
+		ability.stamina_multiplier -= 2.25
+	if(new_amount > 0)
+		ability.stamina_multiplier += 2.25
+	ability.stamina_multiplier += (new_amount - previous_amount) * 0.75
 
 /**
  * Veil
@@ -225,20 +222,14 @@
 	required_structure = MUTATION_STRUCTURE_VEIL
 	status_effect = /datum/status_effect/mutation_veil_upgrade
 
-/datum/mutation_upgrade/veil/on_gain()
-	RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL, PROC_REF(on_building_update))
-	..()
+// Defender
+/datum/mutation_upgrade/veil/carapace_sweat
+	name = "Carapace Sweat"
+	desc = "Regenerate Skin will grant you fire immunity for 2/4/6 seconds. If you were on fire, you will be extinguished and set nearby humans on fire."
 
-/datum/mutation_upgrade/veil/on_lose()
-	UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL)
+/datum/mutation_upgrade/veil/carapace_sweat/on_building_update(previous_amount, new_amount)
 	..()
-
-/datum/mutation_upgrade/veil/slow_and_steady
-	name = "Slow and Steady"
-	desc = "While Fortify is active, you can move at 10/20/30% of your movement speed."
-
-/datum/mutation_upgrade/veil/slow_and_steady/on_gain()
-	..()
-
-/datum/mutation_upgrade/veil/slow_and_steady/on_lose()
-	..()
+	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
+	if(!ability)
+		return
+	ability.fire_immunity_length += (new_amount - previous_amount) SECONDS

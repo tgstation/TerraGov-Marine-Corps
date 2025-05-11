@@ -13,6 +13,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
 	)
+	/// The multiplier of stamina damage applied to targets. If this is above 1, then there will be no brute damage or stuns.
+	var/stamina_multiplier = 1
 
 /datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
@@ -43,10 +45,11 @@
 		var/affecting = H.get_limb(ran_zone(null, 0))
 		if(!affecting) //Still nothing??
 			affecting = H.get_limb("chest") //Gotta have a torso?!
-		H.knockback(xeno_owner, sweep_range, 4)
-		H.apply_damage(damage, BRUTE, affecting, MELEE)
-		H.apply_damage(damage, STAMINA, updating_health = TRUE)
-		H.Paralyze(0.5 SECONDS) //trip and go
+		if(stamina_multiplier <= 1)
+			H.knockback(xeno_owner, sweep_range, 4)
+			H.apply_damage(damage, BRUTE, affecting, MELEE)
+			H.Paralyze(0.5 SECONDS) //trip and go
+		H.apply_damage(damage * stamina_multiplier, STAMINA, updating_health = TRUE)
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -323,6 +326,8 @@
 	)
 	/// Amount of stacks of debuffs / 2x seconds of buff to remove.
 	var/debuff_amount_to_remove = 0
+	/// The length of fire immunity & if nearby humans should be set on fire.
+	var/fire_immunity_length = 0 SECONDS
 
 /datum/action/ability/xeno_action/regenerate_skin/on_cooldown_finish()
 	to_chat(xeno_owner, span_notice("We feel we are ready to shred our skin and grow another."))
@@ -354,9 +359,17 @@
 				if(!stacking_status_effect)
 					continue
 				stacking_status_effect.add_stacks(debuff_amount_to_remove)
+	if(fire_immunity_length)
+		xeno_owner.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING, fire_immunity_length)
+		if(xeno_owner.on_fire)
+			for (var/mob/living/carbon/human/nearby_human in orange(1, xeno_owner))
+				if(nearby_human.stat == DEAD || !xeno_owner.Adjacent(nearby_human))
+					continue
+				nearby_human.adjust_fire_stacks(xeno_owner.fire_stacks)
+				nearby_human.IgniteMob()
+			xeno_owner.ExtinguishMob()
 	add_cooldown()
 	return succeed_activate()
-
 
 // ***************************************
 // *********** Centrifugal force

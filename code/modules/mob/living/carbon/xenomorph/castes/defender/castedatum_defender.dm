@@ -55,8 +55,8 @@
 
 	buyable_mutations = list(
 		/datum/mutation_upgrade/shell/carapace_waxing,
-		/datum/mutation_upgrade/spur/sharpening_claws,
-		/datum/mutation_upgrade/veil/slow_and_steady
+		/datum/mutation_upgrade/spur/breathtaking_spin,
+		/datum/mutation_upgrade/veil/carapace_sweat
 	)
 
 /datum/xeno_caste/defender/ancient
