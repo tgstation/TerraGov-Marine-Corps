@@ -1,4 +1,3 @@
-import { useBackend } from '../backend';
 import {
   Button,
   Collapsible,
@@ -6,7 +5,9 @@ import {
   ProgressBar,
   Section,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Upgrade = {
@@ -17,28 +18,31 @@ type Upgrade = {
 
 type BiomassData = {
   biomass: number;
-  cost: number;
+  cost_text: number;
 };
 
 type ShellMutationData = {
   shell_mutations: Upgrade[];
   shell_chambers: number;
-  biomass: number;
   cost: number;
+  cost_text: string;
+  biomass: number;
 };
 
 type SpurMutationData = {
   spur_mutations: Upgrade[];
   spur_chambers: number;
-  biomass: number;
   cost: number;
+  cost_text: string;
+  biomass: number;
 };
 
 type VeilMutationData = {
   veil_mutations: Upgrade[];
   veil_chambers: number;
-  biomass: number;
   cost: number;
+  cost_text: string;
+  biomass: number;
 };
 
 export const MutationSelector = (_props: any) => {
@@ -58,10 +62,10 @@ export const MutationSelector = (_props: any) => {
 
 const BiomassBar = (_props: any) => {
   const { data } = useBackend<BiomassData>();
-  const { biomass, cost } = data;
+  const { biomass, cost_text } = data;
 
   return (
-    <Tooltip content={`Costs ${cost} biomass to buy an upgrade!`}>
+    <Tooltip content={`Costs ${cost_text} biomass to buy an another mutation!`}>
       <Flex mb={1}>
         <Flex.Item grow>
           <ProgressBar color="green" value={biomass / 1800}>
@@ -75,92 +79,95 @@ const BiomassBar = (_props: any) => {
 
 const ShellMutationSection = (_props: any) => {
   const { act, data } = useBackend<ShellMutationData>();
-  const { shell_mutations, shell_chambers, cost, biomass } = data;
+  const { shell_mutations, shell_chambers, cost, cost_text, biomass } = data;
 
   return (
     <Collapsible
       title={`Shell Mutations | Shell Chambers: ${shell_chambers}/3`}
     >
-      {shell_mutations.map((mutation) => (
-        <Section
-          title={`${mutation.name}`}
-          mb={1}
-          key={mutation.name}
-          buttons={
-            <Button
-              content={`Buy (${cost})`}
-              key={mutation.name}
-              onClick={() => act('purchase', { upgrade_name: mutation.name })}
-              disabled={cost > biomass || shell_chambers === 0}
-              selected={mutation.owned}
-            />
-          }
-        >
-          <Flex direction="column-reverse" align={'left'}>
-            {mutation.desc}
-          </Flex>
-        </Section>
-      ))}
+      {shell_mutations &&
+        shell_mutations.map((mutation) => (
+          <Section
+            title={`${mutation.name}`}
+            mb={1}
+            key={mutation.name}
+            buttons={
+              <Button
+                content={`Buy (${cost_text})`}
+                key={mutation.name}
+                onClick={() => act('purchase', { upgrade_name: mutation.name })}
+                disabled={cost > biomass || shell_chambers === 0}
+                selected={mutation.owned}
+              />
+            }
+          >
+            <Flex direction="column-reverse" align={'left'}>
+              {mutation.desc}
+            </Flex>
+          </Section>
+        ))}
     </Collapsible>
   );
 };
 
 const SpurMutationSection = (_props: any) => {
   const { act, data } = useBackend<SpurMutationData>();
-  const { spur_mutations, spur_chambers, cost, biomass } = data;
+  const { spur_mutations, spur_chambers, cost, cost_text, biomass } = data;
 
   return (
     <Collapsible title={`Spur Mutations | Spur Chambers: ${spur_chambers}/3`}>
-      {spur_mutations.map((mutation) => (
-        <Section
-          title={`${mutation.name}`}
-          mb={1}
-          key={mutation.name}
-          buttons={
-            <Button
-              content={`Buy (${cost})`}
-              key={mutation.name}
-              onClick={() => act('purchase', { upgrade_name: mutation.name })}
-              disabled={cost > biomass || spur_chambers === 0}
-              selected={mutation.owned}
-            />
-          }
-        >
-          <Flex direction="column-reverse" align={'left'}>
-            {mutation.desc}
-          </Flex>
-        </Section>
-      ))}
+      {spur_mutations &&
+        spur_mutations.map((mutation) => (
+          <Section
+            title={`${mutation.name}`}
+            mb={1}
+            key={mutation.name}
+            buttons={
+              <Button
+                content={`Buy (${cost_text})`}
+                key={mutation.name}
+                onClick={() => act('purchase', { upgrade_name: mutation.name })}
+                disabled={cost > biomass || spur_chambers === 0}
+                selected={mutation.owned}
+              />
+            }
+          >
+            <Flex direction="column-reverse" align={'left'}>
+              {mutation.desc}
+            </Flex>
+          </Section>
+        ))}
     </Collapsible>
   );
 };
 
 const VeilMutationSection = (_props: any) => {
   const { act, data } = useBackend<VeilMutationData>();
-  const { veil_mutations, veil_chambers, cost, biomass } = data;
+  const { veil_mutations, veil_chambers, cost, cost_text, biomass } = data;
 
   return (
     <Collapsible title={`Veil Mutations | Veil Chambers: ${veil_chambers}/3`}>
-      {veil_mutations.map((mutation) => (
-        <Section
-          title={`${mutation.name}`}
-          mb={1}
-          key={mutation.name}
-          buttons={
-            <Button
-              content={`Buy (${cost})`}
-              key={mutation.name}
-              onClick={() => act('purchase', { upgrade_name: mutation.name })}
-              disabled={cost > biomass || veil_chambers === 0}
-              selected={mutation.owned}
-            />
-          }
-        >
-          <Flex direction="column-reverse" align={'left'}>
-            {mutation.desc}
-          </Flex>
-        </Section>
-      ))}
+      {veil_mutations &&
+        veil_mutations.map((mutation) => (
+          <Section
+            title={`${mutation.name}`}
+            mb={1}
+            key={mutation.name}
+            buttons={
+              <Button
+                content={`Buy (${cost_text})`}
+                key={mutation.name}
+                onClick={() => act('purchase', { upgrade_name: mutation.name })}
+                disabled={cost > biomass || veil_chambers === 0}
+                selected={mutation.owned}
+              />
+            }
+          >
+            <Flex direction="column-reverse" align={'left'}>
+              {mutation.desc}
+            </Flex>
+          </Section>
+        ))}
     </Collapsible>
   );
 };

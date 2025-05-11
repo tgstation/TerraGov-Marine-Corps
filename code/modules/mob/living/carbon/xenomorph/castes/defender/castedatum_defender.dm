@@ -53,6 +53,12 @@
 		/datum/action/ability/xeno_action/regenerate_skin,
 	)
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/carapace_waxing,
+		/datum/mutation_upgrade/spur/sharpening_claws,
+		/datum/mutation_upgrade/veil/slow_and_steady
+	)
+
 /datum/xeno_caste/defender/ancient
 	upgrade = XENO_UPGRADE_NORMAL
 

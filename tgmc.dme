@@ -787,6 +787,7 @@
 #include "code\datums\status_effects\sectoid.dm"
 #include "code\datums\status_effects\speech_debuffs.dm"
 #include "code\datums\status_effects\status_effect.dm"
+#include "code\datums\status_effects\xeno_buffs_mutations.dm"
 #include "code\datums\status_effects\xeno_buffs.dm"
 #include "code\datums\storage\storage.dm"
 #include "code\datums\storage\subtypes\backpack.dm"
