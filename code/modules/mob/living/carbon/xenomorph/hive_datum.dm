@@ -24,6 +24,12 @@
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
 	/// List of recovery pylons.
 	var/list/obj/structure/xeno/recovery_pylon/recovery_pylons = list()
+	/// List of shell mutation chambers.
+	var/list/obj/structure/xeno/mutation_chamber/shell/shell_chambers = list()
+	/// List of spur mutation chambers.
+	var/list/obj/structure/xeno/mutation_chamber/spur/spur_chambers = list()
+	/// List of veil mutation chambers.
+	var/list/obj/structure/xeno/mutation_chamber/veil/veil_chambers = list()
 
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
