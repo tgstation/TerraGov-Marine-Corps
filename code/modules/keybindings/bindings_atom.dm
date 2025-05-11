@@ -6,6 +6,8 @@
 	// But the move of one mob might poke the client of another, so we do this
 	if(!user)
 		return FALSE
+	if(user.keys_held["Ctrl"])
+		return
 	var/movement_dir = user.intended_direction | user.next_move_dir_add
 	// If we're not movin anywhere, we aren't movin anywhere
 	// Safe because nothing adds to movement_dir after this moment
@@ -21,16 +23,7 @@
 		movement_dir &= ~(NORTH|SOUTH)
 	if((movement_dir & EAST) && (movement_dir & WEST))
 		movement_dir &= ~(EAST|WEST)
-
-	//turn without moving while using the movement lock key, unless something wants to ignore it and move anyway
-	if(user.movement_locked && !(SEND_SIGNAL(src, COMSIG_MOVABLE_KEYBIND_FACE_DIR, movement_dir) & COMSIG_IGNORE_MOVEMENT_LOCK))
-		keybind_face_direction(movement_dir)
-	// Null check cause of the signal above
-	else if(user)
-		user.Move(get_step(src, movement_dir), movement_dir)
-		return !!movement_dir //true if there was actually any player input
-
-	return FALSE
+	user.Move(get_step(src, movement_dir), movement_dir)
 
 /client/proc/calculate_move_dir()
 	var/movement_dir = NONE

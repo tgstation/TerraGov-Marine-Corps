@@ -2230,7 +2230,7 @@
 			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_smg = -1,
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon = -1,
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavyrocket = -1,
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/flamethrower = -1,
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg = -1,
 			/obj/item/mecha_parts/mecha_equipment/laser_sword = -1,

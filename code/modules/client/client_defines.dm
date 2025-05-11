@@ -95,8 +95,6 @@
 	var/keysend_tripped = FALSE
 	///custom movement keys for this client
 	var/list/movement_keys = list()
-	///Are we locking our movement input?
-	var/movement_locked = FALSE
 
 	var/list/parallax_layers
 	var/list/parallax_layers_cached
