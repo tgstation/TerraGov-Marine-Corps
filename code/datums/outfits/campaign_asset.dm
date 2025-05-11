@@ -266,7 +266,7 @@
 
 /datum/outfit/job/som/militia/leader/upp_rifle
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer/standard
-	
+
 	belt_contents = list(
 		/obj/item/ammo_magazine/rifle/type71 = 6,
 	)
@@ -359,8 +359,8 @@
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/mainship
 	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/tyr
-	head = /obj/item/clothing/head/modular/robot/heavy/tyr
+	wear_suit = /obj/item/clothing/suit/modular/tdf/robot/shield
+	head = /obj/item/clothing/head/modular/tdf/robot
 	r_pocket = /obj/item/storage/pouch/pistol
 	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/satchel
@@ -435,7 +435,6 @@
 
 
 /datum/outfit/job/tgmc/campaign_robot/jetpack
-	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/shield
 	r_pocket = /obj/item/storage/pouch/magazine/large
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness
 	back = /obj/item/jetpack_marine/heavy
