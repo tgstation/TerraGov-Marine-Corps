@@ -157,6 +157,9 @@
 	else //Upgrade process finished or impossible
 		. += "Upgrade Progress: (FINISHED)"
 
+	if(!(xeno_caste.caste_flags & CASTE_NO_MUTATION))
+		. += "Biomass: [!isnull(SSpoints.xeno_biomass_points_by_hive[hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[hivenumber] : 0]/[MUTATION_BIOMASS_MAXIMUM]"
+
 	. += "Health: [health]/[maxHealth][overheal ? " + [overheal]": ""]" //Changes with balance scalar, can't just use the caste
 
 	if(xeno_caste.plasma_max > 0)
