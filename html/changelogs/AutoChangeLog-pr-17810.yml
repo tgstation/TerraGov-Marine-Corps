@@ -1,5 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - config: "fixed missing allow ooc admin color and added toggle for asay colors"
-  - admin: "Asay can now be colored! (Fun tab ASAY text color)"
