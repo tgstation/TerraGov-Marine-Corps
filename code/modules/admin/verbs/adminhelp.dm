@@ -281,7 +281,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	player_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("<font color='#a7f2ef'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>", player_message = "<font color='blue'>[key_name_admin(usr, include_name = FALSE)] PM'd [LinkedReplyName()]</font>")
+		AddInteraction("<font color='#a7f2ef'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>", player_message = "<font color='blue'>[key_name_admin(usr, FALSE)] PM'd [LinkedReplyName()]</font>")
 		if(tier == TICKET_MENTOR)
 			message_staff("Ticket [TicketHref("#[id]")] created.")
 		else if(tier == TICKET_ADMIN)
