@@ -34,3 +34,6 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 #define MUTATION_CATEGORY_SHELL "Shell"
 #define MUTATION_CATEGORY_SPUR "Spur"
 #define MUTATION_CATEGORY_VEIL "Veil"
+
+// TODO: There are probably better ways to indicate "you cannot buy this anymore".
+#define MUTATION_INFINITE_SYMBOL "∞"
