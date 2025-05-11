@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - refactor: "The \"gender\" preference has been split into \"gender\" (determines voiced sound effects and pronouns in messages) and \"physique\" (determines sprite and underwear appearance)"
-  - bugfix: "as a result of the above neuter and plural characters will have their underwear again, and will default to male options if physique is not set"

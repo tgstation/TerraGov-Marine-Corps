@@ -33,6 +33,7 @@
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landing),
+		COMSIG_XENOMORPH_ATTACK_TURF = PROC_REF(on_xeno_attack),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/submerge_modifier, 10)
@@ -144,9 +145,24 @@
 	SIGNAL_HANDLER
 	affect_atom(jumper)
 
+///Xeno attack interaction with this fire
+/obj/fire/proc/on_xeno_attack(datum/source, mob/living/carbon/xenomorph/xeno_attacker)
+	SIGNAL_HANDLER
+	return
+
 ///Applies effects to an atom
 /obj/fire/proc/affect_atom(atom/affected)
 	return
+
+///Reduces duration of fire
+/obj/fire/proc/reduce_fire(amount = 1)
+	if(amount <= 0)
+		return
+	burn_ticks -= amount
+	if(burn_ticks > 0)
+		update_appearance(UPDATE_ICON)
+	else
+		qdel(src)
 
 /////////////////////////////
 //      FLAMER FIRE        //
@@ -165,6 +181,27 @@
 	if(burn_level <= 0)
 		qdel(src)
 		return PROCESS_KILL
+
+/obj/fire/flamer/on_xeno_attack(datum/source, mob/living/carbon/xenomorph/xeno_attacker)
+	if(xeno_attacker.a_intent != INTENT_HELP)
+		return
+	if(xeno_attacker.do_actions)
+		return
+	if(xeno_attacker.incapacitated())
+		return
+
+	xeno_attacker.changeNext_move(xeno_attacker.xeno_caste.attack_delay)
+	burn_ticks -= 10
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] tries to put out the fire!"), \
+		span_warning("We try to put out the fire!"), null, 5)
+	if(burn_ticks > 0)
+		update_appearance(UPDATE_ICON)
+		return
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] has successfully extinguished the fire!"), \
+		span_notice("We extinguished the fire."), null, 5)
+	qdel(src)
 
 ///////////////////////////////
 //        MELTING FIRE       //

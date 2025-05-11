@@ -646,17 +646,14 @@
 	if(length(debuff_owner.do_actions))
 		return
 	debuff_owner.spin(30, 1.5)
-	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST)
 	debuff_owner.Paralyze(3 SECONDS)
-	if(stacks > 0)
+	if((stacks - PYROGEN_MELTING_FIRE_STACKS_PER_RESIST) > 0)
 		debuff_owner.visible_message(span_danger("[debuff_owner] rolls on the floor, trying to put themselves out!"), \
 		span_notice("You stop, drop, and roll!"), null, 5)
-		return
-	debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
-	span_notice("You extinguish yourself."), null, 5)
-	qdel(src)
-
-
+	else
+		debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
+		span_notice("You extinguish yourself."), null, 5)
+	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST) // If their stacks hit zero, it is qdel'd right here.
 
 // ***************************************
 // *********** dread
