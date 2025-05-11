@@ -2458,6 +2458,7 @@
 #include "code\modules\xenomorph\acidwell.dm"
 #include "code\modules\xenomorph\jellypod.dm"
 #include "code\modules\xenomorph\maw.dm"
+#include "code\modules\xenomorph\mutations.dm"
 #include "code\modules\xenomorph\pherotower.dm"
 #include "code\modules\xenomorph\recovery_pylon.dm"
 #include "code\modules\xenomorph\resin_gargoyle.dm"
