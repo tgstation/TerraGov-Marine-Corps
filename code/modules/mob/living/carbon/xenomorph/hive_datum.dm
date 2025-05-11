@@ -1093,7 +1093,6 @@ to_chat will check for valid clients itself already so no need to double check f
 		SSpoints.xeno_strategic_points_by_hive[hivenumber] = SILO_PRICE //Give a free silo when going shipside and a turret
 		SSpoints.xeno_tactical_points_by_hive[hivenumber] = (XENO_TURRET_PRICE*4)
 
-
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
 	SIGNAL_HANDLER
 	if(new_mode != SHUTTLE_CALL)
@@ -1234,6 +1233,12 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours + threes*SSticker.mode.tier_three_inclusion) / 3 + length(psychictowers) + 1  - SSticker.mode.tier_three_penalty, 1))
 	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(psychictowers) * 2 + 1 - threes)
+
+/// Returns true if there are any mutation structures active. Used to figure out if biomass should be awarded for certain activities.
+/datum/hive_status/proc/has_mutation_structures()
+	if(length(shell_chambers) || length(spur_chambers) || length(veil_chambers))
+		return TRUE
+	return FALSE
 
 // ***************************************
 // *********** Corrupted Xenos
