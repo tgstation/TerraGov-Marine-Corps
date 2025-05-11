@@ -25,7 +25,10 @@
 
 	var/mob/living/carbon/xenomorph/xeno_user = user
 	.["cost"] = get_mutation_cost(xeno_user)
-	.["cost_text"] = get_mutation_cost(xeno_user) < MUTATION_BIOMASS_MAXIMUM ? .["cost"] : "∞"
+	.["cost_text"] = ((get_mutation_cost(xeno_user) < MUTATION_BIOMASS_MAXIMUM) || (length(xeno_user.owned_mutations) >= 3)) ? .["cost"] : "∞"
+	.["already_has_shell_mutation"] = has_any_mutation_in_category(xeno_owner, MUTATION_CATEGORY_SHELL)
+	.["already_has_spur_mutation"] = has_any_mutation_in_category(xeno_owner, MUTATION_CATEGORY_SPUR)
+	.["already_has_veil_mutation"] = has_any_mutation_in_category(xeno_owner, MUTATION_CATEGORY_VEIL)
 	.["shell_mutations"] = list()
 	.["spur_mutations"] = list()
 	.["veil_mutations"] = list()
@@ -39,7 +42,7 @@
 		.[list_name] += list(list(
 			"name" = mutation.name,
 			"desc" = mutation.desc,
-			"owned" = locate(mutation) in xeno_user.owned_mutations
+			"owned" = has_mutation(xeno_user, mutation)
 		))
 
 /datum/mutation_datum/ui_act(action, params)
@@ -57,7 +60,6 @@
 
 /// Returns the cost of purchasing a mutation. Cost based on their caste tier and how many mutations they have so far.
 /datum/mutation_datum/proc/get_mutation_cost(mob/living/carbon/xenomorph/xeno_target)
-	// Cost is not expected to change as switching castes closes the UI.
 	var/expected_cost = MUTATION_BIOMASS_THRESHOLD_T4
 	switch(xeno_target.xeno_caste.tier)
 		if(XENO_TIER_ONE)
@@ -66,9 +68,34 @@
 			expected_cost = MUTATION_BIOMASS_THRESHOLD_T2
 		if(XENO_TIER_THREE)
 			expected_cost = MUTATION_BIOMASS_THRESHOLD_T3
-
-	expected_cost += (expected_cost * xeno_target.owned_mutations)
+	expected_cost += (expected_cost * length(xeno_target.owned_mutations))
 	return expected_cost
+
+/// Checks if the xenomorph has a mutation
+/datum/mutation_datum/proc/has_mutation(mob/living/carbon/xenomorph/xeno_target, datum/mutation_upgrade/mutation_typepath)
+	if(!length(xeno_target.owned_mutations))
+		return FALSE
+	for(var/datum/mutation_upgrade/owned_mutation AS in xeno_target.owned_mutations)
+		if(!istype(owned_mutation, mutation_typepath))
+			continue
+		return TRUE
+	return FALSE
+
+/datum/mutation_datum/proc/has_any_mutation_in_category(mob/living/carbon/xenomorph/xeno_target, mutation_category)
+	switch(mutation_category)
+		if(MUTATION_CATEGORY_SHELL)
+			for(var/datum/mutation_upgrade/owned_mutation AS in xeno_target.owned_mutations)
+				if(is_shell_mutation(owned_mutation))
+					return TRUE
+		if(MUTATION_CATEGORY_SPUR)
+			for(var/datum/mutation_upgrade/owned_mutation AS in xeno_target.owned_mutations)
+				if(is_spur_mutation(owned_mutation))
+					return TRUE
+		if(MUTATION_CATEGORY_VEIL)
+			for(var/datum/mutation_upgrade/owned_mutation AS in xeno_target.owned_mutations)
+				if(is_veil_mutation(owned_mutation))
+					return TRUE
+	return FALSE
 
 /// Tries to purchase a mutation. Denies if possible. Otherwise, removes conflicting mutations and gives the purchased mutation.
 /datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xeno_purchaser, upgrade_name)
@@ -90,6 +117,10 @@
 			break
 
 	if(!found_mutation)
+		return
+
+	if(has_mutation(xeno_purchaser, found_mutation))
+		to_chat(usr, span_warning("You already own this mutation!"))
 		return
 
 	switch(found_mutation.required_structure)
@@ -225,7 +256,7 @@
 // Defender
 /datum/mutation_upgrade/veil/carapace_sweat
 	name = "Carapace Sweat"
-	desc = "Regenerate Skin will grant you fire immunity for 2/4/6 seconds. If you were on fire, you will be extinguished and set nearby humans on fire."
+	desc = "Regenerate Skin can be used while on fire and grants fire immunity for 2/4/6 seconds. If you were on fire, you will be extinguished and set nearby humans on fire."
 
 /datum/mutation_upgrade/veil/carapace_sweat/on_building_update(previous_amount, new_amount)
 	..()

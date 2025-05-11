@@ -23,6 +23,7 @@ type BiomassData = {
 
 type ShellMutationData = {
   shell_mutations: Upgrade[];
+  already_has_shell_mutation: boolean;
   shell_chambers: number;
   cost: number;
   cost_text: string;
@@ -31,6 +32,7 @@ type ShellMutationData = {
 
 type SpurMutationData = {
   spur_mutations: Upgrade[];
+  already_has_spur_mutation: boolean;
   spur_chambers: number;
   cost: number;
   cost_text: string;
@@ -39,6 +41,7 @@ type SpurMutationData = {
 
 type VeilMutationData = {
   veil_mutations: Upgrade[];
+  already_has_veil_mutation: boolean;
   veil_chambers: number;
   cost: number;
   cost_text: string;
@@ -79,7 +82,14 @@ const BiomassBar = (_props: any) => {
 
 const ShellMutationSection = (_props: any) => {
   const { act, data } = useBackend<ShellMutationData>();
-  const { shell_mutations, shell_chambers, cost, cost_text, biomass } = data;
+  const {
+    shell_mutations,
+    already_has_shell_mutation,
+    shell_chambers,
+    cost,
+    cost_text,
+    biomass,
+  } = data;
 
   return (
     <Collapsible
@@ -96,7 +106,11 @@ const ShellMutationSection = (_props: any) => {
                 content={`Buy (${cost_text})`}
                 key={mutation.name}
                 onClick={() => act('purchase', { upgrade_name: mutation.name })}
-                disabled={cost > biomass || shell_chambers === 0}
+                disabled={
+                  cost > biomass ||
+                  shell_chambers === 0 ||
+                  already_has_shell_mutation
+                }
                 selected={mutation.owned}
               />
             }
@@ -112,7 +126,14 @@ const ShellMutationSection = (_props: any) => {
 
 const SpurMutationSection = (_props: any) => {
   const { act, data } = useBackend<SpurMutationData>();
-  const { spur_mutations, spur_chambers, cost, cost_text, biomass } = data;
+  const {
+    spur_mutations,
+    already_has_spur_mutation,
+    spur_chambers,
+    cost,
+    cost_text,
+    biomass,
+  } = data;
 
   return (
     <Collapsible title={`Spur Mutations | Spur Chambers: ${spur_chambers}/3`}>
@@ -127,7 +148,11 @@ const SpurMutationSection = (_props: any) => {
                 content={`Buy (${cost_text})`}
                 key={mutation.name}
                 onClick={() => act('purchase', { upgrade_name: mutation.name })}
-                disabled={cost > biomass || spur_chambers === 0}
+                disabled={
+                  cost > biomass ||
+                  spur_chambers === 0 ||
+                  already_has_spur_mutation
+                }
                 selected={mutation.owned}
               />
             }
@@ -143,7 +168,14 @@ const SpurMutationSection = (_props: any) => {
 
 const VeilMutationSection = (_props: any) => {
   const { act, data } = useBackend<VeilMutationData>();
-  const { veil_mutations, veil_chambers, cost, cost_text, biomass } = data;
+  const {
+    veil_mutations,
+    already_has_veil_mutation,
+    veil_chambers,
+    cost,
+    cost_text,
+    biomass,
+  } = data;
 
   return (
     <Collapsible title={`Veil Mutations | Veil Chambers: ${veil_chambers}/3`}>
@@ -158,7 +190,11 @@ const VeilMutationSection = (_props: any) => {
                 content={`Buy (${cost_text})`}
                 key={mutation.name}
                 onClick={() => act('purchase', { upgrade_name: mutation.name })}
-                disabled={cost > biomass || veil_chambers === 0}
+                disabled={
+                  cost > biomass ||
+                  veil_chambers === 0 ||
+                  already_has_veil_mutation
+                }
                 selected={mutation.owned}
               />
             }
