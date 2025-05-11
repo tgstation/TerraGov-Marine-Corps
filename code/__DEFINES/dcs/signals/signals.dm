@@ -836,6 +836,11 @@
 
 #define COMSIG_XENOMORPH_LEAP_BUMP "xenomorph_leap_bump" //from /mob/living/carbon/xenomorph/bump
 
+// Mutation
+#define COMSIG_MUTATION_CHAMBER_SHELL "mutation_chamber_shell"
+#define COMSIG_MUTATION_CHAMBER_SPUR "mutation_chamber_spur"
+#define COMSIG_MUTATION_CHAMBER_VEIL "mutation_chamber_veil"
+
 #define COMSIG_XENO_DRAIN_HIT "xeno_drain_hit"
 #define COMSIG_XENO_CARNAGE_HIT "xeno_carnage_hit"
 
