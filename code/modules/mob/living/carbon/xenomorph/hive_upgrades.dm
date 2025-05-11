@@ -325,7 +325,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/mutation_chamber
 	gamemode_flags = ABILITY_NUCLEARWAR
-	building_loc = 0
 	/// The maximum amount of buildings that can exist before being disallowed from buying more.
 	var/max_chambers = 3
 
