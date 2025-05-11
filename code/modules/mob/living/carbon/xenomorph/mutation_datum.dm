@@ -143,14 +143,13 @@
 
 	var/datum/mutation_upgrade/new_mutation = new found_mutation(xeno_purchaser)
 	xeno_purchaser.owned_mutations += new_mutation
-	new_mutation.on_gain()
 
 /datum/mutation_upgrade
 	/// The name that is displayed in the TGUI.
 	var/name
 	/// The description that is displayed in the TGUI.
 	var/desc
-	/// The category slot that this upgrade takes. Upgrades that conflict with this category slot will be removed/replaced.
+	/// The category slot that this upgrade takes. This prevents the owner from buying additional mutation that have the same category.
 	var/category
 	/// The structure that needs to exist for a successful purchase.
 	var/required_structure
@@ -160,11 +159,8 @@
 	var/mob/living/carbon/xenomorph/xenomorph_owner
 
 /datum/mutation_upgrade/New(mob/living/carbon/xenomorph/new_xeno_owner)
+	..()
 	xenomorph_owner = new_xeno_owner
-
-/datum/mutation_upgrade/proc/on_gain()
-	SHOULD_CALL_PARENT(TRUE)
-
 	xenomorph_owner.apply_status_effect(status_effect)
 	switch(required_structure)
 		if(MUTATION_STRUCTURE_SHELL)
@@ -175,9 +171,7 @@
 			RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL, PROC_REF(on_building_update))
 	on_building_update(0, get_total_buildings())
 
-/datum/mutation_upgrade/proc/on_lose()
-	SHOULD_CALL_PARENT(TRUE)
-
+/datum/mutation_upgrade/Destroy(force, ...)
 	xenomorph_owner.remove_status_effect(status_effect)
 	switch(required_structure)
 		if(MUTATION_STRUCTURE_SHELL)
@@ -187,10 +181,13 @@
 		if(MUTATION_STRUCTURE_VEIL)
 			UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL)
 	on_building_update(get_total_buildings(), 0)
+	return ..()
 
+/// Called whenever the mutation is created/deleted or when the amount of buildings has changed.
 /datum/mutation_upgrade/proc/on_building_update(previous_amount, new_amount)
 	return
 
+/// Gets the total amount of buildings for the mutation.
 /datum/mutation_upgrade/proc/get_total_buildings()
 	if(!xenomorph_owner || !required_structure)
 		return 0
