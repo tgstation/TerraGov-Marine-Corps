@@ -321,6 +321,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGENERATE_SKIN,
 	)
+	/// Amount of stacks of debuffs / 2x seconds of buff to remove.
+	var/debuff_amount_to_remove = 0
 
 /datum/action/ability/xeno_action/regenerate_skin/on_cooldown_finish()
 	to_chat(xeno_owner, span_notice("We feel we are ready to shred our skin and grow another."))
@@ -341,6 +343,17 @@
 	xeno_owner.do_jitter_animation(1000)
 	xeno_owner.set_sunder(0)
 	xeno_owner.heal_overall_damage(25, 25, updating_health = TRUE)
+	if(debuff_amount_to_remove)
+		for(var/datum/status_effect/status_effect AS in xeno_owner.status_effects)
+			if(status_effect in GLOB.nonstackable_decreasable_debuffs_for_xenos && status_effect.duration != 1)
+				status_effect.duration -= debuff_amount_to_remove * 2
+				status_effect.check_duration()
+				continue
+			if(status_effect in GLOB.stackable_decreasable_debuffs_for_xenos)
+				var/datum/status_effect/stacking/stacking_status_effect = status_effect
+				if(!stacking_status_effect)
+					continue
+				stacking_status_effect.add_stacks(debuff_amount_to_remove)
 	add_cooldown()
 	return succeed_activate()
 
