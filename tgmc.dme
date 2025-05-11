@@ -1928,6 +1928,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\hive_upgrades.dm"
 #include "code\modules\mob\living\carbon\xenomorph\life.dm"
 #include "code\modules\mob\living\carbon\xenomorph\login.dm"
+#include "code\modules\mob\living\carbon\xenomorph\mutation_datum.dm"
 #include "code\modules\mob\living\carbon\xenomorph\patterns.dm"
 #include "code\modules\mob\living\carbon\xenomorph\saddles.dm"
 #include "code\modules\mob\living\carbon\xenomorph\say.dm"

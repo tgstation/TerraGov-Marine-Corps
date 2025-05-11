@@ -1,3 +1,5 @@
+GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
+
 /// The maximum amount of biomass a hive can have.
 #define MUTATION_BIOMASS_MAXIMUM 1800
 
@@ -22,7 +24,13 @@
 #define MUTATION_SPUR_ALERT /atom/movable/screen/alert/status_effect/spur
 #define MUTATION_VEIL_ALERT /atom/movable/screen/alert/status_effect/veil
 
-/// Name of the structures.
+/// Name of each mutation structure.
 #define MUTATION_STRUCTURE_SHELL "shell"
 #define MUTATION_STRUCTURE_SPUR "spur"
 #define MUTATION_STRUCTURE_VEIL "veil"
+
+/// Name of each mutation category.
+// TODO: Does this really need to be a seperate definition?
+#define MUTATION_CATEGORY_SHELL "Shell"
+#define MUTATION_CATEGORY_SPUR "Spur"
+#define MUTATION_CATEGORY_VEIL "Veil"
