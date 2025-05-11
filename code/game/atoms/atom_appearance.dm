@@ -49,6 +49,7 @@
 			SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 
 		var/list/new_overlays = update_overlays(updates)
+		SEND_SIGNAL(src, COMSIG_ATOM_POST_UPDATE_OVERLAYS, new_overlays)
 		var/nulls = 0
 		for(var/i in 1 to length(new_overlays))
 			var/atom/maybe_not_an_atom = new_overlays[i]

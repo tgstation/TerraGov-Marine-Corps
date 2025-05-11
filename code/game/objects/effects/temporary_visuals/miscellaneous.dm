@@ -312,3 +312,23 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	duration = 0.5 SECONDS
+
+/// looping lightning effect useful for showing chargeup of [/obj/effect/temp_visual/lightning_discharge]
+/obj/effect/overlay/lightning_charge
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "lightning_charge"
+	layer = ABOVE_FLY_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_ID
+	color = COLOR_RED_LIGHT
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/effect/temp_visual/lightning_discharge
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "lightning_discharge"
+	layer = ABOVE_FLY_LAYER
+	color = COLOR_RED_LIGHT
+	duration = 3
+	pixel_x = -32
+	pixel_y = -32

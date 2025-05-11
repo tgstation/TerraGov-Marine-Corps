@@ -29,12 +29,12 @@
 */
 /datum/ammo/rocket/mech
 	name = "large high-explosive rocket"
-	damage = 75
-	penetration = 50
+	damage = 10
+	penetration = 30
 	max_range = 30
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
-	explosion(T, 0, 0, 5, 0, 5)
+	explosion(T, 0, 2, 4, 0, 0)
 
 /*
 //================================================
@@ -68,13 +68,14 @@
 	damage = 35
 	penetration = 10
 	sundering = 0.5
+	damage_falloff = 0.4
 
 /datum/ammo/bullet/rifle/mech
 	name = "super-heavy rifle bullet"
-	damage = 25
-	penetration = 15
-	sundering = 0.5
-	damage_falloff = 0.8
+	damage = 35
+	penetration = 10
+	sundering = 1
+	damage_falloff = 0.2
 
 /datum/ammo/bullet/rifle/mech/burst
 	damage = 35
@@ -87,9 +88,10 @@
 
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
-	damage = 20
-	sundering = 0.25
-	penetration = 10
+	damage = 25
+	sundering = 0.5
+	penetration = 5
+	damage_falloff = 0.4
 
 /datum/ammo/bullet/shotgun/mech
 	name = "super-heavy shotgun buckshot shell"
@@ -101,15 +103,19 @@
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	damage = 100
-	damage_falloff = 4
+	sundering = 0
+	penetration = 15
+	damage = 75
+	damage_falloff = 10
 
 /datum/ammo/bullet/shotgun/mech/spread
 	name = "super-heavy additional buckshot"
 	icon_state = "buckshot"
 	max_range = 10
-	damage = 75
-	damage_falloff = 4
+	damage = 60
+	sundering = 0
+	penetration = 15
+	damage_falloff = 10
 
 /datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)

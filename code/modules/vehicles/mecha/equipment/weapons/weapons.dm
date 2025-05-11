@@ -21,6 +21,13 @@
 		MECHA_R_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
 		MECHA_L_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
 	)
+	///identical to [flash_offsets], but for use with the snowflake mecha core sprites
+	var/list/flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_L_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_R_BACK = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_L_BACK = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+	)
 	///Icon state of the muzzle flash effect.
 	var/muzzle_iconstate
 	///color of the muzzle flash while shooting
@@ -56,41 +63,67 @@
 	. = ..()
 	if(!.)
 		return
+	if(current_firer.incapacitated(TRUE))
+		return FALSE
 	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE) && !CHECK_BITFIELD(range, MECHA_MELEE))
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
 
+/obj/item/mecha_parts/mecha_equipment/weapon/detach(atom/moveto)
+	reset_fire()
+	return ..()
+
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE
-	. = ..()
 
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
 	if(!current_target)
 		return
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), src)
 		windup_checked = WEAPON_WINDUP_CHECKING
-		playsound(chassis.loc, windup_sound, 30, TRUE)
+		if(windup_sound)
+			playsound(chassis.loc, windup_sound, 30, TRUE)
 		if(!do_after(source, windup_delay, TRUE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
+		LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 	if(QDELETED(current_target))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	current_firer = source
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
-		var/fire_return // todo fix: code expecting return values from async
-		ASYNC
-			fire_return = fire()
+		. = ..()
+		var/fire_return = fire()
 		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
+
+	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
+	//feel free to improve if think of a better way to make sure cooldowns are shared
+	LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), src)
+	// dont wanna call parent because it would override this timer
+	chassis.use_power(energy_drain)
+
 	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
 	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+
+/obj/item/mecha_parts/mecha_equipment/weapon/do_after_checks(atom/target)
+	if(!chassis)
+		return FALSE
+	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
+	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
+		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
+			chassis.face_atom(current_target)
+		else
+			return FALSE
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting(bursting)
 	if(bursting)
@@ -133,6 +166,10 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_fire()
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	current_firer?.client?.mouse_pointer_icon = chassis.mouse_pointer
+	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
+	//feel free to improve if think of a better way to make sure cooldowns are shared
+	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), equip_cooldown)
 	set_target(null)
 	current_firer = null
 
@@ -159,11 +196,17 @@
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()
+	SHOULD_NOT_SLEEP(TRUE) // we need to reset fire after this, so lets like, not let people rapidfire
 	if(!action_checks(current_target, TRUE))
 		return NONE
+	if(windup_checked == WEAPON_WINDUP_CHECKING)
+		return
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
-		return AUTOFIRE_CONTINUE
+		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
+			chassis.face_atom(current_target)
+		else
+			return AUTOFIRE_CONTINUE
 
 	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
@@ -198,8 +241,19 @@
 		addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 1 SECONDS)
 
 	var/mech_slot = chassis.equip_by_category[MECHA_R_ARM] == src ? MECHA_R_ARM : MECHA_L_ARM
-	muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
-	muzzle_flash.pixel_y = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
+	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale/core))
+		//snowflake sprites mean snowflake offsets, wheeeeeeeeeeeeeeeeeeeeee
+		var/obj/vehicle/sealed/mecha/combat/greyscale/core/core = chassis
+		if(core.swapped_to_backweapons)
+			mech_slot = mech_slot == MECHA_R_ARM ? MECHA_R_BACK : MECHA_L_BACK
+		muzzle_flash.pixel_w = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_z = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][2]
+		// more or less all the same changes cus arm icons. feel free to make it more accurate or make boosting use pixel offsets
+		if(core.leg_overload_mode)
+			muzzle_flash.pixel_z -= 2
+	else
+		muzzle_flash.pixel_w = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_z = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
 	switch(chassis.dir)
 		if(NORTH)
 			muzzle_flash.layer = initial(muzzle_flash.layer)
@@ -216,7 +270,7 @@
 		var/y_component = cos(firing_angle) * 40
 		var/obj/effect/abstract/particle_holder/gun_smoke = new(get_turf(src), /particles/firing_smoke)
 		gun_smoke.particles.velocity = list(x_component, y_component)
-		gun_smoke.particles.position = list(flash_offsets[mech_slot][dir2text_short(chassis.dir)][1] - 16, flash_offsets[mech_slot][dir2text_short(chassis.dir)][2])
+		gun_smoke.particles.position = list(muzzle_flash.pixel_w - 16, muzzle_flash.pixel_z)
 		addtimer(VARSET_CALLBACK(gun_smoke.particles, count, 0), 5)
 		addtimer(VARSET_CALLBACK(gun_smoke.particles, drift, 0), 3)
 		QDEL_IN(gun_smoke, 0.6 SECONDS)
@@ -284,9 +338,12 @@
 		return FALSE
 	if(!projectiles_cache)
 		return FALSE
-	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
+	if(!do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC, extra_checks=CALLBACK(src, PROC_REF(can_keep_reloading), projectiles)))
 		return FALSE
 	return rearm()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/proc/can_keep_reloading(old_ammo)
+	return projectiles == old_ammo
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
 	if(projectiles >= initial(projectiles))
@@ -318,7 +375,8 @@
 	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
-	attempt_rearm(current_firer)
+	ASYNC
+		attempt_rearm(current_firer)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"
@@ -397,14 +455,17 @@
 		return FALSE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
-		return TRUE
+		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
+			chassis.face_atom(target)
+		else
+			return TRUE
 	var/obj/O = new ammotype(chassis.loc)
 	playsound(chassis, fire_sound, 50, TRUE)
 	log_message("Launched a [O] from [src], targeting [target].", LOG_MECHA)
 	projectiles--
 	proj_init(O, source)
 	O.throw_at(target, missile_range, missile_speed, source, FALSE)
-	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), equip_cooldown)
 	chassis.use_power(energy_drain)
 	if(smoke_effect)
 		var/firing_angle = Get_Angle(get_turf(src), target)

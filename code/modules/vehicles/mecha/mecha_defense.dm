@@ -61,7 +61,10 @@
 	log_message("Attack by hand/paw (no damage). Attacker - [user].", LOG_MECHA, color="red")
 
 /obj/vehicle/sealed/mecha/bullet_act(obj/projectile/proj, def_zone, piercing_hit) //wrapper
-	log_message("Hit by projectile. Type: [proj]([proj.ammo.damage_type]).", LOG_MECHA, color="red")
+	var/known_firer = key_name(proj.firer)
+	if(known_firer)
+		known_firer += " fired by [known_firer]"
+	log_message("Hit by projectile [known_firer]. Type: [proj]([proj.ammo.damage_type]).", LOG_MECHA, color="red")
 	// yes we *have* to run the armor calc proc here I love tg projectile code too
 	try_damage_component(
 		modify_by_armor(proj.damage, proj.ammo.armor_type, proj.ammo.penetration, attack_dir = REVERSE_DIR(proj.dir)),
@@ -180,6 +183,17 @@
 /obj/vehicle/sealed/mecha/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/mecha_ammo))
 		ammo_resupply(W, user)
+		return
+
+	if(istype(W, /obj/item/repairpack))
+		if(max_repairpacks <=0)
+			balloon_alert(user, "Repairpacks not supported")
+			return
+		if(stored_repairpacks >= max_repairpacks)
+			balloon_alert(user, "Repairpacks full")
+			return
+		stored_repairpacks++
+		qdel(W)
 		return
 
 	if(isidcard(W))
