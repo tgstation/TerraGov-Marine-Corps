@@ -557,9 +557,9 @@
 	msg += "\n[span_collapsible("Flavor Text", "[flavor_text]")]"
 	if(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes)
 		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
-	if(profile_pic && (wear_suit || !nsfwprofile_pic)) //should appear when wearing suit and when no nsfw pic but not wearing suit.
+	if(profile_pic && (w_uniform || !nsfwprofile_pic)) //should appear when wearing suit and when no nsfw pic but not wearing suit.
 		msg += "<span class='info'><img src=[profile_pic] width=300 height=350/></span>"
-	if(nsfwprofile_pic && !wear_suit)
+	if(nsfwprofile_pic && !w_uniform)
 		msg += "<span class='info'><img src=[nsfwprofile_pic] width=300 height=350/></span>"
 
 // removed hollow examine from humans
