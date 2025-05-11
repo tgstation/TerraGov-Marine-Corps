@@ -16,3 +16,13 @@
 #define MUTATION_BIOMASS_THRESHOLD_T2 400
 #define MUTATION_BIOMASS_THRESHOLD_T3 500
 #define MUTATION_BIOMASS_THRESHOLD_T4 600
+
+/// The type path for status effect alerts.
+#define MUTATION_SHELL_ALERT /atom/movable/screen/alert/status_effect/shell
+#define MUTATION_SPUR_ALERT /atom/movable/screen/alert/status_effect/spur
+#define MUTATION_VEIL_ALERT /atom/movable/screen/alert/status_effect/veil
+
+/// Name of the structures.
+#define MUTATION_STRUCTURE_SHELL "shell"
+#define MUTATION_STRUCTURE_SPUR "spur"
+#define MUTATION_STRUCTURE_VEIL "veil"
