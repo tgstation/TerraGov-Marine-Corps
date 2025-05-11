@@ -261,4 +261,4 @@
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
 		return
-	ability.fire_immunity_length += (new_amount - previous_amount) SECONDS
+	ability.fire_immunity_length += 2 * (new_amount - previous_amount) SECONDS
