@@ -123,6 +123,7 @@
 #include "code\__DEFINES\movement_info.dm"
 #include "code\__DEFINES\movespeed_modification.dm"
 #include "code\__DEFINES\multiz.dm"
+#include "code\__DEFINES\mutations.dm"
 #include "code\__DEFINES\obj_flags.dm"
 #include "code\__DEFINES\objects.dm"
 #include "code\__DEFINES\overlays.dm"
