@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
 
 #define is_shell_mutation(A) is_type_in_typecache(A, GLOB.shell_mutations)
 #define is_spur_mutation(A) is_type_in_typecache(A, GLOB.spur_mutations)
-#define is_veilmutation(A) is_type_in_typecache(A, GLOB.veil_mutations)
+#define is_veil_mutation(A) is_type_in_typecache(A, GLOB.veil_mutations)
 
 /// The maximum amount of biomass a hive can have.
 #define MUTATION_BIOMASS_MAXIMUM 1800
