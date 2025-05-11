@@ -572,7 +572,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	state = AHELP_RESOLVED
 	GLOB.ahelp_tickets.ListInsert(src)
 
-	AddInteraction("<font color='#9adb92'>Resolved by [key_name_admin(usr)].</font>", player_message = "<font color='green'>Ticket resolved!</font>")
+	AddInteraction("<font color='#9adb92'>Resolved by [key_name_admin(usr)].</font>", player_message = "<font color='#9adb92'>Ticket resolved!</font>")
 	if(tier == TICKET_MENTOR)
 		to_chat(initiator, span_adminhelp("Your mentor ticket has been resolved, if you need to ask something again, feel free to send another one."))
 	else if(tier == TICKET_ADMIN)
@@ -910,22 +910,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set name = "View Latest Ticket"
 
 	if(!current_ticket)
+		// Check if the client had previous tickets, and show the latest one
 		var/list/prev_tickets = list()
 		var/datum/admin_help/last_ticket
-
+		// Check all resolved tickets for this player
 		for(var/datum/admin_help/resolved_ticket in GLOB.ahelp_tickets.resolved_tickets)
 			if(resolved_ticket.initiator_ckey == ckey) // Initiator is a misnomer, it's always the non-admin player even if an admin bwoinks first
 				prev_tickets += resolved_ticket
-
+		// Check all closed tickets for this player
 		for(var/datum/admin_help/closed_ticket in GLOB.ahelp_tickets.closed_tickets)
 			if(closed_ticket.initiator_ckey == ckey)
 				prev_tickets += closed_ticket
-
+		// Take the most recent entry of prev_tickets and open the panel on it
 		if(LAZYLEN(prev_tickets))
 			last_ticket = pop(prev_tickets)
 			last_ticket.player_ticket_panel()
 			return
 
+		// client had no tickets this round
 		to_chat(src, span_warning("You have not had an ahelp ticket this round."))
 		return
 
@@ -949,8 +951,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			mob_client.current_ticket.AddInteraction(message)
 		else
 			mob_client.current_ticket.AddInteraction(message, player_message)
-		mob_client.current_ticket.AddInteraction(message)
-		return mob_client.current_ticket
 	if(istext(what))	//ckey
 		var/datum/admin_help/active_admin_help = GLOB.ahelp_tickets.CKey2ActiveTicket(what)
 		if(active_admin_help)
@@ -958,7 +958,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				active_admin_help.AddInteraction(message)
 			else
 				active_admin_help.AddInteraction(message, player_message)
-		return active_admin_help
 
 
 //
