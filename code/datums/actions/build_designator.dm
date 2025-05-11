@@ -144,11 +144,11 @@ GLOBAL_LIST_INIT(designator_types, list (
 		return FALSE
 	if(isspaceturf(target_turf))
 		return FALSE
-	var/border_obj = (construct_type::atom_flags & ON_BORDER) ? TRUE : FALSE
+	var/border_obj = construct_type::atom_flags & ON_BORDER
 	for(var/obj/object in target_turf)
 		if(!object.density)
 			continue
-		if(border_obj && (object.atom_flags & ON_BORDER) && (object.dir & hologram.dir))
+		if(border_obj && (object.atom_flags & ON_BORDER) && !(object.dir & hologram.dir))
 			continue
 		return FALSE
 	return TRUE

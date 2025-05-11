@@ -1,4 +1,0 @@
-author: "Cerrik"
-delete-after: True
-changes:
-  - rscadd: "Added the NanoAmmo vendor to tadpoles and APC"
