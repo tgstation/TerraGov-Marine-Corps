@@ -358,7 +358,8 @@
 				var/datum/status_effect/stacking/stacking_status_effect = status_effect
 				if(!stacking_status_effect)
 					continue
-				stacking_status_effect.add_stacks(debuff_amount_to_remove)
+				stacking_status_effect.add_stacks(-debuff_amount_to_remove)
+		xeno_owner.add_slowdown(-debuff_amount_to_remove)
 	if(fire_immunity_length)
 		xeno_owner.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING, fire_immunity_length)
 		if(xeno_owner.on_fire)
