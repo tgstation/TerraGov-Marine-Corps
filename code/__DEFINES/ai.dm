@@ -108,7 +108,8 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 ///Building something
 #define HUMAN_AI_BUILDING (1<<4)
 
-#define HUMAN_AI_ANY_HEALING (HUMAN_AI_HEALING|HUMAN_AI_SELF_HEALING|HUMAN_AI_BUILDING)
+///Any action that we generally don't want to interrupt
+#define HUMAN_AI_BUSY_ACTION (HUMAN_AI_HEALING|HUMAN_AI_SELF_HEALING|HUMAN_AI_BUILDING)
 
 ///We're good to shoot
 #define AI_FIRE_CAN_HIT (1<<0)

@@ -14,13 +14,13 @@
 /datum/ai_behavior/human/proc/engineer_process()
 	if(!length(engineering_list))
 		return
-	if(interact_target && (interact_target in engineering_list)) //already trying to do something
+	if(interact_target && (interact_target in engineering_list))
 		return
 	if(human_ai_state_flags & HUMAN_AI_FIRING)
 		return
 	if(current_action == MOVING_TO_SAFETY)
 		return
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING) //change/add to this ?
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
@@ -31,6 +31,10 @@
 		var/dist = get_dist(mob_parent, potential)
 		if(dist >= patient_dist)
 			continue
+		if(istype(potential, /obj/effect/build_designator))
+			var/obj/effect/build_designator/hologram = potential
+			if(hologram.builder)
+				continue
 		engie_target = potential
 		patient_dist = dist
 	if(!engie_target)
@@ -73,9 +77,13 @@
 
 ///Tries to heal another mob
 /datum/ai_behavior/human/proc/try_build_holo(obj/effect/build_designator/hologram)
-	human_ai_state_flags |= HUMAN_AI_BUILDING //change
+	if(hologram.builder)
+		//Someone else is building it, but we put it at the end of the queue in case its not completed
+		remove_from_engineering_list(hologram)
+		add_to_engineering_list(hologram)
+		return
+	human_ai_state_flags |= HUMAN_AI_BUILDING
 	do_unset_target(hologram, FALSE)
-	//todo:make mob parent send a sig on the holo if others try build while they are building so others don't try built it as well... without removing from build list
 
 	var/obj/item/stack/building_stack
 	for(var/candidate in mob_inventory.engineering_list)

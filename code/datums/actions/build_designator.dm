@@ -179,6 +179,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 	var/datum/stack_recipe/recipe
 	///The visual effect we're attaching
 	var/image/holder
+	///Mob that is currently trying to build the recipe
+	var/mob/builder
 
 /obj/effect/build_designator/Initialize(mapload, obj/construct_type, mob/builder) //construct_type is a TYPE but typecast for initial values below
 	if(!construct_type)
@@ -220,6 +222,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 	var/datum/atom_hud/order/order_hud = GLOB.huds[DATA_HUD_ORDER]
 	order_hud.remove_from_hud(src)
 	QDEL_NULL(holder)
+	builder = null
 	return ..()
 
 /obj/effect/build_designator/attackby(obj/item/I, mob/user, params)
@@ -228,6 +231,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 	if(!istype(I, material_type))
 		return ..()
 	var/obj/item/stack/stack = I
+	builder = user
 	if(!stack.create_object(user, recipe, 1, loc, dir, TRUE)) //override stack loc for NPC use. It should be impossible to reach this without being an npc
+		builder = null
 		return
 	qdel(src)

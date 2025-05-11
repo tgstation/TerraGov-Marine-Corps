@@ -132,7 +132,7 @@
 		weapon_process()
 
 /datum/ai_behavior/human/should_hold()
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return TRUE
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_RELOADING))
 		return TRUE
@@ -143,7 +143,7 @@
 	return FALSE
 
 /datum/ai_behavior/human/scheduled_move()
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		registered_for_move = FALSE
 		return
 	return ..()
@@ -158,11 +158,11 @@
 	. = ..()
 	if(!.)
 		return
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		mob_parent.a_intent = INTENT_HELP
 
 /datum/ai_behavior/human/look_for_new_state(atom/next_target)
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return
 	if(!combat_target || ((get_dist(mob_parent, combat_target) > AI_COMBAT_TARGET_BLIND_DISTANCE) && !line_of_sight(mob_parent, combat_target, target_distance)))
 		if(combat_target)
@@ -188,7 +188,7 @@
 				change_action(ESCORTING_ATOM, escorted_atom)
 
 /datum/ai_behavior/human/state_process(atom/next_target)
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return
 	if((current_action == MOVING_TO_ATOM) && (atom_to_walk_to == combat_target))
 		return //we generally want to keep fighting
@@ -281,6 +281,18 @@
 /datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
+
+	if(QDELETED(old_target)) //if they're deleted we need to ensure engineering and medical stuff is cleaned up properly
+		if(human_ai_state_flags & HUMAN_AI_HEALING)
+			on_heal_end(old_target)
+		else
+			remove_from_heal_list(old_target)
+		if(human_ai_state_flags & HUMAN_AI_BUILDING)
+			on_engineering_end(old_target)
+		else
+			remove_from_engineering_list(old_target)
+		return ..()
+
 	var/revive_target = FALSE
 	if((medical_rating >= AI_MED_MEDIC) && (old_target in heal_list))
 		var/mob/living/living_target = old_target
@@ -373,8 +385,8 @@
 
 	if(attacker) //if there is an attacker, our main priority is to react to it
 		COOLDOWN_START(src, ai_heal_after_dam_cooldown, 4 SECONDS)
-		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
-			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
+		if((human_ai_state_flags & HUMAN_AI_BUSY_ACTION)) //dont just stand there
+			human_ai_state_flags &= ~(HUMAN_AI_BUSY_ACTION)
 			late_initialize()
 		if(((current_action == MOVING_TO_SAFETY) || !combat_target) && (attacker.faction != mob_parent.faction))
 			set_combat_target(attacker)
@@ -384,7 +396,7 @@
 
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
 		return
-	if((human_ai_state_flags & HUMAN_AI_ANY_HEALING))
+	if((human_ai_state_flags & HUMAN_AI_BUSY_ACTION))
 		return
 
 	var/mob/living/living_mob = mob_parent
