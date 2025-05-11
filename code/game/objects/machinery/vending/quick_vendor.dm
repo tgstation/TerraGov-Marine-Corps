@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/vsd/medic/vsd_pdw,
 		/datum/outfit/quick/vsd/spec/flamer,
 		/datum/outfit/quick/vsd/spec/demolitionist,
-		// /datum/outfit/quick/vsd/spec/gunslinger,
+		/datum/outfit/quick/vsd/spec/gunslinger,
 		// /datum/outfit/quick/vsd/spec/uslspec_one,
 		// /datum/outfit/quick/vsd/spec/uslspec_two,
 		/datum/outfit/quick/vsd/juggernaut,
@@ -296,7 +296,6 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	categories = list(
 		"VSD Standard",
 		"VSD Engineer",
-		"VSD Medic",
 		"VSD Specialist",
 		"VSD Squad Leader",
 	)

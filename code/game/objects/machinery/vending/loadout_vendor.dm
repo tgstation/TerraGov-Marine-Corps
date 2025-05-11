@@ -121,7 +121,6 @@
 	categories = list(
 		"VSD Standard",
 		"VSD Engineer",
-		"VSD Medic",
 		"VSD Specialist",
 		"VSD Squad Leader",
 	)

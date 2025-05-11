@@ -1045,11 +1045,10 @@
 		/obj/item/attachable/verticalgrip,
 	)
 	item_map_variant_flags = NONE
-	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 32, "rail_y" = 22, "under_x" = 36, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 21,"rail_x" = 19, "rail_y" = 24, "under_x" = 40, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
 
 	fire_delay = 2 SECONDS
 	max_chamber_items = 14
-	damage_mult = 0.85
 	accuracy_mult_unwielded = 1
 
 	scatter = 6
