@@ -11,7 +11,7 @@
 
 /obj/structure/xeno/upgrade_chamber/Initialize(mapload, _hivenumber)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "mutation_chamber", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "mutation_chamber", MINIMAP_BLIPS_LAYER))
 
 /obj/structure/xeno/mutation_chamber/shell
 	name = "Shell Chamber"
@@ -40,23 +40,23 @@
 	GLOB.hive_datums[hivenumber].spur_chambers += src
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_SPUR)
 
-/obj/structure/xeno/upgrade_chamber/spur/Destroy()
+/obj/structure/xeno/mutation_chamber/spur/Destroy()
 	GLOB.hive_datums[hivenumber].spur_chambers -= src
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_SPUR)
 	return ..()
 
-/obj/structure/xeno/upgrade_chamber/veil
+/obj/structure/xeno/mutation_chamber/veil
 	name = "Veil Chamber"
 	desc = "It bulges with whatever is inside it."
 	icon_state = "veil_chamber"
 
-/obj/structure/xeno/upgrade_chamber/veil/Initialize(mapload, _hivenumber)
+/obj/structure/xeno/mutation_chamber/veil/Initialize(mapload, _hivenumber)
 	. = ..()
 	set_light(3, 1, COLOR_LIME)
 	GLOB.hive_datums[hivenumber].veil_chambers += src
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_VEIL)
 
-/obj/structure/xeno/upgrade_chamber/veil/Destroy()
+/obj/structure/xeno/mutation_chamber/veil/Destroy()
 	GLOB.hive_datums[hivenumber].veil_chambers -= src
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_VEIL)
 	return ..()

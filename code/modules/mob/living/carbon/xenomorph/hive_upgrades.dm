@@ -361,7 +361,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	psypoint_cost = MUTATION_VEIL_CHAMBER_COST
 	building_type = /obj/structure/xeno/upgrade_chamber/veil
 
-/datum/hive_upgrade/building/upgrade_chamber/veil/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+/datum/hive_upgrade/building/mutation_chamber/veil/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
 	if(length(buyer.hive.veil_chambers) >= max_chambers)
 		to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active veil chambers!"))
