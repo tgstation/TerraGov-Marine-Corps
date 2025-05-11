@@ -2,13 +2,10 @@
 /datum/ai_behavior/human
 	///A list of engineering related actions
 	var/list/engineering_list = list()
-	///Chat lines for trying to heal
-	var/list/building_chat = list("Building.")
-	///Chat lines for trying to heal
-	//var/list/self_heal_chat = list("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!.")
-	///Chat lines for someone being perma
-	var/list/unable_to_build_chat = list("Unable to build.")
-
+	///Chat lines for trying to build
+	var/list/building_chat = list("Building.". "Building, cover me!", "Give me some cover!", "Starting construction.", "Working here.", "Working.", "Cover me, building here.", "Cover me!", "I'm working on it.")
+	///Chat lines for being unable to build something
+	var/list/unable_to_build_chat = list("Unable to build.", "I can't build that.", "Negative.", "Get someone else on it!", "Can't do it, sorry.")
 
 ///Checks if we should be healing somebody
 /datum/ai_behavior/human/proc/engineer_process()
@@ -43,11 +40,20 @@
 	set_interact_target(engie_target)
 	return TRUE
 
+///Adds atom to list
+/datum/ai_behavior/human/proc/add_to_engineering_list(atom/new_target)
+	engineering_list |= new_target
+
+///Removes atom from list
+/datum/ai_behavior/human/proc/remove_from_engineering_list(atom/old_target)
+	engineering_list -= old_target
+
 ///Our building ended, successfully or otherwise
 /datum/ai_behavior/human/proc/on_engineering_end(atom/old_target)
 	SIGNAL_HANDLER
 	human_ai_state_flags &= ~HUMAN_AI_BUILDING
-	remove_from_engineering_list(old_target) //this creates issues if we get interrupted somehow... probably same in medical
+	if(QDELETED(old_target))
+		remove_from_engineering_list(old_target)
 	late_initialize()
 
 ///Decides if we should do something when another mob goes crit
@@ -63,19 +69,7 @@
 		return
 	set_interact_target(new_holo)
 
-///Adds mob to list
-/datum/ai_behavior/human/proc/add_to_engineering_list(atom/new_target)
-	if(new_target in engineering_list)
-		return
-	engineering_list += new_target
-
-///Removes mob from list
-/datum/ai_behavior/human/proc/remove_from_engineering_list(atom/old_target)
-	engineering_list -= old_target
-
-
-
-///Tries to heal another mob
+///Tries to build a holo designation
 /datum/ai_behavior/human/proc/try_build_holo(obj/effect/build_designator/hologram)
 	if(hologram.builder)
 		//Someone else is building it, but we put it at the end of the queue in case its not completed
