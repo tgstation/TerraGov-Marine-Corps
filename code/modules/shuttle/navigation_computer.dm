@@ -111,18 +111,19 @@
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	the_eye.setDir(shuttle_port.dir)
 	var/turf/origin = locate(shuttle_port.x + x_offset, shuttle_port.y + y_offset, shuttle_port.z)
-	for(var/V in shuttle_port.shuttle_areas)
-		var/area/A = V
-		for(var/turf/T in A)
-			if(T.z != origin.z)
-				continue
-			var/image/I = image('icons/effects/alphacolors.dmi', origin, "red")
-			var/x_off = T.x - origin.x
-			var/y_off = T.y - origin.y
-			I.loc = locate(origin.x + x_off, origin.y + y_off, origin.z) //we have to set this after creating the image because it might be null, and images created in nullspace are immutable.
-			I.layer = ABOVE_NORMAL_TURF_LAYER
-			I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-			the_eye.placement_images[I] = list(x_off, y_off)
+	for(var/area/shuttle_area as anything in shuttle_port.shuttle_areas)
+		for (var/list/zlevel_turfs as anything in shuttle_area.get_zlevel_turf_lists())
+			for(var/turf/shuttle_turf as anything in zlevel_turfs)
+				if(shuttle_turf.z != origin.z)
+					continue
+				var/image/I = image('icons/effects/alphacolors.dmi', origin, "red")
+				var/x_off = shuttle_turf.x - origin.x
+				var/y_off = shuttle_turf.y - origin.y
+				I.loc = locate(origin.x + x_off, origin.y + y_off, origin.z) //we have to set this after creating the image because it might be null, and images created in nullspace are immutable.
+				I.layer = ABOVE_NORMAL_TURF_LAYER
+				SET_PLANE(I, ABOVE_GAME_PLANE, shuttle_turf)
+				I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+				the_eye.placement_images[I] = list(x_off, y_off)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_eye_control(mob/user)
 	. = ..()
@@ -208,7 +209,7 @@
 		var/image/newI = image('icons/effects/alphacolors.dmi', the_eye.loc, "blue")
 		newI.loc = place_spots.loc //It is highly unlikely that any landing spot including a null tile will get this far, but better safe than sorry.
 		newI.layer = NAVIGATION_EYE_LAYER
-		SET_PLANE_EXPLICIT(newI, ABOVE_GAME_PLANE, place_spots)
+		SET_PLANE_EXPLICIT(newI, ABOVE_GAME_PLANE, the_eye)
 		newI.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		the_eye.placed_images += newI
 
