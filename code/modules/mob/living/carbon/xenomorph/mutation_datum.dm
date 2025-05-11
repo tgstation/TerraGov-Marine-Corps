@@ -169,7 +169,7 @@
 			RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_SPUR, PROC_REF(on_building_update))
 		if(MUTATION_STRUCTURE_VEIL)
 			RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL, PROC_REF(on_building_update))
-	on_building_update(0, get_total_buildings())
+	on_building_update(null, 0, get_total_buildings())
 
 /datum/mutation_upgrade/Destroy(force, ...)
 	xenomorph_owner.remove_status_effect(status_effect)
@@ -180,12 +180,14 @@
 			UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_SPUR)
 		if(MUTATION_STRUCTURE_VEIL)
 			UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL)
-	on_building_update(get_total_buildings(), 0)
+	on_building_update(null, get_total_buildings(), 0)
 	return ..()
 
 /// Called whenever the mutation is created/deleted or when the amount of buildings has changed.
-/datum/mutation_upgrade/proc/on_building_update(previous_amount, new_amount)
-	return
+/datum/mutation_upgrade/proc/on_building_update(datum/source, previous_amount, new_amount)
+	SIGNAL_HANDLER
+	if(previous_amount == new_amount)
+		return TRUE
 
 /// Gets the total amount of buildings for the mutation.
 /datum/mutation_upgrade/proc/get_total_buildings()
@@ -212,8 +214,9 @@
 	name = "Carapace Waxing"
 	desc = "Regenerate Skin additionally reduces various debuffs by 1/2/3 stacks or 2/4/6 seconds."
 
-/datum/mutation_upgrade/shell/carapace_waxing/on_building_update(previous_amount, new_amount)
-	..()
+/datum/mutation_upgrade/shell/carapace_waxing/on_building_update(datum/source, previous_amount, new_amount)
+	if(..())
+		return
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
 		return
@@ -232,8 +235,9 @@
 	name = "Breathtaking Spin"
 	desc = "Tail Swipe no longer stuns and deals only stamina damage. It deals an additional 3x/3.75x/4.5x stamina damage."
 
-/datum/mutation_upgrade/spur/breathtaking_spin/on_building_update(previous_amount, new_amount)
-	..()
+/datum/mutation_upgrade/spur/breathtaking_spin/on_building_update(datum/source, previous_amount, new_amount)
+	if(..())
+		return
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!ability)
 		return
@@ -256,8 +260,10 @@
 	name = "Carapace Sweat"
 	desc = "Regenerate Skin can be used while on fire and grants fire immunity for 2/4/6 seconds. If you were on fire, you will be extinguished and set nearby humans on fire."
 
-/datum/mutation_upgrade/veil/carapace_sweat/on_building_update(previous_amount, new_amount)
-	..()
+/datum/mutation_upgrade/veil/carapace_sweat/on_building_update(datum/source, previous_amount, new_amount)
+	if(..())
+		return
+
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
 		return

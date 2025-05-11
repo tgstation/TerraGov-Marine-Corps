@@ -22,12 +22,12 @@
 	. = ..()
 	set_light(3, 1, COLOR_DARK_CYAN)
 	GLOB.hive_datums[hivenumber].shell_chambers += src
-	var/total_buildings = GLOB.hive_datums[hivenumber].shell_chambers
+	var/total_buildings = length(GLOB.hive_datums[hivenumber].shell_chambers)
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_SHELL, total_buildings - 1, total_buildings)
 
 /obj/structure/xeno/mutation_chamber/shell/Destroy()
 	GLOB.hive_datums[hivenumber].shell_chambers -= src
-	var/total_buildings = GLOB.hive_datums[hivenumber].shell_chambers
+	var/total_buildings = length(GLOB.hive_datums[hivenumber].shell_chambers)
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_SHELL, total_buildings + 1, total_buildings)
 	return ..()
 
@@ -40,12 +40,12 @@
 	. = ..()
 	set_light(3, 1, COLOR_RED)
 	GLOB.hive_datums[hivenumber].spur_chambers += src
-	var/total_buildings = GLOB.hive_datums[hivenumber].spur_chambers
+	var/total_buildings = length(GLOB.hive_datums[hivenumber].spur_chambers)
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_SPUR, total_buildings - 1, total_buildings)
 
 /obj/structure/xeno/mutation_chamber/spur/Destroy()
 	GLOB.hive_datums[hivenumber].spur_chambers -= src
-	var/total_buildings = GLOB.hive_datums[hivenumber].spur_chambers
+	var/total_buildings = length(GLOB.hive_datums[hivenumber].spur_chambers)
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_SPUR, total_buildings + 1, total_buildings)
 	return ..()
 
@@ -58,11 +58,11 @@
 	. = ..()
 	set_light(3, 1, COLOR_LIME)
 	GLOB.hive_datums[hivenumber].veil_chambers += src
-	var/total_buildings = GLOB.hive_datums[hivenumber].veil_chambers
+	var/total_buildings = length(GLOB.hive_datums[hivenumber].veil_chambers)
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_VEIL, total_buildings - 1, total_buildings)
 
 /obj/structure/xeno/mutation_chamber/veil/Destroy()
 	GLOB.hive_datums[hivenumber].veil_chambers -= src
-	var/total_buildings = GLOB.hive_datums[hivenumber].veil_chambers
+	var/total_buildings = length(GLOB.hive_datums[hivenumber].veil_chambers)
 	SEND_GLOBAL_SIGNAL(COMSIG_MUTATION_CHAMBER_VEIL, total_buildings + 1, total_buildings)
 	return ..()
