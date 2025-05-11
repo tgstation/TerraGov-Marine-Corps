@@ -660,11 +660,24 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack
 	name = "\improper NTC radio operator backpack"
-	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops."
+	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops. It also provides a boost to connectivity of comms of the user."
 	icon_state = "radiopack"
 	worn_icon_state = "radiopack"
 	///Var for the window pop-up
 	var/datum/supply_ui/requests/supply_interface
+
+/obj/item/storage/backpack/marine/radiopack/equipped(mob/user, slot)
+	. = ..()
+	//works on hand either i guess (probably)
+	RegisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK, PROC_REF(on_interference_check))
+
+/obj/item/storage/backpack/marine/radiopack/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_CAVE_INTERFERENCE_CHECK)
+
+/obj/item/storage/backpack/marine/radiopack/proc/on_interference_check(source, list/inplace_interference)
+	SIGNAL_HANDLER
+	inplace_interference[1] = max(0, inplace_interference[1] - 1)
 
 /obj/item/storage/backpack/marine/radiopack/Initialize(mapload, ...)
 	. = ..()
