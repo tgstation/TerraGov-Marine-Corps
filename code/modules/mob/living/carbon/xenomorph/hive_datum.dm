@@ -146,6 +146,13 @@
 	// Acid Jaws
 	for(var/obj/structure/xeno/acid_maw/acid_jaws AS in GLOB.xeno_acid_jaws_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(acid_jaws))
+	// Mutation chambers
+	for(var/obj/structure/xeno/mutation_chamber/shell/chamber AS in GLOB.hive_datums[hivenumber].shell_chambers)
+		.["hive_structures"] += list(get_structure_packet(chamber))
+	for(var/obj/structure/xeno/mutation_chamber/spur/chamber AS in GLOB.hive_datums[hivenumber].spur_chambers)
+		.["hive_structures"] += list(get_structure_packet(chamber))
+	for(var/obj/structure/xeno/mutation_chamber/veil/chamber AS in GLOB.hive_datums[hivenumber].veil_chambers)
+		.["hive_structures"] += list(get_structure_packet(chamber))
 
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
