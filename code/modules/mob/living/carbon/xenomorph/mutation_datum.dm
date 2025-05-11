@@ -24,11 +24,12 @@
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/xeno_user = user
-	.["cost"] = get_mutation_cost(xeno_user)
-	.["cost_text"] = ((get_mutation_cost(xeno_user) < MUTATION_BIOMASS_MAXIMUM) || (length(xeno_user.owned_mutations) >= 3)) ? .["cost"] : "∞"
 	.["already_has_shell_mutation"] = has_any_mutation_in_category(xeno_user, MUTATION_CATEGORY_SHELL)
 	.["already_has_spur_mutation"] = has_any_mutation_in_category(xeno_user, MUTATION_CATEGORY_SPUR)
 	.["already_has_veil_mutation"] = has_any_mutation_in_category(xeno_user, MUTATION_CATEGORY_VEIL)
+
+	.["cost"] = get_mutation_cost(xeno_user)
+	.["cost_text"] = (get_mutation_cost(xeno_user) > MUTATION_BIOMASS_MAXIMUM || (.["already_has_shell_mutation"] && .["already_has_spur_mutation"] && .["already_has_veil_mutation"])) ? "∞" : .["cost"]
 	.["shell_mutations"] = list()
 	.["spur_mutations"] = list()
 	.["veil_mutations"] = list()
