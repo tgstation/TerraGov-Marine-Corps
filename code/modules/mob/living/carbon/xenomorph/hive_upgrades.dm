@@ -359,7 +359,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a chamber that allows xenos to buy utility mutations. Build up to 3 structures to increase mutation power."
 	icon = "veil"
 	psypoint_cost = MUTATION_VEIL_CHAMBER_COST
-	building_type = /obj/structure/xeno/upgrade_chamber/veil
+	building_type = /obj/structure/xeno/mutation_chamber/veil
 
 /datum/hive_upgrade/building/mutation_chamber/veil/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
