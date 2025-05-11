@@ -1,5 +1,13 @@
 GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 
+GLOBAL_LIST_INIT(shell_mutations, typecacheof(/datum/mutation_upgrade/shell))
+GLOBAL_LIST_INIT(spur_mutations, typecacheof(/datum/mutation_upgrade/spur))
+GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
+
+#define is_shell_mutation(A) is_type_in_typecache(A, GLOB.shell_mutations)
+#define is_spur_mutation(A) is_type_in_typecache(A, GLOB.spur_mutations)
+#define is_veilmutation(A) is_type_in_typecache(A, GLOB.veil_mutations)
+
 /// The maximum amount of biomass a hive can have.
 #define MUTATION_BIOMASS_MAXIMUM 1800
 
@@ -35,5 +43,12 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 #define MUTATION_CATEGORY_SPUR "Spur"
 #define MUTATION_CATEGORY_VEIL "Veil"
 
-// TODO: There are probably better ways to indicate "you cannot buy this anymore".
-#define MUTATION_INFINITE_SYMBOL "∞"
+/// List of status effects (non-stackable) that should be decreased/removed when an xenomorph ability says so.
+GLOBAL_LIST_INIT(nonstackable_decreasable_debuffs_for_xenos, list(
+	/datum/status_effect/shatter
+))
+
+/// List of status effects (stackable) that should be decreased/removed when an xenomorph ability says so.
+GLOBAL_LIST_INIT(stackable_decreasable_debuffs_for_xenos, list(
+	/datum/status_effect/stacking/microwave
+))
