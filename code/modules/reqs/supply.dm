@@ -698,13 +698,13 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	shuttle_id = "supplysom"
 	faction = FACTION_SOM
 	home_id = "supply_som"
-	req_access = list(213)
+	req_access = list(ACCESS_SOM_REQUESITIONS)
 
 /obj/machinery/computer/supplycomp/clf
 	shuttle_id = "supplyclf"
 	faction = FACTION_CLF
 	home_id = "supply_clf"
-	req_access = null
+	req_access = list(ACCESS_CLF_CARGO)
 
 /obj/docking_port/mobile/supply/som
 	dir = 1

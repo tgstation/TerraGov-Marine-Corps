@@ -77,6 +77,8 @@ GLOBAL_LIST_EMPTY(all_req_one_access)
 #define ACCESS_ICC_MEDPREP 225
 #define ACCESS_ICC_GUARDPREP 226
 #define ACCESS_ICC_LEADPREP 227
+#define ACCESS_ICC_CARGO 228
+#define ACCESS_ICC_TADPOLE 229
 
 
 //VSD access defines
@@ -85,6 +87,10 @@ GLOBAL_LIST_EMPTY(all_req_one_access)
 #define ACCESS_VSD_ENGPREP 238
 #define ACCESS_VSD_SPECPREP 239
 #define ACCESS_VSD_LEADPREP 240
+
+//CLF access defines
+#define ACCESS_CLF_CARGO 250
+#define ACCESS_CLF_TADPOLE 251
 
 //=================================================
 
