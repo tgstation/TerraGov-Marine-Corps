@@ -6,12 +6,24 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+type NukeDiskProps = {
+  message: string;
+  progress: number;
+  time_left: number;
+  overclock_multiplier: number;
+  flavor_text: string;
+  running: BooleanLike;
+  segment_time: number;
+  color: string;
+};
+
 export const NukeDiskGenerator = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<NukeDiskProps>();
   const {
     message,
     progress,
@@ -44,7 +56,7 @@ export const NukeDiskGenerator = (props) => {
                       Time left: {time_left} s
                       <ProgressBar
                         minValue={0}
-                        MaxValue={segment_time / overclock_multiplier}
+                        maxValue={segment_time / overclock_multiplier}
                         value={
                           (time_left / (segment_time / overclock_multiplier)) *
                           10
