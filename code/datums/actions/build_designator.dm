@@ -31,7 +31,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 /datum/action/ability/activable/build_designator/Destroy()
 	QDEL_NULL(hologram)
-	delete_timer()
 	return ..()
 
 /datum/action/ability/activable/build_designator/should_show()
@@ -151,7 +150,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 ///Removes the hologram
 /datum/action/ability/activable/build_designator/proc/cleanup_hologram()
-	delete_timer()
 	QDEL_NULL(hologram)
 
 //The actual building hologram
