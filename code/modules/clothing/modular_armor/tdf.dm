@@ -276,6 +276,10 @@
 		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
 		return FALSE
 
+/obj/item/clothing/suit/modular/tdf/robot/Initialize(mapload, ...)
+	. = ..()
+	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+
 /obj/item/clothing/suit/modular/tdf/robot/shield_overclocked
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield/overclocked,
