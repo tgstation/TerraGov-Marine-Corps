@@ -154,7 +154,7 @@
 ///from /datum/emote/living/carbon/human/medic/run_emote()
 #define COMSIG_GLOB_MOB_CALL_MEDIC "!mob_call_medic"
 
-///from /mob/living/carbon/proc/on_crit()
+///from /obj/effect/build_designator/Initialize()
 #define COMSIG_GLOB_HOLO_BUILD_INITIALIZED "!holo_build_initialized"
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
@@ -910,7 +910,8 @@
 #define COMSIG_ABILITY_SUCCEED_ACTIVATE "xeno_action_succeed_activate"
 	#define SUCCEED_ACTIVATE_CANCEL (1<<0)
 
-#define COMSIG_DO_OVERWATCH_RADIAL "do_overwatch_radial"					//from base of mob/living/Mute()
+//From /obj/machinery/computer/camera_advanced/overwatch/military/proc/attempt_radial()
+#define COMSIG_DO_OVERWATCH_RADIAL "do_overwatch_radial"
 	#define OVERWATCH_RADIAL_HIDE (1<<0)
 
 //Signals for CIC orders

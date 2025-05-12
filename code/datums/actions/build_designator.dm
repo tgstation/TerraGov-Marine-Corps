@@ -26,10 +26,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 	)
 	///personal hologram designator
 	var/obj/effect/build_hologram/hologram
-	/// timerid before we cleanup the hologram
-	var/cleanup_timer
-	/// how long a hologram lasts without movement
-	var/cleanup_time = 4 SECONDS
 	///The typepath of what we want to construct. Typecast for initial var values
 	var/obj/construct_type
 
@@ -46,10 +42,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 /datum/action/ability/activable/build_designator/can_use_action()
 	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
-
-/datum/action/ability/activable/build_designator/fail_activate()
-	if(owner)
-		owner << span_warning("You are not competent enough to do that.") // This message shouldn't show since incompetent people shouldn't have the button, but JIC.
 
 /datum/action/ability/activable/build_designator/on_selection()
 	RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
@@ -110,7 +102,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 	if(!hologram)
 		create_hologram(target_turf)
 	update_hologram(target_turf)
-	start_cleanup_timer()
 
 /// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
 /datum/action/ability/activable/build_designator/proc/create_hologram(turf/target_turf)
@@ -157,16 +148,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 			continue
 		return FALSE
 	return TRUE
-
-///Sets the cleanup timer
-/datum/action/ability/activable/build_designator/proc/start_cleanup_timer()
-	delete_timer()
-	cleanup_timer = addtimer(CALLBACK(src, PROC_REF(cleanup_hologram)), cleanup_time, TIMER_STOPPABLE)
-
-///Clears the cleanup timer
-/datum/action/ability/activable/build_designator/proc/delete_timer()
-	deltimer(cleanup_timer)
-	cleanup_timer = null
 
 ///Removes the hologram
 /datum/action/ability/activable/build_designator/proc/cleanup_hologram()
