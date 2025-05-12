@@ -15,6 +15,8 @@
 	)
 	/// The multiplier of stamina damage applied to targets. If this is above 1, then there will be no brute damage or stuns.
 	var/stamina_multiplier = 1
+	/// How empowered is the ability? Adds various effects based on strength.
+	var/empowered_strength = 0
 
 /datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
@@ -46,10 +48,10 @@
 		if(!affecting) //Still nothing??
 			affecting = H.get_limb("chest") //Gotta have a torso?!
 		if(stamina_multiplier <= 1)
-			H.knockback(xeno_owner, sweep_range, 4)
+			H.knockback(xeno_owner, !empowered_strength ? sweep_range : sweep_range + 1, 4)
 			H.apply_damage(damage, BRUTE, affecting, MELEE)
-			H.Paralyze(0.5 SECONDS) //trip and go
-		H.apply_damage(damage * stamina_multiplier, STAMINA, updating_health = TRUE)
+			H.Paralyze(0.5 SECONDS * (empowered_strength >= 3 ? 2 : 1)) //trip and go
+		H.apply_damage(damage * (stamina_multiplier + (empowered_strength >= 2 ? 1.5 : 0)), STAMINA, updating_health = TRUE)
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -57,6 +59,7 @@
 		to_chat(H, span_xenowarning("We are struck by \the [xeno_owner]'s tail sweep!"))
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
+	empowered_strength = 0
 	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 	succeed_activate()
 	if(xeno_owner.crest_defense)
@@ -97,8 +100,10 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
 	)
 	charge_range = DEFENDER_CHARGE_RANGE
-	///How long is the windup before charging
+	/// How long is the windup before charging?
 	var/windup_time = 0.5 SECONDS
+	/// How much will Tail Sweep be empowered upon completion?
+	var/empowering_strength = 0
 
 /datum/action/ability/activable/xeno/charge/forward_charge/use_ability(atom/A)
 	if(!A)
@@ -125,6 +130,10 @@
 	xeno_owner.xeno_flags |= XENO_LEAPING
 
 	xeno_owner.throw_at(A, charge_range, 5, xeno_owner)
+	if(empowering_strength)
+		var/datum/action/ability/xeno_action/tail_sweep/sweep_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
+		if(sweep_ability)
+			sweep_ability.empowered_strength = empowering_strength
 
 	add_cooldown()
 
@@ -241,6 +250,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORTIFY,
 	)
+	/// The value of the movement modifier to apply. Zero and below keeps them immobile. Greater than zero makes them slower.
+	var/movement_modifier = 0
+	/// The amount of armor to be given when Fortify is active.
 	var/last_fortify_bonus = 0
 
 /datum/action/ability/xeno_action/fortify/give_action()
@@ -290,7 +302,10 @@
 	GLOB.round_statistics.defender_fortifiy_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_fortifiy_toggles")
 	if(on)
-		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		if(!movement_modifier)
+			ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		else
+			xeno_owner.add_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE, 0, NONE, FALSE, movement_modifier)
 		ADD_TRAIT(xeno_owner, TRAIT_STOPS_TANK_COLLISION, FORTIFY_TRAIT)
 		if(!silent)
 			to_chat(xeno_owner, span_xenowarning("We tuck ourselves into a defensive stance."))
@@ -301,7 +316,11 @@
 			to_chat(xeno_owner, span_xenowarning("We resume our normal stance."))
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-last_fortify_bonus)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		if(!movement_modifier)
+			REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		else
+			xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE)
+			xeno_owner.client?.move_delay = world.time // To prevent unwanted slowdown: fortifying, move, immediate unfortifying, carried-over slowdown of 1s (don't want this), then move.
 		REMOVE_TRAIT(xeno_owner, TRAIT_STOPS_TANK_COLLISION, FORTIFY_TRAIT)
 
 	xeno_owner.fortify = on
@@ -324,10 +343,16 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGENERATE_SKIN,
 	)
+	/// The percentage of max health to heal.
+	var/percentage_to_heal = 0.12
 	/// Amount of stacks of debuffs / 2x seconds of buff to remove.
 	var/debuff_amount_to_remove = 0
 	/// The length of fire immunity & if nearby humans should be set on fire.
 	var/fire_immunity_length = 0 SECONDS
+	/// The percentage of sunder to heal to a nearby xenomorph. Positive is good. Negative is bad.
+	var/percentage_to_unsunder_ally = 0
+	/// Should a temporary armor debuff be applied upon usage?
+	var/should_apply_temp_debuff = FALSE
 
 /datum/action/ability/xeno_action/regenerate_skin/on_cooldown_finish()
 	to_chat(xeno_owner, span_notice("We feel we are ready to shred our skin and grow another."))
@@ -347,7 +372,10 @@
 
 	xeno_owner.do_jitter_animation(1000)
 	xeno_owner.set_sunder(0)
-	xeno_owner.heal_overall_damage(25, 25, updating_health = TRUE)
+	var/health_to_heal = percentage_to_heal * xeno_owner.xeno_caste.max_health
+	HEAL_XENO_DAMAGE(xeno_owner, health_to_heal, FALSE)
+	xeno_owner.updatehealth()
+
 	if(debuff_amount_to_remove)
 		for(var/datum/status_effect/status_effect AS in xeno_owner.status_effects)
 			if(status_effect in GLOB.nonstackable_decreasable_debuffs_for_xenos && status_effect.duration != 1)
@@ -369,6 +397,21 @@
 				nearby_human.adjust_fire_stacks(xeno_owner.fire_stacks)
 				nearby_human.IgniteMob()
 			xeno_owner.ExtinguishMob()
+	if(percentage_to_unsunder_ally > 0)
+		var/mob/living/carbon/xenomorph/ideal_xenomorph_target
+		for(var/mob/living/carbon/xenomorph/nearby_xenomorph in orange(1, xeno_owner))
+			if(nearby_xenomorph.stat == DEAD || !xeno_owner.Adjacent(nearby_xenomorph))
+				continue
+			if(!xeno_owner.issamexenohive(nearby_xenomorph))
+				continue
+			if(!ideal_xenomorph_target || nearby_xenomorph.sunder > ideal_xenomorph_target.sunder)
+				ideal_xenomorph_target = nearby_xenomorph
+				continue
+		if(ideal_xenomorph_target)
+			ideal_xenomorph_target.adjust_sunder(ideal_xenomorph_target.sunder * -percentage_to_unsunder_ally)
+			ideal_xenomorph_target.do_jitter_animation(1000)
+	if(should_apply_temp_debuff)
+		xeno_owner.apply_status_effect(STATUS_EFFECT_FRESH_CARAPACE)
 	add_cooldown()
 	return succeed_activate()
 

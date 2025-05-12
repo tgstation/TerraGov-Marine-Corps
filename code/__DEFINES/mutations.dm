@@ -52,3 +52,12 @@ GLOBAL_LIST_INIT(nonstackable_decreasable_debuffs_for_xenos, list(
 GLOBAL_LIST_INIT(stackable_decreasable_debuffs_for_xenos, list(
 	/datum/status_effect/stacking/microwave
 ))
+
+/// Mutation trait.
+#define MUTATION_TRAIT "mutation"
+
+/// Movespeed IDs.
+#define MOVESPEED_ID_MUTATION_SLOW_AND_STEADY "MUTATION_SLOW_AND_STEADY"
+
+/// Sunder signal
+#define COMSIG_XENOMORPH_SUNDER_CHANGE "xenomorph_sunder_change" // (old, new)
