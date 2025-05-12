@@ -1052,7 +1052,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/status_effect/shatter/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/fresh_carapace/on_creation(mob/living/new_owner, set_duration)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
 		qdel(src)
 		return
@@ -1064,14 +1064,14 @@
 	particle_holder = new(owner, /particles/fresh_carapace_status)
 	return ..()
 
-/datum/status_effect/shatter/on_apply()
+/datum/status_effect/fresh_carapace/on_apply()
 	. = ..()
 	if(!.)
 		return
 	armor_modifier = new armor_modifier(-30, -30, -30, -30, -30, -30, -30, -30)
 	owner.soft_armor = owner.soft_armor.attachArmor(armor_modifier)
 
-/datum/status_effect/shatter/on_remove()
+/datum/status_effect/fresh_carapace/on_remove()
 	owner.soft_armor = owner.soft_armor.detachArmor(armor_modifier)
 	armor_modifier = null
 	QDEL_NULL(particle_holder)
