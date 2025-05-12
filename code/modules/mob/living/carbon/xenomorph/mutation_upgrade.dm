@@ -154,6 +154,7 @@
 /datum/mutation_upgrade/spur/sharpening_claws
 	name = "Sharpening Claws"
 	desc = "For 10 sunder you have, you gain 3/6/9% additive increase in your slash damage."
+	/// How many times has the melee damage modifier been increased?
 	var/multiplier = 0
 
 /datum/mutation_upgrade/spur/sharpening_claws/on_building_update(datum/source, previous_amount, new_amount)
