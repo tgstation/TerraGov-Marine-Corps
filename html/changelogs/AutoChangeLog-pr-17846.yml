@@ -1,0 +1,4 @@
+author: "revelation-8468"
+delete-after: True
+changes:
+  - rscadd: "Randomises the offset of ejected magazines."
