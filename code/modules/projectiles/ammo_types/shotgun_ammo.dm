@@ -356,16 +356,16 @@
 	///Bonus flat damage to walls, balanced around resin walls. Stolen from autocannons
 	var/wall_bonus = 900
 
-/datum/ammo/bullet/shotgun/breaching/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/breaching/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	proj.proj_max_range -= 20
 
 	if(istype(target_turf, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = target_turf
 		wall_victim.take_damage(wall_bonus, proj.damtype, proj.armor_type)
 
-/datum/ammo/bullet/shotgun/breaching/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/breaching/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
 	staggerstun(target_mob, proj, max_range = 20, slowdown = 1)
 
-/datum/ammo/bullet/shotgun/breaching/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/breaching/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
