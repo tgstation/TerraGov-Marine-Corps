@@ -110,6 +110,22 @@
 		ability.should_apply_temp_debuff = TRUE
 	ability.percentage_to_heal += (new_amount - previous_amount) * 0.10
 
+// Runner
+/datum/mutation_upgrade/shell/upfront_evasion
+	name = "Upfront Evasion"
+	desc = "Evasion starts off 1/2/3s longer, but it no longer refreshes from dodging projectiles."
+
+/datum/mutation_upgrade/shell/upfront_evasion/on_building_update(datum/source, previous_amount, new_amount)
+	if(..())
+		return
+	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
+	if(!ability)
+		return
+	ability.refresh_disabled = new_amount ? TRUE : FALSE
+	if(new_amount > 0 && ability.auto_evasion)
+		ability.alternate_action_activate() // Auto Evasion's whole point is to re-activate the ability when Evasion refreshes. If it never refreshes, then there is no use in Auto Evasion.
+	ability.evasion_starting_duration += (new_amount - previous_amount)
+
 /**
  * Spur
  */
@@ -177,6 +193,23 @@
 	xenomorph_owner.xeno_melee_damage_modifier += multiplier_difference * get_total_buildings() * 0.03
 	multiplier += multiplier_difference
 
+// Runner
+/datum/mutation_upgrade/spur/sneak_attack
+	name = "Sneak Attack"
+	desc = "Your Pounce deals an additional 1/1.25/1.5x slash damage if it was started in low light."
+
+/datum/mutation_upgrade/spur/sneak_attack/on_building_update(datum/source, previous_amount, new_amount)
+	if(..())
+		return
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return
+	if(previous_amount > 0)
+		ability.dim_bonus_multiplier -= 0.75
+	if(new_amount > 0)
+		ability.dim_bonus_multiplier += 0.75
+	ability.dim_bonus_multiplier += (new_amount - previous_amount) * 0.25
+
 /**
  * Veil
  */
@@ -226,3 +259,22 @@
 	if(!ability)
 		return
 	ability.percentage_to_unsunder_ally += (new_amount - previous_amount) * 0.08
+
+// Runner
+/datum/mutation_upgrade/veil/headslam
+	name = "Sneak Attack"
+	desc = "Savage decreases the stun duration significantly, but now confuses and blurs your target's vision for 1/2/3 seconds at maximum scaled by your remaining plasma."
+
+/datum/mutation_upgrade/spur/headslam/on_building_update(datum/source, previous_amount, new_amount)
+	if(..())
+		return
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return
+	if(previous_amount > 0)
+		ability.stun_duration = initial(ability.stun_duration)
+		ability.immobilize_duration = initial(ability.immobilize_duration)
+	if(new_amount > 0)
+		ability.stun_duration = initial(ability.stun_duration) / 4
+		ability.immobilize_duration = initial(ability.immobilize_duration) / 4
+	ability.dim_bonus_multiplier += (new_amount - previous_amount) * 0.25

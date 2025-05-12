@@ -51,6 +51,12 @@
 		/datum/action/ability/activable/xeno/pounce/runner,
 	)
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/brittle_upclose,
+		/datum/mutation_upgrade/spur/sneak_attack,
+		/datum/mutation_upgrade/veil/headslam
+	)
+
 /datum/xeno_caste/runner/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
@@ -103,6 +109,8 @@
 		/datum/action/ability/activable/xeno/melter_shroud,
 		/datum/action/ability/xeno_action/xenohide,
 	)
+
+	buyable_mutations = list()
 
 /datum/xeno_caste/runner/melter/normal
 	upgrade = XENO_UPGRADE_NORMAL
