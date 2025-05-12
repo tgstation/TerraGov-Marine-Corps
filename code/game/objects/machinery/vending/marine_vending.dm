@@ -1167,6 +1167,7 @@
 		),
 		"Armor modules" = list(
 			/obj/item/armor_module/storage/general = -1,
+			/obj/item/armor_module/storage/ammo_mag = -1,
 			/obj/item/armor_module/storage/engineering = -1,
 			/obj/item/armor_module/storage/medical = -1,
 			/obj/item/armor_module/storage/injector = -1,
