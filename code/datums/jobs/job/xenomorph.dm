@@ -79,6 +79,7 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
 
 /datum/job/xenomorph/queen/get_spawn_message_information(mob/M)
+	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += {"<b>You are now the alien ruler!<br>
 Your job is to spread the hive.</b><br>

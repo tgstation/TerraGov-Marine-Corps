@@ -164,6 +164,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /// The message you get when spawning in as this job, called by [/datum/job/proc/after_spawn]
 /datum/job/proc/get_spawn_message_information(mob/new_player)
+	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	. += span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
