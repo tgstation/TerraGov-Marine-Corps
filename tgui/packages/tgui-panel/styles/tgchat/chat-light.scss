@@ -466,6 +466,8 @@ h2.alert {
 
 .binarysay {
   color: hsl(114, 86.5%, 40.8%);
+  background-color: var(--color-black);
+  display: block;
 }
 .binarysay a {
   color: hsl(120, 100%, 50%);
