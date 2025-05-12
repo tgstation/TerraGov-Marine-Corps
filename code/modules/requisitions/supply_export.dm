@@ -3,7 +3,10 @@
 	var/list/points = get_export_value()
 	if(!points)
 		return FALSE
-	SSpoints.supply_points[faction_selling] = clamp((SSpoints.supply_points[faction_selling]+=points[1]),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps exports to stop infinite Jims
+	if(SSpoints.supply_points[faction_selling] >= HUMAN_FACTION_MAX_POINTS)
+		points[2] = (points[2]/4)
+		minor_announce("Operational requisitions budget exceeded maximum capacity, 85% of points over [HUMAN_FACTION_MAX_POINTS] goes towards factional goals.", title = "[faction_selling] accounting division")
+	SSpoints.supply_points[faction_selling] = SSpoints.supply_points[faction_selling]+=points[1]
 	SSpoints.dropship_points += points[2]
 	return list(new /datum/export_report(points[1], name, faction_selling))
 
