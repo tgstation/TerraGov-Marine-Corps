@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - admin: "Ban reason input window is now bigger to improve readability"
