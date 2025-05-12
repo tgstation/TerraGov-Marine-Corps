@@ -33,6 +33,11 @@ GLOBAL_LIST_INIT(designator_types, list (
 	///The typepath of what we want to construct. Typecast for initial var values
 	var/obj/construct_type
 
+/datum/action/ability/activable/build_designator/Destroy()
+	QDEL_NULL(hologram)
+	delete_timer()
+	return ..()
+
 /datum/action/ability/activable/build_designator/should_show()
 	. = ..()
 	if(!.)
