@@ -29,7 +29,7 @@
 
 	// *** Flags *** //
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
-	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER, TRAIT_CAN_HOLD_JELLY)
+	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 50, ACID = 40)
