@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 		return
 	update_hologram(new_dir = newdir)
 
-//Wrapper for show_hologram
+///Wrapper for show_hologram
 /datum/action/ability/activable/build_designator/proc/show_hologram_call(mob/user, atom/target)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(show_hologram), user, target)
