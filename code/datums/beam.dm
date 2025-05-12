@@ -169,7 +169,7 @@
 		var/mob/living/carbon/xenomorph/living = xeno
 		if(!living)
 			return
-		if(living.stat == DEAD)
+		if(living.stat == DEAD || (living.status_flags & INCORPOREAL|GODMODE))
 			continue
 		if(living in blacklistmobs)
 			continue

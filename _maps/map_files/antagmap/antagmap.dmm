@@ -5215,6 +5215,11 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/antag_ship/clf_base/bathroom)
+"BV" = (
+/obj/machinery/computer/voucher/clf,
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/requisition)
 "BX" = (
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/syndicate/black,
@@ -6728,6 +6733,7 @@
 	},
 /obj/machinery/power/apc,
 /obj/structure/cable,
+/obj/machinery/computer/voucher/som,
 /turf/open/floor/mainship/cargo,
 /area/antag_ship/som/requisition)
 "JF" = (
@@ -6868,6 +6874,7 @@
 "Kt" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/insulatedgloves,
+/obj/machinery/computer/voucher/icc,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/east)
 "Ku" = (
@@ -16079,7 +16086,7 @@ aU
 aU
 aU
 Gy
-aU
+BV
 aU
 aF
 tY
@@ -16174,8 +16181,8 @@ bV
 sh
 PL
 zJ
-aF
-aF
+aU
+aU
 aF
 tY
 gW

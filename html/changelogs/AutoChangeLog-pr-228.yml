@@ -1,0 +1,9 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Extinguish fire proc which wind current uses"
+  - bugfix: "Fixes dragon breath going after entering crit state"
+  - bugfix: "Flying dragons and hiveminds can no longer be zapped"
+  - bugfix: "Backhand properly damages vehicles"
+  - bugfix: "Proper grab cooldown"
+  - bugfix: "Fixes dragon grab being broken if you try to grab with an item in hand"

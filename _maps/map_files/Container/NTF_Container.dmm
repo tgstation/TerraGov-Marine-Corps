@@ -1474,7 +1474,7 @@
 "kcf" = (/obj/structure/table/mainship/nometal,/obj/machinery/reagentgrinder,/obj/item/reagent_containers/glass/beaker/large,/obj/item/stack/sheet/mineral/phoron,/obj/item/reagent_containers/dropper,/obj/structure/disposalpipe/segment,/turf/open/floor/mainship/sterile/dark,/area/mainship/medical/chemistry)
 "kcn" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/mainship/black,/area/mainship/living/cafeteria_starboard)
 "kdp" = (/obj/effect/landmark/start/job/mechpilot,/turf/open/floor/urban/wood,/area/mainship/living/mechpilotquarters)
-"kds" = (/obj/effect/turf_decal/warning_stripes/thin{dir = 6},/obj/item/radio/intercom/general{dir = 8},/turf/open/floor/mainship/orange{dir = 4},/area/mainship/squads/req)
+"kds" = (/obj/effect/turf_decal/warning_stripes/thin{dir = 6},/obj/item/radio/intercom/general{dir = 8},/obj/machinery/computer/voucher,/obj/structure/table/mainship/nometal,/turf/open/floor/mainship/orange{dir = 4},/area/mainship/squads/req)
 "kdt" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/structure/disposalpipe/segment{dir = 4},/turf/open/floor/mainship/black,/area/mainship/squads/general)
 "kdE" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/structure/disposalpipe/junction,/turf/open/floor/mainship/sterile/dark,/area/mainship/medical/surgery_hallway)
 "kdR" = (/obj/machinery/light/mainship{light_color = "#da2f1b"},/turf/open/floor/mainship/red,/area/mainship/shipboard/brig)
