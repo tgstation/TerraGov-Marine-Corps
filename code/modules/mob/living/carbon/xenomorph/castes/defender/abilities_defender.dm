@@ -378,7 +378,7 @@
 
 	if(debuff_amount_to_remove)
 		for(var/datum/status_effect/status_effect AS in xeno_owner.status_effects)
-			if(status_effect in GLOB.nonstackable_decreasable_debuffs_for_xenos && status_effect.duration != 1)
+			if((status_effect in GLOB.nonstackable_decreasable_debuffs_for_xenos) && status_effect.duration != 1)
 				status_effect.duration -= debuff_amount_to_remove * 2
 				status_effect.check_duration()
 				continue
