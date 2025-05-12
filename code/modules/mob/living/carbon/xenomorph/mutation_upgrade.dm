@@ -153,7 +153,7 @@
 
 /datum/mutation_upgrade/spur/sharpening_claws
 	name = "Sharpening Claws"
-	desc = "For 10 sunder you have, you gain 5/10/15% additive increase in your slash damage."
+	desc = "For 10 sunder you have, you gain 3/6/9% additive increase in your slash damage."
 	var/multiplier = 0
 
 /datum/mutation_upgrade/spur/sharpening_claws/on_building_update(datum/source, previous_amount, new_amount)
@@ -163,7 +163,7 @@
 		UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_SUNDER_CHANGE)
 	if(new_amount > 0)
 		RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_SUNDER_CHANGE, PROC_REF(on_sunder_change))
-	xenomorph_owner.xeno_melee_damage_modifier -= multiplier * previous_amount * 0.05
+	xenomorph_owner.xeno_melee_damage_modifier -= multiplier * previous_amount * 0.03
 	multiplier = 0
 	on_sunder_change(null, 0, xenomorph_owner.sunder)
 
@@ -173,7 +173,7 @@
 	var/multiplier_difference = (FLOOR(new_sunder, 10) * 0.1) - multiplier
 	if(multiplier_difference == 0)
 		return
-	xenomorph_owner.xeno_melee_damage_modifier += multiplier_difference * get_total_buildings() * 0.05
+	xenomorph_owner.xeno_melee_damage_modifier += multiplier_difference * get_total_buildings() * 0.03
 	multiplier += multiplier_difference
 
 /**
