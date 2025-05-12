@@ -6,12 +6,23 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+type NtAccessProps = {
+  message: string;
+  progress: number;
+  time_left: number;
+  flavor_text: string;
+  running: BooleanLike;
+  segment_time: number;
+  color: string;
+};
+
 export const NtAccessTerminal = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<NtAccessProps>();
   const {
     message,
     progress,
@@ -43,7 +54,7 @@ export const NtAccessTerminal = (props) => {
                       Time left: {time_left} s
                       <ProgressBar
                         minValue={0}
-                        MaxValue={segment_time}
+                        maxValue={segment_time}
                         value={(time_left / segment_time) * 10}
                       />
                     </Box>

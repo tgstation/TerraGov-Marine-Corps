@@ -85,7 +85,7 @@
 	var/list/data = list()
 
 	if(completed_segments >= total_segments)
-		message = "security override code generated. Run program to send."
+		message = "Security override code generated. Run program to send."
 	else if(current_timer)
 		message = "Program running."
 	else if(!completed_segments)
@@ -108,8 +108,6 @@
 	data["segment_time"] = segment_time
 
 	data["color"] = code_color
-
-	data["segment_number"] = total_segments
 
 	return data
 
