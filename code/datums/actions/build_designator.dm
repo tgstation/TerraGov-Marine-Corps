@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 		return
 	update_hologram(new_dir = newdir)
 
-//Wrapper for show_hologram
+///Wrapper for show_hologram
 /datum/action/ability/activable/build_designator/proc/show_hologram_call(mob/user, atom/target)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(show_hologram), user, target)
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 //Updates the hologram position and validity
 /datum/action/ability/activable/build_designator/proc/update_hologram(turf/target_turf = hologram.loc, new_dir = owner.dir)
 	if(!hologram)
-		return
+		return FALSE
 	if(hologram.loc != target_turf)
 		hologram.abstract_move(target_turf)
 
