@@ -18,7 +18,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Game preferences
 	var/lastchangelog = ""	//Hashed changelog
 	var/ooccolor = "#b82e00"
-	var/asay_color = "#FF3300"
 	var/be_special = BE_SPECIAL_DEFAULT	//Special role selection
 	var/ui_style = "Midnight"
 	var/ui_style_color = "#ffffff"

@@ -1481,6 +1481,8 @@
 		if(user)
 			user.put_in_hands(mag)
 		else
+			mag.pixel_x = rand(-16, 16)
+			mag.pixel_y = rand(-16, 16)
 			mag.forceMove(get_turf(src))
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 		chamber_items[chamber_items.Find(mag)] = null
