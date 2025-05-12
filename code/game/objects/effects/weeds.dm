@@ -253,6 +253,7 @@
 	desc = "A weird, pulsating purple node."
 	max_integrity = 60
 	var/node_icon = "weednode"
+	layer = XENO_NODE_LAYER
 	/// list of all potential turfs that we can expand to
 	var/node_turfs = list()
 	/// How far this node can spread weeds
@@ -261,6 +262,7 @@
 	var/obj/alien/weeds/weed_type = /obj/alien/weeds
 	///The plasma cost multiplier for this node
 	var/ability_cost_mult = 1
+
 
 /obj/alien/weeds/node/Initialize(mapload, obj/alien/weeds/node/node)
 	var/swapped = FALSE
