@@ -468,7 +468,7 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "cL" = (
-/obj/structure/bed/bunkbed,
+/obj/machinery/robotic_cradle,
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "di" = (
@@ -493,7 +493,7 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 4
 	},
-/obj/structure/bed/bunkbed,
+/obj/machinery/autodoc,
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "gl" = (
@@ -526,6 +526,10 @@
 "jI" = (
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"jR" = (
+/obj/machinery/computer/autodoc_console,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 "lg" = (
 /obj/structure/table/mainship/nometal,
@@ -679,6 +683,7 @@
 	pixel_y = 27;
 	density = 0
 	},
+/obj/structure/bed/bunkbed,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
 	},
@@ -700,6 +705,7 @@
 	pixel_y = 27;
 	density = 0
 	},
+/obj/structure/bed/bunkbed,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
 	},
@@ -792,7 +798,7 @@ aE
 li
 aS
 Nj
-aS
+jR
 Aq
 tf
 aS
