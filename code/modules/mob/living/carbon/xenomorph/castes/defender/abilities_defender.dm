@@ -1,6 +1,7 @@
 // ***************************************
 // *********** Tail sweep
 // ***************************************
+
 /datum/action/ability/xeno_action/tail_sweep
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
@@ -13,10 +14,16 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
 	)
-	/// The multiplier of stamina damage applied to targets. If this is above 1, then there will be no brute damage or stuns.
-	var/stamina_multiplier = 1
-	/// How empowered is the ability? Adds various effects based on strength.
-	var/empowered_strength = 0
+	/// How far does it knockback?
+	var/knockback_distance = 1
+	/// How long does it stagger?
+	var/stagger_duration = 0 SECONDS
+	/// How long does it paralyze?
+	var/paralyze_duration = 0.5 SECONDS
+	/// Brute damage multiplier.
+	var/brute_damage_multiplier = 1
+	/// Stamina damage multiplier.
+	var/stamina_damage_multiplier = 0
 
 /datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
@@ -47,11 +54,16 @@
 		var/affecting = H.get_limb(ran_zone(null, 0))
 		if(!affecting) //Still nothing??
 			affecting = H.get_limb("chest") //Gotta have a torso?!
-		if(stamina_multiplier <= 1)
-			H.knockback(xeno_owner, !empowered_strength ? sweep_range : sweep_range + 1, 4)
-			H.apply_damage(damage, BRUTE, affecting, MELEE)
-			H.Paralyze(0.5 SECONDS * (empowered_strength >= 3 ? 2 : 1)) //trip and go
-		H.apply_damage(damage * (stamina_multiplier + (empowered_strength >= 2 ? 1.5 : 0)), STAMINA, updating_health = TRUE)
+		if(brute_damage_multiplier > 0)
+			H.apply_damage(damage * brute_damage_multiplier, BRUTE, updating_health = TRUE)
+		if(stamina_damage_multiplier > 0)
+			H.apply_damage(damage * stamina_damage_multiplier, STAMINA, updating_health = TRUE)
+		if(knockback_distance >= 1)
+			H.knockback(xeno_owner, knockback_distance, 4)
+		if(stagger_duration)
+			H.adjust_stagger(stagger_duration)
+		if(paralyze_duration)
+			H.Paralyze(paralyze_duration)
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -59,7 +71,6 @@
 		to_chat(H, span_xenowarning("We are struck by \the [xeno_owner]'s tail sweep!"))
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
-	empowered_strength = 0
 	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 	succeed_activate()
 	if(xeno_owner.crest_defense)
@@ -102,8 +113,6 @@
 	charge_range = DEFENDER_CHARGE_RANGE
 	/// How long is the windup before charging?
 	var/windup_time = 0.5 SECONDS
-	/// How much will Tail Sweep be empowered upon completion?
-	var/empowering_strength = 0
 
 /datum/action/ability/activable/xeno/charge/forward_charge/use_ability(atom/A)
 	if(!A)
@@ -130,11 +139,6 @@
 	xeno_owner.xeno_flags |= XENO_LEAPING
 
 	xeno_owner.throw_at(A, charge_range, 5, xeno_owner)
-	if(empowering_strength)
-		var/datum/action/ability/xeno_action/tail_sweep/sweep_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
-		if(sweep_ability)
-			sweep_ability.empowered_strength = empowering_strength
-
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/charge/forward_charge/mob_hit(datum/source, mob/living/living_target)

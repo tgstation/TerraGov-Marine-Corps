@@ -137,7 +137,7 @@
 // Defender
 /datum/mutation_upgrade/spur/breathtaking_spin
 	name = "Breathtaking Spin"
-	desc = "Tail Swipe no longer stuns and deals only stamina damage. It deals an additional 3x/3.75x/4.5x stamina damage."
+	desc = "Tail Swipe no longer stuns and deals stamina damage instead. It deals an additional 2x/2.75x/2.5x stamina damage."
 
 /datum/mutation_upgrade/spur/breathtaking_spin/on_building_update(datum/source, previous_amount, new_amount)
 	if(..())
@@ -146,26 +146,30 @@
 	if(!ability)
 		return
 	if(previous_amount > 0)
-		ability.stamina_multiplier -= 2.25
+		brute_damage_multiplier += 1
+		ability.stamina_damage_multiplier -= 2.25
+		paralyze_duration += 0.5 SECONDS
 	if(new_amount > 0)
-		ability.stamina_multiplier += 2.25
-	ability.stamina_multiplier += (new_amount - previous_amount) * 0.75
+		brute_damage_multiplier -= 1
+		ability.stamina_damage_multiplier += 2.25
+		paralyze_duration -= 0.5 SECONDS
+	ability.stamina_damage_multiplier += (new_amount - previous_amount) * 0.75
 
 /datum/mutation_upgrade/spur/power_spin
 	name = "Power Spin"
-	desc = "Forward Charge empowers your next Tail Swipe. Depending on the amount of built structures, it will: knockback further, deal 1.5x additional stamina damage, and stun for twice as long."
+	desc = "Tail Swipe knockbacks humans one tile further and staggers them for 1/2/3s."
 
 /datum/mutation_upgrade/spur/power_spin/on_building_update(datum/source, previous_amount, new_amount)
 	if(..())
 		return
-	var/datum/action/ability/xeno_action/tail_sweep/sweep_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
-	if(!sweep_ability)
+	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
+	if(!ability)
 		return
-	var/datum/action/ability/activable/xeno/charge/forward_charge/charge_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/charge/forward_charge]
-	if(!charge_ability)
-		return
-	sweep_ability.empowered_strength = min(new_amount, sweep_ability.empowered_strength)
-	charge_ability.empowering_strength = new_amount
+	if(previous_amount > 0)
+		ability.knockback_distance -= 1
+	if(new_amount > 0)
+		ability.knockback_distance += 1
+	ability.stagger_duration += (new_amount - previous_amount) SECONDS
 
 /datum/mutation_upgrade/spur/sharpening_claws
 	name = "Sharpening Claws"
