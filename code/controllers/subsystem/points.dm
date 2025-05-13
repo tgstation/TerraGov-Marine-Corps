@@ -59,7 +59,6 @@ SUBSYSTEM_DEF(points)
 		if(!P.contains)
 			continue
 		supply_packs[pack] = P
-		LAZYADD(supply_packs_ui[P.group], pack)
 		var/list/containsname = list()
 		for(var/i in P.contains)
 			var/atom/movable/path = i
