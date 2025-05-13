@@ -15,7 +15,6 @@
 			continue
 		all_supplies += P
 	for(var/datum/supply_packs/pack AS in all_supplies)
-		//var/datum/supply_packs/pack = SSpoints.supply_packs[typepath]
 		var/list/pack_data = list()
 		pack_data["name"] = pack.name
 		pack_data["notes"] = pack.notes
