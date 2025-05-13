@@ -2,6 +2,7 @@
 #define DROPSHIP_POINT_RATE 5 * (GLOB.current_orbit/3)
 #define SUPPLY_POINT_RATE 5 * (GLOB.current_orbit/3)
 #define HUMAN_FACTION_MAX_POINTS 15000
+#define HUMAN_FACTION_ABSOLUTE_MAX_POINTS 30000
 #define XENO_FACTION_MAX_POINTS 5000
 
 SUBSYSTEM_DEF(points)
@@ -80,7 +81,7 @@ SUBSYSTEM_DEF(points)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
 
 	for(var/key in supply_points)
-		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
+		add_supply_points(key, SUPPLY_POINT_RATE / (1 MINUTES / wait))
 
 ///Add amount of strategic psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_strategic_psy_points(hivenumber, amount)
@@ -198,3 +199,25 @@ SUBSYSTEM_DEF(points)
 		orders[i].reason = reason
 		requestlist["[orders[i].id]"] = orders[i]
 	ckey_shopping_cart.Cut()
+
+/datum/controller/subsystem/points/proc/add_supply_points(faction, amount)
+	var/startingsupplypoints = supply_points[faction]
+	if(startingsupplypoints > HUMAN_FACTION_ABSOLUTE_MAX_POINTS)
+		return
+	var/simplenewamount1 = startingsupplypoints + amount
+	var/countoverflowfrom = max(HUMAN_FACTION_MAX_POINTS, startingsupplypoints)
+	var/overflowamount1 = simplenewamount1 - countoverflowfrom
+	if(overflowamount1 > 0)
+		supply_points[faction] = countoverflowfrom
+		overflowamount1 *= 0.15
+		var/simplenewamount2 = countoverflowfrom + overflowamount1
+		var/overflowamount2 = simplenewamount2 - HUMAN_FACTION_ABSOLUTE_MAX_POINTS
+		if(overflowamount2 > 0)
+			supply_points[faction] = HUMAN_FACTION_ABSOLUTE_MAX_POINTS
+			minor_announce("Operational requisitions budget exceeded absolute maximum capacity, 100% of points over [HUMAN_FACTION_ABSOLUTE_MAX_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+		else
+			supply_points[faction] = simplenewamount2
+			if(startingsupplypoints < HUMAN_FACTION_MAX_POINTS)
+				minor_announce("Operational requisitions budget exceeded normal maximum capacity, 85% of points over [HUMAN_FACTION_MAX_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+	else
+		supply_points[faction] = simplenewamount1

@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(job)
 	if(!latejoin)
 		unassigned -= player
 	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
-		SSpoints.supply_points[job.faction] += SUPPLY_POINT_MARINE_SPAWN
+		SSpoints.add_supply_points(job.faction, SUPPLY_POINT_MARINE_SPAWN)
 	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
 	player.mind?.assigned_role = job
 	player.assigned_role = job
