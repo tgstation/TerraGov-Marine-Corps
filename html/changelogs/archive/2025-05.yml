@@ -161,3 +161,25 @@
   - balance: Reduced  warlock's lance damage against mechs to 85
   Xander3359:
   - code_imp: Turns obj/projectile into atom/movable/projectile
+2025-05-13:
+  Arturlang:
+  - balance: Reduces the delay on casting finishers on marines that are grabbed to
+      1.5 seconds from 3
+  - balance: Dragon breath execution now deals 110 and slap deals 76.5, and slap only
+      spreads damage to 3 limbs
+  Atropos:
+  - bugfix: fixed miners saying mineral value instead of ammount
+  - admin: Ban reason input window is now bigger to improve readability
+  Lumipharon:
+  - balance: Some areas on Prison Station are under metal roofs again, namely around
+      disks, nuke and bluespace generator
+  - admin: Fixed gamepanel windows being too short
+  TiviPlus:
+  - bugfix: fixed security exploit concerning mentor permissions
+  - bugfix: Assault armor no longer uses power unless it activates
+  - balance: Tank wam will target mech legs
+  - bugfix: Fixes tad preview while moving not working
+  Tiviplus & Kuro:
+  - rscadd: Added a mech laser sword
+  revelation-8468:
+  - rscadd: Randomises the offset of ejected magazines.
