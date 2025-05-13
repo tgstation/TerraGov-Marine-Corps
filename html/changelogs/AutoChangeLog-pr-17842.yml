@@ -1,5 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - balance: "Reduces the delay on casting finishers on marines that are grabbed to 1.5 seconds from 3"
-  - balance: "Dragon breath execution now deals 110 and slap deals 76.5, and slap only spreads damage to 3 limbs"
