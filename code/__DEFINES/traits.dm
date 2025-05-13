@@ -152,7 +152,7 @@
 ///AM will not be submerged. Trait must ALWAYS be added via the add_nosubmerge_trait proc for correct behavior
 #define TRAIT_NOSUBMERGE "trait_nosubmerge"
 
-#define TRAIT_HAS_SPAWNED_MECH "has_spawned_mech"
+// #define TRAIT_HAS_SPAWNED_MECH "has_spawned_mech"
 
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"
