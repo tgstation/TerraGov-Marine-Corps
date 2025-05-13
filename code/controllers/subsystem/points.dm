@@ -239,10 +239,10 @@ SUBSYSTEM_DEF(points)
 		var/overflowamount2 = simplenewamount2 - HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS
 		if(overflowamount2 > 0)
 			dropship_points[faction] = HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS
-			minor_announce("Operational requisitions budget exceeded absolute maximum capacity, 100% of points over [HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+			minor_announce("Operational dropship budget exceeded absolute maximum capacity, 100% of points over [HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS] goes towards factional goals.", title = "[faction] accounting division")
 		else
 			dropship_points[faction] = simplenewamount2
 			if(startingdropshippoints < HUMAN_FACTION_MAX_DROPSHIP_POINTS)
-				minor_announce("Operational requisitions budget exceeded normal maximum capacity, 85% of points over [HUMAN_FACTION_MAX_DROPSHIP_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+				minor_announce("Operational dropship budget exceeded normal maximum capacity, 85% of points over [HUMAN_FACTION_MAX_DROPSHIP_POINTS] goes towards factional goals.", title = "[faction] accounting division")
 	else
 		dropship_points[faction] = simplenewamount1
