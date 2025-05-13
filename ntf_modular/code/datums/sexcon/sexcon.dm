@@ -140,6 +140,7 @@
 		playsound(target, pick(list('ntf_modular/sound/misc/mat/mouthend (1).ogg','ntf_modular/sound/misc/mat/mouthend (2).ogg')), 100, FALSE)
 	else
 		playsound(target, 'ntf_modular/sound/misc/mat/endin.ogg', 50, TRUE)
+	target.reagents.add_reagent(/datum/reagent/medicine/saline_glucose, 5)
 	after_ejaculation()
 	if(!oral)
 		after_intimate_climax()
