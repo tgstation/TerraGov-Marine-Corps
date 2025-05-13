@@ -77,6 +77,7 @@
 		/datum/job/clf/standard = 2,
 		/datum/job/clf/leader = 2,
 		/datum/job/clf/medic = 2,
+		/datum/job/clf/silicon/synthetic/clf = 1,
 		/datum/job/vsd_squad/engineer = 1,
 		/datum/job/vsd_squad/spec = 2,
 		/datum/job/vsd_squad/leader = 1,

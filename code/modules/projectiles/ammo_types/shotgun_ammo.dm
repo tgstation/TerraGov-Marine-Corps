@@ -205,8 +205,8 @@
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 4
-	max_range = 15
-	damage = 130
+	max_range = 8
+	damage = 100
 	penetration = 50
 	sundering = 20
 

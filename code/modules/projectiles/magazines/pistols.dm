@@ -223,6 +223,7 @@
 
 /obj/item/ammo_magazine/pistol/som/extended
 	name = "\improper V-11 extended magazine (9mm)"
+	default_ammo = /datum/ammo/bullet/pistol
 	max_rounds = 30
 	icon_state = "v11_extended"
 	icon_state_mini = "mag_pistol_yellow"
