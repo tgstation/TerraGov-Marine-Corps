@@ -118,8 +118,8 @@
 			required_ticks = 60
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
-				SSpoints.supply_points[faction] = clamp((SSpoints.supply_points[faction]+=mineral_value*stored_mineral),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps req points.
-				SSpoints.dropship_points += dropship_bonus * stored_mineral
+				SSpoints.add_supply_points(faction, mineral_value * stored_mineral) //NTF edit. Forcibly caps req points.
+				SSpoints.add_dropship_points(faction, dropship_bonus * stored_mineral)
 				GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -285,8 +285,8 @@
 		to_chat(user, span_warning("[src] is not ready to produce a shipment yet!"))
 		return
 
-	SSpoints.supply_points[faction] = clamp((SSpoints.supply_points[faction]+=mineral_value*stored_mineral),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps req points.
-	SSpoints.dropship_points += dropship_bonus * stored_mineral
+	SSpoints.add_supply_points(faction, mineral_value * stored_mineral) //NTF edit. Forcibly caps req points.
+	SSpoints.add_dropship_points(faction, dropship_bonus * stored_mineral)
 	GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -306,8 +306,8 @@
 			for(var/direction in GLOB.cardinals)
 				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
 					continue
-				SSpoints.supply_points[faction] = clamp((SSpoints.supply_points[faction]+=mineral_value),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps req points.
-				SSpoints.dropship_points += dropship_bonus
+				SSpoints.add_supply_points(faction, mineral_value)  //NTF edit. Forcibly caps req points.
+				SSpoints.add_dropship_points(faction, dropship_bonus)
 				GLOB.round_statistics.points_from_mining += mineral_value
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)

@@ -81,10 +81,8 @@
 	.["supply_points_to_issue"] = supply_points
 	.["supply_points_max"] = HUMAN_FACTION_MAX_POINTS
 	.["dropship_points_to_issue"] = dropship_points
-	/*//todo - implent faction-specific dropship points
 	.["dropship_points_available"] = SSpoints.dropship_points[faction]
-	.["dropship_points_max"] = MAX_DROPSHIP_POINTS
-	*/
+	.["dropship_points_max"] = HUMAN_FACTION_MAX_DROPSHIP_POINTS
 
 /obj/machinery/computer/voucher/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -97,13 +95,11 @@
 				return FALSE
 			else
 				SSpoints.supply_points[faction] -= supply_points
-			/*//todo - implent faction-specific dropship points
 			if(dropship_points > SSpoints.dropship_points[faction])
-				to_chat(user, span_warning("[src] says \"Not enough dropship points to issue voucher!\""))
+				to_chat(ui.user, span_warning("[src] says \"Not enough dropship points to issue voucher!\""))
 				return FALSE
 			else
 				SSpoints.dropship_points[faction] -= dropship_points
-			*/
 			if(!(supply_points || dropship_points))
 				to_chat(ui.user, span_warning("[src] says \"Select a nonzero amount of points for the voucher!\""))
 				return FALSE
@@ -114,10 +110,9 @@
 			return TRUE
 		if("set_supply_points")
 			supply_points = params["new_value"]
-		/*//todo - implent faction-specific dropship points
 		if("set_dropship_points")
 			dropship_points = params["new_value"]
-		*/
+
 /obj/machinery/computer/voucher/som
 	faction = FACTION_SOM
 	req_access = list(ACCESS_SOM_REQUESITIONS)
