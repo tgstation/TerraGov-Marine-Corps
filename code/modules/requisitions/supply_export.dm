@@ -4,8 +4,8 @@
 	if(!points)
 		return FALSE
 
-	SSpoints.add_supply_points(faction_selling,points[1])
-	SSpoints.dropship_points += points[2]
+	SSpoints.add_supply_points(faction_selling, points[1])
+	SSpoints.add_dropship_points(faction_selling, points[2])
 	return list(new /datum/export_report(points[1], name, faction_selling))
 
 /mob/living/carbon/human/supply_export(faction_selling)

@@ -3,6 +3,8 @@
 #define SUPPLY_POINT_RATE 5 * (GLOB.current_orbit/3)
 #define HUMAN_FACTION_MAX_POINTS 15000
 #define HUMAN_FACTION_ABSOLUTE_MAX_POINTS 30000
+#define HUMAN_FACTION_MAX_DROPSHIP_POINTS 15000
+#define HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS 30000
 #define XENO_FACTION_MAX_POINTS 5000
 
 SUBSYSTEM_DEF(points)
@@ -12,7 +14,7 @@ SUBSYSTEM_DEF(points)
 	flags = SS_KEEP_TIMING|SS_NO_FIRE
 
 	//wait = 10 SECONDS
-	var/dropship_points = 0
+	var/dropship_points = list()
 	///Assoc list of supply points
 	var/supply_points = list()
 	///Assoc list of xeno strategic points: xeno_strategic_points_by_hive["hivenum"]
@@ -78,7 +80,8 @@ SUBSYSTEM_DEF(points)
 		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "contains" = containsname)
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
-	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
+	for(var/key in dropship_points)
+		add_dropship_points(key, DROPSHIP_POINT_RATE / (1 MINUTES / wait))
 
 	for(var/key in supply_points)
 		add_supply_points(key, SUPPLY_POINT_RATE / (1 MINUTES / wait))
@@ -221,3 +224,25 @@ SUBSYSTEM_DEF(points)
 				minor_announce("Operational requisitions budget exceeded normal maximum capacity, 85% of points over [HUMAN_FACTION_MAX_POINTS] goes towards factional goals.", title = "[faction] accounting division")
 	else
 		supply_points[faction] = simplenewamount1
+
+/datum/controller/subsystem/points/proc/add_dropship_points(faction, amount)
+	var/startingdropshippoints = dropship_points[faction]
+	if(startingdropshippoints > HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS)
+		return
+	var/simplenewamount1 = startingdropshippoints + amount
+	var/countoverflowfrom = max(HUMAN_FACTION_MAX_DROPSHIP_POINTS, startingdropshippoints)
+	var/overflowamount1 = simplenewamount1 - countoverflowfrom
+	if(overflowamount1 > 0)
+		dropship_points[faction] = countoverflowfrom
+		overflowamount1 *= 0.15
+		var/simplenewamount2 = countoverflowfrom + overflowamount1
+		var/overflowamount2 = simplenewamount2 - HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS
+		if(overflowamount2 > 0)
+			dropship_points[faction] = HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS
+			minor_announce("Operational requisitions budget exceeded absolute maximum capacity, 100% of points over [HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+		else
+			dropship_points[faction] = simplenewamount2
+			if(startingdropshippoints < HUMAN_FACTION_MAX_DROPSHIP_POINTS)
+				minor_announce("Operational requisitions budget exceeded normal maximum capacity, 85% of points over [HUMAN_FACTION_MAX_DROPSHIP_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+	else
+		dropship_points[faction] = simplenewamount1

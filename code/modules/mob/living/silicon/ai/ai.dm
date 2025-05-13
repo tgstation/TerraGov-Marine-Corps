@@ -372,7 +372,7 @@
 
 	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
 
-	. += "Current dropship points: [round(SSpoints.dropship_points)]"
+	. += "Current dropship points: [round(SSpoints.dropship_points[FACTION_TERRAGOV])]"
 
 	. += "Current alert level: [GLOB.marine_main_ship.get_security_level()]"
 

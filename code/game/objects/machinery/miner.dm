@@ -119,7 +119,7 @@
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
 				SSpoints.add_supply_points(faction, mineral_value * stored_mineral) //NTF edit. Forcibly caps req points.
-				SSpoints.dropship_points += dropship_bonus * stored_mineral
+				SSpoints.add_dropship_points(faction, dropship_bonus * stored_mineral)
 				GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -286,7 +286,7 @@
 		return
 
 	SSpoints.add_supply_points(faction, mineral_value * stored_mineral) //NTF edit. Forcibly caps req points.
-	SSpoints.dropship_points += dropship_bonus * stored_mineral
+	SSpoints.add_dropship_points(faction, dropship_bonus * stored_mineral)
 	GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -307,7 +307,7 @@
 				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
 					continue
 				SSpoints.add_supply_points(faction, mineral_value)  //NTF edit. Forcibly caps req points.
-				SSpoints.dropship_points += dropship_bonus
+				SSpoints.add_dropship_points(faction, dropship_bonus)
 				GLOB.round_statistics.points_from_mining += mineral_value
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
