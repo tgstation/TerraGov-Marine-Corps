@@ -1,7 +1,6 @@
 /datum/asset/json/supply_packs
 	name = "supply_packs"
 	cross_round_cachable = TRUE
-	var/fully_generated = TRUE
 
 /datum/asset/json/supply_packs/generate()
 	var/list/data = list()
@@ -31,12 +30,4 @@
 				contained[name] = list("amount" = 1)
 		pack_data["contains"] = contained
 		data[pack.type] = pack_data
-	if(length(data))
-		fully_generated = TRUE
 	return data
-
-/datum/asset/json/supply_packs/ensure_ready()
-	if(!fully_generated)
-		register()
-	return ..()
-
