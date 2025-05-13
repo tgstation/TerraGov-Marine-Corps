@@ -1516,6 +1516,7 @@
 #include "code\modules\asset_cache\asset_cache_item.dm"
 #include "code\modules\asset_cache\asset_list.dm"
 #include "code\modules\asset_cache\asset_list_items.dm"
+#include "code\modules\asset_cache\assets\cargo.dm"
 #include "code\modules\asset_cache\assets\crafting.dm"
 #include "code\modules\asset_cache\assets\plane_debug.dm"
 #include "code\modules\asset_cache\assets\tgui.dm"
