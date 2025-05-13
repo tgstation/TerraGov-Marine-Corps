@@ -270,6 +270,7 @@
 #define TRAIT_BULWARKED_TURF "bulwarked_turf" // turf is affected by bulwark ability
 #define TRAIT_RECOVERY_PYLON_TURF "recovery_pylon_turf" // Turf is affected by a recovery pylon.
 #define TRAIT_BLOODTHIRSTER "bloodthirster" // xeno has the bloodthirster ability
+#define TRAIT_MUTATION "mutation"
 
 //important_recursive_contents traits
 /*

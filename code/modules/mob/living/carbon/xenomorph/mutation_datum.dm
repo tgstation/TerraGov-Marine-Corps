@@ -24,9 +24,9 @@
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/xeno_user = user
-	.["already_has_shell_mutation"] = has_any_mutation_in_category(xeno_user, MUTATION_CATEGORY_SHELL)
-	.["already_has_spur_mutation"] = has_any_mutation_in_category(xeno_user, MUTATION_CATEGORY_SPUR)
-	.["already_has_veil_mutation"] = has_any_mutation_in_category(xeno_user, MUTATION_CATEGORY_VEIL)
+	.["already_has_shell_mutation"] = has_any_mutation_in_category(xeno_user, MUTATION_SHELL)
+	.["already_has_spur_mutation"] = has_any_mutation_in_category(xeno_user, MUTATION_SPUR)
+	.["already_has_veil_mutation"] = has_any_mutation_in_category(xeno_user, MUTATION_VEIL)
 
 	.["cost"] = get_mutation_cost(xeno_user)
 	.["cost_text"] = (get_mutation_cost(xeno_user) > MUTATION_BIOMASS_MAXIMUM || (.["already_has_shell_mutation"] && .["already_has_spur_mutation"] && .["already_has_veil_mutation"])) ? "∞" : .["cost"]
@@ -84,15 +84,15 @@
 
 /datum/mutation_datum/proc/has_any_mutation_in_category(mob/living/carbon/xenomorph/xeno_target, mutation_category)
 	switch(mutation_category)
-		if(MUTATION_CATEGORY_SHELL)
+		if(MUTATION_SHELL)
 			for(var/datum/mutation_upgrade/owned_mutation AS in xeno_target.owned_mutations)
 				if(is_shell_mutation(owned_mutation))
 					return TRUE
-		if(MUTATION_CATEGORY_SPUR)
+		if(MUTATION_SPUR)
 			for(var/datum/mutation_upgrade/owned_mutation AS in xeno_target.owned_mutations)
 				if(is_spur_mutation(owned_mutation))
 					return TRUE
-		if(MUTATION_CATEGORY_VEIL)
+		if(MUTATION_VEIL)
 			for(var/datum/mutation_upgrade/owned_mutation AS in xeno_target.owned_mutations)
 				if(is_veil_mutation(owned_mutation))
 					return TRUE
@@ -125,15 +125,15 @@
 		return
 
 	switch(found_mutation.required_structure)
-		if(MUTATION_STRUCTURE_SHELL)
+		if(MUTATION_SHELL)
 			if(!length(xeno_purchaser.hive.shell_chambers))
 				to_chat(usr, span_xenonotice("This mutation requires a shell chamber to exist!"))
 				return
-		if(MUTATION_STRUCTURE_SPUR)
+		if(MUTATION_SPUR)
 			if(!length(xeno_purchaser.hive.spur_chambers))
 				to_chat(usr, span_xenonotice("This mutation requires a spur chamber to exist!"))
 				return
-		if(MUTATION_STRUCTURE_VEIL)
+		if(MUTATION_VEIL)
 			if(!length(xeno_purchaser.hive.veil_chambers))
 				to_chat(usr, span_xenonotice("This mutation requires a veil chamber to exist!"))
 				return

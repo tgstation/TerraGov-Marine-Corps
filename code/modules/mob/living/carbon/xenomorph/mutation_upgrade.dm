@@ -17,22 +17,22 @@
 	xenomorph_owner = new_xeno_owner
 	xenomorph_owner.apply_status_effect(status_effect)
 	switch(required_structure)
-		if(MUTATION_STRUCTURE_SHELL)
+		if(MUTATION_SHELL)
 			RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_SHELL, PROC_REF(on_building_update))
-		if(MUTATION_STRUCTURE_SPUR)
+		if(MUTATION_SPUR)
 			RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_SPUR, PROC_REF(on_building_update))
-		if(MUTATION_STRUCTURE_VEIL)
+		if(MUTATION_VEIL)
 			RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL, PROC_REF(on_building_update))
 	on_building_update(null, 0, get_total_buildings())
 
 /datum/mutation_upgrade/Destroy(force, ...)
 	xenomorph_owner.remove_status_effect(status_effect)
 	switch(required_structure)
-		if(MUTATION_STRUCTURE_SHELL)
+		if(MUTATION_SHELL)
 			UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_SHELL)
-		if(MUTATION_STRUCTURE_SPUR)
+		if(MUTATION_SPUR)
 			UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_SPUR)
-		if(MUTATION_STRUCTURE_VEIL)
+		if(MUTATION_VEIL)
 			UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL)
 	on_building_update(null, get_total_buildings(), 0)
 	return ..()
@@ -48,19 +48,19 @@
 	if(!xenomorph_owner || !required_structure)
 		return 0
 	switch(required_structure)
-		if(MUTATION_STRUCTURE_SHELL)
+		if(MUTATION_SHELL)
 			return length(xenomorph_owner.hive.shell_chambers)
-		if(MUTATION_STRUCTURE_SPUR)
+		if(MUTATION_SPUR)
 			return length(xenomorph_owner.hive.spur_chambers)
-		if(MUTATION_STRUCTURE_VEIL)
+		if(MUTATION_VEIL)
 			return length(xenomorph_owner.hive.veil_chambers)
 
 /**
  * Shell Mutations
  */
 /datum/mutation_upgrade/shell
-	category = MUTATION_CATEGORY_SHELL
-	required_structure = MUTATION_STRUCTURE_SHELL
+	category = MUTATION_SHELL
+	required_structure = MUTATION_SHELL
 	status_effect = /datum/status_effect/mutation_shell_upgrade
 
 // Defender
@@ -85,10 +85,10 @@
 		return
 	if(previous_amount > 0)
 		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(25, -2.5)
-		REMOVE_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, MUTATION_TRAIT)
+		REMOVE_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION)
 	if(new_amount > 0)
 		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(-25, 2.5)
-		ADD_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, MUTATION_TRAIT)
+		ADD_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION)
 	var/difference = new_amount - previous_amount
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(difference * -5, difference * 2.5)
 
@@ -130,8 +130,8 @@
  * Spur
  */
 /datum/mutation_upgrade/spur
-	category = MUTATION_CATEGORY_SPUR
-	required_structure = MUTATION_STRUCTURE_SPUR
+	category = MUTATION_SPUR
+	required_structure = MUTATION_SPUR
 	status_effect = /datum/status_effect/mutation_spur_upgrade
 
 // Defender
@@ -214,8 +214,8 @@
  * Veil
  */
 /datum/mutation_upgrade/veil
-	category = MUTATION_CATEGORY_VEIL
-	required_structure = MUTATION_STRUCTURE_VEIL
+	category = MUTATION_VEIL
+	required_structure = MUTATION_VEIL
 	status_effect = /datum/status_effect/mutation_veil_upgrade
 
 // Defender
