@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 	new_hologram.setDir(owner.dir)
 	hologram = new_hologram
 
-//Updates the hologram position and validity
+///Updates the hologram position and validity
 /datum/action/ability/activable/build_designator/proc/update_hologram(turf/target_turf = hologram.loc, new_dir = owner.dir)
 	if(!hologram)
 		return FALSE
