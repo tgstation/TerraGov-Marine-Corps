@@ -30,7 +30,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_NO_MUTATION
 	caste_traits = list(TRAIT_CAN_VENTCRAWL, TRAIT_CAN_HOLD_JELLY)
 
 	// *** Defense *** //
