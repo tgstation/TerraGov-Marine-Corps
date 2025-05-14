@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "Added  shooting upwards on multiz, you can shoot up as long as the turf above you is free"
+  - rscadd: "Added shooting downwards on multiz, you can shoot downwards as long as the turf below you is free or you are next to a ledge you can shoot down"
