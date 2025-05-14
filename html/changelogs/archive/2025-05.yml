@@ -183,3 +183,6 @@
   - rscadd: Added a mech laser sword
   revelation-8468:
   - rscadd: Randomises the offset of ejected magazines.
+2025-05-14:
+  Atropos:
+  - bugfix: Fixed place and select pattern keybindings for xenos
