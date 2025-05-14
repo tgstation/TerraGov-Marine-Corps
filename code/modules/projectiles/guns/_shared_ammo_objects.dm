@@ -241,9 +241,6 @@
 	if(human_affected.soft_armor.getRating(FIRE) >= 100)
 		to_chat(human_affected, span_warning("You are untouched by the flames."))
 		return FALSE
-	var/datum/status_effect/stacking/melting_fire/debuff = human_affected.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	if(debuff)
-		debuff.add_stacks(PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
 	else
 		human_affected.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
 	human_affected.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, FIRE, updating_health = TRUE, max_limbs = 2)
