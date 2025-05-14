@@ -629,7 +629,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	smgs = SKILL_SMGS_TRAINED
 
 /datum/skills/sl/icc
-	name = "ICC Leader"
+	name = "CM Leader"
 	combat = SKILL_COMBAT_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED

@@ -1,6 +1,6 @@
 /datum/job/icc_squad
 	job_category =  JOB_CAT_UNASSIGNED
-	supervisors = "ICC high command"
+	supervisors = "CM high command"
 	selection_color = "#ffeeee"
 	faction = FACTION_ICC
 	minimap_icon = "icc"
@@ -11,9 +11,9 @@
 
 //ICC Standard
 /datum/job/icc_squad/standard
-	title = "ICC Standard"
-	paygrade = "ICC1"
-	comm_title = "ICC"
+	title = "CM Standard"
+	paygrade = "CM1"
+	comm_title = "CM"
 	skills_type = /datum/skills/crafty
 	access = list(ACCESS_ICC_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG, ACCESS_ICC_CARGO, ACCESS_ICC_TADPOLE)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -26,7 +26,7 @@
 	)
 
 /datum/outfit/job/icc_squad/standard
-	name = "ICC Standard"
+	name = "CM Standard"
 	jobtype = /datum/job/icc_squad/standard
 
 	id = /obj/item/card/id/dogtag
@@ -34,9 +34,9 @@
 
 //ICC Medic
 /datum/job/icc_squad/medic
-	title = "ICC Medic"
-	paygrade = "ICC2"
-	comm_title = "ICC"
+	title = "CM Medic"
+	paygrade = "CM2"
+	comm_title = "CM"
 	skills_type = /datum/skills/combat_medic/crafty
 	access = list(ACCESS_ICC_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_ICC_CARGO, ACCESS_ICC_TADPOLE)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -49,7 +49,7 @@
 	)
 
 /datum/outfit/job/icc_squad/medic
-	name = "ICC Medic"
+	name = "CM Medic"
 	jobtype = /datum/job/icc_squad/medic
 
 	id = /obj/item/card/id/dogtag/corpsman
@@ -57,9 +57,9 @@
 
 //ICC Spec
 /datum/job/icc_squad/spec
-	title = "ICC Guardsman"
-	paygrade = "ICC3"
-	comm_title = "ICC"
+	title = "CM Guardsman"
+	paygrade = "CM3"
+	comm_title = "CM"
 	skills_type = /datum/skills/specialist
 	access = list(ACCESS_ICC_GUARDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG, ACCESS_ICC_CARGO, ACCESS_ICC_TADPOLE)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -72,7 +72,7 @@
 	)
 
 /datum/outfit/job/icc_squad/spec
-	name = "ICC Specialist"
+	name = "CM Specialist"
 	jobtype = /datum/job/icc_squad/spec
 
 	id = /obj/item/card/id/dogtag/specialist
@@ -80,9 +80,9 @@
 
 //ICC Squad Leader
 /datum/job/icc_squad/leader
-	title = "ICC Squad Leader"
-	paygrade = "ICC4"
-	comm_title = "ICC"
+	title = "CM Squad Leader"
+	paygrade = "CM4"
+	comm_title = "CM"
 	skills_type = /datum/skills/sl/icc
 	access = list(ACCESS_ICC_LEADPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG, ACCESS_ICC_CARGO, ACCESS_ICC_TADPOLE)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -95,7 +95,7 @@
 	)
 
 /datum/outfit/job/icc_squad/leader
-	name = "ICC Squad Leader"
+	name = "CM Squad Leader"
 	jobtype = /datum/job/icc_squad/leader
 
 	id = /obj/item/card/id/dogtag/leader

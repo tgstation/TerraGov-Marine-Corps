@@ -10,7 +10,7 @@
 #define FACTION_NANOTRASEN "Ninetails"
 #define FACTION_SECTOIDS "Sectoids"
 #define FACTION_SOM "Sons of Mars"
-#define FACTION_ICC "Independent Colonial Coalition"
+#define FACTION_ICC "Colonial Militia"
 #define FACTION_USL "United Space Lepidoptera"
 #define FACTION_ALIEN "Alien"
 #define FACTION_SPIDER "Spider"
@@ -19,7 +19,7 @@
 #define FACTION_PIRATE "Pirate"
 #define FACTION_SPECFORCE "Special Forces"
 #define FACTION_MOTHELLIAN "Mothellians"
-#define FACTION_VSD "Vyacheslav Security Detail"
+#define FACTION_VSD "Kaizoku Corporation"
 #define FACTION_ERP "Emergency Response Pranksters"
 
 //Alignement are currently only used by req.
@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(faction_to_acronym, list(
 	FACTION_UNKN_MERCS = "Unknown",
 	FACTION_SECTOIDS = "Sectoids",
 	FACTION_SOM = "SOM",
-	FACTION_ICC = "ICC",
+	FACTION_ICC = "CM",
 	FACTION_USL = "USL",
 	FACTION_PIRATE = "Pirates",
 ))

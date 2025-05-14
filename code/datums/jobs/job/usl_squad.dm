@@ -1,8 +1,8 @@
 /datum/job/usl_squad
 	job_category =  JOB_CAT_VSD
-	supervisors = "SoM command and V.S.D command"
+	supervisors = "USL command"
 	selection_color = "#ffeeee"
-	faction = FACTION_SOM
+	faction = FACTION_USL
 	minimap_icon = "pmc2"
 
 /datum/job/usl_squad/radio_help_message(mob/M)

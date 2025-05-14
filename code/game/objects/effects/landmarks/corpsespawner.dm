@@ -589,7 +589,7 @@
 
 //ICC
 /obj/effect/landmark/corpsespawner/icc
-	name = "ICC infantry"
+	name = "CM infantry"
 	corpseuniform = /obj/item/clothing/under/som
 	corpsesuit = /obj/item/clothing/suit/modular/som
 	corpsemask = /obj/item/clothing/mask/gas
@@ -599,7 +599,7 @@
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 
 /obj/effect/landmark/corpsespawner/icc_officer
-	name = "ICC leader"
+	name = "CM leader"
 	corpseuniform = /obj/item/clothing/under/icc
 	corpsesuit = /obj/item/clothing/suit/storage/marine/icc/guard
 	corpsemask = /obj/item/clothing/mask/gas/icc

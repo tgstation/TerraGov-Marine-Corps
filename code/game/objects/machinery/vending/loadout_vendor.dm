@@ -96,10 +96,10 @@
 	desc = "An advanced vendor used by the ICC to rapidly equip their troops"
 	faction = VENDOR_FACTION_ICC
 	categories = list(
-		"ICC Standard",
-		"ICC Medic",
-		"ICC Guardsman",
-		"ICC Squad Leader",
+		"CM Standard",
+		"CM Medic",
+		"CM Guardsman",
+		"CM Squad Leader",
 	)
 
 
@@ -119,10 +119,10 @@
 	desc = "An advanced vendor used by the VSD to rapidly equip their operatives"
 	faction = VENDOR_FACTION_VSD
 	categories = list(
-		"VSD Standard",
-		"VSD Engineer",
-		"VSD Specialist",
-		"VSD Squad Leader",
+		"KZ Standard",
+		"KZ Engineer",
+		"KZ Specialist",
+		"KZ Squad Leader",
 	)
 
 

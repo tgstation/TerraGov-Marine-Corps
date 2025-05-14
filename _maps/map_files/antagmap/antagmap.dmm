@@ -1298,7 +1298,7 @@
 "id" = (
 /obj/structure/table/black,
 /obj/machinery/faxmachine{
-	department = "VSD Ship"
+	department = "KZ Ship"
 	},
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
@@ -6738,7 +6738,7 @@
 /area/antag_ship/som/requisition)
 "JF" = (
 /obj/structure/prop/mainship/prop_iccinf/guard/armed{
-	icon_state = "ICC_guard_specialist_armed"
+	icon_state = "CM_guard_specialist_armed"
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/commcenter)
@@ -7444,7 +7444,7 @@
 /obj/structure/table/mainship,
 /obj/item/newspaper,
 /obj/machinery/faxmachine{
-	department = "ICC Base"
+	department = "CM Base"
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/east)

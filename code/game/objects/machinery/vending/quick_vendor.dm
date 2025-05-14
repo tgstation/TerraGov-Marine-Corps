@@ -290,14 +290,14 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	)
 
 /obj/machinery/quick_vendor/vsd
-	name = "VSD Kwik-E-Quip vendor"
+	name = "KZ Kwik-E-Quip vendor"
 	icon_state = "loadoutvendor"
 	faction = FACTION_SOM
 	categories = list(
-		"VSD Standard",
-		"VSD Engineer",
-		"VSD Specialist",
-		"VSD Squad Leader",
+		"KZ Standard",
+		"KZ Engineer",
+		"KZ Specialist",
+		"KZ Squad Leader",
 	)
 
 /obj/machinery/quick_vendor/pmc
@@ -314,12 +314,12 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	)
 
 /obj/machinery/quick_vendor/icc
-	name = "ICC Kwik-E-Quip Vendor"
+	name = "CM Kwik-E-Quip Vendor"
 	icon_state = "loadoutvendor"
 	faction = FACTION_ICC
 	categories = list(
-		"ICC Standard",
-		"ICC Medic",
-		"ICC Guardsman",
-		"ICC Squad Leader",
+		"CM Standard",
+		"CM Medic",
+		"CM Guardsman",
+		"CM Squad Leader",
 	)

@@ -45,7 +45,7 @@
 	)
 
 /datum/campaign_asset/bonus_job/icc
-	name = "ICC strike team"
+	name = "CM strike team"
 	desc = "A squad of ICC soldiers to support our forces"
 	detailed_desc = "A moderate number of ICC job slots are opened at no attrition cost. \
 	The ICC have authorised a small, local detachment of their troops to aid us in our conflict. They are well armed and armored, and could prove a valuable advantage in a fight."

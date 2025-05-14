@@ -717,7 +717,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/vsd/officer
-	name = "VSD officer jumpsuit"
+	name = "KZ officer jumpsuit"
 	desc = "The standard uniform for officers in the Vyacheslav Security Detail, weaved with kevlar and marked with blood."
 	icon_state = "vsd_uniform_officer"
 	worn_icon_state = "vsd_uniform_officer"
@@ -726,7 +726,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/secondary
-	name = "VSD 'mixed' jumpsuit"
+	name = "KZ 'mixed' jumpsuit"
 	icon_state = "vsd_uniform_secondary"
 	worn_icon_state = "vsd_uniform_secondary"
 
@@ -734,7 +734,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/upp
-	name = "VSD 'USL' jumpsuit"
+	name = "KZ 'USL' jumpsuit"
 	desc = "A standard uniform for a division in the Vyacheslav Security Detail, it's colors feel reminiscent."
 	icon_state = "upp_retired"
 	worn_icon_state = "upp_retired"
@@ -753,7 +753,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/vsd/upp/officer
-	name = "VSD 'USL' officer jumpsuit"
+	name = "KZ 'USL' officer jumpsuit"
 	desc = "A standard uniform for a officer in a division of the Vyacheslav Security Detail, it's colors feel reminiscent."
 	icon_state = "upp_retired_officer"
 	worn_icon_state = "upp_retired_officer"
@@ -762,7 +762,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/shirt
-	name = "VSD shirt"
+	name = "KZ shirt"
 	icon_state = "vsd_shirt"
 	worn_icon_state = "vsd_shirt"
 
@@ -770,12 +770,12 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/sleeveless
-	name = "VSD sleeveless shirt"
+	name = "KZ sleeveless shirt"
 	icon_state = "vsd_shirt_sleeveless"
 	worn_icon_state = "vsd_shirt_sleeveless"
 
 /obj/item/clothing/under/vsd/juggernaut
-	name = "VSD overalls"
+	name = "KZ overalls"
 	icon_state = "vsd_alt_juggernaut"
 	worn_icon_state = "vsd_alt_juggernaut"
 
