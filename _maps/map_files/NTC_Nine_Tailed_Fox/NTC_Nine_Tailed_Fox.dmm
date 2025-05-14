@@ -24053,6 +24053,14 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
+"wlr" = (
+/obj/structure/cable,
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/voucher,
+/turf/open/floor/mainship/mono,
+/area/outpost/cargo{
+	outside = 1
+	})
 "wlQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black,
@@ -41950,7 +41958,7 @@ cam
 aya
 uXo
 aya
-qbv
+wlr
 urx
 qsM
 wgI

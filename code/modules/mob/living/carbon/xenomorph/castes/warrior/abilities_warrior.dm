@@ -601,6 +601,15 @@
 	Shake(duration = 0.5 SECONDS)
 	return TRUE
 
+/obj/vehicle/sealed/mecha/combat/greyscale/punch_act(mob/living/carbon/xenomorph/xeno, punch_damage, ...)
+	. = ..()
+	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	attack_generic(xeno, punch_damage * 3, BRUTE, effects = FALSE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	Shake(duration = 0.5 SECONDS)
+	return TRUE
+
 /mob/living/punch_act(mob/living/carbon/xenomorph/warrior/xeno, punch_damage, push = TRUE)
 	. = ..()
 	var/slowdown_stacks = WARRIOR_PUNCH_SLOWDOWN

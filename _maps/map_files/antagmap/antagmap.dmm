@@ -5215,6 +5215,11 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/antag_ship/clf_base/bathroom)
+"BV" = (
+/obj/machinery/computer/voucher/clf,
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/requisition)
 "BX" = (
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/syndicate/black,
@@ -6489,6 +6494,11 @@
 	dir = 8
 	},
 /area/antag_ship/vsd/med)
+"IA" = (
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/preparation)
 "IC" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -6723,6 +6733,7 @@
 	},
 /obj/machinery/power/apc,
 /obj/structure/cable,
+/obj/machinery/computer/voucher/som,
 /turf/open/floor/mainship/cargo,
 /area/antag_ship/som/requisition)
 "JF" = (
@@ -6863,6 +6874,7 @@
 "Kt" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/insulatedgloves,
+/obj/machinery/computer/voucher/icc,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/east)
 "Ku" = (
@@ -9247,10 +9259,8 @@
 /turf/open/floor/iron/grimy,
 /area/antag_ship/som/office/commander/field)
 "We" = (
-/obj/machinery/power/apc,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "Wf" = (
 /obj/structure/barricade/handrail/urban/road/metal,
@@ -14552,7 +14562,7 @@ HX
 tU
 tj
 fG
-We
+Tm
 Gx
 bD
 tt
@@ -14742,8 +14752,8 @@ jT
 jI
 jT
 cH
-bD
-bD
+IA
+We
 bD
 Ov
 Ie
@@ -16076,7 +16086,7 @@ aU
 aU
 aU
 Gy
-aU
+BV
 aU
 aF
 tY
@@ -16171,8 +16181,8 @@ bV
 sh
 PL
 zJ
-aF
-aF
+aU
+aU
 aF
 tY
 gW

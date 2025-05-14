@@ -22,7 +22,7 @@
 		H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 		H.add_hud_to(src)
 		H = GLOB.huds[MACHINE_HEALTH_HUD]
-		H.add_hud_to(src)
+		H?.add_hud_to(src)
 	if(ghost_xenohud)
 		H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(src)

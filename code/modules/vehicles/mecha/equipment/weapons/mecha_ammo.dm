@@ -168,7 +168,7 @@
 	name = "high explosive missile"
 	desc = "A NTC mech missile. You probably shouldnt hit the pointy end with anything."
 	icon_state = "rpg_ammo"
-	rounds = 1
+	rounds = 10
 	ammo_type = MECHA_AMMO_RPG
 	direct_load = TRUE
 	qdel_on_empty = TRUE

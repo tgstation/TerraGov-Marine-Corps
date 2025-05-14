@@ -28,12 +28,20 @@
 //================================================
 */
 /datum/ammo/rocket/mech
-	name = "large high-explosive rocket"
+	name = "large light-explosive rocket"
 	damage = 10
-	penetration = 30
+	penetration = 15
 	max_range = 30
 
-/datum/ammo/rocket/mech/drop_nade(turf/T)
+/datum/ammo/rocket/mech/light/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 0, 0)
+
+/datum/ammo/rocket/mech/heavy
+	name = "large heavy-explosive rocket"
+	damage = 30
+	penetration = 30
+
+/datum/ammo/rocket/mech/heavy/drop_nade(turf/T)
 	explosion(T, 0, 2, 4, 0, 0)
 
 /*

@@ -278,7 +278,7 @@
 	var/export_points = 1
 
 /obj/item/research_product/supply_export(faction_selling)
-	SSpoints.supply_points[faction_selling] = clamp((SSpoints.supply_points[faction_selling]+=export_points),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps req points
+	SSpoints.add_supply_points(faction_selling, export_points)  //NTF edit. Forcibly caps req points
 	GLOB.round_statistics.points_from_research += export_points
 	return list(new /datum/export_report(export_points, name, faction_selling))
 

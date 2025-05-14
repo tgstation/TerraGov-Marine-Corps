@@ -232,8 +232,8 @@
 	))
 
 /datum/storage/internal/general
-	max_storage_space = 6
-	storage_slots = 2
+	max_storage_space = 15
+	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
 
 /datum/storage/internal/general/New(atom/parent)
@@ -241,20 +241,18 @@
 	set_holdable(
 		cant_hold_list = list(/obj/item/cell/lasgun/volkite/powerpack),
 		storage_type_limits_list = list(
-			/obj/item/ammo_magazine/rifle,
 			/obj/item/cell/lasgun,
 			/obj/item/ammo_magazine/smg,
 			/obj/item/ammo_magazine/pistol,
 			/obj/item/ammo_magazine/revolver,
-			/obj/item/ammo_magazine/sniper,
 			/obj/item/ammo_magazine/handful,
 			/obj/item/cell/lasgun/plasma,
 		)
 	)
 
 /datum/storage/internal/ammo_mag
-	max_storage_space = 15
-	storage_slots = 4
+	max_storage_space = 25
+	storage_slots = 6
 	max_w_class = WEIGHT_CLASS_NORMAL
 
 /datum/storage/internal/ammo_mag/New(atom/parent)
@@ -271,8 +269,6 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
-		/obj/item/explosive/grenade,
-		/obj/item/explosive/mine,
 		/obj/item/reagent_containers/food/snacks,
 	))
 

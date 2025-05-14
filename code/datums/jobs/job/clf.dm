@@ -1,6 +1,6 @@
 /datum/job/clf
-	access = ALL_ANTAGONIST_ACCESS
-	minimal_access = ALL_ANTAGONIST_ACCESS
+	access = list(ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE)
+	minimal_access = list(ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE)
 	skills_type = /datum/skills/crafty
 	faction = FACTION_CLF
 	shadow_languages = list(/datum/language/xenocommon)
@@ -207,6 +207,8 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 		/datum/outfit/job/clf/medic/skorpion,
 		/datum/outfit/job/clf/medic/paladin,
 	)
+	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE)
+	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE)
 
 //the base loadout for all clf medics
 /datum/outfit/job/clf/medic
@@ -604,8 +606,8 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	supervisors = "the xenomorphs and CLF"
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
-	access = ALL_ANTAGONIST_ACCESS
-	minimal_access = ALL_ANTAGONIST_ACCESS
+	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE)
+	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE)
 	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
 	outfit = /datum/outfit/job/civilian/synthetic/clf
 	exp_requirements = XP_REQ_EXPERIENCED

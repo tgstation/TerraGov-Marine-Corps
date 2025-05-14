@@ -444,7 +444,7 @@
 				var/obj/obj_victim = victim
 				var/dam_mult = 0.5
 				if(ismecha(obj_victim))
-					dam_mult = 5
+					dam_mult = 2.3
 				obj_victim.take_damage(PSY_CRUSH_DAMAGE * dam_mult, BRUTE, BOMB)
 	stop_crush()
 

@@ -223,6 +223,7 @@
 
 /obj/item/ammo_magazine/pistol/som/extended
 	name = "\improper V-11 extended magazine (9mm)"
+	default_ammo = /datum/ammo/bullet/pistol
 	max_rounds = 30
 	icon_state = "v11_extended"
 	icon_state_mini = "mag_pistol_yellow"
@@ -295,8 +296,8 @@
 
 /obj/item/ammo_magazine/pistol/vsd_pistol
 	name = "\improper C96 'riot' magazine"
-	default_ammo = /datum/ammo/bullet/pistol/ap
+	default_ammo = /datum/ammo/bullet/pistol/vsd_ap
 	caliber = CALIBER_9X19
 	icon_state = "c96"
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 15
+	max_rounds = 22
