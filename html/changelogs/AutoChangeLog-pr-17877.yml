@@ -1,0 +1,4 @@
+author: "Looking4bros"
+delete-after: True
+changes:
+  - bugfix: "Burrowed SSD Widows can now unburrow"

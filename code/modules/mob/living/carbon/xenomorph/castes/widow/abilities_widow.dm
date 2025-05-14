@@ -277,7 +277,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BURROW,
 	)
-	use_state_flags = ABILITY_USE_BURROWED
+	use_state_flags = ABILITY_USE_BURROWED|ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/burrow/action_activate()
 	. = ..()
@@ -311,6 +311,7 @@
 	xeno_owner.update_icons()
 	add_cooldown()
 	owner.unbuckle_all_mobs(TRUE)
+	xeno_owner.get_up()
 
 /// Called by xeno_burrow only when burrowing
 /datum/action/ability/xeno_action/burrow/proc/xeno_burrow_doafter()

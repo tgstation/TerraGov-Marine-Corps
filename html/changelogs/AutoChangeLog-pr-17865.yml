@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - balance: "Beetle and Mantis can pick up jelly now"
