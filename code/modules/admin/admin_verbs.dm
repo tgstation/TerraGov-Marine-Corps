@@ -753,9 +753,12 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
 			html = "[span_notice("PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]")]</font>")
-		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>")
+		var/datum/admin_help/new_admin_help = admin_ticket_log(src,
+			"<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>",
+			player_message = "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)]</b> to <i>External</i>: [keywordparsedmsg]</font>")
+
 		externalreplyamount--
-		send2adminchat("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
+		send2adminchat("[new_admin_help ? "#[new_admin_help.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMINTICKET, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMINTICKET, FALSE) || is_mentor(src)) //Both are staff
@@ -776,13 +779,15 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 				window_flash(src, TRUE)
 
 				var/interaction_message = "<font color='#cea7f1'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
-				admin_ticket_log(src, interaction_message)
+				var/player_interaction_message = "<font color='#cea7f1'>PM from-<b>[key_name(src, recipient, FALSE)]</b> to-<b>[key_name(recipient, src, FALSE)]</b>: [keywordparsedmsg]</font>"
+				admin_ticket_log(src, interaction_message, player_message = player_interaction_message)
 				if(recipient != src)
-					admin_ticket_log(recipient, interaction_message)
+					admin_ticket_log(recipient, interaction_message, player_message = player_interaction_message)
 
 			else //Recipient is a staff member, sender is not.
 				SEND_SIGNAL(current_ticket, COMSIG_ADMIN_HELP_REPLIED)
-				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>")
+				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>",
+					player_message = "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>" )
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
 					html = "<font size='4' color='red'><b>-- Private message --</b></font>\n[span_adminsay("Reply from- <b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]")]")
@@ -834,7 +839,7 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient)
 
-				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
+				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>", player_message = "<font color='#a7f2ef'>PM From [key_name_admin(src, FALSE)]: [keywordparsedmsg]</font>")
 
 
 			else		//neither are admins
@@ -991,7 +996,7 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 		type = MESSAGE_TYPE_ADMINPM,
 		html = "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
 
-	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [tgs_tagged]: [msg]</font>")
+	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [tgs_tagged]: [msg]</font>", player_message = "<font color='#a7f2ef'>PM From [tgs_tagged]: [msg]</font>")
 
 	//always play non-admin recipients the adminhelp sound
 	SEND_SOUND(C, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
