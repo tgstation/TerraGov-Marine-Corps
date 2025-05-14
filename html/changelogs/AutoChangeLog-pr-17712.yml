@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Sizzler's smokescreen is now transparent"
+  - balance: "Sizzler's smokescreen bomblets now do 6 damage each\nbalance:: Sizzler's spit now does 20 damage, and the gas cloud does 15 damage."
