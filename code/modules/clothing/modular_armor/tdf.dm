@@ -250,25 +250,8 @@
 	species_exception = list(/datum/species/robot)
 	icon_state = "tdf_robot"
 	worn_icon_state = "tdf_robot"
-	soft_armor = list(MELEE = 65, BULLET = 85, LASER = 90, ENERGY = 75, BOMB = 70, BIO = 70, FIRE = 70, ACID = 75)
-	slowdown = SLOWDOWN_ARMOR_HEAVY
-
-	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/module/fire_proof,
-		/obj/item/armor_module/module/eshield,
-		/obj/item/armor_module/module/eshield/overclocked,
-		/obj/item/armor_module/module/mirage,
-		/obj/item/armor_module/module/armorlock,
-		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
-		/obj/item/armor_module/storage/engineering,
-		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/injector,
-		/obj/item/armor_module/storage/grenade,
-		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/armor/badge,
-	)
+	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 75, "energy" = 60, "bomb" = 55, "bio" = 55, "fire" = 55, "acid" = 60)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/modular/tdf/robot/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	. = ..()
@@ -276,19 +259,15 @@
 		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
 		return FALSE
 
-/obj/item/clothing/suit/modular/tdf/robot/Initialize(mapload, ...)
-	. = ..()
-	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
-
 /obj/item/clothing/suit/modular/tdf/robot/shield_overclocked
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield/overclocked,
 		/obj/item/armor_module/storage/engineering,
 	)
 
-/obj/item/clothing/suit/modular/tdf/robot/shield
+/obj/item/clothing/suit/modular/tdf/robot/tyr_two
 	starting_attachments = list(
-		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/storage/engineering,
 	)
 
