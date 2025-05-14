@@ -253,7 +253,7 @@
 	desc = "A weird, pulsating purple node."
 	max_integrity = 60
 	var/node_icon = "weednode"
-	layer = XENO_NODE_LAYER
+	layer = XENO_WEED_NODE_LAYER
 	/// list of all potential turfs that we can expand to
 	var/node_turfs = list()
 	/// How far this node can spread weeds
