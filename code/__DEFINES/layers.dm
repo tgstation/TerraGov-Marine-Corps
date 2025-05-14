@@ -162,7 +162,7 @@
 #define RUNE_LAYER (17 + TOPDOWN_LAYER)
 #define XENO_WEEDS_LAYER (24 + TOPDOWN_LAYER)
 #define CLEANABLE_FLOOR_OBJECT_LAYER (25 + TOPDOWN_LAYER)
-#define XENO_WEED_NODE_LAYER (26 + TOPDOWN_LAYER)
+#define XENO_WEED_NODES_LAYER (26 + TOPDOWN_LAYER)
 #define ABOVE_WEEDS_LAYER (29 + TOPDOWN_LAYER)
 
 //Placeholders in case the game plane and possibly other things between it and the floor plane are ever made into topdown planes
