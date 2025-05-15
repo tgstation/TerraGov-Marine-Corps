@@ -246,6 +246,7 @@
 	plane = GAME_PLANE
 	alpha = 70
 
+///hologram alt appearance key
 #define HOLO_INVIS_ALT_APPEARANCE "holo_invis_alt_appearance"
 
 /obj/effect/build_hologram

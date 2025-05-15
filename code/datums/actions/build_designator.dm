@@ -14,6 +14,9 @@ GLOBAL_LIST_INIT(designator_types, list (
 	/obj/structure/barricade/folding = /obj/item/stack/sheet/plasteel,
 ))
 
+///Designator alt appearance key
+#define HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE "holo_build_designator_alt_appearance"
+
 /datum/action/ability/activable/build_designator
 	name = "Construction Designator"
 	desc = "Place a designator for construction."
@@ -68,7 +71,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 ///Selects the pattern from a radial menu
 /datum/action/ability/activable/build_designator/proc/select_structure()
-	var/construct_choice = show_radial_menu(owner, owner?.client?.eye, GLOB.designator_images_list, radius = 48) //change anchor
+	var/construct_choice = show_radial_menu(owner, owner?.client?.eye, GLOB.designator_images_list)
 	if(!construct_choice)
 		return
 	construct_type = construct_choice
@@ -161,8 +164,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 	var/obj/material_type
 	///Recipe for what we are building
 	var/datum/stack_recipe/recipe
-	///The visual effect we're attaching
-	var/image/holder
 	///Mob that is currently trying to build the recipe
 	var/mob/builder
 
@@ -185,27 +186,16 @@ GLOBAL_LIST_INIT(designator_types, list (
 	desc = "A holographic representation of a [construct_type::name]. Apply [recipe.req_amount] [material_type::name] to build it."
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HOLO_BUILD_INITIALIZED, src)
-	prepare_huds()
 	makeHologram(0.7)
 
-	holder = hud_list[ORDER_HUD]
-	holder.appearance = appearance
-	holder.dir = dir
-	holder.alpha = 190
-	hud_list[ORDER_HUD] = holder
-
-	icon = null
-	cut_overlays()
-
-	var/datum/atom_hud/order/order_hud = GLOB.huds[DATA_HUD_ORDER]
-	order_hud.add_to_hud(src)
+	var/image/disguised_icon = image(loc = src)
+	disguised_icon.override = TRUE
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/not_faction, HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE, disguised_icon, builder.faction)
 
 	QDEL_IN(src, 4 MINUTES)
 
 /obj/effect/build_designator/Destroy()
-	var/datum/atom_hud/order/order_hud = GLOB.huds[DATA_HUD_ORDER]
-	order_hud.remove_from_hud(src)
-	QDEL_NULL(holder)
+	remove_alt_appearance(HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE)
 	builder = null
 	return ..()
 
