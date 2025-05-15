@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "the supersoldier throw stim will always try to throw at max range, like jumpthrowing"
