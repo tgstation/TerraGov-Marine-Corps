@@ -95,6 +95,10 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	A.hud_list[appearance_key] = image
 	. = ..()
 
+/datum/atom_hud/alternate_appearance/basic/remove_from_hud(atom/A)
+	. = ..()
+	A.hud_list -= appearance_key
+
 /datum/atom_hud/alternate_appearance/basic/copy_overlays(atom/other, cut_old)
 	image.copy_overlays(other, cut_old)
 
