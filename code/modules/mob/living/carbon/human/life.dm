@@ -49,10 +49,14 @@
 	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	SSmobs.stop_processing(src) //Last round of processing.
 
-	if((SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) && job?.job_cost)
-		job.free_job_positions(1)
+	job.free_job_positions(1)
 	if(hud_list)
 		med_hud_set_status()
+	for(var/datum/data/record/general_record in GLOB.datacore.general)
+		if(!(general_record.fields["name"] == real_name))
+			continue
+		general_record.fields["p_stat"] = "*Deceased*"
+
 
 /mob/living/carbon/human/proc/handle_breath()
 	if(species.species_flags & NO_BREATHE)
