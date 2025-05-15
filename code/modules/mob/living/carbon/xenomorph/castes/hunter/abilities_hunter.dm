@@ -194,7 +194,6 @@
 	span_danger("We strike [target] with [flavour] precision!"))
 	target.adjust_stagger(staggerslow_stacks SECONDS)
 	target.add_slowdown(staggerslow_stacks)
-	target.ParalyzeNoChain(1 SECONDS)
 
 	cancel_stealth()
 
@@ -269,7 +268,7 @@
 // ***************************************
 #define HUNTER_POUNCE_RANGE 7 // in tiles
 #define XENO_POUNCE_SPEED 2
-#define XENO_POUNCE_STUN_DURATION 2 SECONDS
+#define XENO_POUNCE_STUN_DURATION 2.4 SECONDS
 #define XENO_POUNCE_STANDBY_DURATION 0.5 SECONDS
 #define XENO_POUNCE_SHIELD_STUN_DURATION 6 SECONDS
 
