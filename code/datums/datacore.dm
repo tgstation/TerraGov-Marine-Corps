@@ -62,7 +62,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		var/active = FALSE
 		var/deceased = FALSE
 
-		for(var/mob/living/M in GLOB.player_list)
+		for(var/mob/living/M in GLOB.mob_living_list)
 			if(M.real_name == name)
 				if(ooc && HAS_TRAIT(M, TRAIT_UNDEFIBBABLE))
 					deceased = TRUE
