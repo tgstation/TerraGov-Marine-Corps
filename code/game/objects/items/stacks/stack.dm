@@ -220,6 +220,7 @@
 
 	return do_create_object(user, recipe, multiplier, build_loc, build_dir)
 
+///Actually creates and places the object
 /obj/item/stack/proc/do_create_object(mob/user, datum/stack_recipe/recipe, multiplier, turf/build_loc, build_dir)
 	var/obj/new_obj
 	if(!build_loc)

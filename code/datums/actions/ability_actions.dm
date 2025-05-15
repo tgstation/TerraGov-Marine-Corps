@@ -206,7 +206,6 @@
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.selected_ability)
 		if(carbon_owner.selected_ability == src)
-			deselect()
 			return
 		carbon_owner.selected_ability.deselect()
 	select()

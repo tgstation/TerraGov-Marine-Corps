@@ -14,6 +14,9 @@ GLOBAL_LIST_INIT(designator_types, list (
 	/obj/structure/barricade/folding = /obj/item/stack/sheet/plasteel,
 ))
 
+///Designator alt appearance key
+#define HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE "holo_build_designator_alt_appearance"
+
 /datum/action/ability/activable/build_designator
 	name = "Construction Designator"
 	desc = "Place a designator for construction."
@@ -26,16 +29,11 @@ GLOBAL_LIST_INIT(designator_types, list (
 	)
 	///personal hologram designator
 	var/obj/effect/build_hologram/hologram
-	/// timerid before we cleanup the hologram
-	var/cleanup_timer
-	/// how long a hologram lasts without movement
-	var/cleanup_time = 4 SECONDS
 	///The typepath of what we want to construct. Typecast for initial var values
 	var/obj/construct_type
 
 /datum/action/ability/activable/build_designator/Destroy()
 	QDEL_NULL(hologram)
-	delete_timer()
 	return ..()
 
 /datum/action/ability/activable/build_designator/should_show()
@@ -47,10 +45,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 /datum/action/ability/activable/build_designator/can_use_action()
 	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
 
-/datum/action/ability/activable/build_designator/fail_activate()
-	if(owner)
-		owner << span_warning("You are not competent enough to do that.") // This message shouldn't show since incompetent people shouldn't have the button, but JIC.
-
 /datum/action/ability/activable/build_designator/on_selection()
 	RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_rotate))
@@ -59,6 +53,13 @@ GLOBAL_LIST_INIT(designator_types, list (
 /datum/action/ability/activable/build_designator/on_deselection()
 	UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE, COMSIG_DO_OVERWATCH_RADIAL))
 	cleanup_hologram()
+
+/datum/action/ability/activable/action_activate()
+	var/mob/living/carbon/carbon_owner = owner
+	if(carbon_owner.selected_ability == src)
+		deselect()
+		return
+	return ..()
 
 /datum/action/ability/activable/build_designator/use_ability(atom/A)
 	if(!isturf(A) || !update_hologram(A))
@@ -77,7 +78,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 ///Selects the pattern from a radial menu
 /datum/action/ability/activable/build_designator/proc/select_structure()
-	var/construct_choice = show_radial_menu(owner, owner?.client?.eye, GLOB.designator_images_list, radius = 48) //change anchor
+	var/construct_choice = show_radial_menu(owner, owner?.client?.eye, GLOB.designator_images_list)
 	if(!construct_choice)
 		return
 	construct_type = construct_choice
@@ -94,7 +95,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 		return
 	update_hologram(new_dir = newdir)
 
-//Wrapper for show_hologram
+///Wrapper for show_hologram
 /datum/action/ability/activable/build_designator/proc/show_hologram_call(mob/user, atom/target)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(show_hologram), user, target)
@@ -110,12 +111,11 @@ GLOBAL_LIST_INIT(designator_types, list (
 	if(!hologram)
 		create_hologram(target_turf)
 	update_hologram(target_turf)
-	start_cleanup_timer()
 
 /// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
 /datum/action/ability/activable/build_designator/proc/create_hologram(turf/target_turf)
 	var/atom/selected = construct_type
-	var/obj/effect/build_hologram/new_hologram = new(target_turf, selected, TRUE)
+	var/obj/effect/build_hologram/new_hologram = new(target_turf, selected, TRUE, owner)
 	new_hologram.alpha = 0
 	new_hologram.layer = ABOVE_OBJ_LAYER
 	new_hologram.glide_size = 32
@@ -123,10 +123,10 @@ GLOBAL_LIST_INIT(designator_types, list (
 	new_hologram.setDir(owner.dir)
 	hologram = new_hologram
 
-//Updates the hologram position and validity
+///Updates the hologram position and validity
 /datum/action/ability/activable/build_designator/proc/update_hologram(turf/target_turf = hologram.loc, new_dir = owner.dir)
 	if(!hologram)
-		return
+		return FALSE
 	if(hologram.loc != target_turf)
 		hologram.abstract_move(target_turf)
 
@@ -158,19 +158,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 		return FALSE
 	return TRUE
 
-///Sets the cleanup timer
-/datum/action/ability/activable/build_designator/proc/start_cleanup_timer()
-	delete_timer()
-	cleanup_timer = addtimer(CALLBACK(src, PROC_REF(cleanup_hologram)), cleanup_time, TIMER_STOPPABLE)
-
-///Clears the cleanup timer
-/datum/action/ability/activable/build_designator/proc/delete_timer()
-	deltimer(cleanup_timer)
-	cleanup_timer = null
-
 ///Removes the hologram
 /datum/action/ability/activable/build_designator/proc/cleanup_hologram()
-	delete_timer()
 	QDEL_NULL(hologram)
 
 //The actual building hologram
@@ -182,8 +171,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 	var/obj/material_type
 	///Recipe for what we are building
 	var/datum/stack_recipe/recipe
-	///The visual effect we're attaching
-	var/image/holder
 	///Mob that is currently trying to build the recipe
 	var/mob/builder
 
@@ -206,27 +193,16 @@ GLOBAL_LIST_INIT(designator_types, list (
 	desc = "A holographic representation of a [construct_type::name]. Apply [recipe.req_amount] [material_type::name] to build it."
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HOLO_BUILD_INITIALIZED, src)
-	prepare_huds()
 	makeHologram(0.7)
 
-	holder = hud_list[ORDER_HUD]
-	holder.appearance = appearance
-	holder.dir = dir
-	holder.alpha = 190
-	hud_list[ORDER_HUD] = holder
-
-	icon = null
-	cut_overlays()
-
-	var/datum/atom_hud/order/order_hud = GLOB.huds[DATA_HUD_ORDER]
-	order_hud.add_to_hud(src)
+	var/image/disguised_icon = image(loc = src)
+	disguised_icon.override = TRUE
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/not_faction, HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE, disguised_icon, builder.faction)
 
 	QDEL_IN(src, 4 MINUTES)
 
 /obj/effect/build_designator/Destroy()
-	var/datum/atom_hud/order/order_hud = GLOB.huds[DATA_HUD_ORDER]
-	order_hud.remove_from_hud(src)
-	QDEL_NULL(holder)
+	remove_alt_appearance(HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE)
 	builder = null
 	return ..()
 
