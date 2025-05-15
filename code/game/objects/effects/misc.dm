@@ -246,6 +246,8 @@
 	plane = GAME_PLANE
 	alpha = 70
 
+#define HOLO_INVIS_ALT_APPEARANCE "holo_invis_alt_appearance"
+
 /obj/effect/build_hologram
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
@@ -266,10 +268,10 @@
 	. = ..()
 	makeHologram(0.7, modify_color)
 
-	var/image/disguised_icon = image(icon = null, icon_state = null, loc = src)
+	var/image/disguised_icon = image(loc = src)
 	disguised_icon.override = TRUE
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/all_but_one_person, "hologram_hider", disguised_icon, owner)
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/all_but_one_person, HOLO_INVIS_ALT_APPEARANCE, disguised_icon, owner)
 
 /obj/effect/build_hologram/Destroy()
-	remove_alt_appearance("hologram_hider")
+	remove_alt_appearance(HOLO_INVIS_ALT_APPEARANCE)
 	return ..()
