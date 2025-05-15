@@ -269,3 +269,7 @@
 	var/image/disguised_icon = image(icon = null, icon_state = null, loc = src)
 	disguised_icon.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/all_but_one_person, "hologram_hider", disguised_icon, owner)
+
+/obj/effect/build_hologram/Destroy()
+	remove_alt_appearance("hologram_hider")
+	return ..()
