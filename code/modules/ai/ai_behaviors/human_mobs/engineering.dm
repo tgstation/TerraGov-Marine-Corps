@@ -3,7 +3,7 @@
 	///A list of engineering related actions
 	var/list/engineering_list = list()
 	///Chat lines for trying to build
-	var/list/building_chat = list("Building.". "Building, cover me!", "Give me some cover!", "Starting construction.", "Working here.", "Working.", "Cover me, building here.", "Cover me!", "I'm working on it.")
+	var/list/building_chat = list("Building.", "Building, cover me!", "Give me some cover!", "Starting construction.", "Working here.", "Working.", "Cover me, building here.", "Cover me!", "I'm working on it.")
 	///Chat lines for being unable to build something
 	var/list/unable_to_build_chat = list("Unable to build.", "I can't build that.", "Negative.", "Get someone else on it!", "Can't do it, sorry.")
 
