@@ -54,6 +54,13 @@ GLOBAL_LIST_INIT(designator_types, list (
 	UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE, COMSIG_DO_OVERWATCH_RADIAL))
 	cleanup_hologram()
 
+/datum/action/ability/activable/action_activate()
+	var/mob/living/carbon/carbon_owner = owner
+	if(carbon_owner.selected_ability == src)
+		deselect()
+		return
+	return ..()
+
 /datum/action/ability/activable/build_designator/use_ability(atom/A)
 	if(!isturf(A) || !update_hologram(A))
 		owner.balloon_alert(owner, "Invalid spot")
