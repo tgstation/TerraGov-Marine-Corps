@@ -124,6 +124,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	return isobserver(M)
 
 /datum/atom_hud/alternate_appearance/basic/one_person
+	///The mob that can see this
 	var/mob/seer
 
 /datum/atom_hud/alternate_appearance/basic/one_person/mobShouldSee(mob/M)
@@ -131,6 +132,20 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 		return TRUE
 	return FALSE
 
-/datum/atom_hud/alternate_appearance/basic/one_person/New(key, image/I, mob/living/M)
-	..(key, I, FALSE)
-	seer = M
+/datum/atom_hud/alternate_appearance/basic/one_person/New(key, image/I, mob/living/new_seer)
+	seer = new_seer
+	return ..(key, I, FALSE)
+
+//Reverse of above
+/datum/atom_hud/alternate_appearance/basic/all_but_one_person
+	///The mob that CAN'T see this
+	var/mob/seer
+
+/datum/atom_hud/alternate_appearance/basic/all_but_one_person/mobShouldSee(mob/M)
+	if(M != seer)
+		return TRUE
+	return FALSE
+
+/datum/atom_hud/alternate_appearance/basic/all_but_one_person/New(key, image/I, mob/living/new_seer)
+	seer = new_seer
+	return ..(key, I, FALSE)

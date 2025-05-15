@@ -254,12 +254,18 @@
 	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
 	alpha = 190
 
-/obj/effect/build_hologram/Initialize(mapload, atom/copy_type, modify_color = FALSE)
-	if(ispath(copy_type))
-		icon = initial(copy_type.icon)
-		icon_state = initial(copy_type.icon_state)
-		base_icon_state = initial(copy_type.base_icon_state)
-		color = initial(copy_type.color)
-		smoothing_flags = initial(copy_type.smoothing_flags)
+/obj/effect/build_hologram/Initialize(mapload, atom/copy_type, modify_color = FALSE, mob/owner)
+	if(!ispath(copy_type))
+		return INITIALIZE_HINT_QDEL
+
+	icon = initial(copy_type.icon)
+	icon_state = initial(copy_type.icon_state)
+	base_icon_state = initial(copy_type.base_icon_state)
+	color = initial(copy_type.color)
+	smoothing_flags = initial(copy_type.smoothing_flags)
 	. = ..()
 	makeHologram(0.7, modify_color)
+
+	var/image/disguised_icon = image(icon = null, icon_state = null, loc = src)
+	disguised_icon.override = TRUE
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/all_but_one_person, "hologram_hider", disguised_icon, owner)

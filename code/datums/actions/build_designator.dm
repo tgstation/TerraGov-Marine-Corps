@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 /// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
 /datum/action/ability/activable/build_designator/proc/create_hologram(turf/target_turf)
 	var/atom/selected = construct_type
-	var/obj/effect/build_hologram/new_hologram = new(target_turf, selected, TRUE)
+	var/obj/effect/build_hologram/new_hologram = new(target_turf, selected, TRUE, owner)
 	new_hologram.alpha = 0
 	new_hologram.layer = ABOVE_OBJ_LAYER
 	new_hologram.glide_size = 32
