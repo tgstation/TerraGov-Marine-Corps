@@ -34,7 +34,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_STAGGER_RESISTANT
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
-	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER, TRAIT_CAN_HOLD_JELLY)
+	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)

@@ -183,3 +183,36 @@
   - rscadd: Added a mech laser sword
   revelation-8468:
   - rscadd: Randomises the offset of ejected magazines.
+2025-05-14:
+  Atropos:
+  - bugfix: Fixed place and select pattern keybindings for xenos
+2025-05-15:
+  Atropos:
+  - rscadd: You can now View latest ticket from admins/mentors with the new verb!
+  - code_imp: Made some ahelp code easier to read
+  Looking4bros:
+  - bugfix: Solid plasteel cades give correct material refund
+  - bugfix: Burrowed SSD Widows can now unburrow
+  TiviPlus:
+  - code_imp: typescripted ntaccess terminals
+  - code_imp: typescripted CAS shuttle UI
+  - bugfix: fixed an issue with the progressbar on nuke disk generators
+  - code_imp: typescripted nuke disk generators
+  - balance: Beetle and Mantis can pick up jelly now
+  - code_imp: converted smes UI to TSX
+  - code_imp: typescripted portable vendors
+  - code_imp: cleaned up CAS Plane UI backend
+  - code_imp: typescripted tadpole ui
+  - code_imp: Typescripted escape pod UI
+  - rscadd: Added  shooting upwards on multiz, you can shoot up as long as the turf
+      above you is free
+  - rscadd: Added shooting downwards on multiz, you can shoot downwards as long as
+      the turf below you is free or you are next to a ledge you can shoot down
+  - code_imp: Typescripted Cryo UI
+  Wisemonster:
+  - balance: Sizzler's smokescreen is now transparent
+  - balance: 'Sizzler''s smokescreen bomblets now do 6 damage each
+
+      balance:: Sizzler''s spit now does 20 damage, and the gas cloud does 15 damage.'
+  blackdav123:
+  - bugfix: Directional attack no longer hits corpses.
