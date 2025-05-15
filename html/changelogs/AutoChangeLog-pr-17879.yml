@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - admin: "Added Ai nodes to tdome (Ai can move and work again)"
