@@ -771,14 +771,24 @@
 		return //No succession required.
 
 	var/mob/living/carbon/xenomorph/successor
-	var/list/candidates
-	var/index = 0
-	for(successor in get_all_xenos(TRUE))
-		if(successor.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) // swap for other flag or do other solution. We basically wanna pool all castes who are eligible
-			candidates[++index] = successor
+	var/list/xenos = get_all_xenos(TRUE)
+	var/list/candidates = list()
+	var/index = 1
+	var/test = 1
+	for(successor in xenos)
+		if(successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER) //We basically wanna pool all castes who are eligible
+			candidates.Insert(test, xenos[index])
+			test++
+		index++
+	index = 1
+	for(successor in candidates)
+		if(isxenoqueen(successor) || isxenoshrike(successor || isxenoking(successor))) // prio to Queen / Shrike / King
+			successor = candidates[index]
+			break
+		else
+			successor = candidates[1] // Basically set whoever is at the top if there is no Queen / Shrike  / King
+			index++
 
-	if(length(candidates)) //Priority to the queens.
-		successor = candidates[1] //First come, first serve.
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)

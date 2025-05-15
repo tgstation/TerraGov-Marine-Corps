@@ -31,12 +31,12 @@
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	evolve_min_xenos = 8
 	maximum_active_caste = 1
-	death_evolution_delay = 5 MINUTES
+	death_evolution_delay = 1 MINUTES // 1 minute for testing. was 5.
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
-	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA
+	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
 	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
