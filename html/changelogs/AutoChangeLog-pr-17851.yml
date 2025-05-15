@@ -1,5 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - rscadd: "You can now View latest ticket from admins/mentors with the new verb!"
-  - code_imp: "Made some ahelp code easier to read"
