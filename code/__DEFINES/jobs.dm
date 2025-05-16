@@ -133,7 +133,7 @@
 #define JOB_CAT_XENO "Xenomorph"
 #define JOB_CAT_UNASSIGNED "Unassigned"
 #define JOB_CAT_PMC "Private Military Company"
-#define JOB_CAT_VSD "Vyacheslav Security Detail"
+#define JOB_CAT_VSD "Kaizoku Corporation"
 
 #define JOB_CAT_COMMANDSOM "SOM Command"
 #define JOB_CAT_MARINESOM "Sons of Mars"

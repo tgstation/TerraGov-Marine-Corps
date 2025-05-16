@@ -2261,12 +2261,14 @@
 	require_job = FALSE
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
-	wear_suit = /obj/item/clothing/suit/storage/marine/vsd_two
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/vsd_two
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/distress/vsd
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2298,10 +2300,21 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BELT)
 
 /datum/outfit/quick/vsd/standard/grunt_one
-	name = "CC/67 Rifle VSD Grunt"
-	desc = "The old standard. Equipped with the C550 combat rifle, C96 pistol and the Crasher multi-threat ballistic light armor."
-	suit_store =/obj/item/weapon/gun/rifle/vsd_rifle
+	name = "CC/67 Rifle KZ Grunt"
+	desc = "The old standard. Equipped with the standard CC/67 combat rifle."
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
 	mask = /obj/item/clothing/mask/gas/vsd
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
+	glasses = /obj/item/clothing/glasses/meson
+	w_uniform = /obj/item/clothing/under/vsd/webbing
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_store = /obj/item/storage/pouch/magazine
+	back = /obj/item/storage/backpack/lightpack/vsd
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/distress/vsd
 
 /datum/outfit/quick/vsd/standard/grunt_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2317,11 +2330,21 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_SUIT)
 
 /datum/outfit/quick/vsd/standard/ksg
-	name = "L12 VSD Grunt"
-	desc = "For getting up close and personal. Equipped with the 14 round capacity L12 pump-action shotgun, loaded with buckshot, reminiscent of the KSG shotgun. Also equipped with a C96 pistol sidearm and the Crasher multi-threat ballistic light armor."
+	name = "L12 Shotgun KZ Grunt"
+	desc = "For getting up close and personal. Equipped with the 14 round capacity L12 pump-action shotgun. Also equipped with a C96 pistol sidearm and the Crasher MT-H/43 powered ballistic armor."
 	w_uniform = /obj/item/clothing/under/vsd/shirt/webbing
 	suit_store = /obj/item/weapon/gun/shotgun/pump/ksg/standard
 	l_store = /obj/item/storage/pouch/shotgun
+	mask = /obj/item/clothing/mask/gas/vsd
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
+	glasses = /obj/item/clothing/glasses/meson
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	back = /obj/item/storage/backpack/lightpack/vsd
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/distress/vsd
 
 /datum/outfit/quick/vsd/standard/ksg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2348,12 +2371,14 @@
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
-	wear_suit = /obj/item/clothing/suit/storage/marine/vsd_two/marmor
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/distress/vsd
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2381,19 +2406,20 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
 
 /datum/outfit/quick/vsd/engineer/l26
-	name = "CC/77 VSD Engineer"
-	desc = "Equipped with CC/67 assault carbine, a Build-A-Sentry attachment, heavy armor and a modest amount of materials and tools to work with in the field."
+	name = "CC/77 Rifle KZ Engineer"
+	desc = "Equipped with CC/77 assault carbine, a Build-A-Sentry attachment, Crasher MT-H/43 powered ballistic armor and a modest amount of materials and tools to work with in the field."
 	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
-	wear_suit = /obj/item/clothing/suit/storage/marine/vsd_two/harmor
-	head = /obj/item/clothing/head/helmet/marine/vsd_two
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/distress/vsd
 
 /datum/outfit/quick/vsd/engineer/l26/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2418,11 +2444,13 @@
 	belt = /obj/item/storage/belt/lifesaver/full/upp
 	glasses = /obj/item/clothing/glasses/hud/health
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
-	wear_suit = /obj/item/clothing/suit/storage/marine/vsd_two
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/distress/vsd
 
 /datum/outfit/quick/vsd/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2445,10 +2473,13 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/vsd/medic/ksg
-	name = "L12 VSD Medic"
-	desc = "For keeping everybody else alive. Equipped with the 14 round capacity L12 pump-action shotgun."
+	name = "L12 Shotgun KZ Medic"
+	desc = "For keeping everybody else alive. Equipped with the 14 round capacity L12 pump-action shotgun and C96 pistol."
 	suit_store = /obj/item/weapon/gun/shotgun/pump/ksg/support
 	l_store = /obj/item/storage/pouch/shotgun
+	ears = /obj/item/radio/headset/distress/vsd
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/medic/ksg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2471,9 +2502,12 @@
 
 
 /datum/outfit/quick/vsd/medic/vsd_rifle
-	name = "C550 Rifle VSD Medic"
-	desc = "For keeping everybody else alive. Equipped with the C550 combat rifle."
+	name = "CC/67 Rifle KZ Medic"
+	desc = "For keeping everybody else alive. Equipped with the CC/67 combat rifle and C96 pistol."
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
+	ears = /obj/item/radio/headset/distress/vsd
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/medic/vsd_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2492,19 +2526,26 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_SUIT)
 
 /datum/outfit/quick/vsd/medic/vsd_pdw
-	name = "C17 PDW VSD Medic"
+	name = "C17 PDW KZ Medic"
 	desc = "For keeping everybody else alive. Equipped with the C17 Riot PDW."
 	suit_store = /obj/item/weapon/gun/smg/vsd_pdw/medic
+	ears = /obj/item/radio/headset/distress/vsd
+	w_uniform = /obj/item/clothing/under/vsd
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 //outfits
 /datum/outfit/quick/vsd/spec
 	name = "KZ Specialist"
 	jobtype = "KZ Specialist"
-	w_uniform = /obj/item/clothing/under/vsd/webbing
+	w_uniform = /obj/item/clothing/under/vsd/officer
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/distress/vsd
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/spec/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2521,17 +2562,18 @@
 
 
 /datum/outfit/quick/vsd/spec/flamer
-	name = "CC/21 Pyro VSD Specialist"
-	desc = "For when you want to burn down a rainforest. Equipped with a FL-240 incinerator with a spray nozzle, medium armor, a backtank of type X fuel, and half a dozen WP grenades."
+	name = "CC/21 Pyro KZ Specialist"
+	desc = "For when you want to burn down a rainforest. Equipped with Crasher MT-H/43 'Apollo' powered fire-protected armor, CC/21 flamethrower and half a dozen WP grenades."
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/flamer
 	head = /obj/item/clothing/head/helmet/marine/vsd/flamer
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/weapon/gun/flamer/vsd
-	w_uniform = /obj/item/clothing/under/vsd/shirt/webbing
+	w_uniform = /obj/item/clothing/under/vsd/officer
 	l_store = /obj/item/storage/pouch/grenade
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
+	ears = /obj/item/radio/headset/distress/vsd
 
 /datum/outfit/quick/vsd/spec/flamer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2554,7 +2596,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/vsd, SLOT_IN_SUIT)
 
 /datum/outfit/quick/vsd/spec/demolitionist
-	name = "C153 Demolitionist VSD Specialist"
+	name = "C153 Demolitionist KZ Specialist"
 	desc = "Equipped with Crasher MT-H/43 'Zeus' powered explosive-defensive armor, C153 shoulder launcher and 9 84mm HE 'Anti-Personnel' cases."
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/eod
 	head = /obj/item/clothing/head/helmet/marine/vsd/eod
@@ -2564,6 +2606,8 @@
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
+	ears = /obj/item/radio/headset/distress/vsd
+	w_uniform = /obj/item/clothing/under/vsd/officer
 
 /datum/outfit/quick/vsd/spec/demolitionist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2590,7 +2634,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_L_POUCH)
 
 /datum/outfit/quick/vsd/spec/gunslinger
-	name = "CC/AT32 Gunslinger VSD Specialist"
+	name = "CC/AT32 Gunslinger KZ Specialist"
 	desc = " Equipped with Crasher MT-H/43 'Ares' powered ballistic armor and CC/AT32 Autocannon."
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/juggernaut
 	head = /obj/item/clothing/head/helmet/marine/vsd/juggernaut
@@ -2600,6 +2644,8 @@
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
+	ears = /obj/item/radio/headset/distress/vsd
+	w_uniform = /obj/item/clothing/under/vsd/officer
 
 /datum/outfit/quick/vsd/spec/gunslinger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2634,6 +2680,7 @@
 	mask = /obj/item/clothing/mask/gas/vsd
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer
 	l_store = /obj/item/storage/pouch/magazine
+	ears = /obj/item/radio/headset/distress/vsd
 
 /datum/outfit/quick/vsd/spec/uslspec_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2674,6 +2721,7 @@
 	suit_store = /obj/item/weapon/gun/clf_heavyrifle
 	back = /obj/item/shotgunbox/clf_heavyrifle
 	l_store = /obj/item/storage/pouch/grenade
+	ears = /obj/item/radio/headset/distress/vsd
 
 /datum/outfit/quick/vsd/spec/uslspec_two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2699,11 +2747,11 @@
 
 //juggernaut outfits
 /datum/outfit/quick/vsd/juggernaut
-	name = "CC/B/31 'Ares' Squad Leader"
+	name = "CC/B/31 'Ares' KZ Squad Leader"
 	desc = "You're in charge and look the part. Equipped with Crasher MT-H/43 'Ares' powered ballistic armor and CC/B/31 breaching shotgun."
 	jobtype = "KZ Squad Leader"
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
-	w_uniform = /obj/item/clothing/under/vsd/webbing
+	w_uniform = /obj/item/clothing/under/vsd/juggernaut
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/juggernaut
 	suit_store = /obj/item/weapon/gun/rifle/vsd_breaching
@@ -2713,6 +2761,7 @@
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/distress/vsd
 
 /datum/outfit/quick/vsd/juggernaut/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2745,11 +2794,11 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/vsd/eod
-	name = "C153 'Zeus' Squad Leader"
+	name = "C153 'Zeus' KZ Squad Leader"
 	desc = "You're in charge and look the part. Equipped with Crasher MT-H/43 'Zeus' powered explosive-defensive armor and a C153 shoulder launcher."
 	jobtype = "KZ Squad Leader"
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
-	w_uniform = /obj/item/clothing/under/vsd/webbing
+	w_uniform = /obj/item/clothing/under/vsd/juggernaut
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/eod
 	suit_store = /obj/item/weapon/gun/launcher/rocket/vsd
@@ -2760,6 +2809,7 @@
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/explosive
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/distress/vsd
 
 /datum/outfit/quick/vsd/eod/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

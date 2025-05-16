@@ -1140,7 +1140,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/minigun/vsd_autocannon
 	name = "\improper CC/AT32 Handheld Autocannon"
-	desc = "The CC/AT32, a new handheld Autocannon of the Vyacheslav Security Detail. Firing 20mm rounds and 40mm grenades. Its ammo variety goes from Armor Piercing, Anti-Tank, and Explosives."
+	desc = "The CC/AT32, a new handheld Autocannon of the Kaizoku Corporation. Firing 20mm rounds and 40mm grenades. Its ammo variety goes from Armor Piercing, Anti-Tank, and Explosives."
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "at32"
 	worn_icon_state = "at32"

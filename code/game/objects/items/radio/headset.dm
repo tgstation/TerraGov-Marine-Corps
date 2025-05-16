@@ -702,7 +702,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_RETIRED
 
 /obj/item/radio/headset/distress/vsd
-	name = "security detail headset"
+	name = "kaizoku corporation headset"
 	keyslot = /obj/item/encryptionkey/vsd
 	frequency = FREQ_VSD
 

@@ -292,7 +292,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /obj/machinery/quick_vendor/vsd
 	name = "KZ Kwik-E-Quip vendor"
 	icon_state = "loadoutvendor"
-	faction = FACTION_SOM
+	faction = FACTION_VSD
 	categories = list(
 		"KZ Standard",
 		"KZ Engineer",
