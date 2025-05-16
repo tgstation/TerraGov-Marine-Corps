@@ -56,10 +56,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
  * - mob/user - The mob awarding the medal.
  * - mob/living/awardee - The mob receiving the medal.
  */
-/proc/award_medal_to(
-	mob/issuer,
-	mob/living/awardee,
-)
+/proc/award_medal_to(mob/issuer, mob/living/awardee)
 	if(issuer == null)
 		CRASH("Attempted to award a medal with a null issuer.")
 	if(awardee == null)
