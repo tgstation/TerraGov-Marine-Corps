@@ -37,6 +37,8 @@
 				ownerflag = MINIMAP_FLAG_MARINE_SOM
 			if(FACTION_CLF)
 				ownerflag = MINIMAP_FLAG_MARINE_CLF
+			if(FACTION_VSD)
+				ownerflag = MINIMAP_FLAG_KZ
 		var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[deployer.faction]] //we find the faction squad hud
 		if(sentry_status_hud)
 			sentry_status_hud.add_to_hud(src)

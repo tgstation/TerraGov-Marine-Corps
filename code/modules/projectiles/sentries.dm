@@ -81,6 +81,8 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 			marker_flags = MINIMAP_FLAG_MARINE
 		if(SOM_IFF)
 			marker_flags = MINIMAP_FLAG_MARINE_SOM
+		if(VSD_IFF)
+			marker_flags = MINIMAP_FLAG_KZ
 		else
 			marker_flags = MINIMAP_FLAG_MARINE
 	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]"))
