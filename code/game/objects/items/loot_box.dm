@@ -529,9 +529,7 @@
 	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
 	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
 	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
-	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
-	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
-	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/packet/p86x70mm(src)
 
 /obj/item/storage/box/crate/loot/smartpistol_spec/Initialize(mapload)
 	. = ..()

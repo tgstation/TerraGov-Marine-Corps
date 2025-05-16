@@ -35,7 +35,8 @@
 	name = "tranq bullet"
 	hud_state = "pistol_tranq"
 	armor_type = "bullet"
-	damage = 75
+	damage = 80 //should knock enemies down on multiple shots.
+	penetration = 20
 	damage_type = STAMINA
 	shell_speed = 3.3
 	shrapnel_chance = 0.2

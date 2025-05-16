@@ -1,6 +1,6 @@
 #define BLINK_DRIVE_RANGE 7
 #define BLINK_DRIVE_MAX_CHARGES 3
-#define BLINK_DRIVE_CHARGE_TIME 2 SECONDS
+#define BLINK_DRIVE_CHARGE_TIME 4 SECONDS
 
 /obj/item/blink_drive
 	name = "blink drive"
@@ -132,7 +132,7 @@
 			var/mob/living/mob_target = pulled_target
 			//mob_target.emote("gored")
 			//mob_target.gib()
-			mob_target.take_overall_damage(50, BRUTE)
+			mob_target.take_overall_damage(100, BRUTE)
 			mob_target.emote("scream")
 		return
 
@@ -185,7 +185,7 @@
 	2. Visibility: Teleporting to a tile you cannot directly see <br> \
 	3. Rapid use: Using the drive less than one second after its last use <br>"
 
-	traits += "<U>Risks:</U><br>Teleporting into a solid turf such as a wall will <U>instantly gib the user</U>.<br>\
+	traits += "<U>Risks:</U><br>Teleporting into a solid turf such as a wall will <U>greatly harm the user</U>.<br>\
 	Great caution is advised when using the drive near solid turfs, especially when factoring in instability.<br>"
 
 	traits += "<U>Charging:</U><br>The blink drive can store up to three charges, and recharges one every [BLINK_DRIVE_CHARGE_TIME * 0.1] seconds. It cannot recharge while in use.<br>"
