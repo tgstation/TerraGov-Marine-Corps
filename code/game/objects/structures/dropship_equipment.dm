@@ -184,8 +184,8 @@
 	var/obj/machinery/computer/dropship_weapons/linked_console
 	///whether they get a button when shown on the shuttle console's equipment list.
 	var/obj/docking_port/mobile/marine_dropship/linked_shuttle
-	///used by the dropship console code when this equipment is selected
-	var/screen_mode = 0
+	///used by the dropship console code when this equipment is selected TODO we should really kill this off
+	var/screen_mode = FALSE
 	///how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 	var/point_cost = 0
 	///what kind of ammo this uses if any
@@ -757,7 +757,7 @@
 	bound_width = 32
 	bound_height = 64
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|FIRE_MISSION_ONLY
-	screen_mode = 1
+	screen_mode = TRUE
 	///used for weapon cooldown after use
 	COOLDOWN_DECLARE(last_fired)
 	///primary firing sound on the plane

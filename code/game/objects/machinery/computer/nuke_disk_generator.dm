@@ -130,8 +130,6 @@
 
 	data["color"] = disk_color
 
-	data["segment_number"] = total_segments
-
 	return data
 
 

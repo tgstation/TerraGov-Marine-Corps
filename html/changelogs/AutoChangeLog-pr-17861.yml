@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - bugfix: "Fixed place and select pattern keybindings for xenos"

@@ -260,7 +260,6 @@
 
 /obj/machinery/power/smes/ui_data()
 	var/list/data = list(
-		"capacity" = capacity,
 		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"charge" = charge,
 		"inputAttempt" = input_attempt,
