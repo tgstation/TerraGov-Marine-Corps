@@ -172,6 +172,7 @@
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "tyr_head_xn", /obj/item/clothing/head/modular/tdf = "")
 
 /obj/item/armor_module/module/tyr_head/old
+	name = "Outdated Tyr Helmet System"
 	icon_state = "armor_head"
 	worn_icon_state = "armor_head_a"
 
