@@ -118,6 +118,7 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 GLOBAL_LIST_INIT(plasteel_radial_images, list(
 	"folding" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
 	"normal" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
+	"hardpoint" = image('icons/obj/structures/prop/mainship.dmi', icon_state = "equip_base"),
 	))
 
 /obj/item/stack/sheet/plasteel
@@ -136,6 +137,7 @@ GLOBAL_LIST_INIT(plasteel_radial_images, list(
 GLOBAL_LIST_INIT(plasteel_recipes, list( \
 	new/datum/stack_recipe("folding plasteel barricade", /obj/structure/barricade/folding, 5, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
 	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/solid/plasteel, 3, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	new/datum/stack_recipe("hardpoint", /obj/effect/attach_point/crew_weapon/handmade, 30, time = 20 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_EXPERT), \
 ))
 
 /obj/item/stack/sheet/plasteel/select_radial(mob/user)
@@ -153,6 +155,8 @@ GLOBAL_LIST_INIT(plasteel_recipes, list( \
 			create_object(user, new/datum/stack_recipe("folding plasteel barricade", /obj/structure/barricade/folding, 5, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 		if("normal")
 			create_object(user, new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/solid/plasteel, 3, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+		if("hardpoint")
+			create_object(user, new/datum/stack_recipe("hardpoint", /obj/effect/attach_point/crew_weapon/handmade, 30, time = 20 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_EXPERT), 1)
 
 	return FALSE
 
