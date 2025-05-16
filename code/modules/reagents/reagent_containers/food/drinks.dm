@@ -221,7 +221,7 @@
 	center_of_mass = list("x"=17, "y"=10)
 
 /obj/item/reagent_containers/food/drinks/shaker/protein
-	name = "\improper Protein shake"
+	name = "protein shake"
 	desc = "A Nanotrasen brand protein shake"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "shaker_n"
