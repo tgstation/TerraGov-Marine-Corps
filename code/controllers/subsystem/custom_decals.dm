@@ -152,11 +152,13 @@ SUBSYSTEM_DEF(custom_decals)
 	decal.creator_ckey = creator.ckey
 	decal.ui_interact(creator.mob)
 
+///Adds this decal to the loaded decals list and saves all decals
 /datum/controller/subsystem/custom_decals/proc/save_decal(datum/custom_decal/decal)
 	decals |= decal
 	save_decals()
 	update_static_data_for_all_viewers()
 
+///Admin command to delete a decal. permanently deletes it and removes it from visuals
 /datum/controller/subsystem/custom_decals/proc/delete_decal(md5_deleting, client/creator, reason)
 	if(!check_other_rights(creator, R_ADMIN, TRUE))
 		message_admins("[key_name_admin(creator)] attempted to delete decal [md5_deleting] without admin rights")
@@ -197,6 +199,7 @@ SUBSYSTEM_DEF(custom_decals)
 	log_game(msg)
 	update_static_data_for_all_viewers()
 
+///Radial to poll a mob for their favourite decals. returns the user selected decal datum. has a max range
 /datum/controller/subsystem/custom_decals/proc/radial_poll_user_fav_decals(mob/user, atom/anchor)
 	RETURN_TYPE(/datum/custom_decal)
 	if(!length(user.client?.prefs.favourite_decals))
