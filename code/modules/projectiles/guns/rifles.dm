@@ -2977,7 +2977,7 @@
 
 /obj/item/weapon/gun/rifle/vsd_breaching
 	name = "\improper CC/B/31 Breaching Shotgun"
-	desc = "The Vyacheslav Security Detail's breaching shotgun, firing 12 gauge breaching slugs. This won't kill if the target is armored."
+	desc = "The Kaizoku Corporation's breaching shotgun, firing 12 gauge breaching slugs. This won't kill if the target is armored."
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',

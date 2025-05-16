@@ -2880,16 +2880,16 @@
 
 	products = list(
 		"Rifles" = list(
-			/obj/item/weapon/gun/rifle/vsd_rifle = -1,
-			/obj/item/ammo_magazine/rifle/vsd_rifle = -1,
+			/obj/item/weapon/gun/rifle/vsd_carbine = -1,
+			/obj/item/ammo_magazine/rifle/vsd_carbine = -1,
 			/obj/item/weapon/gun/rifle/mpi_km/black = -1,
 			/obj/item/ammo_magazine/rifle/mpi_km/black = -1,
 			/obj/item/weapon/gun/rifle/type71 = -1,
 			/obj/item/ammo_magazine/rifle/type71 = -1,
 		),
 		"Marksman" = list(
-			/obj/item/weapon/gun/rifle/vsd_carbine = -1,
-			/obj/item/ammo_magazine/rifle/vsd_carbine = -1,
+			/obj/item/weapon/gun/rifle/vsd_rifle = -1,
+			/obj/item/ammo_magazine/rifle/vsd_rifle = -1,
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
 			/obj/item/ammo_magazine/rifle/standard_dmr = -1,
 			/obj/item/weapon/gun/rifle/chambered = -1,
@@ -3366,6 +3366,12 @@
 	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
 	products = list(
 		"PMC standard issue" = list(
+			/obj/item/clothing/suit/storage/marine/vsd = -1,
+			/obj/item/clothing/suit/storage/marine/vsd/alt = -1,
+			/obj/item/clothing/suit/storage/marine/vsd/marmor = -1,
+			/obj/item/clothing/suit/storage/marine/vsd/harmor = -1,
+			/obj/item/clothing/head/helmet/marine/vsd = -1,
+			/obj/item/clothing/head/helmet/marine/vsd/heavy = -1,
 			/obj/item/clothing/suit/storage/marine/vsd_two = -1,
 			/obj/item/clothing/suit/storage/marine/vsd_two/plate_carrier = -1,
 			/obj/item/clothing/suit/storage/marine/vsd_two/marmor = -1,

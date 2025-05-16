@@ -690,8 +690,8 @@
 	has_sensor = 0
 
 /obj/item/clothing/under/vsd
-	name = "\improper VSD jumpsuit"
-	desc = "The standard uniform for the Vyacheslav Security Detail, weaved with kevlar and marked with blood."
+	name = "\improper KZ jumpsuit"
+	desc = "The standard uniform for the Kaizoku Corporation, weaved with kevlar and marked with blood."
 	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "vsd_uniform_main"
 	worn_icon_state = "vsd_uniform_main"
@@ -718,7 +718,7 @@
 
 /obj/item/clothing/under/vsd/officer
 	name = "KZ officer jumpsuit"
-	desc = "The standard uniform for officers in the Vyacheslav Security Detail, weaved with kevlar and marked with blood."
+	desc = "The standard uniform for officers in the Kaizoku Corporation, weaved with kevlar and marked with blood."
 	icon_state = "vsd_uniform_officer"
 	worn_icon_state = "vsd_uniform_officer"
 
@@ -735,7 +735,7 @@
 
 /obj/item/clothing/under/vsd/upp
 	name = "KZ 'USL' jumpsuit"
-	desc = "A standard uniform for a division in the Vyacheslav Security Detail, it's colors feel reminiscent."
+	desc = "A standard uniform for a division in the Kaizoku Corporation, it's colors feel reminiscent."
 	icon_state = "upp_retired"
 	worn_icon_state = "upp_retired"
 
@@ -754,7 +754,7 @@
 
 /obj/item/clothing/under/vsd/upp/officer
 	name = "KZ 'USL' officer jumpsuit"
-	desc = "A standard uniform for a officer in a division of the Vyacheslav Security Detail, it's colors feel reminiscent."
+	desc = "A standard uniform for a officer in a division of the Kaizoku Corporation, it's colors feel reminiscent."
 	icon_state = "upp_retired_officer"
 	worn_icon_state = "upp_retired_officer"
 

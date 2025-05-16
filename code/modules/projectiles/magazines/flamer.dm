@@ -140,7 +140,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/vsd
 	name = "large CC/21 flamerthrower tank (X)"
-	desc = "A large tank for the Vyacheslav CC/21 Flamer, filled with thick napthal X fuel."
+	desc = "A large tank for the Kaizoku CC/21 Flamer, filled with thick napthal X fuel."
 	icon_state = "flametank_vsd"
 	max_rounds = 150
 	current_rounds = 150
