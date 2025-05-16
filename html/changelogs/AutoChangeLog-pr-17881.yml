@@ -1,4 +1,0 @@
-author: "Cerrik"
-delete-after: True
-changes:
-  - bugfix: "fixed vehicle collision damage trigger speed"

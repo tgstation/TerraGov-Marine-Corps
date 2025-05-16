@@ -1433,7 +1433,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 /// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
 /datum/action/ability/activable/xeno/place_pattern/proc/create_hologram(turf/target_turf)
 	var/atom/selected = xeno_owner.selected_resin
-	var/obj/effect/build_hologram/hologram = new(target_turf, selected)
+	var/obj/effect/build_hologram/hologram = new(target_turf, selected, FALSE, xeno_owner)
 	hologram.alpha = 0
 	hologram.layer = selected.layer + 1
 	hologram.step_size = 4 * ICON_SIZE_ALL

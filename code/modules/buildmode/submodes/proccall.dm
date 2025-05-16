@@ -6,10 +6,9 @@
 	var/list/proc_args
 
 /datum/buildmode_mode/proccall/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Choose procedure and arguments")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Apply procedure on object")] -> Left Mouse Button on machinery"))
-	)
 
 /datum/buildmode_mode/proccall/change_settings(client/user)
 	if(!check_rights_for(user, R_DEBUG))
