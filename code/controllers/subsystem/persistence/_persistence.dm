@@ -134,7 +134,7 @@ SUBSYSTEM_DEF(persistence)
 		message += span_season_additional_info("<b>Title:</b> [season_progress[season_entry][CURRENT_SEASON_NAME]]<br>")
 		message += span_season_additional_info("<b>Description:</b> [season_progress[season_entry][CURRENT_SEASON_DESC]]<br>")
 
-	return message
+	return boxed_message(message)
 
 ///Loads seasons data, advances seasons and saves the data
 /datum/controller/subsystem/persistence/proc/LoadSeasonalItems()
