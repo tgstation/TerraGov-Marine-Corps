@@ -1864,6 +1864,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				previous = H.gender
 				H.gender = change
+			if("physique")
+				change = input("Select the physique.", "Edit Appearance") as null|anything in list(MALE, FEMALE)
+				if(!change || !istype(H))
+					return
+				previous = H.physique
+				H.physique = change
 			if("ethnicity")
 				change = input("Select the ethnicity.", "Edit Appearance") as null|anything in sortList(GLOB.ethnicities_list)
 				if(!change || !istype(H))

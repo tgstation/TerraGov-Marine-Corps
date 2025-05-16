@@ -1156,6 +1156,7 @@
 	icon_state = "new_plasteel_0"
 	max_integrity = 400
 	stack_type = /obj/item/stack/sheet/plasteel
+	stack_amount = 3
 	destroyed_stack_amount = 2
 	barricade_type = "new_plasteel"
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)

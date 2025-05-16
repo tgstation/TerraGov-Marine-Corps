@@ -235,9 +235,6 @@
 		return
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
-	if(!chassis.use_power(power_cost))
-		chassis.balloon_alert(owner, "No power")
-		return
 	if(owner.do_actions)
 		return
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR))
@@ -245,6 +242,9 @@
 		chassis.balloon_alert(owner, "[time] seconds")
 		return
 	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR, 2 MINUTES)
+	if(!chassis.use_power(power_cost))
+		chassis.balloon_alert(owner, "No power")
+		return
 	var/added_movetime = chassis.move_delay
 	chassis.move_delay += added_movetime
 	var/obj/effect/overlay/lightning_charge/charge = new(chassis)
@@ -322,3 +322,68 @@
 	playsound(chassis, 'sound/effects/pred_cloakoff.ogg', 60, TRUE)
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/gun in chassis.flat_equipment)
 		TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(gun.cooldown_key), min(gun.equip_cooldown/2, 1 SECONDS))
+
+/datum/action/vehicle/sealed/mecha/overboost
+	name = "Overboost"
+	action_icon_state = "overboost_off"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_OVERBOOST,
+	)
+	///how far we can throw things
+	var/throw_range = 5
+	///max how many tiles we can charge. usually should be determined by how much power the mech has to burn though
+	var/max_tiles_charged = 10
+	///cooldown duration INCLUDING chargeup and boost time
+	var/cooldown_duration = 45 SECONDS
+
+/datum/action/vehicle/sealed/mecha/overboost/action_activate(trigger_flags)
+	. = ..()
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+		chassis.balloon_alert(owner, "Cooldown")
+		return
+	if(!chassis.has_charge(100))
+		chassis.balloon_alert(owner, "No charge")
+		return
+	action_icon_state = "overboost_on"
+	update_button_icon()
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), cooldown_duration)
+	//remember we need to keep this the same lenght as the actual windup
+	playsound(chassis, 'sound/mecha/overboost_chargeup.ogg', 70)
+	if(!do_after(owner, 0.7 SECONDS, NONE, chassis, target_display = BUSY_ICON_DANGER))
+		action_icon_state = "overboost_off"
+		update_button_icon()
+		return
+	INVOKE_ASYNC(src, PROC_REF(overboost_charge))
+
+/// actually executes the overboost dash for the owning mech
+/datum/action/vehicle/sealed/mecha/overboost/proc/overboost_charge()
+	var/obj/vehicle/sealed/mecha/combat/greyscale/greyscale = chassis
+	if(istype(greyscale))
+		greyscale.add_sparks(chassis.dir)
+	chassis.canmove = FALSE
+	for(var/i=1 to max_tiles_charged)
+		if(!chassis.use_power(100))
+			break
+		if(chassis.Move(get_step(chassis, chassis.dir), chassis.dir))
+			sleep(1)
+			continue
+		// cant move, okay something in the tile in front stopped us
+		// lets smash everyone on the tile in front and try throw it back
+		var/throw_loc = get_step(chassis, chassis.dir)
+		for(var/_=1 to throw_range)
+			throw_loc = get_step(throw_loc, chassis.dir)
+		var/smashed_living = FALSE
+		for(var/mob/living/thrown in get_step(chassis, chassis.dir))
+			if(thrown.lying_angle)
+				continue
+			smashed_living = TRUE
+			thrown.throw_at(throw_loc, throw_range, 1, owner, FALSE)
+			thrown.take_overall_damage(100)
+		if(smashed_living)
+			playsound(chassis, 'sound/effects/bang.ogg', 50, TRUE)
+		break
+	chassis.canmove = TRUE
+	action_icon_state = "overboost_off"
+	update_button_icon()
+	if(istype(greyscale))
+		greyscale.remove_sparks()

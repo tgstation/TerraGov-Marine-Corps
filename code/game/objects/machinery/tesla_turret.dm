@@ -1,6 +1,8 @@
-#define TESLA_TURRET_MAX_RANGE 7
+#define TESLA_TURRET_MAX_RANGE 6
+///How many targets it can hit per activation
+#define TESLA_TURRET_MAX_TARGETS 3
 #define TESLA_TURRET_COST_PASSIVE 25
-#define TESLA_TURRET_COST_ACTIVE 75
+#define TESLA_TURRET_COST_ACTIVE 100
 
 /obj/item/tesla_turret
 	name = "tesla turret"
@@ -203,21 +205,22 @@
 		balloon_alert_to_viewers("shuts off!")
 		toggle(FALSE, TRUE)
 		return
-	if(battery.use(passive_cost))
-		/// Needs to have enough charge to hit at least one xeno
-		var/max_targets = max(trunc(battery.charge / active_cost), 0)
-		if(!max_targets)
-			hud_set_tesla_battery()
-			return
-		var/xeno_amount = length(zap_beam(src, max_range, 4, max_targets = max_targets))
-		if(!xeno_amount)
-			hud_set_tesla_battery()
-			return
-		battery.use(active_cost * xeno_amount)
-		playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
-	else
+	if(!battery.use(passive_cost))
 		balloon_alert_to_viewers("shuts off!")
 		toggle(FALSE, TRUE)
+		hud_set_tesla_battery()
+		return
+	/// Needs to have enough charge to hit at least one xeno
+	var/max_zap_targets = clamp(trunc(battery.charge / active_cost), 0, TESLA_TURRET_MAX_TARGETS)
+	if(!max_zap_targets)
+		hud_set_tesla_battery()
+		return
+	var/xeno_amount = length(zap_beam(src, max_range, 4, max_targets = max_zap_targets))
+	if(!xeno_amount)
+		hud_set_tesla_battery()
+		return
+	battery.use(active_cost * xeno_amount)
+	playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
 	hud_set_tesla_battery()
 
 /obj/machinery/deployable/tesla_turret/disassemble(mob/marine)
@@ -255,7 +258,7 @@
 	hud_set_tesla_battery()
 
 /// I hate this so much, thank you for having a flag called pass_projectile but it only does so up to proj.ammo.barricade_clear_distance
-/obj/machinery/deployable/tesla_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/machinery/deployable/tesla_turret/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	if(src != proj.original_target)
 		return FALSE
 

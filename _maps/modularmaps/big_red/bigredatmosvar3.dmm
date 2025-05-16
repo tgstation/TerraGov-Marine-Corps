@@ -150,6 +150,10 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
+"jQ" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/filtration_plant)
 "jX" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -301,6 +305,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/s)
+"rj" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/filtration_plant)
 "rm" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -400,6 +408,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"xK" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/filtration_plant)
 "xL" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -842,9 +854,9 @@
 /area/bigredv2/outside/s)
 
 (1,1,1) = {"
-em
+jQ
 OK
-em
+jQ
 em
 em
 em
@@ -857,7 +869,7 @@ Hd
 Ff
 Ff
 Ff
-Ff
+xK
 eH
 qc
 eH
@@ -908,7 +920,7 @@ kO
 HM
 Ey
 HM
-Ff
+xK
 Ff
 Ff
 Ff
@@ -950,15 +962,15 @@ mH
 Lx
 "}
 (5,1,1) = {"
-em
+jQ
 OK
+jQ
 em
 em
 em
 em
 em
-em
-em
+jQ
 UL
 Wt
 HM
@@ -1088,7 +1100,7 @@ Lx
 eT
 nt
 WS
-em
+jQ
 dn
 HM
 rT
@@ -1100,7 +1112,7 @@ HM
 HM
 HM
 eE
-tm
+rj
 gl
 UP
 ct
@@ -1255,7 +1267,7 @@ em
 em
 Ru
 em
-em
+jQ
 HM
 Bq
 HM

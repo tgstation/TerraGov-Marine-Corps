@@ -139,8 +139,12 @@
 #define COMSIG_MECHABILITY_SWAPWEAPONS "mechability_swapweapons"
 #define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
 #define COMSIG_MECHABILITY_CLOAK "mechability_cloak"
+#define COMSIG_MECHABILITY_OVERBOOST "mechability_overboost"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
+
+#define COMSIG_ABILITY_PLACE_HOLOGRAM "ability_place_hologram"
+#define COMSIG_ABILITY_SELECT_BUILDTYPE "ability_select_buildtype"
 
 //---- XENO ABILITY KEYBINDS
 

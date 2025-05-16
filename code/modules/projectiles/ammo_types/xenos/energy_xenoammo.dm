@@ -31,7 +31,7 @@
 	///AOE damage amount
 	var/aoe_damage = 45
 
-/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, obj/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, atom/movable/projectile/P)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/effects/EMPulse.ogg', 50)
@@ -61,16 +61,16 @@
 
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
-/datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob), proj)
 
-/datum/ammo/energy/xeno/psy_blast/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj, proj)
 
-/datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
-/datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance
@@ -87,18 +87,21 @@
 	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
 	glow_color = "#CB0166"
 
-/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	if(isvehicle(target_obj))
 		var/obj/vehicle/veh_victim = target_obj
-		veh_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
+		var/veh_damage = 200
+		if(isgreyscalemecha(veh_victim))
+			veh_damage = 25
+		veh_victim.take_damage(veh_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
-/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(isxeno(target_mob))
 		return
 	staggerstun(target_mob, proj, 9, stagger = 1 SECONDS, slowdown = 2, knockback = 1)
 
-/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	return
 
-/datum/ammo/energy/xeno/psy_blast/psy_lance/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/psy_lance/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return

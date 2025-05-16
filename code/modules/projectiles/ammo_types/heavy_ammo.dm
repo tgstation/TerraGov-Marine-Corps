@@ -75,18 +75,18 @@
 	///Bonus flat damage to walls, balanced around resin walls.
 	var/autocannon_wall_bonus = 50
 
-/datum/ammo/bullet/auto_cannon/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	proj.proj_max_range -= 20
 
 	if(istype(target_turf, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = target_turf
 		wall_victim.take_damage(autocannon_wall_bonus, proj.damtype, proj.armor_type)
 
-/datum/ammo/bullet/auto_cannon/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
 	staggerstun(target_mob, proj, max_range = 20, slowdown = 1)
 
-/datum/ammo/bullet/auto_cannon/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
 
 /datum/ammo/bullet/auto_cannon/flak
@@ -100,10 +100,10 @@
 	airburst_multiplier = 1
 	autocannon_wall_bonus = 25
 
-/datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	airburst(target_mob, proj)
 
-/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	airburst(target_turf, proj)
 
 /datum/ammo/bullet/railgun
@@ -119,10 +119,11 @@
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.75
 
-/datum/ammo/bullet/railgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/railgun/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 4 SECONDS, slowdown = 2, knockback = 2)
+	shake_camera(target_mob, 0.2 SECONDS, 2)
 
-/datum/ammo/bullet/railgun/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/railgun/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	proj.proj_max_range -= 3
 
 /datum/ammo/bullet/railgun/hvap
@@ -134,7 +135,7 @@
 	penetration = 30
 	sundering = 50
 
-/datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 2 SECONDS, knockback = 3)
 
 /datum/ammo/bullet/railgun/smart
@@ -145,8 +146,9 @@
 	penetration = 20
 	sundering = 20
 
-/datum/ammo/bullet/railgun/smart/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/railgun/smart/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 3 SECONDS, slowdown = 3)
+	shake_camera(target_mob, 0.2 SECONDS, 1)
 
 /datum/ammo/bullet/apfsds
 	name = "\improper APFSDS round"
@@ -161,7 +163,10 @@
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
-/datum/ammo/bullet/apfsds/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/bullet/apfsds/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	shake_camera(target_mob, 0.2 SECONDS, 2)
+
+/datum/ammo/bullet/apfsds/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	if(ishitbox(target_obj) || ismecha(target_obj) || isarmoredvehicle(target_obj))
 		proj.damage *= 1.5
 		proj.proj_max_range = 0
@@ -179,7 +184,7 @@
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
-/datum/ammo/bullet/coilgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/coilgun/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 0.2 SECONDS, slowdown = 1, knockback = 3)
 
 
@@ -207,7 +212,7 @@
 /datum/ammo/rocket/tank_autocannon_he/drop_nade(turf/T)
 	explosion(T, weak_impact_range = 2, tiny = TRUE)
 
-/datum/ammo/rocket/tank_autocannon_he/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/rocket/tank_autocannon_he/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	//this specifically doesn't knockback. Don't change the explosion above weak.
 	drop_nade(get_turf(target_mob))
 
@@ -235,16 +240,16 @@
 /datum/ammo/bullet/sarden/high_explosive/drop_nade(turf/T)
 	explosion(T, light_impact_range = 2, weak_impact_range = 4, explosion_cause=src)
 
-/datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)
 	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 	drop_nade(target_turf)
 
-/datum/ammo/bullet/sarden/high_explosive/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/bullet/sarden/high_explosive/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
-/datum/ammo/bullet/sarden/high_explosive/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/sarden/high_explosive/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/bullet/sarden/high_explosive/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/sarden/high_explosive/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)

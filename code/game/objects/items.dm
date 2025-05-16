@@ -210,6 +210,11 @@
 /obj/item/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
 
+/obj/item/update_filters()
+	. = ..()
+	for(var/datum/action/A AS in actions)
+		A.update_button_icon()
+
 /obj/item/proc/update_item_state(mob/user)
 	worn_icon_state = "[initial(icon_state)][item_flags & WIELDED ? "_w" : ""]"
 
@@ -1256,8 +1261,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	standing = center_image(standing, inhands ? inhand_x_dimension : worn_x_dimension, inhands ? inhand_y_dimension : worn_y_dimension)
 
-	standing.pixel_x += inhands ? inhand_x_offset : worn_x_offset
-	standing.pixel_y += inhands ? inhand_y_offset : worn_y_offset
+	standing.pixel_w += inhands ? inhand_x_offset : worn_x_offset
+	standing.pixel_z += inhands ? inhand_y_offset : worn_y_offset
 	standing.alpha = alpha
 	standing.color = color
 

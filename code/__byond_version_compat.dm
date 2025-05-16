@@ -1,13 +1,13 @@
 //Update this whenever you need to take advantage of more recent byond features
-#define MIN_COMPILER_VERSION 515
-#define MIN_COMPILER_BUILD 1609
-#ifndef SPACEMAN_DMM
-#if DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD
+#define MIN_COMPILER_VERSION 516
+#define MIN_COMPILER_BUILD 1648
+
+#if (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD) && !defined(SPACEMAN_DMM) && !defined(OPENDREAM)
 //Don't forget to update this part
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 515.1609 or higher
+#error You need version 516.1648 or higher
 #endif
-#endif
+
 
 // So we want to have compile time guarantees these methods exist on local type
 // We use wrappers for this in case some part of the api ever changes, and to make their function more clear

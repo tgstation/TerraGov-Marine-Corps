@@ -105,6 +105,20 @@
 	power_channel = ENVIRON
 	density = FALSE
 
+/obj/machinery/computer/shuttle/escape_pod/examine(mob/user)
+	. = ..()
+	var/obj/docking_port/mobile/escape_pod/M = SSshuttle.getShuttle(shuttleId)
+	if(!M || M.launch_status == EARLY_LAUNCHED || M.launch_status == EARLY_LAUNCHED)
+		return
+	if(SSevacuation.evac_status != EVACUATION_STATUS_INITIATING)
+		return
+	var/text = "Time until refueling completion:"
+	var/eta = (SSevacuation.evac_time + EVACUATION_MANUAL_DEPARTURE - world.time) * 0.1
+	if(eta <= 0)
+		text = "Time until automatic launch:"
+		eta = (SSevacuation.evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1
+	. += span_notice("[text] [(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]")
+
 /obj/machinery/computer/shuttle/escape_pod/escape_shuttle
 	name = "escape shuttle controller"
 
@@ -134,6 +148,9 @@
 
 		if(!M.can_launch)
 			to_chat(usr, span_warning("Evacuation is not enabled!"))
+			return
+		if(SSevacuation.evac_time + EVACUATION_MANUAL_DEPARTURE - world.time > 0)
+			to_chat(usr, span_warning("The escape pod is not fully refueled yet!"))
 			return
 
 		to_chat(usr, span_userdanger("You slam your fist down on the launch button!"))

@@ -367,37 +367,29 @@
 	hud_icons = list("sniper_supersonic", "sniper_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher
-	name = "\improper Hyperion grenade launcher"
-	desc = "The TGMC's definitive answer to whether a bigger boom is better. Fires standard HEDP grenades."
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavyrocket
+	name = "\improper Hyperion heavy rocket launcher"
+	desc = "The TGMC's definitive answer to whether a bigger boom is better. Fires heavy AP rockets."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	icon_state = "grenadelauncher"
-	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
+	icon_state = "rocketlauncher"
+	fire_sound = 'sound/mecha/weapons/mech_rpg.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	equipment_slot = MECHA_BACK
-	ammotype = /obj/item/explosive/grenade
+	ammotype = /datum/ammo/rocket/mech/heavy
 	max_integrity = 350
-	projectiles = 5
-	projectiles_cache = 25
-	projectiles_cache_max = 25
-	projectile_delay = 1 SECONDS
-	variance = 10
-	missile_speed = 1.5
+	projectiles = 1
+	projectiles_cache = 10
+	projectiles_cache_max = 10
+	projectile_delay = 6 SECONDS
+	variance = 0
 	equip_cooldown = 2 SECONDS
-	weight = 110
+	weight = 130
 	slowdown = 0
-	rearm_time = 4 SECONDS
-	ammo_type = MECHA_AMMO_GRENADE
-	hud_icons = list("grenade_he", "grenade_empty")
+	rearm_time = 5 SECONDS
+	windup_delay = 1 SECONDS
+	ammo_type = MECHA_AMMO_RPG
+	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher/proj_init(obj/item/explosive/grenade/nade, mob/user)
-	var/turf/T = get_turf(src)
-	log_game("[key_name(user)] fired a [nade] in [AREACOORD(T)]")
-	nade.det_time = min(1 SECONDS, nade.det_time)
-	nade.launched = TRUE
-	nade.activate(user)
-	nade.throwforce += nade.launchforce
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/flamethrower
 	name = "\improper Helios flamethrower"
@@ -445,15 +437,15 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ammotype = /datum/ammo/rocket/mech
 	max_integrity = 400
-	projectiles = 3
-	projectiles_cache = 30
-	projectiles_cache_max = 30
-	variance = 20
-	projectile_delay = 4 SECONDS
+	projectiles = 2
+	projectiles_cache = 20
+	projectiles_cache_max = 20
+	variance = 15
+	projectile_delay = 5 SECONDS
 	slowdown = 0
-	weight = 120
-	rearm_time = 5 SECONDS
-	windup_delay = 1 SECONDS
+	weight = 95
+	rearm_time = 4 SECONDS
+	windup_delay = 0.5 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RPG
 	hud_icons = list("rocket_he", "rocket_empty")
@@ -493,22 +485,26 @@
 //NON GUNS BEYOND HERE
 //////////////////////////
 
-#define LASER_DASH_RANGE_NORMAL 3
+#define LASER_DASH_RANGE_NORMAL 2
 #define LASER_DASH_RANGE_ENHANCED 5
 
 /obj/item/mecha_parts/mecha_equipment/laser_sword
-	name = "\improper Moonlight particle cutter"
+	name = "\improper Bright laser blade"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
-	icon_state = "moonlight"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	desc = "A specialized mech laser blade made out of plasma. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with the superheated plasma beam."
+	icon_state = "lasersword"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	max_integrity = 400
 	slowdown = 0
 	harmful = TRUE
-	equip_cooldown = 3 SECONDS
-	energy_drain = 10
+	equip_cooldown = 5 SECONDS
+	energy_drain = 100
 	range = MECHA_MELEE|MECHA_RANGED
-	force = 130
+	force = 200
+	weight = 60
+	var/image/slash_extra_image
+	///ravager slash VFX but red
+	var/obj/effect/abstract/particle_holder/particle_holder
 	/// holder var for the mob that is attacking right now
 	var/mob/cutter
 
@@ -535,8 +531,17 @@
 	var/laser_dash_range = HAS_TRAIT(chassis, TRAIT_MELEE_CORE) ? LASER_DASH_RANGE_ENHANCED : LASER_DASH_RANGE_NORMAL
 
 	chassis.add_filter("dash_blur", 1, radial_blur_filter(0.3))
-	icon_state += "_on"
-	chassis.update_icon()
+	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale/core))
+		icon_state += "_on"
+		chassis.update_appearance(UPDATE_ICON)
+	else
+		var/obj/vehicle/sealed/mecha/combat/greyscale/core/slasher = chassis
+		var/hand_used = slasher.equip_by_category[MECHA_L_ARM] == src ? "_left" : "_right"
+		var/image_iconstate = "active" + icon_state + hand_used
+		if(chassis.leg_overload_mode)
+			image_iconstate = "b_" + image_iconstate
+		slash_extra_image = image('icons/mecha/mech_core_weapons.dmi', null, image_iconstate)
+		chassis.add_overlay(slash_extra_image)
 	new /obj/effect/temp_visual/after_image(chassis.loc, chassis)
 	RegisterSignal(chassis, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
 	cutter = source
@@ -569,7 +574,8 @@
 	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_BUMP))
 	chassis.remove_filter("dash_blur")
 	icon_state = initial(icon_state)
-	chassis.update_icon()
+	chassis.cut_overlay(slash_extra_image)
+	chassis.update_appearance(UPDATE_ICON)
 	execute_melee(cutter)
 	cutter = null
 	chassis.atom_flags &= ~DIRLOCK
@@ -577,18 +583,32 @@
 ///executes a melee attack in the direction that the mech is facing
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/execute_melee(mob/source, list/modifiers)
 	var/list/turf/targets
-	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE))
-		targets = list(get_step(chassis, chassis.dir), get_step(chassis, turn(chassis.dir, 45)), get_step(chassis, turn(chassis.dir, -45)))
-	else
-		targets = list(get_step(chassis, chassis.dir))
+	targets = list(get_step(chassis, chassis.dir), get_step(chassis, turn(chassis.dir, 45)), get_step(chassis, turn(chassis.dir, -45)))
 	if(!targets[1])
 		return
 	playsound(chassis, 'sound/mecha/weapons/laser_sword.ogg', 30)
 
 	var/old_intent = source.a_intent
 	source.a_intent = INTENT_HARM
-	for(var/turf/target AS in targets)
-		chassis.do_attack_animation(target, ATTACK_EFFECT_LASERSWORD)
+
+	particle_holder = new(get_turf(chassis), /particles/ravager_slash)
+	particle_holder.particles.color = COLOR_RED
+	QDEL_NULL_IN(src, particle_holder, 5)
+	particle_holder.particles.rotation += dir2angle(chassis.dir)
+	switch(chassis.dir) // There's no shared logic here because sprites are magical.
+		if(NORTH) // Gotta define stuff for each angle so it looks good.
+			particle_holder.particles.position = list(8, 4)
+			particle_holder.particles.velocity = list(0, 20)
+		if(EAST)
+			particle_holder.particles.position = list(3, -8)
+			particle_holder.particles.velocity = list(20, 0)
+		if(SOUTH)
+			particle_holder.particles.position = list(-9, -3)
+			particle_holder.particles.velocity = list(0, -20)
+		if(WEST)
+			particle_holder.particles.position = list(-4, 9)
+			particle_holder.particles.velocity = list(-20, 0)
+	for(var/turf/target in targets)
 		for(var/atom/movable/slashed AS in target)
 			slashed.attackby(src, source, list2params(modifiers))
 	source.a_intent = old_intent

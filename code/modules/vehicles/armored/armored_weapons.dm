@@ -170,7 +170,7 @@
 	current_firer = null
 
 ///does any effects and changes to the projectile when it is fired
-/obj/item/armored_weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
+/obj/item/armored_weapon/proc/apply_weapon_modifiers(atom/movable/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	if(chassis.hitbox?.tank_desants)
@@ -243,8 +243,8 @@
 ///The actual firing of a projectile. Overridable for different effects
 /obj/item/armored_weapon/proc/do_fire(turf/source_turf, ammo_override)
 	var/datum/ammo/ammo_type = ammo_override ? ammo_override : ammo.default_ammo
-	var/type_to_spawn = CHECK_BITFIELD(ammo_type::ammo_behavior_flags, AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(source_turf, ammo_type:hitscan_effect_icon)
+	var/type_to_spawn = CHECK_BITFIELD(ammo_type::ammo_behavior_flags, AMMO_HITSCAN) ? /atom/movable/projectile/hitscan : /atom/movable/projectile
+	var/atom/movable/projectile/projectile_to_fire = new type_to_spawn(source_turf, ammo_type:hitscan_effect_icon)
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo_type])
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
 	var/firing_angle = get_angle_with_scatter(chassis, current_target, variance, projectile_to_fire.p_x, projectile_to_fire.p_y)

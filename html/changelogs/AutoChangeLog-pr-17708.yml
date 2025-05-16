@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - admin: "More nuke logging (enabling is seen in chat)"

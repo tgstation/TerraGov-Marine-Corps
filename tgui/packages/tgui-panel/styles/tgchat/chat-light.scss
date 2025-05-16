@@ -11,7 +11,7 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
 }
 
 body {
@@ -284,7 +284,7 @@ h6 {
 
 h1.alert,
 h2.alert {
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
 }
 
 em {
@@ -311,7 +311,7 @@ em {
 }
 
 .hostooc {
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
   font-weight: bold;
 }
 .projleadooc {
@@ -497,7 +497,7 @@ em {
 
 .binarysay {
   color: hsl(114, 86.5%, 40.8%);
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--color-black);
   display: block;
 }
 .binarysay a {
@@ -517,7 +517,7 @@ em {
 }
 h1.alert,
 h2.alert {
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
 }
 
 .attack {
@@ -686,7 +686,7 @@ h2.alert {
 }
 
 .announce_header {
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
   font-weight: bold;
   font-size: 150%;
 }
@@ -1083,7 +1083,7 @@ h2.alert {
 }
 .examine_block .blockheader {
   font-family: Verdana;
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
   display: block;
   text-align: center;
   font-weight: bold;
@@ -1120,7 +1120,7 @@ $border-width-px: $border-width * 1px;
     border: 1px solid map.get($ooc_alert_border_colors, $color-type);
     margin: 7px 4px;
     padding: 8px 12px;
-    color: hsl(0, 0%, 0%);
+    color: var(--color-black);
     font-weight: bold;
     display: flex;
     flex-direction: column;

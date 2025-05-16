@@ -1,9 +1,9 @@
 /mob/verb/request_internet_sound()
 	set category = "OOC"
-	set name = "Request Internet Sound"
+	set name = "Request Music (Internet)"
 
 	if (!CONFIG_GET(flag/request_internet_sound))
-		to_chat(usr, span_danger("This server has disabled internet sound requests."), confidential = TRUE)
+		to_chat(usr, span_danger("This server has disabled internet music requests."), confidential = TRUE)
 		return
 
 	var/request_url = tgui_input_text(usr, "Please Input a URL", "Only certain sites are allowed, such as SoundCloud, and Bandcamp.", "")
