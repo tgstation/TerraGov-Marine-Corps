@@ -27,12 +27,12 @@ endmode
 
 mode Survival
 	requiredplayers 4
-	votable 0
+	votable 1
 endmode
 
 mode Extended - Survivor-Heavy
 	requiredplayers 0
-	votable 0
+	votable 1
 endmode
 
 mode Secrets of Life

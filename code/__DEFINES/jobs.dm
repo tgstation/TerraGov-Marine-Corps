@@ -91,10 +91,10 @@
 
 //ICC
 
-#define ICC_STANDARD "ICC Standard"
-#define ICC_GUARD "ICC Guardsman"
-#define ICC_MEDIC "ICC Medic"
-#define ICC_SQUAD_LEADER "ICC Squad Leader"
+#define ICC_STANDARD "CM Standard"
+#define ICC_GUARD "CM Guardsman"
+#define ICC_MEDIC "CM Medic"
+#define ICC_SQUAD_LEADER "CM Squad Leader"
 
 //SOM
 #define SOM_COMMANDER "SOM Commander"
@@ -117,11 +117,11 @@
 #define SOM_SQUAD_SLUT "SOM Squad Slut"
 
 // VSD
-#define VSD_STANDARD "VSD Standard"
-#define VSD_ENGINEER "VSD Engineer"
-#define VSD_MEDIC "VSD Medic"
-#define VSD_SPECIALIST "VSD Specialist"
-#define VSD_LEADER "VSD Squad Leader"
+#define VSD_STANDARD "KZ Standard"
+#define VSD_ENGINEER "KZ Engineer"
+#define VSD_MEDIC "KZ Medic"
+#define VSD_SPECIALIST "KZ Specialist"
+#define VSD_LEADER "KZ Squad Leader"
 
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"

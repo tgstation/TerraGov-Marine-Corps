@@ -433,24 +433,24 @@
 			. = size ? "VADM" : "SOM Vice-Admiral"
 		if("SOM_A4")
 			. = size ? "ADM" : "SOM Admiral"
-		if("ICC1")
-			. = size ? "ICC" : "ICC Standard"
-		if("ICC2")
-			. = size ? "ICC" : "ICC Medic"
-		if("ICC3")
-			. = size ? "ICCG" : "ICC Guard"
-		if("ICC4")
-			. = size ? "ICCL" : "ICC Leader"
-		if("VSD1")
-			. = size ? "JSGT" : "VSD Mládshiy serzhánt"
-		if("VSD2")
-			. = size ? "SSGT" : "VSD Stárshiy serzhánt"
-		if("VSD3")
-			. = size ? "SGM" : "VSD Starshiná"
-		if("VSD4")
-			. = size ? "LT" : "VSD Leytenánt"
-		if("VSD5")
-			. = size ? "COLGEN" : "VSD Generál-polkóvnik"
+		if("CM1")
+			. = size ? "CM" : "CM Standard"
+		if("CM2")
+			. = size ? "CM" : "CM Medic"
+		if("CM3")
+			. = size ? "CMG" : "CM Guard"
+		if("CM4")
+			. = size ? "CML" : "CM Leader"
+		if("KZ1")
+			. = size ? "JSGT" : "KZ Junior Sergeant"
+		if("KZ2")
+			. = size ? "SSGT" : "KZ Staff Sergeant"
+		if("KZ3")
+			. = size ? "SGM" : "KZ Sergeant Major"
+		if("KZ4")
+			. = size ? "LT" : "KZ Lieutenant"
+		if("KZ5")
+			. = size ? "COLGEN" : "KZ Colonel-General"
 		if("MRC1")
 			. = size ? "MERC" : "MERC Heavy"
 		if("MRC2")

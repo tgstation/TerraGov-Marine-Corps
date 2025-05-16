@@ -1903,7 +1903,7 @@
 			/obj/item/ammo_magazine/tank/coilgun = -1,
 			/obj/item/ammo_magazine/tank/secondary_mlrs = -1,
 		),
-		"ICC Assault Vehicle" = list(
+		"CM Assault Vehicle" = list(
 			/obj/item/armored_weapon/icc_lvrt_sarden = -1,
 			/obj/item/armored_weapon/icc_lvrt_cannon = -1,
 			/obj/item/armored_weapon/icc_coaxial = -1,
@@ -2012,7 +2012,7 @@
 			/obj/item/weapon/gun/flamer/som = -1,
 			/obj/item/ammo_magazine/flamer_tank/large/som = -1,
 		),
-		"ICC" = list(
+		"CM" = list(
 			/obj/item/weapon/gun/rifle/icc_battlecarbine = -1,
 			/obj/item/ammo_magazine/rifle/icc_battlecarbine = -1,
 			/obj/item/weapon/gun/rifle/icc_confrontationrifle = -1,

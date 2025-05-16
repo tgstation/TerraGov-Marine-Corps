@@ -1354,7 +1354,7 @@ CLOTHING
 	cost = 2500
 
 /datum/supply_packs/clothing/night_visionvsd
-	name = "VSD Type 9 goggles"
+	name = "KZ Type 9 goggles"
 	contains = list(/obj/item/clothing/glasses/night/m42_night_goggles/upp)
 	cost = 2500
 

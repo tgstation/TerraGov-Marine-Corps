@@ -2252,12 +2252,12 @@
 // VSD
 
 /datum/outfit/quick/vsd
-	name = "VSD Debug"
-	jobtype = "VSD"
+	name = "KZ Debug"
+	jobtype = "KZ"
 
 /datum/outfit/quick/vsd/standard
-	name = "VSD Standard"
-	jobtype = "VSD Standard"
+	name = "KZ Standard"
+	jobtype = "KZ Standard"
 	require_job = FALSE
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
@@ -2343,8 +2343,8 @@
 
 //outfits
 /datum/outfit/quick/vsd/engineer
-	name = "VSD Engineer"
-	jobtype = "VSD Engineer"
+	name = "KZ Engineer"
+	jobtype = "KZ Engineer"
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
@@ -2413,8 +2413,8 @@
 
 //outfits
 /datum/outfit/quick/vsd/medic
-	name = "VSD Medic"
-	jobtype = "VSD Medic"
+	name = "KZ Medic"
+	jobtype = "KZ Medic"
 	belt = /obj/item/storage/belt/lifesaver/full/upp
 	glasses = /obj/item/clothing/glasses/hud/health
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
@@ -2498,8 +2498,8 @@
 
 //outfits
 /datum/outfit/quick/vsd/spec
-	name = "VSD Specialist"
-	jobtype = "VSD Specialist"
+	name = "KZ Specialist"
+	jobtype = "KZ Specialist"
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
@@ -2701,7 +2701,7 @@
 /datum/outfit/quick/vsd/juggernaut
 	name = "CC/B/31 'Ares' Squad Leader"
 	desc = "You're in charge and look the part. Equipped with Crasher MT-H/43 'Ares' powered ballistic armor and CC/B/31 breaching shotgun."
-	jobtype = "VSD Squad Leader"
+	jobtype = "KZ Squad Leader"
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
@@ -2747,7 +2747,7 @@
 /datum/outfit/quick/vsd/eod
 	name = "C153 'Zeus' Squad Leader"
 	desc = "You're in charge and look the part. Equipped with Crasher MT-H/43 'Zeus' powered explosive-defensive armor and a C153 shoulder launcher."
-	jobtype = "VSD Squad Leader"
+	jobtype = "KZ Squad Leader"
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
@@ -3080,8 +3080,8 @@
 
 // ICC Kwik-E-Quip Outfits
 /datum/outfit/quick/icc/standard // base for ICC standards, not to be used
-	name = "ICC Standard"
-	jobtype = "ICC Standard"
+	name = "CM Standard"
+	jobtype = "CM Standard"
 
 	w_uniform = /obj/item/clothing/under/icc/webbing
 	belt = /obj/item/storage/belt/marine/icc
@@ -3173,8 +3173,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_autoshotgun, SLOT_IN_BELT)
 
 /datum/outfit/quick/icc/medic // base, not to be used
-	name = "ICC Medic"
-	jobtype = "ICC Medic"
+	name = "CM Medic"
+	jobtype = "CM Medic"
 
 	w_uniform = /obj/item/clothing/under/icc/medic
 	belt = /obj/item/storage/belt/lifesaver/icc/ert
@@ -3226,8 +3226,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_sharpshooter, SLOT_IN_L_POUCH)
 
 /datum/outfit/quick/icc/guard // base, not to be used
-	name = "ICC Guardsman"
-	jobtype = "ICC Guardsman"
+	name = "CM Guardsman"
+	jobtype = "CM Guardsman"
 
 	w_uniform = /obj/item/clothing/under/icc/webbing
 	belt = /obj/item/storage/belt/marine/icc
@@ -3313,8 +3313,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag, SLOT_IN_L_POUCH)
 
 /datum/outfit/quick/icc/leader // base
-	name = "ICC Squad Leader"
-	jobtype = "ICC Squad Leader"
+	name = "CM Squad Leader"
+	jobtype = "CM Squad Leader"
 
 	w_uniform = /obj/item/clothing/under/icc/webbing
 	belt = /obj/item/storage/belt/marine/icc

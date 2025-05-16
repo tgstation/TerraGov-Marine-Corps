@@ -545,7 +545,7 @@ What you lack in equipment and military training you make up in bravery and conv
 //ICC
 /datum/job/icc/standard/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "ICC"
+	comm_title = "CM"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -565,7 +565,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 /datum/job/icc/guard/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "ICC"
+	comm_title = "CM"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -581,7 +581,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 /datum/job/icc/medic/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "ICC"
+	comm_title = "CM"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -597,7 +597,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 /datum/job/icc/leader/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "ICC"
+	comm_title = "CM"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -749,7 +749,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 //VSD
 /datum/job/vsd/standard/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD"
+	comm_title = "KZ"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -777,7 +777,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/job/vsd/spec/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD"
+	comm_title = "KZ"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -817,7 +817,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/job/vsd/medic/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD"
+	comm_title = "KZ"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -837,7 +837,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/job/vsd/engineer/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD"
+	comm_title = "KZ"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -853,7 +853,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/job/vsd/juggernaut/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD"
+	comm_title = "KZ"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -873,7 +873,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/job/vsd/leader/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD"
+	comm_title = "KZ"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(

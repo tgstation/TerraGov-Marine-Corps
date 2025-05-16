@@ -279,7 +279,7 @@
 /obj/machinery/cryopod/Initialize(mapload)
 	. = ..()
 	radio = new(src)
-	radio.set_frequency(FREQ_COMMON)
+	radio.set_frequency(FREQ_CIV_GENERAL)
 	update_icon()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
