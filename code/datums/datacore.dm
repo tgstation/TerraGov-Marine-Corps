@@ -60,12 +60,12 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		var/squad_name = t.fields["squad"]
 		var/mobfaction = null
 		var/active = FALSE
-		var/deceased = FALSE
+		var/deceased = TRUE
 
 		for(var/mob/living/M in GLOB.mob_living_list)
 			if(M.real_name == name)
-				if(ooc && HAS_TRAIT(M, TRAIT_UNDEFIBBABLE))
-					deceased = TRUE
+				if(ooc && !HAS_TRAIT(M, TRAIT_UNDEFIBBABLE))
+					deceased = FALSE
 				if(ooc && M.client && M.client.inactivity <= 10 * 60 * 10)
 					active = TRUE
 				mobfaction = M.job?.faction
@@ -101,7 +101,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			if(rank in GLOB.jobs_regular_all)
 				misc[name] = rank
 			else
-				if(ooc || (viewfaction && viewfaction == mobfaction))
+				if(ooc || (!mobfaction) || (viewfaction && viewfaction == mobfaction))
 					other[name] = rank
 
 	//Xenomorphs

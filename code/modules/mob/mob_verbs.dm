@@ -105,6 +105,12 @@
 			DEATHTIME_MESSAGE(usr)
 			return
 
+	var/mob/living/carbon/human/humancorpse = src
+	var/mob/dead/observer/ghost = src
+	if(isobserver(ghost))
+		humancorpse = ghost.can_reenter_corpse.resolve()
+	if(ishuman(humancorpse) && humancorpse.mind == mind)
+		humancorpse.set_undefibbable()
 	to_chat(usr, span_notice("You can respawn now, enjoy your new life!<br><b>Make sure to play a different character, and please roleplay correctly.</b>"))
 	GLOB.round_statistics.total_human_respawns++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_respawns")
@@ -119,17 +125,20 @@
 	var/mob/new_player/M = new /mob/new_player()
 	if(SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
 		M.faction = faction
-	if(!client)
-		qdel(M)
-		return
 
 	M.key = key
-
+	M.name = key
+	if(!M.client)
+		qdel(M)
+		return
 
 /// This is only available to mobs once they join EORD.
 /mob/proc/eord_respawn()
 	set name = "EORD Respawn"
 	set category = "OOC"
+	if(!istype(get_area(src),/area/deathmatch))
+		do_eord_respawn(src)
+		return
 
 	var/mob/living/liver
 	if(isliving(usr))
@@ -150,12 +159,16 @@
 
 	var/spawn_location = pick(GLOB.deathmatch)
 	var/mob/living/carbon/human/eord_body
-	if(ishuman(respawner) && !is_centcom_level(respawner.z)) // Wont take
+	var/mob/living/carbon/xenomorph/X
+	if((ishuman(respawner)||isxeno(respawner)) && !is_centcom_level(respawner.z)) // Wont take
+		if(isxeno(respawner))
+			X = respawner
+			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA, XENO_HIVE_FORSAKEN))
 		eord_body = respawner
 		eord_body.forceMove(spawn_location)
 		eord_body.revive()
-		if(eord_body.w_uniform)
-			return
+		eord_body.mind.bypass_ff = TRUE
+		return
 	else
 		eord_body = new(spawn_location)
 		respawner.mind.transfer_to(eord_body, TRUE)

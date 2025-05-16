@@ -81,6 +81,7 @@
 	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
 
 /mob/living/carbon/human/Destroy()
+	set_undefibbable()
 	assigned_squad?.remove_from_squad(src)
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src

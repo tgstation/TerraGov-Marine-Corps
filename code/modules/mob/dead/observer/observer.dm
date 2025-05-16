@@ -248,6 +248,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.icon = H.stand_icon
 		ghost.overlays = H.overlays_standing
 		ghost.underlays = H.underlays_standing
+		if(!can_reenter_corpse)
+			H.set_undefibbable()
 	else
 		ghost.icon = icon
 		ghost.icon_state = icon_state
@@ -992,6 +994,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		M.faction = faction
 
 	M.key = key
+	M.name = key
 
 	to_chat(M, span_warning("Your time is up."))
 
