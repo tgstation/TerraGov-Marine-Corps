@@ -1,6 +1,6 @@
 #define BLINK_DRIVE_RANGE 7
 #define BLINK_DRIVE_MAX_CHARGES 3
-#define BLINK_DRIVE_CHARGE_TIME 4 SECONDS
+#define BLINK_DRIVE_CHARGE_TIME 3 SECONDS
 
 /obj/item/blink_drive
 	name = "blink drive"
