@@ -14,6 +14,8 @@
 
 	///the creating ckey for admin purposes
 	var/creator_ckey
+	///timestamp when this was originally finalized
+	var/creation_date
 	///the round this decal was created in, for admin purposes
 	var/creation_round_id
 	///list of tags on this decal
@@ -62,6 +64,7 @@
 	src.tags = tags
 	src.creator_ckey = user.ckey
 	src.creation_round_id = GLOB.round_id
+	src.creation_date = time2text(world.realtime, "DDD MMM DD hh:mm:ss YYYY", TIMEZONE_UTC) // Could use creation/modified file helpers in rustg
 
 	var/image_data = get_data_string()
 	md5 = md5(image_data)
@@ -231,6 +234,7 @@
 	.["md5"] = md5
 	.["name"] = name
 	.["creator_ckey"] = creator_ckey
+	.["creation_date"] = creation_date
 	.["creation_round_id"] = creation_round_id
 	.["tags"] = tags
 	.["width"] = width
@@ -245,6 +249,7 @@
 	decal_icon = icon(file("data/custom_decals/decal_[md5].png"))
 	name = json["name"]
 	creator_ckey = json["creator_ckey"]
+	creation_date = json["creation_date"]
 	creation_round_id = json["creation_round_id"]
 	tags = json["tags"]
 	width = json["width"]

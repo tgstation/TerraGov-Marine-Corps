@@ -35,6 +35,7 @@ type Decal = {
   name: string;
   md5: string;
   creator_ckey: string;
+  creation_date: string;
   creation_round_id: number;
   tags: string[];
   width: number;
@@ -198,11 +199,12 @@ export const DecalManager = (props) => {
                     >
                       {viewedDecal.creator_ckey}
                     </LabeledList.Item>
+
                     <LabeledList.Item
                       label="Created at"
-                      tooltip="Round ID that the decal was created in"
+                      tooltip={'Round ID: ' + viewedDecal.creation_round_id}
                     >
-                      {viewedDecal.creation_round_id}
+                      {viewedDecal.creation_date}
                     </LabeledList.Item>
                     <LabeledList.Item label="Favourites">
                       {viewedDecal.favourites}

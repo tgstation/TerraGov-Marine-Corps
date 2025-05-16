@@ -56,6 +56,7 @@ SUBSYSTEM_DEF(custom_decals)
 		user << browse_rsc(decal.decal_icon, "decal_[decal.md5].png")
 
 		decal_data["creator_ckey"] = decal.creator_ckey
+		decal_data["creation_date"] = decal.creation_date
 		decal_data["creation_round_id"] = decal.creation_round_id
 		decal_data["favourites"] = decal.favourites
 		decal_data["tags"] = decal.tags
