@@ -267,7 +267,7 @@
 // ***************************************
 // *********** Hunter's Pounce
 // ***************************************
-#define HUNTER_POUNCE_RANGE 7 // in tiles
+#define HUNTER_POUNCE_RANGE 3 // in tiles
 #define XENO_POUNCE_SPEED 2
 #define XENO_POUNCE_STUN_DURATION 2 SECONDS
 #define XENO_POUNCE_STANDBY_DURATION 0.5 SECONDS
