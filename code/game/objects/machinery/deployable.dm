@@ -30,15 +30,7 @@
 
 	prepare_huds()
 	if(istype(deployer))
-		switch (deployer.faction)
-			if(FACTION_TERRAGOV)
-				ownerflag = MINIMAP_FLAG_MARINE
-			if(FACTION_SOM)
-				ownerflag = MINIMAP_FLAG_MARINE_SOM
-			if(FACTION_CLF)
-				ownerflag = MINIMAP_FLAG_MARINE_CLF
-			if(FACTION_VSD)
-				ownerflag = MINIMAP_FLAG_KZ
+		ownerflag = GLOB.faction_to_minimap_flag[deployer.faction] || ownerflag
 		var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[deployer.faction]] //we find the faction squad hud
 		if(sentry_status_hud)
 			sentry_status_hud.add_to_hud(src)

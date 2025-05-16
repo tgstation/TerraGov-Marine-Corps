@@ -597,6 +597,13 @@
 "dX" = (
 /obj/structure/table/black,
 /obj/item/storage/box/crate/loot/materials_pack,
+/obj/item/clothing/head/helmet/space/syndicate/black,
+/obj/item/clothing/suit/space/syndicate/black,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/minerupgrade/automatic,
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 8
 	},
@@ -1640,12 +1647,11 @@
 /area/antag_ship/som/barracs)
 "jM" = (
 /obj/structure/table/black,
-/obj/item/clothing/head/helmet/space/syndicate/black,
-/obj/item/clothing/suit/space/syndicate/black,
 /obj/machinery/power/apc{
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/computer/voucher/vsd,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},
@@ -6724,13 +6730,6 @@
 /area/antag_ship/som/engi)
 "JE" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/stack/sheet/wood/large_stack,
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 30
-	},
-/obj/item/stack/sheet/cardboard{
-	amount = 50
-	},
 /obj/machinery/power/apc,
 /obj/structure/cable,
 /obj/machinery/computer/voucher/som,
@@ -7573,6 +7572,13 @@
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 30
+	},
+/obj/item/stack/sheet/wood/large_stack,
 /turf/open/floor/mainship/cargo,
 /area/antag_ship/som/requisition)
 "Of" = (
@@ -9438,6 +9444,7 @@
 /obj/item/storage/box/crate/minisentry,
 /obj/item/storage/box/crate/minisentry,
 /obj/item/storage/box/crate/minisentry,
+/obj/item/minerupgrade/automatic,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "WZ" = (

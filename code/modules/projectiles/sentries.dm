@@ -75,16 +75,12 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	SSminimaps.remove_marker(src)
 	if(!z)
 		return
-	var/marker_flags
-	switch(iff_signal)
-		if(TGMC_LOYALIST_IFF)
-			marker_flags = MINIMAP_FLAG_MARINE
-		if(SOM_IFF)
-			marker_flags = MINIMAP_FLAG_MARINE_SOM
-		if(VSD_IFF)
-			marker_flags = MINIMAP_FLAG_KZ
-		else
-			marker_flags = MINIMAP_FLAG_MARINE
+	var/marker_flags = 0
+	for(var/faction in GLOB.faction_to_minimap_flag)
+		if(iff_signal & GLOB.faction_to_iff[faction])
+			marker_flags |= GLOB.faction_to_minimap_flag[faction]
+	if(!marker_flags)
+		marker_flags = MINIMAP_FLAG_MARINE
 	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]"))
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()

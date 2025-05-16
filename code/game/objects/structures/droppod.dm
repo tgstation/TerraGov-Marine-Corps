@@ -578,11 +578,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(!pod.target_z)
 		to_chat(owner, span_danger("No active combat zone detected."))
 		return
-	var/minimapflag = MINIMAP_FLAG_MARINE
-	if(owner.faction == FACTION_SOM)
-		minimapflag = MINIMAP_FLAG_MARINE_SOM
-	if(owner.faction == FACTION_VSD)
-		minimapflag = MINIMAP_FLAG_KZ
+	var/minimapflag = GLOB.faction_to_minimap_flag[owner.faction] || MINIMAP_FLAG_MARINE
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, minimapflag)
 
 	owner.client.screen += map
@@ -597,11 +593,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /datum/action/innate/set_drop_target/remove_action(mob/M)
 	if(choosing)
 		var/obj/structure/droppod/pod = target
-		var/minimapflag = MINIMAP_FLAG_MARINE
-		if(owner.faction == FACTION_SOM)
-			minimapflag = MINIMAP_FLAG_MARINE_SOM
-		if(owner.faction == FACTION_VSD)
-			minimapflag = MINIMAP_FLAG_KZ
+		var/minimapflag = GLOB.faction_to_minimap_flag[owner.faction] || MINIMAP_FLAG_MARINE
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, minimapflag)
 		owner.client?.screen -= map
 		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)

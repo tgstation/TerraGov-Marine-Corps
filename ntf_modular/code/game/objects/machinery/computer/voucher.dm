@@ -124,3 +124,7 @@
 /obj/machinery/computer/voucher/clf
 	faction = FACTION_CLF
 	req_access = list(ACCESS_CLF_CARGO)
+
+/obj/machinery/computer/voucher/vsd
+	faction = FACTION_VSD
+	req_access = list(ACCESS_VSD_CARGO)
