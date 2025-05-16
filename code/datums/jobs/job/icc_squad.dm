@@ -7,7 +7,11 @@
 
 /datum/job/icc_squad/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, "You're a part of a militia group known as the "+ FACTION_ICC + ". Your goal is protect colonists and ward off xenomorphs. NTC may interfere with your operations, let them, until it is immoral.")
+	to_chat(M, {"You are part of the colonial militia that formed shortly after Xenomorph invasion,
+after ransacking the armories of the colonies owned by NTC, you took arms to fight against the Xenomorph assault.
+Though soon they turned less lethal, danger still persists, especially those that are alone, namely survivors. Which is your job to protect now.
+You are all former or current employees/colonists of Ninetails but there is still some tensions after what happened.
+For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be vultures on top of a stillborn colonization"})
 
 //ICC Standard
 /datum/job/icc_squad/standard
