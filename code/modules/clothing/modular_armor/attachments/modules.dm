@@ -721,20 +721,27 @@
 
 /obj/item/armor_module/module/binoculars/artemis_mark_two // a little cheating with subtypes
 	name = "\improper Freyr Mk.2 visual assistance helmet system"
-	desc = "Designed for mounting on a modular helmet. The Freyr module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances. This version is enhanced and allows the marine to peer through the visor, akin to binoculars."
+	desc = "Designed for mounting on a modular helmet. The Freyr module is designed with an overlay visor that clarifies the user's vision, preventing blur and protecting against harsh flashes. This version is enhanced and allows the marine to peer through the visor, akin to binoculars."
 	icon_state = "artemis_head"
 	worn_icon_state = "artemis_head_mk2_a"
+	var/eye_protection_mod = 1
 
 /obj/item/armor_module/module/binoculars/artemis_mark_two/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.AddComponent(/datum/component/blur_protection)
+	parent.eye_protection += eye_protection_mod
+
+/obj/item/armor_module/module/binoculars/artemis_mark_two/on_detach(obj/item/detaching_from, mob/user)
+	parent.remove_component(/datum/component/blur_protection)
+	parent.eye_protection -= eye_protection_mod
 
 /obj/item/armor_module/module/artemis
 	name = "\improper Freyr Mk.1 visual assistance helmet system"
-	desc = "Designed for mounting on a modular helmet. The Freyr module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances."
+	desc = "Designed for mounting on a modular helmet. The Freyr module is designed with an overlay visor that clarifies the user's vision, preventing blur and protecting against harsh flashes."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "artemis_head"
 	worn_icon_state = "artemis_head_a"
+	var/eye_protection_mod = 1
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	prefered_slot = SLOT_HEAD
@@ -742,6 +749,11 @@
 /obj/item/armor_module/module/artemis/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.AddComponent(/datum/component/blur_protection)
+	parent.eye_protection += eye_protection_mod
+
+/obj/item/armor_module/module/artemis/on_detach(obj/item/detaching_from, mob/user)
+	parent.remove_component(/datum/component/blur_protection)
+	parent.eye_protection -= eye_protection_mod
 
 #define COMMS_OFF 0
 #define COMMS_SETTING 1
