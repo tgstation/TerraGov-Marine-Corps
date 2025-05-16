@@ -36,7 +36,6 @@
 
 	placed_overlay_iconstate = "shotgun"
 
-
 //-------------------------------------------------------
 //TACTICAL SHOTGUN
 
@@ -445,7 +444,7 @@
 // SH-23 Heavy Shotgun (Marine Version of the ML-101)
 
 /obj/item/weapon/gun/shotgun/pump/sh23
-	name = "\improper SH-23 heavy pump shotgun"
+	name = "\improper SH-23-NT heavy pump shotgun"
 	desc = "An NTF clone of an ICC classic, slow to chamber but hits like a truck. Due to the reinforcement needed to slam 6 gauge downrange, the body of this shotgun has no attachment mounting points\n<b>Requires a pump, which is the Unique Action key.</b>"
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
@@ -456,7 +455,7 @@
 	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ks23_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ks23_pump.ogg'
-	max_chamber_items = 5
+	max_chamber_items = 2
 	attachable_allowed = list(
 		/obj/item/attachable/stock/sh23,
 	)
@@ -471,45 +470,23 @@
 	fire_delay = 2.75 SECONDS
 	scatter_unwielded = 10
 	recoil = 0 // It has a stock. It's on the sprite.
-	recoil_unwielded = 0
-	aim_slowdown = 0.65
-	wield_delay = 0.95 SECONDS
-	cock_delay = 1.4 SECONDS
+	aim_slowdown = 0.7
+	wield_delay = 1.2 SECONDS
+	cock_delay = 1.8 SECONDS
+
+/obj/item/weapon/gun/shotgun/pump/sh23/do_fire(obj/object_to_fire)
+	. = ..()
+	gun_user.knockback(gun_user,1,1,gun_user.get_opposite_dir(),MOVE_FORCE_STRONG)
+	gun_user.facedir(gun_user.get_opposite_dir()) //face back towards the mf
 
 //------------------------------------------------------
 // SH-23 Heavy Shotgun (Marine Version of the ML-101)
 
 /obj/item/weapon/gun/shotgun/pump/sh23/som
-	name = "\improper SH-23 heavy pump shotgun"
+	name = "\improper SH-23-S heavy pump shotgun"
 	desc = "A SOM clone of an ICC classic, slow to chamber but hits like a truck. Due to the reinforcement needed to slam 6 gauge downrange, the body of this shotgun has no attachment mounting points\n<b>Requires a pump, which is the Unique Action key.</b>"
-	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "sh23som"
 	worn_icon_state = "sh23som"
-	caliber = CALIBER_6G //codex
-	default_ammo_type = /datum/ammo/bullet/shotgun/heavy_buckshot
-	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
-	reload_sound = 'sound/weapons/guns/interact/ks23_insert.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/ks23_pump.ogg'
-	max_chamber_items = 5
-	attachable_allowed = list(
-		/obj/item/attachable/stock/sh23,
-	)
-
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = 0, "stock_y" = 12)
-	item_map_variant_flags = NONE
-
-	starting_attachment_types = list(
-		/obj/item/attachable/stock/sh23,
-	)
-
-	fire_delay = 2.75 SECONDS
-	scatter_unwielded = 10
-	recoil = 0 // It has a stock. It's on the sprite.
-	recoil_unwielded = 0
-	aim_slowdown = 0.65
-	wield_delay = 0.95 SECONDS
-	cock_delay = 1.4 SECONDS
 
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.

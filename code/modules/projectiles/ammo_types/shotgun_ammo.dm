@@ -189,9 +189,19 @@
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 3
-	max_range = 10
+	max_range = 8
 	damage = 55
-	damage_falloff = 4
+	damage_falloff = 5
+
+/datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	if(iswallturf(target_turf))
+		var/turf/closed/wall/affected_turf = target_turf
+		affected_turf.take_damage(damage * 4, BRUTE, BULLET)
+
+/datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	if(istype(target_obj, /obj/machinery/door))
+		var/obj/machinery/door/affected_door = target_obj
+		affected_door.take_damage(damage * 4, BRUTE, BULLET)
 
 /datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
     if(ishuman(target_mob))
@@ -204,17 +214,41 @@
 	handful_icon_state = "heavy_shotgun_barrikada"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	shell_speed = 4
-	max_range = 8
-	damage = 100
-	penetration = 50
-	sundering = 20
+	shell_speed = 3
+	max_range = 6
+	damage = 110
+	penetration = 25
+	sundering = 9
+	damage_falloff = 10
+	var/vehicle_stun_duration = 2 SECONDS
 
 /datum/ammo/bullet/shotgun/barrikada_slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
     if(ishuman(target_mob))
         staggerstun(target_mob, proj, weaken = 0, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
     else
         staggerstun(target_mob, proj, weaken = 2 SECONDS, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
+
+//already pretty high damage not gonna lie so adding ap and stagger to vehicles
+/datum/ammo/bullet/shotgun/barrikada_slug/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	if(istype(target_obj, /obj/machinery/door))
+		var/obj/machinery/door/affected_door = target_obj
+		affected_door.take_damage(damage * 4, BRUTE, BULLET)
+	if(isvehicle(target_obj))
+		var/obj/vehicle/affected_vehicle = target_obj
+		if(ismecha(affected_vehicle))
+			affected_vehicle.take_damage(damage, BRUTE, BULLET, armour_penetration = 60)
+		else if(isarmoredvehicle(affected_vehicle)) // Obtained from hitbox.
+			affected_vehicle.take_damage(damage, BRUTE, BULLET, armour_penetration = 60)
+		else
+			affected_vehicle.take_damage(damage, BRUTE, BULLET, armour_penetration = 60)
+		if(!(affected_vehicle))
+			for(var/mob/living/carbon/human/human_occupant in affected_vehicle.occupants)
+				human_occupant.apply_effect(vehicle_stun_duration, PARALYZE)
+
+/datum/ammo/bullet/shotgun/barrikada_slug/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	if(iswallturf(target_turf))
+		var/turf/closed/wall/affected_turf = target_turf
+		affected_turf.take_damage(damage * 4, BRUTE, BULLET)
 
 /datum/ammo/bullet/shotgun/heavy_spread
 	name = "additional buckshot"
@@ -238,10 +272,20 @@
 	accuracy_var_low = 8
 	accuracy_var_high = 8
 	max_range = 15
-	damage = 65
+	damage = 55
 	damage_falloff = 0.5
-	penetration = 25
+	penetration = 20
 	sundering = 15
+
+/datum/ammo/bullet/shotgun/heavy_flechette/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	if(istype(target_obj, /obj/machinery/door))
+		var/obj/machinery/door/affected_door = target_obj
+		affected_door.take_damage(damage * 4, BRUTE, BULLET)
+
+/datum/ammo/bullet/shotgun/heavy_flechette/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	if(iswallturf(target_turf))
+		var/turf/closed/wall/affected_turf = target_turf
+		affected_turf.take_damage(damage * 4, BRUTE, BULLET)
 
 /datum/ammo/bullet/shotgun/flechette/heavy_flechette_spread
 	name = "additional flechette"

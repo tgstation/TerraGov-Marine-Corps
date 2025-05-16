@@ -143,3 +143,14 @@
 		if(ghost.client || bypass_client_check)
 			return ghost
 	return null
+
+/mob/living/proc/get_opposite_dir()
+	switch(src.dir)
+		if(NORTH)
+			return SOUTH
+		if(WEST)
+			return EAST
+		if(EAST)
+			return WEST
+		if(SOUTH)
+			return NORTH
