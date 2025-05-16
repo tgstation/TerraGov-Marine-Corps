@@ -206,7 +206,14 @@
 
 	.["user_ref"] = REF(user)
 	.["user_xeno"] = isxeno(user)
-	.["user_queen"] = isxenoqueen(user)
+	if(isxeno(user)){
+		var/mob/living/carbon/xenomorph/x = user
+		//Adjust this so that only the current ruler can access this. Right now anyone who is eligible to rule will effectively be the ruler
+		if(x.xeno_caste.can_flags & CASTE_CAN_BE_RULER){
+			.["user_ruler"] = user
+		}
+	}
+
 
 	.["user_index"] = 0
 	if(isxeno(user))
