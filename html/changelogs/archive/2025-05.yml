@@ -216,3 +216,10 @@
       balance:: Sizzler''s spit now does 20 damage, and the gas cloud does 15 damage.'
   blackdav123:
   - bugfix: Directional attack no longer hits corpses.
+2025-05-16:
+  Atropos:
+  - admin: Added Ai nodes to tdome (Ai can move and work again)
+  Cerrik:
+  - bugfix: fixed vehicle collision damage trigger speed
+  TiviPlus:
+  - qol: the supersoldier throw stim will always try to throw at max range, like jumpthrowing
