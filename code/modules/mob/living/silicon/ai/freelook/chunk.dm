@@ -41,7 +41,7 @@
 /// Remove a camera eye from the chunk
 /datum/camerachunk/proc/remove(mob/camera/eye)
 	eye.visibleCameraChunks -= src
-	seenby -= eye.name
+	seenby -= eye
 
 	var/client/client = eye.GetViewerClient()
 	if(client && eye.use_static && seenby.len == 0)
