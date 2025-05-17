@@ -1,0 +1,1331 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aU" = (
+/obj/structure/sign/poster{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/fiorina/oob)
+"bz" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+"cz" = (
+/obj/machinery/vending/sovietsoda,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"cL" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"cM" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/oob)
+"dj" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"dR" = (
+/obj/structure/bookcase/manuals/research_and_development{
+	pixel_y = 10
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 1
+	},
+/area/fiorina/station/research_cells)
+"ei" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_y = 8
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 5
+	},
+/area/fiorina/oob)
+"el" = (
+/obj/machinery/door/airlock/prison/horizontal{
+	dir = 4
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"eG" = (
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"eQ" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"eR" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"fg" = (
+/obj/item/device/flashlight/lamp/tripod,
+/obj/machinery/light/blue,
+/turf/open/floor/prison/whitepurple,
+/area/fiorina/station/research_cells)
+"fk" = (
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/fiorina/oob)
+"gR" = (
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 29
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"hk" = (
+/obj/machinery/door/firedoor{
+	density = 1
+	},
+/obj/machinery/door/airlock/prison/horizontal{
+	dir = 4
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/oob)
+"hq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"hO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"jX" = (
+/obj/effect/acid_hole{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/prison_unmeltable{
+	desc = "A huge chunk of metal used to seperate rooms.";
+	name = "metal wall"
+	},
+/area/fiorina/oob)
+"kx" = (
+/obj/item/device/flashlight/lamp/tripod,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"ln" = (
+/obj/structure/bed,
+/obj/effect/ai_node,
+/turf/open/floor/prison/whitepurple{
+	dir = 8
+	},
+/area/fiorina/station/research_cells)
+"ma" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/whitepurple{
+	dir = 8
+	},
+/area/fiorina/station/research_cells)
+"me" = (
+/obj/item/stack/sheet/wood,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/station/research_cells)
+"mu" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"mz" = (
+/obj/item/tool/kitchen/utensil/pspoon,
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/fiorina/oob)
+"no" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"nw" = (
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"nJ" = (
+/obj/item/device/flashlight/lamp/tripod,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"oe" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"om" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 12
+	},
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/station/research_cells)
+"oN" = (
+/obj/structure/bed,
+/turf/open/floor/prison/whitepurple,
+/area/fiorina/station/research_cells)
+"oZ" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/station/research_cells)
+"pP" = (
+/turf/open/floor/prison/whitepurple/corner{
+	dir = 8
+	},
+/area/fiorina/station/research_cells)
+"qf" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 9
+	},
+/area/fiorina/oob)
+"qu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"qN" = (
+/obj/effect/spawner/random/weaponry/gun,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"rJ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitepurple{
+	dir = 1
+	},
+/area/fiorina/station/research_cells)
+"sa" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 8
+	},
+/area/fiorina/station/research_cells)
+"sk" = (
+/obj/structure/window/framed/prison/cell,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"sZ" = (
+/obj/item/device/flashlight/lamp/tripod,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"tc" = (
+/obj/structure/bed,
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/station/research_cells)
+"tr" = (
+/obj/structure/barricade/wooden,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"tD" = (
+/obj/machinery/light/blue,
+/turf/open/floor/prison/whitepurple,
+/area/fiorina/station/research_cells)
+"tW" = (
+/obj/item/book/manual/atmospipes,
+/turf/open/floor/prison/whitepurple{
+	dir = 9
+	},
+/area/fiorina/station/research_cells)
+"ux" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
+	},
+/obj/effect/spawner/random/medical/medbottle,
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"uF" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/prison/whitepurple{
+	dir = 8
+	},
+/area/fiorina/station/research_cells)
+"vU" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"we" = (
+/obj/item/device/flashlight/lamp/tripod,
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"wv" = (
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted/colony,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"wy" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/toy/deck/kotahi,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"wM" = (
+/obj/item/flashlight,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"xy" = (
+/obj/structure/grille,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"xC" = (
+/obj/structure/bed,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"yv" = (
+/obj/structure/bed,
+/obj/item/reagent_containers/food/snacks/wrapped/barcaridine,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"yx" = (
+/obj/item/weapon/baton/cattleprod,
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"zj" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"zv" = (
+/obj/item/toy/deck/kotahi,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"zA" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 5
+	},
+/area/fiorina/station/research_cells)
+"zH" = (
+/obj/machinery/prop/structurelattice{
+	dir = 4
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"zQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/whitepurple{
+	dir = 5
+	},
+/area/fiorina/station/research_cells)
+"Ao" = (
+/obj/item/weapon/twohanded/spear,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"Bl" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 12
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/station/research_cells)
+"Bw" = (
+/obj/item/weapon/twohanded/spear,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"Bx" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 8
+	},
+/area/fiorina/station/research_cells)
+"Da" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/oob)
+"Dq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"Dt" = (
+/obj/structure/bed,
+/obj/item/toy/beach_ball/holoball,
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/station/research_cells)
+"DE" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_y = 8
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 9
+	},
+/area/fiorina/station/research_cells)
+"Eh" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/whitepurple{
+	dir = 9
+	},
+/area/fiorina/station/research_cells)
+"EQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitepurple{
+	dir = 5
+	},
+/area/fiorina/station/research_cells)
+"ES" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"Fc" = (
+/obj/structure/bed,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"Fl" = (
+/obj/effect/landmark/sensor_tower,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"Gh" = (
+/obj/machinery/prop/structurelattice{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"Gy" = (
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"GR" = (
+/turf/closed/wall/r_wall/prison_unmeltable{
+	desc = "A huge chunk of metal used to seperate rooms.";
+	name = "metal wall"
+	},
+/area/fiorina/station/research_cells)
+"Hf" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 1
+	},
+/area/fiorina/station/research_cells)
+"Hw" = (
+/obj/structure/barricade/wooden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"Id" = (
+/obj/machinery/light/blue{
+	pixel_y = -1
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"Ig" = (
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"Io" = (
+/turf/open/floor/prison/whitepurple/corner{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"Ix" = (
+/obj/machinery/door/airlock/prison/horizontal,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"Iy" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
+	},
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"IN" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 1
+	},
+/area/fiorina/station/research_cells)
+"Jc" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/prison/whitepurple,
+/area/fiorina/station/research_cells)
+"Jm" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 12
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/station/research_cells)
+"JA" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/turf/open/floor/prison/whitepurple{
+	dir = 1
+	},
+/area/fiorina/station/research_cells)
+"JM" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitepurple{
+	dir = 1
+	},
+/area/fiorina/station/research_cells)
+"JQ" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"Kj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"KP" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"Lp" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"Lw" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 12
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/oob)
+"LM" = (
+/turf/closed/wall/prison,
+/area/fiorina/station/research_cells)
+"LQ" = (
+/obj/machinery/prop/structurelattice{
+	dir = 4
+	},
+/obj/machinery/prop/structurelattice{
+	dir = 4;
+	pixel_y = 9
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/research_cells)
+"Mj" = (
+/obj/structure/bed,
+/obj/item/storage/fancy/crayons,
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/station/research_cells)
+"Mo" = (
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"MD" = (
+/obj/machinery/light/blue{
+	pixel_y = -1
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"MI" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"MO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"MX" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"Nd" = (
+/obj/structure/bed,
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"Nr" = (
+/obj/item/stack/sheet/wood,
+/obj/machinery/light/blue,
+/obj/effect/ai_node,
+/turf/open/floor/prison/whitepurple,
+/area/fiorina/station/research_cells)
+"Ns" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/weaponry/gun,
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"NI" = (
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"Oo" = (
+/obj/effect/spawner/gibspawner/human,
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/fiorina/oob)
+"Pd" = (
+/obj/structure/bed,
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"Pk" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/station/research_cells)
+"Pr" = (
+/turf/closed/wall/r_wall/prison_unmeltable{
+	desc = "A huge chunk of metal used to seperate rooms.";
+	name = "metal wall"
+	},
+/area/fiorina/oob)
+"PS" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"Qn" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"QF" = (
+/obj/machinery/door/airlock/multi_tile/mainship/marine/charlie,
+/obj/effect/mapping_helpers/airlock/free_access,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"RB" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/obj/structure/barricade/wooden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"Sx" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"SL" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"SY" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitepurple{
+	dir = 9
+	},
+/area/fiorina/station/research_cells)
+"TE" = (
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"TF" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"TH" = (
+/obj/structure/bed,
+/turf/open/floor/prison/whitepurple{
+	dir = 9
+	},
+/area/fiorina/station/research_cells)
+"VP" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 9
+	},
+/area/fiorina/station/research_cells)
+"VQ" = (
+/obj/item/stack/sheet/wood,
+/turf/open/floor/prison/whitepurple{
+	dir = 8
+	},
+/area/fiorina/station/research_cells)
+"VU" = (
+/obj/item/toy/deck,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"Wo" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_y = 8
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 5
+	},
+/area/fiorina/station/research_cells)
+"Wt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"Wv" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/obj/machinery/door/firedoor{
+	density = 1
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/oob)
+"Wy" = (
+/obj/structure/barricade/wooden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitepurple{
+	dir = 4
+	},
+/area/fiorina/station/research_cells)
+"Yn" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/turf/open/floor/prison/whitepurple,
+/area/fiorina/station/research_cells)
+"Yw" = (
+/obj/structure/extinguisher_cabinet,
+/turf/closed/wall/prison,
+/area/fiorina/station/research_cells)
+"Yx" = (
+/turf/open/floor/prison/whitepurple,
+/area/fiorina/station/research_cells)
+"YY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"Zi" = (
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/fiorina/oob)
+"Zw" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/misc/cigar,
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/fiorina/station/research_cells)
+
+(1,1,1) = {"
+LM
+LM
+TH
+ES
+Ix
+NI
+YY
+tD
+LM
+el
+sk
+LM
+el
+sk
+LM
+el
+sk
+LM
+"}
+(2,1,1) = {"
+NI
+LM
+dR
+Yx
+Da
+IN
+Sx
+Yx
+LM
+VP
+Nd
+LM
+VP
+Nd
+LM
+VP
+Nd
+LM
+"}
+(3,1,1) = {"
+TE
+LM
+Wo
+Bl
+Da
+IN
+YY
+Yx
+LM
+Wo
+Bl
+LM
+Wo
+Bl
+LM
+Wo
+Bl
+LM
+"}
+(4,1,1) = {"
+TE
+Yw
+LM
+LM
+LM
+Hf
+RB
+Nr
+Yw
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+"}
+(5,1,1) = {"
+TE
+Mo
+DE
+JQ
+LQ
+JA
+oe
+Jc
+LM
+DE
+JQ
+LM
+Eh
+JQ
+LM
+DE
+JQ
+LM
+"}
+(6,1,1) = {"
+TE
+LQ
+zA
+Pk
+Mo
+IN
+YY
+oN
+LM
+zA
+Pk
+LM
+zA
+Pk
+LM
+zA
+tc
+LM
+"}
+(7,1,1) = {"
+Id
+LM
+LQ
+Mo
+Mo
+JM
+Ao
+fg
+LM
+el
+sk
+LM
+el
+sk
+LM
+el
+sk
+LM
+"}
+(8,1,1) = {"
+TE
+QF
+VP
+VQ
+uF
+Io
+wM
+pP
+Bx
+ma
+zj
+TE
+TH
+uF
+Bx
+ma
+zj
+TE
+"}
+(9,1,1) = {"
+MO
+MO
+EQ
+tr
+Kj
+Kj
+cL
+Kj
+eR
+qu
+Pk
+qN
+zA
+Pd
+Hw
+Qn
+Pk
+TE
+"}
+(10,1,1) = {"
+MD
+oZ
+hk
+Wv
+oZ
+gR
+Mo
+Mo
+zv
+Wt
+kx
+Mo
+Mo
+sk
+LM
+el
+sk
+LM
+"}
+(11,1,1) = {"
+NI
+oZ
+qf
+cM
+oZ
+tW
+nw
+SL
+TE
+VU
+hO
+Mo
+VP
+mu
+LM
+VP
+Nd
+LM
+"}
+(12,1,1) = {"
+PS
+oZ
+ei
+Lw
+oZ
+Wo
+om
+zH
+eQ
+vU
+TE
+zH
+Wo
+Bl
+LM
+Wo
+Bl
+LM
+"}
+(13,1,1) = {"
+Ig
+GR
+jX
+Pr
+GR
+LM
+LM
+LM
+Ns
+Wt
+Id
+Yw
+LM
+LM
+LM
+LM
+LM
+LM
+"}
+(14,1,1) = {"
+cz
+GR
+mz
+Zi
+GR
+DE
+JQ
+LM
+wy
+Wt
+TE
+LM
+DE
+JQ
+LM
+DE
+JQ
+LM
+"}
+(15,1,1) = {"
+Gy
+GR
+Oo
+Zi
+GR
+zA
+Pk
+LM
+eG
+Wt
+TE
+LM
+zA
+tc
+LM
+zA
+tc
+LM
+"}
+(16,1,1) = {"
+wv
+GR
+aU
+fk
+GR
+el
+sk
+LM
+we
+dj
+Id
+LM
+el
+sk
+LM
+el
+sk
+LM
+"}
+(17,1,1) = {"
+bz
+GR
+GR
+GR
+GR
+TE
+Mo
+TE
+xC
+Fl
+MX
+Bw
+SY
+Bx
+ln
+uF
+zj
+TE
+"}
+(18,1,1) = {"
+bz
+LM
+LM
+LM
+xy
+TE
+hq
+Dq
+Dq
+yv
+MI
+nJ
+EQ
+Fc
+Wy
+Lp
+me
+Dq
+"}
+(19,1,1) = {"
+bz
+LM
+LM
+LM
+LM
+hO
+no
+TE
+KP
+Mo
+TF
+Mo
+Mo
+Mo
+sZ
+Mo
+Mo
+KP
+"}
+(20,1,1) = {"
+bz
+LM
+LM
+LM
+xy
+VP
+sa
+zj
+Gh
+VP
+yx
+Mo
+SY
+zj
+KP
+VP
+zj
+sZ
+"}
+(21,1,1) = {"
+bz
+LM
+LM
+LM
+LM
+IN
+YY
+Yx
+zH
+Wo
+Bl
+zH
+Wo
+Bl
+KP
+Wo
+Jm
+Mo
+"}
+(22,1,1) = {"
+bz
+LM
+LM
+LM
+LM
+Hf
+Sx
+Yx
+Yw
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+"}
+(23,1,1) = {"
+bz
+LM
+DE
+JQ
+LM
+IN
+YY
+Yn
+LM
+DE
+JQ
+LM
+DE
+Iy
+LM
+DE
+ux
+LM
+"}
+(24,1,1) = {"
+bz
+LM
+zQ
+Dt
+LM
+IN
+YY
+Yx
+LM
+zA
+Zw
+LM
+zA
+Mj
+LM
+zA
+tc
+LM
+"}
+(25,1,1) = {"
+bz
+LM
+el
+sk
+LM
+rJ
+YY
+Yx
+LM
+el
+sk
+LM
+el
+sk
+LM
+el
+sk
+LM
+"}
