@@ -801,7 +801,7 @@
 
 	if(successor == null && !living_xeno_ruler)
 		successor = candidates[1] // Basically set whoever is at the top if there is no Queen / Shrike  / King
-	else if(successor == null && living_xeno_ruler)
+	else if(successor == null && living_xeno_ruler) // We dont want other T3s evolving to just takeover
 		return
 
 	var/announce = TRUE
