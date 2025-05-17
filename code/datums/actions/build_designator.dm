@@ -1,9 +1,23 @@
+///Build designation mode
+#define BUILD_DESIGNATOR_MODE "build_designator_mode"
+///Interact designation mode
+#define INTERACT_DESIGNATOR_MODE "interact_designator_mode"
+
+///Designator alt appearance key
+#define HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE "holo_build_designator_alt_appearance"
+
 //List of all images used for constuction designating, in the radial selection menu
 GLOBAL_LIST_INIT(designator_images_list, list(
+	INTERACT_DESIGNATOR_MODE = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_WALL),
 	/obj/structure/barricade/solid = image('icons/obj/structures/barricades/metal.dmi', icon_state = "metal_0"),
 	/obj/structure/barricade/solid/plasteel = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
 	/obj/structure/barricade/folding/metal = image('icons/obj/structures/barricades/metal.dmi', icon_state = "folding_metal_0"),
 	/obj/structure/barricade/folding = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
+))
+
+GLOBAL_LIST_INIT(designator_mode_image_list, list(
+	INTERACT_DESIGNATOR_MODE = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_WALL),
+	BUILD_DESIGNATOR_MODE = image('icons/Xeno/actions/construction.dmi', icon_state = BULLETPROOF_WALL),
 ))
 
 ///Assoc list of construction types to source material
@@ -13,9 +27,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 	/obj/structure/barricade/folding/metal = /obj/item/stack/sheet/metal,
 	/obj/structure/barricade/folding = /obj/item/stack/sheet/plasteel,
 ))
-
-///Designator alt appearance key
-#define HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE "holo_build_designator_alt_appearance"
 
 /datum/action/ability/activable/build_designator
 	name = "Construction Designator"
@@ -27,10 +38,19 @@ GLOBAL_LIST_INIT(designator_types, list (
 		KEYBINDING_NORMAL = COMSIG_ABILITY_PLACE_HOLOGRAM,
 		KEYBINDING_ALTERNATE = COMSIG_ABILITY_SELECT_BUILDTYPE,
 	)
+	///What function this action is currently on
+	var/designator_mode = BUILD_DESIGNATOR_MODE
 	///personal hologram designator
 	var/obj/effect/build_hologram/hologram
 	///The typepath of what we want to construct. Typecast for initial var values
 	var/obj/construct_type
+	///Selected mob for interact mode
+	var/mob/living/carbon/human/selected_mob
+
+/datum/action/ability/activable/build_designator/Destroy()
+	QDEL_NULL(hologram)
+	selected_mob = null
+	return ..()
 
 /datum/action/ability/activable/build_designator/Destroy()
 	QDEL_NULL(hologram)
@@ -46,13 +66,10 @@ GLOBAL_LIST_INIT(designator_types, list (
 	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
 
 /datum/action/ability/activable/build_designator/on_selection()
-	RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
-	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_rotate))
-	RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
+	activate_mode(designator_mode)
 
 /datum/action/ability/activable/build_designator/on_deselection()
-	UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE, COMSIG_DO_OVERWATCH_RADIAL))
-	cleanup_hologram()
+	deactivate_mode(designator_mode)
 
 /datum/action/ability/activable/build_designator/action_activate()
 	var/mob/living/carbon/carbon_owner = owner
@@ -62,25 +79,99 @@ GLOBAL_LIST_INIT(designator_types, list (
 	return ..()
 
 /datum/action/ability/activable/build_designator/use_ability(atom/A)
-	if(!isturf(A) || !update_hologram(A))
-		owner.balloon_alert(owner, "Invalid spot")
-		return FALSE
-	new /obj/effect/build_designator(A, construct_type, owner)
-	return TRUE
+	if(!A)
+		return
+	switch(designator_mode)
+		if(BUILD_DESIGNATOR_MODE)
+			if(!isturf(A) || !update_hologram(A))
+				owner.balloon_alert(owner, "Invalid spot")
+				return FALSE
+			new /obj/effect/build_designator(A, construct_type, owner)
+			return TRUE
+
+		if(INTERACT_DESIGNATOR_MODE)
+			if(selected_mob) //lets only allow mob to atom interaction, not atom to mob
+				if(selected_mob == A || !check_valid_friendly(selected_mob)) //deselect a mob if clicking again, or they are crit etc
+					unindicate_target(A)
+					selected_mob = null
+					return
+				call_interaction(A)
+				return
+
+			//no selected atom
+			if(isturf(A)) //rally here command could be useful...
+				return
+			if(isobj(A))
+				designate_target(A) //alert generally for people to interact with this thing
+				return
+			if(check_valid_friendly(A))
+				select_mob_to_interact(A) //select mob for interacting with something else
+				return
+			//general indicate on hostile mobs to tell people to go fuck their shit up??
 
 /datum/action/ability/activable/build_designator/alternate_action_activate()
-	INVOKE_ASYNC(src, PROC_REF(select_structure))
+	switch(designator_mode)
+		if(BUILD_DESIGNATOR_MODE)
+			INVOKE_ASYNC(src, PROC_REF(select_structure))
+		if(INTERACT_DESIGNATOR_MODE) //maybe just direct swap to build designator mode?
+			INVOKE_ASYNC(src, PROC_REF(select_mode)) //todo:better to rework these into 1 proc, will do later
 
 ///Tells overwatch we're overriding the radial selection
 /datum/action/ability/activable/build_designator/proc/override_cic_radial(datum/source)
 	SIGNAL_HANDLER
-	return OVERWATCH_RADIAL_HIDE
+	switch(designator_mode)
+		if(BUILD_DESIGNATOR_MODE)
+			return OVERWATCH_RADIAL_HIDE
+		if(INTERACT_DESIGNATOR_MODE) //todo: delete this if unneeded
+			return OVERWATCH_RADIAL_HIDE
+
+///Selects a mode
+/datum/action/ability/activable/build_designator/proc/select_mode()
+	var/mode_choice = show_radial_menu(owner, owner?.client?.eye, GLOB.designator_mode_image_list)
+	if(!mode_choice)
+		return
+	if(mode_choice == designator_mode)
+		return
+	swap_mode(mode_choice)
+
+//todo:Below ones might not need an arg. revisit before merge.
+///Swaps our mode to a new one
+/datum/action/ability/activable/build_designator/proc/swap_mode(new_mode)
+	deactivate_mode(designator_mode)
+	designator_mode = new_mode
+	activate_mode(new_mode)
+
+///Toggles off the current mode
+/datum/action/ability/activable/build_designator/proc/deactivate_mode(old_mode)
+	switch(old_mode)
+		if(BUILD_DESIGNATOR_MODE)
+			UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE, COMSIG_DO_OVERWATCH_RADIAL))
+			cleanup_hologram()
+		if(INTERACT_DESIGNATOR_MODE)
+			selected_mob = null
+
+///Toggles on the new mode
+/datum/action/ability/activable/build_designator/proc/activate_mode(new_mode)
+	switch(new_mode)
+		if(BUILD_DESIGNATOR_MODE)
+			RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
+			RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_rotate))
+			RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial)) //todo: this may not be build mode specific, depending on functionality
+			target_flags = ABILITY_TURF_TARGET
+		if(INTERACT_DESIGNATOR_MODE)
+			target_flags = NONE
+
+///////build mode specific procs
 
 ///Selects the pattern from a radial menu
 /datum/action/ability/activable/build_designator/proc/select_structure()
 	var/construct_choice = show_radial_menu(owner, owner?.client?.eye, GLOB.designator_images_list)
 	if(!construct_choice)
 		return
+	if(construct_choice == INTERACT_DESIGNATOR_MODE)
+		swap_mode(INTERACT_DESIGNATOR_MODE)
+		return
+
 	construct_type = construct_choice
 
 	owner.balloon_alert(owner, "[construct_type::name]")
@@ -161,6 +252,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 ///Removes the hologram
 /datum/action/ability/activable/build_designator/proc/cleanup_hologram()
 	QDEL_NULL(hologram)
+
+/////end build mode specific procs
 
 //The actual building hologram
 /obj/effect/build_designator

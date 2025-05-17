@@ -134,6 +134,17 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	seer = new_seer
 	return ..(key, I, FALSE)
 
+/datum/atom_hud/alternate_appearance/basic/group
+	///The mobs that can see this
+	var/list/mob/seer_list
+
+/datum/atom_hud/alternate_appearance/basic/group/mobShouldSee(mob/M)
+	return M in seer_list
+
+/datum/atom_hud/alternate_appearance/basic/group/New(key, image/I, list/new_seers)
+	seer_list = new_seers
+	return ..(key, I, FALSE)
+
 //Reverse of above
 /datum/atom_hud/alternate_appearance/basic/all_but_one_person
 	///The mob that CAN'T see this
