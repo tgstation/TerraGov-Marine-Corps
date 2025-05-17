@@ -197,8 +197,8 @@
 
 
 /// Creates multiplier amount of objects based off of stack recipe recipe. Most creation variables are changed through stack recipe datum's variables
-/obj/item/stack/proc/create_object(mob/user, datum/stack_recipe/recipe, multiplier, turf/build_loc, build_dir)
-	if(user.get_active_held_item() != src)
+/obj/item/stack/proc/create_object(mob/user, datum/stack_recipe/recipe, multiplier, turf/build_loc, build_dir, ignore_stack_loc = FALSE)
+	if(!ignore_stack_loc && user.get_active_held_item() != src)
 		return
 	if(!can_interact(user))
 		return //TRUE

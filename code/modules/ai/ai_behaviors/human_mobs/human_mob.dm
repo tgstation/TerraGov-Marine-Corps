@@ -59,6 +59,8 @@
 	if(mob_parent?.skills?.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_PRACTICED) //placeholder setter. Some jobs have high med but aren't medics...
 		medical_rating = AI_MED_MEDIC
 		RegisterSignals(SSdcs, list(COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC), PROC_REF(mob_need_heal))
+	if(mob_parent?.skills?.getRating(SKILL_CONSTRUCTION) >= SKILL_CONSTRUCTION_PLASTEEL) //placeholder setter. Some jobs have high construction but aren't engineers...
+		RegisterSignal(SSdcs, COMSIG_GLOB_HOLO_BUILD_INITIALIZED, PROC_REF(on_holo_build_init))
 	if(human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS)
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, PROC_REF(add_hazard))
 		RegisterSignal(mob_parent, COMSIG_MOVABLE_Z_CHANGED, (PROC_REF(on_change_z)))
@@ -100,6 +102,9 @@
 	if((medical_rating >= AI_MED_MEDIC) && medic_process())
 		return
 
+	if((mob_parent?.skills?.getRating(SKILL_CONSTRUCTION) >= SKILL_CONSTRUCTION_PLASTEEL) && engineer_process())
+		return
+
 	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list) && (human_parent.nutrition + (37.5 * human_parent.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)) < NUTRITION_WELLFED))
 		for(var/obj/item/reagent_containers/food/food AS in mob_inventory.food_list)
 			if(!food.ai_should_use(human_parent))
@@ -127,7 +132,7 @@
 		weapon_process()
 
 /datum/ai_behavior/human/should_hold()
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return TRUE
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_RELOADING))
 		return TRUE
@@ -138,7 +143,7 @@
 	return FALSE
 
 /datum/ai_behavior/human/scheduled_move()
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		registered_for_move = FALSE
 		return
 	return ..()
@@ -153,11 +158,11 @@
 	. = ..()
 	if(!.)
 		return
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		mob_parent.a_intent = INTENT_HELP
 
 /datum/ai_behavior/human/look_for_new_state(atom/next_target)
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return
 	if(!combat_target || ((get_dist(mob_parent, combat_target) > AI_COMBAT_TARGET_BLIND_DISTANCE) && !line_of_sight(mob_parent, combat_target, target_distance)))
 		if(combat_target)
@@ -183,7 +188,7 @@
 				change_action(ESCORTING_ATOM, escorted_atom)
 
 /datum/ai_behavior/human/state_process(atom/next_target)
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return
 	if((current_action == MOVING_TO_ATOM) && (atom_to_walk_to == combat_target))
 		return //we generally want to keep fighting
@@ -276,6 +281,18 @@
 /datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
+
+	if(QDELETED(old_target)) //if they're deleted we need to ensure engineering and medical stuff is cleaned up properly
+		if(human_ai_state_flags & HUMAN_AI_HEALING)
+			on_heal_end(old_target)
+		else
+			remove_from_heal_list(old_target)
+		if(human_ai_state_flags & HUMAN_AI_BUILDING)
+			on_engineering_end(old_target)
+		else
+			remove_from_engineering_list(old_target)
+		return ..()
+
 	var/revive_target = FALSE
 	if((medical_rating >= AI_MED_MEDIC) && (old_target in heal_list))
 		var/mob/living/living_target = old_target
@@ -286,7 +303,7 @@
 	else
 		remove_from_heal_list(old_target)
 	if((human_ai_state_flags & HUMAN_AI_HEALING) && !revive_target)
-		on_heal_end(old_target)
+		on_heal_end(old_target) //this is problematic apparently
 	return ..()
 
 ///Sets run move intent if able
@@ -341,6 +358,9 @@
 			return
 		INVOKE_ASYNC(src, PROC_REF(try_heal_other), human)
 		return TRUE
+	if(istype(interactee, /obj/effect/build_designator))
+		INVOKE_ASYNC(src, PROC_REF(try_build_holo), interactee)
+		return TRUE
 	interactee.do_ai_interact(mob_parent)
 	return TRUE
 
@@ -365,8 +385,8 @@
 
 	if(attacker) //if there is an attacker, our main priority is to react to it
 		COOLDOWN_START(src, ai_heal_after_dam_cooldown, 4 SECONDS)
-		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
-			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
+		if((human_ai_state_flags & HUMAN_AI_BUSY_ACTION)) //dont just stand there
+			human_ai_state_flags &= ~(HUMAN_AI_BUSY_ACTION)
 			late_initialize()
 		if(((current_action == MOVING_TO_SAFETY) || !combat_target) && (attacker.faction != mob_parent.faction))
 			set_combat_target(attacker)
@@ -376,7 +396,7 @@
 
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
 		return
-	if((human_ai_state_flags & HUMAN_AI_ANY_HEALING))
+	if((human_ai_state_flags & HUMAN_AI_BUSY_ACTION))
 		return
 
 	var/mob/living/living_mob = mob_parent
