@@ -1,6 +1,6 @@
 /datum/buildmode_mode/copy
 	key = "copy"
-	
+
 	/// The reference target to copy
 	var/atom/movable/stored
 
@@ -9,10 +9,9 @@
 	return ..()
 
 /datum/buildmode_mode/copy/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Spawn a copy of selected target")] -> Left Mouse Button on obj/turf/mob\n\
 		[span_bold("Select target to copy")] -> Right Mouse Button on obj/mob"))
-	)
 
 /datum/buildmode_mode/copy/handle_click(client/user, params, obj/object)
 	var/list/modifiers = params2list(params)
