@@ -796,3 +796,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/som/whiskey/med
 	name = "SOM whiskey corpsman radio headset"
 	keyslot2 = /obj/item/encryptionkey/med/som
+
+
+//spatial agent headset
+
+/obj/item/radio/headset/spatial_agent
+	name = "spatial agent radio headset"
+	desc = "Standard issue headset for spatial agents, providing access to most known channels. Will violently explode if used by anyone other than a spatial agent."
+	icon_state = "cargo_headset"
+	worn_icon_state = "headset"
+	frequency = FREQ_COMMON
+	keyslot2 = /obj/item/encryptionkey/spatial_agent
+	freerange = TRUE
+	use_command = TRUE
+	command = TRUE
+	item_flags = DELONDROP
+	subspace_transmission = FALSE

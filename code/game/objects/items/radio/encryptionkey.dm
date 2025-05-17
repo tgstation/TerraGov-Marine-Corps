@@ -188,3 +188,10 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 	name = "\improper SOM general radio encryption key"
 	icon_state = "cypherkey"
 	channels = list(RADIO_CHANNEL_SOM = TRUE)
+
+//Spatial agent
+
+/obj/item/encryptionkey/spatial_agent
+	name = "\improper Spatial agent encryption key"
+	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
+	independent = TRUE
