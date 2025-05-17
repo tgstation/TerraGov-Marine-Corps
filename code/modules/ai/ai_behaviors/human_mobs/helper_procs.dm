@@ -98,8 +98,54 @@
 	return ..()
 
 ///AI mob interaction with this atom, such as picking it up
-/atom/proc/do_ai_interact(mob/living/interactor)
+/atom/proc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	return
+
+/obj/item/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm
+
+/obj/machinery/power/apc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(length(wires.cut_wires))
+		var/obj/item/tool/wirecutters/cutters = behavior_datum.mob_inventory.find_tool(TOOL_WIRECUTTER)
+		if(cutters)
+			for(var/wire in wires.cut_wires)
+				wires.cut(wire)
+
+	if(!cell || (!cell.charge && charging == APC_NOT_CHARGING))
+		var/obj/item/cell/new_cell
+		for(var/obj/item/cell/candidate_cell in behavior_datum.mob_inventory.engineering_list)
+			if(candidate_cell.charge)
+				new_cell = candidate_cell
+				break
+		if(new_cell)
+			if(cell)
+				//clean this up
+				balloon_alert_to_viewers("Removes [cell] from [src]")
+				interactor.put_in_hands(cell)
+				cell.update_appearance()
+				set_cell(null)
+				charging = APC_NOT_CHARGING
+				update_appearance()
+			attackby(new_cell, interactor)
+
+	if(!operating)
+		toggle_breaker(interactor)
+
+	if(opened == APC_COVER_OPENED)
+		var/obj/item/crowbar = behavior_datum.mob_inventory.find_tool(TOOL_CROWBAR)
+		if(crowbar)
+			crowbar_act(interactor, crowbar)
+	if(machine_stat & PANEL_OPEN)
+		var/obj/item/screwdriver = behavior_datum.mob_inventory.find_tool(TOOL_SCREWDRIVER)
+		if(screwdriver)
+			screwdriver_act(interactor, screwdriver)
+
+/obj/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.add_to_engineering_list(src)
+	behavior_datum.repair_obj(src)
+
+/obj/effect/build_designator/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.try_build_holo(src)
 
 //weapon engagement range
 

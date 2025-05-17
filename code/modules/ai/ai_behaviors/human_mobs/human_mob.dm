@@ -55,6 +55,7 @@
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(on_take_damage))
 	RegisterSignal(mob_parent, COMSIG_AI_HEALING_MOB, PROC_REF(parent_being_healed))
 	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
+	RegisterSignal(mob_parent, COMSIG_MOB_INTERACTION_DESIGNATED, PROC_REF(interaction_designated))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_ON_CRIT, PROC_REF(on_other_mob_crit))
 	if(mob_parent?.skills?.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_PRACTICED) //placeholder setter. Some jobs have high med but aren't medics...
 		medical_rating = AI_MED_MEDIC
@@ -83,6 +84,7 @@
 		COMSIG_MOVABLE_HEAR,
 		COMSIG_AI_HEALING_MOB,
 		COMSIG_MOB_TOGGLEMOVEINTENT,
+		COMSIG_MOB_INTERACTION_DESIGNATED,
 	))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC))
@@ -176,6 +178,8 @@
 	switch(current_action)
 		if(MOVING_TO_ATOM)
 			if(!atom_to_walk_to)
+				change_action(ESCORTING_ATOM, escorted_atom)
+			if(isturf(atom_to_walk_to) && escorted_atom)
 				change_action(ESCORTING_ATOM, escorted_atom)
 			if(escorted_atom && (atom_to_walk_to != escorted_atom) && get_dist(mob_parent, escorted_atom) > AI_ESCORTING_MAX_DISTANCE)
 				change_action(ESCORTING_ATOM, escorted_atom)
@@ -358,10 +362,7 @@
 			return
 		INVOKE_ASYNC(src, PROC_REF(try_heal_other), human)
 		return TRUE
-	if(istype(interactee, /obj/effect/build_designator))
-		INVOKE_ASYNC(src, PROC_REF(try_build_holo), interactee)
-		return TRUE
-	interactee.do_ai_interact(mob_parent)
+	INVOKE_ASYNC(interactee, TYPE_PROC_REF(/atom, do_ai_interact), mob_parent, src)
 	return TRUE
 
 ///Says an audible message

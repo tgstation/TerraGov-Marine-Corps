@@ -24,6 +24,8 @@
 	var/atom/engie_target
 	var/target_dist = 10 //lets just check screen range, more or less
 	for(var/atom/potential AS in engineering_list)
+		if(QDELETED(potential))
+			remove_from_engineering_list(potential)
 		var/dist = get_dist(mob_parent, potential)
 		if(dist >= target_dist)
 			continue
@@ -53,6 +55,7 @@
 	human_ai_state_flags &= ~HUMAN_AI_BUILDING
 	if(QDELETED(old_target))
 		remove_from_engineering_list(old_target)
+	unset_target(old_target)
 	late_initialize()
 
 ///Decides if we should do something when another mob goes crit
@@ -96,3 +99,48 @@
 	try_speak(pick(building_chat))
 	hologram.attackby(building_stack, mob_parent)
 	on_engineering_end(hologram)
+
+/datum/ai_behavior/human/proc/interaction_designated(datum/source, atom/target)
+	SIGNAL_HANDLER
+	if(isturf(target))
+		set_atom_to_walk_to(target)
+		return
+	if(!ismovable(target))
+		return //the fuck did you click?
+	var/atom/movable/movable_target = target
+	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
+		set_interact_target(movable_target)
+		return
+	if(movable_target.faction == mob_parent.faction)
+		if(ismob(movable_target))
+			set_escorted_atom(movable_target)
+			return
+		set_interact_target(movable_target) //repair tank etc... what about follow tho?
+		return
+	set_combat_target(movable_target) //enemy faction atom of some kind
+
+///Repairs an object if possible
+/datum/ai_behavior/human/proc/repair_obj(obj/repair_target)
+	if(repair_target.obj_integrity >= repair_target.max_integrity)
+		on_engineering_end(repair_target)
+		return
+	var/obj/item/tool/weldingtool/welder = mob_inventory.find_tool(TOOL_WELDER)
+	if(!welder)
+		on_engineering_end(repair_target)
+		return
+
+	human_ai_state_flags |= (HUMAN_AI_BUILDING|HUMAN_AI_NEED_WEAPONS)
+	store_hands()
+	mob_parent.a_intent = INTENT_HELP
+	welder.do_ai_interact(mob_parent, src)
+	welder.toggle()
+	var/repair_success = FALSE
+	if(repair_target.welder_act(mob_parent, welder))
+		repair_success = TRUE
+	mob_parent.a_intent = INTENT_HARM
+	if(welder.isOn())
+		welder.toggle()
+	try_store_item(welder)
+	if(!repair_success || (!QDELETED(repair_target) && repair_target.obj_integrity >= repair_target.max_integrity))
+		remove_from_engineering_list(repair_target)
+	on_engineering_end(repair_target)
