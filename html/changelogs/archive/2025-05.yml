@@ -223,3 +223,25 @@
   - bugfix: fixed vehicle collision damage trigger speed
   TiviPlus:
   - qol: the supersoldier throw stim will always try to throw at max range, like jumpthrowing
+2025-05-17:
+  Atropos:
+  - bugfix: fixed Exploit that makes cades indestructible
+  Lumipharon:
+  - rscadd: Added holographic construction designation
+  - bugfix: Fixed an issue that would occasionally break hunter disguise
+  - qol: Xeno template construction holograms are only visible to the user
+  Neocloudy:
+  - bugfix: Fixed Tramadol advice showing for people with nanites in their system
+  - refactor: Visually reworked chat to be mostly analogous to TG. There are changes
+      that may not be documented here. Please report things looking fucked up.
+  - spellcheck: Reworked job spawn messages.
+  - spellcheck: Reworked vote outputs.
+  - spellcheck: Changed the admin log span color slightly.
+  - spellcheck: Changed radio span colors slightly.
+  - spellcheck: Improved the style of build mode tips.
+  - spellcheck: Improved the color of XOOC/MOOC. These also have colors in tgui-say
+      now.
+  - spellcheck: Changed the self-examine balloon alert to a chat output.
+  - spellcheck: Fixed spelling and style of nuke disk computer visible messages.
+  TiviPlus:
+  - bugfix: fixed a runtime causing death tiles
