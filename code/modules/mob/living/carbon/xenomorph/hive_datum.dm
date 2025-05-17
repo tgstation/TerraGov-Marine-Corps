@@ -206,12 +206,12 @@
 
 	.["user_ref"] = REF(user)
 	.["user_xeno"] = isxeno(user)
-	if(isxeno(user)){
+	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/x = user
-		if(x == living_xeno_ruler){
+		if(x == living_xeno_ruler)
 			.["user_ruler"] = user
-		}
-	}
+
+
 
 
 	.["user_index"] = 0
@@ -730,7 +730,6 @@
 
 	if(dead_xeno == living_xeno_ruler)
 		on_ruler_death(dead_xeno)
-		dead_xeno.remove_ruler_abilities()
 	var/datum/xeno_caste/base_caste = GLOB.xeno_caste_datums[get_parent_caste_type(dead_xeno.xeno_caste)][XENO_UPGRADE_BASETYPE]
 	if(base_caste.death_evolution_delay <= 0)
 		return

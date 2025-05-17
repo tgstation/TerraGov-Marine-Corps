@@ -45,7 +45,7 @@
 	aura_strength = 3 //The Shrike's aura is decent.
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 4 //Amount of leaders allowed
+	queen_leader_limit = 4
 
 	// *** Minimap Icon *** //
 	minimap_icon = "xenoshrike"
