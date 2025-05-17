@@ -36,7 +36,7 @@
 	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays = list()
-	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
+	actions_types = list(/datum/action/item_action/toggle/suit_toggle/light)
 	armor_features_flags = ARMOR_LAMP_OVERLAY
 	item_flags = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	w_class = WEIGHT_CLASS_HUGE
@@ -76,7 +76,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ARMOR_LIGHT))
 		return
 	if(!ishuman(user))
 		return
@@ -237,7 +237,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
 		/obj/item/storage/holster/blade,
@@ -397,7 +397,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/twohanded,
@@ -427,7 +427,7 @@
 		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ARMOR_LIGHT))
 		return
 
 	if(!ishuman(user)) return
@@ -581,7 +581,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/baseballbat,
@@ -783,7 +783,7 @@
 	icon_state = "vsd_armor"
 	worn_icon_state = "vsd_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 20, ENERGY = 15, BOMB = 30, BIO = 10, FIRE = 25, ACID = 30)
 	item_map_variant_flags = NONE
 	armor_features_flags = NONE
 
@@ -791,6 +791,16 @@
 	name = "\improper Crasher MT-L/43/A ballistic armor"
 	icon_state = "vsd_armor_alt"
 	worn_icon_state = "vsd_armor_alt"
+/obj/item/clothing/suit/storage/marine/vsd/desert
+	name = "Crasher multi-threat light ballistic armor"
+	icon_state = "vsd_main_larmor_d"
+	worn_icon_state = "vsd_main_larmor_d"
+
+/obj/item/clothing/suit/storage/marine/vsd/secondary
+	name = "Crasher multi-threat light ballistic armor"
+	icon_state = "vsd_secondary_larmor"
+	worn_icon_state = "vsd_secondary_larmor"
+
 
 /obj/item/clothing/suit/storage/marine/vsd/marmor
 	name = "\improper Crasher MT-M/43 ballistic armor"
@@ -798,7 +808,17 @@
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	icon_state = "vsd_armor_medium"
 	worn_icon_state = "vsd_armor_medium"
-	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 40, BULLET = 70, LASER = 20, ENERGY = 15, BOMB = 40, BIO = 10, FIRE = 25, ACID = 30)
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor/desert
+	name = "Crasher multi-threat medium-set ballistic armor"
+	icon_state = "vsd_marmor_d"
+	worn_icon_state = "vsd_marmor_d"
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor/upp
+	name = "Crasher multi-threat medium-set ballistic armor"
+	icon_state = "vsd_marmor_upp"
+	worn_icon_state = "vsd_marmor_upp"
 
 /obj/item/clothing/suit/storage/marine/vsd/harmor
 	name = "\improper Crasher MT-H/43 powered ballistic armor"
@@ -806,16 +826,23 @@
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	icon_state = "vsd_armor_heavy"
 	worn_icon_state = "vsd_armor_heavy"
-	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 75, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 45, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 45, BIO = 10, FIRE = 25, ACID = 30)
+
+/obj/item/clothing/suit/storage/marine/vsd/harmor/upp
+	name = "Crasher multi-threat heavy-set ballistic armor"
+	icon_state = "vsd_harmor_upp"
+	worn_icon_state = "vsd_harmor_upp"
 
 /obj/item/clothing/suit/storage/marine/vsd/juggernaut
 	name = "\improper Crasher MT-H/43 'Ares' powered ballistic armor"
 	desc = "The Kaizoku Corporation's juggernaut set, given to the best and trusted veterans. Protects the user from almost all bullet calibers."
-	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	icon_state = "vsd_juggernaut_ballistic"
 	worn_icon_state = "vsd_juggernaut_ballistic"
-	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 85, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 75)
+	icon_state = "vsd_juggernaut_one"
+	worn_icon_state = "vsd_juggernaut_one"
+	soft_armor = list(MELEE = 50, BULLET = 90, LASER = 20, ENERGY = 15, BOMB = 50, BIO = 10, FIRE = 25, ACID = 30)
 
 /obj/item/clothing/suit/storage/marine/vsd/juggernaut/Initialize(mapload, ...)
 	. = ..()
@@ -828,7 +855,7 @@
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	icon_state = "vsd_juggernaut_explosive"
 	worn_icon_state = "vsd_juggernaut_explosive"
-	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 80, ENERGY = 60, BOMB = 90, BIO = 60, FIRE = 60, ACID = 75)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 20, ENERGY = 15, BOMB = 100, BIO = 10, FIRE = 25, ACID = 30)
 
 /obj/item/clothing/suit/storage/marine/vsd/flamer
 	name = "\improper Crasher MT-H/43 'Apollo' powered fire-protected armor"
@@ -837,5 +864,4 @@
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	icon_state = "vsd_juggernaut_flamer"
 	worn_icon_state = "vsd_juggernaut_flamer"
-	soft_armor = list(MELEE = 70, BULLET = 80, LASER = 80, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 90, ACID = 85)
-	armor_features_flags = ARMOR_FIRE_RESISTANT
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 80, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 90, ACID = 85)

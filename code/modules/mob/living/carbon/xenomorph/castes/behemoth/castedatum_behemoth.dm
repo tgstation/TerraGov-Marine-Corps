@@ -3,6 +3,7 @@
 	display_name = "Behemoth"
 	upgrade_name = ""
 	caste_desc = "Behemoths are known to like rocks. Perhaps we should give them one!"
+	base_strain_type = /mob/living/carbon/xenomorph/behemoth
 	caste_type_path = /mob/living/carbon/xenomorph/behemoth
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -31,9 +32,9 @@
 	deevolves_to = /datum/xeno_caste/bull
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG|CASTE_STAGGER_RESISTANT
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
-	caste_traits = null
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_STAGGER_RESISTANT
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)

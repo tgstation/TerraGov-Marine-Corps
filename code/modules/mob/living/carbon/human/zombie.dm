@@ -32,7 +32,7 @@
 	force = 5
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = TRUE
-	attack_verb = list("clawed", "slashed", "torn", "ripped", "diced", "cut", "bit")
+	attack_verb = list("claws", "slashes", "tears", "rips", "dices", "cuts", "bites")
 	item_flags = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE

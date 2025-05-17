@@ -65,6 +65,9 @@
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/turf/closed/wall/resin/membrane/thick,
+		/turf/closed/wall/resin/regenerating/special/bulletproof,
+		/turf/closed/wall/resin/regenerating/special/fireproof,
+		/turf/closed/wall/resin/regenerating/special/hardy,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 		/obj/structure/bed/nest,
@@ -285,7 +288,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 
 /datum/action/ability/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -444,3 +447,49 @@
 /datum/action/ability/xeno_action/sow/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_plant))
 	return COMSIG_KB_ACTIVATED
+
+/datum/action/ability/xeno_action/place_recovery_pylon
+	name = "Place Recovery Pylon"
+	action_icon_state = "recovery_pylon"
+	action_icon = 'icons/Xeno/actions/construction.dmi'
+	desc = "Place down a recovery pylon that increases the amount of regeneration power restored."
+	ability_cost = 500
+	cooldown_duration = 1 MINUTES
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_RECOVERY_PYLON,
+	)
+	use_state_flags = ABILITY_USE_LYING
+
+/datum/action/ability/xeno_action/place_recovery_pylon/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	var/turf/current_turf = get_turf(owner)
+	if(!current_turf || !current_turf.is_weedable() || current_turf.density)
+		if(!silent)
+			current_turf.balloon_alert(owner, "Cannot place recovery pylon.")
+		return FALSE
+	if(!xeno_owner.loc_weeds_type)
+		if(!silent)
+			current_turf.balloon_alert(owner, "No weeds here.")
+		return FALSE
+	if(!current_turf.check_disallow_alien_fortification(owner, silent))
+		return FALSE
+	if(!current_turf.check_alien_construction(owner, silent, /obj/structure/xeno/recovery_pylon))
+		return FALSE
+	var/list/turf/affected_turfs = RANGE_TURFS(3, xeno_owner)
+	for(var/turf/affected_turf AS in affected_turfs)
+		if(!(locate(/obj/structure/xeno/recovery_pylon) in affected_turf))
+			continue
+		if(!silent)
+			current_turf.balloon_alert(owner, "Nearby recovery pylon already.")
+		return FALSE
+	if(LAZYLEN(GLOB.hive_datums[xeno_owner.hivenumber].recovery_pylons) >= HIVELORD_RECOVERY_PYLON_SET_LIMIT)
+		if(!silent)
+			current_turf.balloon_alert(owner, "Maximum recovery pylons made.")
+		return FALSE
+
+/datum/action/ability/xeno_action/place_recovery_pylon/action_activate()
+	var/obj/structure/xeno/recovery_pylon/recovery_pylon = new(get_turf(xeno_owner), xeno_owner.get_xeno_hivenumber())
+	to_chat(xeno_owner, span_xenonotice("We shape some resin into \a [recovery_pylon]."))
+	playsound(xeno_owner, SFX_ALIEN_RESIN_BUILD, 25)
+	succeed_activate()
+	add_cooldown()

@@ -114,7 +114,7 @@
 		face_atom(target) //Looks better if they keep looking at you when dodging
 
 
-/mob/living/simple_animal/hostile/bullet_act(obj/projectile/proj)
+/mob/living/simple_animal/hostile/bullet_act(atom/movable/projectile/proj)
 	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client)
 		if(proj.firer && get_dist(src, proj.firer) <= aggro_vision_range)
 			FindTarget(list(proj.firer), 1)
@@ -354,7 +354,7 @@
 
 /mob/living/simple_animal/hostile/proc/CheckFriendlyFire(atom/A)
 	if(check_friendly_fire)
-		for(var/turf/T in getline(src,A)) // Not 100% reliable but this is faster than simulating actual trajectory
+		for(var/turf/T in get_traversal_line(src,A)) // Not 100% reliable but this is faster than simulating actual trajectory
 			for(var/mob/living/L in T)
 				if(L == src || L == A)
 					continue
@@ -383,7 +383,7 @@
 	var/turf/startloc = get_turf(targets_from)
 	new casingtype(startloc)
 	playsound(src, projectilesound, 100, 1)
-	var/obj/projectile/P = new(startloc)
+	var/atom/movable/projectile/P = new(startloc)
 	playsound(src, projectilesound, 100, 1)
 	P.generate_bullet(GLOB.ammo_list[ammotype])
 	P.fire_at(targeted_atom, src, src)

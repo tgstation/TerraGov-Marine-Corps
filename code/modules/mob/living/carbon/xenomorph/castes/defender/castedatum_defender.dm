@@ -3,7 +3,7 @@
 	display_name = "Defender"
 	upgrade_name = ""
 	caste_desc = "An alien with an armored crest. It looks very tough."
-
+	base_strain_type = /mob/living/carbon/xenomorph/defender
 	caste_type_path = /mob/living/carbon/xenomorph/defender
 
 	tier = XENO_TIER_ONE
@@ -29,8 +29,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
-	caste_traits = null
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 30, BIO = 30, FIRE = 40, ACID = 30)

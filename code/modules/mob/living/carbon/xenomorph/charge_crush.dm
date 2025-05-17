@@ -270,6 +270,12 @@
 
 	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
 		do_stop_momentum()
+		if(charge_type & CHARGE_BEHEMOTH)
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		if(istype(crushed, /obj/structure/razorwire))
+			var/obj/structure/razorwire/crushed_wire = crushed
+			INVOKE_ASYNC(crushed_wire, TYPE_PROC_REF(/atom, post_crush_act), charger, src)
+			return COMPONENT_MOVABLE_PREBUMP_ENTANGLED
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
 	var/precrush = crushed.pre_crush_act(charger, src) //Negative values are codes. Positive ones are damage to deal.
@@ -523,7 +529,7 @@
 /obj/structure/razorwire/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
 	if(!anchored)
 		return ..()
-	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.10) //entangled for only 10% as long or 0.5 seconds
+	razorwire_tangle(charger, 0.5 SECONDS)
 	charger.visible_message(span_danger("The barbed wire slices into [charger]!"),
 	span_danger("The barbed wire slices into you!"), null, 5)
 	charger.Paralyze(0.5 SECONDS)

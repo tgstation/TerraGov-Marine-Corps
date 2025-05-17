@@ -33,6 +33,10 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
+"dH" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/medbay)
 "ew" = (
 /obj/structure/platform{
 	dir = 8
@@ -65,6 +69,13 @@
 "fH" = (
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/medbay)
+"fK" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
+/area/campaign/jungle_outpost/ground/jungle)
 "fT" = (
 /obj/structure/platform{
 	dir = 9
@@ -206,6 +217,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
 "pp" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue,
 /area/campaign/jungle_outpost/outpost/medbay)
 "qg" = (
@@ -222,6 +234,10 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
+"qu" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle)
 "qv" = (
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
@@ -346,9 +362,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/campaign/jungle_outpost/outpost/medbay)
 "zg" = (
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/plating/ground/dirt2,
 /area/campaign/jungle_outpost/ground/jungle)
 "zD" = (
@@ -370,6 +384,12 @@
 	},
 /turf/open/floor/tile/blue/whiteblue,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
+"Co" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
 "Cs" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/ground/grass/weedable,
@@ -396,9 +416,15 @@
 /area/campaign/jungle_outpost/outpost/medbay)
 "DB" = (
 /obj/structure/flora/jungle/bush,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 8
 	},
+/area/campaign/jungle_outpost/ground/jungle)
+"DN" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle)
 "EK" = (
 /turf/closed/wall,
@@ -412,6 +438,12 @@
 "Fs" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"FB" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
 /area/campaign/jungle_outpost/ground/jungle)
 "FF" = (
 /obj/structure/platform_decoration{
@@ -485,6 +517,12 @@
 /obj/item/clothing/suit/surgical,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/campaign/jungle_outpost/outpost/medbay)
+"Mb" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
 "Mj" = (
 /obj/machinery/sleeper,
 /turf/open/floor/tile/white,
@@ -518,6 +556,10 @@
 	dir = 5
 	},
 /turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/medbay)
+"NY" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluefull,
 /area/campaign/jungle_outpost/outpost/medbay)
 "Oa" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -571,6 +613,13 @@
 "Qu" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"QV" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle)
 "QW" = (
@@ -727,6 +776,7 @@
 /obj/structure/stairs/seamless/edge_vert{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 8
 	},
@@ -833,11 +883,11 @@ rx
 Wh
 FU
 na
-OR
+qu
 zg
 cl
 fx
-fx
+NY
 fx
 na
 OR
@@ -851,11 +901,11 @@ Ka
 na
 qv
 qv
-dz
+DN
 go
 Oa
 Wv
-Ae
+dH
 Ae
 DA
 na
@@ -872,7 +922,7 @@ dz
 qv
 TC
 JC
-Ae
+dH
 Mx
 na
 Cs
@@ -907,16 +957,16 @@ OR
 Qu
 TC
 Pe
-Ae
+dH
 Ae
 vK
 lC
-dm
+fK
 hG
 ix
 ix
 ix
-sA
+QV
 ix
 QW
 "}
@@ -1029,7 +1079,7 @@ zD
 gK
 uE
 Ae
-Ae
+dH
 Ae
 sd
 Gt
@@ -1037,11 +1087,11 @@ Yv
 Hs
 OY
 OY
-OY
+Co
 OY
 OY
 jB
-UG
+FB
 RA
 TC
 LU
@@ -1093,12 +1143,12 @@ PA
 TW
 RR
 Da
-OR
+qu
 hG
 ix
 sA
 ix
-ix
+Mb
 ix
 QW
 "}

@@ -820,6 +820,14 @@
 	},
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
+"aGU" = (
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 8
+	},
+/area/lawankaoutpost/colony/medbay)
 "aGV" = (
 /obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass/weedable,
@@ -1095,6 +1103,10 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/recdorms)
+"aTq" = (
+/obj/structure/barricade/solid,
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/medbay)
 "aTD" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -7;
@@ -2949,11 +2961,6 @@
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
-"cum" = (
-/obj/structure/barricade/metal,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/white,
-/area/lawankaoutpost/colony/medbay)
 "cvg" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -8
@@ -3117,6 +3124,11 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/operations_hall)
+"cDA" = (
+/obj/effect/ai_node,
+/obj/machinery/floor_warn_light/toggleable,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "cDB" = (
 /obj/structure/closet/secure_closet/hos,
 /obj/machinery/light{
@@ -4902,11 +4914,6 @@
 /obj/item/tool/pickaxe/drill,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/mining)
-"eeu" = (
-/obj/structure/barricade/metal,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/white,
-/area/lawankaoutpost/colony/medbay)
 "eeJ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -4950,6 +4957,11 @@
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/hydroponics)
+"efV" = (
+/obj/structure/barricade/solid,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/medbay)
 "efY" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -5632,11 +5644,6 @@
 	dir = 9
 	},
 /area/lawankaoutpost/colony/medbay)
-"eJe" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/podhatch/floor,
-/area/lawankaoutpost/colony/engineering)
 "eJh" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -7979,6 +7986,12 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/engineering)
+"gxf" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/machinery/floor_warn_light/toggleable,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "gxn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -8324,10 +8337,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"gNM" = (
-/obj/effect/ai_node,
-/turf/open/floor/podhatch/floor,
-/area/lawankaoutpost/colony/engineering)
 "gNZ" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lawankaoutpost/outside/north)
@@ -9901,10 +9910,6 @@
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzoneone)
-"ikQ" = (
-/obj/structure/barricade/metal,
-/turf/open/floor/tile/white,
-/area/lawankaoutpost/colony/medbay)
 "ikS" = (
 /obj/structure/table,
 /turf/open/floor/tile/green/whitegreencorner{
@@ -10263,14 +10268,6 @@
 	dir = 9
 	},
 /area/lawankaoutpost/colony/operations_storage)
-"iCC" = (
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/turf/open/floor/tile/red/whitered{
-	dir = 8
-	},
-/area/lawankaoutpost/colony/medbay)
 "iCH" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/window/reinforced{
@@ -10467,6 +10464,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
+"iKJ" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 1
+	},
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "iKW" = (
 /obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirt,
@@ -11905,6 +11909,12 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/northwest/garbledradio)
+"jTy" = (
+/obj/structure/barricade/solid{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/medbay)
 "jTQ" = (
 /turf/closed/wall,
 /area/lawankaoutpost/colony/biologics_storage)
@@ -13102,12 +13112,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/colony/hydroponics)
-"kWI" = (
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/turf/open/floor/tile/white,
-/area/lawankaoutpost/colony/medbay)
 "kWJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
@@ -13831,6 +13835,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"lzo" = (
+/obj/machinery/floor_warn_light/toggleable,
+/turf/closed/wall,
+/area/lawankaoutpost/colony/engineering)
 "lzG" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/blue/taupeblue{
@@ -15725,6 +15733,11 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/lawankaoutpost/colony/hydroponics)
+"ncG" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "ndk" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/greentaupe{
@@ -22607,6 +22620,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"sAV" = (
+/obj/structure/barricade/solid,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/lawankaoutpost/colony/medbay)
 "sBa" = (
 /obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass/weedable,
@@ -24872,6 +24890,11 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
+"usc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/floor_warn_light/toggleable,
+/turf/open/floor/tile/dark/yellow2,
+/area/lawankaoutpost/colony/engineering)
 "usf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/security,
@@ -25601,11 +25624,6 @@
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lawankaoutpost/outside/south)
-"uVo" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/podhatch/floor,
-/area/lawankaoutpost/colony/engineering)
 "uVv" = (
 /obj/structure/flora/grass/tallgrass/hideable{
 	color = "#7a8c54"
@@ -28907,6 +28925,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/colony/operations_storage)
+"xDp" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "xDD" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2{
@@ -45998,7 +46021,7 @@ lKO
 oCi
 dnE
 sVp
-tRS
+lzo
 oqq
 xGW
 xGW
@@ -46641,7 +46664,7 @@ nva
 fBL
 hHa
 oDN
-tRS
+lzo
 eoN
 rps
 lCE
@@ -46855,7 +46878,7 @@ tRS
 tRS
 tRS
 tRS
-tRS
+lzo
 tRS
 tRS
 tRS
@@ -47081,7 +47104,7 @@ nva
 fPR
 tRS
 tRS
-tRS
+lzo
 tRS
 tRS
 lIK
@@ -47293,7 +47316,7 @@ xRG
 pIJ
 rkl
 tRS
-tRS
+lzo
 nva
 lCE
 tbA
@@ -47518,11 +47541,11 @@ tRS
 phK
 whJ
 nva
-uVo
+gxf
 faQ
 thw
 thw
-gNM
+cDA
 fRE
 tRS
 oqq
@@ -47731,14 +47754,14 @@ nva
 skU
 rYj
 vtK
-tRS
+lzo
 hHa
 whJ
 cbn
 thw
-eJe
-eJe
-eJe
+mzy
+mzy
+mzy
 thw
 fRE
 tRS
@@ -48170,12 +48193,12 @@ nva
 nOE
 mOn
 wbv
-eJe
-eJe
-eJe
+xDp
+ncG
+iKJ
 thw
 pWn
-tRS
+lzo
 oqq
 oqq
 oqq
@@ -48593,20 +48616,20 @@ hSp
 nXF
 gfb
 tUI
-tRS
+lzo
 cJk
 cWH
 skU
 nva
 tIu
-tRS
+lzo
 wXM
 whJ
 agY
 thw
-eJe
-eJe
-eJe
+mzy
+mzy
+mzy
 tBt
 aOy
 tRS
@@ -48820,11 +48843,11 @@ tRS
 wXM
 whJ
 nva
-uVo
+gxf
 thw
 thw
 thw
-gNM
+cDA
 aOy
 tRS
 oqq
@@ -49242,13 +49265,13 @@ tRS
 tRS
 tRS
 tRS
-tRS
+lzo
 tRS
 tRS
 lCE
 qYa
 jLV
-tRS
+lzo
 tRS
 tRS
 nva
@@ -50116,12 +50139,12 @@ rsN
 tQf
 sVp
 tZF
-tRS
+lzo
 knq
 ruy
 lIK
 bkB
-tRS
+lzo
 oqq
 xGW
 xGW
@@ -50546,7 +50569,7 @@ tAI
 cfk
 fkw
 sbB
-fig
+usc
 mBa
 mEt
 tUI
@@ -51347,7 +51370,7 @@ jmI
 tBM
 lfv
 mra
-cum
+efV
 vJl
 ioT
 pyR
@@ -51564,7 +51587,7 @@ iFe
 rYL
 vqf
 wbB
-ikQ
+aTq
 iQN
 rYL
 dDh
@@ -51779,8 +51802,8 @@ llk
 eHn
 hBe
 hBe
-iCC
-iCC
+aGU
+aGU
 hBe
 hBe
 qyO
@@ -54817,8 +54840,8 @@ uTl
 vXr
 vXr
 rYL
-kWI
-kWI
+jTy
+jTy
 qyO
 vXr
 uaK
@@ -55253,7 +55276,7 @@ rYL
 qyO
 dQi
 iFe
-eeu
+sAV
 qtE
 qyO
 lPV
@@ -55470,7 +55493,7 @@ lfv
 cic
 iej
 lfv
-cum
+efV
 mSt
 jmI
 hgz

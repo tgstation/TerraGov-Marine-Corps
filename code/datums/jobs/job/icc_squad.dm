@@ -5,13 +5,14 @@
 	faction = FACTION_ICC
 	minimap_icon = "icc"
 
-/datum/job/icc_squad/radio_help_message(mob/M)
+/datum/job/icc_squad/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You are part of the colonial militia that formed shortly after Xenomorph invasion,
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are part of the colonial militia that formed shortly after Xenomorph invasion,
 after ransacking the armories of the colonies owned by NTC, you took arms to fight against the Xenomorph assault.
 Though soon they turned less lethal, danger still persists, especially those that are alone, namely survivors. Which is your job to protect now.
 You are all former or current employees/colonists of Ninetails but there is still some tensions after what happened.
-For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be vultures on top of a stillborn colonization"})
+For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be vultures on top of a stillborn colonization"}
 
 //ICC Standard
 /datum/job/icc_squad/standard

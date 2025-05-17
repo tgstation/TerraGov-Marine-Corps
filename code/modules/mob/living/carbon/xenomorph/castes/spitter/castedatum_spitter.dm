@@ -3,6 +3,7 @@
 	display_name = "Spitter"
 	upgrade_name = ""
 	caste_desc = "Gotta dodge!"
+	base_strain_type = /mob/living/carbon/xenomorph/spitter
 	caste_type_path = /mob/living/carbon/xenomorph/spitter
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -32,7 +33,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
@@ -78,3 +79,53 @@
 
 	spit_delay = 0.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/auto, /datum/ammo/xeno/toxin/upgrade1, /datum/ammo/xeno/toxin/aphrotoxin/auto, /datum/ammo/xeno/toxin/aphrotoxin/upgrade1, /datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)
+
+/datum/xeno_caste/spitter/globadier
+	caste_type_path = /mob/living/carbon/xenomorph/spitter/globadier
+	upgrade_name = ""
+	caste_name = "Globadier"
+	display_name = "Globadier"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "A mutated variant of a spitter. It carries round globs of acid on its back"
+
+	// *** Melee Attacks *** //
+	melee_damage = 18
+
+	// *** Speed *** //
+	speed = -0.8
+
+	// *** Health *** //
+	max_health = 320
+
+	// *** Ablities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/toss_grenade,
+		/datum/action/ability/activable/xeno/scatter_spit,
+		/datum/action/ability/xeno_action/acid_mine,
+		/datum/action/ability/xeno_action/acid_mine/gas_mine,
+	)
+
+/datum/xeno_caste/spitter/globadier/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/spitter/globadier/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A master of area control, covered in strange globulets."
+	primordial_message = "Let no cover guard our enemies."
+	upgrade = XENO_UPGRADE_PRIMO
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/toss_grenade,
+		/datum/action/ability/activable/xeno/scatter_spit,
+		/datum/action/ability/xeno_action/acid_mine,
+		/datum/action/ability/xeno_action/acid_mine/gas_mine,
+		/datum/action/ability/activable/xeno/acid_rocket,
+	)

@@ -114,9 +114,9 @@
 		if(ITEM_SLOT_BACK)
 			loadout.back = new_item?.item_typepath
 		if(ITEM_SLOT_R_POCKET)
-			loadout.r_store = new_item?.item_typepath
+			loadout.r_pocket = new_item?.item_typepath
 		if(ITEM_SLOT_L_POCKET)
-			loadout.l_store = new_item?.item_typepath
+			loadout.l_pocket = new_item?.item_typepath
 		if(ITEM_SLOT_SUITSTORE)
 			loadout.suit_store = new_item?.item_typepath
 		if(ITEM_SLOT_SECONDARY)

@@ -19,7 +19,7 @@
 	/// The amount of stacks applied on hit.
 	var/intoxication_stacks = 5
 
-/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(!iscarbon(target_mob))
 		return
 	var/mob/living/carbon/target_carbon = target_mob

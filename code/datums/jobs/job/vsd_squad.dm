@@ -5,10 +5,11 @@
 	faction = FACTION_VSD
 	minimap_icon = "pmc2"
 
-/datum/job/vsd_squad/radio_help_message(mob/M)
+/datum/job/vsd_squad/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You are trained loyal mercenaries of Kaizoku Corporation, though rumors are Kaizoku is a front to the Yakuza Syndicate which nuked the Corporate Sector. Surely it is unbased.
-Kaizoku is in the council that leads Phantom City, therefore it shares a table with Ninetails and all the other megacorps, which makes it vital they play along. And at the same time Kaizoku supplies SOM their equipment to disrupt the said rival corporations in secret (not so secret). Keep in mind your mixed relations when taking action."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are trained loyal mercenaries of Kaizoku Corporation, though rumors are Kaizoku is a front to the Yakuza Syndicate which nuked the Corporate Sector. Surely it is unbased.
+Kaizoku is in the council that leads Phantom City, therefore it shares a table with Ninetails and all the other megacorps, which makes it vital they play along. And at the same time Kaizoku supplies SOM their equipment to disrupt the said rival corporations in secret (not so secret). Keep in mind your mixed relations when taking action."}
 
 //VSD Standard
 /datum/job/vsd_squad/standard

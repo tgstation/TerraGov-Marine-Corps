@@ -29,14 +29,14 @@
 					result.Cut(i, i + 1)
 					i--
 
-	var/result_combined = (atom_title ? fieldset_block("[examine_header(atom_title)]", jointext(result, ""), "examine_block") : examine_block(jointext(result, "")))
+	var/result_combined = (atom_title ? fieldset_block(atom_title, jointext(result, ""), examinify.boxed_message_style) : custom_boxed_message(examinify.boxed_message_style, jointext(result, "")))
 
 	to_chat(src, span_infoplain(result_combined))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
 
 /mob/verb/mode()
 	set name = "Activate Held Object"
-	set category = "Object"
+	set category = "IC.Object"
 	set src = usr
 
 	if(next_move > world.time)
@@ -108,7 +108,7 @@
 	var/mob/living/carbon/human/humancorpse = src
 	var/mob/dead/observer/ghost = src
 	if(isobserver(ghost))
-		humancorpse = ghost.can_reenter_corpse.resolve()
+		humancorpse = ghost.can_reenter_corpse?.resolve()
 	if(ishuman(humancorpse) && humancorpse.mind == mind)
 		humancorpse.set_undefibbable()
 	to_chat(usr, span_notice("You can respawn now, enjoy your new life!<br><b>Make sure to play a different character, and please roleplay correctly.</b>"))
@@ -143,7 +143,7 @@
 	var/mob/living/liver
 	if(isliving(usr))
 		liver = usr
-		if(liver.health >= liver.health_threshold_crit)
+		if(liver.health >= liver.get_crit_threshold())
 			to_chat(src, "You can only use this when you're dead or crit.")
 			return
 
@@ -245,7 +245,7 @@
 
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
-	set category = "Object"
+	set category = "IC.Object"
 	reset_perspective(null)
 	unset_interaction()
 	if(isliving(src))
@@ -286,13 +286,13 @@
 
 /mob/verb/point_to(atom/pointed_atom as mob|obj|turf in view())
 	set name = "Point To"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if(client && !(pointed_atom in view(client.view, src)))
 		return FALSE
 	if(!pointed_atom.mouse_opacity)
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_POINT))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_POINT))
 		return FALSE
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)

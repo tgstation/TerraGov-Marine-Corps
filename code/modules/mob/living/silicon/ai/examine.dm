@@ -1,9 +1,8 @@
 /mob/living/silicon/ai/examine(mob/user)
-	SHOULD_CALL_PARENT(FALSE) // TODO ai and human examine dont send examine signal
-	var/msg = "<span class='info'><br>"
-
+	. = ..()
+	var/msg = ""
 	if(stat == DEAD)
-		msg += "[span_deadsay("It appears to be powered-down.")]<br>"
+		msg += "[span_deadsay("It appears to be powered-down.")]"
 	else
 		msg += "<span class='warning'>"
 		if(getBruteLoss())
@@ -21,7 +20,7 @@
 			msg += "It is non-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".<br>"
 
 		if(!client)
-			msg += "[src]/Core.exe has stopped responding! Searching for a solution to the problem...<br>"
+			msg += "[src]/Core.exe has stopped responding! Searching for a solution to the problem..."
 
 		msg += "</span>"
 	if(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes)

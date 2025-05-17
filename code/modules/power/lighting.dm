@@ -446,13 +446,14 @@
 	addtimer(CALLBACK(src, PROC_REF(delayed_explosion)), 0.5 SECONDS)
 
 /obj/machinery/light/proc/delayed_explosion()
-	explosion(loc, 0, 1, 3, 0, 2)
+	explosion(loc, 0, 1, 3, 0, 2, explosion_cause=src)
 	qdel(src)
 
 //types
 /obj/machinery/light/mainship/Initialize(mapload)
 	. = ..()
 	GLOB.mainship_lights += src
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
 
 /obj/machinery/light/mainship/Destroy()
 	. = ..()
@@ -465,6 +466,34 @@
 	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
+
+/// Changes the light's appearance based on the security level when [COMSIG_SECURITY_LEVEL_CHANGED] sends a signal
+/obj/machinery/light/mainship/proc/on_alert_change(datum/source, datum/security_level/new_level, datum/security_level/previous_level)
+	SIGNAL_HANDLER
+	var/most_recent_level_red_lights = ((previous_level.sec_level_flags & SEC_LEVEL_FLAG_RED_LIGHTS))
+	if(!(new_level.sec_level_flags & SEC_LEVEL_FLAG_RED_LIGHTS) && most_recent_level_red_lights)
+		var/area/active_area = get_area(src)
+		if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
+			return
+		base_icon_state = initial(base_icon_state)
+		light_color = bulb_colour
+		light_range = brightness
+		update_light()
+		update_appearance(UPDATE_ICON)
+	else if((new_level.sec_level_flags & SEC_LEVEL_FLAG_RED_LIGHTS) && !most_recent_level_red_lights)
+		var/area/active_area = get_area(src)
+		if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
+			return
+		base_icon_state = "[initial(base_icon_state)]_red"
+		light_color = COLOR_SOMEWHAT_LIGHTER_RED
+		light_range = 7.5
+		if(prob(75)) //randomize light range on most lights, patchy lighting gives a sense of danger
+			var/rangelevel = pick(5.5,6.0,6.5,7.0)
+			if(prob(15))
+				rangelevel -= pick(0.5,1.0,1.5,2.0)
+			light_range = rangelevel
+		update_light()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/light/red
 	base_icon_state = "tube_red"
@@ -533,7 +562,7 @@
 	desc = "A tube light fixture set into the floor. Rated for foot traffic."
 	icon_state = "floortube_empty"
 	base_icon_state = "floortube"
-	layer = HOLOPAD_LAYER
+	layer = MAP_SWITCH(ABOVE_OPEN_TURF_LAYER, LOW_OBJ_LAYER)
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
@@ -598,26 +627,42 @@
 	light_power = 6
 	light_range = 4
 
-/obj/machinery/floor_warn_light/self_destruct
-	name = "self destruct alarm light"
+/obj/machinery/floor_warn_light/toggleable
 	icon_state = "rotating_alarm_off"
 	light_power = 0
 	light_range = 0
 
-/obj/machinery/floor_warn_light/self_destruct/Initialize(mapload)
-	. = ..()
-	SSevacuation.alarm_lights += src
-
-/obj/machinery/floor_warn_light/self_destruct/Destroy()
-	. = ..()
-	SSevacuation.alarm_lights -= src
-
 ///Enables the alarm lights and makes them start flashing
-/obj/machinery/floor_warn_light/self_destruct/proc/enable()
+/obj/machinery/floor_warn_light/toggleable/proc/enable()
 	icon_state = "rotating_alarm"
 	set_light(4,6)
 
 ///Disables the alarm lights and makes them stop flashing
-/obj/machinery/floor_warn_light/self_destruct/proc/disable()
+/obj/machinery/floor_warn_light/toggleable/proc/disable()
 	icon_state = initial(icon_state)
 	set_light(0,0)
+
+/obj/machinery/floor_warn_light/toggleable/self_destruct
+	name = "self destruct alarm light"
+
+/obj/machinery/floor_warn_light/toggleable/self_destruct/Initialize(mapload)
+	. = ..()
+	SSevacuation.alarm_lights += src
+
+/obj/machinery/floor_warn_light/toggleable/self_destruct/Destroy()
+	. = ..()
+	SSevacuation.alarm_lights -= src
+
+//A list of all generator lights so that they can be turned on when the generator enters meltdown
+GLOBAL_LIST_EMPTY_TYPED(generator_alarm_lights, /obj/machinery/floor_warn_light/toggleable)
+
+/obj/machinery/floor_warn_light/toggleable/generator
+	name = "generator meltdown alarm light"
+
+/obj/machinery/floor_warn_light/toggleable/generator/Initialize(mapload)
+	. = ..()
+	GLOB.generator_alarm_lights += src
+
+/obj/machinery/floor_warn_light/toggleable/generator/Destroy()
+	. = ..()
+	GLOB.generator_alarm_lights -= src

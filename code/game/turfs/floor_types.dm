@@ -464,7 +464,10 @@
 		span_notice("You start removing [src]'s protective cover."))
 		playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+		if(LAZYLEN(user.do_actions))
+			balloon_alert(user, "busy")
+			return
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		new /obj/item/stack/rods(src, 2)

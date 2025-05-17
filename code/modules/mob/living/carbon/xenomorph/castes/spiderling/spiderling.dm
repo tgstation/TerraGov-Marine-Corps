@@ -109,7 +109,7 @@
 	SIGNAL_HANDLER
 	if(QDELETED(target))
 		return
-	atom_to_walk_to = target
+	set_atom_to_walk_to(target)
 	change_action(MOVING_TO_ATOM, target)
 
 /// Signal handler to check if we can attack what our escorted_atom is attacking
@@ -119,7 +119,7 @@
 		return
 	if(mob_parent?.get_xeno_hivenumber() == target.get_xeno_hivenumber())
 		return
-	atom_to_walk_to = target
+	set_atom_to_walk_to(target)
 	change_action(MOVING_TO_ATOM, target)
 
 ///Signal handler to try to attack our target
@@ -148,7 +148,6 @@
 
 /datum/ai_behavior/spiderling/unregister_action_signals(action_type)
 	if(action_type == MOVING_TO_ATOM)
-		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 		if(!isnull(atom_to_walk_to))
 			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 	return ..()
@@ -190,9 +189,10 @@
 	if(X.spiderling_state != SPIDERLING_ENRAGED)
 		X.spiderling_state = SPIDERLING_GUARDING
 		X.update_icons()
-	distance_to_maintain = 0
+	upper_maintain_dist = 0
+	lower_maintain_dist = 0
 	revert_to_default_escort()
-	atom_to_walk_to = escorted_atom
+	set_atom_to_walk_to(escorted_atom)
 	guarding_status = SPIDERLING_ATTEMPTING_GUARD
 
 /// This happens when the spiderlings mother dies, they move faster and will attack any nearby marines

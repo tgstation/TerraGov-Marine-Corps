@@ -275,10 +275,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
-"Ix" = (
-/obj/structure/largecrate/random,
-/turf/open/floor/plating/platebot,
-/area/lv624/lazarus/robotics)
 "IY" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Robotics Dome"
@@ -444,7 +440,7 @@ Jv
 DP
 tz
 NM
-Ix
+tz
 Dy
 la
 "}
@@ -461,7 +457,7 @@ jg
 CR
 hh
 hh
-Ix
+tz
 Dy
 la
 "}
@@ -597,7 +593,7 @@ PQ
 CR
 hh
 cx
-Ix
+tz
 Dy
 la
 "}
@@ -614,7 +610,7 @@ YK
 DP
 wh
 Di
-Ix
+tz
 Dy
 la
 "}

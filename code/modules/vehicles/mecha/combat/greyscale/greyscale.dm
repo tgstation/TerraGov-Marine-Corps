@@ -61,7 +61,6 @@
 	grow = -0.01
 	drift = generator(GEN_CIRCLE, 3, 3, NORMAL_RAND)
 	gravity = list(0, 1)
-
 ///sprite stuff with layering requires we make a specific order for each dir
 /proc/get_greyscale_render_order(dir)
 	switch(dir)
@@ -76,7 +75,8 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale
 	name = "Should not be visible"
-	icon_state = "greyscale"
+	icon = 'icons/blanks/32x32.dmi'
+	base_icon_state = "nothing"
 	layer = ABOVE_ALL_MOB_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	mech_type = EXOSUIT_MODULE_GREYSCALE
@@ -158,9 +158,11 @@
 		limb.attach(src, key)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	. = ..()
-	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
-	explosion.pixel_x = 16
+	playsound(get_turf(src), SFX_EXPLOSION_MED, 100, TRUE) //destroy sound is normally very quiet
+	new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
+	for(var/mob/living/nearby_mob AS in cheap_get_living_near(src, 5))
+		shake_camera(nearby_mob, 4, 1)
+	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
 	for(var/key in limbs)
@@ -271,7 +273,7 @@
 /// Checks if we can dash in the specified direction, and activates the ability if so.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/check_dash(direction)
 	if(last_move_dir == direction && last_mousedown_time + double_tap_timing > world.time)
-		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_DASH))
+		if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_DASH))
 			for(var/mob/occupant AS in return_drivers())
 				balloon_alert(occupant, "Dash cooldown ([(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA_DASH) / 10)]s)")
 			return
@@ -357,9 +359,11 @@
 		holder_right.particles.position = list(30, 32, 0)
 		holder_left.layer = layer+0.001
 
+/obj/vehicle/sealed/mecha/combat/greyscale/get_mecha_occupancy_state()
+	return base_icon_state
+
 /obj/vehicle/sealed/mecha/combat/greyscale/update_overlays()
 	. = ..()
-
 	var/list/render_order = get_greyscale_render_order(dir)
 	var/uses_back_icons = (MECHA_L_BACK in equip_by_category)
 	if(!uses_back_icons)
@@ -377,7 +381,7 @@
 				prefix += "fire"
 			if(right_gun)
 				var/mutable_appearance/r_gun = mutable_appearance(holding.gun_icon, prefix+right_gun.icon_state + "_right")
-				r_gun.pixel_x = holding.pixel_x_offset
+				r_gun.pixel_w = holding.pixel_x_offset
 				. += r_gun
 			continue
 		if(key == MECHA_L_ARM)
@@ -389,7 +393,7 @@
 				prefix += "fire"
 			if(left_gun)
 				var/mutable_appearance/l_gun = mutable_appearance(holding.gun_icon, prefix+left_gun.icon_state + "_left")
-				l_gun.pixel_x = holding.pixel_x_offset
+				l_gun.pixel_w = holding.pixel_x_offset
 				. += l_gun
 			continue
 
@@ -485,7 +489,7 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
+	soft_armor = list(MELEE = 25, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
@@ -501,7 +505,7 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
+	soft_armor = list(MELEE = 35, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
@@ -517,7 +521,7 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
+	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 70, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/item/repairpack

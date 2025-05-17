@@ -5,10 +5,6 @@
 	taste_description = "oranges"
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/orangejuice
 
-/datum/reagent/consumable/orangejuice/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(-0.3)
-	return ..()
-
 /datum/reagent/consumable/tomatojuice
 	name = "Tomato Juice"
 	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
@@ -16,20 +12,12 @@
 	taste_description = "tomatoes"
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/tomatojuice
 
-/datum/reagent/consumable/tomatojuice/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0, 0.2)
-	return ..()
-
 /datum/reagent/consumable/limejuice
 	name = "Lime Juice"
 	description = "The sweet-sour juice of limes."
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "unbearable sourness"
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/limejuice
-
-/datum/reagent/consumable/limejuice/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(-0.2)
-	return ..()
 
 /datum/reagent/consumable/carrotjuice
 	name = "Carrot Juice"
@@ -145,25 +133,11 @@
 	color = "#DFDFDF" // rgb: 223, 223, 223
 	taste_description = "milk"
 
-/// Simple healing proc to avoid copy paste
-/datum/reagent/consumable/proc/milk_heal(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2)
-	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
-		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
-
-/datum/reagent/consumable/milk/on_mob_life(mob/living/L, metabolism)
-	milk_heal(L, metabolism)
-	return ..()
-
 /datum/reagent/consumable/soymilk
 	name = "Soy Milk"
 	description = "An opaque white liquid made from soybeans."
 	color = "#DFDFC7" // rgb: 223, 223, 199
 	taste_description = "soy milk"
-
-/datum/reagent/consumable/soymilk/on_mob_life(mob/living/L, metabolism)
-	milk_heal(L, metabolism)
-	return ..()
 
 /datum/reagent/consumable/cream
 	name = "Cream"
@@ -171,10 +145,6 @@
 	color = "#DFD7AF" // rgb: 223, 215, 175
 	taste_description = "creamy milk"
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/cream
-
-/datum/reagent/consumable/cream/on_mob_life(mob/living/L, metabolism)
-	milk_heal(L, metabolism)
-	return ..()
 
 /datum/reagent/consumable/coffee
 	name = "Coffee"
@@ -225,10 +195,6 @@
 	adj_drowsy = -1
 	adj_sleepy = -1
 	adj_temp = 10
-
-/datum/reagent/consumable/tea/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(-0.2)
-	return ..()
 
 /datum/reagent/consumable/lemonade
 	name = "Lemonade"
@@ -399,10 +365,6 @@
 	adj_sleepy = 0
 	adj_temp = 5
 
-/datum/reagent/consumable/coffee/soy_latte/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2)
-	return ..()
-
 /datum/reagent/consumable/coffee/cafe_latte
 	name = "Cafe Latte"
 	description = "A nice, strong and tasty beverage while you are reading."
@@ -411,25 +373,13 @@
 	adj_sleepy = 0
 	adj_temp = 5
 
-/datum/reagent/consumable/coffee/cafe_latte/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2)
-	return ..()
-
 /datum/reagent/consumable/doctor_delight
 	name = "The Doctor's Delight"
-	description = "A gulp a day keeps the Medibot away! A mixture of juices that heals most damage types fairly quickly at the cost of hunger."
+	description = "A gulp a day keeps the Medibot away!... Or so the advertisements claim, anyway."
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
-	nutriment_factor = - 1
 	custom_metabolism = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
 	adj_dizzy = - 10
-
-/datum/reagent/consumable/doctor_delight/on_mob_life(mob/living/L, metabolism)
-	L.adjustBruteLoss(-0.5, 0)
-	L.adjustFireLoss(-0.5, 0)
-	L.adjustToxLoss(-0.5, 0)
-	L.adjustOxyLoss(-0.5, 0)
-	return ..()
 
 /datum/reagent/consumable/cinderella
 	name = "Cinderella"

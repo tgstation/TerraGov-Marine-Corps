@@ -18,6 +18,7 @@
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 
 	/// The material dropped on destruction
 	var/drop_material = /obj/item/stack/sheet/metal
@@ -237,6 +238,12 @@
 		if(!togglelock(user, TRUE))
 			toggle(user)
 
+/obj/structure/closet/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(user in src)
+		return
+	togglelock(user)
+
 /obj/structure/closet/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	. = ..()
 	if(.)
@@ -311,7 +318,7 @@
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Toggle Open"
 
 	if(!usr.canmove || usr.stat || usr.restrained())
@@ -346,7 +353,7 @@
 		return FALSE
 	if(user.do_actions) //Already resisting or doing something like it.
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_RESIST))
 		return FALSE
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)

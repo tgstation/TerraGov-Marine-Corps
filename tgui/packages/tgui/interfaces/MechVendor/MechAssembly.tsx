@@ -1,7 +1,4 @@
-import { capitalize } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -14,8 +11,11 @@ import {
   Section,
   Stack,
   Tooltip,
-} from '../../components';
-import { formatTime } from '../../format';
+} from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
+import { capitalize } from 'tgui-core/string';
+
+import { useBackend } from '../../backend';
 import {
   BodypartPickerData,
   ColorDisplayData,
@@ -48,7 +48,6 @@ function tryAssemble(setFailReason) {
     act('assemble');
   }
 }
-
 const ColorDisplayRow = (props: ColorDisplayData) => {
   const { shown_colors, name, action } = props;
   let splitted = shown_colors.split('#').map((item) => '#' + item);
@@ -238,7 +237,7 @@ export const MechAssembly = (props) => {
                 fluid
                 placeholder={'Mech name'}
                 value={selected_name}
-                onChange={(e, value) => act('set_name', { new_name: value })}
+                onChange={(value) => act('set_name', { new_name: value })}
               />
             </Stack.Item>
             <Stack.Item>

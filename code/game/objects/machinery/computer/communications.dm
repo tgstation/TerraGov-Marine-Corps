@@ -82,12 +82,6 @@
 			var/obj/item/card/id/I = M.get_active_held_item()
 			if(istype(I))
 				if((ACCESS_MARINE_CAPTAIN in I.access) || (ACCESS_MARINE_BRIDGE in I.access)) //Let heads change the alert level.
-					switch(tmp_alertlevel)
-						if(-INFINITY to SEC_LEVEL_GREEN)
-							tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
-						if(SEC_LEVEL_BLUE to INFINITY)
-							tmp_alertlevel = SEC_LEVEL_BLUE //Cannot go above blue.
-
 					switch_alert_level(tmp_alertlevel)
 				else
 					to_chat(usr, span_warning("You are not authorized to do this."))
@@ -98,7 +92,7 @@
 
 		if("announce")
 			if(authenticated == 2)
-				if(TIMER_COOLDOWN_CHECK(usr, COOLDOWN_HUD_ORDER))
+				if(TIMER_COOLDOWN_RUNNING(usr, COOLDOWN_HUD_ORDER))
 					to_chat(usr, span_warning("You've sent an announcement or message too recently!"))
 					return
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
@@ -150,7 +144,7 @@
 					to_chat(usr, span_warning("The [SSmapping.configs[SHIP_MAP].map_name]'s distress beacon must be activated prior to evacuation taking place."))
 					return FALSE
 
-				if(GLOB.marine_main_ship.security_level < SEC_LEVEL_RED)
+				if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_RED)
 					to_chat(usr, span_warning("The ship must be under red alert in order to enact evacuation procedures."))
 					return FALSE
 
@@ -188,7 +182,7 @@
 						//if the self_destruct is active we try to cancel it (which includes lowering alert level to red)
 						if(!SSevacuation.cancel_self_destruct(1))
 							//if SD wasn't active (likely canceled manually in the SD room), then we lower the alert level manually.
-							GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
+							SSsecurity_level.set_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 
 				log_game("[key_name(usr)] has canceled the emergency evacuation.")
 				message_admins("[ADMIN_TPMONTY(usr)] has canceled the emergency evacuation.")
@@ -315,7 +309,7 @@
 				cooldown_central = world.time
 
 		if("securitylevel")
-			tmp_alertlevel = text2num( href_list["newalertlevel"] )
+			tmp_alertlevel = SSsecurity_level.text_level_to_number(href_list["newalertlevel"])
 			if(!tmp_alertlevel)
 				tmp_alertlevel = SEC_LEVEL_GREEN
 			if(isAI(usr))
@@ -347,45 +341,45 @@
 	switch(state)
 		if(STATE_DEFAULT)
 			if(authenticated)
-				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=logout'>LOG OUT</A> \]"
-				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=changeseclevel'>Change alert level</A> \]"
-				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=status'>Set status display</A> \]"
-				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=messagelist'>Message list</A> \]"
+				dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=logout'>LOG OUT</A> \]"
+				dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=changeseclevel'>Change alert level</A> \]"
+				dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=status'>Set status display</A> \]"
+				dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=messagelist'>Message list</A> \]"
 				dat += "<BR><hr>"
 
 				if(authenticated == 2)
-					dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=announce'>Make an announcement</A> \]"
-					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=[text_ref(src)];operation=messageNTC'>Send a message to NTC</A> \]" : "<BR>\[ NTC communication offline \]"
-					dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=award'>Award a medal</A> \]"
+					dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=announce'>Make an announcement</A> \]"
+					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=messageTGMC'>Send a message to NTC</A> \]" : "<BR>\[ NTC communication offline \]"
+					dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=award'>Award a medal</A> \]"
 					if(CONFIG_GET(flag/infestation_ert_allowed)) // We only add the UI if the flag is allowed
-						dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=distress'>Send Distress Beacon</A> \]"
+						dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=distress'>Send Distress Beacon</A> \]"
 					switch(SSevacuation.evac_status)
-						if(EVACUATION_STATUS_STANDING_BY) dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=evacuation_start'>Initiate emergency evacuation</A> \]"
-						if(EVACUATION_STATUS_INITIATING) dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=delta_cancel'>Cancel Delta Alert</A> \]"
+						if(EVACUATION_STATUS_STANDING_BY) dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=evacuation_start'>Initiate emergency evacuation</A> \]"
+						if(EVACUATION_STATUS_INITIATING) dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=delta_cancel'>Cancel Delta Alert</A> \]"
 
 			else
-				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=login'>LOG IN</A> \]"
+				dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];operation=login'>LOG IN</A> \]"
 
 		if(STATE_EVACUATION)
-			dat += "Are you sure you want to evacuate the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=[text_ref(src)];operation=evacuation_start'>Confirm</A>\]"
+			dat += "Are you sure you want to evacuate the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A href='byond://?src=[text_ref(src)];operation=evacuation_start'>Confirm</A>\]"
 
 		if(STATE_EVACUATION_CANCEL)
-			dat += "Are you sure you want to cancel Delta Alert and prevent the evacuation and/or self destruction of the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=[text_ref(src)];operation=delta_cancel'>Confirm</A>\]"
+			dat += "Are you sure you want to cancel Delta Alert and prevent the evacuation and/or self destruction of the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A href='byond://?src=[text_ref(src)];operation=delta_cancel'>Confirm</A>\]"
 
 		if(STATE_DISTRESS)
 			if(CONFIG_GET(flag/infestation_ert_allowed))
-				dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=[text_ref(src)];operation=distress'>Confirm</A>\]"
+				dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A href='byond://?src=[text_ref(src)];operation=distress'>Confirm</A>\]"
 
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
 			for(var/i = 1; length(i<=messagetitle); i++)
-				dat += "<BR><A HREF='?src=[text_ref(src)];operation=viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
+				dat += "<BR><A href='byond://?src=[text_ref(src)];operation=viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
 
 		if(STATE_VIEWMESSAGE)
 			if (currmsg)
 				dat += "<B>[messagetitle[currmsg]]</B><BR><BR>[messagetext[currmsg]]"
 				if (authenticated)
-					dat += "<BR><BR>\[ <A HREF='?src=[text_ref(src)];operation=delmessage'>Delete \]"
+					dat += "<BR><BR>\[ <A href='byond://?src=[text_ref(src)];operation=delmessage'>Delete \]"
 			else
 				state = STATE_MESSAGELIST
 				attack_hand(user)
@@ -393,7 +387,7 @@
 
 		if(STATE_DELMESSAGE)
 			if (currmsg)
-				dat += "Are you sure you want to delete this message? \[ <A HREF='?src=[text_ref(src)];operation=delmessage2'>OK</A>|<A HREF='?src=[text_ref(src)];operation=viewmessage'>Cancel</A> \]"
+				dat += "Are you sure you want to delete this message? \[ <A href='byond://?src=[text_ref(src)];operation=delmessage2'>OK</A>|<A href='byond://?src=[text_ref(src)];operation=viewmessage'>Cancel</A> \]"
 			else
 				state = STATE_MESSAGELIST
 				attack_hand(user)
@@ -401,39 +395,42 @@
 
 		if(STATE_STATUSDISPLAY)
 			dat += "Set Status Displays<BR>"
-			dat += "\[ <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
-			dat += "\[ <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=time'>Station Time</A> \]<BR>"
-			dat += "\[ <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
-			dat += "\[ <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=message'>Message</A> \]"
-			dat += "<ul><li> Line 1: <A HREF='?src=[text_ref(src)];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
-			dat += "<li> Line 2: <A HREF='?src=[text_ref(src)];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
-			dat += "\[ Alert: <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=default'>None</A> |"
-			dat += " <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
-			dat += " <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
-			dat += " <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR><HR>"
+			dat += "\[ <A href='byond://?src=[text_ref(src)];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
+			dat += "\[ <A href='byond://?src=[text_ref(src)];operation=setstat;statdisp=time'>Station Time</A> \]<BR>"
+			dat += "\[ <A href='byond://?src=[text_ref(src)];operation=setstat;statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
+			dat += "\[ <A href='byond://?src=[text_ref(src)];operation=setstat;statdisp=message'>Message</A> \]"
+			dat += "<ul><li> Line 1: <A href='byond://?src=[text_ref(src)];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
+			dat += "<li> Line 2: <A href='byond://?src=[text_ref(src)];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
+			dat += "\[ Alert: <A href='byond://?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=default'>None</A> |"
+			dat += " <A href='byond://?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
+			dat += " <A href='byond://?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
+			dat += " <A href='byond://?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR><HR>"
 
 		if(STATE_ALERT_LEVEL)
-			dat += "Current alert level: [GLOB.marine_main_ship.get_security_level()]<BR>"
-			if(GLOB.marine_main_ship.security_level == SEC_LEVEL_DELTA)
+			dat += "Current alert level: [SSsecurity_level.get_current_level_as_text()]<BR>"
+			if((SSsecurity_level.current_security_level.sec_level_flags & SEC_LEVEL_FLAG_STATE_OF_EMERGENCY) || SSevacuation.evac_status)
 				if(SSevacuation.dest_status >= NUKE_EXPLOSION_ACTIVE)
 					dat += "<font color='red'><b>The self-destruct mechanism is active. [SSevacuation.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
 				switch(SSevacuation.evac_status)
 					if(EVACUATION_STATUS_INITIATING)
-						dat += "<font color='red'><b>Evacuation initiated. Evacuate or rescind evacuation orders.</b></font>"
+						dat += "<font color='red'><b>Evacuation initiated. Evacuate or rescind evacuation orders.</b></font><BR>"
 					if(EVACUATION_STATUS_IN_PROGRESS)
-						dat += "<font color='red'><b>Evacuation in progress.</b></font>"
+						dat += "<font color='red'><b>Evacuation in progress.</b></font><BR>"
 					if(EVACUATION_STATUS_COMPLETE)
-						dat += "<font color='red'><b>Evacuation complete.</b></font>"
-			else
-				dat += "<A HREF='?src=[text_ref(src)];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
-				dat += "<A HREF='?src=[text_ref(src)];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
+						dat += "<font color='red'><b>Evacuation complete.</b></font><BR>"
+			if(!(SSsecurity_level.current_security_level.sec_level_flags & SEC_LEVEL_FLAG_CANNOT_SWITCH))
+				for(var/iter_level_text AS in SSsecurity_level.available_levels)
+					var/datum/security_level/iter_level_datum = SSsecurity_level.available_levels[iter_level_text]
+					if(!(iter_level_datum.sec_level_flags & SEC_LEVEL_FLAG_CAN_SWITCH_COMMS_CONSOLE))
+						continue
+					dat += "<A href='byond://?src=[text_ref(src)];operation=securitylevel;newalertlevel=[iter_level_datum.name]'>[iter_level_datum.name]</A><BR>"
 
 		if(STATE_CONFIRM_LEVEL)
-			dat += "Current alert level: [GLOB.marine_main_ship.get_security_level()]<BR>"
-			dat += "Confirm the change to: [GLOB.marine_main_ship.get_security_level(tmp_alertlevel)]<BR>"
-			dat += "<A HREF='?src=[text_ref(src)];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
+			dat += "Current alert level: [SSsecurity_level.get_current_level_as_text()]<BR>"
+			dat += "Confirm the change to: [SSsecurity_level.number_level_to_text(tmp_alertlevel)]<BR>"
+			dat += "<A href='byond://?src=[text_ref(src)];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
-	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=[text_ref(src)];operation=main'>Main Menu</A>|" : ""]\]"
+	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A href='byond://?src=[text_ref(src)];operation=main'>Main Menu</A>|" : ""]\]"
 
 	var/datum/browser/popup = new(user, "communications", "<div align='center'>Communications Console</div>", 400, 500)
 	popup.set_content(dat)
@@ -444,12 +441,12 @@
 
 
 /obj/machinery/computer/communications/proc/switch_alert_level(new_level)
-	var/old_level = GLOB.marine_main_ship.security_level
-	GLOB.marine_main_ship.set_security_level(new_level)
-	if(GLOB.marine_main_ship.security_level == old_level)
+	var/old_level = SSsecurity_level.get_current_level_as_text()
+	SSsecurity_level.set_level(new_level)
+	if(SSsecurity_level.get_current_level_as_text() == old_level)
 		return //Only notify the admins if an actual change happened
-	log_game("[key_name(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
-	message_admins("[ADMIN_TPMONTY(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
+	log_game("[key_name(usr)] has changed the security level from [old_level] to [SSsecurity_level.get_current_level_as_text()].")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the security level from [old_level] to [SSsecurity_level.get_current_level_as_text()].")
 
 /obj/machinery/computer/communications/antag
 	req_access = null

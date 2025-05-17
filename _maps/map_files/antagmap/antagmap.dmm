@@ -120,7 +120,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/reedroom)
 "aY" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/whiskey{
+/obj/machinery/computer/camera_advanced/overwatch/military/som/whiskey{
 	req_access = list(204)
 	},
 /obj/structure/table/reinforced,
@@ -355,7 +355,7 @@
 /turf/open/floor/wood,
 /area/antag_ship/som/office/commander/field)
 "cw" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -3055,7 +3055,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/antag_ship/icc/generator_room)
 "qa" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -3880,7 +3880,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/inside)
 "uA" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/xray{
+/obj/machinery/computer/camera_advanced/overwatch/military/som/xray{
 	req_access = list(204)
 	},
 /obj/structure/table/reinforced,
@@ -4251,7 +4251,7 @@
 /area/antag_ship/som/bridge)
 "wx" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/camera_advanced/overwatch/main/som{
+/obj/machinery/computer/camera_advanced/overwatch/military/main/som{
 	req_access = list(204)
 	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -4497,7 +4497,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "xC" = (
-/obj/structure/prop/rappel_bay,
+/obj/structure/dropship_equipment/shuttle/rappel_system,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
 "xD" = (
@@ -4625,7 +4625,7 @@
 /area/antag_ship/som/bridge)
 "yd" = (
 /obj/structure/table/wood/fancy,
-/obj/machinery/computer/camera_advanced/overwatch/som,
+/obj/machinery/computer/camera_advanced/overwatch/military/som,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -7490,7 +7490,7 @@
 /area/antag_ship/som/hangar)
 "NJ" = (
 /obj/effect/ai_node,
-/obj/machinery/computer/camera_advanced/overwatch/som/xray{
+/obj/machinery/computer/camera_advanced/overwatch/military/som/xray{
 	req_access = list(204)
 	},
 /turf/open/floor/mainship/office,
@@ -7865,7 +7865,7 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security/cell)
 "PB" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /obj/machinery/light/mainship{
@@ -9493,7 +9493,7 @@
 /turf/open/floor/wood,
 /area/antag_ship/som/office/commander/field)
 "Xi" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /obj/machinery/light/mainship{
@@ -9626,7 +9626,7 @@
 	id = "SOMINT";
 	dir = 8
 	},
-/obj/item/attachable/bayonetknife/som,
+/obj/item/attachable/bayonet/som,
 /obj/item/paper/brassnote{
 	info = "Clean the goddamn beds after you are done ripping apart NTC dogs' holes. - Som high command.";
 	name = "Note"

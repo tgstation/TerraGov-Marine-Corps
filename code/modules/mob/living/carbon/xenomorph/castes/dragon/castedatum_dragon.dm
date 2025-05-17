@@ -14,10 +14,10 @@
 	melee_damage = 30
 
 	// *** Speed *** //
-	speed = 0
+	speed = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 1000
+	plasma_max = 750
 	plasma_gain = 0
 	plasma_regen_limit = 0
 	plasma_icon_state = "armor"
@@ -28,19 +28,20 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
+	evolve_min_xenos = 13
 	death_evolution_delay = 15 MINUTES
 
 	// *** Flags *** //
-	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE|CASTE_STAGGER_RESISTANT|CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
-	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STUNIMMUNE, TRAIT_NEEDS_SILO_TO_EVOLVE_FROM, TRAIT_NEEDS_SILO_TO_EVOLVE_TO)
+	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE
+	can_flags = parent_type::can_flags|CASTE_CAN_CORRUPT_GENERATOR
+	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STUNIMMUNE, TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 80, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 200, ACID = 75)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 45, BIO = 60, FIRE = 200, ACID = 60)
 
 	// *** Sunder *** //
 	sunder_recover = 1
-	sunder_multiplier = 0.6
+	sunder_multiplier = 0.8
 
 	minimap_icon = "xenodragon"
 
@@ -75,6 +76,8 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain/free,
 		/datum/action/ability/xeno_action/psychic_whisper,
 		/datum/action/ability/xeno_action/psychic_influence,
 		/datum/action/ability/activable/xeno/impregnate,

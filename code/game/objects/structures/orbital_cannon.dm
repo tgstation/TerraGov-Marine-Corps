@@ -2,6 +2,8 @@
 #define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 #define WARHEAD_FUEL_REQUIREMENT 6
+GLOBAL_DATUM(orbital_cannon, /obj/structure/orbital_cannon)
+GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
@@ -10,7 +12,8 @@
 	icon_state = "OBC_unloaded"
 	density = TRUE
 	anchored = TRUE
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
+	appearance_flags = PIXEL_SCALE|LONG_GLIDE
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
@@ -23,8 +26,8 @@
 
 /obj/structure/orbital_cannon/Initialize(mapload)
 	. = ..()
-	if(!GLOB.marine_main_ship.orbital_cannon)
-		GLOB.marine_main_ship.orbital_cannon = src
+	if(!GLOB.orbital_cannon)
+		GLOB.orbital_cannon = src
 
 	var/turf/T = locate(x+1,y+1,z)
 	var/obj/structure/orbital_tray/O = new(T)
@@ -35,8 +38,8 @@
 	if(tray)
 		tray.linked_ob = null
 		tray = null
-	if(GLOB.marine_main_ship.orbital_cannon == src)
-		GLOB.marine_main_ship.orbital_cannon = null
+	if(GLOB.orbital_cannon == src)
+		GLOB.orbital_cannon = null
 	QDEL_NULL(tray)
 	return ..()
 
@@ -166,20 +169,23 @@
 	update_icon()
 
 /// Handles the playing of the Orbital Bombardment incoming sound and other visual and auditory effects of the cannon, usually a spiraling whistle noise but can be overridden.
-/obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, ob_sound = 'sound/effects/OB_incoming.ogg')
+/obj/structure/orbital_cannon/proc/handle_ob_firing_effects(turf/target, ob_sound = 'sound/effects/OB_incoming.ogg')
 	flick("OBC_firing",src)
-	for(var/mob/living/current_mob AS in GLOB.mob_living_list)
-		if(!current_mob || !is_mainship_level(current_mob.z))
-			continue
-		if(get_dist(src, current_mob) > 20)
-			current_mob.playsound_local(current_mob, 'sound/effects/obalarm.ogg', 25)
-		shake_camera(current_mob, 0.7 SECONDS)
-		to_chat(current_mob, span_warning("The deck of the [SSmapping.configs[SHIP_MAP].map_name] shudders as her orbital cannon opens fire."))
 	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
-	for(var/mob/M AS in hearers(WARHEAD_FALLING_SOUND_RANGE, target))
-		M.playsound_local(target, ob_sound, falloff = 2)
-
 	new /obj/effect/temp_visual/ob_impact(target, tray.warhead)
+
+	for(var/mob/living/current_mob AS in GLOB.mob_living_list)
+		if(current_mob.z == z)
+			if(get_dist(src, current_mob) > 20)
+				current_mob.playsound_local(current_mob, 'sound/effects/obalarm.ogg', 25)
+			shake_camera(current_mob, 0.7 SECONDS)
+			to_chat(current_mob, span_warning("The deck of the [SSmapping.configs[SHIP_MAP].map_name] shudders as her orbital cannon opens fire."))
+			continue
+		if(current_mob.z != target.z)
+			continue
+		if(get_dist(current_mob, target) > WARHEAD_FALLING_SOUND_RANGE)
+			continue
+		current_mob.playsound_local(target, ob_sound, falloff = 2)
 
 /obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
 	set waitfor = FALSE
@@ -213,7 +219,7 @@
 	)
 	var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list)
 	for(var/mob/living/screentext_receiver AS in receivers)
-		screentext_receiver.play_screen_text("<span class='maptext' style=font-size:36pt;text-align:left valign='top'><u><b>ORBITAL STRIKE IMMINENT</b></u></span><br>TYPE: [uppertext(tray.warhead.warhead_kind)]", new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, user))
+		screentext_receiver.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("ORBITAL STRIKE IMMINENT", "TYPE: [uppertext(tray.warhead.warhead_kind)]", LEFT_ALIGN_TEXT), new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, user))
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
 
 	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
@@ -221,7 +227,7 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/orbital_cannon, handle_ob_firing_effects), target), impact_time - (0.5 SECONDS))
 	var/impact_timerid = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/orbital_cannon, impact_callback), target, inaccurate_fuel), impact_time, TIMER_STOPPABLE)
 
-	var/canceltext = "Warhead: [tray.warhead.warhead_kind]. Impact at [ADMIN_VERBOSEJMP(target)] <a href='?_src_=holder;[HrefToken(TRUE)];cancelob=[impact_timerid]'>\[CANCEL OB\]</a>"
+	var/canceltext = "Warhead: [tray.warhead.warhead_kind]. Impact at [ADMIN_VERBOSEJMP(target)] <a href='byond://?_src_=holder;[HrefToken(TRUE)];cancelob=[impact_timerid]'>\[CANCEL OB\]</a>"
 	message_admins("[span_prefix("OB FIRED:")] <span class='message linkify'> [canceltext]</span>")
 	log_game("OB fired by [user] at [AREACOORD(src)], OB type: [tray.warhead.warhead_kind], timerid to cancel: [impact_timerid]")
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
@@ -247,7 +253,8 @@
 	density = TRUE
 	anchored = TRUE
 	climbable = TRUE
-	layer = LADDER_LAYER + 0.01
+	appearance_flags = PIXEL_SCALE|LONG_GLIDE
+	layer = BELOW_OBJ_LAYER + 0.01
 	bound_width = 64
 	bound_height = 32
 	resistance_flags = RESIST_ALL
@@ -337,7 +344,7 @@
 
 
 /obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
+	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, explosion_cause=blame_mob)
 	return ..()
 
 
@@ -356,7 +363,7 @@
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
-	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 0, 15 - inaccuracy_amt)
+	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 0, 15 - inaccuracy_amt, explosion_cause=src)
 
 
 
@@ -387,7 +394,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 2, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
+		explosion(U, 2, 4, 6, 0, 6, throw_range = 0, explosion_cause=src)
 		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
@@ -422,6 +429,7 @@
 	icon_state = "ob_console"
 	screen_overlay = "ob_console_screen"
 	dir = WEST
+	layer = LOW_ITEM_LAYER
 	atom_flags = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
@@ -454,35 +462,35 @@
 			return
 
 	var/dat
-	if(!GLOB.marine_main_ship?.orbital_cannon)
+	if(!GLOB.orbital_cannon)
 		dat += "No Orbital Cannon System Detected!<BR>"
-	else if(!GLOB.marine_main_ship.orbital_cannon.tray)
+	else if(!GLOB.orbital_cannon.tray)
 		dat += "Orbital Cannon System Tray is missing!<BR>"
 	else
 		if(orbital_window_page == 1)
 			dat += "<font size=3>Warhead Fuel Requirements:</font><BR>"
 			dat += "All orbital warheads require <b>[WARHEAD_FUEL_REQUIREMENT] Solid Fuel blocks.</b><BR>"
 
-			dat += "<BR><BR><A href='?src=[text_ref(src)];back=1'><font size=3>Back</font></A><BR>"
+			dat += "<BR><BR><A href='byond://?src=[text_ref(src)];back=1'><font size=3>Back</font></A><BR>"
 		else
 			var/tray_status = "unloaded"
-			if(GLOB.marine_main_ship.orbital_cannon.chambered_tray)
+			if(GLOB.orbital_cannon.chambered_tray)
 				tray_status = "chambered"
-			else if(GLOB.marine_main_ship.orbital_cannon.loaded_tray)
+			else if(GLOB.orbital_cannon.loaded_tray)
 				tray_status = "loaded"
 			dat += "Orbital Cannon Tray is <b>[tray_status]</b><BR>"
-			if(GLOB.marine_main_ship.orbital_cannon.tray.warhead)
-				dat += "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>"
+			if(GLOB.orbital_cannon.tray.warhead)
+				dat += "[GLOB.orbital_cannon.tray.warhead.name] Detected<BR>"
 			else
 				dat += "No Warhead Detected<BR>"
-			dat += "[GLOB.marine_main_ship.orbital_cannon.tray.fuel_amt] Solid Fuel Block\s Detected<BR><HR>"
+			dat += "[GLOB.orbital_cannon.tray.fuel_amt] Solid Fuel Block\s Detected<BR><HR>"
 
-			dat += "<A href='?src=[text_ref(src)];load_tray=1'><font size=3>Load Tray</font></A><BR>"
-			dat += "<A href='?src=[text_ref(src)];unload_tray=1'><font size=3>Unload Tray</font></A><BR>"
-			dat += "<A href='?src=[text_ref(src)];chamber_tray=1'><font size=3>Chamber Tray Payload</font></A><BR>"
-			dat += "<BR><A href='?src=[text_ref(src)];check_req=1'><font size=3>Check Fuel Requirements</font></A><BR>"
+			dat += "<A href='byond://?src=[text_ref(src)];load_tray=1'><font size=3>Load Tray</font></A><BR>"
+			dat += "<A href='byond://?src=[text_ref(src)];unload_tray=1'><font size=3>Unload Tray</font></A><BR>"
+			dat += "<A href='byond://?src=[text_ref(src)];chamber_tray=1'><font size=3>Chamber Tray Payload</font></A><BR>"
+			dat += "<BR><A href='byond://?src=[text_ref(src)];check_req=1'><font size=3>Check Fuel Requirements</font></A><BR>"
 
-		dat += "<HR><BR><A href='?src=[text_ref(src)];close=1'><font size=3>Close</font></A><BR>"
+		dat += "<HR><BR><A href='byond://?src=[text_ref(src)];close=1'><font size=3>Close</font></A><BR>"
 
 
 	var/datum/browser/popup = new(user, "orbital_console", "<div align='center'>Orbital Cannon System Control Console</div>", 500, 350)
@@ -496,13 +504,13 @@
 		return
 
 	if(href_list["load_tray"])
-		GLOB.marine_main_ship?.orbital_cannon?.load_tray(usr)
+		GLOB.orbital_cannon?.load_tray(usr)
 
 	else if(href_list["unload_tray"])
-		GLOB.marine_main_ship?.orbital_cannon?.unload_tray(usr)
+		GLOB.orbital_cannon?.unload_tray(usr)
 
 	else if(href_list["chamber_tray"])
-		GLOB.marine_main_ship?.orbital_cannon?.chamber_payload(usr)
+		GLOB.orbital_cannon?.chamber_payload(usr)
 
 	else if(href_list["check_req"])
 		orbital_window_page = 1
@@ -520,7 +528,8 @@
 	icon_state = "Railgun"
 	density = TRUE
 	anchored = TRUE
-	layer = LADDER_LAYER
+	appearance_flags = PIXEL_SCALE|LONG_GLIDE
+	layer = BELOW_OBJ_LAYER
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
@@ -532,15 +541,15 @@
 
 /obj/structure/ship_rail_gun/Initialize(mapload)
 	. = ..()
-	if(!GLOB.marine_main_ship.rail_gun)
-		GLOB.marine_main_ship.rail_gun = src
+	if(!GLOB.rail_gun)
+		GLOB.rail_gun = src
 	rail_gun_ammo = new /obj/structure/ship_ammo/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
 /obj/structure/ship_rail_gun/Destroy()
-	if(GLOB.marine_main_ship.rail_gun == src)
-		GLOB.marine_main_ship.rail_gun = null
+	if(GLOB.rail_gun == src)
+		GLOB.rail_gun = null
 	QDEL_NULL(rail_gun_ammo)
 	return ..()
 

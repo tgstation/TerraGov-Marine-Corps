@@ -51,7 +51,7 @@
 	var/icon_state = json_data["icon_state"]
 	if(prefix && !json_data["ignore_prefix"])
 		icon_state = prefix+icon_state
-	if(!(icon_state in icon_states(icon_file)))
+	if(!icon_exists(icon_file, icon_state))
 		CRASH("Configured icon state \[[icon_state]\] was not found in [icon_file]. Double check your json configuration.")
 	icon = new(icon_file, icon_state)
 
@@ -105,7 +105,7 @@
 	var/icon_state = json_data["icon_state"]
 	if(prefix && !json_data["ignore_prefix"])
 		icon_state = prefix + icon_state
-	if(!(icon_state in icon_states(icon_file)))
+	if(!icon_exists(icon_file, icon_state))
 		CRASH("Configured icon state \"[icon_state]\" was not found in [icon_file]. Double check your json configuration.")
 	icon = new(icon_file, icon_state)
 	icon.GrayScale()

@@ -68,14 +68,14 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
 	icon_state = "flametank_som"
+	icon_state_mini = "tank_red"
 	max_rounds = 75
 	current_rounds = 75
 	reload_delay = 3 SECONDS
-	icon_state_mini = "tank_red"
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
-	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the FL-84 flamethrower. Handle with care."
+	desc = "A large fuel tank of ultra thick napthal fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the FL-84 flamethrower. Handle with care."
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
@@ -84,6 +84,7 @@
 /obj/item/ammo_magazine/flamer_tank/large/X/som
 	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
 	icon_state = "flametank_som_x"
+	icon_state_mini = "tank_red_blue"
 
 /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
 	name = "Gargantuan flamethrower X-tank"
@@ -93,7 +94,7 @@
 	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/flamer_tank/backtank
-	name = "back fuel tank"
+	name = "backpack fuel tank"
 	desc = "A specialized fuel tank for use with the FL-84 flamethrower and FL-240 incinerator unit."
 	icon_state = "flamethrower_tank"
 	equip_slot_flags = ITEM_SLOT_BACK
@@ -108,7 +109,7 @@
 	default_ammo = /datum/ammo/flamethrower
 
 /obj/item/ammo_magazine/flamer_tank/backtank/X
-	name = "back fuel tank (X)"
+	name = "backpack fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."
 	icon_state = "x_flamethrower_tank"
 	default_ammo = /datum/ammo/flamethrower/blue

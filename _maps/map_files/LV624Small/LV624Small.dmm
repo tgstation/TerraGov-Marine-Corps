@@ -2488,10 +2488,10 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple)
 "cox" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -4495,7 +4495,7 @@
 	ceiling = 6
 	})
 "eoa" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},
@@ -11969,7 +11969,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "lnI" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0;
 	dir = 8
@@ -12816,7 +12816,7 @@
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "lYM" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0;
 	dir = 8
@@ -13411,7 +13411,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "mDt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0
 	},
@@ -14828,7 +14828,7 @@
 	outside = 0
 	})
 "nYh" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/floor/mainship/silver/full,
 /area/mainship/patrol_base/som)
 "nYN" = (
@@ -15350,7 +15350,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "osO" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0
 	},
@@ -15518,11 +15518,11 @@
 	ceiling = 6
 	})
 "ozv" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0;
 	dir = 8
@@ -17006,7 +17006,7 @@
 /turf/open/floor/plating/warning,
 /area/lv624/ground/filtration)
 "pWs" = (
-/obj/machinery/computer/camera_advanced/overwatch/som,
+/obj/machinery/computer/camera_advanced/overwatch/military/som,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -19366,10 +19366,10 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "sfL" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -19436,7 +19436,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/caves/rock)
 "sjE" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -20506,7 +20506,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "tir" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0;
 	dir = 8
@@ -20613,7 +20613,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "tnJ" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0;
 	dir = 8
@@ -21545,7 +21545,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
 "ukc" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
@@ -22936,7 +22936,7 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "vxU" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -23278,7 +23278,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "vMK" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -25158,12 +25158,12 @@
 	},
 /area/lv624/lazarus/main_hall)
 "xzH" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0;
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	is_wired = 1;
 	can_wire = 0
 	},
@@ -25987,7 +25987,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "yke" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	is_wired = 1;
 	can_wire = 0;
 	dir = 8

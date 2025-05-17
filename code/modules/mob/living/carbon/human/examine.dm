@@ -1,6 +1,3 @@
-/mob/living/carbon/human/get_examine_icon(mob/user)
-	return null // carbon human icons either don't work or are super fucked up
-
 /mob/living/carbon/human/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	var/skipgloves = 0
@@ -37,7 +34,7 @@
 
 	var/msg = ""
 
-	msg += "<span class='info'>"
+	msg += "<span class='infoplain'>"
 	msg += separator_hr("Outfit")
 
 	//uniform
@@ -174,6 +171,8 @@
 
 	msg += separator_hr("Status")
 
+	msg += "[t_He] [t_is] a [species.name].\n"
+
 	//jitters
 	if(stat != DEAD)
 		if(jitteriness >= 300)
@@ -228,7 +227,8 @@
 
 	if((!species.has_organ["brain"] || has_brain()) && stat != DEAD)
 		if(!key)
-			msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
+			if(!has_ai())
+				msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
 		else if(!client)
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [p_do()]n't seem responsive.")]\n"
@@ -369,9 +369,7 @@
 				healthy = FALSE
 
 			var/overall_desc = ""
-			if(healthy)
-				overall_desc = span_tinynotice("[t_He] [t_has] a healthy [temp_limb.display_name].")
-			else
+			if(!healthy)
 				overall_desc = "[t_He] [t_has] a [germ_desc][temp_limb.display_name]"
 				if(brute_desc || burn_desc)
 					overall_desc += " with [brute_desc]"
@@ -379,7 +377,7 @@
 						overall_desc += " and "
 					overall_desc += burn_desc
 				overall_desc = span_warning(overall_desc + ".")
-			wound_flavor_text["[temp_limb.display_name]"] = overall_desc + "\n"
+				wound_flavor_text["[temp_limb.display_name]"] = overall_desc + "\n"
 
 	//Handles the text strings being added to the actual description.
 	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.
@@ -525,15 +523,15 @@
 						if(R.fields["id"] == E.fields["id"])
 							criminal = R.fields["criminal"]
 
-			msg += "[span_deptradio("Criminal status:")] <a href='?src=[text_ref(src)];criminal=1'>\[[criminal]\]</a>\n"
-			msg += "[span_deptradio("Security records:")] <a href='?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
+			msg += "[span_deptradio("Criminal status:")] <a href='byond://?src=[text_ref(src)];criminal=1'>\[[criminal]\]</a>\n"
+			msg += "[span_deptradio("Security records:")] <a href='byond://?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='byond://?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(user,"medical"))
 		msg += separator_hr("Medical HUD")
 		var/cardcolor = holo_card_color
 		if(!cardcolor)
 			cardcolor = "none"
-		msg += "[span_deptradio("Triage holo card:")] <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> | "
+		msg += "[span_deptradio("Triage holo card:")] <a href='byond://?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> | "
 
 		// scan reports
 		var/datum/data/record/N = null
@@ -545,14 +543,14 @@
 			if(!(N.fields["last_scan_time"]))
 				msg += "[span_deptradio("No body scan report on record")]\n"
 			else
-				msg += "[span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>Body scan from [N.fields["last_scan_time"]]</a>")]\n"
+				msg += "[span_deptradio("<a href='byond://?src=[text_ref(src)];scanreport=1'>Body scan from [N.fields["last_scan_time"]]</a>")]\n"
 
 	if(hasHUD(user,"squadleader"))
 		msg += separator_hr("SL Utilities")
 		var/mob/living/carbon/human/H = user
 		if(assigned_squad) //examined mob is a marine in a squad
 			if(assigned_squad == H.assigned_squad) //same squad
-				msg += "<a href='?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
+				msg += "<a href='byond://?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
 	msg += "\n[span_collapsible("Flavor Text", "[flavor_text]")]"
 	if(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes)
@@ -609,7 +607,11 @@
 			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += separator_hr("[span_boldwarning("Admin Slept")]")
-		msg += span_userdanger("This player has been slept by staff. Best to leave them be.\n")
+		msg += span_userdanger("This player has been slept by staff. Leave them be.\n")
+
+	if(isadmin(user))
+		msg += separator_hr("Admin Interactions")
+		msg += span_admin("<span class='notice linkify'>[ADMIN_FULLMONTY(src)]</span>")
 
 	msg += "</span>"
 	return list(msg)
@@ -635,7 +637,7 @@
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 			if("squadleader")
-				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/radio/headset/mainship/marine)
+				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/radio/headset/mainship)
 			else
 				return 0
 	else

@@ -161,7 +161,7 @@
 	return FALSE
 
 
-/obj/projectile/Adjacent(atom/neighbor, atom/target, atom/movable/mover) //Projectiles don't behave like regular items.
+/atom/movable/projectile/Adjacent(atom/neighbor, atom/target, atom/movable/mover) //Projectiles don't behave like regular items.
 	var/turf/T = get_turf(loc)
 	return T?.Adjacent(neighbor, target = neighbor, mover = src)
 

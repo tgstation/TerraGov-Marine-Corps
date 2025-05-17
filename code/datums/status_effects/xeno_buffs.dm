@@ -107,7 +107,7 @@
 		link_owner.balloon_alert(link_owner, was_within_range ? ("Link reestablished") : ("Link faltering"))
 		link_target.balloon_alert(link_target, was_within_range ? ("Link reestablished") : ("Link faltering"))
 
-	if(stacks < max_stacks && COOLDOWN_CHECK(src, attunement_increase))
+	if(stacks < max_stacks && COOLDOWN_FINISHED(src, attunement_increase))
 		add_stacks(1)
 
 	var/remaining_health = link_target.maxHealth - (link_target.getBruteLoss() + link_target.getFireLoss())
@@ -116,7 +116,7 @@
 	var/heal_amount = link_target.maxHealth * (DRONE_ESSENCE_LINK_REGEN * stacks)
 	var/ability_cost = heal_amount * 2
 	if(link_owner.plasma_stored < ability_cost)
-		if(!COOLDOWN_CHECK(src, plasma_warning))
+		if(!COOLDOWN_FINISHED(src, plasma_warning))
 			return
 		link_owner.balloon_alert(link_owner, "No plasma for link")
 		link_target.balloon_alert(link_target, "No plasma for link")
@@ -518,7 +518,7 @@
 
 		if(do_after(owner_xeno, KNOCKDOWN_DURATION, FALSE, target, ignore_turf_checks = FALSE))
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
-
+			SEND_SIGNAL(target, COMSIG_XENO_CARNAGE_HIT, owner_xeno.xeno_caste.drain_plasma_gain, owner_xeno)
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
 			if(target_xeno == owner_xeno)

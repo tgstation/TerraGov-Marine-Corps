@@ -35,6 +35,23 @@
 	full_name = "Quick equip 5"
 	quick_equip_slot = 5
 
+/datum/keybinding/human/interact_other_hand
+	hotkey_keys = list("Unbound")
+	name = "interact_other_hand"
+	full_name = "Interact with other hand"
+	keybind_signal = COMSIG_KB_HUMAN_INTERACT_OTHER_HAND
+
+/datum/keybinding/human/interact_other_hand/down(client/user)
+	. = ..()
+	if(.)
+		return
+
+	if(!ishuman(user.mob))
+		return
+	var/mob/living/carbon/human/human_user = user.mob
+
+	human_user.interact_other_hand()
+
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")
 	name = "unique_action"
@@ -115,8 +132,15 @@
 	hotkey_keys = list("h")
 	name = "toggle_helmet_module"
 	full_name = "Toggle helmet module"
-	description = "Toggles your helmet module on or off"
+	description = "Toggles your helmet module on or off or activates it"
 	keybind_signal = COMSIG_KB_HELMETMODULE
+
+/datum/keybinding/human/toggle_armor_module
+	hotkey_keys = list("j")
+	name = "toggle_armor_module"
+	full_name = "Toggle armor module"
+	description = "Toggles your armor module or activates it"
+	keybind_signal = COMSIG_KB_ARMORMODULE
 
 /datum/keybinding/human/toggle_suit_light
 	hotkey_keys = list("l")
@@ -193,3 +217,17 @@
 	full_name = "Honk Horn"
 	description = "Tell marines to move so that they don't get run over"
 	keybind_signal = COMSIG_KB_VEHICLEHONK
+
+/datum/keybinding/human/place_hologram
+	name = "place_hologram"
+	full_name = "Place Hologram"
+	description = "Place a holographic template of a structure"
+	keybind_signal = COMSIG_ABILITY_PLACE_HOLOGRAM
+	hotkey_keys = list("E")
+
+/datum/keybinding/human/select_buildtype
+	name = "select_buildtype"
+	full_name = "Select Buildtype"
+	description = "Select the structure to use when using Place Hologram"
+	keybind_signal = COMSIG_ABILITY_SELECT_BUILDTYPE
+	hotkey_keys = list("Q")

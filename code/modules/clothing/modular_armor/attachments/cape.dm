@@ -2,7 +2,7 @@
 #define HOOD "hood"
 
 /obj/item/armor_module/armor/cape
-	name = "6E Chameleon cape"
+	name = "\improper 6E Chameleon cape"
 	desc = "A chromatic cape to improve on the design of the 7E badge, this cape is capable of two colors, for all your fashion needs. It also is equipped with thermal insulators so it will double as a blanket. \n Interact with facepaint to color and change variant. Attaches onto a uniform. Activate it to toggle the hood."
 	icon_state = "cape"
 	slot = ATTACHMENT_SLOT_CAPE
@@ -257,7 +257,7 @@
 	user.update_inv_w_uniform()
 
 /obj/item/armor_module/armor/cape/kama
-	name = "6E Chameleon kama"
+	name = "\improper 6E Chameleon kama"
 	desc = "A chromatic kama to improve on the design of the 7E badge, this kama is capable of two colors, for all your fashion needs. Hanged from the belt, it serves to flourish the lower extremities.  \n Interact with facepaint to color. Attaches onto a uniform."
 	slot = ATTACHMENT_SLOT_KAMA
 	attachment_layer = KAMA_LAYER

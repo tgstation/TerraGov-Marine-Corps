@@ -6,10 +6,9 @@
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
 	icon = 'icons/effects/campaign_effects.dmi'
+	faction = FACTION_TERRAGOV
 	///ID to link with an associated start point
 	var/id = null
-	///Faction this belongs to for minimap purposes
-	var/faction = FACTION_TERRAGOV
 	///minimap icon state
 	var/minimap_icon = "patrol_1"
 	///List of open turfs around the point to deploy onto
@@ -26,7 +25,7 @@
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_GAMEMODE_LOADED, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED))
 	if(!(SSticker?.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) && !mode_override)
 		return
-	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon))
+	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon, MINIMAP_BLIPS_LAYER))
 
 	deploy_turfs = filled_circle_turfs(src, 5)
 	for(var/turf/turf AS in deploy_turfs)
@@ -67,10 +66,10 @@
 	var/shadow_filter = movable_to_move.get_filter(PATROL_POINT_RAPPEL_EFFECT)
 
 	var/current_layer = movable_to_move.layer
-	movable_to_move.pixel_y += RAPPEL_HEIGHT
+	movable_to_move.pixel_z += RAPPEL_HEIGHT
 	movable_to_move.layer = FLY_LAYER
 
-	animate(movable_to_move, pixel_y = movable_to_move.pixel_y - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
+	animate(movable_to_move, pixel_z = movable_to_move.pixel_z - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
 	animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
 
 	addtimer(CALLBACK(src, PROC_REF(end_rappel), movable_to_move, current_layer, mobs_moving), RAPPEL_DURATION)

@@ -17,7 +17,7 @@
 	///if FALSE, broadcasting and listening dont matter and this radio shouldnt do anything
 	var/on = TRUE
 	///the "default" radio frequency this radio is set to, listens and transmits to this frequency by default. wont work if the channel is encrypted
-	var/frequency = FREQ_COMMON
+	var/frequency = FREQ_CIV_GENERAL
 
 	/// Whether the radio will transmit dialogue it hears nearby into its radio channel.
 	var/broadcasting = FALSE

@@ -7,6 +7,7 @@
 	Against armored targets however, it can prove less effective."
 	icon_state = "volkite"
 	fire_sound = 'sound/weapons/guns/fire/volkite_4.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/volkite_fire_interior.ogg'
 	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
 	windup_delay = 0.6 SECONDS
 	projectile_delay = 3 SECONDS
@@ -21,7 +22,7 @@
 
 /obj/item/armored_weapon/volkite_carronade/do_fire(turf/source_turf, ammo_override)
 	var/turf/target_turf = get_turf_in_angle(Get_Angle(source_turf, get_turf(current_target)), source_turf, beam_range)
-	var/list/turf/beam_turfs = get_line(source_turf, target_turf)
+	var/list/turf/beam_turfs = get_traversal_line(source_turf, target_turf)
 	var/list/turf/impacted_turfs = list()
 	var/list/light_effects = list()
 	var/list/stop_beam_turfs
@@ -82,7 +83,7 @@
 		beam_turfs.Cut(beam_turfs.Find(impacted_turf))
 		stop_beam_turfs = RANGE_TURFS(1, impacted_turf)
 
-	explosion(target_turf, 0, 2, 5, 0, 3, 4, 4)
+	explosion(target_turf, 0, 2, 5, 0, 3, 4, 4, explosion_cause=current_firer)
 
 	QDEL_IN(source_turf.beam(target_turf, "volkite", beam_type = /obj/effect/ebeam/carronade), CARRONADE_BEAM_TIME)
 	QDEL_LIST_IN(light_effects, CARRONADE_BEAM_TIME)
@@ -100,6 +101,7 @@
 	ammo = /obj/item/ammo_magazine/tank/particle_lance
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/particle_lance)
 	fire_sound = 'sound/vehicles/weapons/particle_fire.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/particle_fire_interior.ogg'
 	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
 	windup_delay = 0.6 SECONDS
 	hud_state_empty = "battery_empty_flash"
@@ -124,6 +126,7 @@
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/coilgun)
 	fire_sound = 'sound/vehicles/weapons/coil_fire.ogg'
 	windup_sound = 'sound/vehicles/weapons/coil_charge.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/coilgun_fire_interior.ogg'
 	windup_delay = 0.6 SECONDS
 	projectile_delay = 3 SECONDS
 	maximum_magazines = 3
@@ -149,7 +152,7 @@
 
 /obj/item/armored_weapon/coilgun/detach(atom/moveto)
 	UnregisterSignal(chassis, COMSIG_VEHICLE_GRANT_CONTROL_FLAG)
-	. = ..()
+	return ..()
 
 /obj/item/armored_weapon/coilgun/do_fire(turf/source_turf, ammo_override)
 	ammo_override = current_ammo_type
@@ -235,7 +238,8 @@
 	name = "secondary MLRS"
 	desc = "A pair of forward facing multiple launch rocket systems with a total of 12 homing rockets. Can unleash its entire payload in rapid succession."
 	icon_state = "mlrs"
-	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
+	fire_sound = 'sound/vehicles/weapons/mlrs_fire.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/mlrs_interior.ogg'
 	armored_weapon_flags = MODULE_SECONDARY|MODULE_FIXED_FIRE_ARC
 	ammo = /obj/item/ammo_magazine/tank/secondary_mlrs
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_mlrs)

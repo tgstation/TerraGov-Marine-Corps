@@ -29,9 +29,10 @@
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
-	engine_sound = SFX_HOVER_TANK
-	engine_sound_length = 1.2 SECONDS
-	vis_range_mod = 4
+	idle_loop = /datum/looping_sound/som_tank_idle
+	idle_inside_loop = /datum/looping_sound/som_tank_idle_interior
+	drive_loop = /datum/looping_sound/som_tank_drive
+	drive_inside_loop = /datum/looping_sound/som_tank_drive_interior
 	faction = FACTION_SOM
 
 /obj/vehicle/sealed/armored/multitile/som_tank/Initialize(mapload)
@@ -56,9 +57,6 @@
 		return FALSE
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
-
-/obj/vehicle/sealed/armored/multitile/som_tank/play_engine_sound(freq_vary = TRUE, sound_freq = 32000) //arg override
-	return ..()
 
 /obj/vehicle/sealed/armored/multitile/som_tank/lava_act()
 	return //we flying baby

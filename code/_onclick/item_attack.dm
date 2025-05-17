@@ -78,14 +78,14 @@
 
 	return attacking_item.attack_obj(src, user)
 
-/obj/item/proc/attack_obj(obj/O, mob/living/user)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
+/obj/item/proc/attack_obj(obj/target_object, mob/living/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, target_object, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
 	if(item_flags & NOBLUDGEON)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
-	user.do_attack_animation(O, used_item = src)
-	return O.attacked_by(src, user)
+	user.changeNext_move(attack_speed)
+	user.do_attack_animation(target_object, used_item = src)
+	return target_object.attacked_by(src, user)
 
 
 /atom/movable/proc/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
@@ -126,7 +126,7 @@
 
 /mob/living/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 
-	var/message_verb = "attacked"
+	var/message_verb = "attacks"
 	if(LAZYLEN(attacking_item.attack_verb))
 		message_verb = pick(attacking_item.attack_verb)
 	var/message_hit_area
@@ -145,6 +145,8 @@
 	switch(attacking_item.damtype)
 		if(BRUTE)
 			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
+			if(is_sharp(attacking_item))
+				new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 		if(BURN)
 			if(apply_damage(power, BURN, user.zone_selected, FIRE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration))
 				attack_message_local = "[attack_message_local] It burns!"
@@ -354,7 +356,7 @@
  * def_zone: targetted area that will be attacked
  */
 /mob/living/proc/attacked_by_alternate(obj/item/I, mob/living/user, def_zone)
-	var/message_verb = "attacked"
+	var/message_verb = "attacks"
 	if(LAZYLEN(I.attack_verb))
 		message_verb = pick(I.attack_verb)
 	var/message_hit_area

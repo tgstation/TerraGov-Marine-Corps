@@ -1,3 +1,4 @@
+
 //Parent for all bonus role assets
 /datum/campaign_asset/bonus_job
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_DISABLE_ON_MISSION_END
@@ -69,7 +70,6 @@
 		/datum/job/pmc/leader/campaign_bonus = 1,
 		/datum/job/pmc/gunner/campaign_bonus = 2,
 		/datum/job/pmc/standard/campaign_bonus = 4,
-		/datum/job/pmc/medic/campaign_bonus = 2,
 	)
 
 /datum/campaign_asset/bonus_job/combat_robots

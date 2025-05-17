@@ -3,7 +3,7 @@
 	name = "Microwave"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
-	layer = ABOVE_TABLE_LAYER
+	layer = GIB_LAYER
 	density = TRUE
 	anchored = TRUE
 	coverage = 10
@@ -229,8 +229,8 @@
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
 		dat += {"<HR><BR>
-<a href='?src=[text_ref(src)];action=cook'>Turn on!</a><br>
-<a href='?src=[text_ref(src)];action=dispose'>Eject ingredients!</a>
+<a href='byond://?src=[text_ref(src)];action=cook'>Turn on!</a><br>
+<a href='byond://?src=[text_ref(src)];action=dispose'>Eject ingredients!</a>
 "}
 
 	var/datum/browser/popup = new(user, "microwave", "<div align='center'>Microwave Controls</div>")
@@ -351,7 +351,7 @@
 
 /obj/machinery/microwave/proc/muck_finish()
 	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
-	visible_message(span_warning(" The microwave gets covered in muck!"))
+	visible_message(span_warning("The microwave gets covered in muck!"))
 	dirty = 100 // Make it dirty so it can't be used util cleaned
 	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments
 	icon_state = "mwbloody0" // Make it look dirty too
@@ -363,7 +363,7 @@
 	s.set_up(2, 1, src)
 	s.start()
 	icon_state = "mwb" // Make it look all busted up and shit
-	visible_message(span_warning(" The microwave breaks!")) //Let them know they're stupid
+	visible_message(span_warning("The microwave breaks!")) //Let them know they're stupid
 	broken = 2 // Make it broken so it can't be used util fixed
 	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments
 	operating = 0 // Turn it off again aferwards

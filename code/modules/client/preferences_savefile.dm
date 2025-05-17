@@ -152,6 +152,10 @@
 	READ_FILE(S["toggles_sound"], toggles_sound)
 	READ_FILE(S["toggles_gameplay"], toggles_gameplay)
 	READ_FILE(S["fullscreen_mode"], fullscreen_mode)
+	READ_FILE(S["show_status_bar"], show_status_bar)
+	READ_FILE(S["ambient_occlusion"], ambient_occlusion)
+	READ_FILE(S["multiz_parallax"], multiz_parallax)
+	READ_FILE(S["multiz_performance"], multiz_performance)
 	READ_FILE(S["show_typing"], show_typing)
 	READ_FILE(S["ghost_hud"], ghost_hud)
 	READ_FILE(S["windowflashing"], windowflashing)
@@ -160,6 +164,7 @@
 	READ_FILE(S["pixel_size"], pixel_size)
 	READ_FILE(S["scaling_method"], scaling_method)
 	READ_FILE(S["menuoptions"], menuoptions)
+	READ_FILE(S["ignoring"], ignoring)
 	READ_FILE(S["ghost_vision"], ghost_vision)
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
 	READ_FILE(S["ghost_form"], ghost_form)
@@ -170,8 +175,11 @@
 	READ_FILE(S["sound_tts"], sound_tts)
 	READ_FILE(S["volume_tts"], volume_tts)
 	READ_FILE(S["radio_tts_flags"], radio_tts_flags)
+	READ_FILE(S["accessible_tgui_themes"], accessible_tgui_themes)
+	READ_FILE(S["allow_being_shown_health_scan"], allow_being_shown_health_scan)
 	READ_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
+	READ_FILE(S["hear_ooc_anywhere_as_staff"], hear_ooc_anywhere_as_staff)
 
 	READ_FILE(S["key_bindings"], key_bindings)
 	READ_FILE(S["slot_draw_order"], slot_draw_order_pref)
@@ -179,6 +187,7 @@
 	READ_FILE(S["chem_macros"], chem_macros)
 	READ_FILE(S["status_toggle_flags"], status_toggle_flags)
 
+	READ_FILE(S["toggle_bump_attacking"], toggle_bump_attacking)
 	READ_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	READ_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 	READ_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
@@ -194,6 +203,7 @@
 	// Tgui options
 	READ_FILE(S["tgui_fancy"], tgui_fancy)
 	READ_FILE(S["tgui_lock"], tgui_lock)
+	READ_FILE(S["ui_scale"], ui_scale)
 	READ_FILE(S["tgui_input"], tgui_input)
 	READ_FILE(S["tgui_input_big_buttons"], tgui_input_big_buttons)
 	READ_FILE(S["tgui_input_buttons_swap"], tgui_input_buttons_swap)
@@ -215,6 +225,10 @@
 	toggles_sound = sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
 	toggles_gameplay = sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
 	fullscreen_mode = sanitize_integer(fullscreen_mode, FALSE, TRUE, initial(fullscreen_mode))
+	show_status_bar = sanitize_integer(show_status_bar, FALSE, TRUE, initial(show_status_bar))
+	ambient_occlusion = sanitize_integer(ambient_occlusion, FALSE, TRUE, initial(ambient_occlusion))
+	multiz_parallax = sanitize_integer(multiz_parallax, FALSE, TRUE, initial(multiz_parallax))
+	multiz_performance = sanitize_integer(multiz_performance, MULTIZ_PERFORMANCE_DISABLE, MAX_EXPECTED_Z_DEPTH - 1, initial(multiz_performance))
 	show_typing = sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud = sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing = sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
@@ -222,6 +236,7 @@
 	widescreenpref = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
 	pixel_size = sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
 	scaling_method = sanitize_text(scaling_method, initial(scaling_method))
+	ignoring = SANITIZE_LIST(ignoring)
 	ghost_vision = sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit = sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form = sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
@@ -232,6 +247,8 @@
 	sound_tts = sanitize_inlist(sound_tts, GLOB.all_tts_options, initial(sound_tts))
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
 	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND))
+	accessible_tgui_themes = sanitize_integer(accessible_tgui_themes, FALSE, TRUE, initial(accessible_tgui_themes))
+	allow_being_shown_health_scan = sanitize_integer(allow_being_shown_health_scan, FALSE, TRUE, initial(allow_being_shown_health_scan))
 
 	key_bindings = sanitize_islist(key_bindings, list())
 	if (!length(key_bindings))
@@ -243,6 +260,7 @@
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
 	status_toggle_flags = sanitize_integer(status_toggle_flags, NONE, MAX_BITFLAG, initial(status_toggle_flags))
 
+	toggle_bump_attacking = sanitize_integer(toggle_bump_attacking, FALSE, TRUE, initial(toggle_bump_attacking))
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
@@ -259,12 +277,14 @@
 
 	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
 	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	ui_scale = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
 
 	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
 	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+	hear_ooc_anywhere_as_staff = sanitize_integer(hear_ooc_anywhere_as_staff, FALSE, TRUE, initial(hear_ooc_anywhere_as_staff))
 	return TRUE
 
 
@@ -296,6 +316,10 @@
 	toggles_sound = sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
 	toggles_gameplay = sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
 	fullscreen_mode = sanitize_integer(fullscreen_mode, FALSE, TRUE, initial(fullscreen_mode))
+	show_status_bar = sanitize_integer(show_status_bar, FALSE, TRUE, initial(show_status_bar))
+	ambient_occlusion = sanitize_integer(ambient_occlusion, FALSE, TRUE, initial(ambient_occlusion))
+	multiz_parallax = sanitize_integer(multiz_parallax, FALSE, TRUE, initial(multiz_parallax))
+	multiz_performance = sanitize_integer(multiz_performance, MULTIZ_PERFORMANCE_DISABLE, MAX_EXPECTED_Z_DEPTH - 1, initial(multiz_performance))
 	show_typing = sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud = sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing = sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
@@ -303,6 +327,7 @@
 	widescreenpref = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
 	pixel_size = sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
 	scaling_method = sanitize_text(scaling_method, initial(scaling_method))
+	ignoring = SANITIZE_LIST(ignoring)
 	chem_macros = sanitize_islist(chem_macros, list())
 	ghost_vision = sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit = sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
@@ -315,6 +340,7 @@
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
 	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND))
 
+	toggle_bump_attacking = sanitize_integer(toggle_bump_attacking, FALSE, TRUE, initial(toggle_bump_attacking))
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
@@ -334,6 +360,7 @@
 
 	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
 	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	ui_scale = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
@@ -341,6 +368,7 @@
 	// Admin
 	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
 	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+	hear_ooc_anywhere_as_staff = sanitize_integer(hear_ooc_anywhere_as_staff, FALSE, TRUE, initial(hear_ooc_anywhere_as_staff))
 
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
@@ -354,6 +382,10 @@
 	WRITE_FILE(S["toggles_sound"], toggles_sound)
 	WRITE_FILE(S["toggles_gameplay"], toggles_gameplay)
 	WRITE_FILE(S["fullscreen_mode"], fullscreen_mode)
+	WRITE_FILE(S["show_status_bar"], show_status_bar)
+	WRITE_FILE(S["ambient_occlusion"], ambient_occlusion)
+	WRITE_FILE(S["multiz_parallax"], multiz_parallax)
+	WRITE_FILE(S["multiz_performance"], multiz_performance)
 	WRITE_FILE(S["show_typing"], show_typing)
 	WRITE_FILE(S["ghost_hud"], ghost_hud)
 	WRITE_FILE(S["windowflashing"], windowflashing)
@@ -362,6 +394,7 @@
 	WRITE_FILE(S["pixel_size"], pixel_size)
 	WRITE_FILE(S["scaling_method"], scaling_method)
 	WRITE_FILE(S["menuoptions"], menuoptions)
+	WRITE_FILE(S["ignoring"], ignoring)
 	WRITE_FILE(S["chem_macros"], chem_macros)
 	WRITE_FILE(S["ghost_vision"], ghost_vision)
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
@@ -373,9 +406,12 @@
 	WRITE_FILE(S["sound_tts"], sound_tts)
 	WRITE_FILE(S["volume_tts"], volume_tts)
 	WRITE_FILE(S["radio_tts_flags"], radio_tts_flags)
+	WRITE_FILE(S["accessible_tgui_themes"], accessible_tgui_themes)
+	WRITE_FILE(S["allow_being_shown_health_scan"], allow_being_shown_health_scan)
 	WRITE_FILE(S["slot_draw_order"], slot_draw_order_pref)
 	WRITE_FILE(S["status_toggle_flags"], status_toggle_flags)
 
+	WRITE_FILE(S["toggle_bump_attacking"], toggle_bump_attacking)
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 	WRITE_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
@@ -392,6 +428,7 @@
 	// Tgui options
 	WRITE_FILE(S["tgui_fancy"], tgui_fancy)
 	WRITE_FILE(S["tgui_lock"], tgui_lock)
+	WRITE_FILE(S["ui_scale"], ui_scale)
 	WRITE_FILE(S["tgui_input"], tgui_input)
 	WRITE_FILE(S["tgui_input_big_buttons"], tgui_input_big_buttons)
 	WRITE_FILE(S["tgui_input_buttons_swap"], tgui_input_buttons_swap)
@@ -399,6 +436,7 @@
 	// Admin options
 	WRITE_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	WRITE_FILE(S["split_admin_tabs"], split_admin_tabs)
+	WRITE_FILE(S["hear_ooc_anywhere_as_staff"], hear_ooc_anywhere_as_staff)
 
 	return TRUE
 
@@ -442,6 +480,7 @@
 	READ_FILE(S["real_name"], real_name)
 	READ_FILE(S["random_name"], random_name)
 	READ_FILE(S["gender"], gender)
+	READ_FILE(S["physique"], physique)
 	READ_FILE(S["age"], age)
 	READ_FILE(S["species"], species)
 	READ_FILE(S["ethnicity"], ethnicity)
@@ -517,6 +556,7 @@
 	real_name = reject_bad_name(real_name, TRUE)
 	random_name = sanitize_integer(random_name, TRUE, TRUE, initial(random_name))
 	gender = sanitize_gender(gender, TRUE, TRUE)
+	physique = sanitize_gender(physique, FALSE, FALSE, USE_GENDER)
 	age = sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species = sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity = sanitize_ethnicity(ethnicity)
@@ -636,6 +676,7 @@
 	real_name = reject_bad_name(real_name, TRUE)
 	random_name = sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
 	gender = sanitize_gender(gender, TRUE, TRUE)
+	physique = sanitize_gender(physique, FALSE, FALSE, USE_GENDER)
 	age = sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species = sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity = sanitize_ethnicity(ethnicity)
@@ -648,7 +689,8 @@
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], quick_equip_slots)
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
-	if(gender == MALE)
+	var/physique_to_check = get_physique()
+	if(physique_to_check == MALE)
 		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
 		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
 	else
@@ -717,6 +759,7 @@
 	WRITE_FILE(S["real_name"], real_name)
 	WRITE_FILE(S["random_name"], random_name)
 	WRITE_FILE(S["gender"], gender)
+	WRITE_FILE(S["physique"], physique)
 	WRITE_FILE(S["age"], age)
 	WRITE_FILE(S["species"], species)
 	WRITE_FILE(S["ethnicity"], ethnicity)

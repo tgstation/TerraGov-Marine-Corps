@@ -9,7 +9,7 @@
 	throwforce = 1
 	throw_speed = 3
 	throw_range = 5
-	attack_verb = list("attacked", "slapped", "whacked")
+	attack_verb = list("attacks", "slapped", "whacked")
 	organ_type = /datum/internal_organ/brain
 	organ_tag = "brain"
 

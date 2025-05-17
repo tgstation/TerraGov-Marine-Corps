@@ -8,7 +8,7 @@
 	///path of map for this mission
 	var/map_file
 	///map_traits, defaults to ZTRAIT_AWAY
-	var/list/map_traits = list(ZTRAIT_AWAY = TRUE)
+	var/list/map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
 	///Lightings colours for the map. Typically all the same for consistancy, but not required
 	var/list/map_light_colours = list(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE)
 	///Light levels for the map
@@ -214,7 +214,7 @@
 				return
 
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[text_source]</u></span><br>" + message, portrait_to_use)
+	user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("<u>[text_source]</u>", message, LEFT_ALIGN_TEXT), portrait_to_use)
 
 ///Generates status tab info for the mission
 /datum/campaign_mission/proc/get_status_tab_items(mob/source, list/items)
@@ -483,7 +483,7 @@
 		if(human.faction != faction)
 			continue
 		human.playsound_local(null, sound_effect, 10, 1)
-		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[title]</u></span><br>" + "[message]", display_picture)
+		human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(title, message, LEFT_ALIGN_TEXT), display_picture)
 
 ///Removes a flag or flags from this mission
 /datum/campaign_mission/proc/remove_mission_flag(datum/source, blocker, removed_flags, losing_faction)

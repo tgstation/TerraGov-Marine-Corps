@@ -3,8 +3,8 @@
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	see_in_dark = 8
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	inherent_traits = TRAIT_CRIT_IS_DEATH //so they dont stay alive when downed ig.
 	blood_color = "#110a0a"
 	hair_color = "#000000"
 	slowdown = 0.5
@@ -20,8 +20,10 @@
 	)
 	///Sounds made randomly by the zombie
 	var/list/sounds = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
+/*
 	///Time before resurrecting if dead
 	var/revive_time = 1 MINUTES
+*/
 	///How much burn and burn damage can you heal every Life tick (half a sec)
 	var/heal_rate = 10
 	var/faction = FACTION_ZOMBIE
@@ -65,17 +67,19 @@
 /datum/species/zombie/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(10))
 		playsound(get_turf(H), pick(sounds), 50)
-// no regrowing limbs
-//	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
-//		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
-//			limb.remove_limb_flags(LIMB_DESTROYED)
-//			if(istype(limb, /datum/limb/hand/l_hand))
-//				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
-//			else if (istype(limb, /datum/limb/hand/r_hand))
-//				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
-//			H.update_body()
-//		else if(limb.limb_status & LIMB_BROKEN && prob(20))
-//			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+
+/*
+	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
+		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
+			limb.remove_limb_flags(LIMB_DESTROYED)
+			if(istype(limb, /datum/limb/hand/l_hand))
+				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
+			else if (istype(limb, /datum/limb/hand/r_hand))
+				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
+			H.update_body()
+		else if(limb.limb_status & LIMB_BROKEN && prob(20))
+			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+*/
 
 	if(H.health != total_health)
 		H.heal_limbs(heal_rate)
@@ -87,8 +91,10 @@
 
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
 	SSmobs.stop_processing(H)
+/*
 	if(!H.on_fire && H.has_working_organs())
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
+*/
 
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
 	. = ..()

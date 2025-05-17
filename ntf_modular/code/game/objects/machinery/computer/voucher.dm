@@ -1,7 +1,7 @@
 /obj/item/card/voucher
 	name = "voucher"
 	desc = "A voucher which can be redeemed at a voucher console or ASRS elevator. Cannot be redeemed by the issuing faction."
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	icon_state = "guest"
 	var/supply_reward = 0
 	var/dropship_reward = 0
@@ -33,7 +33,7 @@
 	density = FALSE
 	interaction_flags = INTERACT_MACHINE_TGUI
 	req_access = list(ACCESS_MARINE_CARGO)
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	var/supply_points = 0
 	var/dropship_points = 0
 

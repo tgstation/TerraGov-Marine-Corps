@@ -25,6 +25,8 @@
 	var/armor_style = "default"
 	var/quickbuilds = 1000
 	var/list/gamemodes = list()
+	/// Boolean - if TRUE, the "Up" and "Down" traits are automatically distributed to the map's z-levels. If FALSE; they're set via JSON.
+	var/height_autosetup = TRUE
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list()
@@ -193,6 +195,9 @@
 			var/datum/game_mode/G = a
 			if(initial(G.config_tag))
 				gamemodes += initial(G.config_tag)
+
+	if ("height_autosetup" in json)
+		height_autosetup = json["height_autosetup"]
 
 	defaulted = FALSE
 	return TRUE

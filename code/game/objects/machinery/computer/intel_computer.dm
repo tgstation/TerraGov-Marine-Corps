@@ -33,7 +33,7 @@
 	///When we reach max progress and get the points
 	var/printing_complete = FALSE
 	///What faction has launched the intel process
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 
 
 /obj/machinery/computer/intel_computer/Initialize(mapload)
@@ -92,7 +92,7 @@
 /obj/machinery/computer/intel_computer/proc/update_minimap_icon()
 	if(active)
 		SSminimaps.remove_marker(src)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", MINIMAP_BLIPS_LAYER))
 	else
 		SSminimaps.remove_marker(src)
 

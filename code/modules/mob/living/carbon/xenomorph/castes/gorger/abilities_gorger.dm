@@ -1,6 +1,86 @@
 /datum/action/ability/activable/xeno/psydrain/free
 	ability_cost = 0
 
+/////////////////////////////////
+// Devour
+/////////////////////////////////
+/datum/action/ability/activable/xeno/devour
+	name = "Devour"
+	action_icon_state = "abduct"
+	action_icon = 'icons/Xeno/actions/gorger.dmi'
+	desc = "Devour your victim to be able to carry it faster."
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	ability_cost = 0
+	target_flags = ABILITY_MOB_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
+	)
+
+/datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!ishuman(target) || issynth(target))
+		if(!silent)
+			to_chat(owner, span_warning("That wouldn't taste very good."))
+		return FALSE
+	var/mob/living/carbon/human/victim = target
+	if(owner.do_actions) //can't use if busy
+		return FALSE
+	if(!owner.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(!HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+		if(!silent)
+			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
+		return FALSE
+	if(victim.buckled)
+		if(!silent)
+			to_chat(owner, span_warning("[victim] is buckled to something."))
+		return FALSE
+	if(xeno_owner.eaten_mob)
+		if(!silent)
+			to_chat(xeno_owner, span_warning("We have already swallowed one."))
+		return FALSE
+	if(xeno_owner.on_fire)
+		if(!silent)
+			to_chat(xeno_owner, span_warning("We're too busy being on fire to do this!"))
+		return FALSE
+	for(var/obj/effect/forcefield/fog in range(1, xeno_owner))
+		if(!silent)
+			to_chat(xeno_owner, span_warning("We are too close to the fog."))
+		return FALSE
+
+/datum/action/ability/activable/xeno/devour/action_activate()
+	. = ..()
+	if(!xeno_owner.eaten_mob)
+		return
+
+	var/channel = SSsounds.random_available_channel()
+	playsound(xeno_owner, 'sound/vore/escape.ogg', 40, channel = channel)
+	if(!do_after(xeno_owner, GORGER_REGURGITATE_DELAY, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
+		to_chat(owner, span_warning("We moved too soon!"))
+		xeno_owner.stop_sound_channel(channel)
+		return
+	xeno_owner.eject_victim()
+
+/datum/action/ability/activable/xeno/devour/use_ability(atom/target)
+	var/mob/living/carbon/human/victim = target
+	xeno_owner.face_atom(victim)
+	xeno_owner.visible_message(span_danger("[xeno_owner] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
+	var/channel = SSsounds.random_available_channel()
+	playsound(xeno_owner, 'sound/vore/struggle.ogg', 40, channel = channel)
+	if(!do_after(xeno_owner, GORGER_DEVOUR_DELAY, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))))
+		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
+		xeno_owner.stop_sound_channel(channel)
+		return
+	owner.visible_message(span_warning("[xeno_owner] devours [victim]!"), span_warning("We devour [victim]!"), null, 5)
+	victim.forceMove(xeno_owner)
+	xeno_owner.eaten_mob = victim
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/devour/ai_should_use(atom/target)
+	return FALSE
+
 // ***************************************
 // *********** Drain blood
 // ***************************************
@@ -8,7 +88,7 @@
 	name = "Drain"
 	action_icon_state = "drain"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
+	desc = "Root a marine and attack them twice after a windup, gaining blood and healing yourself. You cannot attack while doing this. When used on a human corpse, instead enter a channeled heal that grants overheal once health is full."
 	use_state_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 15 SECONDS
 	ability_cost = 0
@@ -53,6 +133,7 @@
 	var/drain_healing = GORGER_DRAIN_HEAL;\
 	HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE);\
 	adjustOverheal(xeno_owner, drain_healing);\
+	SEND_SIGNAL(target_human, COMSIG_XENO_DRAIN_HIT, xeno_owner.xeno_caste.drain_plasma_gain, xeno_owner);\
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.drain_plasma_gain)
 
 /datum/action/ability/activable/xeno/drain/use_ability(mob/living/carbon/human/target_human)
@@ -182,7 +263,7 @@
 	name = "Oppose"
 	action_icon_state = "rejuvenation"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Violently suffuse the ground with stored blood. A marine on your tile is staggered and injured, ajacent marines are staggered, and any nearby xenos are healed, including you."
+	desc = "Violently suffuse the ground with stored blood. A marine on your tile is staggered and injured, adjacent marines are staggered, and any nearby xenos are healed, including you."
 	cooldown_duration = 30 SECONDS
 	ability_cost = GORGER_OPPOSE_COST
 	keybinding_signals = list(
@@ -383,7 +464,7 @@
 
 /datum/action/ability/activable/xeno/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
-	if(TIMER_COOLDOWN_CHECK(xeno_owner, FEAST_MISCLICK_CD))
+	if(TIMER_COOLDOWN_RUNNING(xeno_owner, FEAST_MISCLICK_CD))
 		return FALSE
 	if(xeno_owner.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return TRUE

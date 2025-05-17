@@ -59,7 +59,7 @@
 	name = "ice colony plating"
 
 
-/turf/open/floor/plating/icefloor/New()
+/turf/open/floor/plating/icefloor/Initialize(mapload)
 	. = ..()
 	name = "plating"
 
@@ -90,7 +90,7 @@
 
 /turf/open/floor/plating/plating_catwalk/proc/update_turf_overlay()
 	var/image/I = image(icon, src, "catwalk", CATWALK_LAYER)
-	I.plane = FLOOR_PLANE
+	SET_PLANE_EXPLICIT(I, FLOOR_PLANE, src)
 	if(covered)
 		overlays += I
 	else
@@ -120,27 +120,12 @@
 /turf/open/floor/plating/plating_catwalk/prison
 	icon = 'icons/turf/prison.dmi'
 
-
-
-/turf/open/floor/plating/ironsand/New()
-	. = ..()
+/turf/open/floor/plating/ironsand
 	name = "Iron Sand"
+
+/turf/open/floor/plating/ironsand/Initialize(mapload)
+	. = ..()
 	icon_state = "ironsand[rand(1,15)]"
-
-
-
-/turf/open/floor/plating/catwalk
-	icon = 'icons/turf/catwalks.dmi'
-	icon_state = "catwalk0"
-	name = "catwalk"
-	desc = "Cats really don't like these things."
-	shoefootstep = FOOTSTEP_CATWALK
-	barefootstep = FOOTSTEP_CATWALK
-	mediumxenofootstep = FOOTSTEP_CATWALK
-	layer = CATWALK_LAYER
-
-/turf/open/floor/plating/catwalk/ex_act(severity)
-	return
 
 /turf/open/floor/plating/warning
 	icon_state = "warnplate"

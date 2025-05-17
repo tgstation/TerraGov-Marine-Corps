@@ -77,10 +77,10 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E8" //If you play way too much NTC. 1000 hours.
 
-/datum/job/terragov/squad/standard/radio_help_message(mob/M)
+/datum/job/terragov/squad/standard/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file marine of the NTC, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the Nine Tailed Fox. Ooh-rah!"})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are a rank-and-file operative of the NTC, and that is your strength. What you lack alone, you gain standing shoulder to shoulder with the men and women of the Nine Tailed Fox PMC. Ooh-rah!"
 
 
 /datum/outfit/job/marine/standard
@@ -140,10 +140,11 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E8" //If you play way too much NTC. 1000 hours.
 
-/datum/job/terragov/squad/slut/radio_help_message(mob/M)
+/datum/job/terragov/squad/slut/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file marine of the NTC with a twist, your job is to be a marine yet also a 'trench-wive' or well, if you are a male 'trench-husband'?
-	You can use some non lethal ammunition to 'tactically' do things to people, Spread those legs! Ooh-rah!"})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"\nYou are a rank-and-file marine of the NTC with a twist, your job is to be a marine yet also a 'trench-wive' or well, if you are a male 'trench-husband'?
+You can use some non lethal ammunition to 'tactically' do things to people, Spread those legs! Ooh-rah!"}
 
 /datum/outfit/job/marine/slut
 	name = SQUAD_SLUT
@@ -181,10 +182,10 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	"}
 	minimap_icon = "engi"
 
-/datum/job/terragov/squad/engineer/radio_help_message(mob/M)
+/datum/job/terragov/squad/engineer/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
-Your squaddies will look to you when it comes to construction in the field of battle."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You have the equipment and skill to build fortifications, reroute power lines, and bunker down. Your squaddies will look to you when it comes to construction in the field of battle."
 
 
 /datum/outfit/job/marine/engineer
@@ -243,10 +244,10 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	"}
 	minimap_icon = "medic"
 
-/datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
+/datum/job/terragov/squad/corpsman/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
-You may not be a fully-fledged doctor, but you stand between life and death when it matters."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You must tend the wounds of your squad mates and make sure they are healthy and active. You may not be a fully-fledged doctor, but you stand between life and death when it matters."
 
 /datum/outfit/job/marine/corpsman
 	name = SQUAD_CORPSMAN
@@ -302,9 +303,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	"}
 	minimap_icon = "smartgunner"
 
-/datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
+/datum/job/terragov/squad/smartgunner/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are the smartgunner. Your job is to provide IFF weapons support."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "Your job is to provide IFF weapons support. <b>Your bullets cannot hit friendlies,</b> and for this reason it's advisable to stay behind your fellow marines unless they are stagnant."
 
 /datum/job/terragov/squad/smartgunner/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -352,10 +354,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	)
 	minimap_icon = "specialist"
 
-/datum/job/terragov/squad/specialist/radio_help_message(mob/M)
+/datum/job/terragov/squad/specialist/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are the very expensively trained and valuable operative and infiltration expert, trained to use special equipment and perform masterful CQC.
-	You are versatile and you can serve a variety of roles. Be careful building your loadout."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are one of the few chosen, extensively trained operatives that are usually sent out on solo stealth missions. Trained to use special equipment and perform masterful CQC. You are somewhat versatile and can serve a variety of roles."
 
 /datum/outfit/job/marine/specialist
 	name = SQUAD_SPECIALIST
@@ -418,10 +420,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	"}
 	minimap_icon = "leader"
 
-/datum/job/terragov/squad/leader/radio_help_message(mob/M)
+/datum/job/terragov/squad/leader/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
-You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating. You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."
 
 /datum/outfit/job/marine/leader
 	name = SQUAD_LEADER

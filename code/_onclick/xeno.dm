@@ -38,6 +38,8 @@
 /atom/proc/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	return
 
+/turf/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_ATTACK_TURF, xeno_attacker)
 
 /mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, has_proximity, modifiers)
 	if(lying_angle)

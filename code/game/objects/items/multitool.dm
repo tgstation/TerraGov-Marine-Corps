@@ -22,7 +22,7 @@
 /obj/item/tool/multitool/attack_self(mob/user)
 	. = ..()
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LOCATE_APC) || !ishuman(user) || user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL || !user.client)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_LOCATE_APC) || !ishuman(user) || user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL || !user.client)
 		return
 
 	var/area/current_area = get_area(src)
@@ -44,7 +44,7 @@
 	var/image/final_image = image(apc_appearance)
 
 	final_image.layer = WALL_OBJ_LAYER
-	final_image.plane = GAME_PLANE
+	SET_PLANE_EXPLICIT(final_image, GAME_PLANE, area_apc)
 	final_image.loc = get_turf(area_apc)
 	final_image.dir = apc_appearance.dir
 	final_image.alpha = 225

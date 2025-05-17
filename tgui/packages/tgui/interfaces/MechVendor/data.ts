@@ -1,9 +1,4 @@
-import {
-  Dispatch,
-  MouseEventHandler,
-  SetStateAction,
-} from '../../../common/react';
-
+import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
 export const MECHA_ASSEMBLY = 'Mecha Assembly';
 export const MECHA_WEAPONS = 'Weapons';
 export const tabs = [MECHA_ASSEMBLY, MECHA_WEAPONS];

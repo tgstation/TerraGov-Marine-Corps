@@ -2,7 +2,6 @@
 	name = "hud tablet"
 	desc = "A tablet with a live feed to a number of headset cameras"
 	icon_state = "req_tablet_off"
-	req_access = list(ACCESS_NT_CORPORATE)
 	equip_slot_flags = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_SMALL
 	interaction_flags = INTERACT_MACHINE_TGUI
@@ -13,12 +12,8 @@
 	var/turf/last_turf
 	var/list/network = list("marine")
 	// Stuff needed to render the map
-	var/map_name
 	var/const/default_map_size = 15
-	var/atom/movable/screen/map_view/cam_screen
-	/// All the plane masters that need to be applied.
-	var/list/cam_plane_masters
-	var/atom/movable/screen/background/cam_background
+	var/atom/movable/screen/map_view/camera/cam_screen
 
 /obj/item/hud_tablet/Initialize(mapload, rank, datum/squad/squad)
 	. = ..()
@@ -31,41 +26,32 @@
 						if("Alpha")
 							dat += " alpha"
 							network = list("alpha")
-							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
 						if("Bravo")
 							dat += " bravo"
 							network = list("bravo")
-							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
 						if("Charlie")
 							dat += " charlie"
 							network = list("charlie")
-							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
 						if("Delta")
 							dat += " delta"
 							network = list("delta")
-							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 						else
 							var/lowername = lowertext(squad.name)
 							dat = dat + " " + lowername
 							network = list(lowername)
-							req_access = list(ACCESS_MARINE_LEADER)
 				dat += " squad leader's"
 			if(/datum/job/terragov/command/captain)
 				dat += " captain's"
 				network = list("marinesl", "marine", "marinemainship")
-				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER, ACCESS_MARINE_CAPTAIN)
 			if(/datum/job/terragov/command/fieldcommander)
 				dat += " field commander's"
 				network = list("marinesl", "marine")
-				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
 			if(/datum/job/terragov/command/pilot)
 				dat += " pilot's"
 				network = list("dropship1")
-				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
 			if(/datum/job/terragov/command/transportofficer)
 				dat += " transport officer's"
 				network = list("dropship2")
-				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
 		name = dat + " hud tablet"
 	// Convert networks to lowercase
 	for(var/i in network)
@@ -74,30 +60,12 @@
 	// Map name has to start and end with an A-Z character,
 	// and definitely NOT with a square bracket or even a number.
 	// I wasted 6 hours on this. :agony:
-	map_name = "hud_tablet_[REF(src)]_map"
-	// Initialize map objects
+
 	cam_screen = new
-	cam_screen.name = "screen"
-	cam_screen.assigned_map = map_name
-	cam_screen.del_on_map_removal = FALSE
-	cam_screen.screen_loc = "[map_name]:1,1"
-	cam_plane_masters = list()
-	for(var/plane in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/blackness)
-		var/atom/movable/screen/plane_master/instance = new plane()
-		instance.assigned_map = map_name
-		instance.del_on_map_removal = FALSE
-		if(instance.blend_mode_override)
-			instance.blend_mode = instance.blend_mode_override
-		instance.screen_loc = "[map_name]:CENTER"
-		cam_plane_masters += instance
-	cam_background = new
-	cam_background.assigned_map = map_name
-	cam_background.del_on_map_removal = FALSE
+	cam_screen.generate_view("hud_tablet_[REF(src)]_map")
 
 /obj/item/hud_tablet/Destroy()
-	qdel(cam_screen)
-	QDEL_LIST(cam_plane_masters)
-	qdel(cam_background)
+	QDEL_NULL(cam_screen)
 	return ..()
 
 /obj/item/hud_tablet/proc/get_available_cameras()
@@ -113,17 +81,12 @@
 		if(!(islist(C.network)))
 			stack_trace("Camera in a cameranet has a non-list camera network")
 			continue
-		if(C.c_tag == "Unknown")
+		if(!C.c_tag || C.c_tag == "Unknown")
 			continue // dropped headsets havee an unknown tag
 		var/list/tempnetwork = C.network & network
 		if(length(tempnetwork))
-			valid_cams["[C.c_tag]"] = C
+			valid_cams[ref(C)] += C
 	return valid_cams
-
-/obj/item/hud_tablet/proc/show_camera_static()
-	cam_screen.vis_contents.Cut()
-	cam_background.icon_state = "scanline2"
-	cam_background.fill_rect(1, 1, default_map_size, default_map_size)
 
 /obj/item/hud_tablet/interact(mob/user)
 	if(!allowed(user))
@@ -139,14 +102,16 @@
 	update_active_camera_screen()
 
 	if(!ui)
-		// Register map objects
-		user.client.register_map_obj(cam_screen)
-		for(var/plane in cam_plane_masters)
-			user.client.register_map_obj(plane)
-		user.client.register_map_obj(cam_background)
 		// Open UI
 		ui = new(user, src, "CameraConsole", name)
 		ui.open()
+		// Register map objects
+		cam_screen.display_to(user, ui.window)
+
+/obj/item/hud_tablet/ui_close(mob/user)
+	. = ..()
+	// Unregister map objects
+	cam_screen.hide_from(user)
 
 /obj/item/hud_tablet/ui_data()
 	. = list()
@@ -156,18 +121,17 @@
 		.["activeCamera"] = list(
 			name = active_camera.c_tag,
 			status = active_camera.status,
+			ref = ref(active_camera)
 		)
 
 /obj/item/hud_tablet/ui_static_data()
 	var/list/data = list()
-	data["mapRef"] = map_name
+	data["mapRef"] = cam_screen.assigned_map
 	var/list/cameras = get_available_cameras()
 	data["cameras"] = list()
-	for(var/i in cameras)
-		var/obj/machinery/camera/C = cameras[i]
-		data["cameras"] += list(list(
-			name = C.c_tag,
-		))
+	for(var/obj/machinery/camera/camera_reference as anything in cameras)
+		var/obj/machinery/camera/camera = cameras[camera_reference]
+		data["cameras"] += list(camera.camera_ui_data())
 	return data
 
 /obj/item/hud_tablet/ui_act(action, params)
@@ -176,10 +140,11 @@
 		return
 
 	if(action == "switch_camera")
-		var/c_tag = params["name"]
+		var/camera_reference = params["ref"]
 		var/list/cameras = get_available_cameras()
-		var/obj/machinery/camera/selected_camera = cameras[c_tag]
-		active_camera = selected_camera
+		var/obj/machinery/camera/selected_camera
+
+		active_camera = cameras[camera_reference]
 		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
 
 		if(!selected_camera)
@@ -192,7 +157,7 @@
 /obj/item/hud_tablet/proc/update_active_camera_screen()
 	// Show static if can't use the camera
 	if(!active_camera?.can_use())
-		show_camera_static()
+		cam_screen.show_camera_static()
 		return
 
 	var/list/visible_turfs = list()
@@ -217,58 +182,47 @@
 	var/size_x = bbox[3] - bbox[1] + 1
 	var/size_y = bbox[4] - bbox[2] + 1
 
-	cam_screen.vis_contents = visible_turfs
-	cam_background.icon_state = "clear"
-	cam_background.fill_rect(1, 1, size_x, size_y)
+	cam_screen.show_camera(visible_turfs, size_x, size_y)
 
 /obj/item/hud_tablet/alpha
 	name = "alpha hud tablet"
 	network = list("alpha")
-	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
 
 /obj/item/hud_tablet/bravo
 	name = "bravo hud tablet"
 	network = list("bravo")
-	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
 
 /obj/item/hud_tablet/charlie
 	name = "charlie hud tablet"
 	network = list("charlie")
-	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
 
 /obj/item/hud_tablet/delta
 	name = "delta hud tablet"
 	network = list("delta")
-	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 
 /obj/item/hud_tablet/leadership
 	name = "captain's hud tablet"
 	network = list("marinesl", "marine", "marinemainship")
-	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER, ACCESS_MARINE_CAPTAIN)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/fieldcommand
 	name = "field commander's hud tablet"
 	network = list("marinesl", "marine")
-	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/pilot
 	name = "pilot officers's hud tablet"
 	network = list("dropship1")
-	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/transportofficer
 	name = "transport officer's hud tablet"
 	network = list("dropship2")
-	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/artillery
 	name = "artillery impact hud tablet"
 	desc = "A handy tablet with a live feed to several NTC satellites. Provides a view of all artillery on the battlefield. Transmits a video of the impact site whenever a shot is fired, so that hits may be observed by the loader or spotter."
 	network = list("terragovartillery") //This shows cameras of all mortars, so don't add this to HvH
-	req_access = list()
 	max_view_dist = WORLD_VIEW_NUM
 

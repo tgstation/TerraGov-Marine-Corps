@@ -142,21 +142,22 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 /obj/effect/ai_node/goal
 	name = "AI goal"
 	invisibility = INVISIBILITY_OBSERVER
-	///The identifier of this ai goal
-	var/identifier = IDENTIFIER_XENO
+	faction = FACTION_XENO
 	///Who made that ai_node
 	var/mob/creator
 	///The image added to the creator screen
 	var/image/goal_image
 
-/obj/effect/ai_node/goal/Initialize(mapload, mob/creator)
+/obj/effect/ai_node/goal/Initialize(mapload, mob/new_creator, new_faction)
 	. = ..()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_GOAL_SET, identifier, src)
+	if(new_faction)
+		faction = new_faction
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_GOAL_SET, src)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(clean_goal_node))
-	GLOB.goal_nodes[identifier] = src
-	if(!creator)
+	GLOB.goal_nodes[faction] = src
+	if(!new_creator)
 		return
-	src.creator = creator
+	creator = new_creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clean_creator))
 	goal_image = image('icons/Xeno/actions/leader.dmi', src, "minion_rendez_vous")
 	goal_image.layer = HUD_PLANE
@@ -171,10 +172,10 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	rustg_add_node_astar(json_encode(serialize()))
 
 /obj/effect/ai_node/goal/Destroy()
-	. = ..()
-	GLOB.goal_nodes -= identifier
+	GLOB.goal_nodes -= faction
 	if(creator)
 		creator.client.images -= goal_image
+	return ..()
 
 ///Null creator to prevent harddel
 /obj/effect/ai_node/goal/proc/clean_creator()
@@ -183,10 +184,43 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	creator = null
 
 ///Delete this ai_node goal
-/obj/effect/ai_node/goal/proc/clean_goal_node()
+/obj/effect/ai_node/goal/proc/clean_goal_node(datum/source, obj/effect/ai_node/goal/new_node)
 	SIGNAL_HANDLER
+	if(new_node.faction != faction)
+		return
 	qdel(src)
 
 /obj/effect/ai_node/goal/zombie
 	name = "Ai zombie goal"
-	identifier = IDENTIFIER_ZOMBIE
+	faction = FACTION_ZOMBIE
+
+/obj/effect/ai_node/goal/neutral
+	name = "Ai human goal"
+	faction = FACTION_NEUTRAL
+
+/obj/effect/ai_node/goal/tgmc
+	faction = FACTION_TERRAGOV
+
+/obj/effect/ai_node/goal/som
+	faction = FACTION_SOM
+
+/obj/effect/ai_node/goal/clf
+	faction = FACTION_CLF
+
+/obj/effect/ai_node/goal/freelancers
+	faction = FACTION_FREELANCERS
+
+/obj/effect/ai_node/goal/icc
+	faction = FACTION_ICC
+
+/obj/effect/ai_node/goal/alien
+	faction = FACTION_ALIEN
+
+/obj/effect/ai_node/goal/specops
+	faction = FACTION_SPECFORCE
+
+/obj/effect/ai_node/goal/vsd
+	faction = FACTION_VSD
+
+/obj/effect/ai_node/goal/hostile
+	faction = FACTION_HOSTILE

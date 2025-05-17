@@ -89,13 +89,13 @@
 ///The effects applied to mobs in the outer_range
 /obj/item/explosive/grenade/flashbang/proc/outer_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(!ear_safety)
-		M.apply_effect(16 SECONDS, STUN)
+		M.apply_effect(16 SECONDS, EFFECT_STUN)
 		M.adjust_ear_damage(rand(0, 3),8)
 
 ///The effects applied to mobs outside of outer_range
 /obj/item/explosive/grenade/flashbang/proc/max_range_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(!ear_safety)
-		M.apply_effect(8 SECONDS, STUN)
+		M.apply_effect(8 SECONDS, EFFECT_STUN)
 		M.adjust_ear_damage(rand(0, 1),6)
 
 //Slows and staggers instead of hardstunning, balanced for HvH

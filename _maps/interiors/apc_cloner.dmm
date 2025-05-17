@@ -12,7 +12,6 @@
 "c" = (
 /obj/machinery/computer/cloning_console/vats{
 	dir = 2;
-	layer = 2.99;
 	pixel_x = 8
 	},
 /turf/open/interior/apc/nine,
@@ -54,6 +53,10 @@
 	pixel_y = -16
 	},
 /turf/closed/interior/apc/two,
+/area/interior/apc)
+"u" = (
+/obj/machinery/vending/nanoammo/directional/south,
+/turf/open/interior/apc/eight,
 /area/interior/apc)
 "B" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
@@ -138,7 +141,7 @@ a
 "}
 (2,1,1) = {"
 e
-s
+u
 J
 T
 R

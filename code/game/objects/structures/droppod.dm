@@ -1,4 +1,5 @@
 GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/liquid/lava))) // Don't drop at these tiles.
+GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 ///Time drop pod spends in the transit z, mostly for visual flavor
 #define DROPPOD_TRANSIT_TIME 10 SECONDS
@@ -18,6 +19,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	soft_armor = list(MELEE = 25, BULLET = 80, LASER = 80, ENERGY = 90, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 75
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
@@ -26,6 +28,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	faction = FACTION_TERRAGOV
 	//todo make these just use a turf?
 	///X target coordinate
 	var/target_x = 1
@@ -39,8 +42,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/launch_allowed = TRUE
 	///If true, you can launch the droppod before drop pod delay
 	var/operation_started = FALSE
-	///3x3 transit reservation for immersion as if flying through space
-	var/datum/turf_reservation/reserved_area
 	///Action to actually launch the drop pod
 	var/list/datum/action/innate/interaction_actions
 	///after the pod finishes it's travelhow long it spends falling
@@ -67,16 +68,21 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	//because we get put in the contents at some point, and don't want to get deleted if the pod gets shot out during that time
 	for(var/atom/movable/ejectee AS in contents)
 		ejectee.forceMove(loc)
-	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
 	GLOB.droppod_list -= src
 	return ..()
 
+/obj/structure/droppod/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
 
 /obj/structure/droppod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
 		ejectee.forceMove(loc)
 	return ..()
+
+/obj/structure/droppod/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE
 
 ///Disables launching
 /obj/structure/droppod/proc/disable_launching()
@@ -112,7 +118,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/update_overlays()
 	. = ..()
 	if(operation_started && launch_allowed)
-		. += emissive_appearance(icon, "[icon_state]_emissive")
+		. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/structure/droppod/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if(!in_range(user, src) || !in_range(M, src))
@@ -132,10 +138,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		action.give_action(buckling_mob)
 	buckling_mob.pixel_y = 7
 
-/obj/structure/droppod/unbuckle_mob(mob/living/buckled_mob, force)
+/obj/structure/droppod/post_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()
-	if(!.)
-		return
 	for(var/datum/action/innate/action AS in interaction_actions)
 		action.remove_action(buckled_mob)
 	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
@@ -232,7 +236,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	deadchat_broadcast(" has been launched", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("[user ? user : "unknown"] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
-	reserved_area = SSmapping.RequestBlockReservation(3,3)
+	if(!GLOB.droppod_reservation)
+		GLOB.droppod_reservation = SSmapping.request_turf_block_reservation(10, 8, 1, reservation_type=/datum/turf_reservation/transit/droppod)
 
 	drop_state = DROPPOD_ACTIVE
 	GLOB.droppod_list -= src
@@ -270,20 +275,23 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
-	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
-	if(respawns)
-		var/obj/structure/droppod/respawned = new type(loc)
-		respawned.respawns = TRUE
-	forceMove(pick(reserved_area.reserved_turfs))
-	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
+	var/list/free_spaces = GLOB.droppod_reservation.reserved_turfs - GLOB.droppod_reservation.taken_turfs
+	free_spaces -= GLOB.droppod_reservation.pre_cordon_turfs
+	var/turf/selectedturf = pick(free_spaces)
+	if(!selectedturf)
+		CRASH("No droppod free turf found")
+	GLOB.droppod_reservation.taken_turfs += selectedturf
+	forceMove(selectedturf)
+	addtimer(CALLBACK(src, PROC_REF(finish_drop), user, selectedturf), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
 
 	var/turf/target = locate(target_x, target_y, 2)
-	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new /obj/effect/overlay/blinking_laser/marine/pod_warning(target)
+	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new (target)
 	laserpod.dir = target
 	QDEL_IN(laserpod, DROPPOD_TRANSIT_TIME + 1)
 
 /// Moves the droppod into its target turf, which it updates if needed
-/obj/structure/droppod/proc/finish_drop(mob/user)
+/obj/structure/droppod/proc/finish_drop(mob/user, turf/reservedturf)
+	GLOB.droppod_reservation.taken_turfs -= reservedturf
 	var/turf/targetturf = locate(target_x, target_y, target_z)
 	for(var/atom/target AS in targetturf.contents)
 		if(!target.density)
@@ -295,16 +303,15 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		break
 	forceMove(targetturf)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPPOD_LANDED, targetturf)
-	pixel_y = 500
-	animate(src, pixel_y = initial(pixel_y), time = falltime, easing = LINEAR_EASING)
+	pixel_z = 500
+	animate(src, pixel_z = initial(pixel_z), time = falltime, easing = LINEAR_EASING)
 	addtimer(CALLBACK(src, PROC_REF(dodrop), targetturf, user), falltime)
 
 ///Do the stuff when it "hits the ground"
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user ? user : null, targetturf)
-	explosion(targetturf, light_impact_range = 2)
+	explosion(targetturf, light_impact_range = 2, explosion_cause=user)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
-	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 ///completes landing a little delayed for a dramatic effect
@@ -331,7 +338,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	. = ..()
 	if(!.)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DROPPOD_TARGETTING))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_DROPPOD_TARGETTING))
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), buckled_mobs[1], "Target Assignment cooldown"), 7)
 		return
 	// this isnt the cheapest thing in the world so lets not let players spam it
@@ -356,7 +363,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	for(var/obj/structure/droppod/pod in GLOB.droppod_list)
 		for(var/mob/user AS in pod.buckled_mobs)
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>New target: [target.loc]", /atom/movable/screen/text/screen_text/command_order)
+			user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("DROP UPDATED", "New target: [target.loc]", CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 		var/turf/newturf
 		if(length(block))
 			newturf = pick_n_take(block)
@@ -382,7 +389,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(!(LAZYLEN(pod.buckled_mobs) || LAZYLEN(pod.contents)))
 			continue
 		for(var/mob/dropper AS in pod.buckled_mobs)
-			dropper.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>COMMENCING MASS DEPLOYMENT", /atom/movable/screen/text/screen_text/command_order)
+			dropper.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("DROP UPDATED", "COMMENCING MASS DEPLOYMENT", CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 		var/predroptime = rand(1.5 SECONDS, 2.5 SECONDS) //Randomize it a bit so its staggered
 		addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, start_launch_pod), LAZYLEN(pod.buckled_mobs) ? pod.buckled_mobs[1] : null, TRUE), predroptime)
 
@@ -447,7 +454,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	light_color = LIGHT_COLOR_EMISSIVE_ORANGE
 
 /obj/structure/droppod/nonmob/supply_pod/completedrop(mob/user)
-	layer = DOOR_OPEN_LAYER //so anything inside layers over it
+	layer = OPEN_DOOR_LAYER //so anything inside layers over it
 	return ..()
 
 /obj/structure/droppod/nonmob/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
@@ -545,9 +552,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/nonmob/mech_pod/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
-	explosion(targetturf, 1, 2) //A mech just dropped onto your head from orbit
+	explosion(targetturf, 1, 2, explosion_cause=user) //A mech just dropped onto your head from orbit
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
-	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 /datum/action/innate/launch_droppod
@@ -563,7 +569,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /datum/action/innate/set_drop_target
 	name = "Set drop pod target"
 	action_icon = 'icons/mob/actions/actions_mecha.dmi'
-	action_icon_state = "mech_zoom_on"
+	action_icon_state = "mech_zoom_off"
 	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
 	var/choosing = FALSE
 

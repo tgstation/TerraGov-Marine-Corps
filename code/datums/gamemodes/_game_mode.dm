@@ -45,8 +45,12 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/time_between_round = 0
 	///What factions are used in this gamemode, typically TGMC and xenos
 	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
-	///Increases the amount of xenos needed to evolve to tier three by the value.
+	///Reduces the number of T3 slots xenos get by the value.
 	var/tier_three_penalty = 0
+	///Includes T3 xenos in the calculation for maximum T3 slots.
+	var/tier_three_inclusion = FALSE
+	///Caste Swap Timer
+	var/caste_swap_timer = 15 MINUTES
 	///List of castes we dont want to be evolvable depending on gamemode.
 	var/list/restricted_castes
 
@@ -481,6 +485,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used Psychic Shield."
 	if(GLOB.round_statistics.psy_shield_blasts)
 		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a Psychic Shield."
+	if(GLOB.round_statistics.points_from_objectives)
+		parts += "[GLOB.round_statistics.points_from_objectives] requisitions points gained from objectives."
 	if(GLOB.round_statistics.points_from_mining)
 		parts += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
@@ -489,6 +495,17 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.points_from_xenos] requisitions points gained from xenomorph sales."
 	if(GLOB.round_statistics.runner_items_stolen)
 		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by runners."
+	if(GLOB.round_statistics.acid_maw_fires)
+		parts += "[GLOB.round_statistics.acid_maw_fires] Acid Maw uses."
+	if(GLOB.round_statistics.acid_jaw_fires)
+		parts += "[GLOB.round_statistics.acid_jaw_fires] Acid Jaw uses."
+	if(GLOB.round_statistics.sandevistan_uses)
+		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a sandevistan"
+		if(GLOB.round_statistics.sandevistan_gibs)
+			sandevistan_text += ", of which [GLOB.round_statistics.sandevistan_gibs] resulted in a gib!"
+		else
+			sandevistan_text += ", and nobody was gibbed by it!"
+		parts += sandevistan_text
 
 	if(length(GLOB.round_statistics.req_items_produced))
 		parts += ""  // make it special from other stats above
@@ -815,7 +832,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/datum/action/report/R = new
 	C.player_details.player_actions += R
 	R.give_action(C.mob)
-	to_chat(C,"<span class='infoplain'><a href='?src=[REF(R)];report=1'>Show roundend report again</a></span>")
+	to_chat(C,"<span class='infoplain'><a href='byond://?src=[REF(R)];report=1'>Show roundend report again</a></span>")
 
 /datum/action/report
 	name = "Show roundend report"

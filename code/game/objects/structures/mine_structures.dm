@@ -6,7 +6,7 @@
 	icon_state = ""
 	max_integrity = 200
 	anchored = TRUE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_NORMAL_TURF_LAYER
 
 /obj/structure/mine_structure/cart
 	name = "mine cart"

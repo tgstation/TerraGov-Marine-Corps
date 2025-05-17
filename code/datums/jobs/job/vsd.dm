@@ -28,14 +28,14 @@
 	jobtype = /datum/job/vsd/standard
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/vsd
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/magazine
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
 
@@ -74,7 +74,7 @@
 	head = /obj/item/clothing/head/helmet/marine/vsd
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	mask = /obj/item/clothing/mask/gas/vsd
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/grunt_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -92,8 +92,8 @@
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor
 	suit_store = /obj/item/weapon/gun/shotgun/pump/ksg/standard
-	l_store = /obj/item/storage/pouch/shotgun
-	ears = /obj/item/radio/headset/distress/vsd
+	l_pocket = /obj/item/storage/pouch/shotgun
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/ksg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -123,7 +123,7 @@
 /datum/outfit/job/vsd/standard/grunt_second
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	head = /obj/item/clothing/head/vsd
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/grunt_second/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -145,7 +145,7 @@
 
 /datum/outfit/job/vsd/standard/grunt_third
 	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine/recoilcomp
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/grunt_third/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -170,7 +170,7 @@
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg_main/recoilcomp
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/lmg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -194,7 +194,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/alt
 	w_uniform = /obj/item/clothing/under/vsd/upp/alt/webbing
 	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine/suppressed
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/upp/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -218,7 +218,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/alt
 	w_uniform = /obj/item/clothing/under/vsd/upp/alt/webbing
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/upp_second/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -243,8 +243,8 @@
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
 	w_uniform = /obj/item/clothing/under/vsd/upp/alt/webbing
 	suit_store = /obj/item/weapon/gun/rifle/lmg_d
-	l_store = /obj/item/storage/holster/flarepouch
-	ears = /obj/item/radio/headset/distress/vsd
+	l_pocket = /obj/item/storage/holster/flarepouch
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/upp_third/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -279,18 +279,18 @@
 	jobtype = /datum/job/vsd/engineer
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/vsd
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/magazine
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -319,7 +319,7 @@
 
 /datum/outfit/job/vsd/engineer/l26
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/engineer
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/engineer/l26/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -336,7 +336,7 @@
 /datum/outfit/job/vsd/engineer/vsd_rifle
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	head = /obj/item/clothing/head/vsd
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/engineer/vsd_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -379,7 +379,7 @@
 	jobtype = /datum/job/vsd/medic
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 	belt = /obj/item/storage/belt/lifesaver/full/upp
 	glasses = /obj/item/clothing/glasses/hud/health
 	w_uniform = /obj/item/clothing/under/vsd/medic
@@ -387,8 +387,8 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/vsd
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/magazine
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 
 /datum/outfit/job/vsd/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -413,8 +413,8 @@
 
 /datum/outfit/job/vsd/medic/ksg
 	suit_store = /obj/item/weapon/gun/shotgun/pump/ksg/support
-	l_store = /obj/item/storage/pouch/shotgun
-	ears = /obj/item/radio/headset/distress/vsd
+	l_pocket = /obj/item/storage/pouch/shotgun
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/medic/ksg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -444,7 +444,7 @@
 
 /datum/outfit/job/vsd/medic/vsd_rifle
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/medic/vsd_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -471,7 +471,7 @@
 /datum/outfit/job/vsd/medic/vsd_carbine
 	w_uniform = /obj/item/clothing/under/vsd/alt/white_webbing
 	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine/suppressed
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/medic/vsd_carbine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -517,12 +517,12 @@
 	jobtype = /datum/job/vsd/spec
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
 
@@ -545,8 +545,8 @@
 	belt = /obj/item/belt_harness/marine
 	glasses = /obj/item/clothing/glasses/meson
 	suit_store = /obj/item/weapon/gun/launcher/rocket/vsd
-	l_store = /obj/item/storage/pouch/explosive
-	ears = /obj/item/radio/headset/distress/vsd
+	l_pocket = /obj/item/storage/pouch/explosive
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/spec/demolitionist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -577,7 +577,7 @@
 	head = /obj/item/clothing/head/helmet/marine/vsd
 	belt = /obj/item/storage/holster/belt/korovin
 	w_uniform = /obj/item/clothing/under/vsd/shirt/webbing
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/spec/gunslinger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -614,8 +614,8 @@
 	head = /obj/item/clothing/head/helmet/marine/vsd
 	mask = /obj/item/clothing/mask/gas/vsd
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer
-	l_store = /obj/item/storage/pouch/magazine
-	ears = /obj/item/radio/headset/distress/vsd
+	l_pocket = /obj/item/storage/pouch/magazine
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/spec/uslspec_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -656,8 +656,8 @@
 	mask = /obj/item/clothing/mask/gas/vsd
 	suit_store = /obj/item/weapon/gun/clf_heavyrifle
 	back = /obj/item/shotgunbox/clf_heavyrifle
-	l_store = /obj/item/storage/pouch/grenade
-	ears = /obj/item/radio/headset/distress/vsd
+	l_pocket = /obj/item/storage/pouch/grenade
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/spec/uslspec_two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -686,7 +686,7 @@
 	belt = /obj/item/storage/holster/belt/korovin
 	w_uniform = /obj/item/clothing/under/vsd/shirt/webbing
 	back = /obj/item/weapon/gun/at45
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/spec/machinegunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -723,14 +723,14 @@
 	jobtype = /datum/job/vsd/juggernaut
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	mask = /obj/item/clothing/mask/gas/vsd
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/explosive
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/explosive
 	back = /obj/item/storage/backpack/lightpack/vsd
 
 /datum/outfit/job/vsd/juggernaut/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -765,10 +765,10 @@
 	head = /obj/item/clothing/head/helmet/marine/vsd/eod
 	belt = /obj/item/belt_harness/marine
 	mask = /obj/item/clothing/mask/gas/vsd
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/explosive
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/explosive
 	back = /obj/item/storage/backpack/lightpack/vsd
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/juggernaut/ballistic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -795,7 +795,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/eod
 	suit_store = /obj/item/weapon/gun/launcher/rocket/vsd
 	head = /obj/item/clothing/head/helmet/marine/vsd/eod
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/juggernaut/eod/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -823,7 +823,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/flamer
 	suit_store = /obj/item/weapon/gun/flamer/vsd
 	head = /obj/item/clothing/head/helmet/marine/vsd/flamer
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/juggernaut/flamer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -865,12 +865,12 @@
 	jobtype = /datum/job/vsd/leader
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/magazine
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 
 /datum/outfit/job/vsd/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -902,7 +902,7 @@
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/leader/one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -926,7 +926,7 @@
 	glasses = /obj/item/clothing/glasses/night/vsd
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
 	belt = /obj/item/storage/holster/belt/korovin
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/leader/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -963,7 +963,7 @@
 	glasses = /obj/item/clothing/glasses/night/vsd
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
-	ears = /obj/item/radio/headset/distress/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/leader/upp_three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

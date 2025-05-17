@@ -1,418 +1,3 @@
-GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
-	/obj/vehicle/sealed,
-	/obj/structure/barricade,
-)))
-
-// ***************************************
-// *********** Blink
-// ***************************************
-/datum/action/ability/activable/xeno/blink
-	name = "Blink"
-	action_icon_state = "blink"
-	action_icon = 'icons/Xeno/actions/wraith.dmi'
-	desc = "We teleport ourselves a short distance to a location within line of sight."
-	use_state_flags = ABILITY_TURF_TARGET
-	ability_cost = 30
-	cooldown_duration = 0.5 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLINK,
-	)
-
-///Check target Blink turf to see if it can be blinked to
-/datum/action/ability/activable/xeno/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
-	if(isclosedturf(T) || isspaceturf(T) || isspacearea(T))
-		if(!silent)
-			to_chat(owner, span_xenowarning("We cannot blink here!"))
-		return FALSE
-
-	if(!line_of_sight(owner, T)) //Needs to be in line of sight.
-		if(!silent)
-			to_chat(owner, span_xenowarning("We can't blink without line of sight to our destination!"))
-		return FALSE
-
-	if(IS_OPAQUE_TURF(T))
-		if(!silent)
-			to_chat(owner, span_xenowarning("We can't blink into this space without vision!"))
-		return FALSE
-
-	if(ignore_blocker) //If we don't care about objects occupying the target square, return TRUE; used for checking pathing through transparents
-		return TRUE
-
-	if(turf_block_check(owner, T, FALSE, TRUE, TRUE, TRUE, TRUE)) //Check if there's anything that blocks us; we only care about Canpass here
-		if(!silent)
-			to_chat(owner, span_xenowarning("We can't blink here!"))
-		return FALSE
-
-	var/area/A = get_area(src)
-	if(isspacearea(A))
-		if(!silent)
-			to_chat(owner, span_xenowarning("We cannot blink here!"))
-		return FALSE
-
-
-	return TRUE
-
-///Check for whether the target turf has dense objects inside
-/datum/action/ability/activable/xeno/blink/proc/check_blink_target_turf_density(turf/T, silent = FALSE)
-	for(var/atom/blocker AS in T)
-		if(!blocker.CanPass(owner, T))
-			if(!silent)
-				to_chat(owner, span_xenowarning("We can't blink into a solid object!"))
-			return FALSE
-
-	return TRUE
-
-/datum/action/ability/activable/xeno/blink/use_ability(atom/A)
-	. = ..()
-	var/turf/T = xeno_owner.loc
-	var/turf/temp_turf = xeno_owner.loc
-	var/check_distance = min(xeno_owner.xeno_caste.wraith_blink_range, get_dist(xeno_owner,A))
-	var/list/fully_legal_turfs = list()
-
-	for (var/x = 1 to check_distance)
-		temp_turf = get_step(T, get_dir(T, A))
-		if (!temp_turf)
-			break
-		if(!check_blink_tile(temp_turf, TRUE, TRUE)) //Verify that the turf is legal; if not we cancel out. We ignore transparent dense objects like windows here for now
-			break
-		if(check_blink_target_turf_density(temp_turf, TRUE)) //If we could ultimately teleport to this square, it is fully legal; add it to the list
-			fully_legal_turfs += temp_turf
-		T = temp_turf
-
-	check_distance = min(length(fully_legal_turfs), check_distance) //Cap the check distance to the number of fully legal turfs
-	T = xeno_owner.loc //Reset T to be our initial position
-	if(check_distance)
-		T = fully_legal_turfs[check_distance]
-
-	xeno_owner.face_atom(T) //Face the target so we don't look like an ass
-
-	var/cooldown_mod = 1
-	var/mob/pulled_target = owner.pulling
-	if(pulled_target) //bring the pulled target with us if applicable but at the cost of sharply increasing the next cooldown
-
-		if(pulled_target.issamexenohive(xeno_owner))
-			cooldown_mod = xeno_owner.xeno_caste.wraith_blink_drag_friendly_multiplier
-		else
-			if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_HOSTILE)) //Grap-porting hostiles has a slight wind up
-				return fail_activate()
-			cooldown_mod = xeno_owner.xeno_caste.wraith_blink_drag_nonfriendly_living_multiplier
-			if(ishuman(pulled_target))
-				var/mob/living/carbon/human/H = pulled_target
-				if(H.stat == UNCONSCIOUS) //Apply critdrag damage as if they were quickly pulled the same distance
-					var/critdamage = HUMAN_CRITDRAG_OXYLOSS * get_dist(H.loc, T)
-					if(!H.adjustOxyLoss(critdamage))
-						H.adjustBruteLoss(critdamage)
-
-		to_chat(xeno_owner, span_xenodanger("We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_duration * cooldown_mod * 0.1] seconds due to the strain of doing so."))
-
-	teleport_debuff_aoe(xeno_owner) //Debuff when we vanish
-
-	if(pulled_target) //Yes, duplicate check because otherwise we end up with the initial teleport debuff AoE happening prior to the wind up which looks really bad and is actually exploitable via deliberate do after cancels
-		pulled_target.forceMove(T) //Teleport to our target turf
-
-	xeno_owner.forceMove(T) //Teleport to our target turf
-	teleport_debuff_aoe(xeno_owner) //Debuff when we reappear
-
-	succeed_activate()
-	add_cooldown(cooldown_duration * cooldown_mod)
-
-	GLOB.round_statistics.wraith_blinks++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
-
-///Called by many of the Wraith's teleportation effects
-/datum/action/ability/activable/xeno/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE)
-
-	if(!silent) //Sound effects
-		playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1) //Sound at the location we are arriving at
-
-	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
-
-	new /obj/effect/temp_visual/wraith_warp(get_turf(teleporter))
-
-	for(var/mob/living/living_target in range(1, teleporter.loc))
-
-		if(living_target.stat == DEAD)
-			continue
-
-		if(isxeno(living_target))
-			var/mob/living/carbon/xenomorph/xeno_target = living_target
-			if(xeno_target.issamexenohive(xeno_owner)) //No friendly fire
-				continue
-
-		living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
-		living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
-		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
-
-/datum/action/ability/activable/xeno/blink/on_cooldown_finish()
-	to_chat(owner, span_xenodanger("We are able to blink again."))
-	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
-	return ..()
-
-// ***************************************
-// *********** Banish
-// ***************************************
-/datum/action/ability/activable/xeno/banish
-	name = "Banish"
-	action_icon_state = "Banish"
-	action_icon = 'icons/Xeno/actions/wraith.dmi'
-	desc = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
-	use_state_flags = ABILITY_TARGET_SELF
-	ability_cost = 50
-	cooldown_duration = 20 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANISH,
-	)
-	///Target we've banished
-	var/atom/movable/banishment_target = null
-	///SFX indicating the banished target's position
-	var/obj/effect/temp_visual/banishment_portal/portal = null
-	///Backup coordinates to teleport the banished to, in case the portal gets destroyed (shuttles!!)
-	var/list/backup_coordinates = list(0,0,0)
-	/// living mobs in the banished object so we can check they didnt get ejected
-	var/list/mob/living/contained_living = list()
-	///The timer ID of any Banish currently active
-	var/banish_duration_timer_id
-	///Phantom zone reserved area
-	var/datum/turf_reservation/reserved_area
-	/// How far can you banish
-	var/range = 3
-
-/datum/action/ability/activable/xeno/banish/Destroy()
-	banish_deactivate()
-	QDEL_NULL(reserved_area) //clean up
-	return ..()
-
-/datum/action/ability/activable/xeno/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-
-	if(!ismovableatom(A) || iseffect(A) || istype(A, /obj/alien) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(A.resistance_flags, BANISH_IMMUNE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
-		if(!silent)
-			to_chat(owner, span_xenowarning("We cannot banish this!"))
-		return FALSE
-
-	if(HAS_TRAIT(A, TRAIT_TIME_SHIFTED))
-		to_chat(owner, span_xenowarning("That target is already affected by a time manipulation effect!"))
-		return
-
-	var/distance = get_dist(owner, A)
-	if(distance > range) //Needs to be in range.
-		if(!silent)
-			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - range] tiles closer!"))
-		return FALSE
-
-	if(!line_of_sight(owner, A, ignore_target_opacity = TRUE)) //Needs to be in line of sight.
-		if(!silent)
-			to_chat(owner, span_xenowarning("We can't banish without line of sight to our target!"))
-		return FALSE
-
-
-/datum/action/ability/activable/xeno/banish/use_ability(atom/movable/A)
-	. = ..()
-	var/banished_turf = get_turf(A) //Set the banishment turf.
-	banishment_target = A //Set the banishment target
-	backup_coordinates[1] = banishment_target.x //Set up backup coordinates in case banish portal gets destroyed
-	backup_coordinates[2] = banishment_target.y
-	backup_coordinates[3] = banishment_target.z
-
-	xeno_owner.face_atom(A) //Face the target so we don't look like an ass
-
-	teleport_debuff_aoe(banishment_target) //Debuff when we disappear
-	portal = new /obj/effect/temp_visual/banishment_portal(banished_turf)
-	banishment_target.resistance_flags = RESIST_ALL
-
-	if(isliving(A))
-		var/mob/living/stasis_target = banishment_target
-		stasis_target.apply_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
-		stasis_target.notransform = TRUE //Stasis
-		stasis_target.overlay_fullscreen("banish", /atom/movable/screen/fullscreen/blind) //Force the blind overlay
-
-	if(!reserved_area) //If we don't have a reserved area, set one
-		reserved_area = SSmapping.RequestBlockReservation(3,3, SSmapping.transit.z_value, /datum/turf_reservation/banish)
-		if(!reserved_area) //If we *still* don't have a reserved area we've got a problem
-			CRASH("failed to reserve an area for [owner]'s Banish.")
-
-	var/turf/target_turf = reserved_area.reserved_turfs[5]
-	new /area/arrival(target_turf) //So we don't get instagibbed from the space area
-
-	if(isxeno(banishment_target)) //If we're a xeno, disgorge all vored contents
-		var/mob/living/carbon/xenomorph/xeno_target = banishment_target
-		xeno_target.eject_victim()
-
-	for(var/mob/living/living_contents in banishment_target.GetAllContents()) //Safety measure so living mobs inside the target don't get lost in Brazilspace forever
-		contained_living += living_contents
-		living_contents.apply_status_effect(/datum/status_effect/incapacitating/unconscious)
-		living_contents.notransform = TRUE
-		living_contents.overlay_fullscreen("banish", /atom/movable/screen/fullscreen/blind)
-
-	banishment_target.forceMove(target_turf)
-
-	var/duration = xeno_owner.xeno_caste.wraith_banish_base_duration //Set the duration
-
-	portal.add_filter("banish_portal_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-	portal.add_filter("banish_portal_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-	animate(portal.get_filter("banish_portal_1"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1)
-	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1)
-
-	var/cooldown_mod = 1
-	var/plasma_mod = 1
-	if(isliving(banishment_target) && !(banishment_target.issamexenohive(xeno_owner))) //We halve the max duration for living non-allies
-		duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
-	else if(is_type_in_typecache(banishment_target, GLOB.wraith_banish_very_short_duration_list)) //Barricades should only be gone long enough to admit an infiltrator xeno or two; one way.
-		duration *= WRAITH_BANISH_VERY_SHORT_MULTIPLIER
-	else
-		cooldown_mod = 0.6 //40% cooldown reduction if used on non-hostile, non-blacklisted targets.
-		plasma_mod = 0.4 //60% plasma cost reduction if used on non-hostile, non-blacklisted targets.
-
-	banishment_target.visible_message(span_warning("Space abruptly twists and warps around [banishment_target] as it suddenly vanishes!"), \
-	span_userdanger("The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time."))
-	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
-
-	to_chat(xeno_owner,span_xenodanger("We have banished [banishment_target] to nullspace for [duration * 0.1] seconds."))
-	log_attack("[key_name(xeno_owner)] has banished [key_name(banishment_target)] for [duration * 0.1] seconds at [AREACOORD(banishment_target)]")
-
-	addtimer(CALLBACK(src, PROC_REF(banish_warning)), duration * 0.7) //Warn when Banish is about to end
-	banish_duration_timer_id = addtimer(CALLBACK(src, PROC_REF(banish_deactivate)), duration, TIMER_STOPPABLE) //store the timer ID
-
-	succeed_activate(ability_cost * plasma_mod)
-	add_cooldown(cooldown_duration * cooldown_mod)
-
-	GLOB.round_statistics.wraith_banishes++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_banishes") //Statistics
-
-///Warns the user when Banish's duration is about to lapse.
-/datum/action/ability/activable/xeno/banish/proc/banish_warning()
-
-	if(!banishment_target)
-		return
-
-	to_chat(owner,span_userdanger("Our banishment target [banishment_target.name] is about to return to reality at [AREACOORD_NO_Z(portal)]!"))
-	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
-
-///Ends the effect of the Banish ability
-/datum/action/ability/activable/xeno/banish/proc/banish_deactivate()
-	SIGNAL_HANDLER
-	if(QDELETED(banishment_target))
-		return
-	var/turf/return_turf = get_turf(portal)
-	if(!return_turf)
-		return_turf = locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3])
-	if(banishment_target.density)
-		var/list/cards = GLOB.cardinals.Copy()
-		for(var/mob/living/displacing in return_turf)
-			if(displacing.stat == DEAD) //no.
-				continue
-			shuffle(cards) //direction should vary.
-			for(var/card AS in cards)
-				if(step(displacing, card))
-					to_chat(displacing, span_warning("A sudden force pushes you away from [return_turf]!"))
-					break
-	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
-	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
-	banishment_target.forceMove(return_turf)
-
-	var/list/all_contents = banishment_target.GetAllContents()
-	for(var/mob/living/living_contents AS in contained_living)
-		if(QDELETED(living_contents))
-			continue
-		living_contents.remove_status_effect(/datum/status_effect/incapacitating/unconscious)
-		living_contents.notransform = initial(living_contents.notransform)
-		living_contents.clear_fullscreen("banish")
-		if(living_contents in all_contents)
-			continue //if it is still inside then it is not stranded and we dont care
-		living_contents.forceMove(return_turf)
-	contained_living.Cut()
-
-	teleport_debuff_aoe(banishment_target)
-	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5))
-	addtimer(CALLBACK(banishment_target, TYPE_PROC_REF(/datum, remove_filter), "wraith_banishment_filter"), 1 SECONDS)
-
-	if(isliving(banishment_target))
-		var/mob/living/living_target = banishment_target
-		living_target = banishment_target
-		living_target.remove_status_effect(/datum/status_effect/incapacitating/unconscious)
-		living_target.notransform = initial(living_target.notransform)
-		living_target.clear_fullscreen("banish")
-
-	banishment_target.visible_message(span_warning("[banishment_target.name] abruptly reappears!"), \
-	span_warning("You suddenly reappear back in what you believe to be reality."))
-
-	to_chat(owner, span_userdanger("Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]")) //Always alert the Wraith
-	log_attack("[key_name(owner)] has unbanished [key_name(banishment_target)] at [AREACOORD(banishment_target)]")
-
-	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
-
-	banishment_target = null
-
-	return TRUE //For the recall sub-ability
-
-/datum/action/ability/activable/xeno/banish/on_cooldown_finish()
-	to_chat(owner, span_xenodanger("We are able to banish again."))
-	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
-	return ..()
-
-// ***************************************
-// *********** Recall
-// ***************************************
-/datum/action/ability/xeno_action/recall
-	name = "Recall"
-	action_icon_state = "Recall"
-	action_icon = 'icons/Xeno/actions/wraith.dmi'
-	desc = "We recall a target we've banished back from the depths of nullspace."
-	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING //So we can recall ourselves from nether Brazil
-	cooldown_duration = 1 SECONDS //Token for anti-spam
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALL,
-	)
-
-/datum/action/ability/xeno_action/recall/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-
-	var/datum/action/ability/activable/xeno/banish/banish_check = owner.actions_by_path[/datum/action/ability/activable/xeno/banish]
-	if(!banish_check) //Mainly for when we transition on upgrading
-		return FALSE
-
-	if(!banish_check.banishment_target)
-		if(!silent)
-			to_chat(owner,span_xenodanger("We have no targets banished!"))
-		return FALSE
-
-
-/datum/action/ability/xeno_action/recall/action_activate()
-	. = ..()
-	var/datum/action/ability/activable/xeno/banish/banish_check = owner.actions_by_path[/datum/action/ability/activable/xeno/banish]
-	banish_check.banish_deactivate()
-	succeed_activate()
-	add_cooldown()
-
-///Return TRUE if we have a block, return FALSE otherwise
-/proc/turf_block_check(atom/subject, atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE, ignore_mobs = FALSE, ignore_space = FALSE)
-	var/turf/T = get_turf(target)
-	if(isspaceturf(T) && !ignore_space)
-		return TRUE
-	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
-		return TRUE
-	for(var/atom/blocker AS in T)
-		if((blocker.atom_flags & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
-			continue
-		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
-			return TRUE
-		if(!blocker.density) //Check if we're dense
-			continue
-		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
-			return TRUE
-		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
-			return TRUE
-		if(isobj(blocker) && !ignore_objects) //If we care about dense objects
-			var/obj/obj_blocker = blocker
-			if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
-				return TRUE
-			var/obj/structure/blocker_structure = obj_blocker
-			if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
-				return TRUE
-		if(ismob(blocker) && !ignore_mobs) //If we care about mobs
-			return TRUE
-
-	return FALSE
 
 /datum/action/ability/xeno_action/timestop
 	name = "Time stop"
@@ -536,7 +121,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	anchored = TRUE
 	opacity = FALSE
 	vis_flags = VIS_HIDE
-	resistance_flags = UNACIDABLE | CRUSHER_IMMUNE | BANISH_IMMUNE
+	resistance_flags = UNACIDABLE | CRUSHER_IMMUNE
 	/// Visual object for handling the viscontents
 	var/obj/effect/portal_effect/portal_visuals
 	/// The linked portal
@@ -595,14 +180,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
+	if(!linked_portal || !COOLDOWN_FINISHED(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
 		return
 	if(isxeno(crosser))
 		var/mob/living/carbon/xenomorph/xeno_crosser = crosser
 		if(xeno_crosser.m_intent == MOVE_INTENT_WALK)
 			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
-	crosser.pass_flags &= ~PASS_MOB
+	crosser.remove_pass_flags(PASS_MOB, PORTAL_TRAIT)
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
@@ -618,7 +203,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	UnregisterSignal(crosser, COMSIG_MOVABLE_MOVED)
 
 /// Signal handler for teleporting a crossing bullet
-/obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
+/obj/effect/wraith_portal/proc/teleport_bullet(datum/source, atom/movable/projectile/bullet)
 	SIGNAL_HANDLER
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/new_range = bullet.proj_max_range - bullet.distance_travelled
@@ -635,7 +220,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_flags = VIS_INHERIT_ID
-	layer = DOOR_OPEN_LAYER
+	layer = OPEN_DOOR_LAYER
 	///turf destination to display
 	var/turf/our_destination
 
@@ -700,6 +285,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/activable/xeno/rewind/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
+
+	if(A == owner)
+		if(!silent)
+			owner.balloon_alert(owner, "Cannot rewind self")
+		return FALSE
 
 	var/distance = get_dist(owner, A)
 	if(distance > range) //Needs to be in range.

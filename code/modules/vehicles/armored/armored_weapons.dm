@@ -28,6 +28,8 @@
 
 	///sound file to play when this weapon you know, fires
 	var/fire_sound = list('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg')
+	///sound to play when mounted on something with a breech object/interior for the users
+	var/interior_fire_sound = 'sound/vehicles/weapons/ltb_fire_interior.ogg'
 	///Whether freq vary is applied to fire_sound
 	var/fire_sound_vary = TRUE
 	///Tracks windups
@@ -72,7 +74,7 @@
 		return
 	if(source.incapacitated(TRUE))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return
 
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
@@ -83,7 +85,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30)
-		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)) || TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)) || TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -96,12 +98,13 @@
 		var/fire_return // todo fix: code expecting return values from async
 		ASYNC
 			fire_return = fire()
+			current_firer.say("On the way!")
 		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
 	SEND_SIGNAL(src, COMSIG_ARMORED_FIRE)
-	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	source?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 /// do after checks for the mecha equipment do afters
 /obj/item/armored_weapon/proc/do_after_checks(atom/target)
@@ -167,7 +170,7 @@
 	current_firer = null
 
 ///does any effects and changes to the projectile when it is fired
-/obj/item/armored_weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
+/obj/item/armored_weapon/proc/apply_weapon_modifiers(atom/movable/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	if(chassis.hitbox?.tank_desants)
@@ -199,15 +202,19 @@
 			chassis.swivel_turret(current_target)
 			return AUTOFIRE_CONTINUE
 	else if(chassis.turret_overlay)
-		chassis.turret_overlay.secondary_overlay.dir = get_cardinal_dir(chassis, current_target)
+		chassis.turret_overlay.secondary_overlay?.dir = get_cardinal_dir(chassis, current_target)
 		chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 	else
 		chassis.cut_overlay(chassis.secondary_weapon_overlay)
-		chassis.secondary_weapon_overlay.dir = get_cardinal_dir(chassis, current_target)
+		chassis.secondary_weapon_overlay?.dir = get_cardinal_dir(chassis, current_target)
 		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
 	do_fire(source_turf)
-	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
+	// if we have a interior fire sound and an interior area we use this instead to make the breech play a sound
+	var/atom/sound_play_loc = interior_fire_sound && chassis.interior ? chassis : src
+	playsound(sound_play_loc, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
+	if(interior_fire_sound)
+		chassis.play_interior_sound(chassis.interior.breech, islist(interior_fire_sound) ? pick(interior_fire_sound):interior_fire_sound, 40, fire_sound_vary)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
 	ammo.current_rounds--
@@ -236,8 +243,8 @@
 ///The actual firing of a projectile. Overridable for different effects
 /obj/item/armored_weapon/proc/do_fire(turf/source_turf, ammo_override)
 	var/datum/ammo/ammo_type = ammo_override ? ammo_override : ammo.default_ammo
-	var/type_to_spawn = CHECK_BITFIELD(ammo_type::ammo_behavior_flags, AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(source_turf, ammo_type:hitscan_effect_icon)
+	var/type_to_spawn = CHECK_BITFIELD(ammo_type::ammo_behavior_flags, AMMO_HITSCAN) ? /atom/movable/projectile/hitscan : /atom/movable/projectile
+	var/atom/movable/projectile/projectile_to_fire = new type_to_spawn(source_turf, ammo_type:hitscan_effect_icon)
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo_type])
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
 	var/firing_angle = get_angle_with_scatter(chassis, current_target, variance, projectile_to_fire.p_x, projectile_to_fire.p_y)
@@ -263,6 +270,12 @@
 	if(ammo)
 		eject_ammo()
 	ammo = popleft(ammo_magazine)
+
+	if(!ammo)
+		for(var/mob/occupant AS in chassis.occupants)
+			occupant.hud_used.update_ammo_hud(src, list(hud_state_empty, hud_state_empty), 0)
+		return
+
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, list(ammo.default_ammo.hud_state, ammo.default_ammo.hud_state_empty), ammo.current_rounds)
 
@@ -317,6 +330,7 @@
 	desc = "A robotically controlled minigun that spews lead."
 	icon_state = "cupola"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
+	interior_fire_sound = null
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	armored_weapon_flags = MODULE_SECONDARY
@@ -333,21 +347,37 @@
 	desc = "A hefty, large caliber chaingun"
 	icon_state = "ltaap_chaingun"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
+	interior_fire_sound = null
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun, /obj/item/ammo_magazine/tank/ltaap_chaingun/hv)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
 	projectile_delay = 0.1 SECONDS
 	rearm_time = 5 SECONDS
 	hud_state_empty = "rifle_empty"
 
+/obj/item/armored_weapon/tank_autocannon
+	name = "\improper Bushwhacker Autocannon"
+	desc = "A Bushwhacker 30mm Autocannon for vehicular use."
+	icon_state = "tank_autocannon"
+	fire_sound = SFX_AC_FIRE
+	interior_fire_sound = list('sound/vehicles/weapons/tank_autocannon_interior_fire_1.ogg', 'sound/vehicles/weapons/tank_autocannon_interior_fire_2.ogg')
+	ammo = /obj/item/ammo_magazine/tank/autocannon
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/autocannon, /obj/item/ammo_magazine/tank/autocannon/high_explosive)
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	variance = 2
+	projectile_delay = 0.45 SECONDS
+	rearm_time = 9 SECONDS
+	hud_state_empty = "hivelo_empty"
+
 /obj/item/armored_weapon/apc_cannon
-	name = "MKV-7 utility payload launcher"
+	name = "\improper MKV-7 utility payload launcher"
 	desc = "A double barrelled cannon which can rapidly deploy utility packages to the battlefield."
 	icon_state = "APC uninstalled dualcannon"
 	fire_sound = 'sound/weapons/guns/fire/tank_smokelauncher.ogg'
+	interior_fire_sound = null
 	ammo = /obj/item/ammo_magazine/tank/tank_slauncher
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/tank_slauncher,
@@ -361,6 +391,7 @@
 	desc = "A large, vehicle mounted flamer. This one is capable of spraying it's payload due to a less solid mix."
 	icon_state = "sflamer"
 	fire_sound = "gun_flamethrower"
+	interior_fire_sound = null
 	ammo = /obj/item/ammo_magazine/tank/secondary_flamer_tank
 	armored_weapon_flags = MODULE_SECONDARY
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -377,6 +408,7 @@
 	desc = "A single-shot, homing, vehicle-mounted TOW-III launcher designed for precision strikes against armored targets. Equipped with IFF."
 	icon_state = "seeker"
 	fire_sound = SFX_RPG_FIRE
+	interior_fire_sound = null
 	armored_weapon_flags = MODULE_SECONDARY
 	ammo = /obj/item/ammo_magazine/tank/tow_missile
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/tow_missile)
@@ -392,6 +424,7 @@
 	desc = "A TGMC secondary vehicle-mounted multiple launch rocket system with a total of 6 homing microrockets. Capable of unleashing its entire payload in rapid succession."
 	icon_state = "secondary_rocket_multiple"
 	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
+	interior_fire_sound = null
 	armored_weapon_flags = MODULE_SECONDARY
 	ammo = /obj/item/ammo_magazine/tank/microrocket_rack
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/microrocket_rack)
@@ -402,3 +435,17 @@
 	projectile_burst_delay = 0.1 SECONDS
 	rearm_time = 5 SECONDS
 	hud_state_empty = "rocket_empty"
+
+/obj/item/armored_weapon/bfg
+	name = "\improper BFG 9500"
+	desc = "A crackling energy weapon, a slightly scaled up model of the classic BFG 9000. Point at people who killed your rabbit."
+	icon_state = "bfg"
+	fire_sound = 'sound/weapons/guns/fire/tank_bfg.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/particle_fire_interior.ogg'
+	armored_weapon_flags = MODULE_PRIMARY|MODULE_NOT_FABRICABLE
+	ammo = /obj/item/ammo_magazine/tank/bfg
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/bfg)
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	projectile_delay = 8 SECONDS
+	variance = 0
+	hud_state_empty = "electrothermal_empty"

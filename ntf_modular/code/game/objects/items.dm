@@ -20,8 +20,8 @@
 					continue
 			return FALSE
 	return TRUE
-	
-/obj/structure/barricade/metal/deployable/proc/check_space_to_deploy(mob/user, turf/location, direction, obj/deploy_type)
+
+/obj/structure/barricade/solid/deployable/proc/check_space_to_deploy(mob/user, turf/location, direction, obj/deploy_type)
 	if((item_flags & DEPLOY_ON_INITIALIZE) && (item_flags & DEPLOYED_NO_PICKUP))
 		return TRUE
 	if(location.density)

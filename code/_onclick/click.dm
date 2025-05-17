@@ -67,31 +67,34 @@
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
 
-	if(modifiers["shift"] && modifiers["middle"])
+	if(modifiers[BUTTON4] || modifiers[BUTTON5])
+		return
+
+	if(modifiers[SHIFT_CLICK] && modifiers[MIDDLE_CLICK])
 		ShiftMiddleClickOn(A)
 		return
-	if(modifiers["shift"] && modifiers["ctrl"])
+	if(modifiers[SHIFT_CLICK] && modifiers[CTRL_CLICK])
 		CtrlShiftClickOn(A)
 		return
-	if(modifiers["ctrl"] && modifiers["middle"])
+	if(modifiers[CTRL_CLICK] && modifiers[MIDDLE_CLICK])
 		CtrlMiddleClickOn(A)
 		return
-	if(modifiers["middle"] && MiddleClickOn(A))
+	if(modifiers[MIDDLE_CLICK] && MiddleClickOn(A))
 		return
-	if(modifiers["shift"] && modifiers["right"])
+	if(modifiers[SHIFT_CLICK] && modifiers[RIGHT_CLICK])
 		ShiftRightClickOn(A)
 		return
-	if(modifiers["shift"] && ShiftClickOn(A))
+	if(modifiers[SHIFT_CLICK] && ShiftClickOn(A))
 		return
-	if(modifiers["alt"] && modifiers["right"])
+	if(modifiers[ALT_CLICK] && modifiers[RIGHT_CLICK])
 		AltRightClickOn(A)
 		return
-	if(modifiers["alt"] && AltClickOn(A))
+	if(modifiers[ALT_CLICK] && AltClickOn(A))
 		return
-	if(modifiers["ctrl"])
+	if(modifiers[CTRL_CLICK])
 		CtrlClickOn(A)
 		return
-	if(modifiers["right"] && RightClickOn(A))
+	if(modifiers[RIGHT_CLICK] && RightClickOn(A))
 		return
 
 	if(incapacitated(TRUE))
@@ -119,7 +122,7 @@
 	var/obj/item/W = get_active_held_item()
 
 	if(W == A)
-		if(modifiers["right"])
+		if(modifiers[RIGHT_CLICK])
 			W.attack_self_alternate(src)
 		else
 			W.attack_self(src)
@@ -132,7 +135,7 @@
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
 		if(W)
-			W.melee_attack_chain(src, A, params, modifiers["right"])
+			W.melee_attack_chain(src, A, params, modifiers[RIGHT_CLICK])
 		else
 			UnarmedAttack(A, FALSE, modifiers)
 		return
@@ -144,7 +147,7 @@
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A, W))
 		if(W)
-			W.melee_attack_chain(src, A, params, modifiers["right"])
+			W.melee_attack_chain(src, A, params, modifiers[RIGHT_CLICK])
 		else
 			UnarmedAttack(A, TRUE, modifiers)
 	else
@@ -241,7 +244,7 @@
 			return FALSE //here.Adjacent(there)
 		if(2 to INFINITY)
 			var/obj/dummy = new(get_turf(here))
-			dummy.allow_pass_flags |= PASS_LOW_STRUCTURE
+			dummy.add_pass_flags(PASS_LOW_STRUCTURE, INNATE_TRAIT)
 			dummy.invisibility = INVISIBILITY_ABSTRACT
 			for(var/i in 1 to reach) //Limit it to that many tries
 				var/turf/T = get_step(dummy, get_dir(dummy, there))
@@ -559,6 +562,16 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	M.Scale(px/sx, py/sy)
 	transform = M
 
+
+/atom/movable/screen/click_catcher/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(offset_increased))
+	offset_increased(SSmapping, 0, SSmapping.max_plane_offset)
+
+// Draw to the lowest plane level offered
+/atom/movable/screen/click_catcher/proc/offset_increased(datum/source, old_offset, new_offset)
+	SIGNAL_HANDLER
+	SET_PLANE_W_SCALAR(src, initial(plane), new_offset)
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)

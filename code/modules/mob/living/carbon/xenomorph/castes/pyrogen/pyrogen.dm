@@ -15,6 +15,19 @@
 	bubble_icon = "alienroyal"
 	fiery_stab = TRUE
 
+/mob/living/carbon/xenomorph/pyrogen/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack))
+
+/// Applies a single stack of melting fire to those that they attack.
+/mob/living/carbon/xenomorph/pyrogen/proc/on_postattack(mob/living/source, mob/living/target, damage)
+	SIGNAL_HANDLER
+	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	if(debuff)
+		debuff.add_stacks(1, src)
+		return
+	target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 1, src)
+
 /mob/living/carbon/xenomorph/pyrogen/on_floored_trait_loss(datum/source)
 	. = ..()
 	flick("stunned_comeback",src)

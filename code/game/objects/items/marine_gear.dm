@@ -53,7 +53,7 @@
 	bitesize = 4
 	greyscale_config = /datum/greyscale_config/protein
 	tastes = list(("flavored protein bar") = 1)
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	///list of protein bar types
 	var/static/list/flavor_list = list(
 		FACTION_TERRAGOV = list(

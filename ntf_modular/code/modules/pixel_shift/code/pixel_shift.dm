@@ -98,7 +98,7 @@
 
 /mob/living/CanAllowThrough(atom/movable/mover, border_dir)
 	// Make sure to not allow projectiles of any kind past where they normally wouldn't.
-	if(!istype(mover, /obj/projectile) && !mover.throwing && passthroughable)
+	if(!istype(mover, /atom/movable/projectile) && !mover.throwing && passthroughable)
 		return TRUE
 	return ..()
 

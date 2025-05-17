@@ -1,10 +1,21 @@
 Go to Valhalla to experiment with loadouts and weapons. You don't reset your respawn time in Valhalla!
+As a squad marine, you can handle most weapons in the game; your weapons vendor has a wide selection, and the area of operations will have additional firearms you can steal.
+If you have an AI onboard the ship, consider bringing a AI coordinate unit next time you use the artillery. Or just simply ask the AI for scan a tile for your coordinates for your strikes.
+You can jump on tanks and APC's. As long as you have one empty hand you won't be thrown off when it moves.
+You can shoot any target riding on a tank or APC by directly clicking on them. Tanks and APC's often lack methods to deal with hostile riders, and need help from other marines.
+Assault Crewmen can drive APC's, but Transport Crewmen cannot drive tanks. Transport Crewman can still act as a loader for a tank though.
+Acid Jaws must be placed outside in the open. This makes them vulnerable to CAS, OB's, Mortars, or being scouted by the Tadpole. Use the xeno structure pinpointer to locate them, and consider lasing them with tactical binoculars if xenomorphs are putting up a heavy defence.
+Terra Experimental standard weapons, the laser weapons, have different firing modes that have different effects on xenomorphs, making them extremely versatile in any situation!
 Fire disables pheromones, use this information to your advantage.
+Fire does NOT hurt pyrogen, the xenomorph on FIRE!
+When FC or SL are using binoculars, moving them interrupt them. Move around them!
+Don't get left behind, corpsmen! Use your minimap to check where marines are, whether alive or dead!
 Catch larval facehuggers by having an empty hand and throw mode on.
+Fire removes facehugger on marine's face so that the facehugger can't impregnate!
 Standing in a corner on harm intent stops you from behing shuffled, unless you're a marine and a xenomorph on help intent walks into you.
 Jumping will allow you to throw grenades farther, and over allies. Yeet those grenades to xenomorphs!
 Hunger will slow you down. A single protein bar will fill everyone's stomach. Take an extra protein bar too much and you become slower (ironic) and fat.
-If you are low on blood, eating food can help you replenish blood.
+If you are low on blood, eating food can help you replenish blood. NanoBlood from corpsmen can also help!
 Roll on snow to instantly extinguish fire.
 Putting an instrument in your armor slot allows you to still be able to play it, charge into battle with song!
 Many maps spawn with free metal, plasteel and other important supplies in key spots. As a marine, remember to grab them and as a xeno, make sure to melt them.
@@ -12,6 +23,7 @@ Trading your life for a Xenomorph's is almost always worth it.
 You do not need to be in harm intent to point blank xenomorphs!
 The mini map (green icon on the top of the screen) helps you know where the frontline is at and where revivable marines are. You can keybind it in game preferences.
 No round has ever been won behind a barricade.
+If you have a fracture, find a corpsman.  You can splint your fracture yourself, but it will break in a single hit.  A corpsman can give you a durable splint.
 You can refill the marine jetpack with flamer tanks.
 Jetpacks can fly over most things. Use them to escape your poor decisions of overextending.
 If the main push is stagnating and the area is congested, try to coordinate with a few others and go to a different area.
@@ -19,18 +31,17 @@ When pushing into an area, check the flanks. Especially so in caves and enclosed
 Resin structures are weaker to melee than they are to bullets. Take out your knives, swords and bayonets!
 Always clear weeds and alien structures as you advance. A resin maze forces marines to engage in CQC against xenomorphs, which decreases your survival rate. That said, this increases your PB chances!
 Always check for traps beneath loose objects on weeds - it could save your FACE!
-As a human, you can do almost anything if you put your mind to it; it just takes time.
 Any marine can link plasteel barricades together using a crowbar. Click one, and then click one adjacent. Repeat as needed.
 A lone marine is a dead marine and a happy xeno. Stick together!
 Be mindful when using hand grenades. Getting stunned or knocked over after priming a grenade will drop it at your feet. This is obviously very dangerous for not only you, but your friends as well.
 Watch out for friendly fire and marines not in aim mode. Make sure you're not walking into anyone's firing line, and make sure no one else is in yours!
-Some weapons permit aim mode, which prevents friendly fire. Use this behind marines and be a smartgunner-lite!
+A few weapons permit aim mode, which prevents friendly fire. Use this behind marines and be a smartgunner-lite!
 While medics and doctors are best at it, anyone can use a defibrillator and operate the body scanner and autodoc medical system.
 While engineers and synthetics are best at it, anyone can build barricades and razorsharp obstacles.
 Anyone can make razor wire by using three metal sheets, which is four metal rods and barbed wire from metal sheets. Stop that crusher and bull from charging!
 Terra Experimental standard batteries can be recharged in APCs and power cell rechargers if the generators are on.
-If you aren't a Squad Operative, then you have a special room in prep with special gear vendors.
-Sidearms aren't complete garbage. They are often faster than reloading if in a very tight situation, it may save your life.
+If you aren't a squad marine, then you have a special room in prep with special gear vendors.
+Sidearms aren't complete garbage. They are often faster than reloading if in a very tight situation; it may save your life.
 The Revolver and Service Pistol can be decent primary weapons if used properly, though with the short magazine capacity, expect to run dry on ammo quick!
 There is no "best" loadout. Experiment and find what works for you.
 You have a variety of weaponry inside the Automated Weapon Closets, do not be afraid to experiment which one is best suited for your playstyle.
@@ -40,21 +51,22 @@ You can check your wounds to see if they have been bandaged or salved by clickin
 You can check what part of your body is bleeding by shift-clicking on your person.
 Removing weeds as a marine means that xenomorphs cannot take advantage of the battlefield; your standard boot knife is great for doing this.
 Blue weeds and purple sticky resin slow you down. Get rid of them!
+You can take a deployable floodlight from the weapon vendor in the Utilities tab to have a deployable that lights up massive places of land at a time.
 During Self Destruct, green control rods are armed control rods. Each rods take 3 minutes to rise, forcing marines to hold Self Destruct for a total of 20 minutes. Collect all six!
 A fit marine can carry many weapons: in their armor, belt, even hanging from their back.
 Requisitions has many supplies to enhance the combat power of marine units, such as attachments, ammunition, and other toys; ask their crew what's in store and you may be pleasantly surprised. DISCLAIMER: Extra gears' availability is dependent on supply.
 As a marine, you can climb over waist-high obstacles like sandbags, window frames or tables by CTRL+clicking them or drag-clicking yourself onto them.
-You can jump over waist-high obstacles like platforms, tables, and window frames, for a small stamina cost (Default: Spacebar).
+You can jump over waist-high obstacles like platforms, tables, and window frames, for a small stamina cost (Default: C).
 The Terra Experimental laser rifles have a mode selector that can be switched using the Unique Action command (Default: Spacebar). Some modes are better than other modes in specific circumstances.
 You can remove armor pieces (leg pieces, arm pieces and chest pieces) and armor modules (Valkyrie, Baldur, etc.) from the XM-02 Combat Exoskeleton by Alt+clicking the exoskeleton.
 You can customize armor pieces and the exoskeleton helmet using any kind of facepaint for a personal touch. Paint the armor pieces before you put them in the exoskeleton!
 If an M40 FLDP grenade collides with any mob when thrown, the mob will be lit in a light fire. Be careful throwing flares.
 SWAT masks ordered from Requisitions can block only one larval facehugger attack. If they successfully blocked an attempted attack, replace them immediately.
-Drag dead xenomorphs onto the Automated Storage and Retrieval System (ASRS) pad inside requisitions. Once the pad lowers with the applicable bodies, you will gain requisition points.
+Sell dead xenomorphs with either fultons that marines carry, the Automated Storage and Retrieval System (ASRS) pad inside requisitions, or the bluespace export pad that is likely in tadpole. Gain requisition points for selling dead xenomorphs!
 To throw a grenade, Activate (Default: Z) the grenade while in the active hand. Then simply click where you want to throw it. Do not take too long!
 Quickly store items to a container (bags, satchels, belts, pouches) by pressing the Quick Equip (Default: E) key while holding an item and having a container open.
 Press Quick Equip (Default: E) while you are not holding an item to the active hand to draw the weapon from whatever preferred slot (Default: Suit Storage, can be customized at the Preferences tab) you selected, otherwise you will pull out any item from a container.
-Stasis bags do pause xenomorph infection entirely.
+Stasis bags pause xenomorph infection entirely.
 Stasis bags prevents brain death timer from ticking, meaning that if corpsmen have a lot of patients, they can prevent brain death via stasis bags.
 In the Crash gamemode, cooperate as a marine! Work as a squad to capture the disks and to detonate the nuclear bomb.
 In the Crash gamemode, remember that your objective is to secure all three disks, put the disks into the nuclear device and head home while the bomb is active. Xenos will keep on respawning until all of the marines are dead.
@@ -72,22 +84,20 @@ As a marine, if you are trained enough to do so, you can perform a tactical relo
 As a human, when you are already infected, facehuggers will ignore you. But you still need medical attention regardless.
 As a marine, please try not to aim for the head. It benefits the xenomorphs as they will not take more damage on the head and when you commit friendly-fire, you might break their head instead. Aim for the center of mass!
 Not being ready at the start of the round means xenos get more burrowed larva, and that you don't get to play as quickly.
-As a Squad Operative, you can vend seperate Jaeger Pattern armor pieces and modules for the XM-02 Combat Exoskeleton from a Surplus Equipment Vendor. It is a modular piece of equipment after all.
-As a Squad Operative, you can practice using your weapons on the Firing Range.
-As a Squad Operative, you can handle every type of weapon featured in the game.
-As a Squad Operative, when you are in a tight situation, do not be a hero! Whenever possible, recover and re-arm and leave the enemies for another try.
-As a Squad Operative, do not be afraid to take risks. See a xeno that is almost dead and slowly retreating? Take the chance to charge and kill it! You have better chances to survive with a squadmate with you.
-As a Squad Operative, you can help out your squad by bringing extra ammunition and food to share.
-As a Squad Operative, you can take two two-handed guns, one in the suit slot and one on your back.
-As a Squad Operative, you can get attachments from the weapons vendors, usually in preparations.
+As a squad marine, you can vend seperate Jaeger Pattern armor pieces and modules for the XM-02 Combat Exoskeleton from a Surplus Equipment Vendor. It is a modular piece of equipment after all.
+As a squad marine, you can practice using your weapons on the Firing Range.
+As a squad marine, when you are in a tight situation, do not be a hero! Whenever possible, recover and re-arm and leave the enemies for another try.
+As a squad marine, do not be afraid to take risks. See a xeno that is almost dead and slowly retreating? Take the chance to charge and kill it! You have better chances to survive with a squadmate with you.
+As a squad marine, you can help out your squad by bringing extra ammunition and food to share.
+As a squad marine, you can take two two-handed guns, one in the suit slot and one on your back.
+As a squad marine, you can get attachments from the weapons vendors, usually in preparations.
 As a corpsman or engineer, your number one priority is NOT hunting down xenomorphs! Leave it to the combat marines. You have more essential and important tasks at hand.
-As a doctor, the cryotubes are excellent at dealing with basic damage.
-As a doctor, the cryotubes heal internal bleeding and fractures, although slowly.
+As a doctor, the cryotubes are excellent at dealing with basic damage and healing internal bleeding and fractures, although slowly.
 As a doctor, surgery time from fastest to slowest is: by hand, Autodoc manual, Autodoc automatic.
 As a doctor, the autodoc drains a lot of energy, this can cause a power outage and prevent medevac beacons from working!
 As a doctor, the white webbing vest fits on your scrubs and can hold surgical tools.
 As a doctor, wear the surgical apron to help prevent infection while doing surgery.
-As a doctor, you've got access to the chemistry machine. Experiment to find the best medications.
+As a doctor, use the chemistry machine to experiment and finding the best medications.
 As a doctor, hygiene is important! Keep yourself clean to prevent infections.
 As an engineer, you can take sandbag barricades apart with your entrenching tool.
 As an engineer, you can repair barricades with a welder.
@@ -96,6 +106,7 @@ As an engineer, det packs can be set on demolition mode for an explosive trap.
 As an engineer, you build barricades the fastest.
 As an engineer, repair the mining wells. These mining machines will mine phoron or platinum that can be used for requisitions, earning them more points!
 As an engineer, placing turrets on open spaces and without defenses is a poor choice.
+As an engineer, mutitoools can be used to locate a room APC for nuclear disks and intels.
 You can use a Terra experimental cell as a discount power cell!
 You can upgrade metal barricades by clicking them with metal!
 Bring at least 1 cell and 1 power control module to fix APCs for disks or intelligence computers.
@@ -146,7 +157,7 @@ Gigachads leave the autodoc on automatic.
 You can fit tiny items into your helmet.
 The time it takes for you to wield your gun can be the difference between life and death.
 Switching to your sidearm is faster than reloading.
-You can preform a tactical reload by dragging a fresh magazine from your belt towards your gun.
+You can perform a tactical reload by clicking or dragging a fresh magazine from your belt towards your gun.
 With your sidearm in hand, right-click a pistol pouch to instantly reload.
 You can turn the safety of your gun on.
 Depending on the tactical situations, smoke grenades can do more harm than good.
@@ -158,16 +169,19 @@ Dress to impress! Your fellow marines WILL notice how you look.
 You can wipe any bodypaint off your face with a piece of paper.
 The Sons of Mars reside on a Martian analogue called Cydonia. They haven't lived on Mars in centuries.
 The USL stands for the United State of Lepidoptera, a fringe-terrorist group with connections to an alleged "moth-people".
-Humans love fire. Xenomorphs hate it.
+Humans love fire. Xenomorphs hate it. Except pyrogen.
 The CL can order pizza with their fax-machine.
 Insulting your fellow marines is terrible for morale. Be kind.
 The admins are usually not out to get you.
 The most dangerous tactic is the unexpected.
-A single wraith can be fatal to the operation.
+As an engieneer, the marines are counting on your to reinforce the area.
+A good an engieneer is one that will dismantle everything in the room for extra metal.
+A marine can miss, a turret rarely does.
 The Baldur armor module significantly increases your light output. Become the flashlight you always wanted to be!
 Try not to bump into corpsmen. Your life might depend on it.
 With a cigarette pack in hand, target the mouth and click yourself to instantly take one.
-Spamming flares can be incredibly helpful, especially when the King uses Nightfall! Many marines cannot see in darkness, so if you lighten up the firing lane with flares, marines can shoot better.
+A firing lane is useless without visibility; use flares to have visibility!
+Spamming flares increase visibility, especially when the King uses Nightfall! Many marines cannot see in darkness, so if you lighten up the firing lane with flares, marines can shoot better.
 The cryopods in medbay heal most types of damage but not organ damage!
 When in doubt, throw them in the autodoc.
 Medbay may sometimes run out of power. To avoid this, scream at your nearest engineer to repair the fusion reactors or replace the power cell in medbay's APC.
@@ -177,6 +191,6 @@ You can fit more than water in a canteen.
 15u from a standard inaprovaline injector will instantly heal 30% of all damage on someone in critical condition. Marines in a critical state will be laying on the ground, sleeping, and gasping for air!
 There is a bazaar of weapons and tactics. Don't be afraid to find your niche!
 Always stick to your squad, or at least have a buddy.
-Walking to and from the FOB by yourself is an easy way to die.
+Walking by yourself is an easy way to die.
 Xenomorphs are well-armored. Over time, their exoskeleton will wear down by sunder, and they will be very vulnerable.
 You can attach a bullet charger to a BR-127 to become a discount autosniper.

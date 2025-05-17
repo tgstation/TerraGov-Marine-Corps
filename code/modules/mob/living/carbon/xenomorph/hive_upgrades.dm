@@ -273,6 +273,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
+	for(var/atom/thing in GLOB.xeno_acid_jaws_by_hive[buyer.hivenumber])
+		if(thing.type != building_type)
+			continue
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We already have one!"))
+		return FALSE
+
 	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
@@ -282,7 +289,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 	var/area/buildzone = get_area(buyer)
-	if(buildzone.ceiling > CEILING_UNDERGROUND)
+	if(buildzone.ceiling >= CEILING_UNDERGROUND)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("We need open space to allow this structure to bombard enemies!"))
 		return FALSE
@@ -300,6 +307,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
+	for(var/atom/thing in GLOB.xeno_acid_jaws_by_hive[buyer.hivenumber])
+		if(thing.type != building_type)
+			continue
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We already have one!"))
+		return FALSE
+
 	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
@@ -308,7 +322,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		if(!silent)
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
-
 
 /datum/hive_upgrade/defence
 	category = "Defences"
@@ -421,22 +434,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
 	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
 	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
-	return ..()
-
-/datum/hive_upgrade/defence/special_walls
-	name = "Special Resin Walls"
-	desc = "Gives your hive 50 special resin walls to build."
-	psypoint_cost = 125
-	icon = "specialresin"
-	gamemode_flags = ABILITY_NUCLEARWAR
-	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
-
-/datum/hive_upgrade/defence/special_walls/on_buy(mob/living/carbon/xenomorph/buyer)
-	GLOB.hive_datums[buyer.get_xeno_hivenumber()].special_build_points += 50
-	to_chat(buyer, span_notice("We buy 50 special resin points for [psypoint_cost] psy points."))
-	log_game("[buyer] has purchased 50 special resin points, spending [psypoint_cost] psy points in the process.")
-	xeno_message("[buyer] has purchased 50 special resin points!", "xenoannounce", 5, buyer.hivenumber)
-
 	return ..()
 
 /datum/hive_upgrade/xenos

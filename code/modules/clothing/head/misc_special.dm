@@ -1,6 +1,6 @@
 /*
 * Contents:
-*		Welding mask
+*		Welding helmet
 *		Cakehat
 *		Ushanka
 *		Pumpkin head
@@ -8,7 +8,7 @@
 */
 
 /*
-* Welding mask
+* Welding helmet
 */
 /obj/item/clothing/head/welding
 	name = "welding helmet"
@@ -36,8 +36,8 @@
 	toggle_item_state(user)
 
 /obj/item/clothing/head/welding/verb/verbtoggle()
-	set category = "Object"
-	set name = "Adjust welding mask"
+	set category = "IC.Object"
+	set name = "Adjust welding helmet"
 	set src in usr
 
 	if(!usr.incapacitated())
@@ -61,13 +61,19 @@
 /obj/item/clothing/head/welding/toggle_item_state(mob/user)
 	. = ..()
 	up = !up
-	icon_state = "[initial(icon_state)][up ? "up" : ""]"
+	icon_state = "[initial(icon_state)][up ? "up" : ""]" //"up" version of helmet has to have "up" appended to the regular icon state name for this to work
+	worn_icon_state = "[initial(worn_icon_state)][up ? "up" : ""]"
 	if(up)
 		flip_up()
+		if(user)
+			user.balloon_alert(user, "flips up")
 	else
 		flip_down()
-	if(user)
-		to_chat(usr, "You [up ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
+		if(user)
+			user.balloon_alert(user, "flips down")
+
+	user.update_inv_l_hand() //update inhand sprites whenever toggled
+	user.update_inv_r_hand()
 
 	update_clothing_icon()	//so our mob-overlays update
 

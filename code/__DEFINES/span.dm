@@ -43,6 +43,7 @@
 #define span_linkoff(str) ("<span class='linkoff'>" + str + "</span>")
 #define span_linkon(str) ("<span class='linkon'>" + str + "</span>")
 #define span_looc(str) ("<span class='looc'>" + str + "</span>")
+#define span_looc_heard_staff(str) ("<span class='looc_heard_staff'>" + str + "</span>")
 #define span_memo(str) ("<span class='memo'>" + str + "</span>")
 #define span_memoedit(str) ("<span class='memoedit'>" + str + "</span>")
 #define span_mentorsay(str) ("<span class='msay'>" + str + "</span>")
@@ -60,6 +61,7 @@
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")
 #define span_ordercic(str) ("<span class='ordercic'>" + str + "</span>")
 #define span_prefix(str) ("<span class='prefix'>" + str + "</span>")
+#define span_purple(str) ("<span class='purple'>" + str + "</span>")
 #define span_redtext(str) ("<span class='redtext'>" + str + "</span>")
 #define span_revennotice(str) ("<span class='revennotice'>" + str + "</span>")
 #define span_role_body(str) ("<span class='role_body'>" + str + "</span>")
@@ -90,5 +92,5 @@
 
 // Spans that use embedded tgui components:
 // Sorted alphabetically
-#define span_collapsible(title, main_text) ("<span data-component=\"Collapsible\" data-content=\"" + title + "\" class=\"collapsible\">"+ examine_block(main_text) + "</span>")
+#define span_collapsible(title, main_text) ("<span data-component=\"Collapsible\" data-content=\"" + title + "\" class=\"collapsible\">"+ boxed_message(main_text) + "</span>")
 #define span_tooltip(tip, main_text) ("<span data-component=\"Tooltip\" data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>")

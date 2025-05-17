@@ -44,7 +44,7 @@
 		return
 	if(!occupant)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 	. += mutable_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
@@ -55,7 +55,7 @@
 
 /obj/machinery/bodyscanner/verb/eject()
 	set src in oview(1)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Eject Body Scanner"
 
 	if (usr.stat != CONSCIOUS)
@@ -83,7 +83,7 @@
 
 /obj/machinery/bodyscanner/verb/move_inside()
 	set src in oview(1)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Enter Body Scanner"
 
 	move_inside_wrapper(usr, usr)
@@ -96,10 +96,10 @@
 /obj/machinery/bodyscanner/proc/go_out()
 	if (!occupant || locked)
 		return
-	for(var/obj/O in src)
-		O.loc = loc
 	occupant.forceMove(loc)
 	occupant = null
+	for(var/obj/O in src)
+		O.forceMove(loc)
 	update_icon()
 
 /obj/machinery/bodyscanner/attack_hand(mob/living/user)
@@ -169,14 +169,14 @@
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			for(var/atom/movable/A AS in src)
-				A.loc = src.loc
+				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(EXPLODE_HEAVY)
 			if (prob(50))
 				for(var/atom/movable/A AS in src)
-					A.loc = src.loc
+					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
@@ -184,7 +184,7 @@
 			if(!prob(75))
 				return
 			for(var/atom/movable/A AS in src)
-				A.loc = src.loc
+				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 
@@ -258,7 +258,7 @@
 		if(!(R.fields["last_scan_time"]))
 			. += span_deptradio("No scan report on record")
 		else
-			. += span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].</a>")
+			. += span_deptradio("<a href='byond://?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].</a>")
 		break
 
 

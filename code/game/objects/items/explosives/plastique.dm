@@ -106,8 +106,9 @@
 
 		plant_target = target
 		if(ismovableatom(plant_target))
-			var/atom/movable/T = plant_target
-			T.vis_contents += src
+			var/atom/movable/mover = plant_target
+			mover.vis_contents += src
+			layer = ABOVE_ALL_MOB_LAYER
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(warning_sound), target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
 		update_icon()
 
@@ -122,6 +123,7 @@
 		if(ismovableatom(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents -= src
+			layer = initial(layer)
 
 		forceMove(get_turf(user))
 		pixel_y = 0
@@ -157,7 +159,7 @@
 		explosion(plant_target, flash_range = 1) //todo: place as abuse of explosion
 		qdel(src)
 		return
-	explosion(plant_target, 0, 0, 1, 0, 0, 0, 1, 0, 1)
+	explosion(plant_target, 0, 0, 1, 0, 0, 0, 1, 0, 1, explosion_cause=src)
 	playsound(plant_target, SFX_EXPLOSION_SMALL, 100, FALSE, 25)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(smokeradius, plant_target, 2)

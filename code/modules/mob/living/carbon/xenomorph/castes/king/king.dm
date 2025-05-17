@@ -2,11 +2,8 @@
 	caste_base_type = /datum/xeno_caste/king
 	name = "King"
 	desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
-	icon = 'icons/Xeno/castes/king.dmi'
+	icon = 'icons/Xeno/castes/king/king.dmi'
 	icon_state = "King Walking"
-	attacktext = "bites"
-	attack_sound = null
-	friendly = "nuzzles"
 	health = 500
 	maxHealth = 500
 	plasma_stored = 300
@@ -64,6 +61,7 @@
 	caste_base_type = /datum/xeno_caste/king/conqueror
 	name = "Conqueror"
 	desc = "A primordial beast, sculpted by countless fights, intent on conquering the battlefield."
+	icon = 'icons/Xeno/castes/king/conqueror.dmi'
 	icon_state = "Conqueror Walking"
 
 /mob/living/carbon/xenomorph/king/conqueror/generate_name()

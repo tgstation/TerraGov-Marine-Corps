@@ -2713,13 +2713,10 @@
 	},
 /area/magmoor/command/conference)
 "bOr" = (
-/obj/machinery/power/monitor{
-	name = "Core Power Monitoring"
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/tcomms,
+/turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "bOC" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -3298,6 +3295,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
+"ckg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/power)
 "cki" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/floor,
@@ -3613,7 +3617,7 @@
 "cul" = (
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/cryostasis)
@@ -8206,9 +8210,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/mining)
 "fDl" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
 "fDw" = (
@@ -8887,6 +8889,10 @@
 	dir = 6
 	},
 /area/magmoor/compound)
+"gao" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/magmoor/engi/thermal)
 "gaE" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -9548,6 +9554,9 @@
 "gxS" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
+/obj/machinery/power/monitor{
+	name = "Main Power Grid Monitoring"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "gxU" = (
@@ -11032,6 +11041,13 @@
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
+/area/magmoor/engi/power)
+"hKa" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/power)
 "hKg" = (
 /obj/effect/turf_decal/tile/blue{
@@ -13674,6 +13690,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
+"jCa" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/magmoor/engi/thermal)
 "jCp" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
@@ -14735,9 +14755,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
 "klO" = (
@@ -17382,7 +17400,7 @@
 	dir = 4
 	},
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/mosque)
@@ -17440,9 +17458,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/magmoor/civilian/jani)
 "mgE" = (
@@ -17670,9 +17686,7 @@
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/civilian/mosque)
 "mqK" = (
@@ -18055,7 +18069,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
@@ -18789,10 +18803,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/lobby)
-"njq" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/orange,
-/area/magmoor/engi/thermal)
 "njG" = (
 /obj/structure/window_frame/colony,
 /obj/item/shard,
@@ -18807,7 +18817,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
@@ -19955,7 +19965,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
 "ohB" = (
@@ -20783,6 +20795,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "oJc" = (
@@ -23684,6 +23699,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+/obj/machinery/light,
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/engi/thermal)
 "qHK" = (
@@ -23777,9 +23793,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
 "qLP" = (
@@ -24296,9 +24310,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
 "rhd" = (
@@ -25987,7 +25999,7 @@
 /area/magmoor/civilian/dorms)
 "srz" = (
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/cryostasis)
@@ -26642,6 +26654,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
+/obj/machinery/light,
 /turf/open/floor/mainship/orange/corner{
 	dir = 8
 	},
@@ -26771,6 +26784,10 @@
 "sVr" = (
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/northeast)
+"sVs" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/thermal)
 "sWk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -30428,6 +30445,13 @@
 	},
 /turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
+"vAF" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/thermal)
 "vAK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -31639,7 +31663,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/magmoor/command/lobby/east)
 "wuH" = (
@@ -32241,7 +32267,9 @@
 	},
 /area/magmoor/compound/east)
 "wOv" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/magmoor/command/lobby/east)
 "wOU" = (
@@ -34582,13 +34610,10 @@
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "ylq" = (
-/obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring"
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/tcomms,
+/turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "ylX" = (
 /obj/effect/spawner/random/misc/plant,
@@ -45012,7 +45037,7 @@ lCK
 lCK
 lCK
 mGZ
-ezm
+tBz
 lCK
 lCK
 lCK
@@ -46172,7 +46197,7 @@ wCU
 wIH
 wCU
 hvR
-hyz
+uqV
 xOp
 xOp
 nkZ
@@ -46181,7 +46206,7 @@ beH
 ciK
 xOp
 mkw
-uqV
+hyz
 lCK
 ssf
 roE
@@ -47109,7 +47134,7 @@ lCK
 lCK
 lCK
 nka
-tBz
+ezm
 lCK
 lCK
 lCK
@@ -53547,9 +53572,9 @@ mNI
 mNI
 hUg
 wwg
-wwg
+jCa
 pJV
-wwg
+jCa
 pJV
 wwg
 gKh
@@ -54475,7 +54500,7 @@ jYO
 jxX
 jxX
 jxX
-wwg
+jCa
 wwg
 xdD
 qAe
@@ -54716,7 +54741,7 @@ yco
 ruR
 pWV
 sQM
-xdD
+gao
 nQM
 wwg
 hUg
@@ -54937,16 +54962,16 @@ xmI
 fcs
 ajM
 fwF
-jYO
+ckg
 cVC
 qzH
 ivX
 wwg
-yco
+vAF
 oiI
-xdD
-xdD
+sVs
 guR
+sVs
 pyN
 poK
 tvB
@@ -55174,10 +55199,10 @@ jYO
 aWS
 ldU
 fwA
-wwg
+jCa
 yco
-njq
-xdD
+oiI
+guR
 ylq
 guR
 fkU
@@ -55186,7 +55211,7 @@ oZS
 oZS
 dLW
 tQo
-wwg
+jCa
 amF
 mJw
 mJw
@@ -55640,10 +55665,10 @@ uRD
 lNt
 hmK
 lMq
-wwg
+jCa
 yco
-njq
-xdD
+oiI
+guR
 bOr
 guR
 pyN
@@ -55652,7 +55677,7 @@ sue
 pCV
 kTN
 ojh
-wwg
+jCa
 lRV
 lRV
 lRV
@@ -55869,16 +55894,16 @@ xmI
 jDH
 eVT
 oPF
-uRD
+hKa
 cVC
 qzH
 ivX
 wwg
-yco
+vAF
 oiI
-xdD
-xdD
+sVs
 guR
+sVs
 pyN
 yhm
 mCt
@@ -56114,7 +56139,7 @@ yco
 knJ
 neU
 qHm
-xdD
+gao
 iDQ
 wwg
 hUg
@@ -56339,7 +56364,7 @@ uRD
 nWI
 nWI
 nWI
-wwg
+jCa
 wwg
 xdD
 qAe
@@ -57275,9 +57300,9 @@ fbE
 mNI
 hUg
 wwg
-wwg
+jCa
 pJV
-wwg
+jCa
 pJV
 wwg
 gKh

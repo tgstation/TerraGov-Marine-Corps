@@ -22,6 +22,7 @@ tools/Runtime Condenser/Output.txt
 tools/MapDaemon/logs/*.txt
 
 #Visual studio stuff
+/.vs/**/*
 *.vscode/*
 !/.vscode/extensions.json
 !/.vscode/launch.json
@@ -56,6 +57,10 @@ tools/hyperscale_converter/output/*
 
 # From /tools/define_sanity/check.py - potential output file that we load onto the user's machine that we don't want to have committed.
 define_sanity_output.txt
+
+# ezdb
+/db/
+/config/ezdb.txt
 
 # Running OpenDream locally
 tgmc.json

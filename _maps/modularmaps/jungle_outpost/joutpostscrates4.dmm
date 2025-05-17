@@ -3,6 +3,7 @@
 /obj/machinery/light{
 	light_color = "#da2f1b"
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "b" = (
@@ -19,6 +20,7 @@
 /area/campaign/jungle_outpost/outpost/req/depot)
 "e" = (
 /obj/structure/stairs/seamless/edge,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "h" = (
@@ -53,6 +55,11 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "o" = (
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/depot)
+"q" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "r" = (
@@ -107,6 +114,15 @@
 /obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/depot)
+"J" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/depot)
+"L" = (
+/obj/effect/turf_decal/grassdecal,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "M" = (
@@ -187,7 +203,7 @@ M
 b
 M
 b
-b
+q
 b
 o
 o
@@ -215,11 +231,11 @@ u
 u
 o
 o
-b
+q
 o
 o
 o
-o
+J
 o
 o
 o
@@ -272,14 +288,14 @@ u
 H
 o
 o
-o
+J
 i
 "}
 (7,1,1) = {"
-m
+L
 o
 o
-b
+q
 V
 u
 u
@@ -343,7 +359,7 @@ u
 u
 u
 o
-b
+q
 o
 o
 C

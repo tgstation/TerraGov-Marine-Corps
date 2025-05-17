@@ -23,13 +23,12 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 55
 	attack_speed = 15
-	attack_verb = list("stabbed", "thrust", "smashed", "thumped", "bashed", "attacked", "clubbed", "speared", "jabbed", "torn", "gored")
+	attack_verb = list("stabs", "thrusts", "smashes", "thumps", "bashes", "attacks", "clubs", "spears", "jabs", "tears", "gores")
 	sharp = IS_SHARP_ITEM_BIG
 	throw_speed = 1
 	throw_range = 2
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 50, ACID = 50)
-	///The faction this belongs to
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	///Aura emitter
 	var/datum/aura_bearer/current_aura
 	///Start point for it to return to when called
@@ -111,7 +110,7 @@
 
 ///Waves the flag around heroically
 /obj/item/plantable_flag/proc/lift_flag(mob/user)
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_WHISTLE_WARCRY))
+	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_WHISTLE_WARCRY))
 		user.balloon_alert(user, "On cooldown")
 		return
 

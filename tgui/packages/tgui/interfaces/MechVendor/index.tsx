@@ -1,7 +1,4 @@
 import { useState } from 'react';
-
-import { classes } from '../../../common/react';
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -13,7 +10,10 @@ import {
   Stack,
   Tabs,
   Tooltip,
-} from '../../components';
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import {
   MECHA_ASSEMBLY,

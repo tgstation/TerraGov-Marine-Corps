@@ -164,7 +164,7 @@
 	name = "HQ Central Hallways"
 	})
 "aga" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1;
 	is_wired = 1
 	},
@@ -386,7 +386,7 @@
 	name = "Tad Aux LZ"
 	})
 "apL" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1;
 	is_wired = 1
 	},
@@ -1393,7 +1393,7 @@
 /area/mainship/groundhq/ntf/engineering/upper_engineering)
 "bEC" = (
 /obj/structure/table/wood,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
@@ -1569,7 +1569,7 @@
 /area/mainship/groundhq/ntf/living/starboard_garden)
 "bMS" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -5918,7 +5918,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/hangar)
 "gUe" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -7169,7 +7169,7 @@
 	name = "Ground CEO Office"
 	})
 "ilE" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -9264,11 +9264,11 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "kHb" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1;
 	is_wired = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -9551,7 +9551,7 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "kWr" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -9616,7 +9616,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
 /turf/open/floor/plating/mainship,
 /area/mainship/groundhq/ntf/command/cic)
 "kYZ" = (
@@ -10302,7 +10302,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "lQt" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1;
 	is_wired = 1
 	},
@@ -12699,7 +12699,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "oGw" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -13307,7 +13307,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/command/cic)
 "prV" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/machinery/button/door/open_only/landing_zone{
@@ -13759,7 +13759,7 @@
 	name = "HQ Western hallways"
 	})
 "pSX" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -16386,7 +16386,7 @@
 	name = "HQ Central Hallways"
 	})
 "sNd" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -18168,7 +18168,7 @@
 /area/lv624/lazarus/armory)
 "vik" = (
 /obj/structure/table/wood,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
@@ -18483,7 +18483,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "vzL" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -18878,7 +18878,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "vUT" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
@@ -19925,7 +19925,7 @@
 	},
 /area/mainship/living/basketball)
 "xch" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1;
 	is_wired = 1
 	},
@@ -20697,7 +20697,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
 "yeX" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,

@@ -254,7 +254,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(picked.take_damage_limb(brute, burn, sharp, edge, 0, updating_health))
 		UpdateDamageIcon()
 
-	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
+	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn) //2nd sig sender... nasty
 
 
 ///Heal MANY limbs, in random order. If robo_repair is TRUE then both metal and flesh limbs will be healed, otherwise only flesh.
@@ -326,7 +326,7 @@ This function restores all limbs.
 		UpdateDamageIcon()
 
 
-/mob/living/carbon/proc/get_limb(zone)
+/mob/living/proc/get_limb(zone)
 	return
 
 /mob/living/carbon/human/get_limb(zone)

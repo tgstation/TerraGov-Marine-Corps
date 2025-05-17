@@ -10,7 +10,7 @@
 	var/datum/action/ability/activable/xeno/feed
 
 
-/datum/ai_behavior/puppet/New(loc, parent_to_assign, escorted_atom)
+/datum/ai_behavior/puppet/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	. = ..()
 	master_ref = WEAKREF(escorted_atom)
 	RegisterSignals(escorted_atom, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(die_on_master_death))
@@ -97,7 +97,6 @@
 ///override for MOVING_TO_ATOM to unregister signals for maintaining distance with our target and attacking
 /datum/ai_behavior/puppet/unregister_action_signals(action_type)
 	if(action_type == MOVING_TO_ATOM)
-		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 		if(!isnull(atom_to_walk_to))
 			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 	return ..()
@@ -168,7 +167,7 @@
 
 ///makes our parent climb over a turf with a window by setting its location to it
 /datum/ai_behavior/puppet/proc/climb_window_frame(turf/window_turf)
-	mob_parent.loc = window_turf
+	mob_parent.forceMove(window_turf)
 	mob_parent.last_move_time = world.time
 	LAZYDECREMENT(mob_parent.do_actions, window_turf)
 

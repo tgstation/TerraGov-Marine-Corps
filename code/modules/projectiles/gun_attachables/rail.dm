@@ -119,10 +119,10 @@
 	QDEL_NULL(reequip_component)
 
 /obj/item/attachable/buildasentry
-	name = "\improper Build-A-Sentry Attachment System"
+	name = "\improper Build-A-Sentry attachment system"
 	icon = 'icons/obj/machines/deployable/sentry/build_a_sentry.dmi'
 	icon_state = "build_a_sentry_attachment"
-	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it to the rail of a gun and deploy. Its that easy!"
+	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simply attach it to the rail of a gun and deploy. Its that easy!"
 	slot = ATTACHMENT_SLOT_RAIL
 	size_mod = 1
 	pixel_shift_x = 10

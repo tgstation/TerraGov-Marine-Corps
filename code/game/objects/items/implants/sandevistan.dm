@@ -65,12 +65,12 @@
 	time_on += 0.2 SECONDS
 	switch(time_on)
 		if(1 SECONDS to 6 SECONDS)
-			if(COOLDOWN_CHECK(src, alertcooldown))
+			if(COOLDOWN_FINISHED(src, alertcooldown))
 				to_chat(implant_owner, span_alert("You feel your spine tingle."))
 				COOLDOWN_START(src, alertcooldown, 10 SECONDS)
 			implant_owner.hallucination += 1
 		if(6.1 SECONDS to 15 SECONDS)
-			if(COOLDOWN_CHECK(src, alertcooldown) || !exerted)
+			if(COOLDOWN_FINISHED(src, alertcooldown) || !exerted)
 				to_chat(implant_owner, span_userdanger("Your spine and brain feel like they're burning!"))
 				COOLDOWN_START(src, alertcooldown, 3 SECONDS)
 			exerted = TRUE
@@ -80,7 +80,7 @@
 				implant_owner.adjustFireLoss(1)
 		if(15.1 SECONDS to INFINITY)
 			implant_owner.adjustFireLoss(0.5)
-			if(COOLDOWN_CHECK(src, alertcooldown) || !exerted)
+			if(COOLDOWN_FINISHED(src, alertcooldown) || !exerted)
 				to_chat(implant_owner, span_userdanger("Your heart starts pounding and you start to rapidly cough up blood!"))
 				COOLDOWN_START(src, alertcooldown, 5 SECONDS)
 			var/mob/living/carbon/human/H = implant_owner

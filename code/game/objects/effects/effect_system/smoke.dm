@@ -8,6 +8,7 @@
 	icon_state = "smoke"
 	opacity = TRUE
 	anchored = TRUE
+	plane = ABOVE_GAME_PLANE
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pass_flags = PASS_AIR
@@ -102,7 +103,7 @@
 	if(isliving(O))
 		O.effect_smoke(src)
 		return
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/projectile))
+	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /atom/movable/projectile))
 		O.effect_smoke(src)
 
 /obj/effect/particle_effect/smoke/proc/on_exited(datum/source, mob/living/M, direction)

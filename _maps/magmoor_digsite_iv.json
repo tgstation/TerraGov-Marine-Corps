@@ -8,5 +8,9 @@
 		"set3": 1
 	},
 	"quickbuilds": 1800,
-    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a mining and archaeological site, known as Magmoor Digsite IV. Through use of bluespace drive tech, the ship has jumped within range of the colony. NTC, gear up and get ready to respond!"
+    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a mining and archaeological site, known as Magmoor Digsite IV. Through use of bluespace drive tech, the ship has jumped within range of the colony. TGMC, gear up and get ready to respond!",
+	"traits":[{
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
 }

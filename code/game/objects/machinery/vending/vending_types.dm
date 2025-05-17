@@ -28,7 +28,7 @@
 */
 
 /obj/machinery/vending/boozeomat
-	name = "Booze-O-Mat"
+	name = "\improper Booze-O-Mat"
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
@@ -81,7 +81,7 @@
 	)
 
 /obj/machinery/vending/coffee
-	name = "Hot Drinks machine"
+	name = "\improper Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
 	//product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
 	icon_state = "coffee"
@@ -98,7 +98,7 @@
 	)
 
 /obj/machinery/vending/snack
-	name = "Hot Foods Machine"
+	name = "\improper Hot Foods machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
 	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Ninetails brand packaged hamburger.;Eat a Ninetails brand packaged hot dog.;Eat a Ninetails brand packaged burrito.;"
 	icon_state = "snack"
@@ -122,7 +122,7 @@
 		wrenchable = FALSE
 
 /obj/machinery/vending/cola
-	name = "Souto Softdrinks"
+	name = "\improper Souto Softdrinks"
 	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
 	icon_state = "Cola_Machine"
 	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Ninetails Fruit Beer. Nothing came from that lawsuit!;Ninetails Spring Water. It came from a spring!"
@@ -146,7 +146,7 @@
 		wrenchable = FALSE
 
 /obj/machinery/vending/medical
-	name = "NovaMed Plus"
+	name = "\improper NovaMed Plus"
 	desc = "Medical Pharmaceutical dispenser.  Provided by Novamed Pharmaceuticals."
 	icon_state = "med"
 	icon_deny = "med-deny"
@@ -331,7 +331,7 @@
 
 //This one's from bay12
 /obj/machinery/vending/phoronresearch
-	name = "Toximate 3000"
+	name = "\improper Toximate 3000"
 	desc = "All the fine parts you need in one vending machine!"
 	icon_vend = "generic-vend"
 	icon_deny = "generic-deny"
@@ -347,7 +347,7 @@
 	)
 
 /obj/machinery/vending/nanomed
-	name = "NanoMed"
+	name = "\improper NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser."
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
@@ -368,6 +368,7 @@
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 	)
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
 	. = ..()
@@ -382,7 +383,7 @@
 			pixel_x = 21
 
 /obj/machinery/vending/nanomed/tadpolemed
-	name = "Flight surgeon medical equipment dispenser"
+	name = "\improper Flight surgeon medical equipment dispenser"
 	desc = "Dedicated for the surgeon with wings, this humble box contains a lot for its size."
 	layer = ABOVE_OBJ_LAYER
 	products = list(
@@ -420,8 +421,205 @@
 		),
 	)
 
+
+
+/obj/machinery/vending/nanoammo
+	name = "\improper NanoAmmo"
+	desc = "Wall-mounted ammunition dispenser.  Can't hold infinite ammo, but it holds more than you need."
+	product_ads = "Get you some!;More ammo than you'll ever need.;I'm small but my firepower isn't!;I dispense ammo, you dispense pain.;Give 'em hell!"
+	icon_state = "nanoammo"
+	icon_deny = "nanoammo-deny"
+	icon_vend = "nanoammo-vend"
+	density = FALSE
+	wrenchable = FALSE
+	layer = ABOVE_OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE
+	products = list(
+		"Rifles" = list(
+			/obj/item/ammo_magazine/rifle/standard_assaultrifle = 30,
+			/obj/item/ammo_magazine/rifle/standard_carbine = 30,
+			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 30,
+			/obj/item/ammo_magazine/rifle/tx11 = 30,
+			/obj/item/ammo_magazine/packet/p4570 = 16,
+		),
+		"SMGs" = list(
+			/obj/item/ammo_magazine/smg/standard_smg = 40,
+			/obj/item/ammo_magazine/smg/standard_machinepistol = 40,
+			/obj/item/ammo_magazine/smg/standard_heavysmg = 40,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 40,
+		),
+		"Marksman" = list(
+			/obj/item/ammo_magazine/rifle/standard_dmr = 30,
+			/obj/item/ammo_magazine/rifle/standard_br = 30,
+			/obj/item/ammo_magazine/rifle/chamberedrifle = 30,
+			/obj/item/ammo_magazine/rifle/boltclip = 30,
+			/obj/item/ammo_magazine/rifle/bolt = 16,
+			/obj/item/ammo_magazine/rifle/martini = 16,
+		),
+		"Shotgun" = list(
+			/obj/item/ammo_magazine/shotgun = 16,
+			/obj/item/ammo_magazine/shotgun/buckshot = 16,
+			/obj/item/ammo_magazine/shotgun/flechette = 16,
+			/obj/item/ammo_magazine/shotgun/tracker = 16,
+			/obj/item/ammo_magazine/rifle/tx15_flechette = 30,
+			/obj/item/ammo_magazine/rifle/tx15_slug = 30,
+		),
+		"Machinegun" = list(
+			/obj/item/ammo_magazine/standard_lmg = 30,
+			/obj/item/ammo_magazine/standard_gpmg = 30,
+			/obj/item/ammo_magazine/standard_mmg = 30,
+		),
+		"Sidearm" = list(
+			/obj/item/ammo_magazine/pistol/standard_pistol = 40,
+			/obj/item/ammo_magazine/pistol/standard_heavypistol = 40,
+			/obj/item/ammo_magazine/revolver/standard_revolver = 40,
+			/obj/item/ammo_magazine/pistol/standard_pocketpistol = 40,
+			/obj/item/ammo_magazine/pistol/vp70 = 40,
+			/obj/item/ammo_magazine/pistol/plasma_pistol = 40,
+			/obj/item/ammo_magazine/revolver/standard_magnum = 40,
+		),
+		"Specialized" = list(
+			/obj/item/ammo_magazine/rifle/pepperball = 10,
+			/obj/item/ammo_magazine/flamer_tank/water = 10,
+			/obj/item/ammo_magazine/flamer_tank/mini = 16,
+			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = 16,
+		),
+		"Seasonal" = list(
+			/obj/item/ammo_magazine/revolver/small = 0,
+			/obj/item/ammo_magazine/revolver/single_action/m44 = 0,
+			/obj/item/ammo_magazine/revolver/judge = 0,
+			/obj/item/ammo_magazine/revolver/judge/buckshot = 0,
+			/obj/item/ammo_magazine/revolver/upp = 0,
+			/obj/item/ammo_magazine/rifle/mpi_km/plum = 0,
+			/obj/item/ammo_magazine/rifle/m16 = 0,
+			/obj/item/ammo_magazine/rifle/mkh = 0,
+			/obj/item/ammo_magazine/smg/ppsh = 0,
+			/obj/item/ammo_magazine/smg/ppsh/extended = 0,
+			/obj/item/ammo_magazine/rifle/garand = 0,
+			/obj/item/ammo_magazine/pistol/m1911 = 0,
+			/obj/item/ammo_magazine/rifle = 0,
+			/obj/item/ammo_magazine/rifle/m41a = 0,
+			/obj/item/ammo_magazine/rifle/type71 = 0,
+			/obj/item/ammo_magazine/rifle/alf_machinecarbine = 0,
+			/obj/item/ammo_magazine/smg/uzi = 0,
+			/obj/item/ammo_magazine/smg/m25 = 0,
+			/obj/item/ammo_magazine/smg/mp7 = 0,
+			/obj/item/ammo_magazine/smg/skorpion = 0,
+			/obj/item/ammo_magazine/revolver/cmb = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900 = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900/tracking = 0,
+		)
+	)
+	max_capacities = list(
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 60,
+		/obj/item/ammo_magazine/rifle/standard_carbine = 60,
+		/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 60,
+		/obj/item/ammo_magazine/rifle/tx11 = 60,
+		/obj/item/ammo_magazine/packet/p4570 = 32,
+		/obj/item/ammo_magazine/smg/standard_smg = 80,
+		/obj/item/ammo_magazine/smg/standard_machinepistol = 80,
+		/obj/item/ammo_magazine/smg/standard_heavysmg = 80,
+		/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 80,
+		/obj/item/ammo_magazine/rifle/standard_dmr = 60,
+		/obj/item/ammo_magazine/rifle/standard_br = 60,
+		/obj/item/ammo_magazine/rifle/chamberedrifle = 60,
+		/obj/item/ammo_magazine/rifle/boltclip = 60,
+		/obj/item/ammo_magazine/rifle/bolt = 32,
+		/obj/item/ammo_magazine/rifle/martini = 32,
+		/obj/item/ammo_magazine/shotgun = 32,
+		/obj/item/ammo_magazine/shotgun/buckshot = 32,
+		/obj/item/ammo_magazine/shotgun/flechette = 32,
+		/obj/item/ammo_magazine/shotgun/tracker = 32,
+		/obj/item/ammo_magazine/rifle/tx15_flechette = 60,
+		/obj/item/ammo_magazine/rifle/tx15_slug = 60,
+		/obj/item/ammo_magazine/standard_lmg = 60,
+		/obj/item/ammo_magazine/standard_gpmg = 60,
+		/obj/item/ammo_magazine/standard_mmg = 60,
+		/obj/item/ammo_magazine/pistol/standard_pistol = 80,
+		/obj/item/ammo_magazine/pistol/standard_heavypistol = 80,
+		/obj/item/ammo_magazine/revolver/standard_revolver = 80,
+		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 80,
+		/obj/item/ammo_magazine/pistol/vp70 = 80,
+		/obj/item/ammo_magazine/pistol/plasma_pistol = 80,
+		/obj/item/ammo_magazine/revolver/small = 80,
+		/obj/item/ammo_magazine/revolver/single_action/m44 = 80,
+		/obj/item/ammo_magazine/revolver/judge = 80,
+		/obj/item/ammo_magazine/revolver/judge/buckshot = 80,
+		/obj/item/ammo_magazine/revolver/standard_magnum = 80,
+		/obj/item/ammo_magazine/revolver/upp = 80,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum = 60,
+		/obj/item/ammo_magazine/rifle/m16 = 60,
+		/obj/item/ammo_magazine/rifle/mkh = 60,
+		/obj/item/ammo_magazine/smg/ppsh = 80,
+		/obj/item/ammo_magazine/smg/ppsh/extended = 80,
+		/obj/item/ammo_magazine/rifle/garand = 60,
+		/obj/item/ammo_magazine/pistol/m1911 = 80,
+		/obj/item/ammo_magazine/rifle = 60,
+		/obj/item/ammo_magazine/rifle/m41a = 60,
+		/obj/item/ammo_magazine/rifle/type71 = 60,
+		/obj/item/ammo_magazine/rifle/alf_machinecarbine = 60,
+		/obj/item/ammo_magazine/smg/uzi = 80,
+		/obj/item/ammo_magazine/smg/m25 = 80,
+		/obj/item/ammo_magazine/smg/mp7 = 80,
+		/obj/item/ammo_magazine/smg/skorpion = 80,
+		/obj/item/ammo_magazine/revolver/cmb = 80,
+		/obj/item/ammo_magazine/shotgun/mbx900 = 32,
+		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 32,
+		/obj/item/ammo_magazine/shotgun/mbx900/tracking = 32,
+		/obj/item/ammo_magazine/rifle/pepperball = 20,
+		/obj/item/ammo_magazine/flamer_tank/water = 20,
+		/obj/item/ammo_magazine/flamer_tank/mini = 32,
+		/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = 32,
+	)
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
+
+/obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/storage/box/visual/magazine))
+		var/obj/item/storage/box/visual/magazine/ammo_box = I
+		for(var/mag in ammo_box.contents)
+			stock(mag, user, FALSE)
+		user?.balloon_alert(user, "The NanoAmmo organizes the contents of the [ammo_box.name].");
+		return
+
+	else if(istype(I, /obj/item/shotgunbox))
+		var/obj/item/shotgunbox/big_shotgun_box = I
+		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)
+			var/obj/item/ammo_magazine/shotgun_shell_box = checked_record.product_path
+			if(big_shotgun_box.ammo_type == shotgun_shell_box.default_ammo)
+				while(big_shotgun_box.current_rounds >= shotgun_shell_box.max_rounds)
+					if(!stock(shotgun_shell_box, user, show_feedback = FALSE))
+						break
+					big_shotgun_box.current_rounds -= shotgun_shell_box.max_rounds
+				user?.balloon_alert(user, "The NanoAmmo organizes the [big_shotgun_box.ammo_type.name]s.");
+				return
+
+	return ..()
+
+/obj/machinery/vending/nanoammo/get_acid_delay()
+	return 10 SECONDS	// Acid application time is 1 second without this, way too short for a tadpole item
+
+/obj/machinery/vending/nanoammo/malfunction()
+	// Randomizes which product is deleted (not dispensed, to avoid client lag) and does not break on malfunction
+	var/random_product = rand(1, product_records.len)
+	for(var/i in product_records)	// i is unused, this just ensures we don't have an infinite loop on an empty vendor
+		var/datum/vending_product/record = product_records[random_product]
+		if(record.amount > 0)
+			record.amount = 0
+			src.visible_message(span_danger("All of the [record.product_name] get lost in the malfunction!"))
+			break
+		random_product = (random_product % product_records.len) + 1
+
+/obj/machinery/vending/nanoammo/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	. = ..()
+	if (.)	// The parent proc does not allow vending machines to take integrity damage from slashes due to not calling the grandparent proc
+		attack_generic(xeno_attacker, damage_amount, damage_type, armor_type, FALSE, armor_penetration)
+		return TRUE
+
 /obj/machinery/vending/security
-	name = "SecTech"
+	name = "\improper SecTech"
 	desc = "A security equipment vendor."
 	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
@@ -445,7 +643,7 @@
 	)
 
 /obj/machinery/vending/hydronutrients
-	name = "NutriMax"
+	name = "\improper NutriMax"
 	desc = "A plant nutrients vendor."
 	//product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
 	//product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
@@ -465,7 +663,7 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/hydroseeds
-	name = "MegaSeed Servitor"
+	name = "\improper MegaSeed Servitor"
 	desc = "When you need seeds fast!"
 	//product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	//product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
@@ -516,7 +714,7 @@
 	)
 
 /obj/machinery/vending/magivend
-	name = "MagiVend"
+	name = "\improper MagiVend"
 	desc = "A magic vending machine."
 	icon_state = "MagiVend"
 	//product_slogans = "Sling spells the proper way with MagiVend!;Be your own Houdini! Use MagiVend!"
@@ -532,7 +730,7 @@
 	)
 
 /obj/machinery/vending/dinnerware
-	name = "Dinnerware"
+	name = "\improper Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
@@ -563,7 +761,7 @@
 	idle_power_usage = 211
 
 /obj/machinery/vending/engivend
-	name = "Engi-Vend"
+	name = "\improper Engi-Vend"
 	desc = "Spare engineer vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_vend = "engivend-vend"
@@ -600,7 +798,7 @@
 
 //This one's from bay12
 /obj/machinery/vending/robotics
-	name = "Robotech Deluxe"
+	name = "\improper Robotech Deluxe"
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"

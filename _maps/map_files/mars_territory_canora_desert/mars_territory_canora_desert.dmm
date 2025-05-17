@@ -2280,7 +2280,7 @@
 /turf/open/floor/plating/dmg1,
 /area/canora_desert/surface/building/street_food_canora)
 "jO" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/whiskey{
+/obj/machinery/computer/camera_advanced/overwatch/military/som/whiskey{
 	req_access = list(204)
 	},
 /obj/structure/table/reinforced,
@@ -5638,7 +5638,7 @@
 	base_lighting_alpha = 255
 	})
 "xK" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/xray{
+/obj/machinery/computer/camera_advanced/overwatch/military/som/xray{
 	req_access = list(204)
 	},
 /obj/structure/table/reinforced,
@@ -5811,7 +5811,7 @@
 	dir = 9
 	},
 /obj/structure/table/wood/fancy,
-/obj/machinery/computer/camera_advanced/overwatch/som,
+/obj/machinery/computer/camera_advanced/overwatch/military/som,
 /turf/open/floor/wood/alt_three,
 /area/canora_desert/surface/building/som_admiral)
 "yA" = (
@@ -7426,7 +7426,7 @@
 /area/canora_desert/surface/building/som_engimedmaint)
 "Gs" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/camera_advanced/overwatch/main/som{
+/obj/machinery/computer/camera_advanced/overwatch/military/main/som{
 	req_access = list(204)
 	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -8459,7 +8459,7 @@
 /turf/open/floor/tile/white,
 /area/canora_desert/surface/building/som_security_hallway)
 "Mq" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/zulu{
+/obj/machinery/computer/camera_advanced/overwatch/military/som/zulu{
 	req_access = list(204)
 	},
 /obj/structure/table/reinforced,
@@ -11679,7 +11679,7 @@
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/command)
 "ZS" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/yankee{
+/obj/machinery/computer/camera_advanced/overwatch/military/som/yankee{
 	req_access = list(204)
 	},
 /obj/structure/table/reinforced,

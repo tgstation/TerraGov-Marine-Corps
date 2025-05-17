@@ -72,8 +72,6 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY,
 	)
 	action_type = ACTION_TOGGLE
-	/// Whether the ability is active or not.
-	var/ability_active = FALSE
 
 /datum/action/ability/xeno_action/toggle_agility/New(Target)
 	. = ..()
@@ -82,11 +80,11 @@
 /datum/action/ability/xeno_action/toggle_agility/action_activate()
 	GLOB.round_statistics.warrior_agility_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")
-	ability_active = !ability_active
-	set_toggle(ability_active ? TRUE : FALSE)
+	toggled = !toggled
+	set_toggle(toggled)
 	xeno_owner.update_icons()
 	add_cooldown()
-	if(!ability_active)
+	if(!toggled)
 		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(WARRIOR_AGILITY_ARMOR_MODIFIER)
 		return
@@ -98,12 +96,12 @@
 // ***************************************
 // *********** Parent Ability
 // ***************************************
-#define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 0.5
+#define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 1.0
 #define WARRIOR_DISPLACE_KNOCKDOWN 0.4 SECONDS
 
 /datum/action/ability/activable/xeno/warrior/use_ability(atom/A)
 	var/datum/action/ability/xeno_action/toggle_agility/agility_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/toggle_agility]
-	if(agility_action?.ability_active)
+	if(agility_action?.toggled)
 		agility_action.action_activate()
 
 /// Adds an outline around the ability button to represent Empower.
@@ -123,7 +121,7 @@
 	living_target.Knockdown(WARRIOR_DISPLACE_KNOCKDOWN)
 	new /obj/effect/temp_visual/warrior/impact(get_turf(living_target), get_dir(living_target, xeno_owner))
 	// mob/living/turf_collision() does speed * 5 damage on impact with a turf, and we don't want to go overboard, so we deduce that here.
-	var/thrown_damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) - (impact_speed * 5)) * WARRIOR_IMPACT_DAMAGE_MULTIPLIER
+	var/thrown_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_IMPACT_DAMAGE_MULTIPLIER
 	living_target.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
 	if(isliving(hit_atom))
 		var/mob/living/hit_living = hit_atom
@@ -153,8 +151,7 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 1)
 	var/mob/living/living_target = source
 	living_target.Knockdown(0.5 SECONDS)
-	if(living_target.pass_flags & PASS_XENO)
-		living_target.pass_flags &= ~PASS_XENO
+	living_target.remove_pass_flags(PASS_XENO, THROW_TRAIT)
 
 /obj/effect/temp_visual/warrior/impact
 	icon = 'icons/effects/96x96.dmi'
@@ -354,8 +351,7 @@
 	if(!living_target.issamexenohive(xeno_owner))
 		RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
 		RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_ended))
-	if(!(living_target.pass_flags & PASS_XENO))
-		living_target.pass_flags |= PASS_XENO
+	living_target.add_pass_flags(PASS_XENO, THROW_TRAIT)
 	var/fling_direction = get_dir(xeno_owner, living_target)
 	living_target.throw_at(get_ranged_target_turf(xeno_owner, fling_direction ? fling_direction : xeno_owner.dir, fling_distance), fling_distance, 1, xeno_owner, TRUE)
 	succeed_activate()
@@ -432,8 +428,7 @@
 		if(living_target.mob_size >= MOB_SIZE_BIG)
 			fling_distance--
 		if(!living_target.issamexenohive(xeno_owner))
-			if(!(living_target.pass_flags & PASS_XENO))
-				living_target.pass_flags |= PASS_XENO
+			living_target.add_pass_flags(PASS_XENO, THROW_TRAIT)
 			shake_camera(living_target, 1, 1)
 			living_target.adjust_stagger(WARRIOR_GRAPPLE_TOSS_STAGGER)
 			living_target.add_slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
@@ -456,7 +451,8 @@
 // *********** Punch
 // ***************************************
 #define WARRIOR_PUNCH_SLOWDOWN 3
-#define WARRIOR_PUNCH_STAGGER 3
+#define WARRIOR_PUNCH_STAGGER 3 SECONDS
+#define WARRIOR_PUNCH_DAMAGE_MULTIPLIER 1.2
 #define WARRIOR_PUNCH_EMPOWER_MULTIPLIER 1.5
 #define WARRIOR_PUNCH_GRAPPLED_DAMAGE_MULTIPLIER 1.5
 #define WARRIOR_PUNCH_GRAPPLED_DEBUFF_MULTIPLIER 1.5
@@ -515,7 +511,7 @@
 
 /// Does the ability. Exists because Punch is the parent of another ability, so this lets us separate functionality and avoid repeating a few lines of code.
 /datum/action/ability/activable/xeno/warrior/punch/proc/do_ability(atom/A)
-	var/punch_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
+	var/punch_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_PUNCH_DAMAGE_MULTIPLIER
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
 	if(empower_action?.check_empower(A))
 		punch_damage *= WARRIOR_PUNCH_EMPOWER_MULTIPLIER
@@ -637,7 +633,7 @@
 	playsound(src, sound_effect, 50, 1)
 	shake_camera(src, 1, 1)
 	add_slowdown(slowdown_stacks)
-	adjust_stagger(stagger_stacks SECONDS)
+	adjust_stagger(stagger_stacks)
 	adjust_blurriness(slowdown_stacks)
 	apply_damage(punch_damage, BRUTE, target_limb ? target_limb : 0, MELEE)
 	apply_damage(punch_damage, STAMINA, updating_health = TRUE)

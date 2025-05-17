@@ -8204,7 +8204,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
 /turf/open/floor/plating/mainship,
 /area/mainship/groundhq/ntf/command/cic)
 "kYZ" = (

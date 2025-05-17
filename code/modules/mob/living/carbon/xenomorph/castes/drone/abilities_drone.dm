@@ -151,6 +151,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENHANCEMENT,
 	)
+	use_state_flags = ABILITY_USE_BUCKLED
 	/// References Essence Link and its vars.
 	var/datum/action/ability/activable/xeno/essence_link/essence_link_action //todo: All this link stuff is handled in a stinky way
 	/// Used to determine whether Enhancement is already active or not. Also allows access to its vars.

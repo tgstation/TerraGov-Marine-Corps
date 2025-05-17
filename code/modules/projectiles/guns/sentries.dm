@@ -296,10 +296,15 @@
 // Sniper Sentry
 
 /obj/item/weapon/gun/sentry/sniper_sentry
-	name = "\improper SRT-574 sentry gun"
+	name = "\improper SST-574 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
 	icon_state = "sniper_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/sniper.dmi'
+	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_heavy_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/sniper_heavy_cocked.ogg'
 
 	turret_range = 12
 	deploy_time = 10 SECONDS
@@ -353,6 +358,8 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber SM-10 shotgun and a 100-round drum magazine."
 	icon_state = "shotgun_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/shotgun.dmi'
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 
 	turret_range = 8
 	deploy_time = 5 SECONDS
@@ -402,20 +409,21 @@
 // Flamethrower Sentry
 
 /obj/item/weapon/gun/sentry/flamer_sentry
-	name = "\improper SFT-573 sentry gun"
+	name = "\improper SFT-575 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy flamethrower and a 200-round drum magazine."
 	icon_state = "flamer_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/flamer.dmi'
+	fire_sound = "gun_flamethrower"
 
 	turret_range = 8
 	deploy_time = 5 SECONDS
-	max_shells = 200
-	fire_delay = 2 SECONDS
+	max_shells = 500
+	fire_delay = 0.1 SECONDS
 	burst_amount = 1
 
 	scatter = 5
 
-	ammo_datum_type = /datum/ammo/flamer
+	ammo_datum_type = /datum/ammo/flamethrower/sentry
 	default_ammo_type = /obj/item/ammo_magazine/sentry/flamer
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/flamer)
 
@@ -427,7 +435,7 @@
 	)
 
 /obj/item/storage/box/crate/sentry_flamer
-	name = "\improper SHT-573 sentry crate"
+	name = "\improper SHT-575 sentry crate"
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
@@ -451,3 +459,56 @@
 /obj/item/storage/box/crate/sentry_flamer/PopulateContents()
 	new /obj/item/weapon/gun/sentry/flamer_sentry(src)
 	new /obj/item/ammo_magazine/sentry/flamer(src)
+
+/obj/item/weapon/gun/sentry/laser_sentry // yes this isnt a subtype of lasers, because we use normal ammo instead of batteries
+	name = "\improper SLT-576 sentry gun"
+	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a high-energy laser and a 500-shot magazine."
+	icon_state = "laser_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/laser.dmi'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+
+	turret_range = 7
+	deploy_time = 5 SECONDS
+	max_shells = 500
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+
+	scatter = 0
+
+	ammo_datum_type = /datum/ammo/energy/lasersentry
+	default_ammo_type = /obj/item/ammo_magazine/sentry/laser
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/laser)
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/hsg_102,
+	)
+
+/obj/item/storage/box/crate/sentry_laser
+	name = "\improper SLT-576 sentry crate"
+	desc = "A large case containing all you need to set up an automated laser sentry."
+	icon_state = "sentry_case"
+	w_class = WEIGHT_CLASS_HUGE
+
+/obj/item/storage/box/crate/sentry_laser/Initialize(mapload)
+	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/laser_sentry,
+			/obj/item/ammo_magazine/sentry/laser,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/laser_sentry,
+			/obj/item/ammo_magazine/sentry/laser,
+		)
+	)
+
+/obj/item/storage/box/crate/sentry_laser/PopulateContents()
+	new /obj/item/weapon/gun/sentry/laser_sentry(src)
+	new /obj/item/ammo_magazine/sentry/laser(src)

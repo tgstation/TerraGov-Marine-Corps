@@ -1,5 +1,16 @@
 import { useBackend, useLocalState } from '../backend';
 import { Button, Collapsible, Input, NoticeBox, Section, Stack } from '../components';
+import { useState } from 'react';
+import {
+  Button,
+  Collapsible,
+  Input,
+  NoticeBox,
+  Section,
+  Stack,
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type LogViewerData = {
@@ -96,42 +107,40 @@ const CategoryBar = (props: CategoryBarProps, context: any) => {
       scrollableHorizontal
       buttons={
         <Input
-          grow
           placeholder="Search"
           value={categorySearch}
-          onChange={(_: any, value: string) => setCategorySearch(value)}
+          onChange={setCategorySearch}
         />
-      }>
-      <Stack scrollableHorizontal>
+      }
+    >
+      <Stack>
         {/** these are not in stack items to have them directly next to eachother */}
         <Button
-          textAlign="left"
-          content="None"
           selected={props.active === ''}
           onClick={() => props.setActive('')}
-        />
+        >
+          None
+        </Button>
         <Button
-          textAlign="left"
-          content="All"
           tooltip="This can be slow!"
           selected={props.active === CATEGORY_ALL}
           onClick={() => props.setActive(CATEGORY_ALL)}
-        />
-        {sorted.map((category) => {
-          if (!category.toLowerCase().includes(categorySearch.toLowerCase())) {
-            return null;
-          }
-          return (
-            <Stack.Item key={category}>
-              <Button
-                textAlign="left"
-                content={category}
-                selected={category === props.active}
-                onClick={() => props.setActive(category)}
-              />
-            </Stack.Item>
-          );
-        })}
+        >
+          All
+        </Button>
+        {sorted
+          .filter((cat) =>
+            cat.toLowerCase().includes(categorySearch.toLowerCase()),
+          )
+          .map((category) => (
+            <Button
+              key={category}
+              selected={category === props.active}
+              onClick={() => props.setActive(category)}
+            >
+              {category}
+            </Button>
+          ))}
       </Stack>
     </Section>
   );
@@ -182,20 +191,19 @@ const CategoryViewer = (props: CategoryViewerProps, context: any) => {
       buttons={
         <>
           <Input
-            grow
-            fill
             placeholder="Search"
             value={search}
-            onChange={(_: any, value: string) => setSearch(value)}
+            onChange={setSearch}
+            expensive
           />
           <Button
-            icon={'code'}
+            icon="code"
             tooltip="RegEx Search"
             selected={searchRegex}
             onClick={() => setSearchRegex(!searchRegex)}
           />
           <Button
-            icon={'font'}
+            icon="font"
             selected={caseSensitive}
             tooltip="Case Sensitive"
             onClick={() => setCaseSensitive(!caseSensitive)}

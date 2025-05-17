@@ -29,8 +29,6 @@
 	var/vary = FALSE
 	/// (num) The max amount of loops to run for.
 	var/max_loops
-	///(bool) If true plays directly to provided atoms instead of from them
-	var/direct = FALSE
 	///Range the sound will travel
 	var/range = 0
 	///The rate the volume falls off. Higher = volume drops slower
@@ -42,13 +40,22 @@
 	///Is this considered an ambient sound for pref purposes
 	var/ambient_sound = FALSE
 
-/datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
+	// Args
+	/// Do we skip the starting sounds?
+	var/skip_starting_sounds = FALSE
+	///(bool) If true plays directly to provided atoms instead of from them
+	var/direct = FALSE
+	/// Sound channel to play on, random if not provided
+	var/sound_channel
+
+/datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE, _skip_starting_sounds = FALSE)
 	if(!mid_sounds)
 		WARNING("A looping sound datum was created without sounds to play.")
 		return
 
 	output_atoms = _output_atoms
 	direct = _direct
+	skip_starting_sounds = _skip_starting_sounds
 
 	if(start_immediately)
 		start()
@@ -59,12 +66,12 @@
 	return ..()
 
 ///Performs checks for looping and optinally adds a new atom to output_atoms, then calls [/datum/looping_sound/proc/on_start()]
-/datum/looping_sound/proc/start(atom/add_thing)
+/datum/looping_sound/proc/start(atom/add_thing, skip_startsound = skip_starting_sounds)
 	if(add_thing)
 		output_atoms |= add_thing
 	if(timer_id)
 		return
-	on_start()
+	on_start(skip_startsound)
 
 ///Performs checks for ending looping and optinally removes an atom from output_atoms, then calls [/datum/looping_sound/proc/on_stop()]
 /datum/looping_sound/proc/stop(atom/remove_thing)
@@ -99,16 +106,16 @@
  */
 /datum/looping_sound/proc/play(soundfile, volume_override)
 	var/list/atoms_cache = output_atoms
-	var/sound/S = sound(soundfile)
+	var/sound/sound_to_play = sound(soundfile)
 	if(direct)
-		S.channel = SSsounds.random_available_channel()
-		S.volume = volume_override || volume //Use volume as fallback if theres no override
+		sound_to_play.channel = sound_channel || SSsounds.random_available_channel()
+		sound_to_play.volume = volume_override || volume //Use volume as fallback if theres no override
 	for(var/i in 1 to length(atoms_cache))
 		var/atom/thing = atoms_cache[i]
 		if(direct)
-			SEND_SOUND(thing, S)
+			SEND_SOUND(thing, sound_to_play)
 		else
-			playsound(thing, S, volume, vary, range, falloff, ambient_sound = src.ambient_sound)
+			playsound(thing, sound_to_play, volume, vary, range, falloff, channel=sound_channel, ambient_sound = src.ambient_sound)
 
 /**
  * Picks and returns soundfile
@@ -126,9 +133,9 @@
  * plays start sound, sets start_time
  * then inserts into subsystem
  */
-/datum/looping_sound/proc/on_start()
+/datum/looping_sound/proc/on_start(skip_startsound)
 	var/start_wait = 1
-	if(start_sound)
+	if(start_sound && !skip_startsound)
 		play(start_sound, start_volume)
 		start_wait = start_length
 	addtimer(CALLBACK(src, PROC_REF(sound_loop), world.time), start_wait, TIMER_CLIENT_TIME, SSsound_loops)

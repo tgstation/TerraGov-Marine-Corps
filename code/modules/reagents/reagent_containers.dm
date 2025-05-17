@@ -75,7 +75,7 @@
 
 /obj/item/reagent_containers/verb/set_APTFT()
 	set name = "Set transfer amount"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(1)
 
 	change_transfer_amount(usr)

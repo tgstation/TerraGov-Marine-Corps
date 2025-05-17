@@ -1,3 +1,4 @@
+import { Button, NoticeBox, ProgressBar, Stack } from 'tgui-core/components';
 import {
   KEY_1,
   KEY_2,
@@ -15,19 +16,23 @@ import {
   KEY_SPACE,
   KEY_UP,
   KEY_W,
-} from '../../common/keycodes';
+} from 'tgui-core/keycodes';
+
 import { useBackend } from '../backend';
-import { Button, NoticeBox, ProgressBar, Stack } from '../components';
 import { Window } from '../layouts';
 
 // _DEFINES/cas.dm
-const PLANE_STATE_ACTIVATED = 0;
-const PLANE_STATE_DEACTIVATED = 1;
-const PLANE_STATE_PREPARED = 2;
-const PLANE_STATE_FLYING = 3;
+enum PlaneState {
+  ACTIVATED = 0,
+  DEACTIVATED = 1,
+  PREPARED = 2,
+  FLYING = 3,
+}
 
-const PLANE_IN_HANGAR = 0;
-const PLANE_IN_SPACE = 1;
+enum PlaneLocation {
+  IN_HANGAR = 0,
+  IN_SPACE = 1,
+}
 
 type CasData = {
   plane_state: number;
@@ -54,7 +59,7 @@ export const MarineCasship = (props) => {
   return (
     <Window
       width={590}
-      height={data.plane_state === PLANE_STATE_ACTIVATED ? 170 : 285}
+      height={data.plane_state === PlaneState.ACTIVATED ? 170 : 285}
       theme="ntos"
     >
       <Window.Content
@@ -84,7 +89,7 @@ export const MarineCasship = (props) => {
           if (keyCode === KEY_6) {
             act('deselect');
           }
-          if (data.plane_state !== PLANE_STATE_ACTIVATED) {
+          if (data.plane_state !== PlaneState.ACTIVATED) {
             let newdir = 0;
             switch (keyCode) {
               case KEY_UP:
@@ -122,7 +127,7 @@ export const MarineCasship = (props) => {
           }
         }}
       >
-        {data.plane_state === PLANE_STATE_ACTIVATED ? (
+        {data.plane_state === PlaneState.ACTIVATED ? (
           <EnginesOff />
         ) : (
           <NormalOperation />
@@ -178,7 +183,6 @@ const NormalOperation = (props) => {
   const {
     plane_state,
     location_state,
-    plane_mode,
     attackdir,
     active_lasers,
     fuel_left,
@@ -208,20 +212,21 @@ const NormalOperation = (props) => {
                 </Stack>
               </Stack.Item>
               <Stack.Item>
-                <Stack fluid>
+                <Stack>
                   <Stack.Item>
                     <NoticeBox mt={0.2}>Fuel:</NoticeBox>
                   </Stack.Item>
                   <Stack.Item grow>
                     <ProgressBar
                       fontSize="16px"
-                      title="Fuel"
                       ranges={{
                         good: [0.5, Infinity],
                         average: [-Infinity, 0.25],
                       }}
                       value={fuel_left / fuel_max}
-                    />
+                    >
+                      Fuel
+                    </ProgressBar>
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
@@ -230,12 +235,12 @@ const NormalOperation = (props) => {
           <Stack.Item>
             <Button
               fontSize="43px"
-              icon={getDirectionArrow(props)}
+              icon={getDirectionArrow(attackdir)}
               tooltip="Direction of strafe"
               onClick={() => act('cycle_attackdir')}
               disabled={
-                plane_state !== PLANE_STATE_FLYING ||
-                location_state !== PLANE_IN_SPACE
+                plane_state !== PlaneState.FLYING ||
+                location_state !== PlaneLocation.IN_SPACE
               }
             />
           </Stack.Item>
@@ -260,7 +265,6 @@ const NormalOperation = (props) => {
             <Stack.Item grow>
               <ProgressBar
                 fontSize="16px"
-                title={equipment.ammo_name}
                 ranges={{
                   good: [0.5, Infinity],
                   average: [-Infinity, 0.25],
@@ -270,7 +274,9 @@ const NormalOperation = (props) => {
                     ? equipment.ammo / equipment.max_ammo
                     : 0
                 }
-              />
+              >
+                {equipment.ammo_name}
+              </ProgressBar>
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -282,57 +288,52 @@ const NormalOperation = (props) => {
 const LaunchLandButton = (props) => {
   const { act, data } = useBackend<CasData>();
   const { plane_state, plane_mode } = data;
-  return plane_state === PLANE_STATE_FLYING ? (
+  return plane_state === PlaneState.FLYING ? (
     <Button
-      content="Land plane"
       fontSize="20px"
       onClick={() => act('land')}
       disabled={plane_mode !== 'idle'}
-    />
+    >
+      Land plane
+    </Button>
   ) : (
     <Button
-      content="Launch plane"
       fontSize="20px"
       onClick={() => act('launch')}
       disabled={plane_mode !== 'idle'}
-    />
+    >
+      Launch plane
+    </Button>
   );
 };
 
 const EngineFiremissionButton = (props) => {
   const { act, data } = useBackend<CasData>();
   const { plane_state, location_state } = data;
-  return plane_state === PLANE_STATE_PREPARED ? (
-    <Button
-      fontSize="20px"
-      content="Disable Engines"
-      onClick={() => act('toggle_engines')}
-      disabled={plane_state !== PLANE_STATE_PREPARED}
-    />
+  return plane_state === PlaneState.PREPARED ? (
+    <Button fontSize="20px" onClick={() => act('toggle_engines')}>
+      Disable Engines
+    </Button>
   ) : (
     <Button
       fontSize="20px"
-      content="Begin Firemission"
       onClick={() => act('deploy')}
       disabled={
-        plane_state !== PLANE_STATE_FLYING || location_state !== PLANE_IN_SPACE
+        plane_state !== PlaneState.FLYING ||
+        location_state !== PlaneLocation.IN_SPACE
       }
-    />
+    >
+      Begin Firemission
+    </Button>
   );
 };
 
-const getDirectionArrow = (props) => {
-  const { act, data } = useBackend<CasData>();
-  switch (data.attackdir) {
-    case 'NORTH':
-      return 'arrow-up';
-    case 'SOUTH':
-      return 'arrow-down';
-    case 'EAST':
-      return 'arrow-right';
-    case 'WEST':
-      return 'arrow-left';
-    default:
-      return 'arrow-up';
-  }
-};
+function getDirectionArrow(dir) {
+  const directionMap = {
+    NORTH: 'arrow-up',
+    SOUTH: 'arrow-down',
+    EAST: 'arrow-right',
+    WEST: 'arrow-left',
+  };
+  return directionMap[dir] || 'arrow-up';
+}

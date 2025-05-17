@@ -349,6 +349,63 @@
 	selector.set_selected_zone(next_in_line, mob)
 
 
+///Moves a mob upwards in z level
+/mob/verb/up()
+	set name = "Move Upwards"
+	set category = "IC"
+
+	if(remote_control)
+		return remote_control.relaymove(src, UP)
+
+	var/turf/current_turf = get_turf(src)
+
+	if(ismovable(loc)) //Inside an object, tell it we moved
+		var/atom/loc_atom = loc
+		return loc_atom.relaymove(src, UP)
+
+
+	var/obj/structure/ladder/current_ladder = locate() in current_turf
+	if(current_ladder)
+		current_ladder.use(src, TRUE)
+		return
+
+	if(!can_z_move(UP, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
+		return
+	balloon_alert(src, "moving up...")
+	if(!do_after(src, 1 SECONDS))
+		return
+	if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move upwards."))
+
+
+///Moves a mob down a z level
+/mob/verb/down()
+	set name = "Move Down"
+	set category = "IC"
+
+	if(remote_control)
+		return remote_control.relaymove(src, DOWN)
+
+	var/turf/current_turf = get_turf(src)
+
+	if(ismovable(loc)) //Inside an object, tell it we moved
+		var/atom/loc_atom = loc
+		return loc_atom.relaymove(src, DOWN)
+
+	var/obj/structure/ladder/current_ladder = locate() in current_turf
+	if(current_ladder)
+		current_ladder.use(src, FALSE)
+		return
+
+	if(!can_z_move(DOWN, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
+		return
+	balloon_alert(src, "moving down...")
+	if(!do_after(src, 1 SECONDS))
+		return
+	if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move down."))
+	return FALSE
+
 /mob/proc/toggle_move_intent(new_intent)
 	if(!isnull(new_intent))
 		if(new_intent == m_intent)

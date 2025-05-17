@@ -1,7 +1,4 @@
-import { map } from 'common/collections';
-import { Fragment } from 'react';
-
-import { useBackend, useLocalState } from '../backend';
+import { Fragment, useState } from 'react';
 import {
   AnimatedNumber,
   Box,
@@ -15,12 +12,15 @@ import {
   Section,
   Stack,
   Table,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 const category_icon = {
   Operations: 'parachute-box',
   Weapons: 'fighter-jet',
+  Smartguns: 'star',
   Explosives: 'bomb',
   Armor: 'hard-hat',
   Clothing: 'tshirt',
@@ -36,7 +36,7 @@ const category_icon = {
 export const Cargo = (props) => {
   const { act, data } = useBackend();
 
-  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
+  const [selectedMenu, setSelectedMenu] = useState(null);
 
   const {
     supplypacks,
@@ -54,27 +54,55 @@ export const Cargo = (props) => {
     <Window width={1100} height={700}>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
-          <Menu />
+          <Menu selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} />
         </Flex.Item>
         <Flex.Item position="relative" grow={1} height="100%">
           <Window.Content scrollable>
             {selectedMenu === 'Previous Purchases' && (
-              <OrderList type={shopping_history} readOnly={1} />
+              <OrderList
+                type={shopping_history}
+                readOnly={1}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
             )}
             {selectedMenu === 'Export History' && <Exports />}
             {selectedMenu === 'Awaiting Delivery' && (
-              <OrderList type={awaiting_delivery} readOnly={1} />
+              <OrderList
+                type={awaiting_delivery}
+                readOnly={1}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
             )}
-            {selectedMenu === 'Pending Order' && <ShoppingCart />}
+            {selectedMenu === 'Pending Order' && (
+              <ShoppingCart
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
+            )}
             {selectedMenu === 'Requests' && <Requests />}
             {selectedMenu === 'Approved Requests' && (
-              <OrderList type={approvedrequests} />
+              <OrderList
+                type={approvedrequests}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
             )}
             {selectedMenu === 'Denied Requests' && (
-              <OrderList type={deniedrequests} />
+              <OrderList
+                type={deniedrequests}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
             )}
             {!!selectedPackCat && (
-              <Category selectedPackCat={selectedPackCat} should_filter />
+              <Category
+                selectedPackCat={selectedPackCat}
+                should_filter
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
             )}
           </Window.Content>
         </Flex.Item>
@@ -105,9 +133,8 @@ const Exports = (props) => {
 };
 
 const MenuButton = (props) => {
-  const { condition, menuname, icon, width } = props;
-
-  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
+  const { condition, menuname, icon, width, selectedMenu, setSelectedMenu } =
+    props;
 
   return (
     <Button
@@ -123,7 +150,7 @@ const MenuButton = (props) => {
 
 const Menu = (props) => {
   const { act, data } = useBackend();
-  const { readOnly } = props;
+  const { readOnly, selectedMenu, setSelectedMenu } = props;
 
   const {
     requests,
@@ -154,6 +181,8 @@ const Menu = (props) => {
                 icon="luggage-cart"
                 menuname="Awaiting Delivery"
                 condition={!awaiting_delivery_orders}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
               />
             </Flex.Item>
             <Flex.Item>
@@ -182,6 +211,8 @@ const Menu = (props) => {
             icon="shopping-cart"
             menuname="Pending Order"
             condition={!shopping_list_items}
+            selectedMenu={selectedMenu}
+            setSelectedMenu={setSelectedMenu}
           />
         </Flex.Item>
         <Flex.Item>
@@ -200,11 +231,15 @@ const Menu = (props) => {
             icon="history"
             menuname="Previous Purchases"
             condition={!shopping_history.length}
+            selectedMenu={selectedMenu}
+            setSelectedMenu={setSelectedMenu}
           />
           <MenuButton
             icon="shipping-fast"
             menuname="Export History"
             condition={!export_history.length}
+            selectedMenu={selectedMenu}
+            setSelectedMenu={setSelectedMenu}
           />
         </>
       )}
@@ -215,6 +250,8 @@ const Menu = (props) => {
             icon="clipboard-list"
             menuname="Requests"
             condition={!requests.length}
+            selectedMenu={selectedMenu}
+            setSelectedMenu={setSelectedMenu}
           />
         </Flex.Item>
         <Flex.Item>{requests.length} pending</Flex.Item>
@@ -223,11 +260,15 @@ const Menu = (props) => {
         icon="clipboard-check"
         menuname="Approved Requests"
         condition={!approvedrequests.length}
+        selectedMenu={selectedMenu}
+        setSelectedMenu={setSelectedMenu}
       />
       <MenuButton
         icon="trash"
         menuname="Denied Requests"
         condition={!deniedrequests.length}
+        selectedMenu={selectedMenu}
+        setSelectedMenu={setSelectedMenu}
       />
       <Divider />
       {categories.map((category) => (
@@ -238,6 +279,8 @@ const Menu = (props) => {
             menuname={category}
             condition={0}
             width="100%"
+            selectedMenu={selectedMenu}
+            setSelectedMenu={setSelectedMenu}
           />
           <br />
         </Fragment>
@@ -249,9 +292,7 @@ const Menu = (props) => {
 const OrderList = (props) => {
   const { act, data } = useBackend();
 
-  const { type, buttons, readOnly } = props;
-
-  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
+  const { type, buttons, readOnly, selectedMenu, setSelectedMenu } = props;
 
   return (
     <Section title={selectedMenu} buttons={buttons}>
@@ -318,13 +359,14 @@ const Pack = (props) => {
   const { act, data } = useBackend();
   const { pack, amount } = props;
   const { supplypackscontents } = data;
-  const { name, cost, contains } = supplypackscontents[pack];
+  const { name, item_notes, cost, contains } = supplypackscontents[pack];
 
   return !!contains && contains.constructor === Object ? (
     <Collapsible
-      color="gray"
+      color="transparent"
       title={<PackName cost={cost} name={name} pl={0} amount={amount} />}
     >
+      <b>{item_notes ? 'Notes: ' : null} </b> {item_notes}
       <Table>
         <PackContents contains={contains} />
       </Table>
@@ -350,13 +392,15 @@ const PackName = (props) => {
 
 const Requests = (props) => {
   const { act, data } = useBackend();
-  const { readOnly } = props;
+  const { readOnly, selectedMenu, setSelectedMenu } = props;
   const { requests } = data;
 
   return (
     <OrderList
       type={requests}
       readOnly={readOnly}
+      selectedMenu={selectedMenu}
+      setSelectedMenu={setSelectedMenu}
       buttons={
         !readOnly && (
           <>
@@ -386,9 +430,9 @@ const ShoppingCart = (props) => {
     shopping_list_cost,
     shopping_list_items,
   } = data;
-  const { readOnly } = props;
+  const { readOnly, selectedMenu, setSelectedMenu } = props;
   const shopping_list_array = Object.keys(shopping_list);
-  const [reason, setReason] = useLocalState('reason', null);
+  const [reason, setReason] = useState(null);
 
   return (
     <Section>
@@ -397,6 +441,7 @@ const ShoppingCart = (props) => {
           p="5px"
           icon="dollar-sign"
           content={readOnly ? 'Submit Request' : 'Purchase Cart'}
+          color={shopping_list_cost > currentpoints ? 'bad' : 'good'}
           disabled={(readOnly && !reason) || !shopping_list_items}
           onClick={() =>
             act(readOnly ? 'submitrequest' : 'buycart', {
@@ -418,14 +463,22 @@ const ShoppingCart = (props) => {
             Reason:{' '}
           </Box>
           <Input
+            autoFocus
+            placeholder="Reason"
             width="89%"
             inline
+            expensive
             value={reason}
-            onInput={(e, value) => setReason(value)}
+            onChange={setReason}
           />
         </>
       )}
-      <Category selectedPackCat={shopping_list_array} level={2} />
+      <Category
+        selectedPackCat={shopping_list_array}
+        level={2}
+        selectedMenu={selectedMenu}
+        setSelectedMenu={setSelectedMenu}
+      />
     </Section>
   );
 };
@@ -458,13 +511,17 @@ const Category = (props) => {
     supplypackscontents,
   } = data;
 
-  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
-
   const spare_points = currentpoints - shopping_list_cost;
 
-  const { selectedPackCat, should_filter, level } = props;
+  const {
+    selectedPackCat,
+    should_filter,
+    level,
+    selectedMenu,
+    setSelectedMenu,
+  } = props;
 
-  const [filter, setFilter] = useLocalState(`pack-name-filter`, null);
+  const [filter, setFilter] = useState(null);
 
   const filterSearch = (entry) =>
     should_filter && filter
@@ -486,12 +543,13 @@ const Category = (props) => {
       <Stack vertical>
         {should_filter && (
           <Stack.Item>
-            <Flex>
-              <Flex.Item width="60px">Search :</Flex.Item>
-              <Flex.Item grow={1}>
-                <Input fluid onInput={(_e, value) => setFilter(value)} />
-              </Flex.Item>
-            </Flex>
+            <Input
+              autoFocus
+              placeholder="Search..."
+              fluid
+              expensive
+              onChange={setFilter}
+            />
           </Stack.Item>
         )}
         <Stack.Item>
@@ -548,12 +606,12 @@ const PackContents = (props) => {
         <Table.Cell bold>Item Type</Table.Cell>
         <Table.Cell bold>Quantity</Table.Cell>
       </Table.Row>
-      {map((contententry) => (
-        <Table.Row>
-          <Table.Cell width="70%">{contententry.name}</Table.Cell>
-          <Table.Cell>x {contententry.count}</Table.Cell>
+      {Object.values(contains).map((value, index) => (
+        <Table.Row key={index}>
+          <Table.Cell width="70%">{value.name}</Table.Cell>
+          <Table.Cell>x {value.count}</Table.Cell>
         </Table.Row>
-      ))(contains)}
+      ))}
     </>
   );
 };
@@ -561,7 +619,7 @@ const PackContents = (props) => {
 export const CargoRequest = (props) => {
   const { act, data } = useBackend();
 
-  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
+  const [selectedMenu, setSelectedMenu] = useState(null);
 
   const { supplypacks, approvedrequests, deniedrequests, awaiting_delivery } =
     data;
@@ -574,23 +632,58 @@ export const CargoRequest = (props) => {
     <Window width={1100} height={700}>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
-          <Menu readOnly={1} />
+          <Menu
+            readOnly={1}
+            selectedMenu={selectedMenu}
+            setSelectedMenu={setSelectedMenu}
+          />
         </Flex.Item>
         <Flex.Item position="relative" grow={1} height="100%">
           <Window.Content scrollable>
             {selectedMenu === 'Awaiting Delivery' && (
-              <OrderList type={awaiting_delivery} readOnly={1} />
+              <OrderList
+                type={awaiting_delivery}
+                readOnly={1}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
             )}
-            {selectedMenu === 'Pending Order' && <ShoppingCart readOnly={1} />}
-            {selectedMenu === 'Requests' && <Requests readOnly={1} />}
+            {selectedMenu === 'Pending Order' && (
+              <ShoppingCart
+                readOnly={1}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
+            )}
+            {selectedMenu === 'Requests' && (
+              <Requests
+                readOnly={1}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
+            )}
             {selectedMenu === 'Approved Requests' && (
-              <OrderList type={approvedrequests} />
+              <OrderList
+                type={approvedrequests}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
             )}
             {selectedMenu === 'Denied Requests' && (
-              <OrderList type={deniedrequests} readOnly={1} />
+              <OrderList
+                type={deniedrequests}
+                readOnly={1}
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
             )}
             {!!selectedPackCat && (
-              <Category selectedPackCat={selectedPackCat} should_filter />
+              <Category
+                selectedPackCat={selectedPackCat}
+                should_filter
+                selectedMenu={selectedMenu}
+                setSelectedMenu={setSelectedMenu}
+              />
             )}
           </Window.Content>
         </Flex.Item>

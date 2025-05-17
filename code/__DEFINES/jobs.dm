@@ -165,6 +165,19 @@ SOM_SQUAD_SLUT, SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQU
 PMC_MEDIC, PMC_ENGINEER, PMC_GUNNER, PMC_STANDARD, PMC_SNIPER, PMC_LEADER))
 GLOBAL_LIST_INIT(jobs_xenos, list(ROLE_XENOMORPH, ROLE_XENO_QUEEN))
 GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine), TRUE))
+///Squad type role, regardless of faction
+GLOBAL_LIST_INIT(jobs_squad_roles, list(SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE, SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER))
+
+///Is an SL type job
+GLOBAL_LIST_INIT(jobs_squad_leader, list(SQUAD_LEADER, SOM_SQUAD_LEADER))
+///Is a corpsman type job
+GLOBAL_LIST_INIT(jobs_squad_corpsman, list(SQUAD_CORPSMAN, SOM_SQUAD_CORPSMAN))
+///Is a engineer type job
+GLOBAL_LIST_INIT(jobs_squad_engineer, list(SQUAD_ENGINEER, SOM_SQUAD_ENGINEER))
+///Is a specialist type job
+GLOBAL_LIST_INIT(jobs_squad_specialist, list(SQUAD_SMARTGUNNER, SOM_SQUAD_VETERAN))
+///Is a squad standard type job
+GLOBAL_LIST_INIT(jobs_squad_standard, list(SQUAD_MARINE, SOM_SQUAD_MARINE))
 
 //Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_LIVING "Living"

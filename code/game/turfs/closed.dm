@@ -2,6 +2,8 @@
 
 //turfs with density = TRUE
 /turf/closed
+	layer = CLOSED_TURF_LAYER
+	plane = WALL_PLANE
 	density = TRUE
 	opacity = TRUE
 
@@ -30,7 +32,7 @@
 	resistance_flags = UNACIDABLE
 
 /turf/closed/mineral/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -40, 5, 1)
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
@@ -256,7 +258,7 @@
 	resistance_flags = RESIST_ALL
 
 /turf/closed/mineral/smooth/jungletree/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_LEAF, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_LEAF, -40, 5)
 
 //Ground map dense jungle
 /turf/closed/gm
@@ -270,6 +272,9 @@
 	base_icon_state = "junglewall"
 	walltype = "junglewall"
 	open_turf_type = /turf/open/ground/jungle/clear
+
+/turf/closed/gm/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_LEAF, -40, 5)
 
 	//Not yet
 /turf/closed/gm/ex_act(severity)
@@ -334,7 +339,7 @@
 	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, 1)
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -40, 5, 1)
 
 /turf/closed/ice/single
 	icon_state = "Single"
@@ -416,7 +421,7 @@
 	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice_rock/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, 1)
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -40, 5, 1)
 
 /turf/closed/ice_rock/single
 	icon_state = "single"
@@ -437,32 +442,32 @@
 	icon_state = "full_corners"
 
 //Directional walls each have 4 possible sprites and are
-//randomized on New().
+//randomized on Initialize().
 /turf/closed/ice_rock/northWall
 	icon_state = "north_wall"
 
-/turf/closed/ice_rock/northWall/New()
+/turf/closed/ice_rock/northWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/southWall
 	icon_state = "south_wall"
 
-/turf/closed/ice_rock/southWall/New()
+/turf/closed/ice_rock/southWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/westWall
 	icon_state = "west_wall"
 
-/turf/closed/ice_rock/westWall/New()
+/turf/closed/ice_rock/westWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/eastWall
 	icon_state = "east_wall"
 
-/turf/closed/ice_rock/eastWall/New()
+/turf/closed/ice_rock/eastWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
@@ -474,12 +479,11 @@
 	name = "wall"
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
-	plane = FLOOR_PLANE
 	resistance_flags = PLASMACUTTER_IMMUNE
 	explosion_block = 2
 
 /turf/closed/shuttle/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /turf/closed/shuttle/diagonal
 	icon_state = "diagonalWall"
@@ -518,12 +522,10 @@
 /turf/closed/shuttle/dropship
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rasputin1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/ert
 	icon = 'icons/turf/ert_shuttle.dmi'
 	icon_state = "stan4"
-	plane = GAME_PLANE
 	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/ert/engines/left
@@ -548,7 +550,6 @@
 	name = "\improper Alamo"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 	resistance_flags = RESIST_ALL|PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/dropship1/transparent
@@ -737,7 +738,6 @@
 	name = "\improper Triumph"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/dropship3/transparent
 	opacity = FALSE
@@ -746,7 +746,6 @@
 	name = "\improper Normandy"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
@@ -903,7 +902,6 @@
 	name = "\improper Normandy"
 	icon = 'icons/turf/dropship4.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/dropship4/transparent
 	opacity = FALSE
@@ -1090,13 +1088,11 @@
 	name = "\improper Tadpole"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapepod
 	name = "wall"
 	icon = 'icons/turf/escapepods.dmi'
 	icon_state = "wall0"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapepod/wallone
 	icon_state = "wall1"
@@ -1142,12 +1138,3 @@
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
-
-/turf/closed/banish_space //Brazil
-	plane = PLANE_SPACE
-	layer = SPACE_LAYER
-	icon = 'icons/turf/space.dmi'
-	name = "phantom zone"
-	icon_state = "0"
-	can_bloody = FALSE
-	light_power = 0.25

@@ -55,14 +55,15 @@
 		else
 			to_chat(M, span_notice("Through a miracle you managed to survive the attack. But are you truly safe now?"))
 
-/datum/job/survivor/radio_help_message(mob/M)
+/datum/job/survivor/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"In whatever case you have been through, you are here to survive and get yourself rescued.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"In whatever case you have been through, you are here to survive and get yourself rescued.
 You appreciate the support of TerraGov and Nanotrasen should you be rescued.
 You are not hostile to NTC, nor you should oppose or disrupt their objective, unless an admin says otherwise.
 If you find any other survivors in the area, cooperate with them to increase your chances of survival.
 Depending on the job you've undertook, you may have additional skills to help others when needed.
-Good luck, but do not expect to survive."})
+Good luck, but do not expect to survive."}
 
 
 //Assistant
@@ -84,7 +85,7 @@ Good luck, but do not expect to survive."})
 	mask = /obj/item/clothing/mask/gas/tactical/coif
 	head = /obj/item/clothing/head/welding/flipped
 	belt = /obj/item/storage/belt/utility/full
-	l_store = /obj/item/flashlight/combat
+	l_pocket = /obj/item/flashlight/combat
 	r_hand = /obj/item/weapon/combat_knife
 
 /datum/outfit/job/survivor/assistant/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -110,8 +111,8 @@ Good luck, but do not expect to survive."})
 	back = /obj/item/storage/backpack/toxins
 	ears = /obj/item/radio/headset/survivor
 	l_hand = /obj/item/storage/firstaid/adv
-	l_store = /obj/item/storage/pouch/surgery
-	r_store = /obj/item/flashlight/combat
+	l_pocket = /obj/item/storage/pouch/surgery
+	r_pocket = /obj/item/flashlight/combat
 
 /datum/outfit/job/survivor/scientist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -141,7 +142,7 @@ Good luck, but do not expect to survive."})
 	back = /obj/item/storage/backpack/satchel/med
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/surgery
+	r_pocket = /obj/item/storage/pouch/surgery
 	belt = /obj/item/storage/belt/rig
 	mask = /obj/item/clothing/mask/surgical
 	ears = /obj/item/radio/headset/survivor
@@ -189,7 +190,7 @@ Good luck, but do not expect to survive."})
 	ears = /obj/item/radio/headset/survivor
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp78
 	l_hand = /obj/item/flashlight/combat
-	l_store = /obj/item/tool/crowbar
+	l_pocket = /obj/item/tool/crowbar
 
 /datum/outfit/job/survivor/liaison/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -308,8 +309,8 @@ Good luck, but do not expect to survive."})
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/hydroponics
 	ears = /obj/item/radio/headset/survivor
-	l_store = /obj/item/flashlight
-	r_store = /obj/item/tool/crowbar
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/tool/crowbar
 	l_hand = /obj/item/tool/hatchet
 
 /datum/outfit/job/survivor/botanist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -341,8 +342,8 @@ Good luck, but do not expect to survive."})
 	belt = /obj/item/storage/belt
 	head = /obj/item/clothing/head/hardhat/white
 	glasses = /obj/item/clothing/glasses/welding
-	r_store = /obj/item/storage/pouch/electronics/full
-	l_store = /obj/item/storage/pouch/construction
+	r_pocket = /obj/item/storage/pouch/electronics/full
+	l_pocket = /obj/item/storage/pouch/construction
 	ears = /obj/item/radio/headset/survivor
 
 /datum/outfit/job/survivor/atmos/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -411,7 +412,7 @@ Good luck, but do not expect to survive."})
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/som
 	l_hand = /obj/item/weapon/twohanded/sledgehammer
-	r_store = /obj/item/reagent_containers/cup/glass/flask
+	r_pocket = /obj/item/reagent_containers/cup/glass/flask
 	r_hand = /obj/item/clothing/suit/space/rig/mining
 	ears = /obj/item/radio/headset/survivor
 
@@ -474,7 +475,7 @@ Good luck, but do not expect to survive."})
 	suit_store = /obj/item/storage/holster/belt/m44/full
 	belt = /obj/item/storage/belt/sparepouch
 	gloves = /obj/item/clothing/gloves/ruggedgloves
-	l_store = /obj/item/flashlight/combat
+	l_pocket = /obj/item/flashlight/combat
 	ears = /obj/item/radio/headset/survivor
 	head = /obj/item/clothing/head/slouch
 
@@ -506,8 +507,8 @@ Good luck, but do not expect to survive."})
 	head = /obj/item/clothing/head/collectable/tophat
 	ears = /obj/item/radio/headset/survivor
 	glasses = /obj/item/clothing/glasses/sunglasses
-	l_store = /obj/item/flashlight
-	r_store = /obj/item/tool/crowbar
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/tool/crowbar
 	suit_store = /obj/item/weapon/gun/shotgun/double/sawn
 
 /datum/outfit/job/survivor/bartender/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -539,8 +540,8 @@ Good luck, but do not expect to survive."})
 	shoes = /obj/item/clothing/shoes/white
 	ears = /obj/item/radio/headset/survivor
 	glasses = /obj/item/clothing/glasses/science
-	l_store = /obj/item/flashlight
-	r_store = /obj/item/tool/crowbar
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/tool/crowbar
 	suit_store = /obj/item/healthanalyzer
 
 /datum/outfit/job/survivor/chemist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -595,8 +596,8 @@ Good luck, but do not expect to survive."})
 	back = /obj/item/storage/backpack/satchel/tox
 	ears = /obj/item/radio/headset/survivor
 	glasses = /obj/item/clothing/glasses/welding/flipped
-	l_store = /obj/item/storage/pouch/electronics/full
-	r_store = /obj/item/flashlight/combat
+	l_pocket = /obj/item/storage/pouch/electronics/full
+	r_pocket = /obj/item/flashlight/combat
 
 /datum/outfit/job/survivor/roboticist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -723,8 +724,8 @@ Good luck, but do not expect to survive."})
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	suit_store = /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
 	belt = /obj/item/storage/belt/marine/alf_machinecarbine
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	r_store = /obj/item/flashlight/combat
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/flashlight/combat
 	glasses = /obj/item/clothing/glasses/m42_goggles
 	head = /obj/item/clothing/head/headband
 	ears = /obj/item/radio/headset/survivor

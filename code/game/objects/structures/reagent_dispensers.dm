@@ -93,7 +93,7 @@
 	if(user != loc)
 		return
 	if(modded)
-		. += span_warning(" Fuel faucet is wrenched open, leaking the fuel!")
+		. += span_warning("Fuel faucet is wrenched open, leaking the fuel!")
 	if(rig)
 		. += span_notice("There is some kind of device rigged to the tank.")
 
@@ -169,7 +169,7 @@
 	add_overlay(overlay)
 
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/proj)
+/obj/structure/reagent_dispensers/fueltank/bullet_act(atom/movable/projectile/proj)
 	if(exploding)
 		return FALSE
 	. = ..()
@@ -188,11 +188,11 @@
 		return
 	exploding = TRUE
 	if (reagents.total_volume > 500)
-		explosion(loc, light_impact_range = 4, flame_range = 4)
+		explosion(loc, light_impact_range = 4, flame_range = 4, explosion_cause="fueltank explosion")
 	else if (reagents.total_volume > 100)
-		explosion(loc, light_impact_range = 3, flame_range = 3)
+		explosion(loc, light_impact_range = 3, flame_range = 3, explosion_cause="fueltank explosion")
 	else
-		explosion(loc, light_impact_range = 2, flame_range = 2)
+		explosion(loc, light_impact_range = 2, flame_range = 2, explosion_cause="fueltank explosion")
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(burn_level)
@@ -238,13 +238,13 @@
 
 	if(reagents.total_volume > 500)
 		flame_radius(5, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 5)
+		explosion(loc, light_impact_range = 5, explosion_cause="xfueltank explosion")
 	else if(reagents.total_volume > 100)
 		flame_radius(4, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 4)
+		explosion(loc, light_impact_range = 4, explosion_cause="xfueltank explosion")
 	else
 		flame_radius(3, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 3)
+		explosion(loc, light_impact_range = 3, explosion_cause="xfueltank explosion")
 
 	qdel(src)
 

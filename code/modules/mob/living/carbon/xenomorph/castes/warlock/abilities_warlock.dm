@@ -176,7 +176,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(1 SECONDS, 1 SECONDS)
+				H.apply_effects(paralyze = 1 SECONDS)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
@@ -193,7 +193,8 @@
 /obj/effect/xeno/shield
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
-	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
+	anchored = TRUE
+	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE
 	max_integrity = 650
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
@@ -220,12 +221,12 @@
 	if(alternative_reflection) // The easy alternative to spriting 92 frames.
 		add_atom_colour("#ff000d", FIXED_COLOR_PRIORITY)
 
-/obj/effect/xeno/shield/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/effect/xeno/shield/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	if(!(cardinal_move & REVERSE_DIR(dir)))
 		return FALSE
 	return !uncrossing
 
-/obj/effect/xeno/shield/do_projectile_hit(obj/projectile/proj)
+/obj/effect/xeno/shield/do_projectile_hit(atom/movable/projectile/proj)
 	proj.projectile_behavior_flags |= PROJECTILE_FROZEN
 	proj.iff_signal = null
 	frozen_projectiles += proj
@@ -233,16 +234,16 @@
 	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()
-		owner.apply_effect(1 SECONDS, WEAKEN)
+		owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 
 /obj/effect/xeno/shield/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	release_projectiles()
-	owner.apply_effect(1 SECONDS, WEAKEN)
+	owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 	return ..()
 
 ///Unfeezes the projectiles on their original path
 /obj/effect/xeno/shield/proc/release_projectiles()
-	for(var/obj/projectile/proj AS in frozen_projectiles)
+	for(var/atom/movable/projectile/proj AS in frozen_projectiles)
 		proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
 		proj.resume_move()
 	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
@@ -253,7 +254,7 @@
 
 	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
 	var/direction_to_atom = angle_to_dir(Get_Angle(src, targetted_atom))
-	for(var/obj/projectile/reflected_projectile AS in frozen_projectiles)
+	for(var/atom/movable/projectile/reflected_projectile AS in frozen_projectiles)
 		reflected_projectile.projectile_behavior_flags &= ~PROJECTILE_FROZEN
 		reflected_projectile.distance_travelled = 0
 
@@ -400,7 +401,7 @@
 		for(var/turf/turf_to_check AS in turfs_to_check)
 			if((turf_to_check in target_turfs) || (turf_to_check in turfs_to_add))
 				continue
-			if(LinkBlocked(current_turf, turf_to_check, air_pass = TRUE))
+			if(LinkBlocked(current_turf, turf_to_check, PASS_AIR))
 				continue
 			turfs_to_add += turf_to_check
 			effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
@@ -440,12 +441,18 @@
 				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB)
 				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
-			else if(isvehicle(victim) || ishitbox(victim))
+				continue
+			if(isvehicle(victim) || ishitbox(victim))
 				var/obj/obj_victim = victim
 				var/dam_mult = 0.5
 				if(ismecha(obj_victim))
 					dam_mult = 2.3
 				obj_victim.take_damage(PSY_CRUSH_DAMAGE * dam_mult, BRUTE, BOMB)
+				continue
+			if(isfire(victim))
+				var/obj/fire/fire = victim
+				fire.reduce_fire(10)
+				continue
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
@@ -511,6 +518,7 @@
 	. = ..()
 	particle_holder = new(src, channel_particle)
 	particle_holder.pixel_y = 0
+	notify_ai_hazard()
 
 /obj/effect/xeno/crush_orb
 	icon = 'icons/xeno/2x2building.dmi'
@@ -584,19 +592,17 @@
 /datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
 	owner.balloon_alert(owner, "We channel our psychic power")
 	generate_particles(A, 7)
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
 	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
 
 	succeed_activate()
 
-	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
+	var/atom/movable/projectile/hitscan/projectile = new /atom/movable/projectile/hitscan(xeno_owner.loc)
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	projectile.generate_bullet(ammo_type)
 	projectile.fire_at(A, xeno_owner, xeno_owner, projectile.ammo.max_range, projectile.ammo.shell_speed)
@@ -611,7 +617,6 @@
 
 	add_cooldown()
 	update_button_icon()
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
 
 /datum/action/ability/activable/xeno/psy_blast/update_button_icon()

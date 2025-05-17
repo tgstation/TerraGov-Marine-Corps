@@ -7,8 +7,7 @@
 /area/shuttle/minidropship)
 "d" = (
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8;
-	layer = 3
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -17,13 +16,13 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock";
-	dir = 2
+	dir = 2;
+	id = "minidropship_podlock"
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "minidropship_podlock";
-	name = "inner door-control";
-	dir = 8
+	name = "inner door-control"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -119,8 +118,7 @@
 /area/shuttle/minidropship)
 "x" = (
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8;
-	layer = 3
+	dir = 8
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -153,8 +151,7 @@
 "D" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4;
-	layer = 3
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
@@ -174,9 +171,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "minidropship_podlock";
-	name = "inner door-control";
-	dir = 4
+	name = "inner door-control"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -190,16 +187,15 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "I" = (
+/obj/machinery/vending/nanoammo/directional/north,
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4;
-	layer = 3
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "J" = (
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1;
-	layer = 3
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -234,8 +230,7 @@
 /area/shuttle/minidropship)
 "S" = (
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4;
-	layer = 3
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -244,8 +239,8 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock";
-	dir = 2
+	dir = 2;
+	id = "minidropship_podlock"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)

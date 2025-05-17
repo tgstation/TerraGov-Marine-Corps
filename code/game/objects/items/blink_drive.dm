@@ -66,7 +66,7 @@
 
 /obj/item/blink_drive/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
 	standing.overlays.Add(emissive_overlay)
 
 /obj/item/blink_drive/ui_action_click(mob/user, datum/action/item_action/action, target)
@@ -102,7 +102,7 @@
 	var/instability = 0 //certain factors can make the teleport unreliable
 	if(target_distance > BLINK_DRIVE_RANGE - 2)
 		instability ++
-	if(!COOLDOWN_CHECK(src, blink_stability_cooldown))
+	if(!COOLDOWN_FINISHED(src, blink_stability_cooldown))
 		instability ++
 	if(!line_of_sight(user, target_turf, 9))
 		instability ++
@@ -204,7 +204,7 @@
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_BLINKDRIVE)
 
-/datum/action/ability/activable/item_toggle/blink_drive/can_use_ability(silent, override_flags, selecting)
+/datum/action/ability/activable/item_toggle/blink_drive/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE
@@ -212,3 +212,30 @@
 		carbon_owner.balloon_alert(carbon_owner, "can't use here")
 		return FALSE
 	return ..()
+
+/datum/action/ability/activable/item_toggle/blink_drive/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/activable/item_toggle/blink_drive/ai_should_use(atom/target)
+	var/obj/item/blink_drive/blink_parent = src.target
+	if(isainode(target))
+		if(blink_parent.charges < 2) //keep one for combat
+			return FALSE
+		if(get_dist(owner, target) > 5)
+			return FALSE
+		if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+			return FALSE
+		return TRUE
+
+	if(!(isliving(target) || ismecha(target) || isarmoredvehicle(target)))
+		return FALSE
+	var/atom/movable/movable_target = target
+	if(movable_target.faction == owner.faction)
+		return FALSE
+	if(!can_use_ability(movable_target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(!blink_parent.charges)
+		return FALSE
+	if(get_dist(owner, movable_target) > 7)
+		return FALSE
+	return TRUE

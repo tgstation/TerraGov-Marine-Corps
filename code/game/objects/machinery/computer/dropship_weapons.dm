@@ -28,23 +28,20 @@
 
 	. = list()
 	.["equipment_data"] = list()
-	.["targets_data"] = list()
-	for(var/X in GLOB.active_laser_targets)
-		var/obj/effect/overlay/temp/laser_target/LT = X
-		var/area/laser_area = get_area(LT)
-		.["targets_data"] += list(list("target_name" = "[LT.name] ([laser_area.name])", "target_tag" = LT.target_id))
+	for(var/obj/effect/overlay/temp/laser_target/laser_target in GLOB.active_laser_targets)
+		var/area/laser_area = get_area(laser_target)
+		.["targets_data"] += list(list("target_name" = "[laser_target.name] ([laser_area.name])", "target_tag" = laser_target.target_id))
 	shuttle_equipments = shuttle.equipments
-	var/element_nbr = 1
-	for(var/X in shuttle.equipments)
-		var/obj/structure/dropship_equipment/E = X
-		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.dropship_equipment_flags & IS_WEAPON), "is_interactable" = (E.dropship_equipment_flags & IS_INTERACTABLE)))
-		element_nbr++
+	var/equipment_index = 1
+	for(var/obj/structure/dropship_equipment/equipment in shuttle.equipments)
+		.["equipment_data"] += list(list("name" = sanitize(copytext(equipment.name, 1, MAX_MESSAGE_LEN)), "equipment_tag" = equipment_index, "is_interactable" = (equipment.dropship_equipment_flags & IS_INTERACTABLE)))
+		equipment_index++
 
 	.["selected_eqp_name"] = ""
 	.["selected_eqp_ammo_name"] = ""
 	.["selected_eqp_ammo_amt"] = 0
 	.["selected_eqp_max_ammo_amt"] = 0
-	.["screen_mode"] = 0
+	.["display_used_weapon"] = 0
 	if(selected_equipment)
 		.["selected_eqp_name"] = sanitize(copytext(selected_equipment.name,1,MAX_MESSAGE_LEN))
 		.["selected_eqp"] = .["selected_eqp_name"]
@@ -52,7 +49,7 @@
 			.["selected_eqp_ammo_name"] = sanitize(copytext(selected_equipment.ammo_equipped.name,1,MAX_MESSAGE_LEN))
 			.["selected_eqp_ammo_amt"] = selected_equipment.ammo_equipped.ammo_count
 			.["selected_eqp_max_ammo_amt"] = selected_equipment.ammo_equipped.max_ammo_count
-		.["screen_mode"] = selected_equipment.screen_mode
+		.["display_used_weapon"] = selected_equipment.screen_mode
 
 	.["shuttle_mode"] = shuttle.mode == SHUTTLE_CALL
 
@@ -99,7 +96,7 @@
 					if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
 						to_chat(L, span_warning("[DEW] has no ammo."))
 						return
-					if(!COOLDOWN_CHECK(DEW, last_fired))
+					if(!COOLDOWN_FINISHED(DEW, last_fired))
 						to_chat(L, span_warning("[DEW] just fired, wait for it to cool down."))
 						return
 					if(QDELETED(LT)) // Quick final check on the Laser target

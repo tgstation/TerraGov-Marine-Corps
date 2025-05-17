@@ -40,6 +40,9 @@ HUB
 ## The maximum number of concurrent tts http requests that can be made by the server at once.
 #TTS_MAX_CONCURRENT_REQUESTS 4
 
+## The number of seconds before tts https requests timeout (0 for infinite not recommended)
+#TTS_HTTP_TIMEOUT_SECONDS 30
+
 ## Add voices to the TTS voice blacklist.
 #TTS_VOICE_BLACKLIST Sans Undertale
 #TTS_VOICE_BLACKLIST Papyrus Undertale
@@ -96,6 +99,8 @@ LOG_ATTACK
 LOG_HREFS
 LOG_RUNTIME
 LOG_MANIFEST
+LOG_PICTURES
+PICTURE_LOGGING_CAMERA
 # LOG_MECHA
 
 ## Gameplay options
@@ -117,10 +122,32 @@ POPUP_ADMIN_PM
 # TOPIC_FILTERING_WHITELIST 127.0.0.1
 
 ## Only enable this if you have youtube-dl installed!
-# INVOKE_YOUTUBEDL youtube-dl
+#INVOKE_YOUTUBEDL youtube-dl
+
+## Comment this out to disable users ability to use the request internet sounds to be played.
+REQUEST_INTERNET_SOUND
+
+## Request Internet Sound Allowed URL'S comma separated, urls here are the only sites allowed through Request Internet Sound, Add more to allow more, or remove to disallow.
+## The Defaults here are all supported by youtube-dl
+## Ensure . and / are escaped with \
+REQUEST_INTERNET_ALLOWED youtube\.com\/watch?v=,youtu\.be\/,soundcloud\.com\/,bandcamp\.com\/track\/
 
 ## End of round chat message
 # END_OF_ROUND_CHANNEL game-updates
+
+## CLIENT VERSION CONTROL
+## This allows you to configure the minimum required client version, as well as a warning version, and message for both.
+## These trigger for any version below (non-inclusive) the given version, so 510 triggers on 509 or lower.
+## These messages will be followed by one stating the clients current version and the required version for clarity.
+## If CLIENT_WARN_POPUP is uncommented a popup window with the message will be displayed instead
+CLIENT_WARN_VERSION 516
+CLIENT_WARN_BUILD 1659
+CLIENT_WARN_POPUP
+#CLIENT_WARN_MESSAGE Byond released 515 as the stable release. This comes bundled with a host of niceties, including image generation for UIs and :: operators.
+CLIENT_ERROR_VERSION 515
+CLIENT_ERROR_MESSAGE Your version of byond is not supported. Please upgrade.
+## The minimum build needed for joining the server.
+CLIENT_ERROR_BUILD 1590
 
 ## TOPIC RATE LIMITING
 ## This allows you to limit how many topic calls (clicking on an interface window) the client can do in any given game second and/or game minute.
@@ -262,3 +289,22 @@ allow_vote_mode
 ## This is primarily useful for developing tutorials. If you have a proper DB setup, you
 ## don't need (or want) this.
 #GIVE_TUTORIALS_WITHOUT_DB
+
+## Discord bot command prefix, if the discord bot is used
+# DISCORDBOTCOMMANDPREFIX ?
+
+## Which channels will have a message about a new game starting and ping people
+#CHANNEL_ANNOUNCE_NEW_GAME
+
+## Ping users who use the `notify` command when a new game starts.
+#CHAT_NEW_GAME_NOTIFICATIONS
+
+## Uncomment this flag to validate admin commands from discord by requiring they come from linked discord accounts and that those discord accounts link to a ckey with the right admin permissions.
+# SECURE_CHAT_COMMANDS
+
+## Tgui payloads larger than the 2kb limit for BYOND topic requests are split into roughly 1kb chunks and sent in sequence.
+## This config option limits the maximum chunk count for which the server will accept a payload, default is 32
+TGUI_MAX_CHUNK_COUNT 32
+
+## Uncomment and replace with the URL where users can verify their byond accounts
+#FORUM_LINK_URI

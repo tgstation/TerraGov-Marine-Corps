@@ -10,8 +10,9 @@
 ///how many colour priority levels there are.
 #define COLOR_PRIORITY_AMOUNT 4
 
-#define COLOR_INPUT_DISABLED "#F0F0F0"
-#define COLOR_INPUT_ENABLED "#D3B5B5"
+//Filters
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, color="#04080FAA")
+#define GAUSSIAN_BLUR(filter_size) filter(type="blur", size=filter_size)
 
 #define LIGHTMODE_BACKGROUND "none"
 #define LIGHTMODE_TEXT "#000000"
@@ -75,6 +76,7 @@
 #define COLOR_DISABLER_BLUE "#7E89FF"
 #define COLOR_PULSE_BLUE "#BEFFFF"
 #define COLOR_TESLA_BLUE "#DAD9FF"
+#define COLOR_TRAM_BLUE "#6160A8"
 
 #define COLOR_PINK "#FFC0CB"
 #define COLOR_LIGHT_PINK "#FF3CC8"
@@ -223,6 +225,8 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_RED "#ff3b3b"
 /// Electric green. rgb(0, 255, 0)
 #define LIGHT_COLOR_ELECTRIC_GREEN "#00FF00"
+/// Vivid, slightly blue green. rgb(60, 240, 70)
+#define LIGHT_COLOR_VIVID_GREEN "#3CF046"
 /// Cold, diluted blue. rgb(100, 150, 250)
 #define LIGHT_COLOR_BLUE "#6496FA"
 /// Light blueish green. rgb(125, 225, 175)
@@ -233,12 +237,16 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_ELECTRIC_CYAN "#00FFFF"
 /// More-saturated cyan. rgb(16, 21, 22)
 #define LIGHT_COLOR_LIGHT_CYAN "#40CEFF"
+/// Baby Blue rgb(0, 170, 220)
+#define LIGHT_COLOR_BABY_BLUE "#00AADC"
 /// Saturated blue. rgb(51, 117, 248)
 #define LIGHT_COLOR_DARK_BLUE "#6496FA"
 /// Diluted, mid-warmth pink. rgb(225, 125, 225)
 #define LIGHT_COLOR_PINK "#E17DE1"
 /// Dimmed yellow, leaning kaki. rgb(225, 225, 125)
 #define LIGHT_COLOR_YELLOW "#E1E17D"
+/// Bright yellow. rgb(255, 255, 150)
+#define LIGHT_COLOR_BRIGHT_YELLOW "#FFFF99"
 /// Clear brown, mostly dim. rgb(150, 100, 50)
 #define LIGHT_COLOR_BROWN "#966432"
 /// Mostly pure orange. rgb(250, 150, 50)
@@ -300,6 +308,15 @@ Important note: colors can end up significantly different from the basic html pi
 #define COLOR_WALL_BULLETPROOF "#ed99f6"
 #define COLOR_WALL_FIREPROOF "#ff696e"
 #define COLOR_WALL_HARDY "#6699ff"
+
+/// Colors for status/tram/incident displays
+#define COLOR_DISPLAY_RED "#BE3455"
+#define COLOR_DISPLAY_ORANGE "#FF9900"
+#define COLOR_DISPLAY_YELLOW "#FFF743"
+#define COLOR_DISPLAY_GREEN "#3CF046"
+#define COLOR_DISPLAY_CYAN "#22FFCC"
+#define COLOR_DISPLAY_BLUE "#22CCFF"
+#define COLOR_DISPLAY_PURPLE "#5D5DFC"
 
 //Colours associated with squads
 #define COLOR_SQUAD_ALPHA "#e61919" // rgb(230,25,25)

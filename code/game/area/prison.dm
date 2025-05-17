@@ -8,6 +8,7 @@
 	name = "Security Department"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC
+	ceiling = CEILING_METAL
 
 /area/prison/security/briefing
 	name = "Briefing"
@@ -132,6 +133,7 @@
 /area/prison/execution
 	name = "Execution"
 	icon_state = "dark"
+	ceiling = CEILING_METAL
 
 /area/prison/store
 	name = "Prison Store"
@@ -246,6 +248,7 @@
 	name = "Engineering"
 	icon_state = "engine"
 	minimap_color = MINIMAP_AREA_ENGI
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/engineering/atmos
 	name = "Atmospherics"
@@ -271,6 +274,12 @@
 	name = "Yard"
 	icon_state = "thunder"
 	ceiling = CEILING_NONE
+
+/area/prison/beach
+	name = "Beach recreation"
+	icon_state = "thunder"
+	ceiling = CEILING_NONE
+	always_unpowered = TRUE
 
 /area/prison/hallway
 
@@ -333,31 +342,29 @@
 	name = "Medium-Security Cellblock"
 	icon_state = "cells_med"
 	minimap_color = MINIMAP_AREA_CELL_MED
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/cellblock/mediumsec/north
 	name = "Medium-Security Cellblock North"
 	icon_state = "cells_med_n"
-	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/cellblock/mediumsec/south
 	name = "Medium-Security Cellblock South"
 	icon_state = "cells_med_s"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/cellblock/mediumsec/east
 	name = "Medium-Security Cellblock East"
 	icon_state = "cells_med_e"
-	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/cellblock/mediumsec/west
 	name = "Medium-Security Cellblock West"
 	icon_state = "cells_med_w"
-	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/cellblock/highsec
 	name = "North High-Security Cellblock"
 	icon_state = "cells_high_nn"
 	minimap_color = MINIMAP_AREA_CELL_HIGH
+	ceiling = CEILING_METAL
 
 /area/prison/cellblock/highsec/north/north
 	name = "North High-Security Cellblock North"
@@ -397,6 +404,13 @@
 	icon_state = "cells_protective"
 	minimap_color = MINIMAP_AREA_CELL_VIP
 
+/area/prison/cellblock/protective/room101
+	name = "Room 101"
+
+/area/prison/material_processing
+	name = "Material Processing"
+	icon_state = "mining"
+
 /area/prison/disposal
 	name = "Disposals"
 	icon_state = "disposal"
@@ -405,6 +419,7 @@
 	name = "Infirmary"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
+	ceiling = CEILING_METAL
 
 /area/prison/medbay/foyer
 	name = "Infirmary Foyer"
@@ -486,15 +501,16 @@
 	name = "West Monorail Station"
 
 /area/prison/hangar/main
-	name = "Main Hangar"
-	icon_state = "hangar_alpha"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_LZ
+
+/area/prison/hangar/main
+	name = "Main Hangar"
+	icon_state = "hangar_alpha"
 
 /area/prison/hangar/civilian
 	name = "Civilian Hangar"
 	icon_state = "hangar_beta"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/prison/hangar_storage/main
 	name = "Main Hangar Storage"

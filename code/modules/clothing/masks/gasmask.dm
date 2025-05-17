@@ -24,7 +24,7 @@
 	. = ..()
 	if(!breathy)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_GAS_BREATH))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_GAS_BREATH))
 		return
 	if(slot != SLOT_WEAR_MASK)
 		return

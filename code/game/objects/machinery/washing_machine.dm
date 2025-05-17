@@ -24,7 +24,7 @@
 
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(!isliving(usr)) //ew ew ew usr, but it's the only way to check.
@@ -151,13 +151,13 @@
 		if(2)
 			state = 1
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.forceMove(drop_location())
 		if(3)
 			state = 4
 		if(4)
 			state = 3
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.forceMove(drop_location())
 			crayon = null
 			state = 1
 		if(5)
@@ -171,7 +171,7 @@
 					var/mob/M = locate(/mob,contents)
 					M.gib()
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.forceMove(drop_location())
 			crayon = null
 			state = 1
 

@@ -40,6 +40,15 @@
 /obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/fitness)
+"ar" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/barricade/solid/deployable{
+	dir = 1
+	},
+/obj/item/stack/rods,
+/turf/open/floor/plating/dmg1,
+/area/lv624/ground/jungle9)
 "as" = (
 /obj/structure/filingcabinet/medical,
 /turf/open/floor/tile/dark/purple2{
@@ -66,6 +75,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
 /area/lv624/lazarus/crashed_ship/desparity)
+"az" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/barricade/solid/deployable{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle5)
 "aA" = (
 /obj/structure/table,
 /obj/effect/spawner/random/medical/beaker,
@@ -227,6 +244,12 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
+"bA" = (
+/obj/structure/barricade/solid{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle5)
 "bB" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -284,7 +307,7 @@
 	dir = 4
 	},
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/canteen)
@@ -1135,6 +1158,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"gh" = (
+/obj/structure/barricade/solid/deployable{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "gj" = (
 /turf/closed/wall,
 /area/lv624/lazarus/fitness)
@@ -1681,11 +1710,6 @@
 "iQ" = (
 /turf/open/floor/plating/dmg1,
 /area/lv624/ground/jungle9)
-"iT" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "iV" = (
 /turf/closed/wall/wood,
 /area/lv624/lazarus/chapel)
@@ -1727,11 +1751,6 @@
 /obj/item/toy/plush/rouny,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/rock)
-"jh" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "jj" = (
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
@@ -1935,6 +1954,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
+"kl" = (
+/obj/structure/barricade/solid/deployable{
+	dir = 8
+	},
+/turf/open/floor/plating/dmg1,
+/area/lv624/ground/jungle9)
 "km" = (
 /turf/closed/wall,
 /area/lv624/lazarus/medbay)
@@ -1994,6 +2019,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/fitness)
+"kE" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "kF" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/paperbin{
@@ -2176,6 +2207,18 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
+"lE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/barricade/solid/deployable{
+	dir = 1
+	},
+/turf/open/floor/podhatch{
+	dir = 5
+	},
+/area/lv624/ground/jungle9)
 "lF" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -2200,14 +2243,6 @@
 /obj/machinery/power/monitor{
 	name = "Main Power Grid Monitoring"
 	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
-"lO" = (
-/obj/machinery/power/geothermal,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "lP" = (
@@ -2987,6 +3022,12 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
+"pU" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "pX" = (
 /obj/effect/landmark/corpsespawner/security/regular,
 /turf/open/floor/tile/dark,
@@ -3265,12 +3306,6 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
-"ri" = (
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle5)
 "rj" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/lv624/lazarus/spaceport)
@@ -3512,6 +3547,13 @@
 /obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/fitness)
+"sz" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "sA" = (
 /obj/structure/sign/hydro{
 	dir = 4
@@ -3604,12 +3646,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle10)
-"sX" = (
-/obj/structure/barricade/metal/deployable{
-	dir = 8
-	},
-/turf/open/floor/plating/dmg1,
-/area/lv624/ground/jungle9)
 "sY" = (
 /obj/structure/flora/ausbushes/fernybush{
 	pixel_y = 17
@@ -4002,18 +4038,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/lv624/lazarus/sleep_male)
-"uX" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/barricade/metal/deployable{
-	dir = 1
-	},
-/turf/open/floor/podhatch{
-	dir = 5
-	},
-/area/lv624/ground/jungle9)
 "uY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4140,14 +4164,6 @@
 /obj/item/cell/apc,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
-"vF" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/barricade/metal/deployable{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle5)
 "vG" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/tile/dark,
@@ -4998,12 +5014,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
-"zX" = (
-/obj/structure/barricade/metal/deployable{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "zZ" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -5343,15 +5353,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/lv624/lazarus/research/caves)
-"BJ" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/barricade/metal/deployable{
-	dir = 1
-	},
-/obj/item/stack/rods,
-/turf/open/floor/plating/dmg1,
-/area/lv624/ground/jungle9)
 "BK" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -6208,9 +6209,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "Gu" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "Gx" = (
@@ -6365,6 +6364,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/lv624/lazarus/captain)
+"Hd" = (
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle5)
 "Hg" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/weedable,
@@ -6819,6 +6824,13 @@
 /obj/structure/window/reinforced,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
+"Jk" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "Jl" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /turf/open/floor/tile/purple/taupepurple{
@@ -6947,12 +6959,10 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle9)
-"JU" = (
-/obj/structure/barricade/metal{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle5)
+"JT" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/engineering)
 "JV" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/wood,
@@ -7792,6 +7802,11 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
+"NX" = (
+/obj/structure/cable,
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "NZ" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8366,12 +8381,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research/caves)
-"Rb" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/corpsespawner/colonist,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "Rc" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
@@ -8977,6 +8986,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
+"Uc" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "Ud" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -14149,7 +14165,7 @@ ua
 FC
 FC
 zj
-zj
+JT
 Jd
 Jd
 zj
@@ -14158,7 +14174,7 @@ zj
 ox
 ox
 ox
-zj
+JT
 zj
 Ww
 Ww
@@ -14468,7 +14484,7 @@ nn
 nn
 nn
 qf
-zj
+JT
 vl
 uI
 XJ
@@ -14567,10 +14583,10 @@ zj
 zj
 GM
 zj
+JT
 zj
 zj
-zj
-zj
+JT
 Jd
 zj
 vv
@@ -14667,7 +14683,7 @@ FC
 ua
 ua
 ua
-zj
+JT
 vO
 oY
 DL
@@ -14875,7 +14891,7 @@ FC
 FC
 ua
 ua
-zj
+JT
 iG
 iK
 kM
@@ -14884,10 +14900,10 @@ zj
 nU
 qf
 KR
-zj
+JT
 vO
 uY
-zj
+JT
 Wh
 OM
 IC
@@ -14983,7 +14999,7 @@ zj
 zj
 zj
 XJ
-zj
+JT
 zj
 zj
 Jd
@@ -15010,7 +15026,7 @@ Ww
 EH
 gU
 Wq
-sX
+kl
 uJ
 kr
 EH
@@ -15085,10 +15101,10 @@ kd
 ua
 ua
 XJ
-jh
-jh
-jh
-jh
+Jk
+qf
+qf
+qf
 XJ
 ox
 hG
@@ -15189,9 +15205,9 @@ ua
 ua
 ua
 XJ
-iT
-Rb
-Zl
+Uc
+NX
+kE
 Sy
 Wc
 Zl
@@ -15293,17 +15309,17 @@ ua
 ua
 qI
 zj
-jh
-jh
-lO
-jh
+sz
+qf
+pU
+qf
 XJ
 qi
 rS
 uz
 vL
 xZ
-zj
+JT
 Ww
 Ww
 Ww
@@ -15319,7 +15335,7 @@ IC
 Co
 EN
 Aq
-BJ
+ar
 mf
 MW
 EY
@@ -15399,14 +15415,14 @@ FC
 zj
 zj
 zj
+JT
 zj
 zj
-zj
-zj
+JT
 XJ
 XJ
 XJ
-zj
+JT
 zj
 Ww
 zb
@@ -15425,7 +15441,7 @@ OM
 ju
 iQ
 rV
-uX
+lE
 Ea
 hv
 JI
@@ -16050,7 +16066,7 @@ hJ
 EH
 sb
 GQ
-zX
+gh
 EH
 EH
 Om
@@ -18750,7 +18766,7 @@ Oc
 FC
 wh
 FC
-ri
+Hd
 WX
 lB
 WX
@@ -18855,7 +18871,7 @@ qH
 qH
 Ht
 JB
-vF
+az
 zy
 zy
 gF
@@ -19063,7 +19079,7 @@ FC
 wh
 Uq
 WX
-JU
+bA
 Lb
 UI
 UI

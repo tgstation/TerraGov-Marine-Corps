@@ -4,9 +4,10 @@
 	selection_color = "#ffeeee"
 	faction = FACTION_TERRAGOV
 
-/datum/job/pmc/squad/radio_help_message(mob/M)
+/datum/job/pmc/squad/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You're a part of hired guns commanded by NTC. Follow orders, no screw ups. Hooah?"})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You're a part of hired guns commanded by NTC. Follow orders, no screw ups. Hooah?"}
 
 //PMC Standard
 /datum/job/pmc/squad/standard

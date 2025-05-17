@@ -3,7 +3,7 @@
 	speech_span = SPAN_ROBOT
 	name = "stimulant implant"
 
-/datum/action/supersolder_stims
+/datum/action/supersoldier_stims
 	name = "Inject Stimulants"
 	action_icon_state = "stim_menu"
 	interaction_flags = INTERACT_OBJ_UI
@@ -15,45 +15,45 @@
 	///say holder we use to say things for fluff
 	var/atom/movable/stim_say_holder/say_holder
 
-/datum/action/supersolder_stims/New(Target)
+/datum/action/supersoldier_stims/New(Target)
 	. = ..()
 	say_holder = new
 
-/datum/action/supersolder_stims/Destroy()
+/datum/action/supersoldier_stims/Destroy()
 	. = ..()
 	QDEL_NULL(say_holder)
 
-/datum/action/supersolder_stims/give_action(mob/M)
+/datum/action/supersoldier_stims/give_action(mob/M)
 	. = ..()
 	say_holder.forceMove(M)
 
-/datum/action/supersolder_stims/remove_action(mob/M)
+/datum/action/supersoldier_stims/remove_action(mob/M)
 	say_holder.moveToNullspace()
 	return ..()
 
 
-/datum/action/supersolder_stims/can_use_action()
+/datum/action/supersoldier_stims/can_use_action()
 	. = ..()
 	if(!.)
 		return
 	return !owner.incapacitated()
 
-/datum/action/supersolder_stims/action_activate()
+/datum/action/supersoldier_stims/action_activate()
 	. = ..()
 	if(!.)
 		return
 	interact(owner)
 
-/datum/action/supersolder_stims/ui_state()
+/datum/action/supersoldier_stims/ui_state()
 	return GLOB.not_incapacitated_state
 
-/datum/action/supersolder_stims/ui_interact(mob/user, datum/tgui/ui)
+/datum/action/supersoldier_stims/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
 		ui = new(user, src, "SupersoldierStims")
 		ui.open()
 
-/datum/action/supersolder_stims/ui_static_data(mob/user)
+/datum/action/supersoldier_stims/ui_static_data(mob/user)
 	var/static/list/data = list()
 	if(!length(data)) // list not built yet
 		data["stims"] = list()
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	for(var/datum/stim/typepath AS in subtypesof(/datum/stim))
 		.[typepath::stim_uid] = typepath
 
-/datum/action/supersolder_stims/ui_data(mob/user)
+/datum/action/supersoldier_stims/ui_data(mob/user)
 	var/list/data = list()
 	data["active_stims"] = list()
 	for(var/datum/stim/active_stim AS in active_stims)
@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	data["active_stimsets"] = user.client?.prefs.stim_sequences
 	return data
 
-/datum/action/supersolder_stims/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/action/supersoldier_stims/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	var/sequence_name = params["sequence"]
 	var/list/stim_sequence
@@ -154,7 +154,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 			return TRUE
 
 ///takes a list of stim types or stim UIDs to cast them in an order with all the fanfare associated it like yelling it out and sounds
-/datum/action/supersolder_stims/proc/cast_stim_sequence(list/stim_types)
+/datum/action/supersoldier_stims/proc/cast_stim_sequence(list/stim_types)
 	var/list/datum/stim/stims = list()
 	for(var/typepath in stim_types)
 		if(!ispath(typepath))
@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 		addtimer(CALLBACK(src, PROC_REF(clean_stim), stim), stim.stim_duration)
 
 ///commands a stim to clean itself up and cleans iwhats needed from its end
-/datum/action/supersolder_stims/proc/clean_stim(datum/stim/stim)
+/datum/action/supersoldier_stims/proc/clean_stim(datum/stim/stim)
 	if(!(stim in active_stims)) // cleaned up already by something else, mostly for timer/qdel skew
 		return
 	active_stims -= stim
@@ -208,9 +208,9 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	var/castedtime
 
 ///bool return as to whether we are currently alllowed to cats this stim
-/datum/stim/proc/can_cast(mob/living/owner, datum/action/supersolder_stims/action, silent=FALSE)
+/datum/stim/proc/can_cast(mob/living/owner, datum/action/supersoldier_stims/action, silent=FALSE)
 	SHOULD_CALL_PARENT(TRUE)
-	for(var/datum/action/supersolder_stims/stim AS in action.active_stims)
+	for(var/datum/action/supersoldier_stims/stim AS in action.active_stims)
 		if((type == stim.type) && !(stim_flags & STIM_ALLOW_DUPE))
 			if(!silent)
 				owner.balloon_alert(owner, "cannot duplicate stim")
@@ -259,6 +259,14 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	stim_uid = "immediate_defib"
 	stim_flags = NONE
 	trait_type = TRAIT_IMMEDIATE_DEFIB
+
+/datum/stim/trait/instant_death
+	name = "Heartstopper"
+	desc = "When a users health reaches critical, instantly stops the users heart with an electric shock that causes enough oxygen damage to kill them."
+	cast_say = "Injecting conditional poisons..."
+	stim_uid = "crit_is_death"
+	stim_flags = NONE
+	trait_type = TRAIT_CRIT_IS_DEATH
 
 /datum/stim/trait/no_ear_damage
 	name = "Ear Resistance"
@@ -374,7 +382,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	///assoc list list(SKILL = MAXIMUM_INT) for when we dont want to let them cast this
 	var/list/max_skills
 
-/datum/stim/skills/can_cast(mob/living/owner, datum/action/supersolder_stims/action, silent)
+/datum/stim/skills/can_cast(mob/living/owner, datum/action/supersoldier_stims/action, silent)
 	. = ..()
 	for(var/skill in max_skills)
 		if(owner.skills.getRating(skill) >= max_skills[skill])
@@ -425,3 +433,23 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 /particles/stims/speed
 	icon_state = "square"
 	gradient = list(1, "#001eff", 2, "#00ffc3", "loop")
+
+/datum/stim/better_throw
+	name = "Longer Throw"
+	desc = "Increases your throwing strength, making you throw things further."
+	cast_say = "Administering muscle enhancers..."
+	stim_uid = "throwstrength"
+	stim_flags = NONE
+
+/datum/stim/better_throw/finish_cast(mob/living/owner)
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_THROW, PROC_REF(on_throw))
+
+/datum/stim/better_throw/end_effects(mob/living/owner)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_MOB_THROW)
+
+/datum/stim/better_throw/proc/on_throw(mob/living/owner, atom/target, atom/movable/thrown_thing, list/throw_modifiers)
+	SIGNAL_HANDLER
+	throw_modifiers["range_modifier"] += 4
+	throw_modifiers["targetted_throw"] = FALSE

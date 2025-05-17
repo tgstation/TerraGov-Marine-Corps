@@ -12,7 +12,6 @@
 	unload_sound = 'sound/weapons/guns/interact/pistol_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
-	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
@@ -367,7 +366,6 @@
 	icon_state = "deagle"
 	worn_icon_state = "deagle"
 	caliber = CALIBER_50AE //codex
-	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/deagle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
@@ -735,7 +733,7 @@
 	force = 8
 	actions_types = null
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,
@@ -826,7 +824,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	desc = "A powerful sidearm issued mainly to highly trained elite assassin necro-cyber-agents."
 	icon_state = "c70"
 	worn_icon_state = "c70"
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	caliber = CALIBER_70MANKEY //codex
 	max_shells = 300 //codex
 	default_ammo_type = /obj/item/ammo_magazine/pistol/chimp
@@ -867,7 +865,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	attachable_allowed = list(
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/suppressor,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,

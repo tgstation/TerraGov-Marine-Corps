@@ -21,8 +21,8 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/stock/tl127stock/moonbeam,
@@ -72,7 +72,7 @@
 	damage_falloff = 0.25
 	shrapnel_chance = 2
 
-/datum/ammo/bullet/sniper/pfc/nl/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/sniper/pfc/nl/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(iscarbon(target_mob))
 		var/mob/living/carbon/carbon_victim = target_mob
 		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, rand(5,8), no_overdose = TRUE)

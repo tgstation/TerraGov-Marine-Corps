@@ -36,7 +36,7 @@
 
 /obj/item/card/data/verb/label(t as text)
 	set name = "Label Disk"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if (t)
@@ -121,7 +121,7 @@
 		name = "[(!newname)	? "identification card"	: "[newname]'s ID Card"][(!newjob) ? "" : " ([newjob])"]"
 		return
 
-	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+	name = "[(!paygrade) ? "" : "[get_paygrades(paygrade, TRUE, gender)]. "][(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
 	if(isliving(loc))
 		var/mob/living/L = loc
 		L.name = L.get_visible_name()
@@ -129,7 +129,7 @@
 
 /obj/item/card/id/verb/read()
 	set name = "Read ID Card"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	to_chat(usr, "[icon2html(src, usr)] [name]: The current assignment on the card is [assignment].")

@@ -16,6 +16,40 @@
 /mob/proc/get_gender()
 	return gender
 
+/// Returns this mob's default lighting alpha
+/mob/proc/default_lighting_cutoff()
+	//if(client?.combo_hud_enabled && client?.prefs?.toggles & COMBOHUD_LIGHTING)
+	//	return LIGHTING_CUTOFF_FULLBRIGHT
+	return initial(lighting_cutoff)
+
+/// Sight here is the mob.sight var, which tells byond what to actually show to our client
+/// See [code\__DEFINES\sight.dm] for more details
+/mob/proc/set_sight(new_value)
+	SHOULD_CALL_PARENT(TRUE)
+	if(sight == new_value)
+		return
+	var/old_sight = sight
+	sight = new_value
+
+	SEND_SIGNAL(src, COMSIG_MOB_SIGHT_CHANGE, new_value, old_sight)
+
+/mob/proc/add_sight(new_value)
+	set_sight(sight | new_value)
+
+/mob/proc/clear_sight(new_value)
+	set_sight(sight & ~new_value)
+
+/// see invisibility is the mob's capability to see things that ought to be hidden from it
+/// Can think of it as a primitive version of changing the alpha of planes
+/// We mostly use it to hide ghosts, no real reason why
+/mob/proc/set_invis_see(new_sight)
+	SHOULD_CALL_PARENT(TRUE)
+	if(new_sight == see_invisible)
+		return
+	var/old_invis = see_invisible
+	see_invisible = new_sight
+	SEND_SIGNAL(src, COMSIG_MOB_SEE_INVIS_CHANGE, see_invisible, old_invis)
+
 /*
 	Miss Chance
 */
@@ -349,7 +383,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	return BODYTEMP_NORMAL
 
 
-/proc/notify_ghost(mob/dead/observer/ghost, message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of a single ghosts.
+/proc/notify_ghost(mob/dead/observer/ghost, message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = FALSE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of a single ghosts.
 	if(!ghost)
 		return
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
@@ -368,7 +402,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	to_chat(ghost, "[(extra_large) ? "<br><hr>" : ""][span_deadsay("[message][(enter_link) ? " [full_enter_link]" : ""][track_link]")][(extra_large) ? "<hr><br>" : ""]")
 	if(ghost_sound)
 		SEND_SOUND(ghost, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))
-	if(flashwindow)
+	if(flashwindow) /* Consider using this only for notifications related to the ghost being able to re-enter the round. */
 		window_flash(ghost.client)
 
 	if(!source)
@@ -384,9 +418,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	A.target = source
 	if(!alert_overlay)
 		alert_overlay = new(source)
-		var/icon/I = icon(source.icon)
-		var/iheight = I.Height()
-		var/iwidth = I.Width()
+		var/iheight = source.get_cached_height()
+		var/iwidth = source.get_cached_width()
 		var/higher_power = (iheight > iwidth) ? iheight : iwidth
 		if(higher_power > 32)
 			var/diff = 32 / higher_power
@@ -402,7 +435,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	A.add_overlay(alert_overlay)
 
 
-/proc/notify_ghosts(message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of ghosts.
+/proc/notify_ghosts(message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = FALSE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of ghosts.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
 	for(var/i in GLOB.observer_list)

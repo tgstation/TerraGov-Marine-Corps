@@ -6,7 +6,6 @@
 	icon = 'icons/mob/screen/generic.dmi'
 	atom_flags = NONE
 	item_flags = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	worn_icon_state = "nothing"
 	w_class = WEIGHT_CLASS_HUGE

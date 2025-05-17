@@ -68,6 +68,8 @@
 		"_mobile_bar" = 'icons/ui_icons/dropshippicker/_mobile_bar.png',
 		"_umbilical" = 'icons/ui_icons/dropshippicker/_umbilical.png',
 		"_outrider" = 'icons/ui_icons/dropshippicker/_outrider.png',
+		"_urbantower" = 'icons/ui_icons/dropshippicker/_urbantower.png',
+		"_panopticon" = 'icons/ui_icons/dropshippicker/_panopticon.png',
 	)
 
 /obj/machinery/computer/dropship_picker/ui_act(action, list/params, datum/tgui/ui)
@@ -91,5 +93,6 @@
 			shuttle.setTimer(0)
 			balloon_alert(usr, "shuttle selected, locking")
 			ui.close()
+			log_game("[key_name(usr)] has picked the tadpole")
 	return TRUE
 

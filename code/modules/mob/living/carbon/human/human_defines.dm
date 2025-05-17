@@ -54,6 +54,9 @@
 	///Character's age (pure fluff)
 	var/age = 30
 
+	/// Which body type to use
+	var/physique = MALE
+
 	///Which underwear the player wants
 	var/underwear = 1
 	///Which undershirt the player wants.
@@ -156,3 +159,9 @@
 /mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)
 	destination.underwear = underwear
 	destination.undershirt = undershirt
+
+/mob/living/carbon/human/replace_by_ai()
+	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))
+	ghostize(TRUE)//Can take back its body
+	GLOB.offered_mob_list -= src
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)

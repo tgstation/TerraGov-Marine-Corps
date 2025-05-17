@@ -100,6 +100,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/huggers_created = 0
 	var/impregnations = 0
 	var/items_snatched = 0
+	var/acid_maw_uses = 0
+	var/acid_jaw_uses = 0
 
 	//Close air support
 	var/cas_cannon_shots = 0
@@ -241,6 +243,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Repaired [apcs_repaired] APC\s."
 	if(items_snatched)
 		support_stats += "Snatched [items_snatched] item\s."
+	if(acid_maw_uses)
+		support_stats += "Fired the Acid Maw [acid_maw_uses] time\s"
+	if(acid_jaw_uses)
+		support_stats += "Fired the Acid Jaw [acid_jaw_uses] time\s"
 
 	if(generator_sabotages_performed)
 		support_stats += "Sabotaged [generator_sabotages_performed] generator\s."
@@ -387,7 +393,7 @@ The alternative is scattering them everywhere under their respective objects whi
 	return TRUE
 
 ///Record whenever a player shoots things, taking into account bonus projectiles without running these checks multiple times
-/obj/projectile/proc/record_projectile_fire(mob/shooter)
+/atom/movable/projectile/proc/record_projectile_fire(mob/shooter)
 	//Part of code where this is called already checks if the shooter is a mob
 	if(!shooter.ckey)
 		return FALSE
@@ -398,7 +404,7 @@ The alternative is scattering them everywhere under their respective objects whi
 	return TRUE
 
 //Lasers have their own fire_at()
-/obj/projectile/hitscan/record_projectile_fire(shooter)
+/atom/movable/projectile/hitscan/record_projectile_fire(shooter)
 	//It does not check if the shooter is a mob
 	if(!ismob(shooter))
 		return FALSE
@@ -636,7 +642,7 @@ The alternative is scattering them everywhere under their respective objects whi
 	return TRUE
 
 /// Adds to the personal statistics if the reflected projectile was a rocket.
-/obj/effect/xeno/shield/proc/record_rocket_reflection(mob/user, obj/projectile/projectile)
+/obj/effect/xeno/shield/proc/record_rocket_reflection(mob/user, atom/movable/projectile/projectile)
 	if(!istype(projectile.ammo, /datum/ammo/rocket) || !user.ckey)
 		return
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]

@@ -1,7 +1,7 @@
 //Update this whenever the db schema changes
 //make sure you add an update to the schema_version stable in the db changelog
 #define DB_MAJOR_VERSION 2
-#define DB_MINOR_VERSION 2
+#define DB_MINOR_VERSION 5
 
 //Timing subsystem
 //Don't run if there is an identical unique timer active
@@ -79,28 +79,31 @@
 #define INIT_ORDER_GARBAGE 27
 #define INIT_ORDER_DBCORE 25
 #define INIT_ORDER_SERVER_MAINT 23
-#define INIT_ORDER_INPUT 21
+#define INIT_ORDER_INPUT 22
+#define INIT_ORDER_ADMIN_VERBS 21 // needs to be pretty high, admins can't do much without it
 #define INIT_ORDER_VIS 20
 #define INIT_ORDER_SOUNDS 19
+#define INIT_ORDER_SECURITY_LEVEL 18
 #define INIT_ORDER_INSTRUMENTS 17
 #define INIT_ORDER_GREYSCALE 16
-#define INIT_ORDER_CODEX 15
-#define INIT_ORDER_EVENTS 14
-#define INIT_ORDER_MONITOR 13
-#define INIT_ORDER_JOBS 12
-#define INIT_ORDER_TICKER 11
-#define INIT_ORDER_MAPPING 10
-#define INIT_ORDER_EARLY_ASSETS 9
-#define INIT_ORDER_SPATIAL_GRID 8
-#define INIT_ORDER_PERSISTENCE 7 //before assets because some assets take data from SSPersistence, such as vendor items
-#define INIT_ORDER_TTS 6
-#define INIT_ORDER_ATOMS 5
-#define INIT_ORDER_MODULARMAPPING 4
-#define INIT_ORDER_MACHINES 3
-#define INIT_ORDER_AI_NODES 2
-#define INIT_ORDER_TIMER 1
-#define INIT_ORDER_DEFAULT 0
-#define INIT_ORDER_AIR -1
+#define INIT_ORDER_DISCORD 15
+#define INIT_ORDER_CODEX 14
+#define INIT_ORDER_EVENTS 13
+#define INIT_ORDER_MONITOR 12
+#define INIT_ORDER_JOBS 11
+#define INIT_ORDER_TICKER 10
+#define INIT_ORDER_MAPPING 9
+#define INIT_ORDER_EARLY_ASSETS 8
+#define INIT_ORDER_SPATIAL_GRID 7
+#define INIT_ORDER_PERSISTENCE 6 //before assets because some assets take data from SSPersistence, such as vendor items
+#define INIT_ORDER_TTS 5
+#define INIT_ORDER_ATOMS 4
+#define INIT_ORDER_MODULARMAPPING 3
+#define INIT_ORDER_MACHINES 2
+#define INIT_ORDER_AI_NODES 1
+#define INIT_ORDER_TIMER 0
+#define INIT_ORDER_DEFAULT -1
+#define INIT_ORDER_AIR -2
 #define INIT_ORDER_ASSETS -4
 #define INIT_ORDER_SPAWNING_POOL -5
 #define INIT_ORDER_OVERLAY -6
@@ -151,6 +154,7 @@
 #define FIRE_PRIORITY_RUNECHAT 410
 #define FIRE_PRIORITY_TTS 425
 #define FIRE_PRIORITY_AUTOFIRE 450
+#define FIRE_PRIORITY_MOUSE_ENTERED 455
 #define FIRE_PRIORITY_OVERLAYS 500
 #define FIRE_PRIORITY_EXPLOSIONS 666
 #define FIRE_PRIORITY_TIMER 700

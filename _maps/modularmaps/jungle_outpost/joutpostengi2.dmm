@@ -27,6 +27,13 @@
 "cP" = (
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/outpost/engineering)
+"cT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "ef" = (
 /obj/machinery/light{
 	dir = 4
@@ -71,6 +78,14 @@
 /area/campaign/jungle_outpost/ground/jungle/east)
 "jN" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"kd" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "ln" = (
@@ -170,6 +185,10 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
+"uX" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "vv" = (
 /obj/effect/spawner/random/misc/structure/closet/electrical,
 /turf/open/floor/tile/dark,
@@ -247,6 +266,13 @@
 "ys" = (
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/east)
+"yx" = (
+/obj/structure/sign/nosmoking_1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "yD" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -298,6 +324,14 @@
 "CU" = (
 /obj/structure/table/reinforced,
 /obj/item/t_scanner,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"DR" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	dir = 1;
+	name = "\improper Engineering Dome"
+	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "DX" = (
@@ -380,7 +414,10 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "JS" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "Lp" = (
@@ -398,7 +435,7 @@
 /area/campaign/jungle_outpost/outpost/engineering)
 "LN" = (
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
@@ -472,6 +509,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
+"Qg" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "Qm" = (
 /obj/structure/stairs/railstairs_vert{
 	dir = 4
@@ -482,6 +524,11 @@
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/east)
+"QJ" = (
+/obj/structure/bed/stool,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "QV" = (
 /obj/structure/flora/jungle/bush,
 /turf/open/ground/grass/weedable,
@@ -635,7 +682,7 @@ sG
 cP
 Nn
 vC
-Ia
+Qg
 EA
 cP
 os
@@ -685,7 +732,7 @@ Ia
 ST
 St
 mT
-vC
+uX
 un
 Lp
 Lp
@@ -701,10 +748,10 @@ Wn
 UX
 vC
 vC
-Ia
+Qg
 Ia
 sH
-Ia
+Qg
 vC
 St
 OV
@@ -741,7 +788,7 @@ Wn
 Xm
 vC
 Jp
-vC
+uX
 vC
 vC
 cP
@@ -750,10 +797,10 @@ vC
 fQ
 St
 cP
+uX
 vC
 vC
-vC
-Nh
+DR
 vC
 ST
 un
@@ -777,7 +824,7 @@ St
 cP
 cP
 cP
-yg
+cT
 vC
 Nh
 JS
@@ -816,14 +863,14 @@ vC
 St
 vC
 OM
-Ia
+Qg
 vC
 Vc
 vC
 vC
+uX
 vC
-vC
-vC
+uX
 cP
 of
 Gp
@@ -876,7 +923,7 @@ Ne
 "}
 (14,1,1) = {"
 vC
-vC
+uX
 IM
 xF
 vC
@@ -900,20 +947,20 @@ QZ
 (15,1,1) = {"
 wQ
 vC
+Qg
+Ia
+Qg
+PT
+Ia
+Qg
 Ia
 Ia
+Qg
 Ia
 PT
 Ia
 Ia
-Ia
-Ia
-Ia
-Ia
-PT
-Ia
-Ia
-OV
+yx
 vC
 vC
 un
@@ -969,12 +1016,12 @@ Yn
 (18,1,1) = {"
 Wn
 ww
+kd
 xi
-xi
-Ia
+Qg
 Vc
 vC
-LW
+QJ
 Ly
 lX
 LW

@@ -5,6 +5,10 @@
 /mob/living/carbon/human/species/monkey
 	race = "Monkey"
 
+/mob/living/carbon/human/species/monkey/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human) //monkey business
+
 /mob/living/carbon/human/species/monkey/farwa
 	race = "Farwa"
 
