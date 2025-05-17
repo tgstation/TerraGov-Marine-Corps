@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added holographic construction designation"
+  - bugfix: "Fixed an issue that would occasionally break hunter disguise"
+  - qol: "Xeno template construction holograms are only visible to the user"

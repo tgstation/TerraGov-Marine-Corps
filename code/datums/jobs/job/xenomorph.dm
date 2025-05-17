@@ -30,10 +30,11 @@
 		return pick(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
 
-/datum/job/xenomorph/radio_help_message(mob/M)
+/datum/job/xenomorph/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, "<b>Your job is to spread the hive and protect the Hive Leader. If there's no Hive Leader, you can become the Shrike or Queen yourself by evolving into a drone.</b><br>\
-	Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')")
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"<b>Your job is to spread the hive and protect the Hive Leader. If there's no Hive Leader, you can become the Shrike or Queen yourself by evolving into a drone.</b><br>
+Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')"}
 
 /datum/job/xenomorph/handle_special_preview(client/parent)
 	parent.show_character_previews(image('icons/Xeno/castes/larva.dmi', icon_state = "Bloody Larva", dir = SOUTH))
@@ -77,10 +78,12 @@
 /datum/job/xenomorph/queen/return_spawn_turf()
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
 
-/datum/job/xenomorph/queen/radio_help_message(mob/M)
-	to_chat(M, "<b>You are now the alien ruler!<br>\
-	Your job is to spread the hive.</b><br>\
-	Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
+/datum/job/xenomorph/queen/get_spawn_message_information(mob/M)
+	. = ..()
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"<b>You are now the alien ruler!<br>
+Your job is to spread the hive.</b><br>
+Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>:a</strong> (e.g. ';My life for the hive!')"}
 
 /datum/job/xenomorph/queen/handle_special_preview(client/parent)
 	parent.show_character_previews(image('icons/Xeno/castes/larva.dmi', icon_state = "Larva", dir = SOUTH))

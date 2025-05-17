@@ -291,12 +291,12 @@
 	var/list/drivers = return_drivers()
 	if(length(drivers))
 		pilot = drivers[1]
+	A.vehicle_collision(src, get_dir(src, A), pilot)
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_VEHICLE_CRUSHSOUND))
 		return
 	visible_message(span_danger("[src] rams [A]!"))
 	playsound(A, 'sound/effects/metal_crash.ogg', 45)
 	TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
-	A.vehicle_collision(src, get_dir(src, A), pilot)
 
 /obj/vehicle/sealed/armored/auto_assign_occupant_flags(mob/new_occupant)
 	if(interior) //handled by interior seats
