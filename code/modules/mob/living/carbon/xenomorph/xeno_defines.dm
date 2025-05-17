@@ -68,6 +68,12 @@
 	var/evolution_threshold = 0
 	///Threshold amount of upgrade points to next maturity
 	var/upgrade_threshold = 0
+	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
+	var/evolve_min_xenos = 0
+	// Starting Population lock, equivalent to assault crewman availability.
+	var/evolve_population_lock = 0
+	// How many of this caste may be alive at once
+	var/maximum_active_caste = INFINITY
 
 	///Singular type path for the caste to deevolve to when forced to by the queen.
 	var/deevolves_to
@@ -206,10 +212,6 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
-	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
-	var/evolve_min_xenos = 0
-	// How many of this caste may be alive at once
-	var/maximum_active_caste = INFINITY
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
 

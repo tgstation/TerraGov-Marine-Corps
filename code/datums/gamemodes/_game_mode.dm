@@ -110,6 +110,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
+	// Determine roundstart player count, used for population locks.
+	GLOB.roundstart_players = length(GLOB.clients)
+	to_chat(world, "Round initialized with a Population of [GLOB.roundstart_players]")
+
 	for(var/datum/job/job AS in valid_job_types)
 		job = SSjob.GetJobType(job)
 		if(!job) //dunno how or why but it errored in ci and i couldnt reproduce on local
