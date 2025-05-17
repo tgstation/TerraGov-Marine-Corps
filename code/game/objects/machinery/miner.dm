@@ -20,7 +20,7 @@
 	desc = "Top-of-the-line Ninetails research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
-	icon_state = "mining_drill_active"
+	icon_state = "mining_drill_active_"
 	anchored = TRUE
 	coverage = 30
 	layer = ABOVE_MOB_LAYER
@@ -46,6 +46,20 @@
 	var/miner_upgrade_type
 	///What faction secured that miner
 	var/faction = FACTION_TERRAGOV
+	var/obj/effect/miner_owner_marker/owner_marker
+
+/obj/effect/miner_owner_marker
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	opacity = FALSE
+	invisibility = INVISIBILITY_MAXIMUM 		//nope, can't see this
+	anchored = TRUE
+
+/obj/machinery/miner/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
+	. = ..()
+	if(loc)
+		owner_marker?.forceMove(loc)
+	else
+		owner_marker?.moveToNullspace()
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -62,6 +76,7 @@
 /obj/machinery/miner/Initialize(mapload)
 	. = ..()
 	GLOB.miner_list += src
+	owner_marker = new(loc)
 	init_marker()
 	start_processing()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
@@ -70,6 +85,8 @@
 	. = ..()
 	GLOB.miner_list -= src
 	SSminimaps.remove_marker(src)
+	SSminimaps.remove_marker(owner_marker)
+	QDEL_NULL(owner_marker)
 
 /**
  * This proc is called during Initialize() and should be used to initially setup the minimap marker of a functional miner.
@@ -77,7 +94,12 @@
  **/
 /obj/machinery/miner/proc/init_marker()
 	var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
+	if(faction && (miner_status == MINER_RUNNING))
+		var/owner_flag = GLOB.faction_to_minimap_flag[faction]
+		if(owner_flag)
+			var/owner_marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_owned"
+			SSminimaps.add_marker(owner_marker, owner_flag, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, owner_marker_icon))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, marker_icon))
 
 /obj/machinery/miner/update_icon_state()
 	. = ..()
@@ -245,11 +267,11 @@
 		return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	miner_integrity = max_miner_integrity
+	faction = user.faction
 	set_miner_status()
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
 	span_notice("You repair [src]'s tubing and plating."))
 	start_processing()
-	faction = user.faction
 	record_miner_repair(user)
 	return TRUE
 
@@ -298,8 +320,9 @@
 	if(miner_status != MINER_RUNNING || mineral_value == 0)
 		stop_processing()
 		SSminimaps.remove_marker(src)
+		SSminimaps.remove_marker(owner_marker)
 		var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off"
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, marker_icon))
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
@@ -385,8 +408,13 @@
 			start_processing()
 			SSminimaps.remove_marker(src)
 			var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
-			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
+			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, marker_icon))
 			miner_status = MINER_RUNNING
+			SSminimaps.remove_marker(owner_marker)
+			var/owner_flag = GLOB.faction_to_minimap_flag[faction]
+			if(owner_flag)
+				var/owner_marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_owned"
+				SSminimaps.add_marker(owner_marker, owner_flag, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, owner_marker_icon))
 	update_icon()
 
 ///Called via global signal to prevent perpetual mining
