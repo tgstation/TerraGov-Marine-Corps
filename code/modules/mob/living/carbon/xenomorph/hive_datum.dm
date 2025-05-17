@@ -208,8 +208,7 @@
 	.["user_xeno"] = isxeno(user)
 	if(isxeno(user)){
 		var/mob/living/carbon/xenomorph/x = user
-		//Adjust this so that only the current ruler can access this. Right now anyone who is eligible to rule will effectively be the ruler
-		if(x.xeno_caste.can_flags & CASTE_CAN_BE_RULER){
+		if(x == living_xeno_ruler){
 			.["user_ruler"] = user
 		}
 	}
@@ -223,8 +222,8 @@
 	.["user_purchase_perms"] = FALSE
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
-		var/datum/xeno_caste/caste = xeno_user.xeno_caste
-		.["user_purchase_perms"] = (/datum/action/ability/xeno_action/blessing_menu in caste.actions)
+		if(xeno_user.actions_by_path[/datum/action/ability/xeno_action/blessing_menu])
+			.["user_purchase_perms"] = TRUE
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -782,13 +781,15 @@
 	var/list/xenos = get_all_xenos(TRUE)
 	var/list/candidates = list()
 	var/index = 1
-	var/test = 1
+	var/secondind = 1
+
 	for(var/mob/living/carbon/xenomorph/x in xenos)
 		if(x.xeno_caste.can_flags & CASTE_CAN_BE_RULER) //We basically wanna pool all castes who are eligible
-			candidates.Insert(test, xenos[index])
-			test++
+			candidates.Insert(secondind, xenos[index])
+			secondind++
 		index++
 	index = 1
+
 	for(var/mob/living/carbon/xenomorph/potential_successor in candidates)
 		if(isxenoqueen(potential_successor) || isxenoshrike(potential_successor) || isxenoking(potential_successor)) // prio to Queen / Shrike / King
 			successor = candidates[index]
@@ -796,9 +797,11 @@
 				living_xeno_ruler.remove_ruler_abilities()
 			break
 		index++
-	if(successor == null)
-		successor = candidates[1] // Basically set whoever is at the top if there is no Queen / Shrike  / King
 
+	if(successor == null && !living_xeno_ruler)
+		successor = candidates[1] // Basically set whoever is at the top if there is no Queen / Shrike  / King
+	else if(successor == null && living_xeno_ruler)
+		return
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
