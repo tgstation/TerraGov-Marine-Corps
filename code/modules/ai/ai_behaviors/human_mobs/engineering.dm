@@ -1,4 +1,3 @@
-//todo: add a mobs to help list so we can record who needs help, even if we're too busy to help right now
 /datum/ai_behavior/human
 	///A list of engineering related actions
 	var/list/engineering_list = list()
