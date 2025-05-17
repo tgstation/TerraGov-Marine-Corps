@@ -50,6 +50,9 @@
 	// *** Minimap Icon *** //
 	minimap_icon = "praetorian"
 
+	// *** Ruler Abilities *** ///
+	queen_leader_limit = 4
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,

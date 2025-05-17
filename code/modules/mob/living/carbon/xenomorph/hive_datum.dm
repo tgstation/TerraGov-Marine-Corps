@@ -270,7 +270,7 @@
 				return
 			attempt_deevolve(usr, xeno_target)
 		if("Leader")
-			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
+			if(living_xeno_ruler != usr) // Only the current hive ruler can assign leaders
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_LEADERSHIP, xeno_target)
 		if("Plasma")
@@ -731,6 +731,7 @@
 
 	if(dead_xeno == living_xeno_ruler)
 		on_ruler_death(dead_xeno)
+		dead_xeno.remove_ruler_abilities()
 	var/datum/xeno_caste/base_caste = GLOB.xeno_caste_datums[get_parent_caste_type(dead_xeno.xeno_caste)][XENO_UPGRADE_BASETYPE]
 	if(base_caste.death_evolution_delay <= 0)
 		return
@@ -774,7 +775,7 @@
 
 // This proc attempts to find a new ruler to lead the hive.
 /datum/hive_status/proc/update_ruler()
-	if(living_xeno_ruler)
+	if(isxenoqueen(living_xeno_ruler))
 		return //No succession required.
 
 	var/mob/living/carbon/xenomorph/successor
@@ -782,31 +783,34 @@
 	var/list/candidates = list()
 	var/index = 1
 	var/test = 1
-	for(successor in xenos)
-		if(successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER) //We basically wanna pool all castes who are eligible
+	for(var/mob/living/carbon/xenomorph/x in xenos)
+		if(x.xeno_caste.can_flags & CASTE_CAN_BE_RULER) //We basically wanna pool all castes who are eligible
 			candidates.Insert(test, xenos[index])
 			test++
 		index++
 	index = 1
-	for(successor in candidates)
-		if(isxenoqueen(successor) || isxenoshrike(successor || isxenoking(successor))) // prio to Queen / Shrike / King
+	for(var/mob/living/carbon/xenomorph/potential_successor in candidates)
+		if(isxenoqueen(potential_successor) || isxenoshrike(potential_successor) || isxenoking(potential_successor)) // prio to Queen / Shrike / King
 			successor = candidates[index]
+			if(living_xeno_ruler) // Queen should take over for the T3 and we want to remove their abilities
+				living_xeno_ruler.remove_ruler_abilities()
 			break
-		else
-			successor = candidates[1] // Basically set whoever is at the top if there is no Queen / Shrike  / King
-			index++
+		index++
+	if(successor == null)
+		successor = candidates[1] // Basically set whoever is at the top if there is no Queen / Shrike  / King
 
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
 		announce = FALSE
 
+	remove_leader(successor)
+	successor.hud_set_queen_overwatch()
+	successor.update_leader_icon(FALSE)
 	set_ruler(successor)
+	successor.give_ruler_abilities()
 
 	handle_ruler_timer()
-
-	if(!living_xeno_ruler)
-		return //Succession failed.
 
 	if(announce)
 		xeno_message("\A [successor] has risen to lead the Hive! Rejoice!", "xenoannounce", 6)

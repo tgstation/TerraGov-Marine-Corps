@@ -41,6 +41,9 @@
 	// *** Minimap Icon *** //
 	minimap_icon = "widow"
 
+	// *** Ruler Abilities *** ///
+	queen_leader_limit = 4
+
 	// *** Widow Abilities *** //
 	max_spiderlings = 5
 

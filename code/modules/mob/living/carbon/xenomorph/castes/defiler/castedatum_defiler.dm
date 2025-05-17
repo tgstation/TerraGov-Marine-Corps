@@ -40,6 +40,9 @@
 	// *** Minimap Icon *** //
 	minimap_icon = "defiler"
 
+	// *** Ruler Abilities *** ///
+	queen_leader_limit = 4
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
