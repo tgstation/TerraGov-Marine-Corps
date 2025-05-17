@@ -17,6 +17,8 @@
 		return FALSE
 	if(candidate.stat)
 		return FALSE
+	if(candidate == owner)
+		return FALSE
 	return TRUE
 
 ///Creates an image of an atom to be used for alternative appearance purposes

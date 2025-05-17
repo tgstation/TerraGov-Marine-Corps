@@ -34,6 +34,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 	action_icon_state = "build_designator"
 	action_icon = 'icons/mob/actions.dmi'
 	target_flags = ABILITY_TURF_TARGET
+	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_PLACE_HOLOGRAM,
 		KEYBINDING_ALTERNATE = COMSIG_ABILITY_SELECT_BUILDTYPE,
