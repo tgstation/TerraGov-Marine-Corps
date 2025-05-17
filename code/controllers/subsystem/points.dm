@@ -20,8 +20,6 @@ SUBSYSTEM_DEF(points)
 	var/ordernum = 1					//order number given to next order
 
 	var/list/supply_packs = list()
-	var/list/supply_packs_ui = list()
-	var/list/supply_packs_contents = list()
 	///Assoc list of item ready to be sent, categorised by faction
 	var/list/shoppinglist = list()
 	var/list/shopping_history = list()
@@ -36,8 +34,6 @@ SUBSYSTEM_DEF(points)
 /datum/controller/subsystem/points/Recover()
 	ordernum = SSpoints.ordernum
 	supply_packs = SSpoints.supply_packs
-	supply_packs_ui = SSpoints.supply_packs_ui
-	supply_packs_contents = SSpoints.supply_packs_contents
 	shoppinglist = SSpoints.shoppinglist
 	shopping_history = SSpoints.shopping_history
 	shopping_cart = SSpoints.shopping_cart
@@ -63,7 +59,6 @@ SUBSYSTEM_DEF(points)
 		if(!P.contains)
 			continue
 		supply_packs[pack] = P
-		LAZYADD(supply_packs_ui[P.group], pack)
 		var/list/containsname = list()
 		for(var/i in P.contains)
 			var/atom/movable/path = i
@@ -72,7 +67,6 @@ SUBSYSTEM_DEF(points)
 				containsname[path] = list("name" = initial(path.name), "count" = 1)
 			else
 				containsname[path]["count"]++
-		supply_packs_contents[pack] = list("name" = P.name, "item_notes" = P.notes, "container_name" = initial(P.containertype.name), "cost" = P.cost, "contains" = containsname)
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)

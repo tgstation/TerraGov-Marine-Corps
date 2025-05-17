@@ -264,7 +264,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /datum/supply_ui
 	interaction_flags = INTERACT_MACHINE_TGUI
+	///the "owning" object that users appear to interact with
 	var/atom/source_object
+	///Type of supply ui tgui we are using
 	var/tgui_name = "Cargo"
 	///Id of the shuttle controlled
 	var/shuttle_id = ""
@@ -274,6 +276,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/faction = FACTION_TERRAGOV
 	///Id of the home port
 	var/home_id = ""
+	///to avoid sending all data even when we dont need it for readonly tguis
+	var/read_only = FALSE
 
 /datum/supply_ui/New(atom/source_object)
 	. = ..()
@@ -311,12 +315,13 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		ui = new(user, src, tgui_name, source_object.name)
 		ui.open()
 
+/datum/supply_ui/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/json/supply_packs)
+
 /datum/supply_ui/ui_static_data(mob/user)
-	. = list()
-	.["categories"] = GLOB.all_supply_groups
-	.["supplypacks"] = SSpoints.supply_packs_ui
-	.["supplypackscontents"] = SSpoints.supply_packs_contents
-	.["elevator_size"] = supply_shuttle?.return_number_of_turfs()
+	. = ..()
+	.["is_xeno_only"] = !(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY)
 
 /datum/supply_ui/ui_data(mob/living/user)
 	. = list()
@@ -327,60 +332,59 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if(SO.faction != user.faction)
 			continue
 		var/list/packs = list()
-		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
 			if(packs[SP.type])
-				packs[SP.type] += 1
+				packs[SP.type]["amount"] += 1
 			else
-				packs[SP.type] = 1
-			cost += SP.cost
-		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
+				packs[SP.type] = list("amount" = 1)
+		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["deniedrequests"] = list()
 	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
 		if(SO.faction != user.faction)
 			continue
 		var/list/packs = list()
-		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
 			if(packs[SP.type])
-				packs[SP.type] += 1
+				packs[SP.type]["amount"] += 1
 			else
-				packs[SP.type] = 1
-			cost += SP.cost
-		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
+				packs[SP.type] = list("amount" = 1)
+		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["approvedrequests"] = list()
 	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
 		if(SO.faction != user.faction)
 			continue
 		var/list/packs = list()
-		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
 			if(packs[SP.type])
-				packs[SP.type] += 1
+				packs[SP.type]["amount"] += 1
 			else
-				packs[SP.type] = 1
-			cost += SP.cost
-		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
+				packs[SP.type] = list("amount" = 1)
+		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
+	var/list/cart = get_shopping_cart(user)
+	var/list/changedcart = list()
+	for(var/key in cart)
+		changedcart[key] = list("amount" = cart[key])
+	.["shopping_list"] = changedcart
+
+	if(read_only)
+		return
+
 	.["awaiting_delivery"] = list()
-	.["awaiting_delivery_orders"] = 0
 	for(var/key in SSpoints.shoppinglist[faction])
 		var/datum/supply_order/SO = LAZYACCESSASSOC(SSpoints.shoppinglist, faction, key)
-		.["awaiting_delivery_orders"]++
 		var/list/packs = list()
-		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
 			if(packs[SP.type])
-				packs[SP.type] += 1
+				packs[SP.type]["amount"] += 1
 			else
-				packs[SP.type] = 1
-			cost += SP.cost
-		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
+				packs[SP.type] = list("amount" = 1)
+		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["export_history"] = list()
 	var/id = 0
 	var/lastexport = ""
@@ -393,7 +397,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			.["export_history"][id]["amount"] += 1
 			.["export_history"][id]["total"] += report.points
 		else
-			.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points, "amount" = 1, total = report.points))
+			.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points, "amount" = 1, "total" = report.points))
 			id++
 			lastexport = report.export_name
 	.["shopping_history"] = list()
@@ -401,23 +405,13 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if(SO.faction != user.faction)
 			continue
 		var/list/packs = list()
-		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
 			if(packs[SP.type])
-				packs[SP.type] += 1
+				packs[SP.type]["amount"] += 1
 			else
-				packs[SP.type] = 1
-			cost += SP.cost
-		.["shopping_history"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	.["shopping_list_cost"] = 0
-	.["shopping_list_items"] = 0
-	.["shopping_list"] = list()
-	for(var/i in SSpoints.shopping_cart)
-		var/datum/supply_packs/SP = SSpoints.supply_packs[i]
-		.["shopping_list_items"] += SSpoints.shopping_cart[i]
-		.["shopping_list_cost"] += SP.cost * SSpoints.shopping_cart[SP.type]
-		.["shopping_list"][SP.type] = list("count" = SSpoints.shopping_cart[SP.type])
+				packs[SP.type] = list("amount" = 1)
+		.["shopping_history"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
 	if(supply_shuttle)
 		if(supply_shuttle?.mode == SHUTTLE_CALL)
 			if(is_mainship_level(supply_shuttle.destination.z))
@@ -455,7 +449,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			var/datum/supply_packs/P = SSpoints.supply_packs[text2path(params["id"])]
 			if(!P)
 				return
-			var/shopping_cart = get_shopping_cart(ui.user)
+			var/list/shopping_cart = get_shopping_cart(ui.user)
 			switch(params["mode"])
 				if("removeall")
 					shopping_cart -= P.type
@@ -533,74 +527,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /datum/supply_ui/requests
 	tgui_name = "CargoRequest"
+	read_only = TRUE
 
-// yes these are copy pasted from above because SPEEEEEEEEEEEEED
-/datum/supply_ui/requests/ui_static_data(mob/user)
-	. = list()
-	.["categories"] = GLOB.all_supply_groups
-	.["supplypacks"] = SSpoints.supply_packs_ui
-	.["supplypackscontents"] = SSpoints.supply_packs_contents
-
-/datum/supply_ui/requests/ui_data(mob/living/user)
-	. = list()
-	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
-	.["requests"] = list()
-	for(var/i in SSpoints.requestlist)
-		var/datum/supply_order/SO = SSpoints.requestlist[i]
-		if(SO.faction != user.faction)
-			continue
-		var/list/packs = list()
-		var/cost = 0
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
-			if(packs[SP.type])
-				packs[SP.type] += 1
-			else
-				packs[SP.type] = 1
-			cost += SP.cost
-		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	.["deniedrequests"] = list()
-	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
-		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
-		if(SO.faction != user.faction)
-			continue
-		var/list/packs = list()
-		var/cost = 0
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
-			if(packs[SP.type])
-				packs[SP.type] += 1
-			else
-				packs[SP.type] = 1
-			cost += SP.cost
-		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	.["approvedrequests"] = list()
-	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
-		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
-		if(SO.faction != user.faction)
-			continue
-		var/list/packs = list()
-		var/cost = 0
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
-			if(packs[SP.type])
-				packs[SP.type] += 1
-			else
-				packs[SP.type] = 1
-			cost += SP.cost
-		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	if(!SSpoints.request_shopping_cart[user.ckey])
-		SSpoints.request_shopping_cart[user.ckey] = list()
-	.["shopping_list_cost"] = 0
-	.["shopping_list_items"] = 0
-	.["shopping_list"] = list()
-	for(var/i in SSpoints.request_shopping_cart[user.ckey])
-		var/datum/supply_packs/SP = SSpoints.supply_packs[i]
-		.["shopping_list_items"] += SSpoints.request_shopping_cart[user.ckey][i]
-		.["shopping_list_cost"] += SP.cost * SSpoints.request_shopping_cart[user.ckey][SP.type]
-		.["shopping_list"][SP.type] = list("count" = SSpoints.request_shopping_cart[user.ckey][SP.type])
 
 /datum/supply_ui/requests/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(!SSpoints.request_shopping_cart[ui.user.ckey])
+		SSpoints.request_shopping_cart[ui.user.ckey] = list()
 	. = ..()
 	if(.)
 		return TRUE
