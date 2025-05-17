@@ -706,7 +706,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
 //-------------------------------------------------------
-// C17 Riot PDW
+// C17 Riot PDW, no longer in use with the VSD
 
 /obj/item/weapon/gun/smg/vsd_pdw
 	name = "\improper C17 Riot PDW"

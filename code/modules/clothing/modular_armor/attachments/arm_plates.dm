@@ -82,5 +82,21 @@
 	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark I armor piece."
 	greyscale_config = /datum/greyscale_config/hardsuit_variant
 
+//VSD Hardsuits
+/obj/item/armor_module/armor/arms/marine/vsd_hardsuit
+	name = "\improper Crasher Super-Heavy MT/41 'Phobos' arm plates"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Phobos' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit
+
+/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/clementia
+	name = "\improper Crasher Super-Heavy MT/41 'Clementia' arm plates"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Clementia' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt
+
+/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/hephaestus
+	name = "\improper Crasher Super-Heavy MT/41 'Hephaestus' arm plates"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Hephaestus' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt_two
+
 
 
