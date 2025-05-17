@@ -41,10 +41,10 @@
 /// Remove a camera eye from the chunk
 /datum/camerachunk/proc/remove(mob/camera/eye)
 	eye.visibleCameraChunks -= src
-	seenby -= eye
+	seenby -= eye.name
 
 	var/client/client = eye.GetViewerClient()
-	if(client && eye.use_static)
+	if(client && eye.use_static && seenby.len == 0)
 		client.images -= active_static_images
 
 /// Called when a chunk has changed. I.E: A wall was deleted.
