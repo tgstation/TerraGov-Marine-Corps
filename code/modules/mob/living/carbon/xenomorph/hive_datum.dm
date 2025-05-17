@@ -793,9 +793,10 @@
 	for(var/mob/living/carbon/xenomorph/potential_successor in candidates)
 		if(isxenoqueen(potential_successor) || isxenoshrike(potential_successor) || isxenoking(potential_successor)) // prio to Queen / Shrike / King
 			successor = candidates[index]
-			if(living_xeno_ruler) // Queen should take over for the T3 and we want to remove their abilities
+			if(living_xeno_ruler) // T4 should take over for the T3 and we want to remove their abilities
 				living_xeno_ruler.remove_ruler_abilities()
-			break
+			if(isxenoqueen(successor)) // Queen rules over all
+				break
 		index++
 
 	if(successor == null && !living_xeno_ruler)
