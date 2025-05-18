@@ -19,6 +19,7 @@
 #include "_maps\_basemap.dm"
 #include "code\__byond_version_compat.dm"
 #include "code\_compile_options.dm"
+#include "code\_dev_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\__game.dm"
 #include "code\__DEFINES\_click.dm"
