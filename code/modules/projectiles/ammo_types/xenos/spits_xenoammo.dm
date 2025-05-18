@@ -311,7 +311,7 @@
 /datum/ammo/xeno/acid/airburst
 	name = "acid steam spittle"
 	spit_cost = 50
-	damage = 15
+	damage = 20
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
 	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet
 	bonus_projectiles_scatter = 10
@@ -340,7 +340,7 @@
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_PASS_THROUGH_MOB|AMMO_LEAVE_TURF
 	max_range = 3
 	shell_speed = 1
-	damage = 10
+	damage = 15
 	penetration = 0
 	/// smoke type created when the projectile detonates
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/xeno/acid
@@ -388,8 +388,8 @@
 
 /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
 	max_range = 5
-	damage = 0
-	smoketype = /datum/effect_system/smoke_spread/xeno/acid/opaque
+	damage = 6
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid
 	smoke_radius = 1
 	smoke_duration = 4
 

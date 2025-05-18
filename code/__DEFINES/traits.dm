@@ -216,8 +216,6 @@
 #define TRAIT_FOV_APPLIED "fov_applied"
 /// Expands our FOV by 30 degrees if restricted
 #define TRAIT_EXPANDED_FOV "expanded_fov"
-///xenos that can hold jelly in their hands instead of clicking it applying it
-#define TRAIT_CAN_HOLD_JELLY "can_hold_jelly"
 ///xenos that can disable miners
 #define TRAIT_CAN_DISABLE_MINER "can_disable_miner"
 ///xenos that can tear open holes

@@ -8,18 +8,32 @@ import {
   Slider,
 } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 // Common power multiplier
 const POWER_MUL = 1e3;
+type SmesData = {
+  capacityPercent: number;
+  charge: number;
+  inputAttempt: BooleanLike;
+  inputting: BooleanLike;
+  inputLevel: number;
+  inputLevelMax: number;
+  inputAvailable: number;
+  outputAttempt: BooleanLike;
+  outputting: BooleanLike;
+  outputLevel: number;
+  outputLevelMax: number;
+  outputUsed: number;
+};
 
 export const Smes = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<SmesData>();
   const {
     capacityPercent,
-    capacity,
     charge,
     inputAttempt,
     inputting,
@@ -32,6 +46,7 @@ export const Smes = (props) => {
     outputLevelMax,
     outputUsed,
   } = data;
+
   const inputState =
     (capacityPercent >= 100 && 'good') || (inputting && 'average') || 'bad';
   const outputState =

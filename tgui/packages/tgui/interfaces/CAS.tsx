@@ -5,30 +5,56 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-export const CAS = (props) => {
-  const { act, data } = useBackend();
+type EquipmentData = {
+  id: string;
+  eqp_tag: string;
+  name: string;
+  is_interactable: BooleanLike;
+};
 
+type TargetData = {
+  target_tag: string;
+  target_name: string;
+};
+
+type CasData = {
+  display_used_weapon: number;
+  equipment_data: EquipmentData[];
+  selected_eqp: string;
+  selected_eqp_ammo_name: string;
+  selected_eqp_ammo_amt: number;
+  selected_eqp_max_ammo_amt: number;
+  targets_data: TargetData[];
+  shuttle_mode: BooleanLike;
+};
+
+export const CAS = (props) => {
+  const { act, data } = useBackend<CasData>();
+  const { display_used_weapon, equipment_data } = data;
   return (
     <Window>
       <Window.Content scrollable>
-        {data.screen_mode === 0 && <WeaponSelection />}
-        {data.screen_mode === 1 && <FiringMode />}
+        {display_used_weapon ? (
+          <FiringMode />
+        ) : (
+          <WeaponSelection equipment_data={equipment_data} />
+        )}
       </Window.Content>
     </Window>
   );
 };
 
-const WeaponSelection = (props) => {
-  const { act, data } = useBackend();
-
+const WeaponSelection = ({ equipment_data }) => {
+  const { act } = useBackend();
   return (
     <Section title="Equipment Installed">
-      {data.equipment_data.length > 0 ? (
-        data.equipment_data.map((equipment) => (
+      {equipment_data.length > 0 ? (
+        equipment_data.map((equipment) => (
           <Box key={equipment.id}>
             <Button
               onClick={() =>
@@ -48,20 +74,27 @@ const WeaponSelection = (props) => {
 };
 
 const FiringMode = (props) => {
-  const { act, data } = useBackend();
-
+  const { act, data } = useBackend<CasData>();
+  const {
+    selected_eqp,
+    selected_eqp_ammo_name,
+    selected_eqp_ammo_amt,
+    selected_eqp_max_ammo_amt,
+    targets_data,
+    shuttle_mode,
+  } = data;
   return (
     <>
       <Section
-        title={'Weapon Selected: ' + data.selected_eqp}
+        title={'Weapon Selected: ' + selected_eqp}
         buttons={<Button onClick={() => act('deselect')}>Deselect</Button>}
       >
-        {!data.selected_eqp_ammo_name ? (
+        {!selected_eqp_ammo_name ? (
           <Box color="bad">No ammo loaded</Box>
         ) : (
           <LabeledList>
             <LabeledList.Item label="Ammo loaded">
-              {data.selected_eqp_ammo_name}
+              {selected_eqp_ammo_name}
             </LabeledList.Item>
             <LabeledList.Item label="Ammo count">
               <ProgressBar
@@ -70,25 +103,20 @@ const FiringMode = (props) => {
                   average: [0, 0.5],
                   bad: [-Infinity, 0],
                 }}
-                value={
-                  data.selected_eqp_ammo_amt / data.selected_eqp_max_ammo_amt
-                }
-                content={
-                  data.selected_eqp_ammo_amt +
-                  ' / ' +
-                  data.selected_eqp_max_ammo_amt
-                }
-              />
+                value={selected_eqp_ammo_amt / selected_eqp_max_ammo_amt}
+              >
+                {selected_eqp_ammo_amt + ' / ' + selected_eqp_max_ammo_amt}
+              </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
         )}
       </Section>
       <Section title="Available Targets">
-        {data.targets_data.length > 0 ? (
-          data.targets_data.map((target) => (
-            <Box key={target.id}>
+        {targets_data.length > 0 ? (
+          targets_data.map((target) => (
+            <Box key={target.target_tag}>
               <Button
-                disabled={!data.shuttle_mode}
+                disabled={!shuttle_mode}
                 onClick={() =>
                   act('open_fire', { open_fire: target.target_tag })
                 }
