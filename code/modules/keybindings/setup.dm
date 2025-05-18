@@ -1,16 +1,19 @@
 // Set a client's focus to an object and override these procs on that object to let it handle keypresses
-
-/datum/proc/key_down(key, client/user, full_key) // Called when a key is pressed down initially
+/// Called when a key is pressed down initially
+/datum/proc/key_down(key, client/user, full_key)
 	SHOULD_CALL_PARENT(TRUE)
 	return
-/datum/proc/key_up(key, client/user) // Called when a key is released
+
+/// Called when a key is released
+/datum/proc/key_up(key, client/user)
 	return
 
-/datum/proc/keyLoop(client/user) // Called once every frame
+/// Called once every frame
+/datum/proc/keyLoop(client/user)
 	set waitfor = FALSE
 	return
 
-// removes all the existing macros
+/// removes all the existing macros
 /client/proc/erase_all_macros()
 	var/erase_output = ""
 	var/list/macro_set = params2list(winget(src, "default.*", "command")) // The third arg doesnt matter here as we're just removing them all
