@@ -4280,9 +4280,9 @@
 	req_access = list(211);
 	name = "\improper Interrogation"
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	name = "Privacy shutters";
-	id = "SOMINT"
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	id = "SOMINT";
+	name = "Interrogation"
 	},
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security)
