@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
 		to_chat(issuer, "You can't award yourself a medal.")
 		return FALSE
 
-	var/is_posthumous = awardee.stat == DEAD
+	var/is_posthumous = (awardee.stat == DEAD)
 
 	var/list/medal_types = subtypesof(/obj/item/clothing/tie/medal)
 	var/list/medal_choices = list("Cancel")
@@ -93,6 +93,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
 			issuer.get_paygrade(PAYGRADE_FULL),
 			medal.medal_uid,
 			medal_citation,
+			is_posthumous,
 		)
 		medal_info.medal = medal
 
