@@ -313,7 +313,7 @@
 	else
 		remove_from_heal_list(old_target)
 	if((human_ai_state_flags & HUMAN_AI_HEALING) && !revive_target)
-		on_heal_end(old_target) //this is problematic apparently
+		on_heal_end(old_target)
 	return ..()
 
 ///Sets run move intent if able
