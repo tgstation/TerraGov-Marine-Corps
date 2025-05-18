@@ -9,6 +9,36 @@
 ///Designator order target alt appearance key
 #define ORDER_DESIGNATION_TARGET_ALT_APPEARANCE "order_designation_target_alt_appearance"
 
+///Interact designation side of use_ability
+/datum/action/ability/activable/build_designator/proc/use_interact_ability(atom/target)
+	if(selected_mob) //only allow mob to atom interaction, not atom to mob
+		if(selected_mob == target || !check_valid_friendly(selected_mob)) //deselect a mob if clicking again, or they are crit etc
+			unindicate_target(target)
+			selected_mob = null
+			return FALSE
+		call_interaction(target)
+		return TRUE
+
+	//no selected atom
+	if(isturf(target))
+		designate_target(target) //rally here
+		return TRUE
+	if(isobj(target))
+		designate_target(target) //Interact with/repair this thing
+		return TRUE
+	if(!ismob(target))
+		return FALSE
+	if(target == owner)
+		designate_target(target) //everyone rally to me
+		return TRUE
+	if(check_valid_friendly(target))
+		select_mob_to_interact(target) //select mob for interacting with something else
+		return TRUE
+	var/mob/mob_target = target
+	if(mob_target.faction != owner.faction)
+		designate_target(target) //Put the boots to them, medium style
+		return TRUE
+
 ///Checks if a mob is able to recieve your orders
 /datum/action/ability/activable/build_designator/proc/check_valid_friendly(mob/living/carbon/human/candidate)
 	if(!ishuman(candidate))

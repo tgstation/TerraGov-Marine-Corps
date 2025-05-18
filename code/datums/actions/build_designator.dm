@@ -81,9 +81,10 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 /datum/action/ability/activable/build_designator/use_ability(atom/A)
 	if(!A)
-		return
+		return FALSE
 	switch(designator_mode)
 		if(BUILD_DESIGNATOR_MODE)
+			return use_build_ability(A)
 			if(!isturf(A) || !update_hologram(A))
 				owner.balloon_alert(owner, "Invalid spot")
 				return FALSE
@@ -91,32 +92,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 			return TRUE
 
 		if(INTERACT_DESIGNATOR_MODE) ///TODO: COOLDOWN TO STOP SPAM
-			if(selected_mob) //lets only allow mob to atom interaction, not atom to mob
-				if(selected_mob == A || !check_valid_friendly(selected_mob)) //deselect a mob if clicking again, or they are crit etc
-					unindicate_target(A)
-					selected_mob = null
-					return
-				call_interaction(A)
-				return
-
-			//no selected atom
-			if(isturf(A))
-				designate_target(A) //rally here
-				return
-			if(isobj(A))
-				designate_target(A) //Interact with/repair this thing
-				return
-			if(!ismob(A))
-				return
-			if(A == owner)
-				designate_target(A) //everyone rally to me
-				return
-			if(check_valid_friendly(A))
-				select_mob_to_interact(A) //select mob for interacting with something else
-				return
-			var/mob/mob_target = A
-			if(mob_target.faction != owner.faction)
-				designate_target(A) //Put the boots to them, medium style
+			return use_interact_ability(A)
 
 /datum/action/ability/activable/build_designator/alternate_action_activate()
 	switch(designator_mode)
