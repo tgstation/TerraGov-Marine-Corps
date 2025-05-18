@@ -25,6 +25,10 @@
 #define ORDER_DESIGNATION_YELLOW "#fbff00"
 #define ORDER_DESIGNATION_GREEN "#1bcc03"
 
+/datum/action/ability/activable/build_designator
+	///Selected mob for interact mode
+	var/mob/living/carbon/human/selected_mob
+
 ///Interact designation side of use_ability
 /datum/action/ability/activable/build_designator/proc/use_interact_ability(atom/target)
 	if(selected_mob) //only allow mob to atom interaction, not atom to mob

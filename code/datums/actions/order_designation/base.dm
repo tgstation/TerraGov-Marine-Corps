@@ -21,12 +21,6 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 	)
 	///What function this action is currently on
 	var/designator_mode = BUILD_DESIGNATOR_MODE
-	///personal hologram designator
-	var/obj/effect/build_hologram/hologram
-	///The typepath of what we want to construct. Typecast for initial var values
-	var/obj/construct_type
-	///Selected mob for interact mode
-	var/mob/living/carbon/human/selected_mob
 
 /datum/action/ability/activable/build_designator/Destroy()
 	QDEL_NULL(hologram)

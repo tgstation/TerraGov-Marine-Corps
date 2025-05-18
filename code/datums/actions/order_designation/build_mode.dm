@@ -12,6 +12,12 @@ GLOBAL_LIST_INIT(designator_images_list, list(
 	/obj/structure/barricade/folding = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
 ))
 
+/datum/action/ability/activable/build_designator
+	///personal hologram designator
+	var/obj/effect/build_hologram/hologram
+	///The typepath of what we want to construct. Typecast for initial var values
+	var/obj/construct_type
+
 ///Assoc list of construction types to source material
 GLOBAL_LIST_INIT(designator_types, list (
 	/obj/structure/barricade/solid = /obj/item/stack/sheet/metal,
