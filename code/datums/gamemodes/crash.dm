@@ -39,7 +39,7 @@
 	// Round start info
 	var/starting_squad = "Alpha"
 	///How long between two larva check
-	var/larva_check_interval = 4 MINUTES
+	var/larva_check_interval = 5 MINUTES
 	///Last time larva balance was checked
 	var/last_larva_check
 	bioscan_interval = 0
