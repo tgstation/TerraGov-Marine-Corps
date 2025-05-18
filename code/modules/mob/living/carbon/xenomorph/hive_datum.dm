@@ -778,15 +778,14 @@
 
 	var/mob/living/carbon/xenomorph/successor
 	var/list/xenos = get_all_xenos(TRUE)
-	var/list/candidates = list()
+	var/list/mob/living/carbon/xenomorph/candidates = list()
 	var/index = 1
-	var/secondind = 1
 
 	for(var/mob/living/carbon/xenomorph/x in xenos)
 		if(x.xeno_caste.can_flags & CASTE_CAN_BE_RULER) //We basically wanna pool all castes who are eligible
-			candidates.Insert(secondind, xenos[index])
-			secondind++
+			candidates += x
 		index++
+
 	index = 1
 
 	for(var/mob/living/carbon/xenomorph/potential_successor in candidates)
