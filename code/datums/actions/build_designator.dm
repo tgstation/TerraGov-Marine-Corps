@@ -85,11 +85,6 @@ GLOBAL_LIST_INIT(designator_types, list (
 	switch(designator_mode)
 		if(BUILD_DESIGNATOR_MODE)
 			return use_build_ability(A)
-			if(!isturf(A) || !update_hologram(A))
-				owner.balloon_alert(owner, "Invalid spot")
-				return FALSE
-			new /obj/effect/build_designator(A, construct_type, owner)
-			return TRUE
 
 		if(INTERACT_DESIGNATOR_MODE) ///TODO: COOLDOWN TO STOP SPAM
 			return use_interact_ability(A)

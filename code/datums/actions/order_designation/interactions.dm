@@ -8,6 +8,22 @@
 #define ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE "order_designation_indicate_alt_appearance"
 ///Designator order target alt appearance key
 #define ORDER_DESIGNATION_TARGET_ALT_APPEARANCE "order_designation_target_alt_appearance"
+///How long a target stays visually designated for
+#define ORDER_DESIGNATION_DURATION 2 SECONDS
+
+#define ORDER_DESIGNATION_TYPE_MOVE "order_designation_type_move"
+#define ORDER_DESIGNATION_TYPE_ATTACK "order_designation_type_attack"
+#define ORDER_DESIGNATION_TYPE_REPAIR "order_designation_type_repair"
+#define ORDER_DESIGNATION_TYPE_HEAL "order_designation_type_heal"
+#define ORDER_DESIGNATION_TYPE_FOLLOW "order_designation_type_follow"
+#define ORDER_DESIGNATION_TYPE_INTERACT "order_designation_type_interact"
+#define ORDER_DESIGNATION_TYPE_OPEN "order_designation_type_open"
+#define ORDER_DESIGNATION_TYPE_CLOSE "order_designation_type_close"
+
+#define ORDER_DESIGNATION_BLUE "#06e2cc"
+#define ORDER_DESIGNATION_RED "#9d0b0b"
+#define ORDER_DESIGNATION_YELLOW "#fbff00"
+#define ORDER_DESIGNATION_GREEN "#1bcc03"
 
 ///Interact designation side of use_ability
 /datum/action/ability/activable/build_designator/proc/use_interact_ability(atom/target)
@@ -26,8 +42,10 @@
 	if(isobj(target))
 		designate_target(target) //Interact with/repair this thing
 		return TRUE
+
 	if(!ismob(target))
 		return FALSE
+
 	if(target == owner)
 		designate_target(target) //everyone rally to me
 		return TRUE
@@ -52,8 +70,8 @@
 	return TRUE
 
 ///Creates an image of an atom to be used for alternative appearance purposes
-/datum/action/ability/activable/build_designator/proc/get_alt_image(atom/image_target, flash_image = FALSE)
-	var/image/alt_image = image(loc = image_target)
+/datum/action/ability/activable/build_designator/proc/get_alt_image(atom/image_target, flash_image = FALSE, order_verb)
+	var/image/alt_image = image(loc = image_target) //todo: Better alternative?
 	alt_image.appearance = image_target.appearance
 	alt_image.pixel_w = 0
 	alt_image.pixel_x = 0
@@ -68,15 +86,25 @@
 		return alt_image
 
 	var/oldcolor = alt_image.color
-	var/flash_color = "#06e2cc"
-	if(ismovable(image_target))
-		var/atom/movable/movable_target = image_target
-		if(movable_target.faction && movable_target.faction != owner.faction)
-			flash_color = "#9d0b0b"
-		else if(ismob(image_target) && movable_target.faction == owner.faction)
-			flash_color = "#1bcc03"
-		else if(!ismob(image_target) && (!movable_target.faction || movable_target.faction == owner.faction))
-			flash_color = "#fbff00"
+	var/flash_color = ORDER_DESIGNATION_BLUE
+	switch(order_verb) //todo: cleanup ones with default colour
+		if(ORDER_DESIGNATION_TYPE_MOVE)
+			flash_color = ORDER_DESIGNATION_BLUE
+		if(ORDER_DESIGNATION_TYPE_ATTACK)
+			flash_color = ORDER_DESIGNATION_RED
+		if(ORDER_DESIGNATION_TYPE_REPAIR)
+			flash_color = ORDER_DESIGNATION_YELLOW
+		if(ORDER_DESIGNATION_TYPE_HEAL)
+			flash_color = ORDER_DESIGNATION_YELLOW
+		if(ORDER_DESIGNATION_TYPE_FOLLOW)
+			flash_color = ORDER_DESIGNATION_GREEN
+		if(ORDER_DESIGNATION_TYPE_INTERACT)
+			flash_color = ORDER_DESIGNATION_BLUE
+		if(ORDER_DESIGNATION_TYPE_OPEN)
+			flash_color = ORDER_DESIGNATION_BLUE
+		if(ORDER_DESIGNATION_TYPE_CLOSE)
+			flash_color = ORDER_DESIGNATION_BLUE
+
 	animate(alt_image, color = flash_color, time = 3, loop = 2)
 	animate(color = oldcolor, time = 3)
 	return alt_image
@@ -92,7 +120,7 @@
 	owner.say("Interact with [new_target.name].") //shitty placeholder line
 	new_target.balloon_alert_to_viewers("Interact", vision_distance = 9) //ignored_mobs non faction people??
 
-	addtimer(CALLBACK(src, PROC_REF(unindicate_target), new_target), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(unindicate_target), new_target), ORDER_DESIGNATION_DURATION)
 
 ///Visually selects a friendly mob for later ordering
 /datum/action/ability/activable/build_designator/proc/select_mob_to_interact(mob/living/carbon/human/new_target)
@@ -105,20 +133,33 @@
 /datum/action/ability/activable/build_designator/proc/call_interaction(atom/target)
 	SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //add contextual info on desired interaction type?
 
-	var/image/target_highlight = get_alt_image(target, TRUE)
+	var/order_verb = target.order_designation_verb(selected_mob)
 
-
+	var/image/target_highlight = get_alt_image(target, TRUE, order_verb)
 	target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/group, ORDER_DESIGNATION_TARGET_ALT_APPEARANCE, target_highlight, list(selected_mob, owner))
 
+	var/message
+	switch(order_verb) //todo: cleanup ones with default colour
+		if(ORDER_DESIGNATION_TYPE_MOVE)
+			message = "[selected_mob.name], move [dir2text(angle_to_dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
+		if(ORDER_DESIGNATION_TYPE_ATTACK)
+			message = "[selected_mob.name], attack [target.name]!"
+		if(ORDER_DESIGNATION_TYPE_REPAIR)
+			message = "[selected_mob.name], repair [target.name]."
+		if(ORDER_DESIGNATION_TYPE_HEAL)
+			message = "[selected_mob.name], heal [target.name]."
+		if(ORDER_DESIGNATION_TYPE_FOLLOW)
+			message = "[selected_mob.name], follow [target == owner ? "me" : target.name]."
+		if(ORDER_DESIGNATION_TYPE_INTERACT)
+			message = "[selected_mob.name], use the [target.name]."
+		if(ORDER_DESIGNATION_TYPE_OPEN)
+			message = "[selected_mob.name], open the [target.name]."
+		if(ORDER_DESIGNATION_TYPE_CLOSE)
+			message = "[selected_mob.name], close the [target.name]."
+	owner.say(message)
 	//beam between them if possible??
 
-	if(isturf(target))
-		owner.say("[selected_mob.name], move to [target.name].")
-	else
-		owner.say("[selected_mob.name], interact with [target.name].") //shitty placeholder line
-	target.balloon_alert(selected_mob, "Interact")
-
-	addtimer(CALLBACK(src, PROC_REF(unindicate_target), target), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(unindicate_target), target), ORDER_DESIGNATION_DURATION)
 
 ///Removes any visual indicators on this atom
 /datum/action/ability/activable/build_designator/proc/unindicate_target(atom/old_target)
@@ -126,3 +167,28 @@
 	old_target.remove_alt_appearance(ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE)
 	old_target.remove_alt_appearance(ORDER_DESIGNATION_TARGET_ALT_APPEARANCE)
 	//send cancel sig?
+
+//////////////////
+/atom/proc/order_designation_verb(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_INTERACT
+
+/turf/order_designation_verb(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_MOVE
+
+/atom/movable/order_designation_verb(mob/ordered)
+	if(!faction)
+		return ORDER_DESIGNATION_TYPE_INTERACT
+	if(ordered.faction == faction)
+		return ORDER_DESIGNATION_TYPE_INTERACT
+	return ORDER_DESIGNATION_TYPE_ATTACK
+
+/mob/order_designation_verb(mob/ordered)
+	if(ordered.faction == faction)
+		return ORDER_DESIGNATION_TYPE_FOLLOW
+		//what about ORDER_DESIGNATION_TYPE_HEAL ?
+	return ORDER_DESIGNATION_TYPE_ATTACK
+
+/obj/order_designation_verb(mob/ordered) //todo:doesnt actually allow repairs at this level, but other procs refer to this level anyway
+	if(!faction || ordered.faction == faction)
+		return ORDER_DESIGNATION_TYPE_REPAIR
+	return ORDER_DESIGNATION_TYPE_ATTACK
