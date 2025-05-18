@@ -1,5 +1,3 @@
-import { useBackend, useLocalState } from '../backend';
-import { Button, Collapsible, Input, NoticeBox, Section, Stack } from '../components';
 import { useState } from 'react';
 import {
   Button,
@@ -41,14 +39,10 @@ type LogEntryData = {
 
 const CATEGORY_ALL = 'all';
 
-export const LogViewer = (_: any, context: any) => {
-  const { data, act } = useBackend<LogViewerData>(context);
+export const LogViewer = (_: any) => {
+  const { data, act } = useBackend<LogViewerData>();
 
-  const [activeCategory, setActiveCategory] = useLocalState(
-    context,
-    'activeCategory',
-    ''
-  );
+  const [activeCategory, setActiveCategory] = useState('');
 
   let viewerData: LogViewerCategoryData = {
     entry_count: 0,
@@ -93,13 +87,9 @@ type CategoryBarProps = {
   setActive: (active: string) => void;
 };
 
-const CategoryBar = (props: CategoryBarProps, context: any) => {
+const CategoryBar = (props: CategoryBarProps) => {
   const sorted = [...props.options].sort();
-  const [categorySearch, setCategorySearch] = useLocalState(
-    context,
-    'categorySearch',
-    ''
-  );
+  const [categorySearch, setCategorySearch] = useState('');
 
   return (
     <Section
@@ -160,18 +150,10 @@ const validateRegExp = (str: string) => {
   }
 };
 
-const CategoryViewer = (props: CategoryViewerProps, context: any) => {
-  const [search, setSearch] = useLocalState(context, 'search', '');
-  let [searchRegex, setSearchRegex] = useLocalState(
-    context,
-    'searchRegex',
-    false
-  );
-  let [caseSensitive, setCaseSensitive] = useLocalState(
-    context,
-    'caseSensitive',
-    false
-  );
+const CategoryViewer = (props: CategoryViewerProps) => {
+  const [search, setSearch] = useState('');
+  let [searchRegex, setSearchRegex] = useState(false);
+  let [caseSensitive, setCaseSensitive] = useState(false);
   if (!search && searchRegex) {
     setSearchRegex(false);
     searchRegex = false;
@@ -218,7 +200,8 @@ const CategoryViewer = (props: CategoryViewerProps, context: any) => {
             }}
           />
         </>
-      }>
+      }
+    >
       <Stack vertical>
         {!searchRegex || regexValidation === true ? (
           props.data?.entries.map((entry) => {
@@ -245,10 +228,7 @@ const CategoryViewer = (props: CategoryViewerProps, context: any) => {
 
             return (
               <Stack.Item key={entry.id}>
-                <Collapsible
-                  fitted
-                  tooltip={entry.timestamp}
-                  title={`[${entry.id}] - ${entry.message}`}>
+                <Collapsible title={`[${entry.id}] - ${entry.message}`}>
                   <Stack vertical fill>
                     <Stack.Item>
                       <p font-family="Courier">{entry.message}</p>

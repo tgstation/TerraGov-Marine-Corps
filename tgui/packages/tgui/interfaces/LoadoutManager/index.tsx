@@ -87,7 +87,7 @@ const LoadoutList = (props: LoadoutListData) => {
   );
 };
 
-export const JobTabs = (props: LoadoutTabData, context) => {
+export const JobTabs = (props: LoadoutTabData) => {
   const { job, setJob } = props;
   const { data } = useBackend<any>();
   const vendor_categories = data.vendor_categories;
