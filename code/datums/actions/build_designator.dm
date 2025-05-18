@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 			new /obj/effect/build_designator(A, construct_type, owner)
 			return TRUE
 
-		if(INTERACT_DESIGNATOR_MODE)
+		if(INTERACT_DESIGNATOR_MODE) ///TODO: COOLDOWN TO STOP SPAM
 			if(selected_mob) //lets only allow mob to atom interaction, not atom to mob
 				if(selected_mob == A || !check_valid_friendly(selected_mob)) //deselect a mob if clicking again, or they are crit etc
 					unindicate_target(A)
@@ -100,15 +100,23 @@ GLOBAL_LIST_INIT(designator_types, list (
 				return
 
 			//no selected atom
-			if(isturf(A)) //rally here command could be useful...
+			if(isturf(A))
+				designate_target(A) //rally here
 				return
 			if(isobj(A))
-				designate_target(A) //alert generally for people to interact with this thing
+				designate_target(A) //Interact with/repair this thing
+				return
+			if(!ismob(A))
+				return
+			if(A == owner)
+				designate_target(A) //everyone rally to me
 				return
 			if(check_valid_friendly(A))
 				select_mob_to_interact(A) //select mob for interacting with something else
 				return
-			//general indicate on hostile mobs to tell people to go fuck their shit up??
+			var/mob/mob_target = A
+			if(mob_target.faction != owner.faction)
+				designate_target(A) //Put the boots to them, medium style
 
 /datum/action/ability/activable/build_designator/alternate_action_activate()
 	switch(designator_mode)

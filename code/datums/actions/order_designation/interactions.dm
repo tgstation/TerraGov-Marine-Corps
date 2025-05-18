@@ -22,7 +22,7 @@
 	return TRUE
 
 ///Creates an image of an atom to be used for alternative appearance purposes
-/datum/action/ability/activable/build_designator/proc/get_alt_image(atom/image_target)
+/datum/action/ability/activable/build_designator/proc/get_alt_image(atom/image_target, flash_image = FALSE)
 	var/image/alt_image = image(loc = image_target)
 	alt_image.appearance = image_target.appearance
 	alt_image.pixel_w = 0
@@ -33,20 +33,36 @@
 	alt_image.add_filter(DESIGNATED_TARGET_FILTER, 2, outline_filter(1, COLOR_PULSE_BLUE))
 	alt_image.override = TRUE
 	alt_image.RegisterSignal(image_target, COMSIG_ATOM_DIR_CHANGE, TYPE_PROC_REF(/image, on_owner_dir_change))
+
+	if(!flash_image)
+		return alt_image
+
+	var/oldcolor = alt_image.color
+	var/flash_color = "#06e2cc"
+	if(ismovable(image_target))
+		var/atom/movable/movable_target = image_target
+		if(movable_target.faction && movable_target.faction != owner.faction)
+			flash_color = "#9d0b0b"
+		else if(ismob(image_target) && movable_target.faction == owner.faction)
+			flash_color = "#1bcc03"
+		else if(!ismob(image_target) && (!movable_target.faction || movable_target.faction == owner.faction))
+			flash_color = "#fbff00"
+	animate(alt_image, color = flash_color, time = 3, loop = 2)
+	animate(color = oldcolor, time = 3)
 	return alt_image
 
 ///Designates an atom to generally request that people interact with it in some way
 /datum/action/ability/activable/build_designator/proc/designate_target(obj/new_target)//i.e. repair, kill, move to, etc
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DESIGNATED_TARGET_SET, new_target)
 
-	var/image/highlight = get_alt_image(new_target)
+	var/image/highlight = get_alt_image(new_target, TRUE)
 	new_target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/faction, ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE, highlight, owner.faction)
 
 
 	owner.say("Interact with [new_target.name].") //shitty placeholder line
 	new_target.balloon_alert_to_viewers("Interact", vision_distance = 9) //ignored_mobs non faction people??
 
-	addtimer(CALLBACK(src, PROC_REF(unindicate_target), new_target), 4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(unindicate_target), new_target), 2 SECONDS)
 
 ///Visually selects a friendly mob for later ordering
 /datum/action/ability/activable/build_designator/proc/select_mob_to_interact(mob/living/carbon/human/new_target)
@@ -59,22 +75,10 @@
 /datum/action/ability/activable/build_designator/proc/call_interaction(atom/target)
 	SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //add contextual info on desired interaction type?
 
-	var/image/target_highlight = get_alt_image(target)
+	var/image/target_highlight = get_alt_image(target, TRUE)
 
 
 	target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/group, ORDER_DESIGNATION_TARGET_ALT_APPEARANCE, target_highlight, list(selected_mob, owner))
-	var/oldcolor = target_highlight.color
-	var/flash_color = "#06e2cc"
-	if(ismovable(target))
-		var/atom/movable/movable_target = target
-		if(movable_target.faction && movable_target.faction != owner.faction)
-			flash_color = "#9d0b0b"
-		else if(ismob(target) && movable_target.faction == owner.faction)
-			flash_color = "#1bcc03"
-		else if(!ismob(target) && (!movable_target.faction || movable_target.faction == owner.faction))
-			flash_color = "#fbff00"
-	animate(target_highlight, color = flash_color, time = 3, loop = 2)
-	animate(color = oldcolor, time = 3)
 
 	//beam between them if possible??
 

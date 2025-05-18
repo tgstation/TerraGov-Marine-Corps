@@ -101,6 +101,14 @@
 /atom/proc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	return
 
+/obj/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	//todo: this will still make non engineers investigate something they can't repair
+	//Maybe split this out into the (many) relevant types instead of obj level
+	if(behavior_datum.engineer_rating < AI_ENGIE_STANDARD)
+		return
+	behavior_datum.add_to_engineering_list(src)
+	behavior_datum.repair_obj(src)
+
 /obj/item/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm
 
@@ -139,10 +147,6 @@
 		var/obj/item/screwdriver = behavior_datum.mob_inventory.find_tool(TOOL_SCREWDRIVER)
 		if(screwdriver)
 			screwdriver_act(interactor, screwdriver)
-
-/obj/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
-	behavior_datum.add_to_engineering_list(src)
-	behavior_datum.repair_obj(src)
 
 /obj/effect/build_designator/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	behavior_datum.try_build_holo(src)
