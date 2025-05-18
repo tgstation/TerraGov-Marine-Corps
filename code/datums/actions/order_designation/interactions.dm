@@ -60,7 +60,22 @@
 	SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //add contextual info on desired interaction type?
 
 	var/image/target_highlight = get_alt_image(target)
+
+
 	target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/group, ORDER_DESIGNATION_TARGET_ALT_APPEARANCE, target_highlight, list(selected_mob, owner))
+	var/oldcolor = target_highlight.color
+	var/flash_color = "#06e2cc"
+	if(ismovable(target))
+		var/atom/movable/movable_target = target
+		if(movable_target.faction && movable_target.faction != owner.faction)
+			flash_color = "#9d0b0b"
+		else if(ismob(target) && movable_target.faction == owner.faction)
+			flash_color = "#1bcc03"
+		else if(!ismob(target) && (!movable_target.faction || movable_target.faction == owner.faction))
+			flash_color = "#fbff00"
+	animate(target_highlight, color = flash_color, time = 3, loop = 2)
+	animate(color = oldcolor, time = 3)
+
 	//beam between them if possible??
 
 	if(isturf(target))
@@ -69,7 +84,7 @@
 		owner.say("[selected_mob.name], interact with [target.name].") //shitty placeholder line
 	target.balloon_alert(selected_mob, "Interact")
 
-	addtimer(CALLBACK(src, PROC_REF(unindicate_target), target), 4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(unindicate_target), target), 2 SECONDS)
 
 ///Removes any visual indicators on this atom
 /datum/action/ability/activable/build_designator/proc/unindicate_target(atom/old_target)
