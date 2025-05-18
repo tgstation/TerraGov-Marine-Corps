@@ -40,7 +40,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 	var/list/list/datum/persistent_medal_info/medals_by_real_name
 
 /datum/medal_persistence/New(ckey)
-	ckey = ckey
+	src.ckey = ckey
 	owner = GLOB.player_details[ckey]
 
 /**
