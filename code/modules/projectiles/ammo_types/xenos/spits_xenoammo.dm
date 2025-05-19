@@ -55,7 +55,11 @@
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
+	spit_reagents = list()
+	spit_reagents[reagent_type] = reagent_transfer_amount
+	/*You might think you could simplify this to:
 	spit_reagents = list(reagent_type = reagent_transfer_amount)
+	But nope, doesn't work*/
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_neuro_smoke(get_turf(target_mob))
