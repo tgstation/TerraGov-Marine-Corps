@@ -46,6 +46,7 @@
 /datum/status_effect/mutation_runner_frenzy/on_remove()
 	if(!isxeno(owner) || !damage_modifier)
 		return
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_melee_damage_modifier -= damage_modifier
 	xeno_owner.remove_filter("mutation_runner_frenzy_outline")
 
