@@ -133,6 +133,9 @@
 /datum/language_holder/zombie
 	languages = list(/datum/language/zombie)
 
+/datum/language_holder/monkey
+	languages = list(/datum/language/monkey)
+	shadow_languages = list(/datum/language/telepathy)
 
 /mob/living/verb/language_menu()
 	set category = "IC"
