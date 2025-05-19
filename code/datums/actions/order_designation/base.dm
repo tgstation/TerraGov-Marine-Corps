@@ -4,23 +4,22 @@
 #define INTERACT_DESIGNATOR_MODE "interact_designator_mode"
 
 GLOBAL_LIST_INIT(designator_mode_image_list, list(
-	INTERACT_DESIGNATOR_MODE = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_WALL),
-	BUILD_DESIGNATOR_MODE = image('icons/Xeno/actions/construction.dmi', icon_state = BULLETPROOF_WALL),
+	INTERACT_DESIGNATOR_MODE = image('icons/mob/actions.dmi', icon_state = "interact_designator"),
+	BUILD_DESIGNATOR_MODE = image('icons/mob/actions.dmi', icon_state = "build_designator"),
 ))
 
 /datum/action/ability/activable/build_designator
-	name = "Construction Designator"
-	desc = "Place a designator for construction."
-	action_icon_state = "build_designator"
+	name = "Interact Designator"
+	desc = "Order your underlings around."
+	action_icon_state = "interact_designator"
 	action_icon = 'icons/mob/actions.dmi'
-	target_flags = ABILITY_TURF_TARGET
 	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_PLACE_HOLOGRAM,
 		KEYBINDING_ALTERNATE = COMSIG_ABILITY_SELECT_BUILDTYPE,
 	)
 	///What function this action is currently on
-	var/designator_mode = BUILD_DESIGNATOR_MODE
+	var/designator_mode = INTERACT_DESIGNATOR_MODE
 
 /datum/action/ability/activable/build_designator/Destroy()
 	QDEL_NULL(hologram)
@@ -115,5 +114,14 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 			RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
 			RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_rotate))
 			target_flags = ABILITY_TURF_TARGET
+			use_state_flags = NONE
+			action_icon_state = "build_designator"
+			name = "Construction Designator"
+			desc = "Place a designator for construction."
 		if(INTERACT_DESIGNATOR_MODE)
 			target_flags = NONE
+			use_state_flags = ABILITY_TARGET_SELF
+			action_icon_state = "interact_designator"
+			name = "Interact Designator"
+			desc = "Order your underlings around."
+	update_button_icon()

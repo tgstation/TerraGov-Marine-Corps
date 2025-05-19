@@ -109,7 +109,7 @@
 ///Designates an atom to generally request that people interact with it in some way
 /datum/action/ability/activable/build_designator/proc/designate_target(obj/new_target)//i.e. repair, kill, move to, etc
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DESIGNATED_TARGET_SET, new_target)
-	var/order_verb = new_target.order_designation_verb(owner)
+	var/order_verb = new_target.get_order_designation_type(owner)
 
 	var/image/highlight = get_alt_image(new_target, TRUE, order_verb)
 	new_target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/faction, ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE, highlight, owner.faction)
@@ -129,7 +129,7 @@
 /datum/action/ability/activable/build_designator/proc/call_interaction(atom/target)
 	SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //add contextual info on desired interaction type?
 
-	var/order_verb = target.order_designation_verb(selected_mob)
+	var/order_verb = target.get_order_designation_type(selected_mob)
 
 	var/image/target_highlight = get_alt_image(target, TRUE, order_verb)
 	target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/group, ORDER_DESIGNATION_TARGET_ALT_APPEARANCE, target_highlight, list(selected_mob, owner))
@@ -143,27 +143,26 @@
 	var/message
 	if((target.z != owner.z) || (get_dist(target, owner) > 9))
 		message = ";" //radio message
-	if(ordered)
-		message += "[selected_mob], "
 	switch(order_verb)
 		if(ORDER_DESIGNATION_TYPE_MOVE)
-			message += "move [dir2text(angle_to_dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
+			message += "[ordered ? "[selected_mob], " : "everyone, "]move [dir2text(angle_to_dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
 		if(ORDER_DESIGNATION_TYPE_ATTACK)
-			message += "[pick("attack", "destroy", "target")] [target]!"
+			message += "[ordered ? "[selected_mob], " : "everyone, "][pick("attack", "destroy", "target")] [target]!"
 		if(ORDER_DESIGNATION_TYPE_REPAIR)
-			message += "repair [target]."
+			message += "[ordered ? "[selected_mob], " : null]repair [target]."
 		if(ORDER_DESIGNATION_TYPE_HEAL)
-			message += "[pick("heal", "triage", "help")] [target]."
+			message += "[ordered ? "[selected_mob], " : "someone, "][pick("heal", "triage", "help")] [target]!"
 		if(ORDER_DESIGNATION_TYPE_FOLLOW)
-			message += "follow [target == owner ? "me" : target]."
+			message += "[ordered ? "[selected_mob], " : "everyone, "]follow [target == owner ? "me" : target]!"
 		if(ORDER_DESIGNATION_TYPE_INTERACT)
-			message += "use [target]."
+			message += "[ordered ? "[selected_mob], " : "someone, "]use [target]."
 		if(ORDER_DESIGNATION_TYPE_OPEN)
-			message += "open [target]."
+			message += "[ordered ? "[selected_mob], " : "someone "]open [target]."
 		if(ORDER_DESIGNATION_TYPE_CLOSE)
-			message += "close [target]."
+			message += "[ordered ? "[selected_mob], " : "someone "]close [target]."
 		if(ORDER_DESIGNATION_TYPE_PICKUP)
-			message += "[pick("pickup", "grab")] [target]."
+			message += "[ordered ? "[selected_mob], " : "someone "][pick("pickup", "grab")] [target]."
+
 	owner.say(message)
 
 ///Removes any visual indicators on this atom
@@ -171,33 +170,33 @@
 	old_target.remove_alt_appearance(ORDER_DESIGNATION_ALT_APPEARANCE)
 	old_target.remove_alt_appearance(ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE)
 	old_target.remove_alt_appearance(ORDER_DESIGNATION_TARGET_ALT_APPEARANCE)
-	//send cancel sig?
 
-//////////////////
-/atom/proc/order_designation_verb(mob/ordered)
+
+///Returns the type of interaction a mob is expected to have with this atom
+/atom/proc/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_INTERACT
 
-/turf/order_designation_verb(mob/ordered)
+/turf/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_MOVE
 
-/atom/movable/order_designation_verb(mob/ordered)
+/atom/movable/get_order_designation_type(mob/ordered)
 	if(!faction)
 		return ORDER_DESIGNATION_TYPE_INTERACT
 	if(ordered.faction == faction)
 		return ORDER_DESIGNATION_TYPE_INTERACT
 	return ORDER_DESIGNATION_TYPE_ATTACK
 
-/mob/order_designation_verb(mob/ordered)
+/mob/get_order_designation_type(mob/ordered)
 	if(ordered.faction == faction)
 		if(stat) //crit or dead, otherwise people can ask for their own medical help
 			return ORDER_DESIGNATION_TYPE_HEAL
 		return ORDER_DESIGNATION_TYPE_FOLLOW
 	return ORDER_DESIGNATION_TYPE_ATTACK
 
-/obj/order_designation_verb(mob/ordered) //todo:doesnt actually allow repairs at this level, but other procs refer to this level anyway
+/obj/get_order_designation_type(mob/ordered) //todo:doesnt actually allow repairs at this level, but other procs refer to this level anyway
 	if(!faction || ordered.faction == faction)
 		return ORDER_DESIGNATION_TYPE_REPAIR
 	return ORDER_DESIGNATION_TYPE_ATTACK
 
-/obj/item/order_designation_verb(mob/ordered)
+/obj/item/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_PICKUP
