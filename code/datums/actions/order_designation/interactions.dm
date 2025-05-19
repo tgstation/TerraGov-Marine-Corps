@@ -91,9 +91,7 @@
 
 	var/oldcolor = alt_image.color
 	var/flash_color = ORDER_DESIGNATION_BLUE
-	switch(order_verb) //todo: cleanup ones with default colour
-		if(ORDER_DESIGNATION_TYPE_MOVE)
-			flash_color = ORDER_DESIGNATION_BLUE
+	switch(order_verb)
 		if(ORDER_DESIGNATION_TYPE_ATTACK)
 			flash_color = ORDER_DESIGNATION_RED
 		if(ORDER_DESIGNATION_TYPE_REPAIR)
@@ -102,12 +100,6 @@
 			flash_color = ORDER_DESIGNATION_YELLOW
 		if(ORDER_DESIGNATION_TYPE_FOLLOW)
 			flash_color = ORDER_DESIGNATION_GREEN
-		if(ORDER_DESIGNATION_TYPE_INTERACT)
-			flash_color = ORDER_DESIGNATION_BLUE
-		if(ORDER_DESIGNATION_TYPE_OPEN)
-			flash_color = ORDER_DESIGNATION_BLUE
-		if(ORDER_DESIGNATION_TYPE_CLOSE)
-			flash_color = ORDER_DESIGNATION_BLUE
 
 	animate(alt_image, color = flash_color, time = 3, loop = 2)
 	animate(color = oldcolor, time = 3)
@@ -116,13 +108,12 @@
 ///Designates an atom to generally request that people interact with it in some way
 /datum/action/ability/activable/build_designator/proc/designate_target(obj/new_target)//i.e. repair, kill, move to, etc
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DESIGNATED_TARGET_SET, new_target)
+	var/order_verb = new_target.order_designation_verb(owner)
 
-	var/image/highlight = get_alt_image(new_target, TRUE)
+	var/image/highlight = get_alt_image(new_target, TRUE, order_verb)
 	new_target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/faction, ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE, highlight, owner.faction)
 
-
-	owner.say("Interact with [new_target.name].") //shitty placeholder line
-	new_target.balloon_alert_to_viewers("Interact", vision_distance = 9) //ignored_mobs non faction people??
+	audible_command(new_target, order_verb)
 
 	addtimer(CALLBACK(src, PROC_REF(unindicate_target), new_target), ORDER_DESIGNATION_DURATION)
 
@@ -142,28 +133,33 @@
 	var/image/target_highlight = get_alt_image(target, TRUE, order_verb)
 	target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/group, ORDER_DESIGNATION_TARGET_ALT_APPEARANCE, target_highlight, list(selected_mob, owner))
 
-	var/message
-	switch(order_verb) //todo: cleanup ones with default colour
-		if(ORDER_DESIGNATION_TYPE_MOVE)
-			message = "[selected_mob.name], move [dir2text(angle_to_dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
-		if(ORDER_DESIGNATION_TYPE_ATTACK)
-			message = "[selected_mob.name], attack [target.name]!"
-		if(ORDER_DESIGNATION_TYPE_REPAIR)
-			message = "[selected_mob.name], repair [target.name]."
-		if(ORDER_DESIGNATION_TYPE_HEAL)
-			message = "[selected_mob.name], heal [target.name]."
-		if(ORDER_DESIGNATION_TYPE_FOLLOW)
-			message = "[selected_mob.name], follow [target == owner ? "me" : target.name]."
-		if(ORDER_DESIGNATION_TYPE_INTERACT)
-			message = "[selected_mob.name], use the [target.name]."
-		if(ORDER_DESIGNATION_TYPE_OPEN)
-			message = "[selected_mob.name], open the [target.name]."
-		if(ORDER_DESIGNATION_TYPE_CLOSE)
-			message = "[selected_mob.name], close the [target.name]."
-	owner.say(message)
-	//beam between them if possible??
+	audible_command(target, order_verb, selected_mob)
 
 	addtimer(CALLBACK(src, PROC_REF(unindicate_target), target), ORDER_DESIGNATION_DURATION)
+
+///Generates the applicable audible command for the specific command
+/datum/action/ability/activable/build_designator/proc/audible_command(atom/target, order_verb, mob/ordered)
+	var/message
+	if(ordered)
+		message = "[selected_mob], "
+	switch(order_verb)
+		if(ORDER_DESIGNATION_TYPE_MOVE)
+			message += "move [dir2text(angle_to_dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
+		if(ORDER_DESIGNATION_TYPE_ATTACK)
+			message += "attack [target]!"
+		if(ORDER_DESIGNATION_TYPE_REPAIR)
+			message += "repair [target]."
+		if(ORDER_DESIGNATION_TYPE_HEAL)
+			message += "heal [target]."
+		if(ORDER_DESIGNATION_TYPE_FOLLOW)
+			message += "follow [target == owner ? "me" : target]."
+		if(ORDER_DESIGNATION_TYPE_INTERACT)
+			message += "use [target]."
+		if(ORDER_DESIGNATION_TYPE_OPEN)
+			message += "open [target]."
+		if(ORDER_DESIGNATION_TYPE_CLOSE)
+			message += "close [target]."
+	owner.say(message)
 
 ///Removes any visual indicators on this atom
 /datum/action/ability/activable/build_designator/proc/unindicate_target(atom/old_target)
