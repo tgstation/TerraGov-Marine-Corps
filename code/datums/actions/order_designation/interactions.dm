@@ -115,7 +115,7 @@
 	if(!COOLDOWN_FINISHED(src, order_cooldown))
 		return
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DESIGNATED_TARGET_SET, new_target)
-	COOLDOWN_START(src, order_cooldown, new_delay)
+	COOLDOWN_START(src, order_cooldown, ORDER_DESIGNATION_CD)
 	var/order_verb = new_target.get_order_designation_type(owner)
 
 	var/image/highlight = get_alt_image(new_target, TRUE, order_verb)
@@ -137,7 +137,7 @@
 	if(!COOLDOWN_FINISHED(src, order_cooldown))
 		return
 	SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //add contextual info on desired interaction type?
-	COOLDOWN_START(src, order_cooldown, new_delay)
+	COOLDOWN_START(src, order_cooldown, ORDER_DESIGNATION_CD)
 
 	var/order_verb = target.get_order_designation_type(selected_mob)
 
