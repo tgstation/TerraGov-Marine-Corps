@@ -785,13 +785,12 @@
 		if(isxenoqueen(potential_successor))
 			break
 
-
-	if(successor == null)
+	if(!successor)
 		for(var/mob/living/carbon/xenomorph/potential_successor in seco_candidates)
 			if(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER && !living_xeno_ruler)
 				successor = potential_successor
 
-	if(successor == null)
+	if(!successor)
 		return
 
 	var/announce = TRUE

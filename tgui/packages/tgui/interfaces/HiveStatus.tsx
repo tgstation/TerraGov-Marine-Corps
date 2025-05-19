@@ -43,7 +43,7 @@ type InputPack = {
   user_ruler: boolean;
   user_watched_xeno: string;
   user_evolution: number;
-  user_purchase_perms: boolean;
+  user_purchase_perms?: boolean;
   user_maturity: number;
   user_next_mat_level: number;
   user_tracked: string;
