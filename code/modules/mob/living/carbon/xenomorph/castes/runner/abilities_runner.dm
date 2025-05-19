@@ -15,10 +15,12 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
 	)
 	pounce_range = RUNNER_POUNCE_RANGE
-	/// The amount of bonus damage for starting the Pounce in dim light.
+	/// The turf that the ability was started on.
+	var/turf/starting_turf
+	/// The amount of bonus damage if it was started in dim light.
 	var/dim_bonus_multiplier = 0
-	/// If the ability was started in dim light.
-	var/dim_started = FALSE
+	/// The amount of bonus damage for reaching a living being based on distance traveled. 100% = 0-1, Varies = 2-6, 0% = 7+
+	var/upclose_bonus_multiplier = 0
 	/// Whether Savage is active or not.
 	var/savage_activated = TRUE
 	/// The amount of blurriness and confusion given to target.
@@ -40,19 +42,20 @@
 	update_button_icon()
 
 /datum/action/ability/activable/xeno/pounce/runner/use_ability(atom/A)
-	if(dim_bonus_multiplier && xeno_owner)
-		var/turf/owner_turf = xeno_owner.loc
-		if(isturf(owner_turf))
-			var/light_amount = owner_turf.get_lumcount()
-			if(light_amount <= 0.2)
-				dim_started = TRUE
+	var/turf/owner_turf = xeno_owner.loc
+	if(isturf(owner_turf))
+		starting_turf = owner_turf
 	. = ..()
 
 /datum/action/ability/activable/xeno/pounce/runner/trigger_pounce_effect(mob/living/living_target)
 	. = ..()
-	if(dim_started)
-		living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * dim_bonus_multiplier)
-		dim_started = FALSE
+	if(starting_turf)
+		if(dim_bonus_multiplier && starting_turf.get_lumcount() <= 0.2)
+			living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * dim_bonus_multiplier)
+		if(upclose_bonus_multiplier)
+			var/upclose_bonus_multiplier_final = min(0, upclose_bonus_multiplier - (get_dist(starting_turf, living_target) * upclose_bonus_multiplier/5))
+			if(upclose_bonus_multiplier_final)
+				living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * upclose_bonus_multiplier_final)
 	if(!savage_activated)
 		return
 	if(!COOLDOWN_FINISHED(src, savage_cooldown))
@@ -72,6 +75,10 @@
 	START_PROCESSING(SSprocessing, src)
 	GLOB.round_statistics.runner_savage_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
+
+/datum/action/ability/activable/xeno/pounce/runner/pounce_complete()
+	. = ..()
+	starting_turf = null
 
 /datum/action/ability/activable/xeno/pounce/runner/process()
 	if(COOLDOWN_FINISHED(src, savage_cooldown))

@@ -367,7 +367,7 @@
 // Runner
 /datum/mutation_upgrade/spur/sneak_attack
 	name = "Sneak Attack"
-	desc = "Your Pounce deals an additional 1/1.25/1.5x slash damage if it was started in low light."
+	desc = "Pounce will slash your target for 1/1.25/1.5x damage if it was started in low light."
 
 /datum/mutation_upgrade/spur/sneak_attack/on_building_update(datum/source, previous_amount, new_amount)
 	if(!..())
@@ -380,6 +380,22 @@
 	if(new_amount > 0)
 		ability.dim_bonus_multiplier += 0.75
 	ability.dim_bonus_multiplier += (new_amount - previous_amount) * 0.25
+
+/datum/mutation_upgrade/spur/right_here
+	name = "Right Here"
+	desc = "Pounce will slash your target for 0.5/0.75/1x slash damage based on the distance traveled. Every tile beyond the first reduces the amount by 20%."
+
+/datum/mutation_upgrade/spur/sneak_attack/on_building_update(datum/source, previous_amount, new_amount)
+	if(!..())
+		return
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return
+	if(previous_amount > 0)
+		ability.upclose_bonus_multiplier -= 0.25
+	if(new_amount > 0)
+		ability.upclose_bonus_multiplier += 0.25
+	ability.upclose_bonus_multiplier += (new_amount - previous_amount) * 0.25
 
 /**
  * Veil
