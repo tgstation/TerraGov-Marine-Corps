@@ -25,6 +25,8 @@
 	var/savage_activated = TRUE
 	/// The amount of blurriness and confusion given to target.
 	var/savage_debuff_amount = 0
+	/// Instead of Savage damage, it is converted to a 7s damage buff at a percentage multiplied by this ratio if it is above 0.
+	var/savage_damage_buff_alternative = 0
 	/// Savage's cooldown.
 	COOLDOWN_DECLARE(savage_cooldown)
 
@@ -53,7 +55,7 @@
 		if(dim_bonus_multiplier && starting_turf.get_lumcount() <= 0.2)
 			living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * dim_bonus_multiplier)
 		if(upclose_bonus_multiplier)
-			var/upclose_bonus_multiplier_final = min(0, upclose_bonus_multiplier - (get_dist(starting_turf, living_target) * upclose_bonus_multiplier/5))
+			var/upclose_bonus_multiplier_final = max(0, upclose_bonus_multiplier - (get_dist(starting_turf, living_target) * upclose_bonus_multiplier/5))
 			if(upclose_bonus_multiplier_final)
 				living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * upclose_bonus_multiplier_final)
 	if(!savage_activated)
@@ -66,7 +68,10 @@
 	if(xeno_owner.plasma_stored < savage_cost)
 		owner.balloon_alert(owner, "Not enough plasma to Savage ([savage_cost])")
 		return
-	living_target.attack_alien_harm(xeno_owner, savage_damage)
+	if(savage_damage_buff_alternative)
+		xeno_owner.apply_status_effect(STATUS_EFFECT_MUTATION_RUNNER_FRENZY, PERCENT(savage_damage) * savage_damage_buff_alternative)
+	else
+		living_target.attack_alien_harm(xeno_owner, savage_damage)
 	if(savage_debuff_amount)
 		living_target.adjust_blurriness(savage_debuff_amount)
 		living_target.AdjustConfused(savage_debuff_amount SECONDS)

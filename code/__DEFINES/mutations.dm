@@ -44,6 +44,12 @@ GLOBAL_LIST_INIT(stackable_decreasable_debuffs_for_xenos, list(
 #define MUTATION_SPUR_ALERT /atom/movable/screen/alert/status_effect/spur
 #define MUTATION_VEIL_ALERT /atom/movable/screen/alert/status_effect/veil
 
+/// All type paths for status effects.
+#define STATUS_EFFECT_MUTATION_SHELL /datum/status_effect/mutation_shell_upgrade
+#define STATUS_EFFECT_MUTATION_SPUR /datum/status_effect/mutation_spur_upgrade
+#define STATUS_EFFECT_MUTATION_VEIL /datum/status_effect/mutation_veil_upgrade
+#define STATUS_EFFECT_MUTATION_RUNNER_FRENZY /datum/status_effect/mutation_runner_frenzy
+
 /// Name of each mutation structure/category.
 #define MUTATION_SHELL "Shell"
 #define MUTATION_SPUR "Spur"

@@ -26,9 +26,6 @@
 	on_building_update(null, 0, get_total_buildings())
 	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, TYPE_PROC_REF(/datum/mutation_upgrade, on_xenomorph_upgrade))
 
-/datum/action/ability/xeno_action/remove_action(mob/living/L)
-	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
-
 /datum/mutation_upgrade/Destroy(force, ...)
 	xenomorph_owner.remove_status_effect(status_effect)
 	switch(required_structure)
@@ -71,7 +68,7 @@
 /datum/mutation_upgrade/shell
 	category = MUTATION_SHELL
 	required_structure = MUTATION_SHELL
-	status_effect = /datum/status_effect/mutation_shell_upgrade
+	status_effect = STATUS_EFFECT_MUTATION_SHELL
 
 // Defender
 /datum/mutation_upgrade/shell/carapace_waxing
@@ -299,7 +296,7 @@
 /datum/mutation_upgrade/spur
 	category = MUTATION_SPUR
 	required_structure = MUTATION_SPUR
-	status_effect = /datum/status_effect/mutation_spur_upgrade
+	status_effect = STATUS_EFFECT_MUTATION_SPUR
 
 // Defender
 /datum/mutation_upgrade/spur/breathtaking_spin
@@ -403,7 +400,7 @@
 /datum/mutation_upgrade/veil
 	category = MUTATION_VEIL
 	required_structure = MUTATION_VEIL
-	status_effect = /datum/status_effect/mutation_veil_upgrade
+	status_effect = STATUS_EFFECT_MUTATION_VEIL
 
 // Defender
 /datum/mutation_upgrade/veil/carapace_sweat
@@ -449,10 +446,10 @@
 
 // Runner
 /datum/mutation_upgrade/veil/headslam
-	name = "Sneak Attack"
+	name = "Head Slam"
 	desc = "Savage decreases the stun duration significantly, but now confuses and blurs your target's vision for 1/2/3 seconds at maximum scaled by your remaining plasma."
 
-/datum/mutation_upgrade/spur/headslam/on_building_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/headslam/on_building_update(datum/source, previous_amount, new_amount)
 	if(!..())
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
@@ -465,3 +462,19 @@
 		ability.stun_duration = initial(ability.stun_duration) / 4
 		ability.immobilize_duration = initial(ability.immobilize_duration) / 4
 	ability.dim_bonus_multiplier += (new_amount - previous_amount) * 0.25
+
+/datum/mutation_upgrade/veil/frenzy
+	name = "Frenzy"
+	desc = "Savage's damage is converted to a buff that temporarily increases all melee damage by a percentage. It is a percentage of every point of damage Savage would of done mulitplied by 0.5x/0.75/1x."
+
+/datum/mutation_upgrade/veil/frenzy/on_building_update(datum/source, previous_amount, new_amount)
+	if(!..())
+		return
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return
+	if(previous_amount > 0)
+		ability.savage_damage_buff_alternative -= 0.25
+	if(new_amount > 0)
+		ability.savage_damage_buff_alternative += 0.25
+	ability.savage_damage_buff_alternative += (new_amount - previous_amount) * 0.25
