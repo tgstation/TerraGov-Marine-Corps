@@ -22,16 +22,17 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 	///What function this action is currently on
 	var/designator_mode = BUILD_DESIGNATOR_MODE
 
-/datum/action/ability/activable/build_designator/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
-
-/datum/action/ability/activable/build_designator/remove_action(mob/living/L)
-	UnregisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL)
-
 /datum/action/ability/activable/build_designator/Destroy()
 	QDEL_NULL(hologram)
 	selected_mob = null
+	return ..()
+
+/datum/action/ability/activable/build_designator/give_action(mob/living/L)
+	RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
+	return ..()
+
+/datum/action/ability/activable/build_designator/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL)
 	return ..()
 
 /datum/action/ability/activable/build_designator/should_show()
