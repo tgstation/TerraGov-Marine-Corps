@@ -455,17 +455,21 @@
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
 		return
-	if(previous_amount > 0)
+	if(previous_amount && !new_amount)
 		ability.stun_duration = initial(ability.stun_duration)
 		ability.immobilize_duration = initial(ability.immobilize_duration)
-	if(new_amount > 0)
+	if(new_amount && !previous_amount)
 		ability.stun_duration = initial(ability.stun_duration) / 4
 		ability.immobilize_duration = initial(ability.immobilize_duration) / 4
-	ability.dim_bonus_multiplier += (new_amount - previous_amount) * 0.25
+	ability.savage_debuff_amount += (new_amount - previous_amount)
 
 /datum/mutation_upgrade/veil/frenzy
 	name = "Frenzy"
-	desc = "Savage's damage is converted to a buff that temporarily increases all melee damage by a percentage. It is a percentage of every point of damage Savage would of done mulitplied by 0.5x/0.75/1x."
+	desc = "Savage's damage is converted to a buff that increases all melee damage by a percentage for 7s. It is a percentage of every point of damage Savage would of done multiplied by 0.5x/0.75/1x."
+	/// The beginning damage multiplier (at zero structures)
+	var/beginning_damage_multiplier = 0.25
+	/// The additional damage multiplier for each structure.
+	var/damage_multiplier_per_structure = 0.25
 
 /datum/mutation_upgrade/veil/frenzy/on_building_update(datum/source, previous_amount, new_amount)
 	if(!..())
@@ -473,8 +477,8 @@
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
 		return
-	if(previous_amount > 0)
-		ability.savage_damage_buff_alternative -= 0.25
-	if(new_amount > 0)
-		ability.savage_damage_buff_alternative += 0.25
-	ability.savage_damage_buff_alternative += (new_amount - previous_amount) * 0.25
+	if(previous_amount && !new_amount)
+		ability.savage_damage_buff_alternative -= beginning_damage_multiplier
+	if(new_amount && !previous_amount)
+		ability.savage_damage_buff_alternative += beginning_damage_multiplier
+	ability.savage_damage_buff_alternative += (new_amount - previous_amount) * damage_multiplier_per_structure
