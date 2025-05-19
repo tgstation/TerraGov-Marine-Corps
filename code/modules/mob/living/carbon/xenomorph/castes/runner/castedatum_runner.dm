@@ -53,6 +53,8 @@
 
 	buyable_mutations = list(
 		/datum/mutation_upgrade/shell/brittle_upclose,
+		/datum/mutation_upgrade/shell/borrowed_time,
+		/datum/mutation_upgrade/shell/ingrained_evasion,
 		/datum/mutation_upgrade/spur/sneak_attack,
 		/datum/mutation_upgrade/veil/headslam
 	)

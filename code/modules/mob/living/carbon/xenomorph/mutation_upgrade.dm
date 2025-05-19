@@ -24,6 +24,10 @@
 		if(MUTATION_VEIL)
 			RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL, PROC_REF(on_building_update))
 	on_building_update(null, 0, get_total_buildings())
+	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, TYPE_PROC_REF(/datum/mutation_upgrade, on_xenomorph_upgrade))
+
+/datum/action/ability/xeno_action/remove_action(mob/living/L)
+	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 
 /datum/mutation_upgrade/Destroy(force, ...)
 	xenomorph_owner.remove_status_effect(status_effect)
@@ -35,13 +39,19 @@
 		if(MUTATION_VEIL)
 			UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL)
 	on_building_update(null, get_total_buildings(), 0)
+	UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	return ..()
 
 /// Called whenever the mutation is created/deleted or when the amount of buildings has changed.
 /datum/mutation_upgrade/proc/on_building_update(datum/source, previous_amount, new_amount)
 	SIGNAL_HANDLER
 	if(previous_amount == new_amount)
-		return TRUE
+		return FALSE
+	return TRUE
+
+/// Called whenever the xenomorph owner is upgraded (e.g. normal to primordial).
+/datum/mutation_upgrade/proc/on_xenomorph_upgrade()
+	return TRUE
 
 /// Gets the total amount of buildings for the mutation.
 /datum/mutation_upgrade/proc/get_total_buildings()
@@ -69,7 +79,7 @@
 	desc = "Regenerate Skin additionally reduces various debuffs by 1/2/3 stacks or 2/4/6 seconds."
 
 /datum/mutation_upgrade/shell/carapace_waxing/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
@@ -81,7 +91,7 @@
 	desc = "You can no longer be staggered by projectiles and gain 5/7.5/10 bullet armor. However, you lose 30/35/40 melee armor."
 
 /datum/mutation_upgrade/shell/brittle_upclose/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	if(previous_amount > 0)
 		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(25, -2.5)
@@ -97,7 +107,7 @@
 	desc = "Regenerate Skin additionally recovers 50/60/70% of your maximum health, but will reduce all of your armor values by 30 for 6 seconds."
 
 /datum/mutation_upgrade/shell/carapace_regrowth/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
@@ -116,7 +126,7 @@
 	desc = "Evasion starts off 1/2/3s longer, but it no longer refreshes from dodging projectiles."
 
 /datum/mutation_upgrade/shell/upfront_evasion/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!ability)
@@ -125,6 +135,160 @@
 	if(new_amount > 0 && ability.auto_evasion)
 		ability.alternate_action_activate() // Auto Evasion's whole point is to re-activate the ability when Evasion refreshes. If it never refreshes, then there is no use in Auto Evasion.
 	ability.evasion_starting_duration += (new_amount - previous_amount)
+
+/datum/mutation_upgrade/shell/borrowed_time
+	name = "Borrowed Time"
+	desc = "Your critical threshold is increased by 100. While you have negative health, you are staggered and cannot slash attack. If you have negative health for more than 2/3/4s, your critical threshold is reverted back until you reach full health."
+	/// Has the critical threshold been increased already?
+	var/critical_threshold_boosted = FALSE
+	/// The amount to decrease the critical threshold for.
+	var/critical_threshold_amount = 100
+	/// The timer that will reverse the critical threshold.
+	var/critical_threshold_timer
+
+/datum/mutation_upgrade/shell/borrowed_time/on_building_update(datum/source, previous_amount, new_amount)
+	if(!..())
+		return
+	if(!new_amount)
+		if(critical_threshold_timer)
+			reverse_critical_threshold()
+		else if(critical_threshold_boosted)
+			toggle()
+		UnregisterSignal(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+		return
+	if(!previous_amount)
+		RegisterSignals(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
+		if(!critical_threshold_boosted && xenomorph_owner.health >= xenomorph_owner.maxHealth)
+			toggle(TRUE)
+
+/// Increases or decreases the critical threshold amount for the owner.
+/datum/mutation_upgrade/shell/borrowed_time/proc/toggle(silent = FALSE)
+	critical_threshold_boosted = !critical_threshold_boosted
+	if(critical_threshold_boosted)
+		to_chat(xenomorph_owner, span_notice("You feel like you recovered from being on Borrowed Time."))
+		xenomorph_owner.health_threshold_crit -= critical_threshold_amount
+		return
+	xenomorph_owner.health_threshold_crit += critical_threshold_amount
+
+/// Checks on the next tick if anything needs to be done with their new health since it is possible the health is inaccurate (because there can be other modifiers).
+/datum/mutation_upgrade/shell/borrowed_time/proc/on_damage(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	INVOKE_NEXT_TICK(src, PROC_REF(check_current_health))
+
+/// If their health is negative, activate it if possible. If it is full, let them activate it next time.
+/datum/mutation_upgrade/shell/borrowed_time/proc/check_current_health()
+	if(critical_threshold_boosted && !critical_threshold_timer && xenomorph_owner.health <= xenomorph_owner.health_threshold_crit + critical_threshold_amount)
+		ADD_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, TRAIT_MUTATION)
+		xenomorph_owner.Stagger((1 + get_total_buildings()) SECONDS)
+		critical_threshold_timer = addtimer(CALLBACK(src, PROC_REF(reverse_critical_threshold)), (1 + get_total_buildings()) SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
+		xenomorph_owner.emote("roar")
+		to_chat(xenomorph_owner, span_warning("You feel like you're on Borrowed Time!"))
+		return
+	if(!critical_threshold_boosted && xenomorph_owner.health >= xenomorph_owner.maxHealth)
+		toggle()
+
+/// Effectively removes the effects of this mutation ands its active effect.
+/datum/mutation_upgrade/shell/borrowed_time/proc/reverse_critical_threshold()
+	toggle()
+	REMOVE_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, TRAIT_MUTATION)
+	deltimer(critical_threshold_timer)
+	critical_threshold_timer = null
+	xenomorph_owner.updatehealth()
+
+/datum/mutation_upgrade/shell/ingrained_evasion
+	name = "Ingrained Evasion"
+	desc = "You lose the ability, Evasion. You have a 30/40/50% to dodge projectiles with similar conditions as Evasion. Highly accurate projectiles will reduce your dodge chance."
+	// Has the Evasion ability already been removed?
+	var/already_removed_ability = FALSE
+	/// After this amount of time since their last move, they will no longer evade projectiles.
+	var/movement_leniency = 0.5 SECONDS
+	/// The chance of evasion occurring.
+	var/base_evasion = 20
+	/// The additional chance of evasion occurring for each structure.
+	var/structure_evasion = 10
+	/// If a projectile's accuracy is above this value, then evasion chance is decreased by each point above it.
+	var/accuracy_reduction_requirement = 100
+
+/datum/mutation_upgrade/shell/ingrained_evasion/on_building_update(datum/source, previous_amount, new_amount)
+	if(!..())
+		return
+	if(!new_amount)
+		if(already_removed_ability)
+			var/datum/action/ability/xeno_action/evasion/ability = new()
+			ability.give_action(xenomorph_owner)
+		UnregisterSignal(xenomorph_owner, list(COMSIG_XENO_PROJECTILE_HIT, COMSIG_LIVING_PRE_THROW_IMPACT))
+		return
+	if(!previous_amount)
+		var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
+		if(ability)
+			already_removed_ability = TRUE
+			ability.remove_action(xenomorph_owner)
+	RegisterSignal(xenomorph_owner, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(dodge_projectile))
+	RegisterSignal(xenomorph_owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(dodge_thrown_item))
+
+/datum/mutation_upgrade/shell/ingrained_evasion/on_xenomorph_upgrade()
+	if(!already_removed_ability)
+		return
+	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
+	if(ability)
+		ability.remove_action(xenomorph_owner)
+
+/datum/mutation_upgrade/shell/ingrained_evasion/proc/can_dodge()
+	if(xenomorph_owner.IsStun())
+		return FALSE
+	if(xenomorph_owner.IsKnockdown())
+		return FALSE
+	if(xenomorph_owner.IsParalyzed())
+		return FALSE
+	if(xenomorph_owner.IsUnconscious())
+		return FALSE
+	if(xenomorph_owner.IsSleeping())
+		return FALSE
+	if(xenomorph_owner.IsStaggered())
+		return FALSE
+	if(xenomorph_owner.on_fire)
+		return FALSE
+	if((xenomorph_owner.last_move_time < (world.time - movement_leniency)))
+		return FALSE
+	return TRUE
+
+/// Checks if they can dodge a projectile. If they can, they do so.
+/datum/mutation_upgrade/shell/ingrained_evasion/proc/dodge_projectile(datum/source, atom/movable/projectile/proj, cardinal_move, uncrossing)
+	SIGNAL_HANDLER
+	if(!can_dodge())
+		return FALSE
+	if(xenomorph_owner.issamexenohive(proj.firer))
+		return COMPONENT_PROJECTILE_DODGE
+	if(proj.ammo.ammo_behavior_flags & AMMO_FLAME) // We can't dodge literal fire.
+		return FALSE
+	if(proj.original_target == xenomorph_owner && proj.distance_travelled < 2) // Pointblank shot.
+		return FALSE
+	if(prob(base_evasion + (get_total_buildings() * structure_evasion) - (proj.accuracy ? max(0, proj.accuracy - accuracy_reduction_requirement) : 0)))
+		dodge_fx(proj)
+		return COMPONENT_PROJECTILE_DODGE
+	return FALSE
+
+/// Checks if they can dodge a thrown item. If they can, they do so.
+/datum/mutation_upgrade/shell/ingrained_evasion/proc/dodge_thrown_item(datum/source, atom/movable/proj)
+	SIGNAL_HANDLER
+	if(prob(base_evasion + (get_total_buildings() * structure_evasion)))
+		dodge_fx(proj)
+		return COMPONENT_PRE_THROW_IMPACT_HIT
+	dodge_fx(proj)
+	return FALSE
+
+/// Handles dodge effects and visuals.
+/datum/mutation_upgrade/shell/ingrained_evasion/proc/dodge_fx(atom/movable/proj)
+	xenomorph_owner.visible_message(span_warning("[xenomorph_owner] effortlessly dodges the [proj.name]!"), span_xenodanger("We effortlessly dodge the [proj.name]!"))
+	xenomorph_owner.add_filter("ingrained_evasion", 2, gauss_blur_filter(5))
+	addtimer(CALLBACK(xenomorph_owner, TYPE_PROC_REF(/datum, remove_filter), "ingrained_evasion"), 0.5 SECONDS)
+	xenomorph_owner.do_jitter_animation(4000)
+	var/turf/current_turf = get_turf(xenomorph_owner)
+	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien/tail_swipe1.ogg', 'sound/effects/alien/tail_swipe2.ogg'), 25, 1) //sound effects
+	var/obj/effect/temp_visual/after_image/after_image
+	for(var/i = 0 to 2)
+		after_image = new /obj/effect/temp_visual/after_image(current_turf, xenomorph_owner)
+		after_image.pixel_x = pick(randfloat(xenomorph_owner.pixel_x * 3, xenomorph_owner.pixel_x * 1.5), rand(0, xenomorph_owner.pixel_x * -1))
 
 /**
  * Spur
@@ -140,19 +304,19 @@
 	desc = "Tail Swipe no longer stuns and deals stamina damage instead. It deals an additional 2x/2.75x/2.5x stamina damage."
 
 /datum/mutation_upgrade/spur/breathtaking_spin/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!ability)
 		return
 	if(previous_amount > 0)
-		brute_damage_multiplier += 1
+		ability.brute_damage_multiplier += 1
 		ability.stamina_damage_multiplier -= 2.25
-		paralyze_duration += 0.5 SECONDS
+		ability.paralyze_duration += 0.5 SECONDS
 	if(new_amount > 0)
-		brute_damage_multiplier -= 1
+		ability.brute_damage_multiplier -= 1
 		ability.stamina_damage_multiplier += 2.25
-		paralyze_duration -= 0.5 SECONDS
+		ability.paralyze_duration -= 0.5 SECONDS
 	ability.stamina_damage_multiplier += (new_amount - previous_amount) * 0.75
 
 /datum/mutation_upgrade/spur/power_spin
@@ -160,7 +324,7 @@
 	desc = "Tail Swipe knockbacks humans one tile further and staggers them for 1/2/3s."
 
 /datum/mutation_upgrade/spur/power_spin/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!ability)
@@ -178,7 +342,7 @@
 	var/multiplier = 0
 
 /datum/mutation_upgrade/spur/sharpening_claws/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	if(previous_amount > 0)
 		UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_SUNDER_CHANGE)
@@ -203,7 +367,7 @@
 	desc = "Your Pounce deals an additional 1/1.25/1.5x slash damage if it was started in low light."
 
 /datum/mutation_upgrade/spur/sneak_attack/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
@@ -228,7 +392,7 @@
 	desc = "Regenerate Skin can be used while on fire and grants fire immunity for 2/4/6 seconds. If you were on fire, you will be extinguished and set nearby humans on fire."
 
 /datum/mutation_upgrade/veil/carapace_sweat/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
@@ -241,7 +405,7 @@
 	desc = "While Fortify is active, you can move at 10/20/30% of your movement speed."
 
 /datum/mutation_upgrade/veil/slow_and_steady/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	var/datum/action/ability/xeno_action/fortify/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!ability)
@@ -257,7 +421,7 @@
 	desc = "Regenerate Skin additionally removes 8/16/24% sunder of a nearby friendly xenomorph. This prioritizes those with the highest sunder."
 
 /datum/mutation_upgrade/veil/carapace_sharing/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
@@ -270,7 +434,7 @@
 	desc = "Savage decreases the stun duration significantly, but now confuses and blurs your target's vision for 1/2/3 seconds at maximum scaled by your remaining plasma."
 
 /datum/mutation_upgrade/spur/headslam/on_building_update(datum/source, previous_amount, new_amount)
-	if(..())
+	if(!..())
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
