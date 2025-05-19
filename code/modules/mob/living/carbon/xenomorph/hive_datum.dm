@@ -780,19 +780,21 @@
 	var/list/mob/living/carbon/xenomorph/prio_candidates = xenos_by_tier[XENO_TIER_FOUR]
 	var/list/mob/living/carbon/xenomorph/seco_candidates = xenos_by_tier[XENO_TIER_THREE]
 
-	if(!isnull(prio_candidates))
+	if(prio_candidates.len > 0)
 		for(var/mob/living/carbon/xenomorph/potential_successor in prio_candidates)
 			if(isxenoqueen(potential_successor))
 				successor = potential_successor
 				break
 			else
 				successor = potential_successor
-	else if(!isnull(seco_candidates))
+	else if(seco_candidates.len > 0)
 		for(var/mob/living/carbon/xenomorph/potential_successor in seco_candidates)
-			if(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER)
-	if(successor == null && !living_xeno_ruler)
-		successor = candidates[1] // Basically set whoever is at the top if there is no Queen / Shrike  / King
-	else if(successor == null && living_xeno_ruler) // We dont want other T3s evolving to just takeover
+			if(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER && !living_xeno_ruler)
+				successor = potential_successor
+			else
+				return
+
+	if(successor == null)
 		return
 
 	var/announce = TRUE
