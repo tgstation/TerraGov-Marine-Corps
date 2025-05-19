@@ -385,7 +385,7 @@
 	name = "Right Here"
 	desc = "Pounce will slash your target for 0.5/0.75/1x slash damage based on the distance traveled. Every tile beyond the first reduces the amount by 20%."
 
-/datum/mutation_upgrade/spur/sneak_attack/on_building_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/right_here/on_building_update(datum/source, previous_amount, new_amount)
 	if(!..())
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
