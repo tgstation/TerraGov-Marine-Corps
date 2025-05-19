@@ -1,9 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - refactor: "refactored the req UI backend"
-  - qol: "cargo ui approval is now green when there is enough money and red otherwise"
-  - code_imp: "costs for req ui are calculated clientside instead of serverside"
-  - code_imp: "req UI entries will now be sent as assets, which should lead to improved performance clientside and serverside"
-  - code_imp: "the Req ui will now stretch it's buttons"
-  - qol: "Centered and aligned many things on the req menu"
