@@ -352,6 +352,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(current_action == MOVING_TO_ATOM && (atom_to_walk_to == combat_target))
 		max_range = upper_engage_dist
 		min_range = lower_engage_dist
+	//An actual accurate angle, unlike get_dir
+	var/dir_to_target = angle2dir(Get_Angle(get_turf(mob_parent), get_turf(atom_to_walk_to)))
 	var/list/dir_options = list()
 
 	if((dist_to_target >= min_range) && (dist_to_target <= max_range)) //in optimal range
@@ -362,11 +364,11 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		if(prob(50)) //placeholder number, will probs be a var like sidestep prob, so they're not just constantly wiggling about
 			return
 		if(prob(sidestep_prob)) //shuffle about
-			dir_options += LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to))
+			dir_options += LeftAndRightOfDir(dir_to_target)
 	if(dist_to_target > min_range) //above min range, its valid to come closer
-		dir_options += get_dir(mob_parent, atom_to_walk_to)
+		dir_options += dir_to_target
 	if(dist_to_target < max_range) //less than max range, its valid to walk away
-		dir_options += get_dir(atom_to_walk_to, mob_parent)
+		dir_options += REVERSE_DIR(dir_to_target)
 
 	return dir_options
 
