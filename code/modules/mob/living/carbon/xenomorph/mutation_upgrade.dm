@@ -235,6 +235,7 @@
 	if(ability)
 		ability.remove_action(xenomorph_owner)
 
+// Checks if they can dodge at all.
 /datum/mutation_upgrade/shell/ingrained_evasion/proc/can_dodge()
 	if(xenomorph_owner.IsStun())
 		return FALSE
