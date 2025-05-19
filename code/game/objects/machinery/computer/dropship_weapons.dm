@@ -32,10 +32,13 @@
 		var/area/laser_area = get_area(laser_target)
 		.["targets_data"] += list(list("target_name" = "[laser_target.name] ([laser_area.name])", "target_tag" = laser_target.target_id))
 	shuttle_equipments = shuttle.equipments
-	var/equipment_index = 1
-	for(var/obj/structure/dropship_equipment/equipment in shuttle.equipments)
-		.["equipment_data"] += list(list("name" = sanitize(copytext(equipment.name, 1, MAX_MESSAGE_LEN)), "equipment_tag" = equipment_index, "is_interactable" = (equipment.dropship_equipment_flags & IS_INTERACTABLE)))
+	var/equipment_index = 0
+	while(equipment_index < length(shuttle.equipments))
 		equipment_index++
+		var/obj/structure/dropship_equipment/equipment = shuttle.equipments[equipment_index]
+		if(istype(equipment))
+			.["equipment_data"] += list(list("id" = equipment_index, "name" = sanitize(copytext(equipment.name, 1, MAX_MESSAGE_LEN)), "eqp_tag" = equipment_index, "is_interactable" = (equipment.dropship_equipment_flags & IS_INTERACTABLE)))
+
 
 	.["selected_eqp_name"] = ""
 	.["selected_eqp_ammo_name"] = ""
