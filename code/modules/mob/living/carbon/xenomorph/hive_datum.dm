@@ -781,11 +781,10 @@
 	var/list/mob/living/carbon/xenomorph/seco_candidates = xenos_by_tier[XENO_TIER_THREE]
 
 	for(var/mob/living/carbon/xenomorph/potential_successor in prio_candidates)
+		successor = potential_successor
 		if(isxenoqueen(potential_successor))
-			successor = potential_successor
 			break
-		else
-			successor = potential_successor
+
 
 	if(successor == null)
 		for(var/mob/living/carbon/xenomorph/potential_successor in seco_candidates)
