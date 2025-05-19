@@ -141,17 +141,19 @@
 ///Generates the applicable audible command for the specific command
 /datum/action/ability/activable/build_designator/proc/audible_command(atom/target, order_verb, mob/ordered)
 	var/message
+	if((target.z != owner.z) || (get_dist(target, owner) > 9))
+		message = ";" //radio message
 	if(ordered)
-		message = "[selected_mob], "
+		message += "[selected_mob], "
 	switch(order_verb)
 		if(ORDER_DESIGNATION_TYPE_MOVE)
 			message += "move [dir2text(angle_to_dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
 		if(ORDER_DESIGNATION_TYPE_ATTACK)
-			message += "attack [target]!"
+			message += "[pick("attack", "destroy", "target")] [target]!"
 		if(ORDER_DESIGNATION_TYPE_REPAIR)
 			message += "repair [target]."
 		if(ORDER_DESIGNATION_TYPE_HEAL)
-			message += "heal [target]."
+			message += "[pick("heal", "triage", "help")] [target]."
 		if(ORDER_DESIGNATION_TYPE_FOLLOW)
 			message += "follow [target == owner ? "me" : target]."
 		if(ORDER_DESIGNATION_TYPE_INTERACT)

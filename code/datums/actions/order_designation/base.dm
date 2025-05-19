@@ -22,13 +22,16 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 	///What function this action is currently on
 	var/designator_mode = BUILD_DESIGNATOR_MODE
 
-/datum/action/ability/activable/build_designator/Destroy()
-	QDEL_NULL(hologram)
-	selected_mob = null
-	return ..()
+/datum/action/ability/activable/build_designator/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
+
+/datum/action/ability/activable/build_designator/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL)
 
 /datum/action/ability/activable/build_designator/Destroy()
 	QDEL_NULL(hologram)
+	selected_mob = null
 	return ..()
 
 /datum/action/ability/activable/build_designator/should_show()
@@ -99,8 +102,8 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 /datum/action/ability/activable/build_designator/proc/deactivate_mode(old_mode)
 	switch(old_mode)
 		if(BUILD_DESIGNATOR_MODE)
-			UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE, COMSIG_DO_OVERWATCH_RADIAL))
 			cleanup_hologram()
+			UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE))
 		if(INTERACT_DESIGNATOR_MODE)
 			selected_mob = null
 
@@ -110,7 +113,6 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 		if(BUILD_DESIGNATOR_MODE)
 			RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
 			RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_rotate))
-			RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial)) //todo: this may not be build mode specific, depending on functionality
 			target_flags = ABILITY_TURF_TARGET
 		if(INTERACT_DESIGNATOR_MODE)
 			target_flags = NONE
