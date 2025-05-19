@@ -215,14 +215,16 @@
 	if(!new_amount)
 		if(already_removed_ability)
 			var/datum/action/ability/xeno_action/evasion/ability = new()
+			already_removed_ability = FALSE
 			ability.give_action(xenomorph_owner)
 		UnregisterSignal(xenomorph_owner, list(COMSIG_XENO_PROJECTILE_HIT, COMSIG_LIVING_PRE_THROW_IMPACT))
 		return
-	if(!previous_amount)
-		var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
-		if(ability)
-			already_removed_ability = TRUE
-			ability.remove_action(xenomorph_owner)
+	if(previous_amount)
+		return
+	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
+	if(ability)
+		already_removed_ability = TRUE
+		ability.remove_action(xenomorph_owner)
 	RegisterSignal(xenomorph_owner, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(dodge_projectile))
 	RegisterSignal(xenomorph_owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(dodge_thrown_item))
 
