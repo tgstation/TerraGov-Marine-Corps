@@ -10,7 +10,7 @@
 	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|BANISH_IMMUNE
 	density = FALSE
 	a_intent = INTENT_HELP
 	health = 1000
@@ -127,7 +127,7 @@
 	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
-		resistance_flags = NONE
+		resistance_flags = BANISH_IMMUNE
 		remove_pass_flags(incorporeal_pass_flags, INNATE_TRAIT)
 		add_pass_flags(manifest_pass_flags, MANIFESTED_TRAIT)
 		density = TRUE
