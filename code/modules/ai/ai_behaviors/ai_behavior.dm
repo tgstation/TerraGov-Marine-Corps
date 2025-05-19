@@ -361,7 +361,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			return
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
 			return CARDINAL_ALL_DIRS
-		if(prob(50)) //placeholder number, will probs be a var like sidestep prob, so they're not just constantly wiggling about
+		if(prob(atom_to_walk_to == escorted_atom ? 80 : 50)) //If we're holding around an escort target, we don't move too much
 			return
 		if(prob(sidestep_prob)) //shuffle about
 			dir_options += LeftAndRightOfDir(dir_to_target)
