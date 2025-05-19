@@ -118,7 +118,11 @@
 		return
 	if(movable_target.faction == mob_parent.faction)
 		if(ismob(movable_target))
-			set_escorted_atom(movable_target)
+			var/mob/living/living_target = target
+			if(living_target.stat) //crit or dead
+				set_interact_target(living_target)
+				return
+			set_escorted_atom(living_target)
 			return
 		set_interact_target(movable_target) //repair tank etc... what about follow tho?
 		return

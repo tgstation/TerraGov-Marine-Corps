@@ -19,6 +19,7 @@
 #define ORDER_DESIGNATION_TYPE_INTERACT "order_designation_type_interact"
 #define ORDER_DESIGNATION_TYPE_OPEN "order_designation_type_open"
 #define ORDER_DESIGNATION_TYPE_CLOSE "order_designation_type_close"
+#define ORDER_DESIGNATION_TYPE_PICKUP "order_designation_type_pickup"
 
 #define ORDER_DESIGNATION_BLUE "#06e2cc"
 #define ORDER_DESIGNATION_RED "#9d0b0b"
@@ -159,6 +160,8 @@
 			message += "open [target]."
 		if(ORDER_DESIGNATION_TYPE_CLOSE)
 			message += "close [target]."
+		if(ORDER_DESIGNATION_TYPE_PICKUP)
+			message += "[pick("pickup", "grab")] [target]."
 	owner.say(message)
 
 ///Removes any visual indicators on this atom
@@ -184,11 +187,15 @@
 
 /mob/order_designation_verb(mob/ordered)
 	if(ordered.faction == faction)
+		if(stat) //crit or dead, otherwise people can ask for their own medical help
+			return ORDER_DESIGNATION_TYPE_HEAL
 		return ORDER_DESIGNATION_TYPE_FOLLOW
-		//what about ORDER_DESIGNATION_TYPE_HEAL ?
 	return ORDER_DESIGNATION_TYPE_ATTACK
 
 /obj/order_designation_verb(mob/ordered) //todo:doesnt actually allow repairs at this level, but other procs refer to this level anyway
 	if(!faction || ordered.faction == faction)
 		return ORDER_DESIGNATION_TYPE_REPAIR
 	return ORDER_DESIGNATION_TYPE_ATTACK
+
+/obj/item/order_designation_verb(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_PICKUP
