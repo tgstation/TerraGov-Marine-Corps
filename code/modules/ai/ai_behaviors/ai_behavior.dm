@@ -376,7 +376,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(new_loc?.atom_flags & AI_BLOCKED)
 		move_dir = pick(LeftAndRightOfDir(move_dir))
 		new_loc = get_step(mob_parent, move_dir)
-		if(new_loc?.atom_flags & AI_BLOCKED)
+		if(new_loc?.atom_flags & AI_BLOCKED || !can_cross_lava_turf(new_loc))
 			return
 	if(!mob_parent.Move(new_loc, move_dir))
 		if(!(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, move_dir) & COMSIG_OBSTACLE_DEALT_WITH) && try_sidestep)

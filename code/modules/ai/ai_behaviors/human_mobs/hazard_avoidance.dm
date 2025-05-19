@@ -37,7 +37,12 @@
 				continue
 			if(turf_option.is_covered())
 				continue
-			exclude_dirs += dir_option
+			exclude_dirs |= dir_option
+
+		dir_options -= exclude_dirs
+		if(!length(dir_options))
+			return NONE //if we're NOT in lava, we do not deliberately path into lava
+			//todo: Need to have NPC path around lava entirely (or jump over it), if their direct path is into lava
 
 	//hazards
 	for(var/atom/movable/thing AS in hazard_list)

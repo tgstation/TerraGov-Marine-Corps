@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY(ai_instances_active)
 //To be implemented in later updates
 GLOBAL_LIST_EMPTY(nodes_with_enemies)
 GLOBAL_LIST_EMPTY(nodes_with_construction)
-#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/obj/structure/catwalk) in turf_to_check) //todo: this needs work
+#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || turf_to_check.is_covered())
 
 ///Obstacle needs attacking
 #define AI_OBSTACLE_ATTACK "ai_obstacle_attack"
