@@ -26,9 +26,13 @@
 #define ORDER_DESIGNATION_YELLOW "#fbff00"
 #define ORDER_DESIGNATION_GREEN "#1bcc03"
 
+#define ORDER_DESIGNATION_CD 1 SECONDS
+
 /datum/action/ability/activable/build_designator
 	///Selected mob for interact mode
 	var/mob/living/carbon/human/selected_mob
+	///used for weapon cooldown after use
+	COOLDOWN_DECLARE(order_cooldown)
 
 ///Interact designation side of use_ability
 /datum/action/ability/activable/build_designator/proc/use_interact_ability(atom/target)
@@ -108,7 +112,10 @@
 
 ///Designates an atom to generally request that people interact with it in some way
 /datum/action/ability/activable/build_designator/proc/designate_target(obj/new_target)//i.e. repair, kill, move to, etc
+	if(!COOLDOWN_FINISHED(src, order_cooldown))
+		return
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DESIGNATED_TARGET_SET, new_target)
+	COOLDOWN_START(src, order_cooldown, new_delay)
 	var/order_verb = new_target.get_order_designation_type(owner)
 
 	var/image/highlight = get_alt_image(new_target, TRUE, order_verb)
@@ -127,7 +134,10 @@
 
 ///Orders a friendly mob to interact with an atom
 /datum/action/ability/activable/build_designator/proc/call_interaction(atom/target)
+	if(!COOLDOWN_FINISHED(src, order_cooldown))
+		return
 	SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //add contextual info on desired interaction type?
+	COOLDOWN_START(src, order_cooldown, new_delay)
 
 	var/order_verb = target.get_order_designation_type(selected_mob)
 
