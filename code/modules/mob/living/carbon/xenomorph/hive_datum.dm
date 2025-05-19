@@ -780,19 +780,17 @@
 	var/list/mob/living/carbon/xenomorph/prio_candidates = xenos_by_tier[XENO_TIER_FOUR]
 	var/list/mob/living/carbon/xenomorph/seco_candidates = xenos_by_tier[XENO_TIER_THREE]
 
-	if(prio_candidates.len > 0)
-		for(var/mob/living/carbon/xenomorph/potential_successor in prio_candidates)
-			if(isxenoqueen(potential_successor))
-				successor = potential_successor
-				break
-			else
-				successor = potential_successor
-	else if(seco_candidates.len > 0)
+	for(var/mob/living/carbon/xenomorph/potential_successor in prio_candidates)
+		if(isxenoqueen(potential_successor))
+			successor = potential_successor
+			break
+		else
+			successor = potential_successor
+
+	if(successor == null)
 		for(var/mob/living/carbon/xenomorph/potential_successor in seco_candidates)
 			if(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER && !living_xeno_ruler)
 				successor = potential_successor
-			else
-				return
 
 	if(successor == null)
 		return
