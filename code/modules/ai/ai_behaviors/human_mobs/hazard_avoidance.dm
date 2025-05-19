@@ -26,6 +26,20 @@
 	var/list/dir_options = .
 	dir_options = dir_options.Copy()
 	var/list/exclude_dirs = list()
+
+	var/turf/owner_turf = get_turf(mob_parent)
+
+	//lava
+	if(can_cross_lava_turf(owner_turf)) //if we're already in lava, we skip these checks since we're probs gonna have to walk through more to get out
+		for(var/dir_option in dir_options)
+			var/turf/turf_option = get_step(owner_turf, dir_option)
+			if(!islava(turf_option))
+				continue
+			if(turf_option.is_covered())
+				continue
+			exclude_dirs += dir_option
+
+	//hazards
 	for(var/atom/movable/thing AS in hazard_list)
 		var/dist = get_dist(mob_parent, thing)
 		if(dist > hazard_list[thing] + 1)
