@@ -4,10 +4,11 @@
 
 /mob/living/carbon/human/species/monkey
 	race = "Monkey"
+	initial_language_holder = /datum/language_holder/monkey
 
 /mob/living/carbon/human/species/monkey/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human) //monkey business
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human/monkey) //monkey business
 
 /mob/living/carbon/human/species/monkey/farwa
 	race = "Farwa"

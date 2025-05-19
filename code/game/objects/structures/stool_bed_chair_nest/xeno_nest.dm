@@ -17,6 +17,9 @@
 	var/buckleoverlaydir = SOUTH
 	var/unbuckletime = 6 SECONDS
 
+/obj/structure/bed/nest/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE
+
 /obj/structure/bed/nest/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
