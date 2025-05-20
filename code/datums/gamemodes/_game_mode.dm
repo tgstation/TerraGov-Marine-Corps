@@ -113,7 +113,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	// Determine roundstart player count, used for population locks.
 	GLOB.roundstart_players = length(GLOB.clients)
 	to_chat(world, "Round initialized with a Population of [GLOB.roundstart_players]")
-	game_log("Round initialized with a Population of [GLOB.roundstart_players]")
 
 	for(var/datum/job/job AS in valid_job_types)
 		job = SSjob.GetJobType(job)
