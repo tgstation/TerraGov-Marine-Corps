@@ -49,6 +49,7 @@
 		new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
 		for (var/atom/movable/atom_in_acid AS in acid_tile)
 			atom_in_acid.acid_spray_act(src)
+	can_be_activated = FALSE
 
 //*********************//
 //         Spur        //
