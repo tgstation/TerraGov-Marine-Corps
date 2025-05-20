@@ -8,8 +8,6 @@
 #define ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE "order_designation_indicate_alt_appearance"
 ///Designator order target alt appearance key
 #define ORDER_DESIGNATION_TARGET_ALT_APPEARANCE "order_designation_target_alt_appearance"
-///How long a target stays visually designated for
-#define ORDER_DESIGNATION_DURATION 2 SECONDS
 
 #define ORDER_DESIGNATION_TYPE_MOVE "order_designation_type_move"
 #define ORDER_DESIGNATION_TYPE_ATTACK "order_designation_type_attack"
@@ -26,6 +24,7 @@
 #define ORDER_DESIGNATION_YELLOW "#fbff00"
 #define ORDER_DESIGNATION_GREEN "#1bcc03"
 
+///How often you can designate something
 #define ORDER_DESIGNATION_CD 1 SECONDS
 
 /datum/action/ability/activable/build_designator
@@ -60,6 +59,38 @@
 		return FALSE
 	return TRUE
 
+///Visually selects a friendly mob for later ordering
+/datum/action/ability/activable/build_designator/proc/select_mob_to_interact(mob/living/carbon/human/new_target)
+	selected_mob = new_target
+
+	var/image/highlight = get_alt_image(new_target)
+	new_target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/one_person, ORDER_DESIGNATION_ALT_APPEARANCE, highlight, owner)
+
+///Designates an atom for interaction
+/datum/action/ability/activable/build_designator/proc/designate_target(atom/target)
+	if(!COOLDOWN_FINISHED(src, order_cooldown))
+		return
+	COOLDOWN_START(src, order_cooldown, ORDER_DESIGNATION_CD)
+
+	var/order_action = target.get_order_designation_type(selected_mob ? selected_mob : owner)
+	var/image/target_highlight = get_alt_image(target, TRUE, order_action)
+
+	if(selected_mob) //ordering a specific mob to do something
+		SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //todo: Maybe make the NPC behavior based on order_action?
+		target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/group, ORDER_DESIGNATION_TARGET_ALT_APPEARANCE, target_highlight, list(selected_mob, owner))
+	else //Ordering everyone/anyone to do something
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DESIGNATED_TARGET_SET, target)
+		target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/faction, ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE, target_highlight, owner.faction)
+
+	audible_command(target, order_action, selected_mob)
+	addtimer(CALLBACK(src, PROC_REF(unindicate_target), target), 1 SECONDS)
+
+///Removes any visual indicators on this atom
+/datum/action/ability/activable/build_designator/proc/unindicate_target(atom/old_target)
+	old_target.remove_alt_appearance(ORDER_DESIGNATION_ALT_APPEARANCE)
+	old_target.remove_alt_appearance(ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE)
+	old_target.remove_alt_appearance(ORDER_DESIGNATION_TARGET_ALT_APPEARANCE)
+
 ///Creates an image of an atom to be used for alternative appearance purposes
 /datum/action/ability/activable/build_designator/proc/get_alt_image(atom/image_target, flash_image = FALSE, order_action)
 	var/image/alt_image = image(loc = image_target) //todo: Better alternative?
@@ -88,41 +119,9 @@
 		if(ORDER_DESIGNATION_TYPE_FOLLOW)
 			flash_color = ORDER_DESIGNATION_GREEN
 
-	animate(alt_image, color = flash_color, time = 3, loop = 2)
-	animate(color = oldcolor, time = 3)
+	animate(alt_image, color = flash_color, time = 0.3 SECONDS, loop = 2)
+	animate(color = oldcolor, time =  0.3 SECONDS)
 	return alt_image
-
-///Visually selects a friendly mob for later ordering
-/datum/action/ability/activable/build_designator/proc/select_mob_to_interact(mob/living/carbon/human/new_target)
-	selected_mob = new_target
-
-	var/image/highlight = get_alt_image(new_target)
-	new_target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/one_person, ORDER_DESIGNATION_ALT_APPEARANCE, highlight, owner)
-
-///Designates an atom for interaction
-/datum/action/ability/activable/build_designator/proc/designate_target(atom/target)
-	if(!COOLDOWN_FINISHED(src, order_cooldown))
-		return
-	COOLDOWN_START(src, order_cooldown, ORDER_DESIGNATION_CD)
-
-	var/order_action = target.get_order_designation_type(selected_mob ? selected_mob : owner)
-	var/image/target_highlight = get_alt_image(target, TRUE, order_action)
-
-	if(selected_mob) //ordering a specific mob to do something
-		SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //todo: Maybe make the NPC behavior based on order_action?
-		target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/group, ORDER_DESIGNATION_TARGET_ALT_APPEARANCE, target_highlight, list(selected_mob, owner))
-	else //Ordering everyone/anyone to do something
-		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DESIGNATED_TARGET_SET, target)
-		target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/faction, ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE, target_highlight, owner.faction)
-
-	audible_command(target, order_action, selected_mob)
-	addtimer(CALLBACK(src, PROC_REF(unindicate_target), target), ORDER_DESIGNATION_DURATION)
-
-///Removes any visual indicators on this atom
-/datum/action/ability/activable/build_designator/proc/unindicate_target(atom/old_target)
-	old_target.remove_alt_appearance(ORDER_DESIGNATION_ALT_APPEARANCE)
-	old_target.remove_alt_appearance(ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE)
-	old_target.remove_alt_appearance(ORDER_DESIGNATION_TARGET_ALT_APPEARANCE)
 
 ///Generates the applicable audible command for the specific command
 /datum/action/ability/activable/build_designator/proc/audible_command(atom/target, order_action, mob/ordered)
