@@ -371,6 +371,32 @@
 	INVOKE_ASYNC(interactee, TYPE_PROC_REF(/atom, do_ai_interact), mob_parent, src)
 	return TRUE
 
+///Makes the mob attempt to interact with a specified atom
+/datum/ai_behavior/human/proc/interaction_designated(datum/source, atom/target)
+	SIGNAL_HANDLER
+	if(target?.z != mob_parent.z)
+		return
+	if(get_dist(target, mob_parent) > 9)
+		return
+	if(isturf(target))
+		set_atom_to_walk_to(target)
+		return
+	if(!ismovable(target))
+		return //the fuck did you click?
+	//todo: AM proc to check if we should react at all
+	var/atom/movable/movable_target = target
+	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
+		set_interact_target(movable_target)
+		return
+	if(movable_target.faction != mob_parent.faction)
+		set_combat_target(movable_target)
+		return
+	if(isliving(movable_target))
+		var/mob/living/living_target = target
+		if(!living_target.stat)
+			set_escorted_atom(living_target)
+	set_interact_target(movable_target)
+
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)
 	if(mob_parent.incapacitated())

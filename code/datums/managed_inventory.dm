@@ -131,8 +131,6 @@
 	equipped_list -= unequipped_item
 	if(owner in get_nested_locs(unequipped_item))
 		return //still equipped
-	//UnregisterSignal(unequipped_item, COMSIG_ITEM_REMOVED_INVENTORY)
-	//equipped_list -= unequipped_item
 
 	//generally we only care about items in actual storage, but some things (like gun mags) get 'stored' in things without storage datums - i.e. the gun on reload
 	var/list/sort_list = unequipped_item.contents + unequipped_item
@@ -354,7 +352,7 @@
 	food_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL, COMSIG_ATOM_ENTERED))
 
-//helper procs for finding stuff
+///Returns a suitable tool from the inventory
 /datum/managed_inventory/proc/find_tool(req_tool_behavior)
 	var/obj/item/needed_tool
 	for(var/obj/item/candidate_tool AS in engineering_list)

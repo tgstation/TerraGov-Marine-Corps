@@ -622,7 +622,7 @@
 		return
 
 /obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, ARMOED_WELD_FUEL_REQ, 2 SECONDS)
+	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
 
 /obj/vehicle/sealed/armored/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()

@@ -100,34 +100,6 @@
 	hologram.attackby(building_stack, mob_parent)
 	on_engineering_end(hologram)
 
-///Makes the mob attempt to interact with a specified atom
-/datum/ai_behavior/human/proc/interaction_designated(datum/source, atom/target)
-	SIGNAL_HANDLER
-	if(target?.z != mob_parent.z)
-		return
-	if(get_dist(target, mob_parent) > 9)
-		return
-	if(isturf(target))
-		set_atom_to_walk_to(target)
-		return
-	if(!ismovable(target))
-		return //the fuck did you click?
-	var/atom/movable/movable_target = target
-	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
-		set_interact_target(movable_target)
-		return
-	if(movable_target.faction == mob_parent.faction)
-		if(ismob(movable_target))
-			var/mob/living/living_target = target
-			if(living_target.stat) //crit or dead
-				set_interact_target(living_target)
-				return
-			set_escorted_atom(living_target)
-			return
-		set_interact_target(movable_target) //repair tank etc... what about follow tho?
-		return
-	set_combat_target(movable_target) //enemy faction atom of some kind
-
 ///Repairs an object if possible
 /datum/ai_behavior/human/proc/repair_obj(obj/repair_target)
 	if(repair_target.obj_integrity >= repair_target.max_integrity)

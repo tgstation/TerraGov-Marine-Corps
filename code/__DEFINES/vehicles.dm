@@ -75,6 +75,3 @@
 #define TANK_MOD_NOT_FABRICABLE (1<<0)
 
 #define IGUANA_MAX_INTEGRITY 150
-
-///Welder fuel requirement for repairing armored vehicles
-#define ARMOED_WELD_FUEL_REQ 5

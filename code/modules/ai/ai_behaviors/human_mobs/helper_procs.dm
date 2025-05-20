@@ -103,7 +103,6 @@
 
 /obj/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	//todo: this will still make non engineers investigate something they can't repair
-	//Maybe split this out into the (many) relevant types instead of obj level
 	if(behavior_datum.engineer_rating < AI_ENGIE_STANDARD)
 		return
 	behavior_datum.add_to_engineering_list(src)

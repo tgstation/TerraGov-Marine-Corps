@@ -63,24 +63,20 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 		if(BUILD_DESIGNATOR_MODE)
 			return use_build_ability(A)
 
-		if(INTERACT_DESIGNATOR_MODE) ///TODO: COOLDOWN TO STOP SPAM
+		if(INTERACT_DESIGNATOR_MODE)
 			return use_interact_ability(A)
 
 /datum/action/ability/activable/build_designator/alternate_action_activate()
 	switch(designator_mode)
 		if(BUILD_DESIGNATOR_MODE)
 			INVOKE_ASYNC(src, PROC_REF(select_structure))
-		if(INTERACT_DESIGNATOR_MODE) //maybe just direct swap to build designator mode?
-			INVOKE_ASYNC(src, PROC_REF(select_mode)) //todo:better to rework these into 1 proc, will do later
+		if(INTERACT_DESIGNATOR_MODE)
+			INVOKE_ASYNC(src, PROC_REF(select_mode))
 
 ///Tells overwatch we're overriding the radial selection
 /datum/action/ability/activable/build_designator/proc/override_cic_radial(datum/source)
 	SIGNAL_HANDLER
-	switch(designator_mode)
-		if(BUILD_DESIGNATOR_MODE)
-			return OVERWATCH_RADIAL_HIDE
-		if(INTERACT_DESIGNATOR_MODE) //todo: delete this if unneeded
-			return OVERWATCH_RADIAL_HIDE
+	return OVERWATCH_RADIAL_HIDE
 
 ///Selects a mode
 /datum/action/ability/activable/build_designator/proc/select_mode()
@@ -91,7 +87,6 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 		return
 	swap_mode(mode_choice)
 
-//todo:Below ones might not need an arg. revisit before merge.
 ///Swaps our mode to a new one
 /datum/action/ability/activable/build_designator/proc/swap_mode(new_mode)
 	deactivate_mode(designator_mode)
