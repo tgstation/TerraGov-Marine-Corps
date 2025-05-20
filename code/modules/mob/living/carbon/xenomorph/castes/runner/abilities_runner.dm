@@ -119,18 +119,26 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EVASION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_AUTO_EVASION,
 	)
-	/// Whether evasion is currently active.
+	/// Whether Evasion is currently active.
 	var/evade_active = FALSE
 	/// How long our Evasion will last.
 	var/evasion_duration = 0
 	/// The starting duration of Evasion in seconds.
-	var/evasion_starting_duration = 2
+	var/evasion_starting_duration = RUNNER_EVASION_DURATION
 	/// Current amount of Evasion stacks.
 	var/evasion_stacks = 0
-	/// Whether auto evasion is on or off.
+	/// Whether Auto Evasion is on or off.
 	var/auto_evasion = TRUE
 	/// Whether Evasion can automatically refresh upon the threshold / if Auto Evasion can be toggled on.
 	var/refresh_disabled = FALSE
+	/// Should they gain/loss passthrough when Evade is active?
+	var/evasion_passthrough = FALSE
+	/// Were they already given passthrough?
+	var/has_passthrough = FALSE
+	/// The applied confusion amount if a human is ran through while the owner has passthrough. In deciseconds.
+	var/passthrough_confusion_length = 0
+	/// A list of humans that were touched while the owner had passthrough. Used to prevent stacking or repeating debuffs.
+	var/list/mob/living/carbon/human/touched_humans = list()
 
 /datum/action/ability/xeno_action/evasion/on_cooldown_finish()
 	. = ..()
@@ -166,11 +174,17 @@
 	add_cooldown()
 	if(evade_active)
 		evasion_stacks = 0
-		evasion_duration = min(evasion_duration + RUNNER_EVASION_DURATION, RUNNER_EVASION_MAX_DURATION)
+		evasion_duration = min(evasion_duration + evasion_starting_duration, RUNNER_EVASION_MAX_DURATION)
 		owner.balloon_alert(owner, "Extended evasion: [evasion_duration]s.")
 		return
 	evade_active = TRUE
-	evasion_duration = RUNNER_EVASION_DURATION
+	if(evasion_passthrough && !has_passthrough)
+		xeno_owner.allow_pass_flags |= PASS_MOB
+		xeno_owner.add_pass_flags(PASS_MOB, type)
+		has_passthrough = TRUE
+		RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_passthrough_move))
+
+	evasion_duration = evasion_starting_duration
 	owner.balloon_alert(owner, "Begin evasion: [evasion_duration]s.")
 	to_chat(owner, span_userdanger("We take evasive action, making us impossible to hit."))
 	START_PROCESSING(SSprocessing, src)
@@ -263,6 +277,12 @@
 	evade_active = FALSE
 	evasion_stacks = 0
 	evasion_duration = 0
+	if(has_passthrough)
+		xeno_owner.allow_pass_flags &= ~PASS_MOB
+		xeno_owner.remove_pass_flags(PASS_MOB, type)
+		has_passthrough = FALSE
+		UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+
 	owner.balloon_alert(owner, "Evasion ended")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
 	hud_set_evasion(evasion_duration)
@@ -316,6 +336,13 @@
 		after_image = new /obj/effect/temp_visual/after_image(current_turf, owner) //Create the after image.
 		after_image.pixel_x = pick(randfloat(xeno_owner.pixel_x * 3, xeno_owner.pixel_x * 1.5), rand(0, xeno_owner.pixel_x * -1)) //Variation on the X position
 
+/datum/action/ability/xeno_action/evasion/proc/on_passthrough_move()
+	SIGNAL_HANDLER
+	for(var/mob/living/carbon/human/human_right_here AS in cheap_get_humans_near(xeno_owner, 0))
+		if(human_right_here in touched_humans)
+			continue
+		touched_humans += human_right_here
+		human_right_here.AdjustConfused(passthrough_confusion_length)
 
 // ***************************************
 // *********** Snatch

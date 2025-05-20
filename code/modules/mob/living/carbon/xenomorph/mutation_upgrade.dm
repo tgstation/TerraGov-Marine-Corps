@@ -129,7 +129,7 @@
 	if(!ability)
 		return
 	ability.refresh_disabled = new_amount ? TRUE : FALSE
-	if(new_amount > 0 && ability.auto_evasion)
+	if(new_amount && ability.auto_evasion)
 		ability.alternate_action_activate() // Auto Evasion's whole point is to re-activate the ability when Evasion refreshes. If it never refreshes, then there is no use in Auto Evasion.
 	ability.evasion_starting_duration += (new_amount - previous_amount)
 
@@ -482,3 +482,25 @@
 	if(new_amount && !previous_amount)
 		ability.savage_damage_buff_alternative += beginning_damage_multiplier
 	ability.savage_damage_buff_alternative += (new_amount - previous_amount) * damage_multiplier_per_structure
+
+/datum/mutation_upgrade/veil/passing_glance
+	name = "Passing Glance"
+	desc = "While Evasion is on, moving onto the same location as a standing human will confuse them for 2/3/4s. This can only happens once per human. "
+	/// The beginning length of the applied confusion (at zero structures)
+	var/beginning_length = 1 SECONDS
+	/// The additional length f the applied confusion for each structure.
+	var/length_per_structure = 1 SECONDS
+
+/datum/mutation_upgrade/veil/passing_glance/on_building_update(datum/source, previous_amount, new_amount)
+	if(!..())
+		return
+	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
+	if(!ability)
+		return
+	if(previous_amount && !new_amount)
+		ability.evasion_passthrough = FALSE
+		ability.passthrough_confusion_length -= beginning_length
+	if(new_amount && !previous_amount)
+		ability.evasion_passthrough = TRUE
+		ability.passthrough_confusion_length += beginning_length
+	ability.passthrough_confusion_length += (new_amount - previous_amount) * length_per_structure
