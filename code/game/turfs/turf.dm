@@ -1038,3 +1038,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 ///Returns the number that shows how far an AM is offset when submerged in this turf
 /turf/proc/get_submerge_depth()
 	return 0
+
+///Checks if the turf is covered by something, like a catwalk
+/turf/proc/is_covered()
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED) & TURF_COVERED)
+		return TRUE
+	return FALSE

@@ -245,3 +245,25 @@
   - spellcheck: Fixed spelling and style of nuke disk computer visible messages.
   TiviPlus:
   - bugfix: fixed a runtime causing death tiles
+2025-05-19:
+  Atropos:
+  - admin: Spatial agents now come equipped with radio.
+  Holoo-1:
+  - rscadd: AIs now can set a location via Ctrl + number and jump their camera to
+      that location by pressing that number
+  Looking4bros:
+  - qol: Protein shakes in Hot Foods, Leporazine in Med plus
+  Lumipharon:
+  - rscadd: Engineer NPC's can build via holo designators
+  TiviPlus:
+  - rscadd: Added new ghost emotes from the april fools prank as ghost emotes
+  - refactor: refactored the req UI backend
+  - qol: cargo ui approval is now green when there is enough money and red otherwise
+  - code_imp: costs for req ui are calculated clientside instead of serverside
+  - code_imp: req UI entries will now be sent as assets, which should lead to improved
+      performance clientside and serverside
+  - code_imp: the Req ui will now stretch it's buttons
+  - qol: Centered and aligned many things on the req menu
+2025-05-20:
+  Lumipharon:
+  - rscadd: Added a few more hazards for NPCs to look out for
