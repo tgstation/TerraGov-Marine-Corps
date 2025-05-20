@@ -34,13 +34,16 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_HAS_WOUND_MASK
-	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_CORRUPT_GENERATOR
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_RULER
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
+
+	// *** Queen Abilities *** //
+	queen_leader_limit = 4
 
 	minimap_icon = "xenoking"
 
