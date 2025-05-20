@@ -915,7 +915,7 @@
 	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, pointed_atom)
 	return TRUE
 
-/atom/movable/proc/create_point_bubble(atom/pointed_atom)
+/atom/movable/proc/create_point_bubble(atom/pointed_atom, include_arrow = TRUE)
 	var/mutable_appearance/thought_bubble = mutable_appearance(
 		'icons/effects/effects.dmi',
 		"thought_bubble",
@@ -940,12 +940,13 @@
 	thought_bubble.pixel_z = 32
 	thought_bubble.alpha = 200
 
-	var/mutable_appearance/point_visual = mutable_appearance(
-		'icons/mob/screen/generic.dmi',
-		"arrow"
-	)
+	if(include_arrow)
+		var/mutable_appearance/point_visual = mutable_appearance(
+			'icons/mob/screen/generic.dmi',
+			"arrow"
+		)
 
-	thought_bubble.overlays += point_visual
+		thought_bubble.overlays += point_visual
 
 	add_overlay(thought_bubble)
 	LAZYADD(update_overlays_on_z, thought_bubble)
@@ -958,3 +959,7 @@
 /// Side effects of being sent to the end of round deathmatch zone
 /mob/proc/on_eord(turf/destination)
 	return
+
+/mob/key_down(key, client/client, full_key)
+	..()
+	SEND_SIGNAL(src, COMSIG_MOB_KEYDOWN, key, client, full_key)

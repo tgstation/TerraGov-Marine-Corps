@@ -1,4 +1,3 @@
-//todo: add a mobs to help list so we can record who needs help, even if we're too busy to help right now
 /datum/ai_behavior/human
 	///A list of mobs that might need healing
 	var/list/heal_list = list()
@@ -24,7 +23,7 @@
 		return
 	if(current_action == MOVING_TO_SAFETY)
 		return
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
@@ -99,7 +98,7 @@
 		return
 	if(current_action == MOVING_TO_SAFETY)
 		return
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
