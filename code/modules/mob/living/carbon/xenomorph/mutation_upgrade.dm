@@ -394,6 +394,26 @@
 		ability.upclose_bonus_multiplier += 0.25
 	ability.upclose_bonus_multiplier += (new_amount - previous_amount) * 0.25
 
+/datum/mutation_upgrade/spur/mutilate
+	name = "Mutilate"
+	desc = "Savage now consumes all of your plasma. Savage damage increased by 1.5/1.75/2x."
+	/// The beginning damage multiplier (at zero structures)
+	var/beginning_damage_multiplier = 0.25
+	/// The additional damage multiplier for each structure.
+	var/damage_multiplier_per_structure = 0.25
+
+/datum/mutation_upgrade/spur/mutilate/on_building_update(datum/source, previous_amount, new_amount)
+	if(!..())
+		return
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return
+	if(previous_amount && !new_amount)
+		ability.savage_damage_multiplier += beginning_damage_multiplier
+	if(new_amount && !previous_amount)
+		ability.savage_damage_multiplier += beginning_damage_multiplier
+	ability.savage_damage_multiplier += (new_amount - previous_amount) * damage_multiplier_per_structure
+
 /**
  * Veil
  */

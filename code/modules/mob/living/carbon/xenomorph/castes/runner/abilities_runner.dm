@@ -23,6 +23,8 @@
 	var/upclose_bonus_multiplier = 0
 	/// Whether Savage is active or not.
 	var/savage_activated = TRUE
+	/// The damage multiplier to Savage. If it is greater than 1, it will consume all plasma as well.
+	var/savage_damage_multiplier = 1
 	/// The amount of blurriness and confusion given to target.
 	var/savage_debuff_amount = 0
 	/// Instead of Savage damage, it is converted to a 7s damage buff at a percentage multiplied by this ratio if it is above 0.
@@ -63,7 +65,7 @@
 	if(!COOLDOWN_FINISHED(src, savage_cooldown))
 		owner.balloon_alert(owner, "Savage on cooldown ([COOLDOWN_TIMELEFT(src, savage_cooldown) * 0.1]s)")
 		return
-	var/savage_damage = max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15)
+	var/savage_damage = max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15 * savage_damage_multiplier)
 	var/savage_cost = savage_damage * 2
 	if(xeno_owner.plasma_stored < savage_cost)
 		owner.balloon_alert(owner, "Not enough plasma to Savage ([savage_cost])")
@@ -75,7 +77,7 @@
 	if(savage_debuff_amount)
 		living_target.adjust_blurriness(savage_debuff_amount)
 		living_target.AdjustConfused(savage_debuff_amount SECONDS)
-	xeno_owner.use_plasma(savage_cost)
+	xeno_owner.use_plasma(savage_damage_multiplier > 1 ? xeno_owner.plasma_stored : savage_cost)
 	COOLDOWN_START(src, savage_cooldown, RUNNER_SAVAGE_COOLDOWN)
 	START_PROCESSING(SSprocessing, src)
 	GLOB.round_statistics.runner_savage_attacks++
