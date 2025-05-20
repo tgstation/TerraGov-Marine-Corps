@@ -51,6 +51,8 @@
 	var/datum/outfit/outfit = pick(GLOB.survivor_outfits)
 	outfit = new outfit()
 	INVOKE_ASYNC(outfit, TYPE_PROC_REF(/datum/outfit, equip), src)
+	if(wear_id)
+		QDEL_NULL(wear_id)
 	a_intent = INTENT_HARM
 
 /mob/living/carbon/human/species/robot
