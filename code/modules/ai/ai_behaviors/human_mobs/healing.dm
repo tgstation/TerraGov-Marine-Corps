@@ -121,7 +121,7 @@
 	var/mob/living/living_parent = mob_parent
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_NEED_HEAL, mob_parent)
 
-	var/owner_turf = get_turf(mob_parent)
+	var/turf/owner_turf = get_turf(mob_parent)
 	if(living_parent.on_fire && can_cross_lava_turf(owner_turf) && check_hazards())
 		living_parent.do_resist()
 		return
