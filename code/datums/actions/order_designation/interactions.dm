@@ -36,35 +36,17 @@
 
 ///Interact designation side of use_ability
 /datum/action/ability/activable/build_designator/proc/use_interact_ability(atom/target)
-	if(selected_mob) //only allow mob to atom interaction, not atom to mob
+	if(selected_mob)
 		if(selected_mob == target || !check_valid_friendly(selected_mob)) //deselect a mob if clicking again, or they are crit etc
 			unindicate_target(target)
 			selected_mob = null
 			return FALSE
-		call_interaction(target)
+	else if(check_valid_friendly(target))
+		select_mob_to_interact(target)
 		return TRUE
 
-	//no selected atom
-	if(isturf(target))
-		designate_target(target) //rally here
-		return TRUE
-	if(isobj(target))
-		designate_target(target) //Interact with/repair this thing
-		return TRUE
-
-	if(!ismob(target))
-		return FALSE
-
-	if(target == owner)
-		designate_target(target) //everyone rally to me
-		return TRUE
-	if(check_valid_friendly(target))
-		select_mob_to_interact(target) //select mob for interacting with something else
-		return TRUE
-	var/mob/mob_target = target
-	if(mob_target.faction != owner.faction)
-		designate_target(target) //Put the boots to them, medium style
-		return TRUE
+	designate_target(target)
+	return TRUE
 
 ///Checks if a mob is able to recieve your orders
 /datum/action/ability/activable/build_designator/proc/check_valid_friendly(mob/living/carbon/human/candidate)
@@ -79,7 +61,7 @@
 	return TRUE
 
 ///Creates an image of an atom to be used for alternative appearance purposes
-/datum/action/ability/activable/build_designator/proc/get_alt_image(atom/image_target, flash_image = FALSE, order_verb)
+/datum/action/ability/activable/build_designator/proc/get_alt_image(atom/image_target, flash_image = FALSE, order_action)
 	var/image/alt_image = image(loc = image_target) //todo: Better alternative?
 	alt_image.appearance = image_target.appearance
 	alt_image.pixel_w = 0
@@ -96,7 +78,7 @@
 
 	var/oldcolor = alt_image.color
 	var/flash_color = ORDER_DESIGNATION_BLUE
-	switch(order_verb)
+	switch(order_action)
 		if(ORDER_DESIGNATION_TYPE_ATTACK)
 			flash_color = ORDER_DESIGNATION_RED
 		if(ORDER_DESIGNATION_TYPE_REPAIR)
@@ -110,21 +92,6 @@
 	animate(color = oldcolor, time = 3)
 	return alt_image
 
-///Designates an atom to generally request that people interact with it in some way
-/datum/action/ability/activable/build_designator/proc/designate_target(obj/new_target)//i.e. repair, kill, move to, etc
-	if(!COOLDOWN_FINISHED(src, order_cooldown))
-		return
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DESIGNATED_TARGET_SET, new_target)
-	COOLDOWN_START(src, order_cooldown, ORDER_DESIGNATION_CD)
-	var/order_verb = new_target.get_order_designation_type(owner)
-
-	var/image/highlight = get_alt_image(new_target, TRUE, order_verb)
-	new_target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/faction, ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE, highlight, owner.faction)
-
-	audible_command(new_target, order_verb)
-
-	addtimer(CALLBACK(src, PROC_REF(unindicate_target), new_target), ORDER_DESIGNATION_DURATION)
-
 ///Visually selects a friendly mob for later ordering
 /datum/action/ability/activable/build_designator/proc/select_mob_to_interact(mob/living/carbon/human/new_target)
 	selected_mob = new_target
@@ -132,28 +99,37 @@
 	var/image/highlight = get_alt_image(new_target)
 	new_target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/one_person, ORDER_DESIGNATION_ALT_APPEARANCE, highlight, owner)
 
-///Orders a friendly mob to interact with an atom
-/datum/action/ability/activable/build_designator/proc/call_interaction(atom/target)
+///Designates an atom for interaction
+/datum/action/ability/activable/build_designator/proc/designate_target(atom/target)
 	if(!COOLDOWN_FINISHED(src, order_cooldown))
 		return
-	SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //add contextual info on desired interaction type?
 	COOLDOWN_START(src, order_cooldown, ORDER_DESIGNATION_CD)
 
-	var/order_verb = target.get_order_designation_type(selected_mob)
+	var/order_action = target.get_order_designation_type(selected_mob ? selected_mob : owner)
+	var/image/target_highlight = get_alt_image(target, TRUE, order_action)
 
-	var/image/target_highlight = get_alt_image(target, TRUE, order_verb)
-	target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/group, ORDER_DESIGNATION_TARGET_ALT_APPEARANCE, target_highlight, list(selected_mob, owner))
+	if(selected_mob) //ordering a specific mob to do something
+		SEND_SIGNAL(selected_mob, COMSIG_MOB_INTERACTION_DESIGNATED, target) //todo: Maybe make the NPC behavior based on order_action?
+		target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/group, ORDER_DESIGNATION_TARGET_ALT_APPEARANCE, target_highlight, list(selected_mob, owner))
+	else //Ordering everyone/anyone to do something
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DESIGNATED_TARGET_SET, target)
+		target.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/faction, ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE, target_highlight, owner.faction)
 
-	audible_command(target, order_verb, selected_mob)
-
+	audible_command(target, order_action, selected_mob)
 	addtimer(CALLBACK(src, PROC_REF(unindicate_target), target), ORDER_DESIGNATION_DURATION)
 
+///Removes any visual indicators on this atom
+/datum/action/ability/activable/build_designator/proc/unindicate_target(atom/old_target)
+	old_target.remove_alt_appearance(ORDER_DESIGNATION_ALT_APPEARANCE)
+	old_target.remove_alt_appearance(ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE)
+	old_target.remove_alt_appearance(ORDER_DESIGNATION_TARGET_ALT_APPEARANCE)
+
 ///Generates the applicable audible command for the specific command
-/datum/action/ability/activable/build_designator/proc/audible_command(atom/target, order_verb, mob/ordered)
+/datum/action/ability/activable/build_designator/proc/audible_command(atom/target, order_action, mob/ordered)
 	var/message
 	if((target.z != owner.z) || (get_dist(target, owner) > 9))
 		message = ";" //radio message
-	switch(order_verb)
+	switch(order_action)
 		if(ORDER_DESIGNATION_TYPE_MOVE)
 			message += "[ordered ? "[selected_mob], " : "everyone, "]move [dir2text(angle_to_dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
 		if(ORDER_DESIGNATION_TYPE_ATTACK)
@@ -174,12 +150,6 @@
 			message += "[ordered ? "[selected_mob], " : "someone "][pick("pickup", "grab")] [target]."
 
 	owner.say(message)
-
-///Removes any visual indicators on this atom
-/datum/action/ability/activable/build_designator/proc/unindicate_target(atom/old_target)
-	old_target.remove_alt_appearance(ORDER_DESIGNATION_ALT_APPEARANCE)
-	old_target.remove_alt_appearance(ORDER_DESIGNATION_INDICATE_ALT_APPEARANCE)
-	old_target.remove_alt_appearance(ORDER_DESIGNATION_TARGET_ALT_APPEARANCE)
 
 
 ///Returns the type of interaction a mob is expected to have with this atom
