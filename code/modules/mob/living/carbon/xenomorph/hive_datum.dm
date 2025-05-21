@@ -4,6 +4,7 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
+	var/mob/living/carbon/xenomorph/previous_ruler
 	///Timer for caste evolution after the last one died, CASTE = TIMER
 	var/list/caste_death_timers = list()
 	var/color = null
@@ -808,6 +809,8 @@
 	if(!successor)
 		for(var/mob/living/carbon/xenomorph/potential_successor in seco_candidates)
 			if(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER && !living_xeno_ruler)
+				if(previous_ruler == potential_successor)
+					continue
 				successor = potential_successor
 
 	if(!successor || living_xeno_ruler == successor)
@@ -821,6 +824,7 @@
 	successor.hud_set_queen_overwatch()
 	successor.update_leader_icon(FALSE)
 	set_ruler(successor)
+	previous_ruler = successor
 	successor.give_ruler_abilities()
 	handle_ruler_timer()
 	update_leader_pheromones()
