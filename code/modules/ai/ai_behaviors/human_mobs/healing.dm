@@ -116,14 +116,6 @@
 	UnregisterSignal(old_patient, COMSIG_AI_HEALING_MOB)
 	heal_list -= old_patient
 
-///Returns true if the mob is on fire
-/mob/living/proc/is_on_fire()
-	if(on_fire) //todo: someone please make normal fire a status effect
-		return TRUE
-	if(has_status_effect(STATUS_EFFECT_MELTING_FIRE))
-		return TRUE
-	return FALSE
-
 ///Tries healing themselves
 /datum/ai_behavior/human/proc/try_heal()
 	var/mob/living/living_parent = mob_parent
