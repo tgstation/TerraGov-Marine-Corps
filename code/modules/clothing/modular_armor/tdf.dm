@@ -250,7 +250,7 @@
 	species_exception = list(/datum/species/robot)
 	icon_state = "tdf_robot"
 	worn_icon_state = "tdf_robot"
-	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 75, "energy" = 60, "bomb" = 55, "bio" = 55, "fire" = 55, "acid" = 60)
+	soft_armor = MARINE_ARMOR_HEAVY
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/modular/tdf/robot/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
@@ -396,7 +396,7 @@
 	species_exception = list(/datum/species/robot)
 	icon_state = "tdf_helmet_robot"
 	worn_icon_state = "tdf_helmet_robot"
-	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 85, ENERGY = 75, BOMB = 60, BIO = 60, FIRE = 70, ACID = 70)
+	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 60, BIO = 60, FIRE = 70, ACID = 70)
 
 /obj/item/clothing/head/modular/tdf/robot/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	. = ..()
