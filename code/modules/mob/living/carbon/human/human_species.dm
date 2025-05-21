@@ -46,14 +46,22 @@
 /mob/living/carbon/human/species/zombie
 	race = "Strong zombie"
 
-/mob/living/carbon/human/species/zombie/Initialize(mapload)
+/mob/living/carbon/human/species/zombie/Initialize(mapload, datum/outfit/job/outfit)
 	. = ..()
-	var/datum/outfit/outfit = pick(GLOB.survivor_outfits)
-	outfit = new outfit()
-	INVOKE_ASYNC(outfit, TYPE_PROC_REF(/datum/outfit, equip), src)
-	if(wear_id)
-		QDEL_NULL(wear_id)
 	a_intent = INTENT_HARM
+	ASYNC
+		if(!outfit)
+			outfit = pick(GLOB.survivor_outfits)
+		outfit = new outfit()
+		var/datum/job/outfit_job = SSjob.type_occupations[outfit.jobtype]
+		job = outfit_job
+		outfit.equip(src)
+		outfit.handle_id(src)
+		if(wear_id)
+			wear_id.iff_signal = NONE
+			wear_id.access = list()
+		job = null
+
 
 /mob/living/carbon/human/species/robot
 	race = "Combat Robot"
