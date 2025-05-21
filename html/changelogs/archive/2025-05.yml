@@ -267,3 +267,14 @@
 2025-05-20:
   Lumipharon:
   - rscadd: Added a few more hazards for NPCs to look out for
+2025-05-21:
+  Lumipharon:
+  - qol: NPC's move around far less, when escorting someone
+  - bugfix: NPC's path more accurately towards their target
+  - bugfix: NPC's will generally avoid going into lava unless they have no choice
+  - bugfix: fixed some bad behaviors in npc behavior
+  Zar000:
+  - qol: Any T3 with pheros can now become a ruler
+  - code_imp: Evolving to Queen turns you into the ruler. Even if Shrike or other
+      ruler already existed
+  - refactor: Refactored how the game handles the current hive ruler

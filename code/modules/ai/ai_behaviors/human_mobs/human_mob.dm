@@ -132,7 +132,7 @@
 		weapon_process()
 
 /datum/ai_behavior/human/should_hold()
-	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION && COOLDOWN_FINISHED(src, ai_heal_after_dam_cooldown)) //Don't just stand there when taking damage
 		return TRUE
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_RELOADING))
 		return TRUE
@@ -193,7 +193,7 @@
 	if((current_action == MOVING_TO_ATOM) && (atom_to_walk_to == combat_target))
 		return //we generally want to keep fighting
 	var/mob/living/living_parent = mob_parent
-	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth) && check_hazards())
+	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && !next_target && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth) && check_hazards())
 		INVOKE_ASYNC(src, PROC_REF(try_heal))
 
 /datum/ai_behavior/human/deal_with_obstacle(datum/source, direction)
