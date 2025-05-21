@@ -165,7 +165,7 @@
 /obj/effect/temp_visual/order
 	icon = 'icons/effects/orders.dmi'
 	var/icon_state_on
-	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM, SQUAD_HUD_CLF)
+	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM, SQUAD_HUD_CLF, SQUAD_HUD_VSD, SQUAD_HUD_ICC)
 	duration = CIC_ORDER_DURATION
 
 /obj/effect/temp_visual/order/Initialize(mapload, faction)

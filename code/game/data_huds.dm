@@ -608,20 +608,17 @@
 /datum/atom_hud/squad_clf
 	hud_icons = list(SQUAD_HUD_CLF, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
+/datum/atom_hud/squad_vsd
+	hud_icons = list(SQUAD_HUD_VSD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+
+/datum/atom_hud/squad_icc
+	hud_icons = list(SQUAD_HUD_ICC, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+
 /mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
 	return
 
 /mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
-	var/hud_type
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			hud_type = SQUAD_HUD_TERRAGOV
-		if(FACTION_SOM)
-			hud_type = SQUAD_HUD_SOM
-		if(FACTION_CLF)
-			hud_type = SQUAD_HUD_CLF
-		else
-			return
+	var/hud_type = GLOB.faction_to_squad_hud[faction]
 	var/image/holder = hud_list[hud_type]
 	holder.icon_state = ""
 	holder.overlays.Cut()
