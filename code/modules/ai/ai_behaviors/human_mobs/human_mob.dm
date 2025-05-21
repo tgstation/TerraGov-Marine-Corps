@@ -376,7 +376,7 @@
 	SIGNAL_HANDLER
 	if(target?.z != mob_parent.z)
 		return
-	if(get_dist(target, mob_parent) > 9)
+	if(get_dist(target, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
 		return
 	if(isturf(target))
 		set_atom_to_walk_to(target)
