@@ -158,6 +158,9 @@
 /turf/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_MOVE
 
+/turf/closed/interior/tank/door/get_order_designation_type(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_INTERACT
+
 /atom/movable/get_order_designation_type(mob/ordered)
 	if(!faction)
 		return ORDER_DESIGNATION_TYPE_INTERACT
@@ -176,6 +179,9 @@
 	if(!faction || ordered.faction == faction)
 		return ORDER_DESIGNATION_TYPE_REPAIR
 	return ORDER_DESIGNATION_TYPE_ATTACK
+
+/obj/effect/build_designator/get_order_designation_type(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_INTERACT
 
 /obj/item/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_PICKUP

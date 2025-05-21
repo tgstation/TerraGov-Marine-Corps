@@ -150,6 +150,9 @@
 /obj/effect/build_designator/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	behavior_datum.try_build_holo(src)
 
+/turf/closed/interior/tank/door/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	attack_hand(interactor)
+
 //weapon engagement range
 
 ///Optimal range for AI to fight at, using this weapon

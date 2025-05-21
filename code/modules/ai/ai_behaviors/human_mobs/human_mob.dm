@@ -379,6 +379,9 @@
 	if(get_dist(target, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
 		return
 	if(isturf(target))
+		if(istype(target, /turf/closed/interior/tank/door))
+			set_interact_target(target) //todo: Other option might be redundant?
+			return
 		set_atom_to_walk_to(target)
 		return
 	if(!ismovable(target))
