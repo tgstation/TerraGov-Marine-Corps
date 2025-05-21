@@ -120,7 +120,7 @@
 	/// The subtracted effectiveness of Drain Sting at a range that isn't upclose (for each structure).
 	var/amount_per_structure = 1
 
-/datum/mutation_upgrade/spur/far_sting/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/toxic_compatibility/on_structure_update(datum/source, previous_amount, new_amount)
 	if(!..())
 		return
 	var/datum/action/ability/activable/xeno/drain_sting/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/drain_sting]
