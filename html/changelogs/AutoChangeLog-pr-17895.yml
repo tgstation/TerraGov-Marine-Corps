@@ -1,6 +1,0 @@
-author: "Zar000"
-delete-after: True
-changes:
-  - qol: "Any T3 with pheros can now become a ruler"
-  - code_imp: "Evolving to Queen turns you into the ruler. Even if Shrike or other ruler already existed"
-  - refactor: "Refactored how the game handles the current hive ruler"

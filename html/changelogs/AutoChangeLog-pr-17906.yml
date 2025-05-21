@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "NPC's move around far less, when escorting someone"
-  - bugfix: "NPC's path more accurately towards their target"
-  - bugfix: "NPC's will generally avoid going into lava unless they have no choice"
