@@ -32,7 +32,7 @@
 
 /datum/job/xenomorph/get_spawn_message_information(mob/M)
 	. = ..()
-	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += separator_hr("[span_role_header("<b>Xenomorph Information</b>")]")
 	. += {"<b>Your job is to spread the hive and protect the Hive Leader. If there's no Hive Leader, you can become the Shrike or Queen yourself by evolving into a drone.</b><br>
 Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')"}
 
@@ -80,7 +80,7 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 
 /datum/job/xenomorph/queen/get_spawn_message_information(mob/M)
 	. = ..()
-	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += separator_hr("[span_role_header("<b>Xeno Queen Information</b>")]")
 	. += {"<b>You are now the alien ruler!<br>
 Your job is to spread the hive.</b><br>
 Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>:a</strong> (e.g. ';My life for the hive!')"}
