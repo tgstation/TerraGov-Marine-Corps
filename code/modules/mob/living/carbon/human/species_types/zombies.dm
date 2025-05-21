@@ -47,7 +47,7 @@
 	H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 	health_hud.add_hud_to(H)
-	H.job = new /datum/job/zombie //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
+	H.job = SSjob.type_occupations[/datum/job/zombie] //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
 	for(var/datum/action/action AS in H.actions)
 		action.remove_action(H)
 	var/datum/action/rally_zombie/rally_zombie = new

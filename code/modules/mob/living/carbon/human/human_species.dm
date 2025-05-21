@@ -60,7 +60,7 @@
 		if(wear_id)
 			wear_id.iff_signal = NONE
 			wear_id.access = list()
-		job = null
+		job = SSjob.type_occupations[/datum/job/zombie]
 
 
 /mob/living/carbon/human/species/robot
