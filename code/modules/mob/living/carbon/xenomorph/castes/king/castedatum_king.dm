@@ -29,7 +29,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
-	evolve_min_xenos = 10
+	evolve_min_xenos = 8
 	death_evolution_delay = 7 MINUTES
 	evolve_population_lock = 40 // Mech
 
