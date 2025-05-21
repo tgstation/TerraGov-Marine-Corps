@@ -652,7 +652,7 @@
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
-		leader.handle_xeno_leader_pheromones(living_xeno_queen)
+		leader.handle_xeno_leader_pheromones(living_xeno_ruler)
 
 // ***************************************
 // *********** Status changes
@@ -768,11 +768,15 @@
 		xeno_message("A sudden tremor ripples through the hive... \the [ruler] has been slain! Vengeance!", "xenoannounce", 6, TRUE)
 	notify_ghosts("\The <b>[ruler]</b> has been slain!", source = ruler, action = NOTIFY_JUMP)
 	update_ruler()
+	update_leader_pheromones()
+	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
+		remove_leader(leader)
 	return TRUE
 
 
 // This proc attempts to find a new ruler to lead the hive.
 /datum/hive_status/proc/update_ruler()
+	SIGNAL_HANDLER
 	if(isxenoqueen(living_xeno_ruler))
 		return //No succession required.
 
@@ -790,7 +794,7 @@
 			if(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER && !living_xeno_ruler)
 				successor = potential_successor
 
-	if(!successor)
+	if(!successor || living_xeno_ruler == successor)
 		return
 
 	var/announce = TRUE
@@ -802,7 +806,6 @@
 	successor.update_leader_icon(FALSE)
 	set_ruler(successor)
 	successor.give_ruler_abilities()
-
 	handle_ruler_timer()
 
 	if(announce)
@@ -811,10 +814,12 @@
 
 
 /datum/hive_status/proc/set_ruler(mob/living/carbon/xenomorph/successor)
+	SIGNAL_HANDLER
 	SSdirection.clear_leader(hivenumber)
 	if(!isnull(successor))
 		SSdirection.set_leader(hivenumber, successor)
 		SEND_SIGNAL(successor, COMSIG_HIVE_BECOME_RULER)
+		RegisterSignal(successor, COMSIG_HIVE_XENO_DEATH, TYPE_PROC_REF(/datum/hive_status, on_ruler_death))
 	living_xeno_ruler = successor
 
 
@@ -849,11 +854,6 @@
 // ***************************************
 // *********** Queen
 // ***************************************
-
-// If the queen dies, update the hive's queen, and the leader pheromones
-/datum/hive_status/proc/on_queen_death()
-	living_xeno_queen = null
-	update_leader_pheromones()
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
