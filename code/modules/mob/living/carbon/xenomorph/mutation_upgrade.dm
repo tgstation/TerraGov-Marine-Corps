@@ -41,7 +41,7 @@
 	on_structure_update(null, get_total_structures(), 0)
 	return ..()
 
-/// Called whenever the mutation is created/deleted or when the amount of buildings has changed.
+/// Called whenever the mutation is created/deleted or when the amount of structures has changed.
 /datum/mutation_upgrade/proc/on_structure_update(datum/source, previous_amount, new_amount)
 	SIGNAL_HANDLER
 	if(previous_amount == new_amount)
@@ -52,7 +52,7 @@
 /datum/mutation_upgrade/proc/on_xenomorph_upgrade()
 	return TRUE
 
-/// Gets the total amount of buildings for the mutation.
+/// Gets the total amount of structures for the mutation.
 /datum/mutation_upgrade/proc/get_total_structures()
 	if(!xenomorph_owner || !required_structure)
 		return 0
@@ -78,5 +78,3 @@
 	category = MUTATION_VEIL
 	required_structure = MUTATION_VEIL
 	status_effect = STATUS_EFFECT_MUTATION_VEIL
-
-// melter crap: next_move_adjust

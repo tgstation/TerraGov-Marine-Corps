@@ -57,6 +57,14 @@
 		/datum/action/ability/activable/xeno/drain_sting,
 	)
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/toxic_blood,
+		/datum/mutation_upgrade/shell/comforting_acid,
+		/datum/mutation_upgrade/spur/acidic_slasher,
+		/datum/mutation_upgrade/spur/far_sting,
+		/datum/mutation_upgrade/veil/toxic_compatibility
+	)
+
 /datum/xeno_caste/sentinel/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
@@ -100,6 +108,8 @@
 		/datum/action/ability/activable/xeno/neurotox_sting,
 		/datum/action/ability/activable/xeno/xeno_spit,
 	)
+
+	buyable_mutations = list()
 
 /datum/xeno_caste/sentinel/retrograde/primordial
 	upgrade_name = "Primordial"
