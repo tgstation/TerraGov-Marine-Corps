@@ -76,7 +76,7 @@
 	if(new_amount && !previous_amount)
 		RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack))
 		xenomorph_owner.xeno_melee_damage_modifier -= 0.50
-	xenomorph_owner.next_move_adjust -= (new_amount - previous_amount) * 0.05
+	xenomorph_owner.next_move_adjust -= (new_amount - previous_amount) * 0.5
 
 /// Applies a variable amount of Intoxicated stacks to those that they attack.
 /datum/mutation_upgrade/spur/acidic_slasher/proc/on_postattack(mob/living/source, mob/living/target, damage)

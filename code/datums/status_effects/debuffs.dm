@@ -551,7 +551,7 @@
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
 		debuff_owner.adjust_stagger(1 SECONDS)
-	if(xenomorph_to_heal && healing_per_stack)
+	if(healing_per_stack && xenomorph_to_heal?.Adjacent(debuff_owner))
 		var/amount_to_heal = stacks * healing_per_stack
 		HEAL_XENO_DAMAGE(xenomorph_to_heal, amount_to_heal, FALSE)
 
