@@ -28,7 +28,7 @@
 	deevolves_to = /datum/xeno_caste/spitter
 
 	// *** Flags *** //
-	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
@@ -49,9 +49,6 @@
 
 	// *** Minimap Icon *** //
 	minimap_icon = "praetorian"
-
-	// *** Ruler Abilities *** ///
-	queen_leader_limit = 4
 
 	// *** Abilities *** //
 	actions = list(
