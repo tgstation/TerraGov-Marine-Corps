@@ -1,7 +1,6 @@
 // ***************************************
 // *********** Tail sweep
 // ***************************************
-
 /datum/action/ability/xeno_action/tail_sweep
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
@@ -139,6 +138,7 @@
 	xeno_owner.xeno_flags |= XENO_LEAPING
 
 	xeno_owner.throw_at(A, charge_range, 5, xeno_owner)
+
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/charge/forward_charge/mob_hit(datum/source, mob/living/living_target)
