@@ -795,7 +795,7 @@
 /datum/hive_status/proc/update_ruler()
 	SIGNAL_HANDLER
 	if(isxenoqueen(living_xeno_ruler))
-		return //No succession required.
+		return
 
 	var/mob/living/carbon/xenomorph/successor
 	var/list/mob/living/carbon/xenomorph/prio_candidates = xenos_by_tier[XENO_TIER_FOUR]
