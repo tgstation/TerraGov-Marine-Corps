@@ -57,6 +57,8 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 	return ..()
 
 /datum/action/ability/activable/build_designator/use_ability(atom/A)
+	if(!can_use_action())
+		return
 	if(!A)
 		return FALSE
 	switch(designator_mode)
@@ -67,6 +69,8 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 			return use_interact_ability(A)
 
 /datum/action/ability/activable/build_designator/alternate_action_activate()
+	if(!can_use_action())
+		return
 	switch(designator_mode)
 		if(BUILD_DESIGNATOR_MODE)
 			INVOKE_ASYNC(src, PROC_REF(select_structure))
