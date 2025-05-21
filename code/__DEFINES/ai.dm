@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 //Mob engineer level
 ///Don't do engineering
 #define AI_ENGIE_DEFAULT 0
-///Basic taska
+///Basic tasks
 #define AI_ENGIE_BASIC 1
 ///Engineer level
 #define AI_ENGIE_STANDARD 2
