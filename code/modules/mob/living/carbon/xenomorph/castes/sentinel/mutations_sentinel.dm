@@ -115,9 +115,9 @@
 /datum/mutation_upgrade/veil/toxic_compatibility
 	name = "Toxic Compatibility"
 	desc = "Every 5/4/3u of xeno-chemicals in your target will count as one stack of Intoxicated when calculating the the strength of your Drain Sting."
-	/// The beginning amount of chemicals  of Drain Sting at a range that isn't upclose (at zero structures).
+	/// The beginning amount of xeno-chemicals needed for one Intoxicated stack (at zero structures).
 	var/beginning_amount = 6
-	/// The subtracted effectiveness of Drain Sting at a range that isn't upclose (for each structure).
+	/// The subtracted amount for xeno-chemicals needed for one Intoxicated stack (for each structure).
 	var/amount_per_structure = 1
 
 /datum/mutation_upgrade/veil/toxic_compatibility/on_structure_update(datum/source, previous_amount, new_amount)
