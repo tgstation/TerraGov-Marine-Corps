@@ -100,7 +100,9 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 			cleanup_hologram()
 			UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE))
 		if(INTERACT_DESIGNATOR_MODE)
-			selected_mob = null
+			if(selected_mob)
+				unindicate_target(selected_mob)
+				selected_mob = null
 
 ///Toggles on the new mode
 /datum/action/ability/activable/build_designator/proc/activate_mode(new_mode)
