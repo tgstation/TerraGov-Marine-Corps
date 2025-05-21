@@ -210,7 +210,7 @@
 		hive.add_leader(new_xeno)
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
-			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
+			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_ruler)
 
 		new_xeno.update_leader_icon(TRUE)
 
