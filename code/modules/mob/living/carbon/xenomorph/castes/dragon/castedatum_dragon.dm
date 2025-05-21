@@ -28,7 +28,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
-	evolve_min_xenos = 12
+	evolve_min_xenos = 8
 	death_evolution_delay = 15 MINUTES
 	evolve_population_lock = 50 // Tank
 
