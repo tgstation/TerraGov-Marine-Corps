@@ -791,7 +791,7 @@
 	update_ruler(usr)
 
 // This proc attempts to find a new ruler to lead the hive.
-/datum/hive_status/proc/update_ruler(var/mob/living/carbon/xenomorph/previous_ruler)
+/datum/hive_status/proc/update_ruler(mob/living/carbon/xenomorph/previous_ruler)
 	SIGNAL_HANDLER
 	if(isxenoqueen(living_xeno_ruler))
 		return
