@@ -129,6 +129,7 @@ a.popt {text-decoration: none;}
 .medradio				{color: #008160;}
 .sciradio				{color: #993399;}
 .supradio				{color: #5F4519;}
+.secradio				{color: #a30000;}
 
 .alpharadio				{color: #EA0000;}
 .bravoradio				{color: #C68610;}
