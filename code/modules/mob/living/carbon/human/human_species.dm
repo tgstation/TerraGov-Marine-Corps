@@ -55,11 +55,7 @@
 		outfit = new outfit()
 		var/datum/job/outfit_job = SSjob.type_occupations[outfit.jobtype]
 		job = outfit_job
-		outfit.equip(src)
-		outfit.handle_id(src)
-		if(wear_id)
-			wear_id.iff_signal = NONE
-			wear_id.access = list()
+		outfit.equip(src, FALSE)
 		job = SSjob.type_occupations[/datum/job/zombie]
 
 

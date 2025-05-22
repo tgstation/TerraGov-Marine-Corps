@@ -101,6 +101,7 @@
 
 /datum/job/zombie
 	title = "Zombie"
+	faction = FACTION_HOSTILE
 
 /datum/job/other/prisoner
 	title = "Prisoner"
