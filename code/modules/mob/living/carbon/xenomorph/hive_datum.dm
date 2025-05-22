@@ -590,9 +590,9 @@
 	nuke_hud_timer = new(null, null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
 
 /datum/hive_status/Destroy(force, ...)
+	previous_ruler = null
 	. = ..()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
-	previous_ruler = null
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
 	var/datum/hive_status/hive_removed_from = hive
