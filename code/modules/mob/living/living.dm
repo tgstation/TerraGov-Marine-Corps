@@ -140,6 +140,7 @@
 	. = ..()
 	hard_armor = null
 	soft_armor = null
+	QDEL_NULL(sexcon)
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
