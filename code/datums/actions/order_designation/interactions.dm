@@ -183,6 +183,9 @@
 /obj/effect/build_designator/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_INTERACT
 
+/obj/alien/get_order_designation_type(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_ATTACK
+
 /obj/item/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_PICKUP
 

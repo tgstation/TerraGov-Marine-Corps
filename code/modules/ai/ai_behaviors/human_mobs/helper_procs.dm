@@ -108,6 +108,10 @@
 	behavior_datum.add_to_engineering_list(src)
 	behavior_datum.repair_obj(src)
 
+/obj/alien/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(behavior_datum.melee_weapon)
+		attackby(behavior_datum.melee_weapon, interactor)
+
 /obj/item/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm
 
