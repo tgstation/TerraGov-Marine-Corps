@@ -512,6 +512,7 @@
 #include "code\datums\components\slippery.dm"
 #include "code\datums\components\squeak.dm"
 #include "code\datums\components\stamina_behavior.dm"
+#include "code\datums\components\sticky_item.dm"
 #include "code\datums\components\stun_mitigation.dm"
 #include "code\datums\components\submerge_mod.dm"
 #include "code\datums\components\suit_autodoc.dm"
