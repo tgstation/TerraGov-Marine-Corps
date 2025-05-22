@@ -183,11 +183,19 @@
 /obj/effect/build_designator/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_INTERACT
 
+/obj/machinery/door/get_order_designation_type(mob/ordered)
+	if(density)
+		return ORDER_DESIGNATION_TYPE_OPEN
+	return ORDER_DESIGNATION_TYPE_CLOSE
+
 /obj/alien/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_ATTACK
 
 /obj/item/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_PICKUP
+
+/obj/item/storage/box/visual/magazine/get_order_designation_type(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_INTERACT
 
 
 #undef DESIGNATED_TARGET_FILTER

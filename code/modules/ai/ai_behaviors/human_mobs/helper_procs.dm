@@ -108,12 +108,42 @@
 	behavior_datum.add_to_engineering_list(src)
 	behavior_datum.repair_obj(src)
 
+/obj/machinery/door/airlock/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(density)
+		open(TRUE)
+	else
+		close(TRUE)
+
 /obj/alien/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	if(behavior_datum.melee_weapon)
 		attackby(behavior_datum.melee_weapon, interactor)
 
 /obj/item/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.store_hands()
+	if(interactor.get_active_held_item())
+		return
 	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm
+	if(loc != interactor)
+		return
+	behavior_datum.try_store_item(src)
+
+/obj/item/storage/box/visual/magazine/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.store_hands()
+	if(interactor.get_active_held_item())
+		return
+
+	var/list/valid_ammo = list()
+	for(var/obj/item/weapon/gun/gun AS in behavior_datum.mob_inventory.gun_list)
+		valid_ammo += gun.allowed_ammo_types
+
+	if(!length(valid_ammo))
+		return
+
+	for(var/obj/magazine AS in contents)
+		if(!(magazine.type in valid_ammo))
+			continue
+		if(!behavior_datum.try_store_item(magazine))
+			return
 
 /obj/machinery/power/apc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	if(length(wires.cut_wires))
