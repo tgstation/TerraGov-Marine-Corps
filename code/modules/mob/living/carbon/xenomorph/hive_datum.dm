@@ -4,7 +4,6 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
-	var/mob/living/carbon/xenomorph/previous_ruler
 	///Timer for caste evolution after the last one died, CASTE = TIMER
 	var/list/caste_death_timers = list()
 	var/color = null
@@ -590,7 +589,6 @@
 	nuke_hud_timer = new(null, null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
 
 /datum/hive_status/Destroy(force, ...)
-	previous_ruler = null
 	. = ..()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
 
@@ -785,15 +783,15 @@
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
 		remove_leader(leader)
 		leader.hud_set_queen_overwatch()
+		leader.update_leader_icon(FALSE)
 	if(living_xeno_ruler)
 		living_xeno_ruler.remove_ruler_abilities()
 		UnregisterSignal(living_xeno_ruler, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 	set_ruler(null)
-	update_ruler()
-
+	update_ruler(usr)
 
 // This proc attempts to find a new ruler to lead the hive.
-/datum/hive_status/proc/update_ruler()
+/datum/hive_status/proc/update_ruler(var/mob/living/carbon/xenomorph/previous_ruler)
 	SIGNAL_HANDLER
 	if(isxenoqueen(living_xeno_ruler))
 		return
@@ -825,7 +823,6 @@
 	successor.hud_set_queen_overwatch()
 	successor.update_leader_icon(FALSE)
 	set_ruler(successor)
-	previous_ruler = successor
 	successor.give_ruler_abilities()
 	handle_ruler_timer()
 	update_leader_pheromones()
