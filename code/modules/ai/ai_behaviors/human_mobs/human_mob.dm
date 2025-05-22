@@ -210,6 +210,10 @@
 		if(!object.density)
 			continue
 		var/obstacle_reaction = object.ai_handle_obstacle(mob_parent, direction)
+		if(!obstacle_reaction)
+			return
+		if(obstacle_reaction == AI_OBSTACLE_FRIENDLY)
+			return
 		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
 			return COMSIG_OBSTACLE_DEALT_WITH //we've dealt with it on the obstacle side
 		if(obstacle_reaction == AI_OBSTACLE_JUMP)
