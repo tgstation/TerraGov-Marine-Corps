@@ -28,7 +28,7 @@
 /obj/item/weapon/zombie_claw
 	name = "claws"
 	hitsound = 'sound/weapons/slice.ogg'
-	icon_state = ""
+	icon_state = "zclaw"
 	force = 5
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = TRUE
@@ -47,6 +47,17 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		if(human_target.stat == DEAD)
+			return
+		var/parrychance = 20
+		if(human_target.is_holding_item_of_type(/obj/item/weapon/shield))
+			parrychance = 40
+		//pretty much all melee weapons and shield.
+		if((human_target.is_holding_item_of_type(/obj/item/weapon/sword)\
+|| human_target.is_holding_item_of_type(/obj/item/weapon/twohanded) || human_target.is_holding_item_of_type(/obj/item/weapon/combat_knife)\
+|| human_target.is_holding_item_of_type(/obj/item/weapon/shield) || human_target.is_holding_item_of_type(/obj/item/weapon/baton)\
+|| human_target.is_holding_item_of_type(/obj/item/weapon/energy)) && prob(parrychance))
+			target.visible_message("[target] blocks the attack by [user]!")
+			playsound(target.loc, 'sound/effects/metalhit.ogg', 50)
 			return
 		human_target.reagents.add_reagent(/datum/reagent/zombium, zombium_per_hit)
 	return ..()

@@ -41,8 +41,7 @@
 	H.dropItemToGround(H.l_hand, TRUE)
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/id = H.wear_id
-		id.access = list() // A bit gamey, but let's say ids have a security against zombies
-		id.iff_signal = NONE
+		H.dropItemToGround(id, TRUE)
 	H.equip_to_slot_or_del(new claw_type, SLOT_R_HAND)
 	H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
