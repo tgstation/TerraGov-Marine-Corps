@@ -69,16 +69,36 @@
 		playsound(get_turf(H), pick(sounds), 50)
 
 
-	var/datum/limb/limb = pick(H.limbs) //small chance of regrowing a limb
-	if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(1))
-		limb.remove_limb_flags(LIMB_DESTROYED)
-		if(istype(limb, /datum/limb/hand/l_hand))
-			H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
-		else if (istype(limb, /datum/limb/hand/r_hand))
-			H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
-		H.update_body()
-	else if(limb.limb_status & LIMB_BROKEN && prob(0.5))
-		limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+
+	if(SSticker.mode.zombies_regrow_limbs)
+		var/datum/limb/limb = pick(H.limbs) //small chance of regrowing a limb
+		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(1))
+			limb.remove_limb_flags(LIMB_DESTROYED)
+			if(istype(limb, /datum/limb/hand/l_hand))
+				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
+			else if (istype(limb, /datum/limb/hand/r_hand))
+				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
+			H.update_body()
+		else if(limb.limb_status & LIMB_BROKEN && prob(0.5))
+			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+	else
+		if(HAS_TRAIT_FROM(H, TRAIT_FLOORED, TRAIT_LEGLESS))
+			//self-destruct if neutralized
+			H.remove_organ_slot(ORGAN_SLOT_HEART)
+			H.death()
+			return
+		var/numhands = 0
+		var/datum/limb/temp = H.get_limb("l_hand")
+		if(temp && temp.is_usable())
+			numhands++
+		temp = H.get_limb("r_hand")
+		if(temp && temp.is_usable())
+			numhands++
+		if(!numhands)
+			//self-destruct if neutralized
+			H.remove_organ_slot(ORGAN_SLOT_HEART)
+			H.death()
+			return
 
 	if(H.buckled && prob(1)) //small chance of escapting a nest
 		H.buckled.unbuckle_mob(src)
