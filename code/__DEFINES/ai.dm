@@ -83,6 +83,8 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define AI_OBSTACLE_ATTACK "ai_obstacle_attack"
 ///Obstacle can be jumped
 #define AI_OBSTACLE_JUMP "ai_obstacle_jump"
+///Obstacle can't be resolved, and is friendly so shouldn't be destroyed
+#define AI_OBSTACLE_FRIENDLY "ai_obstacle_friendly"
 ///Obstacle has already been handled
 #define AI_OBSTACLE_RESOLVED "ai_obstacle_resolved"
 
