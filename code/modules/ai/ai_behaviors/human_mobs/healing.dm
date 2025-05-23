@@ -120,7 +120,9 @@
 /datum/ai_behavior/human/proc/try_heal()
 	var/mob/living/living_parent = mob_parent
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_NEED_HEAL, mob_parent)
-	if(living_parent.on_fire)
+
+	var/turf/owner_turf = get_turf(mob_parent)
+	if((living_parent.is_on_fire() || living_parent.has_status_effect(STATUS_EFFECT_INTOXICATED)) && can_cross_lava_turf(owner_turf) && check_hazards())
 		living_parent.do_resist()
 		return
 
