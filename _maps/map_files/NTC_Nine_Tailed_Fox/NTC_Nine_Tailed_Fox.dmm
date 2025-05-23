@@ -2421,6 +2421,10 @@
 /area/outpost/cargo{
 	outside = 1
 	})
+"cbl" = (
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "cbn" = (
 /obj/machinery/landinglight/cas{
 	dir = 4
@@ -10170,8 +10174,7 @@
 	},
 /area/mainship/squads/req)
 "jmW" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/charlie,
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
 /turf/open/floor/mainship/emerald{
 	dir = 4
 	},
@@ -12732,8 +12735,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "lvd" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/delta,
+/obj/machinery/computer/camera_advanced/overwatch/military/delta,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -17352,7 +17354,7 @@
 	},
 /area/mainship/squads/req)
 "pUN" = (
-/obj/machinery/computer/camera_advanced/overwatch/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -23853,7 +23855,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "wei" = (
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/military/alpha,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -25894,6 +25896,16 @@
 	dir = 4
 	},
 /area/mainship/squads/general)
+"xRH" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/structure/prop/urban/airport/refuelinghose{
+	pixel_x = -12;
+	pixel_y = -12
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "xRV" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation/two)
@@ -26107,8 +26119,11 @@
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "ycY" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
-/turf/open/floor/mainship/office,
+/obj/structure/prop/urban/airport/refuelinghose2{
+	pixel_x = -12;
+	pixel_y = -12
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "yds" = (
 /obj/machinery/marine_selector/gear/medic,
@@ -40157,8 +40172,8 @@ tIk
 rnH
 kcJ
 kcJ
-ycY
-ycY
+kcJ
+kcJ
 vhS
 jJw
 jJw
@@ -41355,7 +41370,7 @@ aMa
 dqn
 aMa
 axM
-tIk
+cbl
 fXK
 tIk
 gZA
@@ -41597,7 +41612,7 @@ aMa
 rRj
 aMa
 rlW
-tIk
+cbl
 fXK
 tIk
 gZA
@@ -41841,7 +41856,7 @@ aMa
 kEG
 tIk
 fXK
-tIk
+ycY
 gZA
 sEt
 pdX
@@ -42086,7 +42101,7 @@ fXK
 tIk
 aKJ
 jZf
-jZf
+xRH
 jRJ
 nBV
 pin

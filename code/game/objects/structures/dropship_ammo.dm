@@ -214,7 +214,7 @@
 	icon_state = "30mm_crate"
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/heavygun
-	travelling_time = 6 SECONDS
+	travelling_time = 4 SECONDS
 	ammo_count = 2000
 	max_ammo_count = 2000
 	transferable_ammo = TRUE
