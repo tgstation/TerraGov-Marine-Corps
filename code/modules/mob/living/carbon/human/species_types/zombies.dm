@@ -3,8 +3,8 @@
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	see_in_dark = 8
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	inherent_traits = TRAIT_CRIT_IS_DEATH //so they dont stay alive when downed ig.
 	blood_color = "#110a0a"
 	hair_color = "#000000"
 	slowdown = 0.5
@@ -20,8 +20,10 @@
 	)
 	///Sounds made randomly by the zombie
 	var/list/sounds = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
+
 	///Time before resurrecting if dead
 	var/revive_time = 1 MINUTES
+
 	///How much burn and burn damage can you heal every Life tick (half a sec)
 	var/heal_rate = 10
 	var/faction = FACTION_ZOMBIE
@@ -39,13 +41,12 @@
 	H.dropItemToGround(H.l_hand, TRUE)
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/id = H.wear_id
-		id.access = list() // A bit gamey, but let's say ids have a security against zombies
-		id.iff_signal = NONE
+		H.dropItemToGround(id, TRUE)
 	H.equip_to_slot_or_del(new claw_type, SLOT_R_HAND)
 	H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 	health_hud.add_hud_to(H)
-	H.job = new /datum/job/zombie //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
+	H.job = SSjob.type_occupations[/datum/job/zombie] //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
 	for(var/datum/action/action AS in H.actions)
 		action.remove_action(H)
 	var/datum/action/rally_zombie/rally_zombie = new
@@ -65,17 +66,41 @@
 /datum/species/zombie/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(10))
 		playsound(get_turf(H), pick(sounds), 50)
-// no regrowing limbs
-//	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
-//		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
-//			limb.remove_limb_flags(LIMB_DESTROYED)
-//			if(istype(limb, /datum/limb/hand/l_hand))
-//				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
-//			else if (istype(limb, /datum/limb/hand/r_hand))
-//				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
-//			H.update_body()
-//		else if(limb.limb_status & LIMB_BROKEN && prob(20))
-//			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+
+
+
+	if(SSticker.mode.zombies_regrow_limbs)
+		var/datum/limb/limb = pick(H.limbs) //small chance of regrowing a limb
+		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(1))
+			limb.remove_limb_flags(LIMB_DESTROYED)
+			if(istype(limb, /datum/limb/hand/l_hand))
+				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
+			else if (istype(limb, /datum/limb/hand/r_hand))
+				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
+			H.update_body()
+		else if(limb.limb_status & LIMB_BROKEN && prob(0.5))
+			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+	else
+		if(HAS_TRAIT_FROM(H, TRAIT_FLOORED, TRAIT_LEGLESS))
+			//self-destruct if neutralized
+			H.remove_organ_slot(ORGAN_SLOT_HEART)
+			H.death()
+			return
+		var/numhands = 0
+		var/datum/limb/temp = H.get_limb("l_hand")
+		if(temp && temp.is_usable())
+			numhands++
+		temp = H.get_limb("r_hand")
+		if(temp && temp.is_usable())
+			numhands++
+		if(!numhands)
+			//self-destruct if neutralized
+			H.remove_organ_slot(ORGAN_SLOT_HEART)
+			H.death()
+			return
+
+	if(H.buckled && prob(1)) //small chance of escapting a nest
+		H.buckled.unbuckle_mob(src)
 
 	if(H.health != total_health)
 		H.heal_limbs(heal_rate)
@@ -87,8 +112,10 @@
 
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
 	SSmobs.stop_processing(H)
+
 	if(!H.on_fire && H.has_working_organs())
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
+
 
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
 	. = ..()

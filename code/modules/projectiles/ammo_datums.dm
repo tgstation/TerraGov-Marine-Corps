@@ -93,31 +93,31 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
 
-/datum/ammo/proc/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/proc/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return
 
 ///Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
-/datum/ammo/proc/on_shield_block(mob/target_mob, obj/projectile/proj)
+/datum/ammo/proc/on_shield_block(mob/target_mob, atom/movable/projectile/proj)
 	return
 
 ///Special effects when hitting dense turfs.
-/datum/ammo/proc/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/proc/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	return
 
 ///Special effects when hitting mobs.
-/datum/ammo/proc/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/proc/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	return
 
 ///Special effects when hitting objects.
-/datum/ammo/proc/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/proc/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	return
 
 ///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
-/datum/ammo/proc/on_leave_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/proc/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
 	return
 
 ///Handles CC application on the victim
-/datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, soft_size_threshold = 3, hard_size_threshold = 2)
+/datum/ammo/proc/staggerstun(mob/victim, atom/movable/projectile/proj, max_range = 5, stun = 0, paralyze = 0, stagger = 0, slowdown = 0, knockback = 0, soft_size_threshold = 3, hard_size_threshold = 2)
 	if(!victim)
 		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
@@ -142,20 +142,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			stun = 0
 
 	//Check for and apply hard CC.
-	if(hard_size_threshold >= victim.mob_size && (stun || weaken || knockback))
+	if(hard_size_threshold >= victim.mob_size && (stun || paralyze || knockback))
 		var/mob/living/living_victim = victim
 		if(living_victim.IsStun() || living_victim.IsParalyzed()) //Prevent chain stunning.
 			stun = 0
-			weaken = 0
+			paralyze = 0
 
-		if(stun || weaken)
-			var/list/stunlist = list(stun, weaken, stagger, slowdown)
+		if(stun || paralyze)
+			var/list/stunlist = list(stun, paralyze, stagger, slowdown)
 			if(SEND_SIGNAL(living_victim, COMSIG_LIVING_PROJECTILE_STUN, stunlist, armor_type, penetration))
 				stun = stunlist[1]
-				weaken = stunlist[2]
+				paralyze = stunlist[2]
 				stagger = stunlist[3]
 				slowdown = stunlist[4]
-			living_victim.apply_effects(stun,weaken)
+			living_victim.apply_effects(stun,paralyze)
 
 		if(knockback)
 			if(isxeno(victim))
@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 
 
-/datum/ammo/proc/airburst(atom/target, obj/projectile/proj)
+/datum/ammo/proc/airburst(atom/target, atom/movable/projectile/proj)
 	if(!target || !proj)
 		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	for(var/mob/living/carbon/victim in orange(1, target))
@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.apply_damage(proj.damage * airburst_multiplier, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE)
 
 ///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
-/datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)
+/datum/ammo/proc/deflagrate(atom/target, atom/movable/projectile/proj)
 	if(!target || !proj)
 		CRASH("deflagrate() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	if(!istype(target, /mob/living))
@@ -210,7 +210,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
-/datum/ammo/proc/fire_burst(atom/target, obj/projectile/proj)
+/datum/ammo/proc/fire_burst(atom/target, atom/movable/projectile/proj)
 	if(!target || !proj)
 		CRASH("fire_burst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	for(var/mob/living/carbon/victim in range(1, target))
@@ -231,15 +231,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
  * Such a buckshot
  * origin_override used to have the new projectile(s) originate from a different source than the main projectile
 */
-/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, mob/living/shooter, atom/source, range, speed, angle, target, origin_override) //todo: Combine these procs with extra args or something, as they are quite similar
+/datum/ammo/proc/fire_bonus_projectiles(atom/movable/projectile/main_proj, mob/living/shooter, atom/source, range, speed, angle, target, origin_override) //todo: Combine these procs with extra args or something, as they are quite similar
 	var/effect_icon = ""
-	var/proj_type = /obj/projectile
-	if(istype(main_proj, /obj/projectile/hitscan))
-		proj_type = /obj/projectile/hitscan
-		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+	var/proj_type = /atom/movable/projectile
+	if(istype(main_proj, /atom/movable/projectile/hitscan))
+		proj_type = /atom/movable/projectile/hitscan
+		var/atom/movable/projectile/hitscan/main_proj_hitscan = main_proj
 		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
+		var/atom/movable/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
@@ -258,15 +258,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_proj.fire_at(target, shooter, source, range, speed, new_angle, TRUE, loc_override = origin_override)
 
 ///A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
-/datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, mob/living/shooter, atom/source, projectile_amount, angle, target, loc_override)
+/datum/ammo/proc/fire_directionalburst(atom/movable/projectile/main_proj, mob/living/shooter, atom/source, projectile_amount, angle, target, loc_override)
 	var/effect_icon = ""
-	var/proj_type = /obj/projectile
-	if(istype(main_proj, /obj/projectile/hitscan))
-		proj_type = /obj/projectile/hitscan
-		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+	var/proj_type = /atom/movable/projectile
+	if(istype(main_proj, /atom/movable/projectile/hitscan))
+		proj_type = /atom/movable/projectile/hitscan
+		var/atom/movable/projectile/hitscan/main_proj_hitscan = main_proj
 		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to projectile_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new proj_type(loc_override ? loc_override : main_proj.loc, effect_icon)
+		var/atom/used_loc = loc_override ? loc_override : main_proj.loc
+		var/atom/movable/projectile/new_proj = new proj_type(used_loc, effect_icon)
+		// we do this so if we place inside something, we fly out of it instead of hitting it
+		new_proj.hit_atoms += used_loc.contents
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
@@ -299,11 +302,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	return
 
 ///called on projectile process() when AMMO_SPECIAL_PROCESS flag is active
-/datum/ammo/proc/ammo_process(obj/projectile/proj, damage)
+/datum/ammo/proc/ammo_process(atom/movable/projectile/proj, damage)
 	CRASH("ammo_process called with unimplemented process!")
 
 ///bounces the projectile by creating a new projectile and calculating an angle of reflection
-/datum/ammo/proc/reflect(turf/T, obj/projectile/proj, scatter_variance)
+/datum/ammo/proc/reflect(turf/T, atom/movable/projectile/proj, scatter_variance)
 	if(!bonus_projectiles_type) //while fire_bonus_projectiles does not require this var, it can cause infinite recursion in some cases, leading to death tiles
 		return
 	var/new_range = proj.proj_max_range - proj.distance_travelled

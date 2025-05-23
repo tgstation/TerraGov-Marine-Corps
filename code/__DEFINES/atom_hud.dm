@@ -11,6 +11,8 @@
 #define SQUAD_HUD_TERRAGOV "squad_hud_terragov" //squad hud showing who's leader, corpsman, etc for each squad.
 #define SQUAD_HUD_SOM "squad_hud_som" //squad hud showing who's leader, corpsman, etc for each squad.
 #define SQUAD_HUD_CLF "squad_hud_clf" //squad hud showing who's leader, corpsman, etc for each squad.
+#define SQUAD_HUD_VSD "squad_hud_vsd" //squad hud showing who's leader, corpsman, etc for each squad.
+#define SQUAD_HUD_ICC "squad_hud_icc" //squad hud showing who's leader, corpsman, etc for each squad.
 #define PLASMA_HUD "xeno_plasma_hud" //indicates the plasma level of xenos.
 #define PHEROMONE_HUD "xeno_pheromone_hud" //indicates which pheromone is active on a xeno.
 #define QUEEN_OVERWATCH_HUD "xeno_overwatch_hud" //indicates which xeno the queen is overwatching.
@@ -27,6 +29,9 @@
 #define XENO_FIRE_HUD "xeno_fire_hud" // displays how many fire stacks a xeno has
 #define XENO_BLESSING_HUD "xeno_blessing_hud" //indicates what blessings the xeno has
 #define XENO_EVASION_HUD "xeno_extra_hud" // displays anything extra or additional such as runner's evasion duration
+
+/// huds that layer on a higher plane in an attempt to ALWAYS show
+#define HUDS_LAYERING_HIGH list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, XENO_RANK_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
@@ -52,6 +57,9 @@
 #define DATA_HUD_SQUAD_SOM 14
 #define DATA_HUD_XENO_DEBUFF 15
 #define DATA_HUD_XENO_HEART 16
+#define DATA_HUD_SQUAD_CLF 17
+#define DATA_HUD_SQUAD_VSD 18
+#define DATA_HUD_SQUAD_ICC 19
 
 
 // Notification action types

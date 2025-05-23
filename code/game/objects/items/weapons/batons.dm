@@ -16,7 +16,7 @@
 		return
 
 	M.set_timed_status_effect(16 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
-	visible_message(span_danger("[M] has been beaten with \the [src] by [user]!"), null, span_warning(" You hear someone fall"), 2)
+	visible_message(span_danger("[M] has been beaten with \the [src] by [user]!"), null, span_warning("You hear someone fall"), 2)
 
 //Telescopic baton
 /obj/item/weapon/telebaton
@@ -33,23 +33,23 @@
 /obj/item/weapon/telebaton/attack_self(mob/user as mob)
 	on = !on
 	if(on)
-		user.visible_message(span_warning(" With a flick of their wrist, [user] extends their telescopic baton."),\
+		user.visible_message(span_warning("With a flick of their wrist, [user] extends their telescopic baton."),\
 		span_warning("You extend the baton."),\
 		"You hear an ominous click.")
 		icon_state = "telebaton_1"
 		worn_icon_state = "telebaton_1"
 		w_class = WEIGHT_CLASS_NORMAL
 		force = 20
-		attack_verb = list("smacked", "struck", "slapped")
+		attack_verb = list("smacks", "strikes", "slaps")
 	else
-		user.visible_message(span_notice(" [user] collapses their telescopic baton."),\
+		user.visible_message(span_notice("[user] collapses their telescopic baton."),\
 		span_notice("You collapse the baton."),\
 		"You hear a click.")
 		icon_state = "telebaton_0"
 		worn_icon_state = "telebaton_0"
 		w_class = WEIGHT_CLASS_SMALL
 		force = 3//not so robust now
-		attack_verb = list("hit", "punched")
+		attack_verb = list("hits", "punches")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

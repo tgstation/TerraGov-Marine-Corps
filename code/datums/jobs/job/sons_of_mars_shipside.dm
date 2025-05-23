@@ -36,15 +36,15 @@
 	"}
 	minimap_icon = "captain" //placeholder
 
-/datum/job/som/command/commander/radio_help_message(mob/M)
+/datum/job/som/command/commander/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"As the senior officer in command of this SOM battallion you are held by higher standard and are expected to act competently.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"As the senior officer in command of this SOM battalion you are held by higher standard and are expected to act competently.
 Your primary task is to command and support the SOM marines under your command from the command center in [SSmapping.configs[SHIP_MAP].map_name].
 Your first order of business should be briefing the marines on the mission they are about to undertake, and providing them with all the required attrition and asset support they need to succeed.
 You should not be voluntarily leaving your base under any circumstances. You are a senior officer, not a field officer.
-If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
-Godspeed, commander! And remember, you are not above the law."})
-
+If you require any help, use <b>Mentorhelp</b> to ask mentors about what you're supposed to do.
+Godspeed, Commander! And remember, you are not above the law."}
 
 /datum/outfit/job/som/command/commander
 	name = SOM_COMMANDER
@@ -56,7 +56,7 @@ Godspeed, commander! And remember, you are not above the law."})
 	w_uniform = /obj/item/clothing/under/som/officer/senior
 	shoes = /obj/item/clothing/shoes/marine/som/knife
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
-	r_store = /obj/item/storage/pouch/general/large/command
+	r_pocket = /obj/item/storage/pouch/general/large/command
 
 /datum/outfit/job/som/command/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -105,12 +105,13 @@ Godspeed, commander! And remember, you are not above the law."})
 	"}
 	minimap_icon = "som_fieldcommander"
 
-/datum/job/som/command/fieldcommander/radio_help_message(mob/M)
+/datum/job/som/command/fieldcommander/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed SOM marine.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed SOM marine.
 Your duties are to ensure the SOM are following orders and achieving objectives.
 Lead by example and support those under your command.
-Make the SOM proud!"})
+Make the SOM proud!"}
 
 /datum/job/som/command/fieldcommander/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -144,11 +145,11 @@ Make the SOM proud!"})
 	w_uniform = /obj/item/clothing/under/som/officer/senior
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/officer
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	r_store = /obj/item/storage/pouch/general/large/command
+	r_pocket = /obj/item/storage/pouch/general/large/command
 	gloves = /obj/item/clothing/gloves/marine/officer
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 	glasses = /obj/item/clothing/glasses/hud/health
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/job/som/command/fieldcommander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -185,10 +186,11 @@ Make the SOM proud!"})
 
 	minimap_icon = "staffofficer"
 
-/datum/job/som/command/staffofficer/radio_help_message(mob/M)
+/datum/job/som/command/staffofficer/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to monitor the SOM forces on the ground, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You are also in line to take command after the senior officer."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"Your job is to monitor the SOM forces on the ground, man the CIC, and listen to your superior officers.
+You are in charge of logistics and the overwatch system. You are also in line to take command after the senior officer."}
 
 /datum/job/som/command/staffofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -218,8 +220,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	ears = /obj/item/radio/headset/mainship/mcom/som
 	w_uniform = /obj/item/clothing/under/som/officer
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/binoculars/tactical
+	r_pocket = /obj/item/storage/pouch/general/large
+	l_pocket = /obj/item/binoculars/tactical
 //Pilot Officer
 /datum/job/som/command/pilot
 	title = SOM_PILOT_OFFICER
@@ -262,13 +264,12 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_W6"
 
-/datum/job/som/command/pilot/radio_help_message(mob/M)
+/datum/job/som/command/pilot/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to support marines with either close air support via the Condor, or mobile dropship support with the Tadpole.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"Your job is to support marines with either close air support via the Condor, or mobile dropship support with the Tadpole.\
 While you are in charge of all aerial crafts the Alamo does not require supervision outside of turning automatic mode on or off at crucial times, and you are expected to choose between the Condor and Tadpole.
-Though you are a warrant officer, your authority is limited to the dropship and your chosen aerial craft, where you have authority over the enlisted personnel.
-"})
-
+Though you are a warrant officer, your authority is limited to the dropship and your chosen aerial craft, where you have authority over the enlisted personnel."}
 
 /datum/outfit/job/som/command/pilot
 	name = SOM_PILOT_OFFICER
@@ -283,8 +284,8 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	gloves = /obj/item/clothing/gloves/insulated
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/hud_tablet/pilot
+	r_pocket = /obj/item/storage/pouch/general/large
+	l_pocket = /obj/item/hud_tablet/pilot
 
 //Mech pilot
 /datum/job/som/command/mech_pilot
@@ -310,10 +311,11 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	"}
 	minimap_icon = "mech_pilot"
 
-/datum/job/som/command/mech_pilot/radio_help_message(mob/M)
+/datum/job/som/command/mech_pilot/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are the operator of a very expensive and valuable Mech, and are trained and expected to use it in the field of combat.
-You can serve your Division in a variety of roles, so choose carefully."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are the operator of a very expensive and valuable Mech, and are trained and expected to use it in the field of combat.
+You can serve your Division in a variety of roles, so choose carefully."}
 
 /datum/job/som/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -399,12 +401,12 @@ You can serve your Division in a variety of roles, so choose carefully."})
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_W6"
 
-/datum/job/som/engineering/chief/radio_help_message(mob/M)
+/datum/job/som/engineering/chief/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to maintain the ship's engine and keep everything running.
-If you have no idea how to set up the engine, or it's your first time, <b>mentorhelp</b> so that a mentor can assist you.
-You are also next in the chain of command, should the bridge crew fall in the line of duty."})
-
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"Your job is to maintain the ship's engine and keep everything running.
+If you have no idea how to set up the engine, or it's your first time, <b>Mentorhelp</b> so that a Mentor can assist you.
+You are also next in the chain of command, should the bridge crew fall in the line of duty."}
 
 /datum/outfit/job/som/engineering/chief
 	name = SOM_CHIEF_ENGINEER
@@ -419,7 +421,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/beret/marine/techofficer
-	r_store = /obj/item/storage/pouch/construction
+	r_pocket = /obj/item/storage/pouch/construction
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/outfit/job/som/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -470,11 +472,10 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_S1"
 
-/datum/job/som/engineering/tech/radio_help_message(mob/M)
+/datum/job/som/engineering/tech/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to make sure the base is operational, you should firstly focus on manning the
-requisitions line and later on to be ready to send supplies for marines who are groundside."})
-
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "Your job is to make sure the base is operational, you should firstly focus on manning the requisitions line and later on to be ready to send supplies for marines who are groundside."
 
 /datum/outfit/job/som/engineering/tech
 	name = SOM_TECH
@@ -488,7 +489,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	gloves = /obj/item/clothing/gloves/insulated
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
-	r_store = /obj/item/storage/pouch/general/medium
+	r_pocket = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/job/som/requisitions
@@ -543,11 +544,12 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_W5"
 
-/datum/job/som/requisitions/officer/radio_help_message(mob/M)
+/datum/job/som/requisitions/officer/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to dispense supplies to the SOM.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"Your job is to dispense supplies to the SOM.
 While you may request paperwork for supplies, do not go out of your way to screw with marines, unless you want to get deposed.
-A happy base is a well-functioning base."})
+A happy base is a well-functioning base."}
 
 
 /datum/outfit/job/som/requisitions/officer
@@ -563,7 +565,7 @@ A happy base is a well-functioning base."})
 	shoes = /obj/item/clothing/shoes/marine/som/knife
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/tgmccap/req
-	r_store = /obj/item/storage/pouch/general/large
+	r_pocket = /obj/item/storage/pouch/general/large
 
 /datum/job/som/medical
 	job_category = JOB_CAT_MEDICALSOM
@@ -598,11 +600,12 @@ A happy base is a well-functioning base."})
 	"}
 	minimap_icon = "chief_medical"
 
-/datum/job/som/medical/professor/radio_help_message(mob/M)
+/datum/job/som/medical/professor/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You are the chief medical officer stationed behind the frontlines and supervisor to the medical department.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are the chief medical officer stationed behind the frontlines and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
-Make sure that the doctors and nurses are doing their jobs and keeping the SOM healthy and strong."})
+Make sure that the doctors and nurses are doing their jobs and keeping the SOM healthy and strong."}
 
 /datum/job/som/medical/professor/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -632,8 +635,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
-	r_store = /obj/item/storage/pouch/medkit/doctor
-	l_store = /obj/item/storage/pouch/surgery
+	r_pocket = /obj/item/storage/pouch/medkit/doctor
+	l_pocket = /obj/item/storage/pouch/surgery
 
 /datum/outfit/job/som/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -676,11 +679,12 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "MD"
 
-/datum/job/som/medical/medicalofficer/radio_help_message(mob/M)
+/datum/job/som/medical/medicalofficer/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You are a SOM medical doctor stationed behind the frontlines.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are a SOM medical doctor stationed behind the frontlines.
 You are tasked with keeping the SOM healthy and strong, usually in the form of surgery.
-You are also an expert when it comes to medication and treatment. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
+You are also an expert when it comes to medication and treatment. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."}
 
 
 /datum/outfit/job/som/medical/medicalofficer
@@ -697,8 +701,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
-	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/doctor
+	r_pocket = /obj/item/storage/pouch/surgery
+	l_pocket = /obj/item/storage/pouch/medkit/doctor
 
 /datum/outfit/job/som/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -744,11 +748,12 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "SOM_E2"
 
-/datum/job/som/civilian/chef/radio_help_message(mob/M)
+/datum/job/som/civilian/chef/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You are a chef stationed behind the frontlines.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are a chef stationed behind the frontlines.
 You are tasked with keeping the SOM well fed and happy, usually in the form of delicious food.
-You are also an expert when it comes to botany and hydroponics. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
+You are also an expert when it comes to botany and hydroponics. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."}
 
 
 /datum/outfit/job/som/civilian/chef
@@ -838,10 +843,11 @@ You are also an expert when it comes to botany and hydroponics. If you do not kn
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "Mk.V"
 
-/datum/job/som/silicon/synthetic/som/radio_help_message(mob/M)
+/datum/job/som/silicon/synthetic/som/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all SOM departments and personnel on-board.
-In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"Your primary job is to support and assist all SOM departments and personnel on-board.
+In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."}
 
 
 /datum/outfit/job/civilian/synthetic/som
@@ -854,5 +860,5 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	w_uniform = /obj/item/clothing/under/rank/synthetic
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/insulated
-	r_store = /obj/item/storage/pouch/general/medium
-	l_store = /obj/item/storage/pouch/general/medium
+	r_pocket = /obj/item/storage/pouch/general/medium
+	l_pocket = /obj/item/storage/pouch/general/medium

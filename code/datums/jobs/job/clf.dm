@@ -12,11 +12,12 @@
 	var/datum/action/minimap/clf/mini = new
 	mini.give_action(C)
 
-/datum/job/clf/radio_help_message(mob/M)
+/datum/job/clf/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"As a CLF member you are a ex NTC worker, now a servant of Xenomorphs, they are superior, evolved beings that you must serve.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"As a CLF member you are a ex NTC worker, now a servant of Xenomorphs, they are superior, evolved beings that you must serve.
 You can understand but not speak xeno language but they can understand your language already, Obey your Xenomorph masters.
-Your primary goal is to serve the hive, and ultimate goal is to liberate the colonies from all occupational forces so the Xenos may reclaim the lands, and breed your kind forever."})
+Your primary goal is to serve the hive, and ultimate goal is to liberate the colonies from all occupational forces so the Xenos may reclaim the lands, and breed your kind forever."}
 
 //CLF Standard
 /datum/job/clf/standard
@@ -48,8 +49,8 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/strawhat
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pill_bottle/zoom
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pill_bottle/zoom
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -225,7 +226,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/skorpion
-	l_store = /obj/item/storage/pouch/medical_injectors/medic
+	l_pocket = /obj/item/storage/pouch/medical_injectors/medic
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -243,7 +244,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 
 /datum/outfit/job/clf/medic/uzi
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
-	r_store = /obj/item/storage/holster/flarepouch
+	r_pocket = /obj/item/storage/holster/flarepouch
 
 /datum/outfit/job/clf/medic/uzi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -265,7 +266,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 
 /datum/outfit/job/clf/medic/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
-	r_store = /obj/item/storage/holster/flarepouch
+	r_pocket = /obj/item/storage/holster/flarepouch
 
 /datum/outfit/job/clf/medic/skorpion/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -287,7 +288,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 
 /datum/outfit/job/clf/medic/paladin
 	suit_store = /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
-	r_store = /obj/item/storage/pouch/shotgun
+	r_pocket = /obj/item/storage/pouch/shotgun
 
 /datum/outfit/job/clf/medic/paladin/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -329,8 +330,8 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/helmet/marine
-	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/pistol
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 
 
 /datum/outfit/job/clf/specialist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -434,8 +435,8 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/militia
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/pistol
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -572,7 +573,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	w_uniform = /obj/item/clothing/under/swimsuit/purple
 	shoes = /obj/item/clothing/shoes/sandal
 	belt = /obj/item/storage/holster/t19/full
-	r_store = /obj/item/flashlight
+	r_pocket = /obj/item/flashlight
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/clf/breeder/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -660,10 +661,11 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "Mk.V"
 
-/datum/job/clf/silicon/synthetic/clf/radio_help_message(mob/M)
+/datum/job/clf/silicon/synthetic/clf/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all clf departments and personnel on-board.
-In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"Your primary job is to support and assist all clf departments and personnel on-board.
+In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."}
 
 
 /datum/outfit/job/civilian/synthetic/clf
@@ -676,5 +678,5 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	w_uniform = /obj/item/clothing/under/rank/synthetic
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/insulated
-	r_store = /obj/item/storage/pouch/general/medium
-	l_store = /obj/item/storage/pouch/general/medium
+	r_pocket = /obj/item/storage/pouch/general/medium
+	l_pocket = /obj/item/storage/pouch/general/medium

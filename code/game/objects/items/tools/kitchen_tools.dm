@@ -27,7 +27,7 @@
 	throw_speed = 3
 	throw_range = 5
 	atom_flags = CONDUCT
-	attack_verb = list("attacked", "stabbed", "poked")
+	attack_verb = list("attacks", "stabs", "pokes")
 	sharp = 0
 	/// Is there something on this utensil?
 	var/image/loaded
@@ -87,13 +87,13 @@
 	name = "spoon"
 	desc = "It's a spoon. You can see your own upside-down face in the reflection."
 	icon_state = "spoon"
-	attack_verb = list("attacked", "poked")
+	attack_verb = list("attacks", "pokes")
 
 /obj/item/tool/kitchen/utensil/pspoon
 	name = "plastic spoon"
 	desc = "It's a plastic spoon. How dull."
 	icon_state = "pspoon"
-	attack_verb = list("attacked", "poked")
+	attack_verb = list("attacks", "pokes")
 
 /*
 * Knives
@@ -139,7 +139,7 @@
 	throwforce = 6
 	throw_speed = 3
 	throw_range = 6
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 
 /obj/item/tool/kitchen/knife/suicide_act(mob/user)
 	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
@@ -166,7 +166,7 @@
 	throwforce = 25
 	throw_speed = 3
 	throw_range = 6
-	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("cleaves", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -184,4 +184,4 @@
 	throw_speed = 2
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked")
+	attack_verb = list("bashes", "batters", "bludgeons", "thrashes", "whacks")

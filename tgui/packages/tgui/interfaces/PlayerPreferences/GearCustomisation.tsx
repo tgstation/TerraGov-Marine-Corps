@@ -1,11 +1,17 @@
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+
 import { useBackend } from '../../backend';
-import { Box, Button, LabeledList, Section, Stack } from '../../components';
 
 export const GearCustomization = (props) => {
   const { act, data } = useBackend<GearCustomizationData>();
 
-  const { gearsets, gear, clothing, undershirt, backpack, gender } = data;
-
+  const {
+    gearsets,
+    gear,
+    clothing,
+    backpack,
+    physique_used,
+  } = data;
   // These correspond to the gear slot and you need to update them if the defines change
   const slotMapping = {
     10: 'Head',
@@ -146,7 +152,7 @@ export const GearCustomization = (props) => {
         <Stack.Item grow>
           <Section title={'Undershirt (select one)'}>
             <LabeledList>
-              {clothing['undershirt'][gender]?.map((item, idx) => (
+              {clothing['undershirt'][physique_used]?.map((item, idx) => (
                 <LabeledList.Item key={item} label={item}>
                   <Button.Checkbox
                     inline
@@ -166,7 +172,7 @@ export const GearCustomization = (props) => {
         <Stack.Item grow>
           <Section title={'Underwear (select one)'}>
             <LabeledList>
-              {clothing['underwear'][gender]?.map((item, idx) => (
+              {clothing['underwear'][physique_used]?.map((item, idx) => (
                 <LabeledList.Item key={item} label={item}>
                   <Button.Checkbox
                     inline

@@ -114,7 +114,7 @@
 	removed_type = /obj/item/organ/heart
 	robotic_type = /obj/item/organ/heart/prosthetic
 	organ_id = ORGAN_HEART
-	damage_description = "Bruised hearts cause reduced constitution, suffocation and pain. Broken hearts prevent revival until repaired."
+	damage_description = "Damaged hearts cause reduced constitution, suffocation and pain. Failing hearts prevent revival until repaired."
 
 /datum/internal_organ/heart/process()
 	. = ..()
@@ -142,7 +142,7 @@
 	removed_type = /obj/item/organ/lungs
 	robotic_type = /obj/item/organ/lungs/prosthetic
 	organ_id = ORGAN_LUNGS
-	damage_description = "Bruised lungs cause suffocation, slowdown and slower endurance regeneration. Broken lungs significantly worsen these effects."
+	damage_description = "Damaged lungs cause suffocation, slowdown and slower endurance regeneration. Failing lungs significantly worsen these effects."
 
 /datum/internal_organ/lungs/process()
 	..()
@@ -227,7 +227,7 @@
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
 	organ_id = ORGAN_KIDNEYS
-	damage_description = "Bruised and broken kidneys reduce the amount of reagents a person can have in their system before they feel drawbacks."
+	damage_description = "Damaged and failing kidneys reduce the amount of reagents a person can have in their system before they feel drawbacks."
 	///Tracks the number of reagent/medicine datums we currently have
 	var/current_medicine_count = 0
 	///How many drugs we can take before they overwhelm us. Decreases with damage
@@ -343,7 +343,7 @@
 	robotic_type = /obj/item/organ/eyes/prosthetic
 	var/eye_surgery_stage = 0 //stores which stage of the eye surgery the eye is at
 	organ_id = ORGAN_EYES
-	damage_description = "Bruised eyes cause blurry vision. Broken eyes cause blindness."
+	damage_description = "Damaged eyes cause blurry vision. Failing eyes cause blindness."
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()

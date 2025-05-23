@@ -13,7 +13,7 @@
 	else if(!density && open_layer)
 		layer = open_layer
 	else
-		layer = PODDOOR_CLOSED_LAYER
+		layer = CLOSED_BLASTDOOR_LAYER
 	update_icon_state()
 
 /obj/machinery/door/poddoor/shutters/open()
@@ -87,7 +87,7 @@
 	icon_state = "shutter0"
 	density = FALSE
 	opacity = FALSE
-	layer = PODDOOR_OPEN_LAYER
+	layer = BLASTDOOR_LAYER
 
 /obj/machinery/door/poddoor/shutters/opened/medbay
 	name = "Medbay Lockdown Shutters"
@@ -125,13 +125,24 @@
 /obj/machinery/door/poddoor/shutters/mainship/open
 	density = FALSE
 	opacity = FALSE
-	layer = PODDOOR_OPEN_LAYER
+	layer = BLASTDOOR_LAYER
 	icon_state = "shutter0"
 
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct
 	name = "Self Destruct Lockdown"
 	id = "sd_lockdown"
 	resistance_flags = RESIST_ALL
+
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
+
+/// Called when [COMSIG_SECURITY_LEVEL_CHANGED] sends a signal, opens the shutters if the sec level is an "emergency" level
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
+	SIGNAL_HANDLER
+	if(!(next_level.sec_level_flags & SEC_LEVEL_FLAG_STATE_OF_EMERGENCY))
+		return
+	open()
 
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar
 	name = "\improper Hangar Shutters"
@@ -159,7 +170,7 @@
 /obj/machinery/door/poddoor/shutters/transit/open
 	density = FALSE
 	opacity = FALSE
-	layer = PODDOOR_OPEN_LAYER
+	layer = BLASTDOOR_LAYER
 	icon_state = "shutter0"
 
 /obj/machinery/door/poddoor/shutters/barren
@@ -170,15 +181,15 @@
 	density = FALSE
 	opacity = FALSE
 	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
-	open_layer = PODDOOR_CLOSED_LAYER
-	closed_layer = PODDOOR_CLOSED_LAYER
+	open_layer = CLOSED_BLASTDOOR_LAYER
+	closed_layer = CLOSED_BLASTDOOR_LAYER
 
 /obj/machinery/door/poddoor/shutters/tadpole_cockpit
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE
-	open_layer = PODDOOR_CLOSED_LAYER
-	closed_layer = PODDOOR_CLOSED_LAYER
+	open_layer = CLOSED_BLASTDOOR_LAYER
+	closed_layer = CLOSED_BLASTDOOR_LAYER
 
 //mainship shutters
 /obj/machinery/door/poddoor/shutters/mainship/hangar
@@ -307,7 +318,7 @@
 	icon_state = "almayer_pdoor0"
 	density = FALSE
 	opacity = FALSE
-	layer = PODDOOR_OPEN_LAYER
+	layer = BLASTDOOR_LAYER
 
 /obj/machinery/door/poddoor/shutters/urban/shutters
 	icon_state = "shutter"
@@ -318,7 +329,7 @@
 	base_icon_state = "shutter"
 	density = FALSE
 	opacity = FALSE
-	layer = PODDOOR_OPEN_LAYER
+	layer = BLASTDOOR_LAYER
 
 /obj/machinery/door/poddoor/shutters/urban/white
 	desc = "That looks like it doesn't open easily."

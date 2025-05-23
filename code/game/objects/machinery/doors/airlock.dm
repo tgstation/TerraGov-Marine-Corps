@@ -8,7 +8,7 @@
 	idle_power_usage = 5
 	active_power_usage = 360
 	atom_flags = HTML_USE_INITAL_ICON_1
-	obj_flags = CAN_BE_HIT
+	obj_flags = parent_type::obj_flags|CAN_BE_HIT
 
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
@@ -57,7 +57,7 @@
 			return
 	return ..(user)
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -71,7 +71,7 @@
 	switch(outcome)
 		if(1 to 9)
 			var/turf/here = get_turf(src)
-			for(var/turf/closed/T in range(2, src))
+			for(var/turf/closed/T in RANGE_TURFS(2, src))
 				here.PlaceOnTop(T.type)
 				return
 			here.PlaceOnTop(/turf/closed/wall)
@@ -242,17 +242,17 @@
 			var/image/access_overlay = image('icons/obj/doors/overlays.dmi', "unres_[heading]", layer = DOOR_HELPER_LAYER, pixel_y = -4)
 			switch(heading)
 				if(NORTH)
-					access_overlay.pixel_x = 0
-					access_overlay.pixel_y = 32
+					access_overlay.pixel_w = 0
+					access_overlay.pixel_z = 32
 				if(SOUTH)
-					access_overlay.pixel_x = 0
-					access_overlay.pixel_y = -32
+					access_overlay.pixel_w = 0
+					access_overlay.pixel_z = -32
 				if(EAST)
-					access_overlay.pixel_x = 32
-					access_overlay.pixel_y = 0
+					access_overlay.pixel_w = 32
+					access_overlay.pixel_z = 0
 				if(WEST)
-					access_overlay.pixel_x = -32
-					access_overlay.pixel_y = 0
+					access_overlay.pixel_w = -32
+					access_overlay.pixel_z = 0
 			. += access_overlay
 
 /obj/machinery/door/airlock/do_animate(animation)
@@ -342,7 +342,7 @@
 	if(!issilicon(user) && isElectrified())
 		shock(user, 100)
 
-/obj/machinery/door/airlock/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/machinery/door/airlock/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	. = ..()
 	if(. && is_mainship_level(z)) //log shipside greytiders
 		log_attack("[key_name(proj.firer)] shot [src] with [proj] at [AREACOORD(src)]")

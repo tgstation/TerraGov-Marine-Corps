@@ -8,30 +8,6 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	layer = FLY_LAYER
 
-/obj/effect/xenomorph/splatter
-	name = "splatter"
-	desc = "It burns! It burns like hygiene!"
-	icon_state = "splatter"
-	density = FALSE
-	opacity = FALSE
-	anchored = TRUE
-
-/obj/effect/xenomorph/splatter/Initialize(mapload) //Self-deletes after creation & animation
-	. = ..()
-	QDEL_IN(src, 8)
-
-/obj/effect/xenomorph/splatterblob
-	name = "splatter"
-	desc = "It burns! It burns like hygiene!"
-	icon_state = "acidblob"
-	density = FALSE
-	opacity = FALSE
-	anchored = TRUE
-
-/obj/effect/xenomorph/splatterblob/Initialize(mapload) //Self-deletes after creation & animation
-	. = ..()
-	QDEL_IN(src, 4 SECONDS)
-
 /obj/effect/xenomorph/spray
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
@@ -50,6 +26,7 @@
 
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
+	notify_ai_hazard()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
@@ -61,6 +38,14 @@
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	xeno_owner = null
+	return ..()
+
+/obj/effect/xenomorph/spray/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
+
+/obj/effect/xenomorph/spray/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
 	return ..()
 
 /// Signal handler to check if an human is entering the acid spray turf
@@ -84,11 +69,11 @@
 	if(CHECK_MULTIPLE_BITFIELDS(pass_flags, HOVERING) || stat == DEAD)
 		return
 
-	if(acid_spray.xeno_owner && TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
+	if(acid_spray.xeno_owner && TIMER_COOLDOWN_RUNNING(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
 		acid_spray_act(acid_spray.xeno_owner)
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ACID))
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
@@ -116,7 +101,7 @@
 		var/atom/A = H
 		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
-//Medium-strength acid
+//Medium-strength acid // todo please god make me into an overlay and component already...
 /obj/effect/xenomorph/acid
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
@@ -159,7 +144,7 @@
 	RegisterSignal(acid_t, COMSIG_ITEM_ATTEMPT_PICK_UP, PROC_REF(on_attempt_pickup))
 	RegisterSignal(acid_t, COMSIG_QDELETING, PROC_REF(on_target_del))
 	RegisterSignal(acid_t, COMSIG_MOVABLE_MOVED, PROC_REF(on_target_move))
-	layer = acid_t.layer
+	layer = acid_t.layer+0.001
 	base_icon_state = icon_state
 	update_appearance(UPDATE_ICON_STATE)
 	START_PROCESSING(SSslowprocess, src)
@@ -201,7 +186,7 @@
 ///Moves with the target
 /obj/effect/xenomorph/acid/proc/on_target_move(atom/source)
 	SIGNAL_HANDLER
-	loc = source.loc
+	abstract_move(source.loc)
 
 ///Sig handler to show this acid is attached to something
 /obj/effect/xenomorph/acid/proc/return_self_acid(atom/source, list/acid_List)

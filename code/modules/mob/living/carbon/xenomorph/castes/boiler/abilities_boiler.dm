@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Toggle Long Range Sight"
 	action_icon_state = "toggle_long_range"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
+	desc = "Extend your sight off into the distance. Must remain stationary to use."
 	ability_cost = 20
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
@@ -197,7 +197,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Bombard"
 	action_icon_state = "bombard"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Launch a glob of neurotoxin or acid. Must be rooted to use."
+	desc = "Dig yourself into place in order to launch a glob of acid or neurotoxin."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
 	)
@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	return xeno_owner.xeno_caste.bomb_delay - ((xeno_owner.neuro_ammo + xeno_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS))
 
 /datum/action/ability/activable/xeno/bombard/on_cooldown_finish()
-	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
+	to_chat(owner, span_notice("We feel our toxin glands swell. We are able to bombard an area again."))
 	if(xeno_owner.selected_ability == src)
 		xeno_owner.set_bombard_pointer()
 	return ..()
@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] launches a huge glob of acid hurling into the distance!"), \
 	span_xenowarning("We launch a huge glob of acid hurling into the distance!"), null, 5)
 
-	var/obj/projectile/P = new /obj/projectile(xeno_owner.loc)
+	var/atom/movable/projectile/P = new /atom/movable/projectile(xeno_owner.loc)
 	P.generate_bullet(xeno_owner.ammo)
 	P.fire_at(target, xeno_owner, xeno_owner, xeno_owner.ammo.max_range, xeno_owner.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/effects/blobattack.ogg', 25, 1)
@@ -334,7 +334,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Acid Shroud"
 	action_icon_state = "acid_shroud"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Creates a smokescreen below yourself, at the cost of a longer cooldown for firing your Bombard."
+	desc = "Create a smokescreen of gas, setting your Bombard on a longer cooldown. Does not require or consume a reserved globule."
 	ability_cost = 200
 	cooldown_duration = 30 SECONDS
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
@@ -371,7 +371,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Steam Rush"
 	action_icon_state = "steam_rush"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Grants a short speed boost. Slashes deal extra burn damage and extend the duration."
+	desc = "Gain a short-lived speed boost. Slashes deal extra burn damage and extend the duration of the sped boost.."
 	ability_cost = 100
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
@@ -396,7 +396,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 
 	X.emote("roar")
-	X.visible_message(span_danger("[X]'s body is hissing with steam!"), \
+	X.visible_message(span_danger("[X]'s body starts to hiss with steam!"), \
 	span_xenowarning("We feel steam spraying from our body!"))
 
 	X.steam_rush = TRUE
@@ -423,7 +423,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	carbon_target.apply_damage(steam_damage, damagetype = BURN, blocked = ACID)
 	playsound(carbon_target, 'sound/voice/alien/hiss2.ogg', 25)
-	to_chat(carbon_target, span_danger("We are burned by the hot steam!"))
+	to_chat(carbon_target, span_danger("You are burned by the hot steam!")) //I'm just going to operate under the assumption that xvx combat will never be a meaningful thing.
 
 	if(steam_rush_ability.steam_rush_duration)
 		deltimer(steam_rush_ability.steam_rush_duration)
@@ -444,7 +444,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
 
 /datum/action/ability/xeno_action/steam_rush/on_cooldown_finish()
-	owner.balloon_alert(owner, "Our blood is boiling once more; we can use steam rush again.")
+	owner.balloon_alert(owner, "Steam rush ready.")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
@@ -472,7 +472,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Smokescreen Spit"
 	action_icon_state = "acid_glob"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Empowers your next spit to create a wide smokescreen."
+	desc = "Empower your next spit, causing it to create a wide smokescreen."
 	ability_cost = 350
 	cooldown_duration = 30 SECONDS
 	keybinding_signals = list(
@@ -510,10 +510,10 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // *********** High-Pressure Spit
 // ***************************************
 /datum/action/ability/activable/xeno/high_pressure_spit
-	name = "High Pressure Spit"
+	name = "High-Pressure Spit"
 	action_icon_state = "acid_lance_glob"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Fires a high pressure glob of acid that knocks back, stuns, and shatters the target."
+	desc = "Fire a high pressure glob of acid that knocks back, stuns, and shatters the target."
 	ability_cost = 150
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
@@ -532,7 +532,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	var/datum/ammo/xeno/acid/heavy/high_pressure_spit/high_pressure_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/high_pressure_spit]
 
-	var/obj/projectile/newspit = new(get_turf(X))
+	var/atom/movable/projectile/newspit = new(get_turf(X))
 	newspit.generate_bullet(high_pressure_spit)
 	newspit.def_zone = X.get_limbzone_target()
 
@@ -542,6 +542,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/high_pressure_spit/on_cooldown_finish()
-	owner.balloon_alert(owner, "Our steam is welling up; we can use high pressure spit again.")
+	owner.balloon_alert(owner, "High-pressure spit ready.")
 	owner.playsound_local(owner, 'sound/voice/alien/hiss2.ogg', 25, 0, 1)
 	return ..()

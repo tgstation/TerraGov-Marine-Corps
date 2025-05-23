@@ -56,7 +56,7 @@
 	worn_icon_state = "hyperscale_marine_jumpsuit"
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/marine_uniform
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/clothing/under/marine/hyperscale_skirt
@@ -583,6 +583,9 @@
 /obj/item/clothing/under/som/medic/vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
+/obj/item/clothing/under/som/medic/vest/black
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/som/veteran
 	name = "\improper SOM veteran uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has markings indicating specialist status."
@@ -690,8 +693,8 @@
 	has_sensor = 0
 
 /obj/item/clothing/under/vsd
-	name = "\improper VSD jumpsuit"
-	desc = "The standard uniform for the Vyacheslav Security Detail, weaved with kevlar and marked with blood."
+	name = "\improper KZ jumpsuit"
+	desc = "The standard uniform for the Kaizoku Corporation, weaved with kevlar and marked with blood."
 	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "vsd_uniform_main"
 	worn_icon_state = "vsd_uniform_main"
@@ -718,7 +721,7 @@
 
 /obj/item/clothing/under/vsd/officer
 	name = "KZ officer jumpsuit"
-	desc = "The standard uniform for officers in the Vyacheslav Security Detail, weaved with kevlar and marked with blood."
+	desc = "The standard uniform for officers in the Kaizoku Corporation, weaved with kevlar and marked with blood."
 	icon_state = "vsd_uniform_officer"
 	worn_icon_state = "vsd_uniform_officer"
 
@@ -735,12 +738,15 @@
 
 /obj/item/clothing/under/vsd/upp
 	name = "KZ 'USL' jumpsuit"
-	desc = "A standard uniform for a division in the Vyacheslav Security Detail, it's colors feel reminiscent."
+	desc = "A standard uniform for a division in the Kaizoku Corporation, it's colors feel reminiscent."
 	icon_state = "upp_retired"
 	worn_icon_state = "upp_retired"
 
 /obj/item/clothing/under/vsd/upp/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/upp/white_webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/vsd/upp/alt
 	icon_state = "upp_secondary"
@@ -754,7 +760,7 @@
 
 /obj/item/clothing/under/vsd/upp/officer
 	name = "KZ 'USL' officer jumpsuit"
-	desc = "A standard uniform for a officer in a division of the Vyacheslav Security Detail, it's colors feel reminiscent."
+	desc = "A standard uniform for a officer in a division of the Kaizoku Corporation, it's colors feel reminiscent."
 	icon_state = "upp_retired_officer"
 	worn_icon_state = "upp_retired_officer"
 

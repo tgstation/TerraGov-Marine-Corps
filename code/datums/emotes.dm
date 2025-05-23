@@ -88,7 +88,7 @@
 /datum/emote/proc/check_cooldown(mob/user, intentional)
 	if(!intentional)
 		return TRUE
-	if(TIMER_COOLDOWN_CHECK(user, "emote[key]"))
+	if(TIMER_COOLDOWN_RUNNING(user, "emote[key]"))
 		return FALSE
 	TIMER_COOLDOWN_START(user, "emote[key]", cooldown)
 	return TRUE
@@ -144,7 +144,7 @@
 			if(HAS_TRAIT(user, TRAIT_MUTED))
 				user.balloon_alert(user, "You are muted!")
 				return FALSE
-			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_EMOTE))
+			if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_EMOTE))
 				user.balloon_alert(user, "You just did an audible emote")
 				return FALSE
 			else
@@ -197,4 +197,10 @@
 			if(!intentional)
 				return FALSE
 			user.balloon_alert(user, "You cannot [key] while restrained")
+			return FALSE
+
+		if(emote_flags & EMOTE_ACTIVE_ITEM)
+			if(!isnull(user.get_active_held_item()))
+				return TRUE
+			user.balloon_alert(user, "You need to hold an item to [key] it.")
 			return FALSE

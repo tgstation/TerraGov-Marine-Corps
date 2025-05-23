@@ -133,6 +133,9 @@
 /datum/language_holder/zombie
 	languages = list(/datum/language/zombie)
 
+/datum/language_holder/monkey
+	languages = list(/datum/language/monkey)
+	shadow_languages = list(/datum/language/telepathy)
 
 /mob/living/verb/language_menu()
 	set category = "IC"
@@ -147,7 +150,7 @@
 		if(H.selected_default_language == L)
 			body += " - Default"
 		else
-			body += " - <a href='?src=[REF(src)];default_language=[L]'>Set as Default</a>"
+			body += " - <a href='byond://?src=[REF(src)];default_language=[L]'>Set as Default</a>"
 		body += "<br><b>Description:</b> <i>[initial(L.desc)]</i>"
 		body += "<br><br>"
 

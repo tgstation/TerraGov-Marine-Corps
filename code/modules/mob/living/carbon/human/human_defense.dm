@@ -99,12 +99,12 @@ Contains most of the procs that are called when a mob is attacked by something
 	else
 		target_zone = def_zone ? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
-	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
+	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacks"
 
 	if(!target_zone)
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
-		visible_message(span_danger("[user] tried to hit [src] with [I]!"), null, null, 5)
+		visible_message(span_danger("[user] tries to hit [src] with [user.p_their()] [I]!"), null, null, 5)
 		log_combat(user, src, "[attack_verb]", "(missed)")
 		if(!user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 			var/turf/T = get_turf(src)
@@ -131,7 +131,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/armor_verb
 	switch(percentage_penetration)
 		if(-INFINITY to 0)
-			visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!"),\
+			visible_message(span_danger("[user] [attack_verb] [src] in the [hit_area] with [user.p_their()] [I.name], but the attack is deflected by [p_their()] armor!"),\
 			null, null, COMBAT_MESSAGE_RANGE, visible_message_flags = COMBAT_MESSAGE)
 			user.do_attack_animation(src, used_item = I)
 			log_combat(user, src, "attacked", I, "(FAILED: armor blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
@@ -143,7 +143,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(51 to 75)
 			armor_verb = " [p_their(TRUE)] armor has softened the hit!"
 
-	visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]"),\
+	visible_message(span_danger("[user] [attack_verb] [src] in the [hit_area] with [user.p_their()] [I.name]![armor_verb]"),\
 	null, null, 5, visible_message_flags = COMBAT_MESSAGE)
 
 	var/weapon_sharp = is_sharp(I)
@@ -153,6 +153,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		weapon_edge = FALSE
 
 	user.do_attack_animation(src, used_item = I)
+	if(weapon_sharp)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 
 	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
 
@@ -257,7 +259,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		zone = get_zone_with_miss_chance(zone, src)
 
 		if(!zone)
-			visible_message(span_notice(" \The [thrown_item] misses [src] narrowly!"), null, null, 5)
+			visible_message(span_notice("\The [thrown_item] misses [src] narrowly!"), null, null, 5)
 			if(living_thrower)
 				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: missed)")
 			return FALSE
@@ -299,7 +301,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			hit_report += "(embedded in [affecting.display_name])"
 
 	if(AM.throw_source && speed >= 15)
-		visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, null, 5)
+		visible_message(span_warning("[src] staggers under the impact!"),span_warning("You stagger under the impact!"), null, null, 5)
 		throw_at(get_edge_target_turf(src, get_dir(AM.throw_source, src)), 1, speed * 0.5)
 		hit_report += "(thrown away)"
 
@@ -370,8 +372,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(access_tag in C.access)
 			return TRUE
 
-/mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = WORLD_VIEW, within_sight = TRUE)
-	var/dist_pct = get_dist(src, Q) / screech_range
+/mob/living/carbon/human/screech_act(distance, screech_range = WORLD_VIEW_NUM, within_sight = TRUE)
+	var/dist_pct = distance / screech_range
 
 	// Intensity is reduced by a 80% if you can't see the queen. Hold orders will reduce by an extra 10% per rank.
 	var/reduce_within_sight = within_sight ? 1 : 0.2
@@ -449,8 +451,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.display_name]."),\
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
 
-	add_overlay(GLOB.welding_sparks)
-	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(src, user, volume = 50, amount = 2))
+	while(I.use_tool(src, user, repair_time, 2, 50, null, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
 			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))
@@ -469,5 +470,4 @@ Contains most of the procs that are called when a mob is attacked by something
 			if(previous_limb == affecting)
 				balloon_alert(user, "Dents fully repaired.")
 				break
-	cut_overlay(GLOB.welding_sparks)
 	return TRUE

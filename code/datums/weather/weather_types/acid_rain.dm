@@ -20,10 +20,10 @@
 	area_type = /area
 	protect_indoors = TRUE
 	target_trait = ZTRAIT_ACIDRAIN
-
+	use_glow = FALSE
 	barometer_predictable = TRUE
-
-	probability = 10
+	play_screen_indicator = TRUE
+	probability = 40
 	repeatable = FALSE
 
 	var/datum/looping_sound/acidrain/sound_active_acidrain = new(list(), FALSE, TRUE)
@@ -70,6 +70,8 @@
 
 	end_message = span_danger("The downpour gradually slows to a light shower.")
 	end_overlay = "rain_low"
+
+	play_screen_indicator = FALSE
 
 	probability = 60
 	repeatable = TRUE

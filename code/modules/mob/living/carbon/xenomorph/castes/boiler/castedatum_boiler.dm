@@ -3,7 +3,7 @@
 	display_name = "Boiler"
 	upgrade_name = ""
 	caste_desc = "Gross!"
-
+	base_strain_type = /mob/living/carbon/xenomorph/boiler
 	caste_type_path = /mob/living/carbon/xenomorph/boiler
 
 	tier = XENO_TIER_THREE
@@ -30,13 +30,9 @@
 
 	deevolves_to = /datum/xeno_caste/spitter
 
-	// *** Darksight *** ///
-	conscious_see_in_dark = 20
-
 	// *** Flags *** //
 	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
-	caste_traits = null
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 0, BIO = 35, FIRE = 45, ACID = 35)
@@ -119,7 +115,7 @@
 	caste_desc = "Gross! The large creature is venting a hot steam."
 
 		// *** Ranged Attack *** //
-	spit_delay = 0.5 SECONDS
+	spit_delay = 0.75 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/airburst)
 
 	actions = list(

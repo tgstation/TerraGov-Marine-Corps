@@ -70,7 +70,7 @@
 #define RADIO_CHANNEL_ERP "ERP"
 #define RADIO_CHANNEL_DS1 "Alamo"
 #define RADIO_CHANNEL_DS2 "Normandy"
-
+#define RADIO_CHANNEL_CIV_GENERAL "Civilian"
 
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
 // Frequencies are always odd numbers and range from 1201 to 1599.
@@ -85,9 +85,10 @@
 #define FREQ_XRAY 1245
 #define FREQ_WHISKEY 1247
 
-#define MIN_ERT_FREQ 1331
+#define MIN_ERT_FREQ 1329
+#define FREQ_VSD 1329
 #define FREQ_PMC 1331
-#define FREQ_RETIRED 1334
+#define FREQ_RETIRED 1333
 #define FREQ_COLONIST 1335
 #define FREQ_USL 1337
 #define FREQ_DEATHSQUAD 1339
@@ -96,13 +97,12 @@
 #define FREQ_ICC 1345
 #define FREQ_SECTOID 1347
 #define FREQ_ECHO 1349
-#define FREQ_VSD 1350
 #define FREQ_ERP 1351
 #define MAX_ERT_FREQ 1351
 
 #define FREQ_AI 1351
 #define FREQ_COMMAND 1353
-#define FREQ_REQUISITIONS 1354
+#define FREQ_REQUISITIONS 1327
 #define FREQ_MEDICAL 1355
 #define FREQ_ENGINEERING 1357
 #define FREQ_CAS 1359

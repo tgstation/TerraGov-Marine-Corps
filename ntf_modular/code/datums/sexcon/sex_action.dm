@@ -1,5 +1,5 @@
 /datum/sex_action
-	abstract_type = /datum/sex_action
+	var/abstract_type = /datum/sex_action
 	var/name = "Zodomize"
 	/// Time to do the act, modified by up to 2.5x speed by the speed toggle
 	var/do_time = 3.3 SECONDS

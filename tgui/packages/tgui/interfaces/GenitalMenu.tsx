@@ -1,5 +1,6 @@
+import { Button, Dropdown, LabeledList, Section, Stack } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Button, Dropdown, LabeledList, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 interface InputData {
@@ -24,7 +25,7 @@ export const GenitalMenu = (props: any, context: any) => {
 
   return (
     <Window title="Genital selection" width={260} height={190}>
-      <Window.Content style={{ 'background-image': 'none' }} />
+      <Window.Content />
       <Section>
         <Stack fill vertical>
           <Stack.Item>
@@ -32,7 +33,7 @@ export const GenitalMenu = (props: any, context: any) => {
               <LabeledList.Item label="Genitalia">
                 <Dropdown
                   options={possibleCockStates}
-                  selected={cockState ? 'Visible (new sprites)' : 'Default'}
+                  selected={cockState ? cockState : 'Default'}
                   onSelected={(e: string) =>
                     act('changeCock', {
                       newState: e,
@@ -52,17 +53,15 @@ export const GenitalMenu = (props: any, context: any) => {
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Boobs">
-                <Stack.Item title="Boobs">
-                  <Dropdown
-                    options={possibleBoobStates}
-                    selected={boobState ? boobState : 'Default'}
-                    onSelected={(e: string) =>
-                      act('changeBoobs', {
-                        newState: e,
-                      })
-                    }
-                  />
-                </Stack.Item>
+                <Dropdown
+                  options={possibleBoobStates}
+                  selected={boobState ? boobState : 'Default'}
+                  onSelected={(e: string) =>
+                    act('changeBoobs', {
+                      newState: e,
+                    })
+                  }
+                />
               </LabeledList.Item>
             </LabeledList>
           </Stack.Item>

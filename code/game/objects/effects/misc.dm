@@ -69,6 +69,15 @@
 /obj/effect/soundplayer/deltaplayer/Initialize(mapload)
 	. = ..()
 	GLOB.ship_alarms += src
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
+
+/// Start/stop our active sound player when the alert level changes to/from `SEC_LEVEL_DELTA`
+/obj/effect/soundplayer/deltaplayer/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
+	SIGNAL_HANDLER
+	if(!(next_level.sec_level_flags & SEC_LEVEL_FLAG_STATE_OF_EMERGENCY))
+		loop_sound.stop(src)
+	else
+		loop_sound.start(src)
 
 /obj/effect/soundplayer/deltaplayer/Destroy()
 	. = ..()
@@ -106,6 +115,7 @@
 	icon_state = "smoke"
 	opacity = TRUE
 	explosion_block = INFINITY
+	var/allowed_hivenumbers = list(XENO_HIVE_NORMAL, XENO_HIVE_FORSAKEN)
 
 /obj/effect/forcefield/fog/Initialize(mapload)
 	. = ..()
@@ -134,13 +144,18 @@
 	. = ..()
 	if(isobj(mover)) //No grenades/bullets should cross this
 		return FALSE
-	if(isxeno(mover))
+	if(mover.get_xeno_hivenumber() in allowed_hivenumbers)
 		return TRUE
 	if(ishuman(mover) && !issynth(mover))
 		var/mob/living/carbon/human/H = mover
+		if(iszombie(H))
+			return FALSE
 		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) // Allow pulled perma-dead humans to cross
 			return TRUE
 	return FALSE
+
+/obj/effect/forcefield/fog/zombie_spawn
+	allowed_hivenumbers = list(FACTION_ZOMBIE)
 
 /obj/effect/forcefield/fog/passable_fog
 	name = "fog"
@@ -230,17 +245,40 @@
 		return INITIALIZE_HINT_QDEL
 
 
-//Makes a tile fully lit no matter what
-/obj/effect/fullbright
-	icon = 'icons/effects/alphacolors.dmi'
-	icon_state = "white"
-	plane = LIGHTING_PLANE
-	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_LAYER
-	blend_mode = BLEND_ADD
-
 /obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"
 	layer = FLY_LAYER
 	plane = GAME_PLANE
 	alpha = 70
+
+///hologram alt appearance key
+#define HOLO_INVIS_ALT_APPEARANCE "holo_invis_alt_appearance"
+
+/obj/effect/build_hologram
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	anchored = TRUE
+	layer = ABOVE_ALL_MOB_LAYER
+	smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
+	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
+	alpha = 190
+
+/obj/effect/build_hologram/Initialize(mapload, atom/copy_type, modify_color = FALSE, mob/owner)
+	if(!ispath(copy_type))
+		return INITIALIZE_HINT_QDEL
+
+	icon = initial(copy_type.icon)
+	icon_state = initial(copy_type.icon_state)
+	base_icon_state = initial(copy_type.base_icon_state)
+	color = initial(copy_type.color)
+	smoothing_flags = initial(copy_type.smoothing_flags)
+	. = ..()
+	makeHologram(0.7, modify_color)
+
+	var/image/disguised_icon = image(loc = src)
+	disguised_icon.override = TRUE
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/all_but_one_person, HOLO_INVIS_ALT_APPEARANCE, disguised_icon, owner)
+
+/obj/effect/build_hologram/Destroy()
+	remove_alt_appearance(HOLO_INVIS_ALT_APPEARANCE)
+	return ..()

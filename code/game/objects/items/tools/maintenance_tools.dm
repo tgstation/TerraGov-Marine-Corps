@@ -8,7 +8,7 @@
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/ratchet.ogg'
-	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
+	attack_verb = list("bashes", "batters", "bludgeons", "whacks")
 	tool_behaviour = TOOL_WRENCH
 
 
@@ -23,7 +23,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	attack_verb = list("stabbed")
+	attack_verb = list("stabs")
 	tool_behaviour = TOOL_SCREWDRIVER
 	/// If the item should be assigned a random color
 	var/random_color = TRUE
@@ -71,7 +71,7 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("pinched", "nipped")
+	attack_verb = list("pinches", "nips")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
 	tool_behaviour = TOOL_WIRECUTTER
@@ -157,7 +157,7 @@
 // If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/tool/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
-		balloon_alert(user, "[src] not on")
+		balloon_alert(user, "not on")
 		return FALSE
 
 	if(get_fuel() < amount)
@@ -198,20 +198,18 @@
 			var/mob/living/L = O
 			L.IgniteMob()
 
-/obj/proc/handle_weldingtool_overlay(removing = FALSE)
-	if(!removing)
-		add_overlay(GLOB.welding_sparks)
-	else
-		cut_overlay(GLOB.welding_sparks)
+///fetches the correct weldint spark sprite to use. ideally we should replace this with an automatically centering system
+/atom/proc/get_weld_spark_icon_and_state()
+	return list('icons/effects/welding_effect.dmi', "welding_sparks")
 
 /obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
-	if(isobj(target))
-		var/obj/O = target
-		O.handle_weldingtool_overlay()
-		. = ..()
-		O.handle_weldingtool_overlay(TRUE)
-	else
-		. = ..()
+	var/list/icons = target.get_weld_spark_icon_and_state()
+	var/mutable_appearance/sparks = mutable_appearance(icons[1], icons[2], WELDING_TOOL_EFFECT_LAYER, src, ABOVE_LIGHTING_PLANE)
+	target.add_overlay(sparks)
+	LAZYADD(update_overlays_on_z, sparks)
+	. = ..()
+	LAZYREMOVE(update_overlays_on_z, sparks)
+	target.cut_overlay(sparks)
 
 /obj/item/tool/weldingtool/attack_self(mob/user as mob)
 	if(!status)
@@ -338,7 +336,7 @@
 	throwforce = 7
 	worn_icon_state = "crowbar"
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
+	attack_verb = list("attacks", "bashes", "batters", "bludgeons", "whacks")
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
 	tool_behaviour = TOOL_CROWBAR
 	usesound = 'sound/items/crowbar.ogg'
@@ -379,7 +377,7 @@
 		if(T.welding)
 			balloon_alert(user, "That was stupid")
 			log_bomber(user, "triggered a weldpack explosion", src)
-			explosion(src, light_impact_range = 3)
+			explosion(src, light_impact_range = 3, explosion_cause=user)
 			qdel(src)
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
 			return ..()

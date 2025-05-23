@@ -29,8 +29,12 @@
 
 /datum/sex_controller/Destroy()
 	user = null
-	target = null
+	set_target(null)
 	. = ..()
+
+/datum/sex_controller/proc/on_target_destroy()
+	target = null
+
 
 /proc/do_thrust_animate(atom/movable/user, atom/movable/target, pixels = 4, time = 2.7)
 	var/oldx = user.pixel_x
@@ -547,6 +551,10 @@
 	return TRUE
 
 /datum/sex_controller/proc/set_target(mob/living/new_target)
+	if(target)
+		UnregisterSignal(target, COMSIG_QDELETING)
+	if(new_target)
+		RegisterSignal(new_target, COMSIG_QDELETING, PROC_REF(on_target_destroy))
 	target = new_target
 
 /datum/sex_controller/proc/get_speed_multiplier()

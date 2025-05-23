@@ -109,7 +109,7 @@
 
 /datum/chemical_reaction/lipozine
 	name = "Lipozine"
-	results = list(/datum/reagent/lipozine = 3)
+	results = list(/datum/reagent/consumable/lipozine = 3)
 	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/ethanol = 1, /datum/reagent/radium = 1)
 
 /datum/chemical_reaction/phoronsolidification
@@ -267,7 +267,7 @@
 	var/datum/effect_system/smoke_spread/bad/smoke = new
 	smoke.set_up((radius - 1), get_turf(holder.get_holder()), 2)
 	smoke.start()
-	explosion(get_turf(holder.get_holder()), light_impact_range = radius)
+	explosion(get_turf(holder.get_holder()), light_impact_range = radius, explosion_cause="gunpowder chem")
 
 
 /datum/chemical_reaction/explosive/anfo
@@ -278,5 +278,5 @@
 	var/radius = round(sqrt(created_volume* 0.25), 1) // should be a max of 2 tiles
 	if(radius > 2)
 		radius = 2 //enforced by a hardcap. Sorry!
-	explosion(get_turf(holder.get_holder()), heavy_impact_range = radius)
+	explosion(get_turf(holder.get_holder()), heavy_impact_range = radius, explosion_cause="anfo chem")
 

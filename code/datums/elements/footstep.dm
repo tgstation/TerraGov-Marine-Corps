@@ -86,10 +86,10 @@
 	play_simplestep(source)
 
 ///Wrapper for movement triggered footsteps for human step
-/datum/element/footstep/proc/humanstep_wrapper(mob/living/source)
+/datum/element/footstep/proc/humanstep_wrapper(mob/living/source, old_loc, movement_dir, forced, old_locs)
 	SIGNAL_HANDLER
-
-	play_humanstep(source)
+	if(!forced)
+		play_humanstep(source)
 
 ///Plays footsteps for anything that isn't human
 /datum/element/footstep/proc/play_simplestep(mob/living/source, force_play = FALSE, volume_multiplier = 1, range_adjustment = 0)
@@ -120,6 +120,8 @@
 
 
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
+		if((volume * volume_multiplier) < SOUND_AUDIBLE_VOLUME_MIN)
+			return
 		playsound(source_loc, footstep_sounds, volume * volume_multiplier, sound_vary, DEFAULT_FOOTSTEP_SOUND_RANGE + e_range + range_adjustment)
 		return
 

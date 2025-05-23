@@ -84,6 +84,10 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
+/mob/living/carbon/xenomorph/runner/melter/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_ONE_THRESHOLD
+
 //-----RUNNER END-----//
 //================//
 //-----BULL START-----//
@@ -157,6 +161,10 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
+/mob/living/carbon/xenomorph/praetorian/oppressor/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
 //----PRAETORIAN END----//
 //================//
 //----RAVAGER START----//
@@ -211,6 +219,13 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/spitter/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_TWO_THRESHOLD
+
+/mob/living/carbon/xenomorph/spitter/globadier
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/spitter/globadier/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 

@@ -1,4 +1,3 @@
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -6,8 +5,9 @@ import {
   Section,
   Stack,
   Table,
-} from '../../components';
-import { TableCell, TableRow } from '../../components/Table';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 
 export const DrawOrder = (props) => {
   const { act, data } = useBackend<DrawOrder>();
@@ -20,8 +20,8 @@ export const DrawOrder = (props) => {
             <Section>
               <Table>
                 {draw_order.map((item) => (
-                  <TableRow key={item}>
-                    <TableCell>{item}</TableCell>
+                  <Table.Row key={item}>
+                    <Table.Cell>{item}</Table.Cell>
                     <Button
                       icon="arrow-up"
                       onClick={() =>
@@ -40,7 +40,7 @@ export const DrawOrder = (props) => {
                         })
                       }
                     />
-                  </TableRow>
+                  </Table.Row>
                 ))}
               </Table>
             </Section>

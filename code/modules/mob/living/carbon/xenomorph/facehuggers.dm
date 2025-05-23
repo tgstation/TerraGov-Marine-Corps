@@ -27,6 +27,7 @@
 	throw_range = 5
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
+	strip_delay = 2 SECONDS
 	worn_item_state_slots = list(slot_wear_suit_str = "facehugger_crotch")
 	worn_icon_list = list(slot_wear_suit_str = 'ntf_modular/icons/Xeno/Effects.dmi')
 
@@ -298,12 +299,9 @@
 
 /obj/item/clothing/mask/facehugger/update_overlays()
 	. = ..()
-	if(overlays)
-		cut_overlays()
-
 	if(!about_to_jump)
 		return
-	add_overlay(image('icons/obj/items/grenade.dmi', "danger"))
+	. += image('icons/obj/items/grenade.dmi', "danger")
 
 ///Applies an alert overlay when the hugger is about to jump
 /obj/item/clothing/mask/facehugger/proc/apply_danger_overlay()
@@ -376,6 +374,9 @@
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(isopenturf(hit_atom))
+		if((locate(/obj/hitbox) in hit_atom) && !leaping) // Kill the hugger if it's thrown on the hitbox of a vehicle
+			kill_hugger()
+			return
 		var/valid_victim = FALSE
 		for(var/mob/living/carbon/M in hit_atom)
 			if(!M.can_be_facehugged(src))
@@ -738,7 +739,7 @@
 		return
 	kill_hugger()
 
-/obj/item/clothing/mask/facehugger/bullet_act(obj/projectile/proj)
+/obj/item/clothing/mask/facehugger/bullet_act(atom/movable/projectile/proj)
 	..()
 	if(proj.ammo.ammo_behavior_flags & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
@@ -890,6 +891,7 @@
 		target.adjust_stagger(3 SECONDS)
 		target.add_slowdown(15)
 		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
+		target.ExtinguishMob()
 
 	kill_hugger(0.5 SECONDS)
 

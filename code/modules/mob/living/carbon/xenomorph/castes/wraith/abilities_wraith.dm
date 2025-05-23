@@ -227,16 +227,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		stasis_target.overlay_fullscreen("banish", /atom/movable/screen/fullscreen/blind) //Force the blind overlay
 
 	if(!reserved_area) //If we don't have a reserved area, set one
-		reserved_area = SSmapping.RequestBlockReservation(3,3, SSmapping.transit.z_value, /datum/turf_reservation/banish)
+		reserved_area = SSmapping.request_turf_block_reservation(3,3,reservation_type = /datum/turf_reservation/banish)
 		if(!reserved_area) //If we *still* don't have a reserved area we've got a problem
 			CRASH("failed to reserve an area for [owner]'s Banish.")
 
 	var/turf/target_turf = reserved_area.reserved_turfs[5]
 	new /area/arrival(target_turf) //So we don't get instagibbed from the space area
-
-	if(isxeno(banishment_target)) //If we're a xeno, disgorge all vored contents
-		var/mob/living/carbon/xenomorph/xeno_target = banishment_target
-		xeno_target.eject_victim()
 
 	for(var/mob/living/living_contents in banishment_target.GetAllContents()) //Safety measure so living mobs inside the target don't get lost in Brazilspace forever
 		contained_living += living_contents
@@ -383,36 +379,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	banish_check.banish_deactivate()
 	succeed_activate()
 	add_cooldown()
-
-///Return TRUE if we have a block, return FALSE otherwise
-/proc/turf_block_check(atom/subject, atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE, ignore_mobs = FALSE, ignore_space = FALSE)
-	var/turf/T = get_turf(target)
-	if(isspaceturf(T) && !ignore_space)
-		return TRUE
-	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
-		return TRUE
-	for(var/atom/blocker AS in T)
-		if((blocker.atom_flags & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
-			continue
-		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
-			return TRUE
-		if(!blocker.density) //Check if we're dense
-			continue
-		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
-			return TRUE
-		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
-			return TRUE
-		if(isobj(blocker) && !ignore_objects) //If we care about dense objects
-			var/obj/obj_blocker = blocker
-			if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
-				return TRUE
-			var/obj/structure/blocker_structure = obj_blocker
-			if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
-				return TRUE
-		if(ismob(blocker) && !ignore_mobs) //If we care about mobs
-			return TRUE
-
-	return FALSE
 
 /datum/action/ability/xeno_action/timestop
 	name = "Time stop"
@@ -595,14 +561,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
+	if(!linked_portal || !COOLDOWN_FINISHED(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
 		return
 	if(isxeno(crosser))
 		var/mob/living/carbon/xenomorph/xeno_crosser = crosser
 		if(xeno_crosser.m_intent == MOVE_INTENT_WALK)
 			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
-	crosser.pass_flags &= ~PASS_MOB
+	crosser.remove_pass_flags(PASS_MOB, PORTAL_TRAIT)
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
@@ -618,7 +584,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	UnregisterSignal(crosser, COMSIG_MOVABLE_MOVED)
 
 /// Signal handler for teleporting a crossing bullet
-/obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
+/obj/effect/wraith_portal/proc/teleport_bullet(datum/source, atom/movable/projectile/bullet)
 	SIGNAL_HANDLER
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/new_range = bullet.proj_max_range - bullet.distance_travelled
@@ -635,7 +601,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_flags = VIS_INHERIT_ID
-	layer = DOOR_OPEN_LAYER
+	layer = OPEN_DOOR_LAYER
 	///turf destination to display
 	var/turf/our_destination
 

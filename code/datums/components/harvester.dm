@@ -46,6 +46,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
 	RegisterSignal(parent, COMSIG_ITEM_UNIQUE_ACTION, PROC_REF(activate_blade))
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(attack))
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_ALTERNATE, PROC_REF(attack))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby))
 	RegisterSignal(reagent_select_action, COMSIG_ACTION_TRIGGER, PROC_REF(select_reagent))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_loaded_color))
@@ -66,6 +67,7 @@
 		COMSIG_ATOM_EXAMINE,
 		COMSIG_ITEM_UNIQUE_ACTION,
 		COMSIG_ITEM_ATTACK,
+		COMSIG_ITEM_ATTACK_ALTERNATE,
 		COMSIG_ATOM_ATTACKBY,
 	))
 
@@ -155,8 +157,8 @@
 		return
 
 	to_chat(user, span_rose("You start filling up the small chambers along the blade's edge."))
-	if(!do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, source, BUSY_ICON_BAR))
-		to_chat(user, span_rose("Due to the sudden movement, the safety mechanism siphons the substance back."))
+	if(!do_mob(user, source, 2 SECONDS, BUSY_ICON_BAR, null, PROGRESS_BRASS, ignore_flags = IGNORE_USER_LOC_CHANGE))
+		to_chat(user, span_rose("As you put [source] away, the safety mechanism siphons the substance back."))
 		return
 
 	loaded_reagent = selected_reagent

@@ -1,3 +1,9 @@
+#define DISK_CYCLE_REWARD_MIN 100
+#define DISK_CYCLE_REWARD_MAX 300
+
+///How much faster disk generators get while the colony power speed boost is active
+#define OVERCLOCK_MULTIPLIER 3
+
 // -- Print disk computer
 /obj/item/circuitboard/computer/nuke_disk_generator
 	name = "circuit board (nuke disk generator)"
@@ -6,7 +12,7 @@
 
 /obj/machinery/computer/nuke_disk_generator
 	name = "nuke disk generator"
-	desc = "Used to generate the correct auth discs for the nuke."
+	desc = "A secure terminal used to retrieve nuclear authentication codes and print them onto disks."
 	icon_state = "computer"
 	screen_overlay = "nuke_red"
 	broken_icon = "computer_red_broken"
@@ -21,6 +27,8 @@
 	var/start_time = 15 SECONDS
 	///Time to print a disk
 	var/printing_time = 15 SECONDS
+	///Current power boost right now; set to 1 if disabled
+	var/current_overclock_multiplier = 1
 
 	///Total number of times the hack is required
 	var/total_segments = 5
@@ -28,8 +36,6 @@
 	var/completed_segments = 0
 	///The current ID of the timer running
 	var/current_timer
-	///Overall seconds elapsed
-	var/seconds_elapsed = 0
 
 	///Check if someone is printing already
 	var/busy = FALSE
@@ -63,6 +69,7 @@
 
 	GLOB.nuke_disk_generators += src
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_broken))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED, COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED), PROC_REF(toggle_power_overclocking))
 
 /obj/machinery/computer/nuke_disk_generator/Destroy()
 	GLOB.nuke_disk_generators -= src
@@ -72,11 +79,8 @@
 /obj/machinery/computer/nuke_disk_generator/process()
 	. = ..()
 	if(. || !current_timer)
-		if(running)
-			seconds_elapsed += 2
 		return
 
-	seconds_elapsed = (segment_time/10) * completed_segments
 	running = FALSE
 	deltimer(current_timer)
 	current_timer = null
@@ -109,9 +113,12 @@
 
 	data["message"] = message
 
-	data["progress"] = seconds_elapsed * 10 / (segment_time * total_segments) //*10 because we need to convert to deciseconds
+	var/percentage_time_elapsed = current_timer ? 1 - (timeleft(current_timer)*current_overclock_multiplier)/segment_time : 0
+	data["progress"] = (completed_segments + percentage_time_elapsed) / total_segments
 
 	data["time_left"] = current_timer ? round(timeleft(current_timer) * 0.1, 2) : "You shouldn't be seeing this, yell at coders."
+
+	data["overclock_multiplier"] = current_overclock_multiplier
 
 	data["flavor_text"] = technobabble[completed_segments + 1]
 
@@ -122,8 +129,6 @@
 	data["segment_time"] = segment_time
 
 	data["color"] = disk_color
-
-	data["segment_number"] = total_segments
 
 	return data
 
@@ -141,27 +146,29 @@
 			if(completed_segments == total_segments) //If we're done, there's no need to run a segment again
 				busy = TRUE
 
-				usr.visible_message("[usr] started a program to generate a new copy of the program.", "You started a program to generate a new copy of the program.")
-				if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+				usr.visible_message(span_notice("[usr] inserts a floppy disk into the [src] and begins to type..."),
+				span_notice("You insert a floppy disk into the [src] and begin to type..."))
+				if(!do_after(usr, printing_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 					busy = FALSE
 					return
 
 				new disk_type(get_turf(src))
-				visible_message(span_notice("[src] beeps as it finishes printing the disc."))
+				visible_message(span_notice("[src] beeps, and spits out a [disk_color] floppy disk!"))
 				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_GENERATED, src)
 				busy = FALSE
 				return
 
 			busy = TRUE
 
-			usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
-			if(!do_after(usr, start_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+			usr.visible_message(span_notice("[usr] begins typing away at the [src]'s keyboard..."),
+			span_notice("You begin typing away at the [src]'s keyboard..."))
+			if(!do_after(usr, start_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				busy = FALSE
 				return
 
 			busy = FALSE
 
-			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time, TIMER_STOPPABLE)
+			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time/current_overclock_multiplier, TIMER_STOPPABLE)
 			update_minimap_icon()
 			running = TRUE
 
@@ -173,19 +180,59 @@
 	deltimer(current_timer)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
+
+	// If the gamemode is crash, Add 5 Vendor points to all marines.
+	if(iscrashgamemode(SSticker.mode))
+		for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
+			if(!H.job)
+				continue
+			var/obj/item/card/id/user_id =  H.get_idcard()
+			for(var/i in user_id.marine_points)
+				user_id.marine_points[i] += 2
+
 	update_minimap_icon()
 	running = FALSE
 
 	if(completed_segments == total_segments)
-		visible_message(span_notice("[src] beeps as it ready to print."))
+		say("Program retrieval successful. Standing by to print...")
 		return
 
-	visible_message(span_notice("[src] beeps as it's program requires attention."))
+	say("Program run has concluded! Standing by...")
+
+	// Requisitions points bonus per cycle.
+	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
+	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
+
+	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
+	SSpoints.dropship_points += disk_cycle_reward/10
+	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
+
+	say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[disk_color]_disk[current_timer ? "_on" : "_off"]", VERY_HIGH_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[disk_color]_disk[current_timer ? "_on" : "_off"]", MINIMAP_LABELS_LAYER))
+
+///Enables/disables the overclock boost when colony power is active
+/obj/machinery/computer/nuke_disk_generator/proc/toggle_power_overclocking(datum/source, enable_overclocking)
+	var/seconds_left = timeleft(current_timer)
+
+	if(enable_overclocking)
+		if(current_overclock_multiplier != 1) //Already activated!
+			return
+		current_overclock_multiplier = OVERCLOCK_MULTIPLIER
+		seconds_left /= current_overclock_multiplier
+	else
+		if(current_overclock_multiplier == 1) //Already deactivated!
+			return
+		seconds_left *= current_overclock_multiplier
+		current_overclock_multiplier = 1
+
+
+	if(current_timer)
+		deltimer(current_timer)
+		current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), seconds_left, TIMER_STOPPABLE)
 
 /obj/machinery/computer/nuke_disk_generator/red
 	name = "red nuke disk generator"

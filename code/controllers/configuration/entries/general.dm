@@ -7,6 +7,8 @@ Basics, the most important.
 
 /datum/config_entry/string/server // If you set this location, it sends you there instead of trying to reconnect.
 
+/datum/config_entry/string/public_address
+
 /datum/config_entry/string/title //The title of the main window
 
 /datum/config_entry/string/hostedby // Sets the hosted by name on unix platforms.
@@ -39,12 +41,12 @@ Basics, the most important.
 
 /// Host of the webmap
 /datum/config_entry/string/webmap_host
-	config_entry_value = "https://webmap.affectedarc07.co.uk/maps/tgmc/"
+	default = "https://webmap.affectedarc07.co.uk/maps/tgmc/"
 
 /datum/config_entry/string/python_path
 
 /datum/config_entry/string/end_of_round_channel
-	config_entry_value = "game-updates"
+	default = "game-updates"
 	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
 
 /datum/config_entry/string/restart_message
@@ -101,6 +103,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_prayer
 
+/datum/config_entry/flag/log_internet_request
+
 /datum/config_entry/flag/log_game
 
 /datum/config_entry/flag/log_minimap_drawing
@@ -129,7 +133,7 @@ Administrative related.
 
 /// Log human readable versions of json log entries
 /datum/config_entry/flag/log_as_human_readable
-	config_entry_value = TRUE
+	default = TRUE
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
@@ -144,7 +148,7 @@ Administrative related.
 /datum/config_entry/flag/use_exp_restrictions_command
 
 /datum/config_entry/number/use_exp_restrictions_command_hours
-	config_entry_value = 0
+	default = 0
 	integer = FALSE
 	min_val = 0
 
@@ -163,20 +167,20 @@ Administrative related.
 /datum/config_entry/flag/looc_enabled
 
 /datum/config_entry/number/lobby_countdown
-	config_entry_value = 180
+	default = 180
 
 /datum/config_entry/number/mission_end_countdown
-	config_entry_value = 120
+	default = 120
 
 /datum/config_entry/flag/see_own_notes
 
 /datum/config_entry/number/note_fresh_days
-	config_entry_value = 30
+	default = 30
 	min_val = 0
 	integer = FALSE
 
 /datum/config_entry/number/note_stale_days
-	config_entry_value = 180
+	default = 180
 	min_val = 0
 	integer = FALSE
 
@@ -193,31 +197,56 @@ Administrative related.
 
 /datum/config_entry/string/tgs3_commandline_path
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
-	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"
+	default = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"
+
+
+/datum/config_entry/number/client_warn_version
+	default = null
+	min_val = 500
+
+/datum/config_entry/number/client_warn_build
+	default = null
+	min_val = 0
+
+/datum/config_entry/string/client_warn_message
+	default = "Your version of byond may have issues or be blocked from accessing this server in the future."
+
+/datum/config_entry/flag/client_warn_popup
+
+/datum/config_entry/number/client_error_version
+	default = null
+	min_val = 500
+
+/datum/config_entry/string/client_error_message
+	default = "Your version of byond is too old, may have issues, and is blocked from accessing this server."
+
+/datum/config_entry/number/client_error_build
+	default = null
+	min_val = 0
 
 /datum/config_entry/number/minute_topic_limit
-	config_entry_value = 250
+	default = 250
 	min_val = 0
 
 /datum/config_entry/number/second_topic_limit
-	config_entry_value = 15
+	default = 15
 	min_val = 0
 
 /datum/config_entry/number/minute_click_limit
-	config_entry_value = 400
+	default = 400
 	min_val = 0
 
 /datum/config_entry/number/second_click_limit
-	config_entry_value = 15
+	default = 15
 	min_val = 0
 
 /datum/config_entry/number/afk_period	//time in ds until a player is considered inactive
-	config_entry_value = 3000
+	default = 3000
 	integer = FALSE
 	min_val = 0
 
 /datum/config_entry/number/glide_size_mod
-	config_entry_value = 80
+	default = 80
 /*
 Voting
 */
@@ -236,15 +265,15 @@ Voting
 /datum/config_entry/flag/no_dead_vote
 
 /datum/config_entry/number/rounds_until_hard_restart
-	config_entry_value = -1 // -1 is disabled by default, 0 is every round, x is after so many rounds
+	default = -1 // -1 is disabled by default, 0 is every round, x is after so many rounds
 
 /datum/config_entry/number/vote_delay	// Minimum time between voting sessions. (deciseconds, 10 minute default)
-	config_entry_value = 6000
+	default = 6000
 	integer = FALSE
 	min_val = 0
 
 /datum/config_entry/number/vote_period  // length of voting period (deciseconds, default 1 minute)
-	config_entry_value = 600
+	default = 600
 	integer = FALSE
 	min_val = 0
 
@@ -256,17 +285,17 @@ Master controller and performance related.
 */
 /datum/config_entry/number/mc_tick_rate/base_mc_tick_rate
 	integer = FALSE
-	config_entry_value = 1
+	default = 1
 
 /datum/config_entry/number/mc_tick_rate/high_pop_mc_tick_rate
 	integer = FALSE
-	config_entry_value = 1.1
+	default = 1.1
 
 /datum/config_entry/number/mc_tick_rate/high_pop_mc_mode_amount
-	config_entry_value = 65
+	default = 65
 
 /datum/config_entry/number/mc_tick_rate/disable_high_pop_mc_mode_amount
-	config_entry_value = 60
+	default = 60
 
 /datum/config_entry/number/mc_tick_rate
 	abstract_type = /datum/config_entry/number/mc_tick_rate
@@ -277,7 +306,7 @@ Master controller and performance related.
 		Master.UpdateTickRate()
 
 /datum/config_entry/number/fps
-	config_entry_value = 20
+	default = 20
 	integer = FALSE
 	min_val = 1
 	max_val = 100   //byond will start crapping out at 50, so this is just ridic
@@ -293,13 +322,13 @@ Master controller and performance related.
 		sync_validate = FALSE
 
 /datum/config_entry/number/ticklag
-	config_entry_value = 0.5
+	default = 0.5
 	integer = FALSE
 	var/sync_validate = FALSE
 
 /datum/config_entry/number/ticklag/New()	//ticklag weirdly just mirrors fps
 	var/datum/config_entry/CE = /datum/config_entry/number/fps
-	config_entry_value = 10 / initial(CE.config_entry_value)
+	default = 10 / initial(CE.default)
 	return ..()
 
 /datum/config_entry/number/ticklag/ValidateAndSet(str_val)
@@ -331,24 +360,28 @@ The default value assumes youtube-dl is in your system PATH
 /datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
+/datum/config_entry/flag/request_internet_sound
+
+/datum/config_entry/string/request_internet_allowed
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/number/error_cooldown	// The "cooldown" time for each occurrence of a unique error
-	config_entry_value = 600
+	default = 600
 	integer = FALSE
 	min_val = 0
 
 
 /datum/config_entry/number/error_limit	// How many occurrences before the next will silence them
-	config_entry_value = 50
+	default = 50
 
 
 /datum/config_entry/number/error_silence_time	// How long a unique error will be silenced for
-	config_entry_value = 6000
+	default = 6000
 	integer = FALSE
 
 
 /datum/config_entry/number/error_msg_delay	// How long to wait between messaging admins about occurrences of a unique error
-	config_entry_value = 50
+	default = 50
 	integer = FALSE
 
 
@@ -365,15 +398,15 @@ The default value assumes youtube-dl is in your system PATH
 
 
 /datum/config_entry/string/soft_popcap_message
-	config_entry_value = "The server is currently serving a high number of users, joining the round may get disabled soon."
+	default = "The server is currently serving a high number of users, joining the round may get disabled soon."
 
 
 /datum/config_entry/string/hard_popcap_message
-	config_entry_value = "The server is currently serving a high number of users, You cannot currently join, but you can observe or wait for the number of living crew to decline."
+	default = "The server is currently serving a high number of users, You cannot currently join, but you can observe or wait for the number of living crew to decline."
 
 
 /datum/config_entry/string/extreme_popcap_message
-	config_entry_value = "The server is currently serving a high number of users, joining the server has been disabled."
+	default = "The server is currently serving a high number of users, joining the server has been disabled."
 
 
 /datum/config_entry/flag/byond_member_bypass_popcap
@@ -399,15 +432,19 @@ The default value assumes youtube-dl is in your system PATH
 
 
 /datum/config_entry/string/panic_bunker_message
-	config_entry_value = "Sorry but the server is currently not accepting connections from never before seen players."
+	default = "Sorry but the server is currently not accepting connections from never before seen players."
 
 /datum/config_entry/flag/check_randomizer
 
 /datum/config_entry/string/default_view
-	config_entry_value = "15x15"
+	default = "15x15"
 
 /datum/config_entry/string/default_view_square
-	config_entry_value = "15x15"
+	default = "15x15"
+
+/datum/config_entry/flag/log_pictures
+
+/datum/config_entry/flag/picture_logging_camera
 
 /*
 This maintains a list of ip addresses that are able to bypass topic filtering.
@@ -419,26 +456,26 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/number/ff_damage_threshold
 	min_val = 0
-	config_entry_value = 250
+	default = 250
 
 /datum/config_entry/number/ff_damage_reset
 	min_val = 0
-	config_entry_value = 30 SECONDS
+	default = 30 SECONDS
 
 /datum/config_entry/flag/is_automatic_balance_on
-	config_entry_value = TRUE
+	default = TRUE
 
 /datum/config_entry/number/hard_deletes_overrun_threshold
 	integer = FALSE
 	min_val = 0
-	config_entry_value = 0.5
+	default = 0.5
 
 /datum/config_entry/number/hard_deletes_overrun_limit
-	config_entry_value = 0
+	default = 0
 	min_val = 0
 
 /datum/config_entry/number/ai_anti_stuck_lag_time_dilation_threshold
-	config_entry_value = 20
+	default = 20
 	min_val = 0
 
 /datum/config_entry/flag/cache_assets
@@ -446,3 +483,13 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/flag/save_spritesheets
 	default = FALSE
+
+/**
+ * Tgui ui_act payloads larger than 2kb are split into chunks a maximum of 1kb in size.
+ * This flag represents the maximum chunk count the server is willing to receive.
+ */
+/datum/config_entry/number/tgui_max_chunk_count
+	default = 32
+
+// If set, enables the "Link forum account" OOC verb
+/datum/config_entry/string/forum_link_uri

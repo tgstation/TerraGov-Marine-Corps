@@ -1,0 +1,5 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Minimap fix"
+  - rscdel: "Annihilation of compile error from existence"

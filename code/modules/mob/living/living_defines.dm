@@ -95,6 +95,16 @@
 
 	var/tinttotal = TINT_NONE
 
+	/// FOV view that is applied from either nativeness or traits
+	var/fov_view
+	/// Lazy list of FOV traits that will apply a FOV view when handled.
+	var/list/fov_traits
+
+	/// Direction that this mob is looking at, used for the look_up and look_down procs
+	var/looking_vertically = NONE
+	///looking holder we use for look_up and look_down. we use this over resetting to the turf because we want to glide
+	var/atom/movable/looking_holder/looking_holder
+
 	///a list of all status effects the mob has
 	var/list/status_effects
 	///Assoc list mapping aura types to strength, based on what we've received since the last life tick. Handled in handle_status_effects()

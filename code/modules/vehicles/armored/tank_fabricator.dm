@@ -9,7 +9,7 @@
 	bound_width = 64
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	/// actual UI that will be interacted with
 	var/datum/supply_ui/vehicles/supply_ui
 

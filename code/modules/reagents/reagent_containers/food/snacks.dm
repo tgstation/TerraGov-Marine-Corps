@@ -27,21 +27,15 @@
 		else
 			reagents.add_reagent(rid, amount, data)
 
-/obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/M)
-	if(!usr)
-		return
-
+///Handles effects when the snack is finished
+/obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/consumer)
 	if(reagents.total_volume)
 		return
 
-	balloon_alert_to_viewers("Eats \the [src]")
-
-	usr.dropItemToGround(src)	//so icons update :[
-
+	consumer.dropItemToGround(src)
 	if(trash)
-		var/obj/item/T = new trash
-		usr.put_in_hands(T)
-
+		var/obj/item/new_trash = new trash
+		consumer.put_in_hands(new_trash)
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
@@ -51,7 +45,7 @@
 	attack_hand(xeno_attacker)
 
 /obj/item/reagent_containers/food/snacks/attack(mob/M, mob/user, def_zone)
-	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
+	if(!reagents?.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
 		balloon_alert(user, "None of [src] left")
 		M.dropItemToGround(src)	//so icons update :[
 		qdel(src)
@@ -63,21 +57,24 @@
 
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 25)
+		var/bite_nutrition = ((reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) / reagents.total_volume) * bitesize * 18.75)
+		if(reagents.total_volume < bitesize)
+			bite_nutrition = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 18.75
+		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 18.75) + bite_nutrition //adds our next bite to our total nutrition in body and stomach
 		if(M == user)								//If you're eating it yourself
 			var/mob/living/carbon/H = M
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
-			if(fullness <= 50)
+			if(fullness <= NUTRITION_STARVING)
 				balloon_alert(user, "hungrily chews [src]")
-			if(fullness > 50 && fullness <= 150)
+			if(fullness > NUTRITION_STARVING && fullness <= NUTRITION_HUNGRY)
 				balloon_alert(user, "hungrily eats [src]")
-			if(fullness > 150 && fullness <= 350)
+			if(fullness > NUTRITION_HUNGRY && fullness <= NUTRITION_WELLFED)
 				balloon_alert(user, "takes bite of [src]")
-			if(fullness > 350 && fullness <= 550)
-				balloon_alert(user, "unwillingly chews [src]")
-			if(fullness > 550)
+			if(fullness > NUTRITION_WELLFED && fullness <= NUTRITION_OVERFED)
+				balloon_alert(user, "nibbles on [src]")
+			if(fullness > NUTRITION_OVERFED)
 				balloon_alert(user, "cannot eat more of [src]")
 				return FALSE
 		else
@@ -85,7 +82,7 @@
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
-			if(fullness <= 550)
+			if(fullness <= NUTRITION_OVERFED)
 				balloon_alert_to_viewers("tries to feed [M]")
 			else
 				balloon_alert_to_viewers("tries to feed [M] but can't")
@@ -346,7 +343,7 @@
 		return
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.reaction(hit_atom, TOUCH)
-	src.visible_message(span_warning(" [src.name] has been squashed."),span_warning(" You hear a smack."))
+	src.visible_message(span_warning("[src.name] has been squashed."),span_warning("You hear a smack."))
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/egg/blue
@@ -430,7 +427,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bitesize = 2
 	tastes = list("dirt" = 1)
-	attack_verb = list("touched")
+	attack_verb = list("touches")
 
 /obj/item/reagent_containers/food/snacks/tofu
 	name = "Tofu"
@@ -687,9 +684,9 @@
 	. = ..()
 	unpopped = rand(1,10)
 
-/obj/item/reagent_containers/food/snacks/popcorn/On_Consume()
+/obj/item/reagent_containers/food/snacks/popcorn/On_Consume(mob/consumer)
 	if(prob(unpopped))	//lol ...what's the point?
-		to_chat(usr, span_warning("You bite down on an un-popped kernel!"))
+		to_chat(consumer, span_warning("You bite down on an un-popped kernel!"))
 		unpopped = max(0, unpopped-1)
 	return ..()
 
@@ -850,22 +847,22 @@
 	balloon_alert_to_viewers("unwraps [src]")
 	package = FALSE
 
-/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/M)
-	to_chat(M, span_warning("Something inside of you suddently expands!</span>"))
-	balloon_alert_to_viewers("eats [src]", ignored_mobs = M)
-	usr.dropItemToGround(src)
-	if(!ishuman(M))
+/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/consumer)
+	to_chat(consumer, span_warning("Something inside of you suddently expands!</span>"))
+	balloon_alert_to_viewers("eats [src]", ignored_mobs = consumer)
+	consumer.dropItemToGround(src)
+	if(!ishuman(consumer))
 		return ..()
 	//Do not try to understand.
-	var/obj/item/surprise = new(M)
+	var/obj/item/surprise = new(consumer)
 	var/mob/ook = monkey_type
 	surprise.icon = initial(ook.icon)
 	surprise.icon_state = initial(ook.icon_state)
 	surprise.name = "malformed [initial(ook.name)]"
 	surprise.desc = "Looks like \a very deformed [initial(ook.name)], a little small for its kind. It shows no signs of life."
 	surprise.transform *= 0.6
-	surprise.add_mob_blood(M)
-	var/mob/living/carbon/human/H = M
+	surprise.add_mob_blood(consumer)
+	var/mob/living/carbon/human/H = consumer
 	var/datum/limb/E = H.get_limb("chest")
 	E.fracture()
 	for (var/datum/internal_organ/I in E.internal_organs)
@@ -875,7 +872,7 @@
 		E.cavity = 0
 	else 		//someone is having a bad day
 		E.createwound(CUT, 30)
-		surprise.embed_into(M, E)
+		surprise.embed_into(consumer, E)
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()

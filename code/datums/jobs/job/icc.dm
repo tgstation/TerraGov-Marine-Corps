@@ -6,13 +6,14 @@
 	faction = FACTION_ICC
 	minimap_icon = "icc"
 
-/datum/job/icc/radio_help_message(mob/M)
+/datum/job/icc/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You are part of the colonial militia that formed shortly after Xenomorph invasion,
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are part of the colonial militia that formed shortly after Xenomorph invasion,
 after ransacking the armories of the colonies owned by NTC, you took arms to fight against the Xenomorph assault.
 Though soon they turned less lethal, danger still persists, especially those that are alone, namely survivors. Which is your job to protect now.
 You are all former or current employees/colonists of Ninetails but there is still some tensions after what happened.
-For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be vultures on top of a stillborn colonization"})
+For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be vultures on top of a stillborn colonization"}
 
 
 //ICC Standard
@@ -54,8 +55,8 @@ For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be v
 
 	id = /obj/item/card/id/silver
 	gloves = /obj/item/clothing/gloves/marine/icc/insulated
-	r_store = /obj/item/storage/pouch/pistol/icc
-	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
+	r_pocket = /obj/item/storage/pouch/pistol/icc
+	l_pocket = /obj/item/storage/pouch/medical_injectors/icc/firstaid
 	back = /obj/item/storage/backpack/lightpack/icc
 
 
@@ -180,8 +181,8 @@ For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be v
 /datum/outfit/job/icc/guard/coilgun
 	suit_store = /obj/item/weapon/gun/launcher/rocket/icc
 	back = /obj/item/weapon/gun/rifle/icc_coilgun
-	l_store = /obj/item/storage/pouch/explosive/icc
-	r_store = /obj/item/storage/pouch/explosive/icc
+	l_pocket = /obj/item/storage/pouch/explosive/icc
+	r_pocket = /obj/item/storage/pouch/explosive/icc
 
 /datum/outfit/job/icc/guard/coilgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -205,8 +206,8 @@ For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be v
 /datum/outfit/job/icc/guard/icc_autoshotgun
 	suit_store = /obj/item/weapon/gun/rifle/icc_coilgun
 	back = /obj/item/weapon/gun/rifle/icc_autoshotgun/guard
-	l_store = /obj/item/storage/pouch/magazine/large/icc
-	r_store = /obj/item/storage/pouch/magazine/large/icc
+	l_pocket = /obj/item/storage/pouch/magazine/large/icc
+	r_pocket = /obj/item/storage/pouch/magazine/large/icc
 
 /datum/outfit/job/icc/guard/icc_autoshotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -231,8 +232,8 @@ For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be v
 	suit_store = /obj/item/weapon/gun/rifle/icc_coilgun
 	back = /obj/item/storage/holster/icc_mg/full
 	belt = /obj/item/ammo_magazine/icc_mg/belt
-	l_store = /obj/item/storage/pouch/magazine/large/icc
-	r_store = /obj/item/storage/pouch/magazine/large/icc
+	l_pocket = /obj/item/storage/pouch/magazine/large/icc
+	r_pocket = /obj/item/storage/pouch/magazine/large/icc
 
 /datum/outfit/job/icc/guard/icc_bagmg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -292,8 +293,8 @@ For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be v
 
 /datum/outfit/job/icc/medic/icc_machinepistol
 	suit_store = /obj/item/weapon/gun/smg/icc_machinepistol/medic
-	l_store = /obj/item/storage/pouch/magazine/large/icc
-	r_store = /obj/item/storage/pouch/magazine/large/icc
+	l_pocket = /obj/item/storage/pouch/magazine/large/icc
+	r_pocket = /obj/item/storage/pouch/magazine/large/icc
 
 /datum/outfit/job/icc/medic/icc_machinepistol/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -311,8 +312,8 @@ For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be v
 
 /datum/outfit/job/icc/medic/icc_sharpshooter
 	suit_store = /obj/item/weapon/gun/rifle/icc_sharpshooter/medic
-	l_store = /obj/item/storage/pouch/magazine/large/icc
-	r_store = /obj/item/storage/pouch/magazine/large/icc
+	l_pocket = /obj/item/storage/pouch/magazine/large/icc
+	r_pocket = /obj/item/storage/pouch/magazine/large/icc
 
 /datum/outfit/job/icc/medic/icc_sharpshooter/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -345,8 +346,8 @@ For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be v
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
 	back = /obj/item/storage/backpack/lightpack/icc/guard
-	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
-	r_store = /obj/item/storage/pouch/construction/icc/full
+	l_pocket = /obj/item/storage/pouch/medical_injectors/icc/firstaid
+	r_pocket = /obj/item/storage/pouch/construction/icc/full
 
 
 /datum/outfit/job/icc/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

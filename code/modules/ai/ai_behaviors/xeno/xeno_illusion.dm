@@ -5,7 +5,7 @@
 	/// How close a human has to be in order for illusions to react
 	var/illusion_react_range = 5
 
-/datum/ai_behavior/xeno/illusion/New(loc, parent_to_assign, escorted_atom)
+/datum/ai_behavior/xeno/illusion/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	if(!escorted_atom)
 		base_action = MOVING_TO_NODE
 	..()

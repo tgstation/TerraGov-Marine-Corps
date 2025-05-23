@@ -52,3 +52,7 @@ endmap
 map iteron
 	minplayers 600
 endmap
+
+map multiz_debug
+endmap
+

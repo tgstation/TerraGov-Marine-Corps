@@ -213,7 +213,7 @@
 	blood_sprite_state = "bloodyhands"
 	armor_protection_flags = HANDS
 	equip_slot_flags = ITEM_SLOT_GLOVES
-	attack_verb = list("challenged")
+	attack_verb = list("challenges")
 
 
 /obj/item/clothing/gloves/update_greyscale(list/colors, update)
@@ -245,7 +245,7 @@
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message(span_warning(" [user] cuts the fingertips off of the [src]."),span_warning(" You cut the fingertips off of the [src]."))
+		user.visible_message(span_warning("[user] cuts the fingertips off of the [src]."),span_warning("You cut the fingertips off of the [src]."))
 
 		clipped = TRUE
 		name = "mangled [name]"

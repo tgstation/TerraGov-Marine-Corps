@@ -8,6 +8,7 @@
 	custom_metabolism = FOOD_METABOLISM
 	taste_description = "generic food"
 	taste_multi = 4
+	reagent_ui_priority = REAGENT_UI_MUNDANE
 	var/nutriment_factor = 1
 	var/adj_temp = 0
 	var/targ_temp = BODYTEMP_NORMAL
@@ -36,6 +37,7 @@
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	nutriment_factor = 15
 	color = "#664330" // rgb: 102, 67, 48
+	reagent_ui_priority =  REAGENT_UI_BASE // nutriment is more important than other food chems
 	var/brute_heal = 1
 	var/burn_heal = 0
 	var/blood_gain = 0.4
@@ -141,7 +143,7 @@
 	if(prob(5))
 		to_chat(L, discomfort_message)
 	if(L.bodytemperature == targ_temp)
-		L.apply_effect(agony_amount, AGONY)
+		L.apply_effect(agony_amount, EFFECT_STAMLOSS)
 	return ..()
 
 /datum/reagent/consumable/capsaicin/condensed
@@ -279,6 +281,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "mushroom"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/consumable/psilocybin/on_mob_life(mob/living/L, metabolism)
 	L.druggy = max(L.druggy, 30)
@@ -398,14 +401,6 @@
 	nutriment_factor = 15
 	taste_description = "sweetness"
 
-/datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
-	L.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
-	L.adjustBruteLoss(-0.25*effect_str)
-	L.adjustFireLoss(-0.25*effect_str)
-	L.adjustOxyLoss(-0.25*effect_str)
-	L.adjustToxLoss(-0.25*effect_str)
-	return ..()
-
 /datum/reagent/consumable/larvajelly
 	name = "Larva Jelly"
 	description = "The blood and guts of a xenomorph larva blended into a paste. Drinking this is bad for you."
@@ -425,6 +420,7 @@
 	nutriment_factor = 1
 	color = "#66801e"
 	taste_description = "victory"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/consumable/larvajellyprepared/on_mob_life(mob/living/L, metabolism)
 	L.adjustBruteLoss(-0.5*effect_str)

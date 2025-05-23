@@ -13,9 +13,12 @@
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	max_integrity = 100
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_OPEN_DOOR_LAYER
 	var/buckleoverlaydir = SOUTH
 	var/unbuckletime = 6 SECONDS
+
+/obj/structure/bed/nest/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE
 
 /obj/structure/bed/nest/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -46,7 +49,7 @@
 		return FALSE
 	if(ishuman(buckling_mob))
 		var/mob/living/carbon/human/H = buckling_mob
-		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_NEST))
+		if(TIMER_COOLDOWN_FINISHED(H, COOLDOWN_NEST))
 			to_chat(user, span_warning("[H] was recently unbuckled. Wait a bit."))
 			return FALSE
 

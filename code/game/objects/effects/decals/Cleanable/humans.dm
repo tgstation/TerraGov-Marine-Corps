@@ -6,7 +6,6 @@
 	gender = PLURAL
 	density = FALSE
 	anchored = TRUE
-	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
@@ -49,6 +48,11 @@
 /obj/effect/decal/cleanable/blood/update_icon_state()
 	. = ..()
 	color = basecolor
+	pixel_x = rand(-16, 16)
+	pixel_y = rand(-16, 16)
+	var/matrix/rotate = matrix()
+	rotate.Turn(rand(0, 359))
+	transform = rotate
 
 /obj/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
 	SIGNAL_HANDLER
@@ -177,7 +181,7 @@
 	name = "tracking fluid"
 	desc = "Tracking fluid from a tracking round."
 	basecolor = "#00FFFF"
-	layer = TRACKING_FLUID_LAYER
+	layer = BELOW_OBJ_LAYER
 
 /obj/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
 	name = "dried [name]"
@@ -212,7 +216,6 @@
 	gender = PLURAL
 	density = FALSE
 	anchored = TRUE
-	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gibbl5"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
@@ -272,7 +275,6 @@
 	gender = PLURAL
 	density = FALSE
 	anchored = TRUE
-	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mucus"
 	random_icon_states = list("mucus")

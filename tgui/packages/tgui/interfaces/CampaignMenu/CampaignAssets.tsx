@@ -1,14 +1,7 @@
-import { classes } from 'common/react';
+import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { useBackend, useLocalState } from '../../backend';
-import {
-  Box,
-  Button,
-  Flex,
-  LabeledList,
-  Section,
-  Stack,
-} from '../../components';
 import { CampaignData, FactionReward } from './index';
 
 export const CampaignAssets = (props) => {
@@ -54,8 +47,8 @@ export const CampaignAssets = (props) => {
                             : 'grey'
                 }
               >
-                <Flex align="center">
-                  <Flex.Item
+                <Stack align="center">
+                  <Stack.Item
                     mr={1.5}
                     className={classes([
                       'campaign_assets18x18',
@@ -73,38 +66,36 @@ export const CampaignAssets = (props) => {
                     ])}
                   />
                   {reward.name}
-                </Flex>
+                </Stack>
               </Button>
             </Stack.Item>
           ))}
         </Stack>
       </Stack.Item>
-      <Stack.Item>
+      <Stack.Item grow>
         <Section
           title={
             selectedReward ? (
-              <Box>
-                <Flex align="center">
-                  <Flex.Item
-                    mr={1.5}
-                    className={classes([
-                      'campaign_assets36x36',
-                      selectedReward.icon + '_orange' + '_big',
-                    ])}
-                  />
-                  <Flex.Item fontSize="150%" grow={1}>
-                    {selectedReward.name}
-                  </Flex.Item>
-                  <Flex.Item alight="right" position="end">
-                    <Button
-                      onClick={() => setSelectedAsset(selectedReward)}
-                      icon={'check'}
-                    >
-                      Select
-                    </Button>
-                  </Flex.Item>
-                </Flex>
-              </Box>
+              <Stack align="center">
+                <Stack.Item
+                  mr={1.5}
+                  className={classes([
+                    'campaign_assets36x36',
+                    selectedReward.icon + '_orange' + '_big',
+                  ])}
+                />
+                <Stack.Item fontSize="150%" grow={1}>
+                  {selectedReward.name}
+                </Stack.Item>
+                <Stack.Item position="end">
+                  <Button
+                    onClick={() => setSelectedAsset(selectedReward)}
+                    icon={'check'}
+                  >
+                    Select
+                  </Button>
+                </Stack.Item>
+              </Stack>
             ) : (
               'No asset selected'
             )

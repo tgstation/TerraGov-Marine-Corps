@@ -16,9 +16,9 @@
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
-	var/supply_reward = 200
+	var/supply_reward = 400
 	///How much dropship points you get for completing the terminal
-	var/dropship_reward = 50
+	var/dropship_reward = 100
 
 	///How much progress we get every tick, up to 100
 	var/progress_interval = 0.75
@@ -33,7 +33,7 @@
 	///When we reach max progress and get the points
 	var/printing_complete = FALSE
 	///What faction has launched the intel process
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 
 
 /obj/machinery/computer/intel_computer/Initialize(mapload)
@@ -63,14 +63,12 @@
 	//NTF edit. Printing a disk instead of instantly giving the points.
 	new /obj/item/disk/intel_disk(get_turf(src), supply_reward, dropship_reward, faction, get_area(src))
 	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
-	update_minimap_icon()
 	minor_announce("Classified data extraction has been completed in [get_area(src)].", title = "Intel Division")
-	SSminimaps.remove_marker(src)
 	SStgui.close_uis(src)
 	active = FALSE
+	update_minimap_icon()
 	update_icon()
-	addtimer(CALLBACK(src, PROC_REF(resetcomputer)), 5 MINUTES)
-
+	addtimer(CALLBACK(src, PROC_REF(resetcomputer)), 15 MINUTES)
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src
@@ -92,7 +90,7 @@
 /obj/machinery/computer/intel_computer/proc/update_minimap_icon()
 	if(active)
 		SSminimaps.remove_marker(src)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", MINIMAP_BLIPS_LAYER))
 	else
 		SSminimaps.remove_marker(src)
 
@@ -137,6 +135,7 @@
 		STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/computer/intel_computer/proc/resetcomputer()
+	SIGNAL_HANDLER
 	START_PROCESSING(SSmachines, src)
 	first_login = FALSE
 	//GLOB.intel_computers += src
@@ -174,7 +173,21 @@
 	src.who_printed = who_printed
 	src.where_printed = where_printed
 	printed_at = world.time
-	desc += " According to the label, this disk was printed by [who_printed] in \the [where_printed]. The time stamp suggests that it was printed at [stationTimestamp("hh:mm", printed_at)]. The data will cease to have value at [stationTimestamp("hh:mm", printed_at + duration)]."
+	name += "\improper [who_printed] Intel diskette ([stationTimestamp("hh:mm", printed_at + duration)])"
+	desc += " According to the label, this disk was printed by [who_printed] in \the [where_printed]. The time stamp suggests that it was printed at [stationTimestamp("hh:mm", printed_at)]. The tactical information within it will cease to have value and soon after self destruct at [stationTimestamp("hh:mm", printed_at + duration)]."
+	addtimer(CALLBACK(src, PROC_REF(disk_warning)), duration, TIMER_STOPPABLE)
+
+/obj/item/disk/intel_disk/proc/disk_warning()
+	SIGNAL_HANDLER
+	visible_message("[src] beeps as it is now obsolete. The disk will self destruct in a minute.")
+	playsound(src, 'sound/machines/beepalert.ogg')
+	addtimer(CALLBACK(src, PROC_REF(disk_cleanup)), 1 MINUTES, TIMER_STOPPABLE)
+
+/obj/item/disk/intel_disk/proc/disk_cleanup()
+	SIGNAL_HANDLER
+	visible_message("[src] beeps a few times and explodes into pieces!")
+	explosion(src,0,0,1,0,0,0,0)
+	Destroy()
 
 /obj/item/disk/intel_disk/get_export_value()
 	if(world.time > printed_at + duration)
@@ -187,4 +200,4 @@
 	if(!.)
 		return FALSE
 
-	minor_announce("Clasified data disk received from [faction_selling]. Bonus awarded: [supply_reward] supply points and [dropship_reward] dropship points.", title = "Intel Division")
+	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")

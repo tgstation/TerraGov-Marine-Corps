@@ -1,10 +1,8 @@
 /obj/item/binoculars/fire_support
-	name = "tactical binoculars"
+	name = "pair of tactical binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
 	icon_state = "range_finders"
 	w_class = WEIGHT_CLASS_SMALL
-	///Faction locks this item if specified
-	var/faction = null
 	///lase effect
 	var/image/laser_overlay
 	///lasing time
@@ -20,7 +18,7 @@
 		FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED,
 	)
 
-/obj/item/binoculars/fire_support/Initialize()
+/obj/item/binoculars/fire_support/Initialize(mapload)
 	. = ..()
 	update_icon()
 	for(var/fire_support_type in mode_list)
@@ -77,9 +75,8 @@
 	user.update_sight()
 
 /obj/item/binoculars/fire_support/update_remote_sight(mob/living/user)
-	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	user.sync_lighting_plane_alpha()
+	user.lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
+	user.sync_lighting_plane_cutoff()
 	return TRUE
 
 /obj/item/binoculars/fire_support/update_overlays()

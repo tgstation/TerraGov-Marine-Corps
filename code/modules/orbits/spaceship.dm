@@ -89,7 +89,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	var/dat
 
 	if(authenticated)
-		dat += "<BR>\[ <A HREF='?src=[text_ref(src)];logout=1'>LOG OUT</A>]"
+		dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];logout=1'>LOG OUT</A>]"
 		dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
 		dat += "<br><center><h3>[GLOB.current_orbit]</h3></center>" //display the current orbit level
@@ -105,7 +105,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		dat += "</b></center>"
 
 	else
-		dat += "<BR>\[ <A HREF='?src=[text_ref(src)];login=1'>LOG IN</A> \]"
+		dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];login=1'>LOG IN</A> \]"
 
 	var/datum/browser/popup = new(user, "Navigation", "<div align='center'>Navigation</div>")
 	popup.set_content(dat)
@@ -178,7 +178,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		if(!silent)
 			to_chat(usr, span_warning("The ship is already at the lowest orbit!"))
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ORBIT_CHANGE))
 		if(!silent)
 			to_chat(usr, span_warning("The ship is currently recalculating based on previous selection."))
 		return FALSE

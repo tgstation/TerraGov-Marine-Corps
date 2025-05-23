@@ -531,7 +531,9 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "mX" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -733,7 +735,9 @@
 /turf/open/floor/grayscale/round/black,
 /area/oscar_outpost/village/abandonedbase)
 "rX" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1068,7 +1072,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Ba" = (
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/tile/bar,
@@ -1218,7 +1222,9 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "EW" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Fl" = (
@@ -1336,7 +1342,9 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "HT" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
@@ -1395,8 +1403,7 @@
 "IO" = (
 /obj/structure/table,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1422,8 +1429,7 @@
 "Jp" = (
 /obj/structure/table,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/effect/spawner/random/misc/folder,
 /turf/open/floor/tile/bar,
@@ -1516,7 +1522,9 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "LL" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/dark2,
 /area/oscar_outpost/village/abandonedbase)
 "LZ" = (
@@ -1690,8 +1698,7 @@
 /obj/structure/table,
 /obj/item/paper,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/bar,
@@ -1716,7 +1723,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "QE" = (
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
@@ -1729,7 +1736,9 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Rb" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1772,8 +1781,7 @@
 "RC" = (
 /obj/structure/table,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/machinery/computer3/laptop/secure_data,
 /turf/open/floor/tile/bar,
@@ -1937,7 +1945,9 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Vj" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
@@ -1952,8 +1962,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2
+	dir = 1
 	},
 /obj/structure/prop/mainship/gelida/miner,
 /turf/open/floor/tile/bar,
@@ -1981,7 +1990,9 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "VK" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2096,8 +2107,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/misc/folder,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
@@ -2117,8 +2127,7 @@
 "XS" = (
 /obj/structure/table,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/item/paper,
 /obj/item/tool/pen/blue,

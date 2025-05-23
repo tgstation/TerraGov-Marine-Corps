@@ -88,7 +88,7 @@
 	if(!.)
 		return
 	if(src.reagents.total_volume >= 1)
-		src.visible_message(span_warning(" The [src] bursts!"),"You hear a pop and a splash.")
+		src.visible_message(span_warning("The [src] bursts!"),"You hear a pop and a splash.")
 		src.reagents.reaction(get_turf(hit_atom), TOUCH)
 		for(var/atom/A in get_turf(hit_atom))
 			src.reagents.reaction(A, TOUCH)
@@ -150,7 +150,7 @@
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonred"
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb = list("attacked", "coloured")
+	attack_verb = list("attacks", "colours")
 	var/colour = "#FF0000" //RGB
 	var/shadeColour = "#220000" //RGB
 	var/uses = 30 //0 for unlimited uses
@@ -185,7 +185,7 @@
 	s.set_up(3, 1, src)
 	s.start()
 	new /obj/effect/decal/cleanable/ash(src.loc)
-	src.visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
+	src.visible_message(span_warning("The [src.name] explodes!"),span_warning("You hear a snap!"))
 	playsound(src, 'sound/effects/snap.ogg', 25, 1)
 	qdel(src)
 
@@ -202,7 +202,7 @@
 	s.set_up(2, 0, src)
 	s.start()
 	new /obj/effect/decal/cleanable/ash(src.loc)
-	visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
+	visible_message(span_warning("The [src.name] explodes!"),span_warning("You hear a snap!"))
 	playsound(src, 'sound/effects/snap.ogg', 25, 1)
 	qdel(src)
 
@@ -388,7 +388,7 @@
 	icon_state = "d66"
 	w_class = WEIGHT_CLASS_TINY
 	var/sides = 6
-	attack_verb = list("diced")
+	attack_verb = list("dices")
 
 /obj/item/toy/dice/Initialize(mapload)
 	. = ..()
@@ -408,7 +408,7 @@
 	else if(sides == 20 && result == 1)
 		comment = "Ouch, bad luck."
 	icon_state = "[name][result]"
-	user.visible_message(span_notice("[user] has thrown [src]. It lands on [result]. [comment]"), \
+	user.visible_message(span_notice("[user] throws [src]. It lands on [result]. [comment]"), \
 						span_notice("You throw [src]. It lands on a [result]. [comment]"), \
 						span_notice("You hear [src] landing on a [result]. [comment]"))
 
@@ -424,7 +424,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 15
-	attack_verb = list("HONKED")
+	attack_verb = list("HONKS")
 
 
 /obj/item/toy/bikehorn/Initialize(mapload)
@@ -841,9 +841,9 @@
 				if(X.id == id)
 					X.score(side)
 					// no break, to update multiple scoreboards
-			visible_message(span_notice(" Swish! \the [I] lands in \the [src]."), 3)
+			visible_message(span_notice("Swish! \the [I] lands in \the [src]."), 3)
 		else
-			visible_message(span_warning(" \the [I] bounces off of \the [src]'s rim!"), 3)
+			visible_message(span_warning("\the [I] bounces off of \the [src]'s rim!"), 3)
 		return FALSE
 	else
 		return ..()

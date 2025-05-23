@@ -78,7 +78,7 @@
 	playsound(xeno_owner.loc, 'sound/bullets/spear_armor1.ogg', 25, 1)
 	xeno_owner.visible_message(span_warning("[xeno_owner] shoots a spike!"), span_xenonotice("We discharge a spinal spike from our body."))
 
-	var/obj/projectile/spine = new /obj/projectile(current_turf)
+	var/atom/movable/projectile/spine = new /atom/movable/projectile(current_turf)
 	spine.generate_bullet(/datum/ammo/xeno/spine)
 	spine.def_zone = xeno_owner.get_limbzone_target()
 	spine.fire_at(victim, xeno_owner, xeno_owner, range = 6, speed = 1)

@@ -15,8 +15,14 @@
 	var/machine_current_charge = 0 //Does it have an integrated, unremovable capacitor? Normally 10k if so.
 	var/machine_max_charge = 0
 	var/power_channel = EQUIP
+	/**
+	 * TODO WE REALLY NEED TO START USING THE HELPERS BELOW FOR THIS VAR BUT THIS PR IS ALREADY TOO BIG SO DO IT FOR ME PLSTHANKS
+	 */
+	///A combination of factors such as having power, not being broken and so on. Boolean.
+	var/is_operational = TRUE
 	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
-
+	///What subsystem this machine will use, which is generally SSmachines or SSfastprocess. By default all machinery use SSmachines. This fires a machine's process() roughly every 2 seconds.
+	var/subsystem_type = /datum/controller/subsystem/machines
 	var/wrenchable = FALSE
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
@@ -48,6 +54,20 @@
 /obj/machinery/proc/is_operational()
 	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
+
+/obj/machinery/proc/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
+	if(screwdriver.tool_behaviour != TOOL_SCREWDRIVER)
+		return FALSE
+
+	screwdriver.play_tool_sound(src, 50)
+	machine_stat ^= PANEL_OPEN
+	if(machine_stat & PANEL_OPEN)
+		icon_state = icon_state_open
+		to_chat(user, span_notice("You open the maintenance hatch of [src]."))
+	else
+		icon_state = icon_state_closed
+		to_chat(user, span_notice("You close the maintenance hatch of [src]."))
+	return TRUE
 
 /obj/machinery/proc/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel = 0, custom_deconstruct = FALSE)
 	. = !(atom_flags & NODECONSTRUCT) && crowbar.tool_behaviour == TOOL_CROWBAR
@@ -103,16 +123,61 @@
 
 
 /obj/machinery/proc/start_processing()
-	START_PROCESSING(SSmachines, src)
+	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
+	START_PROCESSING(subsystem, src)
 
 
 /obj/machinery/proc/stop_processing()
-	STOP_PROCESSING(SSmachines, src)
+	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
+	STOP_PROCESSING(subsystem, src)
 
 
 /obj/machinery/process() // If you dont use process or power why are you here
 	return PROCESS_KILL
 
+/**
+ * TODO WE REALLY NEED TO START USING THE HELPERS BELOW BUT THIS PR IS ALREADY TOO BIG SO DO IT FOR ME PLSTHANKS
+ */
+///Called when we want to change the value of the machine_stat variable. Holds bitflags.
+/obj/machinery/proc/set_machine_stat(new_value)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(new_value == machine_stat)
+		return
+	. = machine_stat
+	machine_stat = new_value
+	on_set_machine_stat(.)
+
+
+///Called when the value of `machine_stat` changes, so we can react to it.
+/obj/machinery/proc/on_set_machine_stat(old_value)
+	PROTECTED_PROC(TRUE)
+
+	//From off to on.
+	if((old_value & (NOPOWER|BROKEN|MAINT)) && !(machine_stat & (NOPOWER|BROKEN|MAINT)))
+		set_is_operational(TRUE)
+		return
+	//From on to off.
+	if(machine_stat & (NOPOWER|BROKEN|MAINT))
+		set_is_operational(FALSE)
+
+
+///Called when we want to change the value of the `is_operational` variable. Boolean.
+/obj/machinery/proc/set_is_operational(new_value)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(new_value == is_operational)
+		return
+	. = is_operational
+	is_operational = new_value
+	on_set_is_operational(.)
+
+
+///Called when the value of `is_operational` changes, so we can react to it.
+/obj/machinery/proc/on_set_is_operational(old_value)
+	PROTECTED_PROC(TRUE)
+
+	return
 
 /obj/machinery/emp_act(severity)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
@@ -142,10 +207,18 @@
 
 
 /obj/machinery/proc/power_change()
+	var/initial_stat = machine_stat
 	if(!powered(power_channel) && machine_current_charge <= 0)
 		machine_stat |= NOPOWER
+		if(!(initial_stat & NOPOWER))
+			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_LOST)
+			. = TRUE
 	else
 		machine_stat &= ~NOPOWER
+		if(initial_stat & NOPOWER)
+			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_RESTORED)
+			. = TRUE
+
 	update_icon()
 
 
@@ -267,7 +340,7 @@
 	N.fields["last_scan_time"] = od["stationtime"]
 	N.fields["last_scan_result"] = dat
 	N.fields["autodoc_data"] = generate_autodoc_surgery_list(H)
-	visible_message(span_notice("\The [src] pings as it stores the scan report of [H.real_name]"))
+	visible_message(span_notice("\The [src] pings as it stores the scan report of [H.real_name]."))
 	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
 	use_power(active_power_usage)
 	return dat

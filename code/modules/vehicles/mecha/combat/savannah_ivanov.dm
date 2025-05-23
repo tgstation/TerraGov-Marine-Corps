@@ -75,7 +75,7 @@
 	if(chassis.phasing)
 		to_chat(owner, span_warning("You're already airborne!"))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_SKYFALL))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_SKYFALL))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_SKYFALL)
 		to_chat(owner, span_warning("You need to wait [DisplayTimeText(timeleft, 1)] before attempting to Skyfall."))
 		return
@@ -165,12 +165,12 @@
 	chassis.move_delay = initial(chassis.move_delay)
 	chassis.density = TRUE
 	chassis.layer = initial(chassis.layer)
-	chassis.plane = initial(chassis.plane)
 	skyfall_charge_level = 0
 	chassis.update_icon()
 	for(var/mob/living/shaken in range(7, chassis))
 		shake_camera(shaken, 5, 5)
 	var/turf/landed_on = get_turf(chassis)
+	SET_PLANE(chassis, initial(chassis.plane), landed_on)
 	for(var/thing in range(1, chassis))
 		if(isopenturf(thing))
 			var/turf/open/floor/crushed_tile = thing
@@ -242,7 +242,7 @@
 /datum/action/vehicle/sealed/mecha/ivanov_strike/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_MISSILE_STRIKE))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_MISSILE_STRIKE))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_MISSILE_STRIKE)
 		to_chat(owner, span_warning("You need to wait [DisplayTimeText(timeleft, 1)] before firing another Ivanov Strike."))
 		return

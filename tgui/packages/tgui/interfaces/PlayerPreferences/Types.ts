@@ -6,6 +6,8 @@ type PlayerPreferencesData = {
 
 type CharacterCustomizationData = {
   random_name: number;
+  gender: string;
+  physique: string;
   h_style: string;
   r_hair: number;
   g_hair: number;
@@ -38,6 +40,7 @@ type GameSettingData = {
   ui_style_color: string;
   scaling_method: string;
   pixel_size: number;
+  multiz_performance: number;
   parallax: number;
   is_admin: number;
 };
@@ -49,7 +52,7 @@ type GearCustomizationData = {
   underwear: number;
   undershirt: number;
   backpack: number;
-  gender: string;
+  physique_used: string;
 };
 
 type KeybindSettingData = {

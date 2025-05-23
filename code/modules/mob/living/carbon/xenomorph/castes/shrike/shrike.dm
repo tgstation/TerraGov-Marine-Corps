@@ -5,10 +5,6 @@
 	icon = 'ntf_modular/icons/Xeno/castes/shrike.dmi'
 	icon_state = "Shrike Walking"
 	bubble_icon = "alienroyal"
-	attacktext = "bites"
-	attack_sound = null
-	friendly = "nuzzles"
-	wall_smash = FALSE
 	health = 240
 	maxHealth = 240
 	plasma_stored = 300

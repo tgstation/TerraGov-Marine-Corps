@@ -99,3 +99,4 @@
 	description = "Toggle mech overboost module."
 	keybind_signal = COMSIG_MECHABILITY_OVERBOOST
 	hotkey_keys = list("Q")
+

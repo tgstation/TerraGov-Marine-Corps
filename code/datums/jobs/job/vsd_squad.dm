@@ -5,10 +5,11 @@
 	faction = FACTION_VSD
 	minimap_icon = "pmc2"
 
-/datum/job/vsd_squad/radio_help_message(mob/M)
+/datum/job/vsd_squad/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You are trained loyal mercenaries of Kaizoku Corporation, though rumors are Kaizoku is a front to the Yakuza Syndicate which nuked the Corporate Sector. Surely it is unbased.
-Kaizoku is in the council that leads Phantom City, therefore it shares a table with Ninetails and all the other megacorps, which makes it vital they play along. And at the same time Kaizoku supplies SOM their equipment to disrupt the said rival corporations in secret (not so secret). Keep in mind your mixed relations when taking action."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are trained loyal mercenaries of Kaizoku Corporation, though rumors are Kaizoku is a front to the Yakuza Syndicate which nuked the Corporate Sector. Surely it is unbased.
+Kaizoku is in the council that leads Phantom City, therefore it shares a table with Ninetails and all the other megacorps, which makes it vital they play along. And at the same time Kaizoku supplies SOM their equipment to disrupt the said rival corporations in secret (not so secret). Keep in mind your mixed relations when taking action."}
 
 //VSD Standard
 /datum/job/vsd_squad/standard
@@ -16,7 +17,7 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	paygrade = "KZ1"
 	comm_title = "JSGT"
 	skills_type = /datum/skills/crafty
-	access = list (ACCESS_VSD_PREP, ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
+	access = list (ACCESS_VSD_PREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
@@ -39,8 +40,8 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	paygrade = "KZ3"
 	comm_title = "SGM"
 	skills_type = /datum/skills/combat_engineer
-	minimal_access = list (ACCESS_VSD_ENGPREP, ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
-	access = list (ACCESS_VSD_ENGPREP, ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list (ACCESS_VSD_ENGPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY, ACCESS_VSD_CARGO, ACCESS_VSD_TADPOLE)
+	access = list (ACCESS_VSD_ENGPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY, ACCESS_VSD_CARGO, ACCESS_VSD_TADPOLE)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
@@ -65,8 +66,8 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	paygrade = "KZ2"
 	comm_title = "SSGT"
 	skills_type = /datum/skills/combat_medic/crafty
-	minimal_access = list (ACCESS_VSD_MEDPREP, ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
-	access = list (ACCESS_VSD_MEDPREP, ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list (ACCESS_VSD_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY, ACCESS_VSD_CARGO, ACCESS_VSD_TADPOLE)
+	access = list (ACCESS_VSD_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY, ACCESS_VSD_CARGO, ACCESS_VSD_TADPOLE)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
@@ -90,8 +91,8 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	paygrade = "KZ4"
 	comm_title = "LT"
 	skills_type = /datum/skills/specialist
-	minimal_access = list (ACCESS_VSD_SPECPREP, ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
-	access = list (ACCESS_VSD_SPECPREP, ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list (ACCESS_VSD_SPECPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY, ACCESS_VSD_CARGO, ACCESS_VSD_TADPOLE)
+	access = list (ACCESS_VSD_SPECPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY, ACCESS_VSD_CARGO, ACCESS_VSD_TADPOLE)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = 5
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
@@ -114,8 +115,8 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	paygrade = "KZ5"
 	comm_title = "COLGEN"
 	skills_type = /datum/skills/sl
-	minimal_access = list (ACCESS_VSD_LEADPREP, ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
-	access = list (ACCESS_VSD_LEADPREP, ACCESS_SOM_DEFAULT, ALL_ANTAGONIST_ACCESS, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list (ACCESS_VSD_LEADPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY, ACCESS_VSD_CARGO, ACCESS_VSD_TADPOLE)
+	access = list (ACCESS_VSD_LEADPREP, ACCESS_MARINE_MEDBAY, ACCESS_SOM_MEDICAL, ACCESS_MARINE_CHEMISTRY, ACCESS_VSD_CARGO, ACCESS_VSD_TADPOLE)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = 5
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN

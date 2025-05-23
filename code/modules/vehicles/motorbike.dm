@@ -55,7 +55,7 @@
 
 /obj/vehicle/ridden/motorbike/relaymove(mob/living/user, direction)
 	if(fuel_count <= 0)
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIKE_FUEL_MESSAGE))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_BIKE_FUEL_MESSAGE))
 			to_chat(user, span_warning("There is no fuel left!"))
 			TIMER_COOLDOWN_START(src, COOLDOWN_BIKE_FUEL_MESSAGE, 1 SECONDS)
 		return FALSE
@@ -70,7 +70,7 @@
 		for(var/mob/rider AS in buckled_mobs)
 			balloon_alert(rider, "[fuel_count/fuel_max*100]% fuel left")
 
-	if(COOLDOWN_CHECK(src, enginesound_cooldown))
+	if(COOLDOWN_FINISHED(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, 20)
 		playsound(get_turf(src), 'sound/vehicles/carrev.ogg', 100, TRUE)
 
@@ -169,7 +169,7 @@
 	smoke.start()
 
 /obj/vehicle/ridden/motorbike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(src, light_impact_range = 2, flash_range = 0)
+	explosion(src, light_impact_range = 2, flash_range = 0, explosion_cause=blame_mob)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/Destroy()

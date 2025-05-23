@@ -6,11 +6,15 @@
 /datum/picture
 	var/picture_name = "picture"
 	var/picture_desc = "This is a picture."
+	/// List of weakrefs pointing at mobs that appear in this photo
 	var/list/mobs_seen = list()
+	/// List of weakrefs pointing at dead mobs that appear in this photo
 	var/list/dead_seen = list()
 	var/caption
 	var/icon/picture_image
 	var/icon/picture_icon
+	var/logpath //If the picture has been logged this is the path.
+	var/id //this var is NOT protected because the worst you can do with this that you couldn't do otherwise is overwrite photos, and photos aren't going to be used as attack logs/investigations anytime soon.
 	var/psize_x = 96
 	var/psize_y = 96
 
@@ -20,9 +24,11 @@
 	if(!isnull(desc))
 		picture_desc = desc
 	if(!isnull(mobs_spotted))
-		mobs_seen = mobs_spotted
+		for(var/mob/seen as anything in mobs_spotted)
+			mobs_seen += WEAKREF(seen)
 	if(!isnull(dead_spotted))
-		dead_seen = dead_spotted
+		for(var/mob/seen as anything in dead_spotted)
+			dead_seen += WEAKREF(seen)
 	if(!isnull(image))
 		picture_image = image
 	if(!isnull(icon))
@@ -37,21 +43,136 @@
 		regenerate_small_icon()
 
 
-/datum/picture/proc/get_small_icon()
+/datum/picture/proc/get_small_icon(iconstate)
 	if(!picture_icon)
-		regenerate_small_icon()
+		regenerate_small_icon(iconstate)
 	return picture_icon
 
-
-/datum/picture/proc/regenerate_small_icon()
+/datum/picture/proc/regenerate_small_icon(iconstate)
 	if(!picture_image)
 		return
 	var/icon/small_img = icon(picture_image)
-	var/icon/ic = icon('icons/obj/items/paper.dmi', "photo")
+	var/icon/ic = icon('icons/obj/items/items.dmi', iconstate ? iconstate : "photo")
 	small_img.Scale(8, 8)
 	ic.Blend(small_img, ICON_OVERLAY, 13, 13)
 	picture_icon = ic
 
+/datum/picture/serialize_list(list/options, list/semvers)
+	. = ..()
+
+	.["id"] = id
+	.["desc"] = picture_desc
+	.["name"] = picture_name
+	.["caption"] = caption
+	.["pixel_size_x"] = psize_x
+	.["pixel_size_y"] = psize_y
+	.["logpath"] = logpath
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
+
+/datum/picture/deserialize_list(list/input, list/options)
+	if((SCHEMA_VERSION in options) && (options[SCHEMA_VERSION] != "1.0.0"))
+		CRASH("Invalid schema version for datum/picture: [options[SCHEMA_VERSION]] (expected 1.0.0)")
+	. = ..()
+	if(!.)
+		return .
+
+	if(!input["logpath"] || !fexists(input["logpath"]) || !input["id"] || !input["pixel_size_x"] || !input["pixel_size_y"])
+		return FALSE
+
+	picture_image = icon(file(input["logpath"]))
+	logpath = input["logpath"]
+	id = input["id"]
+	psize_x = input["pixel_size_x"]
+	psize_y = input["pixel_size_y"]
+	if(input["caption"])
+		caption = input["caption"]
+	if(input["desc"])
+		picture_desc = input["desc"]
+	if(input["name"])
+		picture_name = input["name"]
+
+/proc/load_photo_from_disk(id, location)
+	var/datum/picture/P = load_picture_from_disk(id)
+	if(istype(P))
+		var/obj/item/photo/p = new(location, P)
+		return p
+
+/proc/load_picture_from_disk(id)
+	var/pathstring = log_path_from_picture_ID(id)
+	if(!pathstring)
+		return
+	var/path = file(pathstring)
+	if(!fexists(path))
+		return
+	var/dir_index = findlasttext(pathstring, "/")
+	var/dir = copytext(pathstring, 1, dir_index)
+	var/json_path = file("[dir]/metadata.json")
+	if(!fexists(json_path))
+		return
+	var/list/json = json_decode(file2text(json_path))
+	if(!json[id])
+		return
+	var/datum/picture/P = new
+
+	// Old photos were saved as, and I shit you not, encoded JSON strings.
+	if (istext(json[id]))
+		P.deserialize_json(json[id])
+	else
+		P.deserialize_list(json[id])
+
+	return P
+
+/proc/log_path_from_picture_ID(id)
+	if(!istext(id))
+		return
+	. = "data/picture_logs/"
+	var/list/data = splittext(id, "_")
+	if(data.len < 3)
+		return null
+	var/mode = data[1]
+	switch(mode)
+		if("L")
+			if(data.len < 5)
+				return null
+			var/timestamp = data[2]
+			var/year = copytext_char(timestamp, 1, 5)
+			var/month = copytext_char(timestamp, 5, 7)
+			var/day = copytext_char(timestamp, 7, 9)
+			var/round = data[4]
+			. += "[year]/[month]/[day]/round-[round]"
+		if("O")
+			var/list/path = data.Copy(2, data.len)
+			. += path.Join("")
+		else
+			return null
+	var/n = data[data.len]
+	. += "/[n].png"
+
+//BE VERY CAREFUL WITH THIS PROC, TO AVOID DUPLICATION.
+/datum/picture/proc/log_to_file()
+	if(!picture_image)
+		return
+	if(!CONFIG_GET(flag/log_pictures))
+		return
+	if(logpath)
+		return //we're already logged
+	var/number = GLOB.picture_logging_id++
+	var/finalpath = "[GLOB.picture_log_directory]/[number].png"
+	fcopy(icon(picture_image, dir = SOUTH, frame = 1), finalpath)
+	logpath = finalpath
+	id = "[GLOB.picture_logging_prefix][number]"
+	var/jsonpath = "[GLOB.picture_log_directory]/metadata.json"
+	jsonpath = file(jsonpath)
+	var/list/json
+	if(fexists(jsonpath))
+		json = json_decode(file2text(jsonpath))
+		fdel(jsonpath)
+	else
+		json = list()
+	json[id] = serialize_list(semvers = list())
+	WRITE_FILE(jsonpath, json_encode(json))
 
 /datum/picture/proc/Copy(greyscale = FALSE, cropx = 0, cropy = 0)
 	var/datum/picture/P = new
@@ -144,10 +265,14 @@
 	if(!istype(picture) || !picture.picture_image)
 		to_chat(user, span_warning("[src] seems to be blank..."))
 		return
+	var/width_height = "width"
+	if(picture.psize_y > picture.psize_x)
+		// if we're a tall picture, swap our focus to height to stay in frame
+		width_height = "height"
 	user << browse_rsc(picture.picture_image, "tmp_photo.png")
-	user << browse("<html><head><title>[name]</title></head>" \
+	user << browse("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
-		+ "<img src='tmp_photo.png' width='480' style='-ms-interpolation-mode:nearest-neighbor' />" \
+		+ "<img src='tmp_photo.png' [width_height]='480' style='image-rendering:pixelated' />" \
 		+ "[scribble ? "<br>Written on the back:<br><i>[scribble]</i>" : ""]"\
 		+ "</body></html>", "window=photo_showing;size=480x608")
 	onclose(user, "[name]")
@@ -155,7 +280,7 @@
 
 /obj/item/photo/verb/rename()
 	set name = "Rename Photo"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	var/n_name = stripped_input(usr, "What would you like to label the photo?", "Photo Labelling")
@@ -297,11 +422,19 @@
 	seen = get_hear(viewr, viewc)
 	var/list/turfs = list()
 	var/list/mobs = list()
-	var/clone_area = SSmapping.RequestBlockReservation(size_x * 2 + 1, size_y * 2 + 1)
-	for(var/turf/T in block(locate(target_turf.x - size_x, target_turf.y - size_y, target_turf.z), locate(target_turf.x + size_x, target_turf.y + size_y, target_turf.z)))
-		if((ai_user && GLOB.cameranet.checkTurfVis(T)) || (T in seen))
-			turfs += T
-			for(var/mob/M in T)
+	var/clone_area = SSmapping.request_turf_block_reservation(size_x * 2 + 1, size_y * 2 + 1, 1)
+
+	var/width = size_x * 2 + 1
+	var/height = size_y * 2 + 1
+	for(var/turf/placeholder as anything in CORNER_BLOCK_OFFSET(target_turf, width, height, -size_x, -size_y))
+		while(istype(placeholder, /turf/open/openspace)) //Multi-z photography
+			placeholder = GET_TURF_BELOW(placeholder)
+			if(!placeholder)
+				break
+
+		if(placeholder && ((ai_user && GLOB.cameranet.checkTurfVis(placeholder)) || (placeholder in seen)))
+			turfs += placeholder
+			for(var/mob/M in placeholder)
 				mobs += M
 	for(var/i in mobs)
 		var/mob/M = i
@@ -312,20 +445,22 @@
 
 	var/psize_x = (size_x * 2 + 1) * world.icon_size
 	var/psize_y = (size_y * 2 + 1) * world.icon_size
-	var/get_icon = camera_get_icon(turfs, target_turf, psize_x, psize_y, clone_area, size_x, size_y, (size_x * 2 + 1), (size_y * 2 + 1))
+	var/icon/get_icon = camera_get_icon(turfs, target_turf, psize_x, psize_y, clone_area, size_x, size_y, (size_x * 2 + 1), (size_y * 2 + 1))
 	qdel(clone_area)
-	var/icon/temp = icon('icons/effects/96x96.dmi',"")
-	temp.Blend("#000", ICON_OVERLAY)
-	temp.Scale(psize_x, psize_y)
-	temp.Blend(get_icon, ICON_OVERLAY)
+	get_icon.Blend("#000", ICON_UNDERLAY)
 
-	var/datum/picture/P = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, temp, null, psize_x, psize_y)
+	var/datum/picture/P = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, get_icon, null, psize_x, psize_y)
 	after_picture(user, P, flag)
 	blending = FALSE
 
 
 /obj/item/camera/proc/after_picture(mob/user, datum/picture/picture, has_proximity)
 	printpicture(user, picture)
+	if(!silent)
+		if(istype(custom_sound))
+			playsound(loc, custom_sound, 75, 1, -3)
+		else
+			playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, 1, -3)
 
 
 /obj/item/camera/proc/printpicture(mob/user, datum/picture/picture) //Normal camera proc for creating photos
@@ -351,8 +486,9 @@
 			if(default_picture_name)
 				picture.picture_name = default_picture_name
 
-		p.set_picture(picture, TRUE, TRUE)
-
+	p.set_picture(picture, TRUE, TRUE)
+	if(CONFIG_GET(flag/picture_logging_camera))
+		picture.log_to_file()
 
 /obj/effect/appearance_clone/New(loc, atom/A) //Intentionally not Initialize(), to make sure the clone assumes the intended appearance in time for the camera getFlatIcon.
 	if(istype(A))
@@ -366,53 +502,85 @@
 	return ..()
 
 
+#define PHYSICAL_POSITION(atom) ((atom.y * ICON_SIZE_Y) + (atom.pixel_y))
+
 /obj/item/camera/proc/camera_get_icon(list/turfs, turf/center, psize_x = 96, psize_y = 96, datum/turf_reservation/clone_area, size_x, size_y, total_x, total_y)
 	var/list/atoms = list()
+	var/list/lighting = list()
 	var/skip_normal = FALSE
 	var/wipe_atoms = FALSE
 
+	var/mutable_appearance/backdrop = mutable_appearance('icons/mob/screen/generic.dmi', "flash")
+	backdrop.blend_mode = BLEND_OVERLAY
+	backdrop.color = "#292319"
+
 	if(istype(clone_area) && total_x == clone_area.width && total_y == clone_area.height && size_x >= 0 && size_y > 0)
-		var/cloned_center_x = round(clone_area.bottom_left_coords[1] + ((total_x - 1) / 2))
-		var/cloned_center_y = round(clone_area.bottom_left_coords[2] + ((total_y - 1) / 2))
+		var/turf/bottom_left = clone_area.bottom_left_turfs[1]
+		var/cloned_center_x = round(bottom_left.x + ((total_x - 1) / 2))
+		var/cloned_center_y = round(bottom_left.y + ((total_y - 1) / 2))
 		for(var/t in turfs)
 			var/turf/T = t
 			var/offset_x = T.x - center.x
 			var/offset_y = T.y - center.y
-			var/turf/newT = locate(cloned_center_x + offset_x, cloned_center_y + offset_y, clone_area.bottom_left_coords[3])
-			if(!(newT in clone_area.reserved_turfs))		//sanity check so we don't overwrite other areas somehow
+			var/turf/newT = locate(cloned_center_x + offset_x, cloned_center_y + offset_y, bottom_left.z)
+			if(!(newT in clone_area.reserved_turfs)) //sanity check so we don't overwrite other areas somehow
 				continue
 			atoms += new /obj/effect/appearance_clone(newT, T)
 			if(T.loc.icon_state)
 				atoms += new /obj/effect/appearance_clone(newT, T.loc)
+			if(T.static_lighting_object)
+				var/obj/effect/appearance_clone/lighting_overlay = new(newT)
+				lighting_overlay.appearance = T.static_lighting_object.current_underlay
+				lighting_overlay.underlays += backdrop
+				lighting_overlay.blend_mode = BLEND_MULTIPLY
+				lighting += lighting_overlay
 			for(var/i in T.contents)
 				var/atom/A = i
 				if(!A.invisibility || (see_ghosts && isobserver(A)))
 					atoms += new /obj/effect/appearance_clone(newT, A)
 		skip_normal = TRUE
 		wipe_atoms = TRUE
-		center = locate(cloned_center_x, cloned_center_y, clone_area.bottom_left_coords[3])
+		center = locate(cloned_center_x, cloned_center_y, bottom_left.z)
 
 	if(!skip_normal)
 		for(var/i in turfs)
 			var/turf/T = i
 			atoms += T
+			if(T.static_lighting_object)
+				var/obj/effect/appearance_clone/lighting_overlay = new(T)
+				lighting_overlay.appearance = T.static_lighting_object.current_underlay
+				lighting_overlay.underlays += backdrop
+				lighting_overlay.blend_mode = BLEND_MULTIPLY
+				lighting += lighting_overlay
 			for(var/atom/movable/A in T)
 				if(A.invisibility)
 					if(!(see_ghosts && isobserver(A)))
 						continue
 				atoms += A
 			CHECK_TICK
-
-	var/icon/res = icon('icons/effects/96x96.dmi', "")
+	var/icon/res = icon('icons/blanks/96x96.dmi', "nothing")
 	res.Scale(psize_x, psize_y)
+	atoms += lighting
 
 	var/list/sorted = list()
 	var/j
-	for(var/i in 1 to length(atoms))
+	for(var/i in 1 to atoms.len)
 		var/atom/c = atoms[i]
-		for(j = length(sorted), j > 0, --j)
+		for(j = sorted.len, j > 0, --j)
 			var/atom/c2 = sorted[j]
-			if(c2.layer <= c.layer)
+			if(c2.plane > c.plane)
+				continue
+			if(c2.plane < c.plane)
+				break
+			var/c_position = PHYSICAL_POSITION(c)
+			var/c2_position = PHYSICAL_POSITION(c2)
+			// If you are above me, I layer above you
+			if(c2_position - 32 >= c_position)
+				break
+			// If I am above you you will always layer above me
+			if(c2_position <= c_position - 32)
+				continue
+			if(c2.layer < c.layer)
 				break
 		sorted.Insert(j+1, c)
 		CHECK_TICK
@@ -420,30 +588,59 @@
 	var/xcomp = FLOOR(psize_x / 2, 1) - 15
 	var/ycomp = FLOOR(psize_y / 2, 1) - 15
 
-
-	for(var/atom/A in sorted)
-		var/xo = (A.x - center.x) * world.icon_size + A.pixel_x + xcomp
-		var/yo = (A.y - center.y) * world.icon_size + A.pixel_y + ycomp
-		if(ismovableatom(A))
-			var/atom/movable/AM = A
-			xo += AM.step_x
-			yo += AM.step_y
-		var/icon/img = getFlatIcon(A)
-		if(img)
+	if(!skip_normal) //these are not clones
+		for(var/atom/A in sorted)
+			var/xo = (A.x - center.x) * ICON_SIZE_X + A.pixel_x + xcomp
+			var/yo = (A.y - center.y) * ICON_SIZE_Y + A.pixel_y + ycomp
+			if(ismovable(A))
+				var/atom/movable/AM = A
+				xo += AM.step_x
+				yo += AM.step_y
+			var/icon/img = getFlatIcon(A, no_anim = TRUE)
 			res.Blend(img, blendMode2iconMode(A.blend_mode), xo, yo)
-		CHECK_TICK
+			CHECK_TICK
+	else
+		for(var/X in sorted) //these are clones
+			var/obj/effect/appearance_clone/clone = X
+			var/icon/img = getFlatIcon(clone, no_anim = TRUE)
+			if(!img)
+				CHECK_TICK
+				continue
+			// Center of the image in X
+			var/xo = (clone.x - center.x) * ICON_SIZE_X + clone.pixel_x + xcomp + clone.step_x
+			// Center of the image in Y
+			var/yo = (clone.y - center.y) * ICON_SIZE_Y + clone.pixel_y + ycomp + clone.step_y
 
-	if(!silent)
-		if(istype(custom_sound))				//This is where the camera actually finishes its exposure.
-			playsound(loc, custom_sound, 75, 1, -3)
-		else
-			playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, 1, -3)
+			if(clone.transform) // getFlatIcon doesn't give a snot about transforms.
+				var/datum/decompose_matrix/decompose = clone.transform.decompose()
+				// Scale in X, Y
+				if(decompose.scale_x != 1 || decompose.scale_y != 1)
+					var/base_w = img.Width()
+					var/base_h = img.Height()
+					// scale_x can be negative
+					img.Scale(base_w * abs(decompose.scale_x), base_h * decompose.scale_y)
+					if(decompose.scale_x < 0)
+						img.Flip(EAST)
+					xo -= base_w * (decompose.scale_x - SIGN(decompose.scale_x)) / 2 * SIGN(decompose.scale_x)
+					yo -= base_h * (decompose.scale_y - 1) / 2
+				// Rotation
+				if(decompose.rotation != 0)
+					img.Turn(decompose.rotation)
+				// Shift
+				xo += decompose.shift_x
+				yo += decompose.shift_y
+
+			res.Blend(img, blendMode2iconMode(clone.blend_mode), xo, yo)
+			CHECK_TICK
 
 	if(wipe_atoms)
 		QDEL_LIST(atoms)
+	else
+		QDEL_LIST(lighting)
 
 	return res
 
+#undef PHYSICAL_POSITION
 
 /obj/item/camera/oldcamera
 	name = "Old Camera"

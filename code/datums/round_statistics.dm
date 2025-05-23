@@ -16,6 +16,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	///All projectiles fired during the round, listed by faction
 	var/list/total_projectiles_fired = list()
 	var/human_bump_attacks = 0
+	var/points_from_objectives = 0
 	var/points_from_research = 0
 	var/points_from_mining = 0
 	var/points_from_xenos = 0
@@ -103,3 +104,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/psy_shield_blasts = 0
 	var/sandevistan_uses = 0
 	var/runner_items_stolen = 0
+	var/acid_maw_fires = 0
+	var/acid_jaw_fires = 0
+	var/sandevistan_gibs = 0

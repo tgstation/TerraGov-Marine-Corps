@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -9,7 +7,9 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import { NameInputModal } from './NameInputModal';
 import {
@@ -87,7 +87,7 @@ const LoadoutList = (props: LoadoutListData) => {
   );
 };
 
-export const JobTabs = (props: LoadoutTabData, context) => {
+export const JobTabs = (props: LoadoutTabData) => {
   const { job, setJob } = props;
   const { data } = useBackend<any>();
   const vendor_categories = data.vendor_categories;

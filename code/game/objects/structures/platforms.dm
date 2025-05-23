@@ -10,7 +10,6 @@
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	climbable = TRUE
-	climb_delay = 10
 	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/platform/Initialize(mapload)

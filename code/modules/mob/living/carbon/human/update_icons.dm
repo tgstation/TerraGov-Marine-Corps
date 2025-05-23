@@ -115,7 +115,7 @@ There are several things that need to be remembered:
 		else
 			return
 
-	appearance.pixel_y += final_offset
+	appearance.pixel_z += final_offset
 	return appearance
 
 /**
@@ -333,7 +333,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 /mob/living/carbon/human/proc/update_body(update_icons = 1, force_cache_update = 0)
 	var/necrosis_color_mod = rgb(10,50,0)
 
-	var/g = get_gender_name(gender)
+	var/physique_key = get_gender_name(physique)
 	var/has_head = 0
 
 
@@ -346,7 +346,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi',"blank")
 
-	var/icon_key = "[species.race_key][g][ethnicity]"
+	var/icon_key = "[species.race_key][physique_key][ethnicity]"
 	for(var/datum/limb/part in limbs)
 
 		if(istype(part,/datum/limb/head) && !(part.limb_status & LIMB_DESTROYED))
@@ -380,7 +380,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		//Robotic limbs are handled in get_icon() so all we worry about are missing or dead limbs.
 		//No icon stored, so we need to start with a basic one.
 		var/datum/limb/chest = get_limb("chest")
-		base_icon = chest.get_icon(race_icon,g)
+		base_icon = chest.get_icon(race_icon, physique_key)
 
 		if(chest.limb_status & LIMB_NECROTIZED)
 			base_icon.ColorTone(necrosis_color_mod)
@@ -397,7 +397,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 				continue
 
 			if (istype(part, /datum/limb/groin) || istype(part, /datum/limb/head))
-				temp = part.get_icon(race_icon,g)
+				temp = part.get_icon(race_icon, physique_key)
 			else
 				temp = part.get_icon(race_icon)
 
@@ -460,8 +460,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 
 	if(species.species_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_[underwear]_[gender]"), ICON_OVERLAY)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_[undershirt]_[gender]"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_[underwear]_[physique]"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_[undershirt]_[physique]"), ICON_OVERLAY)
 
 	update_bodyparts()
 	species?.update_body(src)

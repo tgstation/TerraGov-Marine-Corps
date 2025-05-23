@@ -28,6 +28,14 @@
 	scale = 0.25
 	velocity = generator(GEN_CIRCLE, 10, 10)
 
+/particles/explosion_smoke/tiny
+	count = 25
+	spawning = 25
+	scale = 0.1
+	fade = 100
+	grow = 0.025
+	velocity = generator(GEN_CIRCLE, 5, 5)
+
 /particles/explosion_water
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = list("smoke4" = 1, "smoke5" = 1)
@@ -44,6 +52,14 @@
 	gravity = list(1, 2)
 	scale = 0.15
 	grow = 0.02
+
+/particles/explosion_water/tiny
+	count = 25
+	spawning = 25
+	scale = 0.1
+	fade = 100
+	grow = 0.025
+	velocity = generator(GEN_CIRCLE, 5, 5)
 
 /particles/smoke_wave
 	icon = 'icons/effects/96x96.dmi'
@@ -243,14 +259,19 @@
 	///large dirt kickup particle holder
 	var/obj/effect/abstract/particle_holder/large_kickup
 
-/obj/effect/temp_visual/explosion/Initialize(mapload, radius, color, small = FALSE, large = FALSE)
+/obj/effect/temp_visual/explosion/Initialize(mapload, radius, color, small = FALSE, large = FALSE, tiny = FALSE)
 	. = ..()
 	set_light(radius, radius, color)
-	generate_particles(radius, small, large)
+	generate_particles(radius, small, large, tiny)
 	if(iswater(get_turf(src)))
 		icon_state = null
 		return
-	var/image/I = image(icon, src, icon_state, 10, -32, -32)
+	var/image/I
+	if(tiny)
+		icon = 'icons/effects/64x64.dmi'
+		I = image(icon, src, icon_state, 10, -16, -16)
+	else
+		I = image(icon, src, icon_state, 10, -32, -32)
 	var/matrix/rotate = matrix()
 	rotate.Turn(rand(0, 359))
 	I.transform = rotate
@@ -258,57 +279,64 @@
 	icon_state = null
 
 ///Generate the particles
-/obj/effect/temp_visual/explosion/proc/generate_particles(radius, small = FALSE, large = FALSE)
+/obj/effect/temp_visual/explosion/proc/generate_particles(radius, small = FALSE, large = FALSE, tiny = FALSE)
 	var/turf/turf_type = get_turf(src)
 	if(iswater(turf_type))
-		smoke_wave = new(src, /particles/wave_water)
-		explosion_smoke = new(src, /particles/explosion_water)
-		dirt_kickup = new(src, /particles/water_splash)
-		falling_debris = new(src, /particles/water_falling)
-		sparks = new(src, /particles/water_outwards)
-		large_kickup = new(src, /particles/water_splash_large)
-	else
-		if(small)
-			smoke_wave = new(src, /particles/smoke_wave/small)
+		if(tiny)
+			explosion_smoke = new(src, /particles/explosion_water/tiny)
 		else
-			smoke_wave = new(src, /particles/smoke_wave)
-
+			explosion_smoke = new(src, /particles/explosion_water)
+			smoke_wave = new(src, /particles/wave_water)
+			dirt_kickup = new(src, /particles/water_splash)
+			falling_debris = new(src, /particles/water_falling)
+			sparks = new(src, /particles/water_outwards)
+			large_kickup = new(src, /particles/water_splash_large)
+	else
 		if(large)
 			explosion_smoke = new(src, /particles/explosion_smoke/deva)
 		else if(small)
 			explosion_smoke = new(src, /particles/explosion_smoke/small)
+		else if(tiny)
+			explosion_smoke = new(src, /particles/explosion_smoke/tiny)
 		else
 			explosion_smoke = new(src, /particles/explosion_smoke)
+		if(!tiny)
+			if(small)
+				smoke_wave = new(src, /particles/smoke_wave/small)
+			else
+				smoke_wave = new(src, /particles/smoke_wave)
+			dirt_kickup = new(src, /particles/dirt_kickup)
+			if(small)
+				falling_debris = new(src, /particles/falling_debris/small)
+			else
+				falling_debris = new(src, /particles/falling_debris)
+			sparks = new(src, /particles/sparks_outwards)
+			if(large)
+				large_kickup = new(src, /particles/dirt_kickup_large/deva)
+			else
+				large_kickup = new(src, /particles/dirt_kickup_large)
+			if(large)
+				smoke_wave.particles.velocity = generator(GEN_CIRCLE, 6 * radius, 6 * radius)
+			else if(small)
+				smoke_wave.particles.velocity = generator(GEN_CIRCLE, 3 * radius, 3 * radius)
+			else
+				smoke_wave.particles.velocity = generator(GEN_CIRCLE, 5 * radius, 5 * radius)
 
-		dirt_kickup = new(src, /particles/dirt_kickup)
-		if(small)
-			falling_debris = new(src, /particles/falling_debris/small)
-		else
-			falling_debris = new(src, /particles/falling_debris)
-		sparks = new(src, /particles/sparks_outwards)
-
-		if(large)
-			large_kickup = new(src, /particles/dirt_kickup_large/deva)
-		else
-			large_kickup = new(src, /particles/dirt_kickup_large)
-
-	if(large)
-		smoke_wave.particles.velocity = generator(GEN_CIRCLE, 6 * radius, 6 * radius)
-	else if(small)
-		smoke_wave.particles.velocity = generator(GEN_CIRCLE, 3 * radius, 3 * radius)
-	else
-		smoke_wave.particles.velocity = generator(GEN_CIRCLE, 5 * radius, 5 * radius)
+	if(!tiny)
+		sparks.particles.velocity = generator(GEN_CIRCLE, 8 * radius, 8 * radius)
+		addtimer(CALLBACK(src, PROC_REF(set_count_long)), 10)
+	addtimer(CALLBACK(src, PROC_REF(set_count_short), tiny), 5)
 	explosion_smoke.layer = layer + 0.1
-	sparks.particles.velocity = generator(GEN_CIRCLE, 8 * radius, 8 * radius)
-	addtimer(CALLBACK(src, PROC_REF(set_count_short)), 5)
-	addtimer(CALLBACK(src, PROC_REF(set_count_long)), 10)
 
-/obj/effect/temp_visual/explosion/proc/set_count_short()
-	smoke_wave.particles.count = 0
-	explosion_smoke.particles.count = 0
-	sparks.particles.count = 0
-	large_kickup.particles.count = 0
-	falling_debris.particles.count = 0
+/obj/effect/temp_visual/explosion/proc/set_count_short(tiny = FALSE)
+	if(tiny)
+		explosion_smoke.particles.count = 0
+	else
+		smoke_wave.particles.count = 0
+		explosion_smoke.particles.count = 0
+		sparks.particles.count = 0
+		large_kickup.particles.count = 0
+		falling_debris.particles.count = 0
 
 /obj/effect/temp_visual/explosion/proc/set_count_long()
 	dirt_kickup.particles.count = 0

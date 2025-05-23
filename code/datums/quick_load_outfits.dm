@@ -110,8 +110,8 @@
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol
+	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/quick/tgmc/marine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -287,7 +287,7 @@
 
 	belt = /obj/item/storage/belt/sparepouch
 	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
-	l_store = /obj/item/storage/pouch/construction
+	l_pocket = /obj/item/storage/pouch/construction
 
 /datum/outfit/quick/tgmc/marine/standard_machinegunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -320,7 +320,7 @@
 	belt = /obj/item/storage/holster/m25
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/shield
 	suit_store = /obj/item/weapon/gun/standard_mmg/machinegunner
-	l_store = /obj/item/storage/pouch/construction
+	l_pocket = /obj/item/storage/pouch/construction
 	glasses = /obj/item/clothing/glasses/mgoggles
 
 /datum/outfit/quick/tgmc/marine/medium_machinegunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -541,8 +541,8 @@
 	gloves = /obj/item/clothing/gloves/marine/insulated
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/welding
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
-	l_store = /obj/item/storage/pouch/tools/full
+	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol
+	l_pocket = /obj/item/storage/pouch/tools/full
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/outfit/quick/tgmc/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -640,8 +640,8 @@
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/mimir
-	r_store = /obj/item/storage/pouch/magazine/large
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_pocket = /obj/item/storage/pouch/magazine/large
+	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/corpsman
 
 /datum/outfit/quick/tgmc/corpsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -824,8 +824,8 @@
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas/tactical
 	head = /obj/item/clothing/head/modular/m10x/tyr
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol
+	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/quick/tgmc/smartgunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -918,8 +918,8 @@
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/leader
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol_leader
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol_leader
+	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/quick/tgmc/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1145,8 +1145,8 @@
 	gloves = /obj/item/clothing/gloves/marine/som
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol
+	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/marine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1368,7 +1368,7 @@
 
 	suit_store = /obj/item/weapon/gun/rifle/som_mg/standard
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
-	l_store = /obj/item/storage/pouch/construction/som
+	l_pocket = /obj/item/storage/pouch/construction/som
 
 /datum/outfit/quick/som/marine/machine_gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1433,8 +1433,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/engineer
 	glasses = /obj/item/clothing/glasses/meson
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol
-	l_store = /obj/item/storage/pouch/tools/som/full
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol
+	l_pocket = /obj/item/storage/pouch/tools/som/full
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/quick/som/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1613,8 +1613,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/magazine/large/som
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	r_pocket = /obj/item/storage/pouch/magazine/large/som
+	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/quick/som/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1744,7 +1744,7 @@
 	name = "V-51 Medic"
 	desc = "Keeping your buddies alive and in the fight. Equipped with a V-51 semi-automatic shotgun, medium armor and a good selection of grenades. Packs a large amount of medical supplies, the squad medic is vital to maintaining combat viability."
 
-	r_store = /obj/item/storage/pouch/shotgun/som
+	r_pocket = /obj/item/storage/pouch/shotgun/som
 	suit_store = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/outfit/quick/som/medic/standard_shotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1783,8 +1783,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/veteran
 	glasses = /obj/item/clothing/glasses/meson
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol
+	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1952,7 +1952,7 @@
 
 	belt = /obj/item/storage/belt/grenade/som
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
-	l_store = /obj/item/storage/pouch/pistol/som
+	l_pocket = /obj/item/storage/pouch/pistol/som
 	back = /obj/item/cell/lasgun/volkite/powerpack
 
 /datum/outfit/quick/som/veteran/caliver_pack/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2048,7 +2048,7 @@
 	suit_store = /obj/item/weapon/gun/smg/som/support
 	belt = /obj/item/storage/belt/marine/som
 	back = /obj/item/storage/holster/backholster/rpg/som/war_crimes
-	l_store = /obj/item/storage/pouch/grenade/som
+	l_pocket = /obj/item/storage/pouch/grenade/som
 
 /datum/outfit/quick/som/veteran/rocket_man/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2113,8 +2113,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/leader
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
+	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/squad_leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2261,12 +2261,14 @@
 	require_job = FALSE
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
-	wear_suit = /obj/item/clothing/suit/storage/marine/vsd_two
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/vsd_two
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/magazine
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2298,10 +2300,21 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BELT)
 
 /datum/outfit/quick/vsd/standard/grunt_one
-	name = "CC/67 Rifle VSD Grunt"
-	desc = "The old standard. Equipped with the C550 combat rifle, C96 pistol and the Crasher multi-threat ballistic light armor."
-	suit_store =/obj/item/weapon/gun/rifle/vsd_rifle
+	name = "CC/67 Rifle KZ Grunt"
+	desc = "The old standard. Equipped with the standard CC/67 combat rifle."
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
 	mask = /obj/item/clothing/mask/gas/vsd
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
+	glasses = /obj/item/clothing/glasses/meson
+	w_uniform = /obj/item/clothing/under/vsd/webbing
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
+	back = /obj/item/storage/backpack/lightpack/vsd
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/standard/grunt_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2317,11 +2330,21 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_SUIT)
 
 /datum/outfit/quick/vsd/standard/ksg
-	name = "L12 VSD Grunt"
-	desc = "For getting up close and personal. Equipped with the 14 round capacity L12 pump-action shotgun, loaded with buckshot, reminiscent of the KSG shotgun. Also equipped with a C96 pistol sidearm and the Crasher multi-threat ballistic light armor."
+	name = "L12 Shotgun KZ Grunt"
+	desc = "For getting up close and personal. Equipped with the 14 round capacity L12 pump-action shotgun. Also equipped with a C96 pistol sidearm and the Crasher MT-H/43 powered ballistic armor."
 	w_uniform = /obj/item/clothing/under/vsd/shirt/webbing
 	suit_store = /obj/item/weapon/gun/shotgun/pump/ksg/standard
-	l_store = /obj/item/storage/pouch/shotgun
+	l_pocket = /obj/item/storage/pouch/shotgun
+	mask = /obj/item/clothing/mask/gas/vsd
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
+	glasses = /obj/item/clothing/glasses/meson
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	back = /obj/item/storage/backpack/lightpack/vsd
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/standard/ksg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2348,12 +2371,14 @@
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
-	wear_suit = /obj/item/clothing/suit/storage/marine/vsd_two/marmor
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/magazine
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/mainship/vsd
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2381,19 +2406,20 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
 
 /datum/outfit/quick/vsd/engineer/l26
-	name = "CC/77 VSD Engineer"
-	desc = "Equipped with CC/67 assault carbine, a Build-A-Sentry attachment, heavy armor and a modest amount of materials and tools to work with in the field."
+	name = "CC/77 Rifle KZ Engineer"
+	desc = "Equipped with CC/77 assault carbine, a Build-A-Sentry attachment, Crasher MT-H/43 powered ballistic armor and a modest amount of materials and tools to work with in the field."
 	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
-	wear_suit = /obj/item/clothing/suit/storage/marine/vsd_two/harmor
-	head = /obj/item/clothing/head/helmet/marine/vsd_two
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/magazine
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/engineer/l26/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2418,11 +2444,13 @@
 	belt = /obj/item/storage/belt/lifesaver/full/upp
 	glasses = /obj/item/clothing/glasses/hud/health
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
-	wear_suit = /obj/item/clothing/suit/storage/marine/vsd_two
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/magazine
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2445,10 +2473,13 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/vsd/medic/ksg
-	name = "L12 VSD Medic"
-	desc = "For keeping everybody else alive. Equipped with the 14 round capacity L12 pump-action shotgun."
+	name = "L12 Shotgun KZ Medic"
+	desc = "For keeping everybody else alive. Equipped with the 14 round capacity L12 pump-action shotgun and C96 pistol."
 	suit_store = /obj/item/weapon/gun/shotgun/pump/ksg/support
-	l_store = /obj/item/storage/pouch/shotgun
+	l_pocket = /obj/item/storage/pouch/shotgun
+	ears = /obj/item/radio/headset/mainship/vsd
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/medic/ksg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2471,9 +2502,12 @@
 
 
 /datum/outfit/quick/vsd/medic/vsd_rifle
-	name = "C550 Rifle VSD Medic"
-	desc = "For keeping everybody else alive. Equipped with the C550 combat rifle."
+	name = "CC/67 Rifle KZ Medic"
+	desc = "For keeping everybody else alive. Equipped with the CC/67 combat rifle and C96 pistol."
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
+	ears = /obj/item/radio/headset/mainship/vsd
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/medic/vsd_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2492,19 +2526,26 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_SUIT)
 
 /datum/outfit/quick/vsd/medic/vsd_pdw
-	name = "C17 PDW VSD Medic"
+	name = "C17 PDW KZ Medic"
 	desc = "For keeping everybody else alive. Equipped with the C17 Riot PDW."
 	suit_store = /obj/item/weapon/gun/smg/vsd_pdw/medic
+	ears = /obj/item/radio/headset/mainship/vsd
+	w_uniform = /obj/item/clothing/under/vsd
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 //outfits
 /datum/outfit/quick/vsd/spec
 	name = "KZ Specialist"
 	jobtype = "KZ Specialist"
-	w_uniform = /obj/item/clothing/under/vsd/webbing
+	w_uniform = /obj/item/clothing/under/vsd/officer
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 
 /datum/outfit/quick/vsd/spec/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2521,17 +2562,18 @@
 
 
 /datum/outfit/quick/vsd/spec/flamer
-	name = "CC/21 Pyro VSD Specialist"
-	desc = "For when you want to burn down a rainforest. Equipped with a FL-240 incinerator with a spray nozzle, medium armor, a backtank of type X fuel, and half a dozen WP grenades."
+	name = "CC/21 Pyro KZ Specialist"
+	desc = "For when you want to burn down a rainforest. Equipped with Crasher MT-H/43 'Apollo' powered fire-protected armor, CC/21 flamethrower and half a dozen WP grenades."
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/flamer
 	head = /obj/item/clothing/head/helmet/marine/vsd/flamer
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/weapon/gun/flamer/vsd
-	w_uniform = /obj/item/clothing/under/vsd/shirt/webbing
-	l_store = /obj/item/storage/pouch/grenade
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	w_uniform = /obj/item/clothing/under/vsd/officer
+	l_pocket = /obj/item/storage/pouch/grenade
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/spec/flamer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2554,16 +2596,18 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/vsd, SLOT_IN_SUIT)
 
 /datum/outfit/quick/vsd/spec/demolitionist
-	name = "C153 Demolitionist VSD Specialist"
+	name = "C153 Demolitionist KZ Specialist"
 	desc = "Equipped with Crasher MT-H/43 'Zeus' powered explosive-defensive armor, C153 shoulder launcher and 9 84mm HE 'Anti-Personnel' cases."
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/eod
 	head = /obj/item/clothing/head/helmet/marine/vsd/eod
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/weapon/gun/launcher/rocket/vsd
-	l_store = /obj/item/storage/pouch/explosive
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/explosive
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
+	ears = /obj/item/radio/headset/mainship/vsd
+	w_uniform = /obj/item/clothing/under/vsd/officer
 
 /datum/outfit/quick/vsd/spec/demolitionist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2590,16 +2634,18 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_L_POUCH)
 
 /datum/outfit/quick/vsd/spec/gunslinger
-	name = "CC/AT32 Gunslinger VSD Specialist"
+	name = "CC/AT32 Gunslinger KZ Specialist"
 	desc = " Equipped with Crasher MT-H/43 'Ares' powered ballistic armor and CC/AT32 Autocannon."
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/juggernaut
 	head = /obj/item/clothing/head/helmet/marine/vsd/juggernaut
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/weapon/gun/minigun/vsd_autocannon
-	l_store = /obj/item/storage/pouch/grenade
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/grenade
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
+	ears = /obj/item/radio/headset/mainship/vsd
+	w_uniform = /obj/item/clothing/under/vsd/officer
 
 /datum/outfit/quick/vsd/spec/gunslinger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2633,7 +2679,8 @@
 	w_uniform = /obj/item/clothing/under/vsd/upp
 	mask = /obj/item/clothing/mask/gas/vsd
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer
-	l_store = /obj/item/storage/pouch/magazine
+	l_pocket = /obj/item/storage/pouch/magazine
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/spec/uslspec_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2673,7 +2720,8 @@
 	mask = /obj/item/clothing/mask/gas/vsd
 	suit_store = /obj/item/weapon/gun/clf_heavyrifle
 	back = /obj/item/shotgunbox/clf_heavyrifle
-	l_store = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/pouch/grenade
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/spec/uslspec_two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2699,20 +2747,21 @@
 
 //juggernaut outfits
 /datum/outfit/quick/vsd/juggernaut
-	name = "CC/B/31 'Ares' Squad Leader"
+	name = "CC/B/31 'Ares' KZ Squad Leader"
 	desc = "You're in charge and look the part. Equipped with Crasher MT-H/43 'Ares' powered ballistic armor and CC/B/31 breaching shotgun."
 	jobtype = "KZ Squad Leader"
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
-	w_uniform = /obj/item/clothing/under/vsd/webbing
+	w_uniform = /obj/item/clothing/under/vsd/juggernaut
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/juggernaut
 	suit_store = /obj/item/weapon/gun/rifle/vsd_breaching
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/vsd/juggernaut
 	mask = /obj/item/clothing/mask/gas/vsd
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/magazine
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/juggernaut/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2745,11 +2794,11 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/vsd/eod
-	name = "C153 'Zeus' Squad Leader"
+	name = "C153 'Zeus' KZ Squad Leader"
 	desc = "You're in charge and look the part. Equipped with Crasher MT-H/43 'Zeus' powered explosive-defensive armor and a C153 shoulder launcher."
 	jobtype = "KZ Squad Leader"
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
-	w_uniform = /obj/item/clothing/under/vsd/webbing
+	w_uniform = /obj/item/clothing/under/vsd/juggernaut
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/eod
 	suit_store = /obj/item/weapon/gun/launcher/rocket/vsd
@@ -2757,9 +2806,10 @@
 	head = /obj/item/clothing/head/helmet/marine/vsd/eod
 	belt = /obj/item/belt_harness/marine
 	mask = /obj/item/clothing/mask/gas/vsd
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/explosive
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/explosive
 	back = /obj/item/storage/backpack/lightpack/vsd
+	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/eod/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2807,8 +2857,8 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	mask = /obj/item/clothing/mask/gas/pmc
 	suit_store = /obj/item/weapon/gun/smg/m25
-	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/quick/pmc/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2861,8 +2911,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/m25
-	r_store = /obj/item/storage/pouch/medical_injectors/medic
-	l_store = /obj/item/storage/pouch/pressurized_reagent_pouch/bktt
+	r_pocket = /obj/item/storage/pouch/medical_injectors/medic
+	l_pocket = /obj/item/storage/pouch/pressurized_reagent_pouch/bktt
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/quick/pmc/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2901,8 +2951,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	suit_store = /obj/item/weapon/gun/smg/m25
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
-	l_store = /obj/item/storage/pouch/tools/full
+	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol
+	l_pocket = /obj/item/storage/pouch/tools/full
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/quick/pmc/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2951,8 +3001,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
-	r_store = /obj/item/storage/pouch/explosive
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/explosive
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/quick/pmc/gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2998,8 +3048,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc/leader
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	suit_store = /obj/item/weapon/gun/rifle/sniper/elite
-	r_store = /obj/item/storage/pouch/magazine/large/pmc_sniper
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/magazine/large/pmc_sniper
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/quick/pmc/sniper/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -3038,8 +3088,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc/leader
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	suit_store = /obj/item/weapon/gun/rifle/m412
-	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/quick/pmc/squad_leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -3091,8 +3141,8 @@
 	gloves = /obj/item/clothing/gloves/marine/icc
 	head = /obj/item/clothing/head/helmet/marine/icc
 	mask = /obj/item/clothing/mask/gas/icc
-	r_store = /obj/item/storage/pouch/pistol/icc
-	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
+	r_pocket = /obj/item/storage/pouch/pistol/icc
+	l_pocket = /obj/item/storage/pouch/medical_injectors/icc/firstaid
 	back = /obj/item/storage/backpack/lightpack/icc
 
 /datum/outfit/quick/icc/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -3183,8 +3233,8 @@
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
 	mask = /obj/item/clothing/mask/gas/icc
-	r_store = /obj/item/storage/pouch/pistol/icc
-	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
+	r_pocket = /obj/item/storage/pouch/pistol/icc
+	l_pocket = /obj/item/storage/pouch/medical_injectors/icc/firstaid
 	back = /obj/item/storage/backpack/lightpack/icc
 	glasses = /obj/item/clothing/glasses/hud/health
 
@@ -3213,8 +3263,8 @@
 	name = "L-11 ICC Medic"
 	desc = "Equipped with an L-11 sharpshooter rifle and everything you need to keep people alive."
 	suit_store = /obj/item/weapon/gun/rifle/icc_sharpshooter/medic
-	l_store = /obj/item/storage/pouch/magazine/large/icc
-	r_store = /obj/item/storage/pouch/magazine/large/icc
+	l_pocket = /obj/item/storage/pouch/magazine/large/icc
+	r_pocket = /obj/item/storage/pouch/magazine/large/icc
 
 /datum/outfit/quick/icc/medic/icc_sharpshooter/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -3237,8 +3287,8 @@
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
 	mask = /obj/item/clothing/mask/gas/icc
-	r_store = /obj/item/storage/pouch/pistol/icc
-	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
+	r_pocket = /obj/item/storage/pouch/pistol/icc
+	l_pocket = /obj/item/storage/pouch/medical_injectors/icc/firstaid
 	back = /obj/item/storage/backpack/lightpack/icc
 
 /datum/outfit/quick/icc/guard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -3269,8 +3319,8 @@
 
 	suit_store = /obj/item/weapon/gun/launcher/rocket/icc
 	back = /obj/item/weapon/gun/rifle/icc_coilgun
-	l_store = /obj/item/storage/pouch/explosive/icc
-	r_store = /obj/item/storage/pouch/explosive/icc
+	l_pocket = /obj/item/storage/pouch/explosive/icc
+	r_pocket = /obj/item/storage/pouch/explosive/icc
 
 /datum/outfit/quick/icc/guard/icc_rocket/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -3294,8 +3344,8 @@
 	desc = "Equipped with an ML-41 autoshotgun and an ML-120 coilgun. Comes with 7 12g frag drum magazines, the ammo of choice for frontal assaults and for killing practically everything that moves."
 	suit_store = /obj/item/weapon/gun/rifle/icc_coilgun
 	back = /obj/item/weapon/gun/rifle/icc_autoshotgun/guard
-	l_store = /obj/item/storage/pouch/magazine/large/icc
-	r_store = /obj/item/storage/pouch/magazine/large/icc
+	l_pocket = /obj/item/storage/pouch/magazine/large/icc
+	r_pocket = /obj/item/storage/pouch/magazine/large/icc
 
 /datum/outfit/quick/icc/guard/icc_autoshotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -3324,8 +3374,8 @@
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
 	back = /obj/item/storage/backpack/lightpack/icc/guard
-	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
-	r_store = /obj/item/storage/pouch/construction/icc/full
+	l_pocket = /obj/item/storage/pouch/medical_injectors/icc/firstaid
+	r_pocket = /obj/item/storage/pouch/construction/icc/full
 
 /datum/outfit/quick/icc/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

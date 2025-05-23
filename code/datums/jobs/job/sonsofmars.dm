@@ -17,14 +17,14 @@
 	selection_color = "#ffeeee"
 	exp_type_department = EXP_TYPE_MARINES
 
-/datum/job/som/squad/radio_help_message(mob/M)
+/datum/job/som/squad/get_spawn_message_information(mob/M)
 	. = ..()
+	. += separator_hr("[span_role_header("[SSticker.mode.name] Information")]")
 	if(istype(SSticker.mode, /datum/game_mode/hvh/combat_patrol))
 		if(issensorcapturegamemode(SSticker.mode))
-			to_chat(M, span_userdanger("Your platoon has orders to defend sensor towers in the AO and prevent them from reactivation by corpo forces until heavy reeinforcement arrives. High Command considers the successful prevention of the reactivation of the sensor towers a major victory"))
+			. += span_role_header("Your platoon has orders to defend sensor towers in the AO and prevent them from reactivation by NTC until heavy reeinforcement arrives. High Command considers the successful prevention of the reactivation of the sensor towers a major victory")
 		else
-			to_chat(M, span_userdanger("Your platoon has orders to patrol a remote territory illegally claimed by corpos. Intel suggests TGMC units are similarly trying to press their claims by force. Work with your team and eliminate all TGMC you encounter while preserving your own strength! High Command considers wiping out all enemies a major victory, or inflicting more casualties a minor victory."))
-		return
+			. += span_role_header("Your platoon has orders to patrol a remote territory illegally claimed by corpos. Intel suggests NTC units are similarly trying to press their claims by force. Work with your team and eliminate all NTF you encounter while preserving your own strength! High Command considers wiping out all enemies a major victory, or inflicting more casualties a minor victory.")
 
 /datum/job/som/squad/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
@@ -92,10 +92,10 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "SOM_S1"
 
-/datum/job/som/squad/standard/radio_help_message(mob/M)
+/datum/job/som/squad/standard/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file soldier of the Sons of Mars, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the SOM. For Mars!"})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are a rank-and-file soldier of the Sons of Mars, and that is your strength. What you lack alone, you gain standing shoulder to shoulder with the men and women of the SOM. For Mars!"
 
 /datum/outfit/job/som/squad/standard
 	name = "SOM Standard"
@@ -150,10 +150,11 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "SOM_S1"
 
-/datum/job/som/squad/slut/radio_help_message(mob/M)
+/datum/job/som/squad/slut/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file soldier of the Sons of Mars, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the SOM. For Mars!"})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"\nYou are a rank-and-file soldier of the Sons of Mars, and that is your strength.
+What you lack alone, you gain standing shoulder to shoulder with the men and women of the SOM. For Mars!"}
 
 /datum/outfit/job/som/squad/slut
 	name = "SOM Slut"
@@ -206,10 +207,10 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_S2"
 
-/datum/job/som/squad/engineer/radio_help_message(mob/M)
+/datum/job/som/squad/engineer/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
-Your squaddies will look to you when it comes to construction in the field of battle."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You have the equipment and skill to build fortifications, reroute power lines, and bunker down. Your squaddies will look to you when it comes to construction in the field of battle."
 
 /datum/outfit/job/som/squad/engineer
 	name = "SOM Engineer"
@@ -263,10 +264,10 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_S2"
 
-/datum/job/som/squad/medic/radio_help_message(mob/M)
+/datum/job/som/squad/medic/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
-You may not be a fully-fledged doctor, but you stand between life and death when it matters."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You must tend the wounds of your squad mates and make sure they are healthy and active. You may not be a fully-fledged doctor, but you stand between life and death when it matters."
 
 /datum/outfit/job/som/squad/medic
 	name = "SOM Medic"
@@ -317,9 +318,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_S5"
 
-/datum/job/som/squad/veteran/radio_help_message(mob/M)
+/datum/job/som/squad/veteran/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are the a Veteran among the SOM. With your long experience (and better training and equipment), your job is to provide special weapons support to bolster the line."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are a Veteran among the SOM. With your long experience (and better training and equipment), your job is to provide special weapons support to bolster the line."
 
 /datum/outfit/job/som/squad/veteran
 	name = "SOM Veteran"
@@ -381,10 +383,11 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.assigned_squad.demote_leader()
 		new_human.assigned_squad.promote_leader(new_human)
 
-/datum/job/som/squad/leader/radio_help_message(mob/M)
+/datum/job/som/squad/leader/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
-You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
+You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."}
 
 /datum/outfit/job/som/squad/leader
 	name = "SOM Leader"

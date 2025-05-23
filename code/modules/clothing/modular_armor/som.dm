@@ -59,6 +59,12 @@
 		/obj/item/armor_module/storage/general/som,
 	)
 
+/obj/item/clothing/suit/modular/som/medstorage
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical/som,
+	)
+
 /obj/item/clothing/suit/modular/som/shield
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield/som,
@@ -140,6 +146,12 @@
 	starting_attachments = list(
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/storage/medical/som,
+	)
+
+/obj/item/clothing/suit/modular/som/heavy/pyro/genstorage
+	starting_attachments = list(
+		/obj/item/armor_module/module/fire_proof/som,
+		/obj/item/armor_module/storage/general/som,
 	)
 
 /obj/item/clothing/suit/modular/som/heavy/lorica
@@ -289,7 +301,7 @@
 	desc = "A helmet paired with the 'Hades' armor module, designed for significantly improved protection from fire, without compromising normal durability."
 	icon_state = "som_helmet_light"
 	worn_icon_state = "som_helmet_light"
-	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 90, ACID = 50)
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 95, ACID = 50)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,

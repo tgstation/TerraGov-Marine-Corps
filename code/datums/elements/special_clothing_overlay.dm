@@ -23,7 +23,7 @@
 		return ELEMENT_INCOMPATIBLE
 	if(!overlay_to_apply)
 		target_layer = applytarget
-		overlay_to_apply = get_overlay_icon()
+		overlay_to_apply = get_overlay_icon(target)
 		if(!overlay_to_apply)
 			return ELEMENT_INCOMPATIBLE
 	RegisterSignal(target, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
@@ -35,7 +35,7 @@
 /**
  * Fetches the special overlay we are going to be applying
  */
-/datum/element/special_clothing_overlay/proc/get_overlay_icon()
+/datum/element/special_clothing_overlay/proc/get_overlay_icon(obj/item/clothing/target)
 	CRASH("UNIMPLEMENTED OVERLAY GOTTEN")
 
 /**
@@ -86,5 +86,5 @@
 		special_icon = icon
 	return ..()
 
-/datum/element/special_clothing_overlay/modular_helmet_visor/get_overlay_icon()
-	return emissive_appearance(special_icon, visor_icon_state)
+/datum/element/special_clothing_overlay/modular_helmet_visor/get_overlay_icon(obj/item/clothing/target)
+	return emissive_appearance(special_icon, visor_icon_state, target)

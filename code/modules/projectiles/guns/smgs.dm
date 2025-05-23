@@ -9,7 +9,6 @@
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
 	type_of_casings = "bullet"
-	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
@@ -42,7 +41,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
 	caliber = CALIBER_10X20_CASELESS //codex
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	max_shells = 30 //codex
+	max_shells = 45 //codex
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_machinepistol
@@ -104,7 +103,7 @@
 	icon_state = "t90"
 	worn_icon_state = "t90"
 	caliber = CALIBER_10X20_CASELESS //codex
-	max_shells = 50 //codex
+	max_shells = 80 //codex
 	equip_slot_flags = ITEM_SLOT_BACK
 	wield_delay = 0.7 SECONDS
 	force = 20
@@ -161,7 +160,7 @@
 	icon_state = "t45"
 	worn_icon_state = "t45"
 	caliber = CALIBER_41AE //codex
-	max_shells = 40 //codex
+	max_shells = 55 //codex
 	fire_sound = 'sound/weapons/guns/fire/skorpevo.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'

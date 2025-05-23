@@ -104,7 +104,7 @@
 /datum/component/stun_mitigation/proc/on_attack_stun_mitigation(datum/source, list/incoming_stuns, damage_type, penetration)
 	SIGNAL_HANDLER
 
-	var/max_hardstun = max(incoming_stuns[1], incoming_stuns[2]) //stun and weaken
+	var/max_hardstun = max(incoming_stuns[1], incoming_stuns[2]) //stun and paralyze
 	if(!max_hardstun)
 		return FALSE
 

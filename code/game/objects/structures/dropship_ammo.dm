@@ -48,6 +48,8 @@
 	var/cas_effect = /obj/effect/overlay/blinking_laser
 	///CAS impact prediction type to use. Explosive, incendiary, etc
 	var/prediction_type = CAS_AMMO_HARMLESS
+	///Crosshair to use when this ammo is loaded
+	var/crosshair = 'icons/UI_Icons/cas_crosshairs/gun.dmi'
 
 
 /obj/structure/ship_ammo/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
@@ -220,6 +222,7 @@
 	point_cost = 100
 	ammo_type = CAS_30MM
 	cas_effect = /obj/effect/overlay/blinking_laser/heavygun
+	crosshair = 'icons/UI_Icons/cas_crosshairs/gun.dmi'
 	///Radius of the square that the bullets will strafe
 	var/bullet_spread_range = 2
 	///Width of the square we are attacking, so you can make rectangular attacks later
@@ -277,6 +280,7 @@
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	travelling_time = 2 SECONDS
 	point_cost = 225
+	crosshair = 'icons/UI_Icons/cas_crosshairs/gun_hv.dmi'
 
 
 //railgun
@@ -301,7 +305,7 @@
 
 /obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, color = COLOR_CYAN)//no messaging admin, that'd spam them.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, color = COLOR_CYAN, explosion_cause="railgun")//no messaging admin, that'd spam them.
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last railgun has fired and impacted the ground.
 
@@ -331,6 +335,7 @@
 	point_cost = 150
 	ammo_type = CAS_LASER_BATTERY
 	cas_effect = /obj/effect/overlay/blinking_laser/laser
+	crosshair = 'icons/UI_Icons/cas_crosshairs/laser.dmi'
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 
@@ -349,7 +354,7 @@
 	for(var/i=0 to laze_radius)
 		beginning = get_step(beginning, revdir)
 		end = get_step(end, attackdir)
-	return getline(beginning, end)
+	return get_traversal_line(beginning, end)
 
 /obj/structure/ship_ammo/cas/laser_battery/detonate_on(turf/impact, attackdir = NORTH)
 	var/list/turf/lazertargets = get_turfs_to_impact(impact, attackdir)
@@ -394,7 +399,7 @@
 
 /obj/structure/ship_ammo/cas/rocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 	qdel(src)
 
 //ATGMs, defined by 3 second travel time and tight explosion sizes.
@@ -411,6 +416,7 @@
 	heavy_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/widowmaker
+	crosshair = 'icons/UI_Icons/cas_crosshairs/widowmaker.dmi'
 
 /obj/structure/ship_ammo/cas/rocket/keeper
 	name = "\improper AGM-67 'Keeper II"
@@ -422,6 +428,7 @@
 	heavy_explosion_range = 4
 	travelling_time = 3 SECONDS
 	prediction_type = CAS_AMMO_EXPLOSIVE
+	crosshair = 'icons/UI_Icons/cas_crosshairs/keeper.dmi'
 
 // Da warcrime ATGM. Lower explosive yield, but long lasting fire.
 /obj/structure/ship_ammo/cas/rocket/napalm
@@ -437,10 +444,11 @@
 	travelling_time = 3 SECONDS
 	prediction_type = CAS_AMMO_INCENDIARY
 	cas_effect = /obj/effect/overlay/blinking_laser/napalm
+	crosshair = 'icons/UI_Icons/cas_crosshairs/napalm.dmi'
 
 /obj/structure/ship_ammo/cas/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 	flame_radius(fire_range, impact, 30, 60) //cooking for a long time
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(fire_range + 1, impact, 7)
@@ -464,10 +472,11 @@
 	prediction_type = CAS_AMMO_INCENDIARY
 	travelling_time = 6 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/banshee
+	crosshair = 'icons/UI_Icons/cas_crosshairs/banshee.dmi'
 
 /obj/structure/ship_ammo/cas/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, flame_range = fire_range) //more spread out, with flames
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, flame_range = fire_range, explosion_cause=src) //more spread out, with flames
 	qdel(src)
 
 //The fatty is well.. Fat.
@@ -483,10 +492,11 @@
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	travelling_time = 6 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
+	crosshair = 'icons/UI_Icons/cas_crosshairs/fatty.dmi'
 
 /obj/structure/ship_ammo/cas/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //first explosion is small to trick xenos into thinking its a minirocket.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src) //first explosion is small to trick xenos into thinking its a minirocket.
 	addtimer(CALLBACK(src, PROC_REF(delayed_detonation), impact), 3 SECONDS)
 
 /**
@@ -502,7 +512,7 @@
 		var/list/coords = impact_coords[i]
 		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
 		detonation_target.ceiling_debris_check(2)
-		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)
+		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, explosion_cause=src)
 	qdel(src)
 
 // This is the "Default" heavy rocket.
@@ -518,13 +528,14 @@
 	travelling_time = 6 SECONDS
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/monarch
+	crosshair = 'icons/UI_Icons/cas_crosshairs/monarch.dmi'
 
 // High speed missiles are defined by their four second deploy time, solid yield.
 
 //The Swansong is the bogstandard missile, it missiles.
 /obj/structure/ship_ammo/cas/rocket/swansong
 	name = "\improper PLGM-50 'Swansong'"
-	desc = "The PLGM-7 'Swansong' is the bogstandard air to ground missile load of the Navy. Named after barely dodging discontinuation dozens of times to more expensive design types. Moving this will require some sort of lifter."
+	desc = "The PLGM-50 'Swansong' is the bogstandard air to ground missile load of the Navy. Named after barely dodging discontinuation dozens of times to more expensive design types. Moving this will require some sort of lifter."
 	icon_state = "swansong"
 	ammo_id = "s"
 	point_cost = 200
@@ -533,11 +544,12 @@
 	light_explosion_range = 6
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/swansong
+	crosshair = 'icons/UI_Icons/cas_crosshairs/swansong.dmi'
 
 //Minirockets are effectively just da small rockets.
 /obj/structure/ship_ammo/cas/minirocket
-	name = "mini rocket stack"
-	desc = "A pack of explosive laser guided mini rockets. Moving this will require some sort of lifter."
+	name = "mini-rocket stack"
+	desc = "A pack of explosive, laser-guided mini-rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket"
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/minirocket_pod
@@ -554,10 +566,11 @@
 	light_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/minirocket
+	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket.dmi'
 
 /obj/structure/ship_ammo/cas/minirocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
@@ -579,6 +592,7 @@
 	fire_range = 3 //Fire range should be the same as the explosion range. Explosion should leave fire, not vice versa
 	prediction_type = CAS_AMMO_INCENDIARY
 	cas_effect = /obj/effect/overlay/blinking_laser/incendiary
+	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket_incend.dmi'
 
 /obj/structure/ship_ammo/cas/minirocket/incendiary/detonate_on(turf/impact, attackdir = NORTH)
 	. = ..()
@@ -594,6 +608,7 @@
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 2
+	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket_smoke.dmi'
 
 /obj/structure/ship_ammo/cas/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
@@ -611,10 +626,11 @@
 	heavy_explosion_range = 0
 	light_explosion_range = 2
 	cas_effect = /obj/effect/overlay/blinking_laser/tfoot
+	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket_tangle.dmi'
 
 /obj/structure/ship_ammo/cas/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0, explosion_cause=src)
 	var/datum/effect_system/smoke_spread/plasmaloss/S = new
 	S.set_up(9, impact, 9)// Between grenade and mortar
 	S.start()
@@ -631,6 +647,7 @@
 	heavy_explosion_range = 0
 	light_explosion_range = 0
 	prediction_type = CAS_AMMO_HARMLESS
+	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket_flare.dmi'
 
 /obj/structure/ship_ammo/cas/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
@@ -661,11 +678,12 @@
 	light_explosion_range = 4
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/bomb
+	crosshair = 'icons/UI_Icons/cas_crosshairs/tiny.dmi'
 
 
 /obj/structure/ship_ammo/cas/bomb/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 
 // Four hundos have no real gimmick beyond being a bigger payload.
 /obj/structure/ship_ammo/cas/bomb/fourhundred
@@ -681,6 +699,7 @@
 	light_explosion_range = 5
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/bomb
+	crosshair = 'icons/UI_Icons/cas_crosshairs/mighty.dmi'
 
 // The mother of all bombs, Jack.
 /obj/structure/ship_ammo/cas/bomb/moab
@@ -696,6 +715,7 @@
 	travelling_time = 14 SECONDS
 	point_cost = 600 // This is literally a minituare OB.
 	cas_effect = /obj/effect/overlay/blinking_laser/bomb_fat
+	crosshair = 'icons/UI_Icons/cas_crosshairs/moab.dmi'
 
 // Bomblets are small and numerious, with small paylods but high quantity.
 /obj/structure/ship_ammo/cas/bomblet
@@ -716,11 +736,12 @@
 	heavy_explosion_range = 0
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/bomblet
+	crosshair = 'icons/UI_Icons/cas_crosshairs/dandelion.dmi'
 
 
 /obj/structure/ship_ammo/cas/bomblet/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
+	explosion(impact, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 
 /obj/structure/ship_ammo/cas/bomblet/medium
 	name = "\improper AOE-75lb 'Poppies' stack"
@@ -733,3 +754,4 @@
 	point_cost = 175
 	light_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE
+	crosshair = 'icons/UI_Icons/cas_crosshairs/poppies.dmi'

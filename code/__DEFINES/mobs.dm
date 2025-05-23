@@ -93,8 +93,6 @@ GLOBAL_VAR_INIT(max_larva_count_per_mob, 3) //Added for adminbus reasons
 #define LIVING_PERM_COEFF 0
 #define XENO_PERM_COEFF 0.8
 //=================================================
-
-#define HUMAN_STRIP_DELAY 40 //takes 40ds = 4s to strip someone.
 #define POCKET_STRIP_DELAY 20
 
 #define ALIEN_SELECT_AFK_BUFFER 1 // How many minutes that a person can be AFK before not being allowed to be an alien.
@@ -149,17 +147,24 @@ GLOBAL_VAR_INIT(max_larva_count_per_mob, 3) //Added for adminbus reasons
 #define CUT "cut"
 #define BRUISE "bruise"
 #define STAMINA "stamina"
+#define PAIN "pain"
+#define EYE_DAMAGE "eye_damage"
+#define BRAIN_DAMAGE "brain_damage"
+#define INTERNAL_BLEEDING "internal_bleeding"
+#define ORGAN_DAMAGE "organ_damage"
+#define INFECTION "infection"
+
 //=================================================
 
-#define STUN "stun"
-#define WEAKEN "weaken"
-#define PARALYZE "paralyze"
-#define STAGGER "stagger"
-#define AGONY "agony" // Added in PAIN!
-#define STUTTER "stutter"
-#define EYE_BLUR "eye_blur"
-#define DROWSY "drowsy"
-#define SLUR "slur"
+#define EFFECT_STUN "stun"
+#define EFFECT_PARALYZE "paralyze"
+#define EFFECT_UNCONSCIOUS "unconscious"
+#define EFFECT_STAGGER "stagger"
+#define EFFECT_STAMLOSS "stamloss"
+#define EFFECT_STUTTER "stutter"
+#define EFFECT_EYE_BLUR "eye_blur"
+#define EFFECT_DROWSY "drowsy"
+
 //=================================================
 
 //damagetype
@@ -245,6 +250,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_WOUND_SALVED (1<<1)
 #define LIMB_WOUND_DISINFECTED (1<<2)
 #define LIMB_WOUND_CLAMPED (1<<3)
+
+/// If the limb's total damage percent is higher than this, it can be severed.
+#define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
 
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK 0
@@ -527,6 +535,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define XENO_ZOOMED (1<<2)
 ///mobhud on
 #define XENO_MOBHUD (1<<3)
+///rouny
+#define XENO_ROUNY (1<<4)
 
 
 #define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.
@@ -634,7 +644,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN 20 //bonus AP
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY 2 SECONDS
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
-#define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
+#define HUNTER_SILENCE_STAGGER_DURATION 1 SECONDS //Silence imposes this much stagger
 #define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
 #define HUNTER_SILENCE_MUTE_DURATION 10 SECONDS //Silence imposes this many seconds of the mute status effect.
 #define HUNTER_SILENCE_RANGE 5 //Range in tiles of the Hunter's Silence.
@@ -685,6 +695,10 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define GORGER_CARNAGE_HEAL 0.2
 #define GORGER_CARNAGE_MOVEMENT -0.5
 #define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left
+
+#define GORGER_GREENBLOOD_STEAL_FLAT 10 //This many units of greenblood are always stolen
+#define GORGER_GREENBLOOD_STEAL_PERCENTAGE 25 //bonus % of current greenblood taken from vali on drain
+#define GORGER_GREENBLOOD_CONVERSION 1.25 //Amount of blood(plasma) gained per unit of greenblood drained from target.
 
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
@@ -738,7 +752,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 /// How many  tornadoes we unleash when using the firestorm
 #define PYROGEN_FIRESTORM_TORNADE_COUNT 3
 /// Damage on fire tornado hit
-#define PYROGEN_TORNADE_HIT_DAMAGE 15
+#define PYROGEN_TORNADE_HIT_DAMAGE 50
 /// melting fire stacks on fire tornado hit
 #define PYROGEN_TORNADO_MELTING_FIRE_STACKS 2
 /// damage on direct hit with the heatray
@@ -780,6 +794,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME 6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME 10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT 8
+#define HIVELORD_RECOVERY_PYLON_SET_LIMIT 4
 #define HIVELORD_HEAL_RANGE 3
 #define HIVELORD_HEALING_INFUSION_DURATION 60 SECONDS
 #define HIVELORD_HEALING_INFUSION_TICKS 10
@@ -942,11 +957,11 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define IGNORE_HAND (1<<2)
 #define IGNORE_HELD_ITEM (1<<3)
 
-#define TIER_ONE_THRESHOLD 420
+#define TIER_ONE_THRESHOLD 300
 
-#define TIER_TWO_THRESHOLD 840
+#define TIER_TWO_THRESHOLD 600
 
-#define TIER_THREE_THRESHOLD 1750
+#define TIER_THREE_THRESHOLD 900
 
 
 // Pheromones and buff orders
@@ -1002,3 +1017,21 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 ///Filter name for illusion impacts
 #define ILLUSION_HIT_FILTER "illusion_hit_filter"
+
+//This is here because the damage defines aren't set before the AI defines and it breaks everything and I don't know where else to put it
+///Assoc list of items to use to treat different damage types
+GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
+	BRUTE = GLOB.ai_brute_heal_items,
+	BURN = GLOB.ai_burn_heal_items,
+	TOX = GLOB.ai_tox_heal_items,
+	OXY = GLOB.ai_oxy_heal_items,
+	CLONE = GLOB.ai_clone_heal_items,
+	PAIN = GLOB.ai_pain_heal_items,
+	EYE_DAMAGE = GLOB.ai_eye_heal_items,
+	BRAIN_DAMAGE = GLOB.ai_brain_heal_items,
+	INTERNAL_BLEEDING = GLOB.ai_ib_heal_items,
+	ORGAN_DAMAGE = GLOB.ai_organ_heal_items,
+	INFECTION = GLOB.ai_infection_heal_items,
+))
+
+#define POINT_TIME 4 SECONDS

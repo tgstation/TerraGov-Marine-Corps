@@ -55,7 +55,8 @@ GLOBAL_LIST_INIT(sex_actions, build_sex_actions())
 #define VIOLATED_ALLOWED_TIME (10 MINUTES)
 
 /// Returns whether a type is an abstract type.
-/proc/is_abstract(datum/datum_type)
+/proc/is_abstract(datum/datumussy)
+	var/datum/sex_action/datum_type = datumussy
 	return (initial(datum_type.abstract_type) == datum_type)
 
 /proc/build_sex_actions()

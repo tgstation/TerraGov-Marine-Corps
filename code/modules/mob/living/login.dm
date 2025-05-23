@@ -16,3 +16,5 @@
 			add_ventcrawl(A)
 	LAZYREMOVE(GLOB.ssd_living_mobs, src)
 	set_afk_status(MOB_CONNECTED)
+
+	update_fov_client()

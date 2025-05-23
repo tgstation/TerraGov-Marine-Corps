@@ -5,9 +5,10 @@
 	faction = FACTION_USL
 	minimap_icon = "pmc2"
 
-/datum/job/usl_squad/radio_help_message(mob/M)
+/datum/job/usl_squad/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"You're a part of an old PMC group which calls themselves the 'Vyacheslav Security Detail'. Your tasking is to follow SoM command, no excuse. Some circumstances may change this. Good luck."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You're a part of an old PMC group which calls themselves the 'Vyacheslav Security Detail'. Your tasking is to follow SoM command, no excuse. Some circumstances may change this. Good luck."}
 
 //USL Standard
 /datum/job/usl_squad/standard

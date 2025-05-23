@@ -17,12 +17,12 @@
 	desc = "The smallest weapon available to mechs. It packs a small punch, but allows the mech to achieve higher mobility."
 	icon_state = "pistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_light"
+	muzzle_iconstate = "muzzle_flash"
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,16), "E" = list(44,16), "W" = list(-13,36)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,16), "E" = list(44,36), "W" = list(-13,16)),
 	)
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/pistol/mech
 	max_integrity = 500
 	projectiles = 20
@@ -42,8 +42,8 @@
 	desc = "A burstfiring weapon fitted for mechs. Offers higher mobility and accuracy than larger weapons, but reduced damage."
 	icon_state = "burstpistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_light"
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	muzzle_iconstate = "muzzle_flash"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,8), "E" = list(52,8), "W" = list(-21,28)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,8), "E" = list(52,28), "W" = list(-20,8)),
@@ -67,8 +67,8 @@
 	name = "\improper Coeus submachine gun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "As the smallest autofiring weapon, it offers improved mobility but less firepower than most of it's larger cousins."
-	muzzle_iconstate = "muzzle_flash_light"
 	icon_state = "smg"
+	muzzle_iconstate = "muzzle_flash"
 	fire_sound = 'sound/mecha/weapons/mech_smg.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	flash_offsets = list(
@@ -101,7 +101,7 @@
 	desc = "Medium-sized mech assault weapon. Similar to the Cronus assault rifle, but fires in bursts."
 	icon_state = "burstrifle"
 	fire_sound = 'sound/mecha/weapons/mech_rifle.ogg'
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-6), "E" = list(64,17), "W" = list(-33,37)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(63,37), "W" = list(-34,17)),
@@ -124,7 +124,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/assault_rifle
 	name = "\improper Cronus assault rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "The stock-and-standard extra-sized multipurpose rifle for NTC mech units."
+	desc = "The stock-and-standard extra-sized multipurpose rifle for TGMC mech units."
 	icon_state = "assaultrifle"
 	fire_sound = 'sound/mecha/weapons/mech_rifle.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
@@ -155,7 +155,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun
 	name = "\improper Phoebe shotgun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "The NTC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
+	desc = "The TGMC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
 	icon_state = "shotgun"
 	fire_sound = 'sound/mecha/weapons/mech_shotgun.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
@@ -177,7 +177,7 @@
 	slowdown = 0
 	harmful = TRUE
 	rearm_time = 4 SECONDS
-	weight = 90
+	weight = 80
 	ammo_type = MECHA_AMMO_SHOTGUN
 	hud_icons = list("shotgun_buckshot", "shotgun_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -369,7 +369,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavyrocket
 	name = "\improper Hyperion heavy rocket launcher"
-	desc = "The NTC's definitive answer to whether a bigger boom is better. Fires heavy AP rockets."
+	desc = "The TGMC's definitive answer to whether a bigger boom is better. Fires heavy AP rockets."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	icon_state = "rocketlauncher"
 	fire_sound = 'sound/mecha/weapons/mech_rpg.ogg'
@@ -407,17 +407,15 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
-	max_integrity = 400
-	projectiles = 2
-	projectiles_cache = 20
-	projectiles_cache_max = 20
-	variance = 15
-	projectile_delay = 5 SECONDS
+	max_integrity = 250
+	projectiles = 10
+	projectiles_cache = 60
+	projectiles_cache_max = 60
+	variance = 10
+	projectile_delay = 2 SECONDS
 	slowdown = 0
 	harmful = TRUE
-	weight = 95
-	rearm_time = 4 SECONDS
-	windup_delay = 0.5 SECONDS
+	weight = 90
 	ammo_type = MECHA_AMMO_FLAMER
 	hud_icons = list("flame", "flame_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -438,16 +436,16 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ammotype = /datum/ammo/rocket/mech
-	max_integrity = 200
+	max_integrity = 400
 	projectiles = 2
 	projectiles_cache = 20
 	projectiles_cache_max = 20
 	variance = 15
 	projectile_delay = 5 SECONDS
 	slowdown = 0
-	weight = 130
-	rearm_time = 5 SECONDS
-	windup_delay = 1 SECONDS
+	weight = 95
+	rearm_time = 4 SECONDS
+	windup_delay = 0.5 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RPG
 	hud_icons = list("rocket_he", "rocket_empty")
@@ -476,7 +474,7 @@
 	burst_amount = 3
 	projectile_burst_delay = 0.2 SECONDS
 	slowdown = 0
-	weight = 75
+	weight = 90
 	rearm_time = 8 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RPG
@@ -617,14 +615,14 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear
 	name = "\improper Sunbeam particle piercer"
-	desc = "A spear made of compressed energy for the NTC Combat Mech. A melee weapon for strong defense at short-to-medium range. Extends a spear of superheated plasma upon activation, piericing everything in its path. A melee core will increase both its range and power. It is a top-of-the-line melee weapon of NTC's fine line of mecha close-range offensive capability."
+	desc = "A spear made of compressed energy for the TGMC Combat Mech. A melee weapon for strong defense at short-to-medium range. Extends a spear of superheated plasma upon activation, piericing everything in its path. A melee core will increase both its range and power. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	icon_state = "lance"
 	fire_sound = 'sound/mecha/weapons/laser_sword.ogg'
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.OGG'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/lance_strike
-	max_integrity = 200
+	max_integrity = 400
 	slowdown = 0.15
 	windup_delay = 0.6 SECONDS
 	harmful = TRUE

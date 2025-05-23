@@ -2,68 +2,6 @@
 	category = CATEGORY_MOB
 	weight = WEIGHT_MOB
 
-/datum/keybinding/mob/face_north
-	hotkey_keys = list("CtrlW", "CtrlNorth")
-	name = "face_north"
-	full_name = "Face North"
-	description = ""
-	keybind_signal = COMSIG_KB_MOB_FACENORTH_DOWN
-
-/datum/keybinding/mob/face_north/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/M = user.mob
-	M.northface()
-	return TRUE
-
-
-/datum/keybinding/mob/face_east
-	hotkey_keys = list("CtrlD", "CtrlEast")
-	name = "face_east"
-	full_name = "Face East"
-	description = ""
-	keybind_signal = COMSIG_KB_MOB_FACEEAST_DOWN
-
-/datum/keybinding/mob/face_east/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/M = user.mob
-	M.eastface()
-	return TRUE
-
-
-/datum/keybinding/mob/face_south
-	hotkey_keys = list("CtrlS", "CtrlSouth")
-	name = "face_south"
-	full_name = "Face South"
-	description = ""
-	keybind_signal = COMSIG_KB_MOB_FACESOUTH_DOWN
-
-/datum/keybinding/mob/face_south/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/M = user.mob
-	M.southface()
-	return TRUE
-
-/datum/keybinding/mob/face_west
-	hotkey_keys = list("CtrlA", "CtrlWest")
-	name = "face_west"
-	full_name = "Face West"
-	description = ""
-	keybind_signal = COMSIG_KB_MOB_FACEWEST_DOWN
-
-/datum/keybinding/mob/face_west/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/M = user.mob
-	M.westface()
-	return TRUE
-
 /datum/keybinding/mob/stop_pulling
 	hotkey_keys = list("Delete")
 	name = "stop_pulling"
@@ -340,3 +278,36 @@
 	if(!target || !user.mob.Adjacent(target))	//In case the target moved away while selecting them
 		return
 	user.mob.interaction_emote(target)
+
+/datum/keybinding/mob/prevent_movement
+	hotkey_keys = list("")
+	name = "block_movement"
+	full_name = "Block movement"
+	description = "Prevents you from moving"
+	keybind_signal = COMSIG_KB_MOB_BLOCKMOVEMENT_DOWN
+
+/datum/keybinding/mob/prevent_movement/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.movement_locked = TRUE
+
+/datum/keybinding/mob/prevent_movement/up(client/user)
+	. = ..()
+	if(.)
+		return
+	user.movement_locked = FALSE
+
+/datum/keybinding/mob/toggle_clickdrag
+	hotkey_keys = list("")
+	name = "toggle_clickdrag"
+	full_name = "Toggle Click-Drag"
+	description = "Toggles click-dragging on and off."
+	keybind_signal = COMSIG_KB_MOB_TOGGLE_CLICKDRAG
+
+/datum/keybinding/mob/toggle_clickdrag/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.prefs.toggles_gameplay ^= TOGGLE_CLICKDRAG
+	user.mob.balloon_alert(user.mob, "You can [user.prefs.toggles_gameplay & TOGGLE_CLICKDRAG ? "no longer" : "now"] click-drag")

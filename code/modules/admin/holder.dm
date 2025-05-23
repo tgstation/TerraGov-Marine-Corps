@@ -9,12 +9,14 @@
 	var/datum/marked_datum
 	var/marked_file
 
+	/// Code security critcal token used for authorizing href topic calls
 	var/href_token
 
 	///Reference to filteriffic tgui holder datum
 	var/datum/filter_editor/filteriffic
 	///Reference to particle editor tgui holder datum
 	var/datum/particle_editor/particle_test
+	var/datum/plane_master_debug/plane_debug
 
 	///Whether this admin is currently deadminned or not
 	var/deadmined = FALSE
@@ -61,6 +63,10 @@
 		return QDEL_HINT_LETMELIVE
 	return ..()
 
+/datum/admins/can_vv_get(var_name)
+	if(var_name == NAMEOF(src, href_token))
+		return FALSE
+	return ..()
 
 /datum/admins/proc/activate()
 	if(IsAdminAdvancedProcCall())
@@ -69,6 +75,7 @@
 		return
 	GLOB.deadmins -= target
 	GLOB.admin_datums[target] = src
+	plane_debug = new(src)
 	deadmined = FALSE
 	if(GLOB.directory[target])
 		associate(GLOB.directory[target])	//find the client for a ckey if they are connected and associate them with us
@@ -81,6 +88,7 @@
 		return
 	GLOB.deadmins[target] = src
 	GLOB.admin_datums -= target
+	QDEL_NULL(plane_debug)
 	deadmined = TRUE
 	var/client/C
 	if((C = owner) || (C = GLOB.directory[target]))
@@ -122,42 +130,11 @@
 		owner.holder = null
 		owner = null
 
-
-/client/proc/readmin()
-	set name = "Re-Admin"
-	set category = "Admin"
-	set desc = "Regain your admin powers."
-
-	var/datum/admins/A = GLOB.deadmins[ckey]
-
-	if(!A)
-		A = GLOB.admin_datums[ckey]
-		if(!A)
-			log_admin_private("[key_name(src)] is trying to re-admin but they have no de-admin entry.")
-			message_admins("[ADMIN_TPMONTY(usr)] is trying to re-admin but they have no de-admin entry.")
-			return
-
-	A.associate(src)
-
-	if(!holder)//This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
-		return
-
-	log_admin("[key_name(usr)] re-adminned themselves.")
-	message_admins("[ADMIN_TPMONTY(usr)] re-adminned themselves.")
-
-
-/client/proc/deadmin()
-	set name = "De-Admin"
-	set category = "Admin"
-	set desc = "Temporarily remove your admin powers."
-
-	if(!holder)
-		return
-
-	holder.deactivate()
-
-	log_admin("[key_name(usr)] de-adminned themselves.")
-	message_admins("[ADMIN_TPMONTY(usr)] de-adminned themselves.")
+ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
+	user.holder.deactivate()
+	to_chat(user, span_interface("You are now a normal player."))
+	log_admin("[key_name(user)] deadminned themselves.")
+	message_admins("[key_name_admin(user)] deadminned themselves.")
 
 
 /proc/GenerateToken()
@@ -256,320 +233,6 @@
 		if((rank.rights & other.rank.rights) == other.rank.rights)
 			return TRUE
 	return FALSE
-
-
-/world/proc/AVdefault()
-	return list(
-	/client/proc/deadmin
-	)
-GLOBAL_LIST_INIT(admin_verbs_default, world.AVdefault())
-GLOBAL_PROTECT(admin_verbs_default)
-
-/world/proc/AVadmin()
-	return list(
-	/datum/admins/proc/pref_ff_attack_logs,
-	/datum/admins/proc/pref_end_attack_logs,
-	/datum/admins/proc/pref_debug_logs,
-	/datum/admins/proc/admin_ghost,
-	/datum/admins/proc/invisimin,
-	/datum/admins/proc/stealth_mode,
-	/datum/admins/proc/give_mob,
-	/datum/admins/proc/give_mob_panel,
-	/datum/admins/proc/rejuvenate,
-	/datum/admins/proc/rejuvenate_panel,
-	/datum/admins/proc/toggle_sleep,
-	/datum/admins/proc/toggle_sleep_panel,
-	/datum/admins/proc/toggle_sleep_area,
-	/datum/admins/proc/jump,
-	/datum/admins/proc/get_mob,
-	/datum/admins/proc/send_mob,
-	/datum/admins/proc/jump_area,
-	/datum/admins/proc/jump_coord,
-	/datum/admins/proc/jump_mob,
-	/datum/admins/proc/jump_key,
-	/datum/admins/proc/secrets_panel,
-	/datum/admins/proc/remove_from_tank,
-	/datum/admins/proc/delete_squad,
-	/datum/admins/proc/game_panel,
-	/datum/admins/proc/mode_panel,
-	/datum/admins/proc/job_slots,
-	/datum/admins/proc/toggle_adminhelp_sound,
-	/datum/admins/proc/toggle_prayers,
-	/datum/admins/proc/check_fingerprints,
-	/datum/admins/proc/display_tags,
-	/datum/admins/proc/open_campaign_panel,
-	/client/proc/mark_datum_mapview,
-	/client/proc/tag_datum_mapview,
-	/client/proc/cmd_admin_check_contents, /*displays the contents of an instance*/
-	/client/proc/smite,
-	/client/proc/show_traitor_panel,
-	/client/proc/cmd_select_equipment,
-	/client/proc/validate_objectives,
-	/client/proc/private_message_panel,
-	/client/proc/private_message_context,
-	/client/proc/msay,
-	/client/proc/dsay,
-	/client/proc/object_say,
-	)
-GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
-GLOBAL_PROTECT(admin_verbs_admin)
-
-/world/proc/AVmentor()
-	return list(
-	/datum/admins/proc/admin_ghost,
-	/datum/admins/proc/subtle_message,
-	/datum/admins/proc/subtle_message_panel,
-	/datum/admins/proc/view_faxes,
-	/datum/admins/proc/toggle_adminhelp_sound,
-	/datum/admins/proc/toggle_prayers,
-	/datum/admins/proc/imaginary_friend,
-	/client/proc/private_message_panel,
-	/client/proc/private_message_context,
-	/client/proc/msay,
-	/client/proc/dsay
-	)
-GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
-GLOBAL_PROTECT(admin_verbs_mentor)
-
-/world/proc/AVban()
-	return list(
-	/datum/admins/proc/ban_panel,
-	/datum/admins/proc/stickybanpanel,
-	/datum/admins/proc/unban_panel,
-	/datum/admins/proc/note_panel,
-	/datum/admins/proc/show_player_panel,
-	/datum/admins/proc/player_panel,
-	/datum/admins/proc/player_panel_extended,
-	/datum/admins/proc/mcdb
-	)
-GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
-GLOBAL_PROTECT(admin_verbs_ban)
-
-/world/proc/AVasay()
-	return list(
-	/client/proc/asay
-	)
-GLOBAL_LIST_INIT(admin_verbs_asay, world.AVasay())
-GLOBAL_PROTECT(admin_verbs_asay)
-
-/world/proc/AVdebug()
-	return list(
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
-	/datum/admins/proc/delete_all,
-	/datum/admins/proc/generate_powernets,
-	/datum/admins/proc/debug_mob_lists,
-	/client/proc/debugstatpanel,
-	/datum/admins/proc/delete_atom,
-	/datum/admins/proc/restart_controller,
-	/client/proc/debug_controller,
-	/datum/admins/proc/check_contents,
-	/datum/admins/proc/reestablish_db_connection,
-	/client/proc/reestablish_tts_connection,
-	/datum/admins/proc/view_runtimes,
-	/client/proc/SDQL2_query,
-	/client/proc/toggle_cdn
-	)
-GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
-GLOBAL_PROTECT(admin_verbs_debug)
-
-/world/proc/AVruntimes()
-	return list(
-	/datum/admins/proc/view_runtimes,
-	)
-GLOBAL_LIST_INIT(admin_verbs_runtimes, world.AVruntimes())
-GLOBAL_PROTECT(admin_verbs_runtimes)
-
-/world/proc/AVvaredit()
-	return list(
-	/client/proc/debug_variables
-	)
-GLOBAL_LIST_INIT(admin_verbs_varedit, world.AVvaredit())
-GLOBAL_PROTECT(admin_verbs_varedit)
-
-/world/proc/AVfun()
-	return list(
-	/datum/admins/proc/rank_and_equipment,
-	/datum/admins/proc/set_view_range,
-	/datum/admins/proc/emp,
-	/datum/admins/proc/queen_report,
-	/datum/admins/proc/rouny_all,
-	/datum/admins/proc/hive_status,
-	/datum/admins/proc/ai_report,
-	/datum/admins/proc/command_report,
-	/datum/admins/proc/narrate_global,
-	/datum/admins/proc/narage_direct,
-	/datum/admins/proc/subtle_message,
-	/datum/admins/proc/subtle_message_panel,
-	/datum/admins/proc/award_medal,
-	/datum/admins/proc/custom_info,
-	/datum/admins/proc/announce,
-	/datum/admins/proc/force_distress,
-	/datum/admins/proc/object_sound,
-	/datum/admins/proc/drop_bomb,
-	/datum/admins/proc/drop_dynex_bomb,
-	/datum/admins/proc/change_security_level,
-	/datum/admins/proc/edit_appearance,
-	/datum/admins/proc/offer,
-	/datum/admins/proc/force_dropship,
-	/datum/admins/proc/open_shuttlepanel,
-	/datum/admins/proc/xeno_panel,
-	/datum/admins/proc/view_faxes,
-	/datum/admins/proc/possess,
-	/datum/admins/proc/release,
-	/client/proc/centcom_podlauncher,
-	/datum/admins/proc/play_cinematic,
-	/datum/admins/proc/set_tip,
-	/datum/admins/proc/ghost_interact,
-	/client/proc/force_event,
-	/client/proc/toggle_events,
-	/client/proc/run_weather,
-	/client/proc/cmd_display_del_log,
-	/datum/admins/proc/map_template_load,
-	/datum/admins/proc/map_template_upload,
-	/datum/admins/proc/spatial_agent,
-	/datum/admins/proc/set_xeno_stat_buffs,
-	/datum/admins/proc/check_bomb_impacts,
-	/datum/admins/proc/adjust_gravity,
-	)
-GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
-GLOBAL_PROTECT(admin_verbs_fun)
-
-/world/proc/AVserver()
-	return list(
-	/datum/admins/proc/restart,
-	/datum/admins/proc/shutdown_server,
-	/datum/admins/proc/toggle_ooc,
-	/datum/admins/proc/toggle_looc,
-	/datum/admins/proc/toggle_deadchat,
-	/datum/admins/proc/toggle_deadooc,
-	/datum/admins/proc/start,
-	/datum/admins/proc/toggle_join,
-	/datum/admins/proc/toggle_respawn,
-	/datum/admins/proc/set_respawn_time,
-	/datum/admins/proc/end_round,
-	/datum/admins/proc/delay_start,
-	/datum/admins/proc/delay_end,
-	/datum/admins/proc/toggle_gun_restrictions,
-	/datum/admins/proc/toggle_synthetic_restrictions,
-	/datum/admins/proc/reload_admins,
-	/datum/admins/proc/change_ground_map,
-	/datum/admins/proc/change_ship_map,
-	/datum/admins/proc/panic_bunker,
-	/datum/admins/proc/mode_check,
-	/client/proc/toggle_cdn
-	)
-GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
-GLOBAL_PROTECT(admin_verbs_server)
-
-/world/proc/AVpermissions()
-	return list(
-	/client/proc/edit_admin_permissions,
-	)
-GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
-GLOBAL_PROTECT(admin_verbs_permissions)
-
-/world/proc/AVcolor()
-	return list(
-		/datum/admins/proc/set_ooc_color_self,
-	)
-GLOBAL_LIST_INIT(admin_verbs_color, world.AVcolor())
-GLOBAL_PROTECT(admin_verbs_color)
-
-/world/proc/AVsound()
-	return list(
-		/datum/admins/proc/sound_file,
-		/datum/admins/proc/sound_web,
-		/datum/admins/proc/sound_stop,
-		/datum/admins/proc/music_stop,
-		/client/proc/set_round_end_sound,
-	)
-GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
-GLOBAL_PROTECT(admin_verbs_sound)
-
-/world/proc/AVspawn()
-	return list(
-	/datum/admins/proc/spawn_atom,
-	/client/proc/get_togglebuildmode,
-	/client/proc/mass_replace,
-	/client/proc/toggle_admin_tads,
-	)
-GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
-GLOBAL_PROTECT(admin_verbs_spawn)
-
-/world/proc/AVlog()
-	return list(
-	/datum/admins/proc/logs_server,
-	/datum/admins/proc/logs_current,
-	/datum/admins/proc/logs_folder,
-	/client/proc/log_viewer_new
-	)
-GLOBAL_LIST_INIT(admin_verbs_log, world.AVlog())
-GLOBAL_PROTECT(admin_verbs_log)
-
-/world/proc/AVpolls()
-	return list(
-	/client/proc/poll_panel,
-	)
-GLOBAL_LIST_INIT(admin_verbs_polls, world.AVpolls())
-GLOBAL_PROTECT(admin_verbs_polls)
-
-/client/proc/add_admin_verbs()
-	if(holder)
-		var/rights = holder.rank.rights
-		add_verb(src, GLOB.admin_verbs_default)
-		if(rights & R_ADMIN)
-			add_verb(src, GLOB.admin_verbs_admin)
-		if(rights & R_MENTOR)
-			add_verb(src, GLOB.admin_verbs_mentor)
-		if(rights & R_BAN)
-			add_verb(src, GLOB.admin_verbs_ban)
-		if(rights & R_ASAY)
-			add_verb(src, GLOB.admin_verbs_asay)
-		if(rights & R_FUN)
-			add_verb(src, GLOB.admin_verbs_fun)
-		if(rights & R_SERVER)
-			add_verb(src, GLOB.admin_verbs_server)
-		if(rights & R_DEBUG)
-			add_verb(src, GLOB.admin_verbs_debug)
-		if(rights & R_RUNTIME)
-			add_verb(src, GLOB.admin_verbs_runtimes)
-		if(rights & R_PERMISSIONS)
-			add_verb(src, GLOB.admin_verbs_permissions)
-		if(rights & R_DBRANKS)
-			add_verb(src, GLOB.admin_verbs_permissions)
-		if(rights & R_SOUND)
-			add_verb(src, GLOB.admin_verbs_sound)
-		if(rights & R_COLOR)
-			add_verb(src, GLOB.admin_verbs_color)
-		if(rights & R_VAREDIT)
-			add_verb(src, GLOB.admin_verbs_varedit)
-		if(rights & R_SPAWN)
-			add_verb(src, GLOB.admin_verbs_spawn)
-		if(rights & R_LOG)
-			add_verb(src, GLOB.admin_verbs_log)
-		if(rights & R_POLLS)
-			add_verb(src, GLOB.admin_verbs_polls)
-
-
-/client/proc/remove_admin_verbs()
-	remove_verb(src, list(
-		GLOB.admin_verbs_default,
-		GLOB.admin_verbs_admin,
-		GLOB.admin_verbs_mentor,
-		GLOB.admin_verbs_ban,
-		GLOB.admin_verbs_asay,
-		GLOB.admin_verbs_fun,
-		GLOB.admin_verbs_server,
-		GLOB.admin_verbs_debug,
-		GLOB.admin_verbs_permissions,
-		GLOB.admin_verbs_sound,
-		GLOB.admin_verbs_color,
-		GLOB.admin_verbs_varedit,
-		GLOB.admin_verbs_spawn,
-		GLOB.admin_verbs_log,
-	))
-
 
 /proc/is_mentor(client/C)
 	if(!istype(C))
@@ -683,7 +346,7 @@ GLOBAL_PROTECT(admin_verbs_polls)
 		if(APICKER_LIVING)
 			chosen = input("Please, select a living mob.", title) as null|anything in sortNames(GLOB.mob_living_list)
 		if(APICKER_AREA)
-			chosen = input("Please, select an area.", title) as null|anything in GLOB.sorted_areas
+			chosen = input("Please, select an area.", title) as null|anything in get_sorted_areas()
 			chosen = pick(get_area_turfs(chosen))
 		if(APICKER_TURF)
 			chosen = input("Please, select a turf.", title) as null|turf in world

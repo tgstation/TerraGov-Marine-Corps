@@ -18,10 +18,6 @@
 	var/skill_level_needed = SKILL_MEDICAL_UNTRAINED
 	///Fumble delay applied without sufficient skill
 	var/unskilled_delay = SKILL_TASK_TRIVIAL
-	///How much brute damage this pack heals when applied to a limb
-	var/heal_brute = 0
-	///How much burn damage this pack heals when applied to a limb
-	var/heal_burn = 0
 
 /obj/item/stack/medical/attack_self(mob/user)
 	. = ..()
@@ -32,8 +28,8 @@
 	if(.)
 		return
 
-	if(!ishuman(M) && !isxeno(M))
-		M.balloon_alert(user, "not a humanoid")
+	if(!ishuman(M))
+		M.balloon_alert(user, "not a human")
 		return FALSE
 	var/mob/living/carbon/human/target = M
 
@@ -45,14 +41,7 @@
 		target.balloon_alert(user, "already busy")
 		return
 
-	if(isxeno(M))
-		var/heal_amount = M.maxHealth * 0.01
-		if(do_mob(user, M, 2 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-			M.adjustBruteLoss(-heal_amount * 10)
-			M.adjustFireLoss(-heal_amount * 10)
-			return
-
-	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
+	var/datum/limb/affecting = user?.client?.prefs?.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
 
 	if(!affecting)
 		return FALSE
@@ -71,6 +60,10 @@
 	name = "platonic gauze"
 	amount = 40
 	max_amount = 40
+	///How much brute damage this pack heals when applied to a limb
+	var/heal_brute = 0
+	///How much burn damage this pack heals when applied to a limb
+	var/heal_burn = 0
 	///Set of wound flags applied by use, including BANDAGE, SALVE, and DISINFECT
 	var/heal_flags = NONE
 
@@ -84,7 +77,7 @@
 
 	if(affecting.limb_status & LIMB_DESTROYED)
 		patient.balloon_alert(user, "limb destroyed")
-		return
+		return FALSE
 
 	var/unskilled_penalty = (user.skills.getRating(SKILL_MEDICAL) < skill_level_needed) ? 0.5 : 1
 	var/list/patient_limbs = patient.limbs.Copy()
@@ -92,7 +85,7 @@
 	while(affecting && amount)
 		if(!do_after(user, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
 			patient.balloon_alert(user, "Stopped tending")
-			return
+			return FALSE
 		var/affected = heal_limb(affecting, unskilled_penalty)
 		if(affected)
 			use(1)
@@ -107,9 +100,12 @@
 			if(!length(patient_limbs))
 				break
 	patient.balloon_alert(user, "Finished tending")
+	return TRUE
 
 /// return TRUE if a given limb can be healed by src, FALSE otherwise
 /obj/item/stack/medical/heal_pack/proc/can_heal_limb(datum/limb/affecting)
+	if(!affecting)
+		return FALSE
 	if(affecting.limb_status & LIMB_DESTROYED)
 		return FALSE
 	if(!can_affect_limb(affecting))
@@ -244,7 +240,7 @@
 		if(user.do_actions)
 			M.balloon_alert(user, "already busy")
 			return FALSE
-		if(!do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+		if(!do_after(user, unskilled_delay, NONE, M, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 			return FALSE
 
 	var/datum/limb/affecting = .
@@ -253,6 +249,8 @@
 		return
 	if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL) - 1, 0)) : applied_splint_health*user.skills.getRating(SKILL_MEDICAL), user, M))
 		use(1)
+		return TRUE
+	return FALSE
 
 
 #undef BANDAGE

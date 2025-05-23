@@ -76,7 +76,7 @@
 	var/stamina_loss_adjustment = staminaloss + amount
 	var/health_limit = maxHealth * 2
 	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, get hardstunned for 15 seconds, instead of taking oxygen damage.
-		apply_effect(15 SECONDS, WEAKEN)
+		apply_effect(15 SECONDS, EFFECT_PARALYZE)
 
 	staminaloss = clamp(stamina_loss_adjustment, -max_stamina, health_limit)
 
@@ -94,7 +94,7 @@
 
 /mob/living/proc/updateStamina(feedback = TRUE)
 	hud_used?.staminas?.update_icon()
-	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_CHECK(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
+	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_FINISHED(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
 		return
 
 	if(feedback)
@@ -385,7 +385,7 @@
 
 ///Revive the huamn up to X health points
 /mob/living/carbon/human/proc/revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
-	if(!has_working_organs())
+	if((!SSticker.mode.zombie_rebirth) || (!has_working_organs()))
 		on_fire = TRUE
 		fire_stacks = 15
 		update_fire()

@@ -24,42 +24,8 @@
 	. = ..()
 
 /obj/item/attachable/bayonet
-	name = "bayonet"
-	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
-	icon_state = "bayonet"
-	icon = 'icons/obj/items/guns/attachments/muzzle.dmi'
-	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
-	)
-	force = 20
-	throwforce = 10
-	attach_delay = 10 //Bayonets attach/detach quickly.
-	detach_delay = 10
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	melee_mod = 25
-	slot = ATTACHMENT_SLOT_MUZZLE
-	pixel_shift_x = 14 //Below the muzzle.
-	pixel_shift_y = 18
-	accuracy_mod = -0.05
-	accuracy_unwielded_mod = -0.1
-	size_mod = 1
-	sharp = IS_SHARP_ITEM_ACCURATE
-	variants_by_parent_type = list(/obj/item/weapon/gun/shotgun/pump/t35 = "bayonet_t35")
-
-/obj/item/attachable/bayonet/screwdriver_act(mob/living/user, obj/item/I)
-	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
-	if(loc == user)
-		user.dropItemToGround(src)
-	var/obj/item/weapon/combat_knife/knife = new(loc)
-	user.put_in_hands(knife) //This proc tries right, left, then drops it all-in-one.
-	if(knife.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-		knife.forceMove(loc)
-	qdel(src) //Delete da old bayonet
-
-/obj/item/attachable/bayonetknife
-	name = "M-22 bayonet"
-	desc = "A sharp knife that is the standard issue combat knife of the Nine-Tailed Fox can be attached to a variety of weapons at will or used as a standard knife."
+	name = "\improper M-22 bayonet"
+	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife"
 	icon = 'icons/obj/items/guns/attachments/muzzle.dmi'
 	worn_icon_list = list(
@@ -71,29 +37,50 @@
 	throw_speed = 3
 	throw_range = 6
 	attack_speed = 8
-	attach_delay = 10 //Bayonets attach/detach quickly.
-	detach_delay = 10
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	melee_mod = 25
+	sharp = IS_SHARP_ITEM_ACCURATE
+	hitsound = 'sound/weapons/slash.ogg'
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
+
+	attach_delay = 1 SECONDS
+	detach_delay = 1 SECONDS
 	slot = ATTACHMENT_SLOT_MUZZLE
-	pixel_shift_x = 14 //Below the muzzle.
+	pixel_shift_x = 14
 	pixel_shift_y = 18
+	melee_mod = 25
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
-	sharp = IS_SHARP_ITEM_ACCURATE
 	variants_by_parent_type = list(/obj/item/weapon/gun/shotgun/pump/t35 = "bayonetknife_t35")
 
-/obj/item/attachable/bayonetknife/Initialize(mapload)
+/obj/item/attachable/bayonet/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
-/obj/item/attachable/bayonetknife/som
+/obj/item/attachable/bayonet/som
 	name = "\improper S20 SOM bayonet"
 	desc = "A large knife that is the standard issue combat knife of the SOM. Can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife_som"
 	worn_icon_state = "bayonetknife"
 	force = 30
+
+/obj/item/attachable/bayonet/converted
+	name = "bayonet"
+	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
+	icon_state = "bayonet"
+	force = 20
+	throwforce = 10
+	pixel_shift_x = 14
+	pixel_shift_y = 18
+
+/obj/item/attachable/bayonet/converted/screwdriver_act(mob/living/user, obj/item/I)
+	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
+	if(loc == user)
+		user.dropItemToGround(src)
+	var/obj/item/weapon/combat_knife/knife = new(loc)
+	user.put_in_hands(knife) //This proc tries right, left, then drops it all-in-one.
+	if(knife.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
+		knife.forceMove(loc)
+	qdel(src)
 
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"

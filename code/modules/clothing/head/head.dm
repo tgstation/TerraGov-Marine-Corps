@@ -142,7 +142,7 @@
 
 /obj/item/clothing/head/tgmccap/verb/fliphat()
 	set name = "Flip hat"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 	if(!isliving(usr))
 		return
@@ -480,8 +480,8 @@
 	armor_features_flags = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/vsd/beret
-	name = "\improper Crasher MT/45 Vyacheslav armored beret"
-	desc = "CrashCore sponsored beret with kevlar fabric, seen on Vyacheslav Squad Leaders and Officers."
+	name = "\improper Crasher MT/45 Kaizoku armored beret"
+	desc = "CrashCore sponsored beret with kevlar fabric, seen on Kaizoku's Squad Leaders and Officers."
 	icon_state = "vsd_beret"
 	worn_icon_state = "vsd_beret"
 	icon = 'icons/mob/clothing/headwear/ert_headwear.dmi'
@@ -492,8 +492,8 @@
 	)
 
 /obj/item/clothing/head/vsd/beret_alt
-	name = "\improper Crasher MT/45 Vyacheslav armored beret"
-	desc = "CrashCore sponsored beret with kevlar fabric, seen on Vyacheslav Squad Leaders and Officers."
+	name = "\improper Crasher MT/45/A Kaizoku armored beret"
+	desc = "CrashCore sponsored beret with kevlar fabric, seen on Kaizoku Squad Leaders and Officers."
 	icon_state = "usl_beret"
 	worn_icon_state = "usl_beret"
 	icon = 'icons/mob/clothing/headwear/ert_headwear.dmi'

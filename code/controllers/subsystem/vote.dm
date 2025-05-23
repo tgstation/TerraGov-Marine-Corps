@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(vote)
 	var/text
 	if(length(winners) > 0)
 		if(question)
-			text += "<b>[question]</b>"
+			text += "<big><b><i>[question]</i></b></big>"
 		else
 			text += "<b>[capitalize(mode)] Vote</b>"
 		for(var/i = 1 to length(choices))
@@ -99,20 +99,19 @@ SUBSYSTEM_DEF(vote)
 			text += "\n<b>[choices[i]]:</b> [votes]"
 		if(mode != "custom")
 			if(length(winners) > 1)
-				text = "\n<b>Vote Tied Between:</b>"
+				text = "<hr><b>Vote Tied Between:</b>"
 				for(var/option in winners)
 					text += "\n\t[option]"
 			. = pick(winners)
-			text += "\n<b>Vote Result: [.]</b>"
+			text += "<hr><b>Vote Result: [.]</b>"
 		else
-			text += "\n<b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
+			text += "<hr><b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
 	else
 		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 	log_vote(text)
 	vote_happening = FALSE
 	remove_action_buttons()
-	to_chat(world, "\n<font color='purple'>[text]</font>")
-
+	to_chat(world, custom_boxed_message("purple_box", text))
 
 /// Apply the result of the vote if it's possible
 /datum/controller/subsystem/vote/proc/result(default_result)
@@ -349,11 +348,11 @@ SUBSYSTEM_DEF(vote)
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator ? initiator : "server"]."
 		if(mode == "custom")
-			text += "<br>[question]"
+			text += "<br><i>[question]</i>"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
 		SEND_SOUND(world, sound('sound/ambience/votestart.ogg', channel = CHANNEL_NOTIFY, volume = 50))
-		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click on vote action (top left) to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
+		to_chat(world, custom_boxed_message("purple_box", "<big><b>[text]</b></big><hr>Type <b>vote</b> in the command bar or click on vote action (top left) to place your votes.<hr>You have [DisplayTimeText(vp)] to vote.</font>"))
 		time_remaining = round(vp/10)
 		vote_happening = TRUE
 		for(var/c in GLOB.clients)

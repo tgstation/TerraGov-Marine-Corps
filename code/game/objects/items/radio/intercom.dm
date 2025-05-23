@@ -54,7 +54,7 @@
 	. = ..()
 	if(!on)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)
 	attack_self(user)
@@ -105,6 +105,7 @@
 	name = "General Listening Channel"
 	anyai = TRUE
 	freerange = TRUE
+	frequency = FREQ_COMMON
 
 
 /obj/item/radio/intercom/general/colony

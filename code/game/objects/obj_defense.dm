@@ -1,3 +1,4 @@
+// TODO this should be on /atom level
 /obj/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
@@ -96,15 +97,14 @@
 	take_damage(tforce, BRUTE, MELEE, 1, get_dir(src, AM))
 
 
-/obj/bullet_act(obj/projectile/proj)
+/obj/bullet_act(atom/movable/projectile/proj)
 	if(istype(proj.ammo, /datum/ammo/xeno) && !(resistance_flags & XENO_DAMAGEABLE))
 		return
 	. = ..()
 	if(proj.damage < 1)
 		return
-	playsound(loc, proj.hitsound, 50, 1)
 	if(proj.damage > 30)
-		visible_message(span_warning("\the [src] is damaged by \the [proj]!"), visible_message_flags = COMBAT_MESSAGE)
+		visible_message(span_warning("\The [src] is damaged by \the [proj]!"), visible_message_flags = COMBAT_MESSAGE)
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, REVERSE_DIR(proj.dir), proj.ammo.penetration, isliving(proj.firer) ? proj.firer : null)
 
 

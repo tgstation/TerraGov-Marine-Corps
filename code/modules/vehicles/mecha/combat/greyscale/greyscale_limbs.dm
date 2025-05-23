@@ -1,4 +1,3 @@
-
 /datum/mech_limb
 	/// Reference to the mech we are attached too. Remember, this will clean us up ind estroy already
 	var/obj/vehicle/sealed/mecha/combat/greyscale/owner
@@ -312,7 +311,6 @@
 	greyscale_type = /datum/greyscale_config/mech_heavy/head
 	visor_config = /datum/greyscale_config/mech_heavy/visor
 */
-
 /datum/mech_limb/torso
 	display_name = "Torso"
 	icon_state = "core"
@@ -351,7 +349,6 @@
 	weight = 100
 	repairpacks = 1
 	greyscale_type = /datum/greyscale_config/mech_vanguard/torso
-
 /*
 /datum/mech_limb/torso/light
 	health_set = 250
@@ -380,7 +377,6 @@
 	has_destroyed_iconstate = TRUE
 	greyscale_type = /datum/greyscale_config/mech_heavy/torso
 */
-
 //MECH ARMS
 /datum/mech_limb/arm
 	icon_state = "arm"
@@ -450,7 +446,6 @@
 	weight = 65
 	scatter_mod = -20
 	greyscale_type = /datum/greyscale_config/mech_vanguard/arms
-
 /*
 /datum/mech_limb/arm/light
 	part_health = 100
@@ -485,7 +480,6 @@
 	gun_icon = 'icons/mecha/mech_core_weapons.dmi'
 	greyscale_type = /datum/greyscale_config/mech_heavy/arms
 */
-
 //MECH LEGS
 /datum/mech_limb/legs
 	display_name = "Legs"

@@ -3,6 +3,7 @@
 	display_name = "Widow"
 	upgrade_name = ""
 	caste_desc = "You don't think you've seen a tarantula this giant before."
+	base_strain_type = /mob/living/carbon/xenomorph/widow
 	caste_type_path = /mob/living/carbon/xenomorph/widow
 
 	tier = XENO_TIER_THREE
@@ -29,8 +30,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
-	caste_traits = null
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 15, ACID = 10)
@@ -61,11 +61,6 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin/widow,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
-		/datum/action/ability/xeno_action/pheromones,
-		/datum/action/ability/xeno_action/pheromones/emit_recovery,
-		/datum/action/ability/xeno_action/pheromones/emit_warding,
-		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/web_spit,
 		/datum/action/ability/xeno_action/burrow,
 		/datum/action/ability/activable/xeno/leash_ball,
@@ -74,6 +69,11 @@
 		/datum/action/ability/xeno_action/attach_spiderlings,
 		/datum/action/ability/activable/xeno/cannibalise,
 		/datum/action/ability/activable/xeno/spiderling_mark,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 /datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
@@ -109,11 +109,6 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin/widow,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
-		/datum/action/ability/xeno_action/pheromones,
-		/datum/action/ability/xeno_action/pheromones/emit_recovery,
-		/datum/action/ability/xeno_action/pheromones/emit_warding,
-		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/web_spit,
 		/datum/action/ability/xeno_action/burrow,
 		/datum/action/ability/activable/xeno/leash_ball,
@@ -124,4 +119,9 @@
 		/datum/action/ability/activable/xeno/spiderling_mark,
 		/datum/action/ability/xeno_action/sow,
 		/datum/action/ability/activable/xeno/web_hook,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)

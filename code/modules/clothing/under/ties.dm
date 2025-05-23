@@ -8,7 +8,7 @@
 
 /obj/item/clothing/tie/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/attachment, ATTACHMENT_SLOT_UNIFORM_TIE, 'icons/obj/clothing/ties_overlay.dmi', attach_features_flags = (ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB), mob_overlay_icon = 'icons/mob/ties.dmi')
+	AddElement(/datum/element/attachment, ATTACHMENT_SLOT_UNIFORM_TIE, 'icons/obj/clothing/ties_overlay.dmi', attach_features_flags = (ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB), mob_overlay_icon = 'icons/mob/ties.dmi', attach_sound = SFX_RUSTLE)
 
 /obj/item/clothing/tie/blue
 	name = "blue tie"
@@ -174,7 +174,7 @@
 		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
 	if(isliving(user))
-		user.visible_message(span_warning(" [user] displays [user.p_their()] NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Corporate Security."),span_warning(" You display your NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Corporate Security."))
+		user.visible_message(span_warning("[user] displays [user.p_their()] NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Security."),span_warning("You display your NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Security."))
 
 /obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -196,7 +196,7 @@
 
 /obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message(span_warning(" [user] invades [M]'s personal space, thrusting [src] into [M.p_their()] face insistently."),span_warning(" You invade [M]'s personal space, thrusting [src] into [M.p_their()] face insistently. You are the law."))
+		user.visible_message(span_warning("[user] invades [M]'s personal space, thrusting [src] into [M.p_their()] face insistently."),span_warning("You invade [M]'s personal space, thrusting [src] into [M.p_their()] face insistently. You are the law."))
 
 /obj/item/storage/box/holobadge
 	name = "holobadge box"

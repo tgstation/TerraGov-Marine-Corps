@@ -3,9 +3,19 @@ GLOBAL_LIST_INIT(possible_cock_sprites, list(
 	"Penis" = "cock"
 ))
 
+GLOBAL_LIST_INIT(possible_cock_sprite_names, list(
+	null = "Default",
+	"cock" = "Penis"
+))
+
 GLOBAL_LIST_INIT(possible_ass_sprites, list(
 	"Default" = null,
 	"Ass" = "ass"
+))
+
+GLOBAL_LIST_INIT(possible_ass_sprite_names, list(
+	null = "Default",
+	"ass" = "Ass"
 ))
 
 GLOBAL_LIST_INIT(possible_boob_sprites, list(
@@ -13,6 +23,13 @@ GLOBAL_LIST_INIT(possible_boob_sprites, list(
 	"Small" = "boobs_s",
 	"Medium" = "boobs_m",
 	"Large" = "boobs_l",
+))
+
+GLOBAL_LIST_INIT(possible_boob_sprite_names, list(
+	null = "Default",
+	"boobs_s" = "Small",
+	"boobs_m" = "Medium",
+	"boobs_l" = "Large",
 ))
 
 /datum/genital_menu
@@ -38,9 +55,9 @@ GLOBAL_LIST_INIT(possible_boob_sprites, list(
 
 /datum/genital_menu/ui_data(mob/user)
 	var/list/data = list(
-		"cockState" = human.cock,
-		"assState" = human.ass,
-		"boobState" = human.boobs,
+		"cockState" = GLOB.possible_cock_sprite_names[human.cock],
+		"assState" = GLOB.possible_ass_sprite_names[human.ass],
+		"boobState" = GLOB.possible_boob_sprite_names[human.boobs],
 	)
 	data["possibleCockStates"] = list()
 	for(var/entry in GLOB.possible_cock_sprites)

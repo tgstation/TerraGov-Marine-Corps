@@ -38,7 +38,7 @@
 			if(ishuman(user))
 				user.put_in_hands(I)
 			else
-				I.loc = get_turf(src)
+				I.forceMove(drop_location())
 			to_chat(user, span_notice("You find \an [I] in the cistern."))
 			w_items -= I.w_class
 			return
@@ -361,7 +361,7 @@
 	var/obj/item/reagent_containers/RG = I
 	if(istype(RG) && RG.is_open_container() && RG.reagents.total_volume < RG.reagents.maximum_volume)
 		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message(span_notice(" [user] fills \the [RG] using \the [src]."),span_notice(" You fill \the [RG] using \the [src]."))
+		user.visible_message(span_notice("[user] fills \the [RG] using \the [src]."),span_notice("You fill \the [RG] using \the [src]."))
 		return
 
 	else if(istype(I, /obj/item/weapon/baton))
@@ -400,8 +400,8 @@
 
 	I.wash()
 	user.visible_message( \
-		span_notice(" [user] washes \a [I] using \the [src]."), \
-		span_notice(" You wash \a [I] using \the [src]."))
+		span_notice("[user] washes \a [I] using \the [src]."), \
+		span_notice("You wash \a [I] using \the [src]."))
 
 
 /obj/structure/sink/kitchen

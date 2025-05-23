@@ -61,7 +61,6 @@
 	 * add_timer() returns the truthy value of -1 when not stoppable, and else a truthy numeric index
 	 */
 	var/list/cooldowns
-	var/abstract_type
 
 	/// List for handling persistent filters.
 	var/list/filter_data
@@ -150,6 +149,10 @@
 
 	for(var/target in _signal_procs)
 		UnregisterSignal(target, _signal_procs[target])
+
+/datum/proc/GenerateTag()
+	SHOULD_CALL_PARENT(TRUE)
+	datum_flags |= DF_USE_TAG
 
 #ifdef DATUMVAR_DEBUGGING_MODE
 /datum/proc/save_vars()

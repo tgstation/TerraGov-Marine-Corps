@@ -413,9 +413,7 @@
 "kP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "kV" = (
@@ -1012,7 +1010,9 @@
 /area/deathmatch)
 "xM" = (
 /obj/structure/inflatable/popped,
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "xN" = (
@@ -2746,7 +2746,7 @@ ai
 Nm
 rp
 rp
-Np
+Xb
 HR
 kP
 rp
@@ -2794,7 +2794,7 @@ jg
 Nm
 Xw
 rp
-Np
+Xb
 Sr
 kP
 rp
@@ -2842,9 +2842,9 @@ jg
 Nm
 Xw
 Lf
-Np
+Xb
 tJ
-Np
+Xb
 OQ
 rp
 gN
@@ -2938,9 +2938,9 @@ wG
 To
 Nm
 rp
-Xb
+Np
 Xw
-Xb
+Np
 rp
 Zy
 gN
@@ -2986,9 +2986,9 @@ ZJ
 ZJ
 rp
 rp
-Xb
+Np
 lm
-Xb
+Np
 Xw
 tJ
 lH
@@ -3034,9 +3034,9 @@ ru
 sV
 Nm
 Xw
-Xb
+Np
 bZ
-Xb
+Np
 Xw
 fv
 lk
@@ -3281,9 +3281,9 @@ ZD
 Xv
 YV
 rp
-Xb
+Np
 sh
-Xb
+Np
 Xw
 Xw
 lm
@@ -3329,9 +3329,9 @@ ZD
 Xv
 Xw
 rp
-Xb
+Np
 rp
-Xb
+Np
 Xw
 rp
 rp

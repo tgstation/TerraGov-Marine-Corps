@@ -14,11 +14,6 @@
 		return FALSE
 	return ..()
 
-/datum/action/ability/activable/xeno/secrete_special_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
-	if (owner.status_flags & INCORPOREAL)
-		return FALSE
-	return ..()
-
 /datum/action/ability/xeno_action/change_form
 	name = "Change form"
 	action_icon_state = "manifest"
@@ -88,7 +83,7 @@
 	return ..()
 
 /datum/action/ability/xeno_action/watch_xeno/hivemind/can_use_action(silent = FALSE, override_flags)
-	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return FALSE
 	return ..()
 
@@ -103,7 +98,7 @@
 	action_icon_state = "resync" // TODO: i think i missed an icon
 	desc = "Pick a location on the map and instantly manifest there if possible."
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMISG_XENOMORPH_HIVEMIND_TELEPORT,
+		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_TELEPORT,
 	)
 	use_state_flags = ABILITY_USE_SOLIDOBJECT
 	///Is the map being shown to the player right now?
@@ -138,3 +133,59 @@
 		hivemind_owner.start_teleport(turf_to_teleport_to)
 		return
 	xeno_owner.abstract_move(turf_to_teleport_to)
+
+/datum/action/ability/activable/xeno/shoot_xeno_artillery
+	name = "Shoot Artillery"
+	action_icon_state = "bombard"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
+	desc = "Select one of the Hive's artillery buildings and shoot it at a target. Right-click to select which artillery to use."
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
+	/// The currently selected artillery to use/shoot.
+	var/obj/structure/xeno/acid_maw/selected_artillery
+	/// If we're waiting on player input. Used to prevent switching artillery mid-input.
+	var/waiting_on_player_input = FALSE
+
+/datum/action/ability/activable/xeno/shoot_xeno_artillery/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber])
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "no xeno artillery found")
+		return FALSE
+	if(!selected_artillery || QDELING(selected_artillery))
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "pick an artillery first!")
+		return FALSE
+	if(TIMER_COOLDOWN_RUNNING(selected_artillery, COOLDOWN_MAW_GLOB))
+		if(!silent)
+			var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(selected_artillery, COOLDOWN_MAW_GLOB)
+			xeno_owner.balloon_alert(xeno_owner, "cooldown: [timeleft/10] seconds")
+		return FALSE
+
+/datum/action/ability/activable/xeno/shoot_xeno_artillery/fail_activate()
+	waiting_on_player_input = FALSE
+	return ..()
+
+/datum/action/ability/activable/xeno/shoot_xeno_artillery/action_activate()
+	waiting_on_player_input = TRUE
+	if(!selected_artillery.try_fire(xeno_owner, xeno_owner, FALSE, FALSE, FALSE) || !can_use_action(TRUE))
+		return fail_activate()
+	waiting_on_player_input = FALSE
+
+/datum/action/ability/activable/xeno/shoot_xeno_artillery/alternate_action_activate()
+	if(!GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber] || waiting_on_player_input)
+		return
+	if(length(GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber]) == 1)
+		selected_artillery = GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber][1]
+		xeno_owner.balloon_alert(xeno_owner, "artillery selected!")
+		update_button_icon()
+		return
+	INVOKE_ASYNC(src, PROC_REF(select_artillery_from_input_list))
+
+/datum/action/ability/activable/xeno/shoot_xeno_artillery/proc/select_artillery_from_input_list()
+	selected_artillery = tgui_input_list(xeno_owner, "Which artillery to use?", "Artillery List",  GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber])
+	if(!selected_artillery)
+		return
+	xeno_owner.balloon_alert(xeno_owner, "artillery selected!")
+	update_button_icon()

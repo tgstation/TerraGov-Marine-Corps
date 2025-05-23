@@ -3,7 +3,7 @@
 	icon = 'icons/obj/powerloader.dmi'
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
-	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
+	layer = VEHICLE_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
 	allow_pass_flags = NONE
 	move_delay = 6
@@ -108,7 +108,7 @@
 	return ..()
 
 /obj/vehicle/ridden/powerloader/verb/enter_powerloader(mob/M)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Enter Power Loader"
 	set src in oview(1)
 

@@ -24,7 +24,7 @@
 	. = ..()
 	if(!breathy)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_GAS_BREATH))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_GAS_BREATH))
 		return
 	if(slot != SLOT_WEAR_MASK)
 		return
@@ -82,8 +82,8 @@
 	icon_state = "icc"
 
 /obj/item/clothing/mask/gas/vsd
-	name = "\improper Vyacheslav armored commando balaclava"
-	desc = "Old balaclava's handed down to V.S.D."
+	name = "\improper Kaizoku armored commando balaclava"
+	desc = "Old balaclava's handed down to KZ."
 	inv_hide_flags = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	icon_state = "upp_mask"
 

@@ -7,13 +7,23 @@
 #define CHANNEL_ADMIN 1018
 #define CHANNEL_MIDI 1017
 #define CHANNEL_AMBIENCE 1016
+#define CHANNEL_ELEVATOR 1015
 
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
-
-#define CHANNEL_HIGHEST_AVAILABLE 1015
+#define CHANNEL_HIGHEST_AVAILABLE 1014
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
+
+/// This is the lowest volume that can be used by playsound otherwise it gets ignored
+/// Most sounds around 10 volume can barely be heard. Almost all sounds at 5 volume or below are inaudible
+/// This is to prevent sound being spammed at really low volumes due to distance calculations
+/// Recommend setting this to anywhere from 10-3 (or 0 to disable any sound minimum volume restrictions)
+/// Ex. For a 70 volume sound, 17 tile range, 3 exponent, 2 falloff_distance:
+/// Setting SOUND_AUDIBLE_VOLUME_MIN to 0 for the above will result in 17x17 radius (289 turfs)
+/// Setting SOUND_AUDIBLE_VOLUME_MIN to 5 for the above will result in 14x14 radius (196 turfs)
+/// Setting SOUND_AUDIBLE_VOLUME_MIN to 10 for the above will result in 11x11 radius (121 turfs)
+#define SOUND_AUDIBLE_VOLUME_MIN 3
 
 ///Default range of a sound.
 #define SOUND_RANGE 17

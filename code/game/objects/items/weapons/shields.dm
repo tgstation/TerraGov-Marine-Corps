@@ -49,7 +49,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb = list("shoved", "bashed")
+	attack_verb = list("shoves", "bashes")
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 0, ENERGY = 70, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/grillehit.ogg'
@@ -166,7 +166,7 @@
 	item_flags = IS_DEPLOYABLE
 	strappable = FALSE
 	///The item this deploys into
-	var/deployable_item = /obj/structure/barricade/metal/deployable
+	var/deployable_item = /obj/structure/barricade/solid/deployable
 	///Time to deploy
 	var/deploy_time = 1 SECONDS
 	///Time to undeploy
@@ -191,7 +191,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("shoved", "bashed")
+	attack_verb = list("shoves", "bashes")
 	var/on_force = 10
 
 /obj/item/weapon/shield/energy/Initialize(mapload)
@@ -235,6 +235,11 @@
 /datum/action/ability/activable/weapon_skill/shield_bash/remove_action(mob/living/carbon/carbon_owner)
 	. = ..()
 	UnregisterSignal(carbon_owner, COMSIG_MOB_MOUSEDOWN)
+
+/datum/action/ability/activable/weapon_skill/shield_bash/ai_should_use(atom/target)
+	if(get_dist(owner, target) > 1)
+		return FALSE
+	return ..()
 
 /datum/action/ability/activable/weapon_skill/shield_bash/use_ability(atom/A)
 	succeed_activate()

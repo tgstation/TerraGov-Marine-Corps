@@ -101,7 +101,7 @@
 
 /obj/structure/inflatable/verb/hand_deflate()
 	set name = "Deflate"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(!ishuman(usr))

@@ -30,8 +30,6 @@
 	span_danger("We charge towards \the [A]!") )
 	xeno_owner.emote("roar")
 	xeno_owner.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
-	succeed_activate()
-
 	var/multiplier = 1
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
 		if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
@@ -42,6 +40,7 @@
 	xeno_owner.throw_at(A, charge_range*multiplier, RAV_CHARGESPEED*multiplier, xeno_owner)
 
 	add_cooldown()
+	succeed_activate()
 
 
 /datum/action/ability/activable/xeno/charge/on_cooldown_finish()
@@ -418,15 +417,11 @@
 		affected_mob.Shake(duration = 1 SECONDS) //SFX
 
 		if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
-			var/atom/movable/screen/plane_master/floor/OT = affected_mob.hud_used.plane_masters["[FLOOR_PLANE]"]
-			var/atom/movable/screen/plane_master/game_world/GW = affected_mob.hud_used.plane_masters["[GAME_PLANE]"]
-
-			addtimer(CALLBACK(OT, TYPE_PROC_REF(/datum, remove_filter), "rage_outcry"), 1 SECONDS)
-			GW.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
-			animate(GW.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
-			OT.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
-			animate(OT.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
-			addtimer(CALLBACK(GW, TYPE_PROC_REF(/datum, remove_filter), "rage_outcry"), 1 SECONDS)
+			var/atom/movable/plane_master_controller/game_plane_master_controller = affected_mob.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
+			game_plane_master_controller.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
+			for(var/dm_filter/filt AS in game_plane_master_controller.get_filters("rage_outcry"))
+				animate(filt, size = 0.12, time = 5, loop = -1)
+			addtimer(CALLBACK(game_plane_master_controller, TYPE_PROC_REF(/datum, remove_filter), "rage_outcry"), 1 SECONDS)
 
 	var/multiplier = 1
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
@@ -672,7 +667,12 @@
 /datum/action/ability/xeno_action/deathmark
 	name = "deathmark"
 	desc = "Mark yourself for death, filling your bloodthirst, but failing to deal enough damage to living creatures while it is active instantly kills you."
+	action_icon = 'icons/Xeno/actions/ravager.dmi'
+	action_icon_state = "deathmark"
 	cooldown_duration = DEATHMARK_DURATION*3
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEATHMARK,
+	)
 	COOLDOWN_DECLARE(message_cooldown)
 	//tracker for damage dealt during deathmark
 	var/damage_dealt = 0
@@ -696,7 +696,7 @@
 	if(!ishuman(attacked) || attacked.stat == DEAD)
 		return
 	damage_dealt += damage
-	if(COOLDOWN_CHECK(src, message_cooldown))
+	if(COOLDOWN_FINISHED(src, message_cooldown))
 		var/percent_dealt = round((damage_dealt/DEATHMARK_DAMAGE_OR_DIE)*100)
 		owner.balloon_alert(owner, "[percent_dealt]%")
 		COOLDOWN_START(src, message_cooldown, DEATHMARK_MESSAGE_COOLDOWN)

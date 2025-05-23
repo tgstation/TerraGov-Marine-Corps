@@ -32,14 +32,17 @@
 	var/category = CAT_NORMAL
 	///Incase its a tabbed vendor what tab this belongs to.
 	var/tab
+	///The max capacity for storage of a product
+	var/max_capacity
 
-/datum/vending_product/New(name, atom/typepath, product_amount, product_price, product_display_color, category = CAT_NORMAL, tab)
+/datum/vending_product/New(name, atom/typepath, product_amount, product_price, product_display_color, category = CAT_NORMAL, tab, product_max_capacity)
 
 	product_path = typepath
 	amount = product_amount
 	price = product_price
 	src.category = category
 	src.tab = tab
+	max_capacity = product_max_capacity
 
 	if(!name)
 		product_name = initial(typepath.name)
@@ -118,6 +121,8 @@
 	var/list/premium = list()
 	/// Prices for each item, list(/type/path = price), items not in the list don't have a price.
 	var/list/prices = list()
+	/// Maximum capacity for individual items, items not in the list don't have a max capacity
+	var/list/max_capacities = list()
 
 	/// String of slogans separated by semicolons, optional
 	var/product_slogans = ""
@@ -169,10 +174,6 @@
 
 	/// How much damage we can take before tipping over.
 	var/knockdown_threshold = 100
-
-	///Faction of the vendor. Can be null
-	var/faction
-
 
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
@@ -265,14 +266,14 @@
 				var/amount = productlist[entry][typepath]
 				if(isnull(amount))
 					amount = 1
-				var/datum/vending_product/record = new(typepath = typepath, product_amount = amount, product_price = prices[typepath], category = category, tab = entry)
+				var/datum/vending_product/record = new(typepath = typepath, product_amount = amount, product_price = prices[typepath], category = category, tab = entry, product_max_capacity = max_capacities[typepath])
 				recordlist += record
 			continue
 		//This item is not tab dependent
 		var/amount = productlist[entry]
 		if(isnull(amount))
 			amount = 1
-		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category)
+		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category, product_max_capacity = max_capacities[entry])
 		recordlist += record
 
 ///Makes additional tabs/adds to the tabs based on the seasonal_items vendor specification
@@ -473,11 +474,11 @@
 		return FALSE
 
 	if(tipped_level == 2)
-		user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
-		if(!do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
+		user.visible_message(span_notice("[user] begins to heave the vending machine back into place!"),span_notice("You start heaving the vending machine back into place.."))
+		if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 			return FALSE
 
-		user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+		user.visible_message(span_notice("[user] rights the [src]!"),span_notice("You right the [src]!"))
 		flip_back()
 		return TRUE
 
@@ -495,10 +496,10 @@
 		return
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
-	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
-	if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
+	user.visible_message(span_notice("[user] begins to heave the vending machine back into place!"),span_notice("You start heaving the vending machine back into place.."))
+	if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 		return FALSE
-	user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+	user.visible_message(span_notice("[user] rights the [src]!"),span_notice("You right the [src]!"))
 	flip_back()
 	return TRUE
 
@@ -737,13 +738,21 @@
 	if(item_to_stock.storage_datum) //Nice try, specialists/engis
 		var/datum/storage/storage_to_stock = item_to_stock.storage_datum
 		if(!(storage_to_stock.storage_flags & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
-			user?.balloon_alert(user, "Can't restock containers!")
+			if(show_feedback)
+				user?.balloon_alert(user, "Can't restock containers!")
 			return FALSE
 
 	else if(isgrenade(item_to_stock))
 		var/obj/item/explosive/grenade/grenade = item_to_stock
 		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
-			user?.balloon_alert(user, "You panic and erratically fumble around!")
+			if(show_feedback)
+				user?.balloon_alert(user, "You panic and erratically fumble around!")
+			return FALSE
+
+	else if(!isnull(max_capacity))	// Item has a maximum capacity
+		if(amount >= max_capacity)
+			if(show_feedback)
+				user?.balloon_alert(user, "There's no more room for the [item_to_stock]!")
 			return FALSE
 
 	else if(amount >= 0) //Item is finite so we are more strict on its condition
@@ -751,25 +760,29 @@
 		if(isammomagazine(item_to_stock))
 			var/obj/item/ammo_magazine/A = item_to_stock
 			if(A.current_rounds < A.max_rounds)
-				user?.balloon_alert(user, "Magazine isn't full!")
+				if(show_feedback)
+					user?.balloon_alert(user, "Magazine isn't full!")
 				return FALSE
 
 		if(iscell(item_to_stock))
 			var/obj/item/cell/cell = item_to_stock
 			if(cell.charge < cell.maxcharge)
-				user?.balloon_alert(user, "Cell isn't at full charge!")
+				if(show_feedback)
+					user?.balloon_alert(user, "Cell isn't at full charge!")
 				return FALSE
 
 		if(isitemstack(item_to_stock))
 			var/obj/item/stack/stack = item_to_stock
 			if(stack.amount != initial(stack.amount))
-				user?.balloon_alert(user, "[stack] has been partially used. Refill it!")
+				if(show_feedback)
+					user?.balloon_alert(user, "[stack] has been partially used. Refill it!")
 				return FALSE
 
 		if(isreagentcontainer(item_to_stock))
 			var/obj/item/reagent_containers/reagent_container = item_to_stock
 			if(!(reagent_container.item_flags & CAN_REFILL) && !reagent_container.has_initial_reagents())
-				user?.balloon_alert(user, "\The [reagent_container] is missing some of its reagents!")
+				if(show_feedback)
+					user?.balloon_alert(user, "\The [reagent_container] is missing some of its reagents!")
 				return FALSE
 
 	//Actually restocks the item after our checks
@@ -877,7 +890,7 @@
 	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()

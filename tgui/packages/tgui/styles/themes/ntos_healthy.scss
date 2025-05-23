@@ -3,59 +3,26 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use 'sass:color';
-@use 'sass:meta';
+.theme-ntos_healthy:root {
+  --color-base: hsl(180, 40%, 10%);
+  --color-primary: hsl(183.7, 71.4%, 35.7%);
+  --color-label: hsl(184, 81%, 52.5%);
+  --color-good: hsl(184, 72.4%, 44.1%);
+  --color-average: hsl(41.1, 73%, 43.5%);
 
-@use '../colors.scss' with (
-  $primary: #1a949c,
-  $label: #24dbe8,
-  $good: #1fb7c2,
-  $average: #c08d1e
-);
-@use '../base.scss' with (
-  $color-bg: #121b1b,
-  $color-bg-grad-spread: 0%
-);
+  --background-color: hsl(180, 20%, 8.8%);
+  --base-gradient-spread: 6;
 
-.theme-ntos_healthy {
-  // Atomic classes
-  @include meta.load-css('../atomic/color.scss');
+  --notice-box-background: hsl(184.3, 74.7%, 29.4%);
 
-  // Components
-  @include meta.load-css(
-    '../components/NoticeBox.scss',
-    $with: ('background-color': #137b83)
-  );
+  --button-background-default: hsla(180, 80%, 53%, 0.25);
+  --button-background-disabled: hsl(181.9, 17.8%, 35.3%);
+  --button-background-selected: rgba(36, 232, 232, 0.25);
 
-  @include meta.load-css(
-    '../components/Button.scss',
-    $with: (
-      'color-default': #24e8e840,
-      'color-disabled': #4a696a,
-      'color-selected': rgba(36, 232, 232, 0.25)
-    )
-  );
-  @include meta.load-css(
-    '../components/Input.scss',
-    $with: ('border-color': colors.$primary)
-  );
-  @include meta.load-css(
-    '../components/ProgressBar.scss',
-    $with: (
-      'background-color': rgba(0, 0, 0, 0.5),
-      'color-default-fill': rgba(36, 219, 232, 0.65)
-    )
-  );
-  @include meta.load-css('../components/Modal.scss');
-  @include meta.load-css('../components/Section.scss');
+  --progress-bar-background: rgba(0, 0, 0, 0.5);
+  --progress-bar-fill: rgba(36, 219, 232, 0.65);
 
-  // Layouts
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css(
-    '../layouts/TitleBar.scss',
-    $with: ('background-color': rgba(36, 219, 232, 0.25))
-  );
+  --titlebar-background: rgba(36, 219, 232, 0.25);
 
   .Layout__content {
     background-image: repeating-linear-gradient(
@@ -69,38 +36,40 @@
     background-position: center, center;
   }
   .Button {
-    font: Inconsolata;
-    color: #24dbe8;
+    color: hsl(184, 81%, 52.5%);
   }
   .Button:hover,
   .Button:focus {
-    color: #24dbe8;
-    background-color: #24e8ce5e;
+    color: hsl(184, 81%, 52.5%);
+    background-color: hsla(172, 81%, 52.5%, 0.369);
     transition: 0.1s;
   }
   .Button--selected {
-    color: #24dbe8;
+    color: hsl(184, 81%, 52.5%);
   }
   body {
     color: white;
-    font: 1.3rem Inconsolata;
+    font: 1.3rem;
   }
   .Section {
     border-radius: 0.16em;
   }
+  .Section__title {
+    border-bottom: var(--border-thickness-small) solid vars(--color-primary);
+  }
   .Section__titleText {
-    color: #24dbe8;
+    color: hsl(184, 81%, 52.5%);
   }
   .Tab {
-    color: #24dbe8;
+    color: hsl(184, 81%, 52.5%);
   }
   .Tab--selected {
-    color: #24dbe8;
-    border: 2px solid #24dbe8;
-    background-color: rgba(232, 212, 36, 0.25);
+    color: hsl(184, 81%, 52.5%);
+    border: 2px solid hsl(184, 81%, 52.5%);
+    background-color: hsla(54, 81%, 53%, 0.25);
   }
   ::selection {
-    background: #0080ff;
+    background: hsl(209.9, 100%, 50%);
   }
   .NoticeBox {
     border-radius: 0.16em;

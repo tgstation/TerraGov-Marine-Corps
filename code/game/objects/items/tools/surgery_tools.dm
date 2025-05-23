@@ -20,7 +20,7 @@
 	icon_state = "hemostat"
 	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("attacked", "pinched")
+	attack_verb = list("attacks", "pinches")
 
 /obj/item/tool/surgery/cautery
 	name = "cautery"
@@ -28,7 +28,7 @@
 	icon_state = "cautery"
 	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb = list("burnt")
+	attack_verb = list("burns")
 
 /obj/item/tool/surgery/surgicaldrill
 	name = "surgical drill"
@@ -38,10 +38,10 @@
 	atom_flags = CONDUCT
 	force = 15
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("drilled")
+	attack_verb = list("drills")
 
 /obj/item/tool/surgery/surgicaldrill/suicide_act(mob/user)
-	user.visible_message(span_danger("[user] is pressing the [name] to [user.p_their()] [pick("temple","chest")] and activating it! It looks like [user.p_theyre()] trying to commit suicide."))
+	user.visible_message(span_danger("[user] presses the [name] to [user.p_their()] [pick("temple","chest")] and activates it! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
 
 /obj/item/tool/surgery/scalpel
@@ -56,7 +56,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 
 /obj/item/tool/surgery/scalpel/suicide_act(mob/user)
 	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
@@ -94,7 +94,7 @@
 	throwforce = 9
 	throw_speed = 3
 	throw_range = 5
-	attack_verb = list("attacked", "slashed", "sawed", "cut")
+	attack_verb = list("attacks", "slashes", "saws", "cuts")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 
@@ -122,7 +122,7 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("attacked", "hit", "bludgeoned")
+	attack_verb = list("attacks", "hits", "bludgeons")
 
 /obj/item/tool/surgery/suture
 	name = "surgical suture"
@@ -130,7 +130,7 @@
 	force = 3
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("needled", "sewed", "stabbed")
+	attack_verb = list("needles", "sews", "stabs")
 
 /obj/item/tool/surgery/surgical_membrane
 	name = "surgical membrane"

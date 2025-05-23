@@ -86,7 +86,7 @@
 				set_broken()
 
 
-/obj/machinery/computer/bullet_act(obj/projectile/proj)
+/obj/machinery/computer/bullet_act(atom/movable/projectile/proj)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		visible_message("[proj] ricochets off [src]!")
 		return 0
@@ -118,8 +118,8 @@
 		return
 	if(dir == NORTH)
 		return
-	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
-	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, offset_spokesman = src, alpha = src.alpha)
+	. += mutable_appearance(icon, screen_overlay, offset_spokesman = src, alpha = src.alpha)
 
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN

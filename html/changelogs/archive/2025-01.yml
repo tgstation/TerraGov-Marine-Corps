@@ -111,8 +111,9 @@
 2025-01-19:
   Lumipharon:
   - bugfix: fixed an exploit with jetpacks
-  Meghan-Rossi:
-  - rscdel: Removed most roundstart corpses.
+  Neocloudy:
+  - rscdel: Wraith can no longer be picked. Forcefully devolved Warlocks will devolve
+      to Warriors instead.
   Notamaniac:
   - balance: The APC can now use the OMR MK.III Secondary Flamer, Microrocket Pod
       and TOW III launcher as secondaries.
@@ -121,14 +122,146 @@
   Runian:
   - bugfix: Having 100+ fire armor (aka fire immunity) correctly prevents you from
       getting any melting stacks (from Pyrogen).
+2025-01-20:
+  blackdav123:
+  - rscadd: Added big tails and twin drills hairstyles.
+2025-01-21:
+  Cheese:
+  - rscadd: Acid Maw and Jaw uses are now stattracked
+  Looking4bros:
+  - bugfix: Regular webbing can no longer hold things it wasn't supposed to
+  Lumipharon:
+  - balance: Reduce vali heal mult from 6 to 4
+  - balance: Xeno toxins and satrapine apply negative multipliers to vali
+  - balance: Mera/Derm have small negative mults to their opposite healing types for
+      vali
+  - balance: 'Campaign: Tank LTAAP has HV, non-IFF ammo'
+  - bugfix: Fixes custom squad radio overriding other radio channels
+  Sun-Soaked:
+  - balance: drones can now print a resin glob, change their pheros, and use their
+      primo ability while mounted
+  TiviPlus:
+  - code_imp: Added backend for offsettable tank turrets
+  - bugfix: Fixed dchat runechat only showing for the owner
+  - bugfix: Fixed being able to tear up empty space
+  - bugfix: Fix mech explosion being on deletion and not dying
+  - rscadd: Added xeno maw "minion" ammo type
+  - rscadd: Flamer and laser sentry now available for purchase in req
+  - soundadd: all sentries now use gun-type specific sounds (ie shotgun sentry sounds
+      like a shotgun) instead of all using the default sound
+  Tiviplus & Kuro:
+  - rscadd: Added Loki armor module which can be activated to make the user 80% transparent
+      as well as spawn a mirage clone
+  - rscadd: Added Thor armor lock module which allows you to become immobile for 4
+      seconds  in exchange for 50 extra armor
+  - bugfix: fixed a number of module names not prefixing "the" correctly in some cases
+  - bugfix: fixed being incapacited still allowing you to spin by trying to shoot
+      your gun
+  blackdav123:
+  - qol: Block Movement is now on a keybind that you can use to face directions without
+      moving.
+  tyeagg:
+  - rscadd: gibbing particles
+  - soundadd: gib sound
+2025-01-22:
+  Kuro020:
+  - balance: Crusher sunder mult nerfed, Crusher total health nerfed
+  yyzsong:
+  - spellcheck: 'Carrier: Call of Younger will now respect the target''s pronouns'
+  - spellcheck: 'Carrier: Adds proper ability description to the Build Hugger Turret
+      ability, capitalizes ability name'
+  - spellcheck: 'Carrier: Abilities will now exclusively use the term "facehugger"
+      instead of "hugger" or "young one"'
+  - balance: moves a landing site on the Research Outpost map for the Crash gamemode
+2025-01-23:
+  Kuro020:
+  - balance: General buffs to sentinel and retrograde damage and survivability
+  Looking4bros:
+  - bugfix: human bump attacks respects human IFF
+  Lumipharon:
+  - balance: SH-39 can no longer be one handed, again
+  - bugfix: fixed photos having an error sprite
+  - bugfix: Tank gibs now check for godmode
+  Sun-Soaked:
+  - bugfix: Bloodthirster is now represented on the global list of all xeno types
+  blackdav123:
+  - rscadd: Added 5 new intel computers to Big Red.
+  - bugfix: Fixed an APC on a modular in Big Red.
+  - bugfix: Block Movement keybind now lets you rotate scopes and binoculars like
+      before.
+  ivanmixo:
+  - refactor: Refactored the way outfits populate the contents of containers
+  tyeagg:
+  - rscadd: new tiny explosions for ammo explosions and icc frag ammo
+  - code_imp: adjusted particle effects for impact effect
+  - imageadd: paper debris and new debris sprites
+  yyzsong:
+  - spellcheck: 'Carrier: Fixes the description of the primordial ability'
+2025-01-24:
+  Looking4bros:
+  - bugfix: humans bumpslash xenos again
+  blackdav123:
+  - bugfix: Crashed canterbury on big red now uses its own area.
+2025-01-25:
+  Lumipharon:
+  - bugfix: The laser sentry no longer has IFF when it shouldn't have
+  SandPoot:
+  - bugfix: Fixed observer minimap teleporting being straight up broken and unreliable.
+  novaepee:
+  - imageadd: Replace crate sprites
+  - rscadd: SG req category for easier use for req and smartgunners
+2025-01-26:
+  novaepee:
+  - bugfix: SG category not showing in req
 2025-01-27:
-  DrCrawler:
-  - rscadd: Command Dolls are now re-branded into Vanguard Units.
-  - rscdel: Vanguards can no longer get a free Spec-Ops leotard.
-  - qol: Lets Vanguard Units pick between the Spec-Ops suit variants.
-  - balance: Though the Spec-Ops suits for Vanguards cost 10 loadout points.
-  - bugfix: Fixes Vanguard Unit's missing map icon.
-  - refactor: Renames everything related to CDolls to suit the new job title.
+  Apple-107:
+  - bugfix: updates ID cards to respect rank rather than everyone being a PVT
+  - rscadd: Marine's Rank is now prefixed to their ID card
+  TiviPlus:
+  - bugfix: Fixes round time timestamps
 2025-01-28:
-  DrCrawler:
-  - rscadd: PIXEL SHIFTING!!!!
+  Lumipharon:
+  - balance: Razor untangle delay changed from 5 seconds to 2 seconds. Crusher charge
+      unchanged
+  - balance: Godmode prevents razor entanglement
+  TiviPlus:
+  - bugfix: 'Ravager: fixed deathmark not having a keybind'
+  - bugfix: 'Ravager: fixed deathmark not having a sprite set'
+  - rscadd: Adds the req-only BFG-9500 weapon for tank for 1600 points
+  - bugfix: fixed tank main gun being unable to fire if no secondary gun was equipped
+  - bugfix: tesla rifle no longer is blocked by LoS, and goes off density instead
+  - qol: All tank ammo and weapons have been moved from the weapons tab to the vehicles
+      tab
+  - bugfix: ACs can no longer use any mech related objects as intended
+  yyzsong:
+  - bugfix: removes the ability to place jaws in caves on a few specific maps
+2025-01-29:
+  00ze-cyclone:
+  - bugfix: you no longer switch from spread mode to spread mode the first time you
+      change mode on lasbine
+  - spellcheck: lasers from cripple mode are now properly named
+  Lumipharon:
+  - bugfix: Ghost runetext is no longer visible if the ghost itself is not
+  - bugfix: fixed a loadout exploit
+  - code_imp: Improved some path checking procs
+  TiviPlus:
+  - imageadd: added new lobby art by Zaha
+  - code_imp: Drastically reduced icons sent by reworking how lobby art is loaded
+  blackdav123:
+  - rscadd: Added two new beginner engi loadouts, point sentry and mortar.
+  - qol: Papers can now be read by using them in hand.
+  - spellcheck: Fixed typos in the beginner tutorial papers.
+  tyeagg:
+  - bugfix: tdf glove mob sprite
+2025-01-30:
+  TiviPlus:
+  - balance: maturity requirements for primordial have been lowered
+  jonash07:
+  - qol: You can now interact with xeno structures like tunnels as a baneling while
+      running
+  yyzsong:
+  - spellcheck: updates attack verbs to use the simple present tense like emotes instead
+      of the simple past tense.
+2025-01-31:
+  novaepee:
+  - imageadd: New Miner Sprites

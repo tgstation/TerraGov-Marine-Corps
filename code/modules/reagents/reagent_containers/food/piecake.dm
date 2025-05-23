@@ -26,7 +26,7 @@
 	if(!.)
 		return
 	new /obj/effect/decal/cleanable/pie_smudge(loc)
-	visible_message(span_warning(" [src.name] splats."),span_warning(" You hear a splat."))
+	visible_message(span_warning("[src.name] splats."),span_warning("You hear a splat."))
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/pastries/berryclafoutis

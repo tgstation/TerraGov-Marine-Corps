@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = ""
 	wound_type = ""
-
+	base_strain_type = /mob/living/carbon/xenomorph/mantis
 	caste_type_path = /mob/living/carbon/xenomorph/mantis
 
 	tier = XENO_TIER_MINION
@@ -26,7 +26,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
+	can_flags = CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = null
 
 	// *** Defense *** //

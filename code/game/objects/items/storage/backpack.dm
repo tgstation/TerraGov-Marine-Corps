@@ -738,7 +738,7 @@
 		camo_off(wearer)
 		return
 
-	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY * 0.5
+	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY * 0.3
 	if(camo_last_shimmer > stealth_delay) //Shimmer after taking aggressive actions; no energy regeneration
 		wearer.alpha = max(wearer.alpha, shimmer_alpha) //50% invisible
 	//Stationary stealth

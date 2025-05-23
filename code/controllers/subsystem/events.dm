@@ -93,23 +93,15 @@ SUBSYSTEM_DEF(events)
 	else if(. == EVENT_READY)
 		E.run_event(not_forced = TRUE)
 
-//allows a client to trigger an event
-//aka Badmin Central
-/client/proc/force_event()
-	set name = "Trigger Event"
-	set category = "Admin.Fun"
-
-	if(!holder ||!check_rights(R_FUN))
-		return
-
-	holder.force_event()
+ADMIN_VERB(force_event, R_FUN, "Trigger Event", "Force a selected Event", ADMIN_CATEGORY_FUN)
+	user.holder.force_event()
 
 /datum/admins/proc/force_event()
 	var/dat = ""
 	var/normal = ""
 
 	for(var/datum/round_event_control/E in SSevents.control)
-		dat = "<BR><A href='?src=[REF(src)];[HrefToken()];force_event=[REF(E)]'>[E]</A>"
+		dat = "<BR><A href='byond://?src=[REF(src)];[HrefToken()];force_event=[REF(E)]'>[E]</A>"
 		normal 	+= dat
 
 	dat = normal
@@ -118,13 +110,7 @@ SUBSYSTEM_DEF(events)
 	popup.set_content(dat)
 	popup.open()
 
-/client/proc/toggle_events()
-	set name = "Toggle Events Subsystem"
-	set category = "Admin.Fun"
-
-	if(!holder ||!check_rights(R_FUN))
-		return
-
+ADMIN_VERB(toggle_events, R_FUN, "Toggle Events Subsystem", "Toggle SSevents on and off", ADMIN_CATEGORY_FUN)
 	SSevents.can_fire = !SSevents.can_fire
-	message_admins("[usr.client] has toggled the events subsystem [SSevents.can_fire == 1 ? "on" : "off"]")
-	log_admin("[usr.client] has toggled the events subsystem [SSevents.can_fire == 1 ? "on" : "off"]")
+	message_admins("[key_name_admin(user)] has toggled the events subsystem [SSevents.can_fire == 1 ? "on" : "off"]")
+	log_admin("[key_name(user)] has toggled the events subsystem [SSevents.can_fire == 1 ? "on" : "off"]")

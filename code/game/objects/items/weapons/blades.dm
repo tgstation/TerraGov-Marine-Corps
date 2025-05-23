@@ -3,7 +3,7 @@
 	icon = 'icons/obj/items/weapons/knives.dmi'
 	icon_state = "shiv"
 	desc = "A makeshift glass shiv."
-	attack_verb = list("shanked", "shived")
+	attack_verb = list("shanks", "shivs")
 	hitsound = 'sound/weapons/slash.ogg'
 
 /obj/item/tool/kitchen/knife/shiv/plasma
@@ -33,7 +33,7 @@
 	throw_range = 6
 	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 
 /obj/item/weapon/combat_knife/attackby(obj/item/I, mob/user)
 	if(!istype(I,/obj/item/stack/cable_coil))
@@ -45,10 +45,10 @@
 	to_chat(user, "You wrap some cable around the bayonet. It can now be attached to a gun.")
 	if(loc == user)
 		user.temporarilyRemoveItemFromInventory(src)
-	var/obj/item/attachable/bayonet/F = new(src.loc)
+	var/obj/item/attachable/bayonet/converted/F = new(src.loc)
 	user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 	if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-		F.loc = get_turf(src)
+		F.forceMove(get_turf(src))
 	qdel(src) //Delete da old knife
 
 /obj/item/weapon/combat_knife/Initialize(mapload)
@@ -86,20 +86,7 @@
 	throw_range = 6
 	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "hooked")
-
-//Try to do a fancy trick with your cool knife
-/obj/item/weapon/karambit/attack_self(mob/user)
-	. = ..()
-	if(!user.dextrous)
-		to_chat(user, span_warning("You don't have the dexterity to do this."))
-		return
-	if(user.incapacitated() || !isturf(user.loc))
-		to_chat(user, span_warning("You can't do this right now."))
-		return
-	if(user.do_actions)
-		return
-	do_trick(user)
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts", "hooks")
 
 /obj/item/weapon/karambit/fade
 	icon_state = "karambit_fade"
@@ -126,7 +113,7 @@
 	throw_speed = 5
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	equip_slot_flags = ITEM_SLOT_POCKET
 	max_amount = 5
 	amount = 5
@@ -190,7 +177,7 @@
 	if(!current_target)
 		return
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
-	living_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	living_user?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 ///Throws a knife from the stack, or, if the stack is one, throws the stack.
 /obj/item/stack/throwing_knife/proc/throw_knife()

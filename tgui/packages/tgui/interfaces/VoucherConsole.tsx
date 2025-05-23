@@ -1,5 +1,6 @@
+import { Box, Button, NoticeBox, Section, Slider, Stack } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, Section, Slider, Stack } from '../components';
 import { Window } from '../layouts';
 type VoucherConsoleData = {
   faction: string;

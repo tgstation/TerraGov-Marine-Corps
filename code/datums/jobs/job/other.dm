@@ -11,8 +11,8 @@
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine
-	l_store = /obj/item/storage/pouch/survival/full
-	r_store = /obj/item/radio
+	l_pocket = /obj/item/storage/pouch/survival/full
+	r_pocket = /obj/item/radio
 
 
 //Passenger
@@ -39,8 +39,8 @@
 	shoes = /obj/item/clothing/shoes/red
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/soft/red
-	r_store = /obj/item/radio
-	l_store = /obj/item/reagent_containers/food/drinks/cans/dr_gibb
+	r_pocket = /obj/item/radio
+	l_pocket = /obj/item/reagent_containers/food/drinks/cans/dr_gibb
 	back = /obj/item/storage/backpack/satchel
 	r_hand = /obj/item/pizzabox/random
 
@@ -101,6 +101,7 @@
 
 /datum/job/zombie
 	title = "Zombie"
+	faction = FACTION_HOSTILE
 
 /datum/job/other/prisoner
 	title = "Prisoner"
@@ -156,14 +157,15 @@
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine
-	l_store = /obj/item/storage/pouch/survival/full
+	l_pocket = /obj/item/storage/pouch/survival/full
 	ears = /obj/item/radio/headset/mainship
 
-/datum/job/worker/radio_help_message(mob/M)
+/datum/job/worker/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a standard worker with wide access among the ship,
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"\nYou are a standard worker with wide access among the ship,
 	you can use a worker locker to get equipped and use your access to do your job properly,
-	you should not sabotage the station with this access."})
+	you should not sabotage the station with this access."}
 
 //Morale officer
 /datum/job/worker/moraleofficer
@@ -185,10 +187,11 @@
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/swimsuit/purple
 	shoes = /obj/item/clothing/shoes/black
-	l_store = /obj/item/storage/pouch/general/large
+	l_pocket = /obj/item/storage/pouch/general/large
 	ears = /obj/item/radio/headset/mainship
 
-/datum/job/worker/moraleofficer/radio_help_message(mob/M)
+/datum/job/worker/moraleofficer/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a 'Morale Officer' fancy name for a free-use whore hired by a corporation to keep employees happy,
-	do your job and try not to 'stain' the ship too much."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"\nYou are a 'Morale Officer' fancy name for a free-use whore hired by a corporation to keep employees happy,
+	do your job and try not to 'stain' the ship too much."}

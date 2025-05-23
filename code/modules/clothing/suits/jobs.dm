@@ -19,7 +19,7 @@
 		/obj/item/flashlight,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/holster/blade,
 		/obj/item/tool/hatchet,
 		/obj/item/tool/scythe
@@ -159,7 +159,7 @@
 		/obj/item/detective_scanner,
 		/obj/item/taperecorder,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/holster/blade,
 	)
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
@@ -259,7 +259,7 @@
 
 /obj/item/clothing/suit/storage/internalaffairs/verb/toggle()
 	set name = "Toggle Coat Buttons"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())
@@ -298,7 +298,7 @@
 
 /obj/item/clothing/suit/storage/fr_jacket/verb/toggle()
 	set name = "Toggle Jacket Buttons"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())

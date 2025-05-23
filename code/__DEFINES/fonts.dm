@@ -12,7 +12,7 @@
 /// Font used when signing on paper.
 #define SIGNATURE_FONT "Segoe Script"
 
-/// Emoji icon set TODO make this used everywhere properly
+/// Emoji icon set
 #define EMOJI_SET 'icons/misc/emoji.dmi'
 
 // Font metrics bitfield

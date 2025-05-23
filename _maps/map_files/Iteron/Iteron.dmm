@@ -1095,7 +1095,7 @@
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "pk" = (
-/obj/machinery/computer/camera_advanced/overwatch/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -2143,7 +2143,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/barracks)
 "DD" = (
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/military/alpha,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -2201,7 +2201,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/command)
 "EI" = (
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
 /obj/structure/platform{
 	dir = 8
 	},
@@ -2567,7 +2567,7 @@
 	},
 /area/mainship/patrol_base/command)
 "Iw" = (
-/obj/machinery/computer/camera_advanced/overwatch/charlie,
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base/command)
 "IE" = (
@@ -3160,7 +3160,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base/command)
 "Sh" = (
-/obj/machinery/computer/camera_advanced/overwatch/delta,
+/obj/machinery/computer/camera_advanced/overwatch/military/delta,
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base/command)
 "Si" = (

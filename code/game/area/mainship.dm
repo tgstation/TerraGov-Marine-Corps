@@ -593,6 +593,18 @@
 	name = "Telecommunications"
 	icon_state = "tcomms"
 
+/area/mainship/multiz_debug_area
+	name = "Multi-Z Debugging"
+	icon_state = "req"
+
+/area/mainship/multiz_debug_area/floorone
+	name = "Multi-Z Debugging Floor One"
+
+/area/mainship/multiz_debug_area/floortwo
+	name = "Multi-Z Debugging Floor Two"
+
+/area/mainship/multiz_debug_area/floorthree
+	name = "Multi-Z Debugging Floor Three"
 //MARINE SHIP AREAS--------------------------------------//
 // Fore = West  | Aft = East //
 // Port = South | Starboard = North //

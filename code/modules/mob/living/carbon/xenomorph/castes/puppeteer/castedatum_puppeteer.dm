@@ -3,6 +3,7 @@
 	display_name = "Puppeteer"
 	upgrade_name = ""
 	caste_desc = "An alien creature of terrifying display, it has a tail adorned with needles that drips a strange chemical and elongated claws."
+	base_strain_type = /mob/living/carbon/xenomorph/puppeteer
 	caste_type_path = /mob/living/carbon/xenomorph/puppeteer
 	primordial_message = "The organics will tremble at our swarm. We are legion."
 
@@ -21,8 +22,7 @@
 
 	deevolves_to = /datum/xeno_caste/defender
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
-	caste_traits = null
+
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, FIRE = 20, ACID = 20)
 	minimap_icon = "puppeteer"
 	flay_plasma_gain = 100

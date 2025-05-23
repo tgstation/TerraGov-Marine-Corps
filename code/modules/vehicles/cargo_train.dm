@@ -126,7 +126,7 @@
 
 /obj/vehicle/train/cargo/engine/verb/start_engine()
 	set name = "Start engine"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(1)
 
 	if(!ishuman(usr))
@@ -150,7 +150,7 @@
 
 /obj/vehicle/train/cargo/engine/verb/stop_engine()
 	set name = "Stop engine"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(1)
 
 	if(!ishuman(usr))
@@ -166,7 +166,7 @@
 
 /obj/vehicle/train/cargo/engine/verb/remove_key()
 	set name = "Remove key"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(1)
 
 	if(!ishuman(usr))
@@ -178,7 +178,7 @@
 	if(on)
 		turn_off()
 
-	key.loc = usr.loc
+	key.forceMove(usr.loc)
 	if(!usr.get_active_held_item())
 		usr.put_in_hands(key)
 	key = null

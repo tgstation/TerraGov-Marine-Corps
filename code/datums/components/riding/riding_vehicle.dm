@@ -10,12 +10,12 @@
 	RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, PROC_REF(driver_move))
 
 /datum/component/riding/vehicle/driver_move(atom/movable/movable_parent, mob/living/user, direction, glide_size_override)
-	if(!COOLDOWN_CHECK(src, vehicle_move_cooldown))
+	if(!COOLDOWN_FINISHED(src, vehicle_move_cooldown))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	var/obj/vehicle/vehicle_parent = parent
 
 	if(!keycheck(user))
-		if(COOLDOWN_CHECK(src, message_cooldown))
+		if(COOLDOWN_FINISHED(src, message_cooldown))
 			to_chat(user, "<span class='warning'>[vehicle_parent] has no key inserted!</span>")
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
@@ -26,7 +26,7 @@
 			user.visible_message("<span class='danger'>[user] falls off \the [vehicle_parent].</span>",\
 			"<span class='danger'>You slip off \the [vehicle_parent] as your body slumps!</span>")
 
-		if(COOLDOWN_CHECK(src, message_cooldown))
+		if(COOLDOWN_FINISHED(src, message_cooldown))
 			to_chat(user, "<span class='warning'>You cannot operate \the [vehicle_parent] right now!</span>")
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
@@ -37,7 +37,7 @@
 			user.visible_message("<span class='danger'>[user] falls off \the [vehicle_parent].</span>",\
 			"<span class='danger'>You fall off \the [vehicle_parent] while trying to operate it while unable to stand!</span>")
 
-		if(COOLDOWN_CHECK(src, message_cooldown))
+		if(COOLDOWN_FINISHED(src, message_cooldown))
 			to_chat(user, "<span class='warning'>You can't seem to manage that while unable to stand up enough to move \the [vehicle_parent]...</span>")
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
@@ -48,7 +48,7 @@
 			user.visible_message("<span class='danger'>[user] falls off \the [vehicle_parent].</span>",\
 			"<span class='danger'>You fall off \the [vehicle_parent] while trying to operate it without being able to hold on!</span>")
 
-		if(COOLDOWN_CHECK(src, message_cooldown))
+		if(COOLDOWN_FINISHED(src, message_cooldown))
 			to_chat(user, "<span class='warning'>You can't seem to hold onto \the [vehicle_parent] to move it...</span>")
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
@@ -58,6 +58,29 @@
 	glide_size_override = DELAY_TO_GLIDE_SIZE(new_delay)
 	. = ..()
 	handle_ride(user, direction, new_delay)
+
+/datum/component/riding/vehicle/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS))
+		return COMPONENT_RIDDEN_ALLOW_Z_MOVE
+
+	if(!keycheck(rider))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("[movable_parent] has no key inserted!"))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+	if(HAS_TRAIT(rider, TRAIT_INCAPACITATED))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("You cannot operate [movable_parent] right now!"))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+	if(ride_check_flags & RIDER_NEEDS_LEGS && HAS_TRAIT(rider, TRAIT_FLOORED))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("You can't seem to manage that while unable to stand up enough to move [movable_parent]..."))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+	if(ride_check_flags & RIDER_NEEDS_ARMS && HAS_TRAIT(rider, TRAIT_HANDS_BLOCKED))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("You can't seem to hold onto [movable_parent] to move it..."))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
 /// This handles the actual movement for vehicles once [/datum/component/riding/vehicle/proc/driver_move] has given us the green light
 /datum/component/riding/vehicle/proc/handle_ride(mob/living/user, direction, cooldown_duration)
@@ -102,10 +125,10 @@
 /datum/component/riding/vehicle/powerloader/handle_specials()
 	. = ..()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 2), TEXT_SOUTH = list(0, 2), TEXT_EAST = list(0, 2), TEXT_WEST = list(0, 2)))
-	set_vehicle_dir_layer(SOUTH, POWERLOADER_LAYER)
-	set_vehicle_dir_layer(NORTH, POWERLOADER_LAYER)
-	set_vehicle_dir_layer(EAST, POWERLOADER_LAYER)
-	set_vehicle_dir_layer(WEST, POWERLOADER_LAYER)
+	set_vehicle_dir_layer(SOUTH, VEHICLE_LAYER)
+	set_vehicle_dir_layer(NORTH, VEHICLE_LAYER)
+	set_vehicle_dir_layer(EAST, VEHICLE_LAYER)
+	set_vehicle_dir_layer(WEST, VEHICLE_LAYER)
 
 /datum/component/riding/vehicle/bicycle
 	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
@@ -191,10 +214,10 @@
 //sidecar
 /datum/component/riding/vehicle/motorbike/sidecar/handle_specials()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(-10, 3), TEXT_SOUTH = list(10, 3), TEXT_EAST = list(-2, 3), TEXT_WEST = list(2, 3)))
-	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(SOUTH, MOB_BELOW_PIGGYBACK_LAYER)
 	set_vehicle_dir_layer(NORTH, OBJ_LAYER)
 	set_vehicle_dir_layer(EAST, OBJ_LAYER)
-	set_vehicle_dir_layer(WEST, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, MOB_BELOW_PIGGYBACK_LAYER)
 	set_vehicle_dir_offsets(NORTH, -10, 0)
 	set_vehicle_dir_offsets(SOUTH, 10, 0)
 
@@ -218,9 +241,9 @@
 	return ..()
 
 /datum/component/riding/vehicle/hover_bike/handle_specials()
-	set_riding_offsets(1, list(TEXT_NORTH = list(0, 8, MOB_LAYER), TEXT_SOUTH = list(0, -11, ABOVE_MOB_PLATFORM_LAYER), TEXT_EAST = list(17, 7, ABOVE_MOB_PLATFORM_LAYER), TEXT_WEST = list(-11, 7, ABOVE_MOB_PLATFORM_LAYER)))
-	set_riding_offsets(2, list(TEXT_NORTH = list(0, 4, ABOVE_MOB_PLATFORM_LAYER), TEXT_SOUTH = list(0, -1, MOB_LAYER), TEXT_EAST = list(4, 9, MOB_LAYER), TEXT_WEST = list(1, 9, MOB_LAYER)))
-	set_vehicle_dir_layer(SOUTH, ABOVE_LYING_MOB_LAYER)
-	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
-	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)
-	set_vehicle_dir_layer(WEST, ABOVE_LYING_MOB_LAYER)
+	set_riding_offsets(1, list(TEXT_NORTH = list(0, 8, MOB_LAYER), TEXT_SOUTH = list(0, -11, ABOVE_MOB_LAYER), TEXT_EAST = list(17, 7, ABOVE_MOB_LAYER), TEXT_WEST = list(-11, 7, ABOVE_MOB_LAYER)))
+	set_riding_offsets(2, list(TEXT_NORTH = list(0, 4, ABOVE_MOB_LAYER), TEXT_SOUTH = list(0, -1, MOB_LAYER), TEXT_EAST = list(4, 9, MOB_LAYER), TEXT_WEST = list(1, 9, MOB_LAYER)))
+	set_vehicle_dir_layer(SOUTH, MOB_BELOW_PIGGYBACK_LAYER)
+	set_vehicle_dir_layer(NORTH, MOB_BELOW_PIGGYBACK_LAYER)
+	set_vehicle_dir_layer(EAST, MOB_BELOW_PIGGYBACK_LAYER)
+	set_vehicle_dir_layer(WEST, MOB_BELOW_PIGGYBACK_LAYER)

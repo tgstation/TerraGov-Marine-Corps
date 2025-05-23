@@ -1,7 +1,7 @@
 /atom
-	layer = TURF_LAYER
+	layer = ABOVE_NORMAL_TURF_LAYER
 	plane = GAME_PLANE
-	appearance_flags = TILE_BOUND
+	appearance_flags = TILE_BOUND|LONG_GLIDE
 	var/level = 2
 
 	var/atom_flags = NONE
@@ -34,7 +34,6 @@
 	var/explosion_block = 0
 
 	var/datum/component/orbiter/orbiters
-	var/datum/proximity_monitor/proximity_monitor
 
 	var/datum/wires/wires = null
 
@@ -312,7 +311,7 @@ directive is properly returned.
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
 /atom/proc/relaymove(mob/living/user, direct)
-	if(COOLDOWN_CHECK(src, buckle_message_cooldown))
+	if(COOLDOWN_FINISHED(src, buckle_message_cooldown))
 		COOLDOWN_START(src, buckle_message_cooldown, 2.5 SECONDS)
 		balloon_alert(user, "Can't move while buckled!")
 	return
@@ -357,10 +356,6 @@ directive is properly returned.
 /atom/proc/psi_act(psi_power, mob/living/user)
 	return
 
-/atom/proc/GenerateTag()
-	return
-
-
 /atom/proc/prevent_content_explosion()
 	return FALSE
 
@@ -375,13 +370,19 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
 
-
+/**
+ * Called when an atom is created in byond (built in engine proc)
+ *
+ * Not a lot happens here in SS13 code, as we offload most of the work to the
+ * [Initialization][/atom/proc/Initialize] proc, mostly we run the preloader
+ * if the preloader is being used and then call [InitAtom][/datum/controller/subsystem/atoms/proc/InitAtom] of which the ultimate
+ * result is that the Initialize proc is called.
+ *
+ */
 /atom/New(loc, ...)
-	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		GLOB._preloader.load(src)
-
-	if(datum_flags & DF_USE_TAG)
-		GenerateTag()
+	//atom creation method that preloads variables at creation
+	if(GLOB.use_preloader && src.type == GLOB._preloader_path)//in case the instantiated atom is creating other atoms in New()
+		world.preloader_load(src)
 
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
@@ -389,11 +390,6 @@ directive is properly returned.
 		if(SSatoms.InitAtom(src, FALSE, args))
 			//we were deleted
 			return
-
-/obj/item/update_filters() // tivi todo move this to items
-	. = ..()
-	for(var/datum/action/A AS in actions)
-		A.update_button_icon()
 
 /*
 	Atom Colour Priority System
@@ -493,6 +489,8 @@ directive is properly returned.
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	atom_flags |= INITIALIZED
 
+	SET_PLANE_IMPLICIT(src, plane)
+
 	update_greyscale()
 
 	if(light_system != MOVABLE_LIGHT && light_power && light_range)
@@ -581,7 +579,7 @@ directive is properly returned.
 
 		var/message
 		if(!isobserver(usr))
-			usr.client.holder.admin_ghost()
+			SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/aghost)
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
@@ -681,7 +679,7 @@ directive is properly returned.
 	. = ..()
 	var/refid = REF(src)
 	. += "[VV_HREF_TARGETREF(refid, VV_HK_AUTO_RENAME, "<b id='name'>[src]</b>")]"
-	. += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+	. += "<br><font size='1'><a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='byond://?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 
 /atom/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, arrived, old_loc, old_locs)
@@ -766,6 +764,10 @@ directive is properly returned.
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 
+
+/atom/proc/intercept_zImpact(list/falling_movables, levels = 1)
+	SHOULD_CALL_PARENT(TRUE)
+	. |= SEND_SIGNAL(src, COMSIG_ATOM_INTERCEPT_Z_FALL, falling_movables, levels)
 
 //the vision impairment to give to the mob whose perspective is set to that atom (e.g. an unfocused camera giving you an impaired vision when looking through it)
 /atom/proc/get_remote_view_fullscreens(mob/user)
@@ -862,7 +864,11 @@ directive is properly returned.
 	return TRUE
 
 /atom/proc/prepare_huds()
-	hud_list = new
+	for(var/key in hud_list)
+		var/image/removee = hud_list[key]
+		LAZYREMOVE(update_on_z, removee)
+	hud_list = list()
+	var/static/list/higher_hud_list = HUDS_LAYERING_HIGH
 	for(var/hud in hud_possible) //Providing huds.
 		var/hint = hud_possible[hud]
 		switch(hint)
@@ -871,6 +877,9 @@ directive is properly returned.
 			else
 				var/image/I = image('icons/mob/hud/human.dmi', src, "")
 				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM|KEEP_APART
+				if(hud in higher_hud_list)
+					SET_PLANE_EXPLICIT(I, POINT_PLANE, src)
+					LAZYADD(update_on_z, I)
 				hud_list[hud] = I
 
 /**
@@ -884,7 +893,7 @@ directive is properly returned.
  * distance_max: used to check if originated_turf is close to obj.loc
 */
 /atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, light_again = FALSE)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_LIGHT) && !forced)
 		return STILL_ON_COOLDOWN
 	if(cooldown <= 0)
 		cooldown = 1 SECONDS
@@ -933,7 +942,7 @@ directive is properly returned.
 
 ///Adds the debris element for projectile impacts
 /atom/proc/add_debris_element()
-	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
 /**
 	Returns a number after taking into account both soft and hard armor for the specified damage type, usually damage

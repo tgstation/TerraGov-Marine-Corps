@@ -151,7 +151,7 @@
 		e_icon = E.icon_name
 
 	for(var/datum/limb/L in limbs)
-		L.icon_name = get_limb_icon_name(species, gender, L.display_name, e_icon)
+		L.icon_name = get_limb_icon_name(species, physique, L.display_name, e_icon)
 
 /mob/living/carbon/human/get_reagent_tags()
 	. = ..()
@@ -376,3 +376,15 @@
 	var/datum/internal_organ/organ = get_organ_slot(string)
 	internal_organs_by_name -= string
 	internal_organs -= organ
+
+/// Current active hand will interact with the other hand. Uses attackby and attack_hand.
+/mob/living/carbon/human/proc/interact_other_hand()
+	var/atom/active_hand = get_active_held_item()
+	var/atom/inactive_hand = get_inactive_held_item()
+
+	if(!inactive_hand)
+		return
+	if(!active_hand)
+		inactive_hand.attack_hand(src)
+		return
+	inactive_hand.attackby(active_hand, src)

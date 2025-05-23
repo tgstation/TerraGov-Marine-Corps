@@ -5,8 +5,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 /atom/movable/screen/radial
 	icon = 'icons/mob/radial.dmi'
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
+	vis_flags = VIS_INHERIT_PLANE
 	var/datum/radial_menu/parent
 
 /atom/movable/screen/radial/slice
@@ -241,7 +241,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /datum/radial_menu/proc/extract_image(E)
 	var/mutable_appearance/MA = new /mutable_appearance(E)
 	if(MA)
-		MA.layer = ABOVE_HUD_LAYER
+		SET_PLANE_EXPLICIT(MA, ABOVE_HUD_PLANE, anchor)
+		MA.layer = RADIAL_CONTENT_LAYER
 		MA.appearance_flags |= RESET_TRANSFORM
 	return MA
 
@@ -258,8 +259,9 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		return
 	current_user = M.client
 	//Blank
-	menu_holder = image(icon='icons/effects/effects.dmi',loc=anchor,icon_state="nothing",layer = ABOVE_HUD_LAYER)
+	menu_holder = image(icon='icons/effects/effects.dmi',loc=anchor,icon_state="nothing", layer = RADIAL_BACKGROUND_LAYER)
 	menu_holder.appearance_flags |= KEEP_APART|RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM
+	SET_PLANE_EXPLICIT(menu_holder, ABOVE_HUD_PLANE, M)
 	menu_holder.vis_contents += elements + close_button
 	current_user.images += menu_holder
 

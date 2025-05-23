@@ -7544,16 +7544,16 @@
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial{
 	name = "\improper ST-571 sentry gun"
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "gQT" = (
@@ -8539,7 +8539,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "hQT" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
@@ -8913,14 +8913,14 @@
 /area/mainship/hull/upper_hull)
 "idH" = (
 /obj/item/weapon/gun/sentry/big_sentry/premade,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid,
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -9866,14 +9866,14 @@
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial{
 	name = "\improper ST-571 sentry gun"
 	},
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid,
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -10540,7 +10540,7 @@
 	name = "Shipside Medbay"
 	})
 "jGt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/side{
@@ -10812,14 +10812,14 @@
 /turf/open/floor/mainship/red,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "jSO" = (
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid,
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial{
@@ -14011,14 +14011,14 @@
 /area/mainship/hull/lower_hull)
 "mzw" = (
 /obj/item/weapon/gun/sentry/big_sentry/premade,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid,
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -15841,16 +15841,16 @@
 	name = "Research"
 	})
 "orA" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial{
 	name = "\improper ST-571 sentry gun"
 	},
@@ -19164,14 +19164,14 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/squads/general)
 "rBF" = (
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid,
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial{
@@ -20255,7 +20255,7 @@
 	dir = 8;
 	sentry_iff_signal = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/red/full,
@@ -20853,14 +20853,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "tgQ" = (
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid,
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial{
@@ -20884,16 +20884,16 @@
 /obj/item/weapon/gun/sentry/big_sentry/premade{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -21714,7 +21714,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "tWN" = (
@@ -25105,16 +25105,16 @@
 /obj/item/weapon/gun/sentry/big_sentry/premade{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/item/weapon/gun/sentry/big_sentry/premade{
 	dir = 1
 	},
@@ -25903,7 +25903,7 @@
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "xSK" = (
 /obj/machinery/line_nexter,
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},

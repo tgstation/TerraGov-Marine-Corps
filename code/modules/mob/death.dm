@@ -1,8 +1,10 @@
 //This is the proc for gibbing a mob. Cannot gib ghosts.
 //added different sort of gibs and animations. N
 /mob/proc/gib()
+	playsound(src, 'sound/effects/gib.ogg', 90, TRUE, 8)
 	gib_animation()
 	spawn_gibs()
+	log_attack("[key_name(src)] has been gibbed.")
 	death(TRUE)
 
 
@@ -58,7 +60,7 @@
 
 /mob/proc/on_death()
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
-	client?.view_size.reset_to_default()//just so we never get stuck with a large view somehow
+	client?.view_size?.reset_to_default()//just so we never get stuck with a large view somehow
 
 	hide_fullscreens()
 

@@ -8,7 +8,7 @@
 
 /obj/item/restraints/resisted_against(datum/source)
 	var/mob/living/carbon/perp = source
-	if(TIMER_COOLDOWN_CHECK(perp, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_RUNNING(perp, COOLDOWN_RESIST))
 		return FALSE
 
 	perp.changeNext_move(CLICK_CD_RESIST)

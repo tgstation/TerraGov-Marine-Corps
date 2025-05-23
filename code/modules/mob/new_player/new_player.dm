@@ -1,5 +1,6 @@
 /mob/new_player
 	invisibility = INVISIBILITY_ABSTRACT
+	lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 	stat = DEAD
 	density = FALSE
 	canmove = FALSE
@@ -184,7 +185,14 @@
 	return "\nYou might have to wait a certain time to respawn or be unable to, depending on the game mode!"
 
 /datum/game_mode/infestation/observe_respawn_message()
-	return "\nYou will have to wait at least [SSticker.mode?.respawn_time * 0.1 / 60] minutes before being able to respawn as a marine!"
+	. = "\nYou will have to wait at least [SSticker.mode?.respawn_time * 0.1 / 60] minutes before being able to respawn as a marine!"
+	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(!normal_hive)
+		return
+	if(length(normal_hive.candidates) <= 2)
+		return
+	. += " There are [length(normal_hive.candidates)] people in the larva queue."
+
 
 /mob/new_player/proc/late_choices()
 	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
@@ -290,7 +298,6 @@
 	if(!user)
 		user = src
 	DIRECT_OUTPUT(user, browse(null, "window=latechoices")) //closes late choices window
-	DIRECT_OUTPUT(user, browse(null, "window=playersetup")) //closes the player setup window
 	user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 
 
@@ -305,7 +312,7 @@
 
 /mob/new_player/get_gender()
 	if(!client?.prefs)
-		. = ..()
+		return ..()
 	return client.prefs.gender
 
 /mob/new_player/proc/create_character()

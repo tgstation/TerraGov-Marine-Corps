@@ -3,6 +3,8 @@
 	set category = "OOC"
 
 	var/count_observers = 0
+	var/count_newplayers = 0
+	var/count_afknewplayers = 0
 	var/count_nonadmin_observers = 0
 	var/count_humans = 0
 	var/count_marine_humans = 0
@@ -15,6 +17,10 @@
 			count_observers++
 			if(!check_other_rights(C, R_ADMIN, FALSE))
 				count_nonadmin_observers++
+		else if(isnewplayer(C.mob))
+			count_newplayers++
+			if(C.is_afk())
+				count_afknewplayers++
 		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob))
 				count_humans++
@@ -52,14 +58,15 @@
 							entry += " - <b>DEAD</b>"
 					else
 						entry += " - <b>DEAD</b>"
-			entry += " (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+			entry += " (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+			entry += " ([round(C.avgping, 1)]ms)"
 			Lines += entry
 	else
 		for(var/client/C in GLOB.clients)
 			if(C.holder?.fakekey)
-				Lines += C.holder.fakekey
+				Lines += "[C.holder.fakekey] ([round(C.avgping, 1)]ms)"
 			else
-				Lines += C.key
+				Lines += "[C.key] ([round(C.avgping, 1)]ms)"
 
 	for(var/line in sortList(Lines))
 		msg += "[line]<br>"
@@ -68,8 +75,9 @@
 		var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		msg += "<b>Total Players: [length(Lines)]</b>"
 		msg += "<br><b>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
-		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Sons of Mars: ~[count_som_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b><br>"
+		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Sons of Mars: ~[count_som_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b>"
 		msg += "<br><b>Xenos: [count_aliens]</b> <b>(Ruler: [hive.living_xeno_ruler ? "Alive" : "Dead"])</b>"
+		msg += "<br><b>Lobby: [count_newplayers]</b> <b>(AFK: [count_afknewplayers])</b>"
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"
 
@@ -92,7 +100,7 @@
 			if(check_other_rights(C, R_ADMIN, FALSE))
 				if(!check_rights(R_ADMIN, FALSE) && C.holder.fakekey)
 					continue
-				msg += "\t <a href='?_src_=holder;[HrefToken()];playerpanel=[REF(C.mob)]'>[C]</a> - [C.holder.rank]"
+				msg += "\t <a href='byond://?_src_=holder;[HrefToken()];playerpanel=[REF(C.mob)]'>[C]</a> - [C.holder.rank]"
 
 				if(C.holder.fakekey)
 					msg += " as ([C.holder.fakekey])"
@@ -107,7 +115,7 @@
 				if(C.is_afk())
 					msg += " (AFK)"
 
-				msg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				msg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				msg += "\n"
 				num_admins_online++
@@ -124,7 +132,7 @@
 				if(C.is_afk())
 					mentmsg += " (AFK)"
 
-				mentmsg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				mentmsg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				mentmsg += "\n"
 				num_mentors_online++

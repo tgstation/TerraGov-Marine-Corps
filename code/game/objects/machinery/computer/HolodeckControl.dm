@@ -32,7 +32,7 @@
 	icon_state = "rwindow"
 	desc = "A window."
 	density = TRUE
-	layer = WINDOW_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	atom_flags = ON_BORDER
 

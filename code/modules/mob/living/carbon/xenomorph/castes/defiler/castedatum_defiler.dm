@@ -3,7 +3,7 @@
 	display_name = "Defiler"
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
-
+	base_strain_type = /mob/living/carbon/xenomorph/defiler
 	caste_type_path = /mob/living/carbon/xenomorph/defiler
 
 	tier = XENO_TIER_THREE
@@ -31,7 +31,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_hold_eggs = CAN_HOLD_ONE_HAND
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //

@@ -8,6 +8,7 @@
 #define MUTE_DEADCHAT (1<<4)
 #define MUTE_LOOC (1<<5)
 #define MUTE_TTS (1<<6)
+#define MUTE_INTERNET_REQUEST (1<<7)
 #define MUTE_ALL (~0)
 
 //Some constants for DB_Ban
@@ -27,6 +28,8 @@
 #define TICKET_ADMIN 2
 
 //Admin Permissions
+/// Used for signifying that all admins can use this regardless of actual permissions
+#define R_NONE NONE
 #define R_ADMIN (1<<0)
 #define R_MENTOR (1<<1)
 #define R_BAN (1<<2)
@@ -47,18 +50,18 @@
 
 #define R_EVERYTHING (ALL) //the sum of all other rank permissions, used for +EVERYTHING
 
-#define ADMIN_QUE(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(user)]'>?</a>)"
-#define ADMIN_FLW(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(user)]'>FLW</a>)"
-#define ADMIN_JMP(src) "(<a href='?_src_=holder;[HrefToken(TRUE)];observecoordjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
-#define ADMIN_JMP_USER(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observecoordjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"
-#define ADMIN_PP(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(user)]'>PP</a>)"
-#define ADMIN_VV(atom) "(<a href='?_src_=vars;[HrefToken(forceGlobal = TRUE)];vars=[REF(atom)]'>VV</a>)"
-#define ADMIN_SM(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(user)]'>SM</a>)"
-#define ADMIN_IF(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];imginaryfriend=[REF(user)]'>IF</a>)"
-#define ADMIN_TP(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];traitorpanel=[REF(user)]'>TP</a>)"
-#define ADMIN_KICK(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];kick=[REF(user)]'>KICK</a>)"
-#define ADMIN_SC(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];spawncookie=[REF(user)]'>SC</a>)"
-#define ADMIN_SFC(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];spawnfortunecookie=[REF(user)]'>SFC</a>)"
+#define ADMIN_QUE(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(user)]'>?</a>)"
+#define ADMIN_FLW(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(user)]'>FLW</a>)"
+#define ADMIN_JMP(src) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];observecoordjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
+#define ADMIN_JMP_USER(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];observecoordjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"
+#define ADMIN_PP(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(user)]'>PP</a>)"
+#define ADMIN_VV(atom) "(<a href='byond://?_src_=vars;[HrefToken(forceGlobal = TRUE)];vars=[REF(atom)]'>VV</a>)"
+#define ADMIN_SM(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(user)]'>SM</a>)"
+#define ADMIN_IF(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];imginaryfriend=[REF(user)]'>IF</a>)"
+#define ADMIN_TP(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];traitorpanel=[REF(user)]'>TP</a>)"
+#define ADMIN_KICK(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];kick=[REF(user)]'>KICK</a>)"
+#define ADMIN_SC(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];spawncookie=[REF(user)]'>SC</a>)"
+#define ADMIN_SFC(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];spawnfortunecookie=[REF(user)]'>SFC</a>)"
 #define ADMIN_LOOKUP(user) "[key_name_admin(user)][ADMIN_QUE(user)]"
 #define ADMIN_LOOKUPFLW(user) "[key_name_admin(user)][ADMIN_QUE(user)] [ADMIN_FLW(user)]"
 #define ADMIN_FULLMONTY_NONAME(user) "[ADMIN_QUE(user)] [ADMIN_PP(user)] [ADMIN_VV(user)] [ADMIN_SM(user)] [ADMIN_JMP(user)] [ADMIN_FLW(user)]"
@@ -70,8 +73,9 @@
 #define AREACOORD_NO_Z(src) "[src ? "[get_area_name(src, TRUE)] (X: [src.x], Y: [src.y])" : "nonexistent location"]"
 #define ADMIN_COORDJMP(src) "[src ? "[COORD(src)] [ADMIN_JMP(src)]" : "nonexistent location"]"
 #define ADMIN_VERBOSEJMP(src) "[src ? "[AREACOORD(src)] [ADMIN_JMP(src)]" : "nonexistent location"]"
-#define ADMIN_INDIVIDUALLOG(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];individuallog=[REF(user)]'>LOGS</a>)"
-#define ADMIN_TAG(datum) "(<A href='?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];tag_datum=[REF(datum)]'>TAG</a>)"
+#define ADMIN_INDIVIDUALLOG(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];individuallog=[REF(user)]'>LOGS</a>)"
+#define ADMIN_TAG(datum) "(<A href='byond://?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];tag_datum=[REF(datum)]'>TAG</a>)"
+#define ADMIN_PLAY_INTERNET(text, credit) "(<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];play_internet=[url_encode(text)];credit=[credit]'>PLAY</a>)"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
@@ -142,3 +146,7 @@
 
 /// for asay pings, this is the index in the return list for [/proc/check_admin_pings] that contains the message modified with underlines for the spotted names
 #define ADMINSAY_PING_UNDERLINE_NAME_INDEX "!underlined_names"
+
+/// Used in logging uses of admin verbs (and sometimes some non-admin or debug verbs) to the blackbox
+/// Only pass it a string key, the verb being used.
+#define BLACKBOX_LOG_ADMIN_VERB(the_verb) SSblackbox.record_feedback("tally", "admin_verb", 1, the_verb)

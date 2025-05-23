@@ -6,4 +6,7 @@
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
 	hub = "Exadv1.spacestation13"
 	fps = 20
-	loop_checks = TRUE
+	map_format = SIDE_MAP
+#ifdef FIND_REF_NO_CHECK_TICK
+	loop_checks = FALSE
+#endif

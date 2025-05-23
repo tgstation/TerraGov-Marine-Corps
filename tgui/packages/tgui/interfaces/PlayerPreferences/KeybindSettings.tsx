@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -8,7 +6,10 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
+import { ButtonKeybind } from './ButtonKeybind';
 import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {
@@ -58,7 +59,12 @@ export const KeybindSettings = (props) => {
         />
       )}
       <Box>
-        Search: <Input onInput={(_e, value) => setFilter(value)} />
+        <Input
+          autoFocus
+          expensive
+          placeholder="Search..."
+          onChange={setFilter}
+        />
       </Box>
       <Stack>
         <Stack.Item grow>
@@ -175,7 +181,7 @@ const KeybindingPreference = (props) => {
     <LabeledList.Item label={keybind.display_name}>
       {current &&
         current.map((key) => (
-          <Button.Keybind
+          <ButtonKeybind
             color="transparent"
             key={key}
             content={key}
@@ -196,7 +202,7 @@ const KeybindingPreference = (props) => {
             }}
           />
         ))}
-      <Button.Keybind
+      <ButtonKeybind
         icon="plus"
         color="transparent"
         onFinish={(keysDown) => {
@@ -258,7 +264,7 @@ const CustomSentence = (props) => {
       </Button>
       {current &&
         current.map((key) => (
-          <Button.Keybind
+          <ButtonKeybind
             color="transparent"
             key={key}
             content={key}
@@ -279,7 +285,7 @@ const CustomSentence = (props) => {
             }}
           />
         ))}
-      <Button.Keybind
+      <ButtonKeybind
         icon="plus"
         color="transparent"
         onFinish={(keysDown) => {

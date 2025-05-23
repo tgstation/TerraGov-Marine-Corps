@@ -72,7 +72,7 @@
 	add_occupant(kidnapped, VEHICLE_CONTROL_KIDNAPPED)
 
 /obj/vehicle/sealed/car/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(src, heavy_impact_range = 1, light_impact_range = 2, flash_range = 3, adminlog = FALSE)
+	explosion(src, heavy_impact_range = 1, light_impact_range = 2, flash_range = 3, adminlog = FALSE, explosion_cause=blame_mob)
 	log_message("[src] exploded due to destruction", LOG_ATTACK)
 	return ..()
 
@@ -86,15 +86,15 @@
 	if(!.)
 		return
 
-	if(COOLDOWN_CHECK(src, enginesound_cooldown))
+	if(COOLDOWN_FINISHED(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
 		playsound(get_turf(src), engine_sound, 100, TRUE)
 
 	if(trailer)
 		var/dir_to_move = get_dir(trailer.loc, loc)
-		var/did_move = step(src, direction)
+		var/did_move = try_step_multiz(direction)
 		if(did_move)
 			step(trailer, dir_to_move)
 		return did_move
 	after_move(direction)
-	return step(src, direction)
+	return try_step_multiz(direction)

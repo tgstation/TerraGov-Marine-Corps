@@ -60,7 +60,7 @@
 	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.metal_remaining -= 4
-	cade = new /obj/structure/barricade/metal(buildplace)
+	cade = new /obj/structure/barricade/solid(buildplace)
 	cade.setDir(fobdrone.dir)
 	if(console.do_wiring)
 		if(!console.metal_remaining)
@@ -101,7 +101,7 @@
 	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.plasteel_remaining -= 5
-	cade = new /obj/structure/barricade/plasteel(buildplace)
+	cade = new /obj/structure/barricade/folding(buildplace)
 	cade.setDir(fobdrone.dir)
 	cade.closed = FALSE
 	cade.density = TRUE

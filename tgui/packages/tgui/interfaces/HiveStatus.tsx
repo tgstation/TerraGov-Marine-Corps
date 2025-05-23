@@ -1,17 +1,18 @@
-import { round } from 'common/math';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Collapsible,
   Divider,
   Flex,
+  Image,
   ProgressBar,
   Section,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
+import { round } from 'tgui-core/math';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type InputPack = {
@@ -154,7 +155,7 @@ export const HiveStatus = (_props: any) => {
 const CachedCollapsible = (props: {
   title: string;
   open: boolean;
-  children?: JSX.Element;
+  children?: React.JSX.Element;
   onClickXeno: any;
 }) => {
   const { data } = useBackend<InputPack>();
@@ -592,8 +593,7 @@ const PopulationPyramid = (_props: any) => {
                       bold
                       key={static_entry.name}
                     >
-                      <Box
-                        as="img"
+                      <Image
                         src={`data:image/jpeg;base64,${static_entry.minimap}`}
                         style={{
                           transform: 'scale(3) translateX(-3.5px)',
@@ -669,7 +669,7 @@ const XenoList = (_props: any) => {
     return (
       <Button
         ml={-1}
-        backgroundColor="transparent"
+        backgroundColor="rgba(0, 0, 0, 0)"
         tooltip={props.tip}
         icon={
           sortingBy.category !== props.text
@@ -830,8 +830,7 @@ const XenoList = (_props: any) => {
                 </Flex.Item>
                 {/* Minimap icons */}
                 <Flex.Item width={minimap_width} mr={minimap_mr}>
-                  <Box
-                    as="img"
+                  <Image
                     src={`data:image/jpeg;base64,${static_entry.minimap}`}
                     style={{
                       transform: 'scale(2) translateX(2px)', // Upscaled from 7x7 to 14x14.
@@ -856,7 +855,7 @@ const XenoList = (_props: any) => {
                       overflow: 'hidden', // hiding overflow prevents the button being slightly scrollable
                       marginTop: '-3px', // magic number, lines up button text with other cols
                     }}
-                    backgroundColor="transparent"
+                    backgroundColor="rgba(0, 0, 0, 0)"
                     tooltip={
                       user_ref !== entry.ref
                         ? user_tracked === entry.ref

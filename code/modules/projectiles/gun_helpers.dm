@@ -16,7 +16,8 @@
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)
 	. = ..()
 	if(!active_attachable)
-		return toggle_gun_safety()
+		balloon_alert(user, "no attachment to unload")
+		return
 
 	var/mob/living/living_user = user
 	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
@@ -61,7 +62,7 @@
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
-	unwield(user)
+	//unwield(user) //shouldnt need this, just causes unequips when you fail to even unequip
 	return ..()
 
 
@@ -180,11 +181,11 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
 		if(-50 to 15)
-			attack_verb = list("struck", "hit", "bashed") //Unlikely to ever be -50, but just to be safe.
+			attack_verb = list("strikes", "hits", "bashes") //Unlikely to ever be -50, but just to be safe.
 		if(16 to 35)
-			attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
+			attack_verb = list("smashes", "strikes", "whacks", "beats", "cracks")
 		else
-			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
+			attack_verb = list("slashes", "stabs", "spears", "tears", "punctures", "pierces", "gores") //Greater than 35
 
 
 /proc/get_active_firearm(mob/user)
@@ -362,7 +363,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 // todo destroy all verbs
 /mob/living/carbon/human/verb/empty_mag()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
@@ -381,7 +382,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/use_unique_action()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
@@ -400,7 +401,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/toggle_gun_safety()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
 
@@ -424,7 +425,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/activate_attachment_verb()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 
@@ -470,7 +471,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/toggle_rail_attachment()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
 

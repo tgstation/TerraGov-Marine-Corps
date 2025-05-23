@@ -27,7 +27,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "i" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
@@ -111,7 +111,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "C" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
@@ -129,7 +129,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "E" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
@@ -172,7 +172,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "S" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,

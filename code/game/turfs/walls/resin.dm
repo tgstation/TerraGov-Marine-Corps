@@ -11,7 +11,7 @@
 	walltype = "resin-wall"
 	base_icon_state = "resin-wall"
 	max_integrity = 200
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_OBJ_LAYER
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
@@ -19,16 +19,27 @@
 	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
 
-	//Used for quickbuild refunding.
-	var/is_normal_resin_wall = TRUE
-
 /turf/closed/wall/resin/add_debris_element()
-	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
 /turf/closed/wall/resin/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
+/turf/closed/wall/resin/get_mechanics_info()
+	. += ..()
+	var/list/list = list()
+	list += list("<br>Resin slime that Xenomorphs build to protect their hives")
+	list += list("Has the following armor values:")
+	var/list/soft_armor_in_list = soft_armor.getList()
+	for(var/armor_type in soft_armor_in_list)
+		list += "Soft [armor_type] armor: [soft_armor_in_list[armor_type]]"
+
+	var/list/hard_armor_in_list = hard_armor.getList()
+	for(var/armor_type in hard_armor_in_list)
+		list += "Hard [armor_type] armor: [hard_armor_in_list[armor_type]]"
+
+	. += jointext(list, "<br>")
 
 /turf/closed/wall/resin/fire_act(burn_level)
 	take_damage(burn_level * 1.25, BURN, FIRE)
@@ -114,10 +125,9 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		if(is_normal_resin_wall)
-			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
-			take_damage(max_integrity) // Ensure its destroyed
-			return
+		SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
+		take_damage(max_integrity) // Ensure its destroyed
+		return
 	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
@@ -189,6 +199,13 @@
 	. = ..()
 	START_PROCESSING(SSslowprocess, src)
 
+/turf/closed/wall/resin/regenerating/get_mechanics_info()
+	. = ..()
+	var/list/list = list()
+	list += list("<br>Currently at [max_integrity] health, starts out at [initial(max_integrity)] health, gaining [max_upgrade_per_tick] every 5 seconds, up to [max_upgradable_health]")
+	list += list("If damaged, after [DisplayTimeText(cooldown_on_taking_dmg)], starts regenerating [heal_per_tick] damage every 5 seconds.")
+	. += jointext(list, "<br>")
+
 /**
  * Try to start processing on the wall.
  * Will return early if the wall is already at max upgradable health.
@@ -224,28 +241,23 @@
 /turf/closed/wall/resin/regenerating/thick
 	max_integrity = 125
 
-/turf/closed/wall/resin/regenerating/special
-	name = "you shouldn't see this"
-	is_normal_resin_wall = FALSE
-
 /turf/closed/wall/resin/regenerating/special/bulletproof
 	name = "bulletproof resin wall"
 	desc = "Weird slime solidified into a wall. Looks shiny."
-	max_upgradable_health = 450
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) //You aren't damaging this with bullets without alot of AP.
+	max_upgradable_health = 250
+	soft_armor = list(MELEE = 0, BULLET = 110, LASER = 100, ENERGY = 100, BOMB = 20, BIO = 0, FIRE = 0, ACID = 0) //You aren't damaging this with bullets without alot of AP.
 	color = COLOR_WALL_BULLETPROOF
 
 /turf/closed/wall/resin/regenerating/special/fireproof
 	name = "fireproof resin wall"
 	desc = "Weird slime solidified into a wall. Very red."
-	max_upgradable_health = 450
-	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
+	max_upgradable_health = 200
+	soft_armor = list(MELEE = 0, BULLET = 65, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
 	color = COLOR_WALL_FIREPROOF
 
 /turf/closed/wall/resin/regenerating/special/hardy
 	name = "hardy resin wall"
-	desc = "Weird slime soldified into a wall. Looks very strong."
-	max_upgradable_health = 550
+	desc = "Weird slime soldified into a wall. Looks sturdy."
 	max_upgrade_per_tick = 12 //Upgrades faster, but if damaged at all it will be put on cooldown still to help against walling in combat.
-	soft_armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, FIRE = 0, ACID = 0)//better bust out the flamer
+	soft_armor = list(MELEE = 80, BULLET = 30, LASER = 25, ENERGY = 75, BOMB = 80, BIO = 0, FIRE = 0, ACID = 0)
 	color = COLOR_WALL_HARDY
