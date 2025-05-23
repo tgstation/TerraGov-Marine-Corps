@@ -2,7 +2,6 @@
 	interaction_flags = INTERACT_UI_INTERACT
 	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
-	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	///Timer for caste evolution after the last one died, CASTE = TIMER
 	var/list/caste_death_timers = list()
@@ -457,10 +456,8 @@
 
 /mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE, prevent_ruler=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
-	if(HS.living_xeno_queen) // theres already a queen
+	if(isxenoqueen(HS.living_xeno_ruler)) // theres already a queen
 		return
-
-	HS.living_xeno_queen = src
 
 	if(prevent_ruler)
 		return
@@ -594,8 +591,8 @@
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
 	var/datum/hive_status/hive_removed_from = hive
-	if(hive_removed_from.living_xeno_queen == src)
-		hive_removed_from.living_xeno_queen = null
+	if(hive_removed_from.living_xeno_ruler == src)
+		hive_removed_from.living_xeno_ruler = null
 
 	. = ..()
 
@@ -777,7 +774,7 @@
 	return TRUE
 
 /datum/hive_status/proc/on_missing_ruler()
-	if(src == living_xeno_ruler)
+	if(usr == living_xeno_ruler)
 		living_xeno_ruler = null
 	update_leader_pheromones()
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
