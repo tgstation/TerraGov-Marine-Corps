@@ -178,7 +178,7 @@
 	if(user.can_jump() && is_jumpable(user))
 		return AI_OBSTACLE_JUMP
 	if(faction == user.faction) //don't break our shit
-		return AI_OBSTACLE_RESOLVED //not sure if I need something new here
+		return AI_OBSTACLE_FRIENDLY
 	if(!(resistance_flags & INDESTRUCTIBLE) && (obj_flags & CAN_BE_HIT))
 		return AI_OBSTACLE_ATTACK
 
