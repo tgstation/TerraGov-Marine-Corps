@@ -407,6 +407,9 @@
 	if(!(selected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
 		xeno_owner.balloon_alert(xeno_owner, "Xeno cannot lead")
 		return
+	if(selected_xeno == xeno_owner)
+		xeno_owner.balloon_alert(xeno_owner, "You are already a ruler")
+		return
 	xeno_owner.balloon_alert(xeno_owner, "Xeno promoted")
 	selected_xeno.balloon_alert(selected_xeno, "Promoted to leader")
 	to_chat(selected_xeno, span_xenoannounce("[xeno_owner] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
