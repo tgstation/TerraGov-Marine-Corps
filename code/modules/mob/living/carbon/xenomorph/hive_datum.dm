@@ -773,8 +773,9 @@
 	update_ruler()
 	return TRUE
 
-/datum/hive_status/proc/on_missing_ruler()
-	if(usr == living_xeno_ruler)
+/// If the current ruler devolves or caste_swaps we want to properly handle it
+/datum/hive_status/proc/on_missing_ruler(mob/living/carbon/xenomorph/first, mob/living/carbon/xenomorph/second)
+	if(first == living_xeno_ruler)
 		living_xeno_ruler = null
 	update_leader_pheromones()
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
@@ -785,7 +786,7 @@
 		living_xeno_ruler.remove_ruler_abilities()
 		UnregisterSignal(living_xeno_ruler, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 	set_ruler(null)
-	update_ruler(usr)
+	update_ruler(first)
 
 // This proc attempts to find a new ruler to lead the hive.
 /datum/hive_status/proc/update_ruler(mob/living/carbon/xenomorph/previous_ruler)
