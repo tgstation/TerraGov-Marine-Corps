@@ -16766,10 +16766,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/corporateliaison)
-"pcS" = (
-/turf/open/space/basic,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "pdX" = (
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/plating,
@@ -25404,12 +25400,6 @@
 	dir = 10
 	},
 /area/mainship/squads/general)
-"xnG" = (
-/turf/open/space/basic,
-/turf/open/floor/mainship/mono,
-/area/outpost/cargo{
-	outside = 1
-	})
 "xoj" = (
 /obj/structure/bed/chair,
 /obj/structure/cable,
@@ -33661,10 +33651,10 @@ qsO
 urx
 urx
 urx
-xnG
-xnG
-xnG
-xnG
+urx
+urx
+urx
+urx
 hUg
 wOF
 wtj
@@ -45443,10 +45433,10 @@ avt
 tIk
 tIk
 tIk
-pcS
-pcS
-pcS
-pcS
+tIk
+tIk
+tIk
+tIk
 thI
 jRm
 vhN
