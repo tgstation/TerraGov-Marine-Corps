@@ -121,6 +121,7 @@
 	w_uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/orange
 	ears = /obj/item/radio/headset/mainship
+
 /datum/job/other/prisonersom
 	title = "SOM Prisoner"
 	paygrade = "Psnr"
@@ -185,13 +186,13 @@
 
 /datum/outfit/job/mo
 	id = /obj/item/card/id
-	w_uniform = /obj/item/clothing/under/swimsuit/purple
-	shoes = /obj/item/clothing/shoes/black
+	w_uniform = /obj/item/clothing/under/marine/officer/logistics
+	shoes = /obj/item/clothing/shoes/marine
 	l_pocket = /obj/item/storage/pouch/general/large
 	ears = /obj/item/radio/headset/mainship
 
 /datum/job/worker/moraleofficer/get_spawn_message_information(mob/M)
-	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"\nYou are a 'Morale Officer' fancy name for a free-use whore hired by a corporation to keep employees happy,
-	do your job and try not to 'stain' the ship too much."}
+	. += {"\nYou are a 'Morale Officer' fancy name for a free-use whore hired by a corporation to keep employees in check,
+	do your job and try not to 'stain' the ship too much. You can alternatively give psychological consulting in other ways
+	aswell, you are somewhat qualified for post apoc standards."}
