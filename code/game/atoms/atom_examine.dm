@@ -45,6 +45,8 @@
 	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
 		. += EXAMINE_SECTION_BREAK
 		. += span_notice("The codex has <a href='byond://?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
+		//TO-DO: MAKE THIS THE ONLY OPTION WHEN DONE
+		. += span_notice("<a href='byond://?_src_=codex_tgui;entry=[REF(src)]]'>CODEX</a>.")
 
 	if((get_dist(user,src) <= 2) && reagents)
 		. += EXAMINE_SECTION_BREAK
