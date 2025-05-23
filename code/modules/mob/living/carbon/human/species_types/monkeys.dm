@@ -24,7 +24,7 @@
 /datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.allow_pass_flags |= PASS_LOW_STRUCTURE //todo: this is probably meant to be pass_flags, not allow past?
-
+/*
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))
 		return FALSE
@@ -40,7 +40,7 @@
 	to_chat(user, span_danger("You bite [victim]!"))
 	target.attack_hand(user)
 	return TRUE
-
+*/
 /datum/species/monkey/random_name(gender,unique,lastname)
 	return "[lowertext(name)] ([rand(1,999)])"
 
