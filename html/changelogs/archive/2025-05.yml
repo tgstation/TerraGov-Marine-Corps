@@ -278,3 +278,9 @@
   - code_imp: Evolving to Queen turns you into the ruler. Even if Shrike or other
       ruler already existed
   - refactor: Refactored how the game handles the current hive ruler
+2025-05-23:
+  Lumipharon:
+  - bugfix: fixed NPC's not putting out melting fire and intoxication
+  - balance: Standard (i.e. nonfolding) plasteel cades give 1 plasteel on destruction
+      instead of 2
+  - bugfix: Improved NPC obstacles avoidance for friendly and indestructable obstacles
