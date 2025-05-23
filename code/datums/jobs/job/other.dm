@@ -169,7 +169,7 @@
 	you should not sabotage the station with this access."}
 
 //Morale officer
-/datum/job/worker/moraleofficer
+/datum/job/moraleofficer
 	title = "Morale Officer"
 	paygrade = "MO"
 	comm_title = "MO"
@@ -177,7 +177,7 @@
 	supervisors = "Ninetails Corp"
 	access = list(ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/civilian/survivor
+	skills_type = /datum/skills/slut
 	total_positions = -1
 	selection_color = "#ef0cf7"
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
@@ -191,8 +191,9 @@
 	l_pocket = /obj/item/storage/pouch/general/large
 	ears = /obj/item/radio/headset/mainship
 
-/datum/job/worker/moraleofficer/get_spawn_message_information(mob/M)
+/datum/job/moraleofficer/get_spawn_message_information(mob/M)
+	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += {"\nYou are a 'Morale Officer' fancy name for a free-use whore hired by a corporation to keep employees in check,
 	do your job and try not to 'stain' the ship too much. You can alternatively give psychological consulting in other ways
-	aswell, you are somewhat qualified for post apoc standards."}
+	aswell, you are somewhat qualified for post apoc standards. While you are not meant to fight, you can deploy for more effective morale support."}
