@@ -74,9 +74,9 @@ GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 
 //List of weeds with probability of spawning
 GLOBAL_LIST_INIT(weed_prob_list, list(
-	/obj/alien/weeds/node = 5,
-	/obj/alien/weeds/node/sticky = 85,
-	/obj/alien/weeds/node/resting = 10,
+	/obj/alien/weeds/node = 39,
+	/obj/alien/weeds/node/sticky = 1,
+	/obj/alien/weeds/node/resting = 60,
 ))
 
 //List of weed images
