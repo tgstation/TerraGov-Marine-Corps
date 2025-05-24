@@ -6,23 +6,36 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-export const NtAccessTerminal = (props) => {
-  const { act, data } = useBackend();
+type NukeDiskProps = {
+  message: string;
+  progress: number;
+  time_left: number;
+  overclock_multiplier: number;
+  flavor_text: string;
+  running: BooleanLike;
+  segment_time: number;
+  color: string;
+};
+
+export const NukeDiskGenerator = (props) => {
+  const { act, data } = useBackend<NukeDiskProps>();
   const {
     message,
     progress,
     time_left,
+    overclock_multiplier,
     flavor_text,
     running,
     segment_time,
     color,
   } = data;
   return (
-    <Window title="NanoTrasen security override" width={450} height={250}>
+    <Window title="Nuke Disk Generator" width={450} height={250}>
       <Window.Content>
         <Section title="Run Program">
           <Stack fill vertical>
@@ -43,8 +56,11 @@ export const NtAccessTerminal = (props) => {
                       Time left: {time_left} s
                       <ProgressBar
                         minValue={0}
-                        MaxValue={segment_time}
-                        value={(time_left / segment_time) * 10}
+                        maxValue={segment_time / overclock_multiplier}
+                        value={
+                          (time_left / (segment_time / overclock_multiplier)) *
+                          10
+                        }
                       />
                     </Box>
                     <Box>{message}</Box>

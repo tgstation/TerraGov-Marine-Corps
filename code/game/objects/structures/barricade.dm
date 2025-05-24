@@ -393,6 +393,11 @@
 
 #define CADE_UPGRADE_REQUIRED_SHEETS 1
 
+//cade armor defines
+#define CADE_UPGRADE_BOMB 80
+#define CADE_UPGRADE_MELEE list(melee = 30, bullet = 50, laser = 50, energy = 50)
+#define CADE_UPGRADE_ACID 75
+
 /obj/structure/barricade/solid
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
@@ -402,7 +407,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/metal
-	stack_amount = 4
+	stack_amount = BUILD_COST_METAL_CADE
 	destroyed_stack_amount = 2
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "metal"
@@ -513,11 +518,11 @@
 
 	switch(choice)
 		if(CADE_TYPE_BOMB)
-			soft_armor = soft_armor.modifyRating(bomb = 80)
+			soft_armor = soft_armor.modifyRating(BOMB = CADE_UPGRADE_BOMB)
 		if(CADE_TYPE_MELEE)
-			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 50, laser = 50, energy = 50)
+			soft_armor = soft_armor.modifyRating(MELEE = CADE_UPGRADE_MELEE["melee"], BULLET = CADE_UPGRADE_MELEE["bullet"], LASER = CADE_UPGRADE_MELEE["laser"], ENERGY = CADE_UPGRADE_MELEE["energy"])
 		if(CADE_TYPE_ACID)
-			soft_armor = soft_armor.modifyRating(acid = 35)
+			soft_armor = soft_armor.modifyRating(ACID = CADE_UPGRADE_ACID)
 			resistance_flags |= UNACIDABLE
 
 	barricade_upgrade_type = choice
@@ -680,11 +685,11 @@
 
 			switch(barricade_upgrade_type)
 				if(CADE_TYPE_BOMB)
-					soft_armor = soft_armor.modifyRating(bomb = -50)
+					soft_armor = soft_armor.modifyRating(BOMB = -CADE_UPGRADE_BOMB)
 				if(CADE_TYPE_MELEE)
-					soft_armor = soft_armor.modifyRating(melee = -30, bullet = -30, laser = -30, energy = -30)
+					soft_armor = soft_armor.modifyRating(MELEE = -CADE_UPGRADE_MELEE["melee"], BULLET = -CADE_UPGRADE_MELEE["bullet"], LASER = -CADE_UPGRADE_MELEE["laser"], ENERGY = -CADE_UPGRADE_MELEE["energy"])
 				if(CADE_TYPE_ACID)
-					soft_armor = soft_armor.modifyRating(acid = -20)
+					soft_armor = soft_armor.modifyRating(ACID = -CADE_UPGRADE_ACID)
 					resistance_flags &= ~UNACIDABLE
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
@@ -707,13 +712,24 @@
 
 	update_icon()
 
-
 #undef BARRICADE_METAL_LOOSE
 #undef BARRICADE_METAL_ANCHORED
 #undef BARRICADE_METAL_FIRM
 
+/obj/structure/barricade/solid/plasteel
+	name = "plasteel barricade"
+	desc = "A sturdy and easily assembled barricade made of reinforced plasteel plates, the pinnacle of strongpoints. Use a blowtorch to repair."
+	icon = 'icons/obj/structures/barricades/plasteel.dmi'
+	icon_state = "new_plasteel_0"
+	max_integrity = 400
+	stack_type = /obj/item/stack/sheet/plasteel
+	stack_amount = BUILD_COST_PLASTEEL_CADE
+	destroyed_stack_amount = 1
+	barricade_type = "new_plasteel"
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
+
 /*----------------------*/
-// PLASTEEL
+// Folding
 /*----------------------*/
 
 #define BARRICADE_PLASTEEL_LOOSE 0
@@ -729,7 +745,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/plasteel
-	stack_amount = 5
+	stack_amount = BUILD_COST_PLASTEEL_CADE_FOLDABLE
 	destroyed_stack_amount = 2
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "plasteel"
@@ -992,6 +1008,19 @@
 #undef BARRICADE_PLASTEEL_ANCHORED
 #undef BARRICADE_PLASTEEL_FIRM
 
+/obj/structure/barricade/folding/metal
+	name = "folding metal barricade"
+	desc = "A folding barricade made out of metal, making it slightly stronger than a normal metal barricade. Use a blowtorch to repair. Can be flipped down to create a path."
+	icon_state = "folding_metal_closed_0"
+	icon = 'icons/obj/structures/barricades/metal.dmi'
+	max_integrity = 350
+	stack_type = /obj/item/stack/sheet/metal
+	stack_amount = BUILD_COST_METAL_CADE_FOLDABLE
+	destroyed_stack_amount = 3
+	barricade_type = "folding_metal"
+	linkable = FALSE
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
+
 /*----------------------*/
 // SANDBAGS
 /*----------------------*/
@@ -1144,35 +1173,3 @@
 	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", dir == SOUTH ? BELOW_OBJ_LAYER : ABOVE_MOB_LAYER, dir)
 	new_overlay.pixel_y = (dir == SOUTH ? -32 : 32)
 	. += new_overlay
-
-/*----------------------*/
-// NONFOLDING PLASTEEL
-/*----------------------*/
-
-/obj/structure/barricade/solid/plasteel
-	name = "plasteel barricade"
-	desc = "A sturdy and easily assembled barricade made of reinforced plasteel plates, the pinnacle of strongpoints. Use a blowtorch to repair."
-	icon = 'icons/obj/structures/barricades/plasteel.dmi'
-	icon_state = "new_plasteel_0"
-	max_integrity = 400
-	stack_type = /obj/item/stack/sheet/plasteel
-	destroyed_stack_amount = 2
-	barricade_type = "new_plasteel"
-	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
-
-/*----------------------*/
-// FOLDING METAL
-/*----------------------*/
-
-/obj/structure/barricade/folding/metal
-	name = "folding metal barricade"
-	desc = "A folding barricade made out of metal, making it slightly stronger than a normal metal barricade. Use a blowtorch to repair. Can be flipped down to create a path."
-	icon_state = "folding_metal_closed_0"
-	icon = 'icons/obj/structures/barricades/metal.dmi'
-	max_integrity = 350
-	stack_type = /obj/item/stack/sheet/metal
-	stack_amount = 6
-	destroyed_stack_amount = 3
-	barricade_type = "folding_metal"
-	linkable = FALSE
-	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)

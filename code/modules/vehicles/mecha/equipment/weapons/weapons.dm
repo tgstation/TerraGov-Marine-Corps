@@ -174,7 +174,7 @@
 	current_firer = null
 
 ///does any effects and changes to the projectile when it is fired
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(atom/movable/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
 	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
 		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
@@ -208,8 +208,8 @@
 		else
 			return AUTOFIRE_CONTINUE
 
-	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /atom/movable/projectile/hitscan : /atom/movable/projectile
+	var/atom/movable/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammotype])
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)

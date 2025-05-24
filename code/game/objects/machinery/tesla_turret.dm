@@ -258,7 +258,7 @@
 	hud_set_tesla_battery()
 
 /// I hate this so much, thank you for having a flag called pass_projectile but it only does so up to proj.ammo.barricade_clear_distance
-/obj/machinery/deployable/tesla_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/machinery/deployable/tesla_turret/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	if(src != proj.original_target)
 		return FALSE
 

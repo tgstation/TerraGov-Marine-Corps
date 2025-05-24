@@ -76,6 +76,8 @@
 		if(kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
 			break
 
+	mob.focus?.key_down(_key, src, full_key)
+
 
 /client/verb/keyUp(_key as text)
 	set instant = TRUE

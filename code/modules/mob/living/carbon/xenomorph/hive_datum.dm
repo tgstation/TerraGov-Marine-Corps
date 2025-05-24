@@ -206,7 +206,13 @@
 
 	.["user_ref"] = REF(user)
 	.["user_xeno"] = isxeno(user)
-	.["user_queen"] = isxenoqueen(user)
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/x = user
+		if(x == living_xeno_ruler)
+			.["user_ruler"] = user
+
+
+
 
 	.["user_index"] = 0
 	if(isxeno(user))
@@ -216,8 +222,8 @@
 	.["user_purchase_perms"] = FALSE
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
-		var/datum/xeno_caste/caste = xeno_user.xeno_caste
-		.["user_purchase_perms"] = (/datum/action/ability/xeno_action/blessing_menu in caste.actions)
+		if(xeno_user.actions_by_path[/datum/action/ability/xeno_action/blessing_menu])
+			.["user_purchase_perms"] = TRUE
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -263,7 +269,7 @@
 				return
 			attempt_deevolve(usr, xeno_target)
 		if("Leader")
-			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
+			if(living_xeno_ruler != usr) // Only the current hive ruler can assign leaders
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_LEADERSHIP, xeno_target)
 		if("Plasma")
@@ -767,26 +773,37 @@
 
 // This proc attempts to find a new ruler to lead the hive.
 /datum/hive_status/proc/update_ruler()
-	if(living_xeno_ruler)
+	if(isxenoqueen(living_xeno_ruler))
 		return //No succession required.
 
 	var/mob/living/carbon/xenomorph/successor
+	var/list/mob/living/carbon/xenomorph/prio_candidates = xenos_by_tier[XENO_TIER_FOUR]
+	var/list/mob/living/carbon/xenomorph/seco_candidates = xenos_by_tier[XENO_TIER_THREE]
 
-	// TO DO: this shouldn't be a strict type check and should account for strains
-	var/list/candidates = xenos_by_typepath[/datum/xeno_caste/queen] + xenos_by_typepath[/datum/xeno_caste/shrike] + xenos_by_typepath[/datum/xeno_caste/king] + xenos_by_typepath[/datum/xeno_caste/dragon] + xenos_by_typepath[/datum/xeno_caste/king/conqueror]
-	if(length(candidates)) //Priority to the queens.
-		successor = candidates[1] //First come, first serve.
+	for(var/mob/living/carbon/xenomorph/potential_successor in prio_candidates)
+		successor = potential_successor
+		if(isxenoqueen(potential_successor))
+			break
+
+	if(!successor)
+		for(var/mob/living/carbon/xenomorph/potential_successor in seco_candidates)
+			if(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER && !living_xeno_ruler)
+				successor = potential_successor
+
+	if(!successor)
+		return
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
 		announce = FALSE
 
+	remove_leader(successor)
+	successor.hud_set_queen_overwatch()
+	successor.update_leader_icon(FALSE)
 	set_ruler(successor)
+	successor.give_ruler_abilities()
 
 	handle_ruler_timer()
-
-	if(!living_xeno_ruler)
-		return //Succession failed.
 
 	if(announce)
 		xeno_message("\A [successor] has risen to lead the Hive! Rejoice!", "xenoannounce", 6)
@@ -1567,7 +1584,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 // Everything below can have a hivenumber set and these ensure easy hive comparisons can be made
 
-// atom level because of /obj/projectile/var/atom/firer
+// atom level because of /atom/movable/projectile/var/atom/firer
 /atom/proc/issamexenohive(atom/A)
 	if(!get_xeno_hivenumber() || !A?.get_xeno_hivenumber())
 		return FALSE

@@ -452,3 +452,4 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 /datum/stim/better_throw/proc/on_throw(mob/living/owner, atom/target, atom/movable/thrown_thing, list/throw_modifiers)
 	SIGNAL_HANDLER
 	throw_modifiers["range_modifier"] += 4
+	throw_modifiers["targetted_throw"] = FALSE

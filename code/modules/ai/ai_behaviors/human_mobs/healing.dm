@@ -1,4 +1,3 @@
-//todo: add a mobs to help list so we can record who needs help, even if we're too busy to help right now
 /datum/ai_behavior/human
 	///A list of mobs that might need healing
 	var/list/heal_list = list()
@@ -24,7 +23,7 @@
 		return
 	if(current_action == MOVING_TO_SAFETY)
 		return
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
@@ -99,7 +98,7 @@
 		return
 	if(current_action == MOVING_TO_SAFETY)
 		return
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
@@ -121,7 +120,9 @@
 /datum/ai_behavior/human/proc/try_heal()
 	var/mob/living/living_parent = mob_parent
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_NEED_HEAL, mob_parent)
-	if(living_parent.on_fire)
+
+	var/turf/owner_turf = get_turf(mob_parent)
+	if((living_parent.is_on_fire() || living_parent.has_status_effect(STATUS_EFFECT_INTOXICATED)) && can_cross_lava_turf(owner_turf) && check_hazards())
 		living_parent.do_resist()
 		return
 

@@ -26,7 +26,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 330
+	max_health = 310
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -37,7 +37,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
-	caste_traits = list(TRAIT_CAN_VENTCRAWL, TRAIT_CAN_HOLD_JELLY)
+	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 55, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)

@@ -32,14 +32,17 @@
 	var/category = CAT_NORMAL
 	///Incase its a tabbed vendor what tab this belongs to.
 	var/tab
+	///The max capacity for storage of a product
+	var/max_capacity
 
-/datum/vending_product/New(name, atom/typepath, product_amount, product_price, product_display_color, category = CAT_NORMAL, tab)
+/datum/vending_product/New(name, atom/typepath, product_amount, product_price, product_display_color, category = CAT_NORMAL, tab, product_max_capacity)
 
 	product_path = typepath
 	amount = product_amount
 	price = product_price
 	src.category = category
 	src.tab = tab
+	max_capacity = product_max_capacity
 
 	if(!name)
 		product_name = initial(typepath.name)
@@ -118,6 +121,8 @@
 	var/list/premium = list()
 	/// Prices for each item, list(/type/path = price), items not in the list don't have a price.
 	var/list/prices = list()
+	/// Maximum capacity for individual items, items not in the list don't have a max capacity
+	var/list/max_capacities = list()
 
 	/// String of slogans separated by semicolons, optional
 	var/product_slogans = ""
@@ -261,14 +266,14 @@
 				var/amount = productlist[entry][typepath]
 				if(isnull(amount))
 					amount = 1
-				var/datum/vending_product/record = new(typepath = typepath, product_amount = amount, product_price = prices[typepath], category = category, tab = entry)
+				var/datum/vending_product/record = new(typepath = typepath, product_amount = amount, product_price = prices[typepath], category = category, tab = entry, product_max_capacity = max_capacities[typepath])
 				recordlist += record
 			continue
 		//This item is not tab dependent
 		var/amount = productlist[entry]
 		if(isnull(amount))
 			amount = 1
-		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category)
+		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category, product_max_capacity = max_capacities[entry])
 		recordlist += record
 
 ///Makes additional tabs/adds to the tabs based on the seasonal_items vendor specification
@@ -738,6 +743,12 @@
 		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
 			if(show_feedback)
 				user?.balloon_alert(user, "You panic and erratically fumble around!")
+			return FALSE
+
+	else if(!isnull(max_capacity))	// Item has a maximum capacity
+		if(amount >= max_capacity)
+			if(show_feedback)
+				user?.balloon_alert(user, "There's no more room for the [item_to_stock]!")
 			return FALSE
 
 	else if(amount >= 0) //Item is finite so we are more strict on its condition
