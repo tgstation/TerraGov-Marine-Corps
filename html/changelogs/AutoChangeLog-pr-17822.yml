@@ -1,4 +1,0 @@
-author: "timothymtorres"
-delete-after: True
-changes:
-  - balance: "HEFA grenades no longer instakill every xeno (minus crusher/king) if grenade explodes on the same tile as xeno. Decreased HEFA grenades firing 50 pellets to 30 pellets, which still kills most T1/T2s at full health, and can kill T3/T4s if lower than half health."

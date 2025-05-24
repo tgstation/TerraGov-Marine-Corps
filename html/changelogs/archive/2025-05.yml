@@ -284,3 +284,16 @@
   - balance: Standard (i.e. nonfolding) plasteel cades give 1 plasteel on destruction
       instead of 2
   - bugfix: Improved NPC obstacles avoidance for friendly and indestructable obstacles
+2025-05-24:
+  Isy232:
+  - balance: Hunter HP 330 => 310, Mirage CD 33 => 30, Stealth AP 20 => 10.
+  TiviPlus:
+  - code_imp: MLRS is no longer a child of the howitzer in code
+  Wisemonster:
+  - rscdel: Removed mech weapons from the riptide cave ship
+  - rscdel: Removed intelligence computer on the riptide cave ship
+  timothymtorres:
+  - balance: HEFA grenades no longer instakill every xeno (minus crusher/king) if
+      grenade explodes on the same tile as xeno. Decreased HEFA grenades firing 50
+      pellets to 30 pellets, which still kills most T1/T2s at full health, and can
+      kill T3/T4s if lower than half health.
