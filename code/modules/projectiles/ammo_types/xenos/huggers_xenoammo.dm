@@ -42,6 +42,9 @@
 /datum/ammo/xeno/hugger/ozelomelyn
 	hugger_type = /obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn
 
+/datum/ammo/xeno/hugger/aphrotoxin
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/chem_injector/aphrotoxin
+
 /datum/ammo/xeno/hugger/resin
 	hugger_type = /obj/item/clothing/mask/facehugger/combat/resin
 

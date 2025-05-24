@@ -25,7 +25,7 @@
 
 /obj/vehicle/unmanned/deployable
 	name = "UV-L Iguana"
-	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies. This one is configured to be foldable for portability."
+	desc = "A small remote-controllable vehicle, usually owned by the NTC and other major armies. This one is configured to be foldable for portability."
 	///Whether this item can be deployed or undeployed
 	var/item_flags = IS_DEPLOYABLE
 	///What it deploys into. typecast version of internal_item

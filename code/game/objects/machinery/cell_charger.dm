@@ -45,7 +45,7 @@
 
 	if(istype(I, /obj/item/cell) && anchored)
 		if(istype(I, /obj/item/cell/night_vision_battery))
-			balloon_alert(user, "Not rechargeable")
+			to_chat(user, span_warning("This brand of cell is not rechargeable."))
 			return
 
 		if(charging)

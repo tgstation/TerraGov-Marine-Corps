@@ -56,9 +56,7 @@ ADMIN_VERB(rouny_all, R_FUN, "Toggle Glob Xeno Rouny", "Toggle all living xenos 
 	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
 		if(!isliving(xenotorouny))
 			return
-		xenotorouny.xeno_flags ^= XENO_ROUNY
-	log_admin("[key_name(user)] toggled global rounification")
-	message_admins("[ADMIN_TPMONTY(user.mob)] toggled global rounification.")
+		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
 
 
 ADMIN_VERB(hive_status, R_FUN, "Check Hive Status", "Check the status of the hive.", ADMIN_CATEGORY_FUN)

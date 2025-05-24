@@ -42,10 +42,16 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/defile,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/activable/xeno/inject_egg_neurogas,
@@ -63,6 +69,7 @@
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/reagent/toxin/xeno_aphrotoxin,
 	)
 
 	// *** Pheromones *** //
@@ -79,10 +86,16 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/defile,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/activable/xeno/inject_egg_neurogas,

@@ -55,6 +55,21 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All leg plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Trooper armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/trooper
 
+/obj/item/armor_module/armor/legs/marine/kabuto
+	name = "\improper Style Pattern Kabuto leg plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All leg plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Kabuto armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/kabuto
+
+/obj/item/armor_module/armor/legs/marine/hotaru
+	name = "\improper Style Pattern Hotaru leg plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All leg plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Hotaru armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru
+
+/obj/item/armor_module/armor/legs/marine/dashe
+	name = "\improper Style Pattern Dashe leg plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Dashe armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
+
 /obj/item/armor_module/armor/legs/marine/mjolnir
 	name = "\improper Jaeger Pattern Mjolnir leg plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All leg plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. armor appears to be marked as a Mjolnir armor piece."
@@ -83,3 +98,19 @@
 	name = "\improper FleckTex Mark I Raider leg plates"
 	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark I armor piece."
 	greyscale_config = /datum/greyscale_config/hardsuit_variant
+
+//VSD Hardsuits
+/obj/item/armor_module/armor/legs/marine/vsd_hardsuit
+	name = "\improper Crasher Super-Heavy MT/41 'Phobos' leg plates"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All leg plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Phobos' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit
+
+/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/clementia
+	name = "\improper Crasher Super-Heavy MT/41 'Clementia' leg plates"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All leg plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Clementia' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt
+
+/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/hephaestus
+	name = "\improper Crasher Super-Heavy MT/41 'Hephaestus' leg plates"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All leg plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Hephaestus' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt_two

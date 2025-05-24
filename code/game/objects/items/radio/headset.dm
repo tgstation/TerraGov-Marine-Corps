@@ -6,10 +6,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_MEDICAL = RADIO_TOKEN_MEDICAL,
 	RADIO_CHANNEL_ENGINEERING = RADIO_TOKEN_ENGINEERING,
 	RADIO_CHANNEL_CAS = RADIO_TOKEN_CAS,
+	RADIO_CHANNEL_SEC = RADIO_TOKEN_SEC,
 	RADIO_CHANNEL_ALPHA = RADIO_TOKEN_ALPHA,
 	RADIO_CHANNEL_BRAVO = RADIO_TOKEN_BRAVO,
 	RADIO_CHANNEL_CHARLIE = RADIO_TOKEN_CHARLIE,
-	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA
+	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA,
+	RADIO_CHANNEL_PMC = RADIO_TOKEN_PMC
 ))
 
 
@@ -182,6 +184,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/sl_direction = FALSE
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
+	var/locator_disabled_timer = null
 
 /obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
@@ -196,7 +199,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			safety_protocol(user)
 			return
 		wearer = user
-		squadhud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+		var/data_hud = GLOB.faction_to_data_hud[faction]
+		if(data_hud)
+			squadhud = GLOB.huds[data_hud]
+		else
+			squadhud = null
 		enable_squadhud()
 		RegisterSignals(user, list(COMSIG_MOB_REVIVE, COMSIG_MOB_DEATH, COMSIG_HUMAN_SET_UNDEFIBBABLE), PROC_REF(update_minimap_icon))
 	if(camera)
@@ -219,7 +226,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		disable_squadhud()
-		squadhud.remove_hud_from(user)
+		if(squadhud)
+			squadhud.remove_hud_from(user)
 		user.hud_used.SL_locator.alpha = 0
 		wearer = null
 		squadhud = null
@@ -246,20 +254,22 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/mainship/proc/enable_squadhud()
-	squadhud.add_hud_to(wearer)
 	headset_hud_on = TRUE
-	if(!camera.status)
-		camera.toggle_cam(null, FALSE)
-	if(wearer.mind && wearer.assigned_squad && !sl_direction)
-		enable_sl_direction()
+	if(squadhud)
+		squadhud.add_hud_to(wearer)
+		if(!camera.status)
+			camera.toggle_cam(null, FALSE)
+		if(wearer.mind && wearer.assigned_squad && !sl_direction)
+			enable_sl_direction()
 	add_minimap()
 	balloon_alert(wearer, "toggles squad HUD on")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
 /obj/item/radio/headset/mainship/proc/disable_squadhud()
-	squadhud.remove_hud_from(wearer)
 	headset_hud_on = FALSE
+	if(squadhud)
+		squadhud.remove_hud_from(wearer)
 	if(camera.status)
 		camera.toggle_cam(null, FALSE)
 	if(sl_direction)
@@ -274,11 +284,26 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	mini.give_action(wearer)
 	INVOKE_NEXT_TICK(src, PROC_REF(update_minimap_icon)) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 
+/obj/item/radio/headset/mainship/proc/disable_locator(var/time)
+	if(wearer)
+		SSminimaps.remove_marker(wearer)
+	if(locator_disabled_timer)
+		if(time < timeleft(locator_disabled_timer))
+			return
+		else
+			deltimer(locator_disabled_timer)
+	locator_disabled_timer = addtimer(CALLBACK(src, PROC_REF(reenable_locator)), time, TIMER_STOPPABLE)
+
+/obj/item/radio/headset/mainship/proc/reenable_locator()
+	locator_disabled_timer = null
+	if(wearer)
+		update_minimap_icon()
+
 ///Updates the wearer's minimap icon
 /obj/item/radio/headset/mainship/proc/update_minimap_icon()
 	SIGNAL_HANDLER
 	SSminimaps.remove_marker(wearer)
-	if(!wearer.job || !wearer.job.minimap_icon)
+	if(!wearer.job || !wearer.job.minimap_icon || locator_disabled_timer)
 		return
 	var/marker_flags = initial(minimap_type.marker_flags)
 	if(wearer.stat == DEAD)
@@ -551,7 +576,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine charlie engineer radio headset"
 	keyslot2 = /obj/item/encryptionkey/engi
 
-
 /obj/item/radio/headset/mainship/marine/charlie/med
 	name = "marine charlie corpsman radio headset"
 	keyslot2 = /obj/item/encryptionkey/med
@@ -595,6 +619,34 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "sec_headset"
 	keyslot2 = /obj/item/encryptionkey/cas
 
+/obj/item/radio/headset/mainship/marine/generic/sec
+	name = "marine security headset"
+	icon_state = "sec_headset"
+	keyslot2 = /obj/item/encryptionkey/sec
+
+/obj/item/radio/headset/mainship/marine/pmc
+	name = "pmc radio headset"
+	icon_state = "headset_marine_generic"
+	keyslot = /obj/item/encryptionkey/PMC
+	keyslot2 = /obj/item/encryptionkey/mcom
+	frequency = FREQ_PMC
+
+/obj/item/radio/headset/mainship/marine/icc
+	name = "colonial militia headset"
+	icon_state = "headset_marine_generic"
+	keyslot = /obj/item/encryptionkey/icc
+	frequency = FREQ_ICC
+	faction = FACTION_ICC
+	minimap_type = /datum/action/minimap/icc
+
+/obj/item/radio/headset/mainship/vsd
+	name = "kaizoku headset"
+	icon_state = "headset_marine_generic"
+	keyslot = /obj/item/encryptionkey/vsd
+	frequency = FREQ_VSD
+	faction = FACTION_VSD
+	minimap_type = /datum/action/minimap/vsd
+
 //Distress headsets.
 /obj/item/radio/headset/distress
 	name = "operative headset"
@@ -606,7 +658,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "colonist headset"
 	keyslot = /obj/item/encryptionkey/dutch
 	frequency = FREQ_COLONIST
-
 
 /obj/item/radio/headset/distress/pmc
 	name = "contractor headset"
@@ -660,8 +711,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/retired
 	frequency = FREQ_RETIRED
 
-/obj/item/radio/headset/distress/vsd
-	name = "security detail headset"
+/obj/item/radio/headset/mainship/vsd
+	name = "kaizoku corporation headset"
 	keyslot = /obj/item/encryptionkey/vsd
 	frequency = FREQ_VSD
 

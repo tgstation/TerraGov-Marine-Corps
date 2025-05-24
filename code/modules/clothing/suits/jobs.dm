@@ -55,16 +55,16 @@
 
 //Captain
 /obj/item/clothing/suit/captunic
-	name = "captain's parade tunic"
-	desc = "Worn by a Captain to show their class."
+	name = "commander's parade tunic"
+	desc = "Worn by a Commander to show their class."
 	icon_state = "captunic"
 	worn_icon_state = "bio_suit"
 	armor_protection_flags = CHEST|ARMS
 	inv_hide_flags = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/captunic/capjacket
-	name = "captain's uniform jacket"
-	desc = "A less formal jacket for everyday captain use."
+	name = "commander's uniform jacket"
+	desc = "A less formal jacket for everyday Commander use."
 	icon_state = "capjacket"
 	worn_icon_state = "bio_suit"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
@@ -75,8 +75,11 @@
 	name = "chaplain hoodie"
 	desc = "This suit says to you 'hush'!"
 	icon_state = "chaplain_hoodie"
-	worn_icon_state = "chaplain_hoodie"
+	worn_icon_state = "wcoat"
 	armor_protection_flags = CHEST|ARMS
+
+/obj/item/clothing/suit/chaplain_hoodie/alt
+	icon_state = "chaplain_hoodie_alt"
 
 /obj/item/clothing/suit/nun
 	name = "nun robe"

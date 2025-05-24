@@ -78,6 +78,7 @@
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
+#define BANELING_STASIS_TRAIT "baneling_stasis_trait"
 #define SPECIES_TRAIT "species" // /datum/species innate trait
 #define CRYOPOD_TRAIT "cryopod"
 #define XENO_TRAIT "xeno"
@@ -162,7 +163,7 @@
 ///AM will not be submerged. Trait must ALWAYS be added via the add_nosubmerge_trait proc for correct behavior
 #define TRAIT_NOSUBMERGE "trait_nosubmerge"
 
-#define TRAIT_HAS_SPAWNED_MECH "has_spawned_mech"
+// #define TRAIT_HAS_SPAWNED_MECH "has_spawned_mech"
 
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"
@@ -204,6 +205,8 @@
 #define TRAIT_AXE_EXPERT "axe_expert"
 ///You swing sword good
 #define TRAIT_SWORD_EXPERT "sword_expert"
+///Restricted to Melee Weapons
+#define TRAIT_KNIGHT "knight"
 ///Pain reduction light
 #define TRAIT_LIGHT_PAIN_RESIST "light_pain_resist"
 ///Pain reduction medium
