@@ -354,3 +354,15 @@
 	node_icon = "weednodewhite"
 	resting_buff = RESTING_BUFF
 	ability_cost_mult = 2
+
+//Fast-spreading node
+/obj/alien/weeds/node/rapid
+	node_range = 8
+
+/obj/alien/weeds/node/Initialize(mapload, obj/alien/weeds/node/node)
+	. = ..()
+	START_PROCESSING(SSfastprocess, src)
+
+/obj/alien/weeds/node/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	return ..()
