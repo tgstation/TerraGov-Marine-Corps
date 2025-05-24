@@ -13,12 +13,8 @@
 	gibbed_anim = "monkey"
 
 /datum/species/monkey/handle_unique_behavior(mob/living/carbon/human/H)
-	if(!H.client && H.stat == CONSCIOUS)
-		if(prob(33) && H.canmove && !H.buckled && isturf(H.loc) && !H.pulledby) //won't move if being pulled
-			step(H, pick(GLOB.cardinals))
-
-		if(prob(1))
-			H.emote(pick("scratch","jump","roll","tail"))
+	if(!H.client && H.stat == CONSCIOUS && prob(1))
+		H.emote(pick("scratch","jump","roll","tail"))
 
 /datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
