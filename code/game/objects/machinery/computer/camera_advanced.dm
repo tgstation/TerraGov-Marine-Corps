@@ -225,7 +225,6 @@
 
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
-	ai_detector_visible = FALSE
 	/// The delay applied after moving to a tile.
 	var/move_delay = 0.1 SECONDS
 	/// Internal variable used to keep track of the amount of tiles we have moved in the same direction
