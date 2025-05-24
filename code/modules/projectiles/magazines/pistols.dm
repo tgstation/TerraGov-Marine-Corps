@@ -74,7 +74,14 @@
 	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 10
 
-
+/obj/item/ammo_magazine/pistol/m1911/ap
+	name = "\improper P-1911 AP magazine (.45)"
+	default_ammo = /datum/ammo/bullet/pistol/heavy/ap
+	caliber = CALIBER_45ACP
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "1911_ap"
+	icon_state_mini = "mag_pistol_green"
+	max_rounds = 10
 
 //-------------------------------------------------------
 //P-23
@@ -216,6 +223,7 @@
 
 /obj/item/ammo_magazine/pistol/som/extended
 	name = "\improper V-11 extended magazine (9mm)"
+	default_ammo = /datum/ammo/bullet/pistol
 	max_rounds = 30
 	icon_state = "v11_extended"
 	icon_state_mini = "mag_pistol_yellow"
@@ -289,8 +297,8 @@
 
 /obj/item/ammo_magazine/pistol/vsd_pistol
 	name = "\improper C96 'riot' magazine"
-	default_ammo = /datum/ammo/bullet/pistol/ap
+	default_ammo = /datum/ammo/bullet/pistol/vsd_ap
 	caliber = CALIBER_9X19
 	icon_state = "c96"
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 15
+	max_rounds = 22

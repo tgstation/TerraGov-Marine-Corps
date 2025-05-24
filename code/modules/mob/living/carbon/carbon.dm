@@ -376,6 +376,7 @@
 
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
 		lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+		see_in_dark = max(see_in_dark, 10)
 
 	set_sight(new_sight)
 	return ..()

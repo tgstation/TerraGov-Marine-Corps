@@ -405,15 +405,12 @@
 	name = "Larva Jelly"
 	description = "The blood and guts of a xenomorph larva blended into a paste. Drinking this is bad for you."
 	reagent_state = LIQUID
-	nutriment_factor = 0
+	nutriment_factor = 2
 	color = "#66801e"
-	taste_description = "burning"
-	reagent_ui_priority = REAGENT_UI_TOXINS
+	taste_description = "sweetness"
 
 /datum/reagent/consumable/larvajelly/on_mob_life(mob/living/L, metabolism)
 	L.adjustBruteLoss(-0.5*effect_str)
-	L.adjustFireLoss(effect_str)
-	L.adjustToxLoss(effect_str)
 	return ..()
 
 /datum/reagent/consumable/larvajellyprepared

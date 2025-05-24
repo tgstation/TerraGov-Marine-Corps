@@ -207,7 +207,7 @@
 	glasses = /obj/item/clothing/glasses/mgoggles
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	mask = /obj/item/clothing/mask/gas
-	head = /obj/item/clothing/head/modular/m10x/hod
+	head = /obj/item/clothing/head/modular/m10x
 	back = /obj/item/storage/backpack/marine/standard
 	belt = /obj/item/storage/belt/shotgun
 	gloves = /obj/item/clothing/gloves/marine/black

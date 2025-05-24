@@ -52,6 +52,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
+	var/unobserve_timer
 
 /mob/dead/observer/Initialize(mapload)
 	. = ..()
@@ -205,7 +206,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				var/mob/living/carbon/human/original_corpse = ghost.can_reenter_corpse.resolve()
+				var/mob/living/carbon/human/original_corpse = ghost.can_reenter_corpse?.resolve()
 				if(SSticker.mode.attempt_to_join_as_larva(ghost.client) && ishuman(original_corpse))
 					original_corpse?.set_undefibbable()
 		return
@@ -253,6 +254,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.icon = icon
 	ghost.icon_state = icon_state
 	ghost.appearance = strip_appearance_underlays(ghost)
+	if(!can_reenter_corpse && ishuman(src) && src.stat == DEAD)
+		var/mob/living/carbon/human/H = src
+		H.set_undefibbable()
 
 	if(mind?.name)
 		ghost.real_name = mind.name
@@ -271,6 +275,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.client?.init_verbs()
 	ghost.mind?.current = ghost
 	ghost.faction = faction
+	ghost.ooc_notes = ooc_notes
+	ghost.ooc_notes_likes = ooc_notes_likes
+	ghost.ooc_notes_dislikes = ooc_notes_dislikes
+	ghost.ooc_notes_maybes = ooc_notes_maybes
+	ghost.ooc_notes_favs = ooc_notes_favs
+	ghost.ooc_notes_style = ooc_notes_style
 
 	if(!T)
 		T = SAFEPICK(GLOB.latejoin)
@@ -362,7 +372,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, span_warning("You cannot re-enter your body."))
 		return FALSE
 
-	var/mob/old_mob = can_reenter_corpse.resolve()
+	var/mob/old_mob = can_reenter_corpse?.resolve()
 
 	if(!mind || QDELETED(old_mob))
 		to_chat(src, span_warning("You have no body."))
@@ -404,9 +414,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			to_chat(src, span_boldnotice("[hud_choice] [ghost_sechud ? "Enabled": "Disabled"]"))
 		if("Squad HUD")
 			ghost_squadhud = !ghost_squadhud
-			H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
-			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			H = GLOB.huds[DATA_HUD_SQUAD_SOM]
+			for(var/faction in GLOB.faction_to_data_hud)
+				H = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+				ghost_squadhud ? H?.add_hud_to(src) : H?.remove_hud_from(src)
+			H = GLOB.huds[MACHINE_HEALTH_HUD]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 			client.prefs.ghost_hud ^= GHOST_HUD_SQUAD
 			client.prefs.save_preferences()
@@ -621,11 +632,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/verb/view_manifest()
 	set category = "Ghost"
-	set name = "View Crew Manifest"
+	set name = "View Game Manifest"
 
-	var/dat = GLOB.datacore.get_manifest()
+	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
-	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Game Manifest</div>", 370, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
@@ -674,7 +685,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set desc = "Noone will be able to revive you."
 
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
-		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
+		var/mob/living/carbon/human/human_current = can_reenter_corpse?.resolve()
 		if(ishuman(human_current))
 			human_current.set_undefibbable(TRUE)
 		can_reenter_corpse = null
@@ -820,3 +831,18 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/spatial_agent)
 	else
 		target_ghost.change_mob_type(/mob/living/carbon/human, delete_old_mob = TRUE)
+
+/mob/dead/observer/proc/observe_time_out()
+	client.screen.Cut()
+	var/mob/new_player/M = new /mob/new_player()
+	if(SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
+		M.faction = faction
+
+	M.key = key
+	M.name = key
+
+	to_chat(M, span_warning("Your time is up."))
+
+	if(!(M.client))
+		qdel(M)
+		return

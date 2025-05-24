@@ -15,7 +15,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	RADIO_KEY_CHARLIE = RADIO_CHANNEL_CHARLIE,
 	RADIO_KEY_DELTA = RADIO_CHANNEL_DELTA,
 	RADIO_KEY_CAS = RADIO_CHANNEL_CAS,
+	RADIO_KEY_SEC = RADIO_CHANNEL_SEC,
 	RADIO_KEY_REQUISITIONS = RADIO_CHANNEL_REQUISITIONS,
+
+	RADIO_KEY_PMC = RADIO_CHANNEL_PMC,
 ))
 
 GLOBAL_LIST_INIT(department_radio_keys_som, list(
@@ -247,7 +250,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	var/eavesdropping
 	var/eavesrendered
 	if(eavesdrop_range)
-		eavesdropping = stars(message_raw)
+		eavesdropping = stars(message_raw, probability=50)
 		eavesrendered = compose_message(src, message_language, eavesdropping, null, spans, message_mode)
 
 	var/list/listened = list()

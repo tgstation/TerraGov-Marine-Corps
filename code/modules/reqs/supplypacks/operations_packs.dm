@@ -138,3 +138,31 @@ OPERATIONS
 	name = "Tadpole rappel system cord"
 	contains = list(/obj/item/spare_cord)
 	cost = 300
+
+/datum/supply_packs/imports/loot_pack
+	name = "Corporate Loot Pack"
+	notes = "Contains a random, but curated set of items, these packs are valued around 150 to 200 points. Some items can only be acquired from these. Spend responsibly."
+	contains = list(/obj/item/loot_box/tgmclootbox)
+	cost = 800 //discounted by 200
+
+/datum/supply_packs/operations/monkeyboxes
+	name = "Monkey Cube Box"
+	contains = list(/obj/item/storage/box/monkeycubes)
+	cost = 300
+
+/datum/supply_packs/operations/droppod_mech
+	name = "mech drop pod"
+	contains = list(/obj/structure/droppod/nonmob/mech_pod)
+	containertype = null
+	cost = 200
+
+/datum/supply_packs/operations/xeno_iff_tag
+	name = "Xenomorph IFF tag crate" //Intended for corrupted or friendly rounies as rounds sometimes turn out. Avoid abuse or I'll have to admin-only it, which is no fun!
+	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Ninetails is not responsible for incidents related to attaching this to hostile entities."
+	contains = list(
+		/obj/item/xeno_iff_tag,
+		/obj/item/xeno_iff_tag,
+		/obj/item/xeno_iff_tag,
+	)
+	access = ACCESS_MARINE_BRIDGE //Better be safe.
+	cost = 50

@@ -78,16 +78,16 @@
 /datum/storage/holster/backholster/mortar/New(atom/parent)
 	. = ..()
 	set_holdable(
-		can_hold_list = list(
-		/obj/item/mortal_shell/he,
-		/obj/item/mortal_shell/incendiary,
-		/obj/item/mortal_shell/smoke,
-		/obj/item/mortal_shell/flare,
-		/obj/item/mortal_shell/plasmaloss,
+		storage_type_limits_list = list(
+		/obj/item/weapon/gun/sentry/mini,
+		/obj/item/ammo_magazine/hsg_102,
+		/obj/item/ammo_magazine/sentry,
+		/obj/item/ammo_magazine/minisentry,
+		/obj/item/mortal_shell,
 		/obj/item/mortar_kit,
-	),
-		storage_type_limits_list = list(/obj/item/mortar_kit)
-	)
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sandbags,
+	))
 	storage_type_limits_max = list(/obj/item/mortar_kit = 1)
 
 /datum/storage/holster/backholster/flamer
@@ -216,3 +216,34 @@
 			/obj/item/ammo_magazine/shotgun,
 		)
 	)
+
+/datum/storage/holster/m37
+	storage_slots = 6
+	max_storage_space = 20
+	max_w_class = WEIGHT_CLASS_BULKY
+
+/datum/storage/holster/m37/New(atom/parent)
+	. = ..()
+	set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/rifle/standard_autoshotgun,
+			/obj/item/weapon/gun/shotgun,
+			/obj/item/ammo_magazine/handful,
+			/obj/item/ammo_magazine/rifle/tx15_slug,
+			/obj/item/ammo_magazine/rifle/tx15_flechette,
+		))
+
+/datum/storage/holster/m25
+	storage_slots = 6
+	max_storage_space = 20
+	max_w_class = WEIGHT_CLASS_BULKY
+
+/datum/storage/holster/m25/New(atom/parent)
+	. = ..()
+	set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/smg/m25,
+			/obj/item/ammo_magazine/smg/m25,
+			/obj/item/ammo_magazine/smg/m25/ap,
+			/obj/item/ammo_magazine/smg/m25/extended,
+		))
