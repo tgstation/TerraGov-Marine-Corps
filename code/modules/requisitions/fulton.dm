@@ -38,11 +38,13 @@
 	if(!do_checks(spirited_away, user))
 		return
 	do_extract(spirited_away, user)
-	var/datum/export_report/export_report = spirited_away.supply_export(user.faction)
-	if(export_report)
+	var/list/datum/export_report/export_reports = spirited_away.supply_export(user.faction)
+	var/points = 0
+	for(var/datum/export_report/export_report in export_reports)
+		points += export_report.points
 		SSpoints.export_history += export_report
 	user.visible_message(span_notice("[user] finishes attaching [src] to [spirited_away] and activates it."),\
-	span_notice("You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."), null, 5)
+	span_notice("You attach the pack to [spirited_away] and activate it. This looks like it will yield [points ? points : "no"] point[points == 1 ? "" : "s"]."), null, 5)
 	uses--
 	if(uses < 1)
 		user.temporarilyRemoveItemFromInventory(src) //Removes the item without qdeling it, qdeling it this early will break the rest of the procs
@@ -59,7 +61,7 @@
 		return FALSE
 	user.visible_message(span_notice("[user] starts attaching [src] to [spirited_away]."),\
 	span_notice("You start attaching the pack to [spirited_away]..."), null, 5)
-	if(!do_after(user, 5 SECONDS, NONE, spirited_away))
+	if(!do_after(user, 5 SECONDS, TRUE, spirited_away))
 		return FALSE
 	if(!isturf(spirited_away.loc))
 		balloon_alert(user, "Must extract on the ground")

@@ -137,6 +137,16 @@ EXPLOSIVES
 	contains = list(/obj/item/mortal_shell/smoke, /obj/item/mortal_shell/smoke)
 	cost = 5
 
+/datum/supply_packs/explosives/mortar_ammo_satrepine
+	name = "T-50S mortar satrepine smoke shell (x2)"
+	contains = list(/obj/item/mortal_shell/smoke/satrapine, /obj/item/mortal_shell/smoke/satrapine)
+	cost = 15
+
+/datum/supply_packs/explosives/mortar_ammo_sleep
+	name = "T-50S mortar sleep smoke shell (x2)"
+	contains = list(/obj/item/mortal_shell/smoke/sleep, /obj/item/mortal_shell/smoke/sleep)
+	cost = 25
+
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
 	name = "T-50S mortar tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/plasmaloss)

@@ -28,6 +28,7 @@ export const MESSAGE_TYPE_INFO = 'info';
 export const MESSAGE_TYPE_WARNING = 'warning';
 export const MESSAGE_TYPE_DEADCHAT = 'deadchat';
 export const MESSAGE_TYPE_OOC = 'ooc';
+export const MESSAGE_TYPE_LOOC = 'looc';
 export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
@@ -53,14 +54,14 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote',
+    selector: '.say, .emote, .psychicout, .psychicin',
   },
   {
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
     selector:
-      '.radio, .deptradio, .syndradio, .comradio, .casradio, .engradio, .medradio, .sciradio, .supradio, .alpharadio, .bravoradio, .charlieradio, .deltaradio, .zuluradio, .yankeeradio, .xrayradio, .whiskeyradio, .newscaster, .binarysay, .hivemind',
+      '.radio, .deptradio, .syndradio, .comradio, .casradio, .engradio, .medradio, .sciradio, .supradio, .alpharadio, .bravoradio, .charlieradio, .deltaradio, .zuluradio, .yankeeradio, .xrayradio, .whiskeyradio, .newscaster, .binarysay, .hivemind, .secradio',
   },
   {
     type: MESSAGE_TYPE_INFO,
@@ -88,7 +89,14 @@ export const MESSAGE_TYPES = [
     name: 'OOC',
     description: 'OOC messages, admin announcements and round announcements',
     selector:
-      '.ooc, .colorooc, .looc, .looc_heard_staff, .adminooc, .hostooc, .projleadooc, .headcoderooc, .headminooc, .headmentorooc, .trialminooc, .candiminooc, .mentorooc, .maintainerooc, .contributorooc, .otherooc, .ooc_alert_ooc, .ooc_alert_game',
+      '.ooc, .colorooc, .adminooc, .hostooc, .projleadooc, .headcoderooc, .headminooc, .headmentorooc, .trialminooc, .candiminooc, .mentorooc, .maintainerooc, .contributorooc, .otherooc, .ooc_alert_ooc, .ooc_alert_game',
+  },
+  {
+    type: MESSAGE_TYPE_LOOC,
+    name: 'LOOC',
+    description:
+      'Out-of-character messages from in-view players. Useful for roleplay.',
+    selector: '.looc',
   },
   {
     type: MESSAGE_TYPE_ADMINPM,

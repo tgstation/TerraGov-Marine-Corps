@@ -446,3 +446,10 @@
 
 /datum/ai_behavior/human/suicidal
 	minimum_health = 0
+
+/datum/ai_behavior/human/monkey
+	human_ai_behavior_flags = HUMAN_AI_NO_FF|HUMAN_AI_AVOID_HAZARDS
+	///Flags about what the AI is current doing or wanting
+	human_ai_state_flags = 0
+	///To what level they will handle healing others
+	medical_rating = AI_MED_SELFISH

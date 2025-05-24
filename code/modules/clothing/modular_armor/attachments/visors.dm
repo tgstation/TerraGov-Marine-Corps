@@ -92,6 +92,21 @@
 	icon_state = "trooper_visor"
 	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
+/obj/item/armor_module/armor/visor/marine/kabuto
+	name = "\improper Style Pattern Kabuto visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Kabuto class of helmet."
+	icon_state = "kabuto_visor"
+
+/obj/item/armor_module/armor/visor/marine/hotaru
+	name = "\improper Style Pattern Hotaru visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Hotaru class of helmet."
+	icon_state = "hotaru_visor"
+
+/obj/item/armor_module/armor/visor/marine/dashe
+	name = "\improper Style Pattern Dashe visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
+	icon_state = "dashe_visor"
+
 /obj/item/armor_module/armor/visor/marine/mjolnir
 	name = "\improper Jaeger Pattern Mjolnir visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Mjolnir class of helmet."
@@ -217,3 +232,18 @@
 	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark I Raider class of helmet."
 	icon_state = "markone_visor"
 
+//VSD hardsuit visor
+/obj/item/armor_module/armor/visor/marine/phobos
+	name = "\improper Crasher MT/41 'Phobos' helmet visor"
+	desc = "The visor attachment of the Crasher MT/41 series modular helmets. This one is designed for the 'Phobos' helmet."
+	icon_state = "phobos_visor"
+
+/obj/item/armor_module/armor/visor/marine/clementia
+	name = "\improper Crasher MT/41 'Clementia' helmet visor"
+	desc = "The visor attachment of the Crasher MT/41 series modular helmets. This one is designed for the 'Clementia' of helmet."
+	icon_state = "clementia_visor"
+
+/obj/item/armor_module/armor/visor/marine/hephaestus
+	name = "\improper Crasher MT/41 'Hephaestus' helmet visor"
+	desc = "The visor attachment of the Crasher MT/41 series modular helmets. This one is designed for the 'Hephaestus' of helmet."
+	icon_state = "hephaestus_visor"

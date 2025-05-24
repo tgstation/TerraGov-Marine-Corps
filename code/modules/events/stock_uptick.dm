@@ -19,4 +19,4 @@
 	if(points_to_be_added > 1250) //cap the max amount of points at 1250
 		points_to_be_added = 1250
 	SSpoints.supply_points[FACTION_TERRAGOV] += points_to_be_added
-	priority_announce("Due to an increase in Nanotrasen quarterly revenues, our supply allotment has increased by [points_to_be_added] points.")
+	priority_announce("Due to an increase in Ninetails quarterly revenues, our supply allotment has increased by [points_to_be_added] points.")
