@@ -185,10 +185,10 @@
 	if(!ability)
 		return FALSE
 	if(xenomorph_owner.fortify)
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		REMOVE_TRAIT(xenomorph_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	else
 		xenomorph_owner.add_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE, 0, NONE, FALSE, movement_modifier)
-		xeno_owner.client?.move_delay = world.time
+		xenomorph_owner.client?.move_delay = world.time
 	ability.movement_modifier += 12
 	return ..()
 
@@ -197,9 +197,9 @@
 	if(!ability)
 		return FALSE
 	if(xenomorph_owner.fortify)
-		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		ADD_TRAIT(xenomorph_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	else
-		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE)
+		xenomorph_owner.remove_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE)
 	ability.movement_modifier -= 12
 	return ..()
 
