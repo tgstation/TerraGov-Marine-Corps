@@ -166,6 +166,7 @@ Make the NTC proud!"}
 			new_human.wear_id.paygrade = "MO6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "M10" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 
 /datum/outfit/job/command/fieldcommander
@@ -402,6 +403,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 			new_human.wear_id.paygrade = "O4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "O5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/command/staffofficer/campaign
 	outfit = /datum/outfit/job/command/staffofficer_campaign
@@ -484,6 +486,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 			new_human.wear_id.paygrade = "O1"
 		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "O2"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/command/transportofficer/get_spawn_message_information(mob/M)
 	. = ..()
@@ -635,6 +638,7 @@ Try to ensure the Tadpole's survival. In the case of its destruction, you may re
 			new_human.wear_id.paygrade = "O4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "O5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/command/pilot/get_spawn_message_information(mob/M)
 	. = ..()
@@ -712,6 +716,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 /datum/outfit/job/command/mech_pilot
 	name = MECH_PILOT
@@ -790,6 +795,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 /datum/outfit/job/command/assault_crewman
 	name = ASSAULT_CREWMAN
@@ -858,6 +864,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 /datum/outfit/job/command/transport_crewman
 	name = TRANSPORT_CREWMAN
@@ -929,6 +936,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 			new_human.wear_id.paygrade = "O4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "O5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/engineering/chief/get_spawn_message_information(mob/M)
 	. = ..()
@@ -1008,6 +1016,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 			new_human.wear_id.paygrade = "CPO"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "SCPO"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/engineering/tech/get_spawn_message_information(mob/M)
 	. = ..()
@@ -1089,6 +1098,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 			new_human.wear_id.paygrade = "O4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "O5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/requisitions/officer/get_spawn_message_information(mob/M)
 	. = ..()
@@ -1186,6 +1196,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 			new_human.wear_id.paygrade = "MDR"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "CMO"
+	new_human.wear_id.update_label()
 
 /datum/outfit/job/medical/professor
 	name = CHIEF_MEDICAL_OFFICER
@@ -1269,6 +1280,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 			new_human.wear_id.paygrade = "GP"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "AP"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/medical/medicalofficer/get_spawn_message_information(mob/M)
 	. = ..()
@@ -1371,6 +1383,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 			new_human.wear_id.paygrade = "APROF"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "PROF"
+	new_human.wear_id.update_label()
 
 
 /datum/outfit/job/medical/researcher
@@ -1456,6 +1469,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 			new_human.wear_id.paygrade = "NT4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "NT5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/civilian/liaison/get_spawn_message_information(mob/M)
 	. = ..()
@@ -1532,6 +1546,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 			new_human.wear_id.paygrade = "Mk.IV"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "Mk.V"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/silicon/synthetic/get_spawn_message_information(mob/M)
 	. = ..()

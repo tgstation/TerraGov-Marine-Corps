@@ -865,6 +865,7 @@
 /obj/effect/temp_visual/dragon/warning/Initialize(mapload, _duration)
 	if(isnum(_duration))
 		duration = _duration
+	notify_ai_hazard()
 	return ..()
 
 /obj/effect/temp_visual/dragon/directional

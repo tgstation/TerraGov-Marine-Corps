@@ -170,3 +170,29 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby)
 /atom/movable/screen/text/lobby/clickable/changelog/Click()
 	. = ..()
 	hud.mymob.client?.changes()
+
+/*
+/atom/movable/screen/text/lobby/clickable/polls
+	maptext = "<span class='lobbytext'>POLLS</span>"
+	icon_state = "poll"
+
+/atom/movable/screen/text/lobby/clickable/polls/update_text()
+	INVOKE_ASYNC(src, PROC_REF(fetch_polls)) //this sleeps and it shouldn't because update_text uses a signal sometimes
+
+///Proc that fetches the polls, exists so we can async it in update_text
+/atom/movable/screen/text/lobby/clickable/polls/proc/fetch_polls()
+	var/mob/new_player/player = hud.mymob
+	var/hasnewpolls = player.check_playerpolls()
+	if(isnull(hasnewpolls))
+		maptext = "<span class='lobbytext'>NO DATABASE!</span>"
+		return
+	maptext = "<span class='lobbytext'>SHOW POLLS[hasnewpolls ? " (NEW!)" : ""]</span>"
+
+/atom/movable/screen/text/lobby/clickable/polls/Click()
+	. = ..()
+	var/mob/new_player/player = hud.mymob
+	player.handle_playeR_POLLSing()
+	fetch_polls()
+*/
+#undef COLOR_HOVER_MOUSE
+#undef MAX_CHAR_NAME_DISPLAYED

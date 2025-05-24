@@ -76,6 +76,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 			new_human.wear_id.paygrade = "E3E"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E8" //If you play way too much NTC. 1000 hours.
+	new_human.wear_id.update_label()
+
 
 /datum/job/terragov/squad/standard/get_spawn_message_information(mob/M)
 	. = ..()
@@ -213,6 +215,7 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
@@ -274,6 +277,7 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
@@ -327,6 +331,7 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 /datum/outfit/job/marine/smartgunner
 	name = SQUAD_SMARTGUNNER
@@ -448,6 +453,7 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 			new_human.wear_id.paygrade = "E9"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 	if(SSticker.mode.round_type_flags & MODE_FORCE_CUSTOMSQUAD_UI)
 		addtimer(CALLBACK(GLOB.squad_manager, TYPE_PROC_REF(/datum, interact), new_human), 2 SECONDS)
 	if(!latejoin)

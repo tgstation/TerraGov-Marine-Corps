@@ -11,10 +11,10 @@
 * Metal
 */
 GLOBAL_LIST_INIT(metal_recipes, list ( \
-	/obj/structure/barricade/solid = new /datum/stack_recipe("metal barricade", /obj/structure/barricade/solid, 4, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_METAL), \
+	/obj/structure/barricade/solid = new /datum/stack_recipe("metal barricade", /obj/structure/barricade/solid, BUILD_COST_METAL_CADE, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_METAL), \
 	/obj/item/stack/barbed_wire = new /datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 1, 1, 20, time = 1 SECONDS, crafting_flags = NONE, skill_req = SKILL_CONSTRUCTION_METAL), \
 	/obj/item/stack/razorwire = new /datum/stack_recipe("razor wire", /obj/item/stack/razorwire, 4, 2, 20, time = 5 SECONDS, crafting_flags = NONE, skill_req = SKILL_CONSTRUCTION_METAL), \
-	/obj/structure/barricade/folding/metal = new /datum/stack_recipe("folding metal barricade", /obj/structure/barricade/folding/metal, 6, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_METAL), \
+	/obj/structure/barricade/folding/metal = new /datum/stack_recipe("folding metal barricade", /obj/structure/barricade/folding/metal, BUILD_COST_METAL_CADE_FOLDABLE, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_METAL), \
 	null, \
 	/obj/item/frame/apc = new /datum/stack_recipe("apc frame", /obj/item/frame/apc, 2, crafting_flags = NONE), \
 	/obj/structure/girder = new /datum/stack_recipe("wall girder", /obj/structure/girder, 8, time = 10 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_ADVANCED), \
@@ -137,8 +137,8 @@ GLOBAL_LIST_INIT(plasteel_radial_images, list(
 
 
 GLOBAL_LIST_INIT(plasteel_recipes, list( \
-	/obj/structure/barricade/folding = new /datum/stack_recipe("folding plasteel barricade", /obj/structure/barricade/folding, 5, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
-	/obj/structure/barricade/solid/plasteel = new /datum/stack_recipe("plasteel barricade", /obj/structure/barricade/solid/plasteel, 3, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	/obj/structure/barricade/folding = new /datum/stack_recipe("folding plasteel barricade", /obj/structure/barricade/folding, BUILD_COST_PLASTEEL_CADE_FOLDABLE, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	/obj/structure/barricade/solid/plasteel = new /datum/stack_recipe("plasteel barricade", /obj/structure/barricade/solid/plasteel, BUILD_COST_PLASTEEL_CADE, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
 ))
 
 /obj/item/stack/sheet/plasteel/select_radial(mob/user)
