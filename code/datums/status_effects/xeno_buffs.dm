@@ -72,16 +72,24 @@
 	COOLDOWN_DECLARE(plasma_warning)
 	/// The beam used to represent the link between linked xenos.
 	var/datum/beam/current_beam
+	/// The percentage of lifesteal given to link_owner based on damage dealt from link_target.
+	var/lifesteal_percentage
+	/// The additive amount to increase melee damage modifier to the survivor if the link ends due to death.
+	var/revenge_modifier
 
-/datum/status_effect/stacking/essence_link/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/link_target)
+/datum/status_effect/stacking/essence_link/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/link_target, expected_lifesteal_percentage, expected_revenge_modifier)
 	link_owner = new_owner
 	src.link_target = link_target
 	essence_link_action = link_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	RegisterSignals(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
-	RegisterSignals(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
+	RegisterSignals(link_owner, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
+	RegisterSignals(link_target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
+	RegisterSignal(link_owner, COMSIG_MOB_DEATH, PROC_REF(end_link_from_death))
+	RegisterSignal(link_target, COMSIG_MOB_DEATH, PROC_REF(end_link_from_death))
 	toggle_link(TRUE)
+	set_lifesteal(expected_lifesteal_percentage)
+	revenge_modifier = expected_revenge_modifier
 	to_chat(link_owner, span_xenonotice("We have established an Essence Link with [link_target]. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
 	to_chat(link_target, span_xenonotice("[link_owner] has established an Essence Link with us. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
 	return ..()
@@ -100,6 +108,7 @@
 	essence_link_action.end_ability()
 	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+	set_lifesteal(0)
 	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	return ..()
@@ -200,10 +209,37 @@
 /datum/status_effect/stacking/essence_link/proc/update_beam()
 	current_beam?.visuals.alpha = round(255 / (max_stacks+1 - stacks))
 
-/// Ends the link prematurely.
+/// Ends the link prematurely via evolution/devolution.
 /datum/status_effect/stacking/essence_link/proc/end_link(datum/source)
 	SIGNAL_HANDLER
 	essence_link_action.end_ability()
+/// Ends the link prematurely via death.
+/datum/status_effect/stacking/essence_link/proc/end_link_from_death(datum/source, gibbed)
+	SIGNAL_HANDLER
+	if(!revenge_modifier)
+		essence_link_action.end_ability()
+		return
+	if(source == link_owner)
+		link_target.apply_status_effect(STATUS_EFFECT_MUTATION_DRONE_REVENGE, revenge_modifier)
+	if(source == link_target)
+		link_owner.apply_status_effect(STATUS_EFFECT_MUTATION_DRONE_REVENGE, revenge_modifier)
+	essence_link_action.end_ability()
+
+end_link_from_death
+/datum/status_effect/stacking/essence_link/proc/set_lifesteal(desired_lifesteal_percentage)
+	if(lifesteal_percentage && !desired_lifesteal_percentage)
+		UnregisterSignal(link_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING)
+	if(!lifesteal_percentage && desired_lifesteal_percentage)
+		RegisterSignal(link_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(handle_lifesteal))
+	lifesteal_percentage = desired_lifesteal_percentage
+
+/// Heals the link_owner a percentage of the damage dealt by the link_target if they're within range.
+/datum/status_effect/stacking/essence_link/proc/handle_lifesteal(datum/source, mob/living/attacked_target, damage_dealt, list/damage_modifiers)
+	SIGNAL_HANDLER
+	if(!was_within_range || !lifesteal_percentage)
+		return
+	var/damage_to_heal = damage_dealt * lifesteal_percentage
+	HEAL_XENO_DAMAGE(link_owner, damage_to_heal, FALSE)
 
 // ***************************************
 // *********** Salve Regeneration

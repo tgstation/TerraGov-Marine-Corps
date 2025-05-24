@@ -22,33 +22,62 @@
 	id = "mutation_upgrade_spur"
 	alert_type = MUTATION_SPUR_ALERT
 
-/datum/status_effect/mutation_runner_frenzy
-	id = "mutation_runner_frenzy"
+/**
+ * Veil
+ */
+/atom/movable/screen/alert/status_effect/veil
+	name = "Veil Mutation"
+	desc = "Your Veil Mutation is taking effect."
+	icon_state = "xenobuff_veil"
+
+/datum/status_effect/mutation_veil_upgrade
+	id = "mutation_upgrade_veil"
+	alert_type = MUTATION_VEIL_ALERT
+
+/**
+ * Everything Else
+ */
+
+/datum/status_effect/xenomorph_damage_modifier
+	id = "xenomorph_damage_modifier"
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
 	duration = 7 SECONDS
-	// How much should melee damage modifier increase by?
+	// How much should the xenomorph owner's melee damage modifier be increased by?
 	var/damage_modifier = 0
 
-/datum/status_effect/mutation_runner_frenzy/on_creation(mob/living/new_owner, new_damage_modifier)
+/datum/status_effect/xenomorph_damage_modifier/on_creation(mob/living/new_owner, new_damage_modifier)
 	owner = new_owner
 	damage_modifier = new_damage_modifier
 	return ..()
 
-/datum/status_effect/mutation_runner_frenzy/on_apply()
+/datum/status_effect/xenomorph_damage_modifier/on_apply()
 	. = ..()
 	if(!isxeno(owner) || !damage_modifier)
 		return FALSE
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_melee_damage_modifier += damage_modifier
-	xeno_owner.add_filter("mutation_runner_frenzy_outline", 3, outline_filter(1, COLOR_VIVID_RED))
+	xeno_owner.add_filter("[id]_outline", 3, outline_filter(1, COLOR_VIVID_RED))
 
-/datum/status_effect/mutation_runner_frenzy/on_remove()
+/datum/status_effect/xenomorph_damage_modifier/on_remove()
 	if(!isxeno(owner) || !damage_modifier)
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_melee_damage_modifier -= damage_modifier
-	xeno_owner.remove_filter("mutation_runner_frenzy_outline")
+	xeno_owner.remove_filter("[id]_outline")
+
+/datum/status_effect/xenomorph_damage_modifier/mutation_runner_frenzy
+	id = "mutation_runner_frenzy"
+
+/datum/status_effect/xenomorph_damage_modifier/mutation_drone_revenge
+	id = "mutation_drone_revenge"
+	duration = 10 SECONDS
+
+/datum/status_effect/xenomorph_damage_modifier/mutation_drone_revenge/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.emote("roar2")
 
 /**
  * Veil

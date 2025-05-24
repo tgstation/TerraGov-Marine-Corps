@@ -48,7 +48,8 @@ GLOBAL_LIST_INIT(stackable_decreasable_debuffs_for_xenos, list(
 #define STATUS_EFFECT_MUTATION_SHELL /datum/status_effect/mutation_shell_upgrade
 #define STATUS_EFFECT_MUTATION_SPUR /datum/status_effect/mutation_spur_upgrade
 #define STATUS_EFFECT_MUTATION_VEIL /datum/status_effect/mutation_veil_upgrade
-#define STATUS_EFFECT_MUTATION_RUNNER_FRENZY /datum/status_effect/mutation_runner_frenzy
+#define STATUS_EFFECT_MUTATION_RUNNER_FRENZY /datum/status_effect/xenomorph_damage_modifier/mutation_runner_frenzy
+#define STATUS_EFFECT_MUTATION_DRONE_REVENGE /datum/status_effect/xenomorph_damage_modifier/mutation_drone_revenge
 
 /// Name of each mutation structure/category.
 #define MUTATION_SHELL "Shell"

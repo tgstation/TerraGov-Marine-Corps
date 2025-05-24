@@ -184,23 +184,23 @@
 	var/datum/action/ability/xeno_action/fortify/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!ability)
 		return FALSE
+	ability.movement_modifier += 12
 	if(xenomorph_owner.fortify)
 		REMOVE_TRAIT(xenomorph_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	else
-		xenomorph_owner.add_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE, 0, NONE, FALSE, movement_modifier)
+		xenomorph_owner.add_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE, 0, NONE, FALSE, ability.movement_modifier)
 		xenomorph_owner.client?.move_delay = world.time
-	ability.movement_modifier += 12
 	return ..()
 
 /datum/mutation_upgrade/veil/slow_and_steady/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/fortify/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!ability)
 		return FALSE
+	ability.movement_modifier -= 12
 	if(xenomorph_owner.fortify)
 		ADD_TRAIT(xenomorph_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	else
 		xenomorph_owner.remove_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE)
-	ability.movement_modifier -= 12
 	return ..()
 
 /datum/mutation_upgrade/veil/slow_and_steady/on_structure_update(datum/source, previous_amount, new_amount)
