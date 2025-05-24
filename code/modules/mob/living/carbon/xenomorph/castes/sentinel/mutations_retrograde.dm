@@ -11,7 +11,7 @@
 	/// The type of gas that is emitted.
 	var/datum/effect_system/smoke_spread/gas_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	/// The range of the gas emitted.
-	var/gas_range = 1
+	var/gas_range = 2
 	COOLDOWN_DECLARE(activation_cooldown)
 
 /datum/mutation_upgrade/shell/gaseous_blood/on_mutation_enabled()
