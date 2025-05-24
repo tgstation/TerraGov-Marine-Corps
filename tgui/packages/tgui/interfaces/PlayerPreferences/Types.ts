@@ -1,3 +1,5 @@
+import { BooleanLike } from 'tgui-core/react';
+
 type PlayerPreferencesData = {
   slot: number;
   save_slot_names: AssocStringString;
@@ -32,11 +34,14 @@ type BackgroundInformationData = {
   exploit_record: string;
 };
 
-type GameSettingData = {
+export type GameSettingData = {
   ui_style_color: string;
   scaling_method: string;
   pixel_size: number;
   multiz_performance: number;
+  screentip_color: string;
+  screentips_enabled: string;
+  screentip_images: BooleanLike;
   parallax: number;
   is_admin: number;
 };
