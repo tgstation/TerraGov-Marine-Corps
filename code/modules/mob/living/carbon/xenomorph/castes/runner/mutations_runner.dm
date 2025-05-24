@@ -340,10 +340,10 @@
 
 /datum/mutation_upgrade/veil/passing_glance
 	name = "Passing Glance"
-	desc = "While Evasion is on, moving onto the same location as a standing human will confuse them for 2/3/4s. This can only happens once per human. "
+	desc = "While Evasion is on, moving onto the same location as a standing human will confuse them for 2/3/4s. This can only happens once per human."
 	/// The beginning length of the applied confusion (at zero structures)
 	var/beginning_length = 1 SECONDS
-	/// The additional length f the applied confusion for each structure.
+	/// The additional length of the applied confusion for each structure.
 	var/length_per_structure = 1 SECONDS
 
 /datum/mutation_upgrade/veil/passing_glance/on_mutation_enabled()
