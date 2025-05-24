@@ -30,6 +30,8 @@
 	var/datum/looping_sound/bike_idle/idle_sound
 	var/soundloop_restart_timer
 	COOLDOWN_DECLARE(enginesound_cooldown)
+	var/movement_sound_cooldown = 0.3 SECONDS
+	var/movement_sound = 'sound/vehicles/bikerev.ogg'
 
 /obj/vehicle/ridden/motorbike/Initialize(mapload)
 	. = ..()
@@ -40,7 +42,8 @@
 
 /obj/vehicle/ridden/motorbike/Destroy()
 	. = ..()
-	QDEL_NULL(idle_sound)
+	if(isdatum(idle_sound))
+		QDEL_NULL(idle_sound)
 	deltimer(soundloop_restart_timer)
 	soundloop_restart_timer = null
 
@@ -82,16 +85,16 @@
 		for(var/mob/rider AS in buckled_mobs)
 			balloon_alert(rider, "[fuel_count/fuel_max*100]% fuel left")
 
-	idle_sound.stop(src)
-	addtimer(CALLBACK(src, PROC_REF(delayed_soundloop_restart)), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	idle_sound?.stop(src)
+	soundloop_restart_timer = addtimer(CALLBACK(src, PROC_REF(delayed_soundloop_restart)), movement_sound_cooldown + 0.3 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_CLIENT_TIME)
 
 	if(COOLDOWN_FINISHED(src, enginesound_cooldown))
-		COOLDOWN_START(src, enginesound_cooldown, 20)
-		playsound(get_turf(src), 'sound/vehicles/bikerev.ogg', 100, TRUE)
+		COOLDOWN_START(src, enginesound_cooldown, movement_sound_cooldown)
+		playsound(get_turf(src), movement_sound, 100, FALSE)
 
 
 /obj/vehicle/ridden/motorbike/proc/delayed_soundloop_restart()
-	idle_sound.start(src, TRUE)
+	idle_sound?.start(src, TRUE)
 
 /obj/vehicle/ridden/motorbike/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/jerrycan))
