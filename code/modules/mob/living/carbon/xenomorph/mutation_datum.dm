@@ -104,6 +104,9 @@
 		return
 	if((xeno_purchaser.xeno_caste.caste_flags & CASTE_NO_MUTATION))
 		return
+	if(xeno_purchaser.fortify)
+		to_chat(usr, span_warning("You cannot buy mutations while fortified!"))
+		return
 
 	var/upgrade_price = get_mutation_cost(xeno_purchaser)
 	var/current_biomass = !isnull(SSpoints.xeno_biomass_points_by_hive[xeno_purchaser.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xeno_purchaser.hivenumber] : 0

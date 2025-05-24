@@ -44,8 +44,20 @@
 /// Called whenever the mutation is created/deleted or when the amount of structures has changed.
 /datum/mutation_upgrade/proc/on_structure_update(datum/source, previous_amount, new_amount)
 	SIGNAL_HANDLER
-	if(previous_amount == new_amount)
+	if(previous_amount == new_amount) // No change.
 		return FALSE
+	if(!previous_amount && new_amount) // Mutations is now enabled.
+		on_mutation_enabled()
+	if(previous_amount && !new_amount) // Mutation is now disabled.
+		on_mutation_disabled()
+	return TRUE
+
+/// Called whenever the mutation becomes enabled (going from zero structures to non-zero structures).
+/datum/mutation_upgrade/proc/on_mutation_enabled()
+	return TRUE
+
+/// Called whenever the mutation becomes disabled (going from non-zero structures to zero structures).
+/datum/mutation_upgrade/proc/on_mutation_disabled()
 	return TRUE
 
 /// Called whenever the xenomorph owner is upgraded (e.g. normal to primordial).

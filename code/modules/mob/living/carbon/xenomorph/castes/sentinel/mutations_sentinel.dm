@@ -13,14 +13,17 @@
 	/// The amount of intoxicated stacks to apply.
 	var/applied_intoxicated_stacks = 1
 
+/datum/mutation_upgrade/shell/toxic_blood/on_mutation_enabled()
+	RegisterSignals(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
+	return ..()
+
+/datum/mutation_upgrade/shell/toxic_blood/on_mutation_disabled()
+	UnregisterSignal(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE, COMSIG_MOB_STAT_CHANGED))
+	return ..()
+
 /datum/mutation_upgrade/shell/toxic_blood/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
-		return
-	if(previous_amount && !new_amount)
-		UnregisterSignal(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE, COMSIG_MOB_STAT_CHANGED))
-	if(new_amount && !previous_amount)
-		RegisterSignals(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
 	damage_taken_so_far = min(damage_taken_so_far, (new_amount * threshold_per_structure) - 1)
+	return ..()
 
 /// Apply intoxicated stacks to nearby alive humans if the damage threshold is reached.
 /datum/mutation_upgrade/shell/toxic_blood/proc/on_damage(datum/source, amount, list/amount_mod)
@@ -48,16 +51,27 @@
 	/// The additional health to heal per stack for each structure.
 	var/healing_per_structure = 0.5
 
+/datum/mutation_upgrade/shell/comforting_acid/on_mutation_enabled()
+	var/datum/action/ability/xeno_action/toxic_slash/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/toxic_slash]
+	if(!ability)
+		return FALSE
+	ability.healing_per_stack += beginning_healing
+	return ..()
+
+/datum/mutation_upgrade/shell/comforting_acid/on_mutation_disabled()
+	var/datum/action/ability/xeno_action/toxic_slash/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/toxic_slash]
+	if(!ability)
+		return FALSE
+	ability.healing_per_stack -= beginning_healing
+	return ..()
+
 /datum/mutation_upgrade/shell/comforting_acid/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/xeno_action/toxic_slash/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/toxic_slash]
 	if(!ability)
-		return
-	if(previous_amount && !new_amount)
-		ability.healing_per_stack -= beginning_healing
-	if(new_amount && !previous_amount)
-		ability.healing_per_stack += beginning_healing
+		return FALSE
 	ability.healing_per_stack += (new_amount - previous_amount) * healing_per_structure
 
 //*********************//
@@ -67,16 +81,19 @@
 	name = "Acidic Slasher"
 	desc = "Your attack delay will be -0.05/-0.1/-0.15s faster and will always apply 1/2/3 stacks of Intoxicated against humans, but all melee damage is reduced by 50%."
 
+/datum/mutation_upgrade/spur/acidic_slasher/on_mutation_enabled()
+	UnregisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING)
+	xenomorph_owner.xeno_melee_damage_modifier += 0.50
+	return ..()
+
+/datum/mutation_upgrade/spur/acidic_slasher/on_mutation_disabled()
+	UnregisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING)
+	xenomorph_owner.xeno_melee_damage_modifier += 0.50
+	return ..()
+
 /datum/mutation_upgrade/spur/acidic_slasher/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
-		return
-	if(previous_amount && !new_amount)
-		UnregisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING)
-		xenomorph_owner.xeno_melee_damage_modifier += 0.50
-	if(new_amount && !previous_amount)
-		RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack))
-		xenomorph_owner.xeno_melee_damage_modifier -= 0.50
 	xenomorph_owner.next_move_adjust -= (new_amount - previous_amount) * 0.5
+	return ..()
 
 /// Applies a variable amount of Intoxicated stacks to those that they attack.
 /datum/mutation_upgrade/spur/acidic_slasher/proc/on_postattack(mob/living/source, mob/living/target, damage)
@@ -95,18 +112,29 @@
 	/// The additional effectiveness of Drain Sting at a range that isn't upclose (for each structure).
 	var/effectiveness_per_structure = 0.25
 
+/datum/mutation_upgrade/spur/far_sting/on_mutation_enabled()
+	var/datum/action/ability/activable/xeno/drain_sting/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/drain_sting]
+	if(!ability)
+		return FALSE
+	ability.targetable_range += 1
+	ability.ranged_effectiveness += beginning_effectiveness
+	return ..()
+
+/datum/mutation_upgrade/spur/far_sting/on_mutation_disabled()
+	var/datum/action/ability/activable/xeno/drain_sting/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/drain_sting]
+	if(!ability)
+		return FALSE
+	ability.targetable_range -= 1
+	ability.ranged_effectiveness -= beginning_effectiveness
+	return ..()
+
 /datum/mutation_upgrade/spur/far_sting/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/activable/xeno/drain_sting/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/drain_sting]
 	if(!ability)
-		return
-	if(previous_amount && !new_amount)
-		ability.targetable_range -= 1
-		ability.ranged_effectiveness -= beginning_effectiveness
-	if(new_amount && !previous_amount)
-		ability.targetable_range += 1
-		ability.ranged_effectiveness += beginning_effectiveness
+		return FALSE
 	ability.ranged_effectiveness += (new_amount - previous_amount) * effectiveness_per_structure
 
 //*********************//
@@ -120,15 +148,25 @@
 	/// The subtracted amount for xeno-chemicals needed for one Intoxicated stack (for each structure).
 	var/amount_per_structure = 1
 
+/datum/mutation_upgrade/veil/toxic_compatibility/on_mutation_enabled()
+	var/datum/action/ability/activable/xeno/drain_sting/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/drain_sting]
+	if(!ability)
+		return FALSE
+	ability.xenochemicals_unit_per_stack += beginning_amount
+	return ..()
+
+/datum/mutation_upgrade/veil/toxic_compatibility/on_mutation_disabled()
+	var/datum/action/ability/activable/xeno/drain_sting/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/drain_sting]
+	if(!ability)
+		return FALSE
+	ability.xenochemicals_unit_per_stack -= beginning_amount
+	return ..()
+
 /datum/mutation_upgrade/veil/toxic_compatibility/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/activable/xeno/drain_sting/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/drain_sting]
 	if(!ability)
-		return
-	if(previous_amount && !new_amount)
-		ability.xenochemicals_unit_per_stack -= beginning_amount
-	if(new_amount && !previous_amount)
-		ability.xenochemicals_unit_per_stack += beginning_amount
+		return FALSE
 	ability.xenochemicals_unit_per_stack -= (new_amount - previous_amount) * amount_per_structure
-

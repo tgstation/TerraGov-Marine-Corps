@@ -19,7 +19,11 @@
 		/datum/action/ability/activable/xeno/xeno_spit,
 	)
 
-	buyable_mutations = list()
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/gaseous_blood,
+		/datum/mutation_upgrade/spur/toxic_claws,
+		/datum/mutation_upgrade/veil/toxic_spillage
+	)
 
 /datum/xeno_caste/sentinel/retrograde/normal
 	upgrade = XENO_UPGRADE_NORMAL

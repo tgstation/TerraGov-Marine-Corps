@@ -5,15 +5,29 @@
 	name = "Upfront Evasion"
 	desc = "Evasion starts off 1/2/3s longer, but it no longer refreshes from dodging projectiles."
 
+/datum/mutation_upgrade/shell/upfront_evasion/on_mutation_enabled()
+	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
+	if(!ability)
+		return FALSE
+	ability.refresh_disabled = TRUE
+	if(ability.auto_evasion)
+		ability.alternate_action_activate()
+	return ..()
+
+/datum/mutation_upgrade/shell/upfront_evasion/on_mutation_disabled()
+	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
+	if(!ability)
+		return FALSE
+	ability.refresh_disabled = FALSE
+	return ..()
+
 /datum/mutation_upgrade/shell/upfront_evasion/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!ability)
-		return
-	ability.refresh_disabled = new_amount ? TRUE : FALSE
-	if(new_amount && ability.auto_evasion)
-		ability.alternate_action_activate() // Auto Evasion's whole point is to re-activate the ability when Evasion refreshes. If it never refreshes, then there is no use in Auto Evasion.
+		return FALSE
 	ability.evasion_starting_duration += (new_amount - previous_amount)
 
 /datum/mutation_upgrade/shell/borrowed_time
@@ -26,26 +40,25 @@
 	/// The timer that will reverse the critical threshold.
 	var/critical_threshold_timer
 
-/datum/mutation_upgrade/shell/borrowed_time/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
-		return
-	if(!new_amount)
-		if(critical_threshold_timer)
-			reverse_critical_threshold()
-		else if(critical_threshold_boosted)
-			toggle()
-		UnregisterSignal(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
-		return
-	if(!previous_amount)
-		RegisterSignals(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
-		if(!critical_threshold_boosted && xenomorph_owner.health >= xenomorph_owner.maxHealth)
-			toggle(TRUE)
+/datum/mutation_upgrade/shell/borrowed_time/on_mutation_enabled()
+	RegisterSignals(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
+	if(!critical_threshold_boosted && xenomorph_owner.health >= xenomorph_owner.maxHealth)
+		toggle(TRUE)
+	return ..()
+
+/datum/mutation_upgrade/shell/borrowed_time/on_mutation_disabled()
+	UnregisterSignal(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	if(critical_threshold_timer)
+		reverse_critical_threshold()
+	else if(critical_threshold_boosted)
+		toggle()
+	return ..()
 
 /// Increases or decreases the critical threshold amount for the owner.
 /datum/mutation_upgrade/shell/borrowed_time/proc/toggle(silent = FALSE)
 	critical_threshold_boosted = !critical_threshold_boosted
 	if(critical_threshold_boosted)
-		to_chat(xenomorph_owner, span_notice("You feel like you recovered from being on Borrowed Time."))
+		to_chat(xenomorph_owner, span_notice("You feel like you're ready to be on Borrowed Time."))
 		xenomorph_owner.health_threshold_crit -= critical_threshold_amount
 		return
 	xenomorph_owner.health_threshold_crit += critical_threshold_amount
@@ -78,8 +91,6 @@
 /datum/mutation_upgrade/shell/ingrained_evasion
 	name = "Ingrained Evasion"
 	desc = "You lose the ability, Evasion. You have a 30/40/50% to dodge projectiles with similar conditions as Evasion. Highly accurate projectiles will reduce your dodge chance."
-	// Has the Evasion ability already been removed?
-	var/already_removed_ability = FALSE
 	/// After this amount of time since their last move, they will no longer evade projectiles.
 	var/movement_leniency = 0.5 SECONDS
 	/// The chance of evasion occurring.
@@ -89,31 +100,24 @@
 	/// If a projectile's accuracy is above this value, then evasion chance is decreased by each point above it.
 	var/accuracy_reduction_requirement = 100
 
-/datum/mutation_upgrade/shell/ingrained_evasion/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
-		return
-	if(!new_amount)
-		if(already_removed_ability)
-			var/datum/action/ability/xeno_action/evasion/ability = new()
-			already_removed_ability = FALSE
-			ability.give_action(xenomorph_owner)
-		UnregisterSignal(xenomorph_owner, list(COMSIG_XENO_PROJECTILE_HIT, COMSIG_LIVING_PRE_THROW_IMPACT))
-		return
-	if(previous_amount)
-		return
+/datum/mutation_upgrade/shell/ingrained_evasion/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(ability)
-		already_removed_ability = TRUE
 		ability.remove_action(xenomorph_owner)
 	RegisterSignal(xenomorph_owner, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(dodge_projectile))
 	RegisterSignal(xenomorph_owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(dodge_thrown_item))
+	return ..()
+
+/datum/mutation_upgrade/shell/ingrained_evasion/on_mutation_disabled()
+	var/datum/action/ability/xeno_action/evasion/ability = new()
+	ability.give_action(xenomorph_owner)
+	UnregisterSignal(xenomorph_owner, list(COMSIG_XENO_PROJECTILE_HIT, COMSIG_LIVING_PRE_THROW_IMPACT))
+	return ..()
 
 /datum/mutation_upgrade/shell/ingrained_evasion/on_xenomorph_upgrade()
-	if(!already_removed_ability)
-		return
 	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(ability)
-		ability.remove_action(xenomorph_owner)
+		ability.remove_action(xenomorph_owner) // Because upgrading give abilities that are missing.
 
 // Checks if they can dodge at all.
 /datum/mutation_upgrade/shell/ingrained_evasion/proc/can_dodge()
@@ -179,34 +183,64 @@
 /datum/mutation_upgrade/spur/sneak_attack
 	name = "Sneak Attack"
 	desc = "Pounce will slash your target for 1/1.25/1.5x damage if it was started in low light."
+	/// The beginning damage multiplier (at zero structures)
+	var/beginning_damage_multiplier = 0.75
+	/// The additional damage multiplier for each structure.
+	var/damage_multiplier_per_structure = 0.25
+
+/datum/mutation_upgrade/spur/sneak_attack/on_mutation_enabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.dim_bonus_multiplier += beginning_damage_multiplier
+	return ..()
+
+/datum/mutation_upgrade/spur/sneak_attack/on_mutation_disabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.dim_bonus_multiplier -= beginning_damage_multiplier
+	return ..()
 
 /datum/mutation_upgrade/spur/sneak_attack/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
-		return
-	if(previous_amount && !new_amount)
-		ability.dim_bonus_multiplier -= 0.75
-	if(new_amount && !previous_amount)
-		ability.dim_bonus_multiplier += 0.75
-	ability.dim_bonus_multiplier += (new_amount - previous_amount) * 0.25
+		return FALSE
+	ability.dim_bonus_multiplier += (new_amount - previous_amount) * damage_multiplier_per_structure
 
 /datum/mutation_upgrade/spur/right_here
 	name = "Right Here"
 	desc = "Pounce will slash your target for 0.5/0.75/1x slash damage based on the distance traveled. Every tile beyond the first reduces the amount by 20%."
+	/// The beginning damage multiplier (at zero structures)
+	var/beginning_damage_multiplier = 0.25
+	/// The additional damage multiplier for each structure.
+	var/damage_multiplier_per_structure = 0.25
+
+/datum/mutation_upgrade/spur/right_here/on_mutation_enabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.upclose_bonus_multiplier += beginning_damage_multiplier
+	return ..()
+
+/datum/mutation_upgrade/spur/right_here/on_mutation_disabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.upclose_bonus_multiplier -= beginning_damage_multiplier
+	return ..()
 
 /datum/mutation_upgrade/spur/right_here/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
-		return
-	if(previous_amount && !new_amount)
-		ability.upclose_bonus_multiplier -= 0.25
-	if(new_amount && !previous_amount)
-		ability.upclose_bonus_multiplier += 0.25
-	ability.upclose_bonus_multiplier += (new_amount - previous_amount) * 0.25
+		return FALSE
+	ability.upclose_bonus_multiplier += (new_amount - previous_amount) * damage_multiplier_per_structure
 
 /datum/mutation_upgrade/spur/mutilate
 	name = "Mutilate"
@@ -216,16 +250,27 @@
 	/// The additional damage multiplier for each structure.
 	var/damage_multiplier_per_structure = 0.25
 
+/datum/mutation_upgrade/spur/mutilate/on_mutation_enabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.savage_damage_multiplier += beginning_damage_multiplier
+	return ..()
+
+/datum/mutation_upgrade/spur/mutilate/on_mutation_disabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.savage_damage_multiplier -= beginning_damage_multiplier
+	return ..()
+
 /datum/mutation_upgrade/spur/mutilate/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
-		return
-	if(previous_amount && !new_amount)
-		ability.savage_damage_multiplier += beginning_damage_multiplier
-	if(new_amount && !previous_amount)
-		ability.savage_damage_multiplier += beginning_damage_multiplier
+		return FALSE
 	ability.savage_damage_multiplier += (new_amount - previous_amount) * damage_multiplier_per_structure
 
 //*********************//
@@ -233,20 +278,33 @@
 //*********************//
 /datum/mutation_upgrade/veil/headslam
 	name = "Head Slam"
-	desc = "Savage decreases the stun duration significantly, but now confuses and blurs your target's vision for 1/2/3 seconds at maximum scaled by your remaining plasma."
+	desc = "Savage decreases the stun duration significantly, but now confuses and blurs your target's vision for 1/2/3 seconds."
+	/// The amount to divide stun and immobilize duration
+	var/crowd_control_duration_divisible = 4
+
+/datum/mutation_upgrade/veil/headslam/on_mutation_enabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.stun_duration /= crowd_control_duration_divisible
+	ability.immobilize_duration /= crowd_control_duration_divisible
+	return ..()
+
+/datum/mutation_upgrade/veil/headslam/on_mutation_disabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.stun_duration *= crowd_control_duration_divisible
+	ability.immobilize_duration *= crowd_control_duration_divisible
+	return ..()
 
 /datum/mutation_upgrade/veil/headslam/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
-		return
-	if(previous_amount && !new_amount)
-		ability.stun_duration = initial(ability.stun_duration)
-		ability.immobilize_duration = initial(ability.immobilize_duration)
-	if(new_amount && !previous_amount)
-		ability.stun_duration = initial(ability.stun_duration) / 4
-		ability.immobilize_duration = initial(ability.immobilize_duration) / 4
+		return FALSE
 	ability.savage_debuff_amount += (new_amount - previous_amount)
 
 /datum/mutation_upgrade/veil/frenzy
@@ -257,16 +315,27 @@
 	/// The additional damage multiplier for each structure.
 	var/damage_multiplier_per_structure = 0.25
 
+/datum/mutation_upgrade/veil/frenzy/on_mutation_enabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.savage_damage_buff_alternative += beginning_damage_multiplier
+	return ..()
+
+/datum/mutation_upgrade/veil/frenzy/on_mutation_disabled()
+	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	if(!ability)
+		return FALSE
+	ability.savage_damage_buff_alternative -= beginning_damage_multiplier
+	return ..()
+
 /datum/mutation_upgrade/veil/frenzy/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
-		return
-	if(previous_amount && !new_amount)
-		ability.savage_damage_buff_alternative -= beginning_damage_multiplier
-	if(new_amount && !previous_amount)
-		ability.savage_damage_buff_alternative += beginning_damage_multiplier
+		return FALSE
 	ability.savage_damage_buff_alternative += (new_amount - previous_amount) * damage_multiplier_per_structure
 
 /datum/mutation_upgrade/veil/passing_glance
@@ -277,16 +346,27 @@
 	/// The additional length f the applied confusion for each structure.
 	var/length_per_structure = 1 SECONDS
 
+/datum/mutation_upgrade/veil/passing_glance/on_mutation_enabled()
+	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
+	if(!ability)
+		return FALSE
+	ability.evasion_passthrough = TRUE
+	ability.passthrough_confusion_length += beginning_length
+	return ..()
+
+/datum/mutation_upgrade/veil/passing_glance/on_mutation_disabled()
+	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
+	if(!ability)
+		return FALSE
+	ability.evasion_passthrough = FALSE
+	ability.passthrough_confusion_length -= beginning_length
+	return ..()
+
 /datum/mutation_upgrade/veil/passing_glance/on_structure_update(datum/source, previous_amount, new_amount)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!ability)
-		return
-	if(previous_amount && !new_amount)
-		ability.evasion_passthrough = FALSE
-		ability.passthrough_confusion_length -= beginning_length
-	if(new_amount && !previous_amount)
-		ability.evasion_passthrough = TRUE
-		ability.passthrough_confusion_length += beginning_length
+		return FALSE
 	ability.passthrough_confusion_length += (new_amount - previous_amount) * length_per_structure
