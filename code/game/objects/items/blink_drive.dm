@@ -100,17 +100,20 @@
 	user.face_atom(target_turf)
 
 	var/instability = 0 //certain factors can make the teleport unreliable
+	var/blink_stability_time = 1 SECONDS
 	if(target_distance > BLINK_DRIVE_RANGE - 2)
 		instability ++
 	if(!COOLDOWN_FINISHED(src, blink_stability_cooldown))
 		instability ++
 	if(!line_of_sight(user, target_turf, 9))
 		instability ++
+		charges = max(1, charges - 1)
+		blink_stability_time = rand(blink_stability_time, blink_stability_time * 5)
 
 	target_turf = pick(RANGE_TURFS(instability, target_turf))
 
 	var/atom/movable/pulled_target = user.pulling
-	if(pulled_target)
+	if(pulled_target && target_turf.can_teleport_here())
 		if(!do_after(user, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, user, BUSY_ICON_HOSTILE))
 			return
 		if(pulled_target != user.pulling)
@@ -119,27 +122,39 @@
 
 	teleport_debuff_aoe(user)
 	user.forceMove(target_turf)
-	if(pulled_target)
-		pulled_target.forceMove(target_turf)
-	teleport_debuff_aoe(user)
 
+	var/recharge_time = BLINK_DRIVE_CHARGE_TIME
+	var/source_turf = user.loc
 	if(!target_turf.can_teleport_here())
 		//user.emote("gored")
 		//user.gib() //telegibbed
-		user.take_overall_damage(50, BRUTE)
+		var/first_leg
+		var/second_leg
+		if(prob(50))
+			first_leg = "l_leg"
+			second_leg = "r_leg"
+		else
+			first_leg = "r_leg"
+			second_leg = "l_leg"
+		var/damage = 100
+		damage -= user.apply_damage(damage, BRUTE, first_leg, 0, TRUE, TRUE, null, damage)
+		if(damage)
+			damage -= user.apply_damage(damage, BRUTE, second_leg, 0, TRUE, TRUE, null, damage)
+		if(damage)
+			user.take_overall_damage(damage, BRUTE, null, 0, TRUE, TRUE, null, damage)
 		user.emote("scream")
-		if(pulled_target && ismob(pulled_target))
-			var/mob/living/mob_target = pulled_target
-			//mob_target.emote("gored")
-			//mob_target.gib()
-			mob_target.take_overall_damage(100, BRUTE)
-			mob_target.emote("scream")
-		return
+		teleport_debuff_aoe(user)
+		user.forceMove(source_turf)
+		recharge_time *= 2
+	else
+		if(pulled_target)
+			pulled_target.forceMove(target_turf)
+		teleport_debuff_aoe(user)
 
-	COOLDOWN_START(src, blink_stability_cooldown, 1 SECONDS)
+	COOLDOWN_START(src, blink_stability_cooldown, blink_stability_time)
 	charges --
 	deltimer(charge_timer)
-	charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME * 2, TIMER_STOPPABLE)
+	charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), recharge_time, TIMER_STOPPABLE)
 	update_appearance(UPDATE_ICON)
 	return TRUE
 

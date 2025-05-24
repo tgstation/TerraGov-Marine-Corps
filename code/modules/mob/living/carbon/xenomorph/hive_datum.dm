@@ -2,7 +2,6 @@
 	interaction_flags = INTERACT_UI_INTERACT
 	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
-	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	///Timer for caste evolution after the last one died, CASTE = TIMER
 	var/list/caste_death_timers = list()
@@ -212,7 +211,13 @@
 
 	.["user_ref"] = REF(user)
 	.["user_xeno"] = isxeno(user)
-	.["user_queen"] = isxenoqueen(user)
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/x = user
+		if(x == living_xeno_ruler)
+			.["user_ruler"] = user
+
+
+
 
 	.["user_index"] = 0
 	if(isxeno(user))
@@ -222,8 +227,8 @@
 	.["user_purchase_perms"] = FALSE
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
-		var/datum/xeno_caste/caste = xeno_user.xeno_caste
-		.["user_purchase_perms"] = (/datum/action/ability/xeno_action/blessing_menu in caste.actions)
+		if(xeno_user.actions_by_path[/datum/action/ability/xeno_action/blessing_menu])
+			.["user_purchase_perms"] = TRUE
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -269,7 +274,7 @@
 				return
 			attempt_deevolve(usr, xeno_target)
 		if("Leader")
-			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
+			if(living_xeno_ruler != usr) // Only the current hive ruler can assign leaders
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_LEADERSHIP, xeno_target)
 		if("Plasma")
@@ -457,10 +462,8 @@
 
 /mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE, prevent_ruler=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
-	if(HS.living_xeno_queen) // theres already a queen
+	if(isxenoqueen(HS.living_xeno_ruler)) // theres already a queen
 		return
-
-	HS.living_xeno_queen = src
 
 	if(prevent_ruler)
 		return
@@ -594,8 +597,8 @@
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
 	var/datum/hive_status/hive_removed_from = hive
-	if(hive_removed_from.living_xeno_queen == src)
-		hive_removed_from.living_xeno_queen = null
+	if(hive_removed_from.living_xeno_ruler == src)
+		hive_removed_from.living_xeno_ruler = null
 
 	. = ..()
 
@@ -642,17 +645,19 @@
 	xeno_leader_list += X
 	X.xeno_flags |= XENO_LEADER
 	X.give_rally_abilities()
+	X.handle_xeno_leader_pheromones(living_xeno_ruler)
 
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
 	X.xeno_flags &= ~XENO_LEADER
+	X.handle_xeno_leader_pheromones(living_xeno_ruler)
 
 	if(!isxenoshrike(X) && !isxenoqueen(X) && !isxenohivemind(X)) //These innately have the Rally Hive ability
 		X.remove_rally_hive_ability()
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
-		leader.handle_xeno_leader_pheromones(living_xeno_queen)
+		leader.handle_xeno_leader_pheromones(living_xeno_ruler)
 
 // ***************************************
 // *********** Status changes
@@ -767,43 +772,76 @@
 	if(announce)
 		xeno_message("A sudden tremor ripples through the hive... \the [ruler] has been slain! Vengeance!", "xenoannounce", 6, TRUE)
 	notify_ghosts("\The <b>[ruler]</b> has been slain!", source = ruler, action = NOTIFY_JUMP)
+	update_leader_pheromones()
+	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
+		remove_leader(leader)
+		leader.hud_set_queen_overwatch()
 	update_ruler()
 	return TRUE
 
+/// If the current ruler devolves or caste_swaps we want to properly handle it
+/datum/hive_status/proc/on_missing_ruler(mob/living/carbon/xenomorph/first, mob/living/carbon/xenomorph/second)
+	if(first == living_xeno_ruler)
+		living_xeno_ruler = null
+	update_leader_pheromones()
+	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
+		remove_leader(leader)
+		leader.hud_set_queen_overwatch()
+		leader.update_leader_icon(FALSE)
+	if(living_xeno_ruler)
+		living_xeno_ruler.remove_ruler_abilities()
+		UnregisterSignal(living_xeno_ruler, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+	set_ruler(null)
+	update_ruler(first)
 
 // This proc attempts to find a new ruler to lead the hive.
-/datum/hive_status/proc/update_ruler()
-	if(living_xeno_ruler)
-		return //No succession required.
+/datum/hive_status/proc/update_ruler(mob/living/carbon/xenomorph/previous_ruler)
+	SIGNAL_HANDLER
+	if(isxenoqueen(living_xeno_ruler))
+		return
 
 	var/mob/living/carbon/xenomorph/successor
+	var/list/mob/living/carbon/xenomorph/prio_candidates = xenos_by_tier[XENO_TIER_FOUR]
+	var/list/mob/living/carbon/xenomorph/seco_candidates = xenos_by_tier[XENO_TIER_THREE]
 
-	// TO DO: this shouldn't be a strict type check and should account for strains
-	var/list/candidates = xenos_by_typepath[/datum/xeno_caste/queen] + xenos_by_typepath[/datum/xeno_caste/shrike] + xenos_by_typepath[/datum/xeno_caste/king] + xenos_by_typepath[/datum/xeno_caste/dragon] + xenos_by_typepath[/datum/xeno_caste/king/conqueror]
-	if(length(candidates)) //Priority to the queens.
-		successor = candidates[1] //First come, first serve.
+	for(var/mob/living/carbon/xenomorph/potential_successor in prio_candidates)
+		successor = potential_successor
+		if(isxenoqueen(potential_successor))
+			break
+
+	if(!successor)
+		for(var/mob/living/carbon/xenomorph/potential_successor in seco_candidates)
+			if(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER && !living_xeno_ruler)
+				if(previous_ruler == potential_successor)
+					continue
+				successor = potential_successor
+
+	if(!successor || living_xeno_ruler == successor)
+		return
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
 		announce = FALSE
 
+	remove_leader(successor)
+	successor.hud_set_queen_overwatch()
+	successor.update_leader_icon(FALSE)
 	set_ruler(successor)
-
+	successor.give_ruler_abilities()
 	handle_ruler_timer()
-
-	if(!living_xeno_ruler)
-		return //Succession failed.
-
+	update_leader_pheromones()
 	if(announce)
 		xeno_message("\A [successor] has risen to lead the Hive! Rejoice!", "xenoannounce", 6)
 		notify_ghosts("\The [successor] has risen to lead the Hive!", source = successor, action = NOTIFY_ORBIT)
 
 
 /datum/hive_status/proc/set_ruler(mob/living/carbon/xenomorph/successor)
+	SIGNAL_HANDLER
 	SSdirection.clear_leader(hivenumber)
 	if(!isnull(successor))
 		SSdirection.set_leader(hivenumber, successor)
 		SEND_SIGNAL(successor, COMSIG_HIVE_BECOME_RULER)
+		RegisterSignals(successor, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_missing_ruler), TRUE)
 	living_xeno_ruler = successor
 
 
@@ -838,11 +876,6 @@
 // ***************************************
 // *********** Queen
 // ***************************************
-
-// If the queen dies, update the hive's queen, and the leader pheromones
-/datum/hive_status/proc/on_queen_death()
-	living_xeno_queen = null
-	update_leader_pheromones()
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)

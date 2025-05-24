@@ -290,11 +290,6 @@
 /datum/species/proc/handle_death(mob/living/carbon/human/H)
 	return
 
-//TODO KILL ME
-///Snowflake proc for monkeys so they can call attackpaw
-/datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
-	return FALSE
-
 ///Called on Life(), used for special behavior when the carbon human with this species is alive
 /datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
 	return

@@ -1670,7 +1670,7 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 ///returns that src is covering its turf. Used to prevent turf interactions such as water
 /atom/movable/proc/turf_cover_check(atom/movable/source)
 	SIGNAL_HANDLER
-	return TRUE
+	return TURF_COVERED
 
 ///Wrapper for setting the submerge trait. This trait should ALWAYS be set via this proc so we can listen for the trait removal in all cases
 /atom/movable/proc/add_nosubmerge_trait(trait_source = TRAIT_GENERIC)

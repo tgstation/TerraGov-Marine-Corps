@@ -64,8 +64,6 @@
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
 
-	if(species?.spec_unarmedattack(src, A)) //Because species like monkeys dont use attack hand
-		return
 	A.attack_hand(src)
 
 /*

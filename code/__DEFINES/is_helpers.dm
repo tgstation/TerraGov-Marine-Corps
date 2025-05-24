@@ -46,6 +46,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isrwallturf(A) (istype(A, /turf/closed/wall/r_wall))
 
+#define isresinwall(A) (istype(A, /turf/closed/wall/resin))
+
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
 #define istransparentturf(A) (HAS_TRAIT(A, TURF_Z_TRANSPARENT_TRAIT))
