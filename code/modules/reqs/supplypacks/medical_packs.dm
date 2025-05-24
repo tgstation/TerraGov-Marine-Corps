@@ -34,7 +34,7 @@ MEDICAL
 	cost = 20
 
 /datum/supply_packs/medical/medical
-	name = "Pills and chemicals"
+	name = "Pills and Chemicals"
 	contains = list(
 		/obj/item/storage/box/autoinjectors,
 		/obj/item/storage/box/syringes,
@@ -89,14 +89,14 @@ MEDICAL
 /datum/supply_packs/medical/hypospray
 	name = "Advanced hypospray"
 	contains = list(/obj/item/reagent_containers/hypospray/advanced)
-	cost = 50
+	cost = 25
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
 /datum/supply_packs/medical/hypospray
 	name = "Advanced big hypospray"
 	contains = list(/obj/item/reagent_containers/hypospray/advanced/big)
-	cost = 120 //just a little over the regular hypo.
+	cost = 100 //just a little over the regular hypo.
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
@@ -116,7 +116,7 @@ MEDICAL
 	contains = list(
 		/obj/item/reagent_containers/glass/bottle/lemoline/doctor,
 	)
-	cost = 80
+	cost = 50
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
