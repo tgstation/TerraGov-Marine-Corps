@@ -415,11 +415,13 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
 	target_flags = ABILITY_MOB_TARGET
-	///How many remaining reagent slashes the Defiler has
+	/// How many remaining reagent slashes the xenomorph have?
 	var/reagent_slash_count = 0
-	///Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does
+	/// How much reagents is injected on slash?
+	var/reagent_slash_amount = DEFILER_REAGENT_SLASH_INJECT_AMOUNT
+	/// Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does.
 	var/reagent_slash_duration_timer_id
-	///Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation
+	/// Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation.
 	var/reagent_slash_reagent
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder

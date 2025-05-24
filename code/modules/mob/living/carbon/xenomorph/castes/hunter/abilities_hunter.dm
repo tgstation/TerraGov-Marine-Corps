@@ -286,6 +286,10 @@
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// The range of this ability.
 	var/pounce_range = HUNTER_POUNCE_RANGE
+	/// The stun duration (inflicted to mob) on successful tackle.
+	var/stun_duration = XENO_POUNCE_STUN_DURATION
+	/// The immobilize duration (inflicted to self) on successful tackle.
+	var/immobilize_duration = XENO_POUNCE_STANDBY_DURATION
 	///pass_flags given when leaping
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
