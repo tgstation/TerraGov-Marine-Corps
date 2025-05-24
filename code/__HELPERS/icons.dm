@@ -936,6 +936,10 @@ ColorTone(rgb, tone)
 /image/proc/setDir(newdir)
 	dir = newdir
 
+///Signal handler for keeping an image in the same direction as a parent atom, due to images outside of overlays/viscontents not updating automatically
+/image/proc/on_owner_dir_change(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	setDir(new_dir)
 
 /// generates a filename for a given asset.
 /// like generate_asset_name(), except returns the rsc reference and the rsc file hash as well as the asset name (sans extension)

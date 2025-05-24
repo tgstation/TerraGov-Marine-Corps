@@ -132,10 +132,10 @@
 
 	if(is_cut(wire))
 		cut_wires -= wire
-		on_cut(wire, mend = TRUE)
+		on_cut(wire, TRUE, user)
 	else
 		cut_wires += wire
-		on_cut(wire, mend = FALSE)
+		on_cut(wire, FALSE, user)
 
 
 /datum/wires/proc/cut_color(color, mob/user)
@@ -214,7 +214,7 @@
 	return
 
 
-/datum/wires/proc/on_cut(wire, mend = FALSE)
+/datum/wires/proc/on_cut(wire, mend = FALSE, mob/user)
 	return
 
 

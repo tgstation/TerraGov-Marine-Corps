@@ -45,7 +45,7 @@
 			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/computer/navigation, reset), wire), 10 SECONDS)
 
 
-/datum/wires/navigation/on_cut(wire, mend)
+/datum/wires/navigation/on_cut(wire, mend, mob/user)
 	var/obj/machinery/computer/navigation/A = holder
 	switch(wire)
 		if(WIRE_POWER) // Short out forever.

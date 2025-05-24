@@ -132,11 +132,21 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 ///Don't help anyone else
 #define AI_MED_SELFISH 0
 ///Tries to inap crit friends
-#define AI_MED_STANDARD 1
+#define AI_MED_DEFAULT 1
 ///Tries to heal whenver possible
 #define AI_MED_MEDIC 2
 ///Prioritises healing above combat
 #define AI_MED_DOCTOR 3
+
+//Mob engineer level
+///Don't do engineering
+#define AI_ENGIE_DEFAULT 0
+///Basic tasks
+#define AI_ENGIE_BASIC 1
+///Engineer level
+#define AI_ENGIE_STANDARD 2
+///Dedicated engineer
+#define AI_ENGIE_EXPERT 3
 
 GLOBAL_LIST_INIT(ai_brute_heal_items, list(
 	/obj/item/reagent_containers/pill/bicaridine,
