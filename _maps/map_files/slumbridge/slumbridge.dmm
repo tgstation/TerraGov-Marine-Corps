@@ -13799,9 +13799,6 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/prison/innerring)
 "kjA" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
