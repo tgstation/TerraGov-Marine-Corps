@@ -654,7 +654,7 @@
 /area/antag_ship/som/requisition)
 "eo" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper VSD Armory Airlock"
+	name = "\improper KZ Armory Airlock"
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
@@ -4839,7 +4839,7 @@
 "zI" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass{
-	name = "\improper VSD Medbay Airlock"
+	name = "\improper KZ Medbay Airlock"
 	},
 /turf/open/floor/grayscale/round/black,
 /area/antag_ship/vsd/med)
@@ -4884,7 +4884,7 @@
 "zX" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper VSD Technical Storage Airlock"
+	name = "\improper KZ Technical Storage Airlock"
 	},
 /turf/open/floor/grayscale/round/black,
 /area/antag_ship/vsd/engi)
@@ -5024,7 +5024,7 @@
 /area/antag_ship/vsd/port)
 "Bg" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper VSD Port Airlock"
+	name = "\improper KZ Port Airlock"
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,

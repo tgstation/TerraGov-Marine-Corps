@@ -1008,16 +1008,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //VSD RPG
 /obj/item/weapon/gun/launcher/rocket/vsd
 	name = "\improper C153 shoulder launcher"
-	desc = "An Anti-personnel Rocket Launcher made by Crash Core. Used mainly by VSD specialists, it can fire three specialized rounds. High Explosive, Incendiary Explosive, and a Chemical Capped High Explosive."
+	desc = "An Anti-personnel Rocket Launcher made by Crash Core. Used mainly by KZ specialists, it can fire three specialized rounds. High Explosive, Incendiary Explosive, and a Chemical Capped High Explosive."
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "c153"
 	worn_icon_state = "c153"
-	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
-	)
-	inhand_x_dimension = 64
-	inhand_y_dimension = 32
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
@@ -1164,7 +1158,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
-	fire_delay = 0.7 SECONDS
+	fire_delay = 0.6 SECONDS
 	windup_delay = 0 SECONDS
-	aim_slowdown = 2.75
-	movement_acc_penalty_mult = 5.5
+	aim_slowdown = 2

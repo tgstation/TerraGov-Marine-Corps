@@ -295,6 +295,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	faction = FACTION_VSD
 	categories = list(
 		"KZ Standard",
+		"KZ Medic",
 		"KZ Engineer",
 		"KZ Specialist",
 		"KZ Squad Leader",
@@ -338,10 +339,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 
 
 /obj/machinery/quick_vendor/vsd
-	desc = "An advanced vendor used by the VSD to rapidly equip their operatives"
+	desc = "An advanced vendor used by the KZ to rapidly equip their operatives"
 	faction = VENDOR_FACTION_VSD
 	categories = list(
 		"KZ Standard",
+		"KZ Medic",
 		"KZ Engineer",
 		"KZ Specialist",
 		"KZ Squad Leader",
