@@ -170,7 +170,7 @@
 	if(!(status_flags & INCORPOREAL) && TIMER_COOLDOWN_FINISHED(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		do_change_form()
 	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in contents)
-		sticky_bomb.clean_refs()
+		SEND_SIGNAL(sticky_bomb, COMSIG_ITEM_STICKY_CLEAN_REFS)
 		sticky_bomb.forceMove(loc)
 	forceMove(get_turf(get_core()))
 
