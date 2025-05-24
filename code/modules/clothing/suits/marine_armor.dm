@@ -822,10 +822,11 @@
 
 /obj/item/clothing/suit/storage/marine/vsd/harmor
 	name = "\improper Crasher MT-H/43 powered ballistic armor"
+	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	desc = "The Kaizoku Corporation's heavy armor, rarely given to the grunts. Protects the user from most bullet calibers."
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	icon_state = "vsd_armor_heavy"
-	worn_icon_state = "vsd_armor_heavy"
+	icon_state = "vsd_juggernaut_two"
+	worn_icon_state = "vsd_juggernaut_two"
 	soft_armor = list(MELEE = 45, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 45, BIO = 10, FIRE = 25, ACID = 30)
 
 /obj/item/clothing/suit/storage/marine/vsd/harmor/upp
@@ -836,12 +837,10 @@
 /obj/item/clothing/suit/storage/marine/vsd/juggernaut
 	name = "\improper Crasher MT-H/43 'Ares' powered ballistic armor"
 	desc = "The Kaizoku Corporation's juggernaut set, given to the best and trusted veterans. Protects the user from almost all bullet calibers."
-	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	icon_state = "vsd_juggernaut_ballistic"
 	worn_icon_state = "vsd_juggernaut_ballistic"
-	icon_state = "vsd_juggernaut_one"
-	worn_icon_state = "vsd_juggernaut_one"
 	soft_armor = list(MELEE = 50, BULLET = 90, LASER = 20, ENERGY = 15, BOMB = 50, BIO = 10, FIRE = 25, ACID = 30)
 
 /obj/item/clothing/suit/storage/marine/vsd/juggernaut/Initialize(mapload, ...)
