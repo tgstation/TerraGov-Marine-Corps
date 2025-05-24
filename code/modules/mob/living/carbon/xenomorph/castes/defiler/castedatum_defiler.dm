@@ -31,7 +31,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_hold_eggs = CAN_HOLD_ONE_HAND
-	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
@@ -39,9 +39,6 @@
 
 	// *** Minimap Icon *** //
 	minimap_icon = "defiler"
-
-	// *** Ruler Abilities *** ///
-	queen_leader_limit = 4
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
