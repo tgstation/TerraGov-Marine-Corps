@@ -111,16 +111,16 @@ EXPLOSIVES
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_sleep
-	name = "NT-1 Knock-out smoke grenades"
-	notes = "Contains 2 grenades"
+	name = "NT-1 Knock-out smoke grenade box"
+	notes = "Contains 25 grenades"
 	contains = list(
 		/obj/item/storage/box/visual/grenade/sleep,
 	)
 	cost = 400
 
 /datum/supply_packs/explosives/explosives_aphrotoxin
-	name = "NT-2 Aphrotoxin gas grenades"
-	notes = "Contains 2 grenades"
+	name = "NT-2 Aphrotoxin gas grenade box"
+	notes = "Contains 25 grenades"
 	contains = list(
 		/obj/item/storage/box/visual/grenade/aphrotoxin,
 	)
