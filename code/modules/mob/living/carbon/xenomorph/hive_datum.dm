@@ -2,6 +2,7 @@
 	interaction_flags = INTERACT_UI_INTERACT
 	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
+	///The current ruler of the xeno hive
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	///Timer for caste evolution after the last one died, CASTE = TIMER
 	var/list/caste_death_timers = list()
@@ -456,8 +457,6 @@
 
 /mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE, prevent_ruler=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
-	if(isxenoqueen(HS.living_xeno_ruler)) // theres already a queen
-		return
 
 	if(prevent_ruler)
 		return
@@ -774,8 +773,9 @@
 	return TRUE
 
 /// If the current ruler devolves or caste_swaps we want to properly handle it
-/datum/hive_status/proc/on_missing_ruler(mob/living/carbon/xenomorph/first, mob/living/carbon/xenomorph/second)
-	if(first == living_xeno_ruler)
+/datum/hive_status/proc/on_missing_ruler(mob/living/carbon/xenomorph/old_mob, mob/living/carbon/xenomorph/new_mob)
+	SIGNAL_HANDLER
+	if(old_mob == living_xeno_ruler)
 		living_xeno_ruler = null
 	update_leader_pheromones()
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
@@ -786,9 +786,9 @@
 		living_xeno_ruler.remove_ruler_abilities()
 		UnregisterSignal(living_xeno_ruler, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 	set_ruler(null)
-	update_ruler(first)
+	update_ruler(old_mob)
 
-// This proc attempts to find a new ruler to lead the hive.
+/// This proc attempts to find a new ruler to lead the hive.
 /datum/hive_status/proc/update_ruler(mob/living/carbon/xenomorph/previous_ruler)
 	SIGNAL_HANDLER
 	if(isxenoqueen(living_xeno_ruler))
