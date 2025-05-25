@@ -210,7 +210,8 @@
 		)
 	/// Used for the dragging functionality of pre-shuttter building
 	var/dragging = FALSE
-
+	/// The percentage of maximum health to heal the owner whenever a structure is built.
+	var/percentage_heal_on_use = 0
 
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/ability/activable/xeno/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
@@ -307,10 +308,15 @@
 	var/mob/living/carbon/xenomorph/xowner = owner
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		qb_build_resin(A)
-	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
+		return
+
+	if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
 	else
 		build_resin(get_turf(A))
+	if(percentage_heal_on_use)
+		var/health_healed = xeno_owner.maxHealth * percentage_heal_on_use
+		HEAL_XENO_DAMAGE(xeno_owner, health_healed, FALSE)
 
 /datum/action/ability/activable/xeno/secrete_resin/proc/get_wait()
 	. = base_wait

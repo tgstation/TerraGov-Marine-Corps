@@ -85,8 +85,16 @@
 	)
 	use_state_flags = ABILITY_USE_LYING
 	action_type = ACTION_TOGGLE
+	/// Is the ability active?
 	var/speed_activated = FALSE
+	/// Do they currently have the speed bonus applied to them?
 	var/speed_bonus_active = FALSE
+	/// Should plasma regeneration be stopped if the speed bonus is applied to them?
+	var/stop_plasma_regeneration = FALSE
+	/// The value to use when attaching armor.
+	var/armor_amount = 0
+	/// The attached armor to be applied/removed whenever they gain/lose the speed bonus.
+	var/datum/armor/attached_armor
 
 /datum/action/ability/xeno_action/toggle_speed/remove_action()
 	resinwalk_off(TRUE) // Ensure we remove the movespeed
@@ -104,7 +112,6 @@
 	resinwalk_on()
 	succeed_activate()
 
-
 /datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_on(silent = FALSE)
 	speed_activated = TRUE
 	if(!silent)
@@ -112,6 +119,11 @@
 	if(xeno_owner.loc_weeds_type)
 		speed_bonus_active = TRUE
 		xeno_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+		if(armor_amount && !attached_armor)
+			attached_armor = new(armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount)
+			xeno_owner.soft_armor.attachArmor(attached_armor)
+		if(stop_plasma_regeneration)
+			ADD_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, TRAIT_MUTATION)
 	set_toggle(TRUE)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(resinwalk_on_moved))
 
@@ -122,6 +134,11 @@
 	if(speed_bonus_active)
 		xeno_owner.remove_movespeed_modifier(type)
 		speed_bonus_active = FALSE
+		if(attached_armor)
+			xeno_owner.soft_armor.detachArmor(attached_armor)
+			attached_armor = null
+		if(stop_plasma_regeneration)
+			REMOVE_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, TRAIT_MUTATION)
 	speed_activated = FALSE
 	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
