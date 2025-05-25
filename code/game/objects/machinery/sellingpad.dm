@@ -11,6 +11,24 @@
 	active_power_usage = 3000
 	COOLDOWN_DECLARE(selling_cooldown)
 
+/obj/machinery/exportpad/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	var/obj/item/card/voucher/voucher = I
+	if(istype(voucher))
+		if(voucher.faction == faction)
+			to_chat(user, span_warning("[src] buzzes: Cannot redeem voucher - can only be redeemed by other factions."))
+			return
+		else
+			I.supply_export(faction)
+			qdel(I)
+			return TRUE
+	if(istype(I, /obj/item/disk/intel_disk))
+		I.supply_export(faction)
+		qdel(I)
+		return TRUE
+
 /obj/machinery/exportpad/attack_hand(mob/living/user)
 	. = ..()
 
@@ -47,12 +65,25 @@
 			can_sell = TRUE
 		if(is_research_product(onpad))
 			can_sell = TRUE
+		if(istype(onpad, /obj/structure/closet))
+			can_sell = TRUE
+		if(istype(onpad, /obj/item/card/voucher))
+			var/obj/item/card/voucher/voucher = onpad
+			if(voucher.faction == user.faction)
+				to_chat(user, span_warning("[src] buzzes: Cannot redeem voucher - can only be redeemed by other factions."))
+			can_sell = TRUE
+		if(istype(onpad, /obj/item/disk/intel_disk))
+			can_sell = TRUE
 		if(!can_sell)
 			continue
-		var/datum/export_report/export_report = onpad.supply_export(user.faction)
-		if(export_report)
+		var/list/datum/export_report/export_reports = onpad.supply_export(user.faction)
+		var/points = 0
+		var/dropship_points = 0
+		for(var/datum/export_report/export_report in export_reports)
+			points += export_report.points
+			dropship_points += export_report.dropship_points
 			SSpoints.export_history += export_report
-		visible_message(span_notice("[src] buzzes: The [onpad] has been sold for [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."))
+		visible_message(span_notice("[src] buzzes: The [onpad] has been sold for [points ? points : "no"] supply point[points == 1 ? "" : "s"][dropship_points ? " and [dropship_points] dropship point[dropship_points == 1 ? "" : "s"]" : ""]."))
 		qdel(onpad)
 
 	do_sparks(5, TRUE, src)

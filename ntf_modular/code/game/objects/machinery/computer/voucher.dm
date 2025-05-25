@@ -22,7 +22,7 @@
 
 /obj/item/card/voucher/supply_export(faction_selling)
 	if(faction_selling == faction)
-		return list(new /datum/export_report(0, name, faction_selling))
+		return list(new /datum/export_report(0, name, faction_selling, 0))
 	return ..()
 
 /obj/machinery/computer/voucher

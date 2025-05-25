@@ -6,17 +6,17 @@
 
 	SSpoints.add_supply_points(faction_selling, points[1])
 	SSpoints.add_dropship_points(faction_selling, points[2])
-	return list(new /datum/export_report(points[1], name, faction_selling))
+	return list(new /datum/export_report(points[1], name, faction_selling, points[2]))
 
 /mob/living/carbon/human/supply_export(faction_selling)
 	if(!can_sell_human_body(src, faction_selling))
-		return list(new /datum/export_report(0, name, faction_selling))
+		return list(new /datum/export_report(0, name, faction_selling, 0))
 	return ..()
 
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	if(faction_selling in hive.allied_factions)
-		return list(new /datum/export_report(0, name, faction_selling))
+		return list(new /datum/export_report(0, name, faction_selling, 0))
 	. = ..()
 	if(!.)
 		return FALSE
