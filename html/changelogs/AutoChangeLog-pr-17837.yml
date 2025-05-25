@@ -1,5 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - rscdel: "Removed mech weapons from the riptide cave ship"
-  - rscdel: "Removed intelligence computer on the riptide cave ship"
