@@ -317,7 +317,10 @@
 	)
 	use_state_flags = ABILITY_USE_LYING
 	target_flags = ABILITY_MOB_TARGET
+	/// The range in which the ability can be used.
 	var/heal_range = HIVELORD_HEAL_RANGE
+	/// The duration of Resin Jelly that will be applied, if any.
+	var/resin_jelly_duration = 0 SECONDS
 
 /datum/action/ability/activable/xeno/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
