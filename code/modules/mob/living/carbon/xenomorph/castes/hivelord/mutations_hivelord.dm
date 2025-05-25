@@ -29,7 +29,7 @@
 
 /datum/mutation_upgrade/veil/protective_light
 	name = "Protective Light"
-	desc = "Healing Beam now also applies the effects of resin jelly. The plasma cost is now 2x/1.75x/1.5x of the original cost."
+	desc = "Healing Infusion now also applies the effects of resin jelly for 15s. The plasma cost is now 2x/1.75x/1.5x of the original cost."
 
 /datum/mutation_upgrade/veil/protective_light/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/healing_infusion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/healing_infusion]
