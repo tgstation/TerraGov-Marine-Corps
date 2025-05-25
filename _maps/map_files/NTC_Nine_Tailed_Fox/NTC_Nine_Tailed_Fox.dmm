@@ -400,6 +400,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "axV" = (
@@ -730,12 +731,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "aHY" = (
-/obj/structure/window/framed/mainship/toughened{
-	name = "kevlar-weave infused bulletproof window"
-	},
-/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
-	dir = 2;
-	id = "floor3shipcheckpoint"
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -2435,9 +2432,11 @@
 	outside = 1
 	})
 "cbl" = (
-/obj/structure/reagent_dispensers/fueltank/spacefuel,
+/obj/structure/bed/chair/sofa/right{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
+/area/mainship/groundhq/ntf/shipboard/brig)
 "cbn" = (
 /obj/machinery/landinglight/cas{
 	dir = 4
@@ -3160,14 +3159,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "cHz" = (
-/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
-	dir = 2;
-	id = "floor3shipcheckpoint"
+/obj/structure/bed/chair/sofa/left{
+	dir = 8
 	},
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "cIt" = (
 /obj/machinery/door/airlock/mainship/marine/general/corps,
@@ -3509,9 +3504,15 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "cXZ" = (
-/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/prop/urban/airport/refuelinghose2{
+	pixel_x = -12;
+	pixel_y = -12
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/ntf/shipboard/brig)
+/area/mainship/hallways/hangar)
 "cYd" = (
 /obj/machinery/light{
 	dir = 8
@@ -3979,17 +3980,16 @@
 	outside = 0
 	})
 "dzp" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "floor3shipcheckpoint"
 	},
-/obj/structure/ladder{
-	id = "NTFLadder6";
-	height = 2
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Recreation Area"
 	},
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
 	})
 "dzM" = (
 /obj/machinery/light/floor,
@@ -5572,6 +5572,27 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/shipboard/brig)
+"fcB" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
+	name = "\improper ST-571 sentry gun"
+	},
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/obj/structure/barricade/solid{
+	dir = 1
+	},
+/obj/structure/barricade/solid{
+	dir = 8
+	},
+/obj/structure/barricade/solid,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
+	})
 "fcK" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -6408,6 +6429,9 @@
 "fOv" = (
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/structure/bed/chair/sofa/right{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -9739,15 +9763,14 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "iQQ" = (
-/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
-	dir = 2;
-	id = "floor3shipcheckpoint"
+/obj/structure/ladder{
+	id = "NTFLadder6";
+	height = 2
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Recreation Area"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/ntf/shipboard/brig)
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
+	})
 "iRe" = (
 /obj/machinery/floodlight/landing,
 /obj/machinery/landinglight/alamo{
@@ -14089,6 +14112,18 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
+	})
+"mzK" = (
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "floor3shipcheckpoint"
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
 	})
 "mAg" = (
 /obj/structure/disposalpipe/segment/corner,
@@ -18968,6 +19003,7 @@
 /area/mainship/hallways/hangar)
 "rlW" = (
 /obj/item/radio/intercom/general,
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "rmi" = (
@@ -26256,12 +26292,17 @@
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "ycY" = (
-/obj/structure/prop/urban/airport/refuelinghose2{
-	pixel_x = -12;
-	pixel_y = -12
+/obj/structure/window/framed/mainship/toughened{
+	name = "kevlar-weave infused bulletproof window"
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "floor3shipcheckpoint"
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
+	})
 "yds" = (
 /obj/machinery/marine_selector/gear/medic,
 /obj/machinery/camera/autoname/mainship,
@@ -32436,7 +32477,7 @@ fda
 pFH
 asD
 kyS
-dzp
+juD
 mKo
 cbA
 iqW
@@ -45661,7 +45702,7 @@ aMa
 dqn
 aMa
 axM
-cbl
+tIk
 fXK
 tIk
 gZA
@@ -45780,7 +45821,7 @@ aMa
 rRj
 aMa
 rlW
-cbl
+tIk
 fXK
 tIk
 gZA
@@ -45900,8 +45941,8 @@ ppO
 aMa
 kEG
 tIk
-fXK
-ycY
+cXZ
+tIk
 gZA
 sEt
 pdX
@@ -46022,8 +46063,8 @@ tIk
 fXK
 tIk
 aKJ
-jZf
 xRH
+jZf
 jRJ
 nBV
 pin
@@ -55758,15 +55799,15 @@ qZo
 xom
 bRl
 wNT
-kQG
+aHY
 fOv
-gQR
-kQG
 kQG
 aHY
-qZo
-qZo
-xom
+fOv
+kQG
+iQQ
+fcB
+ycY
 qZo
 jUb
 qZo
@@ -55879,13 +55920,13 @@ mnG
 jLt
 fyR
 fyR
-cXZ
+hkH
 fyR
 fyR
-iQQ
+fyR
 wJU
 wJU
-wJU
+dzp
 hvJ
 now
 qZo
@@ -56001,10 +56042,10 @@ svf
 fcA
 fcA
 fcA
-cHz
+fcA
 sxD
 sxD
-sxD
+mzK
 sxD
 mHU
 wWc
@@ -56114,16 +56155,16 @@ qZo
 jUb
 qZo
 bRl
-kQG
+gQR
 kQG
 gUv
 kQG
+cbl
+cHz
 kQG
-kQG
-aHY
 hkj
 cPu
-qZo
+ycY
 qZo
 jUb
 qZo

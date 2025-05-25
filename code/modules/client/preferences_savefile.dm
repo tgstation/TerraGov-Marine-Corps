@@ -491,8 +491,8 @@
 	READ_FILE(S["job_preferences"], job_preferences)
 	READ_FILE(S["quick_equip"], quick_equip)
 	READ_FILE(S["gear"], gear)
-	READ_FILE(S["underwear"], underwear)
-	READ_FILE(S["undershirt"], undershirt)
+	//READ_FILE(S["underwear"], underwear)
+	//READ_FILE(S["undershirt"], undershirt)
 	READ_FILE(S["backpack"], backpack)
 
 	READ_FILE(S["h_style"], h_style)
@@ -770,8 +770,8 @@
 	WRITE_FILE(S["job_preferences"], job_preferences)
 	WRITE_FILE(S["quick_equip"], quick_equip)
 	WRITE_FILE(S["gear"], gear)
-	WRITE_FILE(S["underwear"], underwear)
-	WRITE_FILE(S["undershirt"], undershirt)
+	//WRITE_FILE(S["underwear"], underwear)
+	//WRITE_FILE(S["undershirt"], undershirt)
 	WRITE_FILE(S["backpack"], backpack)
 
 	WRITE_FILE(S["h_style"], h_style)

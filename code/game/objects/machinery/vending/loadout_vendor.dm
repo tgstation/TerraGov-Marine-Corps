@@ -18,6 +18,7 @@
 		"Squad Corpsman",
 		"Squad Smartgunner",
 		"Squad Leader",
+		"Squad Specialist",
 		"Field Commander",
 		"Synthetic",
 	)
