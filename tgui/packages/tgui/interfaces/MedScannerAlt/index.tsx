@@ -35,7 +35,7 @@ import {
   MedConditionalIcon,
 } from '../MedScanner/MedConditional';
 import { MedCounter } from '../MedScanner/MedCounter';
-import { MedDamageType } from './MedDamageType';
+import { MedDamageType } from '../MedScanner/MedDamageType';
 
 export function MedScannerAlt() {
   const { data } = useBackend<MedScannerData>();
@@ -172,6 +172,7 @@ function PatientBasics() {
                 : 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Treated with Bicaridine or advanced trauma kits.'
             }
             noPadding
+            altUI
           />
         </Flex.Item>
         <Flex.Item grow={1}>
@@ -184,6 +185,8 @@ function PatientBasics() {
                 ? 'Burn. Sustained from sources of burning such as energy weapons, acid, fire, etc. Repaired with cable coils or a robotic cradle.'
                 : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Kelotane or advanced burn kits.'
             }
+            noPadding
+            altUI
           />
         </Flex.Item>
         {!species.is_robotic_species && (
@@ -194,6 +197,8 @@ function PatientBasics() {
                 color="green"
                 damage={toxin}
                 tooltip="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene."
+                noPadding
+                altUI
               />
             </Flex.Item>
             <Flex.Item grow={1}>
@@ -202,6 +207,8 @@ function PatientBasics() {
                 color="blue"
                 damage={oxy}
                 tooltip="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin/Dexalin Plus or decreases on its own if the patient isn't in critical condition."
+                noPadding
+                altUI
               />
             </Flex.Item>
           </>
@@ -217,6 +224,8 @@ function PatientBasics() {
                   ? 'Integrity Damage. Sustained from xenomorph psychic draining. Treated with a robotic cradle.'
                   : 'Cloneloss. Sustained from xenomorph psychic draining or special chemicals. Treated with cryogenics or sleep.'
               }
+              noPadding
+              altUI
             />
           </Flex.Item>
         )}
@@ -227,6 +236,8 @@ function PatientBasics() {
                 name="Tox"
                 tooltip="Robotic species cannot build up toxins."
                 disabled
+                noPadding
+                altUI
               />
             </Flex.Item>
             <Flex.Item grow={1}>
@@ -234,6 +245,8 @@ function PatientBasics() {
                 name="Oxy"
                 tooltip="Robotic species do not suffocate."
                 disabled
+                noPadding
+                altUI
               />
             </Flex.Item>
             {!!species.is_synthetic && (
@@ -242,6 +255,8 @@ function PatientBasics() {
                   name="Clone"
                   tooltip="Synthetics do not suffer cellular damage or long term integrity loss."
                   disabled
+                  noPadding
+                  altUI
                 />
               </Flex.Item>
             )}
