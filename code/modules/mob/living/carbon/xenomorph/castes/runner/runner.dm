@@ -92,7 +92,8 @@
 /// Deals a second instance of melee damage as burn damage to damageable objects.
 /mob/living/carbon/xenomorph/runner/melter/proc/on_attack_obj(mob/living/carbon/xenomorph/source, obj/target)
 	SIGNAL_HANDLER
-	target.take_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, second_damage_type, second_damage_armor)
+	if(target.resistance_flags & XENO_DAMAGEABLE)
+		target.take_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, second_damage_type, second_damage_armor)
 
 /// Deals a second instance of melee damage as burn damage to living beings.
 /mob/living/carbon/xenomorph/runner/melter/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
