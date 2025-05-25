@@ -46,6 +46,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_THROW_HUGGER,
 	)
 	cooldown_duration = 3 SECONDS
+	/// The mulitplier to modify the Facehugger's impact_time, activate_time, and proximity_time.
+	var/activation_time_multiplier = 1
+	/// The range in which the Facehugger can leap.
+	var/leapping_range = 4
+	/// If they have it, how much deciseconds should owner's Resin Jelly status effect decrease by in order to grant thrown facehuggers fire immunity? Must be greater than 0 to take effect.
+	var/fire_immunity_transfer = 0 SECONDS
 
 /datum/action/ability/activable/xeno/throw_hugger/get_cooldown()
 	return xeno_owner.xeno_caste.hugger_delay
@@ -82,6 +88,16 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		to_chat(xeno_owner, span_xenonotice("We grab one of the facehuggers in our storage. Now sheltering: [xeno_owner.huggers] / [xeno_owner.xeno_caste.huggers_max]."))
 
 	if(!cooldown_timer)
+		if(fire_immunity_transfer)
+			var/datum/status_effect/resin_jelly_coating/fire_immunity_effect = xeno_owner.has_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
+			if(fire_immunity_effect)
+				fire_immunity_effect.duration = max(1, fire_immunity_effect.duration - fire_immunity_transfer)
+				fire_immunity_effect.check_duration()
+				F.fire_immune = TRUE
+		F.impact_time = max(0.5 SECONDS, initial(F.impact_time) * activation_time_multiplier)
+		F.activate_time = max(0.5 SECONDS, initial(F.activate_time) * activation_time_multiplier)
+		F.proximity_time = max(0.5 SECONDS, initial(F.proximity_time) * activation_time_multiplier)
+		F.leap_range = leapping_range
 		xeno_owner.dropItemToGround(F)
 		playsound(xeno_owner, 'sound/effects/throw.ogg', 30, TRUE)
 		F.stat = CONSCIOUS //Hugger is conscious
