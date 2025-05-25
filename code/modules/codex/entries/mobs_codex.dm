@@ -33,8 +33,8 @@
 	armor_in_list = hard_armor.getList()
 	for(var/armor_type in armor_in_list)
 		xeno_strings += "Hard [armor_type] armor: [armor_in_list[armor_type]]"
-	xeno_strings += "Max plasma: [xeno_caste.plasma_max]"
-	xeno_strings += "Plasma gain: [xeno_caste.plasma_gain]"
+	xeno_strings += "Max plasma: [plasma_maximum]"
+	xeno_strings += "Plasma gain: [plasma_regeneration]"
 	xeno_strings += "Hive: [hive?.name]"
 
 	if(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED)

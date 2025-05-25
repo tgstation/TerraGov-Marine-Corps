@@ -162,8 +162,8 @@
 
 	. += "Health: [health]/[maxHealth][overheal ? " + [overheal]": ""]" //Changes with balance scalar, can't just use the caste
 
-	if(xeno_caste.plasma_max > 0)
-		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
+	if(plasma_maximum > 0)
+		. += "Plasma: [plasma_stored]/[plasma_maximum]"
 
 	. += "Armor: [100-sunder]%"
 
@@ -234,7 +234,7 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/set_plasma(value, update_plasma = TRUE)
-	plasma_stored = clamp(value, 0, xeno_caste.plasma_max)
+	plasma_stored = clamp(value, 0, plasma_maximum)
 	if(!update_plasma)
 		return
 	hud_set_plasma()
@@ -247,7 +247,7 @@
 	hud_set_plasma()
 
 /mob/living/carbon/xenomorph/proc/gain_plasma(value, update_plasma = TRUE)
-	plasma_stored = min(plasma_stored + value, xeno_caste.plasma_max)
+	plasma_stored = min(plasma_stored + value, plasma_maximum)
 	update_action_button_icons()
 	if(!update_plasma)
 		return

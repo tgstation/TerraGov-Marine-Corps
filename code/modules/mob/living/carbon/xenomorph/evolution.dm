@@ -268,7 +268,7 @@
 		balloon_alert(src, "We must be at full health to evolve")
 		return FALSE
 
-	if(plasma_stored < (xeno_caste.plasma_max * xeno_caste.plasma_regen_limit))
+	if(plasma_stored < (plasma_maximum * plasma_regeneration_percentage_limit))
 		balloon_alert(src, "We must be at full plasma to evolve")
 		return FALSE
 

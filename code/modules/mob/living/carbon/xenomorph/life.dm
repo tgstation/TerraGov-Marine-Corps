@@ -113,7 +113,7 @@
 	if(!istype(T)) //This means plasma doesn't update while you're in things like a vent, but since you don't have weeds in a vent or can actually take advantage of pheros, this is fine
 		return
 
-	if(!current_aura && (plasma_stored >= xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)) //no loss or gain
+	if(!current_aura && (plasma_stored >= plasma_maximum * plasma_regeneration_percentage_limit)) //no loss or gain
 		return
 
 	if(current_aura)
@@ -129,7 +129,7 @@
 			hud_set_plasma()
 		return
 
-	var/plasma_gain = xeno_caste.plasma_gain
+	var/plasma_gain = plasma_regeneration
 
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
@@ -142,7 +142,7 @@
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod, seconds_per_tick)
 
-	plasma_mod[1] = clamp(plasma_mod[1], 0, xeno_caste.plasma_max * xeno_caste.plasma_regen_limit - plasma_stored)
+	plasma_mod[1] = clamp(plasma_mod[1], 0, plasma_maximum * plasma_regeneration_percentage_limit - plasma_stored)
 
 	gain_plasma(plasma_mod[1])
 

@@ -315,8 +315,15 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// /datum/xeno_caste that we will be on init
 	var/caste_base_type
 	var/language = "Xenomorph"
-	///Plasma currently stored
+
+	/// The maximum amount of plasma that they can have.
+	var/plasma_maximum = 10
+	/// The current amount of stored plasma.
 	var/plasma_stored = 0
+	/// The amount plasma gained everytime `handle_living_plasma_updates()` is called.
+	var/plasma_regeneration = 5
+	/// Limits the amount of plasma gained from `handle_living_plasma_updates()` up to this percentage of plasma_maximum.
+	var/plasma_regeneration_percentage_limit = 1
 
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob

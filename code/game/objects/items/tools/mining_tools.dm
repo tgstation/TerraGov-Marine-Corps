@@ -256,7 +256,7 @@
 			cell.charge += 200
 			var/mob/living/carbon/xenomorph/xeno = M
 			if(!CHECK_BITFIELD(xeno.xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
-				xeno.use_plasma(round(xeno.xeno_caste.plasma_regen_limit * xeno.xeno_caste.plasma_max * 0.2)) //One fifth of the xeno's regeneratable plasma per hit.
+				xeno.use_plasma(round(xeno.plasma_regeneration_percentage_limit * xeno.plasma_maximum * 0.2)) //One fifth of the xeno's regeneratable plasma per hit.
 	return ..()
 
 

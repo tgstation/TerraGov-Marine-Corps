@@ -64,7 +64,7 @@
 	if(isxeno(target_mob))
 		var/mob/living/carbon/xenomorph/X = target_mob
 		if(!(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE))
-			X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+			X.use_plasma(drain_multiplier * X.plasma_maximum * X.plasma_regeneration_percentage_limit)
 			X.use_plasma(plasma_drain)
 
 /datum/ammo/bullet/pepperball/pepperball_mini

@@ -351,7 +351,7 @@
 /datum/status_effect/plasmadrain/tick(delta_time)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	// This proc can handle everything and hud updating, use it.
-	xenoowner.use_plasma(xenoowner.xeno_caste.plasma_max / 10)
+	xenoowner.use_plasma(xenoowner.plasma_maximum / 10)
 
 /datum/status_effect/noplasmaregen
 	id = "noplasmaregen"
