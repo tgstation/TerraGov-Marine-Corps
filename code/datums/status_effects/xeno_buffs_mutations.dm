@@ -78,15 +78,3 @@
 	if(!.)
 		return
 	owner.emote("roar2")
-
-/**
- * Veil
- */
-/atom/movable/screen/alert/status_effect/veil
-	name = "Veil Mutation"
-	desc = "Your Veil Mutation is taking effect."
-	icon_state = "xenobuff_veil"
-
-/datum/status_effect/mutation_veil_upgrade
-	id = "mutation_upgrade_veil"
-	alert_type = MUTATION_VEIL_ALERT
