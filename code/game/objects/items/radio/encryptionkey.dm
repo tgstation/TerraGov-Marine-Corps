@@ -43,14 +43,19 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 	icon_state = "rob_cypherkey"
 	channels = list(RADIO_CHANNEL_CAS = TRUE)
 
+/obj/item/encryptionkey/sec
+	name = "\improper CorpSec radio encryption key"
+	icon_state = "sec_cypherkey"
+	channels = list(RADIO_CHANNEL_SEC = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
+
 /obj/item/encryptionkey/mcom
 	name = "\improper Marine Command radio encryption key"
 	icon_state = "cap_cypherkey"
-	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
+	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_SEC = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 	custom_squad_factions = ENCRYPT_CUSTOM_TERRAGOV
 
 /obj/item/encryptionkey/mcom/ai //AI only.
-	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
+	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_SEC = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 
 
 /obj/item/encryptionkey/squadlead
@@ -91,8 +96,8 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 
 
 /obj/item/encryptionkey/PMC
-	name = "\improper Nanotrasen encryption key"
-	channels = list(RADIO_CHANNEL_PMC = TRUE)
+	name = "\improper Ninetails encryption key"
+	channels = list(RADIO_CHANNEL_COMMON = TRUE, RADIO_CHANNEL_PMC = TRUE)
 	independent = TRUE
 
 
@@ -140,7 +145,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 	independent = TRUE
 
 /obj/item/encryptionkey/vsd
-	name = "\improper Security Detail encryption key"
+	name = "\improper Kaizoku's encryption key"
 	channels = list(RADIO_CHANNEL_VSD = TRUE)
 	independent = TRUE
 

@@ -27,6 +27,30 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dheight = 2
 	height = 5
 
+/obj/docking_port/stationary/supplyhq
+	id = "supply_hq"
+	roundstart_template = /datum/map_template/shuttle/supplyhq
+	width = 5
+	dwidth = 2
+	dheight = 2
+	height = 5
+
+/obj/docking_port/stationary/supplysom
+	id = "supply_som"
+	roundstart_template = /datum/map_template/shuttle/supplysom
+	width = 3
+	dwidth = 1
+	dheight = 0
+	height = 1
+
+/obj/docking_port/stationary/supplyclf
+	id = "supply_clf"
+	roundstart_template = /datum/map_template/shuttle/supplyclf
+	width = 3
+	dwidth = 1
+	dheight = 0
+	height = 1
+
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = SHUTTLE_SUPPLY
@@ -202,7 +226,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			var/datum/export_report = AM.supply_export(faction)
+			var/list/datum/export_report = AM.supply_export(faction)
 			if(export_report)
 				SSpoints.export_history += export_report
 			qdel(AM)
@@ -414,21 +438,21 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["shopping_history"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
 	if(supply_shuttle)
 		if(supply_shuttle?.mode == SHUTTLE_CALL)
-			if(is_mainship_level(supply_shuttle.destination.z))
+			if(is_mainship_level(supply_shuttle.destination.z) || is_antagmainship_level(supply_shuttle.destination.z))
 				.["elevator"] = "Raising"
 				.["elevator_dir"] = "up"
 			else
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
 		else if(supply_shuttle?.mode == SHUTTLE_IDLE)
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				.["elevator"] = "Raised"
 				.["elevator_dir"] = "down"
 			else
 				.["elevator"] = "Lowered"
 				.["elevator_dir"] = "up"
 		else
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
 			else
@@ -479,7 +503,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if("send")
 			if(supply_shuttle.mode != SHUTTLE_IDLE)
 				return
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				if (!supply_shuttle.check_blacklist())
 					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
@@ -564,12 +588,25 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	return SU.interact(user)
 
 /obj/item/storage/backpack/marine/radiopack
-	name = "\improper TGMC radio operator backpack"
-	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops."
+	name = "\improper NTC radio operator backpack"
+	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops. It also provides a boost to connectivity of comms of the user."
 	icon_state = "radiopack"
 	worn_icon_state = "radiopack"
 	///Var for the window pop-up
 	var/datum/supply_ui/requests/supply_interface
+
+/obj/item/storage/backpack/marine/radiopack/equipped(mob/user, slot)
+	. = ..()
+	//works on hand either i guess (probably)
+	RegisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK, PROC_REF(on_interference_check))
+
+/obj/item/storage/backpack/marine/radiopack/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_CAVE_INTERFERENCE_CHECK)
+
+/obj/item/storage/backpack/marine/radiopack/proc/on_interference_check(source, list/inplace_interference)
+	SIGNAL_HANDLER
+	inplace_interference[1] = max(0, inplace_interference[1] - 1)
 
 /obj/item/storage/backpack/marine/radiopack/Initialize(mapload, ...)
 	. = ..()
@@ -586,6 +623,40 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		supply_interface = new(src)
 	return supply_interface.interact(user)
 
+/obj/machinery/computer/supplycomp/som
+	shuttle_id = "supplysom"
+	faction = FACTION_SOM
+	home_id = "supply_som"
+	req_access = list(ACCESS_SOM_REQUESITIONS)
+
+/obj/machinery/computer/supplycomp/clf
+	shuttle_id = "supplyclf"
+	faction = FACTION_CLF
+	home_id = "supply_clf"
+	req_access = list(ACCESS_CLF_CARGO)
+
+/obj/docking_port/mobile/supply/som
+	dir = 1
+	height = 1
+	home_id = "supply_som"
+	id = "supplysom"
+	name = "som supply shuttle"
+	dheight = 0
+	dwidth = 0
+	width = 3
+	faction = FACTION_SOM
+
+/obj/docking_port/mobile/supply/clf
+	dir = 1
+	height = 1
+	home_id = "supply_clf"
+	id = "supplyclf"
+	name = "clf supply shuttle"
+	dheight = 0
+	dwidth = 0
+	width = 3
+	faction = FACTION_CLF
+
 /obj/docking_port/mobile/supply/vehicle
 	railing_gear_name = "vehicle"
 	id = SHUTTLE_VEHICLE_SUPPLY
@@ -596,13 +667,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!veh_ui || !veh_ui.current_veh_type)
 		return
 	var/obj/vehicle/sealed/armored/tanktype = veh_ui.current_veh_type
-	var/is_assault = initial(tanktype.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
-	if(GLOB.purchased_tanks[user.faction]?["[is_assault]"])
-		to_chat(usr, span_danger("A vehicle of this type has already been purchased!"))
-		return
-	if(!GLOB.purchased_tanks[user.faction])
-		GLOB.purchased_tanks[user.faction] = list()
-	GLOB.purchased_tanks[user.faction]["[is_assault]"] += 1
 	var/obj/vehicle/sealed/armored/tank = new tanktype(loc)
 	if(veh_ui.current_primary)
 		var/obj/item/armored_weapon/gun = new veh_ui.current_primary(loc)
@@ -637,7 +701,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 GLOBAL_LIST_EMPTY(armored_gunammo)
 GLOBAL_LIST_EMPTY(armored_modtypes)
 GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
-GLOBAL_LIST_EMPTY(purchased_tanks)
 #define DEFAULT_MAX_ARMORED_AMMO 20
 
 ///im a lazy bum who cant use initial on lists, so we just load everything into a list
@@ -796,11 +859,6 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 		if("setvehicle")
 			var/newtype = text2path(params["type"])
 			if(!ispath(newtype, /obj/vehicle/sealed/armored))
-				return
-			var/obj/vehicle/sealed/armored/tank_type = newtype
-			var/is_assault = initial(tank_type.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
-			if(GLOB.purchased_tanks[usr.faction]?["[is_assault]"])
-				to_chat(usr, span_danger("A vehicle of this type has already been purchased!"))
 				return
 			current_veh_type = newtype
 			current_primary = null

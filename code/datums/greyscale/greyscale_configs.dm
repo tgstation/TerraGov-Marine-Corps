@@ -97,6 +97,15 @@
 /datum/greyscale_config/armor_mk1/skirmisher
 	icon_file = 'icons/mob/modular/mark_one/skirmisher.dmi'
 
+/datum/greyscale_config/armor_mk1/kabuto
+	icon_file = 'icons/mob/modular/mark_one/kabuto.dmi'
+
+/datum/greyscale_config/armor_mk1/hotaru
+	icon_file = 'icons/mob/modular/mark_one/hotaru.dmi'
+
+/datum/greyscale_config/armor_mk1/dashe
+	icon_file = 'icons/mob/modular/mark_one/dashe.dmi'
+
 /datum/greyscale_config/armor_mk1/mjolnir
 	icon_file = 'icons/mob/modular/mark_one/mjolnir.dmi'
 
@@ -116,6 +125,20 @@
 /datum/greyscale_config/exoskeleton
 	icon_file = 'icons/mob/modular/syndicate_hardsuits.dmi'
 	json_config = 'code/datums/greyscale/json_configs/exoskeleton.json'
+
+//VSD variant for hardsuits! Very fat hardsuits!
+/datum/greyscale_config/vsd_hardsuit
+	prefix = "superheavy_"
+	icon_file = 'icons/mob/modular/vsd_hardsuit.dmi'
+	json_config = 'code/datums/greyscale/json_configs/vsd_hardsuit.json'
+
+/datum/greyscale_config/vsd_hardsuit/alt
+	prefix = "superheavy_alt_"
+
+/datum/greyscale_config/vsd_hardsuit/alt_two
+	prefix = "superheavy_alt_two_"
+
+/datum/greyscale_config/vsd_hardsuit/exoskeleton
 
 //Mark 2
 
@@ -153,6 +176,9 @@
 /datum/greyscale_config/armor_mk2/trooper
 	icon_file = 'icons/mob/modular/mark_two/trooper.dmi'
 
+/datum/greyscale_config/armor_mk2/hotaru
+	icon_file = 'icons/mob/modular/mark_two/hotaru.dmi'
+
 /datum/greyscale_config/armor_mk2/mjolnir_open
 	icon_file = 'icons/mob/modular/mark_two/mjolnir_open.dmi'
 
@@ -169,6 +195,12 @@
 
 /datum/greyscale_config/xenonaut/pilot
 	prefix = "pilot_"
+
+/datum/greyscale_config/xenonaut/bulletproof
+	prefix = "bulletproof_"
+
+/datum/greyscale_config/xenonaut/bikini
+	prefix = "bikini_"
 
 /datum/greyscale_config/xenonaut/helm
 	json_config = 'code/datums/greyscale/json_configs/xenonaut_helm.json'

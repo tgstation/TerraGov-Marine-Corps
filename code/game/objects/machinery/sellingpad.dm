@@ -68,7 +68,8 @@
 		to_chat(user, "You bolt the [src] to the ground, activating it.")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 		icon_state = "broadcaster"
-		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "asrs", MINIMAP_BLIPS_LAYER))
+		var/minimapflag = GLOB.faction_to_minimap_flag[user.faction] || MINIMAP_FLAG_MARINE
+		SSminimaps.add_marker(src, minimapflag, image('icons/UI_icons/map_blips.dmi', null, "asrs", MINIMAP_BLIPS_LAYER))
 	else
 		to_chat(user, "You unbolt the [src] from the ground, deactivating it.")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)

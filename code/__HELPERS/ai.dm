@@ -88,12 +88,15 @@
 		for(var/mob/living/nearby_human AS in cheap_get_humans_near(source, distance))
 			if(nearby_human.stat == DEAD || nearby_human.faction == attacker_faction || nearby_human.alpha <= SCOUT_CLOAK_RUN_ALPHA)
 				continue
-			if(get_dist(source, nearby_human) >= shorter_distance)
+			if(source.issamexenohive(nearby_human))
+				continue
+			if(isnestedhost(nearby_human))
 				continue
 			if(need_los && !line_of_sight(source, nearby_human))
 				continue
-			nearest_target = nearby_human
-			shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
+			if(get_dist(source, nearby_human) < shorter_distance)
+				nearest_target = nearby_human
+				shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
 	if(target_flags & TARGET_XENO)
 		nearby_xeno_list = cheap_get_xenos_near(source, shorter_distance - 1)
 		for(var/mob/nearby_xeno AS in nearby_xeno_list)
@@ -111,6 +114,8 @@
 			shorter_distance = get_dist(source, nearby_xeno)
 	if(target_flags & TARGET_HUMAN_TURRETS)
 		for(var/obj/machinery/deployable/mounted/sentry/nearby_turret AS in GLOB.marine_turrets)
+			if(source.issamexenohive(nearby_turret))
+				continue
 			if(source.z != nearby_turret.z)
 				continue
 			if((GLOB.faction_to_iff[attacker_faction] == nearby_turret.iff_signal))

@@ -11,7 +11,7 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|BANISH_IMMUNE
 	layer = BELOW_TABLE_LAYER
 
 	max_integrity = 140

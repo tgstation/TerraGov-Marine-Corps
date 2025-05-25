@@ -186,7 +186,7 @@ export class Changelog extends Component {
 
     const header = (
       <Section>
-        <h1>TerraGov Marine Corps</h1>
+        <h1>Nine Tailed Fox</h1>
         <p>
           <b>Thanks to:</b> The CM-SS13 devs, The Russian CM, Baystation 12,
           /tg/Station, /vg/station, NTstation, CDK Station devs,
@@ -237,7 +237,7 @@ export class Changelog extends Component {
           <a href="http://forums.somethingawful.com/">SomethingAwful Goons</a>
           {' only.'}
         </p>
-        <h3>TerraGov Marine Corps License</h3>
+        <h3>Nine Tailed Fox License</h3>
         <p>
           {
             'This is a fork based off the July-2018 version of ColonialMarines. To see the original, GPL repo, go'
