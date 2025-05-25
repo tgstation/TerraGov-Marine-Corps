@@ -1,0 +1,5 @@
+author: "Vany3045"
+delete-after: True
+changes:
+  - balance: "HvH heavy robot armor now has medium slowdown, and additional +5 soft armor for lasers."
+  - imageadd: "new TDF robot armor sprites for HvH."

@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Monkeys no longer do hugely more melee damage than intended"
+  - bugfix: "Monkeys have pass low structure again"
+  - bugfix: "Monkeys have stamina"
