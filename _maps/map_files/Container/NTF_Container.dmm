@@ -14676,6 +14676,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"oCu" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "oCy" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -58897,7 +58903,7 @@ uUK
 ics
 nKq
 vfx
-ogT
+oCu
 jpC
 vhY
 eCz
