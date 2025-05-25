@@ -455,7 +455,7 @@
 	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ks23_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ks23_pump.ogg'
-	max_chamber_items = 2
+	max_chamber_items = 3
 	attachable_allowed = list(
 		/obj/item/attachable/stock/sh23,
 	)

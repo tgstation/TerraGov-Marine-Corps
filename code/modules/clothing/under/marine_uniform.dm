@@ -246,7 +246,7 @@
 
 /obj/item/clothing/under/marine/striped
 	name = "\improper Striped fatigues"
-	desc = "A simple set of camo pants and a striped shirt. A tag on the back indicates that this is old VSD surplus."
+	desc = "A simple set of camo pants and a striped shirt. A tag on the back indicates that this is old KZ surplus."
 	icon_state = "marine_striped"
 	worn_icon_state = "marine_striped"
 	adjustment_variants = list()

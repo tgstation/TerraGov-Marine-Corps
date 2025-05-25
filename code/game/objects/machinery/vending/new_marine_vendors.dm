@@ -594,7 +594,7 @@
 // VSD
 
 /obj/machinery/marine_selector/clothes/vsd
-	name = "GHMME Automated VSD Closet"
+	name = "GHMME Automated KZ Closet"
 	req_access = list(ACCESS_VSD_PREP)
 	vendor_role = /datum/job/vsd_squad/standard
 	gives_webbing = FALSE
@@ -602,7 +602,7 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/vsd/standard
-	name = "GHMME Automated VSD Standard Closet"
+	name = "GHMME Automated KZ Standard Closet"
 	vendor_role = /datum/job/vsd_squad/standard
 
 /obj/machinery/marine_selector/clothes/vsd/standard/Initialize(mapload)
@@ -610,7 +610,7 @@
 	listed_products = GLOB.vsd_standard_clothes_listed_products
 
 /obj/machinery/marine_selector/clothes/vsd/medic
-	name = "GHMME Automated VSD Medic Closet"
+	name = "GHMME Automated KZ Medic Closet"
 	vendor_role = /datum/job/vsd_squad/medic
 	req_access = list(ACCESS_VSD_MEDPREP)
 
@@ -619,7 +619,7 @@
 	listed_products = GLOB.vsd_medic_clothes_listed_products
 
 /obj/machinery/marine_selector/clothes/vsd/engineer
-	name = "GHMME Automated VSD Engineer Closet"
+	name = "GHMME Automated KZ Engineer Closet"
 	vendor_role = /datum/job/vsd_squad/engineer
 	req_access = list(ACCESS_VSD_ENGPREP)
 
@@ -628,7 +628,7 @@
 	listed_products = GLOB.vsd_engineer_clothes_listed_products
 
 /obj/machinery/marine_selector/clothes/vsd/specialist
-	name = "GHMME Automated VSD Specialist Closet"
+	name = "GHMME Automated KZ Specialist Closet"
 	vendor_role = /datum/job/vsd_squad/spec
 	req_access = list(ACCESS_VSD_SPECPREP)
 
@@ -637,7 +637,7 @@
 	listed_products = GLOB.vsd_specialist_clothes_listed_products
 
 /obj/machinery/marine_selector/clothes/vsd/leader
-	name = "GHMME Automated VSD Leader Closet"
+	name = "GHMME Automated KZ Leader Closet"
 	vendor_role = /datum/job/vsd_squad/leader
 	req_access = list(ACCESS_VSD_LEADPREP)
 

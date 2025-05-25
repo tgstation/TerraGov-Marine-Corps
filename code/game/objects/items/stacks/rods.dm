@@ -85,7 +85,7 @@
 
 ///Builds a catwalk
 /obj/item/stack/rods/proc/place_catwalk(turf/target_turf, mob/living/user)
-	if(SEND_SIGNAL(target_turf, COMSIG_TURF_CHECK_COVERED))
+	if(target_turf.is_covered())
 		user.balloon_alert(user, "Already covered!")
 		return
 	if(amount < CATWALK_ROD_REQ)
@@ -94,7 +94,7 @@
 	user.balloon_alert(user, "Building")
 	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
-	if(SEND_SIGNAL(target_turf, COMSIG_TURF_CHECK_COVERED))
+	if(target_turf.is_covered())
 		user.balloon_alert(user, "Already covered!")
 		return
 	if(!use(CATWALK_ROD_REQ))

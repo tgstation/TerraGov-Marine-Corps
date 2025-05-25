@@ -122,3 +122,4 @@
 	icon_state = "vsd_alt"
 	worn_icon_state = "vsd_alt"
 	deactive_state = "vsd_alt_off"
+	tint = COLOR_VERY_SOFT_YELLOW

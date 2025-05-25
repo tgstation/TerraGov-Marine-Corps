@@ -77,12 +77,14 @@ GLOBAL_LIST_EMPTY(ai_instances_active)
 //To be implemented in later updates
 GLOBAL_LIST_EMPTY(nodes_with_enemies)
 GLOBAL_LIST_EMPTY(nodes_with_construction)
-#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/obj/structure/catwalk) in turf_to_check) //todo: this needs work
+#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || turf_to_check.is_covered())
 
 ///Obstacle needs attacking
 #define AI_OBSTACLE_ATTACK "ai_obstacle_attack"
 ///Obstacle can be jumped
 #define AI_OBSTACLE_JUMP "ai_obstacle_jump"
+///Obstacle can't be resolved, and is friendly so shouldn't be destroyed
+#define AI_OBSTACLE_FRIENDLY "ai_obstacle_friendly"
 ///Obstacle has already been handled
 #define AI_OBSTACLE_RESOLVED "ai_obstacle_resolved"
 
@@ -105,8 +107,11 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define HUMAN_AI_HEALING (1<<2)
 ///Healing self
 #define HUMAN_AI_SELF_HEALING (1<<3)
+///Building something
+#define HUMAN_AI_BUILDING (1<<4)
 
-#define HUMAN_AI_ANY_HEALING (HUMAN_AI_HEALING|HUMAN_AI_SELF_HEALING)
+///Any action that we generally don't want to interrupt
+#define HUMAN_AI_BUSY_ACTION (HUMAN_AI_HEALING|HUMAN_AI_SELF_HEALING|HUMAN_AI_BUILDING)
 
 ///We're good to shoot
 #define AI_FIRE_CAN_HIT (1<<0)

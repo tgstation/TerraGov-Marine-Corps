@@ -2900,7 +2900,7 @@
 
 /obj/item/weapon/gun/rifle/vsd_lmg_main
 	name = "\improper CC/74 Assault LMG"
-	desc = "The CC/74, newest Assault Light-Machinegun in the VSD arsenal. Chambered in 7.62x39mm, it crackles with power as it destroys anything in its cold iron sights."
+	desc = "The CC/74, newest Assault Light-Machinegun in the KZ arsenal. Chambered in 7.62x39mm, it crackles with power as it destroys anything in its cold iron sights."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "c74"
 	worn_icon_state = "c74"
@@ -3020,7 +3020,6 @@
 	max_shells = 9 //codex
 	item_map_variant_flags = NONE
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 32, "rail_y" = 28, "under_x" = 36, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
-
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.15
 	burst_amount = 1

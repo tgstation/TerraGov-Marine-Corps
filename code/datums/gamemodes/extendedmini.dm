@@ -34,7 +34,7 @@
 		/datum/job/terragov/squad/specialist = 2,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/slut = -1,
-		/datum/job/worker/moraleofficer = -1,
+		/datum/job/moraleofficer = -1,
 		/datum/job/worker = -1,
 		/datum/job/other/prisoner = 4,
 		/datum/job/xenomorph = 8,

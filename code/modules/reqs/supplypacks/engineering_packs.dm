@@ -36,6 +36,16 @@ ENGINEERING
 	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = 100
 
+/datum/supply_packs/engineering/plastic50
+	name = "50 plastic sheets"
+	contains = list(/obj/item/stack/sheet/mineral/plastic/large_stack)
+	cost = 100
+
+/datum/supply_packs/engineering/cloth50
+	name = "50 cloth sheets"
+	contains = list(/obj/item/stack/sheet/cloth/large_stack)
+	cost = 100
+
 /datum/supply_packs/engineering/plasmacutter
 	name = "Plasma cutter"
 	contains = list(/obj/item/tool/pickaxe/plasmacutter/)
@@ -107,12 +117,12 @@ ENGINEERING
 	cost = 50
 
 /datum/supply_packs/engineering/foam_grenade
-	name = "Foam grenade"
+	name = "Foam Grenade"
 	contains = list(/obj/item/explosive/grenade/chem_grenade/metalfoam)
 	cost = 30
 
 /datum/supply_packs/engineering/floodlight
-	name = "Deployable floodlight"
+	name = "Deployable Floodlight"
 	contains = list(/obj/item/deployable_floodlight)
 	cost = 30
 

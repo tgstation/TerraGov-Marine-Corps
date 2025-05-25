@@ -35,7 +35,7 @@
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/slut = -1,
-		/datum/job/worker/moraleofficer = -1,
+		/datum/job/moraleofficer = -1,
 		/datum/job/worker = -1,
 		/datum/job/survivor/assistant = -1,
 		/datum/job/survivor/scientist = 2,

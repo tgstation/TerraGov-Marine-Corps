@@ -555,6 +555,8 @@
 	if(!do_after(debuff_owner, 5 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
 		debuff_owner?.balloon_alert(debuff_owner, "Interrupted")
 		return
+	if(QDELETED(src))
+		return
 	playsound(debuff_owner, 'sound/effects/slosh.ogg', 30)
 	debuff_owner.balloon_alert(debuff_owner, "Succeeded")
 	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION
