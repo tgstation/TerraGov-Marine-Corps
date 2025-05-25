@@ -65,7 +65,6 @@
 
 /mob/living/carbon/xenomorph/runner/melter
 	caste_base_type = /datum/xeno_caste/runner/melter
-	/// Should they do their special second instance of damage (11 brute) toward objects and living beings?
 	/// What type of damage should the second instance do?
 	var/second_damage_type = BRUTE
 	/// What armor is the second instance of damage calculated against?
