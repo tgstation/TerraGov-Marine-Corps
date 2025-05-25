@@ -61,6 +61,72 @@
 	name = "Oviposition"
 	desc = "Egg Lay now creates eggs with your selected type of hugger inside. It costs 0.5/0.4/0.3x as much plasma and its cooldown is reduced by 50%. You lose the ability, Spawn Huggers."
 
+/datum/mutation_upgrade/veil/oviposition/on_mutation_enabled()
+	var/datum/action/ability/xeno_action/lay_egg/egg_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/lay_egg]
+	if(!egg_ability)
+		return FALSE
+	var/datum/action/ability/xeno_action/spawn_hugger/spawn_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/spawn_hugger]
+	if(spawn_ability)
+		spawn_ability.remove_action(xenomorph_owner)
+	egg_ability.use_selected_hugger = TRUE
+	egg_ability.cooldown_duration /= 2
+	egg_ability.ability_cost -= initial(egg_ability.ability_cost) * 0.4
+	return ..()
+
+/datum/mutation_upgrade/veil/oviposition/on_mutation_disabled()
+	var/datum/action/ability/xeno_action/lay_egg/egg_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/lay_egg]
+	if(!egg_ability)
+		return FALSE
+	var/datum/action/ability/xeno_action/spawn_hugger/spawn_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/spawn_hugger]
+	if(!spawn_ability)
+		spawn_ability = new()
+		spawn_ability.give_action(xenomorph_owner)
+	egg_ability.use_selected_hugger = initial(spawn_ability)
+	egg_ability.cooldown_duration *= 2
+	egg_ability.ability_cost += initial(egg_ability.ability_cost) * 0.4
+	return ..()
+
+/datum/mutation_upgrade/veil/oviposition/on_structure_update(datum/source, previous_amount, new_amount)
+	. = ..()
+	if(!.)
+		return
+	var/datum/action/ability/xeno_action/lay_egg/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/lay_egg]
+	if(!ability)
+		return FALSE
+	ability.ability_cost -= (new_amount - previous_amount) * (initial(ability.ability_cost) * 0.1)
+
+/datum/mutation_upgrade/veil/oviposition/on_xenomorph_upgrade()
+	var/datum/action/ability/xeno_action/spawn_hugger/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/spawn_hugger]
+	if(ability)
+		ability.remove_action(xenomorph_owner)
+
 /datum/mutation_upgrade/veil/life_for_life
 	name = "Life for Life"
-	desc = "Spawn Facehugger's cooldown is now 3s shorter and costs zero plasma, but causes you to take 50/40/30 damage for each use."
+	desc = "Spawn Facehugger's cooldown is now 30% shorter and costs zero plasma, but causes you to take 50/40/30 true damage for each use."
+
+/datum/mutation_upgrade/veil/life_for_life/on_mutation_enabled()
+	var/datum/action/ability/xeno_action/spawn_hugger/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/spawn_hugger]
+	if(!ability)
+		return FALSE
+	ability.ability_cost -= initial(ability.ability_cost)
+	ability.cooldown_duration -= initial(ability.cooldown_duration) * 0.3
+	ability.health_cost += 60
+	return ..()
+
+/datum/mutation_upgrade/veil/life_for_life/on_mutation_disabled()
+	var/datum/action/ability/xeno_action/spawn_hugger/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/spawn_hugger]
+	if(!ability)
+		return FALSE
+	ability.ability_cost += initial(ability.ability_cost)
+	ability.cooldown_duration += initial(ability.cooldown_duration) * 0.3
+	ability.health_cost -= 60
+	return ..()
+
+/datum/mutation_upgrade/veil/life_for_life/on_structure_update(datum/source, previous_amount, new_amount)
+	. = ..()
+	if(!.)
+		return
+	var/datum/action/ability/xeno_action/spawn_hugger/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/spawn_hugger]
+	if(!ability)
+		return FALSE
+	ability.health_cost -= (new_amount - previous_amount) * 10
