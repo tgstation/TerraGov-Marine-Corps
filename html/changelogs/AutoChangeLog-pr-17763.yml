@@ -1,0 +1,4 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - balance: "Electrified razorwire has a cooldown, instead of being applied as fast as you can accidentally walk into it"
