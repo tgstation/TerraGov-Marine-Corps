@@ -213,6 +213,7 @@
 /datum/status_effect/stacking/essence_link/proc/end_link(datum/source)
 	SIGNAL_HANDLER
 	essence_link_action.end_ability()
+
 /// Ends the link prematurely via death.
 /datum/status_effect/stacking/essence_link/proc/end_link_from_death(datum/source, gibbed)
 	SIGNAL_HANDLER
@@ -225,7 +226,6 @@
 		link_owner.apply_status_effect(STATUS_EFFECT_MUTATION_DRONE_REVENGE, revenge_modifier)
 	essence_link_action.end_ability()
 
-end_link_from_death
 /datum/status_effect/stacking/essence_link/proc/set_lifesteal(desired_lifesteal_percentage)
 	if(lifesteal_percentage && !desired_lifesteal_percentage)
 		UnregisterSignal(link_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING)
