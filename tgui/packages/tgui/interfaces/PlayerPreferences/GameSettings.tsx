@@ -164,7 +164,7 @@ export const GameSettings = (props) => {
                 action="alt_health_analyzer"
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
-                tooltip="An alternate health scan ui, has less advice."
+                tooltip="Enables an alternative health analyzer UI that takes up less vertical space and omits some trivial information."
               />
               <ToggleFieldPreference
                 label="Fullscreen mode"
