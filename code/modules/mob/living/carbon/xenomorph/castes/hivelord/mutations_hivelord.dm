@@ -5,10 +5,6 @@
 	name = "Hardened Travel"
 	desc = "Resin Walk now grants 10/15/20 armor in all categories. You cannot regenerate plasma while it is active."
 
-/datum/mutation_upgrade/shell/costly_travel
-	name = "Costly Travel"
-	desc = "Resin Walk can be used while staggered and works on non-weed. It costs 5/4/3x as much plasma to move on non-weed."
-
 //*********************//
 //         Spur        //
 //*********************//
@@ -16,16 +12,9 @@
 	name = "Rejuvenating Build"
 	desc = "You heal 1/2/3% of your maximum health when you place a resin structure."
 
-/datum/mutation_upgrade/spur/draining_touch
-	name = "Draining Touch"
-	desc = "Your melee attack is now stamina damage. It is reduced by 20/10/0%."
-
 //*********************//
 //         Veil        //
 //*********************//
-/datum/mutation_upgrade/veil/plasma_tank
-	name = "Plasma Tank"
-	desc = "Your plasma regen limit is increased to 0.6/0.7/0.8x."
 
 /datum/mutation_upgrade/veil/protective_light
 	name = "Protective Light"
