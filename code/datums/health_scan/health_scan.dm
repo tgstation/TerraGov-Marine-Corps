@@ -159,8 +159,11 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 /datum/health_scan/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
+	if(!ui && !user.client?.prefs?.alt_health_analyzer)
 		ui = new(user, src, "MedScanner", "Medical Scanner")
+		ui.open()
+	else if(!ui && user.client?.prefs?.alt_health_analyzer)
+		ui = new(user, src, "MedScannerAlt", "Medical Scanner")
 		ui.open()
 	allow_live_autoupdating = TRUE
 
@@ -180,6 +183,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	var/list/data = list(
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
+		"dead_timer" = patient.dead_ticks,
+		"dead_unrevivable" = TIME_BEFORE_DNR,
 		"health" = patient.health,
 		"max_health" = patient.maxHealth,
 		"crit_threshold" = patient.get_crit_threshold(),
@@ -236,7 +241,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"od_threshold" = reagent.overdose_threshold,
 			"crit_od_threshold" = reagent.overdose_crit_threshold,
 			"color" = reagent.color,
-			"metabolism_factor" = reagent.custom_metabolism
+			"metabolism_factor" = reagent.custom_metabolism,
+			"ui_priority" = reagent.reagent_ui_priority
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
@@ -357,7 +363,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		data["revivable_string"] = "Ready to [organic_patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
-		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0)]%"
+		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair [round(patient.get_death_threshold() - patient.health - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0))] more damage!"
 		data["revivable_boolean"] = FALSE
 
 	var/list/advice = list()

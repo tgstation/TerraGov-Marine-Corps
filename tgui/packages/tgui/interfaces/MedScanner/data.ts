@@ -61,6 +61,8 @@ export type MedScannerData = {
   patient: string;
   species: Record<string, SpeciesData>;
   dead: boolean;
+  dead_timer: number;
+  dead_unrevivable: number;
   health: number;
   max_health: number;
   crit_threshold: number;

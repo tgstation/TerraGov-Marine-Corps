@@ -2,6 +2,7 @@ import {
   BlockQuote,
   Box,
   Button,
+  Flex,
   Icon,
   LabeledList,
   NoticeBox,
@@ -25,15 +26,18 @@ import {
   COUNTER_MAX_SIZE,
   ROUNDED_BORDER,
   SPACING_PIXELS,
-} from './constants';
-import { MedScannerData } from './data';
-import { getLimbColor } from './helpers';
-import { MedBoxedTag } from './MedBoxedTag';
-import { MedConditionalBox, MedConditionalIcon } from './MedConditional';
-import { MedCounter } from './MedCounter';
+} from '../MedScanner/constants';
+import { MedScannerData } from '../MedScanner/data';
+import { getLimbColor } from '../MedScanner/helpers';
+import { MedBoxedTag } from '../MedScanner/MedBoxedTag';
+import {
+  MedConditionalBox,
+  MedConditionalIcon,
+} from '../MedScanner/MedConditional';
+import { MedCounter } from '../MedScanner/MedCounter';
 import { MedDamageType } from './MedDamageType';
 
-export function MedScanner() {
+export function MedScannerAlt() {
   const { data } = useBackend<MedScannerData>();
   const {
     species,
@@ -44,12 +48,11 @@ export function MedScanner() {
     regular_blood_amount,
     body_temperature,
     internal_bleeding,
-    advice,
     accessible_theme,
   } = data;
   return (
     <Window
-      width={520}
+      width={600}
       height={620}
       theme={
         accessible_theme
@@ -71,7 +74,6 @@ export function MedScanner() {
           internal_bleeding ||
           body_temperature.warning
         ) && <PatientFooter />}
-        {!!advice && <PatientAdvice />}
       </Window.Content>
     </Window>
   );
@@ -84,11 +86,8 @@ function PatientBasics() {
     patient,
     species,
     dead,
-
-    health,
-    max_health,
-    crit_threshold,
-    dead_threshold,
+    dead_timer,
+    dead_unrevivable,
 
     total_brute,
     total_burn,
@@ -129,35 +128,21 @@ function PatientBasics() {
       )}
       {!!ssd && <NoticeBox warning>{ssd}</NoticeBox>}
       <LabeledList>
-        <LabeledList.Item
-          label="Health"
-          tooltip={
-            'How healthy the patient is.' +
-            ((!species.is_robotic_species &&
-              " If the patient's health dips below " +
-                crit_threshold +
-                '%, they enter critical condition and suffocate rapidly.') ||
-              '') +
-            " If the patient's health hits " +
-            (dead_threshold / max_health) * 100 +
-            '%, they die.'
-          }
-        >
-          {health >= 0 ? (
-            <ProgressBar
-              value={health / max_health}
-              ranges={{
-                good: [0.4, Infinity],
-                average: [0.2, 0.4],
-                bad: [-Infinity, 0.2],
-              }}
-            />
-          ) : (
-            <ProgressBar value={1 + health / max_health} color="bad">
-              {Math.trunc((health / max_health) * 100)}%
-            </ProgressBar>
-          )}
-        </LabeledList.Item>
+        {!!dead && !species.is_synthetic && (
+          <LabeledList.Item
+            label="Time"
+            tooltip="When their time hits 0% resusitation will be ineffective"
+          >
+            {
+              <ProgressBar
+                value={dead_timer}
+                color="label"
+                minValue={dead_unrevivable}
+                maxValue={0}
+              />
+            }
+          </LabeledList.Item>
+        )}
         {!!dead && (
           <LabeledList.Item label="Revivable">
             <Box
@@ -174,10 +159,9 @@ function PatientBasics() {
             </Box>
           </LabeledList.Item>
         )}
-        <LabeledList.Item
-          label="Damage"
-          tooltip="Unique damage types. Each one has a tooltip describing how it is sustained, and possible treatments."
-        >
+      </LabeledList>
+      <Flex>
+        <Flex.Item grow={1}>
           <MedDamageType
             name="Brute"
             color={COLOR_BRUTE}
@@ -189,6 +173,8 @@ function PatientBasics() {
             }
             noPadding
           />
+        </Flex.Item>
+        <Flex.Item grow={1}>
           <MedDamageType
             name="Burn"
             color={COLOR_BURN}
@@ -199,23 +185,29 @@ function PatientBasics() {
                 : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Kelotane or advanced burn kits.'
             }
           />
-          {!species.is_robotic_species && (
-            <>
+        </Flex.Item>
+        {!species.is_robotic_species && (
+          <>
+            <Flex.Item grow={1}>
               <MedDamageType
                 name="Tox"
                 color="green"
                 damage={toxin}
                 tooltip="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene."
               />
+            </Flex.Item>
+            <Flex.Item grow={1}>
               <MedDamageType
                 name="Oxy"
                 color="blue"
                 damage={oxy}
                 tooltip="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin/Dexalin Plus or decreases on its own if the patient isn't in critical condition."
               />
-            </>
-          )}
-          {!species.is_synthetic && (
+            </Flex.Item>
+          </>
+        )}
+        {!species.is_synthetic && (
+          <Flex.Item grow={1}>
             <MedDamageType
               name={species.is_combat_robot ? 'Integrity' : 'Clone'}
               color="teal"
@@ -226,36 +218,41 @@ function PatientBasics() {
                   : 'Cloneloss. Sustained from xenomorph psychic draining or special chemicals. Treated with cryogenics or sleep.'
               }
             />
-          )}
-          {!!species.is_robotic_species && (
-            <>
+          </Flex.Item>
+        )}
+        {!!species.is_robotic_species && (
+          <>
+            <Flex.Item grow={1}>
               <MedDamageType
                 name="Tox"
                 tooltip="Robotic species cannot build up toxins."
                 disabled
               />
+            </Flex.Item>
+            <Flex.Item grow={1}>
               <MedDamageType
                 name="Oxy"
                 tooltip="Robotic species do not suffocate."
                 disabled
               />
-              {!!species.is_synthetic && (
+            </Flex.Item>
+            {!!species.is_synthetic && (
+              <Flex.Item grow={1}>
                 <MedDamageType
                   name="Clone"
                   tooltip="Synthetics do not suffer cellular damage or long term integrity loss."
                   disabled
                 />
-              )}
-            </>
-          )}
-        </LabeledList.Item>
-      </LabeledList>
+              </Flex.Item>
+            )}
+          </>
+        )}
+      </Flex>
     </Section>
   );
 }
 
 function PatientChemicals() {
-  let row_transparency = 0;
   const { data } = useBackend<MedScannerData>();
   const { has_unknown_chemicals, chemicals_lists = {} } = data;
   return (
@@ -265,14 +262,22 @@ function PatientChemicals() {
           Unknown reagents detected. Proceed with caution.
         </NoticeBox>
       )}
-      <Stack vertical>
+      <Stack wrap="wrap">
         {Object.values(chemicals_lists).map((chemical) => (
           <Stack.Item
+            order={chemical.ui_priority}
             key={chemical.name}
-            backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
-            style={ROUNDED_BORDER}
+            backgroundColor="transparent"
+            style={{
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              borderRadius: '0.16em',
+              borderColor: chemical.color,
+            }}
+            maxWidth="19%"
+            width="19%"
           >
-            <Box inline p="2.5px">
+            <Box inline p="2px">
               <Tooltip
                 content={
                   <>
@@ -288,23 +293,6 @@ function PatientChemicals() {
                     <BlockQuote>{chemical.description}</BlockQuote>
                     <Box mt={SPACING_PIXELS} />
                     <LabeledList>
-                      {!!chemical.metabolism_factor && (
-                        <LabeledList.Item
-                          label="Metabolism"
-                          labelColor={
-                            chemical.od || chemical.dangerous ? 'red' : 'label'
-                          }
-                        >
-                          {chemical.metabolism_factor}u per tick{' '}
-                          <Box inline textColor="grey">
-                            (~
-                            {Math.trunc(
-                              chemical.amount / chemical.metabolism_factor,
-                            )}
-                            s)
-                          </Box>
-                        </LabeledList.Item>
-                      )}
                       {!!chemical.od_threshold && !chemical.dangerous && (
                         <LabeledList.Item
                           label="OD Units"
@@ -341,6 +329,9 @@ function PatientChemicals() {
                   color={chemical.dangerous || chemical.od ? 'red' : 'white'}
                   bold={(chemical.dangerous || chemical.od) as boolean}
                 >
+                  <Box inline italic>
+                    {chemical.name}
+                  </Box>
                   <MedCounter
                     current={chemical.amount}
                     max={chemical.dangerous ? 0 : chemical.od_threshold}
@@ -359,9 +350,6 @@ function PatientChemicals() {
                     }
                     mr={SPACING_PIXELS}
                   />
-                  <Box inline italic>
-                    {chemical.name}
-                  </Box>
                 </Box>
               </Tooltip>
               {!!(chemical.dangerous || chemical.od) && (
@@ -375,19 +363,13 @@ function PatientChemicals() {
                         ' to stabilize. ' +
                         (chemical.amount > chemical.crit_od_threshold
                           ? 'This is a critical OD, so its effects are worse than normal. '
-                          : '') +
-                        Math.trunc(
-                          (chemical.amount - chemical.od_threshold) /
-                            chemical.metabolism_factor,
-                        ) +
-                        's remaining before this returns to non-OD levels on its own.'
+                          : '')
                   }
                 >
                   <MedBoxedTag
                     icon={chemical.od ? 'gauge-high' : 'virus'}
-                    textColor="white"
-                    backgroundColor="red"
-                    ml={SPACING_PIXELS}
+                    textColor="red"
+                    backgroundColor="transparent"
                   >
                     {chemical.od
                       ? 'OD' +
@@ -395,31 +377,6 @@ function PatientChemicals() {
                           ? ', CRIT'
                           : '')
                       : 'HARMFUL'}
-                  </MedBoxedTag>
-                </Tooltip>
-              )}
-              {!!chemical.metabolism_factor && (
-                <Tooltip content="Estimated time before this chemical is purged. May vary based on time dilation and other chemicals.">
-                  <MedBoxedTag
-                    icon="clock"
-                    textColor={
-                      chemical.dangerous
-                        ? 'white'
-                        : chemical.amount / chemical.metabolism_factor < 10
-                          ? 'white'
-                          : 'black'
-                    }
-                    backgroundColor={
-                      chemical.dangerous
-                        ? 'red'
-                        : chemical.amount / chemical.metabolism_factor < 10
-                          ? 'grey'
-                          : 'white'
-                    }
-                    ml={SPACING_PIXELS}
-                  >
-                    {Math.trunc(chemical.amount / chemical.metabolism_factor) +
-                      's'}
                   </MedBoxedTag>
                 </Tooltip>
               )}
@@ -808,40 +765,6 @@ function PatientFooter() {
           {total_unknown_implants !== 1 ? 's' : ''} detected within the patient.
         </NoticeBox>
       )}
-    </Section>
-  );
-}
-
-function PatientAdvice() {
-  const { data } = useBackend<MedScannerData>();
-  const { advice = {}, species, accessible_theme } = data;
-  return (
-    <Section title="Treatment Advice">
-      <Stack vertical>
-        {Object.values(advice).map((advice) => (
-          <Stack.Item key={advice.advice}>
-            <Tooltip
-              content={advice.tooltip || 'No tooltip entry for this advice.'}
-            >
-              <Box inline>
-                <Icon
-                  name={advice.icon}
-                  ml={0.2}
-                  color={
-                    accessible_theme
-                      ? advice.color
-                      : species.is_robotic_species
-                        ? 'label'
-                        : advice.color
-                  }
-                />
-                <Box inline width={SPACING_PIXELS} />
-                {advice.advice}
-              </Box>
-            </Tooltip>
-          </Stack.Item>
-        ))}
-      </Stack>
     </Section>
   );
 }

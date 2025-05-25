@@ -159,6 +159,14 @@ export const GameSettings = (props) => {
                 tooltip="Governs if others can show you your health scan."
               />
               <ToggleFieldPreference
+                label="Use alt health analyzer ui"
+                value="alt_health_analyzer"
+                action="alt_health_analyzer"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="An alternate health scan ui, has less advice."
+              />
+              <ToggleFieldPreference
                 label="Fullscreen mode"
                 value="fullscreen_mode"
                 action="fullscreen_mode"

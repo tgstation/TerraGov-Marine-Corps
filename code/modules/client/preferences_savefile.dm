@@ -177,6 +177,7 @@
 	READ_FILE(S["radio_tts_flags"], radio_tts_flags)
 	READ_FILE(S["accessible_tgui_themes"], accessible_tgui_themes)
 	READ_FILE(S["allow_being_shown_health_scan"], allow_being_shown_health_scan)
+	READ_FILE(S["alt_health_analyzer"], alt_health_analyzer)
 	READ_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
 	READ_FILE(S["hear_ooc_anywhere_as_staff"], hear_ooc_anywhere_as_staff)
@@ -249,6 +250,7 @@
 	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND))
 	accessible_tgui_themes = sanitize_integer(accessible_tgui_themes, FALSE, TRUE, initial(accessible_tgui_themes))
 	allow_being_shown_health_scan = sanitize_integer(allow_being_shown_health_scan, FALSE, TRUE, initial(allow_being_shown_health_scan))
+	alt_health_analyzer = sanitize_integer(alt_health_analyzer, FALSE, TRUE, initial(alt_health_analyzer))
 
 	key_bindings = sanitize_islist(key_bindings, list())
 	if (!length(key_bindings))
@@ -408,6 +410,7 @@
 	WRITE_FILE(S["radio_tts_flags"], radio_tts_flags)
 	WRITE_FILE(S["accessible_tgui_themes"], accessible_tgui_themes)
 	WRITE_FILE(S["allow_being_shown_health_scan"], allow_being_shown_health_scan)
+	WRITE_FILE(S["alt_health_analyzer"], alt_health_analyzer)
 	WRITE_FILE(S["slot_draw_order"], slot_draw_order_pref)
 	WRITE_FILE(S["status_toggle_flags"], status_toggle_flags)
 
