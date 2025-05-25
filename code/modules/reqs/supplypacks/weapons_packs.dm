@@ -620,3 +620,9 @@ WEAPONS
 	name = "TX13 smart machinepistol ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
+
+/datum/supply_packs/weapons/moonbeam_ammo
+	name = "Moonbeam NL sniper rifle tranq magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/tranq)
+	cost = 30
+

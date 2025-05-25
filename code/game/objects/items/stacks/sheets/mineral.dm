@@ -94,6 +94,12 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	. = ..()
 	. += GLOB.uranium_recipes
 
+/obj/item/stack/sheet/mineral/uranium/small_stack
+	amount = 10
+
+/obj/item/stack/sheet/mineral/uranium/medium_stack
+	amount = 30
+
 /obj/item/stack/sheet/mineral/phoron
 	name = "solid phoron"
 	desc = "Phoron is an extremely rare mineral with exotic properties, often used in cutting-edge research. Just getting it into a stable, solid form is already hard enough."
@@ -136,7 +142,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list ( \
 /obj/item/stack/sheet/mineral/plastic/get_main_recipes()
 	. = ..()
 	. += GLOB.plastic_recipes
-	
+
 /obj/item/stack/sheet/mineral/plastic/five
 	amount = 5
 

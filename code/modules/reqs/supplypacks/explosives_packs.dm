@@ -17,89 +17,114 @@ EXPLOSIVES
 	cost = 50
 
 /datum/supply_packs/explosives/explosives_razor
-	name = "Razorburn grenade box crate"
+	name = "Razorburn grenade box"
 	notes = "Contains 25 razor burns"
 	contains = list(/obj/item/storage/box/visual/grenade/razorburn)
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_sticky
-	name = "M40 adhesive charge grenade box crate"
+	name = "M40 adhesive charge grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/sticky)
 	cost = 300
 
 /datum/supply_packs/explosives/explosives_smokebomb
-	name = "M40 HSDP smokebomb grenade box crate"
+	name = "M40 HSDP smokebomb grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/smokebomb)
 	cost = 300
 
 /datum/supply_packs/explosives/explosives_hedp
-	name = "M40 HEDP high explosive grenade box crate"
+	name = "M40 HEDP high explosive grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/frag)
 	cost = 300
 
-/datum/supply_packs/explosives/explosives_hidp
-	name = "M40 HIDP incendiary explosive grenade box crate"
-	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/visual/grenade/incendiary)
-	cost = 350
-
-
 /datum/supply_packs/explosives/explosives_cloaker
-	name = "M45 Cloaker grenade box crate"
+	name = "M45 Cloaker grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/cloaker)
 	cost = 300
 
 /datum/supply_packs/explosives/explosives_antigas
-	name = "M40-AG Anti-Gas grenade box crate"
+	name = "M40-AG Anti-Gas grenade box"
 	notes = "Cotains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/antigas)
 	cost = 600
 
 /datum/supply_packs/explosives/explosives_cloak
-	name = "M40-2 SCDP grenade box crate"
+	name = "M40-2 SCDP grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/cloak)
 	cost = 300
 
 /datum/supply_packs/explosives/explosives_lasburster
-	name = "M80 lasburster grenade box crate"
+	name = "M80 lasburster grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/lasburster)
 	cost = 300
 
 /datum/supply_packs/explosives/explosives_hidp
-	name = "M40 HIDP incendiary explosive grenade box crate"
+	name = "M40 HIDP incendiary explosive grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/incendiary)
 	cost = 350
 
 /datum/supply_packs/explosives/explosives_m15
-	name = "M15 fragmentation grenade box crate"
+	name = "M15 fragmentation grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/M15)
 	cost = 350
 
 /datum/supply_packs/explosives/explosives_trailblazer
-	name = "M45 Trailblazer grenade box crate"
+	name = "M45 Trailblazer grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/trailblazer)
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_hsdp
-	name = "M40 HSDP white phosphorous grenade box crate"
+	name = "M40 HSDP white phosphorous grenade box"
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
 	cost = 1500
 
 /datum/supply_packs/explosives/explosives_hefa
-	name = "M25 HEFA grenade box crate"
+	name = "M25 HEFA grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/hefa)
 	cost = 500
+
+/datum/supply_packs/explosives/explosives_neurotoxin
+	name = "M40-N Neurotoxin smoke grenade box"
+	notes = "Contains 25 grenades"
+	contains = list(
+		/obj/item/storage/box/visual/grenade/neurotoxin
+	)
+	cost = 350
+
+/datum/supply_packs/explosives/explosives_acid
+	name = "M40-A Acid smoke grenade box"
+	notes = "Contains 25 grenades"
+	contains = list(
+		/obj/item/storage/box/visual/grenade/acid,
+	)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_sleep
+	name = "NT-1 Knock-out smoke grenades"
+	notes = "Contains 2 grenades"
+	contains = list(
+		/obj/item/storage/box/visual/grenade/sleep,
+	)
+	cost = 400
+
+/datum/supply_packs/explosives/explosives_aphrotoxin
+	name = "NT-2 Aphrotoxin gas grenades"
+	notes = "Contains 2 grenades"
+	contains = list(
+		/obj/item/storage/box/visual/grenade/aphrotoxin,
+	)
+	cost = 250
 
 /datum/supply_packs/explosives/explosives_mines/emp
 	name = "EMP Grenades"

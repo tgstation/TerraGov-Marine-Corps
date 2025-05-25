@@ -51,7 +51,7 @@
 	scatter_mod = -2
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/tranq
-	name = "Moonbeam NL sniper rifle magazine"
+	name = "Moonbeam NL sniper rifle tranq magazine"
 	desc = "A box magazine filled with 8.6x70mm tranq rifle rounds for the Moonbeam."
 	caliber = CALIBER_86X70
 	icon_state = "tl127NL"

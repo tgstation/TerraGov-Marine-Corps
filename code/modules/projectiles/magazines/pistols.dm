@@ -107,7 +107,7 @@
 	default_ammo = /datum/ammo/bullet/pistol
 
 /obj/item/ammo_magazine/pistol/g22tranq
-	name = "\improper G22 tranq magazine (9mm)"
+	name = "\improper P-22 Custom tranq magazine (9mm)"
 	caliber = CALIBER_9X19_TRANQUILIZER
 	icon_state = "g22"
 	icon_state_mini = "mag_pistol_normal"

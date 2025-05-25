@@ -1292,6 +1292,30 @@
 	spawn_type = /obj/item/explosive/grenade/training
 	closed_overlay = "grenade_box_overlay_training"
 
+/obj/item/storage/box/visual/grenade/neurotoxin
+	name = "\improper M40-N Neurotoxin smoke grenade box"
+	desc = "A secure box holding 25 M40-N Neurotoxin smoke grenades. Classed as a less lethal riot control tool by the NTC."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb/neuro
+
+/obj/item/storage/box/visual/grenade/acid
+	name = "\improper M40-A Acid smoke grenade box"
+	desc = "A secure box holding 25 M40-A Acid smoke grenades. Their use is considered a warcrime under several treaties, none of which NTF is a signatory to."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb/acid
+
+/obj/item/storage/box/visual/grenade/sleep
+	name = "\improper NT-1 Knock-out smoke grenade box"
+	desc = "A secure box holding 25 NT-1 Knock-out smoke grenades."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb/sleep
+
+/obj/item/storage/box/visual/grenade/aphrotoxin
+	name = "\improper NT-2 Aphrotoxin gas grenade box"
+	desc = "A secure box holding 25 NT-2 Aphrotoxin gas grenade."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb/aphrotoxin
+
 #undef BOX_OVERLAY_SHIFT_X
 #undef BOX_OVERLAY_SHIFT_Y
 

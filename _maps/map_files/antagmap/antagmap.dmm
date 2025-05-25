@@ -4072,6 +4072,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/structure/largecrate/supply/generator,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "vC" = (
@@ -4350,6 +4351,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/icc/medical_room)
+"wW" = (
+/obj/structure/largecrate/supply/generator,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/requisition)
 "wX" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/start/latejoinclf,
@@ -4826,6 +4831,13 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
+"zD" = (
+/obj/structure/cable,
+/obj/structure/largecrate/supply/generator,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/antag_ship/pmc_ntf/center/armory)
 "zE" = (
 /obj/structure/cable,
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
@@ -5146,6 +5158,10 @@
 	dir = 8
 	},
 /area/antag_ship/clf_base/techroom)
+"BG" = (
+/obj/structure/largecrate/supply/generator,
+/turf/open/floor/iron/dark,
+/area/antag_ship/vsd/port)
 "BH" = (
 /obj/machinery/quick_vendor/icc,
 /turf/open/floor/plating/ground/concrete,
@@ -10519,7 +10535,7 @@ uZ
 iS
 ih
 pm
-pm
+zD
 pm
 QC
 OW
@@ -12286,7 +12302,7 @@ Dk
 ji
 cN
 en
-en
+wW
 ly
 fS
 en
@@ -13840,7 +13856,7 @@ id
 qi
 qi
 qi
-br
+BG
 br
 lq
 mg
