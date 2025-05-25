@@ -97,7 +97,7 @@
 /datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(isxeno(target_mob))
 		var/mob/living/carbon/xenomorph/target_xeno = target_mob
-		target_xeno.use_plasma(20 + 0.2 * target_xeno.plasma_maximum * target_xeno.plasma_regeneration_percentage_limit) // This is draining 20%+20 flat per hit.
+		target_xeno.use_plasma(20 + 0.2 * target_xeno.xeno_caste.plasma_max * target_xeno.xeno_caste.plasma_regen_limit) // This is draining 20%+20 flat per hit.
 
 /datum/ammo/bullet/spottingrifle/tungsten
 	name = "smart tungsten spotting bullet"

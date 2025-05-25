@@ -72,7 +72,7 @@
 		var/mob/living/carbon/xenomorph/X = target_mob
 		if(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE)
 			return
-		X.use_plasma(0.3 * X.plasma_maximum * X.plasma_regeneration_percentage_limit) //Drains 30% of max plasma on hit
+		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
 #define BFG_SOUND_DELAY_SECONDS 1
 /datum/ammo/energy/bfg
@@ -279,7 +279,7 @@
 	if(!isxeno(target_mob))
 		return
 	var/mob/living/carbon/xenomorph/xeno_victim = target_mob
-	xeno_victim.use_plasma(plasma_drain * xeno_victim.plasma_regeneration_percentage_limit)
+	xeno_victim.use_plasma(plasma_drain * xeno_victim.xeno_caste.plasma_regen_limit)
 
 /datum/ammo/energy/lasgun/marine/microwave
 	name = "microwave laser bolt"

@@ -319,7 +319,7 @@
 	buffing_xeno = new_target
 	essence_link_action = buffing_xeno.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	enhancement_action = buffing_xeno.actions_by_path[/datum/action/ability/xeno_action/enhancement]
-	ability_cost = round(buffing_xeno.plasma_maximum * 0.1)
+	ability_cost = round(buffing_xeno.xeno_caste.plasma_max * 0.1)
 	RegisterSignal(buffed_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
 	RegisterSignal(buffing_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
 	INVOKE_ASYNC(buffed_xeno, TYPE_PROC_REF(/mob/living/carbon/xenomorph, emote), "roar2")
@@ -486,7 +486,7 @@
 
 ///Calculates the effectiveness of parts of the status based on plasma of owner
 #define CALC_PLASMA_MOD(xeno) \
-	(clamp(1 - xeno.plasma_stored / owner_xeno.plasma_maximum, 0.2, 0.8) + 0.2)
+	(clamp(1 - xeno.plasma_stored / owner_xeno.xeno_caste.plasma_max, 0.2, 0.8) + 0.2)
 #define HIGN_THRESHOLD 0.6
 #define KNOCKDOWN_DURATION 1 SECONDS
 
@@ -649,7 +649,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(HAS_TRAIT(X,TRAIT_NOPLASMAREGEN)) //No bonus plasma if you're on a diet
 		return
-	var/bonus_plasma = X.plasma_regeneration * bonus_regen * (1 + X.recovery_aura * 0.05) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Recovery aura multiplier; 5% bonus per full level
+	var/bonus_plasma = X.xeno_caste.plasma_gain * bonus_regen * (1 + X.recovery_aura * 0.05) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Recovery aura multiplier; 5% bonus per full level
 	X.gain_plasma(bonus_plasma)
 
 /datum/status_effect/plasma_surge/on_remove()

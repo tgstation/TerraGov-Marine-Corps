@@ -141,7 +141,7 @@
 				if(!xeno_owner.issamexenohive(affected_xeno) || !(affected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 					continue
 				// Gives the benefit of eatting powerfruit, but everything is halved (less plasma immediately restored, less plasma regen given, shorter duration).
-				affected_xeno.apply_status_effect(/datum/status_effect/plasma_surge, affected_xeno.plasma_maximum / 2, 0.5, 30 SECONDS)
+				affected_xeno.apply_status_effect(/datum/status_effect/plasma_surge, affected_xeno.xeno_caste.plasma_max / 2, 0.5, 30 SECONDS)
 
 			playsound(xeno_owner.loc, 'sound/voice/alien/queen_plasma_screech.ogg', 75, 0)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
@@ -511,7 +511,7 @@
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma, too far")
 		return FALSE
-	if(receiver.plasma_stored >= receiver.plasma_maximum)
+	if(receiver.plasma_stored >= receiver.xeno_caste.plasma_max)
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma, full")
 		return FALSE

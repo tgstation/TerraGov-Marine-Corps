@@ -512,7 +512,7 @@
 			to_chat(owner, span_warning("We need to be closer to [target]."))
 		return FALSE
 
-	if(target.plasma_stored >= target.plasma_maximum) //We can't select targets that won't benefit
+	if(target.plasma_stored >= target.xeno_caste.plasma_max) //We can't select targets that won't benefit
 		to_chat(owner, span_xenowarning("[target] already has full plasma."))
 		return FALSE
 
@@ -542,12 +542,12 @@
 		amount = X.plasma_stored //Just use all of it
 
 	else //Otherwise transfer as much as the target can use
-		amount = clamp(target.plasma_maximum - target.plasma_stored, 0, plasma_transfer_amount)
+		amount = clamp(target.xeno_caste.plasma_max - target.plasma_stored, 0, plasma_transfer_amount)
 
 	X.use_plasma(amount)
 	target.gain_plasma(amount)
-	to_chat(target, span_xenodanger("[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.plasma_maximum]."))
-	to_chat(X, span_xenodanger("We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.plasma_maximum]."))
+	to_chat(target, span_xenodanger("[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.xeno_caste.plasma_max]."))
+	to_chat(X, span_xenodanger("We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max]."))
 	playsound(X, SFX_ALIEN_DROOL, 25)
 
 

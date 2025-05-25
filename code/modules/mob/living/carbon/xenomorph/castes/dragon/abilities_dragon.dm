@@ -101,7 +101,7 @@
 		knockbacked_living.knockback(xeno_owner, 2, 1)
 
 	playsound(xeno_owner, has_hit_anything ? 'sound/effects/alien/dragon/backhand_hit.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
-	xeno_owner.gain_plasma(xeno_owner.plasma_maximum / 2)
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max / 2)
 
 /// Performs a different interaction based on if there is a grabbed human.
 /datum/action/ability/activable/xeno/backhand/proc/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
@@ -236,7 +236,7 @@
 	xeno_owner.add_pass_flags(PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE, DRAGON_ABILITY_TRAIT)
 	xeno_owner.density = FALSE
 	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
-	xeno_owner.gain_plasma(xeno_owner.plasma_maximum)
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max)
 	xeno_owner.update_icons(TRUE)
 	xeno_owner.update_action_buttons()
 
@@ -305,7 +305,7 @@
 			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 			continue
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
-	xeno_owner.gain_plasma(xeno_owner.plasma_maximum)
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max)
 	succeed_activate()
 	add_cooldown()
 
@@ -597,7 +597,7 @@
 		knockbacked_living.knockback(xeno_owner, 4, 1)
 
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
-	xeno_owner.gain_plasma(xeno_owner.plasma_maximum / 2)
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max / 2)
 	succeed_activate()
 	add_cooldown()
 

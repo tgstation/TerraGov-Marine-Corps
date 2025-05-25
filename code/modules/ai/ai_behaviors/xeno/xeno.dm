@@ -205,14 +205,14 @@
 ///Wait for the xeno to be full life and plasma to unrest
 /datum/ai_behavior/xeno/proc/check_for_health(mob/living/carbon/xenomorph/healing, list/heal_data)
 	SIGNAL_HANDLER
-	if(healing.health + heal_data[1] >= healing.maxHealth && healing.plasma_stored >= healing.plasma_maximum * healing.plasma_regeneration_percentage_limit)
+	if(healing.health + heal_data[1] >= healing.maxHealth && healing.plasma_stored >= healing.xeno_caste.plasma_max * healing.xeno_caste.plasma_regen_limit)
 		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 		UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
 
 ///Wait for the xeno to be full life and plasma to unrest
 /datum/ai_behavior/xeno/proc/check_for_plasma(mob/living/carbon/xenomorph/healing, list/plasma_data)
 	SIGNAL_HANDLER
-	if(healing.health >= healing.maxHealth && healing.plasma_stored + plasma_data[1] >= healing.plasma_maximum * healing.plasma_regeneration_percentage_limit)
+	if(healing.health >= healing.maxHealth && healing.plasma_stored + plasma_data[1] >= healing.xeno_caste.plasma_max * healing.xeno_caste.plasma_regen_limit)
 		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 		UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
 

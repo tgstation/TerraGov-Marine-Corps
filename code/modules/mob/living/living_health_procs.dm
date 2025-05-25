@@ -375,7 +375,7 @@
 
 
 /mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
-	set_plasma(plasma_maximum)
+	set_plasma(xeno_caste.plasma_max)
 	sunder = 0
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)

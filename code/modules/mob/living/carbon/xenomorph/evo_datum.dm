@@ -69,7 +69,7 @@
 		!xeno.is_ventcrawling && \
 		!xeno.incapacitated(TRUE) && \
 		xeno.health >= xeno.maxHealth && \
-		xeno.plasma_stored >= (xeno.plasma_maximum * xeno.plasma_regeneration_percentage_limit)
+		xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit)
 
 	data["evolution"] = list(
 		"current" = xeno.evolution_stored,

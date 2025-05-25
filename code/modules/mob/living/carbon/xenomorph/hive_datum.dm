@@ -158,17 +158,18 @@
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
 		if(initial(xeno.tier) == XENO_TIER_MINION)
 			continue // Skipping minions
-		var/plasma_multi = xeno.plasma_regeneration_percentage_limit == 0 ? 1 : xeno.plasma_regeneration_percentage_limit // Division by 0 bad.
+		var/datum/xeno_caste/caste = xeno.xeno_caste
+		var/plasma_multi = caste.plasma_regen_limit == 0 ? 1 : caste.plasma_regen_limit // Division by 0 bad.
 		var/health = xeno.health > 0 ? xeno.health / xeno.maxHealth : -xeno.health / xeno.get_death_threshold()
 		.["xeno_info"] += list(list(
 			"ref" = REF(xeno),
 			"name" = xeno.name,
 			"location" = get_xeno_location(xeno),
 			"health" = round(health * 100, 1),
-			"plasma" = round((xeno.plasma_stored / (xeno.plasma_maximum * plasma_multi)) * 100, 1),
+			"plasma" = round((xeno.plasma_stored / (caste.plasma_max * plasma_multi)) * 100, 1),
 			"is_leader" = xeno.xeno_flags & XENO_LEADER,
 			"is_ssd" = !xeno.client,
-			"index" = GLOB.hive_ui_caste_index[xeno.xeno_caste.base_strain_type],
+			"index" = GLOB.hive_ui_caste_index[caste.base_strain_type],
 		))
 
 	var/mob/living/carbon/xenomorph/xeno_user
@@ -697,7 +698,7 @@
 		to_chat(devolver, span_xenonotice("Cannot deevolve [target] here."))
 		return
 
-	if((target.health < target.maxHealth) || (target.plasma_stored < (target.plasma_maximum * target.plasma_regeneration_percentage_limit)))
+	if((target.health < target.maxHealth) || (target.plasma_stored < (target.xeno_caste.plasma_max * target.xeno_caste.plasma_regen_limit)))
 		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is too weak."))
 		return
 
@@ -723,7 +724,7 @@
 	if(!isturf(target.loc))
 		return
 
-	if((target.health < target.maxHealth) || (target.plasma_stored < (target.plasma_maximum * target.plasma_regeneration_percentage_limit)))
+	if((target.health < target.maxHealth) || (target.plasma_stored < (target.xeno_caste.plasma_max * target.xeno_caste.plasma_regen_limit)))
 		return
 
 	target.balloon_alert(target, "Forced deevolution")

@@ -428,7 +428,7 @@
 
 	xeno_owner.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
-	rage_plasma = min(xeno_owner.plasma_maximum - xeno_owner.plasma_stored, xeno_owner.plasma_maximum * rage_power) //Calculate the plasma to restore (and take away later)
+	rage_plasma = min(xeno_owner.xeno_caste.plasma_max - xeno_owner.plasma_stored, xeno_owner.xeno_caste.plasma_max * rage_power) //Calculate the plasma to restore (and take away later)
 	xeno_owner.plasma_stored += rage_plasma //Regain a % of our maximum plasma scaling with rage
 
 	rage_sunder = min(xeno_owner.sunder, rage_power * 100) //Set our temporary Sunder recovery
@@ -681,7 +681,7 @@
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack))
 	damage_dealt = 0
-	xeno.use_plasma(-xeno.plasma_maximum) // fill it to the max so they can kill better
+	xeno.use_plasma(-xeno.xeno_caste.plasma_max) // fill it to the max so they can kill better
 	xeno.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_DEATHMARK, TRUE, 0, NONE, TRUE, -0.75) //Extra speed so they can get to where to kill better
 	xeno.emote("roar")
 	add_cooldown()

@@ -498,7 +498,7 @@
 		if(stat == DEAD)
 			bucket = "empty"
 		else
-			bucket = get_bucket(XENO_HUD_ICON_BUCKETS, plasma_maximum, plasma_stored, 0, list("full", "empty"))
+			bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
 		hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
 
 	var/image/holder = hud_list[PLASMA_HUD]
@@ -508,7 +508,7 @@
 	if(stat == DEAD)
 		return
 	holder.icon = 'icons/mob/hud/xeno_health.dmi'
-	var/plasma_amount = plasma_maximum? round(plasma_stored * 100 / plasma_maximum, 10) : 0
+	var/plasma_amount = xeno_caste.plasma_max? round(plasma_stored * 100 / xeno_caste.plasma_max, 10) : 0
 	holder.overlays += xeno_caste.plasma_icon_state? "[xeno_caste.plasma_icon_state][plasma_amount]" : null
 	var/wrath_amount = xeno_caste.wrath_max? round(wrath_stored * 100 / xeno_caste.wrath_max, 10) : 0
 	holder.overlays += "wrath[wrath_amount]"

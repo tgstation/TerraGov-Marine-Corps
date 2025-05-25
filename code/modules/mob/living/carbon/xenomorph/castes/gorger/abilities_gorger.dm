@@ -118,7 +118,7 @@
 	if(!.)
 		return
 
-	if(xeno_owner.plasma_stored >= xeno_owner.plasma_maximum)
+	if(xeno_owner.plasma_stored >= xeno_owner.xeno_caste.plasma_max)
 		if(!silent)
 			to_chat(xeno_owner, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
@@ -438,7 +438,7 @@
 /datum/action/ability/activable/xeno/carnage/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(xeno_owner.plasma_stored > xeno_owner.plasma_maximum * 0.8 && xeno_owner.health > xeno_owner.maxHealth * 0.9)
+	if(xeno_owner.plasma_stored > xeno_owner.xeno_caste.plasma_max * 0.8 && xeno_owner.health > xeno_owner.maxHealth * 0.9)
 		return FALSE
 	// nothing gained by slashing allies
 	if(target.get_xeno_hivenumber() == xeno_owner.get_xeno_hivenumber())
