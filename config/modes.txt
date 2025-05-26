@@ -26,17 +26,18 @@ mode Extended Mini
 endmode
 
 mode Survival
-	requiredplayers 4
+	requiredplayers 8
 	votable 1
 endmode
 
 mode Extended - Survivor-Heavy
-	requiredplayers 0
+	requiredplayers 8
 	votable 1
 endmode
 
-mode Secrets of Life
+mode Secret of Life
 	requiredplayers 0
+	default
 endmode
 
 mode Zombie Crash

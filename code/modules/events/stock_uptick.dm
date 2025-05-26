@@ -15,7 +15,7 @@
 /datum/round_event/stock_uptick/start()
 	var/points_to_be_added //var to keep track of how many point we're adding to req
 	for(var/mob/living/carbon/human/H in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
-		points_to_be_added += pick(1,2,3)
+		points_to_be_added += pick(10,20,30)
 	if(points_to_be_added > 1250) //cap the max amount of points at 1250
 		points_to_be_added = 1250
 	SSpoints.supply_points[FACTION_TERRAGOV] += points_to_be_added

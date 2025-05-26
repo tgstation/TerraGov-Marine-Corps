@@ -13,7 +13,7 @@
 	var/weight = 10
 
 	///The earliest world.time that an event can start (round-duration in deciseconds) default: 20 mins
-	var/earliest_start = 20 MINUTES
+	var/earliest_start = 5 MINUTES
 	///The minimum amount of alive, non-AFK human players on server required to start the event.
 	var/min_players = 0
 

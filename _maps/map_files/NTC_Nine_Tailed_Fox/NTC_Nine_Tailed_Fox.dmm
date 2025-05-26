@@ -12306,7 +12306,6 @@
 /obj/item/stack/sheet/mineral/diamond,
 /obj/item/stack/sheet/mineral/gold,
 /obj/structure/safe,
-/obj/item/disk/nuclear/green,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -22326,6 +22325,7 @@
 /obj/item/ammo_magazine/pistol/vp70,
 /obj/item/ammo_magazine/pistol/vp70,
 /obj/item/attachable/suppressor,
+/obj/item/disk/nuclear/green,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"

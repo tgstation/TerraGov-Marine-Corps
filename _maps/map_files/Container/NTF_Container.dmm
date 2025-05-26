@@ -790,6 +790,7 @@
 /obj/item/portable_vendor/corporate,
 /obj/item/spacecash/c500,
 /obj/item/spacecash/c500,
+/obj/item/disk/nuclear/green,
 /turf/open/floor/carpet/side{
 	dir = 9
 	},
@@ -5645,7 +5646,6 @@
 "fwM" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
-	powernet = null;
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -9879,7 +9879,6 @@
 "kaM" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
-	powernet = null;
 	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
@@ -15937,7 +15936,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
-	powernet = null;
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -20412,7 +20410,6 @@
 "uwR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc/mainship/hardened{
-	powernet = null;
 	dir = 4
 	},
 /obj/structure/cable,
