@@ -82,10 +82,7 @@
 
 	buyable_mutations = list(
 		/datum/mutation_upgrade/shell/hardened_travel,
-		/datum/mutation_upgrade/shell/costly_travel,
 		/datum/mutation_upgrade/spur/rejuvenating_build,
-		/datum/mutation_upgrade/spur/draining_touch,
-		/datum/mutation_upgrade/veil/plasma_tank,
 		/datum/mutation_upgrade/veil/protective_light
 	)
 

@@ -57,7 +57,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/datum/action/ability/activable/xeno/secrete_resin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/secrete_resin]
+	var/datum/action/ability/activable/xeno/secrete_resin/hivelord/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/secrete_resin/hivelord]
 	if(!ability)
 		return FALSE
 	ability.percentage_heal_on_use += (new_amount - previous_amount) * 0.01
@@ -94,3 +94,5 @@
 	if(!ability)
 		return FALSE
 	ability.ability_cost -= (new_amount - previous_amount) * 0.25
+	ability.name = "[initial(ability.name)] ([ability.ability_cost])"
+	ability.update_button_icon()

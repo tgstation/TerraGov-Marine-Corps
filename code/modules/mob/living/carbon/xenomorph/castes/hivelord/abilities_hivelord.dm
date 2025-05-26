@@ -113,36 +113,20 @@
 	succeed_activate()
 
 /datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_on(silent = FALSE)
-	speed_activated = TRUE
 	if(!silent)
 		owner.balloon_alert(owner, "Resin walk active")
-	if(xeno_owner.loc_weeds_type)
-		speed_bonus_active = TRUE
-		xeno_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
-		if(armor_amount && !attached_armor)
-			attached_armor = new(armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount)
-			xeno_owner.soft_armor.attachArmor(attached_armor)
-		if(stop_plasma_regeneration)
-			ADD_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, TRAIT_MUTATION)
+	speed_activated = TRUE
+	set_speed_bonus_accordingly()
 	set_toggle(TRUE)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(resinwalk_on_moved))
-
 
 /datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
 	if(!silent)
 		owner.balloon_alert(owner, "Resin walk ended")
-	if(speed_bonus_active)
-		xeno_owner.remove_movespeed_modifier(type)
-		speed_bonus_active = FALSE
-		if(attached_armor)
-			xeno_owner.soft_armor.detachArmor(attached_armor)
-			attached_armor = null
-		if(stop_plasma_regeneration)
-			REMOVE_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, TRAIT_MUTATION)
 	speed_activated = FALSE
+	set_speed_bonus_accordingly()
 	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-
 
 /datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
 	SIGNAL_HANDLER
@@ -150,17 +134,34 @@
 		owner.balloon_alert(owner, "Resin walk ended, no plasma")
 		resinwalk_off(TRUE)
 		return
-	if(xeno_owner.loc_weeds_type)
-		if(!speed_bonus_active)
-			speed_bonus_active = TRUE
-			xeno_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
-		xeno_owner.use_plasma(10)
+	var/has_bonus = set_speed_bonus_accordingly()
+	if(!has_bonus)
 		return
-	if(!speed_bonus_active)
-		return
-	speed_bonus_active = FALSE
-	xeno_owner.remove_movespeed_modifier(type)
+	xeno_owner.use_plasma(10)
 
+/// Sets the speed bonus accordingly. Returns TRUE if there is a bonus; FALSE otherwise.
+/datum/action/ability/xeno_action/toggle_speed/proc/set_speed_bonus_accordingly()
+	if((!speed_activated || !xeno_owner.loc_weeds_type) && speed_bonus_active)
+		xeno_owner.remove_movespeed_modifier(type)
+		speed_bonus_active = FALSE
+		if(attached_armor)
+			xeno_owner.soft_armor = xeno_owner.soft_armor.detachArmor(attached_armor)
+			attached_armor = null
+		if(stop_plasma_regeneration)
+			REMOVE_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, TRAIT_MUTATION)
+		return FALSE
+	if(!speed_activated)
+		return FALSE
+	if(!speed_bonus_active)
+		speed_bonus_active = TRUE
+		xeno_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+		if(armor_amount && !attached_armor)
+			attached_armor = new()
+			attached_armor.modifyAllRatings(armor_amount)
+			xeno_owner.soft_armor = xeno_owner.soft_armor.attachArmor(attached_armor)
+		if(stop_plasma_regeneration)
+			ADD_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, TRAIT_MUTATION)
+	return TRUE
 
 // ***************************************
 // *********** Tunnel
@@ -397,6 +398,8 @@
 	var/mob/living/carbon/xenomorph/patient = target
 
 	patient.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION, HIVELORD_HEALING_INFUSION_TICKS) //per debuffs.dm
+	if(resin_jelly_duration)
+		patient.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING, resin_jelly_duration)
 
 	succeed_activate()
 	add_cooldown()
