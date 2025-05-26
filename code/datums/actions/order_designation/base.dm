@@ -27,11 +27,11 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 	return ..()
 
 /datum/action/ability/activable/build_designator/give_action(mob/living/L)
-	RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
+	RegisterSignal(L, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
 	return ..()
 
 /datum/action/ability/activable/build_designator/remove_action(mob/living/L)
-	UnregisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL)
+	UnregisterSignal(L, COMSIG_DO_OVERWATCH_RADIAL)
 	return ..()
 
 /datum/action/ability/activable/build_designator/should_show()
