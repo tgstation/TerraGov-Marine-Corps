@@ -66,6 +66,10 @@
 	vent_exit_speed = HUNTER_VENT_CRAWL_TIME
 	silent_vent_crawl = TRUE
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/fleeting_mirage
+	)
+
 /datum/xeno_caste/hunter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

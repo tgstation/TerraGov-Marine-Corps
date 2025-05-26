@@ -537,6 +537,8 @@
 	var/list/mob/illusion/illusions = list()
 	/// If swap has been used during the current set of illusions
 	var/swap_used = FALSE
+	/// The illusion that will take priority when mirage swapping.
+	var/mob/illusion/prioritized_illusion
 
 /datum/action/ability/xeno_action/mirage/remove_action()
 	illusions = list() //the actual illusions fade on their own, and the cooldown object may be qdel'd
@@ -573,14 +575,14 @@
 /// Swap places of hunter and an illusion
 /datum/action/ability/xeno_action/mirage/proc/swap()
 	swap_used = TRUE
-	if(!length(illusions))
+	if(!length(illusions) && !prioritized_illusion)
 		to_chat(xeno_owner, span_xenowarning("We have no illusions to swap with!"))
 		return
 
 	xeno_owner.playsound_local(xeno_owner, 'sound/effects/swap.ogg', 10, 0, 1)
 	var/turf/current_turf = get_turf(xeno_owner)
 
-	var/mob/selected_illusion = illusions[1]
+	var/mob/selected_illusion = prioritized_illusion ? prioritized_illusion : illusions[1]
 	if(selected_illusion.z != xeno_owner.z)
 		return
 	SEND_SIGNAL(xeno_owner, COMSIG_XENOABILITY_MIRAGE_SWAP)
