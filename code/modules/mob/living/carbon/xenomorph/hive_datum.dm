@@ -818,10 +818,10 @@
 		announce = FALSE
 
 	remove_leader(successor)
-	successor.hud_set_queen_overwatch()
-	successor.update_leader_icon(FALSE)
 	set_ruler(successor)
 	successor.give_ruler_abilities()
+	successor.hud_set_queen_overwatch()
+	successor.update_leader_icon(TRUE)
 	handle_ruler_timer()
 	update_leader_pheromones()
 	if(announce)
