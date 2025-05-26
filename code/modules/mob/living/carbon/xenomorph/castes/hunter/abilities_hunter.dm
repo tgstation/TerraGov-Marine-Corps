@@ -17,6 +17,10 @@
 	var/stealth_alpha_multiplier = 1
 	///Damage taken during stealth
 	var/total_damage_taken = 0
+	/// Should stealth stun? If, how long?
+	var/sneak_attack_stun_duration = 1 SECONDS
+	/// Additional damage added to slash on successful sneak attack. Multiplier is based on slash damage.
+	var/bonus_stealth_damage_multiplier = 0
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -189,12 +193,15 @@
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		staggerslow_stacks *= 2
 		flavour = "deadly"
+	if(bonus_stealth_damage_multiplier)
+		damage_mod += xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * bonus_stealth_damage_multiplier
 
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
 	target.adjust_stagger(staggerslow_stacks SECONDS)
 	target.add_slowdown(staggerslow_stacks)
-	target.ParalyzeNoChain(1 SECONDS)
+	if(sneak_attack_stun_duration)
+		target.ParalyzeNoChain(sneak_attack_stun_duration)
 
 	cancel_stealth()
 

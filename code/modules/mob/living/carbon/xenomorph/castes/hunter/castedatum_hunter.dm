@@ -67,7 +67,8 @@
 	silent_vent_crawl = TRUE
 
 	buyable_mutations = list(
-		/datum/mutation_upgrade/shell/fleeting_mirage
+		/datum/mutation_upgrade/shell/fleeting_mirage,
+		/datum/mutation_upgrade/spur/debilitating_strike
 	)
 
 /datum/xeno_caste/hunter/normal

@@ -65,6 +65,32 @@
 //*********************//
 //         Spur        //
 //*********************//
+/datum/mutation_upgrade/spur/debilitating_strike
+	name = "Debilitating Strike"
+	desc = "Stealth's sneak attack no longer stuns. 1.25/1.5/1.75x of your slash damage is added onto sneak attack instead."
+
+/datum/mutation_upgrade/spur/debilitating_strike/on_mutation_enabled()
+	var/datum/action/ability/xeno_action/stealth/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/stealth]
+	if(!ability)
+		return FALSE
+	ability.bonus_stealth_damage_multiplier += 1
+	return ..()
+
+/datum/mutation_upgrade/spur/debilitating_strike/on_mutation_disabled()
+	var/datum/action/ability/xeno_action/stealth/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/stealth]
+	if(!ability)
+		return FALSE
+	ability.bonus_stealth_damage_multiplier -= 1
+	return ..()
+
+/datum/mutation_upgrade/spur/debilitating_strike/on_structure_update(datum/source, previous_amount, new_amount)
+	. = ..()
+	if(!.)
+		return
+	var/datum/action/ability/xeno_action/stealth/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/stealth]
+	if(!ability)
+		return FALSE
+	ability.bonus_stealth_damage_multiplier += (new_amount - previous_amount) * 0.25
 
 //*********************//
 //         Veil        //
