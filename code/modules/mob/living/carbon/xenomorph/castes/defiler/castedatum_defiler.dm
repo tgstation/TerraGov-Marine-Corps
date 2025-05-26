@@ -2,7 +2,7 @@
 	caste_name = "Defiler"
 	display_name = "Defiler"
 	upgrade_name = ""
-	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
+	caste_desc = "A frightening looking, bulky xeno that drips with suspicious green fluids."
 	base_strain_type = /mob/living/carbon/xenomorph/defiler
 	caste_type_path = /mob/living/carbon/xenomorph/defiler
 
