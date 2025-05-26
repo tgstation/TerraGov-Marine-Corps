@@ -214,11 +214,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/export_name
 	/// What faction did the export
 	var/faction
+	/// How many dropship points from that export
+	var/dropship_points
 
-/datum/export_report/New(_points, _export_name, _faction)
+/datum/export_report/New(_points, _export_name, _faction, _dropship_points)
 	points = _points
 	export_name = _export_name
 	faction = _faction
+	dropship_points = _dropship_points
 
 /obj/docking_port/mobile/supply/proc/sell()
 	for(var/place in shuttle_areas)
