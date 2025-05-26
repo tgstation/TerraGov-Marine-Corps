@@ -21,7 +21,6 @@
 // *********** Init
 // ***************************************
 /mob/living/carbon/xenomorph/queen/Initialize(mapload)
-	RegisterSignal(src, COMSIG_HIVE_BECOME_RULER, PROC_REF(on_becoming_ruler))
 	. = ..()
 	playsound(loc, 'sound/voice/alien/queen_command.ogg', 75, 0)
 

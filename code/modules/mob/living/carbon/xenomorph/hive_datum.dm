@@ -834,14 +834,8 @@
 	SSdirection.clear_leader(hivenumber)
 	if(!isnull(successor))
 		SSdirection.set_leader(hivenumber, successor)
-		SEND_SIGNAL(successor, COMSIG_HIVE_BECOME_RULER)
 		RegisterSignals(successor, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_missing_ruler), TRUE)
 	living_xeno_ruler = successor
-
-
-/mob/living/carbon/xenomorph/queen/proc/on_becoming_ruler()
-	SIGNAL_HANDLER
-	hive.update_leader_pheromones()
 
 
 /datum/hive_status/proc/handle_ruler_timer()
