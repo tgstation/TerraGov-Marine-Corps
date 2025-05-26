@@ -609,6 +609,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
 	)
 	cooldown_duration = HUNTER_SILENCE_COOLDOWN
+	/// The multiplier of Silence's effects if owner's target (from Hunter's Mark) within the area.
+	var/hunter_mark_multiplier = HUNTER_SILENCE_MULTIPLIER
 
 /datum/action/ability/activable/xeno/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -647,7 +649,7 @@
 		var/silence_multiplier = 1
 		var/datum/action/ability/activable/xeno/hunter_mark/mark_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 		if(mark_action?.marked_target == target) //Double debuff stacks for the marked target
-			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
+			silence_multiplier = hunter_mark_multiplier
 		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
 		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
 		target.adjust_stagger(HUNTER_SILENCE_STAGGER_DURATION * silence_multiplier)

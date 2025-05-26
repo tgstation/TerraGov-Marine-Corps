@@ -95,3 +95,29 @@
 //*********************//
 //         Veil        //
 //*********************//
+/datum/mutation_upgrade/veil/one_target
+	name = "One Target"
+	desc = "The effects of Silence against your Hunter's Mark target last 2.5/2.75/3x as long."
+
+/datum/mutation_upgrade/veil/one_target/on_mutation_enabled()
+	var/datum/action/ability/activable/xeno/silence/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/silence]
+	if(!ability)
+		return FALSE
+	ability.hunter_mark_multiplier += 0.75
+	return ..()
+
+/datum/mutation_upgrade/veil/one_target/on_mutation_disabled()
+	var/datum/action/ability/activable/xeno/silence/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/silence]
+	if(!ability)
+		return FALSE
+	ability.hunter_mark_multiplier -= 0.75
+	return ..()
+
+/datum/mutation_upgrade/veil/one_target/on_structure_update(datum/source, previous_amount, new_amount)
+	. = ..()
+	if(!.)
+		return
+	var/datum/action/ability/activable/xeno/silence/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/silence]
+	if(!ability)
+		return FALSE
+	ability.hunter_mark_multiplier += (new_amount - previous_amount) * 0.25

@@ -68,7 +68,8 @@
 
 	buyable_mutations = list(
 		/datum/mutation_upgrade/shell/fleeting_mirage,
-		/datum/mutation_upgrade/spur/debilitating_strike
+		/datum/mutation_upgrade/spur/debilitating_strike,
+		/datum/mutation_upgrade/veil/one_target
 	)
 
 /datum/xeno_caste/hunter/normal
