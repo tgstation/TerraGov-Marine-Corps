@@ -297,5 +297,5 @@
 	export_points = 200
 
 /obj/item/research_product/money/rare
-	name = "credits - 500"
-	export_points = 500
+	name = "credits - 400"
+	export_points = 400
