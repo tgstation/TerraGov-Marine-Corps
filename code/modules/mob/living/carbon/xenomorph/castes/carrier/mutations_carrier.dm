@@ -81,7 +81,7 @@
 	if(!spawn_ability)
 		spawn_ability = new()
 		spawn_ability.give_action(xenomorph_owner)
-	egg_ability.use_selected_hugger = initial(spawn_ability)
+	egg_ability.use_selected_hugger = initial(egg_ability.use_selected_hugger)
 	egg_ability.cooldown_duration *= 2
 	egg_ability.ability_cost += initial(egg_ability.ability_cost) * 0.4
 	return ..()
