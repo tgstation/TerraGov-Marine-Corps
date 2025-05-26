@@ -75,9 +75,9 @@
 
 /datum/ammo/bullet/revolver/t76/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
     if(ishuman(target_mob))
-        staggerstun(target_mob, proj, weaken = 0, knockback = 1)
+        staggerstun(target_mob, proj, paralyze = 0, knockback = 1)
     else
-        staggerstun(target_mob, proj, weaken = 2 SECONDS, knockback = 1)
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, knockback = 1)
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
@@ -89,9 +89,9 @@
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
     if(ishuman(target_mob))
-        staggerstun(target_mob, proj, weaken = 0, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+        staggerstun(target_mob, proj, paralyze = 0, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
     else
-        staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
@@ -111,9 +111,9 @@
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
     if(ishuman(target_mob))
-        staggerstun(target_mob, proj, weaken = 0, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+        staggerstun(target_mob, proj, paralyze = 0, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
     else
-        staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	reflect(target_turf, proj, 10)
