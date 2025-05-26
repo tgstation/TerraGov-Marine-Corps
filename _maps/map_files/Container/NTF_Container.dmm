@@ -138,9 +138,7 @@
 "aic" = (
 /obj/structure/cable,
 /obj/effect/urban/decal/dirt,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/bridgebunks)
 "aiD" = (
@@ -934,9 +932,7 @@
 /area/mainship/hull/starboard_hull)
 "bdd" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -1028,9 +1024,7 @@
 /area/mainship/living/cafeteria)
 "bhG" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -1117,8 +1111,7 @@
 "bmT" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 4;
-	powernet = container
+	dir = 4
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/corporateliaison)
@@ -2026,9 +2019,7 @@
 /area/mainship/hallways/hangar)
 "caO" = (
 /obj/structure/cable,
-/obj/machinery/power/monitor{
-	powernet = container
-	},
+/obj/machinery/power/monitor,
 /turf/open/floor/mainship,
 /area/mainship/command/airoom)
 "ccK" = (
@@ -2332,8 +2323,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/tankerbunks)
@@ -2513,8 +2503,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 1;
-	powernet = container
+	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_hallway)
@@ -2889,8 +2878,7 @@
 	dir = 10
 	},
 /obj/machinery/power/apc/mainship{
-	dir = 1;
-	powernet = container
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/operating_room_two)
@@ -3748,8 +3736,7 @@
 "dNU" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 4;
-	powernet = container
+	dir = 4
 	},
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
@@ -3884,9 +3871,7 @@
 	pixel_x = 1
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "dUf" = (
@@ -4428,9 +4413,7 @@
 /area/mainship/command/cic)
 "evE" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "evZ" = (
@@ -4439,9 +4422,7 @@
 /area/mainship/command/cic)
 "ewv" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
@@ -4499,8 +4480,7 @@
 "exx" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical)
@@ -4536,9 +4516,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/starboard_hallway)
 "ezD" = (
@@ -4557,9 +4535,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship/hardened{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship/hardened,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "eAM" = (
@@ -5068,8 +5044,7 @@
 	dir = 4
 	},
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -5146,8 +5121,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 1;
-	powernet = container
+	dir = 1
 	},
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
@@ -5296,8 +5270,7 @@
 "feS" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 4;
-	powernet = container
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
@@ -5648,9 +5621,7 @@
 	pixel_x = 1
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/starboard_garden)
 "fwo" = (
@@ -5674,7 +5645,7 @@
 "fwM" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
-	powernet = container;
+	powernet = null;
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -6008,9 +5979,7 @@
 "fPU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "fQh" = (
@@ -6240,16 +6209,14 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 1;
-	powernet = container
+	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/specialist)
 "gdG" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 4;
-	powernet = container
+	dir = 4
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/starboard_emb)
@@ -6403,16 +6370,14 @@
 /area/mainship/shipboard/brig)
 "goX" = (
 /obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring";
-	powernet = container
+	name = "Main Power Grid Monitoring"
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/lower_engine_monitoring)
 "goZ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/port_point_defense)
@@ -6686,9 +6651,7 @@
 /area/mainship/groundhq/ntf/shipboard/port_missiles)
 "gEU" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "gFd" = (
@@ -6786,9 +6749,7 @@
 /area/mainship/shipboard/starboard_point_defense)
 "gIN" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "gJl" = (
@@ -7297,8 +7258,7 @@
 "hjB" = (
 /obj/structure/cable,
 /obj/machinery/power/monitor{
-	name = "Core Power Monitoring";
-	powernet = container
+	name = "Core Power Monitoring"
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/airoom)
@@ -7421,9 +7381,7 @@
 /area/mainship/command/cic)
 "hqL" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship/hardened{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship/hardened,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/telecomms)
 "hqT" = (
@@ -7672,8 +7630,7 @@
 /obj/structure/table/mainship,
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 4;
-	powernet = container
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/port_missiles)
@@ -8132,8 +8089,7 @@
 "ilo" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
@@ -8216,9 +8172,7 @@
 /area/mainship/hull/starboard_hull)
 "ipM" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/shuttle/escapepod,
 /area/maintenance/disposal)
 "iqk" = (
@@ -8312,8 +8266,7 @@
 	dir = 4
 	},
 /obj/machinery/power/apc/mainship{
-	dir = 1;
-	powernet = container
+	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/port_hull)
@@ -8582,9 +8535,7 @@
 "iJj" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/fieldcommander,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
@@ -8666,8 +8617,7 @@
 /obj/machinery/camera/autoname/mainship,
 /obj/structure/cable,
 /obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring";
-	powernet = container
+	name = "Main Power Grid Monitoring"
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/airoom)
@@ -8864,9 +8814,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/bridgebunks)
 "jaV" = (
@@ -9122,7 +9070,6 @@
 	},
 /area/mainship/hallways/ntf/dorm1)
 "jni" = (
-/obj/structure/table/mainship/nometal,
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/marine_card{
 	dir = 1
@@ -9932,7 +9879,7 @@
 "kaM" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
-	powernet = container;
+	powernet = null;
 	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
@@ -10590,9 +10537,7 @@
 /area/mainship/medical/lower_medical)
 "kHY" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/lower_engine_monitoring)
 "kID" = (
@@ -10792,8 +10737,7 @@
 	dir = 4
 	},
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
@@ -10891,9 +10835,7 @@
 /area/mainship/hallways/hangar)
 "kVn" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/urban/wood,
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "kVI" = (
@@ -11448,8 +11390,7 @@
 "lvg" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/starboard_point_defense)
@@ -11486,8 +11427,7 @@
 	dir = 4
 	},
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -11915,7 +11855,6 @@
 	})
 "lNO" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/fcroom)
@@ -12225,8 +12164,7 @@
 "mdd" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerempty3,
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile,
@@ -12865,9 +12803,7 @@
 /area/mainship/hallways/hangar)
 "mLJ" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship/hardened{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship/hardened,
 /obj/structure/table/reinforced,
 /turf/open/shuttle/escapepod,
 /area/mainship/nukeroom)
@@ -12960,9 +12896,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship/hardened{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship/hardened,
 /turf/open/floor/urban/wood,
 /area/mainship/shipboard/chief_mp_office)
 "mRq" = (
@@ -12982,9 +12916,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/port_hull)
 "mSy" = (
-/obj/machinery/power/apc/mainship/hardened{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship/hardened,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/starboard_point_defense{
@@ -13127,8 +13059,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/monitor{
-	name = "Core Power Monitoring";
-	powernet = container
+	name = "Core Power Monitoring"
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/airoom)
@@ -13435,8 +13366,7 @@
 "nnP" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 4;
-	powernet = container
+	dir = 4
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/hand_labeler,
@@ -13876,9 +13806,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "nKw" = (
@@ -13918,8 +13846,7 @@
 "nMl" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/cafeteria)
@@ -14604,9 +14531,7 @@
 /area/mainship/command/cic)
 "ozE" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/urban/wood,
 /area/mainship/living/mechpilotquarters)
 "ozH" = (
@@ -16012,7 +15937,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
-	powernet = container;
+	powernet = null;
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -16227,9 +16152,7 @@
 /area/mainship/squads/general)
 "qni" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop{
 	name = "Armorer's Workshop"
@@ -16758,9 +16681,7 @@
 "qQr" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -16911,8 +16832,7 @@
 	dir = 8
 	},
 /obj/machinery/power/apc/mainship{
-	dir = 4;
-	powernet = container
+	dir = 4
 	},
 /obj/machinery/computer/cryopod{
 	dir = 8
@@ -17851,9 +17771,7 @@
 /area/mainship/command/cic)
 "rTX" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship/hardened{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship/hardened,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -18713,8 +18631,7 @@
 "sHX" = (
 /obj/structure/cable,
 /obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring";
-	powernet = container
+	name = "Main Power Grid Monitoring"
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/airoom)
@@ -19234,8 +19151,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 1;
-	powernet = container
+	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr/two{
@@ -19244,8 +19160,7 @@
 "tgB" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
-	dir = 4;
-	powernet = container
+	dir = 4
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
@@ -20103,8 +20018,7 @@
 "ucC" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
-	dir = 1;
-	powernet = container
+	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/deltastation/command/teleporter{
@@ -20498,7 +20412,7 @@
 "uwR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc/mainship/hardened{
-	powernet = container;
+	powernet = null;
 	dir = 4
 	},
 /obj/structure/cable,
@@ -22354,7 +22268,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "whp" = (
-/obj/structure/table/mainship/nometal,
 /obj/machinery/faxmachine/cic,
 /obj/structure/table/black,
 /turf/open/floor/mainship/floor,
@@ -22366,9 +22279,7 @@
 /area/space)
 "whw" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -23331,9 +23242,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/starboard_hull)
 "xjU" = (
@@ -23538,9 +23447,7 @@
 /area/mainship/hallways/ntf/dorm1)
 "xtR" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	powernet = container
-	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -23636,8 +23543,7 @@
 /area/mainship/hallways/port_hallway)
 "xzN" = (
 /obj/machinery/power/apc/mainship{
-	dir = 8;
-	powernet = container
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
