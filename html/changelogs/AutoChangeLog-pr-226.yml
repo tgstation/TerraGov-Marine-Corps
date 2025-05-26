@@ -1,0 +1,10 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Reworks mech nade launcher, mech rocket launcher"
+  - rscadd: "Adds a mech sword"
+  - rscdel: "Movement block"
+  - qol: "Readded ctrl lock"
+  - balance: "Adjusts warlock/warrior damage to mechs"
+  - bugfix: "Fixes assault armor usage costing power even when activation failed"
+  - imageadd: "Adds new sprites for the sword and launcher"

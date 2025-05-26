@@ -157,7 +157,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 				return FALSE
 			switch(tgui_alert(G, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Jump to it", "Cancel")))
 				if("Join as Larva")
-					var/mob/living/carbon/human/original_corpse = G.can_reenter_corpse.resolve()
+					var/mob/living/carbon/human/original_corpse = G.can_reenter_corpse?.resolve()
 					if(SSticker.mode.spawn_larva(G, target) && ishuman(original_corpse))
 						original_corpse?.set_undefibbable()
 				if("Jump to it")

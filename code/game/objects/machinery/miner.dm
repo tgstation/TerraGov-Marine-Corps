@@ -10,23 +10,22 @@
 #define MINER_RESISTANT "reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
-#define PHORON_CRATE_SELL_AMOUNT 150
-#define PLATINUM_CRATE_SELL_AMOUNT 300
+#define PHORON_CRATE_SELL_AMOUNT 25
+#define PLATINUM_CRATE_SELL_AMOUNT 75
 #define PHORON_DROPSHIP_BONUS_AMOUNT 15
-#define PLATINUM_DROPSHIP_BONUS_AMOUNT 30
+#define PLATINUM_DROPSHIP_BONUS_AMOUNT 25
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
-	name = "\improper Nanotrasen phoron mining well"
-	desc = "Top-of-the-line Nanotrasen research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
+	name = "\improper Ninetails phoron Mining Well"
+	desc = "Top-of-the-line Ninetails research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
-	icon_state = "mining_drill_active"
+	icon_state = "mining_drill_active_"
 	anchored = TRUE
 	coverage = 30
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = RESIST_ALL | DROPSHIP_IMMUNE
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
-	faction = FACTION_TERRAGOV
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner
@@ -45,6 +44,22 @@
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
+	///What faction secured that miner
+	faction = FACTION_TERRAGOV
+	var/obj/effect/miner_owner_marker/owner_marker
+
+/obj/effect/miner_owner_marker
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	opacity = FALSE
+	invisibility = INVISIBILITY_MAXIMUM 		//nope, can't see this
+	anchored = TRUE
+
+/obj/machinery/miner/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
+	. = ..()
+	if(loc)
+		owner_marker?.forceMove(loc)
+	else
+		owner_marker?.moveToNullspace()
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -54,15 +69,24 @@
 	return //Marker will be set by itself once processing pauses when it detects this miner is broke.
 
 /obj/machinery/miner/damaged/platinum
-	name = "\improper Nanotrasen platinum mining well"
-	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
+	name = "\improper Ninetails platinum Mining Well"
+	desc = "A Ninetails platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
 	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
 /obj/machinery/miner/Initialize(mapload)
 	. = ..()
+	GLOB.miner_list += src
+	owner_marker = new(loc)
 	init_marker()
 	start_processing()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
+
+/obj/machinery/miner/Destroy()
+	. = ..()
+	GLOB.miner_list -= src
+	SSminimaps.remove_marker(src)
+	SSminimaps.remove_marker(owner_marker)
+	QDEL_NULL(owner_marker)
 
 /**
  * This proc is called during Initialize() and should be used to initially setup the minimap marker of a functional miner.
@@ -70,7 +94,12 @@
  **/
 /obj/machinery/miner/proc/init_marker()
 	var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
+	if(faction && (miner_status == MINER_RUNNING))
+		var/owner_flag = GLOB.faction_to_minimap_flag[faction]
+		if(owner_flag)
+			var/owner_marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_owned"
+			SSminimaps.add_marker(owner_marker, owner_flag, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, owner_marker_icon, MINIMAP_BLIPS_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
 
 /obj/machinery/miner/update_icon_state()
 	. = ..()
@@ -111,8 +140,8 @@
 			required_ticks = 60
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
-				SSpoints.supply_points[faction] += mineral_value * stored_mineral
-				SSpoints.dropship_points += dropship_bonus * stored_mineral
+				SSpoints.add_supply_points(faction, mineral_value * stored_mineral) //NTF edit. Forcibly caps req points.
+				SSpoints.add_dropship_points(faction, dropship_bonus * stored_mineral)
 				GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -232,16 +261,18 @@
 		return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	miner_integrity = max_miner_integrity
+	faction = user.faction
 	set_miner_status()
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
 	span_notice("You repair [src]'s tubing and plating."))
 	start_processing()
-	faction = user.faction
 	record_miner_repair(user)
 	return TRUE
 
 /obj/machinery/miner/examine(mob/user)
 	. = ..()
+	if(faction)
+		. += span_info("[src]'s terminal inform you it belongs to [faction]")
 	if(!ishuman(user) && !isobserver(user))
 		return
 	if(!miner_upgrade_type)
@@ -270,8 +301,8 @@
 		to_chat(user, span_warning("[src] is not ready to produce a shipment yet!"))
 		return
 
-	SSpoints.supply_points[faction] += mineral_value * stored_mineral
-	SSpoints.dropship_points += dropship_bonus * stored_mineral
+	SSpoints.add_supply_points(faction, mineral_value * stored_mineral) //NTF edit. Forcibly caps req points.
+	SSpoints.add_dropship_points(faction, dropship_bonus * stored_mineral)
 	GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -283,16 +314,17 @@
 	if(miner_status != MINER_RUNNING || mineral_value == 0)
 		stop_processing()
 		SSminimaps.remove_marker(src)
+		SSminimaps.remove_marker(owner_marker)
 		var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off"
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
 			for(var/direction in GLOB.cardinals)
 				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
 					continue
-				SSpoints.supply_points[faction] += mineral_value
-				SSpoints.dropship_points += dropship_bonus
+				SSpoints.add_supply_points(faction, mineral_value)  //NTF edit. Forcibly caps req points.
+				SSpoints.add_dropship_points(faction, dropship_bonus)
 				GLOB.round_statistics.points_from_mining += mineral_value
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -333,6 +365,29 @@
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
 			personal_statistics.miner_sabotages_performed++
 
+/obj/machinery/miner/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(faction == user.faction)
+		user.visible_message(span_notice("This miner belongs to your faction already."))
+		return
+	if(user.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack physically.
+		return
+	if(miner_upgrade_type == MINER_RESISTANT)
+		user.visible_message(span_notice("[user]'s [I] can't get through [src]'s reinforced plating."),
+		span_notice("You can't sabotage through [src]'s reinforced plating!"))
+		return
+	while(miner_status != MINER_DESTROYED)
+		if(user.do_actions)
+			return balloon_alert(user, "busy")
+		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+			return
+		user.do_attack_animation(src, ATTACK_EFFECT_LASERSWORD)
+		user.visible_message(span_danger("[user] sabotages \the [src]!"), \
+		span_danger("You sabotage \the [src]!"), null, 5)
+		playsound(loc, "alien_claw_metal", 25, TRUE)
+		miner_integrity -= 25
+		set_miner_status()
+
 /obj/machinery/miner/proc/set_miner_status()
 	var/health_percent = round((miner_integrity / max_miner_integrity) * 100)
 	switch(health_percent)
@@ -349,8 +404,13 @@
 			start_processing()
 			SSminimaps.remove_marker(src)
 			var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
-			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
+			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
 			miner_status = MINER_RUNNING
+			SSminimaps.remove_marker(owner_marker)
+			var/owner_flag = GLOB.faction_to_minimap_flag[faction]
+			if(owner_flag)
+				var/owner_marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_owned"
+				SSminimaps.add_marker(owner_marker, owner_flag, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, owner_marker_icon, MINIMAP_BLIPS_LAYER))
 	update_icon()
 
 ///Called via global signal to prevent perpetual mining

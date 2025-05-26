@@ -629,6 +629,7 @@
 /area/bigredv2/caves/southwest)
 "Gp" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
 "Gv" = (
