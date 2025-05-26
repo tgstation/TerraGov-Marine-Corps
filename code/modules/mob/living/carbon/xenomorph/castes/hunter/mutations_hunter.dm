@@ -48,8 +48,8 @@
 	var/datum/action/ability/xeno_action/mirage/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
 	if(!ability)
 		return
-	ability.prioritized_illusion = new /mob/illusion/xeno/fleeing(xenomorph_owner.loc, xenomorph_owner, xenomorph_owner, 240 SECONDS)
-	timer_id = addtimer(CALLBACK(src, PROC_REF(remove_illusion)), 240 SECONDS)
+	ability.prioritized_illusion = new /mob/illusion/xeno/fleeing(xenomorph_owner.loc, xenomorph_owner, xenomorph_owner, 10 SECONDS)
+	timer_id = addtimer(CALLBACK(src, PROC_REF(remove_illusion)), 10 SECONDS)
 
 /// Checks on the next tick if anything needs to be done with their new health since it is possible the health is inaccurate (because there can be other modifiers).
 /datum/mutation_upgrade/shell/fleeting_mirage/proc/remove_illusion()
