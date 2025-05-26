@@ -134,6 +134,25 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	seer = new_seer
 	return ..(key, I, FALSE)
 
+/datum/atom_hud/alternate_appearance/basic/one_person/Destroy()
+	seer = null
+	return ..()
+
+/datum/atom_hud/alternate_appearance/basic/group
+	///The mobs that can see this
+	var/list/mob/seer_list
+
+/datum/atom_hud/alternate_appearance/basic/group/mobShouldSee(mob/M)
+	return M in seer_list
+
+/datum/atom_hud/alternate_appearance/basic/group/New(key, image/I, list/new_seers)
+	seer_list = new_seers
+	return ..(key, I, FALSE)
+
+/datum/atom_hud/alternate_appearance/basic/group/Destroy()
+	seer_list = null
+	return ..()
+
 //Reverse of above
 /datum/atom_hud/alternate_appearance/basic/all_but_one_person
 	///The mob that CAN'T see this
@@ -145,6 +164,10 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 /datum/atom_hud/alternate_appearance/basic/all_but_one_person/New(key, image/I, mob/living/new_seer)
 	seer = new_seer
 	return ..(key, I, FALSE)
+
+/datum/atom_hud/alternate_appearance/basic/all_but_one_person/Destroy()
+	seer = null
+	return ..()
 
 /datum/atom_hud/alternate_appearance/basic/faction
 	add_ghost_version = TRUE
