@@ -30,7 +30,7 @@
 	var/bullet_armor_increase_per_structure = 2.5
 	/// For the first structure, the amount of melee armor to decrease by.
 	var/melee_armor_reduction_initial = 25
-	/// For each structure, the amount of additional melee armor to by.
+	/// For each structure, the amount of additional melee armor to decrease by.
 	var/melee_armor_reduction_per_structure = 5
 
 /datum/mutation_upgrade/shell/brittle_upclose/get_desc_for_alert(new_amount)
@@ -39,7 +39,7 @@
 	return "You can no longer be staggered by projectiles. You gain [bullet_armor_increase_initial + (bullet_armor_increase_per_structure * new_amount)] bullet armor, but lose [melee_armor_reduction_initial + (melee_armor_reduction_per_structure * new_amount)] melee armor."
 
 /datum/mutation_upgrade/shell/brittle_upclose/on_mutation_enabled()
-	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(melee_armor_reduction_initial, bullet_armor_increase_initial)
+	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(-melee_armor_reduction_initial, bullet_armor_increase_initial)
 	ADD_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION)
 	return ..()
 
