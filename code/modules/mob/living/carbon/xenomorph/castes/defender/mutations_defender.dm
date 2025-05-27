@@ -115,7 +115,7 @@
 	if(!ability)
 		return FALSE
 	ability.brute_damage_multiplier -= initial(ability.brute_damage_multiplier)
-	ability.stamina_damage_multiplier += stamina_damage_multiplier_initial
+	ability.stamina_damage_multiplier += (initial(ability.brute_damage_multiplier) + stamina_damage_multiplier_initial)
 	ability.paralyze_duration -= initial(ability.paralyze_duration)
 	return ..()
 
@@ -124,7 +124,7 @@
 	if(!ability)
 		return FALSE
 	ability.brute_damage_multiplier += initial(ability.brute_damage_multiplier)
-	ability.stamina_damage_multiplier -= stamina_damage_multiplier_initial
+	ability.stamina_damage_multiplier -= (initial(ability.brute_damage_multiplier) + stamina_damage_multiplier_initial)
 	ability.paralyze_duration += initial(ability.paralyze_duration)
 	return ..()
 
@@ -148,7 +148,7 @@
 /datum/mutation_upgrade/spur/power_spin/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Tail Swipe's knockback is increased by [knockback_initial] tile and staggers for [(stagger_per_structure/10 * new_amount)] seconds."
+	return "Tail Swipe's knockback is increased by [knockback_initial] tile and staggers for [(stagger_per_structure * new_amount * 0.1)] seconds."
 
 /datum/mutation_upgrade/spur/power_spin/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
@@ -175,9 +175,18 @@
 
 /datum/mutation_upgrade/spur/sharpening_claws
 	name = "Sharpening Claws"
-	desc = "For 10 sunder you have, you gain 3/6/9% additive increase in your slash damage."
-	/// How many times has the melee damage modifier been increased?
-	var/multiplier_so_far = 0
+	desc = "For each 10 sunder / missing armor, your melee damage multiplier is increased by 3/6/9%."
+	/// The amount of sunder used to determine the final multiplier.
+	var/sunder_repeating_threshold = 10
+	/// For each structure, the additional amount to increase melee damage modifier by.
+	var/damage_per_structure = 0.03
+	/// The amount that the melee damage modifier has been increased by so far.
+	var/modifier_so_far = 0
+
+/datum/mutation_upgrade/spur/sharpening_claws/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "For each [sunder_repeating_threshold] sunder / missing armor, your melee damage multiplier is increased by [damage_per_structure * 100]%."
 
 /datum/mutation_upgrade/spur/sharpening_claws/on_mutation_enabled()
 	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_SUNDER_CHANGE, PROC_REF(on_sunder_change))
@@ -191,18 +200,18 @@
 	. = ..()
 	if(!.)
 		return
-	xenomorph_owner.xeno_melee_damage_modifier -= multiplier_so_far * previous_amount * 0.03
-	multiplier_so_far = 0
+	xenomorph_owner.xeno_melee_damage_modifier -= modifier_so_far
+	modifier_so_far = 0
 	on_sunder_change(null, 0, xenomorph_owner.sunder)
 
 /// Changes melee damage modifier based on the difference between old and current sunder values.
 /datum/mutation_upgrade/spur/sharpening_claws/proc/on_sunder_change(datum/source, old_sunder, new_sunder)
 	SIGNAL_HANDLER
-	var/multiplier_difference = (FLOOR(new_sunder, 10) * 0.1) - multiplier_so_far
-	if(multiplier_difference == 0)
+	var/new_modifier = round(new_sunder / sunder_repeating_threshold) * get_total_structures() * damage_per_structure
+	if(new_modifier == modifier_so_far)
 		return
-	xenomorph_owner.xeno_melee_damage_modifier += multiplier_difference * get_total_structures() * 0.03
-	multiplier_so_far += multiplier_difference
+	xenomorph_owner.xeno_melee_damage_modifier += (new_modifier - modifier_so_far)
+	modifier_so_far = new_modifier
 
 //*********************//
 //         Veil        //
@@ -210,6 +219,13 @@
 /datum/mutation_upgrade/veil/carapace_sweat
 	name = "Carapace Sweat"
 	desc = "Regenerate Skin can be used while on fire and grants fire immunity for 2/4/6 seconds. If you were on fire, you will be extinguished and set nearby humans on fire."
+	/// For each structure, the additional deciseconds of fire immunity to give.
+	var/fire_immunity_per_structure = 2 SECONDS
+
+/datum/mutation_upgrade/veil/carapace_sweat/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Regenerate Skin can be used while on fire and grants fire immunity for [fire_immunity_per_structure * new_amount * 0.1] seconds. If you were on fire, you will be extinguished and set nearby humans on fire."
 
 /datum/mutation_upgrade/veil/carapace_sweat/on_structure_update(datum/source, previous_amount, new_amount)
 	. = ..()
@@ -218,7 +234,7 @@
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
 		return FALSE
-	ability.fire_immunity_length += 2 * (new_amount - previous_amount) SECONDS
+	ability.fire_immunity_length += (new_amount - previous_amount) * fire_immunity_per_structure
 
 /datum/mutation_upgrade/veil/slow_and_steady
 	name = "Slow and Steady"
