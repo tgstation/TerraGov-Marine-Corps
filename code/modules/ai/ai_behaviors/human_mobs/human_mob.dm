@@ -105,12 +105,14 @@
 	if((mob_parent?.skills?.getRating(SKILL_CONSTRUCTION) >= SKILL_CONSTRUCTION_PLASTEEL) && engineer_process())
 		return
 
-	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list) && (human_parent.nutrition + (37.5 * human_parent.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)) < NUTRITION_WELLFED))
-		for(var/obj/item/reagent_containers/food/food AS in mob_inventory.food_list)
-			if(!food.ai_should_use(human_parent))
-				continue
-			food.ai_use(human_parent, human_parent)
-			break
+	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list))
+		var/datum/reagent/consumable/nutriment/mob_nutriment = human_parent.reagents.get_reagent(/datum/reagent/consumable/nutriment)
+		if(!mob_nutriment || (human_parent.nutrition + mob_nutriment.get_nutrition_gain()) < NUTRITION_OVERFED)
+			for(var/obj/item/reagent_containers/food/food AS in mob_inventory.food_list)
+				if(!food.ai_should_use(human_parent))
+					continue
+				food.ai_use(human_parent, human_parent)
+				break
 
 	if(mob_parent.buckled && !mob_parent.buckled.ai_should_stay_buckled(mob_parent))
 		mob_parent.buckled.unbuckle_mob(mob_parent)
