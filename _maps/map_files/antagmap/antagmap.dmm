@@ -8183,6 +8183,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/maintenance/north)
+"QX" = (
+/obj/structure/cable,
+/obj/machinery/dropship_part_fabricator/tadpole,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/antag_ship/vsd/engi)
 "QY" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som{
 	dir = 4
@@ -13873,7 +13878,7 @@ BG
 br
 lq
 tI
-Ap
+QX
 uk
 Ap
 SH
