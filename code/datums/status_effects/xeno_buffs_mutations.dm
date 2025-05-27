@@ -43,7 +43,7 @@
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
 	duration = 7 SECONDS
-	// How much should the xenomorph owner's melee damage modifier be increased by?
+	// How much should the xenomorph owner's melee_damage_modifier be increased by?
 	var/damage_modifier = 0
 
 /datum/status_effect/xenomorph_damage_modifier/on_creation(mob/living/new_owner, new_damage_modifier)

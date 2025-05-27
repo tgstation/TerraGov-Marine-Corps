@@ -1058,38 +1058,45 @@
 // ***************************************
 // *********** Fresh Carapace
 // ***************************************
-/datum/status_effect/fresh_carapace
-	id = "fresh_carapace"
-	alert_type = /atom/movable/screen/alert/status_effect/fresh_carapace
-	duration = 6 SECONDS
+/datum/status_effect/armor_reduction
+	id = "xenomorph_armor_reduction"
 	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	duration = 6 SECONDS
+	// How much should the all of xenomorph owner's soft_armor be decreased by?
+	var/armor_reduction = 0
 	/// A holder for the exact armor modified by this status effect.
-	var/datum/armor/armor_modifier
+	var/datum/armor/attached_armor
+
+/datum/status_effect/armor_reduction/on_creation(mob/living/new_owner, new_armor_reduction)
+	owner = new_owner
+	if(new_armor_reduction)
+		armor_reduction = new_armor_reduction
+	return ..()
+
+/datum/status_effect/armor_reduction/on_apply()
+	. = ..()
+	if(!isxeno(owner) || !armor_reduction)
+		return FALSE
+	attached_armor = new()
+	attached_armor.modifyAllRatings(-armor_reduction)
+	owner.soft_armor = owner.soft_armor.attachArmor(attached_armor)
+
+/datum/status_effect/armor_reduction/fresh_carapace
+	id = "fresh_carapace"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = /atom/movable/screen/alert/status_effect/fresh_carapace
+	armor_reduction = 30 // The default for this particular status effect if it isn't overridden by Carapace Regrowth.
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/status_effect/fresh_carapace/on_creation(mob/living/new_owner, set_duration)
-	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
-		qdel(src)
-		return
-
-	owner = new_owner
-	if(set_duration)
-		duration = set_duration
-
-	particle_holder = new(owner, /particles/fresh_carapace_status)
-	return ..()
-
-/datum/status_effect/fresh_carapace/on_apply()
+/datum/status_effect/armor_reduction/fresh_carapace/on_apply()
 	. = ..()
 	if(!.)
 		return
-	armor_modifier = new armor_modifier(-30, -30, -30, -30, -30, -30, -30, -30)
-	owner.soft_armor = owner.soft_armor.attachArmor(armor_modifier)
+	particle_holder = new(owner, /particles/fresh_carapace_status)
 
-/datum/status_effect/fresh_carapace/on_remove()
-	owner.soft_armor = owner.soft_armor.detachArmor(armor_modifier)
-	armor_modifier = null
+/datum/status_effect/armor_reduction/fresh_carapace/on_remove()
 	QDEL_NULL(particle_holder)
 	return ..()
 

@@ -91,8 +91,9 @@
 #define STATUS_EFFECT_SHATTER /datum/status_effect/shatter
 ///recenly hit by a sniper round
 #define STATUS_EFFECT_SNIPED /datum/status_effect/incapacitating/recently_sniped
-/// -30 all armor for 6 seconds
-#define STATUS_EFFECT_FRESH_CARAPACE /datum/status_effect/fresh_carapace
+
+/// Reduction of a variable amount of all soft armor for 6 seconds.
+#define STATUS_EFFECT_FRESH_CARAPACE /datum/status_effect/armor_reduction/fresh_carapace
 
 /////////////
 // NEUTRAL //

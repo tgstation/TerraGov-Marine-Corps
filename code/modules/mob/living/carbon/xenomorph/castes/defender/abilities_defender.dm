@@ -355,8 +355,8 @@
 	var/fire_immunity_length = 0 SECONDS
 	/// The percentage of sunder to heal to a nearby xenomorph. Positive is good. Negative is bad.
 	var/percentage_to_unsunder_ally = 0
-	/// Should a temporary armor debuff be applied upon usage?
-	var/should_apply_temp_debuff = FALSE
+	/// Should a temporary armor debuff be applied upon usage? If so, how much?
+	var/temporary_armor_debuff_amount
 
 /datum/action/ability/xeno_action/regenerate_skin/on_cooldown_finish()
 	to_chat(xeno_owner, span_notice("We feel we are ready to shred our skin and grow another."))
@@ -414,8 +414,8 @@
 		if(ideal_xenomorph_target)
 			ideal_xenomorph_target.adjust_sunder(ideal_xenomorph_target.sunder * -percentage_to_unsunder_ally)
 			ideal_xenomorph_target.do_jitter_animation(1000)
-	if(should_apply_temp_debuff)
-		xeno_owner.apply_status_effect(STATUS_EFFECT_FRESH_CARAPACE)
+	if(temporary_armor_debuff_amount)
+		xeno_owner.apply_status_effect(STATUS_EFFECT_FRESH_CARAPACE, temporary_armor_debuff_amount)
 	add_cooldown()
 	return succeed_activate()
 

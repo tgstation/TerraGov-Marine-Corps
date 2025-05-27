@@ -4,6 +4,13 @@
 /datum/mutation_upgrade/shell/carapace_waxing
 	name = "Carapace Waxing"
 	desc = "Regenerate Skin additionally reduces various debuffs by 1/2/3 stacks or 2/4/6 seconds."
+	/// For each structure, the amount of additional stacks to decrease debuffs by.
+	var/reduction_per_structure = 1
+
+/datum/mutation_upgrade/shell/carapace_waxing/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Regenerate Skin additionally reduces various debuffs by [reduction_per_structure * new_amount] stacks or [reduction_per_structure * new_amount * 2] seconds."
 
 /datum/mutation_upgrade/shell/carapace_waxing/on_structure_update(datum/source, previous_amount, new_amount)
 	. = ..()
@@ -14,22 +21,30 @@
 		return FALSE
 	ability.debuff_amount_to_remove += (new_amount - previous_amount)
 
-/datum/mutation_upgrade/shell/carapace_waxing/get_desc_for_alert(new_amount)
-	if(!new_amount)
-		return ..()
-	return "Regenerate Skin additionally reduces various debuffs by [new_amount] stacks or [new_amount * 2] seconds."
-
 /datum/mutation_upgrade/shell/brittle_upclose
 	name = "Brittle Upclose"
-	desc = "You can no longer be staggered by projectiles and gain 5/7.5/10 bullet armor. However, you lose 30/35/40 melee armor."
+	desc = "You can no longer be staggered by projectiles. You gain 5/7.5/10 bullet armor, but lose 30/35/40 melee armor."
+	/// For the first structure, the amount of bullet armor to increase by.
+	var/bullet_armor_increase_initial = 2.5
+	/// For each structure, the amount of additional bullet armor to increase by.
+	var/bullet_armor_increase_per_structure = 2.5
+	/// For the first structure, the amount of melee armor to decrease by.
+	var/melee_armor_reduction_initial = 25
+	/// For each structure, the amount of additional melee armor to by.
+	var/melee_armor_reduction_per_structure = 5
+
+/datum/mutation_upgrade/shell/brittle_upclose/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "You can no longer be staggered by projectiles. You gain [bullet_armor_increase_initial + (bullet_armor_increase_per_structure * new_amount)] bullet armor, but lose [melee_armor_reduction_initial + (melee_armor_reduction_per_structure * new_amount)] melee armor."
 
 /datum/mutation_upgrade/shell/brittle_upclose/on_mutation_enabled()
-	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(-25, 2.5)
+	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(melee_armor_reduction_initial, bullet_armor_increase_initial)
 	ADD_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION)
 	return ..()
 
 /datum/mutation_upgrade/shell/brittle_upclose/on_mutation_disabled()
-	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(25, -2.5)
+	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(melee_armor_reduction_initial, -bullet_armor_increase_initial)
 	REMOVE_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION)
 	return ..()
 
@@ -37,31 +52,37 @@
 	. = ..()
 	if(!.)
 		return
-	var/difference = new_amount - previous_amount
-	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(difference * -5, difference * 2.5)
+	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating((new_amount - previous_amount) * -melee_armor_reduction_per_structure, (new_amount - previous_amount) * bullet_armor_increase_per_structure)
 
 /datum/mutation_upgrade/shell/carapace_regrowth
 	name = "Carapace Regrowth"
 	desc = "Regenerate Skin additionally recovers 50/60/70% of your maximum health, but will reduce all of your armor values by 30 for 6 seconds."
-	/// The beginning percentage of the health to heal (at zero structures)
-	var/beginning_percentage = 0.4
-	/// The additional percentage of the health to heal for each structure.
-	var/percentage_per_structure = 0.1
+	/// For the first structure, the percentage amount of maximum health to heal by.
+	var/maximum_health_percentage_initial = 0.4
+	/// For each structure, the additional percentage amount of maximum health to heal by.
+	var/maximum_health_percentage_per_structure = 0.1
+	/// How much should the armor debuff value be?
+	var/armor_debuff_amount = 30
+
+/datum/mutation_upgrade/shell/carapace_regrowth/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Regenerate Skin additionally recovers [100 * (maximum_health_percentage_initial + (maximum_health_percentage_per_structure * new_amount))]% of your maximum health, but will reduce all of your armor values by [armor_debuff_amount] for 6 seconds."
 
 /datum/mutation_upgrade/shell/carapace_regrowth/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
 		return FALSE
-	ability.percentage_to_heal += beginning_percentage
-	ability.should_apply_temp_debuff = TRUE
+	ability.percentage_to_heal += maximum_health_percentage_initial
+	ability.temporary_armor_debuff_amount += armor_debuff_amount
 	return ..()
 
 /datum/mutation_upgrade/shell/carapace_regrowth/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
 		return FALSE
-	ability.percentage_to_heal -= beginning_percentage
-	ability.should_apply_temp_debuff = FALSE
+	ability.percentage_to_heal -= maximum_health_percentage_initial
+	ability.temporary_armor_debuff_amount -= armor_debuff_amount
 	return ..()
 
 /datum/mutation_upgrade/shell/carapace_regrowth/on_structure_update(datum/source, previous_amount, new_amount)
@@ -71,31 +92,40 @@
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
 		return FALSE
-	ability.percentage_to_heal += (new_amount - previous_amount) * percentage_per_structure
+	ability.percentage_to_heal += (new_amount - previous_amount) * maximum_health_percentage_per_structure
 
 //*********************//
 //         Spur        //
 //*********************//
 /datum/mutation_upgrade/spur/breathtaking_spin
 	name = "Breathtaking Spin"
-	desc = "Tail Swipe no longer stuns and deals stamina damage instead. It deals an additional 2x/2.75x/2.5x stamina damage."
+	desc = "Tail Swipe deals 2/2.25/2.5x more damage, but it is all stamina damage and no longer stuns."
+	/// For the first structure, the multiplier to add as stamina damage.
+	var/stamina_damage_multiplier_initial = 1.75
+	/// For each structure, the additional multiplier to add as stamina damage.
+	var/stamina_damage_multiplier_per_structure = 0.25
 
-/datum/mutation_upgrade/shell/breathtaking_spin/on_mutation_enabled()
+/datum/mutation_upgrade/spur/breathtaking_spin/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Tail Swipe deals [stamina_damage_multiplier_initial + (stamina_damage_multiplier_per_structure * new_amount)]x more damage, but it is all stamina damage and no longer stuns."
+
+/datum/mutation_upgrade/spur/breathtaking_spin/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!ability)
 		return FALSE
-	ability.brute_damage_multiplier -= 1
-	ability.stamina_damage_multiplier += 2.25
-	ability.paralyze_duration -= 0.5 SECONDS
+	ability.brute_damage_multiplier -= initial(ability.brute_damage_multiplier)
+	ability.stamina_damage_multiplier += stamina_damage_multiplier_initial
+	ability.paralyze_duration -= initial(ability.paralyze_duration)
 	return ..()
 
-/datum/mutation_upgrade/shell/breathtaking_spin/on_mutation_disabled()
+/datum/mutation_upgrade/spur/breathtaking_spin/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!ability)
 		return FALSE
-	ability.brute_damage_multiplier += 1
-	ability.stamina_damage_multiplier -= 2.25
-	ability.paralyze_duration += 0.5 SECONDS
+	ability.brute_damage_multiplier += initial(ability.brute_damage_multiplier)
+	ability.stamina_damage_multiplier -= stamina_damage_multiplier_initial
+	ability.paralyze_duration += initial(ability.paralyze_duration)
 	return ..()
 
 /datum/mutation_upgrade/spur/breathtaking_spin/on_structure_update(datum/source, previous_amount, new_amount)
@@ -105,24 +135,33 @@
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!ability)
 		return FALSE
-	ability.stamina_damage_multiplier += (new_amount - previous_amount) * 0.75
+	ability.stamina_damage_multiplier += (new_amount - previous_amount) * stamina_damage_multiplier_per_structure
 
 /datum/mutation_upgrade/spur/power_spin
 	name = "Power Spin"
-	desc = "Tail Swipe knockbacks humans one tile further and staggers them for 1/2/3s."
+	desc = "Tail Swipe's knockback is increased by 1 tile and staggers for 1/2/3 seconds."
+	/// For the first structure, the knockback to add.
+	var/knockback_initial = 1
+	/// For each structure, the amount of deciseconds to add as stagger.
+	var/stagger_per_structure = 1 SECONDS
+
+/datum/mutation_upgrade/spur/power_spin/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Tail Swipe's knockback is increased by [knockback_initial] tile and staggers for [(stagger_per_structure/10 * new_amount)] seconds."
 
 /datum/mutation_upgrade/spur/power_spin/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!ability)
 		return FALSE
-	ability.knockback_distance += 1
+	ability.knockback_distance += knockback_initial
 	return ..()
 
 /datum/mutation_upgrade/spur/power_spin/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!ability)
 		return FALSE
-	ability.knockback_distance -= 1
+	ability.knockback_distance -= knockback_initial
 	return ..()
 
 /datum/mutation_upgrade/spur/power_spin/on_structure_update(datum/source, previous_amount, new_amount)
@@ -132,7 +171,7 @@
 	var/datum/action/ability/xeno_action/tail_sweep/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!ability)
 		return FALSE
-	ability.stagger_duration += (new_amount - previous_amount) SECONDS
+	ability.stagger_duration += (new_amount - previous_amount) * stagger_per_structure
 
 /datum/mutation_upgrade/spur/sharpening_claws
 	name = "Sharpening Claws"
