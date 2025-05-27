@@ -3,18 +3,24 @@
 //*********************//
 /datum/mutation_upgrade/shell/acid_release
 	name = "Acid Release"
-	desc = "Upon entering critical, release stunning acid in a radius of 2/3/4 tile radius. This resets upon reaching full health."
-	/// The beginning radius of stunning acid (at zero structures)
-	var/beginning_radius = 1
-	/// The additional radius of stunning acid for each structure.
+	desc = "Upon entering critical, release stunning acid in a radius of 2/3/4 tiles. This resets upon reaching full health."
+	/// For the first structure, the radius in which stunning acid are created.
+	var/radius_initial = 1
+	/// For each structure, the additional radius in which stunning acid are created.
 	var/radius_per_structure = 1
 	/// If the effect can be activated.
 	var/can_be_activated = FALSE
 
+/datum/mutation_upgrade/shell/acid_release/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Upon entering critical, release stunning acid in a radius of [radius_initial + (radius_per_structure * new_amount)] tiles. This resets upon reaching full health."
+
 /datum/mutation_upgrade/shell/acid_release/on_mutation_enabled()
 	RegisterSignals(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
 	RegisterSignal(xenomorph_owner, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_stat_changed))
-	on_damage()
+	if(xenomorph_owner.health >= xenomorph_owner.maxHealth)
+		can_be_activated = TRUE
 	return ..()
 
 /datum/mutation_upgrade/shell/acid_release/on_mutation_disabled()
@@ -33,7 +39,7 @@
 	if(!isturf(xenomorph_owner.loc) || new_stat != UNCONSCIOUS)
 		return
 	var/turf/current_turf = xenomorph_owner.loc
-	for(var/turf/acid_tile AS in RANGE_TURFS(beginning_radius + (get_total_structures() * radius_per_structure), current_turf))
+	for(var/turf/acid_tile AS in RANGE_TURFS(radius_initial + (get_total_structures() * radius_per_structure), current_turf))
 		if(!line_of_sight(current_turf, acid_tile))
 			continue
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
@@ -50,6 +56,13 @@
 /datum/mutation_upgrade/spur/fully_acid
 	name = "Fully Acid"
 	desc = "All of your stash damage is burn damage and is now checked against acid. You inflict 1/2/3 additional melting acid stacks."
+	/// For each structure, the additional stacks of melting acid.
+	var/stacks_per_structure = 1
+
+/datum/mutation_upgrade/spur/fully_acid/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "All of your stash damage is burn damage and is now checked against acid. You inflict [stacks_per_structure * new_amount] additional melting acid stacks."
 
 /datum/mutation_upgrade/spur/fully_acid/on_mutation_enabled()
 	if(!isxenomelter(xenomorph_owner))
@@ -73,7 +86,7 @@
 	if(!. || !isxenomelter(xenomorph_owner))
 		return FALSE
 	var/mob/living/carbon/xenomorph/runner/melter/melter_owner = xenomorph_owner
-	melter_owner.applied_acid_stacks += (new_amount - previous_amount)
+	melter_owner.applied_acid_stacks += (new_amount - previous_amount) * stacks_per_structure
 
 //*********************//
 //         Veil        //
@@ -81,10 +94,15 @@
 /datum/mutation_upgrade/veil/acid_reserves
 	name = "Acid Reserves"
 	desc = "Corrosive Acid is now applied 50/75/100% faster."
-	/// The beginning speedup of the ability application (at zero structures).
-	var/beginning_speedup = 0.25
-	/// The additional speedup of the ability application for each structure.
-	var/radius_per_structure = 0.25
+	/// For the first structure, the speedup of applying acid.
+	var/speedup_initial = 0.25
+	/// For each structure, the additional speedup of applying acid.
+	var/speedup_per_structure = 0.25
+
+/datum/mutation_upgrade/veil/acid_reserves/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Corrosive Acid is now applied [speedup_initial + (speedup_per_structure * new_amount)]% faster."
 
 /datum/mutation_upgrade/veil/acid_reserves/on_structure_update(previous_amount, new_amount)
 	. = ..()
@@ -94,6 +112,6 @@
 	if(!ability)
 		return FALSE
 	if(previous_amount)
-		ability.acid_speed_multiplier *= (1 + beginning_speedup + (previous_amount * 0.25)) // First, we reverse...
+		ability.acid_speed_multiplier *= (1 + speedup_initial + (previous_amount * speedup_per_structure)) // First, we reverse...
 	if(new_amount)
-		ability.acid_speed_multiplier /= (1 + beginning_speedup + (new_amount * 0.25)) // ... then we re-apply because math is hard!
+		ability.acid_speed_multiplier /= (1 + speedup_initial + (new_amount * speedup_per_structure)) // ... then we re-apply because math is hard!
