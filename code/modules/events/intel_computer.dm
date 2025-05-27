@@ -5,7 +5,7 @@
 
 	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign")
 
-/datum/round_event_control/intel_computer/can_spawn_event(players_amt, gamemode)
+/datum/round_event_control/intel_computer/can_spawn_event(	players_amt, gamemode)
 	if(length(GLOB.intel_computers) <= 0)
 		return FALSE
 	return ..()
@@ -23,5 +23,5 @@
 	I.active = TRUE
 
 	I.update_minimap_icon()
-	minor_announce("Our data sifting algorithm has detected valuable classified information on a access point in [get_area(I)]. Should this data be recovered by ground forces, a reward will be given in the form of increased assets.", title = "TGMC Intel Division")
+	minor_announce("Our data sifting algorithm has detected valuable classified information on a access point in [get_area(I)]. Should this data be recovered by ground forces, a reward will be given in the form of increased assets. Watch out for hostile forces, this is now a likely conflict zone.", title = "NTC Intel Division")
 	xeno_message("We sense a looming threat from [get_area(I)]. We must keep the hosts away from there.")

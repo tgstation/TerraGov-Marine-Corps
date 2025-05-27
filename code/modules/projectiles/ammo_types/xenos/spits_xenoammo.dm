@@ -38,7 +38,7 @@
 	name = "neurotoxic spit"
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
 	spit_cost = 55
-	added_spit_delay = 0
+	added_spit_delay = 0 SECONDS
 	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
@@ -50,10 +50,16 @@
 	smoke_strength = 0.5
 	smoke_range = 0
 	reagent_transfer_amount = 4
+	var/smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
+	var/reagent_type = /datum/reagent/toxin/xeno_neurotoxin
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
-	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
+	spit_reagents = list()
+	spit_reagents[reagent_type] = reagent_transfer_amount
+	/*You might think you could simplify this to:
+	spit_reagents = list(reagent_type = reagent_transfer_amount)
+	But nope, doesn't work*/
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_neuro_smoke(get_turf(target_mob))
@@ -92,7 +98,7 @@
 	drop_neuro_smoke(target_turf.density ? proj.loc : target_turf)
 
 /datum/ammo/xeno/toxin/set_smoke()
-	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro/light()
+	smoke_system = new smoke_type()
 
 /datum/ammo/xeno/toxin/proc/drop_neuro_smoke(turf/T)
 	if(T.density)
@@ -119,12 +125,67 @@
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	added_spit_delay = 0
 	spit_cost = 100
+	added_spit_delay = 0 SECONDS
 	damage = 40
 	smoke_strength = 1
 	reagent_transfer_amount = 10
 
+/datum/ammo/xeno/toxin/auto
+	damage = 12
+	damage_falloff = 0.2
+	spit_cost = 20
+	added_spit_delay = 0 SECONDS
+	smoke_strength = 0.25
+	reagent_transfer_amount = 2.5
+
+/datum/ammo/xeno/toxin/aphrotoxin
+	name = "aphrotoxin spit"
+	icon_state = "aphrotoxin"
+	spit_cost = 65
+	added_spit_delay = 0.1 SECONDS
+	damage_type = STAMINA
+	accurate_range = 5
+	max_range = 10
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	bullet_color = COLOR_TOXIN_APHROTOXIN
+	damage = 25
+	stagger_duration = 0.5 SECONDS
+	slowdown_stacks = 0.5
+	smoke_strength = 0.4
+	smoke_range = 0
+	reagent_transfer_amount = 3
+	smoke_type = /datum/effect_system/smoke_spread/xeno/aphrotoxin
+	reagent_type = /datum/reagent/toxin/xeno_aphrotoxin
+
+/datum/ammo/xeno/toxin/aphrotoxin/upgrade1
+	smoke_strength = 0.5
+	reagent_transfer_amount = 4
+
+/datum/ammo/xeno/toxin/aphrotoxin/upgrade2
+	smoke_strength = 0.55
+	reagent_transfer_amount = 5
+
+/datum/ammo/xeno/toxin/aphrotoxin/upgrade3
+	smoke_strength = 0.6
+	reagent_transfer_amount = 6.5
+
+/datum/ammo/xeno/toxin/aphrotoxin/heavy //Praetorian
+	name = "aphrotoxin splash"
+	spit_cost = 120
+	added_spit_delay = 0 SECONDS
+	damage = 35
+	smoke_strength = 1
+	reagent_transfer_amount = 8
+
+/datum/ammo/xeno/toxin/aphrotoxin/auto
+	damage = 12
+	damage_falloff = 0.2
+	spit_cost = 25
+	added_spit_delay = 0 SECONDS
+	smoke_strength = 0.25
+	reagent_transfer_amount = 1.5
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
@@ -222,7 +283,7 @@
 	sound_hit = SFX_ACID_HIT
 	sound_bounce = SFX_ACID_BOUNCE
 	damage_type = BURN
-	added_spit_delay = 5
+	added_spit_delay = 0.5 SECONDS
 	spit_cost = 50
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
 	armor_type = ACID
@@ -252,7 +313,7 @@
 	damage = 12
 	damage_falloff = 0.2
 	spit_cost = 20
-	added_spit_delay = 0
+	added_spit_delay = 0 SECONDS
 
 /datum/ammo/xeno/acid/auto/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob), proj)
@@ -273,7 +334,7 @@
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	added_spit_delay = 2
+	added_spit_delay = 0.2 SECONDS
 	spit_cost = 70
 	damage = 40
 

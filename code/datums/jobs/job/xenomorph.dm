@@ -32,7 +32,7 @@
 
 /datum/job/xenomorph/get_spawn_message_information(mob/M)
 	. = ..()
-	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += separator_hr("[span_role_header("<b>Xenomorph Information</b>")]")
 	. += {"<b>Your job is to spread the hive and protect the Hive Leader. If there's no Hive Leader, you can become the Shrike or Queen yourself by evolving into a drone.</b><br>
 Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')"}
 
@@ -73,14 +73,14 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 	"}
 
 /datum/job/xenomorph/queen/return_spawn_type(datum/preferences/prefs)
-	return /mob/living/carbon/xenomorph/shrike
+	return /mob/living/carbon/xenomorph/queen
 
 /datum/job/xenomorph/queen/return_spawn_turf()
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
 
 /datum/job/xenomorph/queen/get_spawn_message_information(mob/M)
 	. = ..()
-	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += separator_hr("[span_role_header("<b>Xeno Queen Information</b>")]")
 	. += {"<b>You are now the alien ruler!<br>
 Your job is to spread the hive.</b><br>
 Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>:a</strong> (e.g. ';My life for the hive!')"}
@@ -88,3 +88,16 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>:a</s
 /datum/job/xenomorph/queen/handle_special_preview(client/parent)
 	parent.show_character_previews(image('icons/Xeno/castes/larva.dmi', icon_state = "Larva", dir = SOUTH))
 	return TRUE
+
+/datum/job/xenomorph/green
+	title = "Corrupted Xenomorph"
+	minimal_access = ALL_MARINE_ACCESS
+	access = ALL_MARINE_ACCESS
+
+/datum/job/xenomorph/green/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/xenomorph/larva/Corrupted
+
+/datum/job/xenomorph/green/return_spawn_turf()
+	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_CORRUPTED]))
+		return pick(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_CORRUPTED])
+	return pick(GLOB.spawns_by_job[/datum/job/xenomorph/green])

@@ -1,0 +1,4 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Adds new fast mechs"

@@ -295,6 +295,12 @@
 	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
 	caliber = CALIBER_6G
 
+/obj/item/ammo_magazine/handful/heavy_flechette
+	name = "handful of shotgun flechette shells (6g)"
+	icon_state = "heavy_shotgun_flechette"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/heavy_flechette
+	caliber = CALIBER_6G
 
 /obj/item/ammo_magazine/handful/martini
 	name = "The handful of crude heavy sniper bullet (.557/440)"
@@ -464,7 +470,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				to_chat(user, span_warning("[AM] is already full."))
 				return
 
-			if(!do_after(user, 15, NONE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
 			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)

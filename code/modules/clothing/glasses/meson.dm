@@ -26,7 +26,7 @@
 
 /obj/item/clothing/glasses/meson/enggoggles
 	name = "\improper Optical meson ballistic goggles"
-	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal optical meson scanner."
+	desc = "Standard issue NTC goggles. This pair has been fitted with an internal optical meson scanner."
 	icon_state = "enggoggles"
 	worn_icon_state = "enggoggles"
 	deactive_state = "degoggles_enggoggles"
@@ -35,7 +35,7 @@
 
 /obj/item/clothing/glasses/meson/enggoggles/prescription
 	name = "\improper Optical meson prescription ballistic goggles"
-	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal optical meson scanner."
+	desc = "Standard issue NTC prescription goggles. This pair has been fitted with an internal optical meson scanner."
 	prescription = TRUE
 
 /obj/item/clothing/glasses/meson/eyepatch

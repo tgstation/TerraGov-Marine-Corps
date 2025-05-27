@@ -739,8 +739,8 @@ GLOBAL_LIST_INIT(equipment_recipe, list(
 	))
 
 /obj/item/factory_part/drop_pod
-	name = "TGMC Zeus orbital drop pod assembly"
-	desc = "An incomplete Zeus orbital drop pod assembly."
+	name = "NTC Zeus orbital drop pod assembly"
+	desc = "An incomplete Zeus orbital drop pod assembly"
 	result = /obj/structure/droppod
 
 /obj/item/factory_part/drop_pod/Initialize(mapload)

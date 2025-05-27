@@ -32,6 +32,12 @@
 /area/shuttle/dropship/alamo
 	name = "Dropship Alamo"
 
+/area/shuttle/dropship/elevator
+	name = "Ship Elevator"
+
+/area/shuttle/dropship/minielevator
+	name = "Elevator"
+
 /area/shuttle/dropship/normandy
 	name = "Dropship Normandy"
 
@@ -43,7 +49,7 @@
 
 /area/shuttle/minidropship
 	name = "Tadpole Drop Shuttle"
-	area_flags = NO_CONSTRUCTION
+	//area_flags = NO_CONSTRUCTION
 
 /area/shuttle/minidropship/Initialize(mapload, ...)
 	. = ..()
@@ -102,6 +108,12 @@
 
 /area/shuttle/supply
 	name = "Supply Shuttle"
+
+/area/shuttle/supply/som
+	name = "SOM Supply Shuttle"
+
+/area/shuttle/supply/clf
+	name = "CLF Supply Shuttle"
 
 /area/shuttle/vehicle_supply
 	name = "Vehicle Supply Shuttle"

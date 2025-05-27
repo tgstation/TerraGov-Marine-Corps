@@ -28,7 +28,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
-	evolve_min_xenos = 13
+	evolve_min_xenos = 0
 	death_evolution_delay = 15 MINUTES
 
 	// *** Flags *** //
@@ -47,8 +47,12 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/call_of_the_burrowed/free,
 		/datum/action/ability/activable/xeno/backhand,
 		/datum/action/ability/activable/xeno/backhand/dragon_breath,
@@ -74,6 +78,12 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/call_of_the_burrowed/free,
 		/datum/action/ability/activable/xeno/backhand,
 		/datum/action/ability/activable/xeno/backhand/dragon_breath,
