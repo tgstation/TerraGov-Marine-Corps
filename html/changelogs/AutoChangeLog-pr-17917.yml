@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - balance: "Harmful weather will now warn 60 seconds before hitting instead of 30."
