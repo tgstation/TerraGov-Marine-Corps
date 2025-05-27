@@ -173,7 +173,7 @@
 /obj/item/disk/intel_disk/proc/disk_cleanup()
 	SIGNAL_HANDLER
 	visible_message("[src] beeps a few times and explodes into pieces!")
-	explosion(src,0,0,1,0,0,0,0)
+	explosion(src,0,0,0,1,0,0,0, tiny = TRUE)
 	Destroy()
 
 /obj/item/disk/intel_disk/get_export_value()
