@@ -159,11 +159,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 /datum/health_scan/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui && !user.client?.prefs?.alt_health_analyzer)
+	if(!ui)
 		ui = new(user, src, "MedScanner", "Medical Scanner")
-		ui.open()
-	else if(!ui && user.client?.prefs?.alt_health_analyzer)
-		ui = new(user, src, "MedScannerAlt", "Medical Scanner")
 		ui.open()
 	allow_live_autoupdating = TRUE
 
@@ -210,7 +207,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"is_robotic_species" = !!(patient.species?.species_flags & ROBOTIC_LIMBS)
 		),
 
-		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes
+		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes,
+		"alt_health_analyzer" = user.client?.prefs?.alt_health_analyzer
 	)
 
 	var/temp_color = "white"

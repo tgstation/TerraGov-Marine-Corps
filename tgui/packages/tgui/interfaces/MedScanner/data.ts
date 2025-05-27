@@ -92,4 +92,5 @@ export type MedScannerData = {
   hugged: boolean;
   advice?: Record<string, AdviceData>;
   accessible_theme: boolean;
+  alt_health_analyzer: boolean;
 };
