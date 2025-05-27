@@ -238,16 +238,24 @@
 
 /datum/mutation_upgrade/veil/slow_and_steady
 	name = "Slow and Steady"
-	desc = "While Fortify is active, you can move at 10/20/30% of your movement speed."
+	desc = "You are no longer immobilized during Fortify. However, your move delay is increased by 1.4/1.2/1 seconds while it is active."
+	/// For the first structure, the amount of deciseconds of delay to add to all movement.
+	var/movement_delay_initial = 1.2 SECONDS
+	/// For each structure, the additional amount of deciseconds of delay to add to all movement.
+	var/movement_delay_per_structure = 0.2 SECONDS
+
+/datum/mutation_upgrade/veil/slow_and_steady/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "You are no longer immobilized during Fortify. However, your move delay is increased by [movement_delay_initial - (movement_delay_per_structure * new_amount)] seconds while it is active."
 
 /datum/mutation_upgrade/veil/slow_and_steady/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/fortify/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!ability)
 		return FALSE
-	ability.movement_modifier += 12
+	ability.movement_modifier += movement_delay_initial
 	if(xenomorph_owner.fortify)
 		REMOVE_TRAIT(xenomorph_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
-	else
 		xenomorph_owner.add_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE, 0, NONE, FALSE, ability.movement_modifier)
 		xenomorph_owner.client?.move_delay = world.time
 	return ..()
@@ -256,10 +264,9 @@
 	var/datum/action/ability/xeno_action/fortify/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!ability)
 		return FALSE
-	ability.movement_modifier -= 12
+	ability.movement_modifier -= movement_delay_initial
 	if(xenomorph_owner.fortify)
 		ADD_TRAIT(xenomorph_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
-	else
 		xenomorph_owner.remove_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE)
 	return ..()
 
@@ -270,11 +277,18 @@
 	var/datum/action/ability/xeno_action/fortify/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!ability)
 		return FALSE
-	ability.movement_modifier -= 2 * (new_amount - previous_amount)
+	ability.movement_modifier -= (new_amount - previous_amount) * movement_delay_per_structure
 
 /datum/mutation_upgrade/veil/carapace_sharing
 	name = "Carapace Sharing"
 	desc = "Regenerate Skin additionally removes 8/16/24% sunder of a nearby friendly xenomorph. This prioritizes those with the highest sunder."
+	/// For each structure, the additional percentage of sunder / missing armor to heal.
+	var/sunder_percentage_heal_per_structure = 0.08
+
+/datum/mutation_upgrade/veil/carapace_sharing/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Regenerate Skin additionally removes [sunder_percentage_heal_per_structure * 100]% sunder of a nearby friendly xenomorph. This prioritizes those with the highest sunder."
 
 /datum/mutation_upgrade/veil/carapace_sharing/on_structure_update(previous_amount, new_amount)
 	. = ..()
@@ -283,4 +297,4 @@
 	var/datum/action/ability/xeno_action/regenerate_skin/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!ability)
 		return FALSE
-	ability.percentage_to_unsunder_ally += (new_amount - previous_amount) * 0.08
+	ability.percentage_to_unsunder_ally += (new_amount - previous_amount) * sunder_percentage_heal_per_structure
