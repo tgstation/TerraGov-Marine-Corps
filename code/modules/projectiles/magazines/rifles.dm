@@ -808,14 +808,23 @@
 	icon_state = "c77"
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
+	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 24
 
+/obj/item/ammo_magazine/rifle/vsd_carbine/extended
+	name = "\improper CC/77 extended magazine (10x24mm)"
+	icon_state = "c77_ext"
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 48
 
+/obj/item/ammo_magazine/rifle/vsd_carbine/ap
+	name = "\improper CC/77 armor-piercing magazine (10x24mm)"
+	icon_state = "c77_ap"
+	default_ammo = /datum/ammo/bullet/rifle/ap
 
 /obj/item/ammo_magazine/rifle/cb31
-	name = "\improper CC/B/31 breaching slug magazine (12 gauge)"
-	desc = "A magazine of 16 gauge slugs, for the SH-15."
+	name = "\improper CC/B/31 breaching slug magazine (16 gauge)"
+	desc = "A magazine of 16 gauge slugs, for the CC/B/31."
 	caliber = CALIBER_16G
 	icon_state = "cb31"
 	icon_state_mini = "mag_tx15_slug"

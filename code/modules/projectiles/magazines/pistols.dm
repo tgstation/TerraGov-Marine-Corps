@@ -285,13 +285,20 @@
 
 //XM104 cylinder placed in pistols
 /obj/item/ammo_magazine/pistol/xmdivider
-	name = "\improper XM104 cylinder (.357)"
+	name = "\improper XM104 incendinary cylinder (.357)"
 	desc = "XM104 cylinder loaded with custom .357 incendiary rounds."
 	default_ammo = /datum/ammo/bullet/revolver/heavy/incen
 	max_rounds = 6
 	caliber = CALIBER_357
 	icon_state = "xm104"
 	icon_state_mini = "xm104"
+
+/obj/item/ammo_magazine/pistol/xmdivider/ap
+	name = "\improper XM104 AP cylinder (.357)"
+	desc = "XM104 cylinder loaded with custom .357 armor-piercing rounds."
+	default_ammo = /datum/ammo/bullet/revolver/heavy/ap
+	icon_state = "xm104_ap"
+	icon_state_mini = "xm104_ap"
 
 //c96
 

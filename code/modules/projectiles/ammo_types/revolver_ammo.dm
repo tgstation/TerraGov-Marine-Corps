@@ -65,6 +65,11 @@
 	name = "incendiary heavy revolver bullet"
 	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_BALLISTIC
 
+/datum/ammo/bullet/revolver/heavy/ap
+	name = "armor-piercing heavy revolver bullet"
+	damage = 50
+	penetration = 15
+	sundering = 5
 
 /datum/ammo/bullet/revolver/t76
 	name = "magnum bullet"

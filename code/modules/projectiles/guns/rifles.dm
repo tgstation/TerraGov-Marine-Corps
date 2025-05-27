@@ -2884,7 +2884,7 @@
 	burst_amount = 1
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	scatter = 0
-	fire_delay = 0.65 SECONDS
+	fire_delay = 0.5 SECONDS
 
 /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
@@ -2959,7 +2959,7 @@
 	wield_delay =  0.9 SECONDS
 	max_shells = 24 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_carbine
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_carbine)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_carbine, /obj/item/ammo_magazine/rifle/vsd_carbine/extended, /obj/item/ammo_magazine/rifle/vsd_carbine/ap)
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK|GUN_SMOKE_PARTICLES
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -2997,7 +2997,7 @@
 
 /obj/item/weapon/gun/rifle/vsd_breaching
 	name = "\improper CC/B/31 Breaching Shotgun"
-	desc = "The Kaizoku Corporation's breaching shotgun, firing 12 gauge breaching slugs. This won't kill if the target is armored."
+	desc = "The Kaizoku Corporation's breaching shotgun, firing 16 gauge breaching slugs. This won't kill if the target is armored."
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
@@ -3007,9 +3007,10 @@
 	worn_icon_state = "cb31"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
+	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/cb31
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/cb31)
-	gun_features_flags = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK|GUN_SMOKE_PARTICLES|GUN_WIELDED_FIRING_ONLY
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
