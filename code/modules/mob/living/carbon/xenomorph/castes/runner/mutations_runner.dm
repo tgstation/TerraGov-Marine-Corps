@@ -332,16 +332,16 @@
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
 		return FALSE
-	ability.stun_duration -= initial(ability.stun_duration) * [1 - (1 / stun_duration_divisible)]
-	ability.immobilize_duration -= initial(ability.stun_duration) * [1 - (1 / stun_duration_divisible)] // Wouldn't it be fair to self-stun for even longer!
+	ability.stun_duration -= initial(ability.stun_duration) * (1 - (1 / stun_duration_divisible))
+	ability.self_immobilize_duration -= initial(ability.stun_duration) * (1 - (1 / stun_duration_divisible)) // Wouldn't it be fair to self-stun for even longer!
 	return ..()
 
 /datum/mutation_upgrade/veil/headslam/on_mutation_disabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!ability)
 		return FALSE
-	ability.stun_duration += initial(ability.stun_duration) * [1 - (1 / stun_duration_divisible)]
-	ability.immobilize_duration += initial(ability.stun_duration) * [1 - (1 / stun_duration_divisible)]
+	ability.stun_duration += initial(ability.stun_duration) * (1 - (1 / stun_duration_divisible))
+	ability.self_immobilize_duration += initial(ability.stun_duration) * (1 - (1 / stun_duration_divisible))
 	return ..()
 
 /datum/mutation_upgrade/veil/headslam/on_structure_update(previous_amount, new_amount)
@@ -364,7 +364,7 @@
 /datum/mutation_upgrade/veil/frenzy/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Savage's damage is converted to a buff that increases all melee damage by a percentage for 7 seconds. It is a percentage of every point of damage Savage would of done multiplied by [beginning_damage_multiplier + (damage_multiplier_per_structure * new_amount)]x."
+	return "Savage's damage is converted to a buff that increases all melee damage by a percentage for 7 seconds. It is a percentage of every point of damage Savage would of done multiplied by [damage_conversion_multiplier_initial + (damage_conversion_multiplier_per_structure * new_amount)]x."
 
 /datum/mutation_upgrade/veil/frenzy/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
@@ -397,10 +397,10 @@
 	/// For each structure, the additional  of deciseconds of confusion to apply.
 	var/length_per_structure = 1 SECONDS
 
-/datum/mutation_upgrade/veil/frenzy/get_desc_for_alert(new_amount)
+/datum/mutation_upgrade/veil/passing_glance/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "While Evasion is on, moving onto the same location as a standing human will confuse them for [(beginning_length + (length_per_structure * new_amount)) * 0.01] seconds. This can only happens once per human."
+	return "While Evasion is on, moving onto the same location as a standing human will confuse them for [(length_initial + (length_per_structure * new_amount)) * 0.01] seconds. This can only happens once per human."
 
 /datum/mutation_upgrade/veil/passing_glance/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/evasion/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
