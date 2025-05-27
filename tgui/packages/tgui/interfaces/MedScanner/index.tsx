@@ -52,7 +52,7 @@ export function MedScanner() {
   return (
     <Window
       width={!alt_health_analyzer ? 520 : 600}
-      height={620}
+      height={!alt_health_analyzer ? 620 : !limbs_damaged ? 450 : 620}
       theme={
         accessible_theme
           ? species.is_robotic_species
