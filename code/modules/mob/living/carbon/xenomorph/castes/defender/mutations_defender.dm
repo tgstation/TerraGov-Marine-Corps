@@ -23,12 +23,6 @@
 	name = "Brittle Upclose"
 	desc = "You can no longer be staggered by projectiles and gain 5/7.5/10 bullet armor. However, you lose 30/35/40 melee armor."
 
-/datum/mutation_upgrade/shell/carapace_waxing/get_desc_for_alert(new_amount)
-	if(!new_amount)
-		return ..()
-	return "You can no longer be staggered by projectiles and gain 5/7.5/10 bullet armor. However, you lose 30/35/40 melee armor."
-
-
 /datum/mutation_upgrade/shell/brittle_upclose/on_mutation_enabled()
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(-25, 2.5)
 	ADD_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION)
