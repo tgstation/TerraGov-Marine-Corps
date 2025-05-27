@@ -4,9 +4,9 @@
 /datum/mutation_upgrade/shell/acid_release
 	name = "Acid Release"
 	desc = "Upon entering critical, release stunning acid in a radius of 2/3/4 tiles. This resets upon reaching full health."
-	/// For the first structure, the radius in which stunning acid are created.
+	/// For the first structure, the radius in which stunning acid is created.
 	var/radius_initial = 1
-	/// For each structure, the additional radius in which stunning acid are created.
+	/// For each structure, the additional radius in which stunning acid is created.
 	var/radius_per_structure = 1
 	/// If the effect can be activated.
 	var/can_be_activated = FALSE
@@ -79,7 +79,6 @@
 	melter_owner.second_damage_type = initial(melter_owner.second_damage_type)
 	melter_owner.second_damage_armor = initial(melter_owner.second_damage_armor)
 	return ..()
-
 
 /datum/mutation_upgrade/spur/fully_acid/on_structure_update(previous_amount, new_amount)
 	. = ..()
