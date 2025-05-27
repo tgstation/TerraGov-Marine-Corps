@@ -9,10 +9,13 @@
 		/obj/structure/closet,
 		/mob/living,
 		/obj/machinery,
+		/obj/structure/largecrate,
+		/obj/vehicle,
 	)
 	///List of banned teleportable types
 	var/static/list/blacklisted_types = list(
-		/obj/machinery/nuclearbomb
+		/obj/machinery/nuclearbomb,
+		/obj/vehicle/sealed/armored/multitile,
 	)
 
 /obj/machinery/deployable/teleporter/examine(mob/user)
