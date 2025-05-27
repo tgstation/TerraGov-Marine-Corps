@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - bugfix: "fixed defiler's inject egg ability not selecting"
