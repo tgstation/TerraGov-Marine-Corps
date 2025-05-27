@@ -65,7 +65,7 @@
 	xenomorph_owner.selected_reagent = initial(xenomorph_owner.selected_reagent)
 	return ..()
 
-/datum/mutation_upgrade/spur/toxic_claws/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/toxic_claws/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -110,7 +110,7 @@
 	ability.sting_gas_range -= beginning_range
 	return ..()
 
-/datum/mutation_upgrade/veil/toxic_spillage/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/toxic_spillage/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return

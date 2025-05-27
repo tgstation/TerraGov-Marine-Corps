@@ -5,7 +5,7 @@
 	name = "Unstoppable"
 	desc = "Charging will grant you immunity from staggered by projectiles if you reach the maximum number of steps minus 1/2/3."
 
-/datum/mutation_upgrade/shell/unstoppable/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/unstoppable/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -35,7 +35,7 @@
 	ability.plasma_use_multiplier -= initial(ability.plasma_use_multiplier)
 	return ..()
 
-/datum/mutation_upgrade/spur/speed_demon/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/speed_demon/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -54,7 +54,7 @@
 	/// The additional steps for each structure.
 	var/steps_per_structure = 4
 
-/datum/mutation_upgrade/veil/railgun/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/railgun/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return

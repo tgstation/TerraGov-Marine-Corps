@@ -28,7 +28,7 @@
 	REMOVE_TRAIT(xenomorph_owner, TRAIT_NOPLASMAREGEN, TRAIT_MUTATION)
 	return ..()
 
-/datum/mutation_upgrade/shell/hardened_travel/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/hardened_travel/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -53,7 +53,7 @@
 	name = "Rejuvenating Build"
 	desc = "You heal 1/2/3% of your maximum health whenever you successfully use Secrete Resin."
 
-/datum/mutation_upgrade/veil/rejuvenating_build/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/rejuvenating_build/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -86,7 +86,7 @@
 	ability.ability_cost -= initial(ability.ability_cost) * 1.25
 	return ..()
 
-/datum/mutation_upgrade/veil/protective_light/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/protective_light/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return

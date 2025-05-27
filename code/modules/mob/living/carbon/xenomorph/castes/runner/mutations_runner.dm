@@ -21,7 +21,7 @@
 	ability.refresh_disabled = FALSE
 	return ..()
 
-/datum/mutation_upgrade/shell/upfront_evasion/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/upfront_evasion/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -202,7 +202,7 @@
 	ability.dim_bonus_multiplier -= beginning_damage_multiplier
 	return ..()
 
-/datum/mutation_upgrade/spur/sneak_attack/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/sneak_attack/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -233,7 +233,7 @@
 	ability.upclose_bonus_multiplier -= beginning_damage_multiplier
 	return ..()
 
-/datum/mutation_upgrade/spur/right_here/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/right_here/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -264,7 +264,7 @@
 	ability.savage_damage_multiplier -= beginning_damage_multiplier
 	return ..()
 
-/datum/mutation_upgrade/spur/mutilate/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/mutilate/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -298,7 +298,7 @@
 	ability.immobilize_duration *= crowd_control_duration_divisible
 	return ..()
 
-/datum/mutation_upgrade/veil/headslam/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/headslam/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -329,7 +329,7 @@
 	ability.savage_damage_buff_alternative -= beginning_damage_multiplier
 	return ..()
 
-/datum/mutation_upgrade/veil/frenzy/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/frenzy/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -362,7 +362,7 @@
 	ability.passthrough_confusion_length -= beginning_length
 	return ..()
 
-/datum/mutation_upgrade/veil/passing_glance/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/passing_glance/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return

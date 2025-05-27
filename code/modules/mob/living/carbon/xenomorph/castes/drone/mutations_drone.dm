@@ -88,7 +88,7 @@
 	ability.lifesteal_percentage -= beginning_percentage
 	return ..()
 
-/datum/mutation_upgrade/shell/together_in_claws/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/together_in_claws/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -128,7 +128,7 @@
 		ability.existing_link.revenge_modifier += beginning_percentage
 	return ..()
 
-/datum/mutation_upgrade/spur/revenge/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/revenge/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -160,7 +160,7 @@
 	ability.bypass_cast_time_on_threshold = initial(ability.bypass_cast_time_on_threshold)
 	return ..()
 
-/datum/mutation_upgrade/veil/saving_grace/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/saving_grace/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -173,7 +173,7 @@
 	name = "Vitality Transfer"
 	desc = "While connected with Essence Link, you can manually disconnect to heal your partner for 5/10/15% of their maximum health multiplied by the attunement amount. However, you take true damage equal to the amount healed. This damage can kill you."
 
-/datum/mutation_upgrade/veil/vitality_transfer/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/vitality_transfer/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return

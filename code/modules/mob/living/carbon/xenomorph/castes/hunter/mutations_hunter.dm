@@ -83,7 +83,7 @@
 	ability.bonus_stealth_damage_multiplier -= 1
 	return ..()
 
-/datum/mutation_upgrade/spur/debilitating_strike/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/debilitating_strike/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -113,7 +113,7 @@
 	ability.hunter_mark_multiplier -= 0.75
 	return ..()
 
-/datum/mutation_upgrade/veil/one_target/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/one_target/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return

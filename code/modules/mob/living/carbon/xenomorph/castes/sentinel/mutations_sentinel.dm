@@ -21,7 +21,7 @@
 	UnregisterSignal(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE, COMSIG_MOB_STAT_CHANGED))
 	return ..()
 
-/datum/mutation_upgrade/shell/toxic_blood/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/toxic_blood/on_structure_update(previous_amount, new_amount)
 	damage_taken_so_far = min(damage_taken_so_far, (new_amount * threshold_per_structure) - 1)
 	return ..()
 
@@ -65,7 +65,7 @@
 	ability.healing_per_stack -= beginning_healing
 	return ..()
 
-/datum/mutation_upgrade/shell/comforting_acid/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/comforting_acid/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -91,7 +91,7 @@
 	xenomorph_owner.xeno_melee_damage_modifier += 0.50
 	return ..()
 
-/datum/mutation_upgrade/spur/acidic_slasher/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/acidic_slasher/on_structure_update(previous_amount, new_amount)
 	xenomorph_owner.next_move_adjust -= (new_amount - previous_amount) * 0.5
 	return ..()
 
@@ -128,7 +128,7 @@
 	ability.ranged_effectiveness -= beginning_effectiveness
 	return ..()
 
-/datum/mutation_upgrade/spur/far_sting/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/far_sting/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -162,7 +162,7 @@
 	ability.xenochemicals_unit_per_stack -= beginning_amount
 	return ..()
 
-/datum/mutation_upgrade/veil/toxic_compatibility/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/toxic_compatibility/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return

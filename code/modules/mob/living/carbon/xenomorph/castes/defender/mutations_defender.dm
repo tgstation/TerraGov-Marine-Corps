@@ -12,7 +12,7 @@
 		return ..()
 	return "Regenerate Skin additionally reduces various debuffs by [reduction_per_structure * new_amount] stacks or [reduction_per_structure * new_amount * 2] seconds."
 
-/datum/mutation_upgrade/shell/carapace_waxing/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/carapace_waxing/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -48,7 +48,7 @@
 	REMOVE_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION)
 	return ..()
 
-/datum/mutation_upgrade/shell/brittle_upclose/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/brittle_upclose/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -85,7 +85,7 @@
 	ability.temporary_armor_debuff_amount -= armor_debuff_amount
 	return ..()
 
-/datum/mutation_upgrade/shell/carapace_regrowth/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/carapace_regrowth/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -128,7 +128,7 @@
 	ability.paralyze_duration += initial(ability.paralyze_duration)
 	return ..()
 
-/datum/mutation_upgrade/spur/breathtaking_spin/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/breathtaking_spin/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -164,7 +164,7 @@
 	ability.knockback_distance -= knockback_initial
 	return ..()
 
-/datum/mutation_upgrade/spur/power_spin/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/power_spin/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -196,7 +196,7 @@
 	UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_SUNDER_CHANGE)
 	return ..()
 
-/datum/mutation_upgrade/spur/sharpening_claws/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/sharpening_claws/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -227,7 +227,7 @@
 		return ..()
 	return "Regenerate Skin can be used while on fire and grants fire immunity for [fire_immunity_per_structure * new_amount * 0.1] seconds. If you were on fire, you will be extinguished and set nearby humans on fire."
 
-/datum/mutation_upgrade/veil/carapace_sweat/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/carapace_sweat/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -263,7 +263,7 @@
 		xenomorph_owner.remove_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE)
 	return ..()
 
-/datum/mutation_upgrade/veil/slow_and_steady/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/slow_and_steady/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -276,7 +276,7 @@
 	name = "Carapace Sharing"
 	desc = "Regenerate Skin additionally removes 8/16/24% sunder of a nearby friendly xenomorph. This prioritizes those with the highest sunder."
 
-/datum/mutation_upgrade/veil/carapace_sharing/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/carapace_sharing/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return

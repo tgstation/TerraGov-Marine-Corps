@@ -68,7 +68,7 @@
 	return ..()
 
 
-/datum/mutation_upgrade/spur/fully_acid/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/fully_acid/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!. || !isxenomelter(xenomorph_owner))
 		return FALSE
@@ -86,7 +86,7 @@
 	/// The additional speedup of the ability application for each structure.
 	var/radius_per_structure = 0.25
 
-/datum/mutation_upgrade/veil/acid_reserves/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/acid_reserves/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return

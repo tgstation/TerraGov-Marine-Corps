@@ -5,7 +5,7 @@
 	name = "Shared Jelly"
 	desc = "If you are under the effect of resin jelly, all thrown huggers gain fire immunity. Each thrown hugger reduce the duration of the effect by 3/2/1s."
 
-/datum/mutation_upgrade/shell/together_in_claws/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/shell/together_in_claws/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -45,7 +45,7 @@
 	ability.activation_time_multiplier += beginning_damage_multiplier
 	return ..()
 
-/datum/mutation_upgrade/spur/leapfrog/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/spur/leapfrog/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -86,7 +86,7 @@
 	egg_ability.ability_cost += initial(egg_ability.ability_cost) * 0.4
 	return ..()
 
-/datum/mutation_upgrade/veil/oviposition/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/oviposition/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -122,7 +122,7 @@
 	ability.health_cost -= 60
 	return ..()
 
-/datum/mutation_upgrade/veil/life_for_life/on_structure_update(datum/source, previous_amount, new_amount)
+/datum/mutation_upgrade/veil/life_for_life/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
