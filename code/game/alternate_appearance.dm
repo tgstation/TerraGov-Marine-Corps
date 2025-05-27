@@ -192,3 +192,18 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 
 /datum/atom_hud/alternate_appearance/basic/not_faction/mobShouldSee(mob/M)
 	return M.faction != excluded_faction
+
+/datum/atom_hud/alternate_appearance/basic/multi_faction
+	add_ghost_version = TRUE
+	///The faction that will see this
+	var/list/visible_factions
+
+/datum/atom_hud/alternate_appearance/basic/multi_faction/New(key, image/I, list/new_factions)
+	visible_factions = new_factions
+	return ..(key, I, FALSE)
+
+/datum/atom_hud/alternate_appearance/basic/multi_faction/mobShouldSee(mob/M)
+	for(var/option in visible_factions)
+		if(M.faction != option)
+			continue
+		return TRUE
