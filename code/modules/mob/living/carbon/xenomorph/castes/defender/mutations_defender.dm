@@ -14,9 +14,20 @@
 		return FALSE
 	ability.debuff_amount_to_remove += (new_amount - previous_amount)
 
+/datum/mutation_upgrade/shell/carapace_waxing/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Regenerate Skin additionally reduces various debuffs by [new_amount] stacks or [new_amount * 2] seconds."
+
 /datum/mutation_upgrade/shell/brittle_upclose
 	name = "Brittle Upclose"
 	desc = "You can no longer be staggered by projectiles and gain 5/7.5/10 bullet armor. However, you lose 30/35/40 melee armor."
+
+/datum/mutation_upgrade/shell/carapace_waxing/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "You can no longer be staggered by projectiles and gain 5/7.5/10 bullet armor. However, you lose 30/35/40 melee armor."
+
 
 /datum/mutation_upgrade/shell/brittle_upclose/on_mutation_enabled()
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(-25, 2.5)

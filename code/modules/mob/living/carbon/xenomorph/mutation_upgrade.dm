@@ -31,7 +31,7 @@
 		if(MUTATION_VEIL)
 			RegisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL, PROC_REF(on_structure_change))
 	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, TYPE_PROC_REF(/datum/mutation_upgrade, on_xenomorph_upgrade))
-	on_structure_change(null, 0, get_total_structures())
+	on_structure_change(null, MUTATION_CHAMBER_MINIMUM, get_total_structures())
 
 /// Removes the status effect for having the mutation, unregisters various signals, and then updates with zero structures.
 /datum/mutation_upgrade/Destroy(force, ...)
@@ -47,7 +47,7 @@
 		if(MUTATION_VEIL)
 			UnregisterSignal(SSdcs, COMSIG_MUTATION_CHAMBER_VEIL)
 	UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
-	on_structure_change(null, get_total_structures(), 0)
+	on_structure_change(null, get_total_structures())
 	return ..()
 
 /// Called whenever the mutation is created/deleted or when the amount of structures has changed.
@@ -55,12 +55,13 @@
 	SIGNAL_HANDLER
 	if(previous_amount == new_amount) // No change.
 		return FALSE
-	if(!previous_amount && new_amount) // Mutations is now enabled.
+	if(!previous_amount && new_amount) // The mutation is now enabled.
 		on_mutation_enabled()
-	if(previous_amount && !new_amount) // Mutation is now disabled.
+	if(previous_amount && !new_amount) // The mutation is now disabled.
 		on_mutation_disabled()
 	on_structure_update(previous_amount, new_amount)
-	update_status_effect_alert()
+	if(applied_status_effect?.linked_alert)
+		handle_status_effect_alert(applied_status_effect.linked_alert, new_amount)
 	return TRUE
 
 /// Called whenever the mutation becomes enabled (going from zero structures to non-zero structures).
@@ -75,13 +76,18 @@
 /datum/mutation_upgrade/proc/on_structure_update(previous_amount, new_amount)
 	return TRUE
 
-/// Updates the status effect alert's name and description for accessibility reasons.
-/datum/mutation_upgrade/proc/update_status_effect_alert()
-	if(!applied_status_effect || !applied_status_effect.linked_alert)
-		return FALSE
-	applied_status_effect.linked_alert.name = name
-	applied_status_effect.linked_alert.desc = desc
-	return TRUE
+/// Updates the status effect alert's name and description.
+/datum/mutation_upgrade/proc/handle_status_effect_alert(atom/movable/screen/alert/status_effect/alert, new_amount)
+	alert.name = get_name_for_alert(new_amount)
+	alert.desc = get_desc_for_alert(new_amount)
+
+/datum/mutation_upgrade/proc/get_name_for_alert(new_amount)
+	return name
+
+/datum/mutation_upgrade/proc/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return "This mutation has no effect as there are are no active [category] structures!"
+	return desc
 
 /// Called whenever the xenomorph owner is upgraded (e.g. normal to primordial).
 /datum/mutation_upgrade/proc/on_xenomorph_upgrade()
@@ -93,11 +99,11 @@
 		return 0
 	switch(required_structure)
 		if(MUTATION_SHELL)
-			return length(xenomorph_owner.hive.shell_chambers)
+			return clamp(length(xenomorph_owner.hive.shell_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
 		if(MUTATION_SPUR)
-			return length(xenomorph_owner.hive.spur_chambers)
+			return clamp(length(xenomorph_owner.hive.spur_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
 		if(MUTATION_VEIL)
-			return length(xenomorph_owner.hive.veil_chambers)
+			return clamp(length(xenomorph_owner.hive.veil_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
 
 /datum/mutation_upgrade/shell
 	category = MUTATION_SHELL

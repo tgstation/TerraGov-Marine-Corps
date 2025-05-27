@@ -52,6 +52,10 @@ GLOBAL_LIST_INIT(stackable_decreasable_debuffs_for_xenos, list(
 #define STATUS_EFFECT_MUTATION_DRONE_REVENGE /datum/status_effect/xenomorph_damage_modifier/mutation_drone_revenge
 
 /// Name of each mutation structure/category.
-#define MUTATION_SHELL "Shell"
-#define MUTATION_SPUR "Spur"
-#define MUTATION_VEIL "Veil"
+#define MUTATION_SHELL "shell"
+#define MUTATION_SPUR "spur"
+#define MUTATION_VEIL "veil"
+
+/// The minimum and maximum of chambers that can exist.
+#define MUTATION_CHAMBER_MINIMUM 0
+#define MUTATION_CHAMBER_MAXIMUM 3
