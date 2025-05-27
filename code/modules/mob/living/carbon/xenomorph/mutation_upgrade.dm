@@ -81,9 +81,11 @@
 	alert.name = get_name_for_alert(new_amount)
 	alert.desc = get_desc_for_alert(new_amount)
 
+/// The name that the alert will have after updating.
 /datum/mutation_upgrade/proc/get_name_for_alert(new_amount)
 	return name
 
+/// The desc that the alert will have after updating.
 /datum/mutation_upgrade/proc/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return "This mutation has no effect as there are are no active [category] structures!"
