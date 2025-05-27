@@ -102,6 +102,7 @@ Stepping directly on the mine will also blow it up
 	tripwire.linked_mine = src
 
 	var/image/alt_image = image(icon, src, "[initial(icon_state)]_friendly")
+	alt_image.appearance_flags = RESET_ALPHA|RESET_COLOR
 	var/list/friendly_factions = list()
 	for(var/faction in GLOB.faction_to_iff)
 		if(GLOB.faction_to_iff[faction] != iff_signal)
