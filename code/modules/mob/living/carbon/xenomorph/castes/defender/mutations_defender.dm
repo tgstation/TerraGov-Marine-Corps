@@ -240,14 +240,14 @@
 	name = "Slow and Steady"
 	desc = "You are no longer immobilized during Fortify. However, your move delay is increased by 1.4/1.2/1 seconds while it is active."
 	/// For the first structure, the amount of deciseconds of delay to add to all movement.
-	var/movement_delay_initial = 1.2 SECONDS
+	var/movement_delay_initial = 1.6 SECONDS
 	/// For each structure, the additional amount of deciseconds of delay to add to all movement.
-	var/movement_delay_per_structure = 0.2 SECONDS
+	var/movement_delay_per_structure = -0.2 SECONDS
 
 /datum/mutation_upgrade/veil/slow_and_steady/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "You are no longer immobilized during Fortify. However, your move delay is increased by [movement_delay_initial - (movement_delay_per_structure * new_amount)] seconds while it is active."
+	return "You are no longer immobilized during Fortify. However, your move delay is increased by [movement_delay_initial + (movement_delay_per_structure * new_amount) * 0.1] seconds while it is active."
 
 /datum/mutation_upgrade/veil/slow_and_steady/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/fortify/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
@@ -277,7 +277,7 @@
 	var/datum/action/ability/xeno_action/fortify/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!ability)
 		return FALSE
-	ability.movement_modifier -= (new_amount - previous_amount) * movement_delay_per_structure
+	ability.movement_modifier += (new_amount - previous_amount) * movement_delay_per_structure
 
 /datum/mutation_upgrade/veil/carapace_sharing
 	name = "Carapace Sharing"
