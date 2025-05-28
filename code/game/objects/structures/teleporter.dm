@@ -10,6 +10,8 @@
 		/mob/living,
 		/obj/machinery,
 		/obj/structure/largecrate,
+	)
+	var/static/list/teleportable_while_anchored_types = list(
 		/obj/vehicle,
 	)
 	///List of banned teleportable types
@@ -70,6 +72,9 @@
 	var/list/atom/movable/teleporting = list()
 	for(var/atom/movable/thing in loc)
 		if(is_type_in_list(thing, blacklisted_types))
+			continue
+		if(is_type_in_list(thing, teleportable_while_anchored_types))
+			teleporting += thing
 			continue
 		if(is_type_in_list(thing, teleportable_types) && !thing.anchored)
 			teleporting += thing
@@ -205,6 +210,15 @@
 		linked_teleporter = null
 	QDEL_NULL(cell)
 	return ..()
+
+/obj/item/teleporter_kit/examine(mob/user)
+	. = ..()
+	if(!cell)
+		. += "It is currently lacking a power cell."
+	if(linked_teleporter)
+		. += "It is currently linked to Teleporter #[linked_teleporter.self_tele_tag] at [get_area(linked_teleporter)]"
+	else
+		. += "It is not linked to any other teleporter."
 
 ///Link the two teleporters
 /obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/link_teleport)
