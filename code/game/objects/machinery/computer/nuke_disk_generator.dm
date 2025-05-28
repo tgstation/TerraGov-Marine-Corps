@@ -168,12 +168,18 @@
 
 			busy = FALSE
 
+			faction = usr.faction
 			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time/current_overclock_multiplier, TIMER_STOPPABLE)
 			update_minimap_icon()
 			running = TRUE
 
 /obj/machinery/computer/nuke_disk_generator/ui_state(mob/user)
 	return GLOB.human_adjacent_state
+
+/obj/machinery/computer/nuke_disk_generator/examine(mob/user)
+	. = ..()
+	if(faction && current_timer)
+		. += "It is being operated by [faction]"
 
 /obj/machinery/computer/nuke_disk_generator/proc/complete_segment()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
@@ -203,8 +209,10 @@
 	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
 	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
 
-	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
-	SSpoints.dropship_points += disk_cycle_reward/10
+	if(!faction)
+		return
+	SSpoints.add_supply_points(faction, disk_cycle_reward)
+	SSpoints.add_dropship_points(faction, disk_cycle_reward/10)
 	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
 
 	say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")

@@ -6,6 +6,7 @@
 	shutters_drop_time = 3 MINUTES
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	factions = list(FACTION_TERRAGOV, FACTION_XENO, FACTION_CLF)
+	human_factions = list(FACTION_TERRAGOV, FACTION_CLF)
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,

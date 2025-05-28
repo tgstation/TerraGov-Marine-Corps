@@ -44,7 +44,9 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	 */
 	var/time_between_round = 0
 	///What factions are used in this gamemode, typically TGMC and xenos
-	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
+	var/list/factions = list(FACTION_TERRAGOV, FACTION_XENO)
+	///Factions that are used in this gamemode and which should have human members
+	var/list/human_factions = list(FACTION_TERRAGOV)
 	///Reduces the number of T3 slots xenos get by the value.
 	var/tier_three_penalty = 0
 	///Includes T3 xenos in the calculation for maximum T3 slots.
@@ -125,7 +127,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	spawn_characters()
 	transfer_characters()
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY))
-	for(var/faction in factions)
+	for(var/faction in human_factions)
 		SSpoints.dropship_points[faction] = 0
 		SSpoints.supply_points[faction] = 0
 	for(var/hivenum in GLOB.hive_datums)
