@@ -8185,7 +8185,9 @@
 /area/antag_ship/som/maintenance/north)
 "QX" = (
 /obj/structure/cable,
-/obj/machinery/dropship_part_fabricator/tadpole,
+/obj/machinery/dropship_part_fabricator/tadpole{
+	faction = "Kaizoku Corporation"
+	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/antag_ship/vsd/engi)
 "QY" = (
