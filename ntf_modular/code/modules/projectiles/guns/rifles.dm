@@ -51,7 +51,7 @@
 	scatter_mod = -2
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/tranq
-	name = "Moonbeam NL sniper rifle magazine"
+	name = "Moonbeam NL sniper rifle tranq magazine"
 	desc = "A box magazine filled with 8.6x70mm tranq rifle rounds for the Moonbeam."
 	caliber = CALIBER_86X70
 	icon_state = "tl127NL"
@@ -77,7 +77,7 @@
 		var/mob/living/carbon/carbon_victim = target_mob
 		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, rand(5,8), no_overdose = TRUE)
 
-/obj/item/ammo_magazine/packet/p86x70mm
+/obj/item/ammo_magazine/packet/p86x70mm/tranq
 	name = "box of 8.6x70mm tranq"
 	desc = "A box containing 50 rounds of 8.6x70mm caseless tranq."
 	caliber = CALIBER_86X70

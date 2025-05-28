@@ -67,6 +67,17 @@ ENGINEERING
 	contains = list(/obj/item/stack/sheet/mineral/phoron/medium_stack)
 	cost = 200
 
+/datum/supply_packs/engineering/pacman_super
+	name = "S.U.P.E.R.P.A.C.M.A.N. Portable Generator"
+	contains = list(/obj/machinery/power/port_gen/pacman/super)
+	cost = 750
+	containertype = null
+
+/datum/supply_packs/engineering/uranium
+	name = "30 uranium sheets"
+	contains = list(/obj/item/stack/sheet/mineral/uranium/medium_stack)
+	cost = 1000
+
 /datum/supply_packs/engineering/electrical
 	name = "Electrical maintenance supplies"
 	contains = list(

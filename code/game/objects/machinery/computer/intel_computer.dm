@@ -16,12 +16,12 @@
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
-	var/supply_reward = 400
+	var/supply_reward = 500
 	///How much dropship points you get for completing the terminal
-	var/dropship_reward = 100
+	var/dropship_reward = 200
 
 	///How much progress we get every tick, up to 100
-	var/progress_interval = 0.75
+	var/progress_interval = 1
 	///Tracks how much of the terminal is completed
 	var/progress = 0
 	///have we logged into the terminal yet?
@@ -68,7 +68,7 @@
 	active = FALSE
 	update_minimap_icon()
 	update_icon()
-	addtimer(CALLBACK(src, PROC_REF(resetcomputer)), 15 MINUTES)
+	STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src
@@ -134,19 +134,6 @@
 	if(printing)
 		STOP_PROCESSING(SSmachines, src)
 
-/obj/machinery/computer/intel_computer/proc/resetcomputer()
-	SIGNAL_HANDLER
-	START_PROCESSING(SSmachines, src)
-	first_login = FALSE
-	//GLOB.intel_computers += src
-	logged_in = FALSE
-	progress = 0
-	printing = FALSE
-	printing_complete = FALSE
-	active = TRUE
-	update_icon()
-	update_minimap_icon()
-
 // SOL edit start
 /obj/item/disk/intel_disk
 	name = "classified data disk"
@@ -186,7 +173,7 @@
 /obj/item/disk/intel_disk/proc/disk_cleanup()
 	SIGNAL_HANDLER
 	visible_message("[src] beeps a few times and explodes into pieces!")
-	explosion(src,0,0,1,0,0,0,0)
+	explosion(src,0,0,0,1,0,0,0, tiny = TRUE)
 	Destroy()
 
 /obj/item/disk/intel_disk/get_export_value()
@@ -201,3 +188,15 @@
 		return FALSE
 
 	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")
+
+
+//ntf later edit to tie resetting to the event itself instead of shitty timer so there is less computers to go around, but more reward.
+/datum/round_event/intel_computer/activate(obj/machinery/computer/intel_computer/I)
+	. = ..()
+	START_PROCESSING(SSmachines, I)
+	I.first_login = FALSE
+	I.logged_in = FALSE
+	I.progress = 0
+	I.printing = FALSE
+	I.printing_complete = FALSE
+	I.update_icon()

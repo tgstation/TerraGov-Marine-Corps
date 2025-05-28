@@ -100,12 +100,16 @@
 
 		// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin, /datum/ammo/xeno/acid/passthrough)
+	spit_types = list(/datum/ammo/xeno/toxin, /datum/ammo/xeno/acid/passthrough, /datum/ammo/xeno/toxin/aphrotoxin)
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 		/datum/action/ability/activable/xeno/neurotox_sting,
 		/datum/action/ability/activable/xeno/xeno_spit,
@@ -118,8 +122,12 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 		/datum/action/ability/activable/xeno/neurotox_sting,
 		/datum/action/ability/activable/xeno/xeno_spit,

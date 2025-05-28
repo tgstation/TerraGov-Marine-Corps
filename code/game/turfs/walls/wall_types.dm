@@ -508,3 +508,11 @@
 	icon_state = "engineer_walls-0"
 	walltype = "wall"
 	base_icon_state = "engineer_walls"
+
+/turf/closed/wall/elevator
+	name = "elevator wall"
+	desc = "Nigh indestructible walls that make up the hull of a elevator."
+	icon = 'icons/turf/walls/elevator_wall.dmi'
+	icon_state = "elevator_wall-0"
+	walltype = "wall"
+	base_icon_state = "elevator_wall"

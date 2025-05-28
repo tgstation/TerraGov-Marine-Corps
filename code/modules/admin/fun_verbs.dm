@@ -92,7 +92,7 @@ ADMIN_VERB(ai_report, R_FUN, "AI Report", "Create an AI report to players", ADMI
 	message_admins("[ADMIN_TPMONTY(user.mob)] has created an AI report: [input]")
 
 ADMIN_VERB(command_report, R_FUN, "Command Report", "Create a custom command report", ADMIN_CATEGORY_FUN)
-	var/customname = tgui_input_text(user, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
+	var/customname = tgui_input_text(user, "Pick a title for the report.", "Title", "NTC Update", encode = FALSE)
 	if(!customname)
 		return
 	var/customsubtitle = tgui_input_text(user, "Pick a subtitle for the report.", "Subtitle", "", encode = FALSE)

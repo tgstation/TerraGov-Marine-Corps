@@ -127,10 +127,10 @@
 ///Handles the removal of an item
 /datum/managed_inventory/proc/item_unequipped(obj/item/unequipped_item, mob/user)
 	SIGNAL_HANDLER
-	if(owner in get_nested_locs(unequipped_item))
-		return //still equipped
 	UnregisterSignal(unequipped_item, COMSIG_ITEM_REMOVED_INVENTORY)
 	equipped_list -= unequipped_item
+	if(owner in get_nested_locs(unequipped_item))
+		return //still equipped
 
 	//generally we only care about items in actual storage, but some things (like gun mags) get 'stored' in things without storage datums - i.e. the gun on reload
 	var/list/sort_list = unequipped_item.contents + unequipped_item
@@ -181,8 +181,10 @@
 		if(istype(new_item, /obj/item/explosive/grenade/flare))
 			return
 		return grenade_list
-	if(istype(new_item, /obj/item/ammo_magazine) || istype(new_item, /obj/item/cell/lasgun))
+	if(istype(new_item, /obj/item/ammo_magazine) || islascell(new_item))
 		return ammo_list
+	if(istool(new_item))
+		return engineering_list
 	if(isitemstack(new_item))
 		if(istype(new_item, /obj/item/stack/medical))
 			return medical_list
@@ -190,6 +192,8 @@
 			return engineering_list
 	if(isfood(new_item))
 		return food_list
+	if(iscell(new_item))
+		return engineering_list
 	if(isreagentcontainer(new_item) || istype(new_item, /obj/item/tweezers_advanced) || istype(new_item, /obj/item/tweezers) || istype(new_item, /obj/item/defibrillator))
 		return medical_list
 
@@ -347,3 +351,12 @@
 		return //still in inventory
 	food_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL, COMSIG_ATOM_ENTERED))
+
+///Returns a suitable tool from the inventory
+/datum/managed_inventory/proc/find_tool(req_tool_behavior)
+	var/obj/item/needed_tool
+	for(var/obj/item/candidate_tool AS in engineering_list)
+		if(candidate_tool.tool_behaviour == req_tool_behavior)
+			needed_tool = candidate_tool
+			break
+	return needed_tool

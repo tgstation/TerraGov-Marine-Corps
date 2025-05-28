@@ -104,14 +104,14 @@
 /datum/reagent/consumable/potato_juice
 	name = "Potato Juice"
 	description = "Juice of the potato. Bleh."
-	nutriment_factor = 2 * FOOD_METABOLISM
+	nutriment_factor = 1 * FOOD_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "irish sadness"
 
 /datum/reagent/consumable/pickle
 	name = "Pickle Juice"
 	description = "More accurately, this is the brine the pickle was floating in"
-	nutriment_factor = 2
+	nutriment_factor = 1
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "vinegar brine"
 
@@ -208,7 +208,7 @@
 	name = "Arnold Palmer"
 	description = "Encourages the patient to go golfing."
 	color = "#FFB766"
-	nutriment_factor = 10
+	nutriment_factor = 5
 	taste_description = "bitter tea"
 
 /datum/reagent/consumable/hot_ice_coffee
@@ -254,7 +254,7 @@
 	name = "root beer"
 	description = "A delightfully bubbly root beer, filled with so much sugar that it can actually speed up the user's trigger finger."
 	color = "#181008" // rgb: 24, 16, 8
-	nutriment_factor = 10
+	nutriment_factor = 5
 	custom_metabolism = 2 * REAGENTS_METABOLISM
 	taste_description = "a monstrous sugar rush"
 		/// If we activated the effect
@@ -391,63 +391,63 @@
 	name = "Cherry Shake"
 	description = "A cherry flavored milkshake."
 	color = "#FFB6C1"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "creamy tart cherry"
 
 /datum/reagent/consumable/bluecherryshake
 	name = "Blue Cherry Shake"
 	description = "An exotic milkshake."
 	color = "#00F1FF"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "creamy blue cherry"
 
 /datum/reagent/consumable/vanillashake
 	name = "Vanilla Shake"
 	description = "A vanilla flavored milkshake. The basics are still good."
 	color = "#E9D2B2"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "sweet creamy vanilla"
 
 /datum/reagent/consumable/caramelshake
 	name = "Caramel Shake"
 	description = "A caramel flavored milkshake. Your teeth hurt looking at it."
 	color = "#E17C00"
-	nutriment_factor = 10
+	nutriment_factor = 5
 	taste_description = "sweet rich creamy caramel"
 
 /datum/reagent/consumable/choccyshake
 	name = "Chocolate Shake"
 	description = "A frosty chocolate milkshake."
 	color = "#541B00"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "sweet creamy chocolate"
 
 /datum/reagent/consumable/strawberryshake
 	name = "Strawberry Shake"
 	description = "A strawberry milkshake."
 	color = "#ff7b7b"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "sweet strawberries and milk"
 
 /datum/reagent/consumable/bananashake
 	name = "Banana Shake"
 	description = "A banana milkshake. Stuff that clowns drink at their honkday parties."
 	color = "#f2d554"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "thick banana"
 
 /datum/reagent/consumable/pumpkin_latte
 	name = "Pumpkin Latte"
 	description = "A mix of pumpkin juice and coffee."
 	color = "#F4A460"
-	nutriment_factor = 3
+	nutriment_factor = 1.5
 	taste_description = "creamy pumpkin"
 
 /datum/reagent/consumable/gibbfloats
 	name = "Gibb Floats"
 	description = "Ice cream on top of a Dr. Gibb glass."
 	color = "#B22222"
-	nutriment_factor = 3
+	nutriment_factor = 1.5
 	taste_description = "creamy cherry"
 
 /datum/reagent/consumable/pumpkinjuice
@@ -483,7 +483,7 @@
 /datum/reagent/consumable/hot_coco
 	name = "Hot Coco"
 	description = "Made with love! And coco beans."
-	nutriment_factor = 2
+	nutriment_factor = 1
 	color = "#403010" // rgb: 64, 48, 16
 	adj_temp = 15
 	taste_description = "creamy chocolate"
@@ -491,7 +491,7 @@
 /datum/reagent/consumable/italian_coco
 	name = "Italian Hot Chocolate"
 	description = "Made with love! You can just imagine a happy Nonna from the smell."
-	nutriment_factor = 8
+	nutriment_factor = 4
 	color = "#57372A"
 	taste_description = "thick creamy chocolate"
 

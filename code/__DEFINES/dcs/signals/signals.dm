@@ -158,6 +158,9 @@
 
 ///from /obj/effect/build_designator/Initialize()
 #define COMSIG_GLOB_HOLO_BUILD_INITIALIZED "!holo_build_initialized"
+///from /datum/action/ability/activable/build_designator/indicate_target()
+#define COMSIG_GLOB_DESIGNATED_TARGET_SET "!designated_target_set"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
@@ -767,7 +770,6 @@
 #define COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED "shuttle_equipment_unequipped"
 
 // xeno stuff
-#define COMSIG_HIVE_BECOME_RULER "hive_become_ruler"
 #define COMSIG_HIVE_XENO_DEATH "hive_xeno_death"
 #define COMSIG_HIVE_XENO_MOTHER_PRE_CHECK "hive_xeno_mother_pre_check"		//from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 #define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"				//from /datum/hive_status/normal/proc/spawn_larva()
@@ -890,6 +892,9 @@
 	#define COMSIG_MAINTAIN_POSITION (1<<0)
 #define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
 	#define COMSIG_OBSTACLE_DEALT_WITH (1<<0)
+
+///from /datum/action/ability/activable/build_designator/call_interaction()
+#define COMSIG_MOB_INTERACTION_DESIGNATED "mob_interaction_designated"
 
 // /datum/song signals
 

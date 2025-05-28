@@ -29,7 +29,7 @@
 
 /obj/item/explosive/grenade/smokebomb/neuro
 	name = "\improper M40-N Neurotoxin smoke grenade"
-	desc = "A smoke grenade containing a concentrated neurotoxin developed by Nanotrasen, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the TGMC."
+	desc = "A smoke grenade containing a concentrated neurotoxin developed by Ninetails, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the NTC."
 	icon_state = "grenade_neuro"
 	worn_icon_state = "grenade_neuro"
 	hud_state = "grenade_neuro"
@@ -39,7 +39,7 @@
 
 /obj/item/explosive/grenade/smokebomb/acid
 	name = "\improper M40-A Acid smoke grenade"
-	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Nanotrasen, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, none of which Terra Gov is a signatory to."
+	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Ninetails, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, none of which NTF is a signatory to."
 	icon_state = "grenade_acid"
 	worn_icon_state = "grenade_acid"
 	hud_state = "grenade_acid"

@@ -729,7 +729,7 @@
 	caliber = CALIBER_357 //codex
 	max_shells = 6
 	default_ammo_type = /obj/item/ammo_magazine/pistol/xmdivider
-	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/xmdivider)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/xmdivider, /obj/item/ammo_magazine/pistol/xmdivider/ap)
 	force = 8
 	actions_types = null
 	attachable_allowed = list(

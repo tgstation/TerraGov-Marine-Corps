@@ -241,13 +241,23 @@ Imports
 	cost = 3
 
 /datum/supply_packs/imports/g22
-	name = "P-22 Handgun"
+	name = "P-22 Pistol"
 	contains = list(/obj/item/weapon/gun/pistol/g22)
 	cost = 35
 
 /datum/supply_packs/imports/beretta92fs/ammo
-	name = "P-22 Handgun Ammo"
+	name = "P-22 Pistol Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/g22)
+	cost = 3
+
+/datum/supply_packs/imports/g22_tranq
+	name = "P-22 Custom Pistol"
+	contains = list(/obj/item/weapon/gun/pistol/g22/tranq)
+	cost = 120
+
+/datum/supply_packs/imports/g22_tranq_ammo
+	name = "P-22 Custom Pistol Tranq Magazine"
+	contains = list(/obj/item/ammo_magazine/pistol/g22tranq)
 	cost = 3
 
 /datum/supply_packs/imports/deagle

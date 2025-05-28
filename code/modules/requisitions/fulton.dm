@@ -40,11 +40,13 @@
 	do_extract(spirited_away, user)
 	var/list/datum/export_report/export_reports = spirited_away.supply_export(user.faction)
 	var/points = 0
+	var/dropship_points = 0
 	for(var/datum/export_report/export_report in export_reports)
 		points += export_report.points
+		dropship_points += export_report.dropship_points
 		SSpoints.export_history += export_report
 	user.visible_message(span_notice("[user] finishes attaching [src] to [spirited_away] and activates it."),\
-	span_notice("You attach the pack to [spirited_away] and activate it. This looks like it will yield [points ? points : "no"] point[points == 1 ? "" : "s"]."), null, 5)
+	span_notice("You attach the pack to [spirited_away] and activate it. This looks like it will yield [points ? points : "no"] point[points == 1 ? "" : "s"][dropship_points ? " and [dropship_points] dropship point[dropship_points == 1 ? "" : "s"]" : ""]."), null, 5)
 	uses--
 	if(uses < 1)
 		user.temporarilyRemoveItemFromInventory(src) //Removes the item without qdeling it, qdeling it this early will break the rest of the procs

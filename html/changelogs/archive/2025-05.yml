@@ -297,3 +297,15 @@
       grenade explodes on the same tile as xeno. Decreased HEFA grenades firing 50
       pellets to 30 pellets, which still kills most T1/T2s at full health, and can
       kill T3/T4s if lower than half health.
+2025-05-26:
+  Lumipharon:
+  - bugfix: Monkeys no longer do hugely more melee damage than intended
+  - bugfix: Monkeys have pass low structure again
+  - bugfix: Monkeys have stamina
+  Vany3045:
+  - balance: HvH heavy robot armor now has medium slowdown, and additional +5 soft
+      armor for lasers.
+  - imageadd: new TDF robot armor sprites for HvH.
+  breadhunt:
+  - balance: Electrified razorwire has a cooldown, instead of being applied as fast
+      as you can accidentally walk into it

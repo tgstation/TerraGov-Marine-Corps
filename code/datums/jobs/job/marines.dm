@@ -84,13 +84,6 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += "You are a rank-and-file operative of the NTC, and that is your strength. What you lack alone, you gain standing shoulder to shoulder with the men and women of the Nine Tailed Fox PMC. Ooh-rah!"
 
-
-/datum/outfit/job/marine/standard
-	name = SQUAD_MARINE
-	jobtype = /datum/job/terragov/squad/standard
-
-	id = /obj/item/card/id/dogtag
-
 //Squad Slut
 /datum/job/terragov/squad/slut
 	title = SQUAD_SLUT
@@ -148,12 +141,6 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	. += {"\nYou are a rank-and-file marine of the NTC with a twist, your job is to be a marine yet also a 'trench-wive' or well, if you are a male 'trench-husband'?
 You can use some non lethal ammunition to 'tactically' do things to people, Spread those legs! Ooh-rah!"}
 
-/datum/outfit/job/marine/slut
-	name = SQUAD_SLUT
-	jobtype = /datum/job/terragov/squad/slut
-
-	id = /obj/item/card/id/dogtag
-
 //Squad Engineer
 /datum/job/terragov/squad/engineer
 	title = SQUAD_ENGINEER
@@ -188,13 +175,6 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += "You have the equipment and skill to build fortifications, reroute power lines, and bunker down. Your squaddies will look to you when it comes to construction in the field of battle."
-
-
-/datum/outfit/job/marine/engineer
-	name = SQUAD_ENGINEER
-	jobtype = /datum/job/terragov/squad/engineer
-
-	id = /obj/item/card/id/dogtag/engineer
 
 /datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -251,12 +231,6 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += "You must tend the wounds of your squad mates and make sure they are healthy and active. You may not be a fully-fledged doctor, but you stand between life and death when it matters."
-
-/datum/outfit/job/marine/corpsman
-	name = SQUAD_CORPSMAN
-	jobtype = /datum/job/terragov/squad/corpsman
-
-	id = /obj/item/card/id/dogtag/corpsman
 
 /datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -333,12 +307,6 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
 	new_human.wear_id.update_label()
 
-/datum/outfit/job/marine/smartgunner
-	name = SQUAD_SMARTGUNNER
-	jobtype = /datum/job/terragov/squad/smartgunner
-
-	id = /obj/item/card/id/dogtag/smartgun
-
 //Squad Specialist
 /datum/job/terragov/squad/specialist
 	title = SQUAD_SPECIALIST
@@ -363,12 +331,6 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += "You are one of the few chosen, extensively trained operatives that are usually sent out on solo stealth missions. Trained to use special equipment and perform masterful CQC. You are somewhat versatile and can serve a variety of roles."
-
-/datum/outfit/job/marine/specialist
-	name = SQUAD_SPECIALIST
-	jobtype = /datum/job/terragov/squad/specialist
-
-	id = /obj/item/card/id/dogtag/specialist
 
 /datum/job/terragov/squad/specialist/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()
@@ -430,12 +392,6 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += "You are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating. You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."
 
-/datum/outfit/job/marine/leader
-	name = SQUAD_LEADER
-	jobtype = /datum/job/terragov/squad/leader
-
-	id = /obj/item/card/id/dogtag/leader
-
 /datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(C))
@@ -482,11 +438,6 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/human/species/vatgrown
-
-/datum/outfit/job/marine/vatgrown
-	name = SQUAD_VATGROWN
-	jobtype = /datum/job/terragov/squad/vatgrown
-	id = /obj/item/card/id/dogtag
 
 //security officer
 /datum/job/terragov/security/security_officer
@@ -540,17 +491,3 @@ You can use some non lethal ammunition to 'tactically' do things to people, Spre
 		if(60001 to INFINITY)
 			new_human.wear_id.paygrade = "E8E"
 
-/datum/outfit/job/security_officer
-	name = SECURITY_OFFICER
-	jobtype = /datum/job/terragov/security/security_officer
-
-	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/security
-	glasses = /obj/item/clothing/glasses/hud/security
-	belt = /obj/item/storage/belt/security
-	head = /obj/item/clothing/head/beret/sec
-	ears = /obj/item/radio/headset/mainship/marine/generic/sec
-	w_uniform = /obj/item/clothing/under/rank/security/corp
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/bulletresistant
-	shoes = /obj/item/clothing/shoes/swat
-	gloves = /obj/item/clothing/gloves/marine/fingerless

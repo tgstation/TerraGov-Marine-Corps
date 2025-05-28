@@ -11,7 +11,9 @@
 	///Flags about what the AI is current doing or wanting
 	var/human_ai_state_flags = HUMAN_AI_NEED_WEAPONS
 	///To what level they will handle healing others
-	var/medical_rating = AI_MED_STANDARD
+	var/medical_rating = AI_MED_DEFAULT
+	///To what level they will handle engineering tasks like repairs
+	var/engineer_rating = AI_ENGIE_DEFAULT
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
 	///Inventory datum so the mob_parent can manage its inventory
@@ -55,11 +57,16 @@
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(on_take_damage))
 	RegisterSignal(mob_parent, COMSIG_AI_HEALING_MOB, PROC_REF(parent_being_healed))
 	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
+	RegisterSignal(mob_parent, COMSIG_MOB_INTERACTION_DESIGNATED, PROC_REF(interaction_designated))
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_DESIGNATED_TARGET_SET, PROC_REF(interaction_designated))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_ON_CRIT, PROC_REF(on_other_mob_crit))
+
 	if(mob_parent?.skills?.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_PRACTICED) //placeholder setter. Some jobs have high med but aren't medics...
 		medical_rating = AI_MED_MEDIC
 		RegisterSignals(SSdcs, list(COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC), PROC_REF(mob_need_heal))
 	if(mob_parent?.skills?.getRating(SKILL_CONSTRUCTION) >= SKILL_CONSTRUCTION_PLASTEEL) //placeholder setter. Some jobs have high construction but aren't engineers...
+		engineer_rating = AI_ENGIE_STANDARD
 		RegisterSignal(SSdcs, COMSIG_GLOB_HOLO_BUILD_INITIALIZED, PROC_REF(on_holo_build_init))
 	if(human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS)
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, PROC_REF(add_hazard))
@@ -83,9 +90,10 @@
 		COMSIG_MOVABLE_HEAR,
 		COMSIG_AI_HEALING_MOB,
 		COMSIG_MOB_TOGGLEMOVEINTENT,
+		COMSIG_MOB_INTERACTION_DESIGNATED,
 	))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC, COMSIG_GLOB_DESIGNATED_TARGET_SET, COMSIG_GLOB_HOLO_BUILD_INITIALIZED))
 	return ..()
 
 /datum/ai_behavior/human/process()
@@ -102,15 +110,17 @@
 	if((medical_rating >= AI_MED_MEDIC) && medic_process())
 		return
 
-	if((mob_parent?.skills?.getRating(SKILL_CONSTRUCTION) >= SKILL_CONSTRUCTION_PLASTEEL) && engineer_process())
+	if((engineer_rating >= AI_ENGIE_STANDARD) && engineer_process())
 		return
 
-	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list) && (human_parent.nutrition + (37.5 * human_parent.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)) < NUTRITION_WELLFED))
-		for(var/obj/item/reagent_containers/food/food AS in mob_inventory.food_list)
-			if(!food.ai_should_use(human_parent))
-				continue
-			food.ai_use(human_parent, human_parent)
-			break
+	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list))
+		var/datum/reagent/consumable/nutriment/mob_nutriment = human_parent.reagents.get_reagent(/datum/reagent/consumable/nutriment)
+		if(!mob_nutriment || (human_parent.nutrition + mob_nutriment.get_nutrition_gain()) < NUTRITION_OVERFED)
+			for(var/obj/item/reagent_containers/food/food AS in mob_inventory.food_list)
+				if(!food.ai_should_use(human_parent))
+					continue
+				food.ai_use(human_parent, human_parent)
+				break
 
 	if(mob_parent.buckled && !mob_parent.buckled.ai_should_stay_buckled(mob_parent))
 		mob_parent.buckled.unbuckle_mob(mob_parent)
@@ -176,6 +186,8 @@
 	switch(current_action)
 		if(MOVING_TO_ATOM)
 			if(!atom_to_walk_to)
+				change_action(ESCORTING_ATOM, escorted_atom)
+			if(isturf(atom_to_walk_to) && escorted_atom)
 				change_action(ESCORTING_ATOM, escorted_atom)
 			if(escorted_atom && (atom_to_walk_to != escorted_atom) && get_dist(mob_parent, escorted_atom) > AI_ESCORTING_MAX_DISTANCE)
 				change_action(ESCORTING_ATOM, escorted_atom)
@@ -362,11 +374,37 @@
 			return
 		INVOKE_ASYNC(src, PROC_REF(try_heal_other), human)
 		return TRUE
-	if(istype(interactee, /obj/effect/build_designator))
-		INVOKE_ASYNC(src, PROC_REF(try_build_holo), interactee)
-		return TRUE
-	interactee.do_ai_interact(mob_parent)
+	INVOKE_ASYNC(interactee, TYPE_PROC_REF(/atom, do_ai_interact), mob_parent, src)
 	return TRUE
+
+///Makes the mob attempt to interact with a specified atom
+/datum/ai_behavior/human/proc/interaction_designated(datum/source, atom/target)
+	SIGNAL_HANDLER
+	if(target?.z != mob_parent.z)
+		return
+	if(get_dist(target, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
+		return
+	if(isturf(target))
+		if(istype(target, /turf/closed/interior/tank/door))
+			set_interact_target(target) //todo: Other option might be redundant?
+			return
+		set_atom_to_walk_to(target)
+		return
+	if(!ismovable(target))
+		return //the fuck did you click?
+	//todo: AM proc to check if we should react at all
+	var/atom/movable/movable_target = target
+	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
+		set_interact_target(movable_target)
+		return
+	if(movable_target.faction != mob_parent.faction)
+		set_combat_target(movable_target)
+		return
+	if(isliving(movable_target))
+		var/mob/living/living_target = target
+		if(!living_target.stat)
+			set_escorted_atom(living_target)
+	set_interact_target(movable_target)
 
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)

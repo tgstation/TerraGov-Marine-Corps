@@ -676,7 +676,7 @@
 	var/mob/living/carbon/human/debuff_ownerhuman
 	var/clothesundoed = 0
 /particles/aphrodisiac
-	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon = 'ntf_modular/icons/effects/particles/generic_particles.dmi'
 	icon_state = "heart"
 	width = 100
 	height = 100

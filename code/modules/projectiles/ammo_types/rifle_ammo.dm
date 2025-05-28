@@ -99,7 +99,7 @@
 	hud_state = "rifle_heavy"
 	damage = 20
 	penetration = 10
-	sundering = 1
+	sundering = 2.5
 
 /datum/ammo/bullet/rifle/som_big
 	name = "heavy rifle bullet"
@@ -232,4 +232,4 @@
 	hud_state = "rifle_ap"
 	damage = 45
 	penetration = 30
-	sundering = 2
+	sundering = 5

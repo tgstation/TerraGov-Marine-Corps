@@ -292,7 +292,6 @@
 
 	ability_cost = 100
 	cooldown_duration = 5 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS,
 	)

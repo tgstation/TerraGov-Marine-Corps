@@ -1,6 +1,6 @@
-/datum/game_mode/infestation/extended_plus/secrets_of_life
-	name = "Secrets of Life"
-	config_tag = "Secrets of Life"
+/datum/game_mode/infestation/extended_plus/secret_of_life
+	name = "Secret of Life"
+	config_tag = "Secret of Life"
 	silo_scaling = 1
 	round_type_flags = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD|MODE_NO_GHOSTS
 	shutters_drop_time = 15 MINUTES
