@@ -4,6 +4,7 @@
 	round_type_flags = MODE_INFESTATION|MODE_DISALLOW_RAILGUN|MODE_PSY_POINTS|MODE_XENO_SPAWN_PROTECT|MODE_SURVIVAL
 	xeno_abilities_flags = ABILITY_ALL_GAMEMODE
 	factions = list(FACTION_XENO, FACTION_CLF, FACTION_TERRAGOV)
+	human_factions = list(FACTION_TERRAGOV, FACTION_CLF)
 	valid_job_types = list(
 		/datum/job/survivor/assistant = 2,
 		/datum/job/survivor/scientist = 1,

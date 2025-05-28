@@ -13,10 +13,12 @@
 	return ..()
 
 /datum/round_event/stock_uptick/start()
-	var/points_to_be_added //var to keep track of how many point we're adding to req
-	for(var/mob/living/carbon/human/H in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
-		points_to_be_added += pick(10,20,30)
+	var/faction = pick(SSpoints.supply_points)
+	var/points_to_be_added = rand(1,30*length(GLOB.player_list))
 	if(points_to_be_added > 1250) //cap the max amount of points at 1250
 		points_to_be_added = 1250
-	SSpoints.supply_points[FACTION_TERRAGOV] += points_to_be_added
-	priority_announce("Due to an increase in Ninetails quarterly revenues, our supply allotment has increased by [points_to_be_added] points.")
+	SSpoints.add_supply_points(faction, points_to_be_added)
+	if(faction == FACTION_TERRAGOV || faction == FACTION_VSD)
+		priority_announce("Due to an increase in [faction] quarterly revenues, their supply allotment has increased by [points_to_be_added] points.")
+	else
+		priority_announce("Due to an increase in anonymous donations to [faction], their supply allotment has increased by [points_to_be_added] points.")
