@@ -65,6 +65,7 @@
 
 /mob/living/carbon/xenomorph/runner/melter
 	caste_base_type = /datum/xeno_caste/runner/melter
+	icon = 'icons/xeno/castes/runner.dmi' //no tiddies until someone sprites em in.
 
 /mob/living/carbon/xenomorph/runner/melter/Initialize(mapload)
 	. = ..()
