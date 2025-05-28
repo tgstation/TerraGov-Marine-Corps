@@ -12,6 +12,15 @@
 	},
 /turf/template_noop,
 /area/shuttle/minidropship)
+"f" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23;
+	pixel_y = -14
+	},
+/obj/structure/dropship_piece/glassone,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 "k" = (
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/machinery/door/poddoor/mainship/open{
@@ -219,7 +228,7 @@ O
 M
 M
 t
-V
+f
 k
 E
 E

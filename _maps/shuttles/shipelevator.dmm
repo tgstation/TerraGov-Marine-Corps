@@ -3,18 +3,85 @@
 /turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/elevator)
 "d" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 1
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "ship_elevator_railing"
 	},
-/turf/open/shuttle/elevator/grating,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/dropship/elevator)
+"e" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "ship_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/dropship/elevator)
+"f" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "ship_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"g" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "ship_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/dropship/elevator)
+"h" = (
+/obj/machinery/door/poddoor/railing{
+	id = "ship_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "ship_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
 /area/shuttle/dropship/elevator)
 "i" = (
-/obj/machinery/door/poddoor/shutters/transit,
+/obj/machinery/door/poddoor/railing{
+	id = "ship_elevator_railing"
+	},
 /turf/open/shuttle/elevator,
 /area/shuttle/dropship/elevator)
 "j" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 1
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "ship_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "ship_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"r" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "ship_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	id = "ship_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"w" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "ship_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"z" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "ship_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "ship_elevator_railing"
 	},
 /turf/open/shuttle/elevator,
 /area/shuttle/dropship/elevator)
@@ -26,45 +93,54 @@
 /turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/dropship/elevator)
 "F" = (
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/shuttle/elevator/grating,
+/obj/machinery/door/poddoor/railing{
+	id = "ship_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/dropship/elevator)
+"K" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "ship_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
 /area/shuttle/dropship/elevator)
 "Q" = (
 /turf/open/shuttle/elevator,
 /area/shuttle/dropship/elevator)
 
 (1,1,1) = {"
-j
-i
-F
-i
+z
+f
+g
+f
 j
 "}
 (2,1,1) = {"
-j
+K
 Q
 a
 Q
-j
+w
 "}
 (3,1,1) = {"
-d
+e
 a
 A
 a
 d
 "}
 (4,1,1) = {"
-j
+K
 Q
 a
 Q
-j
+w
 "}
 (5,1,1) = {"
-j
+r
 i
 F
 i
-j
+h
 "}
