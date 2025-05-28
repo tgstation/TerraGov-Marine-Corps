@@ -11,7 +11,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_BRAVO = RADIO_TOKEN_BRAVO,
 	RADIO_CHANNEL_CHARLIE = RADIO_TOKEN_CHARLIE,
 	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA,
-	RADIO_CHANNEL_PMC = RADIO_TOKEN_PMC
+	RADIO_CHANNEL_PMC = RADIO_TOKEN_PMC,
+	RADIO_CHANNEL_CIV_GENERAL = RADIO_TOKEN_CIV_GENERAL,
 ))
 
 
@@ -29,6 +30,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
+	inherent_channels = list(RADIO_CHANNEL_CIV_GENERAL = TRUE)
 
 /obj/item/radio/headset/Initialize(mapload)
 	if(keyslot)
@@ -152,11 +154,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		use_command = !use_command
 		balloon_alert(user, "toggles loud mode")
 
+/*
 /obj/item/radio/headset/attack_self(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
 		return
 	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
 	balloon_alert(user, "toggles supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"].")
+*/
 
 /obj/item/radio/headset/vendor_equip(mob/user)
 	..()
@@ -333,6 +337,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()
+	if(!wearer)
+		return
 	SSminimaps.remove_marker(wearer)
 	for(var/datum/action/action AS in wearer.actions)
 		if(istype(action, /datum/action/minimap))
@@ -357,7 +363,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/mainship/proc/disable_sl_direction()
-	if(!wearer.assigned_squad)
+	if(!wearer?.assigned_squad)
 		return
 
 	if(wearer.mind && wearer.hud_used?.SL_locator)
@@ -385,7 +391,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	interact(usr)
 
-
+/*
 /obj/item/radio/headset/mainship/can_interact(mob/user)
 	. = ..()
 	if(!.)
@@ -395,37 +401,30 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return FALSE
 
 	return TRUE
+*/
 
 
-
-/obj/item/radio/headset/mainship/interact(mob/user)
+/obj/item/radio/headset/mainship/get_interact_data(mob/user)
 	. = ..()
-	if(.)
-		return
 
-	var/dat = {"
-	<b><A href='byond://?src=[text_ref(src)];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
+	. += {"
+	<b>[wearer ? "<A href='byond://?src=[text_ref(src)];headset_hud_on=1'>" : ""] Squad HUD: [headset_hud_on ? "On" : "Off"][wearer ? "</A>" : ""]</b><BR>
 	<BR>
-	<b><A href='byond://?src=[text_ref(src)];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
+	<b>[wearer ? "<A href='byond://?src=[text_ref(src)];sl_direction=1'>" : ""]Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"][wearer ? "</A>" : ""]</b><BR>
 	<BR>"}
-
-	var/datum/browser/popup = new(user, "radio")
-	popup.set_content(dat)
-	popup.open()
-
 
 /obj/item/radio/headset/mainship/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
 
-	if(href_list["headset_hud_on"])
+	if(href_list["headset_hud_on"] && wearer)
 		if(headset_hud_on)
 			disable_squadhud()
 		else
 			enable_squadhud()
 
-	if(href_list["sl_direction"])
+	if(href_list["sl_direction"] && wearer)
 		if(sl_direction)
 			disable_sl_direction()
 		else
