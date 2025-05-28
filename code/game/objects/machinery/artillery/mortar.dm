@@ -54,6 +54,7 @@
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/plasmaloss,
 		/obj/item/mortal_shell/smoke/satrapine,
+		/obj/item/mortal_shell/smoke/aphrotox,
 		/obj/item/mortal_shell/smoke/sleep,
 	)
 

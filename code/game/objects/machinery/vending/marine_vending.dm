@@ -123,6 +123,8 @@
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
 			/obj/item/weapon/gun/shotgun/double/derringer = 10,
 			/obj/item/ammo_magazine/pistol/derringer = 15,
+			/obj/item/weapon/gun/pistol/xmdivider/ntc = 6,
+			/obj/item/ammo_magazine/pistol/ntunity = 40,
 			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 		),
 		"Grenades" = list(
@@ -593,6 +595,11 @@
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
 			/obj/item/weapon/gun/shotgun/double/derringer = -1,
 			/obj/item/ammo_magazine/pistol/derringer = -1,
+			/obj/item/weapon/gun/pistol/xmdivider = -1,
+			/obj/item/weapon/gun/pistol/xmdivider/ntc = -1,
+			/obj/item/ammo_magazine/pistol/ntunity = -1,
+			/obj/item/ammo_magazine/pistol/xmdivider/ap = -1,
+			/obj/item/ammo_magazine/pistol/xmdivider = -1,
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
@@ -1198,6 +1205,7 @@
 			/obj/item/armor_module/module/chemsystem = -1,
 			/obj/item/armor_module/module/knight = -1,
 			/obj/item/armor_module/module/eshield = -1,
+			/obj/item/armor_module/module/eshield/antienergy = -1,
 			/obj/item/armor_module/module/mirage = -1,
 			/obj/item/armor_module/module/armorlock = -1,
 			/obj/item/armor_module/module/eshield/old = -1,

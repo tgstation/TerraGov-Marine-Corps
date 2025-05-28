@@ -94,3 +94,7 @@
 #include "modules\underwear\underwear\underwear.dm"
 #include "code\modules\projectiles\guns\rifles.dm"
 #include "code\_HELPERS\announce.dm"
+#include "code\modules\projectiles\guns\pistols.dm"
+#include "code\game\objects\machinery\artillery\shells.dm"
+#include "code\modules\reqs\supplypacks\imports_packs.dm"
+#include "code\modules\clothing\modular_armor\attachments\modules.dm"

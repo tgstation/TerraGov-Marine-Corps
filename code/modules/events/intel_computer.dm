@@ -25,3 +25,11 @@
 	I.update_minimap_icon()
 	minor_announce("Our data sifting algorithm has detected valuable classified information on a access point in [get_area(I)]. Should this data be recovered by ground forces, a reward will be given in the form of increased assets. Watch out for hostile forces, this is now a likely conflict zone.", title = "NTC Intel Division")
 	xeno_message("We sense a looming threat from [get_area(I)]. We must keep the hosts away from there.")
+//ntf later edit to tie resetting to the event itself instead of shitty timer so there is less computers to go around, but more reward.
+	START_PROCESSING(SSmachines, I)
+	I.first_login = FALSE
+	I.logged_in = FALSE
+	I.progress = 0
+	I.printing = FALSE
+	I.printing_complete = FALSE
+	I.update_icon()

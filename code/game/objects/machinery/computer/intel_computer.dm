@@ -188,15 +188,3 @@
 		return FALSE
 
 	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")
-
-
-//ntf later edit to tie resetting to the event itself instead of shitty timer so there is less computers to go around, but more reward.
-/datum/round_event/intel_computer/activate(obj/machinery/computer/intel_computer/I)
-	. = ..()
-	START_PROCESSING(SSmachines, I)
-	I.first_login = FALSE
-	I.logged_in = FALSE
-	I.progress = 0
-	I.printing = FALSE
-	I.printing_complete = FALSE
-	I.update_icon()

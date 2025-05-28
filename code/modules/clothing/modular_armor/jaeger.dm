@@ -22,6 +22,7 @@
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/knight,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/antienergy,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
 

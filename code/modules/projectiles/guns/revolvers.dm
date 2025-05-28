@@ -190,8 +190,6 @@
 	icon_state = "mateba"
 	worn_icon_state = "mateba"
 
-/obj/item/weapon/gun/revolver/mateba/custom/officer
-
 //-------------------------------------------------------
 //MARSHALS REVOLVER
 
