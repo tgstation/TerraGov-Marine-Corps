@@ -889,6 +889,7 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
+/obj/structure/closet/crate/mass_produced_crate/ammo,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "bby" = (
@@ -8161,6 +8162,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/structure/closet/crate/mass_produced_crate/ammo,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ipw" = (
@@ -17105,6 +17107,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_hallway)
+"riN" = (
+/obj/structure/closet/crate/mass_produced_crate/ammo,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "rjl" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -46305,7 +46311,7 @@ jCg
 jCg
 jCg
 bsh
-jwc
+riN
 sue
 hPb
 gVk
@@ -46507,7 +46513,7 @@ jCg
 jCg
 jCg
 bsh
-jwc
+riN
 sue
 hPb
 wTv
