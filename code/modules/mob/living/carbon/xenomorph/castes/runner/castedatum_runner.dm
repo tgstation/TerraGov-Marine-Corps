@@ -85,6 +85,7 @@
 	upgrade_name = ""
 	caste_name = "Melter"
 	display_name = "Melter"
+	icon = 'icons/xeno/castes/runner.dmi' //no tiddies until someone sprites em in.
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A fast, four-legged terror. It got acid covered all over it."
 
