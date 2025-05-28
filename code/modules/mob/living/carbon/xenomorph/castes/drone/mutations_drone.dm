@@ -5,7 +5,7 @@
 /datum/mutation_upgrade/shell/scout
 	name = "Scout"
 	desc = "You gain 5/10/15 armor in all categories. You lose this armor if you've been on weeds for longer than 5 seconds."
-	/// The additional amount of armor for all categories when entering weeds (for each structure).
+	/// For each structure, the additional amount of armor for all categories when entering weeds.
 	var/armor_per_structure = 5
 	/// The attached armor that been given, if any.
 	var/datum/armor/attached_armor
@@ -13,6 +13,11 @@
 	var/timer_id
 	/// How long should the armor be given?
 	var/timer_length = 5 SECONDS
+
+/datum/mutation_upgrade/shell/scout/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "You gain [armor_per_structure * new_amount] armor in all categories. You lose this armor if you've been on weeds for longer than [timer_length/10] seconds."
 
 /datum/mutation_upgrade/shell/scout/on_mutation_enabled()
 	. = ..()
@@ -67,16 +72,21 @@
 /datum/mutation_upgrade/shell/together_in_claws
 	name = "Together In Claws"
 	desc = "While connected with Essence Link, you heal for 10/15/20% of your partner's damage when they slash a human."
-	/// The beginning percentage to lifesteal (at zero structures)
-	var/beginning_percentage = 0.05
-	/// The additional percentage to lifesteal for each structure.
-	var/percentage_per_structure = 0.05
+	/// For the first structure, the percentage to lifesteal.
+	var/lifesteal_percentage_initial = 0.05
+	/// For each structure, the additional percentage to lifesteal.
+	var/lifesteal_percentage_per_structure = 0.05
+
+/datum/mutation_upgrade/shell/together_in_claws/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "While connected with Essence Link, you heal for [(lifesteal_percentage_initial + (lifesteal_percentage_per_structure * new_amount)) * 100]% of your partner's damage when they slash a human."
 
 /datum/mutation_upgrade/shell/together_in_claws/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/essence_link/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!ability)
 		return FALSE
-	ability.lifesteal_percentage += beginning_percentage
+	ability.lifesteal_percentage += lifesteal_percentage_initial
 	if(ability.existing_link)
 		ability.existing_link.set_lifesteal(ability.lifesteal_percentage)
 	return ..()
@@ -85,7 +95,7 @@
 	var/datum/action/ability/activable/xeno/essence_link/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!ability)
 		return FALSE
-	ability.lifesteal_percentage -= beginning_percentage
+	ability.lifesteal_percentage -= lifesteal_percentage_initial
 	return ..()
 
 /datum/mutation_upgrade/shell/together_in_claws/on_structure_update(previous_amount, new_amount)
@@ -95,7 +105,7 @@
 	var/datum/action/ability/activable/xeno/essence_link/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!ability)
 		return FALSE
-	ability.lifesteal_percentage += (new_amount - previous_amount) * percentage_per_structure
+	ability.lifesteal_percentage += (new_amount - previous_amount) * lifesteal_percentage_per_structure
 	if(ability.existing_link)
 		ability.existing_link.set_lifesteal(ability.lifesteal_percentage)
 
@@ -105,27 +115,32 @@
 /datum/mutation_upgrade/spur/revenge
 	name = "Revenge"
 	desc = "While connected with Essence Link and it ends due to death, the survivor temporarily gains 75/100/125% additional melee damage for 10 seconds."
-	/// The beginning value to increase melee damage multiplier (at zero structures)
-	var/beginning_percentage = 0.50
-	/// The additional value to increase melee damage multiplier for each structure.
+	/// For the first structure, the melee damage multiplier to increase by.
+	var/percentage_initial = 0.50
+	/// For each structure, the additional melee damage multiplier to increase by.
 	var/percentage_per_structure = 0.25
+
+/datum/mutation_upgrade/spur/revenge/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "While connected with Essence Link and it ends due to death, the survivor temporarily gains [(percentage_initial + (percentage_per_structure * new_amount)) * 100]% additional melee damage for 10 seconds."
 
 /datum/mutation_upgrade/spur/revenge/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/essence_link/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!ability)
 		return FALSE
-	ability.revenge_modifier += beginning_percentage
+	ability.revenge_modifier += percentage_initial
 	if(ability.existing_link)
-		ability.existing_link.revenge_modifier  += beginning_percentage
+		ability.existing_link.revenge_modifier  += percentage_initial
 	return ..()
 
 /datum/mutation_upgrade/spur/revenge/on_mutation_disabled()
 	var/datum/action/ability/activable/xeno/essence_link/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!ability)
 		return FALSE
-	ability.revenge_modifier -= beginning_percentage
+	ability.revenge_modifier -= percentage_initial
 	if(ability.existing_link)
-		ability.existing_link.revenge_modifier += beginning_percentage
+		ability.existing_link.revenge_modifier += percentage_initial
 	return ..()
 
 /datum/mutation_upgrade/spur/revenge/on_structure_update(previous_amount, new_amount)
@@ -145,6 +160,13 @@
 /datum/mutation_upgrade/veil/saving_grace
 	name = "Saving Grace"
 	desc = "Salve Heal has no cast time on your Essence Link partner if they qualify for bonus healing. Bonus healing multiplier is increased by an additive of 1/2/3."
+	/// For each structure, the multiplier as an additive to increase the bonus healing by.
+	var/additive_multiplier_per_structure = 1
+
+/datum/mutation_upgrade/veil/saving_grace/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Salve Heal has no cast time on your Essence Link partner if they qualify for bonus healing. Bonus healing multiplier is increased by an additive of [additive_multiplier_per_structure * new_amount]."
 
 /datum/mutation_upgrade/veil/saving_grace/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_cure/acidic_salve]
@@ -167,11 +189,18 @@
 	var/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_cure/acidic_salve]
 	if(!ability)
 		return FALSE
-	ability.bonus_healing_additive_multiplier += (new_amount - previous_amount)
+	ability.bonus_healing_additive_multiplier += (new_amount - previous_amount) * additive_multiplier_per_structure
 
 /datum/mutation_upgrade/veil/vitality_transfer
 	name = "Vitality Transfer"
 	desc = "While connected with Essence Link, you can manually disconnect to heal your partner for 5/10/15% of their maximum health multiplied by the attunement amount. However, you take true damage equal to the amount healed. This damage can kill you."
+	/// For each structure, the additional percentage of maximum health to heal by.
+	var/max_health_percentage_per_structure = 0.05
+
+/datum/mutation_upgrade/veil/vitality_transfer/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "While connected with Essence Link, you can manually disconnect to heal your partner for [max_health_percentage_per_structure * new_amount * 100]% of their maximum health multiplied by the attunement amount. However, you take true damage equal to the amount healed. This damage can kill you."
 
 /datum/mutation_upgrade/veil/vitality_transfer/on_structure_update(previous_amount, new_amount)
 	. = ..()
@@ -180,4 +209,4 @@
 	var/datum/action/ability/activable/xeno/essence_link/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!ability)
 		return FALSE
-	ability.disconnection_heal_percentage += (new_amount - previous_amount) * 0.05
+	ability.disconnection_heal_percentage += (new_amount - previous_amount) * max_health_percentage_per_structure
