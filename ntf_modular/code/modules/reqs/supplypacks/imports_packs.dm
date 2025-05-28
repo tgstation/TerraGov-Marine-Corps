@@ -13,18 +13,17 @@
 	contains = list(/obj/item/mortal_shell/smoke/aphrotox, /obj/item/mortal_shell/smoke/aphrotox)
 	cost = 5
 
+/* save until we got faction specific req
 /datum/supply_packs/imports/antienergyshield
 	name = "NTC Anti Energy Shield"
 	contains = list(/obj/item/armor_module/module/eshield/antienergy)
-	cost = 400
+	cost = 800
 
 /datum/supply_packs/imports/antiballisticshield
 	name = "KZ Anti Ballsitic Shield"
 	contains = list(/obj/item/armor_module/module/eshield/antienergy/antiballistic)
-	cost = 400
+	cost = 800
 
-
-/* save until we got faction specific req
 /datum/supply_packs/imports/unity
 	name = "NT105 Unity Revolver"
 	contains = list(/obj/item/weapon/gun/pistol/xmdivider/ntc)

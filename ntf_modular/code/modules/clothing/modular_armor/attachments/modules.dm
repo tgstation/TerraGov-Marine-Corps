@@ -25,21 +25,45 @@ converting the absorbed energy into shield power, warning: overcharging too much
 
 ///Handles the interception of damage.
 /obj/item/armor_module/module/eshield/antienergy/intercept_damage(attack_type, incoming_damage, damage_type, silent)
-	if(attack_type != COMBAT_PROJ_ATTACK) //Touch attack so runners can pounce
+	if(attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
 		return incoming_damage
-	if(incoming_damage <= 0)
-		return 0
-	if(damage_type in blocked_attack_types && shield_health < overcharge_max_health) //power...
-		START_PROCESSING(SSobj, src)
-		shield_health += incoming_damage/3
-		spark_system.start()
-		if(shield_health > overcharge_max_health/2)
-			visible_message(span_boldwarning("[src] beeps ominiously as it is overcharged beyond safety limits."))
+	if(attack_type == COMBAT_PROJ_ATTACK)
+		if(incoming_damage <= 0)
+			return 0
+		if(damage_type in blocked_attack_types && shield_health < overcharge_max_health) //power...
+			START_PROCESSING(SSobj, src)
+			shield_health += incoming_damage/2
+			spark_system.start()
+			if(shield_health > overcharge_max_health/2)
+				visible_message(span_boldwarning("[src] beeps ominiously as it is overcharged beyond safety limits."))
+				playsound(src.loc, 'sound/machines/beepalert.ogg', 40)
+			var/mob/living/affected = parent.loc
+			affected.remove_filter("eshield")
+			if(shield_health > 0)
+				switch(shield_health / max_shield_health)
+					if(0 to 0.33)
+						affected.add_filter("eshield", 2, outline_filter(1, shield_color_low))
+					if(0.33 to 0.66)
+						affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
+					if(0.66 to 1)
+						affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
+					if(1 to 1.4)
+						affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full))
+					if(1.4 to INFINITY)
+						affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full_danger))
+			return 0
+		else if(damage_type in blocked_attack_types && shield_health > overcharge_max_health)
 			playsound(src.loc, 'sound/machines/beepalert.ogg', 40)
+			explosion(src.loc,0,0,0,2,0,1,2, smoke = TRUE)
+			shield_health = 0
+		STOP_PROCESSING(SSobj, src)
+		deltimer(recharge_timer)
+		var/shield_left = shield_health - incoming_damage
 		var/mob/living/affected = parent.loc
 		affected.remove_filter("eshield")
-		if(shield_health > 0)
-			switch(shield_health / max_shield_health)
+		if(shield_left > 0)
+			shield_health = shield_left
+			switch(shield_left / max_shield_health)
 				if(0 to 0.33)
 					affected.add_filter("eshield", 2, outline_filter(1, shield_color_low))
 				if(0.33 to 0.66)
@@ -50,36 +74,15 @@ converting the absorbed energy into shield power, warning: overcharging too much
 					affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full))
 				if(1.4 to INFINITY)
 					affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full_danger))
+			spark_system.start()
+		else
+			shield_health = 0
+			recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown + 1, TIMER_STOPPABLE) //Gives it a little extra time for the cooldown.
+			return -shield_left
+		recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown, TIMER_STOPPABLE)
 		return 0
-	else if(damage_type in blocked_attack_types && shield_health > overcharge_max_health)
-		playsound(src.loc, 'sound/machines/beepalert.ogg', 40)
-		explosion(src.loc,0,0,0,2,0,1,2, smoke = TRUE)
-		shield_health = 0
-	STOP_PROCESSING(SSobj, src)
-	deltimer(recharge_timer)
-	var/shield_left = shield_health - incoming_damage
-	var/mob/living/affected = parent.loc
-	affected.remove_filter("eshield")
-	if(shield_left > 0)
-		shield_health = shield_left
-		switch(shield_left / max_shield_health)
-			if(0 to 0.33)
-				affected.add_filter("eshield", 2, outline_filter(1, shield_color_low))
-			if(0.33 to 0.66)
-				affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
-			if(0.66 to 1)
-				affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
-			if(1 to 1.4)
-				affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full))
-			if(1.4 to INFINITY)
-				affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full_danger))
-		spark_system.start()
 	else
-		shield_health = 0
-		recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown + 1, TIMER_STOPPABLE) //Gives it a little extra time for the cooldown.
-		return -shield_left
-	recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown, TIMER_STOPPABLE)
-	return 0
+		return incoming_damage
 
 /obj/item/armor_module/module/eshield/antienergy/process()
 	if(shield_health < max_shield_health)
