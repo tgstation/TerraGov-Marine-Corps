@@ -48,7 +48,7 @@
 	desc = "You gain an ability that makes your slashes inject 5/6/7u Neurotoxin for the next 3 slashes. You no longer have the ability Neurotoxin Sting."
 	/// For the first structure, the amount of reagents to inject per slash.
 	var/amount_initial = 4
-	/// For each structure, the increased amount of reagents to inject per slash.
+	/// For each structure, the additional amount of reagents to inject per slash.
 	var/amount_per_structure = 1
 
 /datum/mutation_upgrade/spur/toxic_claws/get_desc_for_alert(new_amount)
