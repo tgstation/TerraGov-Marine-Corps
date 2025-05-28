@@ -1,4 +1,5 @@
 #include "code\_DEFINES\sexcon_defines.dm"
+#include "code\_DEFINES\colors.dm"
 #include "code\_DEFINES\span.dm"
 #include "code\datums\gamemodes\_game_mode.dm"
 #include "code\datums\genital_menu.dm"

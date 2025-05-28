@@ -237,14 +237,16 @@
 	pain_amt *= get_force_pain_multiplier(applied_force)
 	pain_amt *= get_speed_pain_multiplier(applied_speed)
 
-	var/sexhealrand = rand(2, 4)
-	//go go gadget sex healing.. magic?
-	if(user.buckled || user.lying_angle) //gooder resting
-		sexhealrand *= 4
-	user.heal_overall_damage(sexhealrand, sexhealrand/2, TRUE, TRUE)
-	if(isxeno(user))
-		var/mob/living/carbon/xenomorph/xuser = user
-		xuser.gain_plasma(5, TRUE)
+	var/datum/sex_action/action = SEX_ACTION(current_action)
+	if(action.heal_sex)
+		var/sexhealrand = rand(2, 4)
+		//go go gadget sex healing.. magic?
+		if(user.buckled || user.lying_angle) //gooder resting
+			sexhealrand *= 4
+		user.heal_overall_damage(sexhealrand, sexhealrand/2, TRUE, TRUE)
+		if(isxeno(user))
+			var/mob/living/carbon/xenomorph/xuser = user
+			xuser.gain_plasma(5, TRUE)
 
 	adjust_arousal(arousal_amt)
 	if(user.client.prefs.harmful_sex_allowed)

@@ -13,6 +13,17 @@
 	contains = list(/obj/item/mortal_shell/smoke/aphrotox, /obj/item/mortal_shell/smoke/aphrotox)
 	cost = 5
 
+/datum/supply_packs/imports/antienergyshield
+	name = "NTC Anti Energy Shield"
+	contains = list(/obj/item/armor_module/module/eshield/antienergy)
+	cost = 400
+
+/datum/supply_packs/imports/antiballisticshield
+	name = "KZ Anti Ballsitic Shield"
+	contains = list(/obj/item/armor_module/module/eshield/antienergy/antiballistic)
+	cost = 400
+
+
 /* save until we got faction specific req
 /datum/supply_packs/imports/unity
 	name = "NT105 Unity Revolver"
@@ -58,4 +69,5 @@
 	name = "P-22 Custom Pistol Tranq Magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/tranq)
 	cost = 5
+
 */

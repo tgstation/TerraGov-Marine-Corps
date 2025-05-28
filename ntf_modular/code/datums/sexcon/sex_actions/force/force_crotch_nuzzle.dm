@@ -2,6 +2,7 @@
 	name = "Force them to nuzzle"
 	require_grab = TRUE
 	stamina_cost = 1.0
+	heal_sex = FALSE
 
 
 /datum/sex_action/force_crotch_nuzzle/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)

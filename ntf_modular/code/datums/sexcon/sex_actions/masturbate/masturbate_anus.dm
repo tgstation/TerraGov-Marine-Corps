@@ -1,5 +1,6 @@
 /datum/sex_action/masturbate_anus
 	name = "Finger butt"
+	heal_sex = FALSE
 
 /datum/sex_action/masturbate_anus/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user != target)

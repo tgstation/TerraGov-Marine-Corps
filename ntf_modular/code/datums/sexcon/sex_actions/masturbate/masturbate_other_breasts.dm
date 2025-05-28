@@ -1,6 +1,7 @@
 /datum/sex_action/masturbate_other_breasts
 	name = "Rub their breasts"
 	check_same_tile = FALSE
+	heal_sex = FALSE
 
 /datum/sex_action/masturbate_other_breasts/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)

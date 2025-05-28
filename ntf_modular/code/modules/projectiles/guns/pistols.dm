@@ -12,7 +12,6 @@
 	actions_types = null
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet/converted,
-		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/heavy_barrel,
@@ -22,8 +21,17 @@
 	)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20, "rail_x" = 17, "rail_y" = 22, "under_x" = 29, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
 	burst_amount = 1
+	//gonna adjust for no burst fire.
+	fire_delay = 0.5 SECONDS
+	scatter_unwielded = 4
+	scatter = 1.5
 	damage_mult = 1.2
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	recoil = 3.5
+	//no red dot, holo sight instead.
+	accuracy_mult_unwielded = 0.95
+	accuracy_mult = 1.2
+	aim_speed_modifier = 0.50
 
 //XM104 cylinder placed in pistols
 /obj/item/ammo_magazine/pistol/ntunity
@@ -39,7 +47,7 @@
 /datum/ammo/bullet/revolver/heavy/foxfire
 	name = "armor-piercing foxfire heavy revolver bullet"
 	handful_amount = 6
-	damage = 40
+	damage = 50
 	penetration = 15
 	sundering = 5
 	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_BALLISTIC

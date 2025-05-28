@@ -2,6 +2,7 @@
 	name = "Lick their feet"
 	check_same_tile = FALSE
 	check_incapacitated = FALSE
+	heal_sex = FALSE
 
 /datum/sex_action/foot_lick/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)

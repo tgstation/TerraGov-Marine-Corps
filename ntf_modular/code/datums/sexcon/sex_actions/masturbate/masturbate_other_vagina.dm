@@ -1,6 +1,7 @@
 /datum/sex_action/masturbate_other_vagina
 	name = "Stroke their clit"
 	check_same_tile = FALSE
+	heal_sex = FALSE
 
 /datum/sex_action/masturbate_other_vagina/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)

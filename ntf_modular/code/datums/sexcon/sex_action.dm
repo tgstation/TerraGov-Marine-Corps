@@ -17,6 +17,8 @@
 	var/require_grab = FALSE
 	/// If a grab is required, this is the required state of it
 	var/required_grab_state = GRAB_AGGRESSIVE
+	///determines if it's heal-sex, only partnered sex can heal, masturbation wont work.
+	var/heal_sex = TRUE
 
 /datum/sex_action/proc/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	return TRUE

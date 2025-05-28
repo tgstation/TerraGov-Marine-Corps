@@ -1,6 +1,7 @@
 /datum/sex_action/masturbate_penis_over
 	name = "Jerk over them"
 	check_same_tile = FALSE
+	heal_sex = FALSE
 
 /datum/sex_action/masturbate_penis_over/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
