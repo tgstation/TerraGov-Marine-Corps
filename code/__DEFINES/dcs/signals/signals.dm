@@ -501,6 +501,9 @@
 
 #define COMSIG_ITEM_VARIANT_CHANGE "item_variant_change"			// called in color_item : (mob/user, variant)
 
+#define COMSIG_ITEM_STICKY_STICK_TO "sticky_item_stick_to"
+#define COMSIG_ITEM_STICKY_CLEAN_REFS "sticky_item_clean_refs"
+
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
 	#define COMPONENT_CLOTHING_BLUR_PROTECTION (1<<1)
