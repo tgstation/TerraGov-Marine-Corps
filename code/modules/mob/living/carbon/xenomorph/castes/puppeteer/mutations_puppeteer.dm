@@ -79,7 +79,7 @@
 //*********************//
 /datum/mutation_upgrade/veil/shifting_costs
 	name = "Shifting Costs"
-	desc = "Stitch Puppet costs 80% less. Bestow Blessing costs, but Bestow Blessing costs 40/30/20% more."
+	desc = "Stitch Puppet costs 80% less. Bestow Blessing costs 40/30/20% more."
 	/// Adds Snitch Puppet's plasma cost by this multiplier of the initial value.
 	var/snitch_puppet_add_multiplier = -0.8
 	/// For the first structure, adds this multiplier of the initial cost of Bestow Blessing to it.
@@ -90,7 +90,7 @@
 /datum/mutation_upgrade/veil/shifting_costs/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Stitch Puppet costs [abs(snitch_puppet_add_multiplier) * 100]% less. Bestow Blessing costs, but Bestow Blessing costs [(bestow_blessing_add_multiplier_initial + (bestow_blessing_add_multiplier_per_structure * new_amount)) * 100]% more."
+	return "Stitch Puppet costs [abs(snitch_puppet_add_multiplier) * 100]% less. Bestow Blessing costs [(bestow_blessing_add_multiplier_initial + (bestow_blessing_add_multiplier_per_structure * new_amount)) * 100]% more."
 
 /datum/mutation_upgrade/veil/shifting_costs/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/puppet/puppet_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/puppet]
