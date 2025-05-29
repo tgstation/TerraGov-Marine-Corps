@@ -623,7 +623,11 @@
 
 /mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
 	var/hud_type = GLOB.faction_to_squad_hud[faction]
+	if(!hud_type)
+		return
 	var/image/holder = hud_list[hud_type]
+	if(!holder)
+		return
 	holder.icon_state = ""
 	holder.overlays.Cut()
 
