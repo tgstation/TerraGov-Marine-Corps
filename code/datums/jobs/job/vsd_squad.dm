@@ -31,8 +31,8 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	name = "KZ Standard"
 	jobtype = /datum/job/vsd_squad/standard
 
-	id = /obj/item/card/id/dogtag/som
-	ears = /obj/item/radio/headset/mainship/som
+	id = /obj/item/card/id/dogtag
+	ears = /obj/item/radio/headset/mainship/vsd
 
 //VSD Engineer
 /datum/job/vsd_squad/engineer
@@ -56,8 +56,8 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	name = "KZ Engineer"
 	jobtype = /datum/job/vsd_squad/engineer
 
-	id = /obj/item/card/id/dogtag/som/engineer
-	ears = /obj/item/radio/headset/mainship/som
+	id = /obj/item/card/id/dogtag/engineer
+	ears = /obj/item/radio/headset/mainship/vsd
 	glasses = /obj/item/clothing/glasses/meson
 
 //VSD Medic
@@ -82,8 +82,8 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	name = "KZ Medic"
 	jobtype = /datum/job/vsd/medic
 
-	id = /obj/item/card/id/dogtag/som/medic
-	ears = /obj/item/radio/headset/mainship/som
+	id = /obj/item/card/id/dogtag/corpsman
+	ears = /obj/item/radio/headset/mainship/vsd
 
 //VSD Spec
 /datum/job/vsd_squad/spec
@@ -106,8 +106,8 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	name = "KZ Specialist"
 	jobtype = /datum/job/vsd_squad/spec
 
-	id = /obj/item/card/id/dogtag/som/veteran
-	ears = /obj/item/radio/headset/mainship/som
+	id = /obj/item/card/id/dogtag/specialist
+	ears = /obj/item/radio/headset/mainship/vsd
 
 //VSD Squad Leader
 /datum/job/vsd_squad/leader
@@ -130,7 +130,7 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	name = "KZ Squad Leader"
 	jobtype = /datum/job/vsd_squad/leader
 
-	id = /obj/item/card/id/dogtag/som/leader
-	ears = /obj/item/radio/headset/mainship/som
+	id = /obj/item/card/id/dogtag/leader
+	ears = /obj/item/radio/headset/mainship/vsd
 
 
