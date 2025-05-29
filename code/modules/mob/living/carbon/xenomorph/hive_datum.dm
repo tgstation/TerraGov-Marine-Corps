@@ -761,15 +761,17 @@
 
 	if(living_xeno_ruler) /// Remove the old ruler if T4 or queen is taking over
 		living_xeno_ruler.remove_ruler_abilities()
-		living_xeno_ruler.hud_set_queen_overwatch()
 		living_xeno_ruler.update_leader_icon(FALSE)
 		UnregisterSignal(living_xeno_ruler, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 
+	var/mob/living/carbon/xenomorph/prev = living_xeno_ruler // ref to the ruler we're replacing
 	remove_leader(successor)
 	set_ruler(successor)
 	successor.give_ruler_abilities()
 	successor.hud_set_queen_overwatch()
 	successor.update_leader_icon(FALSE)
+	prev.hud_set_queen_overwatch() // we want to remove the ruler star from the previous ruler
+	prev = null // instantly null it
 	handle_ruler_timer()
 	update_leader_pheromones()
 	if(announce)
