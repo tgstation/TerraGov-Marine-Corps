@@ -35,7 +35,7 @@
 	alert_type = MUTATION_VEIL_ALERT
 
 /**
- * Everything Else
+ * Buffs
  */
 
 /datum/status_effect/xenomorph_damage_modifier
@@ -78,3 +78,35 @@
 	if(!.)
 		return
 	owner.emote("roar2")
+
+/**
+ * Debuffs
+ */
+
+/atom/movable/screen/alert/status_effect/draining_dread
+	name = "Draining Dread"
+	desc = "A dreadful presence. You take constant stamina damage until this expires."
+	icon_state = "dread"
+
+/datum/status_effect/draining_dread
+	id = "draining_dread"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = /atom/movable/screen/alert/status_effect/draining_dread
+	var/stamina_damage = 0
+
+/datum/status_effect/draining_dread/on_creation(mob/living/new_owner, set_stamina_damage)
+	owner = new_owner
+	if(set_stamina_damage)
+		stamina_damage = set_stamina_damage
+	return ..()
+
+/datum/status_effect/draining_dread/on_apply()
+	. = ..()
+	if(!stamina_damage)
+		return FALSE
+
+/datum/status_effect/draining_dread/tick(delta_time)
+	. = ..()
+	var/mob/living/living_owner = owner
+	living_owner.do_jitter_animation(250, 1, 3)
+	living_owner.adjustStaminaLoss(stamina_damage)
