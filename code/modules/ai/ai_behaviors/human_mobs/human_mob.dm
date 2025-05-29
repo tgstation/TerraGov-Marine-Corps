@@ -26,6 +26,8 @@
 	var/list/new_target_chat = list("Get some!!", "Engaging!", "You're mine!", "Bring it on!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Go go go!!", "Waste 'em!", "Intercepting.", "Weapons free!", "Fuck you!!", "Moving in!")
 	///Chat lines for retreating on low health
 	var/list/retreating_chat = list("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Cover me!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning.", "Taking fire!", "Taking heavy fire!", "Run for it!")
+	///General acknowledgement of receiving an order
+	var/receive_order_chat = list("Understood.", "Moving.", "Moving out", "Got it.", "Right away.", "Roger", "You got it.", "On the move.", "Acknowledged.", "Affirmative.", "Who put you in charge?", "Ok.", "I got it sorted.", "On the double.",)
 	///Cooldown on chat lines, to reduce spam
 	COOLDOWN_DECLARE(ai_chat_cooldown)
 	///Cooldown on running, so we can recover stam and make the most of it
@@ -298,7 +300,7 @@
 	if(gun)
 		INVOKE_ASYNC(src, PROC_REF(weapon_process), combat_target)
 
-/datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
+/datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
 
@@ -391,6 +393,7 @@
 	if(isturf(target))
 		if(istype(target, /turf/closed/interior/tank/door))
 			set_interact_target(target) //todo: Other option might be redundant?
+			try_speak(pick(receive_order_chat))
 			return
 		set_atom_to_walk_to(target)
 		return
@@ -400,6 +403,7 @@
 	var/atom/movable/movable_target = target
 	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
 		set_interact_target(movable_target)
+		try_speak(pick(receive_order_chat))
 		return
 	if(movable_target.faction != mob_parent.faction)
 		set_combat_target(movable_target)
@@ -409,6 +413,7 @@
 		if(!living_target.stat)
 			set_escorted_atom(living_target)
 	set_interact_target(movable_target)
+	try_speak(pick(receive_order_chat))
 
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)

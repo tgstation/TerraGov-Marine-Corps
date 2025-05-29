@@ -26,14 +26,6 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 	selected_mob = null
 	return ..()
 
-/datum/action/ability/activable/build_designator/give_action(mob/living/L)
-	RegisterSignal(L, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
-	return ..()
-
-/datum/action/ability/activable/build_designator/remove_action(mob/living/L)
-	UnregisterSignal(L, COMSIG_DO_OVERWATCH_RADIAL)
-	return ..()
-
 /datum/action/ability/activable/build_designator/should_show()
 	. = ..()
 	if(!.)
@@ -99,6 +91,7 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 
 ///Toggles off the current mode
 /datum/action/ability/activable/build_designator/proc/deactivate_mode(old_mode)
+	UnregisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL)
 	switch(old_mode)
 		if(BUILD_DESIGNATOR_MODE)
 			cleanup_hologram()
@@ -110,6 +103,7 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 
 ///Toggles on the new mode
 /datum/action/ability/activable/build_designator/proc/activate_mode(new_mode)
+	RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
 	switch(new_mode)
 		if(BUILD_DESIGNATOR_MODE)
 			RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
