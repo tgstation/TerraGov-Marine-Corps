@@ -594,6 +594,8 @@
 	var/mob/living/carbon/xenomorph/pyrogen/debuff_creator
 	/// Used for the fire effect.
 	var/obj/vis_melt_fire/visual_fire
+	/// The percentage of any brute and burn healing to be negated.
+	var/healing_reduction = 0
 
 /obj/vis_melt_fire
 	name = "ouch ouch ouch"
@@ -601,10 +603,12 @@
 	layer = ABOVE_MOB_LAYER
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 
-/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply, atom/new_creator)
+/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply, atom/new_creator, new_healing_reduction)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || new_owner.soft_armor?.getRating(FIRE) >= 100)
 		qdel(src)
 		return
+	if(new_healing_reduction)
+		healing_reduction = new_healing_reduction
 	. = ..()
 	visual_fire = new
 	visual_fire.icon_state = "melting_low_stacks"
@@ -615,12 +619,16 @@
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
 	if(new_creator && isxenopyrogen(new_creator)) // It is possible for a non-pyrogen to create this.
 		debuff_creator = new_creator
+	if(healing_reduction)
+		RegisterSignals(debuff_owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE), PROC_REF(on_damage_taken))
 
 /// on remove has owner set to null
 /datum/status_effect/stacking/melting_fire/on_remove()
 	owner.vis_contents -= visual_fire
 	debuff_owner = null
 	QDEL_NULL(visual_fire)
+	if(healing_reduction)
+		UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
 	return ..()
 
 /datum/status_effect/stacking/melting_fire/tick(delta_time)
@@ -670,6 +678,12 @@
 		debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
 		span_notice("You extinguish yourself."), null, 5)
 	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST) // If their stacks hit zero, it is qdel'd right here.
+
+/datum/status_effect/stacking/melting_fire/proc/on_damage_taken(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	if(amount >= 0)
+		return
+	amount_mod += floor(amount) * healing_reduction
 
 // ***************************************
 // *********** dread

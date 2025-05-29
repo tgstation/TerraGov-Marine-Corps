@@ -13,6 +13,8 @@
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16
 	bubble_icon = "alienroyal"
+	/// The percentage of healing reduction to apply to the melting fire status effect.
+	var/melting_fire_healing_reduction = 0
 
 /mob/living/carbon/xenomorph/pyrogen/Initialize(mapload)
 	. = ..()
@@ -23,9 +25,9 @@
 	SIGNAL_HANDLER
 	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
-		debuff.add_stacks(1, src)
+		debuff.add_stacks(1, src, melting_fire_healing_reduction)
 		return
-	target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 1, src)
+	target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 1, src, melting_fire_healing_reduction)
 
 /mob/living/carbon/xenomorph/pyrogen/on_floored_trait_loss(datum/source)
 	. = ..()
