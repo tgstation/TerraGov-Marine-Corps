@@ -290,7 +290,7 @@
 	if(gun)
 		INVOKE_ASYNC(src, PROC_REF(weapon_process), combat_target)
 
-/datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
+/datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
 
