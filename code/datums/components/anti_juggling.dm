@@ -18,11 +18,11 @@
 	if(!isgun(fired_gun) || fired_gun.master_gun || fired_gun.dual_wield)
 		return //Attached guns and guns being dual wielded aren't taken into account.
 
-	var/multiplier = 2 // Default multiplier for most guns
+	var/multiplier = 2 // Default multiplier
 	if(istype(fired_gun, /obj/item/weapon/gun/revolver) || istype(fired_gun, /obj/item/weapon/gun/pistol))
 		multiplier = 8 // Higher delay multiplier for revolvers and pistols
 
-	next_fire_time = world.time + (fired_gun.fire_delay * mult)
+	next_fire_time = world.time + (fired_gun.fire_delay * multiplier)
 	last_gun_type = fired_gun.type
 	last_gun_instance = fired_gun
 
