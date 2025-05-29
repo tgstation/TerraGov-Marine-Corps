@@ -439,7 +439,6 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/add_to_hive(datum/hive_status/HS, force=FALSE, prevent_ruler=FALSE)
-	SIGNAL_HANDLER
 	if(!force && hivenumber != XENO_HIVE_NONE)
 		CRASH("trying to do a dirty add_to_hive")
 
@@ -757,11 +756,17 @@
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
 		announce = FALSE
 
+	if(living_xeno_ruler) /// Remove the old ruler if T4 or queen is taking over
+		living_xeno_ruler.remove_ruler_abilities()
+		living_xeno_ruler.hud_set_queen_overwatch()
+		living_xeno_ruler.update_leader_icon(FALSE)
+		UnregisterSignal(living_xeno_ruler, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+
 	remove_leader(successor)
 	set_ruler(successor)
 	successor.give_ruler_abilities()
 	successor.hud_set_queen_overwatch()
-	successor.update_leader_icon(TRUE)
+	successor.update_leader_icon(FALSE)
 	handle_ruler_timer()
 	update_leader_pheromones()
 	if(announce)
