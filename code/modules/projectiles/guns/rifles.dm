@@ -2872,3 +2872,65 @@
 
 /obj/item/weapon/gun/rifle/vsd_rifle/medic
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
+
+//-------------------------------------------------------
+//.410 spas-15
+
+/obj/item/weapon/gun/rifle/light_autoshotgun
+	name = "\improper SH-410 automatic shotgun"
+	desc = "The SH-410 shotgun is the newest weapon in the TGMC's inventory. Prior to arrival in the Corps, it was used by numerous anti-terrorism agencies to great success in close quarters engagements. The .410 gauge shells are very weak individually compared to 16 gauge let alone 12 gauge, but the higher fire rate will surely compensate for it."
+	icon_state = "sh410"
+	worn_icon_state = "sh410"
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/shotgun.dmi'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh410.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
+	caliber = CALIBER_410 //same as the MBX
+	max_shells = 15 //vs 12 on ts15
+	force = 20
+	wield_delay =  0.8 SECONDS
+	default_ammo_type = /obj/item/ammo_magazine/rifle/sh410_sabot
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/sh410_sabot,
+		/obj/item/ammo_magazine/rifle/sh410_buckshot,
+		/obj/item/ammo_magazine/rifle/sh410_tracker,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel, // maybe
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope/mini, // sabot
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+	)
+
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 21, "under_x" = 36, "under_y" = 15, "stock_x" = 12, "stock_y" = 18)
+	gun_skill_category = SKILL_SHOTGUNS
+	fire_delay = 0.5 SECONDS
+	burst_amount = 3
+	burst_scatter_mult = 2
+	burst_delay = 0.3 SECONDS
+	extra_delay = 1.2 SECONDS
+	accuracy_mult = 1
+	damage_mult = 0.60 // -40% dmg
+	scatter = 8
+	burst_scatter_mult = 2
+	damage_falloff_mult = 0.25
