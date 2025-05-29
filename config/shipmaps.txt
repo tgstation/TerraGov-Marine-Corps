@@ -13,7 +13,7 @@ Format:
 endmap
 
 map debugdalus
-disabled
+	disabled
 endmap
 
 map theseus
@@ -54,5 +54,6 @@ map iteron
 endmap
 
 map multiz_debug
+	disabled
 endmap
 

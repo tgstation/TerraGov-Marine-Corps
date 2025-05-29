@@ -56,8 +56,9 @@
 			progress = 0
 		return
 	progress += progress_interval
-	if(progress <= 100 && !printing_complete)
+	if(progress < 100)
 		return
+	active = FALSE
 	printing = FALSE
 	printing_complete = TRUE
 	//NTF edit. Printing a disk instead of instantly giving the points.
@@ -65,7 +66,6 @@
 	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
 	minor_announce("Classified data extraction has been completed in [get_area(src)].", title = "Intel Division")
 	SStgui.close_uis(src)
-	active = FALSE
 	update_minimap_icon()
 	update_icon()
 	STOP_PROCESSING(SSmachines, src)
@@ -188,15 +188,3 @@
 		return FALSE
 
 	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")
-
-
-//ntf later edit to tie resetting to the event itself instead of shitty timer so there is less computers to go around, but more reward.
-/datum/round_event/intel_computer/activate(obj/machinery/computer/intel_computer/I)
-	. = ..()
-	START_PROCESSING(SSmachines, I)
-	I.first_login = FALSE
-	I.logged_in = FALSE
-	I.progress = 0
-	I.printing = FALSE
-	I.printing_complete = FALSE
-	I.update_icon()

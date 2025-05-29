@@ -10,7 +10,7 @@
 	///Secondary weapon
 	var/secondary_weapon
 
-/datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE, provide_id = TRUE)
 	//Start with uniform,suit,backpack for additional slots. Deletes any existing equipped item to avoid accidentally losing half your loadout. Not suitable for standard gamemodes!
 	if(w_uniform)
 		qdel(H.w_uniform)

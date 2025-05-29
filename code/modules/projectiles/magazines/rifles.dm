@@ -814,7 +814,6 @@
 /obj/item/ammo_magazine/rifle/vsd_carbine/extended
 	name = "\improper CC/77 extended magazine (10x24mm)"
 	icon_state = "c77_ext"
-	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 48
 
 /obj/item/ammo_magazine/rifle/vsd_carbine/ap

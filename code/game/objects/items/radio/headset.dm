@@ -381,8 +381,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 
-/obj/item/radio/headset/mainship/verb/configure_squadhud()
-	set name = "Configure Headset HUD"
+/obj/item/radio/verb/configure_squadhud()
+	set name = "Configure radio"
 	set category = "IC.Object"
 	set src in usr
 
@@ -748,6 +748,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = dat + " radio headset"
 	return ..()
 
+/obj/item/radio/headset/mainship/som/doc
+	name = "SOM medical radio headset"
+	icon_state = "med_headset"
+	keyslot2 = /obj/item/encryptionkey/med
+
 /obj/item/radio/headset/mainship/som/command
 	name = "SOM command radio headset"
 	icon_state = "com_headset_alt"
@@ -850,7 +855,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 //spatial agent headset
 
-/obj/item/radio/headset/spatial_agent
+/obj/item/radio/headset/mainship/marine/spatial_agent
 	name = "spatial agent radio headset"
 	desc = "Standard issue headset for spatial agents, providing access to most known channels. Will violently explode if used by anyone other than a spatial agent."
 	icon_state = "cargo_headset"
@@ -862,3 +867,4 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	command = TRUE
 	item_flags = DELONDROP
 	subspace_transmission = FALSE
+	minimap_type = /datum/action/minimap/observer

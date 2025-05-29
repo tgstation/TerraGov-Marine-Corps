@@ -9652,6 +9652,12 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"iJZ" = (
+/obj/structure/closet/crate/mass_produced_crate/ammo,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "iKC" = (
 /obj/machinery/marine_selector/clothes/medic,
 /obj/machinery/light/mainship{
@@ -30947,9 +30953,9 @@ aya
 xLn
 kkx
 izo
+iJZ
 izo
-izo
-izo
+iJZ
 dzM
 izo
 izo
@@ -31069,7 +31075,7 @@ izo
 izo
 izo
 izo
-izo
+iJZ
 izo
 izo
 woS
@@ -31187,7 +31193,7 @@ kkx
 izo
 izo
 izo
-izo
+iJZ
 izo
 izo
 izo
@@ -31305,7 +31311,7 @@ urx
 urx
 jJN
 izo
-izo
+iJZ
 izo
 izo
 izo

@@ -1,4 +1,5 @@
 #include "code\_DEFINES\sexcon_defines.dm"
+#include "code\_DEFINES\colors.dm"
 #include "code\_DEFINES\span.dm"
 #include "code\datums\gamemodes\_game_mode.dm"
 #include "code\datums\genital_menu.dm"
@@ -94,3 +95,7 @@
 #include "modules\underwear\underwear\underwear.dm"
 #include "code\modules\projectiles\guns\rifles.dm"
 #include "code\_HELPERS\announce.dm"
+#include "code\modules\projectiles\guns\pistols.dm"
+#include "code\game\objects\machinery\artillery\shells.dm"
+#include "code\modules\reqs\supplypacks\imports_packs.dm"
+#include "code\modules\clothing\modular_armor\attachments\modules.dm"

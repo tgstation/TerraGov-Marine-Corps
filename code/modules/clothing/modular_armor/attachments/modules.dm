@@ -426,7 +426,7 @@
 	///Current shield Health
 	var/shield_health = 0
 	///Maximum shield Health
-	var/max_shield_health = 40
+	var/max_shield_health = 60
 	///Amount to recharge per tick, processes once every two seconds.
 	var/recharge_rate = 10
 

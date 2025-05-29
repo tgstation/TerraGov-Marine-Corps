@@ -27,6 +27,8 @@
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/antienergy,
+		/obj/item/armor_module/module/eshield/antienergy/antiballistic,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
 

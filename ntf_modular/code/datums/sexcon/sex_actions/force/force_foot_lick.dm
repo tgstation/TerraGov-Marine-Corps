@@ -3,12 +3,13 @@
 	check_same_tile = FALSE
 	require_grab = TRUE
 	stamina_cost = 1.0
+	heal_sex = FALSE
 
 /datum/sex_action/force_foot_lick/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
 	return TRUE
-	
+
 /datum/sex_action/force_foot_lick/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE

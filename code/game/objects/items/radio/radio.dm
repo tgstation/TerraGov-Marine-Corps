@@ -105,6 +105,13 @@
 /obj/item/radio/proc/get_listening()
 	return listening
 
+/obj/item/radio/RightClick(mob/user)
+	. = ..()
+	if(!can_interact(usr))
+		return FALSE
+
+	interact(usr)
+
 /obj/item/radio/interact(mob/user)
 	. = ..()
 	if(.)

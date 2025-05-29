@@ -250,16 +250,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/pistol/g22)
 	cost = 3
 
-/datum/supply_packs/imports/g22_tranq
-	name = "P-22 Custom Pistol"
-	contains = list(/obj/item/weapon/gun/pistol/g22/tranq)
-	cost = 120
-
-/datum/supply_packs/imports/g22_tranq_ammo
-	name = "P-22 Custom Pistol Tranq Magazine"
-	contains = list(/obj/item/ammo_magazine/pistol/g22tranq)
-	cost = 3
-
 /datum/supply_packs/imports/deagle
 	name = "Desert Eagle Handgun"
 	contains = list(/obj/item/weapon/gun/pistol/heavy)

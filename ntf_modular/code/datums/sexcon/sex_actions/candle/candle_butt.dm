@@ -1,5 +1,6 @@
 /datum/sex_action/candle_butt
 	name = "Use candle wax on their buttocks"
+	heal_sex = FALSE
 
 /datum/sex_action/candle_butt/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)

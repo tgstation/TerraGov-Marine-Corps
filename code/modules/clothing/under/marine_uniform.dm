@@ -710,6 +710,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/vsd/alt
+	name = "\improper KZ seasoned jumpsuit"
 	icon_state = "vsd_uniform_alt"
 	worn_icon_state = "vsd_uniform_alt"
 
@@ -737,7 +738,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/upp
-	name = "KZ 'USL' jumpsuit"
+	name = "KZ military jumpsuit"
 	desc = "A standard uniform for a division in the Kaizoku Corporation, it's colors feel reminiscent."
 	icon_state = "upp_retired"
 	worn_icon_state = "upp_retired"
@@ -749,6 +750,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/vsd/upp/alt
+	name = "KZ military seasoned jumpsuit"
 	icon_state = "upp_secondary"
 	worn_icon_state = "upp_secondary"
 
@@ -759,7 +761,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/vsd/upp/officer
-	name = "KZ 'USL' officer jumpsuit"
+	name = "KZ military officer jumpsuit"
 	desc = "A standard uniform for a officer in a division of the Kaizoku Corporation, it's colors feel reminiscent."
 	icon_state = "upp_retired_officer"
 	worn_icon_state = "upp_retired_officer"
@@ -781,7 +783,7 @@
 	worn_icon_state = "vsd_shirt_sleeveless"
 
 /obj/item/clothing/under/vsd/juggernaut
-	name = "KZ overalls"
+	name = "KZ military overalls"
 	icon_state = "vsd_alt_juggernaut"
 	worn_icon_state = "vsd_alt_juggernaut"
 

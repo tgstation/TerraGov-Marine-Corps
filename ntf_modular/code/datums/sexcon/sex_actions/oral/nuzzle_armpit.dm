@@ -1,6 +1,7 @@
 /datum/sex_action/armpit_nuzzle
 	name = "Nuzzle their armpit"
 	check_incapacitated = FALSE
+	heal_sex = FALSE
 
 /datum/sex_action/armpit_nuzzle/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
