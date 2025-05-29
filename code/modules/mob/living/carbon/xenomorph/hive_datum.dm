@@ -544,6 +544,7 @@
 
 	if(hive.living_xeno_ruler == src)
 		hive.set_ruler(null)
+		hive.update_ruler()
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
 
@@ -770,8 +771,9 @@
 	successor.give_ruler_abilities()
 	successor.hud_set_queen_overwatch()
 	successor.update_leader_icon(FALSE)
-	prev.hud_set_queen_overwatch() // we want to remove the ruler star from the previous ruler
-	prev = null // instantly null it
+	if(prev)
+		prev.hud_set_queen_overwatch() // we want to remove the ruler star from the previous ruler
+		prev = null // instantly null it
 	handle_ruler_timer()
 	update_leader_pheromones()
 	if(announce)
