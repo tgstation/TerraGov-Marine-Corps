@@ -1,7 +1,11 @@
 /datum/component/anti_juggling
-	/// The next time the gun we just fired will be able to fire
+	/// The next time the gun we just fired will be able to fire.
 	var/next_fire_time = 0
+	/// The default multiplier for fire delay when weapon swapping.
+	var/multiplier = 2
+	/// The type of gun last fired.
 	var/last_gun_type = null
+	/// The instance of the gun last fired.
 	var/last_gun_instance = null
 
 /datum/component/anti_juggling/Initialize(...)
@@ -18,7 +22,6 @@
 	if(!isgun(fired_gun) || fired_gun.master_gun || fired_gun.dual_wield)
 		return //Attached guns and guns being dual wielded aren't taken into account.
 
-	var/multiplier = 2 // Default multiplier
 	if(istype(fired_gun, /obj/item/weapon/gun/revolver) || istype(fired_gun, /obj/item/weapon/gun/pistol))
 		multiplier = 8 // Higher delay multiplier for revolvers and pistols
 
