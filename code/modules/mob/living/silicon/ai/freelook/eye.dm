@@ -9,9 +9,6 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	var/mob/living/silicon/ai/ai = null
 	var/relay_speech = TRUE
-	var/ai_detector_visible = TRUE
-	var/ai_detector_color = "#FF0000"
-
 
 /mob/camera/aiEye/Initialize(mapload, cameranet, new_faction)
 	. = ..()
