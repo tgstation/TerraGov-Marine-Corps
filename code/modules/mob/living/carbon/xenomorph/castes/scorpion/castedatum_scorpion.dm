@@ -33,13 +33,14 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.8 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/passthrough)
+	spit_types = list(/datum/ammo/xeno/toxin, /datum/ammo/xeno/acid/passthrough, /datum/ammo/xeno/toxin/aphrotoxin)
 
 	minimap_icon = "xenominion"
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 	)

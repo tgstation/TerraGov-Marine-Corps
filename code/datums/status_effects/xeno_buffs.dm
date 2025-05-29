@@ -516,7 +516,7 @@
 		ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 		target.AdjustKnockdown(KNOCKDOWN_DURATION)
 
-		if(do_after(owner_xeno, KNOCKDOWN_DURATION, IGNORE_HELD_ITEM, target))
+		if(do_after(owner_xeno, KNOCKDOWN_DURATION, FALSE, target, ignore_turf_checks = FALSE))
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
 			SEND_SIGNAL(target, COMSIG_XENO_CARNAGE_HIT, owner_xeno.xeno_caste.drain_plasma_gain, owner_xeno)
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
@@ -888,29 +888,33 @@
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/status_effect/baton_pass/on_apply()
-	if(!isxeno(owner))
-		return FALSE
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-
-	particle_holder = new(owner_xeno, /particles/baton_pass)
-	var/particle_x = abs(owner_xeno.pixel_x)
+	particle_holder = new(owner, /particles/baton_pass)
+	var/particle_x = abs(owner.pixel_x)
 	particle_holder.pixel_x = particle_x
 	particle_holder.pixel_y = -3
-
+	var/movespeed_mod //Hold this here; as we'll want to apply seperate code for humans. Just incase.
 	//only slower xenos get better movespeed amplify. No gigaspeed runners
-	var/movespeed_mod =((owner_xeno.xeno_caste.speed <= -1) ? -0.1 : (owner_xeno.xeno_caste.speed <= -0.8) ? -0.2 : -0.4)
-	owner_xeno.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS, TRUE, 1, NONE, TRUE, movespeed_mod)
+	if(isxeno(owner))
+		var/mob/living/carbon/xenomorph/owner_xeno = owner
+		movespeed_mod =((owner_xeno.xeno_caste.speed <= -1) ? -0.1 : (owner_xeno.xeno_caste.speed <= -0.8) ? -0.2 : -0.4)
+		owner.emote("roar")
+	else
+		movespeed_mod = -0.18 //Less effective than on slow castes for humans.
+		owner.emote("warcry")
+	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS, TRUE, 1, NONE, TRUE, movespeed_mod)
 
-	to_chat(owner, span_notice("We feel on top of the world! Go, go, go!"))
-	owner_xeno.Shake(duration = 6 SECONDS, shake_interval = 0.08 SECONDS)
-	owner_xeno.emote("roar")
+	to_chat(owner, span_notice("You feel on top of the world! Go, go, go!"))
+	owner.Shake(duration = 6 SECONDS, shake_interval = 0.08 SECONDS)
 
 	return ..()
 
 /datum/status_effect/baton_pass/on_remove()
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS)
+	if(isxeno(owner))
+		owner_xeno.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS)
+	else
+		owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS) //ensure to correctly handle this so we dont get infinite speed
 	to_chat(owner, span_notice("We come down from our adrenaline high."))
 	QDEL_NULL(particle_holder)
 
