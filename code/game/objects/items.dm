@@ -1556,6 +1556,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_STICKY_STICK_TO, target)
 
+/// Additional behaviour for when we unstick from target
+/obj/item/proc/unstick_from(atom/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_STICKY_CLEAN_REFS, target)
+
 /// What happens when the atom we're stuck to moves
 /obj/item/proc/on_move_sticky()
 	return

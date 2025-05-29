@@ -164,7 +164,7 @@
 		if(charges_used >= charges)
 			break
 		if(sticky_bomb.active)
-			SEND_SIGNAL(sticky_bomb, COMSIG_ITEM_STICKY_CLEAN_REFS)
+			sticky_bomb.unstick_from(src)
 			sticky_bomb.forceMove(loc)
 			charges_used++
 
