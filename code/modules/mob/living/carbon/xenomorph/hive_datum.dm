@@ -454,25 +454,7 @@
 
 	SSdirection.start_tracking(HS.hivenumber, src)
 	hive.update_tier_limits() //Update our tier limits.
-
-/mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE, prevent_ruler=FALSE) // override to ensure proper queen/hive behaviour
-	. = ..()
-
-	if(prevent_ruler)
-		return
-
-	HS.update_ruler()
-
-
-/mob/living/carbon/xenomorph/shrike/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE) // override to ensure proper queen/hive behaviour
-	. = ..()
-
-	if(HS.living_xeno_ruler)
-		return
-	if(prevent_ruler)
-		return
-
-	HS.update_ruler()
+	hive.update_ruler()
 
 /mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
 	. = ..()
@@ -494,16 +476,6 @@
 	hive_core.hivenumber = HS.hivenumber
 	hive_core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name] "]hivemind core"
 	hive_core.color = HS.color
-
-/mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
-	. = ..()
-
-	if(HS.living_xeno_ruler)
-		return
-	if(prevent_ruler)
-		return
-
-	HS.update_ruler()
 
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE, prevent_ruler=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
@@ -570,6 +542,10 @@
 	if((xeno_flags & XENO_LEADER) || (src in hive.xeno_leader_list))
 		hive.remove_leader(src)
 
+	if(hive.living_xeno_ruler == src)
+		hive.set_ruler(null)
+		hive.update_ruler()
+
 	SSdirection.stop_tracking(hive.hivenumber, src)
 
 	var/datum/hive_status/reference_hive = hive
@@ -587,39 +563,6 @@
 /datum/hive_status/Destroy(force, ...)
 	. = ..()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
-
-/mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
-	var/datum/hive_status/hive_removed_from = hive
-	if(hive_removed_from.living_xeno_ruler == src)
-		hive_removed_from.living_xeno_ruler = null
-
-	. = ..()
-
-	if(hive_removed_from.living_xeno_ruler == src)
-		hive_removed_from.set_ruler(null)
-		hive_removed_from.update_ruler() //Try to find a successor.
-
-
-
-/mob/living/carbon/xenomorph/shrike/remove_from_hive()
-	var/datum/hive_status/hive_removed_from = hive
-
-	. = ..()
-
-	if(hive_removed_from.living_xeno_ruler == src)
-		hive_removed_from.set_ruler(null)
-		hive_removed_from.update_ruler() //Try to find a successor.
-
-
-
-/mob/living/carbon/xenomorph/king/remove_from_hive()
-	var/datum/hive_status/hive_removed_from = hive
-
-	. = ..()
-
-	if(hive_removed_from.living_xeno_ruler == src)
-		hive_removed_from.set_ruler(null)
-		hive_removed_from.update_ruler() //Try to find a successor.
 
 /mob/living/carbon/xenomorph/hivemind/remove_from_hive()
 	var/obj/structure/xeno/hivemindcore/hive_core = get_core()
@@ -757,8 +700,7 @@
 	return initial(xeno.death_evolution_delay)
 
 /datum/hive_status/proc/on_ruler_death(mob/living/carbon/xenomorph/ruler)
-	if(living_xeno_ruler == ruler)
-		set_ruler(null)
+	set_ruler(null)
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
 		announce = FALSE
@@ -769,6 +711,7 @@
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
 		remove_leader(leader)
 		leader.hud_set_queen_overwatch()
+	ruler.hud_set_queen_overwatch()
 	update_ruler()
 	return TRUE
 
@@ -817,11 +760,20 @@
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
 		announce = FALSE
 
+	if(living_xeno_ruler) /// Remove the old ruler if T4 or queen is taking over
+		living_xeno_ruler.remove_ruler_abilities()
+		living_xeno_ruler.update_leader_icon(FALSE)
+		UnregisterSignal(living_xeno_ruler, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+
+	var/mob/living/carbon/xenomorph/prev = living_xeno_ruler // ref to the ruler we're replacing
 	remove_leader(successor)
 	set_ruler(successor)
 	successor.give_ruler_abilities()
 	successor.hud_set_queen_overwatch()
-	successor.update_leader_icon(TRUE)
+	successor.update_leader_icon(FALSE)
+	if(prev)
+		prev.hud_set_queen_overwatch() // we want to remove the ruler star from the previous ruler
+		prev = null // instantly null it
 	handle_ruler_timer()
 	update_leader_pheromones()
 	if(announce)
