@@ -542,6 +542,9 @@
 	if((xeno_flags & XENO_LEADER) || (src in hive.xeno_leader_list))
 		hive.remove_leader(src)
 
+	if(hive.living_xeno_ruler == src)
+		hive.set_ruler(null)
+
 	SSdirection.stop_tracking(hive.hivenumber, src)
 
 	var/datum/hive_status/reference_hive = hive
