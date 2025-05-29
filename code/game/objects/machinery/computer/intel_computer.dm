@@ -56,8 +56,9 @@
 			progress = 0
 		return
 	progress += progress_interval
-	if(progress <= 100 && !printing_complete)
+	if(progress < 100)
 		return
+	active = FALSE
 	printing = FALSE
 	printing_complete = TRUE
 	//NTF edit. Printing a disk instead of instantly giving the points.
@@ -65,7 +66,6 @@
 	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
 	minor_announce("Classified data extraction has been completed in [get_area(src)].", title = "Intel Division")
 	SStgui.close_uis(src)
-	active = FALSE
 	update_minimap_icon()
 	update_icon()
 	STOP_PROCESSING(SSmachines, src)
