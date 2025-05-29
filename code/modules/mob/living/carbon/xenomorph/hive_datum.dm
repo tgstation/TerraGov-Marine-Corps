@@ -697,8 +697,7 @@
 	return initial(xeno.death_evolution_delay)
 
 /datum/hive_status/proc/on_ruler_death(mob/living/carbon/xenomorph/ruler)
-	if(living_xeno_ruler == ruler)
-		set_ruler(null)
+	set_ruler(null)
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
 		announce = FALSE
