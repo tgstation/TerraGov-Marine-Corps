@@ -39,9 +39,14 @@
 	H.setCloneLoss(0)
 	H.dropItemToGround(H.r_hand, TRUE)
 	H.dropItemToGround(H.l_hand, TRUE)
-	if(istype(H.wear_id, /obj/item/card/id))
-		var/obj/item/card/id/id = H.wear_id
-		H.dropItemToGround(id, TRUE)
+	if(SSticker.mode.zombie_ids)
+		if(istype(H.wear_id, /obj/item/card/id))
+			var/obj/item/card/id/id = H.wear_id
+			id.access = list() // A bit gamey, but let's say ids have a security against zombies
+			id.iff_signal = NONE
+	else
+		if(H.wear_id)
+			H.dropItemToGround(H.wear_id, TRUE)
 	H.equip_to_slot_or_del(new claw_type, SLOT_R_HAND)
 	H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
