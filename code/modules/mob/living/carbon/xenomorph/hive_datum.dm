@@ -708,6 +708,7 @@
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
 		remove_leader(leader)
 		leader.hud_set_queen_overwatch()
+	ruler.hud_set_queen_overwatch()
 	update_ruler()
 	return TRUE
 
