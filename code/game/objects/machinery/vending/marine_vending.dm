@@ -811,6 +811,9 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_mmg/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/sh410/buckshot/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/sh410/sabot/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/sh410/tracker/full = -1,
 		),
 		"Mecha Ammo" = list(
 			/obj/item/mecha_ammo/vendable/pistol = -1,
