@@ -1,10 +1,22 @@
+//build mode designation specific procs
+
+///Designator alt appearance key
+#define HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE "holo_build_designator_alt_appearance"
+
 //List of all images used for constuction designating, in the radial selection menu
 GLOBAL_LIST_INIT(designator_images_list, list(
+	INTERACT_DESIGNATOR_MODE = image('icons/mob/actions.dmi', icon_state = "interact_designator"),
 	/obj/structure/barricade/solid = image('icons/obj/structures/barricades/metal.dmi', icon_state = "metal_0"),
 	/obj/structure/barricade/solid/plasteel = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
 	/obj/structure/barricade/folding/metal = image('icons/obj/structures/barricades/metal.dmi', icon_state = "folding_metal_0"),
 	/obj/structure/barricade/folding = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
 ))
+
+/datum/action/ability/activable/build_designator
+	///personal hologram designator
+	var/obj/effect/build_hologram/hologram
+	///The typepath of what we want to construct. Typecast for initial var values
+	var/obj/construct_type
 
 ///Assoc list of construction types to source material
 GLOBAL_LIST_INIT(designator_types, list (
@@ -14,73 +26,23 @@ GLOBAL_LIST_INIT(designator_types, list (
 	/obj/structure/barricade/folding = /obj/item/stack/sheet/plasteel,
 ))
 
-///Designator alt appearance key
-#define HOLO_BUILD_DESIGNATOR_ALT_APPEARANCE "holo_build_designator_alt_appearance"
-
-/datum/action/ability/activable/build_designator
-	name = "Construction Designator"
-	desc = "Place a designator for construction."
-	action_icon_state = "build_designator"
-	action_icon = 'icons/mob/actions.dmi'
-	target_flags = ABILITY_TURF_TARGET
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_ABILITY_PLACE_HOLOGRAM,
-		KEYBINDING_ALTERNATE = COMSIG_ABILITY_SELECT_BUILDTYPE,
-	)
-	///personal hologram designator
-	var/obj/effect/build_hologram/hologram
-	///The typepath of what we want to construct. Typecast for initial var values
-	var/obj/construct_type
-
-/datum/action/ability/activable/build_designator/Destroy()
-	QDEL_NULL(hologram)
-	return ..()
-
-/datum/action/ability/activable/build_designator/should_show()
-	. = ..()
-	if(!.)
-		return
-	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
-
-/datum/action/ability/activable/build_designator/can_use_action()
-	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
-
-/datum/action/ability/activable/build_designator/on_selection()
-	RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
-	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_rotate))
-	RegisterSignal(owner, COMSIG_DO_OVERWATCH_RADIAL, PROC_REF(override_cic_radial))
-
-/datum/action/ability/activable/build_designator/on_deselection()
-	UnregisterSignal(owner, list(COMSIG_ATOM_MOUSE_ENTERED, COMSIG_ATOM_DIR_CHANGE, COMSIG_DO_OVERWATCH_RADIAL))
-	cleanup_hologram()
-
-/datum/action/ability/activable/build_designator/action_activate()
-	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability == src)
-		deselect()
-		return
-	return ..()
-
-/datum/action/ability/activable/build_designator/use_ability(atom/A)
-	if(!isturf(A) || !update_hologram(A))
+///build designation side of use_ability
+/datum/action/ability/activable/build_designator/proc/use_build_ability(atom/target)
+	if(!isturf(target) || !update_hologram(target))
 		owner.balloon_alert(owner, "Invalid spot")
 		return FALSE
-	new /obj/effect/build_designator(A, construct_type, owner)
+	new /obj/effect/build_designator(target, construct_type, owner)
 	return TRUE
-
-/datum/action/ability/activable/build_designator/alternate_action_activate()
-	INVOKE_ASYNC(src, PROC_REF(select_structure))
-
-///Tells overwatch we're overriding the radial selection
-/datum/action/ability/activable/build_designator/proc/override_cic_radial(datum/source)
-	SIGNAL_HANDLER
-	return OVERWATCH_RADIAL_HIDE
 
 ///Selects the pattern from a radial menu
 /datum/action/ability/activable/build_designator/proc/select_structure()
 	var/construct_choice = show_radial_menu(owner, owner?.client?.eye, GLOB.designator_images_list)
 	if(!construct_choice)
 		return
+	if(construct_choice == INTERACT_DESIGNATOR_MODE)
+		swap_mode(INTERACT_DESIGNATOR_MODE)
+		return
+
 	construct_type = construct_choice
 
 	owner.balloon_alert(owner, "[construct_type::name]")
@@ -163,6 +125,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 	QDEL_NULL(hologram)
 
 //The actual building hologram
+
 /obj/effect/build_designator
 	anchored = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
@@ -182,7 +145,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 	recipe = GLOB.stack_recipes[material_type][construct_type]
 
 	//Because we only want this hologram visible via the right hud, but we want all the nice effects, we fully configure the appearance,
-	//steal it for the hud image, then wipe the objects appearance entirely
+	//then make a blank alt appearance for other factions to 'see'
 
 	dir = builder.dir
 	icon = construct_type::icon

@@ -19,7 +19,7 @@
 
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
-	if(human_ai_state_flags & HUMAN_AI_NEED_WEAPONS)
+	if((human_ai_state_flags & HUMAN_AI_NEED_WEAPONS) && !(human_ai_state_flags & HUMAN_AI_BUSY_ACTION))
 		equip_weaponry()
 	if(!gun)
 		return
