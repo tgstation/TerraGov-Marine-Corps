@@ -609,7 +609,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<3) // Can we ignore the healing penalty associated with having a hive ruler not being on the same z-level as us? Only matters on gamemodes where hive rulers are optional.
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<4) // Can we corrupt a generator?
 #define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher (or behemoth)?
-#define CASTE_CAN_BE_RULER (1<<6) // Caste can become a ruler if no queen / shrike / king exists in the hive.
 
 //Charge-Crush
 #define CHARGE_OFF 0
