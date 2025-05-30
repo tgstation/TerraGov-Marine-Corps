@@ -393,6 +393,10 @@
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "ks23"
 	worn_icon_state = "ks23"
+	worn_icon_list = list(
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	caliber = CALIBER_6G //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/heavy_buckshot
 	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
@@ -450,6 +454,12 @@
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "sh23"
 	worn_icon_state = "sh23"
+	worn_icon_list = list(
+		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	caliber = CALIBER_6G //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/heavy_buckshot
 	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
@@ -1016,6 +1026,12 @@
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "l12"
 	worn_icon_state = "l12"
+	worn_icon_list = list(
+		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
+		slot_back_str = 'icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	cock_animation = "l12_pump"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
@@ -1069,7 +1085,7 @@
 	worn_icon_state = "shq6"
 	worn_icon_list = list(
 		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
-		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+		slot_back_str = 'icons/mob/clothing/back.dmi',
 		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
 		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
 		)

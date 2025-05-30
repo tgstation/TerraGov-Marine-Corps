@@ -15,7 +15,9 @@
 
 	///Icon state for mob worn overlays, if null the normal icon_state will be used.
 	var/worn_icon_state = null
-	///The icon state used to represent this image in "icons/obj/items/items_mini.dmi" Used in /obj/item/storage/box/visual to display tiny items in the box
+	/// the file containing the mini icon for icon_state_mini. Used in /obj/item/storage/box/visual to display tiny items in the box.
+	var/icon_mini = 'icons/obj/items/items_mini.dmi'
+	///The icon state used to represent this image in icon_mini. Used in /obj/item/storage/box/visual to display tiny items in the box.
 	var/icon_state_mini = "item"
 	///Byond tick delay between left click attacks
 	var/attack_speed = 11
@@ -1571,3 +1573,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /// Returns the strip delay of the item.
 /obj/item/proc/getstripdelay()
 	return strip_delay
+
+/// Can the item stick to target if it has the sticky item component. Must return TRUE or FALSE
+/obj/item/proc/can_stick_to(atom/target)
+	return TRUE
+
+/// Additional behaviour for when we stick to target
+/obj/item/proc/stuck_to(atom/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_STICKY_STICK_TO, target)
+
+/// Additional behaviour for when we unstick from target
+/obj/item/proc/unstick_from(atom/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_STICKY_CLEAN_REFS, target)
+
+/// What happens when the atom we're stuck to moves
+/obj/item/proc/on_move_sticky()
+	return

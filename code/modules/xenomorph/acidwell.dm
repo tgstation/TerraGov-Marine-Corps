@@ -163,19 +163,19 @@
 	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
 		if(charges_used >= charges)
 			break
-		if(sticky_bomb.stuck_to == stepper)
-			sticky_bomb.clean_refs()
+		if(sticky_bomb.active)
+			sticky_bomb.unstick_from(src)
 			sticky_bomb.forceMove(loc)
-			charges_used ++
+			charges_used++
 
 	if(stepper.on_fire && (charges_used < charges))
 		stepper.ExtinguishMob()
-		charges_used ++
+		charges_used++
 
 	if(!isxeno(stepper))
 		stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
-		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
-		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
+		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID, penetration = 33)
+		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID, penetration = 33)
 		stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
 		span_danger("We are immersed in [src]'s acid!") , null, 5)
 		playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
