@@ -37,8 +37,25 @@
 /obj/item/reagent_containers/food/ai_should_use(mob/living/target, mob/living/user)
 	if(!ishuman(target))
 		return FALSE
+	var/datum/reagent/consumable/nutriment/nutriment = reagents.get_reagent(/datum/reagent/consumable/nutriment)
+	if(!nutriment)
+		return FALSE
+
 	var/mob/living/carbon/human/human_target = target
-	if((reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 37.5) + human_target.nutrition >= NUTRITION_OVERFED)
+	if((human_target.nutrition + nutriment.get_nutrition_gain()) >= NUTRITION_OVERFED)
+		return FALSE
+	return TRUE
+
+/obj/item/reagent_containers/food/snacks/ai_should_use(mob/living/target, mob/living/user)
+	if(!ishuman(target))
+		return FALSE
+	var/datum/reagent/consumable/nutriment/nutriment = reagents.get_reagent(/datum/reagent/consumable/nutriment)
+	if(!nutriment)
+		return FALSE
+
+	var/nutriment_amount = (reagents.total_volume < bitesize) ? nutriment.volume : nutriment.volume / reagents.total_volume * bitesize
+	var/mob/living/carbon/human/human_target = target
+	if((human_target.nutrition + nutriment.get_nutrition_gain(nutriment_amount)) >= NUTRITION_OVERFED)
 		return FALSE
 	return TRUE
 
