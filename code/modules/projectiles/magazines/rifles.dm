@@ -759,3 +759,36 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 30
+
+//.410 autoshotgun ammo
+//Uses the mbx's ammo (.410 gauge)
+
+/obj/item/ammo_magazine/rifle/sh410_sabot
+	name = "\improper SH-410 sabot magazine (.410 gauge)"
+	desc = "A magazine of .410 gauge sabot rounds, for the SH-410."
+	caliber = CALIBER_410
+	icon_state = "sh410_sabot"
+	icon_state_mini = "mag_sh410_sabot"
+	default_ammo = /datum/ammo/bullet/shotgun/mbx900_sabot
+	max_rounds = 15
+	bonus_overlay = "sh410_sabot"
+
+/obj/item/ammo_magazine/rifle/sh410_buckshot
+	name = "\improper SH-410 buckshot magazine (.410 gauge)"
+	desc = "A magazine of .410 gauge buckshot rounds, for the SH-410."
+	caliber = CALIBER_410
+	icon_state = "sh410_buckshot"
+	icon_state_mini = "mag_sh410_buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
+	max_rounds = 15
+	bonus_overlay = "sh410_buckshot"
+
+/obj/item/ammo_magazine/rifle/sh410_tracker //fuck it why not
+	name = "\improper SH-410 tracker magazine (.410 gauge)"
+	desc = "A magazine of .410 gauge tracker rounds, for the SH-410...?"
+	caliber = CALIBER_410
+	icon_state = "sh410_tracker"
+	icon_state_mini = "mag_sh410_tracker"
+	default_ammo = /datum/ammo/bullet/shotgun/mbx900_tracker
+	max_rounds = 15
+	bonus_overlay = "sh410_tracker"
