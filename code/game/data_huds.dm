@@ -549,13 +549,17 @@
 	holder.overlays.Cut()
 	holder.icon_state = ""
 	if(stat != DEAD)
-		if(hive?.living_xeno_queen)
-			if(hive.living_xeno_queen.observed_xeno == src)
+		if(hive?.living_xeno_ruler)
+			if(hive.living_xeno_ruler.observed_xeno == src)
 				holder.icon = 'icons/mob/hud/xeno.dmi'
 				holder.icon_state = "queen_overwatch"
 			if(xeno_flags & XENO_LEADER)
 				var/image/I = image('icons/mob/hud/xeno.dmi',src, "leader")
 				holder.overlays += I
+			if(hive.living_xeno_ruler == src)
+				var/image/I = image('icons/mob/hud/xeno.dmi',src, "ruler")
+				holder.overlays += I
+
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
 /mob/living/carbon/xenomorph/proc/hud_update_rank()
