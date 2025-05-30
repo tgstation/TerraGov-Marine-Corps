@@ -32,11 +32,6 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
-"as" = (
-/obj/effect/turf_decal/syndicateemblem/top/right,
-/obj/structure/cable,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/bridge)
 "at" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship)
@@ -853,7 +848,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
 "fk" = (
-/obj/effect/turf_decal/syndicateemblem/middle/middle,
 /obj/structure/cable,
 /turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
@@ -1029,11 +1023,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
-"gw" = (
-/obj/effect/turf_decal/syndicateemblem/top/middle,
-/obj/structure/cable,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/bridge)
 "gy" = (
 /obj/machinery/power/smes,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -1303,11 +1292,6 @@
 /obj/structure/largecrate/supply/supplies/cloth,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
-"hZ" = (
-/obj/structure/table/black,
-/obj/machinery/computer/security/som_mainship,
-/turf/open/floor/prison/blackfloor,
-/area/antag_ship/vsd/bridge)
 "ia" = (
 /obj/structure/mirror,
 /turf/closed/wall/mainship/gray,
@@ -1848,10 +1832,6 @@
 /obj/effect/turf_decal/trimline/dark_blue,
 /turf/open/floor/plating/asteroidwarning,
 /area/antag_ship/clf_base/sleeproom)
-"kK" = (
-/obj/effect/turf_decal/syndicateemblem/top/left,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/bridge)
 "kL" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/mono,
@@ -2762,7 +2742,6 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
-/obj/structure/prop/mainship/juggernaut_two,
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
 "oE" = (
@@ -3237,11 +3216,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
 /area/antag_ship/vsd/hall)
-"qW" = (
-/obj/structure/table/black,
-/obj/machinery/computer/emails,
-/turf/open/floor/prison/blackfloor,
-/area/antag_ship/vsd/bridge)
 "qX" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship/somship{
@@ -3811,9 +3785,6 @@
 "ug" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/office/dark/east,
-/obj/structure/prop/mainship/prop_so/vsd/usl{
-	dir = 4
-	},
 /turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "uh" = (
@@ -4161,9 +4132,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/structure/prop/mainship/prop_so/vsd{
-	dir = 1
-	},
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
 "wc" = (
@@ -4386,7 +4354,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "xe" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/computer,
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
 "xi" = (
@@ -4487,8 +4455,10 @@
 /area/antag_ship/pmc_ntf/starboard/spaceport)
 "xA" = (
 /obj/structure/cable,
-/obj/structure/prop/mainship/doorblocker/command,
-/turf/closed/wall/r_wall/prison,
+/obj/machinery/door/airlock/mainship/command/free_access{
+	dir = 2
+	},
+/turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
 "xB" = (
 /obj/structure/rack,
@@ -5304,10 +5274,6 @@
 	dir = 4
 	},
 /area/antag_ship/clf_base/techroom)
-"Cn" = (
-/obj/effect/turf_decal/syndicateemblem/bottom/left,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/bridge)
 "Co" = (
 /obj/structure/sink{
 	dir = 4
@@ -5536,10 +5502,6 @@
 	dir = 4
 	},
 /area/antag_ship/vsd/port)
-"Do" = (
-/obj/effect/turf_decal/syndicateemblem/bottom/right,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/bridge)
 "Dp" = (
 /turf/closed/wall/mainship/outer/reinforced,
 /area/antag_ship/icc/hangar/east)
@@ -5767,11 +5729,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
-"EF" = (
-/obj/effect/turf_decal/syndicateemblem/bottom/middle,
-/obj/structure/cable,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/bridge)
 "EG" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass{
@@ -8786,13 +8743,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/requisition)
-"TK" = (
-/obj/machinery/light/mainship{
-	light_color = "#da2f1b"
-	},
-/obj/structure/prop/mainship/juggernaut,
-/turf/open/floor/prison/blackfloor,
-/area/antag_ship/vsd/bridge)
 "TL" = (
 /obj/machinery/marine_selector/clothes/synth{
 	vendor_role = /datum/job/clf/silicon/synthetic/clf
@@ -8872,10 +8822,6 @@
 	dir = 8
 	},
 /area/antag_ship/vsd/armory)
-"Ui" = (
-/obj/effect/turf_decal/syndicateemblem/middle/right,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/bridge)
 "Uk" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -9064,10 +9010,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/antag_ship/clf_base/hallways/inside)
-"Vc" = (
-/obj/effect/turf_decal/syndicateemblem/middle/left,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/bridge)
 "Vd" = (
 /obj/structure/cable,
 /obj/machinery/power/smes{
@@ -14055,12 +13997,12 @@ VK
 (43,1,1) = {"
 VK
 LH
-hZ
+tS
 pJ
 On
 FG
 pJ
-TK
+oD
 tI
 tI
 tI
@@ -14152,9 +14094,9 @@ VK
 LH
 tS
 pJ
-kK
-Vc
-Cn
+FG
+FG
+FG
 pJ
 ky
 If
@@ -14247,9 +14189,9 @@ KT
 LH
 xe
 wb
-gw
 fk
-EF
+fk
+fk
 PW
 xA
 SU
@@ -14342,9 +14284,9 @@ VK
 LH
 tS
 pJ
-as
-Ui
-Do
+fk
+FG
+FG
 pJ
 ky
 DA
@@ -14435,7 +14377,7 @@ VK
 (47,1,1) = {"
 VK
 LH
-qW
+tS
 pJ
 ug
 FG
