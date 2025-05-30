@@ -144,6 +144,7 @@
 /datum/loadout_item/secondary/gun/marine/db_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_IN_HOLSTER)
 	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
+	default_load(wearer, loadout, holder)
 
 //non-standard
 /datum/loadout_item/secondary/machete
