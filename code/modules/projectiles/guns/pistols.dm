@@ -723,7 +723,7 @@
 /obj/item/weapon/gun/pistol/xmdivider
 	name = "\improper CC/104 'Divider' Revolver"
 	desc = "Intertech's one of a kind revolver. Fires specialized .357 rounds, has firemode switch of single action and burst fire. Kicks like a fucking mule. You remember High Command saying: 'Don't let this get into enemy hands'."
-	icon = 'icons/obj/items/guns/pistols.dmi'
+	icon = 'ntf_modular/icons/obj/items/guns/pistols.dmi'
 	icon_state = "c104"
 	worn_icon_state = "c104"
 	caliber = CALIBER_357 //codex

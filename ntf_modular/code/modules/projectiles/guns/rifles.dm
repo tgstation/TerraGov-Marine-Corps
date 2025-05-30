@@ -3,9 +3,9 @@
 	name = "\improper NTC 'Moonbeam' NL sniper rifle"
 	desc = "A light framed custom made bolt action rifle used by the NTC Specops, featuring a night vision scope... It is only able to fire non lethal rounds designed for it. In cases you wanna be an asshole. Through careful aim allows fire support from behind allies. It can have more types of attachments than standard sniper rifles. Uses 8.6×70mm magazines. Can also shoot regular ammo."
 	icon = 'ntf_modular/icons/obj/items/guns/marksman64.dmi'
-	icon_state = "tl127"
-	worn_icon_state = "tl127"
-	cock_animation = "tl127_cock"
+	icon_state = "moonbeam"
+	worn_icon_state = "moonbeam"
+	cock_animation = "moonbeam_cock"
 	caliber = CALIBER_86X70 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/chamberedrifle/tranq
 	wield_delay = 0.6 SECONDS //0.8 with stock
@@ -71,12 +71,12 @@
 	name = "Moonbeam NL sniper rifle tranq magazine"
 	desc = "A box magazine filled with 8.6x70mm tranq rifle rounds for the Moonbeam."
 	caliber = CALIBER_86X70
-	icon_state = "tl127NL"
+	icon_state = "moonbeam_tranq"
+	icon_state_mini = "mag_moonbeam_tranq"
 	icon = 'ntf_modular/icons/obj/items/ammo/sniper.dmi'
-	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/sniper/pfc/nl
 	max_rounds = 10
-	bonus_overlay = "tl127NL_mag"
+	bonus_overlay = "moonbeam_tranq"
 
 /datum/ammo/bullet/sniper/pfc/nl
 	name = "high caliber tranq rifle bullet"

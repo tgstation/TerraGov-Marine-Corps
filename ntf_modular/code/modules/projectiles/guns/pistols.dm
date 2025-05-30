@@ -22,12 +22,13 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20, "rail_x" = 17, "rail_y" = 22, "under_x" = 29, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
 	burst_amount = 1
 	//gonna adjust for no burst fire.
+	windup_delay = 0.3 SECONDS
 	fire_delay = 0.5 SECONDS
 	scatter_unwielded = 4
 	scatter = 1.5
 	damage_mult = 1.2
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	recoil = 3.5
+	recoil = 3
 	//no red dot, holo sight instead.
 	accuracy_mult_unwielded = 0.95
 	accuracy_mult = 1.2
@@ -43,6 +44,7 @@
 	caliber = CALIBER_357
 	icon_state = "nt105"
 	icon_state_mini = "nt105"
+	bonus_overlay = "nt105_fox"
 
 /datum/ammo/bullet/revolver/heavy/foxfire
 	name = "armor-piercing foxfire heavy revolver bullet"
