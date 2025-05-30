@@ -59,6 +59,10 @@
 		/datum/action/ability/activable/xeno/spray_acid/line,
 	)
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/acid_sweat
+	)
+
 /datum/xeno_caste/spitter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
