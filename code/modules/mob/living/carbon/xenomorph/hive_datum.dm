@@ -770,10 +770,11 @@
 	set_ruler(successor)
 	successor.give_ruler_abilities()
 	successor.hud_set_queen_overwatch()
-	successor.update_leader_icon(FALSE)
 	if(prev)
 		prev.hud_set_queen_overwatch() // we want to remove the ruler star from the previous ruler
 		prev = null // instantly null it
+		successor.update_leader_icon(FALSE) // We dont want to call this if its the first xeno
+
 	handle_ruler_timer()
 	update_leader_pheromones()
 	if(announce)
