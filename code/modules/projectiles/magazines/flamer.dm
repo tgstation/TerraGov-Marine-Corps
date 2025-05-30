@@ -139,3 +139,14 @@
 	current_rounds = 280
 	reload_delay = 0 SECONDS
 
+/obj/item/ammo_magazine/flamer_tank/vsd
+	name = "large CC/21 flamerthrower tank (X)"
+	desc = "A large tank for the Vyacheslav CC/21 Flamer, filled with thick napthal X fuel."
+	icon_state = "flametank_vsd"
+	max_rounds = 150
+	current_rounds = 150
+	reload_delay = 4 SECONDS
+	default_ammo = /datum/ammo/flamethrower/blue
+	icon_state_mini = "tank_blue"
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
+
