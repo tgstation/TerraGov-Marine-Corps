@@ -2852,6 +2852,12 @@
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "c550"
 	worn_icon_state = "c550"
+	worn_icon_list = list(
+		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
+		slot_back_str = 'icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -2895,6 +2901,12 @@
 /obj/item/weapon/gun/rifle/vsd_rifle/export
 	icon_state = "c550_export"
 	worn_icon_state = "c550_export"
+	worn_icon_list = list(
+		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 
 // CC/74
 
@@ -2905,6 +2917,8 @@
 	icon_state = "c74"
 	worn_icon_state = "c74"
 	worn_icon_list = list(
+		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
@@ -2951,6 +2965,12 @@
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "c77"
 	worn_icon_state = "c77"
+	worn_icon_list = list(
+		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_1.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -3000,8 +3020,10 @@
 	desc = "The Kaizoku Corporation's breaching shotgun, firing 16 gauge breaching slugs. This won't kill if the target is armored."
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
 	)
 	icon_state = "cb31"
 	worn_icon_state = "cb31"

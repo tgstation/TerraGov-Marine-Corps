@@ -478,7 +478,7 @@
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
-		slot_s_store_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
 	)
 	icon_state = "scout_cloak"
 	var/camo_active = 0

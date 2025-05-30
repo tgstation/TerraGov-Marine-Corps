@@ -299,6 +299,7 @@
 	default_ammo = /datum/ammo/bullet/revolver/heavy/ap
 	icon_state = "xm104_ap"
 	icon_state_mini = "xm104_ap"
+	icon_mini = 'ntf_modular/icons/obj/items/items_mini.dmi'
 
 //c96
 

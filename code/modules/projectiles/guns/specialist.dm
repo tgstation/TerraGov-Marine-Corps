@@ -1012,6 +1012,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "c153"
 	worn_icon_state = "c153"
+	worn_icon_list = list(
+		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
+		slot_back_str = 'icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
@@ -1139,6 +1145,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon_state = "at32"
 	worn_icon_state = "at32"
 	worn_icon_list = list(
+		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)

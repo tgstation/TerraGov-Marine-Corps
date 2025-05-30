@@ -15,7 +15,9 @@
 
 	///Icon state for mob worn overlays, if null the normal icon_state will be used.
 	var/worn_icon_state = null
-	///The icon state used to represent this image in "icons/obj/items/items_mini.dmi" Used in /obj/item/storage/box/visual to display tiny items in the box
+	/// the file containing the mini icon for icon_state_mini. Used in /obj/item/storage/box/visual to display tiny items in the box.
+	var/icon_mini = 'icons/obj/items/items_mini.dmi'
+	///The icon state used to represent this image in icon_mini. Used in /obj/item/storage/box/visual to display tiny items in the box.
 	var/icon_state_mini = "item"
 	///Byond tick delay between left click attacks
 	var/attack_speed = 11

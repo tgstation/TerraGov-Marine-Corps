@@ -746,6 +746,7 @@
 	icon = 'icons/obj/machines/deployable/at45.dmi'
 	icon_state = "at45"
 	worn_icon_list = list(
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)

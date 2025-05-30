@@ -638,7 +638,7 @@
 			//Getting the mini icon_state to display
 			var/obj/item/relateditem = obj_typepath
 
-			var/mutable_appearance/new_overlay = mutable_appearance('icons/obj/items/items_mini.dmi', initial(relateditem.icon_state_mini))
+			var/mutable_appearance/new_overlay = mutable_appearance(initial(relateditem.icon_mini), initial(relateditem.icon_state_mini))
 			new_overlay.pixel_w = imagepixel_w
 			new_overlay.pixel_z = imagepixel_z
 			. += new_overlay
