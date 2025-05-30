@@ -100,14 +100,14 @@
 
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
 
-	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY|GUN_SMOKE_PARTICLES|GUN_IFF
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //doesn't autoeject its recharging battery
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	item_flags = IS_DEPLOYABLE|TWOHANDED
 
 	max_shots = 150
 	rounds_per_shot = 12
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.3 SECONDS
 	scatter = -3
 	damage_falloff_mult = 0.5
 	ammo_datum_type = /datum/ammo/energy/volkite/light
