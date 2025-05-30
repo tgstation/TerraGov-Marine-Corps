@@ -108,6 +108,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
 	)
+	/// The amount of deciseconds for the do_after.
+	var/cast_time = 0.5 SECONDS
+	/// The bonus damage applied to the spit.
+	var/bonus_damage = 0
 
 /datum/action/ability/activable/xeno/scatter_spit/use_ability(atom/target)
 	if(!do_after(xeno_owner, 0.5 SECONDS, NONE, target, BUSY_ICON_DANGER))
@@ -119,7 +123,7 @@
 	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
 
 	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
-	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner))
+	newspit.generate_bullet(scatter_spit, bonus_damage + (scatter_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner)))
 	newspit.def_zone = xeno_owner.get_limbzone_target()
 
 	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
