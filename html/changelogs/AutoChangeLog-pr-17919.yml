@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - refactor: "Sticky items/grenades are now a component"
