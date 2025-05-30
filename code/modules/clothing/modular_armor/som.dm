@@ -19,8 +19,10 @@
 		/obj/item/armor_module/module/valkyrie_autodoc/som,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/module/knight/som,
 		/obj/item/armor_module/module/mimir_environment_protection/som,
 		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield/som,
 		/obj/item/armor_module/module/eshield/som/overclocked,
 		/obj/item/armor_module/storage/general,
@@ -38,7 +40,9 @@
 
 	icon_state_variants = list(
 		"black",
+		"old",
 	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "black"
 
 	allowed_uniform_type = /obj/item/clothing/under
@@ -260,7 +264,9 @@
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	icon_state_variants = list(
 		"black",
+		"old",
 	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "black"
 	visorless_offset_y = 0
 

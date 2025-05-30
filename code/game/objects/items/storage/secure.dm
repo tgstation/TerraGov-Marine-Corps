@@ -86,7 +86,7 @@
 		return ..()
 
 	else if(isscrewdriver(I))
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		open = !open
@@ -95,7 +95,7 @@
 	else if(ismultitool(I) && open && !l_hacking)
 		user.show_message(span_warning("Now attempting to reset internal memory, please hold."))
 		l_hacking = TRUE
-		if(!do_after(user, 100, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 100, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		if(!prob(40))

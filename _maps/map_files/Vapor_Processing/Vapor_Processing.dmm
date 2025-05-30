@@ -3685,6 +3685,7 @@
 /area/lv624/ground/caves/central1)
 "uU" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/ground,
 /area/vapor_processing/west_compound)
 "uV" = (
@@ -3744,6 +3745,7 @@
 /area/maintenance/substation)
 "vE" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "vM" = (
@@ -3907,6 +3909,7 @@
 /area/lv624/ground/caves/west1)
 "yH" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4230,6 +4233,7 @@
 /area/lv624/lazarus/medbay)
 "Dr" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5266,10 +5270,12 @@
 /area/lv624/lazarus/engineering)
 "Th" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
@@ -5419,6 +5425,7 @@
 /area/shuttle/drop1/lz1)
 "VC" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
@@ -5528,6 +5535,7 @@
 /area/space)
 "WQ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "WR" = (

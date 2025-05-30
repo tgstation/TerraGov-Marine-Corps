@@ -109,7 +109,7 @@
 	return
 
 
-/datum/outfit/proc/equip(mob/living/carbon/human/equipping_human, visualsOnly = FALSE)
+/datum/outfit/proc/equip(mob/living/carbon/human/equipping_human, visualsOnly = FALSE, provide_id = TRUE)
 	pre_equip(equipping_human, visualsOnly)
 
 	//Start with uniform,suit,backpack for additional slots
@@ -136,7 +136,7 @@
 			equipping_human.equip_to_slot_or_del(new ears(equipping_human), SLOT_EARS, override_nodrop = TRUE)
 	if(glasses)
 		equipping_human.equip_to_slot_or_del(new glasses(equipping_human), SLOT_GLASSES, override_nodrop = TRUE)
-	if(id)
+	if(id && provide_id)
 		equipping_human.equip_to_slot_or_del(new id(equipping_human), SLOT_WEAR_ID, override_nodrop = TRUE)
 	if(suit_store)
 		equipping_human.equip_to_slot_or_del(new suit_store(equipping_human), SLOT_S_STORE, override_nodrop = TRUE)

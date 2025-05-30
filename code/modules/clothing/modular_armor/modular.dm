@@ -23,18 +23,27 @@
 	item_flags = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
-		/obj/item/weapon/gun,
-		/obj/item/instrument,
+		/obj/item/weapon,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/storage/holster/belt/pistol/m4a3,
+		/obj/item/storage/holster/belt/m44,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/sword,
 		/obj/item/storage/holster/belt,
-		/obj/item/storage/belt/knifepouch,
-		/obj/item/weapon/twohanded,
-		/obj/item/tool/pickaxe/plasmacutter,
-		/obj/item/tool/shovel/etool,
 		/obj/item/weapon/energy/sword,
 	)
+
 	equip_slot_flags = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
 	equip_delay_self = 2 SECONDS
@@ -93,6 +102,18 @@
 		/obj/item/armor_module/armor/legs/marine/ranger,
 		/obj/item/armor_module/armor/arms/marine/ranger,
 
+		/obj/item/armor_module/armor/chest/marine/kabuto,
+		/obj/item/armor_module/armor/legs/marine/kabuto,
+		/obj/item/armor_module/armor/arms/marine/kabuto,
+
+		/obj/item/armor_module/armor/chest/marine/hotaru,
+		/obj/item/armor_module/armor/legs/marine/hotaru,
+		/obj/item/armor_module/armor/arms/marine/hotaru,
+
+		/obj/item/armor_module/armor/chest/marine/dashe,
+		/obj/item/armor_module/armor/arms/marine/dashe,
+		/obj/item/armor_module/armor/legs/marine/dashe,
+
 		/obj/item/armor_module/armor/chest/marine/mjolnir,
 		/obj/item/armor_module/armor/legs/marine/mjolnir,
 		/obj/item/armor_module/armor/arms/marine/mjolnir,
@@ -102,14 +123,20 @@
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/tyr_extra_armor/old_jaeger,
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection/old_jaeger,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/knight,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/antienergy,
+		/obj/item/armor_module/module/eshield/antienergy/antiballistic,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
+		/obj/item/armor_module/module/eshield/old_jaeger,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -215,6 +242,7 @@
 	icon_state = "rownin_skeleton"
 	worn_icon_state = "rownin_skeleton"
 	allowed_uniform_type = /obj/item/clothing/under
+	slowdown = -0.5
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
@@ -227,8 +255,11 @@
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/antienergy,
+		/obj/item/armor_module/module/eshield/antienergy/antiballistic,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
+		/obj/item/armor_module/module/knight,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -286,8 +317,57 @@
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/antienergy,
+		/obj/item/armor_module/module/eshield/antienergy/antiballistic,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/modular/vsd_exoskeleton
+	name = "\improper CrashCore MT/P modular exoskeleton"
+	desc = "CrashCore Industries modular hardsuit exoskeleton, made to lift up the 'Super-Heavy' armor system and designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
+	icon_state = "exoskeleton"
+	worn_icon_state = "exoskeleton"
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/exoskeleton
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	colorable_colors = ARMOR_PALETTES_LIST
+	greyscale_colors = ARMOR_PALETTE_BLACK
+	allowed_uniform_type = /obj/item/clothing/under
+	attachments_allowed = list(
+
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit,
+		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit,
+		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit,
+
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/clementia,
+		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/clementia,
+		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/clementia,
+
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/hephaestus,
+		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/hephaestus,
+		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/hephaestus,
+
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/antienergy,
+		/obj/item/armor_module/module/eshield/antienergy/antiballistic,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -405,5 +485,3 @@
 
 	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
-
-

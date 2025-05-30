@@ -45,15 +45,22 @@
 	queen_leader_limit = 4
 
 	// *** Widow Abilities *** //
-	max_spiderlings = 5
+	max_spiderlings = 8
 
 	// *** Abilities *** ///
 	resin_max_range = 1 // Widow can place resin structures from 1 tile away
 
+	// *** Pheromones *** //
+	aura_strength = 3 //As much as a hivelord, although big mommy she is basically hivelord+ now with more combat power.
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin/widow,
@@ -96,8 +103,12 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin/widow,

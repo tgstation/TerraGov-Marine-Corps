@@ -5,7 +5,7 @@
 	weight = 10
 	earliest_start = 5 MINUTES
 
-	gamemode_whitelist = list("Combat Patrol", "Sensor Capture")
+	gamemode_whitelist = list("Secret of Life", "Combat Patrol", "Sensor Capture")
 
 /datum/round_event/supply_drop
 	///How long between the event firing and the supply drop actually landing
@@ -51,6 +51,8 @@
 		if(FACTION_SOM)
 			new /obj/item/loot_box/supply_drop/som(target_turf)
 		if(FACTION_ALIEN)
+			new /obj/effect/supply_drop/xenomorph(target_turf)
+		if(FACTION_XENO)
 			new /obj/effect/supply_drop/xenomorph(target_turf)
 		else
 			new /obj/item/loot_box/supply_drop(target_turf) //Marine box is the default

@@ -113,18 +113,23 @@
 	radial_icon_state = "hugger_ball"
 	cooldown_time = 10 MINUTES
 	impact_time = 12 SECONDS
+	/// rare hugger chance
+	var/rarechance = 15 //Acts akin to prob(15)
 	/// range_turfs that huggers will be dropped around the target
 	var/drop_range = 10
 	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
 	var/hugger_count = 60
 	///huggers to choose to spawn
 	var/list/hugger_options = list(
-		/obj/item/clothing/mask/facehugger,
 		/obj/item/clothing/mask/facehugger/combat/slash,
-		/obj/item/clothing/mask/facehugger/combat/acid,
-		/obj/item/clothing/mask/facehugger/combat/resin,
-		/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn,
+		/obj/item/clothing/mask/facehugger/combat/resin
 	)
+	//Adds support for rare hugger types.
+	var/list/hugger_options_rare = list(
+		/obj/item/clothing/mask/facehugger/combat/acid,
+		/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn,
+		/obj/item/clothing/mask/facehugger/combat/chem_injector/aphrotoxin,
+		/obj/item/clothing/mask/facehugger/combat/chem_injector/neuro)
 	/// used to track our spawned huggers for animations and stuff
 	var/list/spawned_huggers = list()
 
@@ -145,7 +150,11 @@
 				if(blocker.density)
 					continue assignturfs
 			hugger_count--
-			var/hugger_type = pick(hugger_options)
+			var/hugger_type
+			if(prob(rarechance))
+				hugger_type = pick(hugger_options_rare)
+			else
+				hugger_type = pick(hugger_options)
 			var/obj/item/clothing/mask/facehugger/paratrooper = new hugger_type(candidate)
 			paratrooper.go_idle()
 

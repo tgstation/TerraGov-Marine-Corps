@@ -28,16 +28,16 @@
 /obj/item/weapon/zombie_claw
 	name = "claws"
 	hitsound = 'sound/weapons/slice.ogg'
-	icon_state = ""
-	force = 20
-	sharp = IS_SHARP_ITEM_BIG
+	icon_state = "zclaw"
+	force = 5
+	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = TRUE
 	attack_verb = list("claws", "slashes", "tears", "rips", "dices", "cuts", "bites")
 	item_flags = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium are transferred per hit. Set to zero to remove transmission
-	var/zombium_per_hit = 5
+	var/zombium_per_hit = 2
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
 	. = ..()
@@ -47,6 +47,17 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		if(human_target.stat == DEAD)
+			return
+		var/parrychance = 20
+		if(human_target.is_holding_item_of_type(/obj/item/weapon/shield))
+			parrychance = 40
+		//pretty much all melee weapons and shield.
+		if((human_target.is_holding_item_of_type(/obj/item/weapon/sword)\
+|| human_target.is_holding_item_of_type(/obj/item/weapon/twohanded) || human_target.is_holding_item_of_type(/obj/item/weapon/combat_knife)\
+|| human_target.is_holding_item_of_type(/obj/item/weapon/shield) || human_target.is_holding_item_of_type(/obj/item/weapon/baton)\
+|| human_target.is_holding_item_of_type(/obj/item/weapon/energy)) && prob(parrychance))
+			target.visible_message("[target] blocks the attack by [user]!")
+			playsound(target.loc, 'sound/effects/metalhit.ogg', 50)
 			return
 		human_target.reagents.add_reagent(/datum/reagent/zombium, zombium_per_hit)
 	return ..()
@@ -61,7 +72,7 @@
 		return
 
 	target.balloon_alert_to_viewers("[user] starts to open [target]", "You start to pry open [target]")
-	if(!do_after(user, 4 SECONDS, IGNORE_HELD_ITEM, target))
+	if(!do_after(user, 4 SECONDS, FALSE, target))
 		return
 	var/obj/machinery/door/airlock/door = target
 	playsound(user.loc, 'sound/effects/metal_creaking.ogg', 25, 1)

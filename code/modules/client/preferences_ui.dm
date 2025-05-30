@@ -39,20 +39,19 @@
 /datum/preferences/ui_data(mob/user)
 	var/list/data = list()
 	data["tabIndex"] = tab_index
-	data["slot"] = default_slot
-	data["save_slot_names"] = list()
 	if(!path)
-		return data
+		. = data
+		CRASH("no path")
 	var/savefile/S = new (path)
 	if(!S)
-		return data
-	var/name
-	for(var/i in 1 to MAX_SAVE_SLOTS)
-		S.cd = "/character[i]"
-		S["real_name"] >> name
-		if(!name)
-			continue
-		data["save_slot_names"]["[i]"] = name
+		. = data
+		CRASH("no savefile for path [path]")
+	var/slotname
+	S.cd = "/character[default_slot]"
+	S["real_name"] >> slotname
+	if(!slotname)
+		slotname = "\[empty\]"
+	data["slot"] = "[default_slot] - [slotname]"
 
 	data["unique_action_use_active_hand"] = unique_action_use_active_hand
 
@@ -75,6 +74,7 @@
 			data["synthetic_name"] = synthetic_name
 			data["synthetic_type"] = synthetic_type
 			data["robot_type"] = robot_type
+			data["moth_wings"] = moth_wings
 			data["random_name"] = random_name
 			data["ai_name"] = ai_name
 			data["age"] = age
@@ -91,12 +91,15 @@
 			data["grad_style"] = grad_style
 			data["f_style"] = f_style
 		if(BACKGROUND_INFORMATION)
-			data["slot"] = default_slot
-			data["flavor_text"] = flavor_text
-			data["med_record"] = med_record
-			data["gen_record"] = gen_record
-			data["sec_record"] = sec_record
-			data["exploit_record"] = exploit_record
+			data["flavor_text"] = html_decode(flavor_text)
+			data["xeno_desc"] = html_decode(xeno_desc)
+			data["profile_pic"] = html_decode(profile_pic)
+			data["nsfwprofile_pic"] = html_decode(nsfwprofile_pic)
+			data["xenoprofile_pic"] = html_decode(xenoprofile_pic)
+			data["med_record"] = html_decode(med_record)
+			data["gen_record"] = html_decode(gen_record)
+			data["sec_record"] = html_decode(sec_record)
+			data["exploit_record"] = html_decode(exploit_record)
 		if(GEAR_CUSTOMIZATION)
 			data["gearsets"] = list()
 			for(var/g in GLOB.gear_datums)
@@ -202,14 +205,6 @@
 			.["mapRef"] = "player_pref_map"
 		if(GEAR_CUSTOMIZATION)
 			.["clothing"] = list(
-				"underwear" = list(
-					"male" = GLOB.underwear_m,
-					"female" = GLOB.underwear_f,
-				),
-				"undershirt" = list(
-					"male" = GLOB.undershirt_m,
-					"female" = GLOB.undershirt_f,
-				),
 				"backpack" = GLOB.backpacklist,
 				)
 			.["gearsets"] = list()
@@ -241,6 +236,7 @@
 				"Latejoin Xenomorph" = BE_ALIEN,
 				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
 				"End of Round Deathmatch" = BE_DEATHMATCH,
+				"Eligible for Hive Target" = BE_HIVE_TARGET,
 				"Prefer Squad over Role" = BE_SQUAD_STRICT,
 				"Use random name when taking SSD mobs" = BE_SSD_RANDOM_NAME
 			)
@@ -264,11 +260,27 @@
 
 	switch(action)
 		if("changeslot")
-			if(!load_character(text2num(params["changeslot"])))
+			var/list/slots = list()
+			if(!path)
+				CRASH("no path")
+			var/savefile/S = new (path)
+			if(!S)
+				CRASH("no savefile for path [path]")
+			var/slotname
+			for(var/i in 1 to MAX_SAVE_SLOTS)
+				S.cd = "/character[i]"
+				S["real_name"] >> slotname
+				if(!slotname)
+					slotname = "\[empty\]"
+				slots += "[i] - [slotname]"
+			var/choice = tgui_input_list(ui.user, "What slot do you want to load?", "Character slot choice", slots)
+			if(!choice)
+				return
+			if(!load_character(text2num(splittext(choice," - ")[1])))
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
-				update_preview_icon()
+			update_preview_icon()
 
 		if("tab_change")
 			tab_index = params["tabIndex"]
@@ -318,6 +330,13 @@
 			if(!choice)
 				return
 			robot_type = choice
+			update_preview_icon()
+
+		if("moth_wings")
+			var/choice = tgui_input_list(ui.user, "What kind of moth wings do you want to play with? Only useable as a moth.", "Moth with type choice", GLOB.moth_wings_list)
+			if(!choice)
+				return
+			moth_wings = choice
 			update_preview_icon()
 
 		if("xeno_name")
@@ -401,6 +420,8 @@
 			alternate_option = 2 // return to lobby
 			update_preview_icon()
 
+		/** NTF removal - we are using our own fancy underwear system
+
 		if("underwear")
 			var/list/underwear_options
 			var/physique_to_check = get_physique()
@@ -428,6 +449,7 @@
 				return
 			undershirt = new_undershirt
 			update_preview_icon()
+		*/
 
 		if("backpack")
 			var/new_backpack = GLOB.backpacklist.Find(params["newValue"])
@@ -512,6 +534,7 @@
 			r_hair = hex2num(copytext(new_color, 2, 4))
 			g_hair = hex2num(copytext(new_color, 4, 6))
 			b_hair = hex2num(copytext(new_color, 6, 8))
+			update_preview_icon()
 
 		if("grad_color")
 			var/new_grad = input(user, "Choose your character's secondary hair color:", "Gradient Color") as null|color
@@ -649,6 +672,43 @@
 			if(!new_record)
 				return
 			flavor_text = new_record
+
+		if("xeno_desc")
+			var/new_record = trim(html_encode(params["xenoDesc"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xeno_desc = new_record
+
+		if("profile_pic")
+			var/new_record = trim(html_encode(params["profilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			if(new_record == "!clear")
+				new_record = ""
+			profile_pic = new_record
+
+		if("nsfwprofile_pic")
+			var/new_record = trim(html_encode(params["nsfwprofilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			if(new_record == "!clear")
+				new_record = ""
+			nsfwprofile_pic = new_record
+
+		if("xenoprofile_pic")
+			var/new_record = trim(html_encode(params["xenoprofilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			if(new_record == "!clear")
+				new_record = ""
+			xenoprofile_pic = new_record
+
+		if("xenogender")
+			var/new_xgender = text2num(params["newValue"])
+			if(!isnum(new_xgender))
+				return
+			new_xgender = round(new_xgender)
+			xenogender = new_xgender
 
 		if("windowflashing")
 			windowflashing = !windowflashing

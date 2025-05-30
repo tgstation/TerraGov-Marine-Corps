@@ -491,8 +491,8 @@
 	READ_FILE(S["job_preferences"], job_preferences)
 	READ_FILE(S["quick_equip"], quick_equip)
 	READ_FILE(S["gear"], gear)
-	READ_FILE(S["underwear"], underwear)
-	READ_FILE(S["undershirt"], undershirt)
+	//READ_FILE(S["underwear"], underwear)
+	//READ_FILE(S["undershirt"], undershirt)
 	READ_FILE(S["backpack"], backpack)
 
 	READ_FILE(S["h_style"], h_style)
@@ -527,7 +527,23 @@
 	READ_FILE(S["gen_record"], gen_record)
 	READ_FILE(S["exploit_record"], exploit_record)
 	READ_FILE(S["flavor_text"], flavor_text)
+	READ_FILE(S["xeno_desc"], xeno_desc)
+	READ_FILE(S["profile_pic"], profile_pic)
+	READ_FILE(S["nsfwprofile_pic"], nsfwprofile_pic)
+	READ_FILE(S["xenoprofile_pic"], xenoprofile_pic)
+	READ_FILE(S["xenogender"], xenogender)
+	READ_FILE(S["genitalia_ass"], genitalia_ass)
+	READ_FILE(S["genitalia_boobs"], genitalia_boobs)
+	READ_FILE(S["genitalia_cock"], genitalia_cock)
+	READ_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
+	READ_FILE(S["burst_screams_enabled"], burst_screams_enabled)
 
+	READ_FILE(S["metadata"], metadata)
+	READ_FILE(S["metadata_likes"], metadata_likes)
+	READ_FILE(S["metadata_dislikes"], metadata_dislikes)
+	READ_FILE(S["metadata_maybes"], metadata_maybes)
+	READ_FILE(S["metadata_favs"], metadata_favs)
+	READ_FILE(S["metadata_ooc_style"], metadata_ooc_style)
 
 	be_special = sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
@@ -554,13 +570,16 @@
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], quick_equip_slots)
 	gear = sanitize_islist(gear, default = list(), check_valid = TRUE, possible_input_list = GLOB.gear_datums)
-	var/physique_to_check = get_physique()
-	if(physique_to_check == MALE)
-		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
-		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
-	else
-		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
+	// NTF EDIT START
+	//if(gender == MALE)
+	//	underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+	//	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
+	//else
+	//	underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
+	//	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
+	underwear = initial(underwear)
+	undershirt = initial(undershirt)
+	// NTF EDIT END
 	backpack = sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
 
 	h_style = sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
@@ -595,6 +614,30 @@
 	gen_record = sanitize_text(gen_record, initial(gen_record))
 	exploit_record = sanitize_text(exploit_record, initial(exploit_record))
 	flavor_text = sanitize_text(flavor_text, initial(flavor_text))
+	xeno_desc = sanitize_text(xeno_desc, initial(xeno_desc))
+	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
+	nsfwprofile_pic = sanitize_text(nsfwprofile_pic, initial(nsfwprofile_pic))
+	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
+	xenogender = sanitize_text(xenogender, initial(xenogender))
+	genitalia_ass = sanitize_text(genitalia_ass, initial(genitalia_ass))
+	genitalia_boobs = sanitize_text(genitalia_boobs, initial(genitalia_boobs))
+	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
+	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
+	burst_screams_enabled = sanitize_text(burst_screams_enabled, initial(burst_screams_enabled))
+
+	metadata = sanitize_text(metadata, initial(metadata))
+	metadata_likes = sanitize_text(metadata_likes, initial(metadata_likes))
+	metadata_dislikes = sanitize_text(metadata_dislikes, initial(metadata_dislikes))
+	metadata_maybes = sanitize_text(metadata_maybes, initial(metadata_maybes))
+	metadata_favs = sanitize_text(metadata_favs, initial(metadata_favs))
+	metadata_ooc_style = sanitize_integer(metadata_ooc_style, FALSE, TRUE, initial(metadata_ooc_style))
+	if(isnewplayer(parent.mob))
+		parent.mob.ooc_notes = metadata
+		parent.mob.ooc_notes_likes = metadata_likes
+		parent.mob.ooc_notes_dislikes = metadata_dislikes
+		parent.mob.ooc_notes_maybes = metadata_maybes
+		parent.mob.ooc_notes_favs = metadata_favs
+		parent.mob.ooc_notes_style = metadata_ooc_style
 
 	if(!synthetic_name)
 		synthetic_name = "David"
@@ -687,6 +730,23 @@
 	gen_record = sanitize_text(gen_record, initial(gen_record))
 	exploit_record = sanitize_text(exploit_record, initial(exploit_record))
 	flavor_text = sanitize_text(flavor_text, initial(flavor_text))
+	xeno_desc = sanitize_text(xeno_desc, initial(xeno_desc))
+	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
+	nsfwprofile_pic = sanitize_text(nsfwprofile_pic, initial(nsfwprofile_pic))
+	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
+	xenogender = sanitize_text(xenogender, initial(xenogender))
+	genitalia_ass = sanitize_text(genitalia_ass, initial(genitalia_ass))
+	genitalia_boobs = sanitize_text(genitalia_boobs, initial(genitalia_boobs))
+	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
+	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
+	burst_screams_enabled = sanitize_text(burst_screams_enabled, initial(burst_screams_enabled))
+
+	metadata = sanitize_text(metadata, initial(metadata))
+	metadata_likes = sanitize_text(metadata_likes, initial(metadata_likes))
+	metadata_dislikes = sanitize_text(metadata_dislikes, initial(metadata_dislikes))
+	metadata_maybes = sanitize_text(metadata_maybes, initial(metadata_maybes))
+	metadata_favs = sanitize_text(metadata_favs, initial(metadata_favs))
+	metadata_ooc_style = sanitize_integer(metadata_ooc_style, FALSE, TRUE, initial(metadata_ooc_style))
 
 	WRITE_FILE(S["be_special"], be_special)
 
@@ -710,8 +770,8 @@
 	WRITE_FILE(S["job_preferences"], job_preferences)
 	WRITE_FILE(S["quick_equip"], quick_equip)
 	WRITE_FILE(S["gear"], gear)
-	WRITE_FILE(S["underwear"], underwear)
-	WRITE_FILE(S["undershirt"], undershirt)
+	//WRITE_FILE(S["underwear"], underwear)
+	//WRITE_FILE(S["undershirt"], undershirt)
 	WRITE_FILE(S["backpack"], backpack)
 
 	WRITE_FILE(S["h_style"], h_style)
@@ -746,6 +806,23 @@
 	WRITE_FILE(S["gen_record"], gen_record)
 	WRITE_FILE(S["exploit_record"], exploit_record)
 	WRITE_FILE(S["flavor_text"], flavor_text)
+	WRITE_FILE(S["xeno_desc"], xeno_desc)
+	WRITE_FILE(S["profile_pic"], profile_pic)
+	WRITE_FILE(S["nsfwprofile_pic"], nsfwprofile_pic)
+	WRITE_FILE(S["xenoprofile_pic"], xenoprofile_pic)
+	WRITE_FILE(S["xenogender"], xenogender)
+	WRITE_FILE(S["genitalia_ass"], genitalia_ass)
+	WRITE_FILE(S["genitalia_boobs"], genitalia_boobs)
+	WRITE_FILE(S["genitalia_cock"], genitalia_cock)
+	WRITE_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
+	WRITE_FILE(S["burst_screams_enabled"], burst_screams_enabled)
+
+	WRITE_FILE(S["metadata"], metadata)
+	WRITE_FILE(S["metadata_likes"], metadata_likes)
+	WRITE_FILE(S["metadata_dislikes"], metadata_dislikes)
+	WRITE_FILE(S["metadata_maybes"], metadata_maybes)
+	WRITE_FILE(S["metadata_favs"], metadata_favs)
+	WRITE_FILE(S["metadata_ooc_style"], metadata_ooc_style)
 
 	return TRUE
 

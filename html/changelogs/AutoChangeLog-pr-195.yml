@@ -1,0 +1,4 @@
+author: "ddotmint"
+delete-after: True
+changes:
+  - bugfix: "fixed zipcuffs not having a sprite when cuffed"

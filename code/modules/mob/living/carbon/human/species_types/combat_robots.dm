@@ -10,8 +10,7 @@
 	namepool = /datum/namepool/robotic
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
-	total_health = 100
-	slowdown = SHOES_SLOWDOWN //because they don't wear boots
+	total_health = 150
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -27,13 +26,13 @@
 	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
-		SLOT_W_UNIFORM,
-		SLOT_HEAD,
-		SLOT_WEAR_MASK,
-		SLOT_WEAR_SUIT,
-		SLOT_SHOES,
-		SLOT_GLOVES,
-		SLOT_GLASSES,
+//		SLOT_W_UNIFORM,
+//		SLOT_HEAD,
+//		SLOT_WEAR_MASK,
+//		SLOT_WEAR_SUIT,
+//		SLOT_SHOES,
+//		SLOT_GLOVES,
+//		SLOT_GLASSES,
 	)
 	blood_color = "#2d2055" //an oil-like color - a little note, robots cannot shed blood in any way, due to their flags
 	hair_color = "#00000000"
