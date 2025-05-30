@@ -34,7 +34,9 @@
 	var/triggering
 
 /// Checks if the event can be spawned. Used by event controller. Admin-created events override this.
-/datum/round_event_control/proc/can_spawn_event(players_amt, gamemode)
+/datum/round_event_control/proc/can_spawn_event(players_amt, gamemode, force = FALSE)
+	if(force)
+		return TRUE
 	if(occurrences >= max_occurrences)
 		return FALSE
 	if(earliest_start >= world.time-SSticker.round_start_time)
@@ -187,6 +189,10 @@
 /datum/round_event/proc/kill()
 	SSevents.running -= src
 
+/datum/round_event/Destroy(force, ...)
+	. = ..()
+	processing = FALSE
+	kill()
 
 //Sets up the event then adds the event to the the list of running events
 /datum/round_event/New(my_processing = TRUE)

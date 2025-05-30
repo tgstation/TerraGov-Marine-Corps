@@ -56,4 +56,4 @@
 		else
 			new /obj/item/loot_box/supply_drop(target_turf) //Marine box is the default
 	playsound(target_turf,'sound/effects/phasein.ogg', 80, FALSE)
-
+	qdel(src)
