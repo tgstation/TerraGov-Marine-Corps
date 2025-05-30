@@ -88,18 +88,20 @@
 	w_class = WEIGHT_CLASS_GIGANTIC
 	slowdown = 1 //You won't be running off with this
 	rolls = 4
-	weight_list = list(rare_list = 20, uncommon_list = 30, common_list = 40)
+	weight_list = list(legendary_list = 1, rare_list = 10, uncommon_list = 50, common_list = 300)
 
-	rare_list = list(
+	legendary_list = list(
 		/obj/effect/supply_drop/heavy_armor,
 		/obj/effect/supply_drop/grenadier,
 		/obj/effect/supply_drop/minigun,
 		/obj/effect/supply_drop/zx_shotgun,
 	)
-	uncommon_list = list(
-		/obj/effect/supply_drop/marine_sentry,
+	rare_list = list(
 		/obj/effect/supply_drop/recoilless_rifle,
 		/obj/effect/supply_drop/scout,
+	)
+	uncommon_list = list(
+		/obj/effect/supply_drop/marine_sentry,
 		/obj/effect/supply_drop/oicw,
 		/obj/item/storage/belt/lifesaver/quick,
 		/obj/item/storage/belt/rig/medical,
@@ -125,21 +127,23 @@
 	w_class = WEIGHT_CLASS_GIGANTIC
 	rolls = 4
 
-	rare_list = list(
+	legendary_list = list(
 		/obj/effect/supply_drop/culverin,
-		/obj/effect/supply_drop/caliver,
-		/obj/effect/supply_drop/som_shotgun_burst,
 		/obj/effect/supply_drop/blink_kit,
 	)
-	uncommon_list = list(
+	rare_list = list(
+		/obj/effect/supply_drop/caliver,
+		/obj/effect/supply_drop/som_shotgun_burst,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope,
-		/obj/effect/supply_drop/som_rifle_ap,
-		/obj/effect/supply_drop/som_smg_ap,
 		/obj/effect/supply_drop/som_rpg,
+	)
+	uncommon_list = list(
+		/obj/effect/supply_drop/som_rifle_ap,
 		/obj/effect/supply_drop/som_flamer,
 		/obj/item/storage/belt/lifesaver/som/quick,
 		/obj/item/storage/belt/rig/medical,
 		/obj/effect/supply_drop/charger,
+		/obj/effect/supply_drop/som_rifle,
 	)
 	common_list = list(
 		/obj/effect/supply_drop/som_armor_upgrades,
@@ -147,7 +151,6 @@
 		/obj/item/storage/pouch/firstaid/som/combat_patrol,
 		/obj/item/storage/pouch/medical_injectors/som/firstaid,
 		/obj/item/storage/pouch/medical_injectors/som/medic,
-		/obj/effect/supply_drop/som_rifle,
 		/obj/effect/supply_drop/som_smg,
 		/obj/effect/supply_drop/som_shotgun,
 		/obj/effect/supply_drop/som_mg,

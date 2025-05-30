@@ -2,10 +2,9 @@
 /datum/round_event_control/supply_drop
 	name = "Supply drop"
 	typepath = /datum/round_event/supply_drop
-	weight = 10
+	weight = 5
+	min_players = 5
 	earliest_start = 5 MINUTES
-
-	gamemode_whitelist = list("Secret of Life", "Combat Patrol", "Sensor Capture")
 
 /datum/round_event/supply_drop
 	///How long between the event firing and the supply drop actually landing
