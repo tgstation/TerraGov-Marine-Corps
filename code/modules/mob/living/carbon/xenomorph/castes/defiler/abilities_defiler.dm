@@ -279,7 +279,6 @@
 	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
 	ability_cost = 100
 	cooldown_duration = 5 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS,
 	)
