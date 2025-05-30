@@ -2940,6 +2940,10 @@
 			/obj/item/weapon/gun/rifle/type71 = -1,
 			/obj/item/ammo_magazine/rifle/type71 = -1,
 		),
+		"SMGs" = list(
+			/obj/item/weapon/gun/smg/vsd_pdw = -1,
+			/obj/item/ammo_magazine/smg/vsd_pdw = -1,
+		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/vsd_rifle = -1,
 			/obj/item/ammo_magazine/rifle/vsd_rifle = -1,
