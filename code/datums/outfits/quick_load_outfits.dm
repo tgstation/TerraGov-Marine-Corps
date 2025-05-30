@@ -2398,16 +2398,12 @@
 	w_uniform = /obj/item/clothing/under/vsd/officer
 	l_pocket = /obj/item/storage/pouch/grenade
 	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
-	back = /obj/item/storage/backpack/lightpack/vsd
+	back = /obj/item/ammo_magazine/flamer_tank/backtank/X
 	glasses = /obj/item/clothing/glasses/night/vsd/alt
 	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/quick/vsd/spec/flamer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/vsd, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)

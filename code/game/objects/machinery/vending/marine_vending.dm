@@ -2968,6 +2968,7 @@
 			/obj/item/weapon/gun/flamer/big_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/large = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
+			/obj/item/weapon/gun/flamer/hydro_cannon = -1,
 			/obj/item/weapon/gun/launcher/rocket/vsd = 2,
 			/obj/item/ammo_magazine/rocket/vsd/he = 10,
 			/obj/item/ammo_magazine/rocket/vsd/incendiary = 10,
