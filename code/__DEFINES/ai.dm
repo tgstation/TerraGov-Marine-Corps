@@ -87,6 +87,8 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define AI_OBSTACLE_FRIENDLY "ai_obstacle_friendly"
 ///Obstacle has already been handled
 #define AI_OBSTACLE_RESOLVED "ai_obstacle_resolved"
+///Obstacle can be ignored
+#define AI_OBSTACLE_IGNORED "ai_obstacle_ignored"
 
 ///If the mob parent can heal itself and so should flee
 #define HUMAN_AI_SELF_HEAL (1<<0)
