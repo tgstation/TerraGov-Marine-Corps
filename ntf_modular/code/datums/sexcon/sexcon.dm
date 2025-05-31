@@ -249,10 +249,10 @@
 			xuser.gain_plasma(5, TRUE)
 
 	adjust_arousal(arousal_amt)
-	if(user.client.prefs.harmful_sex_allowed)
+	if(!user.mind || user.client?.prefs.harmful_sex_allowed)
 		damage_from_pain(pain_amt)
 	try_do_moan(arousal_amt, pain_amt, applied_force, giving)
-	if(user.client.prefs.harmful_sex_allowed)
+	if(!user.mind || user.client?.prefs.harmful_sex_allowed)
 		try_do_pain_effect(pain_amt, giving)
 
 /datum/sex_controller/proc/damage_from_pain(pain_amt)
