@@ -451,7 +451,7 @@
 	name = "\improper SH-23-NT heavy pump shotgun"
 	desc = "An NTF clone of an ICC classic, slow to chamber but hits like a truck. Due to the reinforcement needed to slam 6 gauge downrange, the body of this shotgun has no attachment mounting points\n<b>Requires a pump, which is the Unique Action key.</b>"
 	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	icon = 'ntf_modular/icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "sh23"
 	worn_icon_state = "sh23"
 	worn_icon_list = list(
@@ -1023,7 +1023,7 @@
 /obj/item/weapon/gun/shotgun/pump/ksg
 	name = "\improper L12 pump-action shotgun"
 	desc = "A fourteen-round pump action shotgun. A sight to behold. Fires 12 gauge shotgun rounds, it's fourteen-round capacity makes it smooth when clearing rooms. A label on the side says: 'ONLY FOR CQC!!'."
-	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	icon = 'ntf_modular/icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "l12"
 	worn_icon_state = "l12"
 	worn_icon_list = list(
