@@ -238,7 +238,7 @@
 	pain_amt *= get_speed_pain_multiplier(applied_speed)
 
 	var/datum/sex_action/action = SEX_ACTION(current_action)
-	if(action.heal_sex)
+	if(action?.heal_sex)
 		var/sexhealrand = rand(2, 4)
 		//go go gadget sex healing.. magic?
 		if(user.buckled || user.lying_angle) //gooder resting
