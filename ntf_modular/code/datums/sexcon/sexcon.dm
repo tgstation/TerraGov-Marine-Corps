@@ -238,7 +238,7 @@
 	pain_amt *= get_speed_pain_multiplier(applied_speed)
 
 	var/datum/sex_action/action = SEX_ACTION(current_action)
-	if(action.heal_sex)
+	if(action?.heal_sex)
 		var/sexhealrand = rand(2, 4)
 		//go go gadget sex healing.. magic?
 		if(user.buckled || user.lying_angle) //gooder resting
@@ -249,10 +249,10 @@
 			xuser.gain_plasma(5, TRUE)
 
 	adjust_arousal(arousal_amt)
-	if(user.client.prefs.harmful_sex_allowed)
+	if(!user.mind || user.client?.prefs.harmful_sex_allowed)
 		damage_from_pain(pain_amt)
 	try_do_moan(arousal_amt, pain_amt, applied_force, giving)
-	if(user.client.prefs.harmful_sex_allowed)
+	if(!user.mind || user.client?.prefs.harmful_sex_allowed)
 		try_do_pain_effect(pain_amt, giving)
 
 /datum/sex_controller/proc/damage_from_pain(pain_amt)

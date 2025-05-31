@@ -110,8 +110,10 @@
 					"slot" = gearset.slot,
 				)
 			data["gear"] = gear || list()
+			/*NTF removal
 			data["undershirt"] = undershirt
 			data["underwear"] = underwear
+			*/
 			data["backpack"] = backpack
 			data["physique_used"] = get_physique()
 		if(JOB_PREFERENCES)
@@ -375,11 +377,13 @@
 
 		if("toggle_physique")
 			physique = params["newphysique"]
+			/* NTF Removal
 			var/physique_to_check = get_physique()
 			if(physique_to_check == FEMALE)
 				f_style = "Shaved"
 			else
 				underwear = 1
+			*/
 			update_preview_icon()
 
 		if("ethnicity")

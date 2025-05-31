@@ -3018,7 +3018,7 @@
 /obj/item/weapon/gun/rifle/vsd_breaching
 	name = "\improper CC/B/31 Breaching Shotgun"
 	desc = "The Kaizoku Corporation's breaching shotgun, firing 16 gauge breaching slugs. This won't kill if the target is armored."
-	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	icon = 'ntf_modular/icons/obj/items/guns/shotguns64.dmi'
 	worn_icon_list = list(
 		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
 		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
@@ -3060,6 +3060,11 @@
 	desc = "The SH-410 shotgun is the newest weapon in the TGMC's inventory. Prior to arrival in the Corps, it was used by numerous anti-terrorism agencies to great success in close quarters engagements. The .410 gauge shells are very weak individually compared to 16 gauge let alone 12 gauge, but the higher fire rate will surely compensate for it."
 	icon_state = "sh410"
 	worn_icon_state = "sh410"
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
 	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/shotgun.dmi'
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh410.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'

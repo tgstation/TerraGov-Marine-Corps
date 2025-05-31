@@ -69,7 +69,7 @@
 ///Adds or removes underlay sprites, checks holstered_item to see which underlay to add
 /obj/item/storage/holster/proc/update_underlays()
 	if(holstered_item && !holstered_item_underlay)
-		holstered_item_underlay = image(icon, src, holstered_item.icon_state)
+		holstered_item_underlay = image(holstered_item.holstered_underlay_icon, src, holstered_item.icon_state)
 		underlays += holstered_item_underlay
 	else if(!holstered_item) //Only delete the underlay once our actual holstered item is gone
 		underlays -= holstered_item_underlay

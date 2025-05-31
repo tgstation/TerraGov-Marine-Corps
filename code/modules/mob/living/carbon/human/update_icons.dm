@@ -458,10 +458,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(makeup_style && (species?.species_flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
 			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[makeup_style]_s"), ICON_OVERLAY)
 
-
+	/*NTF Removal
 	if(species.species_flags & HAS_UNDERWEAR)
 		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_[underwear]_[physique]"), ICON_OVERLAY)
 		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_[undershirt]_[physique]"), ICON_OVERLAY)
+	*/
 
 	update_bodyparts()
 	species?.update_body(src)

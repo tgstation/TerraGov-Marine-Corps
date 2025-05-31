@@ -33,6 +33,7 @@
 	accuracy_mult_unwielded = 0.95
 	accuracy_mult = 1.2
 	aim_speed_modifier = 0.50
+	holstered_underlay_icon = 'ntf_modular/icons/obj/items/storage/holster.dmi'
 
 //XM104 cylinder placed in pistols
 /obj/item/ammo_magazine/pistol/ntunity

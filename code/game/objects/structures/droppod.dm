@@ -281,6 +281,9 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	if(!selectedturf)
 		CRASH("No droppod free turf found")
 	GLOB.droppod_reservation.taken_turfs += selectedturf
+	if(respawns)
+		var/obj/structure/droppod/respawned = new type(loc)
+		respawned.respawns = TRUE
 	forceMove(selectedturf)
 	addtimer(CALLBACK(src, PROC_REF(finish_drop), user, selectedturf), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
 

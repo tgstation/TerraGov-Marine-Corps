@@ -57,10 +57,12 @@
 	/// Which body type to use
 	var/physique = MALE
 
+	/*MTF removal
 	///Which underwear the player wants
 	var/underwear = 1
 	///Which undershirt the player wants.
 	var/undershirt = 0
+	*/
 
 	//The character's citizenship. Fluff.
 	var/citizenship = ""
@@ -157,8 +159,10 @@
 
 ///copies over clothing preferences like underwear to another human
 /mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)
+	/*NTF Removal
 	destination.underwear = underwear
 	destination.undershirt = undershirt
+	*/
 
 /mob/living/carbon/human/replace_by_ai()
 	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))

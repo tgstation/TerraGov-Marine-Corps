@@ -43,6 +43,8 @@
 	/// Map tag for something.  Tired of it being used on snowflake items.  Moved here for some semblance of a standard.
 	/// Next pr after the network fix will have me refactor door interactions, so help me god.
 	var/id_tag = null
+	///underlay icon file when holstered
+	var/holstered_underlay_icon = 'icons/obj/items/storage/holster.dmi'
 
 /obj/Initialize(mapload)
 	. = ..()

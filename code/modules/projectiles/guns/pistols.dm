@@ -313,6 +313,7 @@
 	scatter_unwielded = 0
 	aim_slowdown = 0.2
 	fire_delay = 0.2 SECONDS
+	holstered_underlay_icon = 'ntf_modular/icons/obj/items/storage/holster.dmi'
 
 /obj/item/weapon/gun/pistol/g22/tranq
 	name = "\improper P-22 custom pistol"
@@ -757,6 +758,7 @@
 	scatter = 2
 	recoil = 4
 	recoil_unwielded = 3
+	holstered_underlay_icon = 'ntf_modular/icons/obj/items/storage/holster.dmi'
 
 /obj/item/weapon/gun/pistol/xmdivider/gunslinger
 	starting_attachment_types = list(
