@@ -18,7 +18,7 @@
 	randomize_hair_color("facial")
 	randomize_eyes_color()
 	randomize_species_specific()
-	/*
+	/*NTF removal
 	underwear = rand(1, length(GLOB.underwear_m))
 	undershirt = rand(1, length(GLOB.undershirt_f))
 	*/
@@ -217,8 +217,11 @@
 	character.pitch = tts_pitch
 
 	character.moth_wings = moth_wings
+
+	/*NTF Removal
 	character.underwear = underwear
 	character.undershirt = undershirt
+	*/
 
 	if(character.species.has_genital_selection)
 		character.ass = genitalia_ass

@@ -87,9 +87,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/gear
 	var/list/job_preferences = list()
 
+	/*NTF removal
 	//Clothing
 	var/underwear = 1
 	var/undershirt = 1
+	*/
 	var/backpack = BACK_SATCHEL
 
 	//Hair style
