@@ -285,6 +285,85 @@
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 40, BIO = 40, FIRE = 50, ACID = 40)
 
+/obj/item/clothing/suit/modular/xenonauten/light/bikini/som
+	name = "\improper SOM M-69 Bikini-pattern light armor"
+	desc = "An unusal armor made by the " + FACTION_SOM + ", apparently based on an NTC design. Extra-light bikini armor with modular attachments made to work in many enviroments. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
+		/obj/item/armor_module/module/fire_proof/som,
+		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/module/knight/som,
+		/obj/item/armor_module/module/mimir_environment_protection/som,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/module/eshield/som/overclocked,
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/light/bikini/neutral
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/tyr_extra_armor/old,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection/old,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/knight,
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/antienergy,
+		/obj/item/armor_module/module/eshield/antienergy/antiballistic,
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/module/mirage,
+		/obj/item/armor_module/module/armorlock,
+		/obj/item/armor_module/module/eshield/old,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
+		/obj/item/armor_module/module/fire_proof/som,
+		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/module/knight/som,
+		/obj/item/armor_module/module/mimir_environment_protection/som,
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/module/eshield/som/overclocked,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/light/bikini/neutral/vsd
+	name = "\improper Crasher MT-B/69 bikini armor"
+	desc = "An unusal armor made by the " + FACTION_VSD + ", apparently based on an NTC design. Extra-light bikini armor with modular attachments made to work in many enviroments. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+
+/obj/item/clothing/suit/modular/xenonauten/light/bikini/neutral/icc
+	name = "\improper Modelle/69 'Bikini' combat armor"
+	desc = "An unusal armor made by the " + FACTION_ICC + ", apparently based on an NTC design. Extra-light bikini armor with modular attachments made to work in many enviroments. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+
 /obj/item/clothing/suit/modular/xenonauten/bulletresistant
 	name = "\improper NTC bullet-resistant armor"
 	desc = "A set of armor that excels in protecting the wearer against high-velocity solid projectiles. This one has bullet resistant padding on the limbs aswell."
