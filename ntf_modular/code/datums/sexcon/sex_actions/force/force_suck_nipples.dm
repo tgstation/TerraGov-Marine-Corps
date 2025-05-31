@@ -17,7 +17,7 @@
 
 /datum/sex_action/force_suck_nipples/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	user.visible_message(span_warning("[user] forces [target]'s head down to suck on [user.p_their()] nipples!"))
-	playsound(target, list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg'), 20, TRUE)
+	playsound(target, pick(list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg')), 20, TRUE)
 
 /datum/sex_action/force_suck_nipples/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.do_message_signature("[type]"))

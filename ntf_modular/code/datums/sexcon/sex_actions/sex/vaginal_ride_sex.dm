@@ -21,7 +21,7 @@
 /datum/sex_action/vaginal_ride_sex/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
 	user.visible_message(span_warning("[user] gets on top of [target] and begins riding them with [user.p_their()] cunt!"))
-	playsound(target, list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg'), 20, TRUE)
+	playsound(target, pick(list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg')), 20, TRUE)
 
 /datum/sex_action/vaginal_ride_sex/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.do_message_signature("[type]"))
