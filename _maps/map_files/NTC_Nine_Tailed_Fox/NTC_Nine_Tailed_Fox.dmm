@@ -832,6 +832,10 @@
 /obj/machinery/landinglight/cas{
 	dir = 1
 	},
+/obj/structure/prop/urban/airport/refuelinghose{
+	pixel_x = -14;
+	pixel_y = -44
+	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "aKU" = (
@@ -3365,6 +3369,11 @@
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
+"cPQ" = (
+/obj/structure/cable,
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "cQc" = (
 /obj/machinery/air_alarm{
 	dir = 1
@@ -8266,6 +8275,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers{
 	dir = 1
 	},
+/obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "hrt" = (
@@ -26065,16 +26075,6 @@
 	dir = 4
 	},
 /area/mainship/squads/general)
-"xRH" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/structure/prop/urban/airport/refuelinghose{
-	pixel_x = -12;
-	pixel_y = -12
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "xRV" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation/two)
@@ -34099,7 +34099,7 @@ nje
 meS
 oAa
 oAa
-qtj
+cPQ
 qtj
 oAa
 oOz
@@ -46059,7 +46059,7 @@ tIk
 fXK
 tIk
 aKJ
-xRH
+jZf
 jZf
 jRJ
 nBV
