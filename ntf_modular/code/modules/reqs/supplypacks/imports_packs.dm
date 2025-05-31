@@ -13,6 +13,11 @@
 	contains = list(/obj/item/mortal_shell/smoke/aphrotox, /obj/item/mortal_shell/smoke/aphrotox)
 	cost = 5
 
+/datum/supply_packs/explosives/mortar_ammo_neuro
+	name = "T-50S mortar neurotoxin smoke shell (x2)"
+	contains = list(/obj/item/mortal_shell/smoke/neuro, /obj/item/mortal_shell/smoke/neuro)
+	cost = 15
+
 /* save until we got faction specific req
 /datum/supply_packs/imports/antienergyshield
 	name = "NTC Anti Energy Shield"

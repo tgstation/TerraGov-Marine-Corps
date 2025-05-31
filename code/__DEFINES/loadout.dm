@@ -458,7 +458,8 @@ GLOBAL_LIST_INIT(som_engineer_gear_listed_products, list(
 		/obj/item/mortal_shell/plasmaloss = list(CAT_ENGSUP, "Tanglefoot Mortar shell", 1, "engi-artillery"),
 		/obj/item/mortal_shell/smoke/satrapine = list(CAT_ENGSUP, "Nerve Gas Mortar shell", 1, "engi-artillery"),
 		/obj/item/mortal_shell/smoke/sleep = list(CAT_ENGSUP, "Sleep Mortar shell", 1, "engi-artillery"),
-		/obj/item/mortal_shell/smoke/aphrotox = list(CAT_ENGSUP, "Aphrotox Mortar Shell", 1, "engi-artillery"),
+		/obj/item/mortal_shell/smoke/aphrotox = list(CAT_ENGSUP, "Aphrotoxin Mortar Shell", 1, "engi-artillery"),
+		/obj/item/mortal_shell/smoke/neuro = list(CAT_ENGSUP, "Neurotoxin Mortar Shell", 1, "engi-artillery"),
 		/obj/item/mortal_shell/smoke = list(CAT_ENGSUP, "Smoke Mortar shell", 1, "engi-artillery"),
 		/obj/item/mortal_shell/flare = list(CAT_ENGSUP, "Flare Mortar shell", 1, "engi-artillery"),
 	))
@@ -623,7 +624,8 @@ GLOBAL_LIST_INIT(vsd_engineer_gear_listed_products, list(
 		/obj/item/mortal_shell/plasmaloss = list(CAT_ENGSUP, "Tanglefoot Mortar shell", 1, "engi-artillery"),
 		/obj/item/mortal_shell/smoke/satrapine = list(CAT_ENGSUP, "Nerve Gas Mortar shell", 1, "engi-artillery"),
 		/obj/item/mortal_shell/smoke/sleep = list(CAT_ENGSUP, "Sleep Mortar shell", 1, "engi-artillery"),
-		/obj/item/mortal_shell/smoke/aphrotox = list(CAT_ENGSUP, "Aphrotox Mortar Shell", 1, "engi-artillery"),
+		/obj/item/mortal_shell/smoke/aphrotox = list(CAT_ENGSUP, "Aphrotoxin Mortar Shell", 1, "engi-artillery"),
+		/obj/item/mortal_shell/smoke/neuro = list(CAT_ENGSUP, "Neurotoxin Mortar Shell", 1, "engi-artillery"),
 		/obj/item/mortal_shell/smoke = list(CAT_ENGSUP, "Smoke Mortar shell", 1, "engi-artillery"),
 		/obj/item/mortal_shell/flare = list(CAT_ENGSUP, "Flare Mortar shell", 1, "engi-artillery"),
 	))
