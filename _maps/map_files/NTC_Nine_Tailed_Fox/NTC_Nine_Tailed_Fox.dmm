@@ -1314,7 +1314,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/turf/open/floor/mainship/floor,
+/turf/closed/wall/mainship,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "bfC" = (
 /obj/machinery/light{
@@ -17100,16 +17100,6 @@
 	outside = 0;
 	name = "CEO Office"
 	})
-"pte" = (
-/obj/structure/cable,
-/obj/structure/ladder{
-	id = "NTFbrigLadder";
-	height = 2
-	},
-/turf/open/floor/mainship/red{
-	dir = 8
-	},
-/area/mainship/groundhq/ntf/shipboard/brig)
 "pui" = (
 /obj/structure/sink{
 	dir = 8
@@ -31517,7 +31507,7 @@ sIF
 sIF
 xJk
 hyG
-nwr
+gkJ
 bfy
 rUZ
 sfV
@@ -55207,7 +55197,7 @@ ngI
 mmj
 dDK
 hFY
-pte
+aFJ
 aFJ
 aFJ
 dDK
