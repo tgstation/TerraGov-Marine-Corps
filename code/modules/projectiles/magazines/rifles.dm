@@ -826,6 +826,7 @@
 	desc = "A magazine of 16 gauge slugs, for the CC/B/31."
 	caliber = CALIBER_16G
 	icon_state = "cb31"
+	icon = 'ntf_modular/icons/obj/items/ammo/rifle.dmi'
 	icon_state_mini = "mag_tx15_slug"
 	default_ammo = /datum/ammo/bullet/shotgun/breaching
 	max_rounds = 9
