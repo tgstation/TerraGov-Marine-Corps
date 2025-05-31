@@ -30,7 +30,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 	if(attack_type == COMBAT_PROJ_ATTACK)
 		if(incoming_damage <= 0)
 			return 0
-		if(damage_type in blocked_attack_types && shield_health < overcharge_max_health) //power...
+		if((damage_type in blocked_attack_types) && (shield_health < overcharge_max_health)) //power...
 			START_PROCESSING(SSobj, src)
 			shield_health += incoming_damage/2
 			spark_system.start()
@@ -52,7 +52,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 					if(1.4 to INFINITY)
 						affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full_danger))
 			return 0
-		else if(damage_type in blocked_attack_types && shield_health > overcharge_max_health)
+		else if((damage_type in blocked_attack_types) && (shield_health > overcharge_max_health))
 			playsound(src.loc, 'sound/machines/beepalert.ogg', 40)
 			explosion(src.loc,0,0,0,2,0,1,2, smoke = TRUE)
 			shield_health = 0
