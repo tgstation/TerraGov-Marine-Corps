@@ -443,6 +443,7 @@
 /area/orion_outpost/ground/underground/caveS)
 "ct" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/engineering)
 "cw" = (
@@ -8031,6 +8032,7 @@
 /area/orion_outpost/surface/building/administration)
 "Nd" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "Ne" = (
@@ -9893,6 +9895,7 @@
 /area/orion_outpost/surface/building/breakroom)
 "VU" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/administration)
 "VV" = (
@@ -10538,6 +10541,7 @@
 /area/orion_outpost/surface/building/bunker)
 "Zb" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/brig)
 "Zc" = (

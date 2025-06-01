@@ -16,7 +16,8 @@
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
 	burst_amount = 4
-	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
+
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_ALERTS
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	deployable_item = /obj/machinery/deployable/mounted/sentry
@@ -99,14 +100,14 @@
 
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
 
-	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY|GUN_SMOKE_PARTICLES|GUN_IFF
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //doesn't autoeject its recharging battery
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	item_flags = IS_DEPLOYABLE|TWOHANDED
 
 	max_shots = 150
 	rounds_per_shot = 12
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.3 SECONDS
 	scatter = -3
 	damage_falloff_mult = 0.5
 	ammo_datum_type = /datum/ammo/energy/volkite/light
@@ -159,12 +160,35 @@
 		return
 	do_deploy(user)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/do_deploy(mob/user, turf/location)
+	. = ..()
+	spawn(1)
+		if(!(CHECK_BITFIELD(item_flags, IS_DEPLOYED)))
+			reset()
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
+/obj/item/storage/box/crate/volkite/cope
+	name = "\improper COPE sentry crate"
+	desc = "A large case containing all you need to set up a COPE sentry."
+	icon_state = "sentry_mini_case"
+	w_class = WEIGHT_CLASS_HUGE
+
+/obj/item/storage/box/crate/volkite/cope/Initialize(mapload, ...)
+	. = ..()
+	storage_datum.storage_slots = 6
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope,
+		/obj/item/cell/lasgun/volkite/turret,
+	))
+
+/obj/item/storage/box/crate/volkite/cope/PopulateContents()
+	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope(src)
+	new /obj/item/cell/lasgun/volkite/turret(src)
+
 /obj/item/weapon/gun/sentry/big_sentry/premade
 	sentry_iff_signal = TGMC_LOYALIST_IFF
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
+	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial
 	turret_range = 9
@@ -238,7 +262,7 @@
 	name = "SG-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
 	icon_state = "sentry"
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL|TURRET_SAFETY
 	max_shells = 100
 
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss

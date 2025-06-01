@@ -39,7 +39,7 @@
 	id = "Hub"
 	network = "tcommsat"
 	autolinkers = list("hub", "relay", "s_relay", "command", "medical", "ert",
-	"requisitions", "alpha","firesupport", "bravo", "charlie", "delta", "common", "engineering",
+	"requisitions", "alpha","firesupport", "security", "bravo", "charlie", "delta", "common", "engineering",
 	"receiverA", "receiverB", "broadcasterA", "broadcasterB")
 
 //proper cicbackup machine
@@ -48,7 +48,7 @@
 	id = "Backup Hub"
 	network = "tcommsat"
 	autolinkers = list("hub", "relay", "s_relay", "command", "medical", "ert",
-	"requisitions", "alpha","firesupport", "bravo", "charlie", "delta", "common", "engineering",
+	"requisitions", "alpha","firesupport", "security", "bravo", "charlie", "delta", "common", "engineering",
 	"receiverA", "receiverB", "broadcasterA", "broadcasterB")
 
 /obj/machinery/telecomms/hub/preset/som
