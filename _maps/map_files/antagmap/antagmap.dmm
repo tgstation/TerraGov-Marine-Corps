@@ -149,6 +149,11 @@
 	dir = 4
 	},
 /area/antag_ship/clf_base/techroom)
+"bi" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/syndicateemblem/middle/right,
+/turf/open/floor/prison/redfloor,
+/area/antag_ship/vsd/bridge)
 "bj" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -498,10 +503,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/vending/medical{
-	name = "Stolen Medicament Vendor";
-	req_access = list(206)
-	},
+/obj/machinery/vending/medical/kz,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "du" = (
@@ -593,12 +595,9 @@
 "dX" = (
 /obj/structure/table/black,
 /obj/item/storage/box/crate/loot/materials_pack,
+/obj/item/storage/box/crate/loot/materials_pack,
 /obj/item/clothing/head/helmet/space/syndicate/black,
 /obj/item/clothing/suit/space/syndicate/black,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
 /obj/item/minerupgrade/automatic,
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 8
@@ -650,7 +649,8 @@
 /area/antag_ship/som/requisition)
 "eo" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper KZ Armory Airlock"
+	name = "\improper KZ Armory Airlock";
+	req_access = list(236)
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
@@ -1183,7 +1183,7 @@
 	},
 /obj/structure/table/black,
 /obj/item/tool/lighter/zippo,
-/turf/open/floor/prison/blackfloor,
+/turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "hm" = (
 /obj/structure/cable,
@@ -1781,6 +1781,11 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/antag_ship/som/medbay)
+"kx" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/syndicateemblem/middle/left,
+/turf/open/floor/prison/redfloor,
+/area/antag_ship/vsd/bridge)
 "ky" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison/blackfloor,
@@ -1983,15 +1988,6 @@
 "lu" = (
 /turf/open/floor/grayscale/edge,
 /area/antag_ship/clf_base/bathroom)
-"lv" = (
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/hall)
 "lw" = (
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -2162,7 +2158,7 @@
 /obj/structure/table/black,
 /obj/item/clipboard,
 /obj/item/tool/pen,
-/turf/open/floor/prison/blackfloor,
+/turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "mi" = (
 /obj/machinery/cryopod/right,
@@ -2742,7 +2738,7 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
-/turf/open/floor/prison/blackfloor,
+/turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "oE" = (
 /obj/machinery/vending/coffee,
@@ -3035,7 +3031,7 @@
 /obj/machinery/power/apc{
 	dir = 8
 	},
-/turf/open/floor/prison/blackfloor,
+/turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "pY" = (
 /obj/machinery/power/geothermal/reinforced,
@@ -3211,7 +3207,9 @@
 /area/antag_ship/vsd/engi)
 "qV" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 1
+	dir = 1;
+	name = "\improper KZ Preparations Airlock";
+	req_access = list(236)
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
@@ -3733,7 +3731,7 @@
 /area/antag_ship/som/bridge)
 "tS" = (
 /obj/structure/table/black,
-/turf/open/floor/prison/blackfloor,
+/turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "tT" = (
 /turf/closed/mineral/smooth/indestructible,
@@ -3900,15 +3898,6 @@
 	},
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
-"uP" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/hall)
 "uR" = (
 /obj/effect/ai_node,
 /turf/open/floor/bcircuit/off,
@@ -4132,7 +4121,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/turf/open/floor/prison/blackfloor,
+/turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "wc" = (
 /obj/structure/cable,
@@ -4211,10 +4200,6 @@
 /obj/machinery/optable,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/medbay/morgue)
-"wt" = (
-/obj/structure/table/black,
-/turf/open/floor/iron/dark/small,
-/area/antag_ship/vsd/med)
 "wv" = (
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security/cell)
@@ -4355,7 +4340,7 @@
 /area/antag_ship/icc/hangar/west)
 "xe" = (
 /obj/machinery/computer,
-/turf/open/floor/prison/blackfloor,
+/turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "xi" = (
 /obj/structure/bed/chair/sofa,
@@ -4367,7 +4352,7 @@
 	name = "Operations Note";
 	info = "Ensure our cover is not blown, It is crucial Kaizoku is not found out to be a front of the syndicate to have foot in the phantom city management to come once it is rebuilt. While also we must use the martians to disrupt NTC so they may not get the most share out of the rebuilding through having supple resources from this untouched planet. We got enough syndicate affiliates to cover their work as our own without the hassle back at earth, we do not need resources from here at the time being.  Burn this note after everyone in command reads it, most of our non command are unaware of this aspect of our corporation.- Naoko Kaizoku, Kaizoku Corporation Chairwoman"
 	},
-/turf/open/floor/prison/blackfloor,
+/turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "xk" = (
 /obj/machinery/faxmachine{
@@ -4397,10 +4382,8 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/antag_ship/vsd/port)
 "xq" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/structure/largecrate/supply/generator,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},
@@ -4455,8 +4438,9 @@
 /area/antag_ship/pmc_ntf/starboard/spaceport)
 "xA" = (
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/command/free_access{
-	dir = 2
+/obj/machinery/door/airlock/glass_command{
+	name = "\improper KZ Command Airlock";
+	req_access = list(240)
 	},
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
@@ -4826,7 +4810,8 @@
 "zI" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass{
-	name = "\improper KZ Medbay Airlock"
+	name = "\improper KZ Medbay Airlock";
+	req_access = list(237)
 	},
 /turf/open/floor/grayscale/round/black,
 /area/antag_ship/vsd/med)
@@ -4871,7 +4856,8 @@
 "zX" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper KZ Technical Storage Airlock"
+	name = "\improper KZ Technical Storage Airlock";
+	req_access = list(238)
 	},
 /turf/open/floor/grayscale/round/black,
 /area/antag_ship/vsd/engi)
@@ -5011,7 +4997,8 @@
 /area/antag_ship/vsd/port)
 "Bg" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper KZ Port Airlock"
+	name = "\improper KZ Port Airlock";
+	req_access = list(236)
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
@@ -5133,10 +5120,6 @@
 	dir = 8
 	},
 /area/antag_ship/clf_base/techroom)
-"BG" = (
-/obj/structure/largecrate/supply/generator,
-/turf/open/floor/iron/dark,
-/area/antag_ship/vsd/port)
 "BH" = (
 /obj/machinery/quick_vendor/icc,
 /turf/open/floor/plating/ground/concrete,
@@ -5595,11 +5578,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/inside)
-"Ea" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/syndicateemblem/middle/right,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/hall)
 "Eb" = (
 /obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
@@ -5832,7 +5810,7 @@
 /turf/open/floor/iron/dark/textured_edge,
 /area/antag_ship/vsd/med)
 "Fg" = (
-/obj/machinery/vending/medical/som,
+/obj/machinery/vending/medical/kz,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 8
 	},
@@ -6147,11 +6125,6 @@
 /area/antag_ship/pmc_ntf/port/quarters)
 "GQ" = (
 /obj/structure/table/black,
-/obj/item/explosive/grenade/phosphorus/upp,
-/obj/item/explosive/grenade/phosphorus/upp,
-/obj/item/explosive/grenade/phosphorus/upp,
-/obj/item/explosive/grenade/phosphorus/upp,
-/obj/item/explosive/grenade/phosphorus/upp,
 /turf/open/floor/iron/dark/side,
 /area/antag_ship/vsd/armory)
 "GR" = (
@@ -6868,10 +6841,6 @@
 	dir = 1
 	},
 /area/antag_ship)
-"Kv" = (
-/obj/structure/cable,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/hall)
 "Kx" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
@@ -6937,11 +6906,6 @@
 	},
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
-"KT" = (
-/obj/effect/landmark/corpsespawner/syndicatecommando/regular,
-/obj/effect/step_trigger/teleporter/random,
-/turf/open/space/basic,
-/area/space)
 "KV" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -7536,13 +7500,6 @@
 	},
 /turf/open/floor/wood,
 /area/antag_ship/som/office/commander/field)
-"NW" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/effect/turf_decal/syndicateemblem/middle/right,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/hall)
 "NX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -8408,11 +8365,6 @@
 	},
 /turf/open/floor/prison/darkyellow/full,
 /area/antag_ship/som/security/cell)
-"Sq" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/syndicateemblem/middle/left,
-/turf/open/floor/prison/redfloor,
-/area/antag_ship/vsd/hall)
 "Sr" = (
 /obj/machinery/light{
 	dir = 1
@@ -8611,6 +8563,10 @@
 /obj/machinery/bioprinter,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
+"Tg" = (
+/obj/effect/turf_decal/syndicateemblem/middle/right,
+/turf/open/floor/prison/redfloor,
+/area/antag_ship/vsd/bridge)
 "Th" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/iron/dark/smooth_edge,
@@ -9557,7 +9513,7 @@
 	dir = 4
 	},
 /obj/structure/table/black,
-/turf/open/floor/prison/blackfloor,
+/turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
 "XH" = (
 /turf/closed/shuttle/ert/engines/right{
@@ -13818,7 +13774,7 @@ id
 qi
 qi
 qi
-BG
+br
 br
 lq
 tI
@@ -13906,7 +13862,7 @@ Fc
 xj
 mh
 hl
-pJ
+FG
 tI
 tI
 dX
@@ -13998,10 +13954,10 @@ VK
 VK
 LH
 tS
-pJ
+FG
 On
 FG
-pJ
+FG
 oD
 tI
 tI
@@ -14093,11 +14049,11 @@ VK
 VK
 LH
 tS
-pJ
-FG
-FG
 FG
 pJ
+pJ
+pJ
+FG
 ky
 If
 SO
@@ -14105,11 +14061,11 @@ tu
 tu
 Sx
 qC
-Kv
+IZ
 nF
 Iv
 UZ
-uP
+nF
 Zf
 IZ
 hB
@@ -14185,14 +14141,14 @@ CN
 VK
 "}
 (45,1,1) = {"
-KT
+VK
 LH
 xe
 wb
-fk
-fk
-fk
+bi
 PW
+kx
+fk
 xA
 SU
 SU
@@ -14200,11 +14156,11 @@ ex
 SU
 qV
 IZ
-Kv
-Ea
 IZ
-Sq
-Kv
+IZ
+IZ
+IZ
+IZ
 IZ
 IZ
 VJ
@@ -14283,11 +14239,11 @@ VK
 VK
 LH
 tS
-pJ
-fk
 FG
-FG
+PW
+Tg
 pJ
+FG
 ky
 DA
 SC
@@ -14295,11 +14251,11 @@ JT
 JT
 Sx
 qC
-Kv
+IZ
 qs
-NW
 vt
-lv
+vt
+qs
 vt
 IZ
 VA
@@ -14378,10 +14334,10 @@ VK
 VK
 LH
 tS
-pJ
+FG
 ug
 FG
-pJ
+FG
 oD
 tI
 tI
@@ -14476,7 +14432,7 @@ Es
 tS
 pX
 XG
-pJ
+FG
 tI
 tI
 da
@@ -14682,7 +14638,7 @@ VN
 xV
 pK
 Hn
-wt
+IL
 dP
 Th
 mg

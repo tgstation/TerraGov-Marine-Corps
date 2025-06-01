@@ -1047,9 +1047,10 @@
 	desc = "An ICCAF Medical drug dispenser. Provided by Ninetails Pharmaceuticals Division(TM)."
 
 /obj/machinery/vending/MarineMed/vsd
-	name = "\improper MarineMed"
+	name = "\improper KZ MarineMed"
 	faction = FACTION_VSD
-	desc = "A Medical drug dispenser, just like the NTC use. 'Provided' by Ninetails Pharmaceuticals Division(TM)."
+	desc = "KZ Medical drug dispenser. 'Provided' by Ninetails Pharmaceuticals Division(TM)."
+	req_one_access = list(ACCESS_VSD_MEDPREP)
 
 
 /obj/machinery/vending/MarineMed/valhalla
@@ -2963,27 +2964,6 @@
 			/obj/item/weapon/gun/rifle/vsd_lmg_main = -1,
 			/obj/item/ammo_magazine/rifle/vsd_mg = -1,
 		),
-		"Specialized" = list(
-			/obj/item/weapon/gun/flamer/big_flamer = -1,
-			/obj/item/ammo_magazine/flamer_tank/large = -1,
-			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
-			/obj/item/weapon/gun/flamer/hydro_cannon = -1,
-			/obj/item/weapon/gun/launcher/rocket/vsd = 2,
-			/obj/item/ammo_magazine/rocket/vsd/he = 10,
-			/obj/item/ammo_magazine/rocket/vsd/incendiary = 10,
-			/obj/item/ammo_magazine/rocket/vsd/chemical = 5,
-			/obj/item/ammo_magazine/rocket/vsd/heat = 5,
-			/obj/item/weapon/gun/rifle/vsd_breaching = 2,
-			/obj/item/ammo_magazine/rifle/cb31 = -1,
-			/obj/item/weapon/gun/minigun/vsd_autocannon = 2,
-			/obj/item/ammo_magazine/rifle/vsd_autocannon = -1,
-			/obj/item/ammo_magazine/rifle/vsd_autocannon/explosive = 4,
-			/obj/item/ammo_magazine/rifle/vsd_autocannon/at = 4,
-			/obj/item/weapon/gun/at45 = 1,
-			/obj/item/ammo_magazine/at45 = 4,
-			/obj/item/weapon/gun/flamer/vsd = 2,
-			/obj/item/ammo_magazine/flamer_tank/vsd = 6,
-		),
 		"Melee" = list(
 			/obj/item/weapon/combat_knife = -1,
 			/obj/item/attachable/bayonet = -1,
@@ -3002,6 +2982,8 @@
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/vsd = 200,
+			/obj/item/explosive/grenade/phosphorus/upp = 15,
+			/obj/item/explosive/grenade/upp = 15,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/sticky/trailblazer = 75,
 			/obj/item/explosive/grenade/incendiary = 50,
@@ -3025,6 +3007,36 @@
 			/obj/item/explosive/grenade/bullet/hefa = 10,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
+		),
+		"Specialized" = list(
+			/obj/item/weapon/gun/flamer/big_flamer = -1,
+			/obj/item/ammo_magazine/flamer_tank/large = -1,
+			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
+			/obj/item/weapon/gun/flamer/hydro_cannon = -1,
+			/obj/item/weapon/gun/launcher/rocket/vsd = 2,
+			/obj/item/ammo_magazine/rocket/vsd/he = 10,
+			/obj/item/ammo_magazine/rocket/vsd/incendiary = 10,
+			/obj/item/ammo_magazine/rocket/vsd/chemical = 5,
+			/obj/item/ammo_magazine/rocket/vsd/heat = 5,
+			/obj/item/weapon/gun/rifle/vsd_breaching = 2,
+			/obj/item/ammo_magazine/rifle/cb31 = -1,
+			/obj/item/weapon/gun/minigun/vsd_autocannon = 2,
+			/obj/item/ammo_magazine/rifle/vsd_autocannon = -1,
+			/obj/item/ammo_magazine/rifle/vsd_autocannon/explosive = 4,
+			/obj/item/ammo_magazine/rifle/vsd_autocannon/at = 4,
+			/obj/item/weapon/gun/at45 = 1,
+			/obj/item/ammo_magazine/at45 = 4,
+			/obj/item/weapon/gun/flamer/vsd = 2,
+			/obj/item/ammo_magazine/flamer_tank/vsd = 6,
+		),
+		"Heavy Weapons" = list(
+			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
+			/obj/item/storage/box/crate/sentry = 4,
+			/obj/item/storage/box/hsg_102 = 1,
+			/obj/item/weapon/gun/heavymachinegun = 1,
+			/obj/item/ammo_magazine/heavymachinegun = 5,
+			/obj/item/ammo_magazine/heavymachinegun/small = 10,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -3132,6 +3144,7 @@
 		),
 		"Belts" = list(
 			/obj/item/storage/belt/marine = -1,
+			/obj/item/storage/belt/marine/upp = -1,
 			/obj/item/storage/belt/shotgun = -1,
 			/obj/item/storage/belt/grenade = -1,
 			/obj/item/belt_harness/marine = -1,
@@ -3140,6 +3153,7 @@
 			/obj/item/storage/holster/t19 = -1,
 			/obj/item/storage/belt/utility/full = -1,
 			/obj/item/storage/belt/medical_small = -1,
+			/obj/item/storage/belt/lifesaver/full/upp = -1,
 			/obj/item/storage/belt/protein_pack = -1,
 		),
 		"Pouches" = list(
@@ -3161,7 +3175,6 @@
 			/obj/item/storage/pouch/tools/full = -1,
 			/obj/item/storage/pouch/field_pouch = -1,
 			/obj/item/storage/pouch/general/large = -1,
-			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
 			/obj/item/storage/pouch/general/medium = -1,
 			/obj/item/storage/pouch/protein_pack = -1,
 		),

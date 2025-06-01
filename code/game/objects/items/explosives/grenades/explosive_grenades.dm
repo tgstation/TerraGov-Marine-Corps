@@ -26,8 +26,8 @@
 	throwforce = 15
 
 /obj/item/explosive/grenade/upp
-	name = "\improper Type 5 shrapnel grenade"
-	desc = "A fragmentation grenade found within the ranks of the USL. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
+	name = "\improper XM5 shrapnel grenade"
+	desc = "A fragmentation grenade found within the ranks of the KZ. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_upp"
 	worn_icon_state = "grenade_upp"
 	hud_state = "greande_frag"
@@ -41,7 +41,7 @@
 	worn_icon_state = "grenade_som"
 
 /obj/item/explosive/grenade/vsd
-	name = "\improper XM93 HEAP Grenade"
+	name = "\improper XM93 HEAP grenade"
 	desc = "InterTech's experimental High Explosive Anti Personnel grenade. Good for clearing out rooms and such."
 	icon_state = "grenade_vsd"
 	light_impact_range = 5
