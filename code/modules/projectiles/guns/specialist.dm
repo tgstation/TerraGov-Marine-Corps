@@ -1009,7 +1009,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/launcher/rocket/vsd
 	name = "\improper C153 shoulder launcher"
 	desc = "An Anti-personnel Rocket Launcher made by Crash Core. Used mainly by KZ specialists, it can fire three specialized rounds. High Explosive, Incendiary Explosive, and a Chemical Capped High Explosive."
-	icon = 'icons/obj/items/guns/special64.dmi'
+	icon = 'ntf_modular/icons/obj/items/guns/special64.dmi'
 	icon_state = "c153"
 	worn_icon_state = "c153"
 	worn_icon_list = list(
