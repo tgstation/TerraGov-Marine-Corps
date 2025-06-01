@@ -325,6 +325,7 @@
 	prearrivalTime = 0.05
 	port_direction = 1
 	dir = 2
+	railing_gear_name = "cargobay"
 
 /obj/machinery/computer/shuttle/shuttle_control/elevator
 	name = "Elevator Control Console"
@@ -350,6 +351,7 @@
 	prearrivalTime = 0.5
 	port_direction = 1
 	dir = 2
+	railing_gear_name = "ntc"
 
 
 // queen calldown

@@ -584,7 +584,7 @@
 	force = 20
 
 	burst_amount = 1
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.22 SECONDS
 	scatter = 0
 	wield_delay = 0.9 SECONDS
 

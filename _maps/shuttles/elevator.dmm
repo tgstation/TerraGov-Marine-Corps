@@ -17,6 +17,10 @@
 	})
 "i" = (
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "ntc_elevator_railing"
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/dropship/minielevator{
 	ceiling = 2
@@ -46,6 +50,19 @@
 "C" = (
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 2
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "ntc_elevator_railing"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/shuttle/dropship/minielevator{
+	ceiling = 2
+	})
+"E" = (
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/machinery/door/poddoor/railing{
+	id = "ntc_elevator_railing"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/dropship/minielevator{
@@ -91,7 +108,7 @@ C
 (5,1,1) = {"
 B
 B
-i
+E
 B
 B
 "}

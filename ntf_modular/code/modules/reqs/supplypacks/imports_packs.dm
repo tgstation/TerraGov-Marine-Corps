@@ -18,15 +18,40 @@
 	contains = list(/obj/item/mortal_shell/smoke/neuro, /obj/item/mortal_shell/smoke/neuro)
 	cost = 15
 
+/datum/supply_packs/imports/halterex
+	name = "NT Halter extended mag crate (x4)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/extended, /obj/item/ammo_magazine/rifle/nt_halter/extended, /obj/item/ammo_magazine/rifle/nt_halter/extended, /obj/item/ammo_magazine/rifle/nt_halter/extended)
+	cost = 5
+
+/datum/supply_packs/imports/halterdrum
+	name = "NT Halter drum mag crate (x4)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/drum, /obj/item/ammo_magazine/rifle/nt_halter/drum, /obj/item/ammo_magazine/rifle/nt_halter/drum, /obj/item/ammo_magazine/rifle/nt_halter/drum)
+	cost = 15
+
+/datum/supply_packs/imports/haltercharged
+	name = "NT Halter charged mag crate (x2)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/charged, /obj/item/ammo_magazine/rifle/nt_halter/charged)
+	cost = 250
+
+/datum/supply_packs/imports/haltersmart
+	name = "NT Halter smart mag crate (x2)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/smart, /obj/item/ammo_magazine/rifle/nt_halter/smart)
+	cost = 50
+
+/datum/supply_packs/imports/halterfoxfire
+	name = "NT Halter foxfire mag crate (x2)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/foxfire, /obj/item/ammo_magazine/rifle/nt_halter/foxfire)
+	cost = 50
+
 /* save until we got faction specific req
 /datum/supply_packs/imports/antienergyshield
 	name = "NTC Anti Energy Shield"
-	contains = list(/obj/item/armor_module/module/eshield/antienergy)
+	contains = list(/obj/item/armor_module/module/eshield/absorbant/energy)
 	cost = 800
 
 /datum/supply_packs/imports/antiballisticshield
 	name = "KZ Anti Ballsitic Shield"
-	contains = list(/obj/item/armor_module/module/eshield/antienergy/antiballistic)
+	contains = list(/obj/item/armor_module/module/eshield/absorbant/ballistic)
 	cost = 800
 
 /datum/supply_packs/imports/unity

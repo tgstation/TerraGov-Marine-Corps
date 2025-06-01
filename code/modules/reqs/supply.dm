@@ -65,12 +65,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	use_ripples = FALSE
 	faction = FACTION_TERRAGOV
-	var/list/gears = list()
-	var/list/obj/machinery/door/poddoor/railing/railings = list()
 	/// Id of the home docking port
 	var/home_id = "supply_home"
-	///prefix for railings and gear todo should probbaly be defines instead?
-	var/railing_gear_name = "supply"
+	railing_gear_name = "supply"
 
 /obj/docking_port/mobile/supply/Destroy(force)
 	for(var/i in railings)
@@ -78,50 +75,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		railing.linked_pad = null
 	railings.Cut()
 	return ..()
-
-
-/obj/docking_port/mobile/supply/afterShuttleMove()
-	. = ..()
-	if(getDockedId() == home_id)
-		for(var/j in railings)
-			var/obj/machinery/door/poddoor/railing/R = j
-			R.open()
-
-/obj/docking_port/mobile/supply/on_ignition()
-	if(getDockedId() == home_id)
-		for(var/j in railings)
-			var/obj/machinery/door/poddoor/railing/R = j
-			R.close()
-		for(var/i in gears)
-			var/obj/machinery/gear/G = i
-			G.start_moving(NORTH)
-	else
-		for(var/i in gears)
-			var/obj/machinery/gear/G = i
-			G.start_moving(SOUTH)
-
-/obj/docking_port/mobile/supply/register()
-	. = ..()
-	for(var/obj/machinery/gear/G in GLOB.machines)
-		if(G.id == (railing_gear_name+"_elevator_gear"))
-			gears += G
-			RegisterSignal(G, COMSIG_QDELETING, PROC_REF(clean_gear))
-	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
-		if(R.id == (railing_gear_name+"_elevator_railing"))
-			railings += R
-			RegisterSignal(R, COMSIG_QDELETING, PROC_REF(clean_railing))
-			R.linked_pad = src
-			R.open()
-
-///Signal handler when a gear is destroyed
-/obj/docking_port/mobile/supply/proc/clean_gear(datum/source)
-	SIGNAL_HANDLER
-	gears -= source
-
-///Signal handler when a railing is destroyed
-/obj/docking_port/mobile/supply/proc/clean_railing(datum/source)
-	SIGNAL_HANDLER
-	railings -= source
 
 /obj/docking_port/mobile/supply/canMove()
 	if(is_station_level(z))
@@ -648,6 +601,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dwidth = 0
 	width = 3
 	faction = FACTION_SOM
+	railing_gear_name = "supply_som"
 
 /obj/docking_port/mobile/supply/clf
 	dir = 1
@@ -659,6 +613,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dwidth = 0
 	width = 3
 	faction = FACTION_CLF
+	railing_gear_name = "supply_clf"
 
 /obj/docking_port/mobile/supply/vehicle
 	railing_gear_name = "vehicle"
