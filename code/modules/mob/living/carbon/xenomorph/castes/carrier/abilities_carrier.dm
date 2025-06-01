@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			if(fire_immunity_effect)
 				fire_immunity_effect.duration = max(1, fire_immunity_effect.duration - fire_immunity_transfer)
 				fire_immunity_effect.check_duration()
-				F.fire_immune = TRUE
+				F.set_fire_immunity(TRUE)
 		F.impact_time = max(0.5 SECONDS, initial(F.impact_time) * activation_time_multiplier)
 		F.activate_time = max(0.5 SECONDS, initial(F.activate_time) * activation_time_multiplier)
 		F.proximity_time = max(0.5 SECONDS, initial(F.proximity_time) * activation_time_multiplier)

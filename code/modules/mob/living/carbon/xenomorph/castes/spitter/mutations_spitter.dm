@@ -21,7 +21,7 @@
 	return "If you are on fire, consume [plasma_initial + (plasma_per_structure * new_amount)] plasma to extinguish yourself and any fire under you. This only can occur every [timer_length / 10] second."
 
 /datum/mutation_upgrade/shell/acid_sweat/on_mutation_enabled()
-	RegisterSignal(xenomorph_owner, COMSIG_LIVING_IGNITED, PROC_REF(try_extinguish))
+	RegisterSignal(xenomorph_owner, COMSIG_LIVING_IGNITED, PROC_REF(on_ignited))
 	try_extinguish()
 	return ..()
 
@@ -33,8 +33,13 @@
 	return ..()
 
 /// Extinguishes the owner and qdel all fires underneath them if possible.
-/datum/mutation_upgrade/shell/acid_sweat/proc/try_extinguish()
-	if(!xenomorph_owner.on_fire || timer_id)
+/datum/mutation_upgrade/shell/acid_sweat/proc/try_extinguish(timed_extinguished = FALSE)
+	if(timer_id)
+		if(!timed_extinguished)
+			return
+		deltimer(timer_id)
+		timer_id = null
+	if(!xenomorph_owner.on_fire)
 		return
 	var/plasma_cost = plasma_initial + (get_total_structures() * plasma_per_structure)
 	if(xenomorph_owner.plasma_stored < plasma_cost)
@@ -44,7 +49,7 @@
 	for(var/obj/fire/fire_in_turf in get_turf(xenomorph_owner))
 		qdel(fire_in_turf)
 	if(timer_length)
-		timer_id = addtimer(CALLBACK(src, PROC_REF(try_extinguish)), timer_length, TIMER_STOPPABLE|TIMER_UNIQUE)
+		timer_id = addtimer(CALLBACK(src, PROC_REF(try_extinguish), TRUE), timer_length, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /// Immediately after being set on fire, tries to extinguishes the owner and qdel all fires underneath them if possible.
 /datum/mutation_upgrade/shell/acid_sweat/proc/on_ignited(datum/source, fire_stacks)
@@ -61,13 +66,13 @@
 	var/cast_time_multiplier_initial = -0.2
 	/// For each structure, the additional multiplier used to increase the cast time by.
 	var/cast_time_multiplier_per_structure = -0.2
-	/// The multiplier used to increase the damage by.
-	var/damage_multiplier = -0.5
+	/// The multiplier used to decrease the damage by.
+	var/damage_decrease_multiplier = 0.5
 
 /datum/mutation_upgrade/spur/hit_and_run/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Scatter Spit takes [(cast_time_multiplier_initial + (cast_time_multiplier_per_structure * new_amount)) * -100]% less time to cast. It deals [1 - (damage_multiplier * -100)]% of its original damage."
+	return "Scatter Spit takes [(cast_time_multiplier_initial + (cast_time_multiplier_per_structure * new_amount)) * -100]% less time to cast. It deals [damage_decrease_multiplier * 100]% less damage."
 
 /datum/mutation_upgrade/spur/hit_and_run/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/scatter_spit/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/scatter_spit]
@@ -75,7 +80,7 @@
 		return FALSE
 	ability.cast_time += initial(ability.cast_time) * cast_time_multiplier_initial
 	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
-	ability.bonus_damage += scatter_spit.damage * damage_multiplier
+	ability.bonus_damage -= scatter_spit.damage * damage_decrease_multiplier
 	return ..()
 
 /datum/mutation_upgrade/spur/hit_and_run/on_mutation_disabled()
@@ -84,7 +89,7 @@
 		return FALSE
 	ability.cast_time -= initial(ability.cast_time) * cast_time_multiplier_initial
 	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
-	ability.bonus_damage -= scatter_spit.damage * damage_multiplier
+	ability.bonus_damage += scatter_spit.damage * damage_decrease_multiplier
 	return ..()
 
 /datum/mutation_upgrade/spur/hit_and_run/on_structure_update(previous_amount, new_amount)

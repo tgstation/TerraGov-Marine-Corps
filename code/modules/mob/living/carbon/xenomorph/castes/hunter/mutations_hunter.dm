@@ -94,6 +94,7 @@
 	if(!ability)
 		return FALSE
 	ability.bonus_stealth_damage_multiplier += additive_damage_multiplier_initial
+	ability.sneak_attack_stun_duration -= initial(ability.sneak_attack_stun_duration)
 	return ..()
 
 /datum/mutation_upgrade/spur/debilitating_strike/on_mutation_disabled()
@@ -101,6 +102,7 @@
 	if(!ability)
 		return FALSE
 	ability.bonus_stealth_damage_multiplier -= additive_damage_multiplier_initial
+	ability.sneak_attack_stun_duration += initial(ability.sneak_attack_stun_duration)
 	return ..()
 
 /datum/mutation_upgrade/spur/debilitating_strike/on_structure_update(previous_amount, new_amount)

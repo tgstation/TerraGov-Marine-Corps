@@ -72,7 +72,7 @@
 /datum/mutation_upgrade/veil/railgun/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "CCharging now takes [steps_per_structure * new_amount]  more steps to reach maximum charge."
+	return "Charging now takes [steps_per_structure * new_amount]  more steps to reach maximum charge."
 
 /datum/mutation_upgrade/veil/railgun/on_structure_update(previous_amount, new_amount)
 	. = ..()

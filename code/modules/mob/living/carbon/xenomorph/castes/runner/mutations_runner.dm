@@ -317,7 +317,7 @@
 //*********************//
 /datum/mutation_upgrade/veil/headslam
 	name = "Head Slam"
-	desc = "Savage decreases the stun duration by 75%, but now confuses and blurs your target's vision for 1/2/3 seconds."
+	desc = "Pounce decreases the stun duration by 75%, but now confuses and blurs your target's vision for 1/2/3 seconds."
 	/// The amount to divide stun and immobilize duration by.
 	var/stun_duration_divisible = 4
 	/// For each structure, the additional amount of seconds to confuse and blur by.
@@ -326,7 +326,7 @@
 /datum/mutation_upgrade/veil/headslam/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Savage decreases the stun duration by [100 - (100 / stun_duration_divisible)]%, but now confuses and blurs your target's vision for [crowd_control_per_structure * new_amount] seconds."
+	return "Pounce decreases the stun duration by [100 - (100 / stun_duration_divisible)]%, but now confuses and blurs your target's vision for [crowd_control_per_structure * new_amount] seconds."
 
 /datum/mutation_upgrade/veil/headslam/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]

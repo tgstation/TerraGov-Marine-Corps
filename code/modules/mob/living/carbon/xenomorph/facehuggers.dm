@@ -660,7 +660,7 @@
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/fire_act(burn_level)
-	if(!fire_immune)
+	if(fire_immune)
 		return
 	kill_hugger()
 

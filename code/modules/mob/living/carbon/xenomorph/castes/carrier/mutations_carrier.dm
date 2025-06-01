@@ -12,7 +12,7 @@
 /datum/mutation_upgrade/shell/shared_jelly/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "If you are under the effect of Resin Jelly, all thrown huggers gain fire immunity. Each thrown hugger reduce the duration of the effect by [fire_immunity_transfer_initial + (fire_immunity_transfer_per_structure * new_amount)] seconds."
+	return "If you are under the effect of Resin Jelly, all thrown huggers gain fire immunity. Each thrown hugger reduce the duration of the effect by [(fire_immunity_transfer_initial + (fire_immunity_transfer_per_structure * new_amount)) / 10] seconds."
 
 /datum/mutation_upgrade/shell/shared_jelly/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/throw_hugger/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/throw_hugger]
@@ -170,4 +170,4 @@
 	var/datum/action/ability/xeno_action/spawn_hugger/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/spawn_hugger]
 	if(!ability)
 		return FALSE
-	ability.health_cost -= (new_amount - previous_amount) * damage_per_structure
+	ability.health_cost += (new_amount - previous_amount) * damage_per_structure

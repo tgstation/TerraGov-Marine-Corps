@@ -56,6 +56,8 @@
 /datum/mutation_upgrade/shell/flame_cloak/proc/get_fire_in_turf(turf/turf_to_search)
 	var/obj/fire/longest_lasting_fire
 	for(var/obj/fire/fire_in_turf in turf_to_search)
+		if(QDELING(fire_in_turf))
+			continue
 		if(!longest_lasting_fire)
 			longest_lasting_fire = fire_in_turf
 			continue
@@ -108,7 +110,7 @@
 		return FALSE
 	ability.should_slash = FALSE
 	ability.charge_damage -= initial(ability.charge_damage)
-	ability.should_slash -= initial(ability.stack_damage)
+	ability.stack_damage -= initial(ability.stack_damage)
 	ability.pierces_mobs = TRUE
 	return ..()
 
@@ -118,7 +120,7 @@
 		return FALSE
 	ability.should_slash = initial(ability.should_slash)
 	ability.charge_damage += initial(ability.charge_damage)
-	ability.should_slash += initial(ability.stack_damage)
+	ability.stack_damage += initial(ability.stack_damage)
 	ability.pierces_mobs = initial(ability.pierces_mobs)
 	return ..()
 

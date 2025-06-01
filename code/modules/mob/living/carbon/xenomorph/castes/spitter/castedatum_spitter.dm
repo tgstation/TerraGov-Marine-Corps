@@ -107,6 +107,12 @@
 		/datum/action/ability/xeno_action/acid_mine/gas_mine,
 	)
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/self_explosion,
+		/datum/mutation_upgrade/spur/blood_grenades,
+		/datum/mutation_upgrade/veil/repurposed_capacity
+	)
+
 /datum/xeno_caste/spitter/globadier/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

@@ -114,7 +114,7 @@
 	var/bonus_damage = 0
 
 /datum/action/ability/activable/xeno/scatter_spit/use_ability(atom/target)
-	if(!do_after(xeno_owner, 0.5 SECONDS, NONE, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno_owner, cast_time, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	//Shoot at the thing
