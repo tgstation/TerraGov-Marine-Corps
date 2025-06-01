@@ -822,7 +822,6 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/vendor_bundle/basic_jaeger = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -891,7 +890,6 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic_engineer = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/vendor_bundle/basic_jaeger_engineer = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/item/clothing/glasses/welding = list(CAT_GLA, "Welding Goggles", 0, "white"),
 		/obj/item/clothing/glasses/meson = list(CAT_GLA, "Optical Meson Scanner", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
@@ -960,7 +958,6 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic_medic = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/vendor_bundle/basic_jaeger_medic = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -1014,7 +1011,6 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic_smartgunner = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/vendor_bundle/basic_jaeger_smartgunner = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials_smartgunner = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -1070,7 +1066,6 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 GLOBAL_LIST_INIT(specialist_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic_squadleader = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/vendor_bundle/basic_jaeger_squadleader = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -1135,7 +1130,6 @@ GLOBAL_LIST_INIT(specialist_clothes_listed_products, list(
 GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic_squadleader = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/vendor_bundle/basic_jaeger_squadleader = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -1148,9 +1142,6 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/jaeger_gungnir = list(CAT_AMR, "Jaeger Gungnir heavy armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/jaeger_assault = list(CAT_AMR, "Jaeger Assault heavy armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/jaeger_eod = list(CAT_AMR, "Jaeger EOD heavy armor kit", 0, "orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
@@ -1299,13 +1290,9 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(som_standard_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/som/basic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/som/light_armor = list(CAT_AMR, "M-11 Scout Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/medium_armor = list(CAT_AMR, "M-21 Battle Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/heavy_armor = list(CAT_AMR, "M-31 Heavy Battle Armor", 0, "Orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/satchel/som = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
@@ -1343,13 +1330,9 @@ GLOBAL_LIST_INIT(som_standard_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(som_medic_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/som/basic_medic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/som/light_armor = list(CAT_AMR, "M-11 Scout Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/medium_armor = list(CAT_AMR, "M-21 Battle Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/heavy_armor = list(CAT_AMR, "M-31 Heavy Battle Armor", 0, "Orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/lightpack/som = list(CAT_BAK, "Rucksack", 0, "white"),
 		/obj/item/storage/backpack/satchel/som = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "Corpsman white vest", 0, "black"),
@@ -1380,13 +1363,9 @@ GLOBAL_LIST_INIT(som_medic_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(som_engineer_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/som/basic_engineer = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/som/light_armor/engineer = list(CAT_AMR, "M-11 Scout Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/medium_armor/engineer = list(CAT_AMR, "M-21 Battle Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/heavy_armor/engineer = list(CAT_AMR, "M-31 Heavy Battle Armor", 0, "Orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/clothing/glasses/welding = list(CAT_GLA, "Welding Goggles", 0, "white"),
 		/obj/item/clothing/glasses/meson = list(CAT_GLA, "Optical Meson Scanner", 0, "white"),
 		/obj/item/storage/backpack/lightpack/som = list(CAT_BAK, "Rucksack", 0, "black"),
@@ -1431,13 +1410,9 @@ GLOBAL_LIST_INIT(som_engineer_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(som_veteran_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/som/basic_veteran = list(CAT_STD, "Standard Veteran Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/som/light_armor/veteran = list(CAT_AMR, "M-11 Scout Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/medium_armor/veteran = list(CAT_AMR, "M-21 Battle Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/heavy_armor/veteran = list(CAT_AMR, "M-31 Heavy Battle Armor", 0, "Orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/clothing/glasses/meson = list(CAT_GLA, "Optical Meson Scanner", 0, "white"),
 		/obj/item/storage/backpack/lightpack/som = list(CAT_BAK, "Rucksack", 0, "white"),
 		/obj/item/storage/backpack/satchel/som = list(CAT_BAK, "Satchel", 0, "black"),
@@ -1477,13 +1452,9 @@ GLOBAL_LIST_INIT(som_veteran_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(som_leader_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/som/basic_leader = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/som/light_armor/leader = list(CAT_AMR, "M-11 Scout Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/medium_armor/leader = list(CAT_AMR, "M-21 Battle Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/som/heavy_armor/leader = list(CAT_AMR, "M-35 Heavy Combat Armor", 0, "White"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/lightpack/som = list(CAT_BAK, "Rucksack", 0, "white"),
 		/obj/item/storage/backpack/satchel/som = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
@@ -1523,13 +1494,9 @@ GLOBAL_LIST_INIT(som_leader_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(vsd_standard_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/vsd/basic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/vsd/light_armor = list(CAT_AMR, "Crasher Light Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/vsd/medium_armor = list(CAT_AMR, "Crasher Medium Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/vsd/heavy_armor = list(CAT_AMR, "Crasher Heavy Armor", 0, "Orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/lightpack/vsd = list(CAT_BAK, "Combat Backpack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
@@ -1555,13 +1522,9 @@ GLOBAL_LIST_INIT(vsd_standard_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(vsd_medic_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/vsd/basic_medic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/vsd/light_armor = list(CAT_AMR, "Crasher Light Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/vsd/medium_armor = list(CAT_AMR, "Crasher Medium Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/vsd/heavy_armor = list(CAT_AMR, "Crasher Heavy Armor", 0, "Orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/lightpack/vsd = list(CAT_BAK, "Combat Backpack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/brown_vest = list(CAT_WEB, "Tactical brown vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "Corpsman white vest", 0, "orange"),
@@ -1578,13 +1541,9 @@ GLOBAL_LIST_INIT(vsd_medic_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(vsd_engineer_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/vsd/basic_engineer = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/vsd/light_armor = list(CAT_AMR, "Crasher Light Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/vsd/medium_armor = list(CAT_AMR, "Crasher Medium Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/vsd/heavy_armor = list(CAT_AMR, "Crasher Heavy Armor", 0, "Orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/clothing/glasses/welding = list(CAT_GLA, "Welding Goggles", 0, "white"),
 		/obj/item/clothing/glasses/meson = list(CAT_GLA, "Optical Meson Scanner", 0, "white"),
 		/obj/item/storage/backpack/lightpack/vsd = list(CAT_BAK, "Combat Backpack", 0, "orange"),
@@ -1621,13 +1580,9 @@ GLOBAL_LIST_INIT(vsd_engineer_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(vsd_specialist_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/vsd/basic_specialist = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/vsd/light_armor = list(CAT_AMR, "Crasher Light Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/vsd/medium_armor = list(CAT_AMR, "Crasher Medium Armor", 0, "Orange"),
 		/obj/effect/vendor_bundle/vsd/heavy_armor = list(CAT_AMR, "Crasher Heavy Armor", 0, "Orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/lightpack/vsd = list(CAT_BAK, "Combat Backpack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
@@ -1653,12 +1608,8 @@ GLOBAL_LIST_INIT(vsd_specialist_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(vsd_leader_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/vsd/basic_leader = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/vsd/juggernaut_armor = list(CAT_AMR, "Crasher 'Juggernaut' Ballistic Armor", 0, "orange"),
 		/obj/effect/vendor_bundle/vsd/syndicate_armor = list(CAT_AMR, "Crasher 'Syndicate' EOD Ballistic Armor", 0, ""),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/lightpack/vsd = list(CAT_BAK, "Combat Backpack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
@@ -1684,11 +1635,7 @@ GLOBAL_LIST_INIT(vsd_leader_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(pmc_standard_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/pmc/basic = list(CAT_STD, "Standard PMC Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/pmc/standard_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "white"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
@@ -1715,11 +1662,7 @@ GLOBAL_LIST_INIT(pmc_standard_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(pmc_engineer_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/pmc/basic = list(CAT_STD, "Standard PMC Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
-		/obj/effect/vendor_bundle/pmc/standard_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "orange"),,
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
+		/obj/effect/vendor_bundle/pmc/standard_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "orange"),
 		/obj/item/clothing/mask/gas/pmc = list(CAT_MAS, "M8 pattern armored balaclava", 0,"white"),
 		/obj/item/clothing/glasses/welding = list(CAT_GLA, "Welding Goggles", 0, "white"),
 		/obj/item/clothing/glasses/meson = list(CAT_GLA, "Optical Meson Scanner", 0, "white"),
@@ -1751,11 +1694,7 @@ GLOBAL_LIST_INIT(pmc_engineer_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(pmc_gunner_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/pmc/basic = list(CAT_STD, "Standard PMC Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
-		/obj/effect/vendor_bundle/pmc/gunner_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "orange"),,
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
+		/obj/effect/vendor_bundle/pmc/gunner_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "orange"),
 		/obj/item/clothing/mask/gas/pmc = list(CAT_MAS, "M8 pattern armored balaclava", 0,"white"),
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
@@ -1782,11 +1721,7 @@ GLOBAL_LIST_INIT(pmc_gunner_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(pmc_sniper_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/pmc/basic = list(CAT_STD, "Standard PMC Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
-		/obj/effect/vendor_bundle/pmc/sniper_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "orange"),,
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
+		/obj/effect/vendor_bundle/pmc/sniper_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "orange"),
 		/obj/item/clothing/mask/gas/pmc = list(CAT_MAS, "M8 pattern armored balaclava", 0,"white"),
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
@@ -1813,11 +1748,7 @@ GLOBAL_LIST_INIT(pmc_sniper_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(pmc_medic_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/pmc/basic = list(CAT_STD, "Standard PMC Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/pmc/standard_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/clothing/mask/gas/pmc = list(CAT_MAS, "M8 pattern armored balaclava", 0,"white"),
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "Corpsman white vest", 0, "black"),
@@ -1833,11 +1764,7 @@ GLOBAL_LIST_INIT(pmc_medic_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(pmc_leader_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/pmc/basic_leader = list(CAT_STD, "Standard PMC Kit", 0, "white"),
-		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/pmc/leader_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "orange"),
-		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
-		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/clothing/mask/gas/pmc/leader = list(CAT_MAS, "M8 pattern armored balaclava", 0,"white"),
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "Corpsman white vest", 0, "black"),
