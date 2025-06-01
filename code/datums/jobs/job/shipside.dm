@@ -91,8 +91,10 @@ Godspeed, Commander! And remember, you are not above the law."}
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 	head = /obj/item/clothing/head/modular/robot
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/leadership
@@ -190,8 +192,10 @@ Make the NTC proud!"}
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	wear_suit = /obj/item/clothing/suit/modular/robot
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 	head = /obj/item/clothing/head/modular/robot
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/fieldcommand
@@ -336,8 +340,10 @@ Make the NTC proud!"}
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	wear_suit = /obj/item/clothing/suit/modular/robot
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 	head = /obj/item/clothing/head/modular/robot
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/fieldcommand
@@ -427,8 +433,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 	head = /obj/item/clothing/head/modular/robot
 	r_pocket = /obj/item/storage/pouch/general/large
 	l_pocket = /obj/item/binoculars/tactical
@@ -585,10 +593,13 @@ Try to ensure the Tadpole's survival. In the case of its destruction, you may re
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 	head = /obj/item/clothing/head/modular/robot
 	r_pocket = /obj/item/storage/pouch/general/large
+
 
 //Pilot Officer
 /datum/job/terragov/command/pilot
@@ -1220,8 +1231,10 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1312,8 +1325,10 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1407,8 +1422,10 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 
 /datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
