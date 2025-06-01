@@ -264,3 +264,59 @@
       performance clientside and serverside
   - code_imp: the Req ui will now stretch it's buttons
   - qol: Centered and aligned many things on the req menu
+2025-05-20:
+  Lumipharon:
+  - rscadd: Added a few more hazards for NPCs to look out for
+2025-05-21:
+  Lumipharon:
+  - qol: NPC's move around far less, when escorting someone
+  - bugfix: NPC's path more accurately towards their target
+  - bugfix: NPC's will generally avoid going into lava unless they have no choice
+  - bugfix: fixed some bad behaviors in npc behavior
+  Zar000:
+  - qol: Any T3 with pheros can now become a ruler
+  - code_imp: Evolving to Queen turns you into the ruler. Even if Shrike or other
+      ruler already existed
+  - refactor: Refactored how the game handles the current hive ruler
+2025-05-23:
+  Lumipharon:
+  - bugfix: fixed NPC's not putting out melting fire and intoxication
+  - balance: Standard (i.e. nonfolding) plasteel cades give 1 plasteel on destruction
+      instead of 2
+  - bugfix: Improved NPC obstacles avoidance for friendly and indestructable obstacles
+2025-05-24:
+  Isy232:
+  - balance: Hunter HP 330 => 310, Mirage CD 33 => 30, Stealth AP 20 => 10.
+  TiviPlus:
+  - code_imp: MLRS is no longer a child of the howitzer in code
+  Wisemonster:
+  - rscdel: Removed mech weapons from the riptide cave ship
+  - rscdel: Removed intelligence computer on the riptide cave ship
+  timothymtorres:
+  - balance: HEFA grenades no longer instakill every xeno (minus crusher/king) if
+      grenade explodes on the same tile as xeno. Decreased HEFA grenades firing 50
+      pellets to 30 pellets, which still kills most T1/T2s at full health, and can
+      kill T3/T4s if lower than half health.
+2025-05-26:
+  Lumipharon:
+  - bugfix: Monkeys no longer do hugely more melee damage than intended
+  - bugfix: Monkeys have pass low structure again
+  - bugfix: Monkeys have stamina
+  Vany3045:
+  - balance: HvH heavy robot armor now has medium slowdown, and additional +5 soft
+      armor for lasers.
+  - imageadd: new TDF robot armor sprites for HvH.
+  breadhunt:
+  - balance: Electrified razorwire has a cooldown, instead of being applied as fast
+      as you can accidentally walk into it
+2025-05-28:
+  Atropos:
+  - bugfix: fixed defiler's inject egg ability not selecting
+  blackdav123:
+  - balance: Harmful weather will now warn 60 seconds before hitting instead of 30.
+2025-05-29:
+  Lumipharon:
+  - balance: A couple of minor tweaks to NPC medic/engie loadouts
+2025-05-30:
+  ivanmixo:
+  - refactor: Sticky items/grenades are now a component
