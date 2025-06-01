@@ -164,6 +164,10 @@
 			to_chat(user, span_info("[src]'s module sockets seem bolted down."))
 			return FALSE
 		attempt_upgrade(upgrade,user)
+	if((user.a_intent != INTENT_HARM) || (I.item_flags & NOBLUDGEON) || !(I.force))
+		return FALSE
+	. = TRUE
+	sabotage(user, I)
 
 /obj/machinery/miner/welder_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -367,6 +371,9 @@
 
 /obj/machinery/miner/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
+	sabotage(user, I)
+
+/obj/machinery/miner/proc/sabotage(mob/living/user, obj/item/I)
 	if(faction == user.faction)
 		user.visible_message(span_notice("This miner belongs to your faction already."))
 		return

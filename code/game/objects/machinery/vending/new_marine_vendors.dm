@@ -1506,40 +1506,6 @@
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 	)
 
-/obj/effect/vendor_bundle/robot/essentials
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/robotic,
-		/obj/item/tool/weldingtool,
-		/obj/item/stack/cable_coil,
-
-	)
-
-
-/obj/effect/vendor_bundle/robot/essentials_smartgunner
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/robotic,
-		/obj/item/tool/weldingtool,
-		/obj/item/stack/cable_coil,
-	)
-
-/obj/effect/vendor_bundle/robot/light_armor
-	gear_to_spawn = list(
-		/obj/item/clothing/suit/modular/robot/light,
-		/obj/item/clothing/head/modular/robot/light,
-	)
-
-/obj/effect/vendor_bundle/robot/medium_armor
-	gear_to_spawn = list(
-		/obj/item/clothing/suit/modular/robot,
-		/obj/item/clothing/head/modular/robot,
-	)
-
-/obj/effect/vendor_bundle/robot/heavy_armor
-	gear_to_spawn = list(
-		/obj/item/clothing/suit/modular/robot/heavy,
-		/obj/item/clothing/head/modular/robot/heavy,
-	)
-
 // SOM vendor bundles
 /obj/effect/vendor_bundle/som/engi
 	gear_to_spawn = list(
