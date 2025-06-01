@@ -936,25 +936,6 @@
 		/obj/item/stack/cable_coil,
 	)
 
-/obj/effect/vendor_bundle/robot/light_armor
-	gear_to_spawn = list(
-		/obj/item/clothing/suit/modular/robot/light,
-		/obj/item/clothing/head/modular/robot/light,
-	)
-
-/obj/effect/vendor_bundle/robot/medium_armor
-	gear_to_spawn = list(
-		/obj/item/clothing/suit/modular/robot,
-		/obj/item/clothing/head/modular/robot,
-	)
-
-/obj/effect/vendor_bundle/robot/heavy_armor
-	gear_to_spawn = list(
-		/obj/item/clothing/suit/modular/robot/heavy,
-		/obj/item/clothing/head/modular/robot/heavy,
-	)
-
-
 
 #undef DEFAULT_TOTAL_BUY_POINTS
 #undef MEDIC_TOTAL_BUY_POINTS
