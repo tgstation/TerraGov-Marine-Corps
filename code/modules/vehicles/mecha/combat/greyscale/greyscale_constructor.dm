@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	req_access = list(ACCESS_MARINE_MECH)
 
 	///current selected name for the mech
-	var/selected_name = "TGMC Combat Mech"
+	var/selected_name = "NTC Combat Mech"
 	///STRING-STRING list of mech_slot-primary_color_palette
 	var/list/selected_primary = list(
 		MECH_GREY_TORSO = MECH_GREY_PRIMARY_DEFAULT,
@@ -327,9 +327,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 		if("assemble")
 			var/mob/living/user = usr
-			if(HAS_TRAIT(user, TRAIT_HAS_SPAWNED_MECH))
-				tgui_alert(user, "You have already deployed a mech!")
-				return FALSE
+			// if(HAS_TRAIT(user, TRAIT_HAS_SPAWNED_MECH))
+			//	tgui_alert(user, "You have already deployed a mech!")
+			//	return FALSE
 			if(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA))
 				return FALSE
 			for(var/key in selected_primary)
@@ -351,7 +351,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, FALSE)
 			if(!isspatialagentjob(user.job))
 				S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
-				ADD_TRAIT(usr, TRAIT_HAS_SPAWNED_MECH, MECH_VENDOR_TRAIT)
+				// ADD_TRAIT(usr, TRAIT_HAS_SPAWNED_MECH, MECH_VENDOR_TRAIT)
 			return TRUE
 
 		if("add_weapon")
@@ -464,6 +464,14 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		var/new_type = selected_equipment[MECHA_L_ARM]
 		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
 		new_gun.attach(mech)
+	if(selected_equipment[MECHA_L_BACK])
+		var/new_type = selected_equipment[MECHA_L_BACK]
+		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
+		new_gun.attach(mech)
+	if(selected_equipment[MECHA_R_BACK])
+		var/new_type = selected_equipment[MECHA_R_BACK]
+		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
+		new_gun.attach(mech, TRUE)
 	if(selected_equipment[MECHA_R_ARM])
 		var/new_type = selected_equipment[MECHA_R_ARM]
 		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type

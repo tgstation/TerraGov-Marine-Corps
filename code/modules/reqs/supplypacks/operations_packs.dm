@@ -1,3 +1,4 @@
+
 /*******************************************************************************
 OPERATIONS
 *******************************************************************************/
@@ -45,15 +46,8 @@ OPERATIONS
 	cost = 200
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/xeno_iff_tag
-	name = "Xenomorph IFF tag crate" //Intended for corrupted or friendly rounies as rounds sometimes turn out. Avoid abuse or I'll have to admin-only it, which is no fun!
-	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Nanotrasen is not responsible for incidents related to attaching this to hostile entities."
-	contains = list(/obj/item/xeno_iff_tag)
-	access = ACCESS_MARINE_BRIDGE //Better be safe.
-	cost = 130
-
 /datum/supply_packs/operations/deployable_camera
-	name = "3 deployable cameras"
+	name = "3 Deployable Cameras"
 	contains = list(
 		/obj/item/deployable_camera,
 		/obj/item/deployable_camera,
@@ -62,14 +56,14 @@ OPERATIONS
 	cost = 20
 
 /datum/supply_packs/operations/exportpad
-	name = "ASRS bluespace export point"
+	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
 	cost = 300
 
 /datum/supply_packs/operations/warhead_cluster
 	name = "Cluster orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/cluster)
-	cost = 200
+	cost = 350
 	access = ACCESS_MARINE_ENGINEERING
 	containertype = /obj/structure/closet/crate/secure/explosives
 	available_against_xeno_only = TRUE
@@ -77,7 +71,7 @@ OPERATIONS
 /datum/supply_packs/operations/warhead_explosive
 	name = "HE orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/explosive)
-	cost = 300
+	cost = 500
 	access = ACCESS_MARINE_ENGINEERING
 	containertype = /obj/structure/closet/crate/secure/explosives
 	available_against_xeno_only = TRUE
@@ -85,7 +79,7 @@ OPERATIONS
 /datum/supply_packs/operations/warhead_incendiary
 	name = "Incendiary orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/incendiary)
-	cost = 200
+	cost = 350
 	access = ACCESS_MARINE_ENGINEERING
 	containertype = /obj/structure/closet/crate/secure/explosives
 	available_against_xeno_only = TRUE
@@ -101,19 +95,19 @@ OPERATIONS
 /datum/supply_packs/operations/ob_fuel
 	name = "Solid fuel"
 	contains = list(/obj/structure/ob_ammo/ob_fuel)
-	cost = 50
+	cost = 75
 	access = ACCESS_MARINE_ENGINEERING
 	containertype = /obj/structure/closet/crate/secure/explosives
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/droppod
-	name = "Zeus orbital drop pod"
+	name = "drop pod"
 	contains = list(/obj/structure/droppod)
 	containertype = null
 	cost = 50
 
 /datum/supply_packs/operations/droppod_leader
-	name = "Zeus command drop pod"
+	name = "leader drop pod"
 	contains = list(/obj/structure/droppod/leader)
 	containertype = null
 	cost = 100
@@ -125,16 +119,44 @@ OPERATIONS
 	cost = 200
 
 /datum/supply_packs/operations/supply_tablet
-	name = "Supply tablet"
+	name = "Supply Tablet"
 	contains = list(/obj/item/supplytablet)
 	cost = 50
 
 /datum/supply_packs/operations/tadpole_electronics
-	name = "Tadpole navigation electronics"
+	name = "Tadpole Navigation Electronics"
 	contains = list(/obj/item/circuitboard/tadpole)
 	cost = 750
 
 /datum/supply_packs/operations/rappel_rope
-	name = "Tadpole rappel system cord"
+	name = "Spare Tadpole rappel system cord"
 	contains = list(/obj/item/spare_cord)
 	cost = 300
+
+/datum/supply_packs/imports/loot_pack
+	name = "Corporate Loot Pack"
+	notes = "Contains a random, but curated set of items, these packs are valued around 150 to 200 points. Some items can only be acquired from these. Spend responsibly."
+	contains = list(/obj/item/loot_box/tgmclootbox)
+	cost = 800 //discounted by 200
+
+/datum/supply_packs/operations/monkeyboxes
+	name = "Monkey Cube Box"
+	contains = list(/obj/item/storage/box/monkeycubes)
+	cost = 300
+
+/datum/supply_packs/operations/droppod_mech
+	name = "mech drop pod"
+	contains = list(/obj/structure/droppod/nonmob/mech_pod)
+	containertype = null
+	cost = 200
+
+/datum/supply_packs/operations/xeno_iff_tag
+	name = "Xenomorph IFF tag crate" //Intended for corrupted or friendly rounies as rounds sometimes turn out. Avoid abuse or I'll have to admin-only it, which is no fun!
+	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Ninetails is not responsible for incidents related to attaching this to hostile entities."
+	contains = list(
+		/obj/item/xeno_iff_tag,
+		/obj/item/xeno_iff_tag,
+		/obj/item/xeno_iff_tag,
+	)
+	access = ACCESS_MARINE_BRIDGE //Better be safe.
+	cost = 50

@@ -1,0 +1,4 @@
+author: "FriedrichRatzel"
+delete-after: True
+changes:
+  - config: "Zombie crash was disabled."

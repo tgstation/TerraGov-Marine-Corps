@@ -74,10 +74,31 @@
 	user.forceMove(linked_point.loc)
 
 /obj/structure/patrol_point/tgmc_11
-	id = "TGMC_1"
+	id = "NTC_11"
+
+/obj/structure/patrol_point/tgmc_12
+	id = "NTC_12"
+
+/obj/structure/patrol_point/tgmc_13
+	id = "NTC_13"
+
+/obj/structure/patrol_point/tgmc_14
+	id = "NTC_14"
 
 /obj/structure/patrol_point/tgmc_21
-	id = "TGMC_2"
+	id = "NTC_21"
+	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/tgmc_22
+	id = "NTC_22"
+	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/tgmc_23
+	id = "NTC_23"
+	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/tgmc_24
+	id = "NTC_24"
 	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/som_11

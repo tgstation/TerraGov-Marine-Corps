@@ -1,7 +1,7 @@
 
 /obj/vehicle/unmanned
 	name = "UV-L Iguana"
-	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies."
+	desc = "A small remote-controllable vehicle, usually owned by the NTC and other major armies."
 	icon = 'icons/obj/unmanned_vehicles.dmi'
 	icon_state = "light_uv"
 	anchored = FALSE
@@ -157,7 +157,7 @@
 		to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
 		return
 	user.visible_message(span_notice("[user] starts to remove [initial(turret_path.name)] from [src]"),	span_notice("You start to remove [initial(turret_path.name)] from [src]"))
-	if(!do_after(user, 3 SECONDS, NONE, src))
+	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return
 	var/obj/item/equipment = new turret_path
 	user.visible_message(span_notice("[user] removes [equipment] from [src]."),
@@ -183,7 +183,7 @@
 		to_chat(user, span_warning("The [src] ammo storage is already full!"))
 		return
 	user.visible_message(span_notice("[user] starts to reload [src] with [reload_ammo]."), span_notice("You start to reload [src] with [reload_ammo]."))
-	if(!do_after(user, 3 SECONDS, NONE, src))
+	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return
 	current_rounds = current_rounds + reload_ammo.current_rounds
 	if(current_rounds > max_rounds)
@@ -209,7 +209,7 @@
 			return
 	user.visible_message(span_notice("[user] starts to attach [I] to [src]."),
 	span_notice("You start to attach [I] to [src]."))
-	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 	turret_path = I.type
 	if(istype(I, /obj/item/uav_turret))

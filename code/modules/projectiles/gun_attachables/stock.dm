@@ -116,6 +116,13 @@
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/sh23
+	name = "\improper SH-23 stock"
+	desc = "A irremovable SH-23 stock."
+	icon_state = "sh23"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/icc_pdw
 	name = "\improper L-40 stock"
 	desc = "A irremovable L-40 stock."
@@ -232,3 +239,10 @@
 	recoil_mod = -2
 	pixel_shift_x = 30
 	pixel_shift_y = 14
+
+/obj/item/attachable/stock/at45stock
+	name = "\improper CC/AT45 stock"
+	desc = "A stock for a CC/AT45."
+	icon_state = "at45"
+	pixel_shift_x = 0
+	pixel_shift_y = 0
