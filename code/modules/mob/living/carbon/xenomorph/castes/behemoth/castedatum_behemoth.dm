@@ -57,9 +57,7 @@
 	buyable_mutations = list(
 		/datum/mutation_upgrade/shell/rocky_layers,
 		/datum/mutation_upgrade/spur/refined_palate,
-		/datum/mutation_upgrade/spur/upclose,
-		/datum/mutation_upgrade/spur/volcanic_fissure,
-		/datum/mutation_upgrade/veil/rush_down
+		/datum/mutation_upgrade/veil/avalanche
 	)
 
 /datum/xeno_caste/behemoth/normal
