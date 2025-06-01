@@ -1,5 +1,5 @@
 /datum/ai_behavior/xeno/illusion
-	target_distance = 15 //We attack only nearby
+	target_distance = 3 //We attack only nearby
 	base_action = ESCORTING_ATOM
 	is_offered_on_creation = FALSE
 	/// How close a human has to be in order for illusions to react
