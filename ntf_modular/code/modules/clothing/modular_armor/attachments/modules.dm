@@ -132,6 +132,6 @@ warning: overcharging too much will result in an explosion, accumulated energy d
 	blocked_attack_types = list(BULLET)
 	shield_color_low = COLOR_MAROON
 	shield_color_mid = COLOR_OLIVE
-	shield_color_full = COLOR_VIVID_YELLOW
+	shield_color_full = COLOR_LIGHT_ORANGE
 	shield_color_overmax_full = COLOR_VERY_SOFT_YELLOW
 	shield_color_overmax_full_danger = COLOR_BRIGHT_ORANGE
