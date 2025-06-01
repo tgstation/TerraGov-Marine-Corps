@@ -451,18 +451,18 @@
 		var/mob/living/living_target = atom_target
 		if(living_target.mob_size >= MOB_SIZE_BIG)
 			fling_distance--
-		if(living_target.issamexenohive(xeno_owner))
-			if(friendly_cooldown_reduction_percentage)
-				cooldown_to_set -= (cooldown_to_set * friendly_cooldown_reduction_percentage)
-			continue
-		living_target.add_pass_flags(PASS_XENO, THROW_TRAIT)
-		shake_camera(living_target, 1, 1)
-		living_target.adjust_stagger(WARRIOR_GRAPPLE_TOSS_STAGGER)
-		living_target.add_slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
-		living_target.adjust_blurriness(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
-		living_target.Paralyze(WARRIOR_GRAPPLE_TOSS_THROW_PARALYZE) // very important otherwise the guy can move right as you throw them
-		RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
-		RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_ended))
+		if(!living_target.issamexenohive(xeno_owner))
+			living_target.add_pass_flags(PASS_XENO, THROW_TRAIT)
+			shake_camera(living_target, 1, 1)
+			living_target.adjust_stagger(WARRIOR_GRAPPLE_TOSS_STAGGER)
+			living_target.add_slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
+			living_target.adjust_blurriness(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
+			living_target.Paralyze(WARRIOR_GRAPPLE_TOSS_THROW_PARALYZE) // very important otherwise the guy can move right as you throw them
+			RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
+			RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_ended))
+		else if(friendly_cooldown_reduction_percentage)
+			cooldown_to_set -= (cooldown_to_set * friendly_cooldown_reduction_percentage)
+
 	xeno_owner.face_atom(atom_target)
 	atom_target.forceMove(get_turf(xeno_owner))
 	xeno_owner.do_attack_animation(atom_target, ATTACK_EFFECT_DISARM2)
