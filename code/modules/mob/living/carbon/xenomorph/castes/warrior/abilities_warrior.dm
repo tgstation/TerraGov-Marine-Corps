@@ -463,7 +463,6 @@
 		living_target.Paralyze(WARRIOR_GRAPPLE_TOSS_THROW_PARALYZE) // very important otherwise the guy can move right as you throw them
 		RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
 		RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_ended))
-
 	xeno_owner.face_atom(atom_target)
 	atom_target.forceMove(get_turf(xeno_owner))
 	xeno_owner.do_attack_animation(atom_target, ATTACK_EFFECT_DISARM2)
@@ -473,7 +472,6 @@
 	add_cooldown(cooldown_to_set)
 	var/datum/action/ability/activable/xeno/warrior/fling/fling_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/warrior/fling]
 	fling_action?.add_cooldown(cooldown_to_set)
-
 
 // ***************************************
 // *********** Punch
