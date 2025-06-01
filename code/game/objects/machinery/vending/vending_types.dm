@@ -233,6 +233,11 @@
 	desc = "Medical Pharmaceutical dispenser. 'Provided' by Novamed Pharmaceuticals."
 	req_access = ACCESS_SOM_MEDICAL
 
+/obj/machinery/vending/medical/kz
+	name = "KZ Medicament Vendor"
+	desc = "Medical Pharmaceutical dispenser. 'Provided' by Novamed Pharmaceuticals."
+	req_access = ACCESS_VSD_MEDPREP
+
 /obj/machinery/vending/medical/shipside
 	isshared = TRUE
 	wrenchable = FALSE

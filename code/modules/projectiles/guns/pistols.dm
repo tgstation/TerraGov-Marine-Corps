@@ -717,6 +717,7 @@
 	aim_slowdown = 0.1
 	scatter = -1
 	scatter_unwielded = 4
+	holstered_underlay_icon = 'ntf_modular/icons/obj/items/storage/holster.dmi'
 
 /obj/item/weapon/gun/pistol/vsd_pistol/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot,/obj/item/attachable/compensator,/obj/item/attachable/lasersight,)
@@ -735,6 +736,8 @@
 	actions_types = null
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,

@@ -807,6 +807,9 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/armor_supply/vsd,
 		/obj/machinery/vending/uniform_supply/vsd,
 		/obj/machinery/vending/MarineMed/vsd,
+		/obj/machinery/vending/medical/kz,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/engivend,
 		/obj/machinery/vending/tool,
 	),
 	VENDOR_FACTION_ICC = list(
