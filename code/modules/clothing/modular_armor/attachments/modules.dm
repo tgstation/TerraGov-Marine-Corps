@@ -141,18 +141,6 @@
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 	slowdown = 0.4
 
-/obj/item/armor_module/module/tyr_extra_armor/old
-	name = "\improper Outdated Mark 1 Tyr Armor Reinforcement"
-	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
-	icon_state = "mod_tyr"
-	worn_icon_state = "mod_tyr_a"
-
-/obj/item/armor_module/module/tyr_extra_armor/old_jaeger
-	name = "\improper Outdated 'Jaeger' Mark 1 Tyr Armor Reinforcement"
-	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
-	icon_state = "mod_tyr_jaeger"
-	worn_icon_state = "mod_tyr_jaeger_a"
-
 /obj/item/armor_module/module/tyr_extra_armor/som
 	name = "\improper Lorica Armor Reinforcement"
 	desc = "Designed for mounting on modular SOM armor. A substantial amount of additional armor plating designed to grant the user extra protection against all forms of damage. Will definitely impact mobility."
@@ -172,10 +160,6 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "tyr_head_xn", /obj/item/clothing/head/modular/tdf = "")
 
-/obj/item/armor_module/module/tyr_head/old
-	name = "Outdated Tyr Helmet System"
-	icon_state = "armor_head"
-	worn_icon_state = "armor_head_a"
 /obj/item/armor_module/module/tyr_extra_armor/som
 	name = "\improper Lorica armor reinforcement system"
 	desc = "Designed for mounting on modular SOM armor. A substantial amount of additional armor plating designed to grant the user extra protection against all forms of damage. Will definitely impact mobility."
@@ -279,18 +263,6 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
 	slowdown = 0
 
-/obj/item/armor_module/module/mimir_environment_protection/old
-	name = "\improper Outdated Mark 1 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds."
-	icon_state = "mod_hazard"
-	worn_icon_state = "mod_hazard_a"
-
-/obj/item/armor_module/module/mimir_environment_protection/old_jaeger
-	name = "\improper Outdated Jaeger Mark 1 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds."
-	icon_state = "mod_hazard_jaeger"
-	worn_icon_state = "mod_hazard_jaeger_a"
-
 //SOM version
 /obj/item/armor_module/module/mimir_environment_protection/som
 	name = "\improper Mithridatius Hostile Environment System"
@@ -321,15 +293,6 @@
 	name = "\improper Mimir Mk.1 environmental resistance system helmet module"
 	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid, as well as biological, and radiological threats. Pairing this with a Mimir helmet module and mask will make the user highly resistant to gas attacks, but will not provide immunity. Will impact mobility."
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
-
-/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/old //gas protection
-	name = "Outdated Mark 1 Mimir Environmental Helmet System"
-	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will provide the user with immunity from xenomorph cloud reagents entering bloodstream."
-	icon_state = "hazard_head"
-	worn_icon_state = "hazard_head_a"
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
-	slowdown = 0
-	slot = ATTACHMENT_SLOT_HEAD_MODULE
 
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor
@@ -369,10 +332,6 @@
 	soft_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-
-/obj/item/armor_module/module/chemsystem
-	name = "Vali chemical enhancement module"
-	desc = "Designed for mounting on modular armor. This experimental module runs on green blood taken from xenos with harvester class weapons; Green blood heals the user and boosts any chems in the suit injection system. \nUse the suit menu to connect harvester class weapons, control the injection system, find chem boost information, and more. Made by NovaMed in conjunction with NineTails."
 
 /obj/item/armor_module/module/chemsystem
 	name = "\improper Vali chemical enhancement module"
@@ -598,15 +557,6 @@
 	shield_color_mid = LIGHT_COLOR_RED_ORANGE
 	shield_color_full = LIGHT_COLOR_ELECTRIC_CYAN
 
-/obj/item/armor_module/module/eshield/old
-	name = "Outdated Svalinn Energy Shield System"
-	icon_state = "mod_shield"
-	worn_icon_state = "mod_shield_a"
-
-/obj/item/armor_module/module/eshield/old_jaeger
-	name = "Outdated Jaeger Svalinn Energy Shield System"
-	icon_state = "mod_shield_jaeger"
-	worn_icon_state = "mod_shield_jaeger_a"
 /*
 	Loki illusion projection
 */

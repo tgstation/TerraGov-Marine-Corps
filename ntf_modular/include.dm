@@ -83,6 +83,7 @@
 #include "code\modules\mob\living\carbon\human\human_defines.dm"
 #include "code\modules\mob\living\carbon\human\update_icons.dm"
 #include "code\modules\mob\living\emote.dm"
+#include "code\modules\mob\living\living_verbs.dm"
 #include "code\modules\mob\ooc_notes.dm"
 #include "code\_DEFINES\ntf_defines.dm"
 #include "code\modules\pixel_shift\code\pixel_shift.dm"

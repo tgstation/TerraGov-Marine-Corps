@@ -13,7 +13,7 @@
 	light_color = LIGHT_COLOR_BLUE
 	faction = VENDOR_FACTION_NEUTRAL
 	var/list/categories = list(
-		"Squad Marine",
+		"Squad Operative",
 		"Squad Engineer",
 		"Squad Corpsman",
 		"Squad Smartgunner",

@@ -52,7 +52,7 @@
 //Base TGMC marine outfit
 /datum/outfit/quick/tgmc/marine
 	name = "TGMC Squad Marine"
-	jobtype = "Squad Marine"
+	jobtype = "Squad Operative"
 
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/black_vest
