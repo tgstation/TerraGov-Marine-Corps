@@ -84,7 +84,7 @@
 	/// The implants this outfit comes with
 	var/list/implants
 	///the species this outfit is designed for
-	var/species = SPECIES_HUMAN
+	var/species = list(SPECIES_HUMAN, SPECIES_COMBAT_ROBOT)
 	/// A list of all the container contents lists, used to save on copypasta, populated in New()
 	var/list/container_list = list()
 

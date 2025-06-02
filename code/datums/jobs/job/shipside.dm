@@ -88,7 +88,7 @@ Godspeed, Commander! And remember, you are not above the law."}
 	back = /obj/item/storage/backpack/marine/satchel/captain_cloak
 
 /datum/outfit/job/command/captain/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
@@ -188,7 +188,7 @@ Make the NTC proud!"}
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
 /datum/outfit/job/command/fieldcommander/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	wear_suit = /obj/item/clothing/suit/modular/robot
@@ -336,7 +336,7 @@ Make the NTC proud!"}
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
 /datum/outfit/job/command/corpseccomander/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	wear_suit = /obj/item/clothing/suit/modular/robot
@@ -430,7 +430,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 
 /datum/outfit/job/command/staffofficer/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
@@ -590,7 +590,7 @@ Try to ensure the Tadpole's survival. In the case of its destruction, you may re
 
 
 /datum/outfit/job/command/vanguard/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
@@ -1228,7 +1228,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 
 /datum/outfit/job/medical/professor/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
@@ -1321,7 +1321,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 
 /datum/outfit/job/medical/medicalofficer/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
@@ -1419,7 +1419,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 
 
 /datum/outfit/job/medical/researcher/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
