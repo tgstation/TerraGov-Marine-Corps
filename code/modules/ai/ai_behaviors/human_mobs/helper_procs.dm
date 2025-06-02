@@ -192,15 +192,14 @@
 /obj/machinery/miner/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	behavior_datum.add_to_engineering_list(src)
 	behavior_datum.human_ai_state_flags |= (HUMAN_AI_BUILDING|HUMAN_AI_NEED_WEAPONS)
+	interactor.a_intent = INTENT_HELP
 	if(miner_status == MINER_DESTROYED)
 		var/obj/item/tool/weldingtool/welder = behavior_datum.mob_inventory.find_tool(TOOL_WELDER)
 		if(welder)
-			interactor.a_intent = INTENT_HELP
 			welder.do_ai_interact(interactor, behavior_datum)
 
 			welder_act(interactor, welder)
 
-			interactor.a_intent = INTENT_HARM
 			if(welder.isOn())
 				welder.toggle()
 
@@ -213,13 +212,18 @@
 	if(miner_status == MINER_MEDIUM_DAMAGE)
 		var/obj/item/tool/wirecutters/cutters = behavior_datum.mob_inventory.find_tool(TOOL_WIRECUTTER)
 		if(cutters)
+			cutters.do_ai_interact(interactor, behavior_datum)
 			wirecutter_act(interactor, cutters)
+			behavior_datum.try_store_item(cutters)
 
 	if(miner_status == MINER_SMALL_DAMAGE)
 		var/obj/item/tool/wrench/wrench = behavior_datum.mob_inventory.find_tool(TOOL_WRENCH)
 		if(wrench)
+			wrench.do_ai_interact(interactor, behavior_datum)
 			wrench_act(interactor, wrench)
+			behavior_datum.try_store_item(wrench)
 
+	interactor.a_intent = INTENT_HARM
 	if(miner_status == MINER_RUNNING)
 		behavior_datum.remove_from_engineering_list(src)
 	behavior_datum.on_engineering_end(src)
