@@ -631,7 +631,9 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	worn_icon_state = "icc"
-	has_sensor = FALSE
+
+/obj/item/clothing/under/icc/som
+	name = "\improper stolen Modelle/30 uniform"
 
 /obj/item/clothing/under/icc/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
