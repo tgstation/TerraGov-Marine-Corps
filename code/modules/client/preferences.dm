@@ -87,9 +87,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/gear
 	var/list/job_preferences = list()
 
+	/*NTF removal
 	//Clothing
 	var/underwear = 1
 	var/undershirt = 1
+	*/
 	var/backpack = BACK_SATCHEL
 
 	//Hair style
@@ -114,17 +116,29 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/g_eyes = 0
 	var/b_eyes = 0
 
+	/// Genitalia overlay system
+	var/genitalia_ass = null
+	var/genitalia_boobs = null
+	var/genitalia_cock = null
+
 	//Species specific
 	var/moth_wings = "Plain"
 
 	//Lore
-	var/citizenship = "Earth Born"
+	var/citizenship = "Phantom City (Earth)"
 	var/religion = "None"
 	var/flavor_text = ""
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
+	var/xeno_desc = ""
+	var/profile_pic = ""
+	var/nsfwprofile_pic = ""
+	var/xenoprofile_pic = ""
+	var/xenogender = 1
+	var/harmful_sex_allowed = TRUE
+	var/burst_screams_enabled = TRUE
 
 	var/list/exp = list()
 	var/list/menuoptions = list()

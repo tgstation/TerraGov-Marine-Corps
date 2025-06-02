@@ -1,0 +1,6 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Added headsets to kz quick outfits"
+  - rscadd: "Added missing armor items to kz vendor"
+  - bugfix: "VSD -> KZ"

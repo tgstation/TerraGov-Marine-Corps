@@ -49,6 +49,7 @@
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten
 	shoes = null
 	gloves = null
@@ -56,6 +57,7 @@
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+*/
 
 /datum/outfit/job/command/fieldcommander_campaign
 	name = FIELD_COMMANDER
@@ -81,11 +83,13 @@
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
 	head = /obj/item/clothing/head/tgmccap/ro
 	r_pocket = /obj/item/storage/pouch/general/large
 	l_pocket = /obj/item/binoculars/tactical
+*/
 
 /datum/outfit/job/command/staffofficer_campaign
 	name = STAFF_OFFICER
@@ -171,8 +175,10 @@
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 
 
 /datum/outfit/job/command/assault_crewman/fallen
@@ -252,8 +258,10 @@
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 
 /datum/outfit/job/medical/professor
 	name = CHIEF_MEDICAL_OFFICER
@@ -279,8 +287,10 @@
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 
 
 /datum/outfit/job/medical/medicalofficer
@@ -308,8 +318,10 @@
 	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 
 /datum/outfit/job/medical/researcher
 	name = MEDICAL_RESEARCHER
@@ -334,8 +346,10 @@
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
+/*NTF removal
 	shoes = null
 	gloves = null
+*/
 
 
 /datum/outfit/job/civilian/liaison

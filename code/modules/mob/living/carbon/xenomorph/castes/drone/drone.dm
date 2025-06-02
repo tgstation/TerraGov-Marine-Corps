@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/drone
 	name = "Drone"
 	desc = "An Alien Drone"
-	icon = 'icons/Xeno/castes/drone.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/drone.dmi'
 	icon_state = "Drone Walking"
 	bubble_icon = "alienleft"
 	health = 120

@@ -31,8 +31,8 @@
 	user?.record_war_crime()
 
 /obj/item/explosive/grenade/phosphorus/upp
-	name = "\improper Type 8 WP grenade"
-	desc = "A deadly gas grenade found within the ranks of the USL. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
+	name = "\improper XM8 WP grenade"
+	desc = "A deadly gas grenade found within the ranks of the KZ. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
 	icon_state = "grenade_upp_wp"
 	worn_icon_state = "grenade_upp_wp"
 	arm_sound = 'sound/weapons/armbombpin_1.ogg'

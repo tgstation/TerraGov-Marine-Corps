@@ -13,6 +13,7 @@
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16
 	bubble_icon = "alienroyal"
+	fiery_stab = TRUE
 
 /mob/living/carbon/xenomorph/pyrogen/Initialize(mapload)
 	. = ..()
