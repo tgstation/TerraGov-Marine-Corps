@@ -42,6 +42,8 @@
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/sniper/svd = 3,
 			/obj/item/ammo_magazine/sniper/svd = 30,
+			/obj/item/weapon/gun/rifle/standard_dmr = -1,
+			/obj/item/ammo_magazine/rifle/standard_dmr = -1,
 			/obj/item/weapon/gun/rifle/chambered = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/weapon/gun/shotgun/pump/lever = -1,
