@@ -23,7 +23,7 @@
 	burst_amount = 1
 	//gonna adjust for no burst fire.
 	windup_delay = 0.3 SECONDS
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.45 SECONDS
 	scatter_unwielded = 4
 	scatter = 1.5
 	damage_mult = 1.2

@@ -43,17 +43,17 @@
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/foxfire, /obj/item/ammo_magazine/rifle/nt_halter/foxfire)
 	cost = 50
 
-/* save until we got faction specific req
 /datum/supply_packs/imports/antienergyshield
 	name = "NTC Anti Energy Shield"
 	contains = list(/obj/item/armor_module/module/eshield/absorbant/energy)
-	cost = 800
+	cost = 1000
 
 /datum/supply_packs/imports/antiballisticshield
 	name = "KZ Anti Ballsitic Shield"
 	contains = list(/obj/item/armor_module/module/eshield/absorbant/ballistic)
-	cost = 800
+	cost = 1000
 
+/* save until we got faction specific req
 /datum/supply_packs/imports/unity
 	name = "NT105 Unity Revolver"
 	contains = list(/obj/item/weapon/gun/pistol/xmdivider/ntc)

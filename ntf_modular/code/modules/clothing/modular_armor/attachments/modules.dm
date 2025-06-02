@@ -21,6 +21,8 @@
 	var/shield_color_overmax_full = COLOR_WHITE
 	var/shield_color_overmax_full_danger = COLOR_VIVID_RED
 	var/last_warning_time
+	var/mitigation_rate = 2
+	var/explode_on_overload = TRUE
 
 /obj/item/armor_module/module/eshield/absorbant/energy
 	name = "NT Voidwalker Anti-Energy Shield System"
@@ -43,7 +45,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 				break
 		if(found_type && shield_health < overcharge_max_health) //power...
 			START_PROCESSING(SSobj, src)
-			shield_health += incoming_damage/2
+			shield_health += incoming_damage/mitigation_rate
 			spark_system.start()
 			if(shield_health > (overcharge_max_health/1.5) && world.time > (last_warning_time + 2 SECONDS))
 				last_warning_time = world.time
@@ -65,7 +67,9 @@ converting the absorbed energy into shield power, warning: overcharging too much
 						affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full_danger))
 			return 0
 		else if(found_type && shield_health > overcharge_max_health)
-			explosion(src.loc,0,0,1,2,0,1,2, smoke = TRUE)
+			if(explode_on_overload)
+				explosion(src.loc,0,0,0,3,0,1,2, smoke = TRUE)
+				empulse(src,0,0,0,3)
 			shield_health = 0
 		STOP_PROCESSING(SSobj, src)
 		deltimer(recharge_timer)

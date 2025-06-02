@@ -27,10 +27,10 @@
 			/obj/item/weapon/gun/rifle/nt_halter = -1,
 			/obj/item/ammo_magazine/rifle/nt_halter = -1,
 			/obj/item/ammo_magazine/rifle/nt_halter/extended = 60,
-			/obj/item/ammo_magazine/rifle/nt_halter/drum = 30,
-			/obj/item/ammo_magazine/rifle/nt_halter/charged = 2,
+			/obj/item/ammo_magazine/rifle/nt_halter/drum = 15,
+			/obj/item/ammo_magazine/rifle/nt_halter/charged = 4,
 			/obj/item/ammo_magazine/rifle/nt_halter/smart = 8,
-			/obj/item/ammo_magazine/rifle/nt_halter/foxfire = 6,
+			/obj/item/ammo_magazine/rifle/nt_halter/foxfire = 8,
 		),
 		"Energy Weapons" = list(
 			/obj/item/cell/lasgun/lasrifle = -1,
