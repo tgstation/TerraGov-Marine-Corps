@@ -3,8 +3,17 @@
 	name = "\improper NTC 'Moonbeam' NL sniper rifle"
 	desc = "A light framed custom made bolt action rifle used by the NTC Specops, featuring a night vision scope... It is only able to fire non lethal rounds designed for it. In cases you wanna be an asshole. Through careful aim allows fire support from behind allies. It can have more types of attachments than standard sniper rifles. Uses 8.6×70mm magazines. Can also shoot regular ammo."
 	icon = 'ntf_modular/icons/obj/items/guns/marksman64.dmi'
-	icon_state = "moonbeam"
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/sniper.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
 	worn_icon_state = "moonbeam"
+	worn_icon_list = list(
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/marksman_right_64.dmi',
+		slot_s_store_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+	)
+	icon_state = "moonbeam"
 	cock_animation = "moonbeam_cock"
 	caliber = CALIBER_86X70 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/chamberedrifle/tranq
@@ -43,7 +52,7 @@
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
-	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 33, "under_y" = 16, "stock_x" = 8, "stock_y" = 12) //Will need alteration.
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 25, "under_x" = 33, "under_y" = 16, "stock_x" = 8, "stock_y" = 12)
 
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/nightvision,
@@ -114,7 +123,11 @@
 	worn_icon_list = list(
 		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/rifles_left_64.dmi',
 		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/rifles_right_64.dmi',
+		slot_s_store_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
 	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
 	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -177,7 +190,7 @@
 
 //standard mag
 /obj/item/ammo_magazine/rifle/nt_halter
-	name = "\improper NT 'Halter' assault rifle magazine (7.62x38mm)"
+	name = "\improper NT 'Halter' magazine (7.62x38mm)"
 	desc = "A magazine filled with 7.62x38mm rifle rounds for the Halter series of firearms."
 	caliber = CALIBER_762X38
 	icon_state = "halter"
@@ -188,7 +201,7 @@
 
 //extended mag
 /obj/item/ammo_magazine/rifle/nt_halter/extended
-	name = "\improper NT 'Halter' assault rifle extended magazine (7.62x38mm)"
+	name = "\improper NT 'Halter' extended magazine (7.62x38mm)"
 	desc = "An extended magazine filled with 7.62x38mm rifle rounds for the Halter series of firearms."
 	max_rounds = 50
 	icon_state = "halter_ex"
@@ -196,7 +209,7 @@
 
 //extended mag
 /obj/item/ammo_magazine/rifle/nt_halter/drum
-	name = "\improper NT 'Halter' assault rifle drum magazine (7.62x38mm)"
+	name = "\improper NT 'Halter' drum magazine (7.62x38mm)"
 	desc = "An drum magazine filled with 7.62x38mm rifle rounds for the Halter series of firearms."
 	max_rounds = 100
 	icon_state = "halter_drum"
@@ -204,7 +217,7 @@
 
 //emp mag
 /obj/item/ammo_magazine/rifle/nt_halter/charged
-	name = "\improper NT 'Halter' assault rifle charged magazine (7.62x38mm Charged)"
+	name = "\improper NT 'Halter' charged magazine (7.62x38mm Charged)"
 	desc = "A magazine filled with specialized 7.62x38mm rifle rounds to deliver a supercharged blast but loses overall power, for the Halter series of firearms. Inconsistent effect due being a nightmare to produce."
 	icon_state = "halter_charged"
 	bonus_overlay = "halter_charged"
@@ -242,7 +255,7 @@
 
 //smart mag
 /obj/item/ammo_magazine/rifle/nt_halter/smart
-	name = "\improper NT 'Halter' assault rifle smart magazine (7.62x38mm Smart)"
+	name = "\improper NT 'Halter' smart magazine (7.62x38mm Smart)"
 	desc = "A magazine filled with specialized 7.62x38mm rifle rounds that slightly sways to avoid friendlies but loses overall power, for the Halter series of firearms."
 	icon_state = "halter_smart"
 	bonus_overlay = "halter_smart"
@@ -259,7 +272,7 @@
 
 //foxfire mag
 /obj/item/ammo_magazine/rifle/nt_halter/foxfire
-	name = "\improper NT 'Halter' assault rifle foxfire magazine (7.62x38mm AP-I)"
+	name = "\improper NT 'Halter' foxfire magazine (7.62x38mm AP-I)"
 	desc = "A magazine filled with specialized 7.62x38mm AP-I rifle rounds that pierce armor and ignite targets, for the Halter series of firearms."
 	icon_state = "halter_foxfire"
 	bonus_overlay = "halter_foxfire"
