@@ -12,7 +12,7 @@
 	var/deflect_projectile = FALSE
 
 	var/overcharge_max_health = 200
-	var/decharge_rate = 3 //danger zone duuu duu dududuu duu
+	var/decharge_rate = 5 //danger zone duuu duu dududuu duu
 
 	//pale ass but black-white absorbing/deflect light and shit like that.
 	shield_color_low = COLOR_DARKER_RED
