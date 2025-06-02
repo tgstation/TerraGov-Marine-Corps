@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Campaign: Fixed some loadout ammo issues with SG-62 and SH-34"
