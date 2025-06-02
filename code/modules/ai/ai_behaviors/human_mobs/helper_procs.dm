@@ -98,8 +98,94 @@
 	return ..()
 
 ///AI mob interaction with this atom, such as picking it up
-/atom/proc/do_ai_interact(mob/living/interactor)
+/atom/proc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	return
+
+/obj/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	//todo: this will still make non engineers investigate something they can't repair
+	if(behavior_datum.engineer_rating < AI_ENGIE_STANDARD)
+		return
+	behavior_datum.add_to_engineering_list(src)
+	behavior_datum.repair_obj(src)
+
+/obj/machinery/door/airlock/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(density)
+		open(TRUE)
+	else
+		close(TRUE)
+
+/obj/alien/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(behavior_datum.melee_weapon)
+		attackby(behavior_datum.melee_weapon, interactor)
+
+/obj/item/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.store_hands()
+	if(interactor.get_active_held_item())
+		return
 	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm
+	if(loc != interactor)
+		return
+	behavior_datum.try_store_item(src)
+
+/obj/item/storage/box/visual/magazine/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.store_hands()
+	if(interactor.get_active_held_item())
+		return
+
+	var/list/valid_ammo = list()
+	for(var/obj/item/weapon/gun/gun AS in behavior_datum.mob_inventory.gun_list)
+		valid_ammo += gun.allowed_ammo_types
+
+	if(!length(valid_ammo))
+		return
+
+	for(var/obj/magazine AS in contents)
+		if(!(magazine.type in valid_ammo))
+			continue
+		if(!behavior_datum.try_store_item(magazine))
+			return
+
+/obj/machinery/power/apc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(length(wires.cut_wires))
+		var/obj/item/tool/wirecutters/cutters = behavior_datum.mob_inventory.find_tool(TOOL_WIRECUTTER)
+		if(cutters)
+			for(var/wire in wires.cut_wires)
+				wires.cut(wire)
+
+	if(!cell || (!cell.charge && charging == APC_NOT_CHARGING))
+		var/obj/item/cell/new_cell
+		for(var/obj/item/cell/candidate_cell in behavior_datum.mob_inventory.engineering_list)
+			if(candidate_cell.charge)
+				new_cell = candidate_cell
+				break
+		if(new_cell)
+			if(cell)
+				//clean this up
+				balloon_alert_to_viewers("Removes [cell] from [src]")
+				interactor.put_in_hands(cell)
+				cell.update_appearance()
+				set_cell(null)
+				charging = APC_NOT_CHARGING
+				update_appearance()
+			attackby(new_cell, interactor)
+
+	if(!operating)
+		toggle_breaker(interactor)
+
+	if(opened == APC_COVER_OPENED)
+		var/obj/item/crowbar = behavior_datum.mob_inventory.find_tool(TOOL_CROWBAR)
+		if(crowbar)
+			crowbar_act(interactor, crowbar)
+	if(machine_stat & PANEL_OPEN)
+		var/obj/item/screwdriver = behavior_datum.mob_inventory.find_tool(TOOL_SCREWDRIVER)
+		if(screwdriver)
+			screwdriver_act(interactor, screwdriver)
+
+/obj/effect/build_designator/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.try_build_holo(src)
+
+/turf/closed/interior/tank/door/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	attack_hand(interactor)
 
 //weapon engagement range
 
