@@ -187,6 +187,45 @@
 /turf/closed/interior/tank/door/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	attack_hand(interactor)
 
+////////
+
+/obj/machinery/miner/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	//add to engie list??
+	behavior_datum.human_ai_state_flags |= (HUMAN_AI_BUILDING|HUMAN_AI_NEED_WEAPONS)
+	if(miner_status == MINER_DESTROYED)
+		var/obj/item/tool/weldingtool/welder = behavior_datum.mob_inventory.find_tool(TOOL_WELDER)
+		if(welder)
+			behavior_datum.store_hands()
+			interactor.a_intent = INTENT_HELP
+			welder.do_ai_interact(interactor, behavior_datum)
+			welder.toggle()
+
+			welder_act(interactor, welder)
+
+			interactor.a_intent = INTENT_HARM
+			if(welder.isOn())
+				welder.toggle()
+
+			var/mob/living/carbon/human/human_owner = interactor
+			if(welder.get_fuel() < welder.max_fuel && human_owner?.back?.reagents?.get_reagent_amount(/datum/reagent/fuel))
+				human_owner.back.attackby(welder, human_owner)
+
+			behavior_datum.try_store_item(welder)
+
+	if(miner_status == MINER_MEDIUM_DAMAGE)
+		var/obj/item/tool/wirecutters/cutters = behavior_datum.mob_inventory.find_tool(TOOL_WIRECUTTER)
+		if(cutters)
+			wirecutter_act(interactor, cutters)
+
+	if(miner_status == MINER_SMALL_DAMAGE)
+		var/obj/item/tool/wrench/wrench = behavior_datum.mob_inventory.find_tool(TOOL_WRENCH)
+		if(wrench)
+			wrench_act(interactor, wrench)
+
+	if(miner_status == MINER_RUNNING)
+		behavior_datum.remove_from_engineering_list(src)
+	behavior_datum.on_engineering_end(src)
+
 //weapon engagement range
 
 ///Optimal range for AI to fight at, using this weapon
