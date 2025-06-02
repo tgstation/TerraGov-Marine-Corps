@@ -2790,6 +2790,7 @@
 	worn_icon_state = "l26"
 	fire_animation = "l26_fire"
 	worn_icon_list = list(
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
@@ -2860,9 +2861,9 @@
 	worn_icon_state = "c550"
 	worn_icon_list = list(
 		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
-		slot_back_str = 'icons/mob/clothing/back.dmi',
-		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
-		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_1.dmi',
 	)
 	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
@@ -2920,8 +2921,8 @@
 	worn_icon_list = list(
 		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
 		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
-		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
-		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_1.dmi',
 	)
 
 // CC/74
