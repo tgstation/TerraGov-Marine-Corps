@@ -222,15 +222,17 @@
 		if(!object.density)
 			continue
 		var/obstacle_reaction = object.ai_handle_obstacle(mob_parent, direction)
+		if(obstacle_reaction == AI_OBSTACLE_IGNORED)
+			continue
+		if(obstacle_reaction == AI_OBSTACLE_JUMP)
+			should_jump = TRUE //we will try jump if the only obstacles are all jumpable
+			continue
 		if(!obstacle_reaction)
 			return
 		if(obstacle_reaction == AI_OBSTACLE_FRIENDLY)
 			return
 		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
 			return COMSIG_OBSTACLE_DEALT_WITH //we've dealt with it on the obstacle side
-		if(obstacle_reaction == AI_OBSTACLE_JUMP)
-			should_jump = TRUE //we will try jump if the only obstacles are all jumpable
-			continue
 		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
 			return COMSIG_OBSTACLE_DEALT_WITH //we gotta hit it
@@ -249,11 +251,13 @@
 		if(!obstacle.density)
 			continue
 		var/obstacle_reaction = obstacle.ai_handle_obstacle(mob_parent, direction)
-		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
-			return COMSIG_OBSTACLE_DEALT_WITH
+		if(obstacle_reaction == AI_OBSTACLE_IGNORED)
+			continue
 		if(obstacle_reaction == AI_OBSTACLE_JUMP)
 			should_jump = TRUE
 			continue
+		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
+			return COMSIG_OBSTACLE_DEALT_WITH
 		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH

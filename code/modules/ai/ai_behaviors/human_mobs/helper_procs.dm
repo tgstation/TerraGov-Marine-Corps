@@ -257,9 +257,9 @@
 ///Handles the obstacle or tells AI behavior how to interact with it
 /obj/proc/ai_handle_obstacle(mob/living/user, move_dir) //do we need to/can we just check can_pass???
 	if((loc == user.loc) && !(atom_flags & ON_BORDER)) //dense things under us don't block
-		return
+		return AI_OBSTACLE_IGNORED
 	if((atom_flags & ON_BORDER) && (move_dir != (loc == user.loc ? dir : REVERSE_DIR(dir)))) //we only care about border objects actually blocking us
-		return
+		return AI_OBSTACLE_IGNORED
 	//todo:walkover stuff?
 	if(user.can_jump() && is_jumpable(user))
 		return AI_OBSTACLE_JUMP
@@ -270,6 +270,8 @@
 
 /obj/structure/ai_handle_obstacle(mob/living/user, move_dir)
 	. = ..()
+	if(. == AI_OBSTACLE_IGNORED)
+		return
 	if(. == AI_OBSTACLE_JUMP)
 		return //jumping is always best
 	if(!climbable)
