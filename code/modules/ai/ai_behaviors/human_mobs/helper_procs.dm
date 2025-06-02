@@ -119,17 +119,11 @@
 		attackby(behavior_datum.melee_weapon, interactor)
 
 /obj/item/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
-	behavior_datum.store_hands()
-	if(interactor.get_active_held_item())
-		return
-	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm
-	if(loc != interactor)
-		return
-	behavior_datum.try_store_item(src)
+	behavior_datum.pick_up_item(src)
 
 /obj/item/tool/weldingtool/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	. = ..()
-	if(interactor.get_active_held_item() != src)
+	if(interactor.get_active_held_item() != src && interactor.get_inactive_held_item() != src)
 		return
 	if(welding)
 		return
@@ -201,7 +195,6 @@
 	if(miner_status == MINER_DESTROYED)
 		var/obj/item/tool/weldingtool/welder = behavior_datum.mob_inventory.find_tool(TOOL_WELDER)
 		if(welder)
-			behavior_datum.store_hands()
 			interactor.a_intent = INTENT_HELP
 			welder.do_ai_interact(interactor, behavior_datum)
 
