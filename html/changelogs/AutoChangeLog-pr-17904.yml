@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added the interaction designation mode to the build designation action"
+  - rscadd: "Engie NPC's can fix APC's, vehicles, and other suitable objects"
