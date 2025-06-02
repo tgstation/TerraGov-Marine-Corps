@@ -118,6 +118,7 @@
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
 			/obj/item/weapon/combat_knife/harvester = 12,
+			/obj/item/weapon/energy/sword/ntc = 3,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -2456,7 +2457,7 @@
 			/obj/item/explosive/grenade/smokebomb/satrapine = 10,
 			/obj/item/explosive/grenade/smokebomb/aphrotoxin = 15,
 			/obj/item/explosive/grenade/flashbang/stun = 30,
-			/obj/item/explosive/grenade/smokebomb/sleep = 5,
+			/obj/item/explosive/grenade/smokebomb/sleep = 10,
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
 			/obj/item/storage/box/m94 = 200,
