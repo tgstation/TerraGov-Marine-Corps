@@ -127,6 +127,14 @@
 		return
 	behavior_datum.try_store_item(src)
 
+/obj/item/tool/weldingtool/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	. = ..()
+	if(interactor.get_active_held_item() != src)
+		return
+	if(welding)
+		return
+	toggle()
+
 /obj/item/storage/box/visual/magazine/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	behavior_datum.store_hands()
 	if(interactor.get_active_held_item())
@@ -187,10 +195,8 @@
 /turf/closed/interior/tank/door/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	attack_hand(interactor)
 
-////////
-
 /obj/machinery/miner/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
-	//add to engie list??
+	behavior_datum.add_to_engineering_list(src)
 	behavior_datum.human_ai_state_flags |= (HUMAN_AI_BUILDING|HUMAN_AI_NEED_WEAPONS)
 	if(miner_status == MINER_DESTROYED)
 		var/obj/item/tool/weldingtool/welder = behavior_datum.mob_inventory.find_tool(TOOL_WELDER)
@@ -198,7 +204,6 @@
 			behavior_datum.store_hands()
 			interactor.a_intent = INTENT_HELP
 			welder.do_ai_interact(interactor, behavior_datum)
-			welder.toggle()
 
 			welder_act(interactor, welder)
 
