@@ -45,7 +45,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 			START_PROCESSING(SSobj, src)
 			shield_health += incoming_damage/2
 			spark_system.start()
-			if(shield_health > (overcharge_max_health/1.4) && world.time > (last_warning_time + 2 SECONDS))
+			if(shield_health > (overcharge_max_health/1.5) && world.time > (last_warning_time + 2 SECONDS))
 				last_warning_time = world.time
 				visible_message(span_boldwarning("[src] beeps ominiously as it is overcharged beyond safety limits."))
 				playsound(src.loc, 'sound/machines/beepalert.ogg', 40)
@@ -59,9 +59,9 @@ converting the absorbed energy into shield power, warning: overcharging too much
 						affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
 					if(0.66 to 1)
 						affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
-					if(1 to 2.4)
+					if(1 to 2.2)
 						affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full))
-					if(2.4 to INFINITY)
+					if(2.2 to INFINITY)
 						affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full_danger))
 			return 0
 		else if(found_type && shield_health > overcharge_max_health)
@@ -81,9 +81,9 @@ converting the absorbed energy into shield power, warning: overcharging too much
 					affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
 				if(0.66 to 1)
 					affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
-				if(1 to 2.4)
+				if(1 to 2.2)
 					affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full))
-				if(2.4 to INFINITY)
+				if(2.2 to INFINITY)
 					affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full_danger))
 			spark_system.start()
 		else
@@ -112,9 +112,9 @@ converting the absorbed energy into shield power, warning: overcharging too much
 			new_color = (shield_color_mid != current_color) ? shield_color_mid : null
 		if(0.6 to 1)
 			new_color = (shield_color_full != current_color) ? shield_color_full : null
-		if(1 to 2.4)
+		if(1 to 2.2)
 			new_color = (shield_color_overmax_full != current_color) ? shield_color_overmax_full : null
-		if(2.4 to INFINITY)
+		if(2.2 to INFINITY)
 			new_color = (shield_color_overmax_full != current_color) ? shield_color_overmax_full_danger : null
 	if(!new_color)
 		return
