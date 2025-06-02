@@ -112,8 +112,8 @@
 	icon_state = "halter"
 	worn_icon_state = "halter"
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/rifles_left_64.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
 	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
