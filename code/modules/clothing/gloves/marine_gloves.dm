@@ -144,6 +144,11 @@
 	icon_state = "icc_guard"
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 15, ENERGY = 20, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 
+/obj/item/clothing/gloves/marine/icc/som_guard
+	name = "\improper stolen ICCGF gloves"
+	desc = "Tough looking tactical gloves."
+	icon_state = "icc_guard"
+
 /obj/item/clothing/gloves/marine/commissar
 	name = "\improper commissar gloves"
 	desc = "Gloves worn by commissars of the Imperial Army so that they do not soil their hands with the blood of their men."
