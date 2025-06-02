@@ -163,16 +163,17 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 51, "muzzle_y" = 19,"rail_x" = 20, "rail_y" = 23, "under_x" = 35, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST,  GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 51, "muzzle_y" = 19,"rail_x" = 25, "rail_y" = 23, "under_x" = 35, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	//subject to change.
-	aim_fire_delay = 0.25 SECONDS
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
-	aim_slowdown = 0.5
 	accuracy_mult = 1.15
 	aim_slowdown = 0.2
+	aim_speed_modifier = 2.5
+	scatter = -1
+	damage_falloff_mult = 0.8
 
 //standard mag
 /obj/item/ammo_magazine/rifle/nt_halter
@@ -182,7 +183,7 @@
 	icon_state = "halter"
 	icon = 'ntf_modular/icons/obj/items/ammo/rifle.dmi'
 	bonus_overlay = "halter_mag"
-	default_ammo = /datum/ammo/bullet/rifle/heavy
+	default_ammo = /datum/ammo/bullet/rifle/heavy/halter
 	max_rounds = 36
 
 //extended mag
@@ -207,37 +208,37 @@
 	desc = "A magazine filled with specialized 7.62x38mm rifle rounds to deliver a supercharged blast but loses overall power, for the Halter series of firearms. Inconsistent effect due being a nightmare to produce."
 	icon_state = "halter_charged"
 	bonus_overlay = "halter_charged"
-	default_ammo = /datum/ammo/bullet/rifle/heavy/charged
+	default_ammo = /datum/ammo/bullet/rifle/heavy/halter/charged
 
-/datum/ammo/bullet/rifle/heavy/charged
+/datum/ammo/bullet/rifle/heavy/halter/charged
 	name = "charged heavy rifle bullet"
 	hud_state = "rifle_ap"
-	damage = 25
+	damage = 15
 	penetration = 5
 	sundering = 1
 	shrapnel_chance = 2
 	bullet_color = COLOR_BRIGHT_BLUE
-	var/emp_chance = 10 //spin the wheel WOOOOO
+	var/emp_chance = 15 //spin the wheel WOOOOO
 
-/datum/ammo/bullet/rifle/heavy/charged/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+/datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	. = ..()
 	if(prob(emp_chance))
-		empulse(target_mob, 0, 0, 0, 2)
+		empulse(target_mob, 0, 0, 1, 2)
 	if(ishuman(target_mob))
 		staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
 	else
 		staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
 
 
-/datum/ammo/bullet/rifle/heavy/charged/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
+/datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	. = ..()
 	if(prob(emp_chance))
-		empulse(target_obj, 0, 0, 0, 2)
+		empulse(target_obj, 0, 0, 1, 2)
 
-/datum/ammo/bullet/rifle/heavy/charged/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+/datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	. = ..()
 	if(prob(emp_chance))
-		empulse(target_turf, 0, 0, 0, 2)
+		empulse(target_turf, 0, 0, 1, 2)
 
 //smart mag
 /obj/item/ammo_magazine/rifle/nt_halter/smart
@@ -245,21 +246,21 @@
 	desc = "A magazine filled with specialized 7.62x38mm rifle rounds that slightly sways to avoid friendlies but loses overall power, for the Halter series of firearms."
 	icon_state = "halter_smart"
 	bonus_overlay = "halter_smart"
-	default_ammo = /datum/ammo/bullet/rifle/heavy/smart
+	default_ammo = /datum/ammo/bullet/rifle/heavy/halter/smart
 
-/datum/ammo/bullet/rifle/heavy/smart
+/datum/ammo/bullet/rifle/heavy/halter/smart
 	name = "smart heavy rifle bullet"
 	hud_state = "rifle_ap"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF
-	damage = 25
+	damage = 20
 	penetration = 5
 	sundering = 1.15
 	bullet_color = COLOR_BLUE_GRAY
 
 //foxfire mag
 /obj/item/ammo_magazine/rifle/nt_halter/foxfire
-	name = "\improper NT 'Halter' assault rifle foxfire magazine (7.62x38mm Sabot AP-I)"
-	desc = "A magazine filled with specialized 7.62x38mm sabot AP-I rifle rounds that pierce armor and ignite targets but has less damage overall, for the Halter series of firearms."
+	name = "\improper NT 'Halter' assault rifle foxfire magazine (7.62x38mm AP-I)"
+	desc = "A magazine filled with specialized 7.62x38mm AP-I rifle rounds that pierce armor and ignite targets, for the Halter series of firearms."
 	icon_state = "halter_foxfire"
 	bonus_overlay = "halter_foxfire"
 	default_ammo = /datum/ammo/bullet/rifle/ap/foxfire
@@ -268,5 +269,31 @@
 	name = "foxfire rifle bullet"
 	hud_state = "rifle_ap"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
-	damage = 15
-	bullet_color = COLOR_BRIGHT_ORANGE
+	damage = 20
+	bullet_color = COLOR_RED_LIGHT
+
+//im not making a sprite for this im lazy
+/obj/item/ammo_magazine/packet/halter
+	name = "box of 7.62x38mm"
+	desc = "A box containing 120 rounds of 7.62x38mm."
+	caliber = CALIBER_762X38
+	icon_state = "7.62"
+	default_ammo = /datum/ammo/bullet/rifle/heavy/halter
+	current_rounds = 120
+	max_rounds = 120
+
+/obj/item/storage/box/visual/magazine/compact/halter_assaultrifle
+	name = "Halter magazine box"
+	desc = "A box specifically designed to hold a large amount of Halter magazines."
+	closed_overlay = "mag_box_small_overlay_ar12"
+
+/obj/item/storage/box/visual/magazine/compact/halter_assaultrifle/Initialize(mapload, ...)
+	. = ..()
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/ammo_magazine/rifle/nt_halter,
+	))
+
+/obj/item/storage/box/visual/magazine/compact/halter_assaultrifle/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/nt_halter
