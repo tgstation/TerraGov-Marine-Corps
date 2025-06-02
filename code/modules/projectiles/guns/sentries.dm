@@ -107,7 +107,7 @@
 
 	max_shots = 150
 	rounds_per_shot = 12
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.2 SECONDS
 	scatter = -3
 	damage_falloff_mult = 0.5
 	ammo_datum_type = /datum/ammo/energy/volkite/light
