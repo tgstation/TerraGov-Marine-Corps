@@ -47,10 +47,6 @@
 	if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
 		try_to_heal() //If we have some damage, look for some healing
 		return
-	if(!goal_node) // We are randomly moving
-		var/atom/xeno_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_XENO, mob_parent.faction, mob_parent.get_xeno_hivenumber())
-		if(xeno_to_follow)
-			set_escorted_atom(null, xeno_to_follow, TRUE)
 
 /datum/ai_behavior/xeno/look_for_new_state(next_target)
 	if(current_action == ESCORTING_ATOM)

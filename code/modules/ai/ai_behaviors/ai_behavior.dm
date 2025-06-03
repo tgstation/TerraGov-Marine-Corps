@@ -366,7 +366,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 //Generic process(), this is used for mainly looking at the world around the AI and determining if a new action must be considered and executed
 /datum/ai_behavior/process()
-	if(!escorted_atom || (get_dist(mob_parent, escorted_atom) > AI_ESCORTING_BREAK_DISTANCE) || mob_parent.z != escorted_atom.z)
+	if(!escorted_atom || (get_dist(mob_parent, escorted_atom) > AI_ESCORTING_BREAK_DISTANCE) || mob_parent.z != escorted_atom.z || isainode(escorted_atom))
 		set_escort()
 	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber(), TRUE)
 	look_for_new_state(next_target)
@@ -518,7 +518,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(ismob(escorted_mob) && !QDELETED(escorted_mob) && (escorted_mob.stat != DEAD) && (escorted_mob.z == mob_parent.z) && (get_dist(mob_parent, escorted_mob) <= (AI_ESCORTING_BREAK_DISTANCE)))
 		goal_list[escorted_atom] = AI_ESCORT_RATING_BUDDY
 	else
-		var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = TRUE)
+		var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = !(mob_parent.sight & SEE_MOBS))
 		if(mob_to_follow)
 			goal_list[mob_to_follow] = AI_ESCORT_RATING_CLOSE_FRIENDLY
 
