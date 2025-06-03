@@ -1155,6 +1155,7 @@
 		"Xenonauten/NTC" = list(
 			/obj/item/clothing/suit/modular/xenonauten/light/bikini = -1,
 			/obj/item/clothing/suit/modular/xenonauten/bulletresistant = -1,
+			/obj/item/clothing/suit/modular/xenonauten/ablative = -1,
 			/obj/item/clothing/suit/modular/xenonauten/light = -1,
 			/obj/item/clothing/suit/modular/xenonauten = -1,
 			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,

@@ -199,6 +199,9 @@
 /datum/greyscale_config/xenonaut/bulletproof
 	prefix = "bulletproof_"
 
+/datum/greyscale_config/xenonaut/ablative
+	prefix = "ablative_"
+
 /datum/greyscale_config/xenonaut/bikini
 	prefix = "bikini_"
 
