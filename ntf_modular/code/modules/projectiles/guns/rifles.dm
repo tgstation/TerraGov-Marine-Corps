@@ -344,3 +344,7 @@
 /obj/item/storage/box/visual/magazine/compact/halter_assaultrifle/full
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/nt_halter
+
+/obj/item/storage/box/visual/magazine/compact/halter_assaultrifle_laser/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/nt_halter/laser

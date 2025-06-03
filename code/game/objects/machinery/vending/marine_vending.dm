@@ -874,6 +874,7 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/halter_assaultrifle/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/halter_assaultrifle_laser/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/martini/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/ar11/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/lasrifle/full = -1,
