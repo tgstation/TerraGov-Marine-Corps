@@ -1,0 +1,9 @@
+2025-06-02:
+  Atropos:
+  - balance: credits earned from research sell for less points (50/100/200/400)
+2025-06-03:
+  Lumipharon:
+  - bugfix: fixed NPC's sometimes getting stuck climbing things forever
+  - bugfix: 'Campaign: Fixed some loadout ammo issues with SG-62 and SH-34'
+  - rscadd: Added the interaction designation mode to the build designation action
+  - rscadd: Engie NPC's can fix APC's, vehicles, and other suitable objects

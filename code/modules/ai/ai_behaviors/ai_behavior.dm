@@ -171,6 +171,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		change_action(MOVING_TO_NODE, new_node)
 		return
 	if(escorted_atom && (escorted_atom != goal_node)) //goal_node can be our escort target, but otherwise escort targets override goal_node
+		if(get_dist(mob_parent, escorted_atom) <= AI_ESCORTING_MAX_DISTANCE)
+			change_action(ESCORTING_ATOM, escorted_atom)
+			return
 		var/target_node = find_closest_node(escorted_atom)
 		if(target_node)
 			set_goal_node(new_goal_node = target_node)
@@ -266,7 +269,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	return
 
 ///Check if we need to adopt a new state
-/datum/ai_behavior/proc/look_for_new_state()
+/datum/ai_behavior/proc/look_for_new_state(atom/next_target)
 	SIGNAL_HANDLER
 	return
 
@@ -277,9 +280,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Set the goal node
 /datum/ai_behavior/proc/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
 	SIGNAL_HANDLER
+	if(goal_node == new_goal_node)
+		return
 	if(!new_goal_node)
 		return
-	if(new_goal_node.faction != mob_parent.faction)
+	if(new_goal_node.faction && new_goal_node.faction != mob_parent.faction)
 		return
 	if(goal_node)
 		do_unset_target(goal_node)

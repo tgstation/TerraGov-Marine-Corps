@@ -314,3 +314,9 @@
   - bugfix: fixed defiler's inject egg ability not selecting
   blackdav123:
   - balance: Harmful weather will now warn 60 seconds before hitting instead of 30.
+2025-05-29:
+  Lumipharon:
+  - balance: A couple of minor tweaks to NPC medic/engie loadouts
+2025-05-30:
+  ivanmixo:
+  - refactor: Sticky items/grenades are now a component
