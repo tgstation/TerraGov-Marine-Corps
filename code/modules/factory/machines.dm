@@ -20,6 +20,11 @@
 /obj/machinery/factory/Initialize(mapload)
 	. = ..()
 	add_overlay(image(icon, "direction_arrow"))
+	var/static/list/tool_behaviors = list(
+		TOOL_WRENCH = list(SCREENTIP_CONTEXT_LMB = "Anchor/Unanchor"),
+		TOOL_SCREWDRIVER = list(SCREENTIP_CONTEXT_LMB = "Rotate"),
+	)
+	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
 
 /obj/machinery/factory/Destroy()
 	QDEL_NULL(held_item)

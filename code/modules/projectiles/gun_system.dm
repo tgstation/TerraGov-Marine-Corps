@@ -416,6 +416,8 @@
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 		for(var/i in 0 to max_chamber_items)
 			chamber_items.Add(null)
+	register_context()
+	register_item_context()
 	if(spawn_empty || !default_ammo_type)
 		update_icon()
 		return
@@ -453,6 +455,41 @@
 	else
 		set_gun_user(null)
 	return ..()
+
+/obj/item/weapon/gun/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	if(held_item)
+		if(held_item.type in allowed_ammo_types)
+			context[SCREENTIP_CONTEXT_LMB] = "Reload"
+		else if(isammomagazine(held_item) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
+			var/obj/item/ammo_magazine/mag = held_item
+			if(CHECK_BITFIELD(mag.magazine_flags, MAGAZINE_HANDFUL) && mag.caliber == caliber)
+				context[SCREENTIP_CONTEXT_LMB] = "Reload"
+		else if(held_item.type in attachable_allowed)
+			context[SCREENTIP_CONTEXT_LMB] = "Attach"
+	else
+		context[SCREENTIP_CONTEXT_LMB] = "Unload"
+	if(active_attachable)
+		if(held_item)
+			if(held_item.type in active_attachable.allowed_ammo_types)
+				context[SCREENTIP_CONTEXT_LMB] = "Reload attachment"
+			else if(isammomagazine(held_item) && CHECK_BITFIELD(active_attachable.reciever_flags, AMMO_RECIEVER_HANDFULS))
+				var/obj/item/ammo_magazine/mag = held_item
+				if(CHECK_BITFIELD(mag.magazine_flags, MAGAZINE_HANDFUL) && mag.caliber == active_attachable.caliber)
+					context[SCREENTIP_CONTEXT_LMB] = "Reload attachment"
+		else
+			context[SCREENTIP_CONTEXT_LMB] = "Unload attachment"
+	for(var/attachment_slot in attachments_by_slot)
+		if(attachments_by_slot[attachment_slot])
+			context[SCREENTIP_CONTEXT_ALT_LMB] = "Detach attachment"
+			break
+	return CONTEXTUAL_SCREENTIP_SET
+
+/obj/item/weapon/gun/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
+	if(!(item_flags & IS_DEPLOYABLE))
+		return NONE
+	if(isturf(target) && !target.density && user.Adjacent(target))
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Deploy gun"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	. = ..()
