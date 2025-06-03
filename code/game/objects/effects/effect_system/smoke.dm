@@ -264,7 +264,10 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/sleepy
-	smoke_traits = SMOKE_COUGH|SMOKE_SLEEP|SMOKE_OXYLOSS
+	alpha = 180
+	opacity = FALSE
+	color = "#007194"
+	smoke_traits = SMOKE_COUGH|SMOKE_SLEEP|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_HUGGER_PACIFY
 
 /////////////////////////////////////////////
 // Phosphorus Gas
@@ -318,7 +321,7 @@
 	color = "#b02828"
 	lifetime = 6
 	expansion_speed = 3
-	strength = 1.5
+	strength = 1
 	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
 
 //VSD chemical
@@ -407,6 +410,10 @@
 	color = "#f1ddcf" //A pinkish for now.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
+/obj/effect/particle_effect/smoke/xeno/aphrotoxin
+	color = "#ba03f1"
+	alpha = 120
+	smoke_traits = SMOKE_XENO|SMOKE_COUGH|SMOKE_XENO_APHROTOXIN
 
 /// Smoke that constantly makes pyrogen fire.
 /obj/effect/particle_effect/smoke/xeno/pyrogen_fire
@@ -491,6 +498,8 @@
 /datum/effect_system/smoke_spread/xeno/ozelomelyn
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn
 
+/datum/effect_system/smoke_spread/xeno/aphrotoxin
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/aphrotoxin
 
 /datum/effect_system/smoke_spread/xeno/pyrogen_fire
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire

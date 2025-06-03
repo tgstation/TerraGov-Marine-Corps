@@ -8,7 +8,7 @@
 	 */
 	var/list/loadouts_data = list()
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
-	var/loadout_vendor
+	var/obj/machinery/loadout_vendor/loadout_vendor
 	/// The version of the loadout manager
 	var/version = CURRENT_LOADOUT_VERSION
 
@@ -56,6 +56,18 @@
 			"job" = loadout_data[1],
 			"name" = loadout_data[2],
 		))
+	var/ui_theme
+	switch(loadout_vendor.faction)
+		if(VENDOR_FACTION_SOM)
+			ui_theme = "som"
+		if(VENDOR_FACTION_VSD)
+			ui_theme = "syndicate"
+		if(VENDOR_FACTION_CLF)
+			ui_theme = "xeno"
+		else
+			ui_theme = "ntos"
+	data["ui_theme"] = ui_theme
+	data["vendor_categories"] = loadout_vendor.categories
 	return data
 
 /datum/loadout_manager/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)

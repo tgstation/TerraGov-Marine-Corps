@@ -7,18 +7,18 @@ VEHICLES
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/motorbike
-	name = "All-terrain motorbike"
+	name = "All-Terrain Motorbike"
 	cost = 400
 	contains = list(/obj/vehicle/ridden/motorbike)
 	containertype = null
 
 /datum/supply_packs/vehicles/sidecar
-	name = "Motorbike sidecar upgrade"
+	name = "Sidecar motorbike upgrade"
 	cost = 200
 	contains = list(/obj/item/sidecar)
 
 /datum/supply_packs/vehicles/jerrycan
-	name = "Jerry can"
+	name = "Jerry Can"
 	cost = 100
 	contains = list(/obj/item/reagent_containers/jerrycan)
 
@@ -47,25 +47,25 @@ VEHICLES
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/tiny_uv
-	name = "\"Skink\" tiny unmanned vehicle"
+	name = "Tiny unmanned vehicle - Skink"
 	contains = list(/obj/item/deployable_vehicle/tiny)
 	cost = 50
-
+/*
 /datum/supply_packs/vehicles/light_uv
-	name = "\"Iguana\" light unmanned vehicle"
+	name = "Light unmanned vehicle - Iguana"
 	contains = list(/obj/vehicle/unmanned)
 	cost = 300
 
 /datum/supply_packs/vehicles/medium_uv
-	name = "\"Gecko\" Mmedium unmanned vehicle"
+	name = "Medium unmanned vehicle - Gecko"
 	contains = list(/obj/vehicle/unmanned/medium)
 	cost = 500
 
 /datum/supply_packs/vehicles/heavy_uv
-	name = "\"Komodo\" heavy unmanned vehicle"
+	name = "Heavy unmanned vehicle - Komodo"
 	contains = list(/obj/vehicle/unmanned/heavy)
 	cost = 700
-
+*/
 /datum/supply_packs/vehicles/uv_light_weapon
 	name = "Light UV weapon"
 	contains = list(/obj/item/uav_turret)

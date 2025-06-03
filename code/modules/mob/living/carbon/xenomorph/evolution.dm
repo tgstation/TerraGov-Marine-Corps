@@ -58,7 +58,7 @@
 		return all_strains
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
+			if(XENO_TIER_ZERO)
 				return
 			if(XENO_TIER_ONE)
 				return GLOB.xeno_types_tier_one
@@ -66,19 +66,20 @@
 				return GLOB.xeno_types_tier_two
 			if(XENO_TIER_THREE)
 				return GLOB.xeno_types_tier_three
+			if(XENO_TIER_FOUR)
+				return GLOB.xeno_types_tier_four
 	if(HAS_TRAIT(src, TRAIT_REGRESSING))
 		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
-				if(isxenoshrike(src))
-					return GLOB.xeno_types_tier_one
-				else
-					return
+			if(XENO_TIER_ZERO)
+				return
 			if(XENO_TIER_ONE)
 				return list(/datum/xeno_caste/larva)
 			if(XENO_TIER_TWO)
 				return GLOB.xeno_types_tier_one
 			if(XENO_TIER_THREE)
 				return GLOB.xeno_types_tier_two
+			if(XENO_TIER_FOUR)
+				return GLOB.xeno_types_tier_one
 	switch(tier)
 		if(XENO_TIER_ZERO)
 			if(!istype(xeno_caste, /datum/xeno_caste/hivemind))
@@ -90,8 +91,7 @@
 		if(XENO_TIER_THREE)
 			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
-			if(istype(xeno_caste, /datum/xeno_caste/shrike))
-				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king, /datum/xeno_caste/dragon)
+			return GLOB.xeno_types_tier_four
 
 
 ///Handles the evolution or devolution of the xenomorph
@@ -128,7 +128,7 @@
 	span_xenonotice("We begin to twist and contort."))
 	do_jitter_animation(1000)
 
-	if(!regression && !do_after(src, 25, IGNORE_HELD_ITEM, null, BUSY_ICON_CLOCK))
+	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		balloon_alert(src, span_warning("We must hold still while evolving."))
 		return
 
@@ -194,7 +194,7 @@
 		new_xeno.toggle_nightvision(lighting_cutoff)
 
 	new_xeno.update_spits() //Update spits to new/better ones
-
+	new_xeno.update_xeno_gender(new_xeno)
 	new_xeno.visible_message(span_xenodanger("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src]."), \
 	span_xenodanger("We emerge in a greater form from the husk of our old body. For the hive!"))
 
@@ -284,6 +284,16 @@
 		balloon_alert(src, "We cannot evolve while rooted to the ground")
 		return FALSE
 
+	if(HAS_TRAIT(src,TRAIT_NEEDS_SILO_TO_EVOLVE_FROM))
+		var/good_silo = null
+		for(var/obj/structure/xeno/silo/possible_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
+			if(get_dist(src, possible_silo) < 2 && possible_silo.z == z)
+				good_silo = possible_silo
+				break
+		if(!good_silo)
+			balloon_alert(src, "We must be on a silo to leave this caste")
+			return FALSE
+
 	return TRUE
 
 ///Check if the xeno can currently evolve into a specific caste
@@ -301,6 +311,7 @@
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[new_caste_type][XENO_UPGRADE_BASETYPE]
 	// Initial can access uninitialized vars, which is why it's used here.
 	var/new_caste_flags = new_caste.caste_flags
+	var/new_caste_traits = new_caste.caste_traits
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
 			balloon_alert(src, "You are jobbanned from xenomorph leader roles")
@@ -334,6 +345,16 @@
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_REQUIRES_FREE_TILE) && T.check_alien_construction(src))
 		balloon_alert(src, "We need a empty tile to evolve")
 		return FALSE
+
+	if(TRAIT_NEEDS_SILO_TO_EVOLVE_TO in new_caste_traits)
+		var/good_silo = null
+		for(var/obj/structure/xeno/silo/possible_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
+			if(get_dist(src, possible_silo) < 2 && possible_silo.z == z)
+				good_silo = possible_silo
+				break
+		if(!good_silo)
+			balloon_alert(src, "We must be on a silo to become that caste")
+			return FALSE
 
 	if(!regression)
 		if(new_caste.tier == XENO_TIER_TWO && no_room_tier_two)
