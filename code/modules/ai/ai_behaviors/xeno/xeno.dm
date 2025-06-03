@@ -48,34 +48,31 @@
 		try_to_heal() //If we have some damage, look for some healing
 		return
 
-/datum/ai_behavior/xeno/look_for_new_state(next_target)
-	if(current_action == ESCORTING_ATOM)
-		if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
-			look_for_next_node()
-			return
+/datum/ai_behavior/xeno/look_for_new_state(atom/next_target)
+	. = ..()
 	if(current_action == MOVING_TO_ATOM)
 		if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 			change_action(ESCORTING_ATOM, escorted_atom)
 			return
-		if(!next_target)//We didn't find a target
+		if(!combat_target)//We didn't find a target
 			cleanup_current_action()
 			late_initialize()
-			return
-		if(next_target == atom_to_walk_to)//We didn't find a better target
-			return
 	if(current_action == MOVING_TO_SAFETY)
-		if(!next_target)
+		if(!combat_target)
 			target_distance = initial(target_distance)
 			cleanup_current_action()
 			late_initialize()
 			RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(check_for_critical_health))
 			return
-		if(next_target != atom_to_walk_to)
-			change_action(null, next_target, list(INFINITY))
+		if(combat_target != atom_to_walk_to)
+			change_action(null, combat_target, list(INFINITY))
 
-	if(next_target)
-		change_action(MOVING_TO_ATOM, next_target)
+/datum/ai_behavior/xeno/need_new_combat_target()
+	. = ..()
+	if(.)
 		return
+	if(get_dist(mob_parent, combat_target) > target_distance)
+		return TRUE
 
 /datum/ai_behavior/xeno/cleanup_current_action(next_action)
 	. = ..()

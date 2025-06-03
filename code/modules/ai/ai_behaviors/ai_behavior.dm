@@ -373,9 +373,31 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	state_process(next_target)
 
 ///Check if we need to adopt a new state
-/datum/ai_behavior/proc/look_for_new_state(atom/next_target)
+/datum/ai_behavior/look_for_new_state(atom/next_target)
 	SIGNAL_HANDLER
-	return
+	if(need_new_combat_target())
+		if(combat_target)
+			do_unset_target(combat_target, need_new_state = FALSE)
+		if(next_target) //standing orders, kill hostiles on sight.
+			set_combat_target(next_target)
+			if(current_action != MOVING_TO_SAFETY)
+				change_action(MOVING_TO_ATOM, next_target)
+			return
+
+	switch(current_action)
+		if(MOVING_TO_ATOM)
+			if(!atom_to_walk_to)
+				change_action(ESCORTING_ATOM, escorted_atom)
+			if(isturf(atom_to_walk_to) && escorted_atom)
+				change_action(ESCORTING_ATOM, escorted_atom)
+		if(ESCORTING_ATOM)
+			if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
+				look_for_next_node(FALSE)
+
+///Returns true if a combat target is no longer valid
+/datum/ai_behavior/proc/need_new_combat_target()
+	if(!combat_target)
+		return TRUE
 
 ///Any state specific process behavior
 /datum/ai_behavior/proc/state_process()
