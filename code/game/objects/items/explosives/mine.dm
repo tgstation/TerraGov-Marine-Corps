@@ -66,11 +66,12 @@ Stepping directly on the mine will also blow it up
 
 /// attack_self is used to arm the mine
 /obj/item/explosive/mine/attack_self(mob/living/user)
-	if(!user.loc || user.loc.density)
+	var/turf/turf_loc = user.loc
+	if(!istype(turf_loc) || turf_loc.density)
 		to_chat(user, span_warning("You can't plant a mine here."))
 		return
 
-	if(locate(/obj/item/explosive/mine) in get_turf(src))
+	if(locate(/obj/item/explosive/mine) in turf_loc)
 		to_chat(user, span_warning("There already is a mine at this position!"))
 		return
 
