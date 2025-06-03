@@ -433,8 +433,12 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 ///Returns true if the mob should not move for some reason
 /datum/ai_behavior/proc/should_hold()
-	if(mob_parent?.do_actions) //todo: shift xenos over to logic used by humans
+	if(mob_parent?.do_actions)
 		return TRUE
+	if(HAS_TRAIT(mob_parent, TRAIT_IS_CLIMBING))
+		return TRUE
+	if(mob_parent.pulledby?.faction == mob_parent.faction)
+		return TRUE //lets players wrangle NPC's
 	return FALSE
 
 ///Tries to move the ai toward its atom_to_walk_to
