@@ -458,11 +458,13 @@
 
 /obj/item/weapon/gun/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(held_item)
+		// can be cells or mags or nades or etc so just strict check it
+		// also this strict for the rest of the checks for the same reason
 		if(held_item.type in allowed_ammo_types)
 			context[SCREENTIP_CONTEXT_LMB] = "Reload"
 		else if(isammomagazine(held_item) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			var/obj/item/ammo_magazine/mag = held_item
-			if(CHECK_BITFIELD(mag.magazine_flags, MAGAZINE_HANDFUL) && mag.caliber == caliber)
+			if(CHECK_BITFIELD(mag.magazine_flags, MAGAZINE_HANDFUL))
 				context[SCREENTIP_CONTEXT_LMB] = "Reload"
 		else if(held_item.type in attachable_allowed)
 			context[SCREENTIP_CONTEXT_LMB] = "Attach"
@@ -471,13 +473,13 @@
 	if(active_attachable)
 		if(held_item)
 			if(held_item.type in active_attachable.allowed_ammo_types)
-				context[SCREENTIP_CONTEXT_LMB] = "Reload attachment"
+				context[SCREENTIP_CONTEXT_RMB] = "Reload attachment"
 			else if(isammomagazine(held_item) && CHECK_BITFIELD(active_attachable.reciever_flags, AMMO_RECIEVER_HANDFULS))
 				var/obj/item/ammo_magazine/mag = held_item
-				if(CHECK_BITFIELD(mag.magazine_flags, MAGAZINE_HANDFUL) && mag.caliber == active_attachable.caliber)
-					context[SCREENTIP_CONTEXT_LMB] = "Reload attachment"
+				if(CHECK_BITFIELD(mag.magazine_flags, MAGAZINE_HANDFUL))
+					context[SCREENTIP_CONTEXT_RMB] = "Reload attachment"
 		else
-			context[SCREENTIP_CONTEXT_LMB] = "Unload attachment"
+			context[SCREENTIP_CONTEXT_RMB] = "Unload attachment"
 	for(var/attachment_slot in attachments_by_slot)
 		if(attachments_by_slot[attachment_slot])
 			context[SCREENTIP_CONTEXT_ALT_LMB] = "Detach attachment"
@@ -487,7 +489,7 @@
 /obj/item/weapon/gun/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	if(!(item_flags & IS_DEPLOYABLE))
 		return NONE
-	if(isturf(target) && !target.density && user.Adjacent(target))
+	if(isopenturf(target) && user.Adjacent(target))
 		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Deploy gun"
 		return CONTEXTUAL_SCREENTIP_SET
 
