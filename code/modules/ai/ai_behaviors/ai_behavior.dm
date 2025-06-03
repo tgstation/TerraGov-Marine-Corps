@@ -22,6 +22,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/upper_engage_dist = 1
 	///Range to stay from a hostile target. Inner range
 	var/lower_engage_dist = 1
+	///How far away we are happy to stray from our escort target
+	var/upper_escort_dist = 3
 	///Prob chance of sidestepping (left or right) when distance maintained with target
 	var/sidestep_prob = 0
 	///Current node to use for calculating action states: this is the mob's node
@@ -156,7 +158,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		upper_maintain_dist = 0
 		lower_maintain_dist = 0
 	else if(current_action == ESCORTING_ATOM)
-		upper_maintain_dist = 3 //Don't stay too close //todo: can make this a var to be adjustable
+		upper_maintain_dist = upper_escort_dist
 		lower_maintain_dist = 1
 	else if(islist(special_distance_to_maintain))
 		upper_maintain_dist = max(special_distance_to_maintain)

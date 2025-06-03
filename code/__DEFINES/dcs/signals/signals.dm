@@ -962,6 +962,7 @@
 #define COMSIG_SPIDERLING_RETURN "spiderling_return"
 #define COMSIG_SPIDERLING_GUARD "spiderling_guard"
 #define COMSIG_SPIDERLING_UNGUARD "spiderling_unguard"
+#define COMSIG_SPIDERLING_MOTHER_DEATH "spiderling_mother_death"
 
 //puppet
 #define COMSIG_PUPPET_CHANGE_ORDER "puppetchangeorder"
