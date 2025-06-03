@@ -8,8 +8,6 @@
 	var/can_heal = TRUE
 
 /datum/ai_behavior/xeno/start_ai()
-	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
-	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(check_for_critical_health))
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
 	return ..()
@@ -83,48 +81,6 @@
 		change_action(MOVING_TO_ATOM, next_target)
 		return
 
-/datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
-	var/turf/obstacle_turf = get_step(mob_parent, direction)
-	if(obstacle_turf.atom_flags & AI_BLOCKED)
-		return
-	for(var/thing in obstacle_turf.contents)
-		if(istype(thing, /obj/structure/window_frame))
-			LAZYINCREMENT(mob_parent.do_actions, obstacle_turf)
-			addtimer(CALLBACK(src, PROC_REF(climb_window_frame), obstacle_turf), 2 SECONDS)
-			return COMSIG_OBSTACLE_DEALT_WITH
-		if(istype(thing, /obj/structure/closet))
-			var/obj/structure/closet/closet = thing
-			if(closet.open(mob_parent))
-				return COMSIG_OBSTACLE_DEALT_WITH
-			return
-		if(isstructure(thing))
-			var/obj/structure/obstacle = thing
-			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
-				INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
-				return COMSIG_OBSTACLE_DEALT_WITH
-		else if(istype(thing, /obj/machinery/door/airlock))
-			var/obj/machinery/door/airlock/lock = thing
-			if(!lock.density) //Airlock is already open no need to force it open again
-				continue
-			if(lock.operating) //Airlock already doing something
-				continue
-			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
-				INVOKE_ASYNC(src, PROC_REF(attack_target), null, thing) //ai is cheating
-				continue
-			lock.open(TRUE)
-			return COMSIG_OBSTACLE_DEALT_WITH
-		if(istype(thing, /obj/vehicle))
-			INVOKE_ASYNC(src, PROC_REF(attack_target), null, thing)
-			return COMSIG_OBSTACLE_DEALT_WITH
-	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
-		return COMSIG_OBSTACLE_DEALT_WITH
-	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
-	obstacle_turf = get_turf(mob_parent)
-	for(var/obj/structure/obstacle in obstacle_turf.contents)
-		if(obstacle.dir & direction && obstacle.resistance_flags & XENO_DAMAGEABLE)
-			INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
-			return COMSIG_OBSTACLE_DEALT_WITH
-
 /datum/ai_behavior/xeno/cleanup_current_action(next_action)
 	. = ..()
 	if(next_action == MOVING_TO_NODE)
@@ -138,27 +94,13 @@
 
 /datum/ai_behavior/xeno/cleanup_signals()
 	. = ..()
-	UnregisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE)
-	UnregisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED))
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
-
-///Signal handler to try to attack our target
-/datum/ai_behavior/xeno/proc/attack_target(datum/source, atom/attacked)
-	SIGNAL_HANDLER
-	if(world.time < mob_parent.next_move)
-		return
-	if(!attacked)
-		attacked = get_atom_on_turf(atom_to_walk_to)
-	if(get_dist(attacked, mob_parent) > 1)
-		return
-	mob_parent.face_atom(attacked)
-	mob_parent.UnarmedAttack(attacked, TRUE)
 
 /datum/ai_behavior/xeno/register_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_ATOM)
-			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(attack_target))
+			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(melee_interact))
 			return
 	return ..()
 
@@ -205,12 +147,6 @@
 	target_distance = 15
 	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY))
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
-
-///Move the ai mob on top of the window_frame
-/datum/ai_behavior/xeno/proc/climb_window_frame(turf/window_turf)
-	mob_parent.forceMove(window_turf)
-	mob_parent.last_move_time = world.time
-	LAZYDECREMENT(mob_parent.do_actions, window_turf)
 
 /datum/ai_behavior/xeno/ranged
 	upper_maintain_dist = 5

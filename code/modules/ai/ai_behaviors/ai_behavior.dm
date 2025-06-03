@@ -84,6 +84,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/start_ai()
 	START_PROCESSING(SSprocessing, src)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(set_goal_node))
+	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
+	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 
 	late_initialize()
 	START_PROCESSING(SSprocessing, src)
@@ -123,6 +125,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Clean every signal on the ai_behavior
 /datum/ai_behavior/proc/cleanup_signals()
 	cleanup_current_action()
+	UnregisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE)
+	UnregisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED))
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET)
 
 ///Cleanup old state vars, start the movement towards our new target
@@ -230,6 +234,96 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Signal handler when the ai is blocked by an obstacle
 /datum/ai_behavior/proc/deal_with_obstacle(datum/source, direction)
 	SIGNAL_HANDLER
+	var/turf/obstacle_turf = get_step(mob_parent, direction)
+
+	for(var/mob/mob_blocker in obstacle_turf.contents)
+		if(!mob_blocker.density)
+			continue
+		//todo: passflag stuff etc
+		return
+
+	var/should_jump = FALSE
+	for(var/obj/object in obstacle_turf)
+		if(!object.density)
+			continue
+		var/obstacle_reaction = object.ai_handle_obstacle(mob_parent, direction)
+		if(obstacle_reaction == AI_OBSTACLE_IGNORED)
+			continue
+		if(obstacle_reaction == AI_OBSTACLE_JUMP)
+			should_jump = TRUE //we will try jump if the only obstacles are all jumpable
+			continue
+		if(!obstacle_reaction)
+			return
+		if(obstacle_reaction == AI_OBSTACLE_FRIENDLY)
+			return
+		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
+			return COMSIG_OBSTACLE_DEALT_WITH //we've dealt with it on the obstacle side
+		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
+			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
+			return COMSIG_OBSTACLE_DEALT_WITH //we gotta hit it
+
+
+	if(should_jump)
+		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
+		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
+		return COMSIG_OBSTACLE_DEALT_WITH
+
+	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
+		return COMSIG_OBSTACLE_DEALT_WITH
+
+	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
+	for(var/obj/obstacle in get_turf(mob_parent))
+		if(!obstacle.density)
+			continue
+		var/obstacle_reaction = obstacle.ai_handle_obstacle(mob_parent, direction)
+		if(obstacle_reaction == AI_OBSTACLE_IGNORED)
+			continue
+		if(obstacle_reaction == AI_OBSTACLE_JUMP)
+			should_jump = TRUE
+			continue
+		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
+			return COMSIG_OBSTACLE_DEALT_WITH
+		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
+			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle)
+			return COMSIG_OBSTACLE_DEALT_WITH
+
+	if(should_jump)
+		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
+		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
+		return COMSIG_OBSTACLE_DEALT_WITH
+
+	//We do this last because there could be other stuff blocking us from even reaching the turf
+	if(istype(obstacle_turf, /turf/closed/wall/resin))
+		INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle_turf)
+		return COMSIG_OBSTACLE_DEALT_WITH
+
+///Sig handler for physical interactions, like attacks
+/datum/ai_behavior/proc/melee_interact(datum/source, atom/interactee, melee_tool)
+	SIGNAL_HANDLER
+	if(mob_parent.next_move > world.time)
+		return FALSE
+	if(!interactee)
+		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
+	if(!mob_parent.CanReach(interactee, melee_tool))
+		return FALSE
+
+	mob_parent.face_atom(interactee)
+
+	if(interactee == interact_target)
+		unset_target(interactee)
+		if(isturf(interactee.loc)) //no pickpocketing
+			. = try_interact(interactee)
+		return
+
+	if(melee_tool)
+		INVOKE_ASYNC(melee_tool, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, interactee)
+		return TRUE
+	mob_parent.UnarmedAttack(interactee, TRUE)
+	return TRUE
+
+///Tries to interact with something, usually nonharmfully
+/datum/ai_behavior/proc/try_interact(atom/interactee)
+	return
 
 ///Register on advanced pathfinding subsytem to get a tile pathfinding
 /datum/ai_behavior/proc/ask_for_pathfinding()
@@ -450,15 +544,6 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	RegisterSignal(escorted_atom, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, PROC_REF(set_agressivity))
 	change_action(ESCORTING_ATOM, escorted_atom)
 	return TRUE
-
-///Change atom to walk to if the order comes from a corresponding commander
-/datum/ai_behavior/proc/global_set_escorted_atom(datum/source, atom/atom_to_escort)
-	SIGNAL_HANDLER
-	if(QDELETED(atom_to_escort))
-		return
-	if(get_dist(atom_to_escort, mob_parent) > target_distance)
-		return
-	set_escorted_atom(source, atom_to_escort)
 
 ///clean the escorted atom var to avoid harddels
 /datum/ai_behavior/proc/clean_escorted_atom()

@@ -50,8 +50,6 @@
 	return ..()
 
 /datum/ai_behavior/human/start_ai()
-	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
-	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(on_take_damage))
 	RegisterSignal(mob_parent, COMSIG_AI_HEALING_MOB, PROC_REF(parent_being_healed))
 	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
@@ -79,9 +77,6 @@
 
 /datum/ai_behavior/human/cleanup_signals()
 	UnregisterSignal(mob_parent, list(
-		COMSIG_OBSTRUCTED_MOVE,
-		ACTION_GIVEN,
-		ACTION_REMOVED,
 		COMSIG_HUMAN_DAMAGE_TAKEN,
 		COMSIG_LIVING_SET_LYING_ANGLE,
 		COMSIG_MOVABLE_Z_CHANGED,
@@ -204,70 +199,6 @@
 	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && !next_target && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth) && check_hazards())
 		INVOKE_ASYNC(src, PROC_REF(try_heal))
 
-/datum/ai_behavior/human/deal_with_obstacle(datum/source, direction)
-	var/turf/obstacle_turf = get_step(mob_parent, direction)
-
-	for(var/mob/mob_blocker in obstacle_turf.contents)
-		if(!mob_blocker.density)
-			continue
-		//todo: passflag stuff etc
-		return
-
-	var/should_jump = FALSE
-	for(var/obj/object in obstacle_turf)
-		if(!object.density)
-			continue
-		var/obstacle_reaction = object.ai_handle_obstacle(mob_parent, direction)
-		if(obstacle_reaction == AI_OBSTACLE_IGNORED)
-			continue
-		if(obstacle_reaction == AI_OBSTACLE_JUMP)
-			should_jump = TRUE //we will try jump if the only obstacles are all jumpable
-			continue
-		if(!obstacle_reaction)
-			return
-		if(obstacle_reaction == AI_OBSTACLE_FRIENDLY)
-			return
-		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
-			return COMSIG_OBSTACLE_DEALT_WITH //we've dealt with it on the obstacle side
-		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
-			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
-			return COMSIG_OBSTACLE_DEALT_WITH //we gotta hit it
-
-
-	if(should_jump)
-		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
-		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
-		return COMSIG_OBSTACLE_DEALT_WITH
-
-	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
-		return COMSIG_OBSTACLE_DEALT_WITH
-
-	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
-	for(var/obj/obstacle in get_turf(mob_parent))
-		if(!obstacle.density)
-			continue
-		var/obstacle_reaction = obstacle.ai_handle_obstacle(mob_parent, direction)
-		if(obstacle_reaction == AI_OBSTACLE_IGNORED)
-			continue
-		if(obstacle_reaction == AI_OBSTACLE_JUMP)
-			should_jump = TRUE
-			continue
-		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
-			return COMSIG_OBSTACLE_DEALT_WITH
-		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
-			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle)
-			return COMSIG_OBSTACLE_DEALT_WITH
-
-	if(should_jump)
-		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
-		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
-		return COMSIG_OBSTACLE_DEALT_WITH
-
-	//We do this last because there could be other stuff blocking us from even reaching the turf
-	if(istype(obstacle_turf, /turf/closed/wall/resin))
-		INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle_turf)
-		return COMSIG_OBSTACLE_DEALT_WITH
-
 /datum/ai_behavior/human/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
 	. = ..()
 	if(!.)
@@ -334,32 +265,8 @@
 	if(m_intent == MOVE_INTENT_WALK)
 		COOLDOWN_START(src, ai_run_cooldown, 10 SECONDS) //give time for stam to regen
 
-///Sig handler for physical interactions, like attacks
-/datum/ai_behavior/human/proc/melee_interact(datum/source, atom/interactee)
-	SIGNAL_HANDLER
-	if(mob_parent.next_move > world.time)
-		return
-	if(!interactee)
-		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
-	if(!mob_parent.CanReach(interactee, melee_weapon)) //todo: copy this for beno code, lots of other stuff too.
-		return
-
-	mob_parent.face_atom(interactee)
-
-	if(interactee == interact_target)
-		unset_target(interactee)
-		if(isturf(interactee.loc)) //no pickpocketing
-			. = try_interact(interactee)
-		return
-
-	if(melee_weapon)
-		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, interactee)
-		return TRUE
-	mob_parent.UnarmedAttack(interactee, TRUE)
-	return TRUE
-
 ///Tries to interact with something, usually nonharmfully
-/datum/ai_behavior/human/proc/try_interact(atom/interactee)
+/datum/ai_behavior/human/try_interact(atom/interactee)
 	if(ishuman(interactee))
 		var/mob/living/carbon/human/human = interactee
 		if(mob_parent.faction != human.faction)
