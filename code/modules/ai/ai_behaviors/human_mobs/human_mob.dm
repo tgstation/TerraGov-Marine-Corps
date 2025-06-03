@@ -388,3 +388,4 @@
 	human_ai_state_flags = 0
 	///To what level they will handle healing others
 	medical_rating = AI_MED_SELFISH
+	non_aggressive = TRUE
