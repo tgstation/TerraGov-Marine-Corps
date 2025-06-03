@@ -116,7 +116,6 @@
 	store_hands()
 	mob_parent.a_intent = INTENT_HELP
 	welder.do_ai_interact(mob_parent, src)
-	welder.toggle()
 
 	var/repair_success = FALSE
 	if(repair_target.welder_act(mob_parent, welder))
