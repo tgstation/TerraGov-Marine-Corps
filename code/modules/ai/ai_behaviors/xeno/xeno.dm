@@ -93,13 +93,6 @@
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 
-/datum/ai_behavior/xeno/register_action_signals(action_type)
-	switch(action_type)
-		if(MOVING_TO_ATOM)
-			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(melee_interact))
-			return
-	return ..()
-
 ///Will try finding and resting on weeds
 /datum/ai_behavior/xeno/proc/try_to_heal()
 	var/mob/living/carbon/xenomorph/living_mob = mob_parent

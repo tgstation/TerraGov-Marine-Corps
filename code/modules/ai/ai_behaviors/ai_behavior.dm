@@ -402,6 +402,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 */
 /datum/ai_behavior/proc/register_action_signals(action_type)
 	switch(action_type)
+		if(MOVING_TO_ATOM)
+			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(melee_interact))
 		if(MOVING_TO_NODE)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(finished_node_move))
 			if(SStime_track.time_dilation_avg > CONFIG_GET(number/ai_anti_stuck_lag_time_dilation_threshold))
