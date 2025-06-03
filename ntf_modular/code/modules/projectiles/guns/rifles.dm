@@ -143,6 +143,9 @@
 		/obj/item/ammo_magazine/rifle/nt_halter/charged,
 		/obj/item/ammo_magazine/rifle/nt_halter/smart,
 		/obj/item/ammo_magazine/rifle/nt_halter/foxfire,
+		/obj/item/ammo_magazine/rifle/nt_halter/laser,
+		/obj/item/ammo_magazine/rifle/nt_halter/laser/extended,
+		/obj/item/ammo_magazine/rifle/nt_halter/laser/drum,
 	)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -284,6 +287,37 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 20
 	bullet_color = COLOR_RED_LIGHT
+
+//laser mag
+/obj/item/ammo_magazine/rifle/nt_halter/laser
+	name = "\improper NT 'Halter' laser magazine (7.62x38mm LE)"
+	desc = "A magazine filled with specialized 7.62x38mm single shot laser emitter rounds that shoots laser bolts instead of a standard round."
+	icon_state = "halter_laser"
+	bonus_overlay = "halter_laser"
+	default_ammo = /datum/ammo/energy/lasgun/halter
+
+/datum/ammo/energy/lasgun/halter
+	//slightly less damage than regular bullets but except laser standard sundering, also same bullet speed.
+	name = "halter laser bolt"
+	shell_speed = 3.5
+	damage = 25
+	bullet_color = COLOR_RED_LIGHT
+
+//extended mag
+/obj/item/ammo_magazine/rifle/nt_halter/laser/extended
+	name = "\improper NT 'Halter' extended laser magazine (7.62x38mm LE)"
+	desc = "An extended magazine filled with 7.62x38mm laser emitter rounds for the Halter series of firearms."
+	max_rounds = 50
+	icon_state = "halter_laser_ex"
+	bonus_overlay = "halter_laser_drum"
+
+//extended mag
+/obj/item/ammo_magazine/rifle/nt_halter/laser/drum
+	name = "\improper NT 'Halter' drum laser magazine (7.62x38mm)"
+	desc = "An drum magazine filled with 7.62x38mm laser emitter rounds for the Halter series of firearms."
+	max_rounds = 100
+	icon_state = "halter_laser_drum"
+	bonus_overlay = "halter_laser_drum"
 
 //im not making a sprite for this im lazy
 /obj/item/ammo_magazine/packet/halter
