@@ -165,7 +165,11 @@
 			X = respawner
 			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA, XENO_HIVE_FORSAKEN))
 		eord_body = respawner
-		eord_body.forceMove(spawn_location)
+		var/obj/vehicle/driven_vehicle = respawner.loc
+		if(istype(driven_vehicle) && (!(istype(driven_vehicle, /obj/vehicle/sealed/armored/multitile))))
+			driven_vehicle.forceMove(spawn_location)
+		else
+			eord_body.forceMove(spawn_location)
 		eord_body.revive()
 		eord_body.mind.bypass_ff = TRUE
 		return
