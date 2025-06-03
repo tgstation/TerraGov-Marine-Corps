@@ -14,6 +14,10 @@
 	glasses = /obj/item/clothing/glasses/welding
 	r_pocket = /obj/item/storage/pouch/tools/full
 	l_pocket = /obj/item/storage/pouch/survival/full
+	id = /obj/item/card/id/captains_spare/survival
+	backpack_contents = list(
+		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 1,
+	)
 
 /datum/outfit/job/survivor/non_deployed_operative
 	name = "Non-Deployed Operative Survivor"
