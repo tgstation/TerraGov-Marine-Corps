@@ -2,6 +2,11 @@
  * This datum in charge with selecting wich loadout is currently being edited
  * It also contains a tgui to navigate beetween loadouts
  */
+
+GLOBAL_LIST_INIT(loadout_renamed_jobs, list(
+	"Squad Marine" = "Squad Operative",
+	))
+
 /datum/loadout_manager
 	/**
 	 * List of all loadouts. Format is list(list(loadout_job, loadout_name))
@@ -11,6 +16,32 @@
 	var/obj/machinery/loadout_vendor/loadout_vendor
 	/// The version of the loadout manager
 	var/version = CURRENT_LOADOUT_VERSION
+
+/datum/loadout_manager/proc/handle_renamed_jobs(datum/tgui/ui)
+	for(var/loadout_data in loadouts_data)
+		var/name = loadout_data[2]
+		var/job = loadout_data[1]
+		var/new_job_name = GLOB.loadout_renamed_jobs[job]
+		if(new_job_name)
+			var/datum/loadout/loadout = ui.user.client.prefs.load_loadout(loadout_name = name, loadout_job = job)
+			if(!loadout)
+				continue
+			var/datum/loadout/would_overwrite = ui.user.client.prefs.load_loadout(loadout_name = name, loadout_job = new_job_name)
+			var/id = 2
+			var/new_name = name
+			while(would_overwrite)
+				new_name = "[name]_[id]"
+				would_overwrite = ui.user.client.prefs.load_loadout(loadout_name = new_name, loadout_job = new_job_name)
+				id++
+			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				legacy_version_fix(loadout, name, job, ui)
+			loadout.name = new_name
+			loadout.job = new_job_name
+			ui.user.client.prefs.save_loadout(loadout)
+			add_loadout(loadout)
+			loadout.loadout_vendor = loadout_vendor
+			update_static_data(ui.user, ui)
+			delete_loadout(user = ui.user, loadout_name = name, loadout_job = job)
 
 ///Remove the data of a loadout from the loadouts list
 /datum/loadout_manager/proc/delete_loadout(mob/user, loadout_name, loadout_job)
@@ -30,6 +61,7 @@
 	if(!ui)
 		ui = new(user, src, "LoadoutManager")
 		ui.open()
+		handle_renamed_jobs(ui)
 
 /datum/loadout_manager/ui_state(mob/user)
 	return GLOB.human_adjacent_state
