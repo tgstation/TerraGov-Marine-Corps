@@ -373,7 +373,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	state_process(next_target)
 
 ///Check if we need to adopt a new state
-/datum/ai_behavior/look_for_new_state(atom/next_target)
+/datum/ai_behavior/proc/look_for_new_state(atom/next_target)
 	SIGNAL_HANDLER
 	if(need_new_combat_target())
 		if(combat_target)
