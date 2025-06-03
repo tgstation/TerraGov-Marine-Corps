@@ -14,8 +14,6 @@
 	var/medical_rating = AI_MED_DEFAULT
 	///To what level they will handle engineering tasks like repairs
 	var/engineer_rating = AI_ENGIE_DEFAULT
-	///List of abilities to consider doing every Process()
-	var/list/ability_list = list()
 	///Inventory datum so the mob_parent can manage its inventory
 	var/datum/managed_inventory/mob_inventory
 	///Chat lines when moving to a new target
@@ -40,9 +38,7 @@
 	COOLDOWN_DECLARE(ai_retreat_cooldown)
 
 /datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
-	..()
-	refresh_abilities()
-	mob_parent.a_intent = INTENT_HARM
+	. = ..()
 	mob_inventory = new(mob_parent)
 
 /datum/ai_behavior/human/Destroy(force, ...)
@@ -337,14 +333,6 @@
 	SIGNAL_HANDLER
 	if(m_intent == MOVE_INTENT_WALK)
 		COOLDOWN_START(src, ai_run_cooldown, 10 SECONDS) //give time for stam to regen
-
-///Refresh abilities-to-consider list
-/datum/ai_behavior/human/proc/refresh_abilities()
-	SIGNAL_HANDLER
-	ability_list = list()
-	for(var/datum/action/action AS in mob_parent.actions)
-		if(action.ai_should_start_consider())
-			ability_list += action
 
 ///Sig handler for physical interactions, like attacks
 /datum/ai_behavior/human/proc/melee_interact(datum/source, atom/interactee)

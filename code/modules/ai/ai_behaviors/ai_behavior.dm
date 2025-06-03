@@ -54,6 +54,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/registered_for_move = FALSE
 	///Should we lose the escorted atom if we change action
 	var/weak_escort = FALSE
+	///List of abilities to consider doing every Process()
+	var/list/ability_list = list()
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -63,6 +65,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	mob_parent = parent_to_assign
 	set_escorted_atom(null, escorted_atom)
+	refresh_abilities()
+	mob_parent.a_intent = INTENT_HARM
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	if(is_offered_on_creation)
 		LAZYOR(GLOB.ssd_living_mobs, mob_parent)
@@ -96,6 +100,14 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(!registered_for_move)
 		scheduled_move()
 
+///Refresh abilities-to-consider list
+/datum/ai_behavior/proc/refresh_abilities()
+	SIGNAL_HANDLER
+	ability_list = list()
+	for(var/datum/action/action AS in mob_parent.actions)
+		if(action.ai_should_start_consider())
+			ability_list += action
+
 ///We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
@@ -111,7 +123,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Clean every signal on the ai_behavior
 /datum/ai_behavior/proc/cleanup_signals()
 	cleanup_current_action()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET)
 
 ///Cleanup old state vars, start the movement towards our new target
@@ -266,7 +277,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber(), TRUE)
 	look_for_new_state(next_target)
 	state_process(next_target)
-	return
 
 ///Check if we need to adopt a new state
 /datum/ai_behavior/proc/look_for_new_state(atom/next_target)

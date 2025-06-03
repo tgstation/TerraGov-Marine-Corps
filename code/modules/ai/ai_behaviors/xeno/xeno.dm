@@ -4,47 +4,24 @@
 	sidestep_prob = 25
 	identifier = IDENTIFIER_XENO
 	is_offered_on_creation = TRUE
-	///List of abilities to consider doing every Process()
-	var/list/ability_list = list()
 	///If the mob parent can heal itself and so should flee
 	var/can_heal = TRUE
-
-/datum/ai_behavior/xeno/New(loc, mob/parent_to_assign, atom/escorted_atom)
-	..()
-	refresh_abilities()
-	mob_parent.a_intent = INTENT_HARM //Killing time
 
 /datum/ai_behavior/xeno/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(check_for_critical_health))
-	if(!escorted_atom)
-		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
-	return ..()
-
-/datum/ai_behavior/xeno/clean_escorted_atom(find_new_escort = FALSE)
-	if(!escorted_atom)
-		return
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
 	return ..()
 
-/datum/ai_behavior/xeno/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
-	. = ..()
-	if(!new_escort_is_weak)
-		UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
-
-/datum/ai_behavior/xeno/global_set_escorted_atom(datum/source, atom/atom_to_escort)
-	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber() || mob_parent.ckey)
-		return
-	return ..()
-
-///Refresh abilities-to-consider list
-/datum/ai_behavior/xeno/proc/refresh_abilities()
+///Change atom to walk to if the order comes from a corresponding commander
+/datum/ai_behavior/xeno/proc/global_set_escorted_atom(datum/source, atom/atom_to_escort)
 	SIGNAL_HANDLER
-	ability_list = list()
-	for(var/datum/action/action AS in mob_parent.actions)
-		if(action.ai_should_start_consider())
-			ability_list += action
+	if(QDELETED(atom_to_escort) || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber() || mob_parent.ckey)
+		return
+	if(get_dist(atom_to_escort, mob_parent) > target_distance)
+		return
+	set_escorted_atom(source, atom_to_escort)
 
 /datum/ai_behavior/xeno/process()
 	if(mob_parent.notransform)
