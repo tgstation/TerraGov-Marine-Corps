@@ -291,6 +291,10 @@
 			var/obj/item/mecha_parts/mecha_equipment/thing = new path
 			thing.attach(src, FALSE)
 			equip_by_category[key] -= path
+	var/static/list/tool_behaviors = list(
+		TOOL_WELDER = list(SCREENTIP_CONTEXT_LMB = "Repair"),
+	)
+	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
 
 /obj/vehicle/sealed/mecha/Destroy()
 	for(var/ejectee in occupants)
