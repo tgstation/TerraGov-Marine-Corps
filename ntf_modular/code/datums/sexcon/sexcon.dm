@@ -230,23 +230,23 @@
 		action_target.emote("gasp")
 
 /datum/sex_controller/proc/perform_sex_action(mob/living/action_target, arousal_amt, pain_amt, giving)
-	action_target.sexcon.receive_sex_action(arousal_amt, pain_amt, giving, force, speed)
+	var/datum/sex_action/action = SEX_ACTION(current_action)
+	var/healing_amount = (action?.heal_sex) ? rand(2, 4) : 0
+	action_target.sexcon.receive_sex_action(arousal_amt, pain_amt, giving, force, speed, healing_amount)
 
-/datum/sex_controller/proc/receive_sex_action(arousal_amt, pain_amt, giving, applied_force, applied_speed)
+/datum/sex_controller/proc/receive_sex_action(arousal_amt, pain_amt, giving, applied_force, applied_speed, healing_amount)
 	arousal_amt *= get_force_pleasure_multiplier(applied_force, giving)
 	pain_amt *= get_force_pain_multiplier(applied_force)
 	pain_amt *= get_speed_pain_multiplier(applied_speed)
 
-	var/datum/sex_action/action = SEX_ACTION(current_action)
-	if(action?.heal_sex)
-		var/sexhealrand = rand(2, 4)
+	if(healing_amount)
 		//go go gadget sex healing.. magic?
 		if(user.buckled || user.lying_angle) //gooder resting
-			sexhealrand *= 4
-		user.heal_overall_damage(sexhealrand, sexhealrand/2, TRUE, TRUE)
+			healing_amount *= 4
+		user.heal_overall_damage(healing_amount, healing_amount/2, TRUE, TRUE)
 		if(isxeno(user))
-			var/mob/living/carbon/xenomorph/xuser = user
-			xuser.gain_plasma(5, TRUE)
+			var/mob/living/carbon/xenomorph/xeno_user = user
+			xeno_user.gain_plasma(5, TRUE)
 
 	adjust_arousal(arousal_amt)
 	if(!user.mind || user.client?.prefs.harmful_sex_allowed)
