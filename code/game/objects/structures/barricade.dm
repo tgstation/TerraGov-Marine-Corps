@@ -20,6 +20,7 @@
 	///to specify a non-zero amount of stack to drop when destroyed
 	var/destroyed_stack_amount = 0
 	var/base_acid_damage = 2
+	// todo make me a define, also add contextual screentips to me
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
 	///Whether this barricade has damaged states
 	var/can_change_dmg_state = TRUE
@@ -57,6 +58,10 @@
 			. += span_warning("It's quite beat up, but it's holding together.")
 		if(-INFINITY to 25)
 			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
+
+/obj/structure/barricade/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if()
 
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
@@ -785,9 +790,6 @@
 		balloon_alert(user, "Too damaged. Use [barricade_type] sheets.")
 
 /obj/structure/barricade/folding/screwdriver_act(mob/living/user, obj/item/I)
-	if(!isscrewdriver(I))
-		return
-
 	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
 		return
 
@@ -824,9 +826,6 @@
 			build_state = BARRICADE_PLASTEEL_FIRM
 
 /obj/structure/barricade/folding/crowbar_act(mob/living/user, obj/item/I)
-	if(!iscrowbar(I))
-		return
-
 	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
 		return
 
@@ -864,9 +863,6 @@
 			deconstruct(!get_self_acid())
 
 /obj/structure/barricade/folding/wrench_act(mob/living/user, obj/item/I)
-	if(!iswrench(I))
-		return
-
 	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
 		return
 
