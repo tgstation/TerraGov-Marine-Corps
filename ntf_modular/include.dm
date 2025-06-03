@@ -4,6 +4,8 @@
 #include "code\datums\gamemodes\_game_mode.dm"
 #include "code\datums\genital_menu.dm"
 #include "code\datums\jobs\job\mothellian.dm"
+#include "code\datums\jobs\job\survivor.dm"
+#include "code\datums\outfits\survivor.dm"
 #include "code\datums\sexcon\item_helpers.dm"
 #include "code\datums\sexcon\sex_action.dm"
 #include "code\datums\sexcon\sex_actions\candle\candle_body.dm"
