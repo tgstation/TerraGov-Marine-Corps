@@ -51,10 +51,10 @@
 /datum/ai_behavior/xeno/look_for_new_state(atom/next_target)
 	. = ..()
 	if(current_action == MOVING_TO_ATOM)
-		if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
-			change_action(ESCORTING_ATOM, escorted_atom)
-			return
-		if(!combat_target)//We didn't find a target
+		if(!combat_target)
+			if(escorted_atom)
+				change_action(ESCORTING_ATOM, escorted_atom)
+				return
 			cleanup_current_action()
 			late_initialize()
 	if(current_action == MOVING_TO_SAFETY)
