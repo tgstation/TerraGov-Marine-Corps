@@ -7,3 +7,6 @@
   - bugfix: 'Campaign: Fixed some loadout ammo issues with SG-62 and SH-34'
   - rscadd: Added the interaction designation mode to the build designation action
   - rscadd: Engie NPC's can fix APC's, vehicles, and other suitable objects
+2025-06-04:
+  Looking4bros:
+  - balance: Campaign axemen get items inside general belt
