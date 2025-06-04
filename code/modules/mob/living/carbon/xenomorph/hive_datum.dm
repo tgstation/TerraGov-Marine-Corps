@@ -770,10 +770,11 @@
 	set_ruler(successor)
 	successor.give_ruler_abilities()
 	successor.hud_set_queen_overwatch()
-	successor.update_leader_icon(FALSE)
 	if(prev)
 		prev.hud_set_queen_overwatch() // we want to remove the ruler star from the previous ruler
 		prev = null // instantly null it
+		successor.update_leader_icon(FALSE) // We dont want to call this if its the first xeno
+
 	handle_ruler_timer()
 	update_leader_pheromones()
 	if(announce)
@@ -782,12 +783,12 @@
 
 
 /datum/hive_status/proc/set_ruler(mob/living/carbon/xenomorph/successor)
-	SIGNAL_HANDLER
 	SSdirection.clear_leader(hivenumber)
 	if(!isnull(successor))
 		SSdirection.set_leader(hivenumber, successor)
 		RegisterSignals(successor, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_missing_ruler), TRUE)
 	living_xeno_ruler = successor
+	handle_ruler_timer()
 
 
 /datum/hive_status/proc/handle_ruler_timer()
