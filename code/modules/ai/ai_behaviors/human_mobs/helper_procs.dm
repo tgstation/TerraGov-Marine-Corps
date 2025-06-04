@@ -165,40 +165,54 @@
 			return
 
 /obj/machinery/power/apc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
-	if(length(wires.cut_wires))
-		var/obj/item/tool/wirecutters/cutters = behavior_datum.mob_inventory.find_tool(TOOL_WIRECUTTER)
-		if(cutters)
-			for(var/wire in wires.cut_wires)
-				wires.cut(wire)
+	var/obj/item/crowbar = behavior_datum.mob_inventory.find_tool(TOOL_CROWBAR)
+	var/obj/item/tool/wirecutters/cutters = behavior_datum.mob_inventory.find_tool(TOOL_WIRECUTTER)
+	var/obj/item/screwdriver = behavior_datum.mob_inventory.find_tool(TOOL_SCREWDRIVER)
 
-	if(!cell || (!cell.charge && charging == APC_NOT_CHARGING))
+	if(locked)
+		locked = FALSE
+
+	if(length(wires.cut_wires) && crowbar && cutters && screwdriver)
+		if(opened == APC_COVER_OPENED)
+			crowbar_act(interactor, crowbar)
+		if(!(machine_stat & PANEL_OPEN))
+			screwdriver_act(interactor, screwdriver)
+		for(var/wire in wires.cut_wires)
+			wires.cut(wire)
+		screwdriver_act(interactor, screwdriver)
+
+	if((!cell || (!cell.charge && charging == APC_NOT_CHARGING)) && screwdriver && crowbar)
+		if(machine_stat & PANEL_OPEN)
+			screwdriver_act(interactor, screwdriver)
+		if(opened != APC_COVER_OPENED)
+			coverlocked = FALSE
+			crowbar_act(interactor, crowbar)
+		if(cell)
+			balloon_alert_to_viewers("Removes [cell] from [src]")
+			interactor.put_in_hands(cell)
+			cell.update_appearance()
+			set_cell(null)
+			charging = APC_NOT_CHARGING
+			update_appearance()
 		var/obj/item/cell/new_cell
 		for(var/obj/item/cell/candidate_cell in behavior_datum.mob_inventory.engineering_list)
 			if(candidate_cell.charge)
 				new_cell = candidate_cell
 				break
-		if(new_cell)
-			if(cell)
-				//clean this up
-				balloon_alert_to_viewers("Removes [cell] from [src]")
-				interactor.put_in_hands(cell)
-				cell.update_appearance()
-				set_cell(null)
-				charging = APC_NOT_CHARGING
-				update_appearance()
-			attackby(new_cell, interactor)
+		if(!new_cell)
+			return //early return so its clear to players what the issue is
+		attackby(new_cell, interactor)
+		crowbar_act(interactor, crowbar)
 
+	if(opened == APC_COVER_OPENED && crowbar)
+		crowbar_act(interactor, crowbar)
+	if(machine_stat & PANEL_OPEN && screwdriver)
+		screwdriver_act(interactor, screwdriver)
 	if(!operating)
 		toggle_breaker(interactor)
-
-	if(opened == APC_COVER_OPENED)
-		var/obj/item/crowbar = behavior_datum.mob_inventory.find_tool(TOOL_CROWBAR)
-		if(crowbar)
-			crowbar_act(interactor, crowbar)
-	if(machine_stat & PANEL_OPEN)
-		var/obj/item/screwdriver = behavior_datum.mob_inventory.find_tool(TOOL_SCREWDRIVER)
-		if(screwdriver)
-			screwdriver_act(interactor, screwdriver)
+	lighting = APC_CHANNEL_AUTO_ON
+	equipment = APC_CHANNEL_ON
+	environ = APC_CHANNEL_AUTO_ON
 
 /obj/effect/build_designator/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	behavior_datum.try_build_holo(src)
