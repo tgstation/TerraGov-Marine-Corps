@@ -173,6 +173,8 @@
 	. = ..()
 	if(.)
 		return
+	if(non_aggressive)
+		return FALSE
 	if(get_dist(mob_parent, combat_target) <= AI_COMBAT_TARGET_BLIND_DISTANCE)
 		return FALSE
 	if(!line_of_sight(mob_parent, combat_target, target_distance))
