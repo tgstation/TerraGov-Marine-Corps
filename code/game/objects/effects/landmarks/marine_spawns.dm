@@ -215,11 +215,11 @@
 
 /obj/effect/landmark/start/job/clf/standard
 	icon_state = "Shaft Miner"
-	job = /datum/outfit/job/clf/standard
+	job = /datum/job/clf/standard
 
 /obj/effect/landmark/start/job/clf/breeder
 	icon_state = "Shaft Miner"
-	job = /datum/outfit/job/clf/breeder
+	job = /datum/job/clf/breeder
 
 /obj/effect/landmark/start/job/prisoner
 	icon_state = "Shaft Miner"
