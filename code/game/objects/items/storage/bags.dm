@@ -89,7 +89,7 @@
 /obj/item/storage/bag/sheetsnatcher
 	icon_state = "sheetsnatcher"
 	name = "Sheet Snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
+	desc = "A patented Ninetails storage system designed for any kind of mineral sheet."
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/bag/sheetsnatcher
 	///the number of sheets it can carry.
