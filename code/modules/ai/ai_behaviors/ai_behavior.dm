@@ -295,7 +295,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return COMSIG_OBSTACLE_DEALT_WITH
 
 	//We do this last because there could be other stuff blocking us from even reaching the turf
-	if(istype(obstacle_turf, /turf/closed/wall/resin))
+	if(istype(obstacle_turf, /turf/closed/wall/resin) && !isxeno(mob_parent))
 		INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle_turf)
 		return COMSIG_OBSTACLE_DEALT_WITH
 
