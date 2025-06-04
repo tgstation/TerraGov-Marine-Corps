@@ -4,12 +4,20 @@
 	var/list/associated_paths
 	var/lore_text
 	var/mechanics_text
+	var/list/attributes
+	var/list/mechanics
+	var/list/background
+	var/description
+	var/is_gun
+	var/is_clothing
+	var/icon
 	var/antag_text
 
 /datum/codex_entry/dd_SortValue()
 	return display_name
 
-/datum/codex_entry/New(_display_name, list/_associated_paths, list/_associated_strings, _lore_text, _mechanics_text, _antag_text)
+/datum/codex_entry/New(_display_name, list/_associated_paths, list/_associated_strings, _lore_text, _mechanics_text, _antag_text, \
+	_attributes, _mechanics, _background, _description, _is_gun, _is_clothing)
 
 	if(_display_name)
 		display_name = _display_name
@@ -23,6 +31,19 @@
 		mechanics_text = _mechanics_text
 	if(_antag_text)
 		antag_text = _antag_text
+	if(_attributes)
+		attributes = _attributes
+	if(_mechanics)
+		mechanics = _mechanics
+	if(_background)
+		for(var/entry in _background)
+			background += list(strip_html(entry))
+	if(_description)
+		description = _description
+	if(_is_gun)
+		is_gun = _is_gun
+	if(_is_clothing)
+		is_clothing = _is_clothing
 
 	if(length(associated_paths))
 		for(var/tpath in associated_paths)
