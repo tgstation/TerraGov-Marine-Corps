@@ -7,6 +7,7 @@
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_ALIEN, FACTION_XENO, FACTION_CLF, FACTION_ICC, FACTION_VSD)
 	human_factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_CLF, FACTION_ICC, FACTION_VSD)
+	//NTC, SOM and CLF are significant factions which have req access so they get more members, others aren't as invested and get 1 squad but usually get stronger gear (they are ERT anyway.)
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
@@ -76,18 +77,19 @@
 		/datum/job/other/prisonersom = 2,
 		/datum/job/clf/breeder = -1,
 		/datum/job/clf/standard = -1,
-		/datum/job/clf/leader = 2,
 		/datum/job/clf/medic = 2,
+		/datum/job/clf/specialist = 3,
+		/datum/job/clf/leader = 2,
 		/datum/job/clf/silicon/synthetic/clf = 1,
 		/datum/job/vsd_squad/standard = -1,
 		/datum/job/vsd_squad/medic = 1,
 		/datum/job/vsd_squad/engineer = 1,
-		/datum/job/vsd_squad/spec = 2,
+		/datum/job/vsd_squad/spec = 1,
 		/datum/job/vsd_squad/leader = 1,
 		/datum/job/icc_squad/standard = -1,
 		/datum/job/icc_squad/medic = 2,
 		/datum/job/icc_squad/spec = 2,
-		/datum/job/icc_squad/leader = 1,
+		/datum/job/icc_squad/leader = 2,
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 2 MINUTES

@@ -23,11 +23,11 @@
 	burst_amount = 1
 	//gonna adjust for no burst fire.
 	windup_delay = 0.3 SECONDS
-	fire_delay = 0.45 SECONDS
+	fire_delay = 0.3 SECONDS
 	scatter_unwielded = 4
 	scatter = 1.5
 	damage_mult = 1.2
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	recoil = 3
 	//no red dot, holo sight instead.
 	accuracy_mult_unwielded = 0.95

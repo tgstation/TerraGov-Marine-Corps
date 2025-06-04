@@ -189,7 +189,6 @@
 	aim_slowdown = 0.2
 	aim_speed_modifier = 2.5
 	scatter = -1
-	damage_falloff_mult = 0.8
 
 //standard mag
 /obj/item/ammo_magazine/rifle/nt_halter
@@ -201,6 +200,9 @@
 	bonus_overlay = "halter_mag"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/halter
 	max_rounds = 36
+
+/datum/ammo/bullet/rifle/heavy/halter
+	name = "heavy rifle bullet"
 
 //extended mag
 /obj/item/ammo_magazine/rifle/nt_halter/extended
@@ -229,12 +231,12 @@
 /datum/ammo/bullet/rifle/heavy/halter/charged
 	name = "charged heavy rifle bullet"
 	hud_state = "rifle_ap"
-	damage = 15
-	penetration = 5
-	sundering = 1
+	damage = 20
+	penetration = 10
+	sundering = 2
 	shrapnel_chance = 2
 	bullet_color = COLOR_BRIGHT_BLUE
-	var/emp_chance = 15 //spin the wheel WOOOOO
+	var/emp_chance = 25 //spin the wheel WOOOOO
 
 /datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	. = ..()

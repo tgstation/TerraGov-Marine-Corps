@@ -25,7 +25,7 @@
 	var/mitigation_rate = 2
 	var/explode_on_overload = TRUE
 	///percent chance to go off without exploding.
-	var/auto_release_chance = 20
+	var/auto_release_chance = 85
 
 /obj/item/armor_module/module/eshield/absorbant/energy
 	name = "NT Voidwalker Anti-Energy Shield System"
@@ -54,7 +54,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 				last_warning_time = world.time
 				balloon_alert_to_viewers("overloading! [shield_health]/[overcharge_max_health]")
 				playsound(src.loc, 'sound/machines/beepalert.ogg', 40)
-			if(shield_health >= overcharge_max_health && prob(auto_release_chance)) //chance to save before exploding.
+			if(shield_health >= overcharge_max_health && prob(auto_release_chance && explode_on_overload)) //chance to save before exploding.
 				balloon_alert_to_viewers(src, "emergency release!")
 				playsound(src.loc, 'sound/effects/airhiss.ogg', 40)
 				shield_health = 0
@@ -79,7 +79,9 @@ converting the absorbed energy into shield power, warning: overcharging too much
 			if(explode_on_overload)
 				balloon_alert_to_viewers("shield break!")
 				explosion(src.loc,0,0,0,3,0,1,2, smoke = TRUE)
-				empulse(src,0,0,0,3)
+			else
+				balloon_alert_to_viewers(src, "overload release!")
+				playsound(src.loc, 'sound/effects/airhiss.ogg', 40)
 			shield_health = 0
 		STOP_PROCESSING(SSobj, src)
 		deltimer(recharge_timer)

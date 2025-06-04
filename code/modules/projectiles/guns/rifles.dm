@@ -2784,7 +2784,7 @@
 
 /obj/item/weapon/gun/rifle/vsd_lmg
 	name = "\improper L26 support machine gun"
-	desc = "The Syndicate's main all purpose machine gun, chambered in 5.56. It's design seems... outdated yet still reliable. Fires rapidly with devasting kicks, at a cost of movement speed."
+	desc = "The KZ's main all purpose machine gun, chambered in 5.56. It's design seems... outdated yet still reliable. Fires rapidly with devasting kicks, at a cost of movement speed."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "l26"
 	worn_icon_state = "l26"
@@ -2853,9 +2853,9 @@
 
 // CC/67, the new C550!
 
-/obj/item/weapon/gun/rifle/vsd_rifle
-	name = "\improper CC/67 assault rifle"
-	desc = "Crash Core's next-gen assault rifle, chambered in 10x27mm. Combat and Support worthy, this will pack a kick to anyone standing infront of you."
+/obj/item/weapon/gun/rifle/cc67
+	name = "\improper CC/67 battle rifle"
+	desc = "Crash Core's next-gen battle rifle, chambered in 10x27mm. Combat and Support worthy, this will pack a kick to anyone standing infront of you."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "c550"
 	worn_icon_state = "c550"
@@ -2906,16 +2906,15 @@
 	attachable_offset = list("muzzle_x" = 63, "muzzle_y" = 19,"rail_x" = 27, "rail_y" = 23, "under_x" = 35, "under_y" = 16, "stock_x" = 8, "stock_y" = 13)
 	burst_amount = 1
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	scatter = 0
 	fire_delay = 0.5 SECONDS
 
-/obj/item/weapon/gun/rifle/vsd_rifle/standard
+/obj/item/weapon/gun/rifle/cc67/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
-/obj/item/weapon/gun/rifle/vsd_rifle/medic
+/obj/item/weapon/gun/rifle/cc67/medic
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
 
-/obj/item/weapon/gun/rifle/vsd_rifle/export
+/obj/item/weapon/gun/rifle/cc67/export
 	icon_state = "c550_export"
 	worn_icon_state = "c550_export"
 	worn_icon_list = list(
@@ -2987,9 +2986,9 @@
 /obj/item/weapon/gun/rifle/vsd_lmg_main/recoilcomp
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator)
 
-/obj/item/weapon/gun/rifle/vsd_carbine
-	name = "\improper CC/77 assault carbine"
-	desc = "Crash Core's next-gen assault carbine, chambered in 10x24mm Caseless. Combat and Support worthy, this oughta hurt any person who stands in your way."
+/obj/item/weapon/gun/rifle/cc77
+	name = "\improper CC/77 assault rifle"
+	desc = "Crash Core's next-gen assault rifle, chambered in 10x24mm Caseless. Combat and Support worthy, this oughta hurt any person who stands in your way."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "c77"
 	worn_icon_state = "c77"
@@ -3006,8 +3005,8 @@
 	aim_slowdown = 0.5
 	wield_delay =  0.9 SECONDS
 	max_shells = 24 //codex
-	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_carbine
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_carbine, /obj/item/ammo_magazine/rifle/vsd_carbine/extended, /obj/item/ammo_magazine/rifle/vsd_carbine/ap)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/cc77
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/cc77, /obj/item/ammo_magazine/rifle/cc77/extended, /obj/item/ammo_magazine/rifle/cc77/ap)
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK|GUN_SMOKE_PARTICLES
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -3046,10 +3045,10 @@
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 
-/obj/item/weapon/gun/rifle/vsd_carbine/recoilcomp
+/obj/item/weapon/gun/rifle/cc77/recoilcomp
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/angledgrip, /obj/item/attachable/compensator)
 
-/obj/item/weapon/gun/rifle/vsd_carbine/suppressed
+/obj/item/weapon/gun/rifle/cc77/suppressed
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
 
 
@@ -3097,7 +3096,7 @@
 
 /obj/item/weapon/gun/rifle/light_autoshotgun
 	name = "\improper SH-410 automatic shotgun"
-	desc = "The SH-410 shotgun is the newest weapon in the TGMC's inventory. Prior to arrival in the Corps, it was used by numerous anti-terrorism agencies to great success in close quarters engagements. The .410 gauge shells are very weak individually compared to 16 gauge let alone 12 gauge, but the higher fire rate will surely compensate for it."
+	desc = "The SH-410 shotgun is the newest weapon in the NTC's inventory. Prior to arrival in the Corps, it was used by numerous anti-terrorism agencies to great success in close quarters engagements. The .410 gauge shells are very weak individually compared to 16 gauge let alone 12 gauge, but the higher fire rate will surely compensate for it."
 	icon_state = "sh410"
 	worn_icon_state = "sh410"
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
