@@ -3100,7 +3100,9 @@
 	icon_state = "sh410"
 	worn_icon_state = "sh410"
 	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/shotgun.dmi'
+/* Merge conflict
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh410.ogg'
+*/
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_410 //same as the MBX
 	max_shells = 15 //vs 12 on ts15
