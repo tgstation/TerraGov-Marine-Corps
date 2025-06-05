@@ -329,6 +329,27 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/line/boiler
 	cooldown_duration = 9 SECONDS
+	/// The required amount of globs in order to have gas to appear on each spray of acid. Only works if it is non-zero.
+	var/globs_threshold = 0
+
+/datum/action/ability/activable/xeno/spray_acid/line/boiler/acid_splat_turf(turf/T)
+	. = ..()
+	if(!globs_threshold || !xeno_owner.ammo)
+		return
+	var/current_globs =  xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
+	if(globs_threshold > current_globs)
+		return
+	var/current_turf = get_turf(xeno_owner)
+	var/datum/effect_system/smoke_spread/xeno/smoke
+	switch(xeno_owner.ammo)
+		if(/datum/ammo/xeno/boiler_gas/corrosive)
+			smoke = new /datum/effect_system/smoke_spread/xeno/acid(current_turf)
+		if(/datum/ammo/xeno/boiler_gas)
+			smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light(current_turf)
+	if(!smoke)
+		return
+	smoke.set_up(0, current_turf)
+	smoke.start()
 
 /datum/action/ability/activable/xeno/acid_shroud
 	name = "Acid Shroud"
