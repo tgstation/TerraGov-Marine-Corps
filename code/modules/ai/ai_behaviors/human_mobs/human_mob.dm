@@ -415,6 +415,13 @@
 	set_interact_target(movable_target)
 	try_speak(pick(receive_order_chat))
 
+///Attempts to pickup an item
+/datum/ai_behavior/human/proc/pick_up_item(obj/item/new_item)
+	store_hands()
+	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item())
+		return
+	mob_parent.UnarmedAttack(new_item, TRUE)
+
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)
 	if(mob_parent.incapacitated())
