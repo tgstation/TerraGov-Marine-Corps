@@ -1379,7 +1379,7 @@
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "ix" = (
 /obj/machinery/vending/engivend,
@@ -9643,7 +9643,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "Ym" = (
 /obj/structure/cable,

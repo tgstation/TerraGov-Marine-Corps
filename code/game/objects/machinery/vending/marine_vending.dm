@@ -175,6 +175,7 @@
 			/obj/item/explosive/grenade/bullet/hefa = 10,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
+			/obj/item/weapon/gun/rifle/drone/nut = 8,
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/rifle/pepperball = 10,

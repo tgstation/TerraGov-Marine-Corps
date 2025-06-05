@@ -65,3 +65,9 @@
 	refill_type = /obj/item/factory_part/light_sentry
 	antag_refill_type = /obj/item/factory_part/light_sentry/cope
 	refill_amount = 2
+
+/obj/item/factory_refill/drone_parts
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/automated_drone/nut
+	refill_amount = 2

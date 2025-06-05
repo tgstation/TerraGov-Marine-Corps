@@ -234,6 +234,6 @@
 	damage_falloff = 0.7
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	accurate_range = 20
-	damage = 60
-	penetration = 20
+	damage = 50
+	penetration = 15
 	sundering = 3

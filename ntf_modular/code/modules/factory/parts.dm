@@ -32,6 +32,16 @@ GLOBAL_LIST_INIT(weapon, list(
 	. = ..()
 	recipe = GLOB.weapon
 
+/obj/item/factory_part/automated_drone/nut
+	name = "unfinished NUT parts"
+	desc = "A box with drone parts inside."
+	result = /obj/item/weapon/gun/rifle/drone/nut
+
+/obj/item/factory_part/automated_drone/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.weapon
+
+
 //// ANTAG CONVERTED TYPES ////
 
 /obj/item/factory_part/phosnade/upp
