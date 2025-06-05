@@ -83,7 +83,9 @@
 		return
 	if(item_flags & NOBLUDGEON)
 		return
-	user.changeNext_move(attack_speed)
+	if(istype(target_object, /obj/vehicle))
+		user.changeNext_move(attack_speed)
+	else user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(target_object, used_item = src)
 	return target_object.attacked_by(src, user)
 
