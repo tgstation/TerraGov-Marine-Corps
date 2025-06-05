@@ -5691,6 +5691,7 @@
 /area/desert_dam/exterior/valley/valley_wilderness)
 "aJq" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
@@ -28162,6 +28163,7 @@
 /area/desert_dam/building/administration/control_room)
 "dRB" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/hanger)
@@ -29471,6 +29473,7 @@
 /area/desert_dam/building/medical/office1)
 "evS" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -30770,6 +30773,7 @@
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "flm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/lobby)
 "flo" = (
@@ -34627,6 +34631,7 @@
 /area/desert_dam/interior/dam_interior/lobby)
 "hKC" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -36639,6 +36644,7 @@
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "iZN" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/desert_dam/building/church)
 "iZW" = (
@@ -37709,6 +37715,7 @@
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "jHQ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/hangar_storage)
@@ -37969,6 +37976,7 @@
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "jSF" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -38263,6 +38271,7 @@
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "jZD" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -38801,6 +38810,7 @@
 /area/desert_dam/building/medical/office1)
 "krc" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -40979,6 +40989,7 @@
 /area/desert_dam/interior/dam_interior/smes_main)
 "lLh" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -41719,6 +41730,7 @@
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "mnV" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/neutral,
 /area/desert_dam/interior/dam_interior/engine_room)
 "mnX" = (
@@ -43777,6 +43789,7 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "nHr" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
@@ -45146,6 +45159,7 @@
 /area/desert_dam/interior/east_engineering)
 "oAh" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/desert_dam/building/security/courtroom)
 "oAx" = (
@@ -45363,6 +45377,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
 "oJi" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/green/whitegreen,
 /area/desert_dam/building/lab_northwest/west_lab_xenoflora)
 "oJq" = (
@@ -45545,6 +45560,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_lobby)
 "oNP" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -45972,6 +45988,7 @@
 /area/desert_dam/building/dorms/hallway_westwing)
 "oZA" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -47630,6 +47647,7 @@
 "pVe" = (
 /obj/item/trash/pistachios,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
 "pVj" = (
@@ -47728,6 +47746,7 @@
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "pYo" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 4
@@ -48212,6 +48231,7 @@
 /area/desert_dam/building/medical/east_wing_hallway)
 "qna" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/prison,
@@ -49772,6 +49792,7 @@
 /area/desert_dam/interior/dam_interior/break_room)
 "rlj" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/loading)
@@ -50576,6 +50597,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "rNG" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/engine_east_wing)
@@ -53317,6 +53339,7 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "tuG" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -53416,6 +53439,7 @@
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "tyi" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
@@ -54738,6 +54762,7 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "uot" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/office1)
@@ -56782,6 +56807,7 @@
 /area/desert_dam/interior/east_engineering)
 "vAT" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/desert_dam/building/telecommunication)
 "vBg" = (
@@ -57098,6 +57124,7 @@
 "vKX" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
@@ -57466,6 +57493,7 @@
 /area/desert_dam/exterior/valley/valley_medical)
 "vXm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
@@ -59836,6 +59864,7 @@
 /area/desert_dam/exterior/valley/valley_wilderness)
 "xso" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -61219,6 +61248,7 @@
 /area/desert_dam/building/medical/north_wing_hallway)
 "yjm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,

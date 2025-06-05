@@ -4,6 +4,7 @@
 	synthetic_type = pick(SYNTH_TYPES)
 	robot_type = pick(ROBOT_TYPES)
 	ethnicity = random_ethnicity()
+	moth_wings = pick(GLOB.moth_wings_list)
 
 	h_style = random_hair_style(gender, species)
 	f_style = random_facial_hair_style(gender, species)
@@ -17,8 +18,10 @@
 	randomize_hair_color("facial")
 	randomize_eyes_color()
 	randomize_species_specific()
+	/*NTF removal
 	underwear = rand(1, length(GLOB.underwear_m))
 	undershirt = rand(1, length(GLOB.undershirt_f))
+	*/
 	backpack = rand(BACK_NOTHING, BACK_SATCHEL)
 	age = rand(AGE_MIN,AGE_MAX)
 	if(H)
@@ -136,6 +139,7 @@
 	if(!previewJob)
 		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		copy_to(mannequin)
+		mannequin.set_species(species)
 		parent.show_character_previews(new /mutable_appearance(mannequin))
 		unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		return
@@ -173,6 +177,8 @@
 	character.name = character.real_name
 
 	character.flavor_text = flavor_text
+	character.profile_pic = profile_pic
+	character.nsfwprofile_pic = nsfwprofile_pic
 
 	character.med_record = med_record
 	character.sec_record = sec_record
@@ -211,8 +217,23 @@
 	character.pitch = tts_pitch
 
 	character.moth_wings = moth_wings
+
+	/*NTF Removal
 	character.underwear = underwear
 	character.undershirt = undershirt
+	*/
+
+	if(character.species.has_genital_selection)
+		character.ass = genitalia_ass
+		character.boobs = genitalia_boobs
+		character.cock = genitalia_cock
+
+	character.ooc_notes = metadata
+	character.ooc_notes_likes = metadata_likes
+	character.ooc_notes_dislikes = metadata_dislikes
+	character.ooc_notes_maybes = metadata_maybes
+	character.ooc_notes_favs = metadata_favs
+	character.ooc_notes_style = metadata_ooc_style
 
 	character.update_body()
 	character.update_hair()

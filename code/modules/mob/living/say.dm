@@ -15,7 +15,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	RADIO_KEY_CHARLIE = RADIO_CHANNEL_CHARLIE,
 	RADIO_KEY_DELTA = RADIO_CHANNEL_DELTA,
 	RADIO_KEY_CAS = RADIO_CHANNEL_CAS,
+	RADIO_KEY_SEC = RADIO_CHANNEL_SEC,
 	RADIO_KEY_REQUISITIONS = RADIO_CHANNEL_REQUISITIONS,
+
+	RADIO_KEY_PMC = RADIO_CHANNEL_PMC,
+	RADIO_KEY_CIV_GENERAL = RADIO_CHANNEL_CIV_GENERAL,
 ))
 
 GLOBAL_LIST_INIT(department_radio_keys_som, list(
@@ -32,6 +36,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	RADIO_KEY_BRAVO = RADIO_CHANNEL_YANKEE,
 	RADIO_KEY_CHARLIE = RADIO_CHANNEL_XRAY,
 	RADIO_KEY_DELTA = RADIO_CHANNEL_WHISKEY,
+	RADIO_KEY_CIV_GENERAL = RADIO_CHANNEL_CIV_GENERAL,
 ))
 
 /mob/living/proc/Ellipsis(original_msg, chance = 50, keep_words)
@@ -196,6 +201,9 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	. = ..()
 	if(!client)
 		return FALSE
+	if(stat == DEAD)
+		if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(client, R_ADMIN)) // no getting to know what you shouldn't
+			return FALSE
 
 	// Create map text prior to modifying message for goonchat
 	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && !isdeaf(src) && (client.prefs.see_chat_non_mob || ismob(speaker)))
@@ -247,7 +255,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	var/eavesdropping
 	var/eavesrendered
 	if(eavesdrop_range)
-		eavesdropping = stars(message_raw)
+		eavesdropping = stars(message_raw, probability=50)
 		eavesrendered = compose_message(src, message_language, eavesdropping, null, spans, message_mode)
 
 	var/list/listened = list()

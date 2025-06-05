@@ -214,16 +214,47 @@
 
 
 /datum/emote/living/carbon/human/surrender
-	key = "surrender"
-	key_third_person = "surrenders"
-	message = "puts their hands on their head and falls to the ground, they surrender!"
-	emote_type = EMOTE_AUDIBLE
+    key = "surrender"
+    key_third_person = "surrenders"
+    message = "puts their hands on their head and falls to the ground, they surrender!"
+    emote_type = EMOTE_AUDIBLE
+    stat_allowed = UNCONSCIOUS
+    sound = 'sound/machines/beepalert.ogg'
 
 /datum/emote/living/carbon/human/surrender/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	if(. && isliving(user))
-		var/mob/living/L = user
-		L.Paralyze(20 SECONDS)
+    . = ..()
+    if(. && isliving(user))
+        var/mob/living/L = user
+        L.Paralyze(90 SECONDS)
+
+/datum/emote/living/carbon/human/surrender/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
+    if(!ishuman(user))
+        return
+    . = ..()
+    var/image/surrendering = image('icons/mob/effects/talk.dmi', user, icon_state = "surrendering")
+    user.add_emote_overlay(surrendering, 90 SECONDS)
+// And now for the sexy varient
+
+/datum/emote/living/carbon/human/submit
+    key = "submit"
+    key_third_person = "submits"
+    message = "falls to the ground and submits, offering their body for mercy!"
+    emote_type = EMOTE_AUDIBLE
+    stat_allowed = UNCONSCIOUS
+    sound = 'ntf_modular/sound/misc/mat/end.ogg'
+
+/datum/emote/living/carbon/human/submit/run_emote(mob/user, params, type_override, intentional)
+    . = ..()
+    if(. && isliving(user))
+        var/mob/living/L = user
+        L.Paralyze(90 SECONDS)
+
+/datum/emote/living/carbon/human/submit/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
+    if(!ishuman(user))
+        return
+    . = ..()
+    var/image/submitting = image('icons/mob/effects/talk.dmi', user, icon_state = "submit")
+    user.add_emote_overlay(submitting, 90 SECONDS)
 
 
 /datum/emote/living/carbon/human/sneeze
@@ -354,6 +385,11 @@
 	message = "moans!"
 	emote_type = EMOTE_AUDIBLE
 
+/datum/emote/living/carbon/human/moan/get_sound(mob/living/user)
+	if(user.gender == FEMALE)
+		return pick('sound/voice/sexymoan_female1.ogg', 'sound/voice/sexymoan_female2.ogg', 'sound/voice/sexymoan_female3.ogg', 'sound/voice/sexymoan_female4.ogg', 'sound/voice/sexymoan_female5.ogg', 'sound/voice/sexymoan_female6.ogg', 'sound/voice/sexymoan_female7.ogg')
+	else
+		return pick('sound/voice/sexymoan_male1.ogg', 'sound/voice/sexymoan_male2.ogg', 'sound/voice/sexymoan_male3.ogg', 'sound/voice/sexymoan_male4.ogg', 'sound/voice/sexymoan_male5.ogg')
 
 /datum/emote/living/carbon/human/laugh
 	key = "laugh"
@@ -551,6 +587,8 @@
 
 /datum/emote/living/carbon/human/burstscream/get_sound(mob/living/carbon/human/user)
 	if(!user.species)
+		return
+	if(user.client?.prefs?.burst_screams_enabled == FALSE)
 		return
 	if(user.species.burstscreams[user.gender])
 		return user.species.burstscreams[user.gender]

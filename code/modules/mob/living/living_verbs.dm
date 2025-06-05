@@ -51,6 +51,25 @@
 	set category = "OOC"
 	set name = "Ghost"
 
+	// Gamemode disallowed handler - START
+	if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS))
+		// ADMIN SECTION - START
+		if(usr.client && check_rights_for(usr.client, R_ADMIN|R_MENTOR))
+			if(tgui_alert(usr, "The current gamemode forbids ghosting, but you are an admin. Do you want to ghost anyway?\nNote that you will be Aghosted instead.", "Ghost", list("Yes", "No")) != "Yes")
+				return
+			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/aghost)
+			return
+		// ADMIN SECTION - END
+
+		if(tgui_alert(usr, "Ghosting is not allowed in this game mode.\nGiving up right now will abandon this body and you will be sent to the title screen.\nAre you absolutely sure you want to ghost?", "Ghost", list("Yes", "No")) != "Yes")
+			return
+		log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)], sending them to the title screen.")
+		message_admins("[ADMIN_TPMONTY(usr)] has ghosted, sending them to the title screen.")
+
+		ghostize(FALSE)
+		return
+	// Gamemode disallowed handler - END
+
 	if(stat == DEAD)
 		ghostize(TRUE)
 		return

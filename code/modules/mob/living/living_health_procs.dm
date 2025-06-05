@@ -75,8 +75,8 @@
 
 	var/stamina_loss_adjustment = staminaloss + amount
 	var/health_limit = maxHealth * 2
-	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, half of any excess as oxyloss
-		adjustOxyLoss((stamina_loss_adjustment - health_limit) * 0.5)
+	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, get hardstunned for 15 seconds, instead of taking oxygen damage.
+		apply_effect(15 SECONDS, EFFECT_PARALYZE)
 
 	staminaloss = clamp(stamina_loss_adjustment, -max_stamina, health_limit)
 
@@ -301,12 +301,14 @@
 	restore_all_organs()
 
 	//remove larva
-	var/obj/item/alien_embryo/A = locate() in src
-	var/mob/living/carbon/xenomorph/larva/L = locate() in src //the larva was fully grown, ready to burst.
-	if(A)
+	for(var/obj/item/alien_embryo/A in contents)
 		qdel(A)
-	if(L)
+		if(!A)
+			break
+	for(var/mob/living/carbon/xenomorph/larva/L in contents) //the larva was fully grown, ready to burst.
 		qdel(L)
+		if(!L)
+			break
 	DISABLE_BITFIELD(status_flags, XENO_HOST)
 
 	// restore us to conciousness
@@ -325,6 +327,7 @@
 	SSmobs.start_processing(src)
 	SEND_SIGNAL(src, COMSIG_LIVING_POST_FULLY_HEAL, admin_revive)
 
+	clear_fullscreen("death")
 
 /mob/living/carbon/revive(admin_revive = FALSE)
 	set_nutrition(400)
@@ -383,7 +386,7 @@
 
 ///Revive the huamn up to X health points
 /mob/living/carbon/human/proc/revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
-	if(!has_working_organs())
+	if((!SSticker.mode.zombie_rebirth) || (!has_working_organs()))
 		on_fire = TRUE
 		fire_stacks = 15
 		update_fire()
@@ -393,7 +396,7 @@
 		return
 	var/mob/dead/observer/ghost = get_ghost()
 	if(istype(ghost))
-		notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
+		notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/items/defib_success.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
 	do_jitter_animation(1000)
 	ADD_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	if(should_zombify && (istype(wear_ear, /obj/item/radio/headset/mainship)))

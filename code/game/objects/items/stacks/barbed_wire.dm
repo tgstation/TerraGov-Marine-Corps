@@ -101,7 +101,7 @@
 	if(user.skills.getRating(SKILL_ENGINEER)) //Higher skill lowers the delay.
 		delay_assembly -= 0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER) * 2
 
-	if(do_after(user, delay_assembly, NONE, src, BUSY_ICON_BUILD))
+	if(do_after(user, delay_assembly, TRUE, src, BUSY_ICON_BUILD))
 		var/obj/structure/razorwire/M = new /obj/structure/razorwire(target)
 		M.setDir(user.dir)
 		user.visible_message(span_notice("[user] assembles a [M]."),

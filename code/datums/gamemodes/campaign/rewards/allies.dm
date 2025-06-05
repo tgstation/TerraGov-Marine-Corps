@@ -1,3 +1,4 @@
+
 //Parent for all bonus role assets
 /datum/campaign_asset/bonus_job
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_DISABLE_ON_MISSION_END
@@ -45,7 +46,7 @@
 	)
 
 /datum/campaign_asset/bonus_job/icc
-	name = "ICC strike team"
+	name = "CM strike team"
 	desc = "A squad of ICC soldiers to support our forces"
 	detailed_desc = "A moderate number of ICC job slots are opened at no attrition cost. \
 	The ICC have authorised a small, local detachment of their troops to aid us in our conflict. They are well armed and armored, and could prove a valuable advantage in a fight."
@@ -62,7 +63,7 @@
 	name = "PMC security detail"
 	desc = "An elite PMC team to assist in a joint operation"
 	detailed_desc = "A small number of PMC job slots are opened at no attrition cost. \
-	NanoTrasen have authorised a small team of their PMC contractors to assist us in combat. With superior arms and armor, they a powerful tactical asset."
+	Ninetails have authorised a small team of their PMC contractors to assist us in combat. With superior arms and armor, they a powerful tactical asset."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/pmc_reinforcement
 	ui_icon = "pmc"
 	bonus_job_list = list(

@@ -1,5 +1,5 @@
 //Do not decrease this unles you know what you're doing.
-#define MAX_SAVE_SLOTS 10
+#define MAX_SAVE_SLOTS 100
 
 #define AGE_MIN 18
 #define AGE_MAX 85
@@ -29,6 +29,7 @@
 #define BE_SQUAD_STRICT (1<<4)
 #define BE_ALIEN_UNREVIVABLE (1<<5)
 #define BE_SSD_RANDOM_NAME (1<<6)
+#define BE_HIVE_TARGET (1<<7)
 
 #define BE_SPECIAL_DEFAULT (BE_DEATHMATCH)
 
@@ -117,9 +118,10 @@
 #define USE_GENDER "use_gender"
 
 #define CITIZENSHIP_CHOICES list(\
-	"Earth Born",\
-	"Sol Born",\
-	"Colony Born"\
+	"Phantom City (Earth)",\
+	"Nomad (Earth)",\
+	"Local (Colony born)",\
+	"Foreign (Another Planet Somehow)"\
 	)
 
 
@@ -201,6 +203,7 @@
 	"Join as Chestburster" = BE_ALIEN,\
 	"Take Own Chestburster" = BE_ALIEN_UNREVIVABLE,\
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
+	"Eligible for Hive Target" = BE_HIVE_TARGET,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT,\
 	"Use random name when taking SSD mobs" = BE_SSD_RANDOM_NAME\
 	)
