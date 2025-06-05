@@ -242,54 +242,66 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!key || isaghost(src))
 		return FALSE
 	SEND_SIGNAL(SSdcs, COMSIG_MOB_GHOSTIZE, src, can_reenter_corpse)
-	var/mob/dead/observer/ghost = new(src)
-	var/turf/T = get_turf(src)
 
-	if(client)
-		animate(client, pixel_x = 0, pixel_y = 0)
+	if(SSticker.mode.round_type_flags & MODE_NO_GHOSTS && !(client && check_rights_for(client, R_ADMIN)))
+		if(client)
+			client?.screen?.Cut()
+		var/mob/new_player/new_player = new /mob/new_player()
+		new_player.key = key
+		if(client)
+			new_player.client?.init_verbs()
+	else
+		var/mob/dead/observer/ghost = new(src)
+		var/turf/T = get_turf(src)
 
-	//dont copy the appearance so we keep verbs, etc.
-	ghost.overlays = overlays
-	ghost.underlays = underlays
-	ghost.icon = icon
-	ghost.icon_state = icon_state
-	ghost.appearance = strip_appearance_underlays(ghost)
+		if(client)
+			animate(client, pixel_x = 0, pixel_y = 0)
+
+		//dont copy the appearance so we keep verbs, etc.
+		ghost.overlays = overlays
+		ghost.underlays = underlays
+		ghost.icon = icon
+		ghost.icon_state = icon_state
+		ghost.appearance = strip_appearance_underlays(ghost)
+
+
+		if(mind?.name)
+			ghost.real_name = mind.name
+		else if(real_name)
+			ghost.real_name = real_name
+		else
+			ghost.real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
+
+		ghost.name = ghost.real_name
+		ghost.gender = gender
+		ghost.alpha = 127
+		ghost.can_reenter_corpse = can_reenter_corpse ? WEAKREF(src) : null
+		ghost.mind = mind
+
+		ghost.key = key
+		ghost.client?.init_verbs()
+		ghost.mind?.current = ghost
+		ghost.faction = faction
+		ghost.ooc_notes = ooc_notes
+		ghost.ooc_notes_likes = ooc_notes_likes
+		ghost.ooc_notes_dislikes = ooc_notes_dislikes
+		ghost.ooc_notes_maybes = ooc_notes_maybes
+		ghost.ooc_notes_favs = ooc_notes_favs
+		ghost.ooc_notes_style = ooc_notes_style
+
+		if(!T)
+			T = SAFEPICK(GLOB.latejoin)
+		if(!T)
+			stack_trace("no latejoin landmark detected")
+
+		ghost.abstract_move(T)
+
+		. = ghost
+
 	if(!can_reenter_corpse && ishuman(src) && src.stat == DEAD)
 		var/mob/living/carbon/human/H = src
 		H.set_undefibbable()
-
-	if(mind?.name)
-		ghost.real_name = mind.name
-	else if(real_name)
-		ghost.real_name = real_name
-	else
-		ghost.real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
-
-	ghost.name = ghost.real_name
-	ghost.gender = gender
-	ghost.alpha = 127
-	ghost.can_reenter_corpse = can_reenter_corpse ? WEAKREF(src) : null
-	ghost.mind = mind
 	mind = null
-	ghost.key = key
-	ghost.client?.init_verbs()
-	ghost.mind?.current = ghost
-	ghost.faction = faction
-	ghost.ooc_notes = ooc_notes
-	ghost.ooc_notes_likes = ooc_notes_likes
-	ghost.ooc_notes_dislikes = ooc_notes_dislikes
-	ghost.ooc_notes_maybes = ooc_notes_maybes
-	ghost.ooc_notes_favs = ooc_notes_favs
-	ghost.ooc_notes_style = ooc_notes_style
-
-	if(!T)
-		T = SAFEPICK(GLOB.latejoin)
-	if(!T)
-		stack_trace("no latejoin landmark detected")
-
-	ghost.abstract_move(T)
-
-	return ghost
 
 /mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(aghosting)

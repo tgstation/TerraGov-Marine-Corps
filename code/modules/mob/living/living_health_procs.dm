@@ -327,6 +327,7 @@
 	SSmobs.start_processing(src)
 	SEND_SIGNAL(src, COMSIG_LIVING_POST_FULLY_HEAL, admin_revive)
 
+	clear_fullscreen("death")
 
 /mob/living/carbon/revive(admin_revive = FALSE)
 	set_nutrition(400)

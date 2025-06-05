@@ -106,3 +106,4 @@
 #include "code\game\objects\machinery\artillery\shells.dm"
 #include "code\modules\reqs\supplypacks\imports_packs.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
+#include "code\_onclick\hud\fullscreen.dm"

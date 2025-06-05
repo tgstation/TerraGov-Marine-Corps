@@ -332,8 +332,9 @@
 		return
 
 	if(stat == DEAD)
-		set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		set_invis_see(SEE_INVISIBLE_OBSERVER)
+		if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !(client && check_rights_for(client, R_ADMIN))) // no getting to know what you shouldn't
+			set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+			set_invis_see(SEE_INVISIBLE_OBSERVER)
 		return
 
 	var/new_sight = initial(sight)

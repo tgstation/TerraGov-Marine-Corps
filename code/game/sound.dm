@@ -118,6 +118,10 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	for(var/mob/listener AS in listeners)
 		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
 			continue
+
+		if(listener.stat == DEAD)
+			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(listener.client, R_ADMIN)) // no getting to know what you shouldn't
+				continue
 		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
 	//We do tanks separately, since they are not actually on the source z, and we need some other stuff to get accurate directional sound
@@ -218,8 +222,16 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 /proc/playsound_z(z, soundin, _volume)
 	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
 	for(var/mob/M AS in GLOB.player_list)
+		if(!M.client)
+			continue
+
 		if(isnewplayer(M))
 			continue
+
+		if(M.stat == DEAD)
+			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(M.client, R_ADMIN)) // no getting to know what you shouldn't
+				continue
+
 		if (M.z == z)
 			SEND_SOUND(M, soundin)
 
@@ -227,8 +239,14 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 /proc/playsound_z_humans(z, soundin, _volume)
 	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
 	for(var/mob/living/carbon/human/H AS in GLOB.humans_by_zlevel["[z]"])
-		if(H.client)
-			SEND_SOUND(H, soundin)
+		if(!H.client)
+			continue
+
+		if(H.stat == DEAD)
+			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(H.client, R_ADMIN)) // no getting to know what you shouldn't
+				continue
+
+		SEND_SOUND(H, soundin)
 	for(var/mob/dead/observer/O AS in SSmobs.dead_players_by_zlevel[z])
 		if(O.client)
 			SEND_SOUND(O, soundin)
@@ -237,8 +255,14 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 /proc/playsound_z_xenos(z, soundin, _volume, hive_type = XENO_HIVE_NORMAL)
 	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
 	for(var/mob/living/carbon/xenomorph/X AS in GLOB.hive_datums[hive_type].xenos_by_zlevel["[z]"])
-		if(X.client)
-			SEND_SOUND(X, soundin)
+		if(!X.client)
+			continue
+
+		if(X.stat == DEAD)
+			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(X.client, R_ADMIN)) // no getting to know what you shouldn't
+				continue
+
+		SEND_SOUND(X, soundin)
 	for(var/mob/dead/observer/O AS in SSmobs.dead_players_by_zlevel[z])
 		if(O.client)
 			SEND_SOUND(O, soundin)
