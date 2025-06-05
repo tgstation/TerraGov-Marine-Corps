@@ -3152,3 +3152,4 @@
 	scatter = 8
 	burst_scatter_mult = 2
 	damage_falloff_mult = 0.25
+
