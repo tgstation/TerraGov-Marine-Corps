@@ -654,7 +654,7 @@
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 	)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 11, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 23, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 21,"rail_x" = 2, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 23, "stock_y" = 13)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.0
@@ -668,12 +668,11 @@
 	starting_attachment_types = list(/obj/item/attachable/reddot,/obj/item/attachable/compensator,/obj/item/attachable/lasersight,)
 
 /obj/item/weapon/gun/pistol/xmdivider
-	name = "\improper XM104 'Divider' Revolver"
+	name = "\improper CC/104 'Divider' Revolver"
 	desc = "Intertech's one of a kind revolver. Fires custom incendiary .357 rounds, has firemode switch of single action and burst fire. Kicks like a fucking mule. You remember High Command saying: 'Don't let this get into enemy hands'."
-	icon = 'icons/obj/items/guns/pistols64.dmi'
-	icon_state = "xm104"
-	worn_icon_state = "xm104"
-	fire_animation = "xm104_fire"
+	icon = 'icons/obj/items/guns/pistols.dmi'
+	icon_state = "c104"
+	worn_icon_state = "c104"
 	caliber = CALIBER_357 //codex
 	max_shells = 6
 	default_ammo_type = /obj/item/ammo_magazine/pistol/xmdivider
@@ -690,7 +689,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
 	)
-	attachable_offset = list("muzzle_x" = 39, "muzzle_y" = 19, "rail_x" = 16, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20, "rail_x" = 17, "rail_y" = 22, "under_x" = 29, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
 	windup_delay = 0.5 SECONDS
 	aim_slowdown = 0.1
 	burst_amount = 3

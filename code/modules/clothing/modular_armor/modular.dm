@@ -302,6 +302,55 @@
 		/obj/item/armor_module/armor/badge,
 	)
 
+/obj/item/clothing/suit/modular/vsd_exoskeleton
+	name = "\improper CrashCore MT/P modular exoskeleton"
+	desc = "CrashCore Industries modular hardsuit exoskeleton, made to lift up the 'Super-Heavy' armor system and designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
+	icon_state = "exoskeleton"
+	worn_icon_state = "exoskeleton"
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/exoskeleton
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	colorable_colors = ARMOR_PALETTES_LIST
+	greyscale_colors = ARMOR_PALETTE_BLACK
+	allowed_uniform_type = /obj/item/clothing/under
+	attachments_allowed = list(
+
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit,
+		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit,
+		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit,
+
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/clementia,
+		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/clementia,
+		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/clementia,
+
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/hephaestus,
+		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/hephaestus,
+		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/hephaestus,
+
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/mirage,
+		/obj/item/armor_module/module/armorlock,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
