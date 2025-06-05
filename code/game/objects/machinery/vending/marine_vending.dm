@@ -66,6 +66,12 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/* Icons broken - needs modularization
+			/obj/item/weapon/gun/rifle/light_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
+			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
+			/obj/item/ammo_magazine/rifle/sh410_tracker = -1,
+			*/
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -499,6 +505,12 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/* Icons broken - needs modularization
+			/obj/item/weapon/gun/rifle/light_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
+			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
+			/obj/item/ammo_magazine/rifle/sh410_tracker = -1,
+			*/
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -803,6 +815,11 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_mmg/full = -1,
+			/*
+			/obj/item/storage/box/visual/magazine/compact/sh410/buckshot/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/sh410/sabot/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/sh410/tracker/full = -1,
+			*/
 		),
 		"Mecha Ammo" = list(
 			/obj/item/mecha_ammo/vendable/pistol = -1,
@@ -1082,14 +1099,6 @@
 			/obj/item/clothing/head/modular/marine/gungnir = -1,
 			/obj/item/clothing/head/modular/marine/assault = -1,
 			/obj/item/clothing/head/modular/marine/eod = -1,
-		),
-		"Combat Robot" = list(
-			/obj/item/clothing/suit/modular/robot/light = -1,
-			/obj/item/clothing/suit/modular/robot = -1,
-			/obj/item/clothing/suit/modular/robot/heavy = -1,
-			/obj/item/clothing/head/modular/robot/light = -1,
-			/obj/item/clothing/head/modular/robot = -1,
-			/obj/item/clothing/head/modular/robot/heavy = -1,
 		),
 		"General" = list(
 			/obj/item/clothing/suit/modular = -1,
