@@ -776,6 +776,8 @@
 	bonus_overlay = "l26_100"
 	max_rounds = 200
 
+//CC/67
+
 /obj/item/ammo_magazine/rifle/vsd_rifle
 	name = "\improper CC/67 magazine (10x27mm)"
 	desc = "A 10x27mm rifle magazine."

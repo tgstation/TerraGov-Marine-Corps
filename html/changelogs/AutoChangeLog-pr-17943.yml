@@ -1,0 +1,4 @@
+author: "Looking4bros"
+delete-after: True
+changes:
+  - bugfix: "Cigarettes/Cigars burn to their last tick."

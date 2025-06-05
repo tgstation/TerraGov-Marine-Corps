@@ -157,15 +157,21 @@
 	],
 	"markone_visor": [
 		{
-		"type": "hyperscale",
-		"icon_state": "markone"
+			"type": "hyperscale",
+			"icon_state": "markone"
 		}
 	],
 	"foureye_visor": [
-		{
-			"type": "hyperscale",
-			"icon_state": "foureye"
-		}
+			{
+				"type": "hyperscale",
+				"icon_state": "foureye"
+			}
+	],
+	"phobos_visor": [
+	{
+		"type": "hyperscale",
+		"icon_state": "phobos"
+	}
 	],
 	"clementia_visor": [
 		{
@@ -177,12 +183,6 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "hephaestus"
-		}
-	],
-	"phobos_visor": [
-		{
-		"type": "hyperscale",
-		"icon_state": "phobos"
 		}
 	]
 }

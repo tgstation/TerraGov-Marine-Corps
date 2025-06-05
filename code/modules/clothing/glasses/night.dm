@@ -113,7 +113,7 @@
 	deactive_state = "vsd_nvg_off"
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
-	tint = COLOR_GREEN
+	tint = COLOR_VERY_SOFT_YELLOW
 	worn_layer = COLLAR_LAYER
 
 /obj/item/clothing/glasses/night/vsd/alt
