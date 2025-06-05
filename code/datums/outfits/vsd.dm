@@ -48,7 +48,7 @@
 /datum/outfit/job/vsd/standard/grunt_one
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/desert
 	head = /obj/item/clothing/head/helmet/marine/vsd_two
-	suit_store = /obj/item/weapon/gun/rifle/cc67/standard
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	mask = /obj/item/clothing/mask/gas/vsd
 
 	backpack_contents = list(
@@ -84,7 +84,7 @@
 
 
 /datum/outfit/job/vsd/standard/grunt_second
-	suit_store = /obj/item/weapon/gun/rifle/cc67/standard
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	head = /obj/item/clothing/head/vsd
 
 	backpack_contents = list(
@@ -98,7 +98,7 @@
 	head_contents = null
 
 /datum/outfit/job/vsd/standard/grunt_third
-	suit_store = /obj/item/weapon/gun/rifle/cc67/standard
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	backpack_contents = list(
 		/obj/item/ammo_magazine/rifle/vsd_rifle = 4,
 	)
@@ -164,7 +164,7 @@
 	)
 
 /datum/outfit/job/vsd/engineer/vsd_rifle
-	suit_store = /obj/item/weapon/gun/rifle/cc67/standard
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor
 	head = /obj/item/clothing/head/vsd
 
@@ -241,7 +241,7 @@
 
 
 /datum/outfit/job/vsd/medic/vsd_rifle
-	suit_store = /obj/item/weapon/gun/rifle/cc67
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
 
 	backpack_contents = list(
 		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
@@ -574,7 +574,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/desert
 	mask = /obj/item/clothing/mask/gas/vsd
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/rifle/cc67/standard
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
 
 	backpack_contents = list(

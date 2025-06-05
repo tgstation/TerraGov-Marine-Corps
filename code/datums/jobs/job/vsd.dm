@@ -72,7 +72,7 @@
 
 /datum/outfit/job/vsd/standard/grunt_one
 	head = /obj/item/clothing/head/helmet/marine/vsd
-	suit_store = /obj/item/weapon/gun/rifle/cc67/standard
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	mask = /obj/item/clothing/mask/gas/vsd
 	ears = /obj/item/radio/headset/mainship/vsd
 
@@ -121,7 +121,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
 
 /datum/outfit/job/vsd/standard/grunt_second
-	suit_store = /obj/item/weapon/gun/rifle/cc67/standard
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	head = /obj/item/clothing/head/vsd
 	ears = /obj/item/radio/headset/mainship/vsd
 
@@ -144,16 +144,16 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
 
 /datum/outfit/job/vsd/standard/grunt_third
-	suit_store = /obj/item/weapon/gun/rifle/cc77/recoilcomp
+	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine/recoilcomp
 	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/grunt_third/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
@@ -162,8 +162,8 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_L_POUCH)
 
 /datum/outfit/job/vsd/standard/lmg
 	w_uniform = /obj/item/clothing/under/vsd/alt/webbing
@@ -193,16 +193,16 @@
 /datum/outfit/job/vsd/standard/upp
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/alt
 	w_uniform = /obj/item/clothing/under/vsd/upp/alt/webbing
-	suit_store = /obj/item/weapon/gun/rifle/cc77/suppressed
+	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine/suppressed
 	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/standard/upp/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
@@ -211,8 +211,8 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_L_POUCH)
 
 /datum/outfit/job/vsd/standard/upp_second
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/alt
@@ -334,7 +334,7 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_ACCESSORY)
 
 /datum/outfit/job/vsd/engineer/vsd_rifle
-	suit_store = /obj/item/weapon/gun/rifle/cc67/standard
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	head = /obj/item/clothing/head/vsd
 	ears = /obj/item/radio/headset/mainship/vsd
 
@@ -443,7 +443,7 @@
 
 
 /datum/outfit/job/vsd/medic/vsd_rifle
-	suit_store = /obj/item/weapon/gun/rifle/cc67
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
 	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/medic/vsd_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -470,7 +470,7 @@
 
 /datum/outfit/job/vsd/medic/vsd_carbine
 	w_uniform = /obj/item/clothing/under/vsd/alt/white_webbing
-	suit_store = /obj/item/weapon/gun/rifle/cc77/suppressed
+	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine/suppressed
 	ears = /obj/item/radio/headset/mainship/vsd
 
 /datum/outfit/job/vsd/medic/vsd_carbine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -479,8 +479,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
@@ -489,11 +489,11 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_L_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_SUIT)
 
 
 //VSD Spec
@@ -900,7 +900,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
 	mask = /obj/item/clothing/mask/gas/vsd
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/rifle/cc67/standard
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
 	ears = /obj/item/radio/headset/mainship/vsd
 
