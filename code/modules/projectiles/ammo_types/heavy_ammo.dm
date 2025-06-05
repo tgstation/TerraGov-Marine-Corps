@@ -106,6 +106,14 @@
 /datum/ammo/bullet/auto_cannon/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	airburst(target_turf, proj)
 
+/datum/ammo/bullet/auto_cannon/anti_tank
+	name = "autocannon solid-shot bullet"
+	hud_state = "railgun_hvap"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_TARGET_TURF
+	damage = 85
+	penetration = 75
+	autocannon_wall_bonus = 100
+
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
 	hud_state = "railgun_ap"
