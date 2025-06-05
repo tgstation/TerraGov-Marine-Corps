@@ -57,7 +57,7 @@
 //*********************//
 //         Spur        //
 //*********************//
-/datum/mutation_upgrade/shell/gaseous_spray
+/datum/mutation_upgrade/spur/gaseous_spray
 	name = "Gaseous Spray"
 	desc = "While you have 7/5/3 stored globs, your acid spray also leaves a trail of non-opaque gas of your selected glob type."
 	/// For the first structure, the amount of stored globs threshold required to activate this effect.
@@ -65,26 +65,26 @@
 	/// For each structure, the additional amount of stored globs threshold required to activate this effect.
 	var/globs_per_structure = -2
 
-/datum/mutation_upgrade/shell/gaseous_spray/get_desc_for_alert(new_amount)
+/datum/mutation_upgrade/spur/gaseous_spray/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
 	return "While you have [globs_initial + (globs_per_structure * new_amount)], your acid spray also leaves a trail of non-opaque gas of your selected glob type."
 
-/datum/mutation_upgrade/shell/gaseous_spray/on_mutation_enabled()
+/datum/mutation_upgrade/spur/gaseous_spray/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/spray_acid/line/boiler/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/spray_acid/line/boiler]
 	if(!ability)
 		return FALSE
 	ability.globs_threshold -= globs_initial
 	return ..()
 
-/datum/mutation_upgrade/shell/gaseous_spray/on_mutation_disabled()
+/datum/mutation_upgrade/spur/gaseous_spray/on_mutation_disabled()
 	var/datum/action/ability/activable/xeno/spray_acid/line/boiler/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/spray_acid/line/boiler]
 	if(!ability)
 		return FALSE
 	ability.globs_threshold += globs_initial
 	return ..()
 
-/datum/mutation_upgrade/shell/gaseous_spray/on_structure_update(previous_amount, new_amount)
+/datum/mutation_upgrade/spur/gaseous_spray/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	if(!.)
 		return
@@ -96,7 +96,7 @@
 //*********************//
 //         Veil        //
 //*********************//
-/datum/mutation_upgrade/shell/acid_trail
+/datum/mutation_upgrade/veil/acid_trail
 	name = "Acid Trail"
 	desc = "While you have 7/5/3 stored globs, you create non-stunning acid whenever you move."
 	/// For the first structure, the amount of stored globs threshold required to activate this effect.
@@ -104,20 +104,20 @@
 	/// For each structure, the additional amount of stored globs threshold required to activate this effect.
 	var/globs_per_structure = -2
 
-/datum/mutation_upgrade/shell/acid_trail/get_desc_for_alert(new_amount)
+/datum/mutation_upgrade/veil/acid_trail/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
 	return "While you have [globs_initial + (globs_per_structure * new_amount)], you create non-stunning acid whenever you move."
 
-/datum/mutation_upgrade/shell/acid_trail/on_mutation_enabled()
+/datum/mutation_upgrade/veil/acid_trail/on_mutation_enabled()
 	RegisterSignal(xenomorph_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	return ..()
 
-/datum/mutation_upgrade/shell/acid_trail/on_mutation_disabled()
+/datum/mutation_upgrade/veil/acid_trail/on_mutation_disabled()
 	UnregisterSignal(xenomorph_owner, COMSIG_MOVABLE_MOVED)
 	return ..()
 
-/datum/mutation_upgrade/shell/acid_trail/proc/on_movement(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
+/datum/mutation_upgrade/veil/acid_trail/proc/on_movement(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
 	if(!isturf(xenomorph_owner.loc) || xenomorph_owner.stat != CONSCIOUS)
 		return
 	var/current_globs =  xenomorph_owner.corrosive_ammo + xenomorph_owner.neuro_ammo

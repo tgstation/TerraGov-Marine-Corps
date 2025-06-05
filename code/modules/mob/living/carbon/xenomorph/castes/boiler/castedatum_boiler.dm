@@ -68,6 +68,12 @@
 		/datum/action/ability/activable/xeno/acid_shroud,
 	)
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/staggered_panic,
+		/datum/mutation_upgrade/spur/gaseous_spray,
+		/datum/mutation_upgrade/veil/acid_trail
+	)
+
 /datum/xeno_caste/boiler/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
