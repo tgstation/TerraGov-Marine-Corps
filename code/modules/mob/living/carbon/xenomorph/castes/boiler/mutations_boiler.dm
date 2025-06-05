@@ -40,7 +40,7 @@
 /datum/mutation_upgrade/shell/staggered_panic/proc/on_staggered(datum/source, amount, ignore_canstun)
 	if(!can_be_activated || !isturf(xenomorph_owner.loc) || xenomorph_owner.stat != CONSCIOUS)
 		return
-	var/current_globs =  xenomorph_owner.corrosive_ammo + xenomorph_owner.neuro_ammo
+	var/current_globs = xenomorph_owner.corrosive_ammo + xenomorph_owner.neuro_ammo
 	var/threshold = globs_initial + (globs_per_structure * get_total_structures())
 	if(threshold > current_globs)
 		return
