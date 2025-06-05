@@ -1083,7 +1083,7 @@
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	fire_delay = 0.35 SECONDS
+	fire_delay = 0.25 SECONDS
 	scatter = -1
 	scatter_unwielded = 5
 	accuracy_mult = 1.15

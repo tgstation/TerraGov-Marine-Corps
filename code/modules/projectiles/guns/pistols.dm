@@ -717,6 +717,7 @@
 	aim_slowdown = 0.1
 	scatter = -1
 	scatter_unwielded = 4
+	holstered_underlay_icon = 'ntf_modular/icons/obj/items/storage/holster.dmi'
 
 /obj/item/weapon/gun/pistol/vsd_pistol/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot,/obj/item/attachable/compensator,/obj/item/attachable/lasersight,)
@@ -735,6 +736,8 @@
 	actions_types = null
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,
@@ -747,10 +750,10 @@
 	windup_delay = 0.5 SECONDS
 	aim_slowdown = 0.1
 	burst_amount = 3
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE)
 	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r76.ogg'
-	fire_delay = 0.75 SECONDS
+	fire_delay = 0.5 SECONDS
 	akimbo_additional_delay = 0.6
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1

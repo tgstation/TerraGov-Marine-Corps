@@ -160,7 +160,7 @@
 	src.who_printed = who_printed
 	src.where_printed = where_printed
 	printed_at = world.time
-	name += "\improper [who_printed] Intel diskette ([stationTimestamp("hh:mm", printed_at + duration)])"
+	name = "\improper [who_printed] Intelligence diskette ([stationTimestamp("hh:mm", printed_at + duration)])"
 	desc += " According to the label, this disk was printed by [who_printed] in \the [where_printed]. The time stamp suggests that it was printed at [stationTimestamp("hh:mm", printed_at)]. The tactical information within it will cease to have value and soon after self destruct at [stationTimestamp("hh:mm", printed_at + duration)]."
 	addtimer(CALLBACK(src, PROC_REF(disk_warning)), duration, TIMER_STOPPABLE)
 

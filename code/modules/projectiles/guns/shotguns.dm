@@ -1028,7 +1028,7 @@
 	worn_icon_state = "l12"
 	worn_icon_list = list(
 		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
-		slot_back_str = 'icons/mob/clothing/back.dmi',
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
 		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_left_1.dmi',
 		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/shotguns_right_1.dmi',
 	)
@@ -1039,21 +1039,30 @@
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 	item_map_variant_flags = NONE
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 21,"rail_x" = 19, "rail_y" = 24, "under_x" = 40, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
 
-	fire_delay = 2 SECONDS
+	fire_delay = 1.8 SECONDS
 	max_chamber_items = 14
-	accuracy_mult_unwielded = 1
 
 	scatter = 6
 	min_scatter = 4
@@ -1061,11 +1070,9 @@
 	scatter_decay = 3
 	scatter_decay_unwielded = 1
 
-	scatter_unwielded = 10
-	recoil = 0
-	recoil_unwielded = 0
-	cock_delay = 1.2 SECONDS
+	cock_delay = 1.0 SECONDS
 	aim_slowdown = 0.55
+	damage_mult = 0.8 //fucking thing has 15 rounds.
 
 /obj/item/weapon/gun/shotgun/pump/ksg/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/compensator,)

@@ -2489,6 +2489,11 @@
 	dir = 1
 	},
 /area/mainship/command/cic)
+"cAc" = (
+/obj/effect/urban/decal/dirt,
+/obj/machinery/dropship_part_fabricator/tadpole,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "cAo" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/sterile/side,
@@ -43874,7 +43879,7 @@ ygA
 ygA
 iCP
 tui
-qWY
+cAc
 hjy
 sGb
 gUs
@@ -44076,7 +44081,7 @@ ygA
 ygA
 iCP
 oyF
-hjy
+bLC
 hjy
 sGb
 dpT

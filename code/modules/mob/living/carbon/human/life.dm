@@ -41,6 +41,9 @@
 	//Handle temperature/pressure differences between body and environment
 	handle_environment() //Optimized a good bit.
 
+	if(sexcon)
+		sexcon.process_sexcon(1 SECONDS)
+
 
 /mob/living/carbon/human/proc/set_undefibbable()
 	if(issynth(src)) //synths do not dnr.

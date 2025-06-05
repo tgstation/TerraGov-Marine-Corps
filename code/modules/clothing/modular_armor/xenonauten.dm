@@ -16,10 +16,8 @@
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
-		/obj/item/armor_module/module/tyr_extra_armor/old,
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
-		/obj/item/armor_module/module/mimir_environment_protection/old,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
@@ -30,7 +28,6 @@
 		/obj/item/armor_module/module/eshield/overclocked,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
-		/obj/item/armor_module/module/eshield/old,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -319,10 +316,8 @@
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
-		/obj/item/armor_module/module/tyr_extra_armor/old,
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
-		/obj/item/armor_module/module/mimir_environment_protection/old,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
@@ -333,7 +328,6 @@
 		/obj/item/armor_module/module/eshield/overclocked,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
-		/obj/item/armor_module/module/eshield/old,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -366,13 +360,23 @@
 
 /obj/item/clothing/suit/modular/xenonauten/bulletresistant
 	name = "\improper NTC bullet-resistant armor"
-	desc = "A set of armor that excels in protecting the wearer against high-velocity solid projectiles. This one has bullet resistant padding on the limbs aswell."
+	desc = "A lightweight set of armor that excels in protecting the wearer against high-velocity solid projectiles. This one has bullet resistant padding on the limbs aswell."
 	blood_overlay_type = "armor"
 	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 35, ENERGY = 30, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
 	slowdown = 0
 
 	greyscale_config = /datum/greyscale_config/xenonaut/bulletproof
+
+/obj/item/clothing/suit/modular/xenonauten/ablative
+	name = "\improper NTC ablative armor"
+	desc = "A lightweight set of armor that excels in protecting the wearer against laser and energy attacks thanks to it's reflective plating."
+	blood_overlay_type = "armor"
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+	hard_armor = list(MELEE = 0, BULLET = 0, LASER = 15, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
+	slowdown = 0
+
+	greyscale_config = /datum/greyscale_config/xenonaut/ablative
 
 /obj/item/clothing/suit/storage/marine/ballistic
 	name = "\improper Crasher multi-threat ballistic armor"
@@ -515,12 +519,10 @@
 	soft_armor = MARINE_ARMOR_HEAVY
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/tyr_head/old,
 		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/old,
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
@@ -571,12 +573,10 @@
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/xenonaut, /obj/item/armor_module/storage/helmet)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/tyr_head/old,
 		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/old,
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,

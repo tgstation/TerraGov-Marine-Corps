@@ -199,6 +199,8 @@
 		/obj/item/ammo_magazine/pistol/c99t,
 		/obj/item/weapon/gun/pistol/xmdivider,
 		/obj/item/ammo_magazine/pistol/xmdivider,
+		/obj/item/weapon/gun/pistol/vsd_pistol,
+		/obj/item/ammo_magazine/pistol/vsd_pistol,
 	))
 
 /datum/storage/holster/belt/ts34

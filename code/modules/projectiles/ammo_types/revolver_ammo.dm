@@ -59,7 +59,7 @@
 	hud_state = "revolver_heavy"
 	damage = 50
 	penetration = 5
-	accuracy = -10
+	accuracy = -8
 
 /datum/ammo/bullet/revolver/heavy/incen
 	name = "incendiary heavy revolver bullet"

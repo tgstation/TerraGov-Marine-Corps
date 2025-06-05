@@ -338,8 +338,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/structure/bed/bunkbed,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
 	},
@@ -505,11 +504,10 @@
 	},
 /area/shuttle/dropship/alamo)
 "hm" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
 /obj/item/radio/intercom/dropship{
 	dir = 4
 	},
-/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/machinery/cryopod/right,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "ie" = (
@@ -594,10 +592,6 @@
 /obj/item/tool/pen/blue,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
-"sk" = (
-/obj/structure/largecrate/supply/supplies/metal,
-/turf/open/shuttle/dropship/thirtyfour,
-/area/shuttle/dropship/alamo)
 "tf" = (
 /turf/open/shuttle/dropship/thirtysix,
 /area/shuttle/dropship/alamo)
@@ -650,7 +644,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "IA" = (
-/obj/structure/largecrate/supply/supplies/sandbags,
+/obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "Ki" = (
@@ -671,7 +665,7 @@
 /obj/machinery/vending/nanomed{
 	dir = 8
 	},
-/obj/structure/largecrate/supply/supplies/flares,
+/obj/structure/largecrate/supply/supplies/metal,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "QK" = (
@@ -683,14 +677,15 @@
 	pixel_y = 27;
 	density = 0
 	},
-/obj/structure/bed/bunkbed,
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "UI" = (
-/obj/structure/largecrate/supply/medicine/medkits,
-/turf/open/shuttle/dropship/three,
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "VW" = (
 /turf/open/shuttle/dropship/thirtyfive,
@@ -849,7 +844,7 @@ bp
 bd
 MG
 Wz
-bi
+jI
 nO
 jI
 nO
@@ -875,8 +870,8 @@ DE
 aS
 Aq
 aS
-sk
-UI
+Aq
+aS
 ie
 ao
 ao
@@ -895,7 +890,7 @@ pw
 VW
 aS
 bq
-ji
+UI
 OZ
 bI
 bj

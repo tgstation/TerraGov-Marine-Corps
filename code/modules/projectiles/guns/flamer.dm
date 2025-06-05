@@ -568,8 +568,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	)
 	lit_overlay_icon_state = "c21_lit"
 	lit_overlay_offset_x = 0
-	flame_max_range = 9
-	cone_angle = 40
+	flame_max_range = 8
+	cone_angle = 35
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/vsd
 	allowed_ammo_types = list(

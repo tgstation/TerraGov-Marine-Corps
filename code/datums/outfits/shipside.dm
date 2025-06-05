@@ -14,7 +14,7 @@
 	back = /obj/item/storage/backpack/marine/satchel/captain_cloak
 
 /datum/outfit/job/command/captain/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	shoes = null
@@ -46,7 +46,7 @@
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
 /datum/outfit/job/command/fieldcommander/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
@@ -80,7 +80,7 @@
 
 
 /datum/outfit/job/command/staffofficer/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
@@ -172,7 +172,7 @@
 	l_pocket = /obj/item/pamphlet/tank_loader
 
 /datum/outfit/job/command/assault_crewman/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
@@ -255,7 +255,7 @@
 	l_pocket = /obj/item/supplytablet
 
 /datum/outfit/job/requisitions/officer/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
@@ -284,7 +284,7 @@
 
 
 /datum/outfit/job/medical/professor/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal
@@ -314,7 +314,7 @@
 
 
 /datum/outfit/job/medical/medicalofficer/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
@@ -343,7 +343,7 @@
 
 
 /datum/outfit/job/medical/researcher/robot
-	species = SPECIES_COMBAT_ROBOT
+	species = list(SPECIES_COMBAT_ROBOT)
 
 	w_uniform = /obj/item/clothing/under/marine/robotic
 /*NTF removal

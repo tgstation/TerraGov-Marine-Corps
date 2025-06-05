@@ -801,7 +801,7 @@
 
 //CC/77
 
-/obj/item/ammo_magazine/rifle/vsd_carbine
+/obj/item/ammo_magazine/rifle/cc77
 	name = "\improper CC/77 magazine (10x24mm)"
 	desc = "A 10x27mm rifle magazine."
 	caliber = CALIBER_10X24_CASELESS
@@ -812,12 +812,12 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 24
 
-/obj/item/ammo_magazine/rifle/vsd_carbine/extended
+/obj/item/ammo_magazine/rifle/cc77/extended
 	name = "\improper CC/77 extended magazine (10x24mm)"
 	icon_state = "c77_ext"
 	max_rounds = 48
 
-/obj/item/ammo_magazine/rifle/vsd_carbine/ap
+/obj/item/ammo_magazine/rifle/cc77/ap
 	name = "\improper CC/77 armor-piercing magazine (10x24mm)"
 	icon_state = "c77_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap

@@ -62,9 +62,6 @@
 /area/shuttle/minidropship)
 "m" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -10
-	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "n" = (
@@ -174,6 +171,13 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"F" = (
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -10
+	},
+/turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "G" = (
 /obj/structure/dropship_piece/glasstwo/tadpole,
@@ -355,7 +359,7 @@ C
 j
 v
 u
-H
+F
 m
 q
 t

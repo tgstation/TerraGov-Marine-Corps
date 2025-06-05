@@ -111,7 +111,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/tool/match/process()
 	smoketime--
-	if(smoketime < 1)
+	if(smoketime < 0)
 		burn_out()
 		return
 
@@ -324,7 +324,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(isliving(loc))
 		M.IgniteMob()
 	smoketime--
-	if(smoketime < 1)
+	if(smoketime < 0)
 		if(ismob(loc))
 			to_chat(M, span_notice("Your [name] goes out."))
 			playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
@@ -490,7 +490,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/pipe/process()
 	var/turf/location = get_turf(src)
 	smoketime--
-	if(smoketime < 1)
+	if(smoketime < 0)
 		new /obj/effect/decal/cleanable/ash(location)
 		if(ismob(loc))
 			var/mob/living/M = loc

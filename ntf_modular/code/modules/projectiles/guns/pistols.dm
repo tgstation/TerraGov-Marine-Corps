@@ -23,11 +23,11 @@
 	burst_amount = 1
 	//gonna adjust for no burst fire.
 	windup_delay = 0.3 SECONDS
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.3 SECONDS
 	scatter_unwielded = 4
 	scatter = 1.5
 	damage_mult = 1.2
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	recoil = 3
 	//no red dot, holo sight instead.
 	accuracy_mult_unwielded = 0.95
@@ -38,7 +38,7 @@
 //XM104 cylinder placed in pistols
 /obj/item/ammo_magazine/pistol/ntunity
 	name = "\improper NT105 'Unity' Foxfire cylinder (.357)"
-	desc = "XM104 cylinder loaded with custom .357 armor-piercing incendiary rounds."
+	desc = "CC/104 cylinder loaded with custom .357 armor-piercing incendiary rounds."
 	icon = 'ntf_modular/icons/obj/items/ammo/pistol.dmi' //same icon as parent so using that mag wont fuck the color illusion
 	default_ammo = /datum/ammo/bullet/revolver/heavy/foxfire
 	max_rounds = 6

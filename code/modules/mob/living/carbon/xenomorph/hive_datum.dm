@@ -789,12 +789,12 @@
 
 
 /datum/hive_status/proc/set_ruler(mob/living/carbon/xenomorph/successor)
-	SIGNAL_HANDLER
 	SSdirection.clear_leader(hivenumber)
 	if(!isnull(successor))
 		SSdirection.set_leader(hivenumber, successor)
 		RegisterSignals(successor, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_missing_ruler), TRUE)
 	living_xeno_ruler = successor
+	handle_ruler_timer()
 
 
 /datum/hive_status/proc/handle_ruler_timer()

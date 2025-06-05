@@ -228,8 +228,12 @@
 	sundering = 3.5
 
 /datum/ammo/bullet/rifle/vsd_rifle
-	name = "armor-piercing heavy rifle bullet"
-	hud_state = "rifle_ap"
-	damage = 45
-	penetration = 30
-	sundering = 5
+	name = "heavy battle rifle bullet"
+	hud_state = "rifle_heavy"
+	//unholy offspring between dmr and AR
+	damage_falloff = 0.7
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
+	accurate_range = 20
+	damage = 50
+	penetration = 15
+	sundering = 3

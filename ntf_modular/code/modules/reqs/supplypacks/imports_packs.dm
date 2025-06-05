@@ -28,10 +28,20 @@
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/drum, /obj/item/ammo_magazine/rifle/nt_halter/drum, /obj/item/ammo_magazine/rifle/nt_halter/drum, /obj/item/ammo_magazine/rifle/nt_halter/drum)
 	cost = 15
 
+/datum/supply_packs/imports/halterexlaser
+	name = "NT Halter extended laser mag crate (x4)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/laser/extended, /obj/item/ammo_magazine/rifle/nt_halter/laser/extended, /obj/item/ammo_magazine/rifle/nt_halter/laser/extended, /obj/item/ammo_magazine/rifle/nt_halter/laser/extended)
+	cost = 10
+
+/datum/supply_packs/imports/halterdrumlaser
+	name = "NT Halter drum laser mag crate (x4)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/laser/drum, /obj/item/ammo_magazine/rifle/nt_halter/laser/drum, /obj/item/ammo_magazine/rifle/nt_halter/laser/drum, /obj/item/ammo_magazine/rifle/nt_halter/laser/drum)
+	cost = 20
+
 /datum/supply_packs/imports/haltercharged
 	name = "NT Halter charged mag crate (x2)"
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/charged, /obj/item/ammo_magazine/rifle/nt_halter/charged)
-	cost = 250
+	cost = 200
 
 /datum/supply_packs/imports/haltersmart
 	name = "NT Halter smart mag crate (x2)"
@@ -43,26 +53,26 @@
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/foxfire, /obj/item/ammo_magazine/rifle/nt_halter/foxfire)
 	cost = 50
 
-/* save until we got faction specific req
 /datum/supply_packs/imports/antienergyshield
 	name = "NTC Anti Energy Shield"
 	contains = list(/obj/item/armor_module/module/eshield/absorbant/energy)
-	cost = 800
+	cost = 1000
 
 /datum/supply_packs/imports/antiballisticshield
 	name = "KZ Anti Ballsitic Shield"
 	contains = list(/obj/item/armor_module/module/eshield/absorbant/ballistic)
-	cost = 800
-
-/datum/supply_packs/imports/unity
-	name = "NT105 Unity Revolver"
-	contains = list(/obj/item/weapon/gun/pistol/xmdivider/ntc)
-	cost = 100
+	cost = 1000
 
 /datum/supply_packs/imports/unity_ammo
 	name = "NT105 Unity Revolver Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/ntunity)
 	cost = 3
+
+/* save until we got faction specific req
+/datum/supply_packs/imports/unity
+	name = "NT105 Unity Revolver"
+	contains = list(/obj/item/weapon/gun/pistol/xmdivider/ntc)
+	cost = 100
 
 /datum/supply_packs/imports/divider
 	name = "CC/104 Divider Revolver"

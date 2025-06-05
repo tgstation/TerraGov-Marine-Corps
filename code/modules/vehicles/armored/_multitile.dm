@@ -38,6 +38,8 @@
 	ram_damage = 200
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
+		/obj/structure/largecrate,
+		/obj/structure/closet/crate,
 	)
 	///pass_flags given to desants, in addition to the vehicle's pass_flags
 	var/desant_pass_flags = PASS_FIRE|PASS_LOW_STRUCTURE

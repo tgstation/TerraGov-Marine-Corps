@@ -140,6 +140,18 @@
 	reload_delay = 0 SECONDS
 
 /obj/item/ammo_magazine/flamer_tank/vsd
+	name = "large CC/21 flamerthrower tank"
+	desc = "A large tank for the Kaizoku CC/21 Flamer, filled with thick napthal X fuel."
+	icon_state = "flametank_vsd"
+	max_rounds = 150
+	current_rounds = 150
+	reload_delay = 4 SECONDS
+	default_ammo = /datum/ammo/flamethrower
+	icon_state_mini = "tank_blue"
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank
+
+
+/obj/item/ammo_magazine/flamer_tank/vsd/blue
 	name = "large CC/21 flamerthrower tank (X)"
 	desc = "A large tank for the Kaizoku CC/21 Flamer, filled with thick napthal X fuel."
 	icon_state = "flametank_vsd"
@@ -149,4 +161,3 @@
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
-

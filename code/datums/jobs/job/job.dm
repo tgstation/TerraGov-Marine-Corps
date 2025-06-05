@@ -323,12 +323,15 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/list/valid_outfits = list()
 
 	for(var/datum/outfit/variant AS in assigned_role.outfits)
-		if(initial(variant.species) == src.species.species_type)
+		variant = new variant
+		if((src.species.species_type) in variant.species)
 			valid_outfits += variant
-
+	if(!length(valid_outfits))
+		log_runtime("Failed to find valid outfit when applying [assigned_role.title]([assigned_role.type]) to [key_name(src)]([src.type])(Species: [src.species.name]([src.species.type]))(at [loc_name(src)])")
+		assigned_role.outfit.equip(src)
 	var/datum/outfit/chosen_variant = pick(valid_outfits)
-	chosen_variant = new chosen_variant
 	chosen_variant.equip(src)
+	QDEL_LIST(valid_outfits)
 
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)

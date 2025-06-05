@@ -444,7 +444,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "azF" = (
-/obj/machinery/dropship_part_fabricator,
+/obj/machinery/dropship_part_fabricator/tadpole,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -2338,7 +2338,7 @@
 /obj/machinery/recharger,
 /obj/item/card/id/captains_spare,
 /obj/machinery/door/window/secure/bridge{
-	dir = 1
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -43855,9 +43855,9 @@ kJl
 cab
 pGb
 neU
+neU
+neU
 eAT
-neU
-neU
 neU
 neU
 bAa
@@ -43974,9 +43974,9 @@ aVy
 tkp
 tkp
 kPZ
+hXu
+hXu
 ljl
-hXu
-hXu
 hXu
 hXu
 uIj
@@ -44090,12 +44090,12 @@ mpW
 dqF
 qap
 fYe
-bYT
 tkp
+bYT
+hXu
 lDf
+hXu
 ljl
-hXu
-hXu
 hXu
 hXu
 uIj
@@ -44212,9 +44212,9 @@ sKw
 tkp
 tkp
 vcT
+hXu
+hXu
 ljl
-hXu
-hXu
 hXu
 hXu
 uIj
@@ -44331,9 +44331,9 @@ xlJ
 qJw
 taY
 gJr
-dBT
 gHi
-gKo
+gHi
+dBT
 gKo
 gKo
 elb
