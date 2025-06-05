@@ -9,6 +9,7 @@ type Props = {
   damage?: number;
   disabled?: boolean;
   noPadding?: boolean;
+  altUI?: boolean;
 };
 
 /**
@@ -20,10 +21,10 @@ type Props = {
  * things that are the first entry in an inline list (brute damage!)
  */
 export function MedDamageType(props: Props) {
-  const { tooltip, name, color, damage, disabled, noPadding } = props;
+  const { tooltip, name, color, damage, disabled, noPadding, altUI } = props;
   return (
     <Tooltip content={tooltip}>
-      <Box inline ml={!noPadding && SPACING_PIXELS}>
+      <Box inline width={altUI && '95%'} ml={!noPadding && SPACING_PIXELS}>
         {!disabled ? (
           <ProgressBar value={0}>
             <Box inline>

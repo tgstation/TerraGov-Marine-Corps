@@ -2,6 +2,7 @@ import {
   BlockQuote,
   Box,
   Button,
+  Flex,
   Icon,
   LabeledList,
   NoticeBox,
@@ -46,11 +47,12 @@ export function MedScanner() {
     internal_bleeding,
     advice,
     accessible_theme,
+    alt_health_analyzer,
   } = data;
   return (
     <Window
-      width={520}
-      height={620}
+      width={!alt_health_analyzer ? 520 : 600}
+      height={!alt_health_analyzer ? 620 : !limbs_damaged ? 450 : 620}
       theme={
         accessible_theme
           ? species.is_robotic_species
@@ -71,7 +73,7 @@ export function MedScanner() {
           internal_bleeding ||
           body_temperature.warning
         ) && <PatientFooter />}
-        {!!advice && <PatientAdvice />}
+        {!alt_health_analyzer ? !!advice && <PatientAdvice /> : ''}
       </Window.Content>
     </Window>
   );
@@ -79,11 +81,13 @@ export function MedScanner() {
 
 /** The most basic info: name, species, health, damage, revivability and hugged state */
 function PatientBasics() {
-  const { data } = useBackend<MedScannerData>();
+  const { act, data } = useBackend<MedScannerData>();
   const {
     patient,
     species,
     dead,
+    dead_timer,
+    dead_unrevivable,
 
     health,
     max_health,
@@ -104,6 +108,7 @@ function PatientBasics() {
     ssd,
 
     accessible_theme,
+    alt_health_analyzer,
   } = data;
   return (
     <Section
@@ -128,128 +133,269 @@ function PatientBasics() {
         </NoticeBox>
       )}
       {!!ssd && <NoticeBox warning>{ssd}</NoticeBox>}
-      <LabeledList>
-        <LabeledList.Item
-          label="Health"
-          tooltip={
-            'How healthy the patient is.' +
-            ((!species.is_robotic_species &&
-              " If the patient's health dips below " +
-                crit_threshold +
-                '%, they enter critical condition and suffocate rapidly.') ||
-              '') +
-            " If the patient's health hits " +
-            (dead_threshold / max_health) * 100 +
-            '%, they die.'
-          }
-        >
-          {health >= 0 ? (
-            <ProgressBar
-              value={health / max_health}
-              ranges={{
-                good: [0.4, Infinity],
-                average: [0.2, 0.4],
-                bad: [-Infinity, 0.2],
-              }}
-            />
-          ) : (
-            <ProgressBar value={1 + health / max_health} color="bad">
-              {Math.trunc((health / max_health) * 100)}%
-            </ProgressBar>
-          )}
-        </LabeledList.Item>
-        {!!dead && (
-          <LabeledList.Item label="Revivable">
-            <Box
-              color={
-                revivable_boolean
-                  ? accessible_theme
-                    ? 'yellow'
-                    : 'label'
-                  : 'red'
-              }
-              bold
-            >
-              {revivable_string}
-            </Box>
+      {!alt_health_analyzer ? (
+        <LabeledList>
+          <LabeledList.Item
+            label="Health"
+            tooltip={
+              'How healthy the patient is.' +
+              ((!species.is_robotic_species &&
+                " If the patient's health dips below " +
+                  crit_threshold +
+                  '%, they enter critical condition and suffocate rapidly.') ||
+                '') +
+              " If the patient's health hits " +
+              (dead_threshold / max_health) * 100 +
+              '%, they die.'
+            }
+          >
+            {health >= 0 ? (
+              <ProgressBar
+                value={health / max_health}
+                ranges={{
+                  good: [0.4, Infinity],
+                  average: [0.2, 0.4],
+                  bad: [-Infinity, 0.2],
+                }}
+              />
+            ) : (
+              <ProgressBar value={1 + health / max_health} color="bad">
+                {Math.trunc((health / max_health) * 100)}%
+              </ProgressBar>
+            )}
           </LabeledList.Item>
-        )}
-        <LabeledList.Item
-          label="Damage"
-          tooltip="Unique damage types. Each one has a tooltip describing how it is sustained, and possible treatments."
-        >
-          <MedDamageType
-            name="Brute"
-            color={COLOR_BRUTE}
-            damage={total_brute}
-            tooltip={
-              species.is_robotic_species
-                ? 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Repaired with a blowtorch or robotic cradle.'
-                : 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Treated with Bicaridine or advanced trauma kits.'
-            }
-            noPadding
-          />
-          <MedDamageType
-            name="Burn"
-            color={COLOR_BURN}
-            damage={total_burn}
-            tooltip={
-              species.is_robotic_species
-                ? 'Burn. Sustained from sources of burning such as energy weapons, acid, fire, etc. Repaired with cable coils or a robotic cradle.'
-                : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Kelotane or advanced burn kits.'
-            }
-          />
-          {!species.is_robotic_species && (
-            <>
-              <MedDamageType
-                name="Tox"
-                color="green"
-                damage={toxin}
-                tooltip="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene."
-              />
-              <MedDamageType
-                name="Oxy"
-                color="blue"
-                damage={oxy}
-                tooltip="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin/Dexalin Plus or decreases on its own if the patient isn't in critical condition."
-              />
-            </>
+          {!!dead && (
+            <LabeledList.Item label="Revivable">
+              <Box
+                color={
+                  revivable_boolean
+                    ? accessible_theme
+                      ? 'yellow'
+                      : 'label'
+                    : 'red'
+                }
+                bold
+              >
+                {revivable_string}
+              </Box>
+            </LabeledList.Item>
           )}
-          {!species.is_synthetic && (
+          <LabeledList.Item
+            label="Damage"
+            tooltip="Unique damage types. Each one has a tooltip describing how it is sustained, and possible treatments."
+          >
             <MedDamageType
-              name={species.is_combat_robot ? 'Integrity' : 'Clone'}
-              color="teal"
-              damage={clone}
+              name="Brute"
+              color={COLOR_BRUTE}
+              damage={total_brute}
               tooltip={
                 species.is_robotic_species
-                  ? 'Integrity Damage. Sustained from xenomorph psychic draining. Treated with a robotic cradle.'
-                  : 'Cloneloss. Sustained from xenomorph psychic draining or special chemicals. Treated with cryogenics or sleep.'
+                  ? 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Repaired with a blowtorch or robotic cradle.'
+                  : 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Treated with Bicaridine or advanced trauma kits.'
+              }
+              noPadding
+            />
+            <MedDamageType
+              name="Burn"
+              color={COLOR_BURN}
+              damage={total_burn}
+              tooltip={
+                species.is_robotic_species
+                  ? 'Burn. Sustained from sources of burning such as energy weapons, acid, fire, etc. Repaired with cable coils or a robotic cradle.'
+                  : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Kelotane or advanced burn kits.'
               }
             />
-          )}
-          {!!species.is_robotic_species && (
-            <>
-              <MedDamageType
-                name="Tox"
-                tooltip="Robotic species cannot build up toxins."
-                disabled
-              />
-              <MedDamageType
-                name="Oxy"
-                tooltip="Robotic species do not suffocate."
-                disabled
-              />
-              {!!species.is_synthetic && (
+            {!species.is_robotic_species && (
+              <>
                 <MedDamageType
-                  name="Clone"
-                  tooltip="Synthetics do not suffer cellular damage or long term integrity loss."
+                  name="Tox"
+                  color="green"
+                  damage={toxin}
+                  tooltip="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene."
+                />
+                <MedDamageType
+                  name="Oxy"
+                  color="blue"
+                  damage={oxy}
+                  tooltip="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin/Dexalin Plus or decreases on its own if the patient isn't in critical condition."
+                />
+              </>
+            )}
+            {!species.is_synthetic && (
+              <MedDamageType
+                name={species.is_combat_robot ? 'Integrity' : 'Clone'}
+                color="teal"
+                damage={clone}
+                tooltip={
+                  species.is_robotic_species
+                    ? 'Integrity Damage. Sustained from xenomorph psychic draining. Treated with a robotic cradle.'
+                    : 'Cloneloss. Sustained from xenomorph psychic draining or special chemicals. Treated with cryogenics or sleep.'
+                }
+              />
+            )}
+            {!!species.is_robotic_species && (
+              <>
+                <MedDamageType
+                  name="Tox"
+                  tooltip="Robotic species cannot build up toxins."
                   disabled
                 />
-              )}
-            </>
-          )}
-        </LabeledList.Item>
-      </LabeledList>
+                <MedDamageType
+                  name="Oxy"
+                  tooltip="Robotic species do not suffocate."
+                  disabled
+                />
+                {!!species.is_synthetic && (
+                  <MedDamageType
+                    name="Clone"
+                    tooltip="Synthetics do not suffer cellular damage or long term integrity loss."
+                    disabled
+                  />
+                )}
+              </>
+            )}
+          </LabeledList.Item>
+        </LabeledList>
+      ) : (
+        <Section px="1px" mx="1px" fitted>
+          <LabeledList>
+            {!!dead && !species.is_synthetic && (
+              <LabeledList.Item
+                label="Time"
+                tooltip="When their time hits 0% resusitation will be ineffective"
+              >
+                {
+                  <ProgressBar
+                    value={dead_timer}
+                    color="label"
+                    minValue={dead_unrevivable}
+                    maxValue={0}
+                  />
+                }
+              </LabeledList.Item>
+            )}
+            {!!dead && (
+              <LabeledList.Item label="Revivable">
+                <Box
+                  color={
+                    revivable_boolean
+                      ? accessible_theme
+                        ? 'yellow'
+                        : 'label'
+                      : 'red'
+                  }
+                  bold
+                >
+                  {revivable_string}
+                </Box>
+              </LabeledList.Item>
+            )}
+          </LabeledList>
+          <Flex>
+            <Flex.Item grow={1}>
+              <MedDamageType
+                name="Brute"
+                color={COLOR_BRUTE}
+                damage={total_brute}
+                tooltip={
+                  species.is_robotic_species
+                    ? 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Repaired with a blowtorch or robotic cradle.'
+                    : 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Treated with Bicaridine or advanced trauma kits.'
+                }
+                noPadding
+                altUI
+              />
+            </Flex.Item>
+            <Flex.Item grow={1}>
+              <MedDamageType
+                name="Burn"
+                color={COLOR_BURN}
+                damage={total_burn}
+                tooltip={
+                  species.is_robotic_species
+                    ? 'Burn. Sustained from sources of burning such as energy weapons, acid, fire, etc. Repaired with cable coils or a robotic cradle.'
+                    : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Kelotane or advanced burn kits.'
+                }
+                noPadding
+                altUI
+              />
+            </Flex.Item>
+            {!species.is_robotic_species && (
+              <>
+                <Flex.Item grow={1}>
+                  <MedDamageType
+                    name="Tox"
+                    color="green"
+                    damage={toxin}
+                    tooltip="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene."
+                    noPadding
+                    altUI
+                  />
+                </Flex.Item>
+                <Flex.Item grow={1}>
+                  <MedDamageType
+                    name="Oxy"
+                    color="blue"
+                    damage={oxy}
+                    tooltip="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin/Dexalin Plus or decreases on its own if the patient isn't in critical condition."
+                    noPadding
+                    altUI
+                  />
+                </Flex.Item>
+              </>
+            )}
+            {!species.is_synthetic && (
+              <Flex.Item grow={1}>
+                <MedDamageType
+                  name={species.is_combat_robot ? 'Integrity' : 'Clone'}
+                  color="teal"
+                  damage={clone}
+                  tooltip={
+                    species.is_robotic_species
+                      ? 'Integrity Damage. Sustained from xenomorph psychic draining. Treated with a robotic cradle.'
+                      : 'Cloneloss. Sustained from xenomorph psychic draining or special chemicals. Treated with cryogenics or sleep.'
+                  }
+                  noPadding
+                  altUI
+                />
+              </Flex.Item>
+            )}
+            {!!species.is_robotic_species && (
+              <>
+                <Flex.Item grow={1}>
+                  <MedDamageType
+                    name="Tox"
+                    tooltip="Robotic species cannot build up toxins."
+                    disabled
+                    noPadding
+                    altUI
+                  />
+                </Flex.Item>
+                <Flex.Item grow={1}>
+                  <MedDamageType
+                    name="Oxy"
+                    tooltip="Robotic species do not suffocate."
+                    disabled
+                    noPadding
+                    altUI
+                  />
+                </Flex.Item>
+                {!!species.is_synthetic && (
+                  <Flex.Item grow={1}>
+                    <MedDamageType
+                      name="Clone"
+                      tooltip="Synthetics do not suffer cellular damage or long term integrity loss."
+                      disabled
+                      noPadding
+                      altUI
+                    />
+                  </Flex.Item>
+                )}
+              </>
+            )}
+          </Flex>
+        </Section>
+      )}
     </Section>
   );
 }
@@ -257,7 +403,11 @@ function PatientBasics() {
 function PatientChemicals() {
   let row_transparency = 0;
   const { data } = useBackend<MedScannerData>();
-  const { has_unknown_chemicals, chemicals_lists = {} } = data;
+  const {
+    has_unknown_chemicals,
+    chemicals_lists = {},
+    alt_health_analyzer,
+  } = data;
   return (
     <Section title="Chemical Contents">
       {!!has_unknown_chemicals && (
@@ -265,13 +415,33 @@ function PatientChemicals() {
           Unknown reagents detected. Proceed with caution.
         </NoticeBox>
       )}
-      <Stack vertical>
+      <Stack
+        vertical={!alt_health_analyzer}
+        wrap={!alt_health_analyzer ? 'nowrap' : 'wrap'}
+      >
         {Object.values(chemicals_lists).map((chemical) => (
           <Stack.Item
-            order={chemical.ui_priority}
+            order={!alt_health_analyzer ? undefined : chemical.ui_priority}
             key={chemical.name}
-            backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
-            style={ROUNDED_BORDER}
+            backgroundColor={
+              !alt_health_analyzer
+                ? row_transparency++ % 2 === 0
+                  ? COLOR_ZEBRA_BG
+                  : ''
+                : 'transparent'
+            }
+            style={
+              !alt_health_analyzer
+                ? { borderRadius: '0.16em' }
+                : {
+                    borderColor: chemical.color,
+                    borderWidth: '1px',
+                    borderStyle: 'solid',
+                    borderRadius: '0.16em',
+                  }
+            }
+            maxWidth={!alt_health_analyzer ? '' : '19%'}
+            width={!alt_health_analyzer ? '' : '19%'}
           >
             <Box inline p="2.5px">
               <Tooltip
@@ -289,7 +459,7 @@ function PatientChemicals() {
                     <BlockQuote>{chemical.description}</BlockQuote>
                     <Box mt={SPACING_PIXELS} />
                     <LabeledList>
-                      {!!chemical.metabolism_factor && (
+                      {!!chemical.metabolism_factor && !alt_health_analyzer && (
                         <LabeledList.Item
                           label="Metabolism"
                           labelColor={
@@ -342,6 +512,11 @@ function PatientChemicals() {
                   color={chemical.dangerous || chemical.od ? 'red' : 'white'}
                   bold={(chemical.dangerous || chemical.od) as boolean}
                 >
+                  {alt_health_analyzer ? (
+                    <Box inline italic>
+                      {chemical.name}
+                    </Box>
+                  ) : null}
                   <MedCounter
                     current={chemical.amount}
                     max={chemical.dangerous ? 0 : chemical.od_threshold}
@@ -360,9 +535,11 @@ function PatientChemicals() {
                     }
                     mr={SPACING_PIXELS}
                   />
-                  <Box inline italic>
-                    {chemical.name}
-                  </Box>
+                  {!alt_health_analyzer && (
+                    <Box inline italic>
+                      {chemical.name}
+                    </Box>
+                  )}
                 </Box>
               </Tooltip>
               {!!(chemical.dangerous || chemical.od) && (
@@ -386,9 +563,11 @@ function PatientChemicals() {
                 >
                   <MedBoxedTag
                     icon={chemical.od ? 'gauge-high' : 'virus'}
-                    textColor="white"
-                    backgroundColor="red"
-                    ml={SPACING_PIXELS}
+                    textColor={!alt_health_analyzer ? 'white' : 'red'}
+                    backgroundColor={
+                      !alt_health_analyzer ? 'red' : 'transparent'
+                    }
+                    ml={!alt_health_analyzer ? SPACING_PIXELS : ''}
                   >
                     {chemical.od
                       ? 'OD' +
@@ -399,7 +578,7 @@ function PatientChemicals() {
                   </MedBoxedTag>
                 </Tooltip>
               )}
-              {!!chemical.metabolism_factor && (
+              {!!chemical.metabolism_factor && !alt_health_analyzer && (
                 <Tooltip content="Estimated time before this chemical is purged. May vary based on time dilation and other chemicals.">
                   <MedBoxedTag
                     icon="clock"

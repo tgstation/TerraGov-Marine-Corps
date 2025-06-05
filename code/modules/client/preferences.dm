@@ -160,6 +160,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/accessible_tgui_themes = FALSE
 	/// If we can be shown a health scan by friends with right click
 	var/allow_being_shown_health_scan = TRUE
+	/// Use alt healthscan ui?
+	var/alt_health_analyzer = FALSE
 
 	/// Chat on map
 	var/chat_on_map = TRUE

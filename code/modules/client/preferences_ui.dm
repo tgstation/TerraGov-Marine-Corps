@@ -130,6 +130,7 @@
 			data["radio_tts_flags"] = radio_tts_flags
 			data["accessible_tgui_themes"] = accessible_tgui_themes
 			data["allow_being_shown_health_scan"] = allow_being_shown_health_scan
+			data["alt_health_analyzer"] = alt_health_analyzer
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
 			data["ui_scale"] = ui_scale
@@ -706,6 +707,9 @@
 
 		if("allow_being_shown_health_scan")
 			allow_being_shown_health_scan = !allow_being_shown_health_scan
+
+		if("alt_health_analyzer")
+			alt_health_analyzer = !alt_health_analyzer
 
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
