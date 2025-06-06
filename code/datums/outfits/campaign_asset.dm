@@ -145,7 +145,7 @@
 
 /datum/outfit/job/som/militia/medic/uzi
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
-	r_pocket = /obj/item/storage/holster/flarepouch
+	r_pocket = /obj/item/storage/holster/flarepouch/full
 
 	backpack_contents = list(
 		/obj/item/ammo_magazine/smg/uzi/extended = 7,
@@ -159,7 +159,7 @@
 
 /datum/outfit/job/som/militia/medic/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
-	r_pocket = /obj/item/storage/holster/flarepouch
+	r_pocket = /obj/item/storage/holster/flarepouch/full
 
 	backpack_contents = list(
 		/obj/item/ammo_magazine/smg/skorpion = 7,
@@ -266,7 +266,7 @@
 
 /datum/outfit/job/som/militia/leader/upp_rifle
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer/standard
-	
+
 	belt_contents = list(
 		/obj/item/ammo_magazine/rifle/type71 = 6,
 	)
