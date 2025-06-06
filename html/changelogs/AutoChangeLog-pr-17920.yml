@@ -1,4 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - rscadd: "Added a preference to disable the toggle move intent keybind as xeno."
