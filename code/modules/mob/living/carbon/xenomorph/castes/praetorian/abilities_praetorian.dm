@@ -168,29 +168,22 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	worn_icon_list = null
 	var/acid_spray_damage = 15
 
+/obj/item/explosive/grenade/sticky/xeno/give_component()
+	AddComponent(/datum/component/sticky_item/move_behaviour, icon, initial(icon_state) + "_stuck")
+
 /obj/item/explosive/grenade/sticky/xeno/prime()
 	for(var/turf/acid_tile AS in RANGE_TURFS(1, loc))
 		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
 		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, acid_spray_damage)
 	playsound(loc, SFX_ACID_BOUNCE, 35)
-	if(stuck_to)
-		clean_refs()
 	qdel(src)
 
 /obj/item/explosive/grenade/sticky/xeno/stuck_to(atom/hit_atom)
 	. = ..()
-	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(drop_acid))
 	new /obj/effect/xenomorph/spray(get_turf(src), 5 SECONDS, acid_spray_damage)
 
-///causes acid tiles underneath target when stuck_to
-/obj/item/explosive/grenade/sticky/xeno/proc/drop_acid(datum/source, old_loc, movement_dir, forced, old_locs)
-	SIGNAL_HANDLER
+/obj/item/explosive/grenade/sticky/xeno/on_move_sticky()
 	new /obj/effect/xenomorph/spray(get_turf(src), 5 SECONDS, acid_spray_damage)
-
-/obj/item/explosive/grenade/sticky/xeno/clean_refs()
-	stuck_to.cut_overlay(saved_overlay)
-	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
-	return ..()
 
 //Deals with picking up and using the grenade
 /obj/item/explosive/grenade/sticky/xeno/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)

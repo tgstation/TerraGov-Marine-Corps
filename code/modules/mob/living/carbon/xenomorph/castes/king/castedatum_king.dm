@@ -34,13 +34,17 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_HAS_WOUND_MASK
-	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_CORRUPT_GENERATOR
+	caste_traits = list(TRAIT_STOPS_TANK_COLLISION, TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_RULER
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
+
+	// *** Queen Abilities *** //
+	queen_leader_limit = 4
 
 	minimap_icon = "xenoking"
 
@@ -135,7 +139,7 @@
 	evolve_min_xenos = 0
 
 	// *** Flags *** //
-	caste_flags = parent_type::can_flags|CASTE_IS_INTELLIGENT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
 	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_STOPS_TANK_COLLISION, TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //

@@ -163,7 +163,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
 	if(should_reset_goal_nodes)
 		set_current_node(null)
-	if(ignore_current_node || QDELETED(current_node)) //We don't have a current node, let's find the closest in our LOS
+	if(ignore_current_node || QDELETED(current_node) || !length(current_node.adjacent_nodes)) //We don't have a current node, let's find the closest in our LOS
 		var/new_node = find_closest_node(mob_parent, current_node)
 		if(!new_node)
 			return
@@ -171,6 +171,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		change_action(MOVING_TO_NODE, new_node)
 		return
 	if(escorted_atom && (escorted_atom != goal_node)) //goal_node can be our escort target, but otherwise escort targets override goal_node
+		if(get_dist(mob_parent, escorted_atom) <= AI_ESCORTING_MAX_DISTANCE)
+			change_action(ESCORTING_ATOM, escorted_atom)
+			return
 		var/target_node = find_closest_node(escorted_atom)
 		if(target_node)
 			set_goal_node(new_goal_node = target_node)
@@ -266,7 +269,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	return
 
 ///Check if we need to adopt a new state
-/datum/ai_behavior/proc/look_for_new_state()
+/datum/ai_behavior/proc/look_for_new_state(atom/next_target)
 	SIGNAL_HANDLER
 	return
 
@@ -277,9 +280,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Set the goal node
 /datum/ai_behavior/proc/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
 	SIGNAL_HANDLER
+	if(goal_node == new_goal_node)
+		return
 	if(!new_goal_node)
 		return
-	if(new_goal_node.faction != mob_parent.faction)
+	if(new_goal_node.faction && new_goal_node.faction != mob_parent.faction)
 		return
 	if(goal_node)
 		do_unset_target(goal_node)
@@ -352,6 +357,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(current_action == MOVING_TO_ATOM && (atom_to_walk_to == combat_target))
 		max_range = upper_engage_dist
 		min_range = lower_engage_dist
+	//An actual accurate angle, unlike get_dir
+	var/dir_to_target = angle2dir(Get_Angle(get_turf(mob_parent), get_turf(atom_to_walk_to)))
 	var/list/dir_options = list()
 
 	if((dist_to_target >= min_range) && (dist_to_target <= max_range)) //in optimal range
@@ -359,14 +366,14 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			return
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
 			return CARDINAL_ALL_DIRS
-		if(prob(50)) //placeholder number, will probs be a var like sidestep prob, so they're not just constantly wiggling about
+		if(prob(atom_to_walk_to == escorted_atom ? 80 : 50)) //If we're holding around an escort target, we don't move too much
 			return
 		if(prob(sidestep_prob)) //shuffle about
-			dir_options += LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to))
+			dir_options += LeftAndRightOfDir(dir_to_target)
 	if(dist_to_target > min_range) //above min range, its valid to come closer
-		dir_options += get_dir(mob_parent, atom_to_walk_to)
+		dir_options += dir_to_target
 	if(dist_to_target < max_range) //less than max range, its valid to walk away
-		dir_options += get_dir(atom_to_walk_to, mob_parent)
+		dir_options += REVERSE_DIR(dir_to_target)
 
 	return dir_options
 
@@ -376,7 +383,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(new_loc?.atom_flags & AI_BLOCKED)
 		move_dir = pick(LeftAndRightOfDir(move_dir))
 		new_loc = get_step(mob_parent, move_dir)
-		if(new_loc?.atom_flags & AI_BLOCKED)
+		if(new_loc?.atom_flags & AI_BLOCKED || !can_cross_lava_turf(new_loc))
 			return
 	if(!mob_parent.Move(new_loc, move_dir))
 		if(!(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, move_dir) & COMSIG_OBSTACLE_DEALT_WITH) && try_sidestep)

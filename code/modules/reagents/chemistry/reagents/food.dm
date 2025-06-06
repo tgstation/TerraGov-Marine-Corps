@@ -9,7 +9,7 @@
 	taste_description = "generic food"
 	taste_multi = 4
 	reagent_ui_priority = REAGENT_UI_MUNDANE
-	var/nutriment_factor = 1
+	var/nutriment_factor = 0.5
 	var/adj_temp = 0
 	var/targ_temp = BODYTEMP_NORMAL
 	var/adj_dizzy = 0
@@ -20,7 +20,7 @@
 	current_cycle++
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.adjust_nutrition(nutriment_factor*0.5*effect_str)
+		C.adjust_nutrition(nutriment_factor * effect_str)
 	if(adj_temp)
 		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
 	holder.remove_reagent(type, custom_metabolism)
@@ -35,7 +35,7 @@
 /datum/reagent/consumable/nutriment
 	name = "Nutriment"
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
-	nutriment_factor = 15
+	nutriment_factor = 7.5
 	color = "#664330" // rgb: 102, 67, 48
 	reagent_ui_priority =  REAGENT_UI_BASE // nutriment is more important than other food chems
 	var/brute_heal = 1
@@ -87,20 +87,25 @@
 
 	data = taste_amounts
 
+///How much nutrition a certain volume of nutriment will produce
+/datum/reagent/consumable/nutriment/proc/get_nutrition_gain(amount)
+	if(!amount)
+		amount = volume
+	return nutriment_factor * effect_str * amount / custom_metabolism
 
 /datum/reagent/consumable/sugar
 	name = "Sugar"
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	taste_multi = 1.5 // stop sugar drowning out other flavours
-	nutriment_factor = 10
+	nutriment_factor = 5
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/virus_food
 	name = "Virus Food"
 	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
 	reagent_state = LIQUID
-	nutriment_factor = 2
+	nutriment_factor = 1
 	color = "#899613" // rgb: 137, 150, 19
 	taste_description = "watery milk"
 
@@ -108,7 +113,7 @@
 	name = "Soysauce"
 	description = "A salty sauce made from the soy plant."
 	reagent_state = LIQUID
-	nutriment_factor = 2
+	nutriment_factor = 1
 	color = "#792300" // rgb: 121, 35, 0
 	taste_description = "umami"
 
@@ -116,7 +121,7 @@
 	name = "Ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
 	reagent_state = LIQUID
-	nutriment_factor = 5
+	nutriment_factor = 2.5
 	color = "#731008" // rgb: 115, 16, 8
 	taste_description = "ketchup"
 
@@ -261,7 +266,7 @@
 /datum/reagent/consumable/coco
 	name = "Coco Powder"
 	description = "A fatty, bitter paste made from coco beans."
-	nutriment_factor = 5
+	nutriment_factor = 2.5
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "bitterness"
 
@@ -269,7 +274,7 @@
 	name = "Hot Chocolate"
 	description = "Made with love! And cocoa beans."
 	reagent_state = LIQUID
-	nutriment_factor = 2
+	nutriment_factor = 1
 	color = "#403010" // rgb: 64, 48, 16
 	taste_description = "creamy chocolate"
 	adj_temp = 5
@@ -321,7 +326,7 @@
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
-	nutriment_factor = 5
+	nutriment_factor = 2.5
 	color = "#FF00FF" // rgb: 255, 0, 255
 	taste_description = "childhood whimsy"
 
@@ -329,7 +334,7 @@
 	name = "Corn Oil"
 	description = "An oil derived from various types of corn."
 	reagent_state = LIQUID
-	nutriment_factor = 20
+	nutriment_factor = 10
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "slime"
 
@@ -355,7 +360,7 @@
 /datum/reagent/consumable/dry_ramen
 	name = "Dry Ramen"
 	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
-	nutriment_factor = 1
+	nutriment_factor = 0.5
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "dry and cheap noodles"
 
@@ -363,7 +368,7 @@
 	name = "Hot Ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	reagent_state = LIQUID
-	nutriment_factor = 5
+	nutriment_factor = 2.5
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "wet and cheap noodles"
 	adj_temp = 10
@@ -372,7 +377,7 @@
 	name = "Hell Ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	reagent_state = LIQUID
-	nutriment_factor = 5
+	nutriment_factor = 2.5
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "wet and cheap noodles on fire"
 	targ_temp = INFINITY
@@ -381,7 +386,7 @@
 /datum/reagent/consumable/rice
 	name = "Rice"
 	description = "Enjoy the great taste of nothing."
-	nutriment_factor = 2
+	nutriment_factor = 1
 	color = "#FFFFFF" // rgb: 0, 0, 0
 	taste_description = "rice"
 
@@ -390,7 +395,7 @@
 	name = "Cherry Jelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
 	reagent_state = LIQUID
-	nutriment_factor = 5
+	nutriment_factor = 2.5
 	color = "#801E28" // rgb: 128, 30, 40
 	taste_description = "cherry"
 
@@ -398,7 +403,7 @@
 	name = "Honey"
 	description = "A golden yellow syrup, loaded with sugary sweetness."
 	color = "#FFFF00"
-	nutriment_factor = 15
+	nutriment_factor = 7.5
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/larvajelly
@@ -420,7 +425,7 @@
 	name = "Prepared Larva Jelly"
 	description = "A delicious blend of xenomorphic entrails and acid, denatured by exposure to high-frequency radiation. Probably has some uses."
 	reagent_state = LIQUID
-	nutriment_factor = 1
+	nutriment_factor = 0.5
 	color = "#66801e"
 	taste_description = "victory"
 	reagent_ui_priority = REAGENT_UI_TOXINS
@@ -432,7 +437,7 @@
 /datum/reagent/consumable/caramel
 	name = "Caramel"
 	description = "Who would have guessed that heated sugar could be so delicious?"
-	nutriment_factor = 10 * REAGENTS_METABOLISM
+	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#D98736"
 	taste_multi = 2
 	taste_description = "caramel"
@@ -442,7 +447,7 @@
 	name = "Vanilla Powder"
 	description = "A fatty, bitter paste made from vanilla pods."
 	reagent_state = SOLID
-	nutriment_factor = 5 * REAGENTS_METABOLISM
+	nutriment_factor = 2.5 * REAGENTS_METABOLISM
 	color = "#FFFACD"
 	taste_description = "vanilla"
 

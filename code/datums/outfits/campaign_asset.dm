@@ -359,8 +359,8 @@
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/mainship
 	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/tyr
-	head = /obj/item/clothing/head/modular/robot/heavy/tyr
+	wear_suit = /obj/item/clothing/suit/modular/tdf/robot/tyr_two
+	head = /obj/item/clothing/head/modular/tdf/robot
 	r_pocket = /obj/item/storage/pouch/pistol
 	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/satchel
@@ -435,7 +435,7 @@
 
 
 /datum/outfit/job/tgmc/campaign_robot/jetpack
-	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/shield
+	wear_suit = /obj/item/clothing/suit/modular/tdf/robot/shield_overclocked
 	r_pocket = /obj/item/storage/pouch/magazine/large
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness
 	back = /obj/item/jetpack_marine/heavy
@@ -483,7 +483,16 @@
 /datum/outfit/job/vsd/standard/grunt_third/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/spec/flamer/campaign
+/datum/outfit/job/vsd/standard/lmg/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/standard/upp/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/standard/upp_second/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/standard/upp_third/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/vsd/spec/demolitionist/campaign
@@ -498,10 +507,16 @@
 /datum/outfit/job/vsd/spec/uslspec_two/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
+/datum/outfit/job/vsd/spec/machinegunner/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
 /datum/outfit/job/vsd/medic/ksg/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/vsd/medic/vsd_rifle/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/medic/vsd_carbine/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/vsd/engineer/l26/campaign
@@ -510,10 +525,13 @@
 /datum/outfit/job/vsd/engineer/vsd_rifle/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/juggernaut/campaign
+/datum/outfit/job/vsd/juggernaut/ballistic/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/eod/campaign
+/datum/outfit/job/vsd/juggernaut/eod/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/juggernaut/flamer/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/vsd/leader/one/campaign

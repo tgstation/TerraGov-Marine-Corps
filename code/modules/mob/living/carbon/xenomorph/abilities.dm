@@ -426,7 +426,7 @@
 	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
 		X.balloon_alert(X, "Stop emitting")
 		QDEL_NULL(X.current_aura)
-		if(isxenoqueen(X))
+		if(X.hive?.living_xeno_ruler == X)
 			X.hive?.update_leader_pheromones()
 		X.hud_set_pheromone()
 		return fail_activate()
@@ -435,7 +435,7 @@
 	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, SFX_ALIEN_DROOL, 25)
 
-	if(isxenoqueen(X))
+	if(X.hive?.living_xeno_ruler == X)
 		X.hive?.update_leader_pheromones()
 	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
 	succeed_activate()
@@ -1433,7 +1433,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 /// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
 /datum/action/ability/activable/xeno/place_pattern/proc/create_hologram(turf/target_turf)
 	var/atom/selected = xeno_owner.selected_resin
-	var/obj/effect/build_hologram/hologram = new(target_turf, selected)
+	var/obj/effect/build_hologram/hologram = new(target_turf, selected, FALSE, xeno_owner)
 	hologram.alpha = 0
 	hologram.layer = selected.layer + 1
 	hologram.step_size = 4 * ICON_SIZE_ALL

@@ -297,7 +297,7 @@
 	apx += pixel_x //Update the absolute pixels with the offset.
 	apy += pixel_y
 
-	if(original_target_turf?.z != z)
+	if(original_target_turf && original_target_turf.z != z)
 		/**
 		 * For gameplays sake we want some inconsistent behaviour here
 		 * Specifically, you have to on an edge or flying to shoot DOWN (so people can see you)
