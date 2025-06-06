@@ -26,6 +26,7 @@
 	if(puppeteer)
 		weak_master = WEAKREF(puppeteer)
 		transfer_to_hive(puppeteer.hivenumber)
+		RegisterSignal(puppeteer, COMSIG_MOB_DEATH, PROC_REF(on_puppeteer_death))
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/puppet, puppeteer)
 
 /mob/living/carbon/xenomorph/puppet/on_death()
@@ -46,6 +47,13 @@
 /mob/living/carbon/xenomorph/puppet/med_hud_set_status()
 	. = ..()
 	hud_set_blessings()
+
+///Gibs on puppeteer death
+/mob/living/carbon/xenomorph/puppet/proc/on_puppeteer_death(datum/source)
+	SIGNAL_HANDLER
+	if(QDELETED(src))
+		return
+	INVOKE_ASYNC(src, PROC_REF(gib))
 
 /mob/living/carbon/xenomorph/puppet/proc/hud_set_blessings()
 	var/image/holder = hud_list[XENO_BLESSING_HUD]
