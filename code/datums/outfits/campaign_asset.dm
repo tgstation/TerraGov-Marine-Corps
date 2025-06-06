@@ -266,7 +266,7 @@
 
 /datum/outfit/job/som/militia/leader/upp_rifle
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer/standard
-	
+
 	belt_contents = list(
 		/obj/item/ammo_magazine/rifle/type71 = 6,
 	)
