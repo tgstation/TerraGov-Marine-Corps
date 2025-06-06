@@ -156,7 +156,7 @@
 
 /datum/outfit/job/clf/medic/uzi
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
-	r_pocket = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/holster/flarepouch
 
 	backpack_contents = list(
 		/obj/item/ammo_magazine/smg/uzi/extended = 7,
@@ -170,7 +170,7 @@
 
 /datum/outfit/job/clf/medic/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
-	r_pocket = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/holster/flarepouch
 
 	backpack_contents = list(
 		/obj/item/ammo_magazine/smg/skorpion = 7,
