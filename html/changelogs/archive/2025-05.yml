@@ -317,3 +317,6 @@
 2025-05-29:
   Lumipharon:
   - balance: A couple of minor tweaks to NPC medic/engie loadouts
+2025-05-30:
+  ivanmixo:
+  - refactor: Sticky items/grenades are now a component

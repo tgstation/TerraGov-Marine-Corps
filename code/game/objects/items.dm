@@ -1546,3 +1546,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /// Returns the strip delay of the item.
 /obj/item/proc/getstripdelay()
 	return strip_delay
+
+/// Can the item stick to target if it has the sticky item component. Must return TRUE or FALSE
+/obj/item/proc/can_stick_to(atom/target)
+	return TRUE
+
+/// Additional behaviour for when we stick to target
+/obj/item/proc/stuck_to(atom/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_STICKY_STICK_TO, target)
+
+/// Additional behaviour for when we unstick from target
+/obj/item/proc/unstick_from(atom/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_STICKY_CLEAN_REFS, target)
+
+/// What happens when the atom we're stuck to moves
+/obj/item/proc/on_move_sticky()
+	return
