@@ -2188,7 +2188,7 @@
 	dir = 8
 	},
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/nonmob,
+/obj/structure/droppod,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -16109,7 +16109,7 @@
 	dir = 4
 	},
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/nonmob,
+/obj/structure/droppod,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -19453,7 +19453,7 @@
 /area/mainship/hallways/hangar)
 "rSe" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/nonmob,
+/obj/structure/droppod,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
