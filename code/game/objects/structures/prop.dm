@@ -167,6 +167,20 @@
 	density = TRUE
 	resistance_flags = RESIST_ALL
 
+/obj/structure/prop/mainship/gravestone
+	name = "grave marker"
+	desc = "It's a gravestone, used to mark the burial site of important people. Press F to pay respects to the fallen."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "gravestone1"
+	density = TRUE
+	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/mainship/gravestone/two
+	icon_state = "gravestone2"
+
+/obj/structure/prop/mainship/gravestone/three
+	icon_state = "gravestone3"
+
 /obj/structure/prop/mainship/holobarrier/passthrough
 	name = "\improper pressure-sealed holobarrier"
 	icon = 'icons/effects/effects.dmi'

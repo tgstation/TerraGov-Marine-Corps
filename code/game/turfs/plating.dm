@@ -122,6 +122,8 @@
 
 /turf/open/floor/plating/ironsand
 	name = "Iron Sand"
+/turf/open/floor/plating/plating_catwalk/prison/alt
+	icon_state = "plating_catwalk_alt"
 
 /turf/open/floor/plating/ironsand/Initialize(mapload)
 	. = ..()

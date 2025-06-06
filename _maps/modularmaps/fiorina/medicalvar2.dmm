@@ -1,0 +1,1140 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aG" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen,
+/area/fiorina/station/medbay)
+"aZ" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"bl" = (
+/obj/structure/bed/roller,
+/obj/effect/spawner/random/medical/structure/ivdrip{
+	pixel_y = 19
+	},
+/obj/item/bedsheet/green,
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = 13
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/fiorina/station/medbay)
+"bm" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/turf_decal/medical_decals/triage,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"bv" = (
+/obj/structure/stairs/seamless,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/medbay)
+"bN" = (
+/obj/structure/bed/chair{
+	dir = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"cl" = (
+/obj/structure/extinguisher_cabinet,
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"ct" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"cH" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"cO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"dp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"eb" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/medbay)
+"ed" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"eq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"eF" = (
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/fiorina/station/medbay)
+"eO" = (
+/obj/structure/platform_decoration,
+/turf/open/floor/prison/whitegreen,
+/area/fiorina/station/medbay)
+"fn" = (
+/obj/structure/platform_decoration,
+/obj/structure/inflatable/wall,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitegreen,
+/area/fiorina/station/medbay)
+"fo" = (
+/obj/effect/spawner/random/weaponry/gun,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"go" = (
+/obj/structure/sign/prop3{
+	desc = "Enlist in the Penal Battalions today! The USCM 3rd Fleet features a subset of UA sanctioned penal battalions, drawing from inmate popualtions across the colonies. Mostly New Argentina though."
+	},
+/obj/structure/platform,
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"gC" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/medbay)
+"hp" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"ir" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/prison/whitegreen{
+	dir = 8
+	},
+/area/fiorina/station/medbay)
+"it" = (
+/turf/open/floor/prison/whitegreen{
+	dir = 5
+	},
+/area/fiorina/station/medbay)
+"iK" = (
+/obj/structure/janitorialcart,
+/turf/open/floor/prison,
+/area/fiorina/station/medbay)
+"iQ" = (
+/obj/item/paper/crumpled,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"jy" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/whitegreen{
+	dir = 8
+	},
+/area/fiorina/station/central_ring)
+"jD" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"jV" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"kY" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/light/blue,
+/turf/open/floor/prison/whitegreen,
+/area/fiorina/station/medbay)
+"lS" = (
+/obj/structure/bed/roller,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"mu" = (
+/obj/machinery/door/airlock/mainship/marine/charlie{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/free_access,
+/obj/structure/cable,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"mW" = (
+/obj/effect/spawner/random/medical/structure/ivdrip,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"nj" = (
+/obj/structure/bed/chair/janicart,
+/turf/open/floor/prison,
+/area/fiorina/station/medbay)
+"no" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/door/window,
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = 7;
+	pixel_y = 14
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/medbay)
+"nx" = (
+/obj/effect/decal/cleanable/blood/gibs/xeno/limb,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/fiorina/station/medbay)
+"nB" = (
+/obj/effect/turf_decal/medical_decals/triage/bottom,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"nJ" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/central_ring)
+"nL" = (
+/obj/structure/bed/roller,
+/obj/effect/spawner/random/medical/structure/ivdrip{
+	pixel_y = 19
+	},
+/obj/item/newspaper,
+/obj/item/bedsheet/green,
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/fiorina/station/medbay)
+"nX" = (
+/obj/structure/cable,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"of" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/medical/firstaid/alwaysspawns,
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 6
+	},
+/area/fiorina/station/medbay)
+"oy" = (
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"oZ" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"pY" = (
+/obj/item/device/flashlight/lamp/tripod,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"qs" = (
+/obj/structure/bed/roller,
+/obj/effect/spawner/random/medical/structure/ivdrip{
+	pixel_y = 19
+	},
+/obj/item/bedsheet/green,
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/fiorina/station/medbay)
+"qF" = (
+/obj/structure/inflatable/wall,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"qS" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"rx" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/medbay)
+"sk" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/paper/carbon,
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"tE" = (
+/obj/machinery/vending/medical,
+/obj/machinery/light/blue,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"uE" = (
+/turf/open/floor/prison/whitegreen{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"vI" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"wi" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"xC" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/central_ring)
+"xL" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/fiorina/station/central_ring)
+"xN" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/marine,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"ys" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"yy" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"zd" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/prison/whitegreen{
+	dir = 1
+	},
+/area/fiorina/station/medbay)
+"zm" = (
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"zG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/fiorina/station/medbay)
+"AV" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Cr" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"CA" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"CG" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Df" = (
+/turf/open/floor/prison/whitegreen{
+	dir = 8
+	},
+/area/fiorina/station/medbay)
+"Dx" = (
+/obj/structure/platform,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/medbay)
+"DB" = (
+/obj/effect/turf_decal/medical_decals/triage/bottom,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Es" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/tool/mop,
+/turf/open/floor/prison,
+/area/fiorina/station/medbay)
+"EG" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"ES" = (
+/obj/effect/turf_decal/medical_decals/triage/edge{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Fh" = (
+/obj/effect/turf_decal/medical_decals/triage/edge,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
+/obj/machinery/vending/nanomed{
+	dir = 1
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"FU" = (
+/turf/closed/wall/prison,
+/area/fiorina/station/central_ring)
+"Gl" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/computer/security{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/phone{
+	pixel_x = -3;
+	pixel_y = 13
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/medbay)
+"GI" = (
+/obj/structure/stairs/seamless,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/medbay)
+"GL" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/storage/fancy/vials,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"GT" = (
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/medbay)
+"Hg" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Hm" = (
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Hq" = (
+/obj/effect/turf_decal/medical_decals/triage/edge{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 9
+	},
+/area/fiorina/station/medbay)
+"Hu" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"Hw" = (
+/obj/item/ammo_casing,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"HS" = (
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/fiorina/station/medbay)
+"HW" = (
+/obj/item/ammo_casing,
+/obj/item/clothing/suit/armor/vest/security,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Iy" = (
+/obj/structure/bed/chair{
+	dir = 4;
+	pixel_y = 8
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"JF" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/central_ring)
+"JJ" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/obj/structure/platform_decoration{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/whitegreen{
+	dir = 1
+	},
+/area/fiorina/station/medbay)
+"JL" = (
+/obj/structure/platform_decoration{
+	dir = 1
+	},
+/obj/structure/inflatable/wall,
+/turf/open/floor/prison/whitegreen,
+/area/fiorina/station/medbay)
+"JW" = (
+/obj/effect/turf_decal/medical_decals/triage/bottom,
+/turf/open/floor/prison/whitegreen{
+	dir = 8
+	},
+/area/fiorina/station/medbay)
+"Kk" = (
+/obj/machinery/door/airlock/mainship/marine/charlie{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/free_access,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"Kp" = (
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_y = 13
+	},
+/obj/effect/turf_decal/medical_decals/triage/edge{
+	dir = 1
+	},
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Kw" = (
+/obj/structure/inflatable/wall,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Ky" = (
+/obj/structure/inflatable/wall,
+/turf/open/floor/prison/whitegreen/corner,
+/area/fiorina/station/medbay)
+"KC" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/item/device/flashlight/lamp/tripod,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"KJ" = (
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/fiorina/station/medbay)
+"Mi" = (
+/obj/structure/platform_decoration{
+	dir = 1
+	},
+/obj/machinery/light/blue{
+	dir = 8;
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"MJ" = (
+/obj/structure/cable,
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/fiorina/station/medbay)
+"NV" = (
+/obj/structure/bed/roller,
+/obj/effect/spawner/random/medical/structure/ivdrip{
+	pixel_y = 19
+	},
+/obj/item/bedsheet/green,
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/fiorina/station/medbay)
+"Od" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"OH" = (
+/obj/structure/bed/chair,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Pa" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Pd" = (
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"Pt" = (
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Px" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"PE" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/medbay)
+"PV" = (
+/obj/structure/inflatable/wall,
+/obj/structure/cable,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/fiorina/station/medbay)
+"Qt" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Ro" = (
+/obj/structure/platform,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/medbay)
+"RG" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies,
+/obj/machinery/vending/nanomed{
+	dir = 1
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Se" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Sz" = (
+/turf/open/floor/prison/whitegreen{
+	dir = 1
+	},
+/area/fiorina/station/medbay)
+"TF" = (
+/obj/structure/platform_decoration{
+	dir = 4
+	},
+/obj/effect/turf_decal/medical_decals/triage,
+/turf/open/floor/prison/whitegreen{
+	dir = 1
+	},
+/area/fiorina/station/medbay)
+"TG" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/medbay)
+"TV" = (
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"UI" = (
+/turf/open/floor/prison/whitegreen,
+/area/fiorina/station/medbay)
+"Vp" = (
+/turf/open/floor/prison/whitegreen{
+	dir = 9
+	},
+/area/fiorina/station/medbay)
+"Vs" = (
+/obj/effect/turf_decal/medical_decals/triage/bottom,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"VD" = (
+/obj/machinery/light/blue,
+/turf/open/floor/prison/whitegreen,
+/area/fiorina/station/medbay)
+"WP" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/obj/effect/turf_decal/medical_decals/triage{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"WY" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Xl" = (
+/obj/effect/turf_decal/medical_decals/triage,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Yy" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"Yz" = (
+/obj/structure/window/framed/prison/cell,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"Zg" = (
+/turf/closed/wall/prison,
+/area/fiorina/station/medbay)
+"Zp" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+
+(1,1,1) = {"
+Hw
+oy
+Kw
+bv
+WP
+Pt
+Vp
+nx
+zG
+uE
+Kp
+Zg
+Gl
+no
+Zg
+Zg
+gC
+Zg
+"}
+(2,1,1) = {"
+Zg
+Zg
+Zg
+go
+Hq
+Df
+KJ
+TV
+Se
+eF
+JW
+ir
+Df
+Df
+Df
+Mi
+Pa
+rx
+"}
+(3,1,1) = {"
+bN
+Pt
+Zg
+Ro
+Sz
+TV
+TV
+xN
+ys
+ct
+nB
+hp
+ct
+ct
+AV
+eO
+Yy
+rx
+"}
+(4,1,1) = {"
+GL
+dp
+eb
+GI
+JJ
+HW
+fo
+oZ
+eq
+TV
+Vs
+TV
+wi
+jD
+TV
+UI
+TG
+Zg
+"}
+(5,1,1) = {"
+Pt
+oy
+Zg
+Dx
+Sz
+Zp
+TV
+TV
+TV
+jV
+DB
+pY
+TV
+Px
+TV
+VD
+JF
+FU
+"}
+(6,1,1) = {"
+Zg
+Zg
+gC
+Ro
+Sz
+TV
+TV
+TV
+TV
+Cr
+Cr
+OH
+TV
+TV
+TV
+JL
+xC
+Hm
+"}
+(7,1,1) = {"
+iK
+Zg
+GT
+ES
+TF
+Xl
+bm
+Xl
+Fh
+Zg
+Zg
+aZ
+wi
+Hg
+nX
+PV
+jy
+Pd
+"}
+(8,1,1) = {"
+nj
+Zg
+GT
+Pt
+Sz
+OH
+cO
+cO
+tE
+Zg
+Zg
+sk
+jD
+EG
+TV
+qF
+nJ
+Hu
+"}
+(9,1,1) = {"
+Es
+Zg
+GT
+Pt
+Sz
+TV
+cH
+TV
+RG
+Zg
+Zg
+yy
+TV
+nX
+TV
+Ky
+xL
+zm
+"}
+(10,1,1) = {"
+Zg
+Zg
+GT
+Pt
+Sz
+OH
+TV
+KC
+TV
+CG
+WY
+OH
+TV
+Hg
+TV
+fn
+xC
+Hm
+"}
+(11,1,1) = {"
+Zg
+lS
+mW
+Pt
+Sz
+TV
+cO
+Iy
+TV
+Zp
+cO
+TV
+Zp
+nX
+TV
+kY
+vI
+cl
+"}
+(12,1,1) = {"
+PE
+Pt
+ed
+qS
+zd
+TV
+TV
+wi
+iQ
+TV
+cO
+TV
+TV
+EG
+TV
+aG
+CA
+Od
+"}
+(13,1,1) = {"
+Zg
+Qt
+Pt
+Pt
+it
+bl
+HS
+nL
+HS
+qs
+HS
+NV
+HS
+MJ
+TV
+of
+CA
+Od
+"}
+(14,1,1) = {"
+Od
+Kk
+Kk
+Kk
+Od
+Od
+Yz
+Yz
+Yz
+Yz
+Yz
+Od
+Kk
+mu
+Od
+Od
+Od
+Od
+"}
