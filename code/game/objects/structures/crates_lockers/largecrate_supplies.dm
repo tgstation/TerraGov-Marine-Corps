@@ -280,7 +280,7 @@
 
 /obj/structure/largecrate/supply/supplies/flares
 	name = "flare supply crate (x140)"
-	desc = "A supply crate that contains ten fourteen-flare boxes."
+	desc = "A supply crate containing ten fourteen-flare boxes."
 	supplies = list(/obj/item/storage/box/m94 = 10)
 
 /obj/structure/largecrate/supply/supplies/coifs
