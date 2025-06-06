@@ -52,7 +52,7 @@ OPERATIONS
 	access = ACCESS_MARINE_BRIDGE //Better be safe.
 	cost = 130
 
-	/datum/supply_packs/operations/flare_crate
+/datum/supply_packs/operations/flare_crate
 	name = "Surplus flare crate"
 	contains = list(/obj/structure/largecrate/supply/supplies/flares)
 	cost = 75
