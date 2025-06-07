@@ -151,10 +151,6 @@
 	///amount of slowdown to apply when the crest defense is active. trading defense for speed. Positive numbers makes it slower.
 	var/crest_defense_slowdown = 0
 
-	// *** Puppeteer Abilities *** //
-	var/flay_plasma_gain = 0
-	var/max_puppets = 0
-
 	// *** Crusher Abilities *** //
 	///The damage the stomp causes, counts armor
 	var/stomp_damage = 0
@@ -448,13 +444,12 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	COOLDOWN_DECLARE(xeno_unresting_cooldown)
 
 ///Called whenever a xeno slashes a human
-/mob/living/carbon/xenomorph/proc/onhithuman(attacker, target) //For globadiers lifesteal debuff
+/mob/living/carbon/xenomorph/proc/onhithuman(attacker, target, damage) //For globadiers lifesteal debuff
 	SIGNAL_HANDLER
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/victim = target
-	if(!victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
-		return
 	var/mob/living/carbon/xenomorph/xeno = attacker
-	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
-	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
+	if(victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
+		var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
+		HEAL_XENO_DAMAGE(xeno, healamount, FALSE)

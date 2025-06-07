@@ -72,6 +72,8 @@
 #define ui_queen_locator "EAST-1:28,7:13"
 #define ui_alienplasmadisplay "EAST-1:28,8:13"
 
+#define ui_jester_gamble_bar "WEST:+1:10,12:24"
+
 //Pop-up inventory
 #define ui_shoes "WEST+1:8,1:5"
 

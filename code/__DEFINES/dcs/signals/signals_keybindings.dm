@@ -353,18 +353,8 @@
 #define COMSIG_XENOABILITY_INFERNO "xenoability_inferno"
 #define COMSIG_XENOABILITY_INFERNAL_TRIGGER "xenoability_infernal_trigger"
 
-#define COMSIG_XENOABILITY_TENDRILS "xenoability_tendrils"
-#define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"
-#define COMSIG_XENOABILITY_PUPPET "xenoability_puppet"
-#define COMSIG_XENOABILITY_REFURBISHHUSK "xenoability_refurbishhusk"
-#define COMSIG_XENOABILITY_DREADFULPRESENCE "xenoability_dreadfulpresence"
-#define COMSIG_XENOABILITY_PINCUSHION "xenoability_pincushion"
-#define COMSIG_XENOABILITY_FLAY "xenoability_flay"
-#define COMSIG_XENOABILITY_UNLEASHPUPPETS "xenoability_unleashpuppets"
-#define COMSIG_XENOABILITY_RECALLPUPPETS "xenoability_recallpuppets"
-#define COMSIG_XENOABILITY_BESTOWBLESSINGS "xenoability_giveblessings"
-
-#define COMSIG_ABILITY_DECK_OF_DISASTER "xenoability_giveblessings_deck_of_disaster"
+#define COMSIG_XENOABILITY_DECK_OF_DISASTER "xenoability_deck_of_disaster"
+#define COMSIG_XENOABILITY_TAROT_DECK "xenoability_tarot_deck"
 
 #define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
 #define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"

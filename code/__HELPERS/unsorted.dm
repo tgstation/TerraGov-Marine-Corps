@@ -905,16 +905,21 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	return "[round((powerused * 0.000000001),0.0001)] GW"
 
 
-// Bucket a value within boundary
-/proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms)
+/// Bucket a value within boundary, Accepts a optional rounding method arg, "ceiling" by default, "round" for normal round, "floor" for floor rounding
+/proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms, round_type = "ceiling")
 	if(length(boundary_terms) == 2)
 		if(current >= max)
 			return boundary_terms[1]
 		if(current < min)
 			return boundary_terms[2]
 
-	return CEILING((bucket_size / max) * current, 1)
-
+	switch(round_type)
+		if("ceiling")
+			return CEILING((bucket_size / max) * current, 1)
+		if("round")
+			return _round((bucket_size / max) * current)
+		if("floor")
+			return FLOOR((bucket_size / max) * current, 1)
 
 /atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
 	if(!length(ignore_typecache))

@@ -119,8 +119,6 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/shrike/primordial,
 	/mob/living/carbon/xenomorph/warlock,
 	/mob/living/carbon/xenomorph/warlock/primordial,
-	/mob/living/carbon/xenomorph/puppeteer,
-	/mob/living/carbon/xenomorph/puppeteer/primordial,
 	/mob/living/carbon/xenomorph/jester,
 	/mob/living/carbon/xenomorph/jester/primordial,
 	/mob/living/carbon/xenomorph/behemoth,

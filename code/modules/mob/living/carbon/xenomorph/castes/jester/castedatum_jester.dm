@@ -38,7 +38,15 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/xeno_action/chips,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/deck_of_disaster,
+		/datum/action/ability/xeno_action/tarot_deck,
 	)
+
+/datum/xeno_caste/jester/on_caste_applied(mob/xenomorph)
+	. = ..()
+	var/mob/living/carbon/xenomorph/jester/xeno = xenomorph
+	//Delayed for the dual purpose of a small grace period & because abilites havent been granted at this point
+	addtimer(CALLBACK(xeno, TYPE_PROC_REF(/mob/living/carbon/xenomorph/jester, hud_set_gamble_bar)), 15 SECONDS)
 
 /datum/xeno_caste/jester/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -54,4 +62,5 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/xeno_action/chips,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/deck_of_disaster,
 	)

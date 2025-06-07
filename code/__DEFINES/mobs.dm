@@ -645,6 +645,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 //Jester defines:
 #define JESTER_DECK_OF_DISASTER_RANGE 3
 #define JESTER_DECK_OF_DISASTER_COOLDOWN 10 SECONDS
+#define JESTER_TAROT_DECK_COOLDOWN 15 SECONDS
 
 //Ravager defines:
 #define RAV_CHARGESPEED 2

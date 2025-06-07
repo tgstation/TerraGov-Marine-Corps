@@ -49,6 +49,47 @@
 	icon_state = "power_display2"
 	screen_loc = ui_alienplasmadisplay
 
+/atom/movable/screen/alien/jester //The gamble chargebar / timer
+	name = "gamble timer"
+	icon = 'icons/mob/screen/jesterui.dmi'
+	icon_state = "gamble_bar_0"
+	screen_loc = ui_jester_gamble_bar
+
+/atom/movable/screen/alien/jester/allin //Call button
+	name = "call (gamble current buff)"
+	icon_state = "gamble_ui_call_off"
+	screen_loc = ui_jester_gamble_bar
+
+/atom/movable/screen/alien/jester/allin/Click()
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = usr
+	var/datum/action/ability/xeno_action/chips/container = X.actions_by_path[/datum/action/ability/xeno_action/chips]
+	container.allin()
+
+
+/atom/movable/screen/alien/jester/hold //Hold button
+	name = "hold (save current buff)"
+	icon_state = "gamble_ui_hold_off"
+	screen_loc = ui_jester_gamble_bar
+
+/atom/movable/screen/alien/jester/hold/Click()
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = usr
+	var/datum/action/ability/xeno_action/chips/container = X.actions_by_path[/datum/action/ability/xeno_action/chips]
+	container.hold()
+
+
+/atom/movable/screen/alien/jester/chips //Chips display
+	name = "chips"
+	icon_state = "gamble_chips_0"
+	screen_loc = ui_jester_gamble_bar
+
+
+/atom/movable/screen/alien/jester/chips/Click()
+	var/mob/living/carbon/xenomorph/X = usr
+	var/datum/action/ability/xeno_action/chips/container = X.actions_by_path[/datum/action/ability/xeno_action/chips]
+	X.balloon_alert("[container.chips] chips")
+
 /datum/hud/alien/New(mob/living/carbon/xenomorph/owner, ui_style, ui_color, ui_alpha = 230)
 	..()
 	var/atom/movable/screen/using
@@ -155,3 +196,21 @@
 			H.r_hand.screen_loc = null
 		if(H.l_hand)
 			H.l_hand.screen_loc = null
+
+/datum/hud/alien/jester/New(mob/living/carbon/xenomorph/owner, ui_style, ui_color, ui_alpha = 230)
+	..()
+	jester_gamble_bar = new /atom/movable/screen/alien/jester(null, src)
+	jester_gamble_bar.alpha = ui_alpha
+	infodisplay += jester_gamble_bar
+
+	jester_call_button = new /atom/movable/screen/alien/jester/allin(null, src)
+	jester_call_button.alpha = ui_alpha
+	infodisplay += jester_call_button
+
+	jester_hold_button = new /atom/movable/screen/alien/jester/hold(null, src)
+	jester_hold_button.alpha = ui_alpha
+	infodisplay += jester_hold_button
+
+	jester_chips_display = new /atom/movable/screen/alien/jester/chips(null, src)
+	jester_chips_display.alpha = ui_alpha
+	infodisplay += jester_chips_display

@@ -55,9 +55,6 @@
 #define REGULAR_ACID_STRENGTH 0.04
 #define STRONG_ACID_STRENGTH 0.1
 
-#define PUPPET_RECALL "recall puppet"
-#define PUPPET_SEEK_CLOSEST "seeking closest and attack order" //not xeno-usable
-#define PUPPET_ATTACK "seek and attack order"
 
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
@@ -138,13 +135,6 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 	RESIN_DOOR = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_DOOR),
 ))
 
-//List of puppeteer pheromone images
-GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(
-	AURA_XENO_BLESSFURY = image('icons/Xeno/actions/jester.dmi', icon_state = "Fury"),
-	AURA_XENO_BLESSWARDING = image('icons/Xeno/actions/jester.dmi', icon_state = "Warding"),
-	AURA_XENO_BLESSFRENZY = image('icons/Xeno/actions/jester.dmi', icon_state = "Frenzy"),
-))
-
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
@@ -209,10 +199,11 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define WEED_USES_PLASMA (1<<3)
 #define WEED_NOTIFY (1<<4) // secrete resin message on building
 
-#define PUPPET_WITHER_RANGE 15
-
 ///Number of icon states to show health and plasma on the side UI buttons
 #define XENO_HUD_ICON_BUCKETS 16
+
+///Number of icon states tp show gamble bar segments, for jester
+#define XENO_HUD_CHIPS_BUCKETS 4
 
 /// Life runs every 2 seconds, but we don't want to multiply all healing by 2 due to seconds_per_tick
 #define XENO_PER_SECOND_LIFE_MOD 0.5
