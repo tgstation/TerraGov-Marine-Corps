@@ -38,6 +38,11 @@
 		consumer.put_in_hands(new_trash)
 	qdel(src)
 
+// Refreshes the taste of an food item based on new descriptions added.
+/obj/item/reagent_containers/food/snacks/proc/refresh_taste()
+	for(var/datum/reagent/consumable/nutriment/reagent_to_update in reagents.reagent_list)
+		reagent_to_update.change_taste(tastes.Copy())
+
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
 	return
 
@@ -220,6 +225,15 @@
 		if(prob(50))
 			balloon_alert_to_viewers("nibbles")
 		monuse.health = min(monuse.health + 1, monuse.maxHealth)
+
+/obj/item/reagent_containers/food/snacks/examine(mob/user)
+	. = ..()
+	if(user.stat == DEAD) // Let ghosts get a little taste too :)
+		. += span_notice("[user.taste(reagents, "statpanel")]")
+
+// Here to serve as a preview for how things taste in the character creator
+/obj/item/reagent_containers/food/snacks/proc/view_taste_message(mob/user, type)
+	user.taste(reagents, type)
 
 //////////////////////////////////////////////////
 ////////////////////////////////////////////Snacks

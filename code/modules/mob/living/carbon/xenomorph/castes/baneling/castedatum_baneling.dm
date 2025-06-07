@@ -49,6 +49,7 @@
 		/datum/action/ability/xeno_action/spawn_pod,
 		/datum/action/ability/xeno_action/select_reagent/baneling,
 		/datum/action/ability/xeno_action/baneling_explode,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/baneling/normal
@@ -72,4 +73,5 @@
 		/datum/action/ability/xeno_action/select_reagent/baneling,
 		/datum/action/ability/xeno_action/baneling_explode,
 		/datum/action/ability/activable/xeno/dash_explosion,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)

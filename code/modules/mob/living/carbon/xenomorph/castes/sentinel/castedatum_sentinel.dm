@@ -60,6 +60,7 @@
 		/datum/action/ability/activable/xeno/xeno_spit/toxic_spit,
 		/datum/action/ability/xeno_action/toxic_slash,
 		/datum/action/ability/activable/xeno/drain_sting,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/sentinel/normal
@@ -88,6 +89,7 @@
 		/datum/action/ability/xeno_action/toxic_slash,
 		/datum/action/ability/activable/xeno/drain_sting,
 		/datum/action/ability/activable/xeno/toxic_grenade,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/sentinel/retrograde
@@ -113,6 +115,7 @@
 		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 		/datum/action/ability/activable/xeno/neurotox_sting,
 		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/sentinel/retrograde/primordial
@@ -131,5 +134,6 @@
 		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 		/datum/action/ability/activable/xeno/neurotox_sting,
 		/datum/action/ability/activable/xeno/xeno_spit,
-		/datum/action/ability/activable/xeno/toxic_grenade/neuro
+		/datum/action/ability/activable/xeno/toxic_grenade/neuro,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)

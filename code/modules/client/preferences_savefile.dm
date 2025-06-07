@@ -527,6 +527,7 @@
 	READ_FILE(S["gen_record"], gen_record)
 	READ_FILE(S["exploit_record"], exploit_record)
 	READ_FILE(S["flavor_text"], flavor_text)
+
 	READ_FILE(S["xeno_desc"], xeno_desc)
 	READ_FILE(S["profile_pic"], profile_pic)
 	READ_FILE(S["nsfwprofile_pic"], nsfwprofile_pic)
@@ -537,6 +538,12 @@
 	READ_FILE(S["genitalia_cock"], genitalia_cock)
 	READ_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
 	READ_FILE(S["burst_screams_enabled"], burst_screams_enabled)
+	READ_FILE(S["xeno_edible_jelly_name"], xeno_edible_jelly_name)
+	READ_FILE(S["r_jelly"], r_jelly)
+	READ_FILE(S["g_jelly"], g_jelly)
+	READ_FILE(S["b_jelly"], b_jelly)
+	READ_FILE(S["xeno_edible_jelly_desc"], xeno_edible_jelly_desc)
+	READ_FILE(S["xeno_edible_jelly_flavors"], xeno_edible_jelly_flavors)
 
 	READ_FILE(S["metadata"], metadata)
 	READ_FILE(S["metadata_likes"], metadata_likes)
@@ -551,6 +558,7 @@
 	synthetic_type = sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
 	robot_type = sanitize_inlist(robot_type, ROBOT_TYPES, initial(robot_type))
 	xeno_name = reject_bad_name(xeno_name)
+	xeno_edible_jelly_name = reject_bad_name(xeno_edible_jelly_name)
 	ai_name = reject_bad_name(ai_name, TRUE)
 
 	real_name = reject_bad_name(real_name, TRUE)
@@ -640,6 +648,12 @@
 		parent.mob.ooc_notes_maybes = metadata_maybes
 		parent.mob.ooc_notes_favs = metadata_favs
 		parent.mob.ooc_notes_style = metadata_ooc_style
+	xeno_edible_jelly_name = sanitize_text (xeno_edible_jelly_name, initial(xeno_edible_jelly_name))
+	xeno_edible_jelly_desc = sanitize_text (xeno_edible_jelly_desc, initial(xeno_edible_jelly_desc))
+	xeno_edible_jelly_flavors = sanitize_text (xeno_edible_jelly_flavors, initial(xeno_edible_jelly_flavors))
+	r_jelly = sanitize_integer(r_jelly, 0, 255, initial(r_jelly))
+	g_jelly = sanitize_integer(g_jelly, 0, 255, initial(g_jelly))
+	b_jelly = sanitize_integer(b_jelly, 0, 255, initial(b_jelly))
 
 	if(!synthetic_name)
 		synthetic_name = "David"
@@ -810,6 +824,7 @@
 	WRITE_FILE(S["gen_record"], gen_record)
 	WRITE_FILE(S["exploit_record"], exploit_record)
 	WRITE_FILE(S["flavor_text"], flavor_text)
+
 	WRITE_FILE(S["xeno_desc"], xeno_desc)
 	WRITE_FILE(S["profile_pic"], profile_pic)
 	WRITE_FILE(S["nsfwprofile_pic"], nsfwprofile_pic)
@@ -827,6 +842,12 @@
 	WRITE_FILE(S["metadata_maybes"], metadata_maybes)
 	WRITE_FILE(S["metadata_favs"], metadata_favs)
 	WRITE_FILE(S["metadata_ooc_style"], metadata_ooc_style)
+	WRITE_FILE(S["xeno_edible_jelly_name"], xeno_edible_jelly_name)
+	WRITE_FILE(S["r_jelly"], r_jelly)
+	WRITE_FILE(S["g_jelly"], g_jelly)
+	WRITE_FILE(S["b_jelly"], b_jelly)
+	WRITE_FILE(S["xeno_edible_jelly_desc"], xeno_edible_jelly_desc)
+	WRITE_FILE(S["xeno_edible_jelly_flavors"], xeno_edible_jelly_flavors)
 
 	return TRUE
 

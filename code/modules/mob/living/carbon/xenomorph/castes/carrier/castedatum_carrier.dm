@@ -70,6 +70,7 @@
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/xeno_action/carrier_panic,
 		/datum/action/ability/xeno_action/choose_hugger_type,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/carrier/normal
@@ -105,4 +106,5 @@
 		/datum/action/ability/xeno_action/carrier_panic,
 		/datum/action/ability/xeno_action/choose_hugger_type,
 		/datum/action/ability/xeno_action/build_hugger_turret,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)

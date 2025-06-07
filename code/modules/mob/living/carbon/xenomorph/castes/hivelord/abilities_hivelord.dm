@@ -296,7 +296,7 @@
 		return
 	if(owner.l_hand || owner.r_hand)
 		if(!silent)
-			owner.balloon_alert(owner, "Cannot jelly, need empty hands")
+			owner.balloon_alert(owner, "Cannot create jelly, need empty hands")
 		return FALSE
 
 /datum/action/ability/xeno_action/create_jelly/action_activate()

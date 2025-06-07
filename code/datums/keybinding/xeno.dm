@@ -662,6 +662,13 @@
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/create_edible_jelly
+	name = "create_edible_jelly"
+	full_name = "Create Edible Jelly"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CREATE_EDIBLE_JELLY
+	hotkey_keys = list("L")
+
 /datum/keybinding/xeno/healing_infusion
 	name = "healing_infusion"
 	full_name = "Hivelord: Healing Infusion"

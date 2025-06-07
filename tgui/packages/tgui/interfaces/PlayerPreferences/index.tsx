@@ -6,6 +6,7 @@ import { BackgroundInformation } from './BackgroundInformation';
 import { CharacterCustomization } from './CharacterCustomization';
 import { DrawOrder } from './DrawOrder';
 import { SelectFieldPreference } from './FieldPreferences';
+import { FlavorCustomization } from './FlavorCustomization';
 import { GameSettings } from './GameSettings';
 import { GearCustomization } from './GearCustomisation';
 import { JobPreferences } from './JobPreferences';
@@ -32,16 +33,20 @@ export const PlayerPreferences = (props) => {
       affectsSave = true;
       break;
     case 4:
-      CurrentTab = JobPreferences;
+      CurrentTab = FlavorCustomization;
       affectsSave = true;
       break;
     case 5:
-      CurrentTab = GameSettings;
+      CurrentTab = JobPreferences;
+      affectsSave = true;
       break;
     case 6:
-      CurrentTab = KeybindSettings;
+      CurrentTab = GameSettings;
       break;
     case 7:
+      CurrentTab = KeybindSettings;
+      break;
+    case 8:
       CurrentTab = DrawOrder;
       break;
     default:
@@ -101,22 +106,28 @@ const NavigationSelector = (props) => {
         selected={tabIndex === 4}
         onClick={() => act('tab_change', { tabIndex: 4 })}
       >
-        Job Preferences
+        Flavor Customization
       </Tabs.Tab>
       <Tabs.Tab
         selected={tabIndex === 5}
         onClick={() => act('tab_change', { tabIndex: 5 })}
       >
-        Game Settings
+        Job Preferences
       </Tabs.Tab>
       <Tabs.Tab
         selected={tabIndex === 6}
         onClick={() => act('tab_change', { tabIndex: 6 })}
       >
-        Keybindings
+        Game Settings
       </Tabs.Tab>
       <Tabs.Tab
         selected={tabIndex === 7}
+        onClick={() => act('tab_change', { tabIndex: 7 })}
+      >
+        Keybindings
+      </Tabs.Tab>
+      <Tabs.Tab
+        selected={tabIndex === 8}
         onClick={() => act('tab_change', { tabIndex: 7 })}
       >
         Draw Order

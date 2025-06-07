@@ -120,7 +120,7 @@
 		DEFILER_HEMODILE = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_HEMODILE),
 		DEFILER_TRANSVITOX = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_TRANSVITOX),
 		DEFILER_OZELOMELYN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_OZELOMELYN),
-		DEFILER_APHROTOXIN = image('ntf_modular/icons/xeno/actions.dmi', icon_state = DEFILER_APHROTOXIN),
+		DEFILER_APHROTOXIN = image('ntf_modular/icons/Xeno/actions.dmi', icon_state = DEFILER_APHROTOXIN),
 		BANELING_ACID = image('icons/Xeno/actions/baneling.dmi', icon_state = BANELING_ACID),
 		)
 	var/toxin_choice = show_radial_menu(owner, owner, reagent_images_list, radius = 48)

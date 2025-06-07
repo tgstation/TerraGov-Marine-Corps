@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	CLAWED_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = CLAWED_HUGGER),
 	NEURO_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = NEURO_HUGGER),
 	OZELOMELYN_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = OZELOMELYN_HUGGER),
-	APHROTOXIN_HUGGER = image('ntf_modular/icons/xeno/actions.dmi', icon_state = APHROTOXIN_HUGGER),
+	APHROTOXIN_HUGGER = image('ntf_modular/icons/Xeno/actions.dmi', icon_state = APHROTOXIN_HUGGER),
 	ACID_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = ACID_HUGGER),
 	RESIN_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = RESIN_HUGGER),
 ))
