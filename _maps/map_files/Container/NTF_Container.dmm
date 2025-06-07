@@ -1125,6 +1125,7 @@
 /area/mainship/command/cic)
 "bnr" = (
 /obj/effect/urban/decal/dirt,
+/obj/structure/largecrate/supply/explosives/mines,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "bnC" = (
@@ -1293,6 +1294,14 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
+"btq" = (
+/obj/effect/ai_node,
+/obj/structure/flora/pottedplant/ten,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "btB" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/structure/curtain/open/medical,
@@ -1946,6 +1955,18 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/lower_engineering)
+"bXj" = (
+/obj/item/stack/sheet/mineral/diamond,
+/obj/item/stack/sheet/mineral/gold,
+/obj/structure/safe,
+/turf/open/floor/carpet{
+	dir = 10;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "bXr" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -2123,6 +2144,13 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/ntf/dorm1)
+"ciz" = (
+/obj/machinery/atm,
+/turf/closed/wall/mainship,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "cje" = (
 /obj/effect/turf_decal/warning_stripes,
 /obj/item/teleporter_kit/premade,
@@ -2534,6 +2562,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/squads/req)
 "cCt" = (
@@ -2956,13 +2985,11 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/starboard_hallway)
 "cVp" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/starboard_hull)
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "cWl" = (
 /obj/structure/cable,
 /obj/machinery/light/mainship{
@@ -3337,6 +3364,17 @@
 /obj/machinery/holopad,
 /turf/open/floor/freezer,
 /area/mainship/living/grunt_rnr)
+"dqh" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/machinery/door/poddoor/shutters/opened/wy{
+	name = "wy2";
+	id = "wyoffice2"
+	},
+/turf/open/floor/plating/platebotc,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "drL" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -3633,6 +3671,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "dIq" = (
@@ -3869,6 +3908,15 @@
 	dir = 1
 	},
 /area/mainship/medical/cmo_office)
+"dSQ" = (
+/turf/open/floor/carpet{
+	dir = 9;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "dTJ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -4326,6 +4374,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
+"era" = (
+/turf/closed/wall/mainship,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "erq" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -4882,6 +4936,16 @@
 /obj/machinery/light/mainship,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
+"eMH" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/ceo,
+/turf/open/floor/carpet,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "eMY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/closet/firecloset,
@@ -5301,6 +5365,15 @@
 /turf/open/floor/mainship/tcomms,
 /area/deltastation/command/teleporter{
 	name = "\improper Quantum Pads"
+	})
+"ffG" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
 	})
 "ffX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -5939,6 +6012,30 @@
 /obj/structure/rack,
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/port_hull)
+"fLw" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/liaison_suit,
+/obj/item/clothing/under/liaison_suit/formal,
+/obj/item/clothing/under/liaison_suit/suspenders,
+/obj/item/clothing/under/liaison_suit/outing,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/under/suit_jacket/charcoal,
+/obj/item/clothing/under/suit_jacket/female,
+/obj/item/weapon/gun/pistol/g22/tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/armor_module/storage/uniform/holster,
+/turf/open/floor/carpet{
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "fLH" = (
 /obj/structure/largecrate/random/case/double{
 	pixel_y = 7
@@ -6292,10 +6389,32 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/bridgebunks)
+"ghy" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "ghJ" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison)
+"ghV" = (
+/obj/machinery/door/airlock/mainship/generic/corporate{
+	name = "CEO's Office"
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "giS" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship/tcomms,
@@ -6342,6 +6461,21 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"gni" = (
+/obj/structure/bed/fancy,
+/obj/item/bedsheet/hop,
+/obj/effect/landmark/start/job/ceo,
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 1
+	},
+/turf/open/floor/carpet{
+	dir = 5;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "gnI" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -7248,6 +7382,19 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/starboard_hull)
+"hiW" = (
+/obj/effect/ai_node,
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 1
+	},
+/turf/open/floor/carpet{
+	dir = 1;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "hjb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -7744,6 +7891,24 @@
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/urban/wood,
 /area/mainship/living/mechpilotquarters)
+"hNF" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/door_control/mainship/corporate{
+	id = "wyoffice2";
+	name = "Window Shutters"
+	},
+/obj/structure/table/wood/fancy,
+/obj/machinery/faxmachine/cmp,
+/turf/open/floor/carpet{
+	dir = 9;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "hNI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -7769,6 +7934,31 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
+"hOx" = (
+/obj/item/clipboard,
+/obj/item/tool/lighter/zippo,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/camera,
+/obj/item/cell/hyper,
+/obj/structure/paper_bin,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/pen,
+/obj/item/taperecorder,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/structure/table/wood/fancy,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/communications,
+/turf/open/floor/carpet{
+	dir = 1;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "hOC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8235,6 +8425,17 @@
 /obj/machinery/processor,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/cafeteria)
+"isb" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship,
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
+	name = "\improper ST-571 sentry gun"
+	},
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "isV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -9007,6 +9208,18 @@
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/starboard_point_defense)
+"jku" = (
+/obj/structure/bed/chair/sofa{
+	dir = 1
+	},
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "jkY" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
 	input_tag = "waste_lower_in";
@@ -9221,6 +9434,19 @@
 /obj/structure/barricade/solid,
 /turf/open/shuttle/escapepod,
 /area/mainship/nukeroom)
+"jtn" = (
+/obj/machinery/computer/skills{
+	dir = 4
+	},
+/obj/structure/table/wood/fancy,
+/turf/open/floor/carpet{
+	icon_state = "carpetside";
+	dir = 4
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "jtv" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -13156,8 +13382,15 @@
 	},
 /area/mainship/command/self_destruct)
 "nbT" = (
-/turf/open/floor/mainship/cargo,
-/area/mainship/hull/starboard_hull)
+/obj/structure/filingcabinet,
+/turf/open/floor/carpet{
+	dir = 10;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "ncd" = (
 /obj/structure/prop/urban/containersextended/redright,
 /obj/effect/urban/decal/dirt,
@@ -13711,6 +13944,16 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"nFq" = (
+/obj/machinery/photocopier,
+/turf/open/floor/carpet{
+	icon_state = "carpetside";
+	dir = 8
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "nFH" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/brflowers,
@@ -15328,6 +15571,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"plT" = (
+/obj/item/storage/box/explosive_mines/antitank,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "pmD" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -15352,6 +15599,10 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/pilotbunks)
+"poE" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/starboard_hull)
 "poV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/light/mainship{
@@ -15556,6 +15807,13 @@
 /obj/machinery/recharger,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
+"pzP" = (
+/obj/structure/flora/pottedplant/nine,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "pAq" = (
 /obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Shuttle Hanger"
@@ -16188,6 +16446,20 @@
 	},
 /turf/open/floor/urban/wood,
 /area/mainship/living/mechpilotquarters)
+"qnW" = (
+/obj/machinery/keycard_auth{
+	pixel_y = 10
+	},
+/obj/item/flashlight/lamp,
+/obj/structure/table/wood/fancy,
+/turf/open/floor/carpet{
+	dir = 6;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "qol" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/floor,
@@ -18870,6 +19142,17 @@
 /obj/structure/cable,
 /turf/open/floor/urban/wood,
 /area/mainship/living/mechpilotquarters)
+"sVU" = (
+/obj/item/reagent_containers/food/snacks/spacetwinkie,
+/obj/item/storage/box/ntc_mre,
+/obj/item/storage/box/nt_mre,
+/obj/structure/table/reinforced/fabric,
+/obj/item/pizzabox/meat,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "sWo" = (
 /obj/structure/prop/urban/containersextended/greenleft,
 /turf/open/floor/plating,
@@ -20125,6 +20408,15 @@
 	dir = 10
 	},
 /area/mainship/command/cic)
+"uif" = (
+/obj/effect/ai_node,
+/turf/open/floor/carpet{
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "ujo" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
@@ -20235,6 +20527,13 @@
 	dir = 4
 	},
 /area/mainship/shipboard/brig)
+"umP" = (
+/obj/machinery/holopad,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "unc" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -20243,6 +20542,29 @@
 /obj/effect/landmark/start/job/security_officer,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/brig)
+"unJ" = (
+/obj/item/portable_vendor/corporate{
+	req_role = /datum/job/terragov/command/ceo;
+	req_access = list(202);
+	max_points = 100;
+	points = 10000
+	},
+/obj/structure/table/wood/fancy,
+/obj/item/spacecash/bundle{
+	worth = 5000000;
+	desc = "They are worth 5000000 dollars.";
+	icon_state = "spacecash500"
+	},
+/obj/item/reagent_containers/hypospray/autoinjector/spacedrugs,
+/obj/item/reagent_containers/hypospray/autoinjector/spacedrugs,
+/turf/open/floor/carpet{
+	dir = 5;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "unU" = (
 /obj/machinery/door_control{
 	id = exteriorairlock2;
@@ -21841,6 +22163,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
+"vOv" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/starboard_hull)
 "vOy" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -22338,6 +22667,25 @@
 	},
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/medical_science)
+"wlF" = (
+/obj/item/flashlight/lamp,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/tool/lighter/zippo,
+/obj/item/ammo_magazine/packet/mateba,
+/obj/item/ammo_magazine/packet/mateba,
+/obj/structure/table/wood/fancy,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet{
+	dir = 6;
+	icon_state = "carpetside"
+	},
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "wml" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/holopad,
@@ -22690,6 +23038,13 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/starboard_hull)
+"wGo" = (
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "wHn" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -22876,6 +23231,13 @@
 /obj/machinery/microwave,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/cafeteria)
+"wOY" = (
+/obj/structure/bed/chair/comfy,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "wPi" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -23050,6 +23412,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
+"wZG" = (
+/obj/item/stack/sheet/mineral/diamond,
+/obj/item/stack/sheet/mineral/gold,
+/obj/structure/safe,
+/turf/open/floor/wood,
+/area/space)
 "wZI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -23316,6 +23684,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "xny" = (
@@ -35160,12 +35529,12 @@ fIG
 fIG
 dCx
 oTp
-cdp
-cdp
-mlT
-mlT
-mlT
-mlT
+era
+hNF
+nFq
+nbT
+sVU
+ffG
 vAf
 duD
 uVV
@@ -35362,12 +35731,12 @@ fIG
 fIG
 dCx
 gvK
-csR
-cdp
-mlT
-mlT
-mlT
-mlT
+era
+hOx
+eMH
+uif
+cVp
+jku
 jfs
 qni
 bdI
@@ -35560,16 +35929,16 @@ cWw
 whq
 fIG
 fIG
-fIG
+wZG
 fIG
 dCx
 gDH
-csR
-cdp
-mlT
-mlT
-mlT
-mlT
+era
+unJ
+jtn
+qnW
+cVp
+ghy
 jfs
 pke
 qxz
@@ -35766,12 +36135,12 @@ fIG
 fIG
 dCx
 gDH
-csR
-cdp
-mlT
-mlT
-mlT
-mlT
+era
+wOY
+umP
+cVp
+dSQ
+bXj
 jfs
 qHX
 qxz
@@ -35968,12 +36337,12 @@ fIG
 fIG
 dCx
 gDH
-itp
-cdp
-mlT
-mlT
-mlT
-mlT
+ciz
+pzP
+cVp
+cVp
+hiW
+fLw
 jfs
 nvT
 dZE
@@ -36170,12 +36539,12 @@ fIG
 fIG
 dCx
 gvK
-geA
-cdp
-mlT
-mlT
-mlT
-mlT
+era
+isb
+wGo
+btq
+gni
+wlF
 jfs
 uJu
 dKw
@@ -36372,12 +36741,12 @@ fIG
 fIG
 dCx
 kyC
-cdp
-cdp
-cdp
-cdp
-cdp
-cdp
+era
+era
+ghV
+dqh
+era
+era
 jfs
 jfs
 jfs
@@ -36576,16 +36945,16 @@ dCx
 gvK
 csR
 cdp
-kPb
-mOQ
-mOQ
+poE
+xiQ
+xiQ
 vju
 abu
 xny
 xiQ
 ydY
 viU
-cVp
+viU
 jYc
 pYe
 dxF
@@ -36776,18 +37145,18 @@ fIG
 fIG
 dCx
 gDH
-csR
-gGn
-xiQ
+xCx
+vOv
+poE
 xiQ
 xiQ
 vju
 xvG
 xiQ
 xiQ
-nbT
-nbT
-cdp
+kPb
+mOQ
+mOQ
 ugd
 shS
 hmu
@@ -45088,7 +45457,7 @@ kSa
 gkW
 hxw
 uAJ
-bLC
+plT
 mLy
 oyF
 rXh
