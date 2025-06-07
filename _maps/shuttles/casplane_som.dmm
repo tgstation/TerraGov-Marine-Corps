@@ -101,9 +101,8 @@
 /area/shuttle/cas)
 "EQ" = (
 /obj/effect/attach_point/weapon/cas/left{
-	icon = 'icons/obj/structures/prop/somship.dmi';
-	icon_state = "somcas_misc_one";
-	dir = 2
+	icon = 'ntf_modular/icons/obj/structures/prop/somship.dmi';
+	icon_state = "somcas_misc_one_flipped"
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
@@ -144,7 +143,8 @@
 /obj/structure/caspart/minigun{
 	icon = 'icons/obj/structures/prop/somship.dmi';
 	icon_state = "somcas_misc_five";
-	density = 0
+	density = 0;
+	pixel_x = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
