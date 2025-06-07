@@ -340,6 +340,8 @@
 				return
 			playsound(loc,'sound/machines/buzz-two.ogg', 35, FALSE)
 			add_tick = 0
+			miner_integrity -= 25
+			set_miner_status()
 			return
 		stored_mineral += 1
 		add_tick = 0
