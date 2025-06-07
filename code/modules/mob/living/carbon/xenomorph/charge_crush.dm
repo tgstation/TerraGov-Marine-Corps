@@ -362,17 +362,16 @@
 	max_steps_buildup = 10
 	crush_living_damage = 37
 	plasma_use_multiplier = 2
-
+	/// How many steps below `max_steps_buildup` to maximum will they then get stagger immunity (from projectiles)?
+	var/stagger_immunity_steps = 0
 
 /datum/action/ability/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, PROC_REF(toggle_charge_type))
 
-
 /datum/action/ability/xeno_action/ready_charge/bull_charge/remove_action(mob/living/L)
 	UnregisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE)
 	return ..()
-
 
 /datum/action/ability/xeno_action/ready_charge/bull_charge/proc/toggle_charge_type(datum/source, new_charge_type = CHARGE_BULL)
 	SIGNAL_HANDLER
@@ -399,6 +398,15 @@
 /datum/action/ability/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	agile_charge = (X.upgrade == XENO_UPGRADE_PRIMO)
+
+/datum/action/ability/xeno_action/ready_charge/bull_charge/handle_momentum()
+	. = ..()
+	if(!stagger_immunity_steps)
+		return
+	if(valid_steps_taken >= max_steps_buildup - stagger_immunity_steps)
+		ADD_TRAIT(xeno_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION)
+	else if(HAS_TRAIT_FROM(xeno_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION))
+		REMOVE_TRAIT(xeno_owner, TRAIT_STAGGER_RESISTANT, TRAIT_MUTATION)
 
 /datum/action/ability/xeno_action/ready_charge/queen_charge
 	action_icon_state = "queen_ready_charge"

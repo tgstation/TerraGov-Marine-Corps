@@ -213,6 +213,9 @@
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
 
+	/// All possible mutations that can be purchased.
+	var/list/datum/mutation_upgrade/buyable_mutations = list()
+
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
 	for(var/trait in caste_traits)
@@ -430,6 +433,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+
+	/// All active mutations they own.
+	var/list/datum/mutation_upgrade/owned_mutations = list()
 
 	//list of active tunnels
 	var/list/tunnels = list()

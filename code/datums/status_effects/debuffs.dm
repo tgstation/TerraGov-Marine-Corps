@@ -497,6 +497,10 @@
 	consumed_on_threshold = FALSE
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
+	/// The xenomorph who will receive healing.
+	var/mob/living/carbon/xenomorph/xenomorph_to_heal
+	/// The amount of health to restore for each stack.
+	var/healing_per_stack = 0
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
@@ -505,12 +509,19 @@
 		return FALSE
 	return ..()
 
-/datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply)
+/datum/status_effect/stacking/intoxicated/on_apply()
+	if(HAS_TRAIT(owner, TRAIT_INTOXICATION_IMMUNE))
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/xenomorph/expected_xenomorph_to_heal, expected_healing_per_stack = 0)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
 		qdel(src)
 		return
 	. = ..()
 	debuff_owner = new_owner
+	xenomorph_to_heal = expected_xenomorph_to_heal
+	healing_per_stack = expected_healing_per_stack
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
 	debuff_owner.balloon_alert(debuff_owner, "Intoxicated")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
@@ -540,6 +551,9 @@
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
 		debuff_owner.adjust_stagger(1 SECONDS)
+	if(healing_per_stack && xenomorph_to_heal?.Adjacent(debuff_owner))
+		var/amount_to_heal = stacks * healing_per_stack
+		HEAL_XENO_DAMAGE(xenomorph_to_heal, amount_to_heal, FALSE)
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/intoxicated/proc/call_resist_debuff()
@@ -580,6 +594,8 @@
 	var/mob/living/carbon/xenomorph/pyrogen/debuff_creator
 	/// Used for the fire effect.
 	var/obj/vis_melt_fire/visual_fire
+	/// The percentage of any brute and burn healing to be negated.
+	var/healing_reduction = 0
 
 /obj/vis_melt_fire
 	name = "ouch ouch ouch"
@@ -587,10 +603,12 @@
 	layer = ABOVE_MOB_LAYER
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 
-/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply, atom/new_creator)
+/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply, atom/new_creator, new_healing_reduction)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || new_owner.soft_armor?.getRating(FIRE) >= 100)
 		qdel(src)
 		return
+	if(new_healing_reduction)
+		healing_reduction = new_healing_reduction
 	. = ..()
 	visual_fire = new
 	visual_fire.icon_state = "melting_low_stacks"
@@ -601,12 +619,16 @@
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
 	if(new_creator && isxenopyrogen(new_creator)) // It is possible for a non-pyrogen to create this.
 		debuff_creator = new_creator
+	if(healing_reduction)
+		RegisterSignals(debuff_owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE), PROC_REF(on_damage_taken))
 
 /// on remove has owner set to null
 /datum/status_effect/stacking/melting_fire/on_remove()
 	owner.vis_contents -= visual_fire
 	debuff_owner = null
 	QDEL_NULL(visual_fire)
+	if(healing_reduction)
+		UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
 	return ..()
 
 /datum/status_effect/stacking/melting_fire/tick(delta_time)
@@ -657,6 +679,12 @@
 		span_notice("You extinguish yourself."), null, 5)
 	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST) // If their stacks hit zero, it is qdel'd right here.
 
+/datum/status_effect/stacking/melting_fire/proc/on_damage_taken(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	if(amount >= 0)
+		return
+	amount_mod += floor(amount) * healing_reduction
+
 // ***************************************
 // *********** dread
 // ***************************************
@@ -669,11 +697,11 @@
 	id = "dread"
 	status_type = STATUS_EFFECT_REPLACE
 	tick_interval = 2 SECONDS
+	duration = 6 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/dread
 
-/datum/status_effect/dread/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/dread/on_creation(mob/living/new_owner)
 	owner = new_owner
-	duration = set_duration
 	return ..()
 
 /datum/status_effect/dread/tick(delta_time)
@@ -1040,3 +1068,70 @@
 	name = "Lifedrain"
 	desc = "Your life force transfers to xenos when they slash you!"
 	icon_state = "skullemoji"
+
+// ***************************************
+// *********** Fresh Carapace
+// ***************************************
+/datum/status_effect/armor_reduction
+	id = "xenomorph_armor_reduction"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	duration = 6 SECONDS
+	// How much should the all of xenomorph owner's soft_armor be decreased by?
+	var/armor_reduction = 0
+	/// A holder for the exact armor modified by this status effect.
+	var/datum/armor/attached_armor
+
+/datum/status_effect/armor_reduction/on_creation(mob/living/new_owner, new_armor_reduction)
+	owner = new_owner
+	if(new_armor_reduction)
+		armor_reduction = new_armor_reduction
+	return ..()
+
+/datum/status_effect/armor_reduction/on_apply()
+	. = ..()
+	if(!isxeno(owner) || !armor_reduction)
+		return FALSE
+	attached_armor = new()
+	attached_armor.modifyAllRatings(-armor_reduction)
+	owner.soft_armor = owner.soft_armor.attachArmor(attached_armor)
+
+/datum/status_effect/armor_reduction/fresh_carapace
+	id = "fresh_carapace"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = /atom/movable/screen/alert/status_effect/fresh_carapace
+	armor_reduction = 30 // The default for this particular status effect if it isn't overridden by Carapace Regrowth.
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/armor_reduction/fresh_carapace/on_apply()
+	. = ..()
+	if(!.)
+		return
+	particle_holder = new(owner, /particles/fresh_carapace_status)
+
+/datum/status_effect/armor_reduction/fresh_carapace/on_remove()
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/atom/movable/screen/alert/status_effect/fresh_carapace
+	name = "Fresh Carapace"
+	desc = "Your carapace is too fresh to sustain damage effectively!"
+	icon_state = "shatter"
+
+/particles/fresh_carapace_status
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "x"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 10
+	fade = 8
+	velocity = list(0, 0)
+	position = generator(GEN_SPHERE, 16, 16, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(-0.1, 0), list(0.1, 0))
+	gravity = list(0, -0.4)
+	scale = generator(GEN_VECTOR, list(0.6, 0.6), list(1, 1), NORMAL_RAND)
+	friction = -0.05
+	color = "#818181"
