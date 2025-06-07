@@ -377,6 +377,12 @@
 		user.balloon_alert(user, "The target is underground.")
 		return
 
+	if(istype(A, /area/shuttle))
+		var/area/shuttle/shuttle_area = A
+		if(shuttle_area.unmortarable)
+			user.balloon_alert(user, "The target shuttle is likely impenetrable by this.")
+			return
+
 	visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
 	var/turf/location = get_turf(src)
 	location.ceiling_debris_check(2)

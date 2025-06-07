@@ -10,6 +10,7 @@
 	icon_state = "shuttle"
 	// Loading the same shuttle map at a different time will produce distinct area instances.
 	unique = FALSE
+	var/unmortarable = FALSE
 
 ///area/shuttle/Initialize(mapload)
 //	if(!canSmoothWithAreas)
@@ -31,6 +32,7 @@
 
 /area/shuttle/dropship/alamo
 	name = "Dropship Alamo"
+	unmortarable = TRUE
 
 /area/shuttle/dropship/elevator
 	name = "Ship Elevator"
@@ -40,6 +42,7 @@
 
 /area/shuttle/dropship/normandy
 	name = "Dropship Normandy"
+	unmortarable = TRUE
 
 /area/shuttle/dropship/triumph
 	name = "Dropship Triumph"
@@ -49,6 +52,7 @@
 
 /area/shuttle/minidropship
 	name = "Tadpole Drop Shuttle"
+	unmortarable = TRUE
 	//area_flags = NO_CONSTRUCTION
 
 /area/shuttle/minidropship/Initialize(mapload, ...)
