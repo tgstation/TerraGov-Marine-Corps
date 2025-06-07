@@ -51,8 +51,8 @@
 	set category = "OOC"
 	set name = "Ghost"
 
-	if(usr.stat != DEAD)
-		to_chat(usr, "You are not dead yet."
+	if(stat != DEAD)
+		to_chat(usr, "You are not dead yet.")
 		log_game("[key_name(usr)] tried to ghost while alive at [AREACOORD(usr)].")
 		message_admins("[ADMIN_TPMONTY(usr)] tried to ghost while alive.")
 		return

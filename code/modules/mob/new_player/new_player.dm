@@ -146,7 +146,7 @@
 			if(!SSticker)
 				return
 			if(!GLOB.enter_allowed)
-				to_chat(usr, span_warning("Spawning currently disabled, please observe."))
+				to_chat(usr, span_warning("Spawning currently disabled."))
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
 			if(!isxenosjob(job_datum) && (SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state <= XENOS_LOSING)))
