@@ -13,6 +13,7 @@
 	var/image/cockpit
 	/// Whether CAS is usable or not.
 	var/cas_usable = CAS_USABLE
+	var/home_dock = SHUTTLE_CAS_DOCK
 
 /obj/structure/caspart/caschair/Initialize(mapload)
 	. = ..()
@@ -216,7 +217,7 @@
 		if("land")
 			if(owner.state != PLANE_STATE_FLYING)
 				return
-			SSshuttle.moveShuttle(owner.id, SHUTTLE_CAS_DOCK, TRUE)
+			SSshuttle.moveShuttle(owner.id, home_dock, TRUE)
 			owner.end_cas_mission(usr)
 			owner.currently_returning = TRUE
 		if("deploy")

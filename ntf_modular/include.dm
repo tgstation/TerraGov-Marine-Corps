@@ -72,6 +72,7 @@
 #include "code\game\objects\structures\lewd_construction.dm"
 #include "code\game\objects\structures\lewd_structures.dm"
 #include "code\game\objects\structures\teleporter.dm"
+#include "code\modules\condor\cas_chair.dm"
 #include "code\modules\client\preferences.dm"
 #include "code\modules\clothing\head\head.dm"
 #include "code\modules\clothing\shoes\marine_shoes.dm"
