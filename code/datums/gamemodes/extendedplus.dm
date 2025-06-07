@@ -160,9 +160,40 @@
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
+/* NTF removal
 	for(var/miner in GLOB.miner_list)
 		if(prob(65))
 			qdel(miner)
+*/
+//NTF addition start
+	if(length(GLOB.miner_list) > MINIMUM_MINERS)
+		var/list/obj/machinery/miner/platinum_list = list()
+		var/list/obj/machinery/miner/phoron_list = list()
+		for(var/obj/machinery/miner/miner in GLOB.miner_list)
+			if(miner.is_platinum())
+				platinum_list += miner
+			else
+				phoron_list += miner
+		var/miners_kept = 0
+		if(length(platinum_list) < MINIMUM_PLATINUM_MINERS)
+			log_mapping("Only [length(platinum_list)] platinum miners found, less than minimum of [MINIMUM_PLATINUM_MINERS]!")
+			miners_kept = length(platinum_list)
+			platinum_list.Cut()
+		else
+			shuffle_inplace(platinum_list)
+			#if (MINIMUM_PLATINUM_MINERS > 0)
+			miners_kept = MINIMUM_PLATINUM_MINERS
+			platinum_list.Cut(1,MINIMUM_PLATINUM_MINERS)
+			#endif
+		var/list/obj/machinery/miner/shuffled_miners = platinum_list + phoron_list
+		shuffle_inplace(shuffled_miners)
+		var/miners_to_keep = rand((MINIMUM_MINERS - miners_kept), length(shuffled_miners))
+		shuffled_miners.Cut(1, miners_to_keep)
+		QDEL_LIST(shuffled_miners)
+	else
+		if(length(GLOB.miner_list) < MINIMUM_MINERS)
+			log_mapping("Only [length(GLOB.miner_list)] miners found, less than minimum of [MINIMUM_MINERS]!")
+//NTF addition end
 
 	for(var/mob/living/carbon/xenomorph/larva/xeno in GLOB.alive_xeno_list)
 		xeno.evolution_stored = xeno.xeno_caste.evolution_threshold //Immediate roundstart evo for larva.

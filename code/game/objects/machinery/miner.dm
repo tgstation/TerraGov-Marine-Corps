@@ -61,6 +61,9 @@
 	else
 		owner_marker?.moveToNullspace()
 
+/obj/machinery/miner/proc/is_platinum()
+	return (mineral_value >= PLATINUM_CRATE_SELL_AMOUNT)
+
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
 	icon_state = "mining_drill_error"
