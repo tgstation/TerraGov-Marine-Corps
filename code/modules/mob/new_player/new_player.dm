@@ -156,6 +156,14 @@
 						return
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
+			if(isxenosjob(job_datum))
+				if(XENODEATHTIME_CHECK(usr) && !(check_rights(R_ADMIN, FALSE) && tgui_alert(usr, "As a player your xeno respawn timer is not finished, though as an admin you can bypass it. Do you want to continue?", "Join Game", list("Yes", "No")) != "Yes"))
+					XENODEATHTIME_MESSAGE(usr)
+					return
+			else
+				if(DEATHTIME_CHECK(usr) && !(check_rights(R_ADMIN, FALSE) && tgui_alert(usr, "As a player your respawn timer is not finished, though as an admin you can bypass it. Do you want to continue?", "Join Game", list("Yes", "No")) != "Yes"))
+					DEATHTIME_MESSAGE(usr)
+					return
 			SSticker.mode.LateSpawn(src)
 
 		if("continue_join")

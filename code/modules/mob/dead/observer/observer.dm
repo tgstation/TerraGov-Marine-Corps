@@ -250,6 +250,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		new_player.key = key
 		if(client)
 			new_player.client?.init_verbs()
+
+		. = new_player
 	else
 		var/mob/dead/observer/ghost = new(src)
 		var/turf/T = get_turf(src)

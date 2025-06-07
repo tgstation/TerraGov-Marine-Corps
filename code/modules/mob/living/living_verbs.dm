@@ -51,6 +51,12 @@
 	set category = "OOC"
 	set name = "Ghost"
 
+	if(usr.stat != DEAD)
+		to_chat(usr, "You are not dead yet."
+		log_game("[key_name(usr)] tried to ghost while alive at [AREACOORD(usr)].")
+		message_admins("[ADMIN_TPMONTY(usr)] tried to ghost while alive.")
+		return
+
 	// Gamemode disallowed handler - START
 	if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS))
 		// ADMIN SECTION - START
@@ -61,7 +67,7 @@
 			return
 		// ADMIN SECTION - END
 
-		if(tgui_alert(usr, "Ghosting is not allowed in this game mode.\nGiving up right now will abandon this body and you will be sent to the title screen.\nAre you absolutely sure you want to ghost?", "Ghost", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "Ghosting is not allowed in this game mode.\nGiving up right now will abandon this body and you will be sent to the title screen.\nAre you absolutely sure you want to ghost?\nYOU WILL STILL BE SUBJECTED TO YOUR RESPAWN TIMER, CRYO INSTEAD TO AVOID THIS.", "Ghost", list("Yes", "No")) != "Yes")
 			return
 		log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)], sending them to the title screen.")
 		message_admins("[ADMIN_TPMONTY(usr)] has ghosted, sending them to the title screen.")
