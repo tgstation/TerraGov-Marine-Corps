@@ -123,6 +123,8 @@
 	if(.)
 		return
 	var/mob/M = user.mob
+	if(isxeno(M) && !(user.prefs?.toggles_gameplay & TOGGLE_XENO_MOVE_INTENT_KEYBIND))
+		return
 	M.toggle_move_intent()
 	return TRUE
 
