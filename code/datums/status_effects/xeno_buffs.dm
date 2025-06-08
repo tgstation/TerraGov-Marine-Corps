@@ -606,7 +606,7 @@
 	SIGNAL_HANDLER
 
 	var/mob/living/carbon/xenomorph/X = owner
-	if(HAS_TRAIT(X,TRAIT_NOPLASMAREGEN)) //No bonus plasma if you're on a diet
+	if(HAS_TRAIT(X, TRAIT_NOPLASMAREGEN)) //No bonus plasma if you're on a diet
 		return
 	var/bonus_plasma = X.xeno_caste.plasma_gain * bonus_regen * (1 + X.recovery_aura * 0.05) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Recovery aura multiplier; 5% bonus per full level
 	X.gain_plasma(bonus_plasma)
@@ -669,6 +669,9 @@
 ///Called when the target xeno regains HP via heal_wounds in life.dm
 /datum/status_effect/healing_infusion/proc/healing_infusion_regeneration(mob/living/carbon/xenomorph/patient, heal_data, seconds_per_tick)
 	SIGNAL_HANDLER
+
+	if(HAS_TRAIT(patient, TRAIT_NOHEALTHREGEN)) //No regen if you're on a diet
+		return
 
 	if(!health_ticks_remaining)
 		qdel(src)
