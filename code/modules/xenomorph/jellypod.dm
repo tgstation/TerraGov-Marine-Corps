@@ -51,7 +51,10 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if((xeno_attacker.a_intent == INTENT_HARM && isxenohivelord(xeno_attacker)) || xeno_attacker.hivenumber != hivenumber)
+	if(!issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_HARM)
+		return ..()
+
+	if(xeno_attacker.a_intent == INTENT_HARM)
 		balloon_alert(xeno_attacker, "Destroying...")
 		if(do_after(xeno_attacker, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
@@ -62,7 +65,20 @@
 		to_chat(xeno_attacker, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
 	balloon_alert(xeno_attacker, "Retrieved jelly")
-	new /obj/item/resin_jelly(loc)
+	new /obj/item/resin_jelly(loc, hivenumber)
+	chargesleft--
+	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
+		START_PROCESSING(SSslowprocess, src)
+
+/obj/structure/xeno/resin_jelly_pod/attack_hand(mob/living/user)
+	if(!issamexenohive(user))
+		return ..()
+	if(!chargesleft)
+		balloon_alert(user, "No jelly remaining")
+		to_chat(user, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
+		return
+	balloon_alert(user, "Retrieved jelly")
+	new /obj/item/resin_jelly(loc, hivenumber)
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)

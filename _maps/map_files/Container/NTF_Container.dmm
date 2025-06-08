@@ -7166,7 +7166,9 @@
 /obj/effect/landmark/start/job/xenomorph/green,
 /obj/effect/landmark/start/job/xenomorph/green,
 /obj/effect/landmark/start/job/xenomorph/green,
-/obj/alien/weeds/node/resting,
+/obj/alien/weeds/node/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
 "gWh" = (
@@ -8251,7 +8253,9 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/ntf/dorm1)
 "iji" = (
-/obj/alien/weeds/resting,
+/obj/alien/weeds/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 5
 	},
@@ -15394,7 +15398,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "pck" = (
-/obj/alien/weeds/resting,
+/obj/alien/weeds/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 10
 	},
@@ -15925,7 +15931,9 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig_cells)
 "pIi" = (
-/obj/alien/weeds/resting,
+/obj/alien/weeds/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 8
 	},
@@ -16552,7 +16560,9 @@
 /turf/open/floor/plating,
 /area/mainship/living/bridgebunks)
 "quS" = (
-/obj/alien/weeds/resting,
+/obj/alien/weeds/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 6
 	},
@@ -16706,7 +16716,9 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/obj/alien/weeds/resting,
+/obj/alien/weeds/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 4
 	},
@@ -18234,14 +18246,18 @@
 	id = "Containment Cell 3";
 	pixel_y = 30
 	},
-/obj/alien/weeds/resting,
+/obj/alien/weeds/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 1
 	},
 /area/mainship/medical/medical_science)
 "sco" = (
 /obj/machinery/light/mainship/small,
-/obj/alien/weeds/resting,
+/obj/alien/weeds/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor2,
 /area/mainship/medical/medical_science)
 "scM" = (
@@ -23551,7 +23567,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "xfZ" = (
-/obj/alien/weeds/resting,
+/obj/alien/weeds/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 9
 	},

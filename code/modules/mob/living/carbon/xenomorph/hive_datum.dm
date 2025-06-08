@@ -33,8 +33,10 @@
 	var/list/client/candidates
 	/// Amount of special resin points used to build special resin walls by each hive.
 	var/special_build_points = 50
-	/// These factions cannot sell this hive's corpses.
+	/// These factions will not be attacked by turrets of this hive but cannot sell their resin jelly or corpses.
 	var/list/allied_factions = list(FACTION_CLF, FACTION_XENO)
+	/// Supply and dropship points given when a non-allied faction sells one resin jelly from this faction.
+	var/jelly_export_value = list(2,0)
 
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new
@@ -1214,6 +1216,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	prefix = "Corrupted "
 	color = "#00ff80"
 	allied_factions = list(FACTION_TERRAGOV)
+	jelly_export_value = list(1,0)
 
 // Make sure they can understand english
 /datum/hive_status/corrupted/post_add(mob/living/carbon/xenomorph/X)
@@ -1647,7 +1650,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /atom/proc/get_xeno_hivenumber()
 	return FALSE
 
-/obj/alien/egg/get_xeno_hivenumber()
+/obj/alien/get_xeno_hivenumber()
 	return hivenumber
 
 /obj/item/alien_embryo/get_xeno_hivenumber()
@@ -1656,7 +1659,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /obj/item/clothing/mask/facehugger/get_xeno_hivenumber()
 	return hivenumber
 
-/mob/living/carbon/xenomorph/get_xeno_hivenumber()
+/mob/living
+	var/hivenumber = FALSE
+
+/mob/living/get_xeno_hivenumber()
 	return hivenumber
 
 /mob/illusion/xeno/get_xeno_hivenumber()
@@ -1668,18 +1674,14 @@ to_chat will check for valid clients itself already so no need to double check f
 		return hivenumber
 	return ..()
 
-/obj/structure/xeno/trap/get_xeno_hivenumber()
-	if(hugger)
-		return hugger.hivenumber
-	return ..()
-
-/mob/living/carbon/human/get_xeno_hivenumber()
-	if(faction == FACTION_ZOMBIE)
-		return FACTION_ZOMBIE
-	if(faction == FACTION_CLF)
-		return XENO_HIVE_NORMAL
-	return FALSE
-
 /obj/machinery/deployable/mounted/sentry/get_xeno_hivenumber()
-	if(iff_signal == CLF_IFF)
-		return XENO_HIVE_NORMAL
+	return hivenumber
+
+/obj/structure/mineral_door/resin/get_xeno_hivenumber()
+	return hivenumber
+
+/turf/closed/wall/resin/get_xeno_hivenumber()
+	return hivenumber
+
+/obj/item/resin_jelly/get_xeno_hivenumber()
+	return hivenumber

@@ -273,7 +273,7 @@
 	//We do this here so anything that doesn't want to persist can clear itself
 	var/list/old__listen_lookup = _listen_lookup?.Copy()
 	var/list/old_signal_procs = _signal_procs?.Copy()
-	var/turf/W = new path(src)
+	var/turf/W = new path(src, usr?.get_xeno_hivenumber())
 
 	// WARNING WARNING
 	// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS

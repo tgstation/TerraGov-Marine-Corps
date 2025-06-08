@@ -1,6 +1,10 @@
 /datum/job/terragov
 	faction = FACTION_TERRAGOV
 
+/datum/job/terragov/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+	C.hivenumber = XENO_HIVE_CORRUPTED
+
 /datum/job/terragov/get_spawn_message_information(mob/M)
 	. = ..()
 	if(istype(SSticker.mode, /datum/game_mode/hvh/combat_patrol))

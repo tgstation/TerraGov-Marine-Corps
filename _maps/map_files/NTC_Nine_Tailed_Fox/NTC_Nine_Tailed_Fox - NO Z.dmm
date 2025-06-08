@@ -5144,7 +5144,9 @@
 	bruteloss = 25;
 	fireloss = 25
 	},
-/obj/alien/weeds/node/resting,
+/obj/alien/weeds/node/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"

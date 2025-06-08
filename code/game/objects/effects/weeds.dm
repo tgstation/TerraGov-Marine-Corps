@@ -19,6 +19,7 @@
 	plane = FLOOR_PLANE
 	max_integrity = 25
 	ignore_weed_destruction = TRUE
+	resistance_flags = UNACIDABLE | XENO_DAMAGEABLE
 
 	var/obj/alien/weeds/node/parent_node
 	///The color variant of the sprite
@@ -36,7 +37,7 @@
 /obj/alien/weeds/plasmacutter_act(mob/living/user, obj/item/I)
 	return FALSE // Just attack normally.
 
-/obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
+/obj/alien/weeds/Initialize(mapload, _hivenumber, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override)
@@ -160,16 +161,19 @@
 
 	if(isxeno(crosser))
 		var/mob/living/carbon/xenomorph/X = crosser
-		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+		if(!issamexenohive(X))
+			X.next_move_slowdown = WEED_SLOWDOWN
+		else
+			X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
 		return
 
-	if(!ishuman(crosser))
+	if(!isliving(crosser))
 		return
 
 	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))
 		return
 
-	var/mob/living/carbon/human/victim = crosser
+	var/mob/living/victim = crosser
 
 	if(victim.lying_angle)
 		return
@@ -262,7 +266,7 @@
 	///The plasma cost multiplier for this node
 	var/ability_cost_mult = 1
 
-/obj/alien/weeds/node/Initialize(mapload, obj/alien/weeds/node/node)
+/obj/alien/weeds/node/Initialize(mapload, _hivenumber, obj/alien/weeds/node/node)
 	var/swapped = FALSE
 	for(var/obj/alien/weeds/W in loc)
 		if(W != src)
@@ -270,7 +274,7 @@
 			swapped = TRUE
 			qdel(W) //replaces the previous weed
 			break
-	. = ..(mapload, node, swapped)
+	. = ..(mapload, _hivenumber, node, swapped)
 
 	// Generate our full graph before adding to SSweeds
 	node_turfs = filled_turfs(src, node_range, "square")
@@ -332,7 +336,15 @@
 		vehicle.last_move_time += WEED_SLOWDOWN
 		return
 
-	if(!ishuman(crosser))
+	if(isxeno(crosser))
+		var/mob/living/carbon/xenomorph/X = crosser
+		if(!issamexenohive(X))
+			X.next_move_slowdown = WEED_SLOWDOWN
+		else
+			X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+		return
+
+	if(!isliving(crosser))
 		return
 
 	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))

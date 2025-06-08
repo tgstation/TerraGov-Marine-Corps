@@ -355,7 +355,7 @@
 	succeed_activate()
 
 	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
-	new /obj/structure/xeno/acidwell(T, owner)
+	new /obj/structure/xeno/acidwell(T, xeno_owner.hivenumber, owner)
 
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
 	GLOB.round_statistics.xeno_acid_wells++

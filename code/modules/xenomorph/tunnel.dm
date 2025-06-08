@@ -11,7 +11,7 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|BANISH_IMMUNE
+	resistance_flags = UNACIDABLE|BANISH_IMMUNE|XENO_DAMAGEABLE
 	layer = BELOW_TABLE_LAYER
 
 	max_integrity = 140
@@ -79,6 +79,9 @@ TUNNEL
 /obj/structure/xeno/tunnel/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!istype(xeno_attacker) || xeno_attacker.stat || xeno_attacker.lying_angle || xeno_attacker.status_flags & INCORPOREAL)
 		return
+
+	if(!(issamexenohive(xeno_attacker)))
+		return ..()
 
 	if(xeno_attacker.a_intent == INTENT_HARM && xeno_attacker == creator)
 		balloon_alert(xeno_attacker, "Filling in tunnel...")

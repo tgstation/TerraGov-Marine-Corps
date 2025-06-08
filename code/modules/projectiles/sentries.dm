@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	var/iff_signal = NONE
 	///For minimap icon change if sentry is firing
 	var/firing
+	var/hivenumber = FALSE
 
 //------------------------------------------------------------------
 //Setup and Deletion
@@ -48,6 +49,13 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		var/mob/living/carbon/human/_deployer = deployer
 		var/obj/item/card/id/id = _deployer.get_idcard(TRUE)
 		iff_signal = id?.iff_signal
+		hivenumber = _deployer.get_xeno_hivenumber()
+	else
+		if(iff_signal & CLF_IFF)
+			hivenumber = XENO_HIVE_NORMAL
+		else
+			if(iff_signal & TGMC_LOYALIST_IFF)
+				hivenumber = XENO_HIVE_CORRUPTED
 	if(deployer)
 		faction = deployer.faction
 

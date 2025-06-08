@@ -8,6 +8,7 @@
 
 /datum/job/clf/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
+	C.hivenumber = XENO_HIVE_NORMAL
 	SSminimaps.add_marker(C, MINIMAP_FLAG_MARINE_CLF, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, comm_title))
 	var/datum/action/minimap/clf/mini = new
 	mini.give_action(C)

@@ -228,6 +228,8 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define ERROR_NO_SUPPORT 7
 /// Failed to other blockers such as egg, power plant , coocon , traps
 #define ERROR_CONSTRUCT 8
+// Failed due to enemy weeds
+#define ERROR_ENEMY_WEED 9
 
 #define WEED_REQUIRES_LOS (1<<0)
 #define WEED_TAKES_TIME (1<<1)

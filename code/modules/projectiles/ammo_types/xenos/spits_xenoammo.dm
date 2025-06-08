@@ -31,8 +31,6 @@
 	var/datum/effect_system/smoke_spread/xeno/smoke_system
 	var/smoke_strength
 	var/smoke_range
-	///The hivenumber of this ammo
-	var/hivenumber = XENO_HIVE_NORMAL
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
@@ -205,7 +203,7 @@
 
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	drop_resin(get_turf(target_mob))
+	drop_resin(get_turf(target_mob), proj.firer.get_xeno_hivenumber())
 	if(iscarbon(target_mob))
 		var/mob/living/carbon/target_carbon = target_mob
 		if(target_carbon.issamexenohive(proj.firer))
@@ -219,15 +217,15 @@
 		var/obj/vehicle/sealed/seal = target_obj
 		COOLDOWN_INCREMENT(seal, cooldown_vehicle_move, seal.move_delay)
 	var/turf/target_turf = get_turf(target_obj)
-	drop_resin(target_turf.density ? proj.loc : target_turf)
+	drop_resin(target_turf.density ? proj.loc : target_turf, proj.firer.get_xeno_hivenumber())
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_resin(target_turf.density ? proj.loc : target_turf)
+	drop_resin(target_turf.density ? proj.loc : target_turf, proj.firer.get_xeno_hivenumber())
 
 /datum/ammo/xeno/sticky/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_resin(target_turf.density ? proj.loc : target_turf)
+	drop_resin(target_turf.density ? proj.loc : target_turf, proj.firer.get_xeno_hivenumber())
 
-/datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
+/datum/ammo/xeno/sticky/proc/drop_resin(turf/T, hivenumber = XENO_HIVE_NORMAL)
 	if(T.density || istype(T, /turf/open/space)) // No structures in space
 		return
 
@@ -235,7 +233,7 @@
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/alien/resin/sticky/thin(T)
+	new /obj/alien/resin/sticky/thin(T, hivenumber)
 
 /datum/ammo/xeno/sticky/turret
 	max_range = 9
@@ -259,22 +257,22 @@
 
 /datum/ammo/xeno/sticky/globe/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj.loc
-	drop_resin(det_turf)
+	drop_resin(det_turf, proj.firer.get_xeno_hivenumber())
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
 
 /datum/ammo/xeno/sticky/globe/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
-	drop_resin(det_turf)
+	drop_resin(det_turf, proj.firer.get_xeno_hivenumber())
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
 /datum/ammo/xeno/sticky/globe/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/turf/det_turf = get_turf(target_mob)
-	drop_resin(det_turf)
+	drop_resin(det_turf, proj.firer.get_xeno_hivenumber())
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 
 /datum/ammo/xeno/sticky/globe/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
-	drop_resin(det_turf)
+	drop_resin(det_turf, proj.firer.get_xeno_hivenumber())
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
 /datum/ammo/xeno/acid
