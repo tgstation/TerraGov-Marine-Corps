@@ -81,7 +81,7 @@
 
 /datum/ammo/bullet/revolver/t76/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
     if(ishuman(target_mob))
-        staggerstun(target_mob, proj, paralyze = 0, knockback = 1)
+        staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, knockback = 1)
     else
         staggerstun(target_mob, proj, paralyze = 2 SECONDS, knockback = 1)
 
@@ -95,7 +95,7 @@
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
     if(ishuman(target_mob))
-        staggerstun(target_mob, proj, paralyze = 0, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+        staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
     else
         staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
 
