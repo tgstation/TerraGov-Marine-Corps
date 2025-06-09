@@ -13,9 +13,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	density = FALSE
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	invisibility = INVISIBILITY_OBSERVER
-	sight = SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
+	sight = SEE_SELF
 	hud_type = /datum/hud/ghost
-	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	//lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	dextrous = TRUE
 	status_flags = GODMODE | INCORPOREAL
 
@@ -564,6 +564,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost.Toggles"
 	set name = "Toggle Darkness"
 
+	if(client && !check_rights_for(client, R_ADMIN))
+		to_chat(src, span_notice("Must be an admin to see more than the rest."))
+		return
 	switch(lighting_cutoff)
 		if (LIGHTING_CUTOFF_VISIBLE)
 			lighting_cutoff = LIGHTING_CUTOFF_MEDIUM

@@ -85,10 +85,14 @@
 
 	if(stat == DEAD)
 		ghostize(TRUE)
+	else
+		to_chat(usr, "Not dead yet.")
+		log_game("[key_name(usr)] tried to ghost while alive at [AREACOORD(usr)].")
+		message_admins("[ADMIN_TPMONTY(usr)] tried to ghost while alive.")
 		return
 
-	if(tgui_alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", list("Yes", "No")) != "Yes")
-		return
+	//if(tgui_alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", list("Yes", "No")) != "Yes")
+	//	return
 
 	set_resting(TRUE)
 	log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)].")

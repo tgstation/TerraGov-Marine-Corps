@@ -1064,7 +1064,7 @@
 		if(!M.client)
 			continue
 		if(get_dist(M, X) > 7 || M.z != X.z) //they're out of range of normal S M U T
-			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
+			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTEARS) && !check_other_rights(M.client, R_ADMIN, FALSE))
 				continue
 		if((istype(M.remote_control, /mob/camera/aiEye) || isAI(M))) // Not sure why this is here really, but better S M U T than sorry
 			continue
