@@ -577,6 +577,10 @@
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
 			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
 
+		if(istype(user, /mob/living/carbon/xenomorph/defiler))
+			if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
+
+
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += separator_hr("[span_boldwarning("Admin Slept")]")
 		msg += span_userdanger("This player has been slept by staff. Leave them be.\n")
