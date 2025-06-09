@@ -28,10 +28,8 @@
 	var/obj/item/sidecar/attached_sidecar
 	/// The looping sound that plays when the bike is not moving
 	var/datum/looping_sound/bike_idle/idle_sound
-	var/soundloop_restart_timer
-	COOLDOWN_DECLARE(enginesound_cooldown)
-	var/movement_sound_cooldown = 0.3 SECONDS
-	var/movement_sound = 'sound/vehicles/bikerev.ogg'
+	/// Which sound is played when the bike is unbuckled from
+	var/dismount_sound = 'sound/vehicles/bikedismount.ogg'
 
 /obj/vehicle/ridden/motorbike/Initialize(mapload)
 	. = ..()
@@ -41,11 +39,9 @@
 	fuel_count = fuel_max
 
 /obj/vehicle/ridden/motorbike/Destroy()
-	. = ..()
 	if(isdatum(idle_sound))
 		QDEL_NULL(idle_sound)
-	deltimer(soundloop_restart_timer)
-	soundloop_restart_timer = null
+	return ..()
 
 /obj/vehicle/ridden/motorbike/examine(mob/user)
 	. = ..()
@@ -56,23 +52,31 @@
 
 /obj/vehicle/ridden/motorbike/post_buckle_mob(mob/living/M)
 	add_overlay(motorbike_cover)
-	idle_sound.start(src)
+	if(has_fuel())
+		idle_sound.start(src)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/post_unbuckle_mob(mob/living/M)
 	if(!LAZYLEN(buckled_mobs))
 		cut_overlay(motorbike_cover)
 	idle_sound.stop(src)
+	if(has_fuel())
+		playsound(src, dismount_sound, vol = 25)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
 
+/// Returns a boolean indicating whether the motorbike has fuel left.
+/obj/vehicle/ridden/motorbike/proc/has_fuel()
+	return fuel_count > 0
+
 /obj/vehicle/ridden/motorbike/relaymove(mob/living/user, direction)
-	if(fuel_count <= 0)
+	if(!has_fuel())
 		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_BIKE_FUEL_MESSAGE))
 			to_chat(user, span_warning("There is no fuel left!"))
 			TIMER_COOLDOWN_START(src, COOLDOWN_BIKE_FUEL_MESSAGE, 1 SECONDS)
+			idle_sound.stop(src)
 		return FALSE
 	return ..()
 
@@ -84,17 +88,6 @@
 	if(fuel_count == LOW_FUEL_LEFT_MESSAGE)
 		for(var/mob/rider AS in buckled_mobs)
 			balloon_alert(rider, "[fuel_count/fuel_max*100]% fuel left")
-
-	idle_sound?.stop(src)
-	soundloop_restart_timer = addtimer(CALLBACK(src, PROC_REF(delayed_soundloop_restart)), movement_sound_cooldown + 0.3 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_CLIENT_TIME)
-
-	if(COOLDOWN_FINISHED(src, enginesound_cooldown))
-		COOLDOWN_START(src, enginesound_cooldown, movement_sound_cooldown)
-		playsound(get_turf(src), movement_sound, 100, FALSE)
-
-
-/obj/vehicle/ridden/motorbike/proc/delayed_soundloop_restart()
-	idle_sound?.start(src, TRUE)
 
 /obj/vehicle/ridden/motorbike/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/jerrycan))
