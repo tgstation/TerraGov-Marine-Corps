@@ -598,11 +598,11 @@
 				msg += "Oxycodone([reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone)]u): Very strong anti-pain medication commonly found on corpsman.\n"
 
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/dylovene))
-				msg += "Dylovene([reagents.get_reagent_amount(/datum/reagent/medicine/dylovene)]u): Toxin removal medication.\n"
+				msg += "Dylovene([reagents.get_reagent_amount(/datum/reagent/medicine/dylovene)]u): Basic toxin removal medication.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline))
 				msg += "Inaprovaline([reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)]u):  Heals vast ammount of damage after injection in crit and prevents further oxygen damage while present.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicalnanites))
-				msg += "Medical nanites([reagents.get_reagent_amount(/datum/reagent/medicalnanites)]u): Use marines blood healing moderate ammounts of burn and brute all the time. Cannot be purged by ozelomelyn but can be by defiling.\n"
+				msg += "Medical nanites([reagents.get_reagent_amount(/datum/reagent/medicalnanites)]u): Uses marines blood healing moderate ammounts of burn and brute all the time. Cannot be purged by ozelomelyn but can be by defiling.\n"
 
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += separator_hr("[span_boldwarning("Admin Slept")]")
