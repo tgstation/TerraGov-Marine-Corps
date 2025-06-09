@@ -584,7 +584,7 @@
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/kelotane))
 				msg += "Kelotane([reagents.get_reagent_amount(/datum/reagent/medicine/kelotane)]u): Weak burn medication used by most marines. Heals slowly.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
-				msg += "Tricodrazine([reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)]u): General healing chem, heals all types of common damage by a small ammount.\n"
+				msg += "Tricordrazine([reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)]u): General healing chem, heals all types of common damage by a small ammount.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/meralyne))
 				msg += "Meralyne([reagents.get_reagent_amount(/datum/reagent/medicine/meralyne)]u): Strong brute medication used commonly by corpsman.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/dermaline))
