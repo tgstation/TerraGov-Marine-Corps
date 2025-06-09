@@ -154,8 +154,6 @@
 				if((xeno_job.total_positions-xeno_job.current_positions) > length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * TOO_MUCH_BURROWED_PROPORTION)
 					if(tgui_alert(src, "There is a lack of xeno players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) != "Yes")
 						return
-			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
-				return
 			if(isxenosjob(job_datum))
 				if(XENODEATHTIME_CHECK(usr))
 					if(check_other_rights(usr.client, R_ADMIN, FALSE))
@@ -168,6 +166,8 @@
 						if(tgui_alert(usr, "Your respawn timer is not finished, though as an admin you can bypass it. Do you want to continue?", "Join Game", list("Yes", "No")) != "Yes")
 							DEATHTIME_MESSAGE(usr)
 							return
+			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
+				return
 			SSticker.mode.LateSpawn(src)
 
 		if("continue_join")
@@ -513,13 +513,11 @@
 
 
 /mob/new_player/proc/take_ssd_mob()
-	var/mob/dead/observer/dead_src = src
-
 	if(!GLOB.ssd_posses_allowed)
 		to_chat(src, span_warning("Taking over SSD mobs is currently disabled."))
 		return
 
-	if(GLOB.key_to_time_of_death[src.key] + TIME_BEFORE_TAKING_BODY > world.time && !dead_src.started_as_observer)
+	if((src.key in GLOB.key_to_time_of_death) && (GLOB.key_to_time_of_death[src.key] + TIME_BEFORE_TAKING_BODY > world.time))
 		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
 		return
 
