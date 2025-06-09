@@ -2182,6 +2182,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 		// Refresh the individual reagents taste values to agree. Coding this was painful.
 		jelly.refresh_taste()
 
+	jelly.hivenumber = owner.get_xeno_hivenumber()
 	owner.put_in_hands(jelly)
 	to_chat(owner, span_xenonotice("We secrete a gelatinous mash of nutrients.")) // Yummy... :drool:
 	add_cooldown()
