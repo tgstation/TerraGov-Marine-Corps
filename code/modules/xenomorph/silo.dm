@@ -107,6 +107,9 @@
 		if(victim.stat != DEAD)
 			to_chat(user, "<span class='notice'>[victim] is not dead!</span>")
 			return
+		if(!HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+			to_chat(user, "<span class='notice'>[victim] is not unrevivable yet, this might make problems.</span>")
+			return
 
 		if(issynth(victim))
 			to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
@@ -117,7 +120,7 @@
 		if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
 			return
 
-		victim.forceMove(src)
+		victim.despawn() //basically gore cryo
 
 		shake(4 SECONDS)
 
@@ -190,3 +193,23 @@
 /obj/structure/xeno/silo/proc/on_spawn(list/newly_spawned_things)
 	for(var/mob/living/carbon/xenomorph/spawned_minion AS in newly_spawned_things)
 		spawned_minion.transfer_to_hive(hivenumber)
+
+/obj/structure/xeno/silo/MouseDrop_T(mob/M, mob/user)
+	. = ..()
+	if(isxeno(user))
+		if(M == user)
+			if(isxenolarva(user))
+				if(user.stat == DEAD)
+					to_chat(user, span_xenonotice("We are... dead?"))
+					return
+				var/mob/living/carbon/xenomorph/larva/larba = user
+
+				visible_message("[user] starts burrowing into [src].", 3)
+
+				if(!do_after(user, 1 SECONDS, FALSE, user, BUSY_ICON_DANGER) || QDELETED(src))
+					return
+
+				larba.despawn() //should hopefully readd the xeno slot.
+				shake(4 SECONDS)
+			else
+				to_chat(user, span_xenonotice("We need to be a larva to fit there."))

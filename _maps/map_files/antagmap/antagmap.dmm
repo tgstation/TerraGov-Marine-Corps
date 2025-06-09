@@ -119,7 +119,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/reedroom)
 "aX" = (
-/obj/machinery/dropship_part_fabricator,
+/obj/machinery/dropship_part_fabricator{
+	faction = "Sons of Mars"
+	},
 /turf/open/floor/mainship/cargo,
 /area/antag_ship/som/hangar)
 "aY" = (

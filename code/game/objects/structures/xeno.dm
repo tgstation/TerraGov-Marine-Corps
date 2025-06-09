@@ -566,3 +566,9 @@
 	bitesize = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("vague sweetness" = 1, "water" = 2)
+	var/hivenumber = XENO_HIVE_NORMAL
+
+/obj/item/reagent_containers/food/snacks/nutrient_jelly/examine(mob/user)
+	. = ..()
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	. += "It is from the [hive.name] hive"

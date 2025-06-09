@@ -1,37 +1,30 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/structure/droppod/respawning,
-/obj/structure/drop_pod_launcher,
-/turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
 "bG" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/vending/uniform_supply,
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod/respawning,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "bN" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/table/mainship,
-/obj/machinery/computer/droppod_control,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "bQ" = (
 /obj/structure/window/framed/mainship/spaceworthy{
 	icon_state = "col_window1"
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "cv" = (
 /obj/machinery/cryopod,
@@ -39,8 +32,8 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "cL" = (
 /obj/effect/landmark/start/job/squadspecialist,
@@ -53,81 +46,45 @@
 	name = "JoinLate"
 	},
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "di" = (
 /obj/effect/landmark/start/job/corporateliaison,
 /obj/effect/landmark{
 	name = "JoinLate"
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "dB" = (
-/obj/structure/cable,
 /obj/machinery/computer/navigation,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
-"dY" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2;
-	id = "eagledoors"
-	},
-/obj/effect/step_trigger/teleporter{
-	name = "eagle_rappel";
-	teleport_x = 90;
-	teleport_y = 83;
-	teleport_z = 2
-	},
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "eb" = (
 /obj/structure/window/framed/mainship/spaceworthy{
 	icon_state = "col_window12"
 	},
 /turf/open/space/transit/atmos,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
-"fD" = (
-/obj/structure/cable,
-/obj/machinery/vending/engivend,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "fU" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
-"ge" = (
-/obj/machinery/cryopod/right,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship/hardened,
-/turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "gp" = (
-/obj/structure/cable,
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "gz" = (
 /obj/effect/landmark/start/job/squadmarine,
@@ -135,13 +92,13 @@
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "gS" = (
 /turf/open/floor/mainship_hull,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "gW" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one{
@@ -150,10 +107,14 @@
 /turf/open/space/transit/atmos,
 /area/space)
 "hy" = (
-/obj/structure/largecrate/supply/supplies/mre,
+/obj/machinery/door_control{
+	id = "eagledoors";
+	name = "NTC Eagle doors control";
+	dir = 4
+	},
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "hY" = (
 /obj/effect/landmark/start/job/shiptech,
@@ -163,21 +124,19 @@
 /obj/effect/landmark/start/job/shiptech,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "io" = (
 /obj/machinery/door/airlock/mainship/command/canterbury{
 	dir = 1;
 	name = "\improper Command Cockpit"
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "iC" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/job/crash/squadmarine,
@@ -185,11 +144,10 @@
 	name = "JoinLate"
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "jf" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/medicalofficer,
 /obj/effect/landmark/start/job/medicalofficer,
 /obj/effect/landmark/start/job/medicalofficer,
@@ -197,8 +155,8 @@
 /obj/effect/landmark/start/job/medicalofficer,
 /obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "jR" = (
 /turf/open/space/basic,
@@ -209,38 +167,27 @@
 	height = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "kt" = (
 /obj/structure/cable/multilayer/multiz,
 /turf/closed/wall/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "kO" = (
-/obj/structure/cable,
-/obj/machinery/door_control{
-	id = "eagledoors";
-	name = "NTC Eagle doors control"
-	},
-/turf/closed/wall/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
-"lK" = (
-/obj/structure/window/framed/mainship,
-/turf/open/floor/mainship_hull,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/obj/item/tool/crowbar/red,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "me" = (
 /turf/closed/wall/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "no" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/researcher,
 /obj/effect/landmark/start/job/researcher,
 /obj/effect/landmark/start/job/researcher,
@@ -248,14 +195,14 @@
 /obj/effect/landmark/start/job/researcher,
 /obj/effect/landmark/start/job/researcher,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "nB" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "nK" = (
 /obj/machinery/light{
@@ -263,8 +210,8 @@
 	},
 /obj/machinery/cryopod,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "pn" = (
 /obj/structure/table/mainship,
@@ -278,23 +225,23 @@
 	possible_destinations = "lz1;lz2;hqlz1;hqlz2;normandy;alamo"
 	},
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "pF" = (
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "pQ" = (
+/obj/structure/droppod/respawning,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/droppod/respawning,
-/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "tq" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
@@ -302,8 +249,8 @@
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "uq" = (
 /obj/structure/table/mainship,
@@ -311,14 +258,14 @@
 	possible_destinations = "lz1;lz2;hqlz1;hqlz2;alamo;normandy"
 	},
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "va" = (
 /obj/machinery/cryopod,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "vl" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -331,28 +278,26 @@
 /obj/effect/landmark/start/job/crash/pilotofficer,
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "vD" = (
 /obj/structure/cable,
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/wall/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "vV" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/captain,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "wL" = (
-/obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/floor,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "wO" = (
 /obj/machinery/light{
@@ -360,16 +305,16 @@
 	},
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "yh" = (
 /obj/effect/landmark/start/job/synthetic,
 /obj/effect/landmark/start/job/synthetic,
 /obj/effect/landmark/start/job/synthetic,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "yi" = (
 /obj/effect/landmark/start/job/staffofficer,
@@ -379,22 +324,8 @@
 /obj/effect/landmark/start/job/staffofficer,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
-"yj" = (
-/obj/structure/cable,
-/obj/machinery/vending/tool,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
-"yu" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "zq" = (
 /obj/docking_port/stationary/marine_dropship/hangar/two{
@@ -412,8 +343,8 @@
 	},
 /obj/effect/landmark/start/job/chiefshipengineer,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Bq" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -422,8 +353,8 @@
 /obj/effect/landmark/start/job/fieldcommander,
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Bz" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -449,11 +380,10 @@
 /turf/open/space/transit/atmos,
 /area/space)
 "Fl" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/cmo,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Gp" = (
 /obj/structure/window/framed/mainship/spaceworthy{
@@ -463,14 +393,14 @@
 	icon_state = "col_window12"
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "GO" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "GS" = (
 /obj/effect/landmark/start/job/squadcorpsman,
@@ -483,14 +413,13 @@
 	name = "JoinLate"
 	},
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Ho" = (
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "HV" = (
 /obj/machinery/light{
@@ -498,68 +427,50 @@
 	},
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "KF" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/medical,
+/obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "KW" = (
 /obj/structure/ladder{
 	id = "eagleladder2";
 	height = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "LK" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Ma" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
-"MI" = (
-/obj/structure/cable,
-/obj/item/paper{
-	name = "Note about rappeling";
-	info = "You may walk out the shuttle if you open the doors at to parachute down directly in front of the base, but it will break your minimap (You can remove and put your headset back on to fix it). You can still use the drop pods though, it's slower however. x96 x111 (IF ITS EARLY ROUND AND SHUTTERS ARE CLOSED, DROPPODS WILL LEAVE YOU OUTSIDE.)"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "MX" = (
 /obj/machinery/door/poddoor/shutters/transit{
 	id = "eagledoors"
 	},
-/obj/effect/step_trigger/teleporter{
-	name = "eagle_rappel";
-	teleport_x = 90;
-	teleport_y = 83;
-	teleport_z = 2
-	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Nu" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -574,72 +485,35 @@
 	},
 /turf/open/space/transit/atmos,
 /area/space)
-"NV" = (
-/obj/machinery/loadout_vendor,
-/turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
 "PJ" = (
 /obj/structure/shuttle/engine/propulsion/burst/right,
 /turf/open/space/transit/atmos,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Ry" = (
-/obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 2;
 	id = "eagledoors"
 	},
-/obj/effect/step_trigger/teleporter{
-	name = "eagle_rappel";
-	teleport_x = 90;
-	teleport_y = 83;
-	teleport_z = 2
-	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
-"RA" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/item/tool/crowbar/red,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
-"SC" = (
-/obj/structure/cable,
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "tele_ground1";
-	teleport_x = 25;
-	teleport_x_offset = 40;
-	teleport_y = 10;
-	teleport_y_offset = 20;
-	teleport_z = 1;
-	teleport_z_offset = 1
-	},
-/turf/open/space/transit/atmos,
-/area/space)
 "SO" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/latejoin,
-/obj/machinery/power/terminal,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Tp" = (
 /obj/structure/shuttle/engine/propulsion/burst/right,
 /turf/open/floor/mainship_hull,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Uf" = (
 /obj/effect/landmark/start/job/squadleader,
@@ -651,8 +525,8 @@
 	name = "JoinLate"
 	},
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Ug" = (
 /obj/machinery/cryopod/right,
@@ -660,8 +534,8 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Uh" = (
 /obj/effect/landmark/start/job/requisitionsofficer,
@@ -670,17 +544,16 @@
 /obj/effect/landmark/start/job/requisitionsofficer,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Um" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship_hull,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "Vr" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/squadengineer,
 /obj/effect/landmark/start/job/squadengineer,
 /obj/effect/landmark/start/job/squadengineer,
@@ -689,8 +562,8 @@
 /obj/effect/landmark/start/job/squadengineer,
 /obj/effect/landmark/start,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "WD" = (
 /obj/structure/ladder{
@@ -703,31 +576,23 @@
 /obj/effect/landmark/start/job/security_officer,
 /obj/effect/landmark/start/job/security_officer,
 /obj/effect/landmark/start/job/security_officer,
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
-	})
-"Xw" = (
-/obj/structure/cable,
-/obj/machinery/power/smes/magical,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "YE" = (
 /obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 "ZI" = (
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/machinery/vending/marineFood,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway{
-	name = "NTC Eagle Dropship"
+/area/shuttle/canterbury{
+	name = "The Eagle"
 	})
 
 (1,1,1) = {"
@@ -1666,12 +1531,12 @@ zQ
 zQ
 zQ
 me
-lK
-kO
+Um
+nB
 HV
-NV
 YE
-fU
+pF
+pF
 bG
 me
 me
@@ -1714,7 +1579,7 @@ pF
 pF
 pF
 hy
-dY
+Ry
 zQ
 zQ
 zQ
@@ -1732,7 +1597,7 @@ zQ
 "}
 (26,1,1) = {"
 jR
-SC
+Nu
 zQ
 zQ
 zQ
@@ -1746,14 +1611,14 @@ zQ
 nB
 nB
 ZI
+kO
 Ho
-yu
 Ho
-fD
-MI
-yj
 Ho
-RA
+Ho
+Ho
+Ho
+Ho
 Ry
 zQ
 zQ
@@ -1794,7 +1659,7 @@ pF
 pF
 pF
 wL
-dY
+Ry
 zQ
 zQ
 zQ
@@ -1826,12 +1691,12 @@ zQ
 zQ
 zQ
 me
-lK
+Um
 kt
 bN
-aa
-aa
-aa
+fU
+pF
+pF
 pQ
 me
 me
@@ -3669,7 +3534,7 @@ bQ
 bQ
 me
 me
-ge
+Ug
 Ma
 Ug
 Ma
@@ -3755,7 +3620,7 @@ Vr
 LK
 iC
 SO
-Xw
+me
 nB
 nB
 vD

@@ -248,8 +248,11 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(!client || isnull(player_mob)) //client is so that ghosts don't have to listen to mice
 			continue
 		if(get_dist(player_mob, src) > 7) //they're out of range of normal hearing
-			if(!(player_mob?.client?.prefs.toggles_chat & CHAT_GHOSTEARS))
+			if(!(player_mob?.client?.prefs.toggles_chat & CHAT_GHOSTEARS) && !check_other_rights(player_mob?.client, R_ADMIN, FALSE))
 				continue
+		if((player_mob.faction != FACTION_NEUTRAL && faction != FACTION_NEUTRAL ) && player_mob.faction != faction)
+			balloon_alert(player_mob, "says something you cannot hear.")
+			continue
 		listening |= player_mob
 
 	var/eavesdropping

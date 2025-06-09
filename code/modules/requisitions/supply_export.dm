@@ -32,6 +32,13 @@
 
 /obj/item/resin_jelly/supply_export(faction_selling)
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[name] (Edible jelly from [hive.name] hive)"
+	if(faction_selling in hive.allied_factions)
+		return list(new /datum/export_report(0, name, faction_selling))
+	. = ..()
+
+/obj/item/reagent_containers/food/snacks/nutrient_jelly/supply_export(faction_selling)
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	if(faction_selling in hive.allied_factions)
 		return list(new /datum/export_report(0, name, faction_selling))
 	. = ..()
@@ -96,5 +103,9 @@
 			return TRUE
 
 /obj/item/resin_jelly/get_export_value()
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	return hive.jelly_export_value
+
+/obj/item/reagent_containers/food/snacks/nutrient_jelly/get_export_value()
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	return hive.jelly_export_value

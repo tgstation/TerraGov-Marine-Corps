@@ -68,8 +68,11 @@
 			var/T1 = get_turf(user)
 			var/T2 = get_turf(M)
 			if((!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && (get_dist(T1, T2) > range)))
+				if(!check_other_rights(M.client, R_ADMIN, FALSE))
+					continue
+			if((M.faction != FACTION_NEUTRAL && user.faction != FACTION_NEUTRAL ) && M.faction != user.faction)
+				user.balloon_alert(M, "does something you cannot see.")
 				continue
-
 			// If this is not meant to be visible to ghosts, make sure not to display it unless the user is an admin
 			if (!(ghost_visible || check_rights_for(M.client, R_ADMIN)))
 				continue
