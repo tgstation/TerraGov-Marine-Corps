@@ -2853,7 +2853,7 @@
 
 // CC/67, the new C550!
 
-/obj/item/weapon/gun/rifle/cc67
+/obj/item/weapon/gun/rifle/vsd_rifle
 	name = "\improper CC/67 battle rifle"
 	desc = "Crash Core's next-gen battle rifle, chambered in 10x27mm. Combat and Support worthy, this will pack a kick to anyone standing infront of you."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
@@ -2908,13 +2908,13 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	fire_delay = 0.5 SECONDS
 
-/obj/item/weapon/gun/rifle/cc67/standard
+/obj/item/weapon/gun/rifle/vsd_rifle/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
-/obj/item/weapon/gun/rifle/cc67/medic
+/obj/item/weapon/gun/rifle/vsd_rifle/medic
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
 
-/obj/item/weapon/gun/rifle/cc67/export
+/obj/item/weapon/gun/rifle/vsd_rifle/export
 	icon_state = "c550_export"
 	worn_icon_state = "c550_export"
 	worn_icon_list = list(
@@ -2986,7 +2986,7 @@
 /obj/item/weapon/gun/rifle/vsd_lmg_main/recoilcomp
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator)
 
-/obj/item/weapon/gun/rifle/cc77
+/obj/item/weapon/gun/rifle/vsd_carbine
 	name = "\improper CC/77 assault rifle"
 	desc = "Crash Core's next-gen assault rifle, chambered in 10x24mm Caseless. Combat and Support worthy, this oughta hurt any person who stands in your way."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
@@ -3005,8 +3005,8 @@
 	aim_slowdown = 0.5
 	wield_delay =  0.9 SECONDS
 	max_shells = 24 //codex
-	default_ammo_type = /obj/item/ammo_magazine/rifle/cc77
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/cc77, /obj/item/ammo_magazine/rifle/cc77/extended, /obj/item/ammo_magazine/rifle/cc77/ap)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_carbine
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_carbine, /obj/item/ammo_magazine/rifle/vsd_carbine/extended, /obj/item/ammo_magazine/rifle/vsd_carbine/ap)
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK|GUN_SMOKE_PARTICLES
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -3045,10 +3045,10 @@
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 
-/obj/item/weapon/gun/rifle/cc77/recoilcomp
+/obj/item/weapon/gun/rifle/vsd_carbine/recoilcomp
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/angledgrip, /obj/item/attachable/compensator)
 
-/obj/item/weapon/gun/rifle/cc77/suppressed
+/obj/item/weapon/gun/rifle/vsd_carbine/suppressed
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
 
 
@@ -3099,13 +3099,10 @@
 	desc = "The SH-410 shotgun is the newest weapon in the NTC's inventory. Prior to arrival in the Corps, it was used by numerous anti-terrorism agencies to great success in close quarters engagements. The .410 gauge shells are very weak individually compared to 16 gauge let alone 12 gauge, but the higher fire rate will surely compensate for it."
 	icon_state = "sh410"
 	worn_icon_state = "sh410"
-	icon = 'icons/obj/items/guns/shotguns64.dmi'
-	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
-	)
 	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/shotgun.dmi'
+/* Merge conflict
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh410.ogg'
+*/
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_410 //same as the MBX
 	max_shells = 15 //vs 12 on ts15
@@ -3152,3 +3149,4 @@
 	scatter = 8
 	burst_scatter_mult = 2
 	damage_falloff_mult = 0.25
+

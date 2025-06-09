@@ -19,7 +19,7 @@
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize(mapload, _creator)
+/obj/structure/xeno/acidwell/Initialize(mapload, _hivenumber, _creator)
 	. = ..()
 	creator = _creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))
@@ -102,6 +102,8 @@
 	attack_alien(user)
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(!issamexenohive(xeno_attacker))
+		return ..()
 	if(xeno_attacker.a_intent == INTENT_HARM && (CHECK_BITFIELD(xeno_attacker.xeno_caste.caste_flags, CASTE_IS_BUILDER) || xeno_attacker == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
 		balloon_alert(xeno_attacker, "Removing...")
 		if(!do_after(xeno_attacker, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
@@ -172,7 +174,7 @@
 		stepper.ExtinguishMob()
 		charges_used++
 
-	if(!isxeno(stepper))
+	if(!issamexenohive(stepper))
 		stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
 		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID, penetration = 33)
 		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID, penetration = 33)

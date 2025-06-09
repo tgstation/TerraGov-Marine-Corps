@@ -747,6 +747,7 @@
 				continue
 
 			if(istype(R, /datum/reagent/consumable/nutriment))
+
 				var/list/taste_data = R.data
 				for(var/taste in taste_data)
 					var/ratio = taste_data[taste]

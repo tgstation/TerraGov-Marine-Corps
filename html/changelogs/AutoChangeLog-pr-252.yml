@@ -1,0 +1,4 @@
+author: "SandPoot"
+delete-after: True
+changes:
+  - rscadd: "Returning to the lobby without cryo will apply respawn timers."

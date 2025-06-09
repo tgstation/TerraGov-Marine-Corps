@@ -106,7 +106,7 @@
 	SIGNAL_HANDLER
 	if(!trap_type)
 		return
-	if(AM && (hivenumber == AM.get_xeno_hivenumber()))
+	if(issamexenohive(AM))
 		return
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	if(iscarbon(AM))
@@ -150,6 +150,8 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
+	if(!issamexenohive(xeno_attacker))
+		return ..()
 	if(xeno_attacker.a_intent == INTENT_HARM)
 		return ..()
 	if(trap_type == TRAP_HUGGER)
@@ -196,7 +198,7 @@
 		balloon_alert(user, "Already occupied")
 		return
 
-	if(FH.stat == DEAD)
+	if(FH.stat == DEAD || !issamexenohive(FH))
 		balloon_alert(user, "Cannot insert facehugger")
 		return
 

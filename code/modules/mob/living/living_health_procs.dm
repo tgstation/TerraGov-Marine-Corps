@@ -327,6 +327,7 @@
 	SSmobs.start_processing(src)
 	SEND_SIGNAL(src, COMSIG_LIVING_POST_FULLY_HEAL, admin_revive)
 
+	clear_fullscreen("death")
 
 /mob/living/carbon/revive(admin_revive = FALSE)
 	set_nutrition(400)
@@ -425,6 +426,7 @@
 	if(should_zombify)
 		set_species("Strong zombie")
 		faction = FACTION_ZOMBIE
+		hivenumber = FACTION_ZOMBIE
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)

@@ -398,6 +398,8 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 //parent for pods designed to carry something other than a mob
 /obj/structure/droppod/nonmob
+	name = "\improper NTC ??? drop pod ???" // Don't map these in, use a subtype!
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment. This one... something is wrong with this one.  Please report this."
 	buckle_flags = null
 	///The currently stored object
 	var/obj/stored_object
@@ -507,7 +509,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 /obj/structure/droppod/nonmob/mech_pod
 	name = "\improper NTC Zeus mech drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This is a larger model designed specifically to carry mechs. Shift click to enter when inside a mech."
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment. This is a larger model designed specifically to carry mechs. Shift click to enter when inside a mech."
 	icon = 'icons/obj/structures/big_droppod.dmi'
 	icon_state = "mechpod"
 	light_range = 2

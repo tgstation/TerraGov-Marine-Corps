@@ -344,11 +344,7 @@
 
 	GLOB.key_to_time_of_role_death[key] = world.time
 
-//	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
-
-	var/mob/new_player/NP = new()
-	client?.screen?.Cut()
-	NP.key = key
+	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 
 	qdel(src)
 

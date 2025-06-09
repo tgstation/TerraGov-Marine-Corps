@@ -77,6 +77,7 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/place_pattern,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
@@ -127,4 +128,5 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/place_pattern,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)

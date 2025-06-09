@@ -930,6 +930,31 @@
 	duration = 15 SECONDS
 
 // ***************************************
+// *********** Xeno healing debuff
+// ***************************************
+/datum/status_effect/nohealthregen
+	id = "nohealthregen"
+	status_type = STATUS_EFFECT_REPLACE
+
+/datum/status_effect/nohealthregen/on_creation(mob/living/new_owner, set_duration)
+	if(isxeno(new_owner))
+		owner = new_owner
+		duration = set_duration
+		return ..()
+	else
+		CRASH("something applied nohealthregen on a nonxeno, dont do that")
+
+/datum/status_effect/nohealthregen/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_NOHEALTHREGEN, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/nohealthregen/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_NOHEALTHREGEN, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
+// ***************************************
 // *********** Acid Melting
 // ***************************************
 /datum/status_effect/stacking/melting_acid

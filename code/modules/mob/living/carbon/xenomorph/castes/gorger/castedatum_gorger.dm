@@ -62,6 +62,7 @@
 		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/carnage,
 		/datum/action/ability/activable/xeno/feast,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/gorger/normal
@@ -87,4 +88,5 @@
 		/datum/action/ability/activable/xeno/oppose,
 		/datum/action/ability/activable/xeno/carnage,
 		/datum/action/ability/activable/xeno/feast,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)

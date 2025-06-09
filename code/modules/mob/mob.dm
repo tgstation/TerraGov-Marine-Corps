@@ -133,6 +133,10 @@
 		if(!ghost_visible && isdead(M))
 			continue
 
+		if(M.stat == DEAD)
+			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(M.client, R_ADMIN)) // no getting to know what you shouldn't
+				continue
+
 		var/msg = message
 
 		if(M == src && self_message) //the src always see the main message or self message
@@ -151,7 +155,7 @@
 			if(T != loc && T != src) //if src is inside something (and isn't a turf),
 				if(!isnull(blind_message))  // then people see blind message if set, otherwise full message
 					msg = blind_message
-					
+
 			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_others_combat_messages)
 				continue
 
@@ -196,6 +200,11 @@
 		// Make sure that if this isn't meant to be heard by ghosts it's not.
 		if(!ghost_visible && isdead(M))
 			continue
+
+		if(M.stat == DEAD)
+			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !(M.client && check_rights_for(M.client, R_ADMIN))) // no getting to know what you shouldn't
+				continue
+
 		var/msg = message
 		if(self_message && M == src)
 			msg = self_message
@@ -222,6 +231,11 @@
 		// Make sure that if this isn't meant to be heard by ghosts it's not.
 		if(!ghost_visible && isdead(M))
 			continue
+
+		if(M.stat == DEAD)
+			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !(M.client && check_rights_for(M.client, R_ADMIN))) // no getting to know what you shouldn't
+				continue
+
 		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)

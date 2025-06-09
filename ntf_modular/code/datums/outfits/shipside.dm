@@ -7,10 +7,10 @@
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/spec_operative/armoredsuit
 	shoes = /obj/item/clothing/shoes/marine/sneakingboots
-	gloves = /obj/item/clothing/gloves/marine/officer
+	gloves = /obj/item/clothing/gloves/marine/officer/
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/leadership
-	back = /obj/item/storage/backpack/satchel
+	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/command/corpseccommander
 	name = CORPSEC_COMMANDER

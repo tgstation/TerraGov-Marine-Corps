@@ -65,6 +65,7 @@
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/scatter_spit,
 		/datum/action/ability/activable/xeno/spray_acid/line,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/spitter/normal
@@ -111,6 +112,7 @@
 		/datum/action/ability/activable/xeno/scatter_spit,
 		/datum/action/ability/xeno_action/acid_mine,
 		/datum/action/ability/xeno_action/acid_mine/gas_mine,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/spitter/globadier/normal
@@ -136,4 +138,5 @@
 		/datum/action/ability/xeno_action/acid_mine,
 		/datum/action/ability/xeno_action/acid_mine/gas_mine,
 		/datum/action/ability/activable/xeno/acid_rocket,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)

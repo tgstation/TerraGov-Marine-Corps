@@ -94,10 +94,12 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/* Icons broken - needs modularization
 			/obj/item/weapon/gun/rifle/light_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
 			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
 			/obj/item/ammo_magazine/rifle/sh410_tracker = -1,
+			*/
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -571,10 +573,12 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/* Icons broken - needs modularization
 			/obj/item/weapon/gun/rifle/light_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
 			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
 			/obj/item/ammo_magazine/rifle/sh410_tracker = -1,
+			*/
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -887,9 +891,11 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_mmg/full = -1,
+			/* Icons broken - needs modularization
 			/obj/item/storage/box/visual/magazine/compact/sh410/buckshot/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/sh410/sabot/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/sh410/tracker/full = -1,
+			*/
 		),
 		"Mecha Ammo" = list(
 			/obj/item/mecha_ammo/vendable/pistol = -1,
@@ -2111,16 +2117,16 @@
 			/obj/item/ammo_magazine/rifle/ap = -1,
 		),
 		"Syndicate" = list(
-			/obj/item/weapon/gun/rifle/cc67 = -1,
+			/obj/item/weapon/gun/rifle/vsd_rifle = -1,
 			/obj/item/ammo_magazine/rifle/vsd_rifle = -1,
 			/obj/item/weapon/gun/rifle/vsd_lmg = -1,
 			/obj/item/ammo_magazine/rifle/vsd_mg = -1,
 			/obj/item/weapon/gun/rifle/vsd_lmg_main = -1,
 			/obj/item/ammo_magazine/rifle/vsd_mg_main = -1,
-			/obj/item/weapon/gun/rifle/cc77 = -1,
-			/obj/item/ammo_magazine/rifle/cc77 = -1,
-			/obj/item/ammo_magazine/rifle/cc77/extended = -1,
-			/obj/item/ammo_magazine/rifle/cc77/ap = -1,
+			/obj/item/weapon/gun/rifle/vsd_carbine = -1,
+			/obj/item/ammo_magazine/rifle/vsd_carbine = -1,
+			/obj/item/ammo_magazine/rifle/vsd_carbine/extended = -1,
+			/obj/item/ammo_magazine/rifle/vsd_carbine/ap = -1,
 			/obj/item/weapon/gun/rifle/vsd_breaching = -1,
 			/obj/item/ammo_magazine/rifle/cb31 = -1,
 			/obj/item/weapon/gun/shotgun/pump/ksg = -1,
@@ -2933,10 +2939,10 @@
 
 	products = list(
 		"Rifles" = list(
-			/obj/item/weapon/gun/rifle/cc77 = -1,
-			/obj/item/ammo_magazine/rifle/cc77 = -1,
-			/obj/item/ammo_magazine/rifle/cc77/extended = 20,
-			/obj/item/ammo_magazine/rifle/cc77/ap = 20,
+			/obj/item/weapon/gun/rifle/vsd_carbine = -1,
+			/obj/item/ammo_magazine/rifle/vsd_carbine = -1,
+			/obj/item/ammo_magazine/rifle/vsd_carbine/extended = 20,
+			/obj/item/ammo_magazine/rifle/vsd_carbine/ap = 20,
 			/obj/item/weapon/gun/rifle/mpi_km/black = -1,
 			/obj/item/ammo_magazine/rifle/mpi_km/black = -1,
 			/obj/item/weapon/gun/rifle/type71 = -1,
@@ -2947,7 +2953,7 @@
 			/obj/item/ammo_magazine/smg/vsd_pdw = -1,
 		),
 		"Marksman" = list(
-			/obj/item/weapon/gun/rifle/cc67 = -1,
+			/obj/item/weapon/gun/rifle/vsd_rifle = -1,
 			/obj/item/ammo_magazine/rifle/vsd_rifle = -1,
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
 			/obj/item/ammo_magazine/rifle/standard_dmr = -1,

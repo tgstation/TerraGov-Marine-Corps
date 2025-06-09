@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Attempts to fix NPC's getting stuck when trying to path to goal nodes in some situations"

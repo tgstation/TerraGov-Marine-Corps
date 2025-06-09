@@ -77,13 +77,17 @@
 		to_chat(owner, span_warning("Bad place for a garden!"))
 		return fail_activate()
 
-	if(locate(weed_type) in T)
+	var/obj/alien/weeds/existing_weed = locate() in T
+	if(existing_weed && (!existing_weed.issamexenohive(xeno_owner)))
+		to_chat(owner, span_warning("You cannot build on another hive's weeds!"))
+		return fail_activate()
+	if(existing_weed && existing_weed.type == weed_type)
 		to_chat(owner, span_warning("There's a pod here already!"))
 		return fail_activate()
 
 	owner.visible_message(span_xenonotice("\The [owner] regurgitates a pulsating node and plants it on the ground!"), \
 		span_xenonotice("We regurgitate a pulsating node and plant it on the ground!"), null, 5)
-	new weed_type(T)
+	new weed_type(T, xeno_owner.hivenumber)
 	last_weeded_turf = T
 	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
 	GLOB.round_statistics.weeds_planted++
@@ -367,7 +371,7 @@
 		new_resin = T
 		T.ChangeTurf(X.selected_resin, baseturfs, CHANGETURF_KEEP_WEEDS)
 	else
-		new_resin = new X.selected_resin(T)
+		new_resin = new X.selected_resin(T, xeno_owner.hivenumber)
 	if(CHECK_BITFIELD(weed_flags, WEED_NOTIFY))
 		X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
 		span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
@@ -388,7 +392,7 @@
 
 /datum/action/ability/activable/xeno/secrete_resin/proc/can_build_here(turf/T, silent = FALSE)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/is_valid = is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin)
+	var/is_valid = is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin, X.hivenumber)
 	if(is_valid != NO_ERROR && silent)
 		return FALSE
 	switch(is_valid)
@@ -399,6 +403,9 @@
 			return FALSE
 		if(ERROR_NO_WEED)
 			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
+			return FALSE
+		if(ERROR_ENEMY_WEED)
+			owner.balloon_alert(owner, span_notice("You cannot build on another hive's weeds!"))
 			return FALSE
 		if(ERROR_NO_SUPPORT)
 			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
@@ -1013,7 +1020,7 @@
 // ***************************************
 /datum/action/ability/xeno_action/psychic_influence
 	name = "Psychic Influence"
-	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
 	action_icon_state = "psychic_whisper"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_INFLUENCE,
@@ -1072,7 +1079,7 @@
 /////////////////////////////////
 /datum/action/ability/activable/xeno/devour
 	name = "Devour"
-	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
 	action_icon_state = "abduct"
 	desc = "Devour your victim to be able to carry it faster."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
@@ -1167,7 +1174,7 @@
 //Xeno Larval Growth Sting
 /datum/action/ability/activable/xeno/larval_growth_sting
 	name = "Larval Growth Sting"
-	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
 	action_icon_state = "larval_growth"
 	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
 
@@ -1447,7 +1454,7 @@
 
 /datum/action/ability/activable/xeno/impregnate
 	name = "Impregnate"
-	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
 	action_icon_state = "impregnate"
 	desc = "Infect your victim with a young one without a facehugger. This will burn them a bit due to acidic release."
 	cooldown_duration = 30 SECONDS
@@ -1643,7 +1650,7 @@
 //totally not stolen from punch code
 /datum/action/ability/activable/xeno/tail_stab
 	name = "Tail Stab"
-	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
 	action_icon_state = "tail_attack"
 	desc = "Strike a target within two tiles with a sharp tail for armor-piercing damage, stagger and slowdown. Deals more AP, damage, stagger and slowdown to grappled targets, structures and machinery."
 	ability_cost = 30
@@ -2114,3 +2121,96 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 			iterx = iterx - 1
 		starty = starty + 1
 	return turfs
+
+///XRF STUFF
+
+/datum/action/ability/xeno_action/create_edible_jelly
+	name = "Create Edible Jelly"
+	action_icon = 'ntf_modular/icons/Xeno/actions/general.dmi'
+	action_icon_state = "edible_biomass"
+	desc = "Create edible jelly for hosts."
+	ability_cost = 50
+	cooldown_duration = 15 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_EDIBLE_JELLY,
+	)
+
+/datum/action/ability/xeno_action/create_edible_jelly/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(owner.l_hand || owner.r_hand)
+		if(!silent)
+			owner.balloon_alert(owner, "Cannot create jelly, need empty hands")
+		return FALSE
+
+/datum/action/ability/xeno_action/create_edible_jelly/action_activate()
+	var/obj/item/reagent_containers/food/snacks/nutrient_jelly/jelly = new(owner.loc)
+
+	var/datum/preferences/prefs = owner.client.prefs
+
+	if(prefs?.xeno_edible_jelly_name)
+		jelly.name = owner.client.prefs.xeno_edible_jelly_name
+
+	// Change the colors on our greyscale
+	var/jellyhex = "#[num2hex(prefs.r_jelly, 2)][num2hex(prefs.g_jelly, 2)][num2hex(prefs.b_jelly, 2)]"
+	jelly.set_greyscale_colors(jellyhex)
+	jelly.update_icon()
+
+	// Fallback chromatic sprite
+	// action_icon_state = "edible_biomass"
+
+	if(prefs?.xeno_edible_jelly_desc)
+		jelly.desc = prefs.xeno_edible_jelly_desc
+
+
+	if(prefs?.xeno_edible_jelly_flavors)
+
+		jelly.tastes =  new /list(0)
+
+		// Split the player's tastes lists into individual string with the use of commas
+		var/newFlaves[] = splittext(prefs.xeno_edible_jelly_flavors, ",")
+
+		// Iterating through those individual flavors to add them to our list'n such.
+		for(var/flavor in newFlaves)
+			flavor = trim(flavor, 256) // Remove whitespace
+
+			// Associative list, so in the index that's defined by each flavor's name.
+			// Makes each flavor's strength equal to the length of newFlaves to ensure they're tasted.
+			jelly.tastes[flavor] = newFlaves.len
+
+		// Refresh the individual reagents taste values to agree. Coding this was painful.
+		jelly.refresh_taste()
+
+	owner.put_in_hands(jelly)
+	to_chat(owner, span_xenonotice("We secrete a gelatinous mash of nutrients.")) // Yummy... :drool:
+	add_cooldown()
+	succeed_activate()
+
+
+// Cannot guarantee whether living or dead, human or xeno since the preeview button can be clicked from anywhere.
+/mob/proc/edible_jelly_preview(type)
+	var/obj/item/reagent_containers/food/snacks/nutrient_jelly/jelly = new()
+
+	if(client.prefs?.xeno_edible_jelly_flavors)
+
+		jelly.tastes =  new /list(0)
+
+		// Split the player's tastes lists into individual string with the use of commas
+		var/newFlaves[] = splittext(client.prefs.xeno_edible_jelly_flavors, ",")
+
+		// Iterating through those individual flavors to add them to our list'n such.
+		for(var/flavor in newFlaves)
+			flavor = trim(flavor, 256) // Remove whitespace
+
+			// Associative list, so in the index that's defined by each flavor's name.
+			// Makes each flavor's strength equal to the length of newFlaves to ensure they're tasted.
+			jelly.tastes[flavor] = newFlaves.len
+
+		// Refresh the individual reagents taste values to agree. Coding this was painful.
+		jelly.refresh_taste()
+
+	jelly.view_taste_message(src, type)
+
+	// Clean up after ourselves.
+	qdel(jelly)

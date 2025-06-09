@@ -201,6 +201,9 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	. = ..()
 	if(!client)
 		return FALSE
+	if(stat == DEAD)
+		if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(client, R_ADMIN)) // no getting to know what you shouldn't
+			return FALSE
 
 	// Create map text prior to modifying message for goonchat
 	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && !isdeaf(src) && (client.prefs.see_chat_non_mob || ismob(speaker)))

@@ -83,15 +83,17 @@
 	icon_state = "tiny_uv"
 	density = FALSE
 	move_delay = 1.5
-	hud_possible = list(MACHINE_HEALTH_HUD)
+	hud_possible = null
 	atom_flags = NONE
+	obj_flags = CAN_BE_HIT|PROJ_IGNORE_DENSITY
 	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 100, FIRE = 25, ACID = 25)
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
-	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
+	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE
 	turret_pattern = NO_PATTERN
 	unmanned_flags = GIVE_NIGHT_VISION
 	trigger_gargoyle = FALSE
 	allow_explosives = FALSE
+	layer = BELOW_OPEN_DOOR_LAYER
 
 /obj/structure/closet/crate/uvt_crate
 	name = "\improper UV-T Skink Crate"

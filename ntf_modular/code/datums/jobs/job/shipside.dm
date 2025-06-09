@@ -29,6 +29,12 @@
 		"}
 	minimap_icon = "CEO"
 
+//ghetto proc usage why not, just to not edit the job shit
+/datum/job/terragov/command/ceo/player_old_enough(client/C)
+	if(check_other_rights(usr.client, R_ADMIN, FALSE) && C.key == "CrimsonQuiver")
+		return TRUE
+	return FALSE
+
 //Corpsec Commander
 /datum/job/terragov/command/corpseccommander
 	title = CORPSEC_COMMANDER

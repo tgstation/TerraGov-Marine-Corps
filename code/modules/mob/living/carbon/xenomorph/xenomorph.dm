@@ -467,6 +467,8 @@
 	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
 			continue
+		if(!issamexenohive(W))
+			continue
 		return
 	return FALSE
 
@@ -482,6 +484,9 @@
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
+	if(!issamexenohive(found_weed))
+		loc_weeds_type = null
+		return
 	loc_weeds_type = found_weed?.type
 
 /mob/living/carbon/xenomorph/toggle_resting()

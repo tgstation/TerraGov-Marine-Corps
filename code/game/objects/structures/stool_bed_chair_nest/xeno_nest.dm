@@ -137,7 +137,7 @@
 /obj/structure/bed/nest/wall
 	name = "wall alien nest"
 	desc = "It's a wall of thick, sticky resin as a nest."
-	icon = 'ntf_modular/icons/xeno/Effects.dmi'
+	icon = 'ntf_modular/icons/Xeno/Effects.dmi'
 	icon_state = "nestwall"
 	allow_pass_flags = null
 	buckle_lying = 0

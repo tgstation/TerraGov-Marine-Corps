@@ -17,13 +17,21 @@
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE | XENO_DAMAGEABLE
+	///Which hive it belongs to
+	var/hivenumber = XENO_HIVE_NORMAL
 
 /turf/closed/wall/resin/add_debris_element()
 	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
-/turf/closed/wall/resin/Initialize(mapload)
+/turf/closed/wall/resin/Initialize(mapload, _hivenumber)
 	. = ..()
+	if(_hivenumber) ///because admins can spawn them
+		hivenumber = _hivenumber
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[hive.prefix][name]"
+	if(!color)
+		color = hive.color
 	return INITIALIZE_HINT_LATELOAD
 
 /turf/closed/wall/resin/get_mechanics_info()
@@ -124,6 +132,22 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
+	if(!issamexenohive(xeno_attacker))
+		SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_OBJ, src)
+		if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker) & COMPONENT_NO_ATTACK_ALIEN)
+			return FALSE
+		if(!(resistance_flags & XENO_DAMAGEABLE))
+			to_chat(xeno_attacker, span_warning("We stare at \the [src] cluelessly."))
+			return FALSE
+		if(effects)
+			xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"),
+			span_danger("We slash [src]!"))
+			xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+			playsound(loc, SFX_ALIEN_CLAW_METAL, 25)
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		xeno_attacker.changeNext_move(CLICK_CD_MELEE)
+		take_damage(damage_amount, damage_type, armor_type, effects, get_dir(src, xeno_attacker), armor_penetration, xeno_attacker)
+		return TRUE
 	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 		take_damage(max_integrity) // Ensure its destroyed

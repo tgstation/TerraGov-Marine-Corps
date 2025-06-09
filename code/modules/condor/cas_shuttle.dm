@@ -8,7 +8,6 @@
 	id = SHUTTLE_CAS_DOCK
 	width = 11
 	height = 12
-
 	callTime = 0
 	ignitionTime = 10 SECONDS
 	rechargeTime = 0
@@ -119,7 +118,7 @@
 	SIGNAL_HANDLER
 	if(state == PLANE_STATE_DEACTIVATED)
 		return
-	if(!is_mainship_level(z) || mode != SHUTTLE_IDLE)
+	if(!(is_mainship_level(z) || is_antagmainship_level(z)) || mode != SHUTTLE_IDLE)
 		state = PLANE_STATE_FLYING
 		return
 	if(engines_on)
@@ -132,7 +131,7 @@
 	if(!fuel_left)
 		to_chat(user, span_warning("No fuel remaining!"))
 		return
-	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
+	if(state != PLANE_STATE_FLYING || (is_mainship_level(z) || is_antagmainship_level(z)))
 		to_chat(user, span_warning("You are not in-flight!"))
 		return
 	if(currently_returning)
@@ -176,7 +175,7 @@
 	if(!starting_point)
 		return
 
-	if(state != PLANE_STATE_FLYING || is_mainship_level(z)) //Secondary safety due to input being able to delay time.
+	if(state != PLANE_STATE_FLYING || (is_mainship_level(z) || is_antagmainship_level(z))) //Secondary safety due to input being able to delay time.
 		to_chat(user, span_warning("You are not in-flight!"))
 		return
 	if(currently_returning)
@@ -287,7 +286,7 @@
 /obj/docking_port/mobile/marine_dropship/casplane/ui_data(mob/user)
 	. = list()
 	.["plane_state"] = state
-	.["location_state"] = !is_mainship_level(z)
+	.["location_state"] = !(is_mainship_level(z) || is_antagmainship_level(z))
 	.["plane_mode"] = mode
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max

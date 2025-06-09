@@ -567,6 +567,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		var/mob/living/carbon/xenomorph/xeno_crosser = crosser
 		if(xeno_crosser.m_intent == MOVE_INTENT_WALK)
 			return
+		if(!xeno_crosser.issamexenohive(src))
+			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	crosser.remove_pass_flags(PASS_MOB, PORTAL_TRAIT)
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))

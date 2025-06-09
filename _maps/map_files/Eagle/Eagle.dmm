@@ -1,159 +1,4733 @@
-"aa" = (/obj/machinery/light{dir = 4},/obj/structure/table/mainship,/obj/machinery/computer/droppod_control,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"bG" = (/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"bN" = (/obj/structure/bed/chair/dropship/pilot{dir = 1},/obj/effect/landmark/start/job/crash/pilotofficer,/obj/effect/landmark/start/job/crash/pilotofficer,/obj/effect/landmark/start/job/crash/pilotofficer,/obj/effect/landmark/start/job/crash/pilotofficer,/obj/effect/landmark/start/job/crash/pilotofficer,/obj/machinery/light,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"bQ" = (/obj/machinery/light{dir = 4},/obj/structure/dropprop,/obj/structure/droppod{name = "Zeus orbital drop pod"},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"cv" = (/obj/structure/cable,/obj/effect/landmark/start/job/medicalofficer,/obj/effect/landmark/start/job/medicalofficer,/obj/effect/landmark/start/job/medicalofficer,/obj/effect/landmark/start/job/medicalofficer,/obj/effect/landmark/start/job/medicalofficer,/obj/effect/landmark/start/job/medicalofficer,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"cL" = (/obj/effect/landmark/start/job/shiptech,/obj/effect/landmark/start/job/shiptech,/obj/effect/landmark/start/job/shiptech,/obj/effect/landmark/start/job/shiptech,/obj/effect/landmark/start/job/shiptech,/obj/effect/landmark/start/latejoin,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"di" = (/obj/structure/cable,/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"dB" = (/obj/structure/shuttle/engine/propulsion/burst/right,/turf/open/space/transit/atmos,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"dY" = (/obj/structure/largecrate/supply/supplies/flares,/turf/open/floor/mainship/floor,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"eb" = (/obj/machinery/door/poddoor/shutters/transit{dir = 2; id = "eagledoors"},/obj/effect/step_trigger/teleporter{name = "eagle_rappel"; teleport_x = 90; teleport_y = 83; teleport_z = 2},/turf/open/floor/mainship/cargo,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"fD" = (/obj/structure/cable,/obj/structure/cable,/obj/effect/landmark/start/job/cmo,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"fU" = (/obj/machinery/light{dir = 4},/obj/machinery/cryopod,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"ge" = (/obj/structure/cable,/obj/machinery/power/smes/magical,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"gp" = (/obj/machinery/cryopod/right,/obj/machinery/light{dir = 8},/obj/structure/cable,/obj/machinery/power/apc/mainship/hardened,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"gS" = (/turf/open/floor/mainship_hull,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"gW" = (/obj/docking_port/stationary/marine_dropship/hangar/one{name = "Atmosphere LZ1"},/turf/open/space/transit/atmos,/area/space)
-"hy" = (/obj/structure/dropprop,/obj/structure/droppod{name = "Zeus orbital drop pod"},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"hY" = (/obj/machinery/cryopod/right,/obj/machinery/light{dir = 8},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"io" = (/obj/structure/cable,/obj/effect/landmark/start/job/squadengineer,/obj/effect/landmark/start/job/squadengineer,/obj/effect/landmark/start/job/squadengineer,/obj/effect/landmark/start/job/squadengineer,/obj/effect/landmark/start/job/squadengineer,/obj/effect/landmark/start/job/squadengineer,/obj/effect/landmark/start,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"iC" = (/obj/structure/cable,/obj/effect/landmark/start/job/captain,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"jf" = (/obj/structure/ladder{id = "eagleladder2"; height = 1},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"jR" = (/obj/structure/cable,/turf/open/space/transit/atmos,/area/space)
-"jX" = (/obj/machinery/light{dir = 1},/obj/machinery/vending/marine/shared,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"kO" = (/obj/machinery/cryopod,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"lK" = (/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/job/crash/squadmarine,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"me" = (/obj/structure/window/framed/mainship,/turf/open/floor/mainship_hull,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"no" = (/obj/structure/cable,/turf/closed/wall/mainship/outer,/area/space)
-"nB" = (/obj/structure/cable,/turf/closed/wall/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"nK" = (/obj/structure/cable,/obj/structure/cable,/turf/open/space/transit/atmos,/area/space)
-"pn" = (/obj/structure/cable,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/latejoin,/obj/machinery/power/terminal,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"pF" = (/obj/structure/cable,/obj/structure/ladder{id = "eagleladder1"; height = 1},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"pQ" = (/obj/effect/landmark/start/job/requisitionsofficer,/obj/effect/landmark/start/job/requisitionsofficer,/obj/effect/landmark/start/job/requisitionsofficer,/obj/effect/landmark/start/job/requisitionsofficer,/obj/effect/landmark/start/latejoin,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"tq" = (/obj/structure/window/framed/mainship/spaceworthy{icon_state = "col_window12"},/turf/open/space/transit/atmos,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"uq" = (/obj/structure/cable,/obj/machinery/door/poddoor/shutters/transit{dir = 2; id = "eagledoors"},/obj/effect/step_trigger/teleporter{name = "eagle_rappel"; teleport_x = 90; teleport_y = 83; teleport_z = 2},/turf/open/floor/mainship/cargo,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"va" = (/obj/structure/table/mainship,/obj/machinery/computer/shuttle/shuttle_control/dropship/two{possible_destinations = "lz1;lz2;hqlz1;hqlz2;alamo;normandy"},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"vl" = (/obj/machinery/cryopod,/obj/machinery/light{dir = 4},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"vD" = (/obj/structure/ladder{id = "eagleladder2"; height = 2},/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"vV" = (/turf/closed/wall/mainship/outer,/area/space)
-"wO" = (/obj/structure/window/framed/mainship/spaceworthy{icon_state = "col_window1"},/turf/open/floor/mainship_hull,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"yh" = (/obj/effect/landmark/start/job/synthetic,/obj/effect/landmark/start/job/synthetic,/obj/effect/landmark/start/job/synthetic,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"yi" = (/obj/structure/window/framed/mainship/spaceworthy{icon_state = "col_window1"},/obj/structure/window/framed/mainship/spaceworthy{icon_state = "col_window12"},/turf/open/floor/mainship_hull,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"yj" = (/obj/structure/cable,/obj/item/paper{name = "Note about rappeling"; info = "You may walk out the shuttle if you open the doors at to parachute down directly in front of the base, but it will break your minimap (You can remove and put your headset back on to fix it). You can still use the drop pods though, it's slower however. x96 x111 (IF ITS EARLY ROUND AND SHUTTERS ARE CLOSED, DROPPODS WILL LEAVE YOU OUTSIDE.)"},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"yu" = (/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"zq" = (/obj/docking_port/stationary/marine_dropship/hangar/two{name = "Atmosphere LZ2"},/turf/open/space/transit/atmos,/area/space)
-"zQ" = (/turf/open/space/transit/atmos,/area/space)
-"zU" = (/obj/structure/cable,/obj/machinery/telecomms/relay/preset/telecomms,/turf/closed/wall/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Bq" = (/obj/machinery/cryopod/right,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Bz" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "tele_ground1"; teleport_x = 25; teleport_x_offset = 40; teleport_y = 10; teleport_y_offset = 20; teleport_z = 1; teleport_z_offset = 1},/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "tele_ground1"; teleport_x = 25; teleport_x_offset = 40; teleport_y = 10; teleport_y_offset = 20; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/atmos,/area/space)
-"Fl" = (/obj/effect/landmark/start/job/squadspecialist,/obj/effect/landmark/start/job/squadspecialist,/obj/effect/landmark/start/job/squadspecialist,/obj/effect/landmark/start/job/squadspecialist,/obj/effect/landmark/start/job/squadspecialist,/obj/effect/landmark/start/job/squadspecialist,/obj/effect/landmark{name = "JoinLate"},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Gp" = (/obj/structure/window/framed/mainship,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"GO" = (/obj/effect/landmark/start/job/staffofficer,/obj/effect/landmark/start/job/staffofficer,/obj/effect/landmark/start/job/staffofficer,/obj/effect/landmark/start/job/staffofficer,/obj/effect/landmark/start/job/staffofficer,/obj/effect/landmark/start/latejoin,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"GS" = (/obj/structure/cable,/obj/effect/landmark/start/job/squadsmartgunner,/obj/effect/landmark/start/job/squadsmartgunner,/obj/effect/landmark/start/job/squadsmartgunner,/obj/effect/landmark/start/job/squadsmartgunner,/obj/effect/landmark/start/job/squadsmartgunner,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Ho" = (/obj/structure/cable,/obj/machinery/loadout_vendor,/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"HV" = (/obj/structure/cable,/obj/machinery/door_control{id = "eagledoors"; name = "NTC Eagle doors control"},/turf/closed/wall/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"KF" = (/obj/effect/landmark/start/job/squadleader,/obj/effect/landmark/start/job/squadleader,/obj/effect/landmark/start/job/squadleader,/obj/effect/landmark/start/job/squadleader,/obj/effect/landmark/start/job/squadleader,/obj/effect/landmark{name = "JoinLate"},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"KW" = (/obj/machinery/light{dir = 1},/obj/machinery/marine_selector/clothes,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"LK" = (/obj/structure/table/mainship,/obj/machinery/door_control{id = "eagledoors"; name = "NTC Eagle doors control"; pixel_x = 12; pixel_y = -5},/obj/machinery/computer/shuttle/shuttle_control/dropship{possible_destinations = "lz1;lz2;hqlz1;hqlz2;normandy;alamo"},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Ma" = (/obj/structure/cable,/obj/machinery/computer/navigation,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"MI" = (/obj/structure/cable,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark{name = "JoinLate"},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"MX" = (/obj/machinery/door/poddoor/shutters/transit{id = "eagledoors"},/obj/effect/step_trigger/teleporter{name = "eagle_rappel"; teleport_x = 90; teleport_y = 83; teleport_z = 2},/turf/open/floor/mainship/cargo,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Nu" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "tele_ground1"; teleport_x = 25; teleport_x_offset = 40; teleport_y = 10; teleport_y_offset = 20; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/atmos,/area/space)
-"NV" = (/obj/machinery/light{dir = 8},/obj/structure/cable,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"PJ" = (/obj/structure/shuttle/engine/propulsion/burst/right,/turf/open/floor/mainship_hull,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Ry" = (/obj/structure/cable,/obj/structure/cable,/obj/item/tool/crowbar/red,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"RA" = (/obj/structure/cable,/obj/effect/landmark/start/job/researcher,/obj/effect/landmark/start/job/researcher,/obj/effect/landmark/start/job/researcher,/obj/effect/landmark/start/job/researcher,/obj/effect/landmark/start/job/researcher,/obj/effect/landmark/start/job/researcher,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"SC" = (/obj/structure/cable,/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "tele_ground1"; teleport_x = 25; teleport_x_offset = 40; teleport_y = 10; teleport_y_offset = 20; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/atmos,/area/space)
-"Tp" = (/obj/effect/landmark/start/job/squadmarine,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/job/crash/squadmarine,/obj/effect/landmark/start/latejoin,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Uf" = (/obj/machinery/door/airlock/mainship/command/canterbury{dir = 1; name = "\improper Command Cockpit"},/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Ug" = (/obj/effect/landmark/start/job/squadcorpsman,/obj/effect/landmark/start/job/squadcorpsman,/obj/effect/landmark/start/job/squadcorpsman,/obj/effect/landmark/start/job/squadcorpsman,/obj/effect/landmark/start/job/squadcorpsman,/obj/effect/landmark/start/job/squadcorpsman,/obj/effect/landmark{name = "JoinLate"},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Uh" = (/obj/machinery/light{dir = 8},/obj/structure/dropprop,/obj/structure/droppod{name = "Zeus orbital drop pod"},/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Um" = (/turf/closed/wall/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Vr" = (/obj/structure/cable,/obj/structure/bed/chair/dropship/pilot{dir = 1},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"WD" = (/obj/structure/ladder{id = "eagleladder1"; height = 2},/obj/effect/landmark/start/job/chiefshipengineer,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"Xw" = (/obj/structure/bed/chair/dropship/pilot{dir = 1},/obj/effect/landmark/start/job/fieldcommander,/obj/machinery/light,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"YE" = (/obj/structure/largecrate/supply/supplies/mre,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
-"ZI" = (/obj/effect/landmark/start/job/corporateliaison,/obj/effect/landmark{name = "JoinLate"},/obj/structure/cable,/turf/open/floor/mainship,/area/mainship/hallways/port_hallway{outside = 0; name = "NTC Eagle Dropship"})
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/droppod/respawning,
+/obj/structure/drop_pod_launcher,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"bG" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"bN" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/droppod_control,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"bQ" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window1"
+	},
+/turf/open/floor/mainship_hull,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"cv" = (
+/obj/machinery/cryopod,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"cL" = (
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/effect/landmark{
+	name = "JoinLate"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"di" = (
+/obj/effect/landmark/start/job/corporateliaison,
+/obj/effect/landmark{
+	name = "JoinLate"
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"dB" = (
+/obj/structure/cable,
+/obj/machinery/computer/navigation,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"dY" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2;
+	id = "eagledoors"
+	},
+/obj/effect/step_trigger/teleporter{
+	name = "eagle_rappel";
+	teleport_x = 90;
+	teleport_y = 83;
+	teleport_z = 2
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"eb" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window12"
+	},
+/turf/open/space/transit/atmos,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"fD" = (
+/obj/structure/cable,
+/obj/machinery/vending/engivend,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"fU" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"ge" = (
+/obj/machinery/cryopod/right,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship/hardened,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"gp" = (
+/obj/structure/cable,
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"gz" = (
+/obj/effect/landmark/start/job/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"gS" = (
+/turf/open/floor/mainship_hull,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"gW" = (
+/obj/docking_port/stationary/marine_dropship/hangar/one{
+	name = "Atmosphere LZ1"
+	},
+/turf/open/space/transit/atmos,
+/area/space)
+"hy" = (
+/obj/structure/largecrate/supply/supplies/mre,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"hY" = (
+/obj/effect/landmark/start/job/shiptech,
+/obj/effect/landmark/start/job/shiptech,
+/obj/effect/landmark/start/job/shiptech,
+/obj/effect/landmark/start/job/shiptech,
+/obj/effect/landmark/start/job/shiptech,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"io" = (
+/obj/machinery/door/airlock/mainship/command/canterbury{
+	dir = 1;
+	name = "\improper Command Cockpit"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"iC" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark{
+	name = "JoinLate"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"jf" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/medicalofficer,
+/obj/effect/landmark/start/job/medicalofficer,
+/obj/effect/landmark/start/job/medicalofficer,
+/obj/effect/landmark/start/job/medicalofficer,
+/obj/effect/landmark/start/job/medicalofficer,
+/obj/effect/landmark/start/job/medicalofficer,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"jR" = (
+/turf/open/space/basic,
+/area/space)
+"jX" = (
+/obj/structure/ladder{
+	id = "eagleladder1";
+	height = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"kt" = (
+/obj/structure/cable/multilayer/multiz,
+/turf/closed/wall/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"kO" = (
+/obj/structure/cable,
+/obj/machinery/door_control{
+	id = "eagledoors";
+	name = "NTC Eagle doors control"
+	},
+/turf/closed/wall/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"lK" = (
+/obj/structure/window/framed/mainship,
+/turf/open/floor/mainship_hull,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"me" = (
+/turf/closed/wall/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"no" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/researcher,
+/obj/effect/landmark/start/job/researcher,
+/obj/effect/landmark/start/job/researcher,
+/obj/effect/landmark/start/job/researcher,
+/obj/effect/landmark/start/job/researcher,
+/obj/effect/landmark/start/job/researcher,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"nB" = (
+/obj/structure/cable,
+/turf/closed/wall/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"nK" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/cryopod,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"pn" = (
+/obj/structure/table/mainship,
+/obj/machinery/door_control{
+	id = "eagledoors";
+	name = "NTC Eagle doors control";
+	pixel_x = 12;
+	pixel_y = -5
+	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship{
+	possible_destinations = "lz1;lz2;hqlz1;hqlz2;normandy;alamo"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"pF" = (
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"pQ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/droppod/respawning,
+/obj/structure/drop_pod_launcher,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"tq" = (
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"uq" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two{
+	possible_destinations = "lz1;lz2;hqlz1;hqlz2;alamo;normandy"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"va" = (
+/obj/machinery/cryopod,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"vl" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/crash/pilotofficer,
+/obj/effect/landmark/start/job/crash/pilotofficer,
+/obj/effect/landmark/start/job/crash/pilotofficer,
+/obj/effect/landmark/start/job/crash/pilotofficer,
+/obj/effect/landmark/start/job/crash/pilotofficer,
+/obj/machinery/light,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"vD" = (
+/obj/structure/cable,
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/wall/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"vV" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/captain,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"wL" = (
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"wO" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"yh" = (
+/obj/effect/landmark/start/job/synthetic,
+/obj/effect/landmark/start/job/synthetic,
+/obj/effect/landmark/start/job/synthetic,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"yi" = (
+/obj/effect/landmark/start/job/staffofficer,
+/obj/effect/landmark/start/job/staffofficer,
+/obj/effect/landmark/start/job/staffofficer,
+/obj/effect/landmark/start/job/staffofficer,
+/obj/effect/landmark/start/job/staffofficer,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"yj" = (
+/obj/structure/cable,
+/obj/machinery/vending/tool,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"yu" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"zq" = (
+/obj/docking_port/stationary/marine_dropship/hangar/two{
+	name = "Atmosphere LZ2"
+	},
+/turf/open/space/transit/atmos,
+/area/space)
+"zQ" = (
+/turf/open/space/transit/atmos,
+/area/space)
+"zU" = (
+/obj/structure/ladder{
+	id = "eagleladder1";
+	height = 2
+	},
+/obj/effect/landmark/start/job/chiefshipengineer,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Bq" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/fieldcommander,
+/obj/machinery/light,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Bz" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 25;
+	teleport_x_offset = 40;
+	teleport_y = 10;
+	teleport_y_offset = 20;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 25;
+	teleport_x_offset = 40;
+	teleport_y = 10;
+	teleport_y_offset = 20;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space/transit/atmos,
+/area/space)
+"Fl" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/cmo,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Gp" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window1"
+	},
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window12"
+	},
+/turf/open/floor/mainship_hull,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"GO" = (
+/obj/structure/window/framed/mainship,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"GS" = (
+/obj/effect/landmark/start/job/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
+/obj/effect/landmark{
+	name = "JoinLate"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Ho" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"HV" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/vending/weapon,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"KF" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/vending/medical,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"KW" = (
+/obj/structure/ladder{
+	id = "eagleladder2";
+	height = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"LK" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Ma" = (
+/obj/machinery/cryopod/right,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"MI" = (
+/obj/structure/cable,
+/obj/item/paper{
+	name = "Note about rappeling";
+	info = "You may walk out the shuttle if you open the doors at to parachute down directly in front of the base, but it will break your minimap (You can remove and put your headset back on to fix it). You can still use the drop pods though, it's slower however. x96 x111 (IF ITS EARLY ROUND AND SHUTTERS ARE CLOSED, DROPPODS WILL LEAVE YOU OUTSIDE.)"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"MX" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	id = "eagledoors"
+	},
+/obj/effect/step_trigger/teleporter{
+	name = "eagle_rappel";
+	teleport_x = 90;
+	teleport_y = 83;
+	teleport_z = 2
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Nu" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 25;
+	teleport_x_offset = 40;
+	teleport_y = 10;
+	teleport_y_offset = 20;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space/transit/atmos,
+/area/space)
+"NV" = (
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"PJ" = (
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/space/transit/atmos,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Ry" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2;
+	id = "eagledoors"
+	},
+/obj/effect/step_trigger/teleporter{
+	name = "eagle_rappel";
+	teleport_x = 90;
+	teleport_y = 83;
+	teleport_z = 2
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"RA" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/item/tool/crowbar/red,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"SC" = (
+/obj/structure/cable,
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 25;
+	teleport_x_offset = 40;
+	teleport_y = 10;
+	teleport_y_offset = 20;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space/transit/atmos,
+/area/space)
+"SO" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/latejoin,
+/obj/machinery/power/terminal,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Tp" = (
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/floor/mainship_hull,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Uf" = (
+/obj/effect/landmark/start/job/squadleader,
+/obj/effect/landmark/start/job/squadleader,
+/obj/effect/landmark/start/job/squadleader,
+/obj/effect/landmark/start/job/squadleader,
+/obj/effect/landmark/start/job/squadleader,
+/obj/effect/landmark{
+	name = "JoinLate"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Ug" = (
+/obj/machinery/cryopod/right,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Uh" = (
+/obj/effect/landmark/start/job/requisitionsofficer,
+/obj/effect/landmark/start/job/requisitionsofficer,
+/obj/effect/landmark/start/job/requisitionsofficer,
+/obj/effect/landmark/start/job/requisitionsofficer,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Um" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship_hull,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Vr" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
+/obj/effect/landmark/start,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"WD" = (
+/obj/structure/ladder{
+	id = "eagleladder2";
+	height = 2
+	},
+/obj/effect/landmark/start/job/security_officer,
+/obj/effect/landmark/start/job/security_officer,
+/obj/effect/landmark/start/job/security_officer,
+/obj/effect/landmark/start/job/security_officer,
+/obj/effect/landmark/start/job/security_officer,
+/obj/effect/landmark/start/job/security_officer,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"Xw" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/magical,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"YE" = (
+/obj/machinery/marine_selector/clothes,
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
+"ZI" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/vending/marineFood,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway{
+	name = "NTC Eagle Dropship"
+	})
 
 (1,1,1) = {"
-zQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQ
-zQBzNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuBzzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQtqtqtqzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQUmyiMayiUmzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQwOLKVrvawOzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQwObNiCXwwOzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQgWzQzQzQzQzQzQzQzQzQzQzQgSUmGpUfGpUmgSzQzQzQzQzQzQzQzQzQzQzQzqzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSUmUmWDfDvDUmUmgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSgSUmgpZIcvFlvlUmgSgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSgSgSmeBqpQRAcLkOmegSgSgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSgSgSgSUmhYUgioKFfUUmgSgSgSgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSdBdBUmBqTpGSGOkOUmdBdBgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQmehYlKMIyhvlmezQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSUmUmBqpnkOUmUmgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSgSPJUmUmgeUmUmPJgSgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSgSzQUmUmnBUmUmzQgSgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQUmzQnBzQUmzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzUzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQnKzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-NuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuSCNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNu
-zQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQ
-vVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVnovVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvV
-vVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVnovVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvVvV
-zQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQ
-NuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuSCNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNu
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQnKzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQjRzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQnBzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQUmnBUmzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQUmUmHoUmUmzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSmejXyuKWmegSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSUmHVpFdijfUmUmgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSgSUmNVbGyubGaaUmgSgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSzQmehyhyyuhyhymezQgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQMXhyhyyjhyhyMXzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQMXhyhyyuhyhyMXzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQmeUhhyyuhybQmezQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQUmUmYERydYUmUmzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSPJUmebuqebUmPJgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSgSUmzQzQzQUmgSgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQgSzQzQzQzQzQzQzQgSzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQNuzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQNuzQ
-zQBzNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuNuBzzQ
-zQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQzQ
+zQ
+jR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+"}
+(2,1,1) = {"
+jR
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Bz
+zQ
+"}
+(3,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(4,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(5,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(6,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(7,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(8,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(9,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(10,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(11,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(12,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(13,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(14,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(15,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(16,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(17,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(18,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(19,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(20,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(21,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(22,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(23,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+me
+me
+Um
+MX
+MX
+Um
+me
+Tp
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(24,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+me
+lK
+kO
+HV
+NV
+YE
+fU
+bG
+me
+me
+me
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(25,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+me
+me
+wO
+jX
+pF
+pF
+pF
+pF
+pF
+hy
+dY
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(26,1,1) = {"
+jR
+SC
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+nB
+nB
+ZI
+Ho
+yu
+Ho
+fD
+MI
+yj
+Ho
+RA
+Ry
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(27,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+me
+me
+KF
+KW
+pF
+pF
+pF
+pF
+pF
+wL
+dY
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(28,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+me
+lK
+kt
+bN
+aa
+aa
+aa
+pQ
+me
+me
+me
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(29,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+me
+me
+Um
+MX
+MX
+Um
+me
+Tp
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(30,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(31,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(32,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(33,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(34,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(35,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(36,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(37,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(38,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(39,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(40,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(41,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(42,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(43,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(44,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(45,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(46,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(47,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(48,1,1) = {"
+jR
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+zQ
+"}
+(49,1,1) = {"
+jR
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Bz
+zQ
+"}
+(50,1,1) = {"
+zQ
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+"}
+
+(1,1,2) = {"
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+"}
+(2,1,2) = {"
+Bz
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+"}
+(3,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(4,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(5,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(6,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(7,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(8,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(9,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(10,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(11,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gW
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(12,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(13,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(14,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(15,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(16,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(17,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(18,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(19,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(20,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(21,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+gS
+PJ
+zQ
+zQ
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(22,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+gS
+gS
+PJ
+zQ
+gS
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(23,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+me
+me
+Um
+me
+me
+Um
+me
+Tp
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(24,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+me
+bQ
+bQ
+me
+me
+ge
+Ma
+Ug
+Ma
+Ug
+me
+me
+me
+me
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(25,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+eb
+Gp
+pn
+vl
+GO
+zU
+di
+Uh
+GS
+gz
+tq
+Ma
+me
+me
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(26,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+eb
+dB
+gp
+vV
+io
+Fl
+jf
+no
+Vr
+LK
+iC
+SO
+Xw
+nB
+nB
+vD
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(27,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+eb
+Gp
+uq
+Bq
+GO
+WD
+cL
+hY
+Uf
+yi
+yh
+va
+me
+me
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(28,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+me
+bQ
+bQ
+me
+kt
+cv
+va
+nK
+va
+cv
+me
+me
+me
+me
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(29,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+me
+me
+Um
+me
+me
+Um
+me
+Tp
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(30,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+gS
+gS
+PJ
+zQ
+gS
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(31,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+gS
+PJ
+zQ
+zQ
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(32,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+gS
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(33,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+gS
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(34,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(35,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(36,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(37,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(38,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(39,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(40,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(41,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zq
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(42,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(43,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(44,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(45,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(46,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(47,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(48,1,2) = {"
+Nu
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+Nu
+"}
+(49,1,2) = {"
+Bz
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+Nu
+"}
+(50,1,2) = {"
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
+jR
 "}

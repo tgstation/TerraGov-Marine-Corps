@@ -9,6 +9,7 @@
 	human_factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_CLF, FACTION_ICC, FACTION_VSD)
 	//NTC, SOM and CLF are significant factions which have req access so they get more members, others aren't as invested and get 1 squad but usually get stronger gear (they are ERT anyway.)
 	valid_job_types = list(
+		/datum/job/terragov/command/ceo = 1,
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/corpseccommander = 1,
@@ -28,7 +29,6 @@
 		/datum/job/terragov/medical/researcher = 3,
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 3,
-		/datum/job/som/silicon/synthetic/som = 1,
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
@@ -60,9 +60,11 @@
 		/datum/job/xenomorph = 8,
 		/datum/job/xenomorph/green = 2,
 		/datum/job/xenomorph/queen = 1,
+		/datum/job/som/silicon/synthetic/som = 1,
 		/datum/job/som/command/commander = 1,
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/command/staffofficer = 2,
+		/datum/job/som/command/pilot = 1,
 		/datum/job/som/command/mech_pilot = 1,
 		/datum/job/som/requisitions/officer = 1,
 		/datum/job/som/engineering/chief = 1,

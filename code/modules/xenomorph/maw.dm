@@ -310,15 +310,25 @@
 	return ..()
 
 /obj/structure/xeno/acid_maw/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
-	. = ..()
+	if(!issamexenohive(xeno_attacker))
+		return ..()
+	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_HARM)
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
+		span_xenonotice("We start to tear down \the [src]."))
+		if(!do_after(xeno_attacker, 10 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
+			return
+		if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the object already gone
+			return
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
+		span_xenonotice("We tear down \the [src]."))
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+		take_damage(max_integrity, silent=TRUE) // Ensure its destroyed
+		return
 	try_fire(xeno_attacker, src)
 
 /// Tries to fire the acid maw after going through various checks and player inputs.
 /obj/structure/xeno/acid_maw/proc/try_fire(mob/living/carbon/xenomorph/xeno_shooter, atom/radical_target, slient, leaders_only = TRUE, requires_adjacency = TRUE)
-	if(xeno_shooter.hivenumber != hivenumber)
-		if(!slient)
-			balloon_alert(xeno_shooter, "wrong hive")
-		return FALSE
 	if(leaders_only && xeno_shooter.tier != XENO_TIER_FOUR && !(xeno_shooter.xeno_flags & XENO_LEADER))
 		if(!slient)
 			balloon_alert(xeno_shooter, "must be leader")

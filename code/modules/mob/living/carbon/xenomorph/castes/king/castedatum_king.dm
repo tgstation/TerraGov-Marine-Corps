@@ -75,7 +75,8 @@
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/psionic_interact,
-		/datum/action/ability/activable/xeno/impregnatequeen
+		/datum/action/ability/activable/xeno/impregnatequeen,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 
@@ -115,6 +116,7 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 // ***************************************
@@ -183,6 +185,7 @@
 		/datum/action/ability/activable/xeno/conqueror_domination,
 		/datum/action/ability/activable/psionic_interact,
 		/datum/action/ability/activable/xeno/impregnatequeen,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/king/conqueror/normal
@@ -217,20 +220,7 @@
 		/datum/action/ability/xeno_action/conqueror_endurance,
 		/datum/action/ability/activable/xeno/conqueror_domination,
 		/datum/action/ability/xeno_action/conqueror_obliteration,
-		/datum/action/ability/activable/xeno/plant_weeds,
-		/datum/action/ability/activable/xeno/corrosive_acid/strong,
-		/datum/action/ability/xeno_action/hive_message,
-		/datum/action/ability/xeno_action/rally_hive,
-		/datum/action/ability/xeno_action/rally_minion,
-		/datum/action/ability/xeno_action/blessing_menu,
-		/datum/action/ability/xeno_action/pheromones,
-		/datum/action/ability/xeno_action/pheromones/emit_recovery,
-		/datum/action/ability/xeno_action/pheromones/emit_warding,
-		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
-		/datum/action/ability/xeno_action/conqueror_dash,
-		/datum/action/ability/activable/xeno/conqueror_will,
-		/datum/action/ability/xeno_action/conqueror_endurance,
-		/datum/action/ability/activable/xeno/conqueror_domination,
 		/datum/action/ability/activable/psionic_interact,
 		/datum/action/ability/activable/xeno/impregnatequeen,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)

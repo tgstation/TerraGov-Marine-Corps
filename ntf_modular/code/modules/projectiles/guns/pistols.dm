@@ -58,6 +58,6 @@
 //mom i want a mateba, we got a mateba at home, mateba at home:
 /datum/ammo/bullet/revolver/heavy/foxfire/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
     if(ishuman(target_mob))
-        staggerstun(target_mob, proj, paralyze = 0, stagger = 1 SECONDS, slowdown = 1, knockback = 1)
+        staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, stagger = 1 SECONDS, slowdown = 1, knockback = 1)
     else
         staggerstun(target_mob, proj, paralyze = 1 SECONDS, stagger = 1 SECONDS, slowdown = 1, knockback = 1)

@@ -308,7 +308,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	light_system = MOVABLE_LIGHT
 
 	///Hive name define
-	var/hivenumber = XENO_HIVE_NORMAL
+	hivenumber = XENO_HIVE_NORMAL
 	///Hive datum we belong to
 	var/datum/hive_status/hive
 	///Xeno mob specific flags

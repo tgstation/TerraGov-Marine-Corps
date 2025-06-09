@@ -82,6 +82,7 @@
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/psionic_interact,
 		/datum/action/ability/activable/xeno/place_pattern,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/shrike/normal
@@ -125,4 +126,5 @@
 		/datum/action/ability/activable/psionic_interact,
 		/datum/action/ability/activable/xeno/psychic_vortex,
 		/datum/action/ability/activable/xeno/place_pattern,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)

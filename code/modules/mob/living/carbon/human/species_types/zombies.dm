@@ -58,6 +58,7 @@
 	rally_zombie.give_action(H)
 	var/datum/action/set_agressivity/set_zombie_behaviour = new
 	set_zombie_behaviour.give_action(H)
+	H.hivenumber = FACTION_ZOMBIE
 
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/H)
 	. = ..()

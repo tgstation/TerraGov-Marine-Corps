@@ -520,9 +520,10 @@
 		tank_target.explode()
 		return
 	if(istype(object_target, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/resin_door = object_target
-		resin_door.toggle_state()
-		return
+		if(object_target.issamexenohive(xeno_owner))
+			var/obj/structure/mineral_door/resin/resin_door = object_target
+			resin_door.toggle_state()
+			return
 	if(object_target.obj_integrity <= LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD || istype(object_target, /obj/structure/closet))
 		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
 		new /obj/effect/temp_visual/behemoth/landslide/hit(object_turf)

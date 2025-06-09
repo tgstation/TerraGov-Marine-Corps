@@ -70,7 +70,7 @@
 
 /datum/action/ability/activable/xeno/impregnatequeen
 	name = "Royal Treatment"
-	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
 	action_icon_state = "impregnate"
 	desc = "Directly use your ovipositor to lay one or more larva directly within a host. This is especially harmful, and only grows moreso with each larva inserted, and leaves permanent internal damage on the host with each excess larva.; This method can easily kill a host, so be careful!"
 	cooldown_duration = 2.5 SECONDS

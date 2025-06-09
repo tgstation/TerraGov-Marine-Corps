@@ -146,7 +146,7 @@
 			if(!SSticker)
 				return
 			if(!GLOB.enter_allowed)
-				to_chat(usr, span_warning("Spawning currently disabled, please observe."))
+				to_chat(usr, span_warning("Spawning currently disabled."))
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
 			if(!isxenosjob(job_datum) && (SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state <= XENOS_LOSING)))
@@ -156,6 +156,18 @@
 						return
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
+			if(isxenosjob(job_datum))
+				if(XENODEATHTIME_CHECK(usr))
+					if(check_other_rights(usr.client, R_ADMIN, FALSE))
+						if(tgui_alert(usr, "Your xeno respawn timer is not finished, though as an admin you can bypass it. Do you want to continue?", "Join Game", list("Yes", "No")) != "Yes")
+							XENODEATHTIME_MESSAGE(usr)
+							return
+			else
+				if(DEATHTIME_CHECK(usr))
+					if(check_other_rights(usr.client, R_ADMIN, FALSE))
+						if(tgui_alert(usr, "Your respawn timer is not finished, though as an admin you can bypass it. Do you want to continue?", "Join Game", list("Yes", "No")) != "Yes")
+							DEATHTIME_MESSAGE(usr)
+							return
 			SSticker.mode.LateSpawn(src)
 
 		if("continue_join")

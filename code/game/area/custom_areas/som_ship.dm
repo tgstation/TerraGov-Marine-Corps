@@ -32,8 +32,8 @@
 /area/antag_ship/som/preparation
 	name = "SOM Ship Preparations"
 
-/area/antag_ship/som/barracs
-	name = "SOM Ship Barracs"
+/area/antag_ship/som/barracks
+	name = "SOM Ship Barracks"
 
 /area/antag_ship/som/mech_bay
 	name = "SOM Ship Mechbay"

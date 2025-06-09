@@ -257,10 +257,10 @@
 	if(!amount)
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 	holder.icon_state = "health[amount]"
-	
+
 	holder.overlays.Cut()
 	if(status_flags & INCORPOREAL)
-		holder.overlays +=image('icons/Xeno/castes/hivemind.dmi', src, "hivemind_marker") 
+		holder.overlays +=image('icons/Xeno/castes/hivemind.dmi', src, "hivemind_marker")
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
@@ -354,7 +354,7 @@
 	xeno_attacker.visible_message(span_danger("[xeno_attacker] nudges [xeno_attacker.p_their()] head against [src]."), \
 	span_danger("You nudge your head against [src]."))
 
-/obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob, silent)
 	. = ..()
 	var/mob/living/carbon/xenomorph/hivemind/our_parent = get_parent()
 	if(isnull(our_parent))

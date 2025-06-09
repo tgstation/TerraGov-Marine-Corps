@@ -161,3 +161,4 @@
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
+

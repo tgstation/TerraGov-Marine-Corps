@@ -62,9 +62,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Robot specific preferences
 	var/robot_type = "Basic"
 
-	//Xenomorph specific preferences
-	var/xeno_name = "Undefined"
-
 	//AI specific preferences
 	var/ai_name = "ARES v3.2"
 
@@ -132,7 +129,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
-	var/xeno_desc = ""
 	var/profile_pic = ""
 	var/nsfwprofile_pic = ""
 	var/xenoprofile_pic = ""
@@ -145,6 +141,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	/// List of keys we are ignoring in global OOC
 	var/list/ignoring = list()
+	//Xenomorph specific preferences
+	var/xeno_name = "Undefined"
+	var/xeno_desc = ""
+	var/xeno_edible_jelly_name = ""
+	var/xeno_edible_jelly_desc = ""
+	var/xeno_edible_jelly_flavors = ""
+	// Purplish color for the jelly
+	// hex code #9b09ef
+	var/r_jelly = 155
+	var/g_jelly = 9
+	var/b_jelly = 239
 
 	// Hud tooltip
 	var/tooltips = TRUE

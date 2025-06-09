@@ -63,6 +63,7 @@
 		/datum/action/ability/activable/psionic_interact,
 		/datum/action/ability/activable/xeno/shoot_xeno_artillery,
 		/datum/action/ability/activable/xeno/place_pattern,
+		/datum/action/ability/xeno_action/create_edible_jelly,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)

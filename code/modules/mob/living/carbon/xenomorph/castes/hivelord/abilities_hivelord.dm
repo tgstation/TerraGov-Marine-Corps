@@ -296,11 +296,11 @@
 		return
 	if(owner.l_hand || owner.r_hand)
 		if(!silent)
-			owner.balloon_alert(owner, "Cannot jelly, need empty hands")
+			owner.balloon_alert(owner, "Cannot create jelly, need empty hands")
 		return FALSE
 
 /datum/action/ability/xeno_action/create_jelly/action_activate()
-	var/obj/item/resin_jelly/jelly = new(owner.loc)
+	var/obj/item/resin_jelly/jelly = new(owner.loc, xeno_owner.hivenumber)
 	owner.put_in_hands(jelly)
 	to_chat(owner, span_xenonotice("We create a globule of resin from our ovipositor.")) // Ewww...
 	add_cooldown()

@@ -206,3 +206,19 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	if(overdose_threshold < inject_vol + target.reagents.get_reagent_amount(type))
 		return FALSE
 	return TRUE
+// Change what these reagents taste like after they're created
+/datum/reagent/consumable/nutriment/proc/change_taste(list/tastes)
+
+	var/list/NewTastes = new/list(0)
+	var/list/Strengths = new/list(0)
+	for(var/t in tastes)
+		NewTastes += t
+		Strengths += tastes[t]
+
+	// Because for SOME REASON, taste_description AND taste_multi have NOTHING to do with the way a thing tastes.
+	// ONLY this list does.
+	data = tastes
+
+	// In fact, updating these others will cause problems because they're only configured for a single value, not lists.
+	//taste_description = NewTastes
+	//taste_multi = Strengths

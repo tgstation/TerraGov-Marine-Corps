@@ -2192,7 +2192,7 @@
 	dir = 8
 	},
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/nonmob,
+/obj/structure/droppod,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -5169,7 +5169,9 @@
 	bruteloss = 25;
 	fireloss = 25
 	},
-/obj/alien/weeds/node/resting,
+/obj/alien/weeds/node/resting{
+	hivenumber = "corrupted_hive"
+	},
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -16261,7 +16263,7 @@
 	dir = 4
 	},
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/nonmob,
+/obj/structure/droppod,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -19601,7 +19603,7 @@
 /area/mainship/hallways/hangar)
 "rSe" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/nonmob,
+/obj/structure/droppod,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;

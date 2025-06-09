@@ -36,6 +36,16 @@ type BackgroundInformationData = {
   xenoprofile_pic: string;
 };
 
+type FlavorCustomizationData = {
+  slot: number;
+  xeno_edible_jelly_name: string;
+  r_jelly: number;
+  g_jelly: number;
+  b_jelly: number;
+  xeno_edible_jelly_desc: string;
+  xeno_edible_jelly_flavors: string;
+};
+
 type GameSettingData = {
   ui_style_color: string;
   scaling_method: string;

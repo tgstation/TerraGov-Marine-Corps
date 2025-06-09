@@ -2129,7 +2129,7 @@
 /datum/outfit/quick/vsd/standard/grunt_one
 	name = "CC/67 Rifle KZ Grunt"
 	desc = "The old standard. Equipped with the standard CC/67 combat rifle."
-	suit_store = /obj/item/weapon/gun/rifle/cc67
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
 	mask = /obj/item/clothing/mask/gas/vsd
 	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 	glasses = /obj/item/clothing/glasses/meson
@@ -2235,7 +2235,7 @@
 /datum/outfit/quick/vsd/engineer/l26
 	name = "CC/77 Rifle KZ Engineer"
 	desc = "Equipped with CC/77 assault carbine, a Build-A-Sentry attachment, Crasher MT-H/43 powered ballistic armor and a modest amount of materials and tools to work with in the field."
-	suit_store = /obj/item/weapon/gun/rifle/cc77
+	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
@@ -2251,15 +2251,15 @@
 /datum/outfit/quick/vsd/engineer/l26/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/attachable/buildasentry, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/cc77, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_carbine, SLOT_IN_L_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
@@ -2331,7 +2331,7 @@
 /datum/outfit/quick/vsd/medic/vsd_rifle
 	name = "CC/67 Rifle KZ Medic"
 	desc = "For keeping everybody else alive. Equipped with the CC/67 combat rifle and C96 pistol."
-	suit_store = /obj/item/weapon/gun/rifle/cc67
+	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
 	ears = /obj/item/radio/headset/mainship/vsd
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
 	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
