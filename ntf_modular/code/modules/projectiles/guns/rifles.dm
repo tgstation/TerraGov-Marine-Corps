@@ -182,13 +182,13 @@
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST,  GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 51, "muzzle_y" = 19,"rail_x" = 25, "rail_y" = 23, "under_x" = 35, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
-	//subject to change.
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
+	wield_delay = 0.7 SECONDS
 	aim_slowdown = 0.2
 	aim_speed_modifier = 2.5
-	scatter = -1
+	scatter = 0
 
 //standard mag
 /obj/item/ammo_magazine/rifle/nt_halter
@@ -200,6 +200,8 @@
 	bonus_overlay = "halter_mag"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/halter
 	max_rounds = 36
+	aim_speed_mod = 0.1
+	wield_delay_mod = 0.1 SECONDS
 
 /datum/ammo/bullet/rifle/heavy/halter
 	name = "heavy rifle bullet"
@@ -211,6 +213,8 @@
 	max_rounds = 50
 	icon_state = "halter_ex"
 	bonus_overlay = "halter_ex"
+	aim_speed_mod = 0.2
+	wield_delay_mod = 0.2 SECONDS
 
 //extended mag
 /obj/item/ammo_magazine/rifle/nt_halter/drum
@@ -219,6 +223,8 @@
 	max_rounds = 100
 	icon_state = "halter_drum"
 	bonus_overlay = "halter_drum"
+	aim_speed_mod = 0.3
+	wield_delay_mod = 0.3 SECONDS
 
 //emp mag
 /obj/item/ammo_magazine/rifle/nt_halter/charged
