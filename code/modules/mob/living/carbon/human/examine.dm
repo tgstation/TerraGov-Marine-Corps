@@ -595,7 +595,7 @@
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/paracetamol))
 				msg += "Paracetamol([reagents.get_reagent_amount(/datum/reagent/medicine/paracetamol)]u): Weak anti-pain medication. rarely used.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone))
-				msg += "Oxycodne([reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone)]u): Very strong anti-pain medication commonly found on corpsman.\n"
+				msg += "Oxycodone([reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone)]u): Very strong anti-pain medication commonly found on corpsman.\n"
 
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/dylovene))
 				msg += "Dylovene([reagents.get_reagent_amount(/datum/reagent/medicine/dylovene)]u): Toxin removal medication.\n"
