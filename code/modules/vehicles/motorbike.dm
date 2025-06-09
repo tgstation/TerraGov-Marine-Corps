@@ -30,6 +30,8 @@
 	var/datum/looping_sound/bike_idle/idle_sound
 	/// Which sound is played when the bike is unbuckled from
 	var/dismount_sound = 'sound/vehicles/bikedismount.ogg'
+	/// Alternative sound played when the bike is buckled to without fuel
+	var/dry_dismount_sound = 'sound/vehicles/bikedry.ogg'
 
 /obj/vehicle/ridden/motorbike/Initialize(mapload)
 	. = ..()
@@ -54,6 +56,8 @@
 	add_overlay(motorbike_cover)
 	if(has_fuel())
 		idle_sound.start(src)
+	else
+		playsound(src, dry_dismount_sound, vol = 40)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/post_unbuckle_mob(mob/living/M)
