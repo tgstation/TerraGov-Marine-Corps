@@ -580,7 +580,7 @@
 //defiler specific examine info
 		if(istype(user, /mob/living/carbon/xenomorph/defiler))
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine))
-				msg += "Bicardine([reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine)]u): Weak brute medication used by most marines. Heals slowly.\n"
+				msg += "Bicaridine([reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine)]u): Weak brute medication used by most marines. Heals slowly.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/kelotane))
 				msg += "Kelotane([reagents.get_reagent_amount(/datum/reagent/medicine/kelotane)]u): Weak burn medication used by most marines. Heals slowly.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
