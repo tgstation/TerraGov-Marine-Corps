@@ -182,13 +182,16 @@
 		else
 			shuffle_inplace(platinum_list)
 			#if (MINIMUM_PLATINUM_MINERS > 0)
-			miners_kept = MINIMUM_PLATINUM_MINERS
-			platinum_list.Cut(1,MINIMUM_PLATINUM_MINERS)
+			while(miners_kept < MINIMUM_PLATINUM_MINERS)
+				miners_kept++
+				platinum_list -= platinum_list[1]
 			#endif
 		var/list/obj/machinery/miner/shuffled_miners = platinum_list + phoron_list
 		shuffle_inplace(shuffled_miners)
-		var/miners_to_keep = rand((MINIMUM_MINERS - miners_kept), length(shuffled_miners))
-		shuffled_miners.Cut(1, miners_to_keep)
+		var/miners_to_keep = miners_kept + rand((MINIMUM_MINERS - miners_kept), length(shuffled_miners))
+		while(miners_kept < miners_to_keep)
+			miners_kept++
+			shuffled_miners -= shuffled_miners[1]
 		QDEL_LIST(shuffled_miners)
 	else
 		if(length(GLOB.miner_list) < MINIMUM_MINERS)
