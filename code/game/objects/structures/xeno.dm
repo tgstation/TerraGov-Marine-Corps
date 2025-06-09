@@ -572,3 +572,15 @@
 	. = ..()
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	. += "It is from the [hive.name] hive"
+
+/obj/item/reagent_containers/food/snacks/nutrient_jelly/attack_self(mob/living/carbon/xenomorph/user)
+	//Activates if the item itself is clicked in hand.
+	if(!isxeno(user))
+		return
+	if(!issamexenohive(user))
+		user.balloon_alert(user, "Wrong hive")
+		return
+	user.balloon_alert(user, "Absorbing...")
+	if(!do_after(user, RESIN_SELF_TIME, TRUE, user, BUSY_ICON_MEDICAL))
+		return
+	qdel(src)

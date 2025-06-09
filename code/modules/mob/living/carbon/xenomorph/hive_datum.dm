@@ -1687,3 +1687,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /obj/item/resin_jelly/get_xeno_hivenumber()
 	return hivenumber
+
+/obj/item/reagent_containers/food/snacks/nutrient_jelly/get_xeno_hivenumber()
+	return hivenumber
