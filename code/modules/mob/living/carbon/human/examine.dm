@@ -569,7 +569,7 @@
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin)]u): Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
-			msg += "Hemodile([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))]u): Slows down the target, doubling in power with each other xeno-based toxin present.\n"
+			msg += "Hemodile([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)]u): Slows down the target, doubling in power with each other xeno-based toxin present.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 			msg += "Transvitox([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)]u): Converts burns to toxin over time, as well as causing incoming brute damage to deal additional toxin damage. Both effects intensifying with each xeno-based toxin present. Toxin damage is capped at 180.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
@@ -593,7 +593,7 @@
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/tramadol))
 				msg += "Tramadol([reagents.get_reagent_amount(/datum/reagent/medicine/tramadol)]u): General use anti-pain medication used by most marines.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/paracetamol))
-				msg += "Paracetamol([reagents.get_reagent_amount(/datum/reagent/medicine/paracetamol)]u): Weak anti-pain medication rarely used.\n"
+				msg += "Paracetamol([reagents.get_reagent_amount(/datum/reagent/medicine/paracetamol)]u): Weak anti-pain medication. rarely used.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone))
 				msg += "Oxycodne([reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone)]u): Very strong anti-pain medication commonly found on corpsman.\n"
 
