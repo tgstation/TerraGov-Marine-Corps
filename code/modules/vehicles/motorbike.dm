@@ -32,6 +32,13 @@
 	var/dismount_sound = 'sound/vehicles/bikedismount.ogg'
 	/// Alternative sound played when the bike is buckled to without fuel
 	var/dry_dismount_sound = 'sound/vehicles/bikedry.ogg'
+	/// A list of potential sounds played when the bike is revved via AltClick
+	var/list/rev_sounds = list(
+		'sound/vehicles/bikerev-1.ogg',
+		'sound/vehicles/bikerev-2.ogg'
+	)
+	/// Cooldown for revving the bike, to prevent spamming
+	COOLDOWN_DECLARE(rev_cooldown)
 
 /obj/vehicle/ridden/motorbike/Initialize(mapload)
 	. = ..()
@@ -52,12 +59,21 @@
 	. += "To access internal storage click with an empty hand or drag the bike onto self."
 	. += "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\""
 
+/obj/vehicle/ridden/motorbike/AltClick(mob/user)
+	if(!(user in buckled_mobs)) return FALSE
+	if(!COOLDOWN_FINISHED(src, rev_cooldown)) return FALSE
+	COOLDOWN_START(src, rev_cooldown, 3 SECONDS)
+	to_chat(user, span_notice("You rev the [src]'s engine."))
+	fuel_max -= 5
+	playsound(src, pick(rev_sounds), 50, TRUE, falloff = 3)
+	return TRUE
+
 /obj/vehicle/ridden/motorbike/post_buckle_mob(mob/living/M)
 	add_overlay(motorbike_cover)
 	if(has_fuel())
 		idle_sound.start(src)
 	else
-		playsound(src, dry_dismount_sound, vol = 40)
+		playsound(src, dry_dismount_sound, vol = 40, falloff = 1)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/post_unbuckle_mob(mob/living/M)
@@ -65,7 +81,7 @@
 		cut_overlay(motorbike_cover)
 	idle_sound.stop(src)
 	if(has_fuel())
-		playsound(src, dismount_sound, vol = 25)
+		playsound(src, dismount_sound, vol = 25, falloff = 1)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/welder_act(mob/living/user, obj/item/I)
