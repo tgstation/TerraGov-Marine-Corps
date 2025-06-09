@@ -174,7 +174,6 @@
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name on Login()
 	new_xeno.nicknumber = nicknumber
-	new_xeno.hivenumber = hivenumber
 	new_xeno.transfer_to_hive(hivenumber)
 	new_xeno.generate_name() // This is specifically for numbered xenos who want to keep their previous number instead of a random new one.
 	new_xeno.hive?.update_ruler() // Since ruler wasn't set during initialization, update ruler now.

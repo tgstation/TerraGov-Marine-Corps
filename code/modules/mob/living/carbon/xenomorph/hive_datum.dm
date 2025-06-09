@@ -458,6 +458,7 @@
 
 	hive = HS
 	hivenumber = HS.hivenumber // just to be sure
+	LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
 	generate_name()
 
 	SSdirection.start_tracking(HS.hivenumber, src)
@@ -556,6 +557,7 @@
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
 
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], src)
 	var/datum/hive_status/reference_hive = hive
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value

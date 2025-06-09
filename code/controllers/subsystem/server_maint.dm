@@ -76,6 +76,10 @@ SUBSYSTEM_DEF(server_maint)
 					log_world("Found a null in GLOB.dead_mob_list!")
 				cleanup_ticker++
 			if(40)
+				if(listclearnulls(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]))
+					log_world("Found a null in GLOB.alive_xeno_list_hive\[XENO_HIVE_NORMAL\]!")
+				cleanup_ticker++
+			if(45)
 				cleanup_ticker = 0
 			else
 				cleanup_ticker++
