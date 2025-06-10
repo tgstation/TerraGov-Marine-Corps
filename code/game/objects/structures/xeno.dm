@@ -574,7 +574,7 @@
 	desc = "A perplexing, soft mesh of almost bready protein-fibers. It's warm and spongey to the touch, and smells edible."
 	icon = 'icons/obj/items/food/xeno.dmi'
 	icon_state = "edible_biomass_mono"
-	w_class = WEIGHT_CLASS_TINY // 100 can fit into a box, each is worth 13, so 1300 maximum points can fit in a box
+	w_class = WEIGHT_CLASS_TINY
 	greyscale_config = /datum/greyscale_config/nutrient_jelly
 	greyscale_colors = "#f47e7e"
 	bitesize = 3
@@ -586,3 +586,8 @@
 	. = ..()
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	. += "It is from the [hive.name] hive"
+
+/obj/item/reagent_containers/food/snacks/nutrient_jelly/Initialize(mapload, _hivenumber)
+	hivenumber = _hivenumber
+	. = ..()
+
