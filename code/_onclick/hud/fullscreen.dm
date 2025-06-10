@@ -161,7 +161,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/fullscreen)
 /atom/movable/screen/fullscreen/high
 	icon_state = "druggy"
 	alpha = 255
-	layer = DRUGS_LAYER
+	plane = LIGHTING_PLANE
+	layer = LIGHTING_ABOVE_ALL + 1
 	blend_mode = BLEND_MULTIPLY
 
 /atom/movable/screen/fullscreen/high/update_for_view(client_view)
