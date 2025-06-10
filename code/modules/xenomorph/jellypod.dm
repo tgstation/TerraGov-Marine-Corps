@@ -71,6 +71,8 @@
 		START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/resin_jelly_pod/attack_hand(mob/living/user)
+	if(!issamexenohive(user)) // No longer exportable, so humans don't need to steal it
+		return ..()
 	if(!chargesleft)
 		balloon_alert(user, "No jelly remaining")
 		to_chat(user, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )

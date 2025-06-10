@@ -102,10 +102,6 @@
 				return FALSE
 			return TRUE
 
-/obj/item/resin_jelly/get_export_value()
-	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-	return hive.jelly_export_value
-
 /obj/item/reagent_containers/food/snacks/nutrient_jelly/get_export_value()
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-	return hive.foodjelly_export_value
+	return hive.jelly_export_value
