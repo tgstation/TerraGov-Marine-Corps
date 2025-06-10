@@ -17,7 +17,6 @@
 	)
 	worn_icon_state = "grenade"
 	max_integrity = 100
-	integrity_failure = 10
 	deploy_time = 1 SECONDS
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL|TURRET_INACCURATE
 	deployable_item = /obj/machinery/deployable/mounted/sentry/nut
@@ -27,7 +26,7 @@
 	w_class = WEIGHT_CLASS_SMALL //disposable drones take little space too.
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 
-	soft_armor = list(MELEE = 20, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 20, BIO = 100, FIRE = 100, ACID = 50)
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 100, ACID = 50)
 
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_IFF|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
@@ -37,7 +36,8 @@
 
 	max_shots = 300
 	rounds_per_shot = 2
-	fire_delay = 0.11 SECONDS
+	scatter = 2
+	fire_delay = 0.1 SECONDS
 	accuracy_mult = 0.8
 	ammo_datum_type = /datum/ammo/bullet/rifle/nut
 	default_ammo_type = /obj/item/ammo_magazine/rifle/nut_ammo
@@ -116,7 +116,7 @@
 
 /obj/item/storage/box/crate/drone/nut
 	name = "\improper NUT disposable drone crate (x2)"
-	desc = "A large case containing two NUT drones."
+	desc = "A large case containing two NUT drones, each last 5 minutes after deployment and then run out of power."
 	icon_state = "sentry_mini_case"
 	w_class = WEIGHT_CLASS_HUGE
 
@@ -145,20 +145,23 @@
 	density = FALSE //so it wont block people.
 	atom_flags = BUMP_ATTACKABLE
 	var/next_movement = 0
-	var/movement_delay = 1 SECONDS
+	var/movement_delay = 3 SECONDS
 
 /obj/machinery/deployable/mounted/sentry/nut/Initialize(mapload, obj/item/_internal_item, mob/deployer)
 	. = ..()
 	//it has limited lifespan
 	addtimer(CALLBACK(src, PROC_REF(self_destruct_warning)), 4 MINUTES, TIMER_STOPPABLE)
 	addtimer(CALLBACK(src, PROC_REF(self_destruct)), 5 MINUTES, TIMER_STOPPABLE)
+	if(!HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+		playsound(loc, 'sound/effects/pred_cloakon.ogg', 15, TRUE)
+		become_warped_invisible(100) //100 is most visible.
 
 /obj/machinery/deployable/mounted/sentry/nut/proc/self_destruct_warning()
 	radio.talk_into(src, "NUT at [AREACOORD_NO_Z(src)] will be self destructing in 1 minute due low power.")
 
 /obj/machinery/deployable/mounted/sentry/nut/proc/self_destruct()
 	radio.talk_into(src, "NUT at [AREACOORD_NO_Z(src)] self destructing.")
-	deconstruct()
+	deconstruct(FALSE)
 
 /obj/machinery/deployable/mounted/sentry/nut/sentry_alert(alert_code, mob/mob)
 	var/obj/item/weapon/gun/gun = get_internal_item()
@@ -175,6 +178,9 @@
 			notice = "<b>ALERT! [src] detected Hostile/Unknown: [mob.name] at: [AREACOORD_NO_Z(src)].</b>"
 			last_alert = world.time
 			walk_towards(src, get_adjacent_open_turfs(mob), 3, 1)
+			if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+				playsound(loc, 'sound/effects/pred_cloakoff.ogg', 25, TRUE)
+				stop_warped_invisible()
 		if(SENTRY_ALERT_AMMO)
 			if(world.time < (last_damage_alert + SENTRY_ALERT_DELAY))
 				return
@@ -188,6 +194,7 @@
 				addtimer(CALLBACK(src, PROC_REF(self_destruct)), 3 SECONDS, TIMER_STOPPABLE)
 		if(SENTRY_ALERT_FALLEN)
 			notice = "<b>ALERT! [src] has been knocked over at: [AREACOORD_NO_Z(src)].</b>"
+			walk(src,0)
 		if(SENTRY_ALERT_DAMAGE)
 			if(world.time < (last_damage_alert + SENTRY_DAMAGE_ALERT_DELAY))
 				return
@@ -201,18 +208,26 @@
 
 /obj/machinery/deployable/mounted/sentry/nut/process()
 	. = ..()
+	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
+		return
 	if(world.time > next_movement)
 		walk(src,0)
 		next_movement = world.time + movement_delay + movement_delay
 		var/atom/target = get_target()
 		if(target)
+			if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+				playsound(loc, 'sound/effects/pred_cloakoff.ogg', 25, TRUE)
+				stop_warped_invisible()
 			switch(rand(1,2))
 				if(1)
 					walk_rand(src, 3, 1)
 				if(2)
 					walk_towards(src, get_adjacent_open_turfs(target), 3, 1)
 		else
-			walk_rand(src, 3, 1)
+			walk_rand(src, 4, 0.3)
+			if(!HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+				playsound(loc, 'sound/effects/pred_cloakon.ogg', 25, TRUE)
+				become_warped_invisible(100) //100 is most visible.
 
 /obj/machinery/deployable/mounted/sentry/nut/disassemble(mob/user)
 	balloon_alert(user, "Not reusable.")

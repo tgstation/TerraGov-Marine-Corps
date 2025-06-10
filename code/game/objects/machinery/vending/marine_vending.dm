@@ -148,6 +148,7 @@
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
 			/obj/item/weapon/gun/rifle/tx54 = 2,
+			/obj/item/storage/box/crate/drone/nut = 4,
 			/obj/item/ammo_magazine/rifle/tx54 = 10,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 10,
 			/obj/item/ammo_magazine/rifle/tx54/smoke = 10,
@@ -177,7 +178,6 @@
 			/obj/item/explosive/grenade/bullet/hefa = 10,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
-			/obj/item/weapon/gun/rifle/drone/nut = 8,
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/rifle/pepperball = 10,

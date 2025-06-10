@@ -47,6 +47,7 @@
 	if(faction == FACTION_SOM)
 		cas_mini.minimap_flags = MINIMAP_FLAG_MARINE_SOM
 		cas_mini.marker_flags = MINIMAP_FLAG_MARINE_SOM
+		eyeobj.faction = FACTION_SOM
 
 /obj/docking_port/mobile/marine_dropship/casplane/som/process()
 	#ifndef TESTING

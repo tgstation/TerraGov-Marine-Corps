@@ -322,6 +322,9 @@
 		if(!istype(lase))
 			to_chat(user, span_warning("That marker has expired."))
 			return
+		if(lase.assigned_faction != user.faction)
+			to_chat(user, span_warning("That marker does not belong to us."))
+			return
 
 		eyeobj.setLoc(get_turf(lase))
 		return
