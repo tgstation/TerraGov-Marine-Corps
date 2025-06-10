@@ -89,6 +89,7 @@
 
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
+		GLOB.mobs_by_ckey_list[ckey(key)] = new_character
 
 	new_character.client.init_verbs()
 	new_character.ooc_notes = new_character.client.prefs.metadata

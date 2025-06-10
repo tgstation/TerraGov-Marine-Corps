@@ -11,6 +11,7 @@ GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys,
 
 GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
+GLOBAL_LIST_EMPTY(mobs_by_ckey_list)		//all mobs with keys, associative via ckey
 GLOBAL_LIST_EMPTY(new_player_list)			//all /mob/new_player
 GLOBAL_LIST_EMPTY(ready_players)			//all /mob/new_player that are (ready == TRUE)
 GLOBAL_LIST_EMPTY(observer_list)			//all /mob/dead/observer
