@@ -145,11 +145,13 @@
 	. = ..()
 	if(user.assigned_squad)
 		user_squad = user.assigned_squad
+	if(user.faction)
+		faction = user.faction
 	var/turf/TU = get_turf(src)
 	if(!istype(TU))
 		return
 	if(is_ground_level(TU.z))
-		target = new(src, null, name, user_squad)//da lazer is stored in the grenade
+		target = new(src, null, name, user_squad, faction)//da lazer is stored in the grenade
 
 /obj/item/explosive/grenade/flare/cas/process()
 	. = ..()

@@ -30,10 +30,10 @@
 	QDEL_NULL(cockpit)
 	return ..()
 
-/obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+/obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser, for_faction = FACTION_TERRAGOV)
 	SIGNAL_HANDLER
 	playsound(src, 'sound/effects/binoctarget.ogg', 15)
-	if(occupant)
+	if(occupant && occupant.faction == for_faction)
 		to_chat(occupant, span_notice("CAS laser detected, [incoming_laser.name] [CAS_JUMP_LINK(incoming_laser)]"))
 
 /obj/structure/caspart/caschair/proc/cas_usable(datum/source)
