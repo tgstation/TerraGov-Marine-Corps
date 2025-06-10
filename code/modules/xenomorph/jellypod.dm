@@ -147,7 +147,7 @@
 		to_chat(xeno_attacker, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
 	balloon_alert(xeno_attacker, "Retrieved jelly") // The following hivenumber is always normal hive, this isn't factionalized correctly!!
-	new /obj/item/reagent_containers/food/snacks/nutrient_jelly(loc, hivenumber)
+	new /obj/item/resin_jelly/reqjelly(loc, hivenumber)
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)
@@ -158,7 +158,7 @@
 		to_chat(user, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
 	balloon_alert(user, "Retrieved jelly") // The following hivenumber is always normal hive, this isn't factionalized correctly!!
-	new /obj/item/reagent_containers/food/snacks/nutrient_jelly(loc, hivenumber)
+	new /obj/item/resin_jelly/reqjelly(loc, hivenumber)
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)
