@@ -587,11 +587,7 @@
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	. += "It is from the [hive.name] hive"
 
-/obj/item/reagent_containers/food/snacks/nutrient_jelly/Initialize(mapload, _hivenumber)
-	hivenumber = _hivenumber
-	. = ..()
-
-/obj/item/reagent_containers/food/snacks/nutrient_jelly/attack_self(mob/living/carbon/xenomorph/user)
+/obj/item/reagent_containers/food/snacks/nutrient_jelly/attack_self(mob/living/carbon/xenomorph/user)Add commentMore actions
 	//Activates if the item itself is clicked in hand.
 	if(!isxeno(user))
 		return
