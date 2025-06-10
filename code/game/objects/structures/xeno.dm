@@ -411,6 +411,19 @@
 	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)
 
 ///////////////////////
+/// Requisition Jelly//
+///////////////////////
+
+/obj/item/resin_jelly/reqjelly
+	name = "alien ambrosia"
+	desc = "A beautiful, glittering mound of honey like resin, might fetch a good price from the right hive."
+	icon = 'ntf_modular/icon/xeno/xeno_materials.dmi'
+	icon_state = "reqjelly"
+	w_class = WEIGHT_CLASS_TINY // 100 can fit into a box, transport by satchel is trivial
+	// Could consider giving it different soft_armor values than regular resin jelly?
+	// Currently does everything resin jelly does, so it might need custom code for doing anything special
+
+///////////////////////
 /// Globadier Mines ///
 ///////////////////////
 
@@ -567,7 +580,7 @@
 	bitesize = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("vague sweetness" = 1, "water" = 2)
-	var/hivenumber = XENO_HIVE_NORMAL
+	var/hivenumber = XENO_HIVE_ALPHA
 
 /obj/item/reagent_containers/food/snacks/nutrient_jelly/examine(mob/user)
 	. = ..()

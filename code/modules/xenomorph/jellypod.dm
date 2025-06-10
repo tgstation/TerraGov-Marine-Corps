@@ -84,8 +84,8 @@
 		START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/resin_stew_pod
-	name = "alien stew pod"
-	desc = "A large pot of thick viscious liquid churning together endlessly into large mounds of valuable, edible jelly."
+	name = "ambrosia jelly pot"
+	desc = "A large pot of thick viscious liquid churning together endlessly into large mounds of incredibly valuable, golden jelly."
 	icon = 'ntf_modular/icons/xeno/resin_pod.dmi'
 	icon_state = "stewpod"
 	density = FALSE
@@ -101,9 +101,9 @@
 	///How many actual jellies the pod has stored
 	var/chargesleft = 0
 	///Max amount of jellies the pod can hold
-	var/maxcharges = 10
+	var/maxcharges = 5 //half the amount
 	///Every 5 times this number seconds we will create a jelly
-	var/recharge_rate = 10
+	var/recharge_rate = 28 //140 seconds per jelly
 	///Countdown to the next time we generate a jelly
 	var/nextjelly = 0
 
@@ -146,8 +146,8 @@
 		balloon_alert(xeno_attacker, "No jelly remaining")
 		to_chat(xeno_attacker, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
-	balloon_alert(xeno_attacker, "Retrieved jelly")
-	new /obj/item/reagent_containers/food/snacks/nutrient_jelly(loc, hivenumber) // I tried to look in cable.dm to see how repairing repeats itself for this, but im too lazy to figure that out
+	balloon_alert(xeno_attacker, "Retrieved jelly") // The following hivenumber is always normal hive, this isn't factionalized correctly!!
+	new /obj/item/reagent_containers/food/snacks/nutrient_jelly(loc, hivenumber)
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)
@@ -157,7 +157,7 @@
 		balloon_alert(user, "No jelly remaining")
 		to_chat(user, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
-	balloon_alert(user, "Retrieved jelly")
+	balloon_alert(user, "Retrieved jelly") // The following hivenumber is always normal hive, this isn't factionalized correctly!!
 	new /obj/item/reagent_containers/food/snacks/nutrient_jelly(loc, hivenumber)
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))

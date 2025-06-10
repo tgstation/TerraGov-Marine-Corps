@@ -36,7 +36,7 @@
 	/// These factions will not be attacked by turrets of this hive but cannot sell their resin jelly or corpses.
 	var/list/allied_factions = list(FACTION_CLF, FACTION_XENO)
 	/// Supply and dropship points given when a non-allied faction sells one edible jelly from this faction.
-	var/jelly_export_value = list(13,0)
+	var/jelly_export_value = list(12,0) // Currently 12 because its hard to balance, will be reworked in the future
 
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new
