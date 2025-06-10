@@ -283,7 +283,7 @@
 	name = "Place Stew pod"
 	action_icon_state = "resin_stew_pod"
 	action_icon = 'icons/Xeno/actions/construction.dmi'
-	desc = "Place down a dispenser that allows xenos to retrieve valuable, edible jelly, but humans can steal it."
+	desc = "Place down a dispenser that allows xenos to retrieve valuable, edible jelly that can be stolen and sold by humans."
 	ability_cost = 500
 	cooldown_duration = 1 MINUTES
 	keybinding_signals = list(
