@@ -28,6 +28,7 @@
 
 /obj/structure/xeno/resin_stew_pod/Initialize(mapload, _hivenumber)
 	. = ..()
+	GLOB.hive_datums[hivenumber].req_jelly_pods += src
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/resin_stew_pod/Destroy()
@@ -104,6 +105,7 @@
 		for(var/i = 1 to chargesleft)
 			if(prob(95))
 				new /obj/item/resin_jelly/reqjelly(loc, hivenumber)
+	GLOB.hive_datums[hivenumber].req_jelly_pods -= src
 	. = ..()
 
 ///////////////////////
