@@ -18,12 +18,12 @@
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
-			T.balloon_alert(owner, "Cannot place pot")
+			owner.balloon_alert(owner, "Cannot place pot")
 		return FALSE
 
 	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
-			T.balloon_alert(owner, "Cannot place pot, no weeds")
+			owner.balloon_alert(owner, "Cannot place pot, no weeds")
 		return FALSE
 
 	if(!T.check_disallow_alien_fortification(owner, silent))
@@ -36,13 +36,13 @@
 	for(var/obj/silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
 		if((silo.z == xeno_owner.z) && (get_dist(xeno_owner, silo) < 15))
 			if(!silent)
-				T.balloon_alert(owner, "One of our hive's silos is too close!")
+				owner.balloon_alert(owner, "One of our hive's silos is too close!")
 			return FALSE
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	for(var/obj/req_jelly_pod AS in hive.req_jelly_pods)
 		if((req_jelly_pod.z == xeno_owner.z) && (get_dist(xeno_owner, req_jelly_pod) < 10))
 			if(!silent)
-				T.balloon_alert(owner, "One of our hive's ambrosia pots is too close!")
+				owner.balloon_alert(owner, "One of our hive's ambrosia pots is too close!")
 			return FALSE
 
 /datum/action/ability/xeno_action/place_stew_pod/action_activate()

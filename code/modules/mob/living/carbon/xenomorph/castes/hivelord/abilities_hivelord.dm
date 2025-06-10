@@ -170,11 +170,11 @@
 	var/turf/T = get_turf(owner)
 	if(locate(/obj/structure/xeno/tunnel) in T)
 		if(!silent)
-			T.balloon_alert(owner, "Tunnel already here")
+			owner.balloon_alert(owner, "Tunnel already here")
 		return
 	if(!T.can_dig_xeno_tunnel())
 		if(!silent)
-			T.balloon_alert(owner, "Cannot dig, bad terrain")
+			owner.balloon_alert(owner, "Cannot dig, bad terrain")
 		return FALSE
 	if(owner.get_active_held_item())
 		if(!silent)
@@ -198,7 +198,7 @@
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	T.balloon_alert(xeno_owner, "Tunnel dug")
+	owner.balloon_alert(xeno_owner, "Tunnel dug")
 	xeno_owner.visible_message(span_xenonotice("\The [xeno_owner] digs out a tunnel entrance."), \
 	span_xenonotice("We dig out a tunnel, connecting it to our network."), null, 5)
 	var/obj/structure/xeno/tunnel/newt = new(T, xeno_owner.get_xeno_hivenumber())
@@ -254,12 +254,12 @@
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
-			T.balloon_alert(owner, "Cannot place pod")
+			owner.balloon_alert(owner, "Cannot place pod")
 		return FALSE
 
 	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
-			T.balloon_alert(owner, "Cannot place pod, no weeds")
+			owner.balloon_alert(owner, "Cannot place pod, no weeds")
 		return FALSE
 
 	if(!T.check_disallow_alien_fortification(owner, silent))
