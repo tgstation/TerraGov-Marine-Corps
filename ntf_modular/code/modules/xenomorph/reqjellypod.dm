@@ -80,12 +80,12 @@
 				deconstruct(FALSE)
 			return
 
-		if(!(chargesleft > 0))
-			balloon_alert(xeno_attacker, "No jelly remaining")
-			to_chat(xeno_attacker, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
-			return
-
 		do
+			if(!(chargesleft > 0))
+				balloon_alert(xeno_attacker, "No jelly remaining")
+				to_chat(xeno_attacker, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
+				return
+
 			balloon_alert(xeno_attacker, "Retrieved jelly")
 			new /obj/item/resin_jelly/reqjelly(xeno_attacker.loc, hivenumber)
 			chargesleft--
