@@ -570,17 +570,16 @@
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/nutrient_jelly
-	name = "nutrient jelly"
+	name = "nutrient jelly"More actions
 	desc = "A perplexing, soft mesh of almost bready protein-fibers. It's warm and spongey to the touch, and smells edible."
 	icon = 'icons/obj/items/food/xeno.dmi'
 	icon_state = "edible_biomass_mono"
-	w_class = WEIGHT_CLASS_TINY
 	greyscale_config = /datum/greyscale_config/nutrient_jelly
 	greyscale_colors = "#f47e7e"
 	bitesize = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("vague sweetness" = 1, "water" = 2)
-	var/hivenumber = XENO_HIVE_ALPHA
+	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/item/reagent_containers/food/snacks/nutrient_jelly/examine(mob/user)
 	. = ..()
