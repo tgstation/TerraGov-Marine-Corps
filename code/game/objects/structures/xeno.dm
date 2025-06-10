@@ -417,7 +417,7 @@
 /obj/item/resin_jelly/reqjelly
 	name = "alien ambrosia"
 	desc = "A beautiful, glittering mound of honey like resin, might fetch a good price from the right hive."
-	icon = 'ntf_modular/icon/xeno/xeno_materials.dmi'
+	icon = 'ntf_modular/icons/xeno/xeno_materials.dmi'
 	icon_state = "reqjelly"
 	w_class = WEIGHT_CLASS_TINY // 100 can fit into a box, transport by satchel is trivial
 	// Could consider giving it different soft_armor values than regular resin jelly?
