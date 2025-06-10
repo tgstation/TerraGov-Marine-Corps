@@ -1,0 +1,4 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Edible jelly can be absorbed back if activated in hand"

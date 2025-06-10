@@ -236,7 +236,7 @@
 		if(MODE_CAS)
 			to_chat(user, span_notice("TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE."))
 			log_game("[key_name(user)] has begun lasing a CAS mission at [AREACOORD(TU)].")
-			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, 0, laz_name, S)
+			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, 0, laz_name, S, user.faction)
 			laser = CS
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(laser)

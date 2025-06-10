@@ -3,7 +3,7 @@
 	priority = ADVICE_PRIORITY_SHOCK
 
 /datum/scanner_advice/traumatic_shock/can_show(mob/living/carbon/human/patient, mob/user)
-	if(patient.reagents.has_reagent(/datum/reagent/medicalnanites) || patient.reagents.has_reagent(/datum/reagent/medicine/paracetamol))
+	if(patient.reagents.has_reagent(/datum/reagent/medicine/paracetamol))
 		return FALSE
 	if(patient.traumatic_shock > 40 && !patient.reagents.has_reagent(/datum/reagent/medicine/tramadol))
 		return TRUE

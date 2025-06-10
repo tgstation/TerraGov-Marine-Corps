@@ -29,6 +29,8 @@
 	. = list()
 	.["equipment_data"] = list()
 	for(var/obj/effect/overlay/temp/laser_target/laser_target in GLOB.active_laser_targets)
+		if(user.faction != laser_target.faction) //we dont see others lasers
+			continue
 		var/area/laser_area = get_area(laser_target)
 		.["targets_data"] += list(list("target_name" = "[laser_target.name] ([laser_area.name])", "target_tag" = laser_target.target_id))
 	shuttle_equipments = shuttle.equipments
