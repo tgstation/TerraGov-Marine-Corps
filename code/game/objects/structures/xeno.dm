@@ -584,3 +584,16 @@
 	if(!do_after(user, RESIN_SELF_TIME, TRUE, user, BUSY_ICON_MEDICAL))
 		return
 	qdel(src)
+
+///////////////////////
+/// Requisition Jelly//
+///////////////////////
+
+/obj/item/resin_jelly/reqjelly
+	name = "alien ambrosia"
+	desc = "A beautiful, glittering mound of honey like resin, might fetch a good price from the right hive."
+	icon = 'ntf_modular/icons/xeno/xeno_materials.dmi'
+	icon_state = "reqjelly"
+	w_class = WEIGHT_CLASS_TINY // 100 can fit into a box, transport by satchel is trivial
+	// Could consider giving it different soft_armor values than regular resin jelly?
+	// Currently does everything resin jelly does, so it might need custom code for doing anything special
