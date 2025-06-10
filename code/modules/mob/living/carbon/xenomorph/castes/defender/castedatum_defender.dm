@@ -57,6 +57,7 @@
 		/datum/action/ability/xeno_action/tail_sweep,
 		/datum/action/ability/xeno_action/regenerate_skin,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 /datum/xeno_caste/defender/ancient
@@ -84,4 +85,5 @@
 		/datum/action/ability/xeno_action/regenerate_skin,
 		/datum/action/ability/xeno_action/centrifugal_force,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)

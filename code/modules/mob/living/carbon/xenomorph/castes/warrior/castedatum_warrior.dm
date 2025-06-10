@@ -57,6 +57,7 @@
 		/datum/action/ability/activable/xeno/warrior/grapple_toss,
 		/datum/action/ability/activable/xeno/warrior/punch,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 /datum/xeno_caste/warrior/normal
@@ -84,4 +85,5 @@
 		/datum/action/ability/activable/xeno/warrior/punch,
 		/datum/action/ability/activable/xeno/warrior/punch/flurry,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)

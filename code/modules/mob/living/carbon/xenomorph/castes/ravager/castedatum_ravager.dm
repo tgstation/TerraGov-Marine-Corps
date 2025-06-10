@@ -56,6 +56,7 @@
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 	///multiplier on plasma amount vs damage that is recieved on attack
 	var/plasma_damage_dealt_mult = 1.5
@@ -97,6 +98,7 @@
 		/datum/action/ability/xeno_action/rage,
 		/datum/action/ability/xeno_action/vampirism,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 
@@ -130,6 +132,7 @@
 		/datum/action/ability/xeno_action/rage,
 		/datum/action/ability/xeno_action/bloodthirst,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 	plasma_damage_dealt_mult = 2
 	plasma_damage_recieved_mult = 0.75
@@ -159,4 +162,5 @@
 		/datum/action/ability/xeno_action/bloodthirst,
 		/datum/action/ability/xeno_action/deathmark,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
