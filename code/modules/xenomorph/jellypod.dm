@@ -86,7 +86,7 @@
 /obj/structure/xeno/resin_stew_pod
 	name = "alien stew pod"
 	desc = "A large pot of thick viscious liquid churning together endlessly into large mounds of valuable, edible jelly."
-	icon = 'icons/Xeno/resin_pod.dmi'
+	icon = 'ntf_modular/icons/xeno/resin_pod.dmi'
 	icon_state = "stewpod"
 	density = FALSE
 	opacity = FALSE
