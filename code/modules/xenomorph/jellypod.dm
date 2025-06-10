@@ -83,20 +83,6 @@
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)
 
-
-///////////////////////
-/// Requisition Jelly//
-///////////////////////
-
-/obj/item/resin_jelly/reqjelly
-	name = "alien ambrosia"
-	desc = "A beautiful, glittering mound of honey like resin, might fetch a good price from the right hive."
-	icon = 'ntf_modular/icons/xeno/xeno_materials.dmi'
-	icon_state = "reqjelly"
-	w_class = WEIGHT_CLASS_TINY // 100 can fit into a box, transport by satchel is trivial
-	// Could consider giving it different soft_armor values than regular resin jelly?
-	// Currently does everything resin jelly does, so it might need custom code for doing anything special
-
 /obj/structure/xeno/resin_stew_pod
 	name = "ambrosia jelly pot"
 	desc = "A large pot of thick viscious liquid churning together endlessly into large mounds of incredibly valuable, golden jelly."
