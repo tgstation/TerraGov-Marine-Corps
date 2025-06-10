@@ -597,4 +597,3 @@
 	w_class = WEIGHT_CLASS_TINY // 100 can fit into a box, transport by satchel is trivial
 	// Could consider giving it different soft_armor values than regular resin jelly?
 	// Currently does everything resin jelly does, so it might need custom code for doing anything special
-	qdel(src)
