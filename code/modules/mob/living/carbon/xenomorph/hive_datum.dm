@@ -37,6 +37,8 @@
 	var/list/allied_factions = list(FACTION_CLF, FACTION_XENO)
 	/// Supply and dropship points given when a non-allied faction sells one resin jelly from this faction.
 	var/jelly_export_value = list(6,0)
+	/// Nutrient jelly is extra valuable, the hives primary trading commodity
+	var/foodjelly_export_value = list(13,0)
 
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new

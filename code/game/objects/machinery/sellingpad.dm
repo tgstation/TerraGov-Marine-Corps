@@ -74,6 +74,10 @@
 			can_sell = TRUE
 		if(istype(onpad, /obj/item/disk/intel_disk))
 			can_sell = TRUE
+		if(istype(onpad, /obj/item/reagent_containers/food/snacks/nutrient_jelly))
+			can_sell = TRUE
+		if(istype(onpad, /obj/item/resin_jelly))
+			can_sell = TRUE
 		if(!can_sell)
 			continue
 		var/list/datum/export_report/export_reports = onpad.supply_export(user.faction)
