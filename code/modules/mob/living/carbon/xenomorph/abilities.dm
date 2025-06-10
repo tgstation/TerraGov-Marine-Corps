@@ -2145,7 +2145,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 		return FALSE
 
 /datum/action/ability/xeno_action/create_edible_jelly/action_activate()
-	var/obj/item/reagent_containers/food/snacks/nutrient_jelly/jelly = new(owner.loc)
+	var/obj/item/reagent_containers/food/snacks/nutrient_jelly/jelly = new(owner.loc, owner.get_xeno_hivenumber())
 
 	var/datum/preferences/prefs = owner.client.prefs
 
