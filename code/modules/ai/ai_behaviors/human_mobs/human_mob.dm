@@ -294,7 +294,7 @@
 	if(isliving(movable_target))
 		var/mob/living/living_target = target
 		if(!living_target.stat)
-			set_escorted_atom(living_target)
+			set_escorted_atom(null, living_target)
 	set_interact_target(movable_target)
 	try_speak(pick(receive_order_chat))
 

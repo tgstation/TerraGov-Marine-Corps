@@ -1,4 +1,0 @@
-author: "Apple-107"
-delete-after: True
-changes:
-  - bugfix: "tadpole parts fabricator was not added to all maps, this corrects that"
