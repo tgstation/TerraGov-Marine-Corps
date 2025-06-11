@@ -71,7 +71,7 @@
 		START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/resin_jelly_pod/attack_hand(mob/living/user)
-	if(!issamexenohive(user))
+	if(!issamexenohive(user)) // No longer exportable, so humans don't need to steal it
 		return ..()
 	if(!chargesleft)
 		balloon_alert(user, "No jelly remaining")

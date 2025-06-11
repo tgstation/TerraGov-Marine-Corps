@@ -55,6 +55,7 @@
 		/datum/action/ability/xeno_action/evasion,
 		/datum/action/ability/activable/xeno/pounce/runner,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 /datum/xeno_caste/runner/normal
@@ -80,6 +81,7 @@
 		/datum/action/ability/activable/xeno/pounce/runner,
 		/datum/action/ability/activable/xeno/snatch,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 /datum/xeno_caste/runner/melter
@@ -119,6 +121,7 @@
 		/datum/action/ability/activable/xeno/melter_shroud,
 		/datum/action/ability/xeno_action/xenohide,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 /datum/xeno_caste/runner/melter/normal
@@ -144,4 +147,5 @@
 		/datum/action/ability/activable/xeno/acidic_missile,
 		/datum/action/ability/xeno_action/xenohide,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)

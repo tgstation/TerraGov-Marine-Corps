@@ -59,6 +59,7 @@
 		/datum/action/ability/xeno_action/ready_charge,
 		/datum/action/ability/activable/xeno/cresttoss,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 /datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
@@ -94,4 +95,5 @@
 		/datum/action/ability/activable/xeno/cresttoss,
 		/datum/action/ability/activable/xeno/advance,
 		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
