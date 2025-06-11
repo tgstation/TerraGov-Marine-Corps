@@ -36,3 +36,7 @@
 2025-06-09:
   Runian:
   - balance: Surplus Clothing Vendor now vends empty flare pouches.
+2025-06-11:
+  Lumipharon:
+  - bugfix: fixed an item runtime
+  - bugfix: fixed NPC's being told to follow someone, not actually doing so
