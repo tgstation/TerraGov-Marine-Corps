@@ -70,7 +70,7 @@
 			if((!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && (get_dist(T1, T2) > range)))
 				if(!check_other_rights(M.client, R_ADMIN, FALSE))
 					continue
-			if((M.faction != FACTION_NEUTRAL && user.faction != FACTION_NEUTRAL ) && M.faction != user.faction)
+			if((M.faction != FACTION_NEUTRAL && user.faction != FACTION_NEUTRAL ) && M.faction != user.faction && !check_other_rights(M.client, R_ADMIN, FALSE))
 				user.balloon_alert(M, "does something you cannot see.")
 				continue
 			// If this is not meant to be visible to ghosts, make sure not to display it unless the user is an admin

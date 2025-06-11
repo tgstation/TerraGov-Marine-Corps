@@ -12,7 +12,7 @@
 	set category = "Preferences"
 	set name = "Toggle Ghost Ears"
 
-	if(!check_other_rights(usr, R_ADMIN, FALSE))
+	if(!check_other_rights(usr.client, R_ADMIN, FALSE))
 		to_chat(src, span_notice("Ghost ears are only useable by admins."))
 		return
 	prefs.toggles_chat ^= CHAT_GHOSTEARS
@@ -36,7 +36,7 @@
 	set category = "Preferences"
 	set name = "Toggle Ghost Sight"
 
-	if(!check_other_rights(usr, R_ADMIN, FALSE))
+	if(!check_other_rights(usr.client, R_ADMIN, FALSE))
 		to_chat(src, span_notice("Ghost sight is only useable by admins."))
 		return
 	prefs.toggles_chat ^= CHAT_GHOSTSIGHT
