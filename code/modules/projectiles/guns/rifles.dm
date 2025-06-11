@@ -3033,6 +3033,8 @@
 		/obj/item/ammo_magazine/rifle/sh410_sabot,
 		/obj/item/ammo_magazine/rifle/sh410_buckshot,
 		/obj/item/ammo_magazine/rifle/sh410_tracker,
+		/obj/item/ammo_magazine/rifle/sh410_ricochet,
+		/obj/item/ammo_magazine/rifle/sh410_gas,
 	)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
