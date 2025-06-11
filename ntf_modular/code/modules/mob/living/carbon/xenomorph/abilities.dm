@@ -51,12 +51,13 @@
 	succeed_activate()
 	var/hivenumber = owner.get_xeno_hivenumber()
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-	var/existing_pods = 0
+	var/list/existing_pods = list()
 	for(var/obj/structure/xeno/resin_stew_pod/resin_stew_pod AS in hive.req_jelly_pods)
 		if(resin_stew_pod.creator_ckey == xeno_owner.ckey)
-			existing_pods++
-			if(existing_pods >= 2) // max two per xeno
-				qdel(resin_stew_pod)
+			existing_pods += resin_stew_pod
+			if(length(existing_pods) >= 2) // max two per xeno
+				qdel(existing_pods[1]) // should be the oldest one
+				existing_pods -= null
 				to_chat(owner, span_xenonotice("One of your existing ambrosia pots was destroyed because you have too many."))
 	playsound(owner, SFX_ALIEN_RESIN_BUILD, 25)
 	var/obj/structure/xeno/resin_stew_pod/pod = new(T, hivenumber)
