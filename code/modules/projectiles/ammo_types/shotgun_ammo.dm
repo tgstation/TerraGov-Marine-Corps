@@ -396,9 +396,12 @@
 /datum/ammo/bullet/shotgun/sh410_ricochet/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	reflect(target_turf, proj, 20)
 
-/// Trailing gas rounds
-/// Might just do like tangle* and tacsmoke (for chamber tech like in BR8 incendiary) since there isn't really much I can think of (atleast in HvX)
-/// Will have to make rounds that drop gas on turf
+/**
+ * Trailing gas rounds
+ * Might just do like tangle* and tacsmoke (for chamber tech like in BR8 incendiary) since there isn't really much I can think of (atleast in HvX)
+ * Will have to make rounds that drop gas on turf
+**/
+
 
 /datum/ammo/bullet/shotgun/sh410_gas
 	name = "light autoshotgun gas shell"
