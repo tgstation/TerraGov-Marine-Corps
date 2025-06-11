@@ -7,12 +7,17 @@
 	///List of all teleportable types
 	var/static/list/teleportable_types = list(
 		/obj/structure/closet,
-		/mob/living/carbon/human,
+		/mob/living,
 		/obj/machinery,
+		/obj/structure/largecrate,
+	)
+	var/static/list/teleportable_while_anchored_types = list(
+		/obj/vehicle,
 	)
 	///List of banned teleportable types
 	var/static/list/blacklisted_types = list(
-		/obj/machinery/nuclearbomb
+		/obj/machinery/nuclearbomb,
+		/obj/vehicle/sealed/armored/multitile,
 	)
 
 /obj/machinery/deployable/teleporter/examine(mob/user)
@@ -26,10 +31,13 @@
 		. += "It is not linked to any other teleporter."
 
 
-/obj/machinery/deployable/teleporter/Initialize(mapload)
+/obj/machinery/deployable/teleporter/Initialize(mapload, _internal_item, mob/deployer)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "teleporter", MINIMAP_BLIPS_LAYER))
-
+	if(!ownerflag)
+		ownerflag = MINIMAP_FLAG_MARINE
+	SSminimaps.add_marker(src, ownerflag, image('icons/UI_icons/map_blips.dmi', null, "teleporter", MINIMAP_BLIPS_LAYER))
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	log_combat(deployer,src,"deployed",addition=" in [loc_name(src)], linked teleporter is \[[kit?.linked_teleporter ? kit?.linked_teleporter : "*null*"]\] in [loc_name(kit?.linked_teleporter)]")
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
 	. = ..()
@@ -57,10 +65,6 @@
 	var/obj/machinery/deployable/teleporter/deployed_linked_teleporter = kit.linked_teleporter.loc
 	var/obj/item/teleporter_kit/linked_kit = deployed_linked_teleporter.get_internal_item()
 
-	if(deployed_linked_teleporter.z != z)
-		to_chat(user, span_warning("[src] and [deployed_linked_teleporter] are too far apart!"))
-		return
-
 	if(!deployed_linked_teleporter.powered() && (!linked_kit?.cell || linked_kit.cell.charge < TELEPORTING_COST))
 		to_chat(user, span_warning("[deployed_linked_teleporter] is not powered!"))
 		return
@@ -68,6 +72,9 @@
 	var/list/atom/movable/teleporting = list()
 	for(var/atom/movable/thing in loc)
 		if(is_type_in_list(thing, blacklisted_types))
+			continue
+		if(is_type_in_list(thing, teleportable_while_anchored_types))
+			teleporting += thing
 			continue
 		if(is_type_in_list(thing, teleportable_types) && !thing.anchored)
 			teleporting += thing
@@ -113,13 +120,12 @@
 		return FALSE
 	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 	to_chat(user , span_notice("You remove [kit.cell] from \the [src]."))
+	log_combat(user,src,"removed a cell from",addition=" in [loc_name(src)], linked teleporter is \[[kit?.linked_teleporter ? kit?.linked_teleporter : "*null*"]\] in [loc_name(kit?.linked_teleporter)]")
 	user.put_in_hands(kit.cell)
 	kit.cell = null
 	update_icon()
 
 /obj/machinery/deployable/teleporter/attackby(obj/item/I, mob/user, params)
-	if(!ishuman(user))
-		return FALSE
 	if(!istype(I, /obj/item/cell))
 		return FALSE
 	var/obj/item/teleporter_kit/kit = get_internal_item()
@@ -133,6 +139,7 @@
 	user.temporarilyRemoveItemFromInventory(I)
 	I.forceMove(kit)
 	kit.cell = I
+	log_combat(user,src,"added a cell to",addition=" in [loc_name(src)], linked teleporter is \[[kit?.linked_teleporter ? kit?.linked_teleporter : "*null*"]\] in [loc_name(kit?.linked_teleporter)]")
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	update_icon()
 
@@ -143,6 +150,27 @@
 		icon_state = default_icon_state + "_on"
 		return
 	icon_state = default_icon_state
+
+/obj/machinery/deployable/teleporter/disassemble(mob/user)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	log_combat(user, src, "deconstructed", addition=" in [loc_name(src)], linked teleporter is \[[kit?.linked_teleporter ? kit?.linked_teleporter : "*null*"]\] in [loc_name(kit?.linked_teleporter)]")
+	. = ..()
+
+/obj/machinery/deployable/teleporter/hitby(atom/movable/AM, speed = 5)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	. = ..()
+	log_combat(AM.thrower, src, "thrown at", AM, " in [loc_name(src)], linked teleporter is \[[kit?.linked_teleporter ? kit?.linked_teleporter : "*null*"]\] in [loc_name(kit?.linked_teleporter)]")
+
+/obj/machinery/deployable/teleporter/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = 0)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	. = ..()
+	log_combat(user, src, "attacked", "(DAMTYPE: [uppertext(damage_type)]) (RAW DMG: [damage_amount]) in [loc_name(src)], linked teleporter is \[[kit?.linked_teleporter ? kit?.linked_teleporter : "*null*"]\] in [loc_name(kit?.linked_teleporter)]")
+
+/obj/machinery/deployable/teleporter/bullet_act(atom/movable/projectile/proj)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	. = ..()
+	log_combat(proj.firer, src, "shot", proj, " in [loc_name(src)], linked teleporter is \[[kit?.linked_teleporter ? kit?.linked_teleporter : "*null*"]\] in [loc_name(kit?.linked_teleporter)]")
+
 
 /obj/item/teleporter_kit
 	name = "\improper ASRS Bluespace teleporter"
@@ -176,11 +204,21 @@
 
 
 /obj/item/teleporter_kit/Destroy()
+	log_combat(usr, src, "destroyed", addition=" in [loc_name(src)], linked teleporter is \[[linked_teleporter ? linked_teleporter : "*null*"]\] in [loc_name(linked_teleporter)]")
 	if(linked_teleporter)
 		linked_teleporter.linked_teleporter = null
 		linked_teleporter = null
 	QDEL_NULL(cell)
 	return ..()
+
+/obj/item/teleporter_kit/examine(mob/user)
+	. = ..()
+	if(!cell)
+		. += "It is currently lacking a power cell."
+	if(linked_teleporter)
+		. += "It is currently linked to Teleporter #[linked_teleporter.self_tele_tag] at [get_area(linked_teleporter)]"
+	else
+		. += "It is not linked to any other teleporter."
 
 ///Link the two teleporters
 /obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/link_teleport)
@@ -208,6 +246,7 @@
 
 	set_linked_teleporter(gadget)
 	gadget.set_linked_teleporter(src)
+	log_combat(user,src,"linked",object=gadget,addition=" in [loc_name(src)]")
 	return
 
 /obj/item/teleporter_kit/attack_self(mob/user)
@@ -217,6 +256,21 @@
 	if(!linked_teleporter)
 		return
 	user.forceMove(get_turf(linked_teleporter))
+
+/obj/item/teleporter_kit/hitby(atom/movable/AM, speed = 5)
+	. = ..()
+	log_combat(AM.thrower, src, "thrown at", AM, " in [loc_name(src)], linked teleporter is \[[linked_teleporter ? linked_teleporter : "*null*"]\] in [loc_name(linked_teleporter)]")
+
+
+/obj/item/teleporter_kit/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = 0)
+	. = ..()
+	log_combat(user, src, "attacked", "(DAMTYPE: [uppertext(damage_type)]) (RAW DMG: [damage_amount]) in [loc_name(src)], linked teleporter is \[[linked_teleporter ? linked_teleporter : "*null*"]\] in [loc_name(linked_teleporter)]")
+
+
+/obj/item/teleporter_kit/bullet_act(atom/movable/projectile/proj)
+	. = ..()
+	log_combat(proj.firer, src, "shot", proj, " in [loc_name(src)], linked teleporter is \[[linked_teleporter ? linked_teleporter : "*null*"]\] in [loc_name(linked_teleporter)]")
+
 
 /obj/effect/teleporter_linker
 	name = "\improper ASRS bluespace teleporters"
@@ -228,5 +282,5 @@
 	var/obj/item/teleporter_kit/teleporter_b = new(loc)
 	teleporter_a.set_linked_teleporter(teleporter_b)
 	teleporter_b.set_linked_teleporter(teleporter_a)
+	log_combat(src,teleporter_a,"linked",object=teleporter_b,addition=" in [loc_name(src)]")
 	qdel(src)
-

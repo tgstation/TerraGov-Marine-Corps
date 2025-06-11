@@ -1,0 +1,4 @@
+author: "FriedrichRatzel"
+delete-after: True
+changes:
+  - balance: "Intel computers no longer award points instantly. Instead, they produce a data disk - players have to redeem their points in req. Beware, data loses its value after twenty minutes."

@@ -18,11 +18,17 @@
 #define CAPE_FULL "cape_full"
 #define CAPE_BACK "cape_back"
 #define CAPE_COVER "cape_cover"
+#define CAPE_COVER_ALT "cape_cover_alt"
+#define CAPE_OVERLORD "cape_overlord"
+#define CAPE_OVERLORD_ALT "cape_overlord_alt"
+#define CAPE_OVERLORD_ALT_2 "cape_overlord_alt_2"
 #define CAPE_SHOAL "cape_shoal"
 #define CAPE_SHOAL_BACK "cape_shoal_back"
 #define CAPE_SHOAL_ALT "cape_shoal_alt"
+#define CAPE_STAR "cape_star"
 #define CAPE_RAPIER_R "cape_rapier_r"
 #define CAPE_RAPIER_L "cape_rapier_l"
+#define CAPE_JACKET "cape_jacket"
 #define CAPE_KAMA "cape_kama"
 #define CAPE_KILT "cape_kilt"
 #define CAPE_KILT_ALT "cape_kilt_alt"
@@ -69,11 +75,16 @@ GLOBAL_LIST_INIT(loadout_variant_keys, list(
 	CAPE_BACK = "back",
 	CAPE_COVER = "cover",
 	CAPE_COVER_ALT = "cover (alt)",
+	CAPE_OVERLORD = "overlord",
+	CAPE_OVERLORD_ALT = "overlord (alt 1)",
+	CAPE_OVERLORD_ALT_2 = "overlord (alt 2)",
 	CAPE_SHOAL = "shoal",
 	CAPE_SHOAL_BACK = "shoal (back)",
 	CAPE_SHOAL_ALT = "shoal (alt)",
+	CAPE_STAR = "star",
 	CAPE_RAPIER_R = "rapier (right)",
 	CAPE_RAPIER_L = "rapier (left)",
+	CAPE_JACKET = "jacket",
 	CAPE_KAMA = "kama",
 	CAPE_KILT = "kilt",
 	CAPE_KILT_ALT = "kilt (alt)",

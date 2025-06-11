@@ -34,9 +34,9 @@
 	starting_faction_mission_brief = "Intelligence has pinpointed the SOM's Bluespace core on this remote lunar base. The core powers all SOM teleporter arrays in the system. \
 		If we can destroy the core, we'll completely disable the SOM's ability to deploy forces into the field, crippling their mobility. \
 		Move quickly and destroy the core at all costs, expect heavy resistance."
-	hostile_faction_mission_brief = "Emergency scramble order received: TGMC forces detected enroute to lunar Bluespace core facility. \
+	hostile_faction_mission_brief = "Emergency scramble order received: NTC forces detected enroute to lunar Bluespace core facility. \
 		Protect the Bluespace core at all costs, without it all teleporter arrays in the system will be permanently disabled, severely restricting our mobility. \
-		Eliminate all TGMC forces you encounter and secure the facility, or hold them off until further reinforcements can arrive."
+		Eliminate all NTC forces you encounter and secure the facility, or hold them off until further reinforcements can arrive."
 	starting_faction_additional_rewards = "Permanently disable the SOM's ability to deploy via teleportation and impair their logistic network"
 	hostile_faction_additional_rewards = "Additional use of the teleporter array will be granted if the Bluespace core can be protected"
 

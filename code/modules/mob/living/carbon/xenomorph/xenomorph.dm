@@ -17,6 +17,10 @@
 	mini.give_action(src)
 	add_abilities()
 
+	var/datum/game_mode/mode = SSticker.mode
+	if(mode.round_type_flags & MODE_SURVIVAL)
+		DISABLE_BITFIELD(sight, SEE_MOBS)
+
 	create_reagents(1000)
 	gender = NEUTER
 
@@ -40,6 +44,9 @@
 
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
+
+	genital_overlay = new(src, src)
+	vis_contents += genital_overlay
 
 	fire_overlay = new(src, src)
 	vis_contents += fire_overlay
@@ -191,13 +198,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			return 0
-		if(601 to 1500)
+		if(601 to 3000)
 			return 1
-		if(1501 to 4200)
+		if(3001 to 9000)
 			return 2
-		if(4201 to 10500)
+		if(9001 to 18000)
 			return 3
-		if(10501 to INFINITY)
+		if(18001 to INFINITY)
 			return 4
 		else
 			return 0
@@ -247,30 +254,43 @@
 	. += xeno_caste.caste_desc
 	. += "<span class='notice'>"
 
+	if(xeno_desc)
+		. += "\n<span class='info'>[span_collapsible("Flavor Text", "[xeno_desc]")]</span>"
+
+	if(xenoprofile_pic)
+		. += "<span class='info'><img src=[xenoprofile_pic] width=300 height=350/></span>"
+
 	if(stat == DEAD)
-		. += "<span class='deadsay'>It is DEAD. Kicked the bucket. Off to that great hive in the sky.</span>"
+		. += "<span class='deadsay'>[p_they(TRUE)] is DEAD. Kicked the bucket. Off to that great hive in the sky.</span>"
 	else if(stat == UNCONSCIOUS)
-		. += "It quivers a bit, but barely moves."
+		. += "[p_they(TRUE)] quivers a bit, but barely moves."
 	else
 		var/percent = (health / maxHealth * 100)
 		switch(percent)
 			if(95 to 101)
-				. += "It looks quite healthy."
+				. += "[p_they(TRUE)] looks quite healthy."
 			if(75 to 94)
-				. += "It looks slightly injured."
+				. += "[p_they(TRUE)] looks slightly injured."
 			if(50 to 74)
-				. += "It looks injured."
+				. += "[p_they(TRUE)] looks injured."
 			if(25 to 49)
-				. += "It bleeds with sizzling wounds."
+				. += "[p_they(TRUE)] bleeds with sizzling wounds."
 			if(1 to 24)
-				. += "It is heavily injured and limping badly."
+				. += "[p_they(TRUE)] is heavily injured and limping badly."
 
 	. += "</span>"
 
+	if(has_brain() && stat != DEAD)
+		if(!key)
+			. += "[span_deadsay("They are fast asleep. It doesn't look like they are waking up anytime soon.")]\n"
+		else if(!client)
+			. += "[span_xenowarning("They don't seem responsive.")]\n"
+
 	if(hivenumber != XENO_HIVE_NORMAL)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-		. += "It appears to belong to the [hive.prefix]hive"
+		. += "[p_they(TRUE)] appears to belong to the [hive.prefix]hive"
 	return
+
 
 /mob/living/carbon/xenomorph/Destroy()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
@@ -289,6 +309,7 @@
 	vis_contents -= wound_overlay
 	vis_contents -= fire_overlay
 	vis_contents -= backpack_overlay
+	QDEL_NULL(genital_overlay)
 	QDEL_NULL(wound_overlay)
 	QDEL_NULL(fire_overlay)
 	QDEL_NULL(backpack_overlay)
@@ -313,11 +334,7 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == DEAD) //Can't drag dead human bodies.
-			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
-			return FALSE
-		if(pulling != L)
-			pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	do_attack_animation(L, ATTACK_EFFECT_GRAB)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
@@ -450,6 +467,8 @@
 	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
 			continue
+		if(!issamexenohive(W))
+			continue
 		return
 	return FALSE
 
@@ -461,21 +480,14 @@
 		return
 	loc_weeds_type = null
 
-/**  Handles logic for the xeno moving to a new weeds tile.
-Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change */
+/// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
-	if(loc_weeds_type == found_weed?.type)
-		return FALSE
-	loc_weeds_type = found_weed?.type
-	return TRUE
-
-/mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
-	. = ..()
-	if(!.)
+	if(!issamexenohive(found_weed))
+		loc_weeds_type = null
 		return
-	update_icon()
+	loc_weeds_type = found_weed?.type
 
 /mob/living/carbon/xenomorph/toggle_resting()
 	var/datum/action/ability/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/ability/xeno_action/xeno_resting]

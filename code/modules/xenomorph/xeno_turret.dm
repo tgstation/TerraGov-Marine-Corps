@@ -10,7 +10,7 @@
 	max_integrity = 1500
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE |PORTAL_IMMUNE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE |PORTAL_IMMUNE|XENO_DAMAGEABLE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
 	allow_pass_flags = PASS_AIR|PASS_THROW
 	///What kind of spit it uses
@@ -176,23 +176,30 @@
 ///Populates the target list on process
 /obj/structure/xeno/xeno_turret/proc/scan()
 	potential_hostiles.Cut()
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
 		if(nearby_human.stat == DEAD)
 			continue
-		if(nearby_human.get_xeno_hivenumber() == hivenumber)
+		if(issamexenohive(nearby_human))
+			continue
+		if(nearby_human.faction in hive?.allied_factions)
 			continue
 		potential_hostiles += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, TURRET_SCAN_RANGE))
-		if(GLOB.hive_datums[hivenumber] == nearby_xeno.hive)
+		if(issamexenohive(nearby_xeno))
 			continue
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
 	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
 		if(vehicle.z == z && get_dist(vehicle, src) <= TURRET_SCAN_RANGE)
+			if(vehicle.faction in hive?.allied_factions)
+				continue
 			potential_hostiles += vehicle
 	for(var/obj/vehicle/sealed/mecha/mech AS in GLOB.mechas_list)
 		if(mech.z == z && get_dist(mech, src) <= TURRET_SCAN_RANGE)
+			if(mech.faction in hive?.allied_factions)
+				continue
 			potential_hostiles += mech
 
 ///Signal handler to make the turret shoot at its target
@@ -211,7 +218,6 @@
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
-		hugger_ammo.hivenumber = hivenumber
 	firing = TRUE
 	update_minimap_icon()
 
