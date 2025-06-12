@@ -82,6 +82,21 @@
 	shoes = /obj/item/clothing/shoes/marine/som/knife
 	gloves = /obj/item/clothing/gloves/marine
 
+/datum/outfit/job/som/command/assault_crewman
+	name = SOM_ASSAULT_CREWMAN
+	jobtype = /datum/job/som/command/mech_pilot
+
+	id = /obj/item/card/id/dogtag
+	ears = /obj/item/radio/headset/mainship/mcom/som
+	shoes = /obj/item/clothing/shoes/marine/som/knife
+	belt = /obj/item/storage/belt/utility/full
+	glasses = /obj/item/clothing/glasses/welding
+	w_uniform = /obj/item/clothing/under/marine/officer/assault_crewman
+	wear_suit = /obj/item/clothing/suit/storage/marine/assault_crewman
+	head = /obj/item/clothing/head/helmet/marine/assault_crewman
+	gloves = /obj/item/clothing/gloves/marine
+	l_pocket = /obj/item/pamphlet/tank_loader
+
 /datum/outfit/job/som/engineering/chief
 	name = SOM_CHIEF_ENGINEER
 	jobtype = /datum/job/som/engineering/chief

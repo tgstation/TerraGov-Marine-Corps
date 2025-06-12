@@ -59,8 +59,10 @@ export const JobPreferences = (props) => {
     'SOM Squad Medic',
     'SOM Squad Veteran',
     'SOM Squad Leader',
-    'SOM Field Commander',
     'SOM Staff Officer',
+    'SOM Pilot Officer',
+    'SOM Assault Crewman',
+    'SOM Field Commander',
     'SOM Commander',
   ];
   const flavourJobs = ['Operations Officer'];

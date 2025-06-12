@@ -267,6 +267,57 @@ You can serve your Division in a variety of roles, so choose carefully."}
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_W5"
 
+/datum/job/som/command/assault_crewman
+	title = SOM_ASSAULT_CREWMAN
+	req_admin_notify = TRUE
+	paygrade = "SOM_W3"
+	comm_title = "AC"
+	total_positions = 2
+	skills_type = /datum/skills/assault_crewman
+	access = list(ACCESS_SOM_DEFAULT, ACCESS_SOM_ENGINEERING, ACCESS_MARINE_ENGINEERING, ACCESS_SOM_REQUESITIONS, ACCESS_SOM_TADPOLE, ACCESS_SOM_ASSAULT)
+	minimal_access = list(ACCESS_SOM_DEFAULT, ACCESS_SOM_ENGINEERING, ACCESS_MARINE_ENGINEERING, ACCESS_SOM_REQUESITIONS, ACCESS_SOM_TADPOLE, ACCESS_SOM_ASSAULT)
+	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
+	outfit = /datum/outfit/job/som/command/assault_crewman
+	exp_requirements = XP_REQ_EXPERT
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>:Very Hard<br /><br />
+		<b>You answer to the</b> acting Command Staff<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>Duty</b>: Provide heavy fire support
+	"}
+	minimap_icon = "assault_crew"
+
+/datum/job/som/command/assault_crewman/get_spawn_message_information(mob/M)
+	. = ..()
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are an Assault Crewman. You operate SOM's armored assault vehicles along with your partner, and in some cases a \"willing\" loader. Make sure that you work as a team to advance the front!"
+
+/datum/job/som/command/assault_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "SOM_W3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "SOM_W4"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "SOM_W5"
+		if(18001 to INFINITY) // 300 hrs
+			new_human.wear_id.paygrade = "SOM_W6"
+	new_human.wear_id.update_label()
+
 /datum/job/som/engineering
 	job_category = JOB_CAT_ENGINEERINGSOM
 	selection_color = "#fff5cc"

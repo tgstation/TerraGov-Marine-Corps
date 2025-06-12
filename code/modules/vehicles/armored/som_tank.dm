@@ -3,7 +3,7 @@
 
 /obj/vehicle/sealed/armored/multitile/som_tank
 	name = "\improper Malleus hover tank"
-	desc = "A terrifying behemoth, the Malleus pattern hover tank is the SOM's main battle tank. Combining excellent mobility and formidable weaponry, it has earned a fearsome reputation among TerraGov forces that have faced it."
+	desc = "A terrifying behemoth, the Malleus pattern hover tank is the SOM's main battle tank. Combining excellent mobility and formidable weaponry, it has earned a fearsome reputation among Nine Tailed Fox forces that have faced it."
 	icon = 'icons/obj/armored/3x4/som_tank.dmi'
 	turret_icon = 'icons/obj/armored/3x4/som_tank_gun.dmi'
 	damage_icon_path = 'icons/obj/armored/3x4/tank_damage.dmi'
@@ -12,7 +12,7 @@
 	interior = /datum/interior/armored/som
 	minimap_icon_state = "som_tank"
 	minimap_flags = MINIMAP_FLAG_MARINE_SOM
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_SOM_PURCHASABLE_ASSAULT|ARMORED_WRECKABLE
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	pixel_x = -65
 	pixel_y = -80

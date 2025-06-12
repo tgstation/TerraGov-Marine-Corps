@@ -433,9 +433,9 @@
 /turf/open/floor/wood,
 /area/antag_ship/som/barracks)
 "cR" = (
-/obj/machinery/telecomms/processor/preset_four/som,
-/turf/open/floor/bcircuit/anim,
-/area/antag_ship/som/telecomms)
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/open/floor/plating,
+/area/antag_ship)
 "cS" = (
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /turf/open/floor/plating/scorched,
@@ -1254,15 +1254,11 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "hH" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
 	},
-/obj/vehicle/ridden/motorbike{
-	dir = 4
-	},
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/turf/open/floor/mainship/cargo,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
 "hI" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -1550,7 +1546,12 @@
 /turf/open/floor/wood,
 /area/antag_ship/som/barracks)
 "ji" = (
-/turf/closed/wall/mainship/gray,
+/obj/machinery/light,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
 "jj" = (
 /obj/structure/cable,
@@ -2214,6 +2215,13 @@
 	dir = 5
 	},
 /area/antag_ship/clf_base/techroom)
+"ml" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/hangar)
 "mm" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
@@ -2821,13 +2829,6 @@
 /obj/machinery/power/apc,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/maintenance/north)
-"oV" = (
-/obj/item/paper/brassnote{
-	info = "Until someone figures how to add a som tank with fab and shit, this is just here.";
-	name = "Note"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "oX" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
@@ -3300,14 +3301,10 @@
 /turf/open/floor/plating/icefloor/warnplate,
 /area/antag_ship/som/requisition)
 "rn" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
+/obj/machinery/light,
+/obj/machinery/telecomms/receiver/preset_right/som,
+/turf/open/floor/bcircuit/anim,
+/area/antag_ship)
 "rs" = (
 /obj/effect/urban/decal/trash,
 /turf/open/floor/plating/ground/concrete,
@@ -3669,6 +3666,11 @@
 	dir = 4
 	},
 /area/antag_ship/vsd/hall)
+"tv" = (
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/hangar)
 "tx" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -4716,6 +4718,10 @@
 "yP" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/antag_ship/icc/hangar/east)
+"yQ" = (
+/obj/docking_port/stationary/supply/vehicle/som,
+/turf/open/floor/mainship/empty,
+/area/antag_ship/som/hangar)
 "yU" = (
 /obj/machinery/power/smes/preset,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
@@ -5503,9 +5509,14 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
 "Dm" = (
-/obj/machinery/light,
-/turf/open/floor/bcircuit/anim,
-/area/antag_ship/som/telecomms)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/hangar)
 "Dn" = (
 /obj/effect/landmark/start/job/usl,
 /turf/open/floor/iron/dark/smooth_corner{
@@ -6688,6 +6699,10 @@
 /obj/machinery/vending/armor_supply/icc,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
+"Jj" = (
+/obj/machinery/light,
+/turf/open/floor/bcircuit/anim,
+/area/antag_ship)
 "Jk" = (
 /obj/machinery/shower{
 	dir = 4
@@ -6882,9 +6897,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/maintenance/south)
 "Kn" = (
-/obj/structure/window/framed/mainship/gray/toughened/hull,
-/turf/open/floor/plating,
-/area/antag_ship/som/telecomms)
+/obj/machinery/telecomms/processor/preset_four/som,
+/turf/open/floor/bcircuit/anim,
+/area/antag_ship)
 "Ks" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -7659,9 +7674,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/requisition)
 "Ox" = (
-/obj/machinery/light,
-/obj/machinery/telecomms/receiver/preset_right/som,
-/turf/open/floor/bcircuit/anim,
+/turf/closed/wall/mainship/gray,
 /area/antag_ship/som/telecomms)
 "OA" = (
 /obj/structure/cable,
@@ -8547,9 +8560,9 @@
 /area/antag_ship/clf_base/hallways/inside)
 "SQ" = (
 /obj/machinery/light{
-	dir = 4
+	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/antag_ship/som/hangar)
 "ST" = (
 /obj/machinery/chem_dispenser,
@@ -8901,9 +8914,7 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/fore/restroom)
 "Uu" = (
-/obj/machinery/tank_part_fabricator{
-	faction = "Sons of Mars"
-	},
+/obj/machinery/tank_part_fabricator/som,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
 "Uv" = (
@@ -8960,6 +8971,15 @@
 "UJ" = (
 /turf/closed/shuttle/dropship_regular/cockpit_window,
 /area/shuttle/transport)
+"UK" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/hangar)
 "UL" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
@@ -8999,6 +9019,12 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/antag_ship/clf_base/bathroom)
+"UW" = (
+/obj/vehicle/ridden/motorbike{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/hangar)
 "UX" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/fourcorners,
 /obj/structure/cable,
@@ -11344,13 +11370,13 @@ Tt
 MG
 zP
 nP
-rn
+zP
+Dm
 bb
 bb
 bb
 bb
 Dk
-CN
 CN
 VK
 "}
@@ -11424,7 +11450,7 @@ CN
 CN
 Dk
 Uu
-oV
+pd
 yw
 hf
 rS
@@ -11439,13 +11465,13 @@ RK
 RK
 nm
 hz
+ad
 rS
-bb
+Ox
 Cq
 yA
-cR
+Kn
 Dk
-CN
 CN
 VK
 "}
@@ -11534,13 +11560,13 @@ YD
 YD
 YD
 ZI
+ad
 rS
-bb
+Ox
 gs
 sd
 nE
-Kn
-CN
+cR
 CN
 VK
 "}
@@ -11629,13 +11655,13 @@ YD
 YD
 YD
 ZI
+ad
 rS
-bb
+Ox
 GD
 Bv
 Dq
-Kn
-CN
+cR
 CN
 VK
 "}
@@ -11724,13 +11750,13 @@ YD
 YD
 YD
 ZI
+ad
 jE
-bb
+Ox
 ot
 sd
-Ox
+rn
 Dk
-CN
 CN
 VK
 "}
@@ -11805,7 +11831,7 @@ CN
 uH
 zU
 zU
-zU
+yQ
 zU
 zU
 bZ
@@ -11819,13 +11845,13 @@ YD
 YD
 YD
 ZI
+ad
 rS
 El
 sd
 sd
 lk
-Kn
-CN
+cR
 CN
 VK
 "}
@@ -11914,13 +11940,13 @@ YD
 YD
 YD
 ZI
+ad
 rS
-bb
+Ox
 sp
 ZB
 Yn
-Kn
-CN
+cR
 CN
 VK
 "}
@@ -12009,13 +12035,13 @@ YD
 YD
 YD
 ZI
+ad
 rS
-bb
+Ox
 Ts
 uR
-Dm
+Jj
 Dk
-CN
 CN
 VK
 "}
@@ -12104,13 +12130,13 @@ YD
 YD
 YD
 ZI
+ad
 rS
-bb
+Ox
 Dq
 ZB
 yH
-Kn
-CN
+cR
 CN
 VK
 "}
@@ -12183,10 +12209,10 @@ VK
 CN
 CN
 uH
-pd
-pd
-SQ
-pd
+ad
+ad
+ad
+ad
 rS
 MI
 Xu
@@ -12197,15 +12223,15 @@ JI
 lP
 dF
 EH
-hH
+lP
 lC
+ad
 rS
-bb
+Ox
 NN
 ac
 XZ
-Kn
-CN
+cR
 CN
 VK
 "}
@@ -12279,9 +12305,9 @@ CN
 CN
 Dk
 AB
-AB
-AB
-ji
+SQ
+ad
+ad
 cN
 ad
 wW
@@ -12292,9 +12318,9 @@ ad
 ad
 ad
 ad
-kL
 ad
-jE
+ad
+ad
 ji
 AB
 AB
@@ -12375,8 +12401,8 @@ CN
 CN
 AB
 RK
-hz
-eJ
+UK
+RK
 rS
 ad
 ad
@@ -12389,11 +12415,11 @@ ad
 ad
 ad
 ad
+ad
 rS
-xS
-xS
-xS
 AB
+CN
+CN
 CN
 CN
 CN
@@ -12478,17 +12504,17 @@ ad
 ad
 ad
 ad
-Ug
-Ug
+ad
+ad
+ad
 ad
 ad
 ad
 ad
 rS
-Mr
-pd
-pd
-uH
+AB
+CN
+CN
 CN
 CN
 CN
@@ -12573,6 +12599,7 @@ Eu
 GT
 GT
 GT
+kL
 ad
 ad
 ad
@@ -12580,10 +12607,9 @@ ad
 ad
 ad
 rS
-xS
-xS
-xS
-uH
+AB
+CN
+CN
 CN
 CN
 CN
@@ -12674,10 +12700,10 @@ YD
 YD
 YD
 Gd
-rS
-Mr
-pd
-pd
+ml
+hH
+AB
+AB
 uH
 CN
 CN
@@ -13335,9 +13361,9 @@ rz
 rz
 GI
 GI
-ad
-ad
-ad
+Ug
+Ug
+UW
 ad
 rS
 xS
@@ -13432,7 +13458,7 @@ ad
 ad
 ad
 ad
-ad
+tv
 ad
 rS
 Mr

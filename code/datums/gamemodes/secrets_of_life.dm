@@ -65,6 +65,7 @@
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/command/staffofficer = 2,
 		/datum/job/som/command/pilot = 1,
+		/datum/job/som/command/assault_crewman = 2,
 		/datum/job/som/command/mech_pilot = 1,
 		/datum/job/som/requisitions/officer = 1,
 		/datum/job/som/engineering/chief = 1,

@@ -236,6 +236,10 @@
 	shuttle_id = SHUTTLE_VEHICLE_SUPPLY
 	name = SHUTTLE_VEHICLE_SUPPLY
 
+/datum/map_template/shuttle/supply/vehicle/som
+	shuttle_id = SHUTTLE_SOM_VEHICLE_SUPPLY
+	name = SHUTTLE_SOM_VEHICLE_SUPPLY
+
 /datum/map_template/shuttle/tgs_canterbury
 	shuttle_id = SHUTTLE_CANTERBURY
 	name = "Canterbury"
