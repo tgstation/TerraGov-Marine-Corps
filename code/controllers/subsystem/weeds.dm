@@ -29,8 +29,9 @@ SUBSYSTEM_DEF(weeds)
 
 		var/obj/alien/weeds/weed = locate(/obj/alien/weeds) in T
 		if(weed && !weed.parent_node && !istype(weed, /obj/alien/weeds/node))
-			weed.set_parent_node(node)
-			SSweeds_decay.decaying_list -= weed
+			if(weed.issamexenohive(node))
+				weed.set_parent_node(node)
+				SSweeds_decay.decaying_list -= weed
 
 		if(QDELETED(node) || QDELETED(T) || !T.is_weedable())
 			pending -= T
