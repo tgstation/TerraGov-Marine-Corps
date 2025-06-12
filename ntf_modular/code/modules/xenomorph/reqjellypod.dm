@@ -95,7 +95,7 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(!xeno_attacker.a_intent == INTENT_HARM)
+	if(xeno_attacker.a_intent == INTENT_HARM)
 		return ..()
 
 	to_chat(xeno_attacker, span_xenonotice("This does not belong to us!") )
