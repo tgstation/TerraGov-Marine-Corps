@@ -1,0 +1,5 @@
+author: "Isy232"
+delete-after: True
+changes:
+  - balance: "Pyrogen HP 400 => 380."
+  - balance: "Pyrogen damage per fire tick per fire stack 2.5 => 2.0."
