@@ -43,7 +43,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/queen/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
-	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	var/prefix = "[hive.prefix][xeno_caste.upgrade_name ? "[xeno_caste.upgrade_name] " : ""]"
 	if(!client?.prefs.show_xeno_rank || !client)
 		name = prefix + "Queen ([nicknumber])"
 		real_name = name

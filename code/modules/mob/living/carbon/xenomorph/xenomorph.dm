@@ -156,7 +156,7 @@
 /mob/living/carbon/xenomorph/proc/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
 	var/rank_name
-	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	var/prefix = "[hive.prefix][xeno_caste.upgrade_name ? "[xeno_caste.upgrade_name] " : ""]"
 	if(!client?.prefs.show_xeno_rank || !client)
 		name = prefix + "[xeno_caste.display_name] ([nicknumber])"
 		real_name = name
