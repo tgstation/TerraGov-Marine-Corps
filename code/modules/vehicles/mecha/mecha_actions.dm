@@ -354,6 +354,7 @@
 		chassis.balloon_alert(owner, "[time] seconds")
 	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), 90 SECONDS)
 	block_remaining = block_max
+	playsound(equipper, 'sound/items/eshield_recharge.ogg', 40)
 	START_PROCESSING(SSprocessing, src)
 	RegisterSignal(chassis, COMSIG_ATOM_TAKE_DAMAGE, PROC_REF(on_attacked))
 	chassis.move_delay += movespeed_mod
@@ -388,6 +389,7 @@
 /datum/action/vehicle/sealed/mecha/pulsearmor/proc/stop_shielding()
 	STOP_PROCESSING(SSprocessing, src)
 	block_remaining = 0
+	playsound(parent.loc, 'sound/items/eshield_down.ogg', 40)
 	UnregisterSignal(chassis, COMSIG_ATOM_TAKE_DAMAGE)
 	chassis.remove_filter("pulsearmor")
 	chassis.move_delay -= movespeed_mod
