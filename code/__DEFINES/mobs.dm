@@ -707,7 +707,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 // Pyrogen defines
 /// Damage per melting fire stack
-#define PYROGEN_DAMAGE_PER_STACK 2.5
+#define PYROGEN_DAMAGE_PER_STACK 2
 /// Amount of ticks of fire removed when helped by another human to extinguish
 #define PYROGEN_ASSIST_REMOVAL_STRENGTH 2
 /// How fast the pyrogen moves when charging using fire charge
