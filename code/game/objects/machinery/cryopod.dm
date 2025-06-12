@@ -344,7 +344,10 @@
 
 	GLOB.key_to_time_of_role_death[key] = world.time
 
+/* NTF EDIT
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
+*/
+	ghostize(FALSE, FALSE, TRUE) //NTF EDIT - We want to make sure they *are* kicked to lobby.
 
 	qdel(src)
 
