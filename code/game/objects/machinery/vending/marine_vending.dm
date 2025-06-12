@@ -70,6 +70,7 @@
 			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
 			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
 			/obj/item/ammo_magazine/rifle/sh410_tracker = -1,
+			/obj/item/ammo_magazine/rifle/sh410_ricochet = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -511,6 +512,7 @@
 			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
 			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
 			/obj/item/ammo_magazine/rifle/sh410_tracker = -1,
+			/obj/item/ammo_magazine/rifle/sh410_ricochet = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,

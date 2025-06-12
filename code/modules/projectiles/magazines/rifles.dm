@@ -834,7 +834,7 @@
 
 /obj/item/ammo_magazine/rifle/sh410_ricochet //bounce
 	name = "\improper SH-410 ricochet magazine (.410 gauge)"
-	desc = "A magazine of .410 gauge ricochet rounds, for the SH-410."
+	desc = "A magazine of .410 gauge ricochet rounds, for the SH-410. They bounce up to two times off of surfaces."
 	caliber = CALIBER_410_AUTOSHOTGUN
 	icon_state = "sh410_ricochet"
 	icon_state_mini = "mag_sh410_ricochet"
@@ -842,9 +842,9 @@
 	max_rounds = 15
 	bonus_overlay = "sh410_ricochet"
 
-/obj/item/ammo_magazine/rifle/sh410_gas
+/obj/item/ammo_magazine/rifle/sh410_gas //gas base
 	name = "\improper SH-410 gas magazine (.410 gauge)"
-	desc = "A magazine of .410 gauge gas rounds, for the SH-410."
+	desc = "A magazine of .410 gauge gas rounds, for the SH-410. These leave a trail of gas when fired."
 	caliber = CALIBER_410_AUTOSHOTGUN
 	icon_state = "sh410_gas"
 	icon_state_mini = "mag_sh410_gas"
