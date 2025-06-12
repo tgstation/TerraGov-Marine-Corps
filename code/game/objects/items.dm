@@ -382,7 +382,7 @@
 ///When hit by a thrown object, play the associated hitsound of the object
 /obj/item/throw_impact(atom/hit_atom, speed, bounce)
 	. = ..()
-	if(. && isliving(hit_atom))
+	if(. && isliving(hit_atom) && hitsound)
 		playsound(src, hitsound, 50)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
