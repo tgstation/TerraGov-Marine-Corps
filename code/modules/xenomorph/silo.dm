@@ -107,7 +107,7 @@
 		if(victim.stat != DEAD)
 			to_chat(user, "<span class='notice'>[victim] is not dead!</span>")
 			return
-		if(!HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+		if(!HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE) && !ismonkey(victim))
 			to_chat(user, "<span class='notice'>[victim] is not unrevivable yet, this might make problems.</span>")
 			return
 
@@ -209,7 +209,8 @@
 				if(!do_after(user, 1 SECONDS, FALSE, user, BUSY_ICON_DANGER) || QDELETED(src))
 					return
 
-				larba.despawn() //should hopefully readd the xeno slot.
+				larba.ghostize(FALSE, FALSE)
+				larba.burrow()
 				shake(4 SECONDS)
 			else
 				to_chat(user, span_xenonotice("We need to be a larva to fit there."))
