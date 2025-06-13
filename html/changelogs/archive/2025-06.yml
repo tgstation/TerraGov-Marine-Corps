@@ -40,3 +40,11 @@
   Lumipharon:
   - bugfix: fixed an item runtime
   - bugfix: fixed NPC's being told to follow someone, not actually doing so
+2025-06-13:
+  BurgerBB, Atropos:
+  - balance: Druggy overlay from taking too many meds/drugs is more colorful now
+  Isy232:
+  - balance: Pyrogen HP 400 => 380.
+  - balance: Pyrogen damage per fire tick per fire stack 2.5 => 2.0.
+  uomo91, Atropos:
+  - admin: show all logs in PP now shows logs by time instead of categories
