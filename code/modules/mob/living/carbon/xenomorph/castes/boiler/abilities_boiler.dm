@@ -329,6 +329,27 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/line/boiler
 	cooldown_duration = 9 SECONDS
+	/// The required amount of globs in order to have gas to appear on each spray of acid. Only works if it is non-zero.
+	var/globs_threshold = 0
+
+/datum/action/ability/activable/xeno/spray_acid/line/boiler/acid_splat_turf(turf/T)
+	. = ..()
+	if(!globs_threshold || !xeno_owner.ammo)
+		return
+	var/current_globs =  xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
+	if(globs_threshold > current_globs)
+		return
+	var/current_turf = get_turf(xeno_owner)
+	var/datum/effect_system/smoke_spread/xeno/smoke
+	switch(xeno_owner.ammo)
+		if(/datum/ammo/xeno/boiler_gas/corrosive)
+			smoke = new /datum/effect_system/smoke_spread/xeno/acid(current_turf)
+		if(/datum/ammo/xeno/boiler_gas)
+			smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light(current_turf)
+	if(!smoke)
+		return
+	smoke.set_up(0, current_turf)
+	smoke.start()
 
 /datum/action/ability/activable/xeno/acid_shroud
 	name = "Acid Shroud"
@@ -387,6 +408,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/steam_rush_duration
 	/// How much extra burn damage is dealt on slash
 	var/steam_damage = 10
+	/// The duration of the gas trail in deciseonds, if any.
+	var/gas_trail_duration = 0
 
 /datum/action/ability/xeno_action/steam_rush/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
@@ -410,7 +433,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	particle_holder.pixel_x = 10
 
 	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(steam_slash))
-
+	if(gas_trail_duration)
+		RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	succeed_activate()
 	add_cooldown()
 
@@ -429,6 +453,15 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		deltimer(steam_rush_ability.steam_rush_duration)
 		steam_rush_ability.steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration + 1 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
+/// Creates a trail of acid smoke when moving.
+/datum/action/ability/xeno_action/steam_rush/proc/on_movement(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
+	if(!gas_trail_duration || !isturf(xeno_owner.loc) || xeno_owner.stat != CONSCIOUS)
+		return
+	var/current_turf = get_turf(xeno_owner)
+	var/datum/effect_system/smoke_spread/xeno/acid/smoke = new(current_turf)
+	smoke.set_up(0, current_turf, gas_trail_duration / 10)
+	smoke.start()
+
 ///Called when we want to end the steam rush ability
 /datum/action/ability/xeno_action/steam_rush/proc/steam_rush_deactivate()
 	if(QDELETED(owner))
@@ -440,6 +473,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	X.playsound_local(X, 'sound/voice/alien/hiss2.ogg', 50)
 
 	X.steam_rush = FALSE
+	if(gas_trail_duration)
+		UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	QDEL_NULL(particle_holder)
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
 
@@ -479,15 +514,17 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SMOKESCREEN_SPIT,
 	)
 	use_state_flags = ABILITY_USE_STAGGERED
-	/// Timer for the window you have to fire smokescreen spit
+	/// Timer for the window you have to fire smokescreen spit.
 	var/smokescreen_spit_window
-	/// Duration of the window you have to fire smokescreen spit
+	/// Duration of the window you have to fire smokescreen spit.
 	var/window_duration = 1.5 SECONDS
+	/// The ammo type to change the owner's ammo to when activated.
+	var/datum/ammo/xeno/ammo_type = /datum/ammo/xeno/acid/airburst/heavy
 
 /datum/action/ability/xeno_action/smokescreen_spit/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
 
-	X.ammo = /datum/ammo/xeno/acid/airburst/heavy
+	X.ammo = ammo_type
 	X.update_spits(TRUE)
 	X.balloon_alert(owner, "We prepare to fire a smokescreen!")
 
@@ -496,13 +533,13 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	succeed_activate()
 	add_cooldown()
 
-///Called when smokescreen ability ends to reset our ammo
+/// Called when smokescreen ability ends to reset our ammo.
 /datum/action/ability/xeno_action/smokescreen_spit/proc/smokescreen_spit_deactivate()
 	if(QDELETED(owner))
 		return
 	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
 
-	X.ammo = /datum/ammo/xeno/acid/airburst
+	X.ammo = null // Let it reset to the caste's ammo list.
 	X.update_spits(TRUE)
 	X.balloon_alert(owner, "Our spit returns to normal.")
 

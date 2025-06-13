@@ -66,5 +66,7 @@
 
 #define MOVESPEED_ID_MINDMELD "MINDMELD"
 
+#define MOVESPEED_ID_MUTATION_SLOW_AND_STEADY "MUTATION_SLOW_AND_STEADY"
+
 //Specific slowdown bitfield
 #define SLOWDOWN_IMPEDE_JETPACK (1<<0) //Reduce the range of jetpack

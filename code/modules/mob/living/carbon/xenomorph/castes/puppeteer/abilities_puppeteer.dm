@@ -97,13 +97,18 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DREADFULPRESENCE,
 	)
+	/// The amount of stamina damage to deal every second.
+	var/stamina_dps = 0
 
 /datum/action/ability/xeno_action/dreadful_presence/action_activate()
 	var/obj/effect/overlay/dread/effect = new
 	owner.vis_contents += effect
 	for(var/mob/living/carbon/human/human in view(DREAD_RANGE, owner.loc))
 		to_chat(human, span_userdanger("An overwhelming sense of dread washes over you... You are temporarily slowed down!"))
-		human.set_timed_status_effect(6 SECONDS, /datum/status_effect/dread)
+		if(stamina_dps)
+			human.apply_status_effect(STATUS_EFFECT_DRAINING_DREAD, stamina_dps)
+		else
+			human.apply_status_effect(STATUS_EFFECT_DREAD)
 		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream"), rand(1,2))
 	addtimer(CALLBACK(src, PROC_REF(clear_effect), effect), 3 SECONDS)
 	add_cooldown()
