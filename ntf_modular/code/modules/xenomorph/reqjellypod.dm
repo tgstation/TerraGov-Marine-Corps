@@ -30,6 +30,7 @@
 	. = ..()
 	GLOB.hive_datums[hivenumber].req_jelly_pods += src
 	START_PROCESSING(SSslowprocess, src)
+	SSminimaps.add_marker(src, ((MINIMAP_FLAG_ALL) ^ (MINIMAP_FLAG_SURVIVOR)), image('ntf_modular/icons/UI_icons/map_blips.dmi', null, "ambrosia", MINIMAP_LABELS_LAYER))
 
 /obj/structure/xeno/resin_stew_pod/Destroy()
 	STOP_PROCESSING(SSslowprocess, src)
