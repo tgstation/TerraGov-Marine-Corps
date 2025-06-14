@@ -1,5 +1,0 @@
-author: "Nokia2Student"
-delete-after: True
-changes:
-  - balance: "Increased penetration of incend and ap"
-  - bugfix: "Incendinary cylinder now uses proper burn damage type instead of brute"

@@ -1,5 +1,0 @@
-author: "Nokia2Student"
-delete-after: True
-changes:
-  - balance: "CC/77 Extended magazine now inherits default magazine ammotype"
-  - balance: "AT32 Fire delay lowered"

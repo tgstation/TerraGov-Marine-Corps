@@ -1,6 +1,0 @@
-author: "Nokia2Student"
-delete-after: True
-changes:
-  - rscadd: "You can destroy weeds with grab intent"
-  - balance: "Weed NODES now can be taken down in 2 xeno hits, not 3"
-  - balance: "Increased weed NODE removal click delay"

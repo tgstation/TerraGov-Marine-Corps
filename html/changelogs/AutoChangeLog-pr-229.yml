@@ -1,4 +1,0 @@
-author: "Nokia2Student"
-delete-after: True
-changes:
-  - rscdel: "Comments out TRAIT_HAS_SPAWNED_MECH"
