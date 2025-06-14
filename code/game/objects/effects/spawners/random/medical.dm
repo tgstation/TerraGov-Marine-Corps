@@ -30,6 +30,19 @@
 		/obj/item/reagent_containers/blood/OMinus = 5,
 	)
 
+/obj/effect/spawner/random/medical/bloodpack/full
+	name = "Random full bloodpack spawner"
+	icon_state = "random_bloodpack"
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/item/reagent_containers/blood/AMinus = 20,
+		/obj/item/reagent_containers/blood/APlus = 20,
+		/obj/item/reagent_containers/blood/BMinus = 20,
+		/obj/item/reagent_containers/blood/BPlus = 20,
+		/obj/item/reagent_containers/blood/OPlus = 20,
+		/obj/item/reagent_containers/blood/OMinus = 5,
+	)
+
 /obj/effect/spawner/random/medical/medbelt
 	name = "Random medical belt spawner"
 	icon_state = "random_medbelt"
@@ -136,6 +149,33 @@
 		/obj/item/storage/firstaid/fire = 15,
 		/obj/item/storage/firstaid/o2 = 10,
 		/obj/item/storage/firstaid/toxin = 10,
+		/obj/item/storage/firstaid/adv = 5,
+	)
+
+/obj/effect/spawner/random/medical/firstaid/fireweighted
+	loot = list(
+		/obj/item/storage/firstaid/fire = 30,
+		/obj/item/storage/firstaid/regular = 15,
+		/obj/item/storage/firstaid/o2 = 10,
+		/obj/item/storage/firstaid/toxin = 10,
+		/obj/item/storage/firstaid/adv = 5,
+	)
+
+/obj/effect/spawner/random/medical/firstaid/oxygenweighted
+	loot = list(
+		/obj/item/storage/firstaid/o2 = 30,
+		/obj/item/storage/firstaid/regular = 15,
+		/obj/item/storage/firstaid/fire = 10,
+		/obj/item/storage/firstaid/toxin = 10,
+		/obj/item/storage/firstaid/adv = 5,
+	)
+
+/obj/effect/spawner/random/medical/firstaid/toxinweighted
+	loot = list(
+		/obj/item/storage/firstaid/toxin = 30,
+		/obj/item/storage/firstaid/regular = 15,
+		/obj/item/storage/firstaid/fire = 10,
+		/obj/item/storage/firstaid/o2 = 10,
 		/obj/item/storage/firstaid/adv = 5,
 	)
 

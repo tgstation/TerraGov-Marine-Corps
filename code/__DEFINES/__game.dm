@@ -23,12 +23,17 @@
 #define MAP_LAVA_OUTPOST "Lava Outpost V1"
 #define MAP_CORSAT "CORSAT Research Station"
 #define MAP_BLUESUMMERS "Bluesummers Wreck Site"
+#define MAP_FIORINA "Fiorina Prison"
+
+#define MAP_COLONY1 "Colony 1"
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
 #define MAP_THESEUS "Theseus"
 #define MAP_ARACHNE "Arachne"
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
+#define MAP_NTF "NTC Nine Tailed Fox"
+#define MAP_EAGLE "Eagle"
 
 #define MAP_FORT_PHOBOS "Fort Phobos"
 #define MAP_ITERON "Iteron"
@@ -75,13 +80,13 @@
 // Default preferences
 #define DEFAULT_SPECIES "Human"
 
-#define GAME_YEAR (text2num(time2text(world.realtime, "YYYY")) + 395)
+#define GAME_YEAR (text2num(time2text(world.realtime, "YYYY")) + 490)
 
 
-#define MAX_MESSAGE_LEN 1024
+#define MAX_MESSAGE_LEN 9216
 #define MAX_PAPER_MESSAGE_LEN 3072
 #define MAX_BOOK_MESSAGE_LEN 9216
-#define MAX_NAME_LEN 26
+#define MAX_NAME_LEN 100
 #define MAX_BROADCAST_LEN 512
 #define MAX_NAME_HYPO 3
 

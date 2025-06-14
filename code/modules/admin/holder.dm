@@ -114,6 +114,7 @@
 	owner = C
 	owner.holder = src
 	owner.add_admin_verbs()
+	C.mob.update_sight()
 	remove_verb(owner, /client/proc/readmin)
 	owner.init_verbs()
 	GLOB.admins |= C

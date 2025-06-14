@@ -842,7 +842,7 @@
 		if(!gun_user)
 			addtimer(CALLBACK(src, PROC_REF(fire_after_autonomous_windup)), windup_delay)
 			return NONE
-		if(!do_after(gun_user, windup_delay, IGNORE_LOC_CHANGE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+		if(!do_after(gun_user, windup_delay, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return NONE
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -1101,7 +1101,7 @@
 	user.visible_message(span_warning("[user] sticks their gun in their mouth, ready to pull the trigger."))
 	log_combat(user, null, "is trying to commit suicide")
 
-	if(!do_after(user, 40, NONE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, 40, TRUE, src, BUSY_ICON_DANGER))
 		M.visible_message(span_notice("[user] decided life was worth living."))
 		ENABLE_BITFIELD(gun_features_flags, GUN_CAN_POINTBLANK)
 		return
@@ -1725,6 +1725,9 @@
 	if(!(gun_features_flags & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
 		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
 		return FALSE
+	if(HAS_TRAIT(user, TRAIT_KNIGHT))
+		to_chat(user, span_warning("Your armor does not allow you to use this firearm!"))
+		return FALSE
 	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		to_chat(user, span_warning("The safety is on!"))
 		return FALSE
@@ -1910,16 +1913,19 @@
 
 //For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
-		return
-	for(var/attachment_slot in attachments_by_slot)
-		var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
-		if(!istype(lit_flashlight))
-			continue
-		lit_flashlight.turn_light(null, FALSE)
-	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
-	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
+	if(xeno_attacker.a_intent == INTENT_HARM)
+		if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
+			return
+		for(var/attachment_slot in attachments_by_slot)
+			var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
+			if(!istype(lit_flashlight))
+				continue
+			lit_flashlight.turn_light(null, FALSE)
+		playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
+	else
+		attack_hand(xeno_attacker)
 
 /obj/item/weapon/gun/special_stripped_behavior(mob/stripper, mob/owner)
 	var/obj/item/attachable/magnetic_harness/magharn = attachments_by_slot[ATTACHMENT_SLOT_RAIL]

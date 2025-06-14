@@ -1,0 +1,6 @@
+{
+    "map_name": "Container",
+    "map_path": "map_files/Container",
+    "map_file": "NTF_Container.dmm",
+    "traits": [{"Marine Main Ship": true}]
+}

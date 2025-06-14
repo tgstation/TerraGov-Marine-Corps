@@ -1,0 +1,6 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - rscadd: "Added Ambrosia, a variant of resin jelly worth 100 req points and 25 dropship points"
+  - rscadd: "Added Ambrosia pots, a new structure which produces 1 Ambrosia each 550 seconds (1100 for corrupted)"
+  - rscadd: "All xenos that can produce edible jelly can now also produce ambrosia pots.  Each xeno can own two pots.  Only the owner can take ambrosia from a pot except by destroying it.  Destroying a pot has a 95% chance of dropping each ambrosia globule inside it (the other 5% are destroyed). Ambrosia pots cannot be places within 10 steps of another pod or 15 steps of a silo of the same hive.  Ambrosia pots slowly decay if their owner is dead, disconnected, or inactive."

@@ -60,6 +60,21 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Ranger armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/ranger
 
+/obj/item/armor_module/armor/chest/marine/kabuto
+	name = "\improper Style Pattern Kabuto chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Kabuto armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/kabuto
+
+/obj/item/armor_module/armor/chest/marine/hotaru
+	name = "\improper Style Pattern Hotaru chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Hotaru armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru
+
+/obj/item/armor_module/armor/chest/marine/dashe
+	name = "\improper Style Pattern Dashe chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Dashe armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
+
 /obj/item/armor_module/armor/chest/marine/mjolnir
 	name = "\improper Jaeger Pattern Mjolnir chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Mjolnir armor piece."
@@ -100,7 +115,7 @@
 /obj/item/armor_module/armor/chest/marine/vsd_hardsuit
 	name = "\improper Crasher Super-Heavy MT/41 'Phobos' chestplate"
 	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides a very good amount protection, with the cost of encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. Meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Phobos' armor piece."
-	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	greyscale_config = /datum/greyscale_config/vsd_hardsuit
 	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest/visor_color)

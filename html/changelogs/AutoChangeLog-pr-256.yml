@@ -1,0 +1,7 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Added TRAIT_NOHEALTHREGEN"
+  - rscadd: "Added nonstackable /datum/status_effect/nohealthregen that applies TRAIT_NOHEALTHREGEN for the duration of status effect"
+  - balance: "Xeno melee attack applies /datum/status_effect/nohealthregen for 10 SECONDS if melee attack target is a xeno and of different hive"
+  - balance: "If xeno has /datum/status_effect/nohealthregen it will receive no passive or active healing"

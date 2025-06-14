@@ -3,7 +3,7 @@
 /datum/surgery_step/head
 	priority = 1
 	can_infect = 0
-	allowed_species = list("Synthetic", "Early Synthetic", "Combat Robot")
+	allowed_species = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian")
 	var/reattach_step
 
 /datum/surgery_step/head/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
