@@ -173,6 +173,8 @@
 	. = ..()
 	if(.)
 		return
+	if(non_aggressive)
+		return FALSE
 	if(get_dist(mob_parent, combat_target) <= AI_COMBAT_TARGET_BLIND_DISTANCE)
 		return FALSE
 	if(!line_of_sight(mob_parent, combat_target, target_distance))
@@ -381,3 +383,11 @@
 
 /datum/ai_behavior/human/suicidal
 	minimum_health = 0
+
+/datum/ai_behavior/human/monkey
+	human_ai_behavior_flags = HUMAN_AI_NO_FF|HUMAN_AI_AVOID_HAZARDS
+	///Flags about what the AI is current doing or wanting
+	human_ai_state_flags = 0
+	///To what level they will handle healing others
+	medical_rating = AI_MED_SELFISH
+	non_aggressive = TRUE

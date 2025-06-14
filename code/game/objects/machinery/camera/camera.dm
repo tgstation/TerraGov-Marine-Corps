@@ -208,7 +208,8 @@
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
 	var/turf/camnet_turf = get_turf(src)
-	parent_cameranet.updateChunk(camnet_turf.x, camnet_turf.y, camnet_turf.z)
+	if(camnet_turf)
+		parent_cameranet.updateChunk(camnet_turf.x, camnet_turf.y, camnet_turf.z)
 	update_icon()
 
 	for(var/i in GLOB.player_list)

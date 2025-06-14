@@ -8,7 +8,6 @@
 	id = SHUTTLE_CAS_DOCK
 	width = 11
 	height = 12
-
 	callTime = 0
 	ignitionTime = 10 SECONDS
 	rechargeTime = 0
@@ -27,9 +26,9 @@
 	///Action to stop the eye
 	var/datum/action/innate/camera_off/cas/off_action
 	///Number for how much fuel we have left, this x15 seconds is how much time we have while flying
-	var/fuel_left = 40
+	var/fuel_left = 500
 	///How much fuel we can hold maximum
-	var/fuel_max = 40
+	var/fuel_max = 500
 	///whether our engines ar eshowing an overlay
 	var/engines_on = FALSE
 	///Our currently selected weapon we will fire
@@ -119,7 +118,7 @@
 	SIGNAL_HANDLER
 	if(state == PLANE_STATE_DEACTIVATED)
 		return
-	if(!is_mainship_level(z) || mode != SHUTTLE_IDLE)
+	if(!(is_mainship_level(z) || is_antagmainship_level(z)) || mode != SHUTTLE_IDLE)
 		state = PLANE_STATE_FLYING
 		return
 	if(engines_on)
@@ -132,7 +131,7 @@
 	if(!fuel_left)
 		to_chat(user, span_warning("No fuel remaining!"))
 		return
-	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
+	if(state != PLANE_STATE_FLYING || (is_mainship_level(z) || is_antagmainship_level(z)))
 		to_chat(user, span_warning("You are not in-flight!"))
 		return
 	if(currently_returning)
@@ -150,7 +149,7 @@
 	SSmonitor.process_human_positions()
 
 	#ifndef TESTING
-	if(SSmonitor.human_on_ground <= 5)
+	if(SSmonitor.human_on_ground <= 1)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	#endif
@@ -176,7 +175,7 @@
 	if(!starting_point)
 		return
 
-	if(state != PLANE_STATE_FLYING || is_mainship_level(z)) //Secondary safety due to input being able to delay time.
+	if(state != PLANE_STATE_FLYING || (is_mainship_level(z) || is_antagmainship_level(z))) //Secondary safety due to input being able to delay time.
 		to_chat(user, span_warning("You are not in-flight!"))
 		return
 	if(currently_returning)
@@ -188,7 +187,7 @@
 
 	SSmonitor.process_human_positions()
 	#ifndef TESTING
-	if(SSmonitor.human_on_ground <= 5)
+	if(SSmonitor.human_on_ground <= 1)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	#endif
@@ -248,7 +247,18 @@
 	user.unset_interaction()
 
 ///Handles clicking on a target while in CAS mode
-/obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, turf/location, control, params)
+/obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, params)
+	SIGNAL_HANDLER
+	var/list/modifiers = params2list(params)
+	if	(	(	modifiers["right"] \
+			) \
+			|| \
+			(	(modifiers["left"]) \
+				&& \
+				(modifiers["shift"] || modifiers["alt"]) \
+			) \
+		)
+		return
 	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		end_cas_mission(source)
 		return
@@ -276,7 +286,7 @@
 /obj/docking_port/mobile/marine_dropship/casplane/ui_data(mob/user)
 	. = list()
 	.["plane_state"] = state
-	.["location_state"] = !is_mainship_level(z)
+	.["location_state"] = !(is_mainship_level(z) || is_antagmainship_level(z))
 	.["plane_mode"] = mode
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max
@@ -311,6 +321,9 @@
 		var/obj/effect/overlay/temp/laser_target/cas/lase = locate(href_list["cas_jump"]) in GLOB.active_cas_targets
 		if(!istype(lase))
 			to_chat(user, span_warning("That marker has expired."))
+			return
+		if(lase.assigned_faction != user.faction)
+			to_chat(user, span_warning("That marker does not belong to us."))
 			return
 
 		eyeobj.setLoc(get_turf(lase))

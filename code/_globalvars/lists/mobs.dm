@@ -11,6 +11,7 @@ GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys,
 
 GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
+GLOBAL_LIST_EMPTY(mobs_by_ckey_list)		//all mobs with keys, associative via ckey
 GLOBAL_LIST_EMPTY(new_player_list)			//all /mob/new_player
 GLOBAL_LIST_EMPTY(ready_players)			//all /mob/new_player that are (ready == TRUE)
 GLOBAL_LIST_EMPTY(observer_list)			//all /mob/dead/observer
@@ -119,6 +120,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/shrike/primordial,
 	/mob/living/carbon/xenomorph/warlock,
 	/mob/living/carbon/xenomorph/warlock/primordial,
+	/mob/living/carbon/xenomorph/baneling,
+	/mob/living/carbon/xenomorph/baneling/primordial,
 	/mob/living/carbon/xenomorph/puppeteer,
 	/mob/living/carbon/xenomorph/puppeteer/primordial,
 	/mob/living/carbon/xenomorph/behemoth,
@@ -136,7 +139,7 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 
 GLOBAL_LIST_INIT(xeno_types_tier_one, list(/datum/xeno_caste/runner, /datum/xeno_caste/drone, /datum/xeno_caste/sentinel, /datum/xeno_caste/defender))
 GLOBAL_LIST_INIT(xeno_types_tier_two, list(/datum/xeno_caste/hunter, /datum/xeno_caste/warrior, /datum/xeno_caste/spitter, /datum/xeno_caste/hivelord, /datum/xeno_caste/carrier, /datum/xeno_caste/bull, /datum/xeno_caste/puppeteer, /datum/xeno_caste/pyrogen))
-GLOBAL_LIST_INIT(xeno_types_tier_three, list(/datum/xeno_caste/gorger, /datum/xeno_caste/widow, /datum/xeno_caste/ravager, /datum/xeno_caste/praetorian, /datum/xeno_caste/boiler, /datum/xeno_caste/defiler, /datum/xeno_caste/crusher, /datum/xeno_caste/shrike, /datum/xeno_caste/behemoth, /datum/xeno_caste/warlock))
+GLOBAL_LIST_INIT(xeno_types_tier_three, list(/datum/xeno_caste/gorger, /datum/xeno_caste/wraith, /datum/xeno_caste/widow, /datum/xeno_caste/ravager, /datum/xeno_caste/praetorian, /datum/xeno_caste/boiler, /datum/xeno_caste/defiler, /datum/xeno_caste/crusher, /datum/xeno_caste/shrike, /datum/xeno_caste/behemoth, /datum/xeno_caste/warlock))
 GLOBAL_LIST_INIT(xeno_types_tier_four, list(/datum/xeno_caste/shrike, /datum/xeno_caste/queen, /datum/xeno_caste/king, /datum/xeno_caste/dragon))
 
 

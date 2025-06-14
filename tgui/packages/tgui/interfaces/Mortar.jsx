@@ -63,7 +63,7 @@ export const Mortar = (props) => {
                 />
               </Flex.Item>
               <Flex.Item>
-                <Number
+                <NumberInput
                   expensive
                   value={DY}
                   minValue={-10}
