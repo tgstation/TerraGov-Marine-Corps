@@ -7720,6 +7720,11 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/filtration)
+"ina" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/gargoyle,
+/turf/open/floor/kutjevo/multi_tiles,
+/area/kutjevo/interior/power)
 "inB" = (
 /obj/structure/platform/rockcliff/red{
 	dir = 8
@@ -31685,7 +31690,7 @@ ePx
 pBV
 xfL
 kGE
-tez
+ina
 twI
 psz
 xVt

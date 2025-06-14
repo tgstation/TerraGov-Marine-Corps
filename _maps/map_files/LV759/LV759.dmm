@@ -19283,6 +19283,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/landmark/gargoyle,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "dxx" = (

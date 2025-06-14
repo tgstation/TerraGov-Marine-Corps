@@ -26,6 +26,11 @@
 "ax" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/security/infocenter)
+"aB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/gargoyle,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "aI" = (
 /turf/open/space/basic,
 /area/space)
@@ -28337,7 +28342,7 @@ kr
 uy
 sq
 Kr
-mI
+aB
 mI
 by
 rv

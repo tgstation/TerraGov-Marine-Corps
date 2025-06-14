@@ -1924,6 +1924,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/north)
+"btY" = (
+/obj/item/stack/sandbags,
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	max_integrity = 50;
+	name = "weakened sandbag barricade"
+	},
+/turf/open/floor/wood,
+/area/riptide/caves/piratecove)
 "buf" = (
 /obj/machinery/unboxer,
 /turf/open/floor/tile/darkish,
@@ -7337,15 +7346,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
 /area/riptide/inside/medical/surgery)
-"fcn" = (
-/obj/item/stack/sandbags,
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	max_integrity = 50;
-	name = "weakened sandbag barricade"
-	},
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "fcH" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
 	dir = 1
@@ -10007,6 +10007,14 @@
 /obj/structure/table,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/northislands)
+"hag" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/gargoyle,
+/turf/open/floor/bcircuit,
+/area/riptide/inside/engineering/bridge)
 "hak" = (
 /obj/structure/cryofeed/right,
 /turf/open/liquid/water/river,
@@ -11400,13 +11408,6 @@
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/riptide/inside/landingzoneone)
-"ibQ" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/bcircuit,
-/area/riptide/inside/engineering/bridge)
 "ibT" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/iron/smooth_large,
@@ -56827,7 +56828,7 @@ rXy
 suj
 mkT
 rWi
-ibQ
+hag
 rWi
 tYs
 rfr
@@ -73643,7 +73644,7 @@ xCu
 jYD
 aWa
 aWa
-fcn
+btY
 hof
 jZV
 xDe
