@@ -463,6 +463,15 @@
 	hive.update_tier_limits() //Update our tier limits.
 	hive.update_ruler()
 
+	remove_abilities()
+	remove_component(/datum/component/seethrough_mob)
+	for(var/datum/action/A in actions)
+		if(istype(A, /datum/action/toggle_seethrough))
+			A.remove_action(src)
+	apply_minimap_hud()
+	add_abilities()
+	AddComponent(/datum/component/seethrough_mob)
+
 /mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
 	. = ..()
 	if(!GLOB.xeno_structures_by_hive[HS.hivenumber])

@@ -53,7 +53,8 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 
 /datum/job/xenomorph/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
 	. = ..()
-	SSminimaps.add_marker(xeno, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno.xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
+	if(xeno.hivenumber == XENO_HIVE_NORMAL || xeno.hivenumber != XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(xeno, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno.xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
 
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN
@@ -101,3 +102,8 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>:a</s
 	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_CORRUPTED]))
 		return pick(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_CORRUPTED])
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph/green])
+
+/datum/job/xenomorph/green/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
+	. = ..()
+	if(xeno.hivenumber == XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(xeno, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, xeno.xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
