@@ -50,6 +50,7 @@
 #define CALIBER_12G "12 gauge"
 #define CALIBER_6G "6 gauge"
 #define CALIBER_410 ".410 bore"
+#define CALIBER_410_AUTOSHOTGUN "automatic shotgun .410 gauge" //410 for the SH-410 and only the SH-410
 
 // --- Snipers ---
 #define CALIBER_86X70 "8.6x70mm"
