@@ -344,7 +344,7 @@
 	ability_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_duration = 60 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
-	use_state_flags = ABILITY_USE_SOLIDOBJECT | ABILITY_USE_STAGGERED | ABILITY_USE_INCAP | ABILITY_USE_LYING
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
