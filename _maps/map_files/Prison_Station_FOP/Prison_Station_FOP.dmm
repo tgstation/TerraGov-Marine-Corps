@@ -39948,6 +39948,16 @@
 	},
 /turf/open/floor/prison,
 /area/prison/hangar/civilian)
+"epK" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison/sterilewhite,
+/area/prison/residential/south)
 "epY" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/prison/yellow/full,
@@ -57836,7 +57846,7 @@ rJw
 bJB
 bGU
 qAa
-bNL
+epK
 bQG
 bGQ
 gJR
@@ -58092,7 +58102,7 @@ iQO
 jmf
 iQO
 bGU
-qAa
+mYx
 bNK
 mYx
 bSg
