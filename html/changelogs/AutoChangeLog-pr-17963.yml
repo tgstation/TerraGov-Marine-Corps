@@ -1,0 +1,4 @@
+author: "Penwin0"
+delete-after: True
+changes:
+  - bugfix: "Basic secure crates are no longer an ERROR sprite"

@@ -1337,6 +1337,22 @@
 	for(var/action_datum in mob_abilities)
 		qdel(action_datum)
 
+/mob/living/carbon/xenomorph/proc/apply_minimap_hud()
+	for(var/datum/action/A in actions)
+		if(istype(A, /datum/action/minimap))
+			A.remove_action(src)
+	if(hivenumber == XENO_HIVE_CORRUPTED)
+		var/datum/action/minimap/marine/mini = new
+		mini.give_action(src)
+	else
+		var/datum/action/minimap/xeno/mini = new
+		mini.give_action(src)
+	SSminimaps.remove_marker(src)
+	if(hivenumber != XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
+	if(hivenumber == XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
+
 /datum/action/ability/xeno_action/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
 	cooldown_duration = 30 SECONDS
 

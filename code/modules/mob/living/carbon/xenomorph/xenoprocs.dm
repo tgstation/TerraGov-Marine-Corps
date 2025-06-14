@@ -629,7 +629,10 @@
 	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER)
 	if(makeleader)
 		blip.overlays += image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, blip)
+	if(hivenumber != XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, blip)
+	if(hivenumber == XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, blip)
 
 ///updates the xeno's glow, based on the ability being used
 /mob/living/carbon/xenomorph/proc/update_glow(range, power, color)

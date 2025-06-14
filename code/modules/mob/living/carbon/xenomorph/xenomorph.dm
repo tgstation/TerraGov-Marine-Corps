@@ -13,8 +13,7 @@
 	. = ..()
 	set_datum()
 	add_inherent_verbs()
-	var/datum/action/minimap/xeno/mini = new
-	mini.give_action(src)
+	apply_minimap_hud()
 	add_abilities()
 
 	var/datum/game_mode/mode = SSticker.mode
@@ -77,7 +76,11 @@
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
-		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
+		SSminimaps.remove_marker(src)
+		if(hivenumber == XENO_HIVE_NORMAL || hivenumber != XENO_HIVE_CORRUPTED)
+			SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
+		if(hivenumber == XENO_HIVE_CORRUPTED)
+			SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
 	handle_weeds_on_movement()
 
 	AddElement(/datum/element/footstep, footstep_type, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)

@@ -178,6 +178,7 @@
 #include "code\__DEFINES\dcs\helpers.dm"
 #include "code\__DEFINES\dcs\signals\mapping.dm"
 #include "code\__DEFINES\dcs\signals\signals.dm"
+#include "code\__DEFINES\dcs\signals\signals_client.dm"
 #include "code\__DEFINES\dcs\signals\signals_datum.dm"
 #include "code\__DEFINES\dcs\signals\signals_food.dm"
 #include "code\__DEFINES\dcs\signals\signals_hud.dm"

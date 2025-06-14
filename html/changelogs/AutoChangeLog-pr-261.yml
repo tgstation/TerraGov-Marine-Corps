@@ -1,7 +1,0 @@
-author: "Nokia2Student"
-delete-after: True
-changes:
-  - rscadd: "New som tank fabricator"
-  - rscadd: "SOM Assault Crewman"
-  - balance: "Som can vend a hover tank now"
-  - qol: "More free space for som base"
