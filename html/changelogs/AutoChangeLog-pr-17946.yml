@@ -1,0 +1,5 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - bugfix: "fixed unintended 90 melee armor on new super heavy armors"
+  - rscdel: "removed superheavy armor from HVX"
