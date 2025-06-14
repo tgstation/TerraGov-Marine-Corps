@@ -1,0 +1,4 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - bugfix: "Corrupted now properly share their map with marines and not xenos"
