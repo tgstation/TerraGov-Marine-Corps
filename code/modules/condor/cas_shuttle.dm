@@ -162,6 +162,8 @@
 
 	else //if we don't have any targets use the minimap to select a starting position
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		if(faction == FACTION_SOM)
+			map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE_SOM)
 		user.client.screen += map
 		var/list/polled_coords = map.get_coords_from_click(user)
 		user?.client?.screen -= map
