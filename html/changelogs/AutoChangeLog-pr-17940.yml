@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Various minor improvements to xeno AI"
+  - bugfix: "fixed various spiderling and puppet bugs"
+  - refactor: "refactored xeno AI code somewhat"
