@@ -83,6 +83,12 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += "You are a rank-and-file marine of the TGMC, and that is your strength. What you lack alone, you gain standing shoulder to shoulder with the men and women of the TerraGov Marine Corps. Ooh-rah!"
 
+/datum/job/terragov/squad/standard/npc
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/npc/tgmc/standard,
+		/datum/outfit/job/npc/tgmc/standard/shotgunner,
+	)
 
 //Squad Engineer
 /datum/job/terragov/squad/engineer
@@ -141,6 +147,9 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
 	new_human.wear_id.update_label()
 
+/datum/job/terragov/squad/engineer/npc
+	outfit = /datum/outfit/job/npc/tgmc/squad_engineer
+
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
 	title = SQUAD_CORPSMAN
@@ -198,6 +207,9 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
 	new_human.wear_id.update_label()
 
+/datum/job/terragov/squad/corpsman/npc
+	outfit = /datum/outfit/job/npc/tgmc/corpsman
+
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
 	title = SQUAD_SMARTGUNNER
@@ -253,6 +265,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
 	new_human.wear_id.update_label()
 
+/datum/job/terragov/squad/smartgunner/npc
+	outfit = /datum/outfit/job/npc/tgmc/smartgunner
 
 //Squad Specialist
 /datum/job/terragov/squad/specialist
@@ -346,6 +360,10 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		return
 	if(!ismarineleaderjob(new_human.assigned_squad?.squad_leader?.job)) //If there's no proper SL already in the squad, promote to leader
 		new_human.assigned_squad.promote_leader(new_human)
+
+/datum/job/terragov/squad/leader/npc
+	outfit = /datum/outfit/job/npc/tgmc/squad_leader
+
 
 /datum/job/terragov/squad/vatgrown
 	title = SQUAD_MARINE

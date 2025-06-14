@@ -307,7 +307,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		equip_preference_gear(player)
 
 	if(!src.assigned_squad && assigned_squad)
-		job.equip_spawning_squad(src, assigned_squad, player)
+		job.equip_spawning_squad(src, assigned_squad, player, admin_action)
 
 	hud_set_job(faction)
 
@@ -328,14 +328,14 @@ GLOBAL_PROTECT(exp_specialmap)
 	chosen_variant.equip(src)
 
 
-/datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
+/datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player, forced = FALSE)
 	return
 
-/datum/job/terragov/squad/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
+/datum/job/terragov/squad/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player, forced = FALSE)
 	if(!assigned_squad)
 		SSjob.JobDebug("Failed to put marine role in squad. Player: [player.key] Job: [title]")
 		return
-	assigned_squad.insert_into_squad(new_character)
+	assigned_squad.insert_into_squad(new_character, FALSE, forced)
 
 
 /datum/job/proc/on_late_spawn(mob/living/late_spawner)
