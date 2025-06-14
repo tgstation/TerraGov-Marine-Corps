@@ -233,7 +233,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
 	)
-	use_state_flags = ABILITY_USE_STAGGERED | ABILITY_USE_SOLIDOBJECT| ABILITY_USE_INCAP //Can use this while staggered
+	use_state_flags = ABILITY_USE_STAGGERED | ABILITY_USE_SOLIDOBJECT| ABILITY_USE_INCAP | ABILITY_USE_LYING //Can use this while staggered
 	///How low the Ravager's health can go while under the effects of Endure before it dies
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
 	///Timer for Endure's duration
@@ -344,7 +344,7 @@
 	ability_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_duration = 60 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
-	use_state_flags = ABILITY_USE_SOLIDOBJECT | ABILITY_USE_STAGGERED | ABILITY_USE_INCAP
+	use_state_flags = ABILITY_USE_SOLIDOBJECT | ABILITY_USE_STAGGERED | ABILITY_USE_INCAP | ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
