@@ -25,6 +25,10 @@
 		if("orbit")
 			var/ref = params["ref"]
 			var/atom/movable/poi = locate(ref) in GLOB.mob_list
+			if(poi.faction != FACTION_NEUTRAL && !(check_other_rights(owner.client, R_ADMIN, FALSE)))
+				if(owner.faction != poi.faction)
+					to_chat(owner, span_warning("Can't teleport to other factions."))
+					return
 			if (poi == null)
 				. = TRUE
 				return

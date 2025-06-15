@@ -150,7 +150,6 @@
 	L.visible_message(span_danger("[L] nudges its head against [src]."), \
 	span_danger("You nudge your head against [src]."))
 
-
 ///the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.
 /obj/proc/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	SHOULD_CALL_PARENT(TRUE)

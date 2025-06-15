@@ -78,20 +78,13 @@
 /mob/living/carbon/human/proc/receive_order(atom/target, arrow_type, verb_name = "rally", faction)
 	if(!target || !arrow_type)
 		return
-	if(!(job.job_flags & JOB_FLAG_CAN_SEE_ORDERS))
+	if(!(job?.job_flags & JOB_FLAG_CAN_SEE_ORDERS))
 		return
 	if(z != target.z)
 		return
 	if(target == src)
 		return
-	var/hud_type
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			hud_type = DATA_HUD_SQUAD_TERRAGOV
-		if(FACTION_SOM)
-			hud_type = DATA_HUD_SQUAD_SOM
-		else
-			return
+	var/hud_type = GLOB.faction_to_data_hud[faction]
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	if(!squad_hud.hudusers[src])
 		return

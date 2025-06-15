@@ -14,11 +14,24 @@
 	var/on_fire = FALSE
 	///Set this to true if this object isn't destroyed when the weeds under it is.
 	var/ignore_weed_destruction = FALSE
+	///Which hive it belongs to
+	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/alien/Initialize(mapload)
+/obj/alien/Initialize(mapload, _hivenumber)
 	. = ..()
+	if(_hivenumber) ///because admins can spawn them
+		hivenumber = _hivenumber
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[hive.prefix][name]"
+	color = hive.color
 	if(!ignore_weed_destruction)
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
+
+/obj/alien/update_icon_state()
+	.=..()
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	if(istype(hive))
+		color = hive.color
 
 /// Destroy the alien effect when the weed it was on is destroyed
 /obj/alien/proc/weed_removed()
@@ -105,7 +118,15 @@
 		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, WEED_SLOWDOWN)
 		return
 
-	if(!ishuman(crosser))
+	if(isxeno(crosser))
+		var/mob/living/carbon/xenomorph/X = crosser
+		if(!issamexenohive(X))
+			X.next_move_slowdown = WEED_SLOWDOWN
+		else
+			X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+		return
+
+	if(!isliving(crosser))
 		return
 
 	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
@@ -114,7 +135,7 @@
 	if(CHECK_MULTIPLE_BITFIELDS(crosser.allow_pass_flags, HOVERING))
 		return
 
-	var/mob/living/carbon/human/victim = crosser
+	var/mob/living/victim = crosser
 
 	if(victim.lying_angle)
 		return
@@ -125,6 +146,9 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
+	if(!(issamexenohive(xeno_attacker)))
+		return ..()
+
 	if(xeno_attacker.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
 		if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
@@ -132,8 +156,6 @@
 		playsound(src, SFX_ALIEN_RESIN_BREAK, 25) //SFX
 		deconstruct(TRUE)
 		return
-
-	return ..()
 
 /obj/alien/resin/sticky/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
 	z_move_flags |= ZMOVE_ALLOW_ANCHORED
@@ -159,7 +181,7 @@
 	icon = 'icons/obj/smooth_objects/resin-door.dmi'
 	icon_state = "resin-door-1"
 	base_icon_state = "resin-door"
-	resistance_flags = NONE
+	resistance_flags = UNACIDABLE | XENO_DAMAGEABLE
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 100
 	smoothing_flags = SMOOTH_BITMASK
@@ -178,21 +200,31 @@
 	var/close_delay = 10 SECONDS
 	///The timer that tracks the delay above
 	var/closetimer
+	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/structure/mineral_door/resin/smooth_icon()
 	. = ..()
 	update_icon()
 
-/obj/structure/mineral_door/resin/Initialize(mapload)
+/obj/structure/mineral_door/resin/Initialize(mapload, _hivenumber)
 	. = ..()
+	if(_hivenumber) ///because admins can spawn them
+		hivenumber = _hivenumber
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[hive.prefix][name]"
+	color = hive.color
 	if(!locate(/obj/alien/weeds) in loc)
 		new /obj/alien/weeds(loc)
 
 
 /obj/structure/mineral_door/resin/Cross(atom/movable/mover, turf/target)
 	. = ..()
-	if(!. && isxeno(mover) && !open)
-		toggle_state()
+	if(!. && issamexenohive(mover) && !open)
+		var/mob/living/living_mover = mover
+		if((!(istype(living_mover))) || (living_mover.stat != CONSCIOUS))
+			return
+		if(isxeno(living_mover))
+			toggle_state()
 		return TRUE
 
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
@@ -207,6 +239,8 @@
 	var/turf/cur_loc = xeno_attacker.loc
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
+	if(!issamexenohive(xeno_attacker))
+		return ..()
 	if(xeno_attacker.a_intent != INTENT_HARM)
 		try_toggle_state(xeno_attacker)
 		return TRUE
@@ -236,7 +270,7 @@
 			take_damage(30, BRUTE, BOMB)
 
 /obj/structure/mineral_door/resin/try_toggle_state(atom/user)
-	if(isxeno(user))
+	if(issamexenohive(user))
 		return ..()
 
 /obj/structure/mineral_door/resin/toggle_state()
@@ -295,6 +329,15 @@
 	var/immune_time = 30 SECONDS
 	///Holder to ensure only one user per resin jelly.
 	var/current_user
+	var/hivenumber = XENO_HIVE_NORMAL
+
+/obj/item/resin_jelly/Initialize(mapload, _hivenumber)
+	. = ..()
+	if(_hivenumber) ///because admins can spawn them
+		hivenumber = _hivenumber
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[hive.prefix][name]"
+	color = hive.color
 
 /obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
@@ -306,11 +349,14 @@
 	//Activates if the item itself is clicked in hand.
 	if(!isxeno(user))
 		return
+	if(!issamexenohive(user))
+		user.balloon_alert(user, "Wrong hive")
+		return
 	if(user.do_actions || !isnull(current_user))
 		return
 	current_user = user
 	user.balloon_alert(user, "Applying...")
-	if(!do_after(user, RESIN_SELF_TIME, NONE, user, BUSY_ICON_MEDICAL))
+	if(!do_after(user, RESIN_SELF_TIME, TRUE, user, BUSY_ICON_MEDICAL))
 		current_user = null
 		return
 	activate_jelly(user)
@@ -325,11 +371,14 @@
 		return FALSE
 	if(user.do_actions || !isnull(current_user))
 		return FALSE
+	if(!issamexenohive(user))
+		user.balloon_alert(user, "Wrong hive")
+		return FALSE
 	current_user = M
 	M.balloon_alert(user, "Applying...")
 	if(M != user)
 		user.balloon_alert(M, "Applying jelly...") //Notify recipient to not move.
-	if(!do_after(user, (M == user ? RESIN_SELF_TIME : RESIN_OTHER_TIME), NONE, M, BUSY_ICON_MEDICAL))
+	if(!do_after(user, (M == user ? RESIN_SELF_TIME : RESIN_OTHER_TIME), TRUE, M, BUSY_ICON_MEDICAL))
 		current_user = null
 		return FALSE
 	activate_jelly(M)
@@ -355,6 +404,8 @@
 		return
 	var/mob/living/carbon/xenomorph/X = hit_atom
 	if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+		return
+	if(!issamexenohive(X))
 		return
 	X.visible_message(span_notice("[X] is splattered with jelly!"))
 	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)
@@ -503,4 +554,33 @@
 	var/datum/effect_system/smoke_spread/xeno/hemodile/gas = new(get_turf(src))
 	gas.set_up(2, src)
 	gas.start()
+	qdel(src)
+
+/obj/item/reagent_containers/food/snacks/nutrient_jelly
+	name = "nutrient jelly"
+	desc = "A perplexing, soft mesh of almost bready protein-fibers. It's warm and spongey to the touch, and smells edible."
+	icon = 'icons/obj/items/food/xeno.dmi'
+	icon_state = "edible_biomass_mono"
+	greyscale_config = /datum/greyscale_config/nutrient_jelly
+	greyscale_colors = "#f47e7e"
+	bitesize = 3
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("vague sweetness" = 1, "water" = 2)
+	var/hivenumber = XENO_HIVE_NORMAL
+
+/obj/item/reagent_containers/food/snacks/nutrient_jelly/examine(mob/user)
+	. = ..()
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	. += "It is from the [hive.name] hive"
+
+/obj/item/reagent_containers/food/snacks/nutrient_jelly/attack_self(mob/living/carbon/xenomorph/user)
+	//Activates if the item itself is clicked in hand.
+	if(!isxeno(user))
+		return
+	if(!issamexenohive(user))
+		user.balloon_alert(user, "Wrong hive")
+		return
+	user.balloon_alert(user, "Absorbing...")
+	if(!do_after(user, RESIN_SELF_TIME, TRUE, user, BUSY_ICON_MEDICAL))
+		return
 	qdel(src)
