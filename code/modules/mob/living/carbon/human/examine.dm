@@ -567,15 +567,42 @@
 		if(status_flags & XENO_HOST)
 			msg += "[t_He] [t_is] impregnated.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
+			msg += "Neurotoxin([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin)]u): Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
-			msg += "Hemodile: Slows down the target, doubling in power with each other xeno-based toxin present.\n"
+			msg += "Hemodile([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)]u): Slows down the target, doubling in power with each other xeno-based toxin present.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-			msg += "Transvitox: Converts burns to toxin over time, as well as causing incoming brute damage to deal additional toxin damage. Both effects intensifying with each xeno-based toxin present. Toxin damage is capped at 180.\n"
+			msg += "Transvitox([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)]u): Converts burns to toxin over time, as well as causing incoming brute damage to deal additional toxin damage. Both effects intensifying with each xeno-based toxin present. Toxin damage is capped at 180.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
-			msg += "Ozelomelyn: Rapidly purges all medicine in the body, causes toxin damage capped at 40. Metabolizes very quickly.\n"
+			msg += "Ozelomelyn([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn)]u): Rapidly purges all medicine in the body, causes toxin damage capped at 40. Metabolizes very quickly.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
-			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
+			msg += "Sanguinal([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)]u): Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
+
+//defiler specific examine info
+		if(istype(user, /mob/living/carbon/xenomorph/defiler))
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine))
+				msg += "Bicaridine([reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine)]u): Weak brute medication used by most marines. Heals slowly.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/kelotane))
+				msg += "Kelotane([reagents.get_reagent_amount(/datum/reagent/medicine/kelotane)]u): Weak burn medication used by most marines. Heals slowly.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
+				msg += "Tricordrazine([reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)]u): General healing chem, heals all types of common damage by a small ammount.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/meralyne))
+				msg += "Meralyne([reagents.get_reagent_amount(/datum/reagent/medicine/meralyne)]u): Strong brute medication used commonly by corpsman.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/dermaline))
+				msg += "Dermaline([reagents.get_reagent_amount(/datum/reagent/medicine/dermaline)]u): Strong burn medication used commonly by corpsman.\n"
+
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/tramadol))
+				msg += "Tramadol([reagents.get_reagent_amount(/datum/reagent/medicine/tramadol)]u): General use anti-pain medication used by most marines.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/paracetamol))
+				msg += "Paracetamol([reagents.get_reagent_amount(/datum/reagent/medicine/paracetamol)]u): Weak anti-pain medication. rarely used.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone))
+				msg += "Oxycodone([reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone)]u): Very strong anti-pain medication commonly found on corpsman.\n"
+
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/dylovene))
+				msg += "Dylovene([reagents.get_reagent_amount(/datum/reagent/medicine/dylovene)]u): Basic toxin removal medication.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline))
+				msg += "Inaprovaline([reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)]u):  Heals vast ammount of damage after injection in crit and prevents further oxygen damage while present.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicalnanites))
+				msg += "Medical nanites([reagents.get_reagent_amount(/datum/reagent/medicalnanites)]u): Uses marines blood healing moderate ammounts of burn and brute all the time. Cannot be purged by ozelomelyn but can be by defiling.\n"
 
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += separator_hr("[span_boldwarning("Admin Slept")]")
