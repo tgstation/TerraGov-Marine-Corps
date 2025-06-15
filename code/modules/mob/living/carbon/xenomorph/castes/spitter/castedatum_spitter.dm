@@ -58,6 +58,7 @@
 		/datum/action/ability/activable/xeno/scatter_spit,
 		/datum/action/ability/activable/xeno/spray_acid/line,
 	)
+	doppelganger_color = "#38ff10"
 
 /datum/xeno_caste/spitter/normal
 	upgrade = XENO_UPGRADE_NORMAL

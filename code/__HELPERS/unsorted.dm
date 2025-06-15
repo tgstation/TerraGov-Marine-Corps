@@ -904,9 +904,15 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		return "[round((powerused * 0.000001),0.001)] MW"
 	return "[round((powerused * 0.000000001),0.0001)] GW"
 
+///Always round up to the nearest whole number
+#define ROUNDUP "ceil"
+///Always round down to the nearest whole number
+#define ROUNDDOWN "floor"
+///Always round via half/half rounding, where anything under 5 is rounded down, and 5 and above is rounded up
+#define ROUND "round"
 
-/// Bucket a value within boundary, Accepts a optional rounding method arg, "ceiling" by default, "round" for normal round, "floor" for floor rounding
-/proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms, round_type = "ceiling")
+/// Bucket a value within boundary, Accepts a optional rounding method arg, either CEILING, ROUND, or FLOOR
+/proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms, round_type = ROUNDUP)
 	if(length(boundary_terms) == 2)
 		if(current >= max)
 			return boundary_terms[1]

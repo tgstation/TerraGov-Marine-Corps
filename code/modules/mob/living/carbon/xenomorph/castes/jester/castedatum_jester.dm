@@ -28,6 +28,20 @@
 	upgrade_threshold = TIER_TWO_THRESHOLD
 	deevolves_to = /datum/xeno_caste/runner
 
+	// *** Carrier Abilities *** //
+	huggers_max = 8
+	hugger_delay = 1.25 SECONDS
+
+	// *** Ranged Attack *** //
+	spit_delay = 0.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
+
+	acid_spray_duration = 10 SECONDS
+	acid_spray_damage_on_hit = 45
+	acid_spray_damage = 20
+	acid_spray_structure_damage = 45
+
+
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -63,4 +77,6 @@
 		/datum/action/ability/xeno_action/chips,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/deck_of_disaster,
+		/datum/action/ability/xeno_action/tarot_deck,
+		/datum/action/ability/xeno_action/doppelganger,
 	)

@@ -355,6 +355,7 @@
 
 #define COMSIG_XENOABILITY_DECK_OF_DISASTER "xenoability_deck_of_disaster"
 #define COMSIG_XENOABILITY_TAROT_DECK "xenoability_tarot_deck"
+#define COMSIG_XENOABILITY_DOPPELGANGER "xenoability_doppelganger"
 
 #define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
 #define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"

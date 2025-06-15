@@ -55,6 +55,8 @@
 		/datum/action/ability/activable/xeno/cresttoss,
 	)
 
+	doppelganger_color = "#3b1818"
+
 /datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher)

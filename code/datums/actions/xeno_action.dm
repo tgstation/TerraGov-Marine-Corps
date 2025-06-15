@@ -12,9 +12,9 @@
 	visual_references[VREF_MUTABLE_EMPOWERED_FRAME] = empowered_appearence
 
 /datum/action/ability/xeno_action/give_action(mob/living/L)
+	xeno_owner = L
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, TYPE_PROC_REF(/datum/action/ability, on_xeno_upgrade))
-	xeno_owner = L
 
 /datum/action/ability/xeno_action/remove_action(mob/living/L)
 	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
@@ -58,9 +58,9 @@
 	visual_references[VREF_MUTABLE_EMPOWERED_FRAME] = empowered_appearence
 
 /datum/action/ability/activable/xeno/give_action(mob/living/L)
+	xeno_owner = L
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, TYPE_PROC_REF(/datum/action/ability, on_xeno_upgrade))
-	xeno_owner = L
 
 /datum/action/ability/activable/xeno/remove_action(mob/living/L)
 	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)

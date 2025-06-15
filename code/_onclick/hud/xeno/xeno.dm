@@ -88,7 +88,7 @@
 /atom/movable/screen/alien/jester/chips/Click()
 	var/mob/living/carbon/xenomorph/X = usr
 	var/datum/action/ability/xeno_action/chips/container = X.actions_by_path[/datum/action/ability/xeno_action/chips]
-	X.balloon_alert("[container.chips] chips")
+	X.balloon_alert(X, "[container.chips] chips")
 
 /datum/hud/alien/New(mob/living/carbon/xenomorph/owner, ui_style, ui_color, ui_alpha = 230)
 	..()

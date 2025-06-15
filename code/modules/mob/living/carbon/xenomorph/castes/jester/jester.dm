@@ -15,7 +15,71 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+	///An overlay of the caste thats picked for doppelganger, displayed ala stand style, from jojo
+	var/atom/movable/vis_obj/xeno_wounds/doppleganger_overlay/doppleganger_overlay
+	/// A true/false on wether the jester currently has a doppelganger
+	var/has_doppelganger = FALSE
+	///  What type of caste this jester's doppelganger is, if it has one
+	var/datum/xeno_caste/doppelganger_caste
 
+// ***************************************
+// *********** Doppelganger Overlays
+// ***************************************
+/atom/movable/vis_obj/xeno_wounds/doppleganger_overlay
+	layer = BELOW_MOB_LAYER
+	///The xeno this overlay belongs to
+	var/mob/living/carbon/xenomorph/owner
+	alpha = 180
+
+/mob/living/carbon/xenomorph/jester/proc/update_doppelganger_overlay()
+	if(!doppleganger_overlay)
+		return
+	if(!has_doppelganger)
+		doppleganger_overlay.icon_state = ""
+		return
+	var/mob/living/carbon/xenomorph = doppelganger_caste.caste_type_path
+	doppleganger_overlay.icon_state = xenomorph.icon_state
+	doppleganger_overlay.icon = xenomorph.icon
+	if(stat == DEAD)
+		doppleganger_overlay.icon_state = "[xenomorph.icon_state] Dead"
+		return
+	if(lying_angle)
+		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
+			doppleganger_overlay.icon_state = "[xenomorph.icon_state] Sleeping"
+			return
+		doppleganger_overlay.icon_state = "[xenomorph.icon_state] Knocked Down"
+		return
+	doppleganger_overlay.icon_state = "[xenomorph.icon_state]"
+	switch(dir)
+		if(NORTH)
+			doppleganger_overlay.pixel_x = 18
+			doppleganger_overlay.pixel_y = 20
+			doppleganger_overlay.layer = BELOW_MOB_LAYER
+		if(SOUTH)
+			doppleganger_overlay.pixel_x = -18
+			doppleganger_overlay.pixel_y = 20
+			doppleganger_overlay.layer = ABOVE_MOB_LAYER
+		if(WEST)
+			doppleganger_overlay.pixel_x = -10
+			doppleganger_overlay.pixel_y = 20
+			doppleganger_overlay.layer = BELOW_MOB_LAYER
+		if(EAST)
+			doppleganger_overlay.pixel_x = -6
+			doppleganger_overlay.pixel_y = 20
+			doppleganger_overlay.layer = ABOVE_MOB_LAYER
+
+/mob/living/carbon/xenomorph/jester/update_icons(state_change = TRUE)
+	. = ..()
+	update_doppelganger_overlay()
+
+/mob/living/carbon/xenomorph/jester/Initialize(mapload, do_not_set_as_ruler)
+	. = ..()
+	doppleganger_overlay = new(src, src)
+	vis_contents += doppleganger_overlay
+
+// ***************************************
+// *********** Chips & Related mechanics
+// ***************************************
 /mob/living/carbon/xenomorph/jester/onhithuman(attacker, target, damage)
 	. = ..()
 	var/datum/action/ability/xeno_action/chips/chipcontainer = actions_by_path[/datum/action/ability/xeno_action/chips]
@@ -44,17 +108,18 @@
 /mob/living/carbon/xenomorph/jester/proc/hud_set_chips()
 	if(hud_used?.jester_chips_display)
 		var/datum/action/ability/xeno_action/chips/chipcontainer = actions_by_path[/datum/action/ability/xeno_action/chips]
-		var/bucket = get_bucket(XENO_HUD_CHIPS_BUCKETS, chipcontainer.maxchips, chipcontainer.chips, 0, list("4", "0"), "round")
+		var/bucket = get_bucket(XENO_HUD_CHIPS_BUCKETS, chipcontainer.maxchips, chipcontainer.chips, 0, list("4", "0"), ROUND)
 		hud_used.jester_chips_display.icon_state = "gamble_chips_[bucket]"
 
 ///Updates the gamble hud, and controls its progression. This proc is perennial, and ideally should never be stopped outside of the jester's (de)evolution
 /mob/living/carbon/xenomorph/jester/proc/hud_set_gamble_bar(update_state = TRUE)
 	var/datum/action/ability/xeno_action/chips/chipcontainer = actions_by_path[/datum/action/ability/xeno_action/chips]
+	if(update_state)
+		chipcontainer.gamblestate += 1
 	if(chipcontainer.gamblestate != 4)
 		hud_used.jester_call_button.icon_state = "gamble_ui_call_off"
 		hud_used.jester_hold_button.icon_state = "gamble_ui_hold_off"
 		if(update_state)
-			chipcontainer.gamblestate += 1
 			addtimer(CALLBACK(src, PROC_REF(hud_set_gamble_bar)), 15 SECONDS)
 		hud_used.jester_gamble_bar.icon_state = "gamble_bar_[chipcontainer.gamblestate]"
 	else
@@ -64,6 +129,7 @@
 		hud_used.jester_hold_button.icon_state = "gamble_ui_hold_on"
 		if(update_state)
 			chipcontainer.force_gamble_timer = addtimer(CALLBACK(src, PROC_REF(force_gamble)), 30 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
+			balloon_alert(src, "Must gamble in 30 seconds!")
 
 ///Forcefully cause the jester to gamble
 /mob/living/carbon/xenomorph/jester/proc/force_gamble()
@@ -72,7 +138,7 @@
 		chipcontainer.hold()
 		balloon_alert(src, "Forcefully held!")
 	else
-		chipcontainer.allin()
+		chipcontainer.allin(TRUE)
 		balloon_alert(src, "Forcefully gambled!")
 
 

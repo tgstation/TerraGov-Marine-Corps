@@ -54,6 +54,8 @@
 
 	minimap_icon = "xenoqueen"
 
+	doppelganger_color = "#ffffff"
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/activable/xeno/psydrain,

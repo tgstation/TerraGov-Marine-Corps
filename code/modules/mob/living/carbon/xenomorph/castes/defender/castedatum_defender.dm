@@ -53,6 +53,7 @@
 		/datum/action/ability/xeno_action/tail_sweep,
 		/datum/action/ability/xeno_action/regenerate_skin,
 	)
+	doppelganger_color = "#1604bd"
 
 /datum/xeno_caste/defender/ancient
 	upgrade = XENO_UPGRADE_NORMAL

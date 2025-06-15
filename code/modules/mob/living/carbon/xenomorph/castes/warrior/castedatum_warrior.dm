@@ -53,6 +53,8 @@
 		/datum/action/ability/activable/xeno/warrior/punch,
 	)
 
+	doppelganger_color = "#233527"
+
 /datum/xeno_caste/warrior/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

@@ -209,6 +209,8 @@
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
 
+	///What color overlay this xeno produces as a doppelgänger to Jester
+	var/doppelganger_color = "#009900"
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
 	for(var/trait in caste_traits)
