@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/flags_captured = 0
 	//We are watching
 	var/friendly_fire_damage = 0
+	var/friendly_fire_recieved = 0
 
 	var/projectiles_caught = 0
 	var/projectiles_reflected = 0
@@ -166,6 +167,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		stats += melee_damage ? "[melee_damage] melee damage dealt!" : "You dealt no melee damage."
 		stats += ""
 	stats += friendly_fire_damage ? "You caused [friendly_fire_damage] damage to allies...<br>" : "You avoided committing acts of friendly fire!<br>"
+	stats += friendly_fire_recieved ? "You recieved [friendly_fire_recieved] damage from allies...<br>" : "You avoided receiving friendly fire!<br>"
 
 	if(projectiles_caught)
 		stats += "[projectiles_caught] projectile\s caught by psychic shield."
@@ -418,8 +420,11 @@ The alternative is scattering them everywhere under their respective objects whi
 	personal_statistics.projectile_damage += damage
 	personal_statistics.mission_projectile_damage += damage
 
+	var/datum/personal_statistics/victim_personal_statistics = GLOB.personal_statistics_list[victim.ckey]
+
 	if(faction == victim.faction) //See if any friendly fire was made
 		personal_statistics.friendly_fire_damage += damage	//FF multiplier already included by the way
+		victim_personal_statistics?.friendly_fire_recieved += damage
 		personal_statistics.mission_friendly_fire_damage += damage
 	return TRUE
 
