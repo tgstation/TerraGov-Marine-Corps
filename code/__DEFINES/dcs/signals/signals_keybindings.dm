@@ -143,6 +143,9 @@
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
 
+#define COMSIG_ABILITY_PLACE_HOLOGRAM "ability_place_hologram"
+#define COMSIG_ABILITY_SELECT_BUILDTYPE "ability_select_buildtype"
+
 //---- XENO ABILITY KEYBINDS
 
 #define COMSIG_XENOABILITY_REST "xenoability_rest"

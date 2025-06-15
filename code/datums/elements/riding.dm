@@ -106,6 +106,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ITEM_ABSTRACT | DELONDROP | NOBLUDGEON
 	resistance_flags = INDESTRUCTIBLE | UNACIDABLE | PROJECTILE_IMMUNE
+	layer = BELOW_OBJ_LAYER
 	var/mob/living/carbon/rider
 	var/mob/living/parent
 	var/selfdeleting = FALSE

@@ -78,10 +78,10 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 			new_human.wear_id.paygrade = "E8" //If you play way too much TGMC. 1000 hours.
 	new_human.wear_id.update_label()
 
-/datum/job/terragov/squad/standard/radio_help_message(mob/M)
+/datum/job/terragov/squad/standard/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file marine of the TGMC, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the TerraGov Marine Corps. Ooh-rah!"})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are a rank-and-file marine of the TGMC, and that is your strength. What you lack alone, you gain standing shoulder to shoulder with the men and women of the TerraGov Marine Corps. Ooh-rah!"
 
 
 //Squad Engineer
@@ -115,10 +115,10 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	"}
 	minimap_icon = "engi"
 
-/datum/job/terragov/squad/engineer/radio_help_message(mob/M)
+/datum/job/terragov/squad/engineer/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
-Your squaddies will look to you when it comes to construction in the field of battle."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You have the equipment and skill to build fortifications, reroute power lines, and bunker down. Your squaddies will look to you when it comes to construction in the field of battle."
 
 /datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -172,11 +172,10 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	"}
 	minimap_icon = "medic"
 
-/datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
+/datum/job/terragov/squad/corpsman/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
-You may not be a fully-fledged doctor, but you stand between life and death when it matters."})
-
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You must tend the wounds of your squad mates and make sure they are healthy and active. You may not be a fully-fledged doctor, but you stand between life and death when it matters."
 
 /datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -228,9 +227,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	"}
 	minimap_icon = "smartgunner"
 
-/datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
+/datum/job/terragov/squad/smartgunner/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are the smartgunner. Your job is to provide IFF weapons support."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "Your job is to provide IFF weapons support. <b>Your bullets cannot hit friendlies,</b> and for this reason it's advisable to stay behind your fellow marines unless they are stagnant."
 
 /datum/job/terragov/squad/smartgunner/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -275,12 +275,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	job_points_needed = 10 //Redefined via config.
 
 
-/datum/job/terragov/squad/specialist/radio_help_message(mob/M)
+/datum/job/terragov/squad/specialist/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are the very rare and valuable weapon expert, trained to use special equipment.
-You can serve a variety of roles, so choose carefully."})
-
-
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are the very rare and valuable weapon expert, trained to use special equipment. You can serve a variety of roles, so choose carefully."
 
 //Squad Leader
 /datum/job/terragov/squad/leader
@@ -317,10 +315,10 @@ You can serve a variety of roles, so choose carefully."})
 	"}
 	minimap_icon = "leader"
 
-/datum/job/terragov/squad/leader/radio_help_message(mob/M)
+/datum/job/terragov/squad/leader/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
-You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating. You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."
 
 /datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()

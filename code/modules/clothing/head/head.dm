@@ -445,27 +445,39 @@
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
 
 /obj/item/clothing/head/vsd
-	name = "\improper armored baseball cap"
-	desc = "Baseball caps worn by V.S.D. GIs for the 'Call of Duty' feel."
+	name = "\improper Crasher MT/45 armored cap"
+	desc = "CrashCore sponsored caps with kevlar fabric, comes with a headset."
 	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
-	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
+	icon = 'icons/mob/clothing/headwear/ert_headwear.dmi'
 	icon_state = "vsd_cap"
 	worn_icon_state = "vsd_cap"
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 55, ACID = 55)
 	armor_features_flags = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/vsd/beret
-	name = "\improper armored red patched beret"
-	desc = "A red beret for V.S.D. Squad Leaders for the commando look."
-	icon_state = "beretred"
-	worn_icon_state = "vsd_cap"
-	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
+	name = "\improper Crasher MT/45 Vyacheslav armored beret"
+	desc = "CrashCore sponsored beret with kevlar fabric, seen on Vyacheslav Squad Leaders and Officers."
+	icon_state = "vsd_beret"
+	worn_icon_state = "vsd_beret"
+	icon = 'icons/mob/clothing/headwear/ert_headwear.dmi'
 	worn_icon_list = list(
-		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
+
+/obj/item/clothing/head/vsd/beret_alt
+	name = "\improper Crasher MT/45 Vyacheslav armored beret"
+	desc = "CrashCore sponsored beret with kevlar fabric, seen on Vyacheslav Squad Leaders and Officers."
+	icon_state = "usl_beret"
+	worn_icon_state = "usl_beret"
+	icon = 'icons/mob/clothing/headwear/ert_headwear.dmi'
+	worn_icon_list = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)

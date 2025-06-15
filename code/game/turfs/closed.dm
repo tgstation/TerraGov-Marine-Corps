@@ -153,6 +153,17 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+/turf/closed/mineral/smooth/strata_wall
+	icon = 'icons/turf/walls/strata_ice_wall.dmi'
+	icon_state = "ice_wall-0"
+	walltype = "darkfrostwall"
+	base_icon_state = "ice_wall"
+
+/turf/closed/mineral/smooth/strata_wall/indestructible
+	name = "tough rock"
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
 	icon_state = "red_wall-0"
@@ -199,11 +210,15 @@
 
 //resin bone wall
 /turf/closed/mineral/smooth/resin_hard
+	name = "hardened resin wall"
+	desc = "This resin has solidified into a solid immovable mass, you can see the faint traces of what look like a dense xenomorph skeleton underneath the surface."
 	icon = 'icons/turf/walls/resin_bone_wall.dmi'
 	icon_state = "resin_bone_wall-0"
 	base_icon_state = "resin_bone_wall"
 
 /turf/closed/mineral/smooth/resin_hard/indestructible
+	name = "ultra-hardened resin wall"
+	desc = "This resin has been soaked in some sort of acidic curing substance and solidified so much you doubt anything can remove it."
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
@@ -558,6 +573,12 @@
 /turf/closed/shuttle/dropship1/edge
 	icon_state = "shuttle_interior_edge"
 
+/turf/closed/shuttle/dropship1/interiormisc/three
+	icon_state = "shuttle_interior_misc_three"
+
+/turf/closed/shuttle/dropship1/edge/misc
+	icon_state = "shuttle_exterior_edge"
+
 /turf/closed/shuttle/dropship1/edge/alt
 	icon_state = "shuttle_interior_edgealt"
 
@@ -589,6 +610,12 @@
 /turf/closed/shuttle/dropship1/enginethree
 	icon_state = "shuttle_interior_backengine3"
 
+/turf/closed/shuttle/dropship1/corners/alt
+	icon_state = "shuttle_exterior_corners_alt"
+
+/turf/closed/shuttle/dropship1/corners/interior
+	icon_state = "shuttle_interior_corners"
+
 /turf/closed/shuttle/dropship1/enginefour
 	icon_state = "shuttle_interior_backengine4"
 
@@ -617,6 +644,9 @@
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
+
+/turf/closed/shuttle/dropship1/interiormisc/two
+	icon_state = "shuttle_interior_misc"
 
 /turf/closed/shuttle/dropship1/cornersalt
 	icon_state = "shuttle_interior_corneralt"

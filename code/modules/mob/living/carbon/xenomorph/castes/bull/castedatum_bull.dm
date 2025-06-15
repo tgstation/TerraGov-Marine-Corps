@@ -33,7 +33,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_STUNIMMUNE)
 
 	// *** Defense *** //

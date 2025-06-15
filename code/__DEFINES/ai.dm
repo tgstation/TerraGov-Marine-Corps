@@ -77,14 +77,18 @@ GLOBAL_LIST_EMPTY(ai_instances_active)
 //To be implemented in later updates
 GLOBAL_LIST_EMPTY(nodes_with_enemies)
 GLOBAL_LIST_EMPTY(nodes_with_construction)
-#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/obj/structure/catwalk) in turf_to_check) //todo: this needs work
+#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || turf_to_check.is_covered())
 
 ///Obstacle needs attacking
 #define AI_OBSTACLE_ATTACK "ai_obstacle_attack"
 ///Obstacle can be jumped
 #define AI_OBSTACLE_JUMP "ai_obstacle_jump"
+///Obstacle can't be resolved, and is friendly so shouldn't be destroyed
+#define AI_OBSTACLE_FRIENDLY "ai_obstacle_friendly"
 ///Obstacle has already been handled
 #define AI_OBSTACLE_RESOLVED "ai_obstacle_resolved"
+///Obstacle can be ignored
+#define AI_OBSTACLE_IGNORED "ai_obstacle_ignored"
 
 ///If the mob parent can heal itself and so should flee
 #define HUMAN_AI_SELF_HEAL (1<<0)
@@ -105,8 +109,11 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define HUMAN_AI_HEALING (1<<2)
 ///Healing self
 #define HUMAN_AI_SELF_HEALING (1<<3)
+///Building something
+#define HUMAN_AI_BUILDING (1<<4)
 
-#define HUMAN_AI_ANY_HEALING (HUMAN_AI_HEALING|HUMAN_AI_SELF_HEALING)
+///Any action that we generally don't want to interrupt
+#define HUMAN_AI_BUSY_ACTION (HUMAN_AI_HEALING|HUMAN_AI_SELF_HEALING|HUMAN_AI_BUILDING)
 
 ///We're good to shoot
 #define AI_FIRE_CAN_HIT (1<<0)
@@ -127,11 +134,21 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 ///Don't help anyone else
 #define AI_MED_SELFISH 0
 ///Tries to inap crit friends
-#define AI_MED_STANDARD 1
+#define AI_MED_DEFAULT 1
 ///Tries to heal whenver possible
 #define AI_MED_MEDIC 2
 ///Prioritises healing above combat
 #define AI_MED_DOCTOR 3
+
+//Mob engineer level
+///Don't do engineering
+#define AI_ENGIE_DEFAULT 0
+///Basic tasks
+#define AI_ENGIE_BASIC 1
+///Engineer level
+#define AI_ENGIE_STANDARD 2
+///Dedicated engineer
+#define AI_ENGIE_EXPERT 3
 
 GLOBAL_LIST_INIT(ai_brute_heal_items, list(
 	/obj/item/reagent_containers/pill/bicaridine,

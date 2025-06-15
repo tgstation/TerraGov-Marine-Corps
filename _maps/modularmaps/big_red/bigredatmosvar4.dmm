@@ -521,6 +521,10 @@
 "VI" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
+"Wf" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/filtration_plant)
 "Wr" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -566,9 +570,9 @@
 /area/bigredv2/outside/filtration_plant)
 
 (1,1,1) = {"
-RB
+Wf
 cc
-RB
+Wf
 RB
 Ji
 JK
@@ -579,7 +583,7 @@ JK
 JK
 JK
 RB
-RB
+Wf
 LI
 tk
 tk
@@ -674,10 +678,10 @@ Vb
 Vb
 "}
 (5,1,1) = {"
-RB
+Wf
 cc
-RB
-RB
+Wf
+Wf
 Ii
 mw
 kv
@@ -974,7 +978,7 @@ Qq
 RB
 RB
 RB
-RB
+Wf
 or
 mw
 kv

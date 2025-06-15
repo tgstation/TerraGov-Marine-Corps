@@ -17,6 +17,10 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/s)
+"cT" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/filtration_plant)
 "cY" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
@@ -569,9 +573,9 @@
 /area/bigredv2/outside/se)
 
 (1,1,1) = {"
-az
+cT
 mw
-az
+cT
 az
 fc
 SS
@@ -582,7 +586,7 @@ SS
 SS
 SS
 az
-az
+cT
 fK
 Va
 Va
@@ -677,10 +681,10 @@ GX
 GX
 "}
 (5,1,1) = {"
-az
+cT
 mw
-az
-az
+cT
+cT
 Ag
 nP
 bN
@@ -977,7 +981,7 @@ WO
 az
 az
 az
-az
+cT
 Lx
 nP
 bN

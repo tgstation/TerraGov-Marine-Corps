@@ -901,7 +901,7 @@
 		"Melting" = /datum/lasrifle/energy_mg_mode/standard/melting,
 	)
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/apply_gun_modifiers(atom/movable/projectile/projectile_to_fire, atom/target, firer)
 	. = ..()
 	if((gun_firemode == GUN_FIREMODE_BURSTFIRE) && shots_fired) //this specifically boosts the burst fire mode
 		projectile_to_fire.damage *= (1 + shots_fired)

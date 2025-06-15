@@ -59,7 +59,12 @@ export const KeybindSettings = (props) => {
         />
       )}
       <Box>
-        Search: <Input onInput={(_e, value) => setFilter(value)} />
+        <Input
+          autoFocus
+          expensive
+          placeholder="Search..."
+          onChange={setFilter}
+        />
       </Box>
       <Stack>
         <Stack.Item grow>

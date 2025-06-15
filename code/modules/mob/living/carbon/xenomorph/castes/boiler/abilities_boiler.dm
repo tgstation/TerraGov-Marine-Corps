@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] launches a huge glob of acid hurling into the distance!"), \
 	span_xenowarning("We launch a huge glob of acid hurling into the distance!"), null, 5)
 
-	var/obj/projectile/P = new /obj/projectile(xeno_owner.loc)
+	var/atom/movable/projectile/P = new /atom/movable/projectile(xeno_owner.loc)
 	P.generate_bullet(xeno_owner.ammo)
 	P.fire_at(target, xeno_owner, xeno_owner, xeno_owner.ammo.max_range, xeno_owner.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/effects/blobattack.ogg', 25, 1)
@@ -532,7 +532,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	var/datum/ammo/xeno/acid/heavy/high_pressure_spit/high_pressure_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/high_pressure_spit]
 
-	var/obj/projectile/newspit = new(get_turf(X))
+	var/atom/movable/projectile/newspit = new(get_turf(X))
 	newspit.generate_bullet(high_pressure_spit)
 	newspit.def_zone = X.get_limbzone_target()
 

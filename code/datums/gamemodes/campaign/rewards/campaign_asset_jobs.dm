@@ -13,10 +13,10 @@
 	job_cost = 0
 	multiple_outfits = TRUE
 
-/datum/job/som/mercenary/militia/radio_help_message(mob/M)
+/datum/job/som/mercenary/militia/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a volunteer member of a local militia group. You are lending your support to the faction you believe is truly helping your colony.
-What you lack in equipment and military training you make up in bravery and conviction. Fight for Blood! Fight for home!"})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are a volunteer member of a local militia group. You are lending your support to the faction you believe is truly helping your colony. What you lack in equipment and military training you make up in bravery and conviction. Fight for Blood! Fight for home!"
 
 /datum/job/som/mercenary/militia/standard
 	outfit = /datum/outfit/job/som/militia/standard/uzi
@@ -178,11 +178,12 @@ What you lack in equipment and military training you make up in bravery and conv
 	)
 	job_cost = 0
 
-/datum/job/terragov/squad/standard/campaign_robot/radio_help_message(mob/M)
+/datum/job/terragov/squad/standard/campaign_robot/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a cold, unfeeling machine built for war, controlled by TGMC.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are a cold, unfeeling machine built for war, controlled by TGMC.
 Your metal body is immune to pain and chemical warfare, and resistant against fire and radiation, although you lack the mobility of your human counterparts.
-Fight for TGMC, and attempt to achieve all objectives given to you."})
+Fight for TGMC, and attempt to achieve all objectives given to you."}
 
 
 //VSD
@@ -196,6 +197,10 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 		/datum/outfit/job/vsd/standard/ksg/campaign,
 		/datum/outfit/job/vsd/standard/grunt_second/campaign,
 		/datum/outfit/job/vsd/standard/grunt_third/campaign,
+		/datum/outfit/job/vsd/standard/lmg/campaign,
+		/datum/outfit/job/vsd/standard/upp/campaign,
+		/datum/outfit/job/vsd/standard/upp_second/campaign,
+		/datum/outfit/job/vsd/standard/upp_third/campaign,
 	)
 
 
@@ -205,11 +210,11 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/vsd/spec/flamer/campaign,
 		/datum/outfit/job/vsd/spec/demolitionist/campaign,
 		/datum/outfit/job/vsd/spec/gunslinger/campaign,
 		/datum/outfit/job/vsd/spec/uslspec_one/campaign,
 		/datum/outfit/job/vsd/spec/uslspec_two/campaign,
+		/datum/outfit/job/vsd/spec/machinegunner/campaign,
 	)
 
 /datum/job/vsd/medic/campaign_bonus
@@ -220,6 +225,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	outfits = list(
 		/datum/outfit/job/vsd/medic/ksg/campaign,
 		/datum/outfit/job/vsd/medic/vsd_rifle/campaign,
+		/datum/outfit/job/vsd/medic/vsd_carbine/campaign,
 	)
 
 
@@ -240,8 +246,9 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/vsd/juggernaut/campaign,
-		/datum/outfit/job/vsd/eod/campaign,
+		/datum/outfit/job/vsd/juggernaut/ballistic/campaign,
+		/datum/outfit/job/vsd/juggernaut/eod/campaign,
+		/datum/outfit/job/vsd/juggernaut/flamer/campaign,
 	)
 
 
