@@ -233,7 +233,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
 	)
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_SOLIDOBJECT //Can use this while staggered
+	use_state_flags = ABILITY_USE_STAGGERED | ABILITY_USE_SOLIDOBJECT| ABILITY_USE_INCAP | ABILITY_USE_LYING //Can use this while staggered
 	///How low the Ravager's health can go while under the effects of Endure before it dies
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
 	///Timer for Endure's duration
