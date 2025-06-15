@@ -920,11 +920,11 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			return boundary_terms[2]
 
 	switch(round_type)
-		if("ceiling")
+		if(ROUNDUP)
 			return CEILING((bucket_size / max) * current, 1)
-		if("round")
+		if(ROUND)
 			return _round((bucket_size / max) * current)
-		if("floor")
+		if(ROUNDDOWN)
 			return FLOOR((bucket_size / max) * current, 1)
 
 /atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
