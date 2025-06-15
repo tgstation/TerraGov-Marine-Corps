@@ -1,6 +1,0 @@
-author: "Holoo-1"
-delete-after: True
-changes:
-  - rscadd: "AI multicamera popup windows"
-  - bugfix: "AI multicamera  room being too small for widescreen"
-  - bugfix: "camera static not rendering in some cases"
