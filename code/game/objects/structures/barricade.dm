@@ -59,9 +59,6 @@
 		if(-INFINITY to 25)
 			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
 
-/obj/structure/barricade/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	. = ..()
-	if()
 
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()

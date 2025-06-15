@@ -211,7 +211,7 @@
 			return CONTEXTUAL_SCREENTIP_SET
 		return
 	if(!held_item.tool_behaviour)
-		if(istype(I, /obj/item/armored_weapon))
+		if(istype(held_item, /obj/item/armored_weapon))
 			context[SCREENTIP_CONTEXT_LMB] = "Attach primary weapon"
 			context[SCREENTIP_CONTEXT_RMB] = "Attach secondary weapon"
 			return CONTEXTUAL_SCREENTIP_SET
