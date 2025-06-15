@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		stats += melee_damage ? "[melee_damage] melee damage dealt!" : "You dealt no melee damage."
 		stats += ""
 	stats += friendly_fire_damage ? "You caused [friendly_fire_damage] damage to allies...<br>" : "You avoided committing acts of friendly fire!<br>"
-	stats += friendly_fire_recieved ? "You revieved [friendly_fire_recieved] damage from allies...<br>" : "You avoided receiving friendly fire!<br>"
+	stats += friendly_fire_recieved ? "You recieved [friendly_fire_recieved] damage from allies...<br>" : "You avoided receiving friendly fire!<br>"
 
 	if(projectiles_caught)
 		stats += "[projectiles_caught] projectile\s caught by psychic shield."
