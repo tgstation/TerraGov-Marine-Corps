@@ -184,3 +184,24 @@
   - bugfix: chaplain hoodie no longer an animation of the new and old sprite
   - rscadd: added an occupational choice opt-in preference for being a potential xenomorph
       hive target, i.e. breeding target
+2025-06-15:
+  Apple-107:
+  - rscadd: You can now spawn as Prototype Supersoldier in Valhalla
+  Atropos:
+  - bugfix: removed extra rack from icy caves
+  - bugfix: fixed unintended 90 melee armor on new super heavy armors
+  - rscdel: removed superheavy armor from HVX
+  Barnet2:
+  - bugfix: Kutjevo Refinery cave nuke is now actually caves
+  Holoo-1:
+  - rscadd: AI multicamera popup windows
+  - bugfix: AI multicamera  room being too small for widescreen
+  - bugfix: camera static not rendering in some cases
+  Lumipharon:
+  - rscadd: Various minor improvements to xeno AI
+  - bugfix: fixed various spiderling and puppet bugs
+  - refactor: refactored xeno AI code somewhat
+  Penwin0:
+  - bugfix: Basic secure crates are no longer an ERROR sprite
+  RipGrayson:
+  - rscadd: Ported Fiorina from CM.
