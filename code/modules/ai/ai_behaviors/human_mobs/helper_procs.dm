@@ -337,7 +337,14 @@
 		return AI_OBSTACLE_JUMP
 	if(faction == user.faction) //don't break our shit
 		return AI_OBSTACLE_FRIENDLY
-	if(!(resistance_flags & INDESTRUCTIBLE) && (obj_flags & CAN_BE_HIT))
+
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
+	if(isxeno(user))
+		if(!(resistance_flags & XENO_DAMAGEABLE))
+			return
+		return AI_OBSTACLE_ATTACK
+	if(obj_flags & CAN_BE_HIT)
 		return AI_OBSTACLE_ATTACK
 
 /obj/structure/ai_handle_obstacle(mob/living/user, move_dir)
@@ -352,6 +359,8 @@
 	return AI_OBSTACLE_RESOLVED
 
 /obj/structure/barricade/folding/ai_handle_obstacle(mob/living/user, move_dir)
+	if(!can_interact(user))
+		return ..()
 	toggle_open(null, user)
 	return AI_OBSTACLE_RESOLVED
 
