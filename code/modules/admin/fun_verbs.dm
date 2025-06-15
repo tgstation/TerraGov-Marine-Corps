@@ -878,8 +878,8 @@ ADMIN_VERB(ai_squad, R_FUN, "Spawn AI squad", "Spawns a AI squad of your choice"
 		dude.forceMove(spawn_loc)
 		dude.AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
 
-	message_admins("[key_name_admin(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z].")
-	log_admin("[key_name(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z]")
+	message_admins("[key_name_admin(user)] spawned a [quantity] man [squad_choice] of AI humans in [AREACOORD(spawn_loc)].")
+	log_admin("[key_name(user)] spawned a [quantity] man [squad_choice] of AI humans in [AREACOORD(spawn_loc)].")
 
 
 ADMIN_VERB(load_lazy_template, R_FUN, "Load/Jump Lazy Template", "Loads a lazy template and/or jumps to it.", ADMIN_CATEGORY_FUN)
