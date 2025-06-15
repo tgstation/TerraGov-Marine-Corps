@@ -2871,6 +2871,13 @@
 /obj/item/trash/hotdog,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/civilian/jani)
+"bVu" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/landmark/gargoyle,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/thermal)
 "bVz" = (
 /turf/closed/wall,
 /area/magmoor/civilian/rnr)
@@ -55422,7 +55429,7 @@ dsb
 odX
 oIN
 ccs
-ony
+bVu
 fCk
 piT
 ony

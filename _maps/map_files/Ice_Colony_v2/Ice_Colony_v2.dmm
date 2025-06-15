@@ -31613,6 +31613,7 @@
 "veE" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/obj/effect/landmark/gargoyle,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/sec_storage)
 "veJ" = (
