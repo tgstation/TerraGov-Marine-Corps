@@ -752,6 +752,7 @@
 #include "code\datums\looping_sounds\machinery_sounds.dm"
 #include "code\datums\looping_sounds\music.dm"
 #include "code\datums\looping_sounds\tank.dm"
+#include "code\datums\looping_sounds\vehicle.dm"
 #include "code\datums\looping_sounds\weather_sounds.dm"
 #include "code\datums\looping_sounds\xeno_sounds.dm"
 #include "code\datums\outfits\_outfit.dm"
