@@ -1,0 +1,5 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - balance: "Defiler can now see common medicine like bic. kelo. and other like oxy. or nanites"
+  - balance: "Xenos can now see amount of reagents present inside humans"
