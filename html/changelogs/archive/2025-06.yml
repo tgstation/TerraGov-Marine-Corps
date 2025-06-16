@@ -69,3 +69,6 @@
   - bugfix: Basic secure crates are no longer an ERROR sprite
   RipGrayson:
   - rscadd: Ported Fiorina from CM.
+2025-06-16:
+  Atropos:
+  - bugfix: Fixed vent crawling (finally!!!)
