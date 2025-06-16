@@ -22,3 +22,10 @@
 	aesthetic = TRUE
 
 	barometer_predictable = TRUE
+
+/datum/weather/snow_storm/weather_act(mob/living/L)
+	if(L.stat == DEAD)
+		return
+	if(L.mob_size > MOB_SIZE_HUMAN)
+		return
+	L.adjust_slowdown(1)
