@@ -12,6 +12,14 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP,
 	)
+	/// The amount of range to select nearby targets.
+	var/range = 1
+	/// The amount of damage to deal. This scales downward based on the target's relative distance starting beyond a certain threshold.
+	var/damage = 60
+	/// The amount of distance before damage begins to falloff.
+	var/falloff_range = 1
+	/// Should targets who are on the same tile as the owner be paralyzed for longer?
+	var/has_facestomp_effects = TRUE
 
 /datum/action/ability/activable/xeno/stomp/use_ability(atom/A)
 	succeed_activate()
@@ -25,24 +33,23 @@
 	span_xenodanger("We smash into the ground!"))
 	xeno_owner.create_stomp() //Adds the visual effect. Wom wom wom
 
-	for(var/mob/living/M in range(1, get_turf(xeno_owner)))
+	for(var/mob/living/M in range(range, get_turf(xeno_owner)))
 		if(xeno_owner.issamexenohive(M) || M.stat == DEAD || isnestedhost(M) || !xeno_owner.Adjacent(M))
 			continue
 		var/distance = get_dist(M, xeno_owner)
-		var/damage = xeno_owner.xeno_caste.stomp_damage/max(1, distance + 1)
-		if(distance == 0) //If we're on top of our victim, give him the full impact
+		var/inflicted_damage = damage / max(1, distance + falloff_range)
+
+		if(distance == 0) // If we're on top of our victim, give him the full impact.
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
-			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
-			M.Paralyze(3 SECONDS)
 			to_chat(M, span_userdanger("You are stomped on by [xeno_owner]!"))
 			shake_camera(M, 3, 3)
 		else
-			step_away(M, xeno_owner, 1) //Knock away
-			shake_camera(M, 2, 2)
 			to_chat(M, span_userdanger("You reel from the shockwave of [xeno_owner]'s stomp!"))
-			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
-			M.Paralyze(0.5 SECONDS)
+			step_away(M, xeno_owner, 1) // Knock away.
+			shake_camera(M, 2, 2)
+		M.take_overall_damage(inflicted_damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
+		M.Paralyze(has_facestomp_effects && distance == 0 ? 3 SECONDS : 0.5 SECONDS)
 
 /datum/action/ability/activable/xeno/stomp/ai_should_start_consider()
 	return TRUE
@@ -72,6 +79,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
 	)
 	target_flags = ABILITY_MOB_TARGET
+	/// The amount of deciseconds to reduce the cooldown by if the ability was used on an ally.
+	var/friendly_cooldown_reduction
 
 /datum/action/ability/activable/xeno/cresttoss/on_cooldown_finish()
 	to_chat(xeno_owner, span_xenowarning("<b>We can now crest toss again.</b>"))
@@ -146,7 +155,7 @@
 		shake_camera(L, 2, 2)
 		playsound(A, pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 
-	add_cooldown()
+	add_cooldown(friendly_cooldown_reduction && xeno_owner.issamexenohive(A) ? cooldown_duration - friendly_cooldown_reduction : null)
 	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, update_icons)), 3)
 
 /datum/action/ability/activable/xeno/cresttoss/ai_should_start_consider()
