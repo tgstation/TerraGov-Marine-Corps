@@ -18093,6 +18093,10 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
 /area/magmoor/civilian/clean)
+"mHQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/south)
 "mIg" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
@@ -28062,6 +28066,10 @@
 	dir = 6
 	},
 /area/magmoor/civilian/dorms)
+"tQh" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/south)
 "tQo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -60480,7 +60488,7 @@ rxl
 eLd
 eLd
 eLd
-eLd
+mHQ
 eLd
 rxl
 rxl
@@ -62106,12 +62114,12 @@ rxl
 rxl
 rxl
 rxl
+mHQ
 eLd
 eLd
 eLd
 eLd
-eLd
-eLd
+mHQ
 ygM
 ygM
 eLd
@@ -63737,13 +63745,13 @@ rxl
 rxl
 rxl
 rxl
+mHQ
 eLd
 eLd
 eLd
 eLd
-eLd
-eLd
-eLd
+mHQ
+mHQ
 eLd
 eLd
 rxl
@@ -63950,7 +63958,7 @@ pUx
 ylo
 pUx
 eTo
-eTo
+tQh
 eTo
 eTo
 pUx
@@ -63973,9 +63981,9 @@ rxl
 eLd
 eLd
 eLd
-ygM
-ygM
-ygM
+eLd
+eLd
+eLd
 eLd
 eLd
 eLd
@@ -64207,7 +64215,7 @@ eLd
 eLd
 eLd
 eLd
-ygM
+eLd
 ygM
 eLd
 eLd
@@ -64667,15 +64675,15 @@ rxl
 rxl
 rxl
 rxl
+mHQ
 eLd
-eLd
-eLd
+mHQ
 eLd
 ygM
 ygM
 ygM
 eLd
-eLd
+mHQ
 bbH
 rxl
 rxl
@@ -64907,7 +64915,7 @@ ygM
 ygM
 ygM
 ygM
-eLd
+mHQ
 eLd
 eLd
 rxl
@@ -65139,7 +65147,7 @@ ygM
 ygM
 ygM
 ygM
-eLd
+mHQ
 eLd
 eLd
 rxl
@@ -65348,13 +65356,13 @@ xUd
 jRL
 jRL
 jRL
-jRL
+dkb
 jRL
 jRL
 jRL
 jRL
 eLd
-eLd
+mHQ
 eLd
 rxl
 rxl
@@ -65588,7 +65596,7 @@ jRL
 jRL
 eLd
 eLd
-eLd
+mHQ
 eLd
 eLd
 rxl
@@ -65822,6 +65830,9 @@ jRL
 eLd
 rxl
 eLd
+mHQ
+eLd
+mHQ
 eLd
 eLd
 eLd
@@ -65829,10 +65840,7 @@ eLd
 eLd
 eLd
 eLd
-eLd
-eLd
-eLd
-eLd
+mHQ
 eLd
 ygM
 eLd
@@ -66066,12 +66074,12 @@ ygM
 ygM
 ygM
 eLd
+mHQ
 eLd
 eLd
 eLd
 eLd
-eLd
-eLd
+mHQ
 rxl
 rxl
 rxl
@@ -66523,6 +66531,7 @@ rxl
 rxl
 rxl
 rxl
+mHQ
 eLd
 eLd
 eLd
@@ -66530,8 +66539,7 @@ eLd
 eLd
 eLd
 eLd
-eLd
-eLd
+mHQ
 eLd
 eLd
 rxl
