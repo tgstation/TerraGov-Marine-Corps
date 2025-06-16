@@ -13,7 +13,11 @@ import {
 } from 'tgui-core/components';
 import { capitalizeFirst } from 'tgui-core/string';
 
-import { getDisplayColor, getDisplayName, isJobCkeyOrNameMatch } from './helpers';
+import {
+  getDisplayColor,
+  getDisplayName,
+  isJobCkeyOrNameMatch,
+} from './helpers';
 import type { Observable, OrbitData } from './types';
 
 export const Orbit = (props) => {
