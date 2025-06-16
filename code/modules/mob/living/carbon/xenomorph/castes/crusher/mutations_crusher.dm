@@ -12,7 +12,7 @@
 	var/datum/armor/attached_armor
 	/// Timer ID for a proc that grant the armor given when it times out.
 	var/timer_id
-	/// How long should the armor be given?
+	/// How long will be the timer be?
 	var/timer_length = 1 SECONDS
 
 /datum/mutation_upgrade/shell/tough_rock/get_desc_for_alert(new_amount)
