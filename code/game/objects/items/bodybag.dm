@@ -218,7 +218,7 @@
 		span_danger("We slash \the [src] open!"), null, 5)
 	return TRUE
 
-/obj/structure/closet/bodybag/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/structure/closet/bodybag/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	. = ..()
 	if(src != proj.original_target) //You miss unless you click directly on the bodybag
 		return FALSE

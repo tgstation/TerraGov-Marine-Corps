@@ -1,6 +1,3 @@
-/mob/living/carbon/human/get_examine_icon(mob/user)
-	return null // carbon human icons either don't work or are super fucked up
-
 /mob/living/carbon/human/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	var/skipgloves = 0
@@ -37,7 +34,7 @@
 
 	var/msg = ""
 
-	msg += "<span class='info'>"
+	msg += "<span class='infoplain'>"
 	msg += separator_hr("Outfit")
 
 	//uniform
@@ -173,6 +170,8 @@
 		msg += "[t_He] [t_is] wearing [icon2html(wear_id, user)] \a [wear_id].\n"
 
 	msg += separator_hr("Status")
+
+	msg += "[t_He] [t_is] a [species.name].\n"
 
 	//jitters
 	if(stat != DEAD)
@@ -370,9 +369,7 @@
 				healthy = FALSE
 
 			var/overall_desc = ""
-			if(healthy)
-				overall_desc = span_tinynotice("[t_He] [t_has] a healthy [temp_limb.display_name].")
-			else
+			if(!healthy)
 				overall_desc = "[t_He] [t_has] a [germ_desc][temp_limb.display_name]"
 				if(brute_desc || burn_desc)
 					overall_desc += " with [brute_desc]"
@@ -380,7 +377,7 @@
 						overall_desc += " and "
 					overall_desc += burn_desc
 				overall_desc = span_warning(overall_desc + ".")
-			wound_flavor_text["[temp_limb.display_name]"] = overall_desc + "\n"
+				wound_flavor_text["[temp_limb.display_name]"] = overall_desc + "\n"
 
 	//Handles the text strings being added to the actual description.
 	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.
@@ -508,7 +505,7 @@
 
 	if(flavor_text)
 		msg += separator_hr("Flavor Text")
-		msg += "</span>[flavor_text]<span class='info'>"
+		msg += flavor_text
 
 	if(hasHUD(user,"security"))
 		msg += separator_hr("Security HUD")
@@ -582,7 +579,11 @@
 
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += separator_hr("[span_boldwarning("Admin Slept")]")
-		msg += span_userdanger("This player has been slept by staff. Best to leave them be.\n")
+		msg += span_userdanger("This player has been slept by staff. Leave them be.\n")
+
+	if(isadmin(user))
+		msg += separator_hr("Admin Interactions")
+		msg += span_admin("<span class='notice linkify'>[ADMIN_FULLMONTY(src)]</span>")
 
 	msg += "</span>"
 	return list(msg)

@@ -20,7 +20,7 @@
 /datum/ammo/mortar/drop_nade(turf/T)
 	explosion(T, 1, 2, 5, 0, 3, explosion_cause=src)
 
-/datum/ammo/mortar/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/mortar/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf)
 
 /datum/ammo/mortar/incend/drop_nade(turf/T)

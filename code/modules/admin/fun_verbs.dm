@@ -101,7 +101,7 @@ ADMIN_VERB(command_report, R_FUN, "Command Report", "Create a custom command rep
 	var/input = tgui_input_text(user, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
 	if(!input)
 		return
-	var/override = tgui_input_list(user, "Pick a color for the report.", "Color", faction_alert_colors - "default", default = "blue")
+	var/override = tgui_input_list(user, "Pick a color for the report.", "Color", FACTION_ALERT_COLORS - "default", default = "blue")
 
 	if(tgui_alert(user, "Do you want to print out a paper at the communications consoles?", null, list("Yes", "No")) == "Yes")
 		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)
@@ -149,6 +149,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN|R_MENTOR, "Subtle Message", AD
 	else
 		msg = sanitize(msg)
 
+	M.balloon_alert(M, "You hear a voice")
 	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
 
 	admin_ticket_log(M, "[key_name_admin(user)] used Subtle Message: [sanitize(msg)]")
@@ -590,6 +591,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(edit_appearance, R_FUN, "Edit Appearance", mob/livi
 	dat += "Body color: <font face='fixedsys' size='3' color='[bcolor]'><table style='display:inline;' bgcolor='[bcolor]'><tr><td>_.</td></tr></table></font> <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=bodycolor;mob=[REF(H)]'>Edit</a><br>"
 	dat += "<br>"
 	dat += "Gender: [H.gender] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=gender;mob=[REF(H)]'>Edit</a><br>"
+	dat += "Physique: [H.physique] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=physique;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Ethnicity: [H.ethnicity] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=ethnicity;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Species: [H.species] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=species;mob=[REF(H)]'>Edit</a><br>"
 

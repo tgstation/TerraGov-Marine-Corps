@@ -80,3 +80,9 @@ GLOBAL_VAR_INIT(glide_size_multiplier, 1)
 #define ZMOVE_STAIRS_FLAGS (ZMOVE_CHECK_PULLEDBY|ZMOVE_ALLOW_BUCKLED)
 /// Used for falling down open space.
 #define ZMOVE_FALL_FLAGS (ZMOVE_FALL_CHECKS|ZMOVE_ALLOW_BUCKLED)
+
+/// Used for shooting upwards
+#define ZMOVE_PROJECTILE_UP_CHECKS (ZMOVE_ALLOW_ANCHORED)
+
+/// Used for shooting downwards
+#define ZMOVE_PROJECTILE_DOWN_CHECKS (ZMOVE_ALLOW_ANCHORED)

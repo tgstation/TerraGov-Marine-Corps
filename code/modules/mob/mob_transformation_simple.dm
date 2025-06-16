@@ -61,6 +61,7 @@
 			name = client.prefs.real_name
 			real_name = client.prefs.real_name
 		gender = client.prefs.gender
+		physique = client.prefs.get_physique()
 		h_style = client.prefs.h_style
 		f_style = client.prefs.f_style
 		r_hair = client.prefs.r_hair

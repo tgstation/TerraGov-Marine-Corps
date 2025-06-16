@@ -54,6 +54,12 @@
 	},
 /turf/open/interior/apc/twentynine,
 /area/interior/apc)
+"t" = (
+/obj/machinery/vending/nanoammo/directional/south,
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/turf/open/interior/apc/nine,
+/area/interior/apc)
 "u" = (
 /obj/structure/gun_breech/secondary,
 /turf/open/interior/apc/twentytwo,
@@ -123,7 +129,7 @@ x
 "}
 (3,1,1) = {"
 y
-r
+t
 T
 J
 x

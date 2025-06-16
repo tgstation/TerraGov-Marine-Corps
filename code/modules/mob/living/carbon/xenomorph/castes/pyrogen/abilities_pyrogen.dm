@@ -89,7 +89,7 @@
 
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50)
 
-	var/obj/projectile/magic_bullshit = new(get_turf(src))
+	var/atom/movable/projectile/magic_bullshit = new(get_turf(src))
 	magic_bullshit.generate_bullet(/datum/ammo/xeno/fireball)
 	magic_bullshit.fire_at(target, xeno_owner, xeno_owner, PYROGEN_FIREBALL_MAXDIST, PYROGEN_FIREBALL_SPEED)
 	succeed_activate()

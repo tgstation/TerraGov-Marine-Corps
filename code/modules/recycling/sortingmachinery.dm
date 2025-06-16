@@ -379,11 +379,14 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/machinery/disposal/deliveryChute/interact()
 	return
 
+/obj/machinery/disposal/deliveryChute/attack_hand_alternate(mob/living/user)
+	return
+
 /obj/machinery/disposal/deliveryChute/update()
 	return
 
 /obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
-	if(istype(AM, /obj/projectile) || istype(AM, /obj/effect))
+	if(istype(AM, /atom/movable/projectile) || istype(AM, /obj/effect))
 		return
 	switch(dir)
 		if(NORTH)

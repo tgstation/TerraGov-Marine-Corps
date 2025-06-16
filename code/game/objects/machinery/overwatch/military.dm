@@ -325,6 +325,8 @@
 ///Signal handler for radial menu
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/attempt_radial(datum/source, atom/A, params)
 	SIGNAL_HANDLER
+	if(SEND_SIGNAL(operator, COMSIG_DO_OVERWATCH_RADIAL) & OVERWATCH_RADIAL_HIDE)
+		return
 	INVOKE_ASYNC(src, PROC_REF(do_radial), source, A, params)
 
 ///Quick-select radial menu for Overwatch

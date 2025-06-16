@@ -433,3 +433,23 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 /particles/stims/speed
 	icon_state = "square"
 	gradient = list(1, "#001eff", 2, "#00ffc3", "loop")
+
+/datum/stim/better_throw
+	name = "Longer Throw"
+	desc = "Increases your throwing strength, making you throw things further."
+	cast_say = "Administering muscle enhancers..."
+	stim_uid = "throwstrength"
+	stim_flags = NONE
+
+/datum/stim/better_throw/finish_cast(mob/living/owner)
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_THROW, PROC_REF(on_throw))
+
+/datum/stim/better_throw/end_effects(mob/living/owner)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_MOB_THROW)
+
+/datum/stim/better_throw/proc/on_throw(mob/living/owner, atom/target, atom/movable/thrown_thing, list/throw_modifiers)
+	SIGNAL_HANDLER
+	throw_modifiers["range_modifier"] += 4
+	throw_modifiers["targetted_throw"] = FALSE

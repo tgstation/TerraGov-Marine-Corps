@@ -130,6 +130,7 @@
 	name = "offhand"
 	item_flags = DELONDROP|TWOHANDED|WIELDED
 	resistance_flags = RESIST_ALL
+	layer = BELOW_OBJ_LAYER
 
 /obj/item/weapon/twohanded/offhand/Destroy()
 	if(ismob(loc))

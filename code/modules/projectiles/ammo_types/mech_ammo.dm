@@ -19,7 +19,7 @@
 	penetration = 10
 	sundering = 0.5
 
-/datum/ammo/bullet/tx54_spread/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/mech/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 3, slowdown = 0.2)
 
 /*
@@ -28,13 +28,21 @@
 //================================================
 */
 /datum/ammo/rocket/mech
-	name = "large high-explosive rocket"
+	name = "large light explosive rocket"
 	damage = 10
-	penetration = 30
+	penetration = 15
 	max_range = 30
 	sundering = 15
 
-/datum/ammo/rocket/mech/drop_nade(turf/T)
+/datum/ammo/rocket/mech/light/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
+
+/datum/ammo/rocket/mech/heavy
+	name = "large heavy explosive rocket"
+	damage = 30
+	penetration = 30
+
+/datum/ammo/rocket/mech/heavy/drop_nade(turf/T)
 	explosion(T, 0, 2, 4, 0, 0, explosion_cause=src)
 
 /*
@@ -118,7 +126,7 @@
 	penetration = 15
 	damage_falloff = 8
 
-/datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/energy/lasgun/marine/mech

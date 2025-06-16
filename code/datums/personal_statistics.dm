@@ -392,7 +392,7 @@ The alternative is scattering them everywhere under their respective objects whi
 	return TRUE
 
 ///Record whenever a player shoots things, taking into account bonus projectiles without running these checks multiple times
-/obj/projectile/proc/record_projectile_fire(mob/shooter)
+/atom/movable/projectile/proc/record_projectile_fire(mob/shooter)
 	//Part of code where this is called already checks if the shooter is a mob
 	if(!shooter.ckey)
 		return FALSE
@@ -403,7 +403,7 @@ The alternative is scattering them everywhere under their respective objects whi
 	return TRUE
 
 //Lasers have their own fire_at()
-/obj/projectile/hitscan/record_projectile_fire(shooter)
+/atom/movable/projectile/hitscan/record_projectile_fire(shooter)
 	//It does not check if the shooter is a mob
 	if(!ismob(shooter))
 		return FALSE
@@ -641,7 +641,7 @@ The alternative is scattering them everywhere under their respective objects whi
 	return TRUE
 
 /// Adds to the personal statistics if the reflected projectile was a rocket.
-/obj/effect/xeno/shield/proc/record_rocket_reflection(mob/user, obj/projectile/projectile)
+/obj/effect/xeno/shield/proc/record_rocket_reflection(mob/user, atom/movable/projectile/projectile)
 	if(!istype(projectile.ammo, /datum/ammo/rocket) || !user.ckey)
 		return
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]

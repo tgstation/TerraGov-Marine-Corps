@@ -28,8 +28,8 @@
 	deevolves_to = /datum/xeno_caste/spitter
 
 	// *** Flags *** //
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
-	caste_traits = null
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
+	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 50, ACID = 40)
@@ -49,6 +49,9 @@
 
 	// *** Minimap Icon *** //
 	minimap_icon = "praetorian"
+
+	// *** Ruler Abilities *** ///
+	queen_leader_limit = 4
 
 	// *** Abilities *** //
 	actions = list(

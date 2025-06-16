@@ -27,18 +27,18 @@
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 0, 2, explosion_cause=src)
 
-/datum/ammo/rocket/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/rocket/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)
 	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 	drop_nade(target_turf)
 
-/datum/ammo/rocket/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/rocket/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
-/datum/ammo/rocket/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/rocket/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/rocket/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/rocket/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/rocket/he
@@ -85,7 +85,7 @@
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 2, 5, 0, 3, explosion_cause=src)
 
-/datum/ammo/rocket/ltb/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/rocket/ltb/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)
 	if(!isxeno(target_mob))
 		if(!(target_mob.status_flags & GODMODE))
@@ -128,14 +128,15 @@
 	accurate_range = 24
 	max_range = 35
 
-/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
 
-/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	proj.proj_max_range -= 2
 	staggerstun(target_mob, proj, max_range = 20, slowdown = 0.5)
+	shake_camera(target_mob, 0.3 SECONDS, 3)
 
-/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
 
 /datum/ammo/rocket/wp
@@ -241,7 +242,7 @@
 	scatter = 16
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_UNWIELDY
 
-/datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_obj))
 	if(isvehicle(target_obj) || ishitbox(target_obj))
 		proj.damage *= 3 //this is specifically designed to hurt vehicles
@@ -370,7 +371,7 @@
 	scatter = 7
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_UNWIELDY
 
-/datum/ammo/rocket/som/heat/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/rocket/som/heat/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_obj))
 	if(isvehicle(target_obj) || ishitbox(target_obj))
 		proj.damage *= 3 //this is specifically designed to hurt vehicles
@@ -429,7 +430,7 @@
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 0, 2, explosion_cause=src)
 
-/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/target_turf, obj/projectile/proj) //no explosion every time it hits a turf
+/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/target_turf, atom/movable/projectile/proj) //no explosion every time it hits a turf
 	proj.proj_max_range -= 10
 
 /datum/ammo/rocket/atgun_shell/apcr
@@ -444,16 +445,17 @@
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
 	explosion(T, flash_range = 1, explosion_cause=src)
 
-/datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)
 	staggerstun(target_mob, proj, max_range = 20, stagger = 1 SECONDS, slowdown = 0.5, knockback = 2, hard_size_threshold = 3)
 	drop_nade(target_turf)
 	proj.proj_max_range -= 5
+	shake_camera(target_mob, 0.2 SECONDS, 2)
 
-/datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
 
-/datum/ammo/rocket/atgun_shell/apcr/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
 
 /datum/ammo/rocket/atgun_shell/he
@@ -467,7 +469,7 @@
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
 	explosion(T, 0, 3, 5, explosion_cause=src)
 
-/datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive
@@ -485,24 +487,24 @@
 /datum/ammo/rocket/atgun_shell/beehive/drop_nade(turf/T)
 	explosion(T, flash_range = 1, explosion_cause=src)
 
-/datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/turf/det_turf = get_step_towards(target_mob, proj)
 	staggerstun(target_mob, proj, slowdown = 0.2, knockback = 1)
 	drop_nade(det_turf)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 
-/datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	var/turf/det_turf = get_step_towards(target_obj, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
 
-/datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	var/turf/det_turf = get_step_towards(target_turf, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
-/datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	var/turf/det_turf = get_step_towards(target_turf, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
@@ -527,15 +529,18 @@
 	on_pierce_multiplier = 0.85
 	barricade_clear_distance = 4
 
-/datum/ammo/bullet/tank_apfds/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/tank_apfds/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	proj.proj_max_range -= 10
 
-/datum/ammo/bullet/tank_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/tank_apfds/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	proj.proj_max_range -= 2
 	if(ishuman(target_mob) && !(target_mob.status_flags & GODMODE) && prob(35))
 		target_mob.gib()
+		return
+	shake_camera(target_mob, 0.3 SECONDS, 3)
 
-/datum/ammo/bullet/tank_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
+
+/datum/ammo/bullet/tank_apfds/on_hit_obj(obj/target_object, atom/movable/projectile/proj)
 	if(!isvehicle(target_object) && !ishitbox(target_object))
 		proj.proj_max_range -= 5
 		return
@@ -557,7 +562,7 @@
 /datum/ammo/rocket/homing/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 4, 1, explosion_cause=src)
 
-/datum/ammo/rocket/homing/ammo_process(obj/projectile/proj, damage)
+/datum/ammo/rocket/homing/ammo_process(atom/movable/projectile/proj, damage)
 	if(QDELETED(proj.original_target))
 		return
 	var/angle_to_target = Get_Angle(get_turf(proj), get_turf(proj.original_target)) //angle uses pixel offsets so we check turfs instead
@@ -650,7 +655,7 @@
 /datum/ammo/rocket/coilgun/high/drop_nade(turf/T)
 	explosion(T, 1, 4, 5, 6, 2, explosion_cause=src)
 
-/datum/ammo/rocket/coilgun/high/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/rocket/coilgun/high/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(ishuman(target_mob) && prob(50)) //it only has AMMO_PASS_THROUGH_MOB so it can keep going if it gibs a mob
 		if(!(target_mob.status_flags & GODMODE))
 			target_mob.gib()

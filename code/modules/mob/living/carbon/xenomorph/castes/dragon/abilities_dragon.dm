@@ -1,3 +1,5 @@
+#define DRAGON_GRABBED_ABILITY_TIME 1.5 SECONDS
+
 /datum/action/ability/activable/xeno/backhand
 	name = "Backhand"
 	action_icon_state = "backhand"
@@ -107,7 +109,7 @@
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
-	if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+	if(do_after(xeno_owner, DRAGON_GRABBED_ABILITY_TIME, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
 		xeno_owner.face_atom(grabbed_human)
 		new /obj/effect/temp_visual/dragon/directional/backhand_slam(get_step(xeno_owner, grabbed_human), xeno_owner.dir)
 		xeno_owner.stop_pulling()
@@ -122,7 +124,7 @@
 					continue
 				animate(living_in_range, pixel_z = living_in_range.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = living_in_range.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
-		grabbed_human.take_overall_damage(get_damage() * 2.5, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE) // 150
+		grabbed_human.take_overall_damage(get_damage() * 1.7, BRUTE, MELEE, max_limbs = 3, updating_health = TRUE) // 76.5
 		xeno_owner.gain_plasma(250)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
@@ -383,7 +385,7 @@
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	xeno_owner.visible_message(span_danger("[xeno_owner] inhales and turns their sights to [grabbed_human]..."))
-	if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+	if(do_after(xeno_owner, DRAGON_GRABBED_ABILITY_TIME, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
 		xeno_owner.stop_pulling()
 		xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right ontop of [grabbed_human]!"))
 		new /obj/effect/temp_visual/dragon/grab_fire(get_turf(grabbed_human))
@@ -396,7 +398,7 @@
 			debuff.add_stacks(10)
 		else
 			grabbed_human.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 10)
-		grabbed_human.take_overall_damage(get_damage() * 10, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
+		grabbed_human.take_overall_damage(get_damage() * 5.5, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE) // 110
 		grabbed_human.knockback(xeno_owner, 5, 1)
 		xeno_owner.gain_plasma(250)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
@@ -570,6 +572,10 @@
 				impacted_living.animation_spin(0.5 SECONDS, 1, impacted_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
 				continue
 			if(!isobj(impacted_atom))
+				continue
+			if(isfire(impacted_atom))
+				var/obj/fire/fire = impacted_atom
+				fire.reduce_fire(20)
 				continue
 			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
@@ -865,6 +871,7 @@
 /obj/effect/temp_visual/dragon/warning/Initialize(mapload, _duration)
 	if(isnum(_duration))
 		duration = _duration
+	notify_ai_hazard()
 	return ..()
 
 /obj/effect/temp_visual/dragon/directional

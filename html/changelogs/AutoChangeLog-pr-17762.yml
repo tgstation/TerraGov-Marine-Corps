@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - bugfix: "APC cells show properly again"

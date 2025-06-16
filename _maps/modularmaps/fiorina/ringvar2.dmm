@@ -1,0 +1,1752 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ai" = (
+/obj/structure/lattice,
+/obj/structure/platform,
+/obj/effect/forcefield,
+/turf/open/space,
+/area/fiorina/oob)
+"aw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"aD" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"aR" = (
+/obj/item/clothing/under/shorts/black,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"aU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"aW" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"bj" = (
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"bv" = (
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"by" = (
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"bB" = (
+/obj/item/ammo_casing,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"bC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/mainship/gravestone{
+	desc = "Here lies Hunt, a worthless mode, causing pain, a heavy load. A twisted chase, causing endless pain, good riddance, may it never rise again."
+	},
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"bE" = (
+/obj/structure/extinguisher_cabinet,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+"cl" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"cv" = (
+/obj/structure/cable,
+/turf/open/floor/prison/yellow{
+	dir = 10
+	},
+/area/fiorina/station/central_ring)
+"cU" = (
+/turf/closed/wall/prison,
+/area/fiorina/station/central_ring)
+"dq" = (
+/obj/item/clothing/under/shorts/blue,
+/turf/open/floor/prison/yellow/full,
+/area/fiorina/station/central_ring)
+"ds" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"dG" = (
+/obj/machinery/floodlight{
+	name = "Yard Floodlight"
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"dQ" = (
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/space)
+"er" = (
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"eD" = (
+/turf/open/floor/prison/cellstripe{
+	dir = 1
+	},
+/area/fiorina/station/central_ring)
+"eF" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+"eM" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"gr" = (
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"gz" = (
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"gA" = (
+/obj/structure/prop/mainship/gravestone/two{
+	desc = "Here lies Thomas Echard, now at rest, worked real hard, gave his best. Though his days have come to end, In our hearts, he’ll still extend."
+	},
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"gC" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/prison/darkpurple{
+	dir = 1
+	},
+/area/fiorina/station/central_ring)
+"gK" = (
+/obj/structure/closet/bodybag,
+/obj/effect/turf_decal/medical_decals/triage{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"hv" = (
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull,
+/area/fiorina/oob)
+"hx" = (
+/obj/structure/extinguisher_cabinet,
+/turf/closed/wall/prison,
+/area/fiorina/station/central_ring)
+"ij" = (
+/turf/open/floor/prison/cellstripe,
+/area/fiorina/station/research_cells)
+"ix" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"iB" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"iJ" = (
+/obj/structure/prop/mainship/gravestone/two{
+	desc = "A tall skinny gravestone, this one has the image of a mole engraved at the bottom."
+	},
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"iL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"jb" = (
+/obj/item/clothing/gloves/heldgloves/boxing,
+/turf/open/floor/prison/yellow{
+	dir = 6
+	},
+/area/fiorina/station/central_ring)
+"jo" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/research_cells)
+"jw" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"jB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"jL" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"jW" = (
+/obj/item/clothing/under/shorts/green,
+/obj/structure/cable,
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/fiorina/station/central_ring)
+"ku" = (
+/turf/open/floor/prison/yellow{
+	dir = 6
+	},
+/area/fiorina/station/central_ring)
+"kK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"lr" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"lC" = (
+/obj/structure/cable,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"lQ" = (
+/obj/effect/turf_decal/medical_decals/triage{
+	dir = 4
+	},
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = 13
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"lR" = (
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"lS" = (
+/turf/open/floor/prison/yellow{
+	dir = 1
+	},
+/area/fiorina/station/central_ring)
+"mg" = (
+/obj/structure/barricade/handrail{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"mC" = (
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"mE" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"mH" = (
+/obj/effect/spawner/random/engineering/shovel,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"mK" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"mN" = (
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"nf" = (
+/obj/structure/extinguisher_cabinet,
+/turf/closed/wall/prison,
+/area/fiorina/station/medbay)
+"ns" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/yellow{
+	dir = 6
+	},
+/area/fiorina/station/central_ring)
+"nC" = (
+/obj/structure/cable,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"or" = (
+/obj/machinery/light/blue,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"ox" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"pc" = (
+/obj/machinery/light/blue{
+	dir = 8;
+	pixel_x = -10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"pB" = (
+/obj/structure/prop/mainship/gravestone/three{
+	desc = "An overgrown gravestone, the writing is too dirty to read..."
+	},
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"pE" = (
+/obj/item/clothing/under/shorts/red,
+/turf/open/floor/prison/yellow/full,
+/area/fiorina/station/central_ring)
+"pN" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/medbay)
+"pV" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"qO" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"ri" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/yellow{
+	dir = 4
+	},
+/area/fiorina/station/central_ring)
+"rB" = (
+/obj/structure/sign/prop3{
+	desc = "Enlist in the Penal Battalions today! The USCM 3rd Fleet features a subset of UA sanctioned penal battalions, drawing from inmate popualtions across the colonies. Mostly New Argentina though."
+	},
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+"rG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"rR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"se" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"sj" = (
+/obj/structure/cable,
+/turf/open/floor/prison/yellow/full,
+/area/fiorina/station/central_ring)
+"sM" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"sR" = (
+/turf/open/floor/prison/yellow{
+	dir = 8
+	},
+/area/fiorina/station/central_ring)
+"sS" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"sX" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/largecrate/random/mini/med{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"ty" = (
+/obj/item/reagent_containers/food/drinks/cans/sodawater,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"tO" = (
+/turf/open/floor/prison/yellow{
+	dir = 10
+	},
+/area/fiorina/station/central_ring)
+"tQ" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"tV" = (
+/turf/open/floor/prison/cellstripe,
+/area/fiorina/station/central_ring)
+"uf" = (
+/obj/structure/barricade/handrail{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"uN" = (
+/turf/open/floor/prison/darkpurple{
+	dir = 6
+	},
+/area/fiorina/station/central_ring)
+"uZ" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison/cellstripe,
+/area/fiorina/station/central_ring)
+"vc" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"vj" = (
+/turf/open/floor/tile/damaged/four,
+/area/fiorina/station/central_ring)
+"vk" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+"vC" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"vG" = (
+/obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
+/obj/item/clothing/gloves/latex,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"wu" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"wA" = (
+/obj/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"wD" = (
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/station/research_cells)
+"wR" = (
+/obj/structure/flora/pottedplant,
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"wY" = (
+/turf/open/floor/prison/yellow,
+/area/fiorina/station/central_ring)
+"xi" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/research_cells)
+"xn" = (
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/medical_decals/triage/edge{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"zp" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"zt" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"zy" = (
+/obj/structure/largecrate/random/mini/med,
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"zB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"zO" = (
+/obj/structure/stairs/seamless,
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"zV" = (
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"Af" = (
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/fiorina/station/central_ring)
+"Aq" = (
+/obj/machinery/light/blue{
+	dir = 8;
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"At" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 9
+	},
+/area/fiorina/station/research_cells)
+"AM" = (
+/obj/structure/closet/boxinggloves,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"Ba" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"Bt" = (
+/obj/item/device/flashlight/lamp/tripod,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"BL" = (
+/obj/structure/stairs/corner_seamless,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/research_cells)
+"Cb" = (
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = 13
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"Cd" = (
+/obj/structure/barricade/handrail,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Cf" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/central_ring)
+"Ds" = (
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/prison/cellstripe{
+	dir = 1
+	},
+/area/fiorina/station/central_ring)
+"DN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"Ea" = (
+/obj/structure/barricade/handrail{
+	dir = 1;
+	pixel_y = 2
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"EK" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/central_ring)
+"EO" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow{
+	dir = 9
+	},
+/area/fiorina/station/central_ring)
+"EZ" = (
+/obj/structure/cable,
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Fd" = (
+/turf/open/floor/tile/damaged/three,
+/area/fiorina/station/central_ring)
+"Fe" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"FK" = (
+/obj/structure/lattice,
+/obj/effect/forcefield,
+/turf/open/space,
+/area/fiorina/oob)
+"FW" = (
+/obj/structure/cable,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Gf" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/structure/cable,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"Gt" = (
+/turf/open/floor/prison/cellstripe{
+	dir = 8
+	},
+/area/fiorina/station/central_ring)
+"GV" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Hd" = (
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"HA" = (
+/obj/structure/cable,
+/obj/item/clothing/gloves/heldgloves/boxing/blue,
+/turf/open/floor/prison/yellow{
+	dir = 9
+	},
+/area/fiorina/station/central_ring)
+"HC" = (
+/obj/effect/ai_node,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"HE" = (
+/obj/effect/turf_decal/medical_decals/triage{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"HM" = (
+/turf/closed/wall/prison,
+/area/fiorina/station/research_cells)
+"IO" = (
+/obj/effect/turf_decal/medical_decals/triage{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"IU" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Jh" = (
+/obj/effect/spawner/random/food_or_drink/drink_cans,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Ji" = (
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/fiorina/station/research_cells)
+"JB" = (
+/turf/closed/wall/prison,
+/area/fiorina/station/medbay)
+"JC" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"JN" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/spawner/random/engineering/shovel,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"JR" = (
+/obj/structure/barricade/handrail{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Ky" = (
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"KL" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"KW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"KX" = (
+/obj/item/device/flashlight/lamp/tripod,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Lf" = (
+/obj/structure/sign/prop3{
+	desc = "Enlist in the Penal Battalions today! The USCM 3rd Fleet features a subset of UA sanctioned penal battalions, drawing from inmate popualtions across the colonies. Mostly New Argentina though."
+	},
+/turf/closed/wall/prison,
+/area/fiorina/station/central_ring)
+"Lh" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/research_cells)
+"Lu" = (
+/obj/item/device/flashlight/lamp/tripod,
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"LE" = (
+/obj/structure/barricade/handrail,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"LJ" = (
+/turf/open/floor/prison/yellow/full,
+/area/fiorina/station/central_ring)
+"LW" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/maintenance)
+"LZ" = (
+/turf/open/floor/prison/yellow{
+	dir = 5
+	},
+/area/fiorina/station/central_ring)
+"Mg" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Mi" = (
+/obj/item/reagent_containers/food/drinks/coffee{
+	name = "\improper paper cup"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/yellow{
+	dir = 5
+	},
+/area/fiorina/station/central_ring)
+"Mk" = (
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"Mm" = (
+/obj/structure/barricade/handrail{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Mq" = (
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"My" = (
+/turf/open/floor/prison/whitegreen/full{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
+"MP" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow{
+	dir = 4
+	},
+/area/fiorina/station/central_ring)
+"Nj" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison/whitegreen{
+	dir = 1
+	},
+/area/fiorina/station/central_ring)
+"Nq" = (
+/obj/structure/prop/mainship/gravestone{
+	desc = "The inscription reads, to the ones we've lost along the way who made us what we are now."
+	},
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"Nu" = (
+/obj/structure/cable,
+/turf/open/floor/prison/yellow{
+	dir = 5
+	},
+/area/fiorina/station/central_ring)
+"Of" = (
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"Oq" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"OK" = (
+/obj/structure/stairs/seamless,
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"OS" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"OT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"OY" = (
+/obj/effect/forcefield,
+/turf/open/space,
+/area/fiorina/oob)
+"Pk" = (
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/fiorina/oob)
+"Pl" = (
+/obj/structure/prop/mainship/gravestone/two{
+	desc = "Here lies Kusami, gentle and kind, a brighter soul, we’ll never find. Though they've left this world behind, In our hearts, they’re always enshrined."
+	},
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"PD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/yellow{
+	dir = 6
+	},
+/area/fiorina/station/central_ring)
+"QK" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Ro" = (
+/obj/structure/barricade/handrail{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Rv" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/structure/stairs/seamless,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"Rw" = (
+/obj/machinery/light/blue{
+	dir = 8;
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"RO" = (
+/obj/structure/stairs/seamless,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"RU" = (
+/obj/structure/cable,
+/turf/open/floor/prison/yellow{
+	dir = 9
+	},
+/area/fiorina/station/central_ring)
+"RY" = (
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple{
+	dir = 10
+	},
+/area/fiorina/station/central_ring)
+"Sf" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/cellstripe,
+/area/fiorina/station/research_cells)
+"Tx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"TH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"TP" = (
+/obj/machinery/light/blue,
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/fiorina/station/central_ring)
+"TZ" = (
+/obj/machinery/door/airlock/mainship/maint,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"UM" = (
+/obj/structure/flora/tree/jungle/small{
+	pixel_x = -41
+	},
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"UY" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"Vh" = (
+/obj/item/device/flashlight/lamp/tripod,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"VV" = (
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/tool,
+/obj/structure/stairs/seamless,
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/fiorina/station/medbay)
+"Xc" = (
+/obj/structure/barricade/handrail{
+	dir = 1;
+	pixel_y = 2
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Xg" = (
+/turf/open/floor/prison/darkpurple{
+	dir = 5
+	},
+/area/fiorina/station/central_ring)
+"Xh" = (
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/central_ring)
+"Xu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"Xv" = (
+/obj/structure/prop/mainship/gravestone{
+	desc = "A grave stone. This one has the emblem of an owl on it. "
+	},
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"XP" = (
+/obj/structure/stairs/seamless,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/central_ring)
+"Yj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"Yk" = (
+/turf/open/floor/prison/darkpurple{
+	dir = 1
+	},
+/area/fiorina/station/central_ring)
+"Yt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/station/central_ring)
+"YC" = (
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple{
+	dir = 9
+	},
+/area/fiorina/station/central_ring)
+"Zg" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"Zh" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/oob)
+"Zk" = (
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grass,
+/area/fiorina/station/central_ring)
+"ZA" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/darkpurple,
+/area/fiorina/station/central_ring)
+"ZN" = (
+/obj/structure/largecrate/random/mini/ammo,
+/turf/open/floor/prison,
+/area/fiorina/station/central_ring)
+"ZS" = (
+/obj/structure/platform,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+
+(1,1,1) = {"
+My
+vG
+JB
+JB
+JB
+VV
+pN
+eF
+Zh
+Zh
+eF
+eF
+eF
+eF
+eF
+eF
+Zh
+Zh
+eF
+FK
+FK
+eF
+eF
+eF
+eF
+"}
+(2,1,1) = {"
+My
+mN
+JB
+cU
+cU
+TZ
+cU
+Oq
+gz
+bv
+GV
+Rw
+gz
+gz
+Mq
+pc
+gz
+gz
+eF
+eF
+Pk
+OY
+OY
+OY
+eF
+"}
+(3,1,1) = {"
+HE
+gK
+nf
+ZN
+Aq
+Gt
+bv
+Xh
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
+GV
+Mq
+Mq
+bv
+eF
+rB
+eF
+OY
+OY
+eF
+"}
+(4,1,1) = {"
+My
+My
+sX
+bv
+mC
+HC
+mC
+lC
+Fe
+mC
+mC
+QK
+Mq
+GV
+mC
+mC
+mC
+HC
+Mq
+Mq
+bv
+bE
+eF
+OY
+eF
+"}
+(5,1,1) = {"
+My
+My
+vc
+bv
+HC
+Pl
+Fe
+lC
+mC
+sM
+mC
+Mq
+Mq
+Mq
+mC
+mC
+mC
+mC
+mC
+mC
+Mq
+or
+eF
+eF
+eF
+"}
+(6,1,1) = {"
+My
+xn
+cU
+wR
+mC
+mC
+rR
+lC
+eM
+Nq
+mC
+Mq
+ix
+Mq
+mC
+rR
+rR
+mC
+mC
+Fe
+mC
+Mq
+bv
+uZ
+LW
+"}
+(7,1,1) = {"
+My
+IO
+Nj
+Mk
+mC
+mC
+sM
+aW
+rR
+mC
+JN
+Mq
+Xu
+Mq
+by
+mC
+eM
+HC
+gA
+eM
+mC
+Mq
+bv
+uZ
+LW
+"}
+(8,1,1) = {"
+My
+IO
+Nj
+Mk
+mC
+eM
+mC
+iB
+mC
+rR
+eM
+Mq
+Xu
+Mq
+mC
+Xv
+ox
+ds
+HC
+mC
+mC
+mC
+Mq
+cU
+eF
+"}
+(9,1,1) = {"
+zy
+lQ
+Nj
+Mk
+mC
+rR
+mC
+lC
+aD
+wA
+aD
+KL
+iL
+KL
+aD
+qO
+jB
+sM
+mC
+rR
+mH
+mC
+Mq
+gz
+Zh
+"}
+(10,1,1) = {"
+EK
+cU
+cU
+wR
+mC
+eM
+mC
+lC
+aD
+dG
+mC
+Mq
+Xu
+Mq
+mC
+dG
+aD
+mC
+rR
+eM
+mC
+Fe
+Mq
+or
+eF
+"}
+(11,1,1) = {"
+sS
+Mq
+Mq
+bv
+mC
+mH
+Fe
+lC
+aD
+mC
+eM
+Mq
+Xu
+bB
+mC
+mC
+tQ
+mC
+lR
+mC
+mC
+mC
+Mq
+Mq
+zO
+"}
+(12,1,1) = {"
+Zg
+jw
+YC
+YC
+RY
+Xh
+Xh
+Xh
+FW
+Xh
+Xh
+Xh
+rG
+EZ
+Xh
+Xh
+FW
+Xh
+Xh
+Xh
+RU
+cv
+cv
+jw
+OK
+"}
+(13,1,1) = {"
+mE
+gz
+gC
+Yk
+ZA
+JC
+Yt
+Yt
+mK
+Yt
+zB
+TH
+lr
+Tx
+Yt
+bj
+OT
+aw
+Ba
+kK
+lS
+wY
+wY
+gz
+RO
+"}
+(14,1,1) = {"
+mE
+gz
+Xg
+Xg
+uN
+Mq
+IU
+Mq
+KL
+Mq
+Mq
+IU
+DN
+GV
+bB
+Mq
+KL
+Xh
+aU
+KW
+Mi
+PD
+ns
+Yt
+XP
+"}
+(15,1,1) = {"
+sS
+Mq
+Mq
+mC
+Fe
+mC
+mC
+mC
+aD
+mC
+mC
+Mq
+Xu
+Mq
+mC
+rR
+aD
+cl
+Fe
+mC
+mC
+mC
+Mq
+Mq
+Rv
+"}
+(16,1,1) = {"
+vk
+Lu
+Mq
+mC
+eM
+mC
+OS
+mC
+jB
+dG
+mC
+Mq
+Xu
+Mq
+mC
+dG
+Yj
+Gf
+rR
+Vh
+eM
+mC
+Mq
+or
+eF
+"}
+(17,1,1) = {"
+Zh
+UY
+GV
+mC
+mC
+mC
+mC
+rR
+aD
+aD
+tQ
+KL
+iL
+KL
+aD
+aD
+tQ
+nC
+eM
+iJ
+eM
+pV
+Mq
+gz
+Zh
+"}
+(18,1,1) = {"
+Zh
+se
+Mq
+mC
+mC
+rR
+Zk
+jL
+mC
+mC
+mC
+Mq
+Xu
+Mq
+mC
+eM
+ds
+lC
+mC
+rR
+mC
+mC
+Mq
+gz
+Zh
+"}
+(19,1,1) = {"
+eF
+HM
+HM
+bv
+rR
+mC
+Fe
+mC
+rR
+pB
+eM
+Mq
+Xu
+Mq
+Mq
+Mq
+Mq
+Ro
+Mm
+mg
+Mq
+Mq
+AM
+eF
+eF
+"}
+(20,1,1) = {"
+ij
+xi
+jo
+eD
+mC
+bC
+UM
+eM
+mC
+sM
+Fe
+Mq
+Bt
+Mq
+eM
+rR
+Cd
+HA
+pE
+tO
+Xc
+Mq
+AM
+eF
+dQ
+"}
+(21,1,1) = {"
+Sf
+Lh
+jo
+eD
+Jh
+mC
+mC
+mC
+mC
+mH
+mC
+EO
+sR
+tO
+mC
+sM
+Cd
+sj
+Mq
+LJ
+Xc
+bv
+hx
+eF
+eF
+"}
+(22,1,1) = {"
+ij
+BL
+HM
+Ds
+bv
+Mq
+Mq
+mC
+mC
+mC
+mC
+LZ
+MP
+ku
+rR
+eM
+LE
+Nu
+dq
+jb
+Ea
+or
+Lf
+er
+zt
+"}
+(23,1,1) = {"
+wD
+wD
+eF
+bE
+eF
+bv
+zp
+Mq
+Mq
+Mq
+vj
+LZ
+ri
+ku
+Mq
+KX
+Mq
+JR
+uf
+uf
+Mq
+tV
+vC
+eD
+gz
+"}
+(24,1,1) = {"
+wu
+wD
+eF
+OY
+eF
+Zh
+eF
+gz
+gz
+Cb
+ty
+gz
+gz
+gz
+Fd
+gr
+aR
+Mg
+Fd
+Mq
+Mq
+tV
+vC
+eD
+gz
+"}
+(25,1,1) = {"
+At
+Ji
+eF
+FK
+ai
+hv
+eF
+Zh
+Zh
+ZS
+Hd
+Hd
+Of
+Hd
+Hd
+Cf
+Ky
+jW
+Af
+zV
+Af
+TP
+eF
+eF
+Zh
+"}
