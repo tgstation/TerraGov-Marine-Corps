@@ -72,7 +72,7 @@
 	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
 	fire_delay = 0.15 SECONDS
-	damage_mult = 0.8
+	damage_mult = 0.5
 
 	scatter = 0
 	scatter_unwielded = 4
