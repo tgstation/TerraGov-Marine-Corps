@@ -1,4 +1,0 @@
-author: "uomo91, Atropos"
-delete-after: True
-changes:
-  - admin: "show all logs in PP now shows logs by time instead of categories"
