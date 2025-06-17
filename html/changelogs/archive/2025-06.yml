@@ -72,3 +72,11 @@
 2025-06-16:
   Atropos:
   - bugfix: Fixed vent crawling (finally!!!)
+2025-06-17:
+  Atropos:
+  - bugfix: fixed few pipes on prison station
+  - balance: Defiler can now see common medicine like bic. kelo. and other like oxy.
+      or nanites
+  - balance: Xenos can now see amount of reagents present inside humans
+  TheRealMrN:
+  - bugfix: Added missing wire connecting BSG to everything on Icy Caves
