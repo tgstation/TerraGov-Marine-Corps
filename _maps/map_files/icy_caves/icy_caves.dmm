@@ -1123,7 +1123,6 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "ff" = (
 /obj/structure/rack,
-/obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/item/clothing/glasses/welding,
@@ -8426,6 +8425,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},

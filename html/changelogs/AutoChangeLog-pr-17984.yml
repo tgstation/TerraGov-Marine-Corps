@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - bugfix: "fixed non-radial plasteel build menu being empty"

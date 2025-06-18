@@ -1,0 +1,82 @@
+2025-06-02:
+  Atropos:
+  - balance: credits earned from research sell for less points (50/100/200/400)
+2025-06-03:
+  Lumipharon:
+  - bugfix: fixed NPC's sometimes getting stuck climbing things forever
+  - bugfix: 'Campaign: Fixed some loadout ammo issues with SG-62 and SH-34'
+  - rscadd: Added the interaction designation mode to the build designation action
+  - rscadd: Engie NPC's can fix APC's, vehicles, and other suitable objects
+2025-06-04:
+  Looking4bros:
+  - balance: Campaign axemen get items inside general belt
+2025-06-06:
+  Apple-107:
+  - bugfix: tadpole parts fabricator was not added to all maps, this corrects that
+  Looking4bros:
+  - bugfix: Cigarettes/Cigars burn to their last tick.
+  Lumipharon:
+  - bugfix: fixed NPC's some times not eating when they should
+  - bugfix: Attempts to fix NPC's getting stuck when trying to path to goal nodes
+      in some situations
+  - rscadd: Engineer NPC's can repair miners
+  - bugfix: fixed ravager, king and conqueror having some incorrect flags
+  - bugfix: NPC engineers can reliably repair APC's
+  Lumipharon, Atropos:
+  - bugfix: fixed some ai nodes on big red
+  SomrNetwork:
+  - rscadd: remastered the Vyacheslav Security Detail
+  - balance: rebalanced VSD a tad bit
+  - imageadd: new sprites for the VSD, spanning from weapons to armor
+  Zar000:
+  - bugfix: Fixed issues with the ruler PR
+  - imageadd: Added ruler icon overlay
+  blackdav123:
+  - rscadd: Added a preference to disable the toggle move intent keybind as xeno.
+2025-06-09:
+  Runian:
+  - balance: Surplus Clothing Vendor now vends empty flare pouches.
+2025-06-11:
+  Lumipharon:
+  - bugfix: fixed an item runtime
+  - bugfix: fixed NPC's being told to follow someone, not actually doing so
+2025-06-13:
+  BurgerBB, Atropos:
+  - balance: Druggy overlay from taking too many meds/drugs is more colorful now
+  Isy232:
+  - balance: Pyrogen HP 400 => 380.
+  - balance: Pyrogen damage per fire tick per fire stack 2.5 => 2.0.
+  uomo91, Atropos:
+  - admin: show all logs in PP now shows logs by time instead of categories
+2025-06-15:
+  Apple-107:
+  - rscadd: You can now spawn as Prototype Supersoldier in Valhalla
+  Atropos:
+  - bugfix: removed extra rack from icy caves
+  - bugfix: fixed unintended 90 melee armor on new super heavy armors
+  - rscdel: removed superheavy armor from HVX
+  Barnet2:
+  - bugfix: Kutjevo Refinery cave nuke is now actually caves
+  Holoo-1:
+  - rscadd: AI multicamera popup windows
+  - bugfix: AI multicamera  room being too small for widescreen
+  - bugfix: camera static not rendering in some cases
+  Lumipharon:
+  - rscadd: Various minor improvements to xeno AI
+  - bugfix: fixed various spiderling and puppet bugs
+  - refactor: refactored xeno AI code somewhat
+  Penwin0:
+  - bugfix: Basic secure crates are no longer an ERROR sprite
+  RipGrayson:
+  - rscadd: Ported Fiorina from CM.
+2025-06-16:
+  Atropos:
+  - bugfix: Fixed vent crawling (finally!!!)
+2025-06-17:
+  Atropos:
+  - bugfix: fixed few pipes on prison station
+  - balance: Defiler can now see common medicine like bic. kelo. and other like oxy.
+      or nanites
+  - balance: Xenos can now see amount of reagents present inside humans
+  TheRealMrN:
+  - bugfix: Added missing wire connecting BSG to everything on Icy Caves

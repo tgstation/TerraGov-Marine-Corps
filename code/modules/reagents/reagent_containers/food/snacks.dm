@@ -58,14 +58,14 @@
 		return FALSE
 
 	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		var/bite_nutrition = ((reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) / reagents.total_volume) * bitesize * 18.75)
-		if(reagents.total_volume < bitesize)
-			bite_nutrition = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 18.75
-		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 18.75) + bite_nutrition //adds our next bite to our total nutrition in body and stomach
+		var/mob/living/carbon/carbon_mob = M
+		var/datum/reagent/consumable/nutriment/nutriment = reagents.get_reagent(/datum/reagent/consumable/nutriment)
+		var/bite_nutrition = nutriment.get_nutrition_gain((reagents.total_volume < bitesize) ? nutriment.volume : nutriment.volume / reagents.total_volume * bitesize)
+		nutriment = carbon_mob.reagents.get_reagent(/datum/reagent/consumable/nutriment)
+		var/fullness = carbon_mob.nutrition + nutriment?.get_nutrition_gain() + bite_nutrition //adds our next bite to our total nutrition in body and stomach
+
 		if(M == user)								//If you're eating it yourself
-			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
 			if(fullness <= NUTRITION_STARVING)
@@ -80,24 +80,23 @@
 				balloon_alert(user, "cannot eat more of [src]")
 				return FALSE
 		else
-			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
 			if(fullness <= NUTRITION_OVERFED)
-				balloon_alert_to_viewers("tries to feed [M]")
+				balloon_alert_to_viewers("tries to feed [carbon_mob]")
 			else
-				balloon_alert_to_viewers("tries to feed [M] but can't")
+				balloon_alert_to_viewers("tries to feed [carbon_mob] but can't")
 				return FALSE
 
-			if(!do_after(user, 3 SECONDS, NONE, M, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 3 SECONDS, NONE, carbon_mob, BUSY_ICON_FRIENDLY))
 				return
 
 			var/rgt_list_text = get_reagent_list_text()
 
-			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
+			log_combat(user, carbon_mob, "fed", src, "Reagents: [rgt_list_text]")
 
-			balloon_alert_to_viewers("forces [M] to eat")
+			balloon_alert_to_viewers("forces [carbon_mob] to eat")
 
 
 		if(reagents)								//Handle ingestion of the reagent.
@@ -112,13 +111,13 @@
 					reagents.trans_to(M, temp_bitesize)
 					*/
 					//Why is bitesize used instead of an actual portion???
-					record_reagent_consumption(bitesize, reagents.reagent_list, user, M)
+					record_reagent_consumption(bitesize, reagents.reagent_list, user, carbon_mob)
 					reagents.trans_to(M, bitesize)
 				else
-					record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, M)
-					reagents.trans_to(M, reagents.total_volume)
+					record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, carbon_mob)
+					reagents.trans_to(carbon_mob, reagents.total_volume)
 				bitecount++
-				On_Consume(M)
+				On_Consume(carbon_mob)
 			return TRUE
 
 	return FALSE

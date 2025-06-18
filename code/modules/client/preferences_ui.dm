@@ -164,6 +164,7 @@
 			data["autointeractdeployablespref"] = !!(toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			data["directional_attacks"] = !!(toggles_gameplay & DIRECTIONAL_ATTACKS)
 			data["toggle_clickdrag"] = !(toggles_gameplay & TOGGLE_CLICKDRAG)
+			data["toggle_xeno_move_intent_keybind"] = !!(toggles_gameplay & TOGGLE_XENO_MOVE_INTENT_KEYBIND)
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
@@ -1001,6 +1002,9 @@
 
 		if("toggle_clickdrag")
 			toggles_gameplay ^= TOGGLE_CLICKDRAG
+
+		if("toggle_xeno_move_intent_keybind")
+			toggles_gameplay ^= TOGGLE_XENO_MOVE_INTENT_KEYBIND
 
 		if("pixel_size")
 			switch(pixel_size)
