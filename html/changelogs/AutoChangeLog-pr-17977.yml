@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - admin: "Spawning ai squads now gives exact location instead of just z level"
