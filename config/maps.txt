@@ -114,3 +114,7 @@ map metnal
 	minplayers 45
   endmap
   
+
+map fiorina
+	minplayers 65
+endmap

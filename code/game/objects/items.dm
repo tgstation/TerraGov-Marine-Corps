@@ -210,6 +210,11 @@
 /obj/item/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
 
+/obj/item/update_filters()
+	. = ..()
+	for(var/datum/action/A AS in actions)
+		A.update_button_icon()
+
 /obj/item/proc/update_item_state(mob/user)
 	worn_icon_state = "[initial(icon_state)][item_flags & WIELDED ? "_w" : ""]"
 
@@ -377,7 +382,7 @@
 ///When hit by a thrown object, play the associated hitsound of the object
 /obj/item/throw_impact(atom/hit_atom, speed, bounce)
 	. = ..()
-	if(. && isliving(hit_atom))
+	if(. && isliving(hit_atom) && hitsound)
 		playsound(src, hitsound, 50)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
@@ -1541,3 +1546,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /// Returns the strip delay of the item.
 /obj/item/proc/getstripdelay()
 	return strip_delay
+
+/// Can the item stick to target if it has the sticky item component. Must return TRUE or FALSE
+/obj/item/proc/can_stick_to(atom/target)
+	return TRUE
+
+/// Additional behaviour for when we stick to target
+/obj/item/proc/stuck_to(atom/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_STICKY_STICK_TO, target)
+
+/// Additional behaviour for when we unstick from target
+/obj/item/proc/unstick_from(atom/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_STICKY_CLEAN_REFS, target)
+
+/// What happens when the atom we're stuck to moves
+/obj/item/proc/on_move_sticky()
+	return

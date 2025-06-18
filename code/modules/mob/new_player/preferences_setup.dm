@@ -181,6 +181,7 @@
 
 	character.age = age
 	character.gender = gender
+	character.physique = get_physique()
 	character.ethnicity = ethnicity
 
 	character.r_eyes = r_eyes

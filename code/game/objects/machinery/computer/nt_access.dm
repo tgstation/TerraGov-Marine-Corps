@@ -67,7 +67,7 @@
 	deltimer(current_timer)
 	current_timer = null
 	update_minimap_icon()
-	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
+	visible_message(span_warning("[src] shuts down as it loses power! Any running programs have been reset!"))
 
 /obj/machinery/computer/nt_access/update_icon_state()
 	return
@@ -85,7 +85,7 @@
 	var/list/data = list()
 
 	if(completed_segments >= total_segments)
-		message = "security override code generated. Run program to send."
+		message = "Security override code generated. Run program to send."
 	else if(current_timer)
 		message = "Program running."
 	else if(!completed_segments)
@@ -108,8 +108,6 @@
 	data["segment_time"] = segment_time
 
 	data["color"] = code_color
-
-	data["segment_number"] = total_segments
 
 	return data
 
@@ -167,7 +165,7 @@
 		visible_message(span_notice("[src] beeps as it ready to send."))
 		return
 
-	visible_message(span_notice("[src] beeps as it's program requires attention."))
+	visible_message(span_notice("[src] beeps as its program requires attention."))
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nt_access/proc/update_minimap_icon()

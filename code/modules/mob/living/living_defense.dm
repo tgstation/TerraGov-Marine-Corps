@@ -151,6 +151,14 @@
 	update_fire()
 	UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 
+///Returns true if the mob is on fire
+/mob/living/proc/is_on_fire()
+	if(on_fire) //todo: someone please make normal fire a status effect
+		return TRUE
+	if(has_status_effect(STATUS_EFFECT_MELTING_FIRE))
+		return TRUE
+	return FALSE
+
 ///Updates fire visuals
 /mob/living/proc/update_fire()
 	return

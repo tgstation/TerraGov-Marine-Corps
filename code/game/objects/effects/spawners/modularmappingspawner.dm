@@ -272,3 +272,55 @@
 	mapid = "corsatdome"
 	spawner_height = 80
 	spawner_width = 80
+
+/**********Fiorina*******/
+
+/obj/effect/spawner/modularmap/fiorina/scavengership
+	mapid = "scavship"
+	spawner_width = 14
+	spawner_height = 21
+
+/obj/effect/spawner/modularmap/fiorina/medbay
+	mapid = "fimedbay"
+	spawner_width = 14
+	spawner_height = 18
+
+/obj/effect/spawner/modularmap/fiorina/warden
+	mapid = "fiwarden"
+	spawner_width = 9
+	spawner_height = 7
+
+/obj/effect/spawner/modularmap/fiorina/kitchen
+	mapid = "fikitchen"
+	spawner_width = 9
+	spawner_height = 10
+
+/obj/effect/spawner/modularmap/fiorina/gear
+	mapid = "figear"
+	spawner_width = 9
+	spawner_height = 8
+
+/obj/effect/spawner/modularmap/fiorina/panels
+	mapid = "fipanel"
+	spawner_width = 13
+	spawner_height = 9
+
+/obj/effect/spawner/modularmap/fiorina/meetingroom
+	mapid = "fimeetingroom"
+	spawner_width = 12
+	spawner_height = 13
+
+/obj/effect/spawner/modularmap/fiorina/engioffice
+	mapid = "fiengioffice"
+	spawner_width = 9
+	spawner_height = 7
+
+/obj/effect/spawner/modularmap/fiorina/researchroom
+	mapid = "firesearch"
+	spawner_width = 25
+	spawner_height = 18
+
+/obj/effect/spawner/modularmap/fiorina/corering
+	mapid = "ficore"
+	spawner_width = 25
+	spawner_height = 25

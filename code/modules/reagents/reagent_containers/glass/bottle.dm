@@ -95,6 +95,13 @@
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 60)
 	item_flags = CAN_REFILL
 
+/obj/item/reagent_containers/glass/bottle/leporazine
+	name = "\improper Leporazine bottle"
+	desc = "A small bottle. Contains leporazine - used to stabilize body temperature."
+	icon_state = "bottle17"
+	list_reagents = list(/datum/reagent/medicine/leporazine = 60)
+	item_flags = CAN_REFILL
+
 /obj/item/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
 	desc = "A small bottle of toxins. Do not drink, it is poisonous."

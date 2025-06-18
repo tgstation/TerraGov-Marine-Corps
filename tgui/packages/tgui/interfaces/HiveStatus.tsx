@@ -31,7 +31,7 @@ type InputPack = {
   hive_minion_count: number;
   hive_primos: PrimoUpgrades[];
   hive_death_timers: DeathTimer[];
-  hive_queen_max: number;
+  hive_ruler_max: number;
   hive_structures: StructureData[];
   // ----- Per xeno info ------
   xeno_info: XenoData[];
@@ -40,10 +40,10 @@ type InputPack = {
   user_ref: string;
   user_xeno: boolean;
   user_index: number;
-  user_queen: boolean;
+  user_ruler: boolean;
   user_watched_xeno: string;
   user_evolution: number;
-  user_purchase_perms: boolean;
+  user_purchase_perms?: boolean;
   user_maturity: number;
   user_next_mat_level: number;
   user_tracked: string;
@@ -68,7 +68,7 @@ type XenoData = {
 
 type StaticData = {
   name: string;
-  is_queen: number; // boolean but is used in bitwise ops.
+  is_ruler: number; // boolean but is used in bitwise ops.
   minimap: string; // Full minimap icon as string. Not icon_state!
   sort_mod: number;
   tier: number;
@@ -155,7 +155,7 @@ export const HiveStatus = (_props: any) => {
 const CachedCollapsible = (props: {
   title: string;
   open: boolean;
-  children?: JSX.Element;
+  children?: React.JSX.Element;
   onClickXeno: any;
 }) => {
   const { data } = useBackend<InputPack>();
@@ -658,7 +658,7 @@ const XenoList = (_props: any) => {
     xeno_info,
     static_info,
     user_ref,
-    user_queen,
+    user_ruler,
     user_watched_xeno,
     user_tracked,
   } = data;
@@ -703,7 +703,7 @@ const XenoList = (_props: any) => {
   // Remaining bits 28 split 14 tiers, 14 sort mods.
   // For a total of 16,384 tiers and 16,384 castes per tier.
   // I think that's plenty for everyone.
-  const queen = 30;
+  const ruler = 30;
   const leader = 29;
   const tier = 14;
 
@@ -770,7 +770,7 @@ const XenoList = (_props: any) => {
                 static_entry.sort_mod |
                 (static_entry.tier << tier) |
                 (entry.is_leader << leader) |
-                (static_entry.is_queen << queen);
+                (static_entry.is_ruler << ruler);
               break;
             case health:
               order = entry.health;
@@ -799,7 +799,7 @@ const XenoList = (_props: any) => {
                   {user_ref !== entry.ref && (
                     <ActionButtons
                       target_ref={entry.ref}
-                      is_queen={user_queen}
+                      is_ruler={user_ruler}
                       watched_xeno={user_watched_xeno}
                       can_transfer_plasma={static_entry.can_transfer_plasma}
                     />
@@ -812,16 +812,16 @@ const XenoList = (_props: any) => {
                     height="16px"
                     fontSize={0.75}
                     tooltip={
-                      user_queen && !static_entry.is_queen
+                      user_ruler && !static_entry.is_ruler
                         ? 'Toggle leadership'
                         : ''
                     }
                     verticalAlignContent="middle"
                     icon="star"
-                    disabled={static_entry.is_queen}
+                    disabled={static_entry.is_ruler}
                     selected={entry.is_leader}
                     opacity={
-                      entry.is_leader || user_queen || static_entry.is_queen
+                      entry.is_leader || user_ruler || static_entry.is_ruler
                         ? 1
                         : 0.5
                     }
@@ -918,7 +918,7 @@ const XenoList = (_props: any) => {
 
 type ActionButtonProps = {
   target_ref: string;
-  is_queen: boolean;
+  is_ruler: boolean;
   watched_xeno: string;
   can_transfer_plasma: boolean;
 };
@@ -943,7 +943,7 @@ const ActionButtons = (props: ActionButtonProps) => {
     />
   );
 
-  if (props.is_queen) {
+  if (props.is_ruler) {
     return (
       <Flex direction="row" justify="space-evenly">
         {/* Overwatch */}

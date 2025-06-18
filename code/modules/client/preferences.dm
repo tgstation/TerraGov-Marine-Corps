@@ -72,6 +72,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/real_name = ""
 	var/random_name = FALSE
 	var/gender = MALE
+	///for humans, will display this body type
+	var/physique = USE_GENDER
 	var/age = 20
 	var/species = "Human"
 	var/ethnicity = "Western"
@@ -288,3 +290,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	job_preferences[job.title] = level
 	return TRUE
 
+///returns the physique the user wants to be using
+/datum/preferences/proc/get_physique()
+	if(physique == USE_GENDER)
+		if(gender == FEMALE)
+			return FEMALE
+		else
+			return MALE
+	return physique

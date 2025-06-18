@@ -9908,6 +9908,9 @@
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "bZa" = (
@@ -12276,10 +12279,8 @@
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel)
 "eXT" = (
-/obj/structure/rack,
-/obj/item/assembly/signaler,
-/obj/item/assembly/signaler,
-/obj/item/assembly/signaler,
+/obj/structure/drop_pod_launcher/mech,
+/obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "eYn" = (
@@ -17887,8 +17888,9 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/cap_office)
 "lJV" = (
-/obj/structure/rack,
-/obj/item/tool/analyzer,
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "lLP" = (
@@ -19047,6 +19049,11 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"nnt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "nnz" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -21516,6 +21523,10 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"qtW" = (
+/obj/machinery/dropship_part_fabricator/tadpole,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "quS" = (
 /obj/effect/landmark/start/latejoin,
 /obj/effect/ai_node,
@@ -21606,6 +21617,10 @@
 /obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/marine/chapel)
+"qAw" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "qAU" = (
 /obj/structure/cable,
 /obj/machinery/door/firedoor/mainship,
@@ -23993,8 +24008,9 @@
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "tmE" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/radio/highspawn,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "tmP" = (
@@ -26120,7 +26136,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment,
-/mob/living/simple_animal/cat/martin,
+/mob/living/simple_animal/cat/martin/martina,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo/prep)
 "vSd" = (
@@ -66154,7 +66170,7 @@ aaa
 aaa
 nzi
 bFa
-aPF
+qtW
 aPF
 aPF
 aPF
@@ -74144,7 +74160,7 @@ hTF
 fZU
 kZl
 pWS
-pWS
+lJV
 tmE
 kOr
 aTM
@@ -74401,7 +74417,7 @@ ehU
 lSs
 noQ
 pWS
-jYO
+nnt
 eXT
 kOr
 mDu
@@ -74658,8 +74674,8 @@ mWm
 tXc
 jYO
 pWS
-pWS
-uIe
+qAw
+eXT
 kOr
 mDu
 mDu
@@ -74910,7 +74926,7 @@ mDu
 kOr
 kOr
 wnq
-lJV
+uIe
 cSO
 kBx
 cSO

@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "Elaborates what the multiz performance preference does better"
-  - bugfix: "Fixes multiz preference not looping properly"

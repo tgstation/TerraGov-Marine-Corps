@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - bugfix: "fixed BYOND member ghost orbit not working properly after restart"

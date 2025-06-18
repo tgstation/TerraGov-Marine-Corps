@@ -97,7 +97,7 @@
 	take_damage(tforce, BRUTE, MELEE, 1, get_dir(src, AM))
 
 
-/obj/bullet_act(obj/projectile/proj)
+/obj/bullet_act(atom/movable/projectile/proj)
 	if(istype(proj.ammo, /datum/ammo/xeno) && !(resistance_flags & XENO_DAMAGEABLE))
 		return
 	. = ..()

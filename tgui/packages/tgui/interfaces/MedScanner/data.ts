@@ -38,6 +38,7 @@ type ChemData = {
   color: string;
   metabolism_factor: number;
   dangerous: boolean;
+  ui_priority: number;
 };
 
 type OrganData = {

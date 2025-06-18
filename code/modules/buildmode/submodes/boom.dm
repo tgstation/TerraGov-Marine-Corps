@@ -21,11 +21,10 @@
 		)
 
 /datum/buildmode_mode/boom/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Set explosion destructiveness")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Kaboom")] -> Mouse Button on obj\n\n\
 		[span_warning("NOTE:")] Using the \"Config/Launch Supplypod\" verb allows you to do this in an IC way (i.e., making a cruise missile come down from the sky and explode wherever you click!)"))
-	)
 
 /datum/buildmode_mode/boom/change_settings(client/user)
 	for (var/explosion_level in explosions)
@@ -46,8 +45,8 @@
 
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
 		to_chat(user, span_notice("Success."))
-		log_admin("Build Mode: [key_name(user)] caused an explosion(dev=[explosions[BOOM_DEVASTATION]], hvy=[explosions[BOOM_HEAVY]], lgt=[explosions[BOOM_LIGHT]], weak=[explosions[BOOM_WEAK]], flash=[explosions[BOOM_FLASH]], flames=[explosions[BOOM_FLAMES]]) at [AREACOORD(object)]")
-		explosion(object, explosions[BOOM_DEVASTATION], explosions[BOOM_HEAVY], explosions[BOOM_LIGHT], explosions[BOOM_WEAK], explosions[BOOM_FLASH], explosions[BOOM_FLAMES], adminlog = FALSE, explosion_cause = key_name(user))
+		log_admin("Build Mode: [key_name(user)] caused an explosion(dev=[explosions[BOOM_DEVASTATION]], hvy=[explosions[BOOM_HEAVY]], lgt=[explosions[BOOM_LIGHT]], weak=[explosions[BOOM_WEAK]], flash=[explosions[BOOM_FLASH]], flames=[explosions[BOOM_FLAMES]], throw=[explosions[BOOM_THROW]]) at [AREACOORD(object)]")
+		explosion(object, explosions[BOOM_DEVASTATION], explosions[BOOM_HEAVY], explosions[BOOM_LIGHT], explosions[BOOM_WEAK], explosions[BOOM_FLASH], explosions[BOOM_FLAMES], explosions[BOOM_THROW], adminlog = FALSE, explosion_cause = key_name(user))
 
 #undef BOOM_DEVASTATION
 #undef BOOM_HEAVY

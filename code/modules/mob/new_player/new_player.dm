@@ -317,7 +317,7 @@
 
 /mob/new_player/get_gender()
 	if(!client?.prefs)
-		. = ..()
+		return ..()
 	return client.prefs.gender
 
 /mob/new_player/proc/create_character()

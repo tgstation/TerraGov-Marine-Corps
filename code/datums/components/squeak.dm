@@ -79,8 +79,8 @@
 		if(I.item_flags & ITEM_ABSTRACT)
 			return
 
-	if(istype(AM, /obj/projectile))
-		var/obj/projectile/P = AM
+	if(istype(AM, /atom/movable/projectile))
+		var/atom/movable/projectile/P = AM
 		if(P.original_target != parent)
 			return
 
