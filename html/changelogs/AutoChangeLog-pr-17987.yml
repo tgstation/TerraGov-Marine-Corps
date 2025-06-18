@@ -1,0 +1,4 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - bugfix: "Fixed campaign extreme constitution perk typo"
