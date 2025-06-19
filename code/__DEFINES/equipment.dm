@@ -65,6 +65,10 @@
 #define SHUTTLE_IMMUNE (1<<14)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
 #define HTML_USE_INITAL_ICON_1 (1<<15)
+///Whether or not this atom shows screentips when hovered over for cases like floors when you NEVER want them
+#define NO_SCREENTIPS (1<<16)
+/// Whether or not this atom has contextual screentips when hovered OVER
+#define HAS_CONTEXTUAL_SCREENTIPS (1<<17)
 
 //==========================================================================================
 
@@ -122,6 +126,8 @@
 #define IN_STORAGE (1<<21)
 ///If an item can be restocked/refilled in a vendor, despite not being infinite supply
 #define CAN_REFILL (1<<22)
+/// Has contextual screentips when HOVERING OVER OTHER objects
+#define ITEM_HAS_CONTEXTUAL_SCREENTIPS (1<<23)
 
 //storage_flags
 ///If a storage container can be restocked into a vendor

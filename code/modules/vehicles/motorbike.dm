@@ -33,6 +33,10 @@
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
 	motorbike_cover = mutable_appearance(icon, "motorbike_cover", MOB_LAYER + 0.1)
 	fuel_count = fuel_max
+	var/static/list/tool_behaviors = list(
+		TOOL_WELDER = list(SCREENTIP_CONTEXT_LMB = "Repair"),
+	)
+	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
 
 /obj/vehicle/ridden/motorbike/examine(mob/user)
 	. = ..()
