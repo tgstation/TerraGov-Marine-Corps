@@ -1,6 +1,10 @@
 /datum/job/terragov
 	faction = FACTION_TERRAGOV
 
+/datum/job/terragov/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+	C.hivenumber = XENO_HIVE_CORRUPTED
+
 /datum/job/terragov/get_spawn_message_information(mob/M)
 	. = ..()
 	if(istype(SSticker.mode, /datum/game_mode/hvh/combat_patrol))
@@ -30,6 +34,9 @@
 						return /mob/living/carbon/human/species/robot/bravada
 			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
 			return /mob/living/carbon/human
+		if("Mothellian")
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
+				return /mob/living/carbon/human/species/moth
 		if("Vatborn")
 			return /mob/living/carbon/human/species/vatborn
 		if("Prototype Supersoldier")

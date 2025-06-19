@@ -208,6 +208,12 @@
 	volume = 10
 	list_reagents = list(/datum/reagent/hypervene = 10)
 
+/obj/item/reagent_containers/glass/bottle/aphrotoxin
+	name = "\improper Aphrotoxin bottle"
+	desc = "A very small bottle. Contains Aphrotoxin - produced from xenomorphs. Causes weakness on the legs and intense lust."
+	icon_state = "bottle19"
+	volume = 60
+	list_reagents = list(/datum/reagent/toxin/xeno_aphrotoxin = 60)
 /obj/item/reagent_containers/glass/bottle/tricordrazine
 	name = "\improper Tricordrazine bottle"
 	desc = "A small bottle. Contains tricordrazine - used as a generic treatment for injuries."

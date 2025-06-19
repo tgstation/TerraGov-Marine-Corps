@@ -23,9 +23,9 @@
 	 * * Recommended: Some flares/inaprovaline, this enforces good behaviour in beginners to carry items that don't directly benefit them
 	 */
 	w_uniform = /obj/item/clothing/under/marine/robotic
-	wear_suit = /obj/item/clothing/suit/modular/robot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten
 	glasses = null
-	head = /obj/item/clothing/head/modular/robot
+	head = /obj/item/clothing/head/modular/m10x
 
 	l_pocket = null
 	r_pocket = null
@@ -36,7 +36,7 @@
 
 //---- Squad Marine loadouts
 /datum/outfit/quick/beginner_robot/marine
-	jobtype = "Squad Marine"
+	jobtype = "Squad Operative"
 
 /datum/outfit/quick/beginner_robot/marine/rifleman
 	name = "Rifleman"
@@ -45,8 +45,8 @@
 	Also carries the strong P-23 sidearm and flares."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/holster
-	wear_suit = /obj/item/clothing/suit/modular/robot/hodgrenades
-	head = /obj/item/clothing/head/modular/robot/hod
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/hodgrenades
+	head = /obj/item/clothing/head/modular/m10x/hod
 
 	l_pocket = /obj/item/storage/holster/flarepouch/full
 	r_pocket = /obj/item/storage/pouch/magazine/large
@@ -88,8 +88,8 @@
 	Excels at denying large areas to the enemy and eliminating those who refuse to leave."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/tyr_onegeneral
-	head = /obj/item/clothing/head/modular/robot/heavy/tyr
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_onegeneral
+	head = /obj/item/clothing/head/modular/m10x/tyr
 
 	l_pocket = /obj/item/storage/holster/flarepouch/full
 	r_pocket = /obj/item/storage/pouch/tools
@@ -129,8 +129,8 @@
 	While subpar in close quarters, the precision of the DMR is unmatched, exceeding at taking out threats from afar."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/holster
-	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
-	head = /obj/item/clothing/head/modular/robot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	head = /obj/item/clothing/head/modular/style/boonie
 
 	l_pocket = /obj/item/storage/holster/flarepouch/full
 	r_pocket = /obj/item/storage/pouch/magazine/large
@@ -168,8 +168,8 @@
 	An absolute monster at short to mid range, the shotgun will do heavy damage to any target hit, as well as stunning them briefly, staggering them, and knocking them back."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/holster
-	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
-	head = /obj/item/clothing/head/modular/robot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	head = /obj/item/clothing/head/modular/m10x/freyr
 
 	l_pocket = /obj/item/storage/holster/flarepouch/full
 	r_pocket = /obj/item/storage/pouch/shotgun
@@ -211,8 +211,8 @@
 	Equipped with the experimental battery-fed laser rifle, featuring four different modes that can be freely swapped between, with an underbarrel flamethrower for area denial and clearing mazes."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
-	head = /obj/item/clothing/head/modular/robot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	head = /obj/item/clothing/head/modular/style/cap
 
 	l_pocket = /obj/item/storage/holster/flarepouch/full
 	r_pocket = /obj/item/cell/lasgun/volkite/powerpack/marine
@@ -252,9 +252,9 @@
 	desc = "Born to build. Equipped with a metric ton of metal, you can be certain that a lack of barricades is not a possibility with you around."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/brown_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/lightengineer
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/mimirengi
 	glasses = /obj/item/clothing/glasses/meson
-	head = /obj/item/clothing/head/modular/robot/heavy
+	head = /obj/item/clothing/head/modular/m10x/mimir
 
 	l_pocket = /obj/item/storage/pouch/tools
 	r_pocket = /obj/item/storage/pouch/grenade
@@ -306,9 +306,9 @@
 	desc = "For those who truly love to watch the world burn. Equipped with a laser carbine and a flamethrower, you can be certain that none of your enemies will be left un-burnt."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/brown_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/lightengineer
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
 	glasses = /obj/item/clothing/glasses/meson
-	head = /obj/item/clothing/head/modular/robot
+	head = /obj/item/clothing/head/modular/m10x/tyr
 
 	l_pocket = /obj/item/storage/pouch/tools
 	r_pocket = /obj/item/storage/pouch/grenade
@@ -366,9 +366,9 @@
 	desc = "For the open-air enjoyers. Equipped with a plasma cutter, you will be able to cut down all types of walls and obstacles that dare exist within your vicinity."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/brown_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/lightengineer
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
 	glasses = /obj/item/clothing/glasses/meson
-	head = /obj/item/clothing/head/modular/robot
+	head = /obj/item/clothing/head/modular/m10x/tyr
 
 	l_pocket = /obj/item/storage/pouch/tools
 	r_pocket = /obj/item/storage/pouch/grenade
@@ -423,9 +423,9 @@
 	Wields the bolt action Leicaster Repeater, and is equipped with a large variety of medicine for keeping the entire corps topped up and in the fight."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/corpman_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/lightinjector
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mimirinjector
 	glasses = /obj/item/clothing/glasses/hud/health
-	head = /obj/item/clothing/head/modular/robot
+	head = /obj/item/clothing/head/modular/m10x/mimir
 
 	l_pocket = /obj/item/storage/pouch/shotgun
 	r_pocket = /obj/item/storage/pouch/medkit/medic
@@ -474,9 +474,9 @@
 	Wields the pump action SH-35 shotgun, and is equipped with a belt full of hyposprays for rapidly treating patients in bad condition."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/corpman_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/light/lightmedical
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/lightmedical
 	glasses = /obj/item/clothing/glasses/hud/health
-	head = /obj/item/clothing/head/modular/robot/light
+	head = /obj/item/clothing/head/modular/m10x/antenna
 
 	l_pocket = /obj/item/storage/pouch/shotgun
 	r_pocket = /obj/item/storage/pouch/medkit/medic
@@ -526,9 +526,9 @@
 	equipped with a tactical sensor to detect enemies through smoke, walls, and darkness."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
-	head = /obj/item/clothing/head/modular/robot/antenna
+	head = /obj/item/clothing/head/modular/m10x/antenna
 
 	l_pocket = /obj/item/storage/holster/flarepouch/full
 	r_pocket = /obj/item/storage/pouch/grenade
@@ -568,9 +568,9 @@
 	equipped with a tactical sensor to detect enemies through smoke, walls, and darkness."
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
-	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
-	head = /obj/item/clothing/head/modular/robot/antenna
+	head = /obj/item/clothing/head/modular/m10x/antenna
 
 	l_pocket = /obj/item/storage/holster/flarepouch/full
 	r_pocket = /obj/item/storage/pouch/grenade

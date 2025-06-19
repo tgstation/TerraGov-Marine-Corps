@@ -53,7 +53,7 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "n" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "o" = (
@@ -68,15 +68,17 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "q" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /obj/structure/dropship_piece/tadpole/engine{
 	dir = 1;
 	pixel_x = 23
 	},
+/obj/structure/dropship_piece/glassone/tadpole,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "r" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/dropship_piece/glasstwo/tadpole{
+	dir = 1
+	},
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "s" = (
@@ -130,11 +132,11 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "z" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /obj/structure/dropship_piece/tadpole/tadpole_nose{
 	dir = 1;
 	pixel_y = 32
 	},
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "A" = (

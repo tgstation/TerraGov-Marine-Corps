@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/queen
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
-	icon = 'icons/Xeno/castes/queen.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/queen.dmi'
 	icon_state = "Queen Walking"
 	health = 300
 	maxHealth = 300
@@ -30,7 +30,7 @@
 
 /mob/living/carbon/xenomorph/queen/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Charging"
+		icon_state = "[xeno_caste.caste_name][(xeno_flags & is_a_rouny) ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 
@@ -43,7 +43,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/queen/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
-	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	var/prefix = "[hive.prefix][xeno_caste.upgrade_name ? "[xeno_caste.upgrade_name] " : ""]"
 	if(!client?.prefs.show_xeno_rank || !client)
 		name = prefix + "Queen ([nicknumber])"
 		real_name = name

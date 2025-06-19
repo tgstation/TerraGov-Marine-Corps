@@ -56,10 +56,10 @@ GLOBAL_LIST_INIT(robot_loadouts, init_robot_loadouts())
 /obj/machinery/quick_vendor/beginner //Loadout vendor that shits out basic pre-made loadouts so new players can get something usable
 	icon_state = "loadoutvendor"
 	categories = list(
-		"Squad Marine",
-		"Squad Engineer",
-		"Squad Corpsman",
-		"Squad Smartgunner",
+		SQUAD_MARINE,
+		SQUAD_ENGINEER,
+		SQUAD_CORPSMAN,
+		SQUAD_SMARTGUNNER,
 	)
 	drop_worn_items = TRUE
 

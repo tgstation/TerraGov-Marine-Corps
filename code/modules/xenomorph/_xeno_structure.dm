@@ -1,7 +1,7 @@
 /obj/structure/xeno
 	hit_sound = SFX_ALIEN_RESIN_BREAK
 	layer = BELOW_OBJ_LAYER
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE | XENO_DAMAGEABLE
 	///Bitflags specific to xeno structures
 	var/xeno_structure_flags
 	///Which hive(number) do we belong to?
@@ -24,6 +24,9 @@
 		LAZYADDASSOC(GLOB.xeno_critical_structures_by_hive, hivenumber, src)
 	if((xeno_structure_flags & XENO_STRUCT_WARNING_RADIUS))
 		proximity_monitor = new(src, XENO_STRUCTURE_DETECTION_RANGE)
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[hive.prefix][name]"
+	color = hive.color
 
 /obj/structure/xeno/Destroy()
 	//prox_warning_turfs = null
@@ -88,20 +91,26 @@
 	SIGNAL_HANDLER
 	obj_destruction(damage_flag = MELEE)
 
-/obj/structure/xeno/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/structure/xeno/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob, silent)
 	. = ..()
-	if(xeno_structure_flags & XENO_STRUCT_DAMAGE_ALERT)
+	if(xeno_structure_flags & XENO_STRUCT_DAMAGE_ALERT && !silent)
 		damage_alert()
 
 /obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!(HAS_TRAIT(xeno_attacker, TRAIT_VALHALLA_XENO) && xeno_attacker.a_intent == INTENT_HARM && (tgui_alert(xeno_attacker, "Are you sure you want to tear down [src]?", "Tear down [src]?", list("Yes","No"))) == "Yes"))
+	if(!issamexenohive(xeno_attacker))
 		return ..()
-	if(!do_after(xeno_attacker, 3 SECONDS, NONE, src))
-		return
-	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	balloon_alert_to_viewers("\The [xeno_attacker] tears down \the [src]!", "We tear down \the [src].")
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
-	take_damage(max_integrity) // Ensure its destroyed
+	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_HARM)
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
+		span_xenonotice("We start to tear down \the [src]."))
+		if(!do_after(xeno_attacker, 10 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
+			return
+		if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the object already gone
+			return
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
+		span_xenonotice("We tear down \the [src]."))
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+		take_damage(max_integrity, silent=TRUE) // Ensure its destroyed
 
 /obj/structure/xeno/plasmacutter_act(mob/living/user, obj/item/I)
 	if(!isplasmacutter(I) || user.do_actions)

@@ -81,6 +81,9 @@
 /obj/item/proc/attack_obj(obj/target_object, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, target_object, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
+	if(isxeno(user))
+		to_chat(user, span_warning("We stare at \the [src] cluelessly."))
+		return FALSE
 	if(item_flags & NOBLUDGEON)
 		return
 	user.changeNext_move(attack_speed)
@@ -197,6 +200,10 @@
 
 	if(M.can_be_operated_on() && do_surgery(M, user, src)) //Checks if mob is lying down on table for surgery
 		return TRUE
+
+	if(isxeno(user))
+		to_chat(user, span_warning("We stare at \the [src] cluelessly."))
+		return FALSE
 
 	if(item_flags & NOBLUDGEON)
 		return FALSE
@@ -333,6 +340,10 @@
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_ALTERNATE, M, user) & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
 	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK_ALTERNATE, M, src) & COMPONENT_ITEM_NO_ATTACK)
+		return FALSE
+
+	if(isxeno(user))
+		to_chat(user, span_warning("We stare at \the [src] cluelessly."))
 		return FALSE
 
 	if(item_flags & NOBLUDGEON)
