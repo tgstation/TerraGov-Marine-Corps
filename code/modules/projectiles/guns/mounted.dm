@@ -736,3 +736,57 @@
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/icc_hmg,
 	)
+
+/obj/item/weapon/gun/at45
+	name = "\improper CC/AT45 Heavy Smart Machine Gun"
+	desc = "The CC/AT45, one of the strongest firing HSGs next to the HSG102. It cannot be wielded or used without being deployed. No extra work required, just deploy it with Ctrl-Click and you can go and shred. Can be repaired with a blowtorch once deployed."
+
+	w_class = WEIGHT_CLASS_HUGE
+	equip_slot_flags = ITEM_SLOT_BACK
+	icon = 'icons/obj/machines/deployable/at45.dmi'
+	icon_state = "at45"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
+	)
+
+	fire_sound = 'sound/weapons/guns/fire/autocannon_2.ogg'
+	reload_sound = 'sound/weapons/guns/interact/kt42_cocked.ogg'
+
+	default_ammo_type = /obj/item/ammo_magazine/at45
+	scatter = 10
+	deployed_scatter_change = -10
+	fire_delay = 0.35 SECONDS
+
+	burst_amount = 3
+	burst_delay = 0.1 SECONDS
+	extra_delay = 1 SECONDS
+	accuracy_mult = 1.2 //it's got a bipod
+	burst_accuracy_bonus = 1
+	burst_scatter_mult = 0
+
+	item_flags = IS_DEPLOYABLE|TWOHANDED
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/at45,
+	)
+
+	attachable_allowed = list(
+		/obj/item/attachable/at45barrel,
+		/obj/item/attachable/stock/at45stock,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/at45barrel,
+		/obj/item/attachable/stock/at45stock,
+	)
+	attachable_offset = list("muzzle_x" = 56, "muzzle_y" = 16,"rail_x" = 18, "rail_y" = 24, "under_x" = 28, "under_y" = 13, "stock_x" = -11, "stock_y" = 0)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 200
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)

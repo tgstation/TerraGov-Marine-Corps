@@ -9,12 +9,12 @@ $scrollbar-color-multiplier: 1 !default;
 
 $_channel_map: (
   'Say': hsl(213.6, 37.9%, 74.1%),
-  'Radio': hsl(120, 72.2%, 43.7%),
+  'Radio': hsl(132.8, 74.4%, 45.9%),
   'Me': hsl(227, 63.5%, 60.2%),
   'OOC': hsl(47.9, 100%, 40%),
-  'LOOC': hsl(180, 44.2%, 40.8%),
-  'XOOC': hsl(218.3, 100%, 42.4%),
-  'MOOC': hsl(218.3, 100%, 42.4%),
+  'LOOC': hsl(44, 62.7%, 59%),
+  'XOOC': hsl(315, 100%, 42%),
+  'MOOC': hsl(32, 100%, 42%),
   'Admin': hsl(300, 100%, 86.7%),
   'Mentor': hsl(120, 50.7%, 39.8%),
   'AI': hsl(332.2, 59.6%, 60.2%),
@@ -25,10 +25,10 @@ $_channel_map: (
   'Med': hsl(169.9, 68.4%, 45.9%),
   'CAS': hsl(349.9, 67.8%, 50%),
   'Req': hsl(33.7, 44.9%, 49.8%),
-  'Alpha': hsl(0, 60.5%, 46.7%),
-  'Bravo': hsl(38, 62.3%, 55.3%),
-  'Charlie': hsl(300, 36.6%, 52.4%),
-  'Delta': hsl(228.1, 67.5%, 52.9%),
+  'Alpha': hsl(0, 62%, 53%),
+  'Bravo': hsl(38, 62%, 55%),
+  'Charlie': hsl(300, 51%, 58%),
+  'Delta': hsl(228, 79%, 62%),
 );
 
 $channel_keys: map.keys($_channel_map) !default;

@@ -128,6 +128,11 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical)
+"ahW" = (
+/obj/vehicle/ridden/powerloader,
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "ahX" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -3459,11 +3464,9 @@
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "cWr" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/floor/mainship/black{
-	dir = 4
+/obj/structure/rack,
+/turf/open/floor/mainship/orange{
+	dir = 9
 	},
 /area/mainship/hallways/hangar)
 "cWv" = (
@@ -3862,11 +3865,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "dmG" = (
-/obj/structure/rack,
-/obj/item/tool/weldingtool,
-/obj/item/clothing/head/welding,
-/obj/item/tool/weldpack,
-/obj/item/storage/belt/utility/full,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -4103,7 +4101,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
 "dxQ" = (
 /obj/machinery/camera/autoname/mainship{
@@ -4876,10 +4874,10 @@
 	},
 /area/mainship/squads/req)
 "ehy" = (
-/obj/vehicle/ridden/powerloader,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/machinery/dropship_part_fabricator/tadpole,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "eik" = (
@@ -6499,6 +6497,9 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -6813,17 +6814,14 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "fHx" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
+/obj/structure/rack,
+/obj/item/tool/weldingtool,
+/obj/item/clothing/head/welding,
+/obj/item/tool/weldpack,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/mainship/orange{
+	dir = 5
 	},
-/obj/machinery/landinglight/alamo{
-	dir = 4;
-	pixel_x = -4
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "fIp" = (
 /obj/structure/table/mainship/nometal,
@@ -8986,7 +8984,7 @@
 	on = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
 "htX" = (
 /obj/structure/morgue{
@@ -16333,6 +16331,7 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "nmG" = (
@@ -25318,6 +25317,9 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -36243,7 +36245,7 @@ sfI
 tys
 tys
 ftJ
-cWr
+kBf
 kBf
 kBf
 lTg
@@ -36344,8 +36346,8 @@ szE
 szE
 szE
 ssO
-hYD
-hjH
+bMK
+cWr
 hIO
 dSy
 fcW
@@ -36447,7 +36449,7 @@ qAQ
 rto
 iyA
 nlT
-hjH
+ahW
 hIO
 ehy
 dxv
@@ -36548,8 +36550,8 @@ vlB
 vlB
 mwK
 hIO
-hYD
-hjH
+bMK
+fHx
 hIO
 dmG
 htw
@@ -36651,7 +36653,7 @@ vlB
 wGG
 hIO
 uKE
-fHx
+pCj
 bwD
 pCj
 rPw

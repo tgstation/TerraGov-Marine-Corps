@@ -101,7 +101,7 @@ ADMIN_VERB(command_report, R_FUN, "Command Report", "Create a custom command rep
 	var/input = tgui_input_text(user, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
 	if(!input)
 		return
-	var/override = tgui_input_list(user, "Pick a color for the report.", "Color", faction_alert_colors - "default", default = "blue")
+	var/override = tgui_input_list(user, "Pick a color for the report.", "Color", FACTION_ALERT_COLORS - "default", default = "blue")
 
 	if(tgui_alert(user, "Do you want to print out a paper at the communications consoles?", null, list("Yes", "No")) == "Yes")
 		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)
@@ -878,8 +878,8 @@ ADMIN_VERB(ai_squad, R_FUN, "Spawn AI squad", "Spawns a AI squad of your choice"
 		dude.forceMove(spawn_loc)
 		dude.AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
 
-	message_admins("[key_name_admin(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z].")
-	log_admin("[key_name(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z]")
+	message_admins("[key_name_admin(user)] spawned a [quantity] man [squad_choice] of AI humans in [AREACOORD(spawn_loc)].")
+	log_admin("[key_name(user)] spawned a [quantity] man [squad_choice] of AI humans in [AREACOORD(spawn_loc)].")
 
 
 ADMIN_VERB(load_lazy_template, R_FUN, "Load/Jump Lazy Template", "Loads a lazy template and/or jumps to it.", ADMIN_CATEGORY_FUN)

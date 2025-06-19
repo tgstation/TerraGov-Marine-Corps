@@ -2,7 +2,7 @@
 /datum/weather/ash_storm/sand
 	name = "severe sandstorm"
 	telegraph_message = span_userdanger("You see a dust cloud rising over the horizon. That can't be good...")
-	telegraph_duration = 300
+	telegraph_duration = 600
 	telegraph_overlay = "dust_med"
 	telegraph_sound = 'sound/effects/siren.ogg'
 
@@ -34,6 +34,7 @@
 	name = "Sandfall"
 	desc = "A passing sandstorm blankets the area in sand."
 
+	telegraph_duration = 300
 	telegraph_message = span_danger("The wind begins to intensify, blowing sand up from the ground...")
 	telegraph_overlay = "dust_low"
 	telegraph_sound = null
