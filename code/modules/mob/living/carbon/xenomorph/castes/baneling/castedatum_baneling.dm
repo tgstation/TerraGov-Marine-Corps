@@ -25,7 +25,7 @@
 	max_health = 100
 
 	// *** Flags *** //
-	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
+	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION|CASTE_NO_MUTATION
 	can_flags = NONE
 	caste_traits = null
 

@@ -585,7 +585,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EARTH_RISER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE,
 	)
-	/// Maximum amount of Earth Pillars that this ability can have.
+	/// The maximum amount of Earth Pillars that this ability should has by default (for resetting from Primal Rage / Mutations).
+	var/maximum_pillars_default = 3
+	/// The maximum amount of Earth Pillars that can exist at a time.
 	var/maximum_pillars = 3
 	/// List that contains all Earth Pillars created by this ability.
 	var/list/obj/structure/earth_pillar/active_pillars = list()
@@ -1076,7 +1078,7 @@
 		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH)
 		landslide_action?.change_maximum_charges(initial(landslide_action.maximum_charges))
 		earth_riser_action?.cooldown_duration = initial(earth_riser_action?.cooldown_duration)
-		earth_riser_action?.change_maximum_pillars(initial(earth_riser_action.maximum_pillars))
+		earth_riser_action?.change_maximum_pillars(earth_riser_action.maximum_pillars_default)
 		owner.balloon_alert(owner, "Primal Wrath ended")
 		UnregisterSignal(xeno_owner, COMSIG_ABILITY_SUCCEED_ACTIVATE)
 		return

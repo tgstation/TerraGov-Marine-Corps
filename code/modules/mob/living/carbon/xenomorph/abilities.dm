@@ -210,7 +210,8 @@
 		)
 	/// Used for the dragging functionality of pre-shuttter building
 	var/dragging = FALSE
-
+	/// The percentage of maximum health to heal the owner whenever a structure is built.
+	var/percentage_heal_on_use = 0
 
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/ability/activable/xeno/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
@@ -307,10 +308,15 @@
 	var/mob/living/carbon/xenomorph/xowner = owner
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		qb_build_resin(A)
-	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
+		return
+
+	if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
 	else
 		build_resin(get_turf(A))
+	if(percentage_heal_on_use)
+		var/health_healed = xeno_owner.maxHealth * percentage_heal_on_use
+		HEAL_XENO_DAMAGE(xeno_owner, health_healed, FALSE)
 
 /datum/action/ability/activable/xeno/secrete_resin/proc/get_wait()
 	. = base_wait
@@ -893,6 +899,12 @@
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// Whatever our victim is injected with.
 	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
+	/// The amount of reagents injected for each recurring injection.
+	var/sting_amount = XENO_NEURO_AMOUNT_RECURRING
+	/// The type of gas that is emitted, if any. This only occurs on the first injection.
+	var/datum/effect_system/smoke_spread/sting_gas
+	/// The range of the gas emitted, if any.
+	var/sting_gas_range
 
 /datum/action/ability/activable/xeno/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -926,7 +938,7 @@
 	succeed_activate()
 
 	add_cooldown()
-	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, sting_amount, gas_type = sting_gas, gas_range = sting_gas_range)
 
 	track_stats()
 
@@ -1008,6 +1020,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LAY_EGG,
 	)
+	/// Should the egg contain the owner's selected_hugger_type?
+	var/use_selected_hugger = FALSE
 
 /datum/action/ability/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -1029,7 +1043,10 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber)
+	var/obj/alien/egg/hugger/new_egg = new(current_turf, xeno.hivenumber)
+	if(use_selected_hugger)
+		new_egg.hugger_type = xeno_owner.selected_hugger_type
+
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()
@@ -1195,6 +1212,8 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
+	if(X.hive.has_mutation_structures())
+		SSpoints.add_biomass_points(X.hivenumber, MUTATION_BIOMASS_PER_PSYDRAIN)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))

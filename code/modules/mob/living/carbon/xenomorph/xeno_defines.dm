@@ -156,8 +156,6 @@
 	var/max_puppets = 0
 
 	// *** Crusher Abilities *** //
-	///The damage the stomp causes, counts armor
-	var/stomp_damage = 0
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
 
@@ -212,6 +210,9 @@
 	var/maximum_active_caste = INFINITY
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
+
+	/// All possible mutations that can be purchased.
+	var/list/datum/mutation_upgrade/buyable_mutations = list()
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -430,6 +431,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+
+	/// All active mutations they own.
+	var/list/datum/mutation_upgrade/owned_mutations = list()
 
 	//list of active tunnels
 	var/list/tunnels = list()

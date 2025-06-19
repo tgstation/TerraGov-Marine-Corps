@@ -108,9 +108,13 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
 	)
+	/// The amount of deciseconds for the do_after.
+	var/cast_time = 0.5 SECONDS
+	/// The bonus damage applied to the spit.
+	var/bonus_damage = 0
 
 /datum/action/ability/activable/xeno/scatter_spit/use_ability(atom/target)
-	if(!do_after(xeno_owner, 0.5 SECONDS, NONE, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno_owner, cast_time, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	//Shoot at the thing
@@ -119,7 +123,7 @@
 	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
 
 	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
-	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner))
+	newspit.generate_bullet(scatter_spit, bonus_damage + (scatter_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner)))
 	newspit.def_zone = xeno_owner.get_limbzone_target()
 
 	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
@@ -172,11 +176,17 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOSS_GRENADE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PICK_GRENADE,
 	)
-	///The current amount of grenades this ability has
+	/// In exchange for using a grenade while at none, the percentage of maximum health to gain. Only works if it is non-zero.
+	var/max_health_per_grenade
+	/// The amount of deciseconds to add to the detonation if the grenade was thrown at themselves. Only works if it is non-zero.
+	var/additional_self_detonation_time
+	/// The current amount of grenades this ability has.
 	var/current_grenades = 6
-	///The max amount of grenades this ability can store
+	/// The max amount of grenades this ability can store.
 	var/max_grenades = 6
-	///The timer untill we regenerate another grenade
+	/// The amount of deciseconds used for grenade regeneration.
+	var/grenade_cooldown = GLOBADIER_GRENADE_REGEN_COOLDOWN
+	/// The timer until we regenerate another grenade.
 	var/timer
 
 /datum/action/ability/activable/xeno/toss_grenade/give_action(mob/living/L)
@@ -217,15 +227,19 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /datum/action/ability/activable/xeno/toss_grenade/use_ability(atom/target)
 	if(current_grenades <= 0)
-		owner.balloon_alert(owner, "No Grenades!")
-		return fail_activate()
+		if(max_health_per_grenade == 0 || xeno_owner.selected_grenade == /obj/item/explosive/grenade/globadier/heal)
+			owner.balloon_alert(owner, "No Grenades!")
+			return fail_activate()
+		xeno_owner.adjustBruteLoss(xeno_owner.maxHealth * max_health_per_grenade)
 	var/obj/item/explosive/grenade/globadier/nade = new xeno_owner.selected_grenade(owner.loc, owner)
+	if(additional_self_detonation_time != 0)
+		nade.det_time = min(0.5 SECONDS, nade.det_time + additional_self_detonation_time)
 	nade.activate(owner)
-	nade.throw_at(target,GLOBADIER_GRENADE_THROW_RANGE,GLOBADIER_GRENADE_THROW_SPEED)
+	nade.throw_at(target, GLOBADIER_GRENADE_THROW_RANGE, GLOBADIER_GRENADE_THROW_SPEED)
 	owner.visible_message(span_xenowarning("\The [owner] throws something towards \the [target]!"), \
 	span_xenowarning("We throw a grenade towards \the [target]!"))
 	current_grenades--
-	timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE|TIMER_STOPPABLE)
+	timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), grenade_cooldown, TIMER_UNIQUE|TIMER_STOPPABLE)
 	START_PROCESSING(SSprocessing, src)
 	update_button_icon()
 	succeed_activate()
@@ -246,14 +260,14 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER] = time
 	button.add_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER])
 
-///Handle automatic regeneration of grenades, every GLOBADIER_GRENADE_REGEN_COOLDOWN seconds
+///Handle automatic regeneration of grenades, every `grenade_cooldown` seconds
 /datum/action/ability/activable/xeno/toss_grenade/proc/regen_grenade()
 	if(!(current_grenades < max_grenades))
 		return
 	current_grenades++
 	update_button_icon()
 	if((current_grenades < max_grenades)) // Second if check as current_grenades has changed
-		timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE|TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), grenade_cooldown, TIMER_UNIQUE|TIMER_STOPPABLE)
 		return
 	owner.balloon_alert(owner, "Max Grenades!")
 
