@@ -208,3 +208,24 @@
 2025-06-16:
   Atropos:
   - bugfix: Fixed vent crawling (finally!!!)
+2025-06-17:
+  Atropos:
+  - bugfix: fixed few pipes on prison station
+  - balance: Defiler can now see common medicine like bic. kelo. and other like oxy.
+      or nanites
+  - balance: Xenos can now see amount of reagents present inside humans
+  TheRealMrN:
+  - bugfix: Added missing wire connecting BSG to everything on Icy Caves
+2025-06-19:
+  Atropos:
+  - admin: Spawning ai squads now gives exact location instead of just z level
+  - bugfix: fixed BYOND member ghost orbit not working properly after restart
+  - bugfix: fixed non-radial plasteel build menu being empty
+  Lumipharon:
+  - qol: Clones are available via the take SSD mob ghost action
+  Penwin0:
+  - bugfix: fixes the fuel cell recycler lagging out the game
+  TiviPlus:
+  - rscadd: Added personal statistic for FF recieved
+  mudzbe:
+  - bugfix: Fixed campaign extreme constitution perk typo
