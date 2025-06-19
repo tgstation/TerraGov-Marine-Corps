@@ -295,8 +295,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
 	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.item_flags, IS_DEPLOYED))
+		playsound(user, activation_sound, 15, 1)
 		if(activate(user))
-			playsound(user, activation_sound, 15, 1)
 			return TRUE
 	else
 		to_chat(user, span_warning("[G] must be in our hands to do this."))
