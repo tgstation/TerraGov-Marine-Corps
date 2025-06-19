@@ -14802,6 +14802,10 @@
 	dir = 1
 	},
 /obj/structure/lattice,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "knz" = (
@@ -16331,6 +16335,14 @@
 	dir = 1
 	},
 /area/magmoor/command/conference)
+"lpB" = (
+/obj/structure/lattice,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/liquid/lava/autosmoothing,
+/area/magmoor/compound/south)
 "lpK" = (
 /obj/structure/table/reinforced,
 /obj/item/trash/plate{
@@ -17229,6 +17241,13 @@
 /obj/structure/sign/greencross,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
+"lYr" = (
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/liquid/lava/autosmoothing,
+/area/magmoor/compound/south)
 "lYC" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/blue/taupeblue,
@@ -56249,35 +56268,35 @@ ylo
 ylo
 ylo
 ylo
-ylo
-ylo
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
+lYr
+lYr
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
 iLH
 iLH
 "}
@@ -56478,11 +56497,11 @@ pUx
 ylo
 ylo
 ylo
-ylo
-ylo
-ylo
-ylo
-ylo
+lYr
+lYr
+lYr
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -56709,9 +56728,9 @@ eTo
 pUx
 ylo
 ylo
-ylo
-ylo
-ylo
+lYr
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -56941,8 +56960,8 @@ pUx
 pUx
 pUx
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -57174,7 +57193,7 @@ ylo
 ylo
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -57407,7 +57426,7 @@ ylo
 ylo
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -57640,7 +57659,7 @@ ylo
 ylo
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -57871,8 +57890,8 @@ pUx
 pUx
 ylo
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -58103,8 +58122,8 @@ dum
 pJc
 pUx
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -58336,7 +58355,7 @@ aXw
 pUx
 pUx
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -58569,7 +58588,7 @@ eTo
 vyi
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -58802,7 +58821,7 @@ pUx
 pUx
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -59035,7 +59054,7 @@ pUx
 ylo
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -59268,7 +59287,7 @@ pUx
 ylo
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -59501,8 +59520,8 @@ pUx
 ylo
 ylo
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -59735,8 +59754,8 @@ pUx
 ylo
 ylo
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -59969,8 +59988,8 @@ ylo
 ylo
 ylo
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -60203,7 +60222,7 @@ pUx
 naD
 ylo
 ylo
-naD
+lpB
 ylo
 ylo
 ylo
@@ -60902,7 +60921,7 @@ eTo
 rIp
 ylo
 ylo
-naD
+lpB
 ylo
 ylo
 ylo
@@ -61135,7 +61154,7 @@ eTo
 pUx
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -61368,8 +61387,8 @@ eTo
 pUx
 ylo
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -61602,7 +61621,7 @@ pUx
 ylo
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -61835,7 +61854,7 @@ pUx
 pUx
 ylo
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -62068,7 +62087,7 @@ eTo
 pUx
 pUx
 ylo
-ylo
+lYr
 ylo
 ylo
 ylo
@@ -62301,8 +62320,8 @@ eTo
 eTo
 vyi
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -62535,10 +62554,10 @@ eTo
 pUx
 ylo
 ylo
-ylo
-ylo
-ylo
-ylo
+lYr
+lYr
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -62771,8 +62790,8 @@ ylo
 ylo
 ylo
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 ylo
 ylo
@@ -63005,8 +63024,8 @@ pUx
 ylo
 ylo
 ylo
-ylo
-ylo
+lYr
+lYr
 ylo
 rxl
 rxl
@@ -63239,35 +63258,35 @@ ylo
 ylo
 ylo
 ylo
-ylo
-ylo
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
+lYr
+lYr
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
+iLH
 iLH
 iLH
 "}
