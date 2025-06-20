@@ -197,11 +197,10 @@
 		turf_to_check = path_to_target[iteration - 1]
 	if(LinkBlocked(turf_to_check, path_to_target[iteration], PASS_AIR|PASS_XENO)) //checks if it's actually possible to get to the next tile in the line
 		return
-	if(turf_to_check.density && istype(turf_to_check, /turf/closed/wall/resin))
-		if(istype(turf_to_check,/turf/closed/wall/resin/regenerating/special/fireproof))
-			walls_penetrated = 0
-		else if(istype(turf_to_check, /turf/closed/wall/resin))
-			walls_penetrated -= 1
+	if(turf_to_check.density)
+		if(!(turf_to_check.allow_pass_flags & PASS_FIRE))
+			return
+		walls_penetrated -= 1
 	//how many resin walls we've penetrated check
 	if(walls_penetrated <= 0)
 		return
@@ -224,7 +223,9 @@
 	for(var/turf/turf AS in turfs_to_ignite)
 		if(get_dist(turf, flame_source) == iteration)
 			//Checks if turf is resin wall
-			if(turf.density && istype(turf, /turf/closed/wall/resin))
+			if(turf.density)
+				if(!(turf.allow_pass_flags & PASS_FIRE))
+					break
 				walls_penetrated_wide -= 1
 			//Checks if there is a resin door on the turf
 			var/obj/structure/mineral_door/resin/door_to_check = locate() in turf
