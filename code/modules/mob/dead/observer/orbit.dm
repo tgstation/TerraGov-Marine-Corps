@@ -90,6 +90,9 @@
 			npcs += list(serialized)
 			continue
 
+		if (is_admin)
+			serialized["ckey"] = mob_poi.ckey
+
 		var/number_of_orbiters = length(mob_poi.get_all_orbiters())
 		if(number_of_orbiters)
 			serialized["orbiters"] = number_of_orbiters
