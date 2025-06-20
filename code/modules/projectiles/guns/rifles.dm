@@ -911,6 +911,7 @@
 		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
