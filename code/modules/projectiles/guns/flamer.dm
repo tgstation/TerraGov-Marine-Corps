@@ -198,7 +198,10 @@
 	if(LinkBlocked(turf_to_check, path_to_target[iteration], PASS_AIR|PASS_XENO)) //checks if it's actually possible to get to the next tile in the line
 		return
 	if(turf_to_check.density && istype(turf_to_check, /turf/closed/wall/resin))
-		walls_penetrated -= 1
+		if(istype(turf_to_check,/turf/closed/wall/resin/regenerating/special/fireproof))
+			walls_penetrated = 0
+		else if(istype(turf_to_check, /turf/closed/wall/resin))
+			walls_penetrated -= 1
 	//how many resin walls we've penetrated check
 	if(walls_penetrated <= 0)
 		return
