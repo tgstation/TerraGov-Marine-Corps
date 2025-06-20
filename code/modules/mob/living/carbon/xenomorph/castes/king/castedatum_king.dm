@@ -58,6 +58,7 @@
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/tail_stab,
@@ -78,6 +79,7 @@
 		/datum/action/ability/activable/xeno/impregnatequeen,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 
@@ -100,6 +102,7 @@
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/tail_stab,
@@ -119,6 +122,7 @@
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 // ***************************************
@@ -172,6 +176,7 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
@@ -189,6 +194,7 @@
 		/datum/action/ability/activable/xeno/impregnatequeen,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 /datum/xeno_caste/king/conqueror/normal
@@ -209,6 +215,7 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
@@ -227,4 +234,5 @@
 		/datum/action/ability/activable/xeno/impregnatequeen,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
