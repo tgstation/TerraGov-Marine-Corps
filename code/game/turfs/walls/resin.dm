@@ -18,6 +18,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
+	allow_pass_flags = PASS_FIRE
 
 /turf/closed/wall/resin/add_debris_element()
 	AddElement(/datum/element/debris, null, -40, 8, 0.7)
@@ -254,6 +255,7 @@
 	max_upgradable_health = 200
 	soft_armor = list(MELEE = 0, BULLET = 65, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
 	color = COLOR_WALL_FIREPROOF
+	allow_pass_flags = NONE // To prevent fire from passing beyond it.
 
 /turf/closed/wall/resin/regenerating/special/hardy
 	name = "hardy resin wall"

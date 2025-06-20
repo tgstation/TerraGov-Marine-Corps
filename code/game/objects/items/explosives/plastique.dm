@@ -218,8 +218,8 @@
 			addtimer(CALLBACK(src, PROC_REF(spread_flames), direction, turf_to_check), rand(2, 7))
 
 ///Returns TRUE if the supplied turf has something we can ignite on, either a resin wall or door
-/obj/fire/flamer/autospread/proc/turf_contains_valid_burnable(turf_to_check)
-	if(istype(turf_to_check, /turf/closed/wall/resin))
+/obj/fire/flamer/autospread/proc/turf_contains_valid_burnable(turf/turf_to_check)
+	if(istype(turf_to_check, /turf/closed/wall/resin) && !(turf_to_check.allow_pass_flags & PASS_FIRE))
 		return TRUE
 	if(locate(/obj/structure/mineral_door/resin) in turf_to_check)
 		return TRUE
