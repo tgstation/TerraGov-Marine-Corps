@@ -185,7 +185,7 @@
 	icon_state = "genghis-charge"
 
 /obj/item/explosive/plastique/genghis_charge/afterattack(atom/target, mob/user, flag)
-	if(turf_to_check.allow_pass_flags & PASS_FIRE)
+	if(target.allow_pass_flags & PASS_FIRE)
 		return ..()
 	if(istype(target, /obj/structure/mineral_door/resin))
 		return ..()
