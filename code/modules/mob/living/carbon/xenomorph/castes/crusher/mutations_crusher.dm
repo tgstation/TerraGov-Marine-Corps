@@ -125,9 +125,9 @@
 /datum/mutation_upgrade/shell/friendly_chest
 	name = "Friendly Crest"
 	desc = "Crest Toss's cooldown is set to 65/50/35% of its original cooldown if it was used on allies."
-	/// For the first structure, the percentage amount to increase the ability's cooldown if it was used on an ability.
+	/// For the first structure, the percentage amount to increase the ability's cooldown if it was used on an ally.
 	var/cooldown_percentage_increase_initial = -0.2
-	/// For each structure, the additional percentage amount to increase the ability's cooldown if it was used on an ability.
+	/// For each structure, the additional percentage amount to increase the ability's cooldown if it was used on an ally.
 	var/cooldown_percentage_per_structure = -0.15
 
 /datum/mutation_upgrade/shell/friendly_chest/get_desc_for_alert(new_amount)
