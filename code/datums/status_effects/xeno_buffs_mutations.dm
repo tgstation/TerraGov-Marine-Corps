@@ -67,10 +67,10 @@
 	xeno_owner.remove_filter("[id]_outline")
 
 /datum/status_effect/xenomorph_damage_modifier/mutation_runner_frenzy
-	id = "mutation_runner_frenzy"
+	id = "xenomorph_damage_modifier_mutation_runner_frenzy"
 
 /datum/status_effect/xenomorph_damage_modifier/mutation_drone_revenge
-	id = "mutation_drone_revenge"
+	id = "xenomorph_damage_modifier_mutation_drone_revenge"
 	duration = 10 SECONDS
 
 /datum/status_effect/xenomorph_damage_modifier/mutation_drone_revenge/on_apply()
@@ -78,6 +78,10 @@
 	if(!.)
 		return
 	owner.emote("roar2")
+
+/datum/status_effect/xenomorph_damage_modifier/king_summon
+	id = "xenomorph_damage_modifier_king_summon"
+	duration = 30 SECONDS
 
 /datum/status_effect/xenomorph_movespeed_modifier
 	id = "xenomorph_movespeed_modifier"
@@ -105,7 +109,7 @@
 	owner.remove_movespeed_modifier(movespeed_id)
 
 /datum/status_effect/xenomorph_movespeed_modifier/queen_screech
-	id = "queen_screech_movespeed_modifier"
+	id = "xenomorph_movespeed_modifier_queen_screech"
 	movespeed_id = MOVESPEED_ID_QUEEN_SCREECH
 
 /**

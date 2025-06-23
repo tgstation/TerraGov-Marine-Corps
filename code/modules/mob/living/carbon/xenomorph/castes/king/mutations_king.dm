@@ -5,6 +5,43 @@
 //*********************//
 //         Spur        //
 //*********************//
+/datum/mutation_upgrade/spur/minion_king
+	name = "Minion King"
+	desc = "Psychic Summon only affects minions. Upon summon completion, the summoned gain a 0/10/20% melee damage increase for 30 seconds."
+	/// For the first structure, the amount of melee damage multiplier to add to summoned xenomorphs.
+	var/melee_damage_multiplier_initial = -0.1
+	/// For each structure, the additional amount of melee damage multiplier to add to summoned xenomorphs.
+	var/melee_damage_multiplier_per_structure = 0.1
+
+/datum/mutation_upgrade/spur/minion_king/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Psychic Summon only affects minions. Upon summon completion, the summoned gain a [PERCENT(melee_damage_multiplier_initial + (melee_damage_multiplier_per_structure * new_amount))]% melee damage increase for 30 seconds."
+
+/datum/mutation_upgrade/spur/minion_king/on_mutation_enabled()
+	var/datum/action/ability/xeno_action/psychic_summon/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/psychic_summon]
+	if(!ability)
+		return FALSE
+	ability.minions_only = TRUE
+	ability.damage_multiplier_boost += melee_damage_multiplier_initial
+	return ..()
+
+/datum/mutation_upgrade/spur/minion_king/on_mutation_disabled()
+	var/datum/action/ability/xeno_action/psychic_summon/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/psychic_summon]
+	if(!ability)
+		return FALSE
+	ability.minions_only = initial(ability.minions_only)
+	ability.damage_multiplier_boost -= melee_damage_multiplier_initial
+	return ..()
+
+/datum/mutation_upgrade/spur/minion_king/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	if(!.)
+		return
+	var/datum/action/ability/xeno_action/psychic_summon/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/psychic_summon]
+	if(!ability)
+		return
+	ability.damage_multiplier_boost += (new_amount - previous_amount) * melee_damage_multiplier_per_structure
 
 //*********************//
 //         Veil        //

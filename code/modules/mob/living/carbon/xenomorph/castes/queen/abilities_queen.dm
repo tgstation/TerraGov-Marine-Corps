@@ -161,7 +161,7 @@
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 	if(movespeed_amount)
 		for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, 20))
-			affected_xeno.apply_status_effect(STATUS_EFFECT_QUEEN_SCREECH_MOVESPEED, movespeed_amount)
+			affected_xeno.apply_status_effect(STATUS_EFFECT_QUEEN_SCREECH_MOVESPEED_MODIFIER, movespeed_amount)
 
 /datum/action/ability/activable/xeno/screech/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
