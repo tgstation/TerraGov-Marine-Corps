@@ -47,6 +47,7 @@
 	attached_armor.modifyAllRatings(all_armor_change)
 	attached_armor.modifyRating(arglist(list("[recent_projectile_armor_type]" = particular_armor_increase_initial - all_armor_change)))
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.attachArmor(attached_armor)
+	// TODO: Add an outline based on armor type to indicate what type of armor is chosen: orange = fire, blue = bullet, yellow = explosion, green = bio, grey = melee
 
 /// Removes the attached armor.
 /datum/mutation_upgrade/shell/adaptive_armor/proc/remove_armor()
