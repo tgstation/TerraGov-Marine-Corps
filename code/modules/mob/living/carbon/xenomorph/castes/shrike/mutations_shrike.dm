@@ -3,7 +3,7 @@
 //*********************//
 /datum/mutation_upgrade/shell/lone_healer
 	name = "Lone Healer"
-	desc = "Psychic Cure can now target yourself. elf-targetting causes it to heal for 50/60/70% of its original amount and sets its cooldown to 200/175/150% of its original amount."
+	desc = "Psychic Cure can now target yourself. Self-targetting causes it to heal for 50/60/70% of its original amount and sets its cooldown to 200/175/150% of its original amount."
 	/// For the first structure, the multiplier to increase Psychic Cure's healing by  when it is self-targetted.
 	var/self_heal_multiplier_increase_initial = -0.6
 	/// For each structure, the additional multiplier to increase Psychic Cure's healing by  when it is self-targetted.
