@@ -68,6 +68,7 @@
 	)
 
 	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/adaptive_armor,
 		/datum/mutation_upgrade/spur/circular_acid
 	)
 
