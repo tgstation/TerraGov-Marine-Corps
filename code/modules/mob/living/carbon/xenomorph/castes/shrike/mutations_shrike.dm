@@ -51,7 +51,7 @@
 //*********************//
 /datum/mutation_upgrade/spur/smashing_fling
 	name = "Smashing Fling"
-	desc = "Psychic Fling no longer stuns at the end of the fling. It immediately deals 1/1.25/1.5x slashing damage to humans on use, can cause collusions, and deals 1/1.25/1.5x slashing damage if they collide with anything."
+	desc = "Psychic Fling no longer stuns. It immediately deals 1/1.25/1.5x slashing damage to humans on use, can cause collusions, and deals 1/1.25/1.5x slashing damage if they collide with anything."
 	/// For the first structure, the multiplier to increase immediate and collusion damage by.
 	var/damage_multiplier_increase_initial = 0.75
 	/// For each structure, the additional multiplier to increase immediate and collusion damage by.
@@ -60,7 +60,7 @@
 /datum/mutation_upgrade/spur/smashing_fling/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Psychic Fling no longer stuns at the end of the fling. It immediately deals [damage_multiplier_increase_initial + (damage_multiplier_increase_per_structure * new_amount)]x slashing damage to humans on use, can cause collusions, and deals [damage_multiplier_increase_initial + (damage_multiplier_increase_per_structure * new_amount)]x slashing damage if they collide with anything."
+	return "Psychic Fling no longer stuns. It immediately deals [damage_multiplier_increase_initial + (damage_multiplier_increase_per_structure * new_amount)]x slashing damage to humans on use, can cause collusions, and deals [damage_multiplier_increase_initial + (damage_multiplier_increase_per_structure * new_amount)]x slashing damage if they collide with anything."
 
 /datum/mutation_upgrade/spur/smashing_fling/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/psychic_fling/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_fling]
