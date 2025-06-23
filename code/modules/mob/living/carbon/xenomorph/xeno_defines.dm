@@ -464,7 +464,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
 
 
-/// Sets the xenomorph's selected reagent. Sends a signal for it that it happened.
+/// Sets the xenomorph's selected reagent & sends a signal that it happened.
 /mob/living/carbon/xenomorph/proc/set_selected_reagent(datum/reagent/new_reagent_typepath)
 	var/datum/reagent/old_reagent_typepath = selected_reagent
 	selected_reagent = new_reagent_typepath
