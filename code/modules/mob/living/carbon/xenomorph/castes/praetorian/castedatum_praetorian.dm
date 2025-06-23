@@ -39,7 +39,6 @@
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_range = 5
 	acid_spray_damage = 25
 	acid_spray_damage_on_hit = 55
 	acid_spray_structure_damage = 69
@@ -66,6 +65,10 @@
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
+
+	buyable_mutations = list(
+		/datum/mutation_upgrade/spur/circular_acid
 	)
 
 /datum/xeno_caste/praetorian/normal
