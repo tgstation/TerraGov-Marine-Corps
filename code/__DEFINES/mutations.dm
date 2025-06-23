@@ -51,6 +51,9 @@ GLOBAL_LIST_INIT(stackable_decreasable_debuffs_for_xenos, list(
 #define STATUS_EFFECT_MUTATION_RUNNER_FRENZY /datum/status_effect/xenomorph_damage_modifier/mutation_runner_frenzy
 #define STATUS_EFFECT_MUTATION_DRONE_REVENGE /datum/status_effect/xenomorph_damage_modifier/mutation_drone_revenge
 
+/// Unsorted status effects that aren't fully contained within "mutations".
+#define STATUS_EFFECT_QUEEN_SCREECH_MOVESPEED /datum/status_effect/xenomorph_movespeed_modifier/queen_screech
+
 /// Name of each mutation structure/category.
 #define MUTATION_SHELL "shell"
 #define MUTATION_SPUR "spur"

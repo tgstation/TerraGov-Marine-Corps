@@ -79,6 +79,35 @@
 		return
 	owner.emote("roar2")
 
+/datum/status_effect/xenomorph_movespeed_modifier
+	id = "xenomorph_movespeed_modifier"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	duration = 4 SECONDS
+	var/movespeed_id = MOVESPEED_ID_XENOMORPH_MOVESPEED_MODIFIER
+	// The amount used for the movespeed modifier.
+	var/movespeed_modifier
+
+/datum/status_effect/xenomorph_movespeed_modifier/on_creation(mob/living/new_owner, new_movespeed_modifier)
+	owner = new_owner
+	movespeed_modifier = new_movespeed_modifier
+	return ..()
+
+/datum/status_effect/xenomorph_movespeed_modifier/on_apply()
+	. = ..()
+	if(!isxeno(owner) || !movespeed_modifier)
+		return FALSE
+	owner.add_movespeed_modifier(movespeed_id, TRUE, 0, NONE, TRUE, movespeed_modifier)
+
+/datum/status_effect/xenomorph_movespeed_modifier/on_remove()
+	if(!isxeno(owner) || !movespeed_modifier)
+		return
+	owner.remove_movespeed_modifier(movespeed_id)
+
+/datum/status_effect/xenomorph_movespeed_modifier/queen_screech
+	id = "queen_screech_movespeed_modifier"
+	movespeed_id = MOVESPEED_ID_QUEEN_SCREECH
+
 /**
  * Debuffs
  */

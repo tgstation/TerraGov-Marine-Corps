@@ -76,7 +76,7 @@
 /datum/mutation_upgrade/spur/circular_acid
 	name = "Circular Acid"
 	desc = "Acid Spray now creates acid in a circle around you in a radius of 2/3/4 tiles."
-	/// For each structure, the additional range to increase the circular Acid Spray by.
+	/// For the first structure, the range to increase the circular Acid Spray by.
 	var/range_initial = 1
 	/// For each structure, the additional range to increase the circular Acid Spray by.
 	var/range_per_structure = 1
