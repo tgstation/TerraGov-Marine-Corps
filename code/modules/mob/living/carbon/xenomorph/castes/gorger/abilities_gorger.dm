@@ -183,8 +183,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
 	)
-
-	///Used to keep track of the target's previous health for extra_health_check()
+	/// The percentage of the target's maximum health to heal by.
+	var/percentage_to_heal = GORGER_TRANSFUSION_HEAL
+	/// Used to keep track of the target's previous health for extra_health_check().
 	var/target_health
 
 /datum/action/ability/activable/xeno/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
@@ -227,7 +228,7 @@
 
 /datum/action/ability/activable/xeno/transfusion/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/target_xeno = target
-	var/heal_amount = target_xeno.maxHealth * GORGER_TRANSFUSION_HEAL
+	var/heal_amount = target_xeno.maxHealth * percentage_to_heal
 	HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
@@ -247,7 +248,7 @@
 	if(target_xeno.get_xeno_hivenumber() != owner.get_xeno_hivenumber())
 		return FALSE
 	// no overhealing
-	if(target_xeno.health > target_xeno.maxHealth * (1 - GORGER_TRANSFUSION_HEAL))
+	if(target_xeno.health > target_xeno.maxHealth * (1 - percentage_to_heal))
 		return FALSE
 	return can_use_ability(target, TRUE)
 
@@ -335,10 +336,30 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK,
 	)
-	///Timer for activating the link
+	/// The psychic link status effect, if any.
+	var/datum/status_effect/xeno_psychic_link/psychic_link_status_effect
+	/// Timer for activating the link.
 	var/apply_psychic_link_timer
-	///Overlay applied on the target xeno while linking
+	/// Overlay applied on the target xeno while linking.
 	var/datum/progressicon/target_overlay
+	/// The attached armor that been given, if any.
+	var/datum/armor/attached_armor
+	/// Will they be forced to rest upon using this? If so, unresting will cause the ability / status effect to end.
+	var/required_to_rest = TRUE
+	/// Once the link starts, gives this amount of soft armor to them. Do not set this directly. Use `set_armor` instead.
+	var/armor_amount
+	/// Once the link starts, sets the owner's move_resist to this. Do not set this directly. Use `set_move_resist` instead.
+	var/move_resist
+	/// Once the link starts and until it ends, multiply all healing by this amount. Do not set this directly. Use `set_health_restoration_multiplier` instead.
+	var/health_restoration_multiplier = 1
+	/// Once the link ends, sets the owner's move_resist back to this.
+	var/previous_move_resist
+
+/datum/action/ability/activable/xeno/psychic_link/alternate_action_activate()
+	if(!psychic_link_status_effect)
+		return
+	cancel_psychic_link()
+	return COMSIG_KB_ACTIVATED
 
 /datum/action/ability/activable/xeno/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -383,26 +404,36 @@
 	link_cleanup()
 	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED) || HAS_TRAIT(target, TRAIT_PSY_LINKED))
 		return fail_activate()
-
-	var/psychic_link = xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, xeno_owner.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
-	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, PROC_REF(status_removed))
-	target.balloon_alert(xeno_owner, "link successul")
+	psychic_link_status_effect = xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, xeno_owner.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
+	RegisterSignal(psychic_link_status_effect, COMSIG_XENO_PSYCHIC_LINK_REMOVED, PROC_REF(status_removed))
+	set_move_resist(move_resist)
+	set_armor(armor_amount)
+	if(health_restoration_multiplier != 1)
+		RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
+	target.balloon_alert(xeno_owner, "link successful")
 	xeno_owner.balloon_alert(target, "linked to [xeno_owner]")
-	if(!xeno_owner.resting)
-		xeno_owner.set_resting(TRUE, TRUE)
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
+	if(required_to_rest)
+		if(!xeno_owner.resting)
+			xeno_owner.set_resting(TRUE, TRUE)
+		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
 	succeed_activate()
 
 ///Removes the status effect on unrest
 /datum/action/ability/activable/xeno/psychic_link/proc/cancel_psychic_link(datum/source)
 	SIGNAL_HANDLER
 	xeno_owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+	psychic_link_status_effect = null
 
 ///Cancels the status effect
 /datum/action/ability/activable/xeno/psychic_link/proc/status_removed(datum/source)
 	SIGNAL_HANDLER
+	set_move_resist()
+	set_armor()
+	if(health_restoration_multiplier != 1)
+		UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
-	UnregisterSignal(owner, COMSIG_XENOMORPH_UNREST)
+	if(required_to_rest)
+		UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_UNREST)
 	add_cooldown()
 
 ///Clears up things used for the linking
@@ -411,6 +442,44 @@
 	deltimer(apply_psychic_link_timer)
 	apply_psychic_link_timer = null
 
+/// Sets the movement resistance. Resets the movement resistance if the link is active.
+/datum/action/ability/activable/xeno/psychic_link/proc/set_move_resist(new_move_resist)
+	move_resist = new_move_resist
+	if(previous_move_resist)
+		xeno_owner.move_resist = previous_move_resist
+		previous_move_resist = null
+	if(!psychic_link_status_effect || !new_move_resist)
+		return
+	previous_move_resist = xeno_owner.move_resist
+	xeno_owner.move_resist = move_resist
+
+/// Sets the armor value. Resets the armor if the link is active.
+/datum/action/ability/activable/xeno/psychic_link/proc/set_armor(new_armor_value)
+	armor_amount = new_armor_value
+	if(attached_armor)
+		xeno_owner.soft_armor.detachArmor(attached_armor)
+		attached_armor = null
+	if(!psychic_link_status_effect || !new_armor_value)
+		return
+	attached_armor = new()
+	attached_armor.modifyAllRatings(armor_amount)
+	xeno_owner.soft_armor = xeno_owner.soft_armor.attachArmor(attached_armor)
+
+/// Sets health restoration multiplier. (Un)registers the signals for taking damage if applicable.
+/datum/action/ability/activable/xeno/psychic_link/proc/set_health_restoration_multiplier(new_health_restoration_multiplier = 1)
+	if(psychic_link_status_effect)
+		if(health_restoration_multiplier == 1 && new_health_restoration_multiplier != 1) // Signal needs to be created.
+			RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
+		if(health_restoration_multiplier != 1 && new_health_restoration_multiplier == 1) // Signal needs to be removed.
+			UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	health_restoration_multiplier = new_health_restoration_multiplier
+
+/// Multiplies all healing by the health restoration multiplier.
+/datum/action/ability/activable/xeno/psychic_link/proc/on_damage(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	if(amount > 0)
+		return
+	amount_mod -= amount * (1 - health_restoration_multiplier)
 
 /datum/action/ability/activable/xeno/psychic_link/ai_should_use(atom/target)
 	return FALSE
