@@ -231,14 +231,14 @@
 	ability_cost = 200
 	cooldown_duration = 60 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE
 	)
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_SOLIDOBJECT //Can use this while staggered
-	///How low the Ravager's health can go while under the effects of Endure before it dies
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_SOLIDOBJECT // Can use this while staggered.
+	/// How low the Ravager's health can go while under the effects of Endure before it dies? This is the amount that `get_crit_threshold()` and `get_death_threshold()` will return while the ability is active.
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
-	///Timer for Endure's duration
+	/// Timer for Endure's duration.
 	var/endure_duration
-	///Timer for Endure's warning
+	/// Timer for Endure's warning.
 	var/endure_warning_duration
 
 /datum/action/ability/xeno_action/endure/on_cooldown_finish()
@@ -291,13 +291,13 @@
 	xeno_owner.endure = FALSE
 	xeno_owner.clear_fullscreen("endure", 0.7 SECONDS)
 	xeno_owner.remove_filter("ravager_endure_outline")
-	if(xeno_owner.health < xeno_owner.get_crit_threshold()) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
+	if(xeno_owner.health > xeno_owner.get_death_threshold() && xeno_owner.health < xeno_owner.get_crit_threshold()) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
 		var/total_damage = xeno_owner.getFireLoss() + xeno_owner.getBruteLoss()
 		var/burn_percentile_damage = xeno_owner.getFireLoss() / total_damage
 		var/brute_percentile_damage = xeno_owner.getBruteLoss() / total_damage
-		xeno_owner.setBruteLoss((xeno_owner.xeno_caste.max_health - xeno_owner.get_crit_threshold()-1) * brute_percentile_damage)
-		xeno_owner.setFireLoss((xeno_owner.xeno_caste.max_health - xeno_owner.get_crit_threshold()-1) * burn_percentile_damage)
-
+		xeno_owner.setBruteLoss((xeno_owner.xeno_caste.max_health - xeno_owner.get_crit_threshold() - 1) * brute_percentile_damage)
+		xeno_owner.setFireLoss((xeno_owner.xeno_caste.max_health - xeno_owner.get_crit_threshold() - 1) * burn_percentile_damage)
+	UPDATEHEALTH(xeno_owner) // If their reverted death threshold is not good enough, they'll drop dead in a moment.
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(bomb = -20) //Remove resistances/immunities
 	REMOVE_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
 	REMOVE_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT)
@@ -348,11 +348,15 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
-	///Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP; min 0.25 at 50% of Max HP, max 1 while in negative HP. 0.5 and above triggers especial effects.
+	/// The percentage of the owner's maximum health that the owner's current health must be under to activate the ability.
+	var/minimum_health_rage_threshold = RAVAGER_RAGE_MIN_HEALTH_THRESHOLD
+	/// The percentage of the owner's maximum health to use to further increase / calculate rage power. Higher means it is easier to get more rage power and thus super rage. that the owner's current health must be under to reach maximum rage power / super rage.
+	var/rage_power_calculation_bonus = 0
+	/// Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP. Ignoring calculation bonus, this can ranges from [0.25 at 50% health] and [0.5 at 0% health]. 0.5 and above triggers special effects.
 	var/rage_power
-	///Determines the Sunder to impose when Rage ends
+	/// Determines the Sunder to impose when Rage ends.
 	var/rage_sunder
-	///Determines the Plasma to remove when Rage ends
+	/// Determines the Plasma to remove when Rage ends.
 	var/rage_plasma
 
 /datum/action/ability/xeno_action/rage/on_cooldown_finish()
@@ -365,24 +369,19 @@
 	if(!.)
 		return FALSE
 
-	if(xeno_owner.health > xeno_owner.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD) //Need to be at 50% of max hp or lower to rage
+	if(xeno_owner.health > xeno_owner.maxHealth * minimum_health_rage_threshold) //Need to be at 50% of max hp or lower to rage
 		if(!silent)
-			to_chat(xeno_owner, span_xenodanger("Our health isn't low enough to rage! We must take [xeno_owner.health - (xeno_owner.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD)] more damage!"))
+			to_chat(xeno_owner, span_xenodanger("Our health isn't low enough to rage! We must take [xeno_owner.health - (xeno_owner.maxHealth * minimum_health_rage_threshold)] more damage!"))
 		return FALSE
 
-
 /datum/action/ability/xeno_action/rage/action_activate()
-	rage_power = (1-(xeno_owner.health/xeno_owner.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER //Calculate the power of our rage; scales with difference between current and max HP
-
-	if(xeno_owner.health < 0) //If we're at less than 0 HP, it's time to max rage.
-		rage_power = 0.5
+	rage_power = min(0.5, (1 - (xeno_owner.health / xeno_owner.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER) //Calculate the power of our rage; scales with difference between current and max HP.
 
 	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
 
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] becomes frenzied, bellowing with a shuddering roar!"), \
 	span_userdanger("We bellow as our fury overtakes us! RIP AND TEAR!"))
 	xeno_owner.do_jitter_animation(1000)
-
 
 	//Roar SFX; volume scales with rage
 	playsound(xeno_owner.loc, 'sound/voice/alien/roar2.ogg', clamp(100 * rage_power, 25, 80), 0)
@@ -393,8 +392,8 @@
 		var/datum/action/ability/xeno_action/ravage = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/ravage]
 		var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
 
-		if(endure_ability.endure_duration) //Check if Endure is active
-			endure_ability.endure_threshold = RAVAGER_ENDURE_HP_LIMIT * (1 + rage_power) //Endure crit threshold scales with Rage Power; min -100, max -150
+		// Doesn't really matter if it is active or not. It is only used if active and we have to set it back anyways.
+		endure_ability.endure_threshold += RAVAGER_ENDURE_HP_LIMIT * rage_power // Decreases Endure's critical threshold.
 
 		if(charge)
 			charge.clear_cooldown() //Reset charge cooldown
@@ -504,6 +503,9 @@
 	REMOVE_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
 	REMOVE_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
+
+	var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	endure_ability.endure_threshold -= RAVAGER_ENDURE_HP_LIMIT * rage_power
 
 	rage_sunder = 0
 	rage_power = 0
