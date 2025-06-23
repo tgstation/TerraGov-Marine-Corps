@@ -103,6 +103,7 @@
 	update_icon()
 	set_light_on(FALSE)
 	STOP_PROCESSING(SSobj, src)
+	GLOB.activated_flares -= src
 
 ///Activates the flare
 /obj/item/explosive/grenade/flare/proc/turn_on()
@@ -116,6 +117,7 @@
 	set_light_on(TRUE)
 	playsound(src,'sound/items/flare.ogg', 15, 1)
 	START_PROCESSING(SSobj, src)
+	GLOB.activated_flares += src
 
 //Starts on
 /obj/item/explosive/grenade/flare/on/Initialize(mapload)

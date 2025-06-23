@@ -12,10 +12,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NIGHTFALL,
 	)
-	/// How far nightfall will have an effect
+	/// How far will Nightfall will have an effect?
 	var/range = 12
-	/// How long till the lights go on again
+	/// How long until the lights go on again?
 	var/duration = 10 SECONDS
+	/// Multiplies the fuel of all active flares within range by this amount. Only done if this is above zero.
+	var/flare_fuel_multiplier
 
 /datum/action/ability/activable/xeno/nightfall/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to shut down lights again."))
@@ -29,7 +31,11 @@
 		if(isnull(light.loc) || (owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
 			continue
 		light.turn_light(null, FALSE, duration, TRUE, TRUE, TRUE)
-
+	if(flare_fuel_multiplier > 0)
+		for(var/obj/item/explosive/grenade/flare/activated_flare AS in GLOB.activated_flares)
+			if(isnull(activated_flare.loc) || (owner.loc.z != activated_flare.loc.z) || (get_dist(owner, activated_flare) >= range))
+				continue
+			activated_flare.fuel = ROUND_UP(activated_flare.fuel * flare_fuel_multiplier)
 
 // ***************************************
 // *********** Petrify
