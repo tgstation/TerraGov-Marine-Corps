@@ -63,7 +63,8 @@
 	var/datum/action/ability/xeno_action/reagent_slash/slash_ability = new()
 	slash_ability.give_action(xenomorph_owner)
 	slash_ability.reagent_slash_amount = amount_initial
-	xenomorph_owner.selected_reagent = /datum/reagent/toxin/xeno_neurotoxin
+
+	xenomorph_owner.set_selected_reagent(/datum/reagent/toxin/xeno_neurotoxin)
 	return ..()
 
 /datum/mutation_upgrade/spur/toxic_claws/on_mutation_disabled()
@@ -72,7 +73,7 @@
 		slash_ability.remove_action(xenomorph_owner)
 	var/datum/action/ability/activable/xeno/neurotox_sting/sting_ability = new()
 	sting_ability.give_action(xenomorph_owner)
-	xenomorph_owner.selected_reagent = initial(xenomorph_owner.selected_reagent)
+	xenomorph_owner.set_selected_reagent(initial(xenomorph_owner.selected_reagent))
 	return ..()
 
 /datum/mutation_upgrade/spur/toxic_claws/on_structure_update(previous_amount, new_amount)

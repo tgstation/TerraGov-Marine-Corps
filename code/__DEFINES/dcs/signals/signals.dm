@@ -850,6 +850,8 @@
 
 #define COMSIG_XENOMORPH_LEAP_BUMP "xenomorph_leap_bump" //from /mob/living/carbon/xenomorph/bump
 
+#define COMSIG_XENO_SELECTED_REAGENT_CHANGED "xenomorph_selected_reagent_changed" // from [/mob/living/carbon/xenomorph/set_selected_reagent]: (/datum/reagent/old_reagent_typepath, /datum/reagent/new_reagent_typepath)
+
 // Mutation
 #define COMSIG_MUTATION_CHAMBER_SHELL "mutation_chamber_shell"
 #define COMSIG_MUTATION_CHAMBER_SPUR "mutation_chamber_spur"
