@@ -93,3 +93,10 @@
   - rscadd: Added personal statistic for FF recieved
   mudzbe:
   - bugfix: Fixed campaign extreme constitution perk typo
+2025-06-23:
+  Runian:
+  - balance: Fireproof resin walls now prevent flamers from penetrating them, making
+      them immediately stop upon reaching the fireproof wall.
+  revelation-8468:
+  - balance: Flare crates are now available to buy in requsitions for 75 points per
+      10 flare boxes (or 140 flares).

@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - balance: "Fireproof resin walls now prevent flamers from penetrating them, making them immediately stop upon reaching the fireproof wall."
