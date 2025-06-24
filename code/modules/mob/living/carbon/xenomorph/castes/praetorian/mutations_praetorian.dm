@@ -123,3 +123,65 @@
 //*********************//
 //         Veil        //
 //*********************//
+/datum/mutation_upgrade/veil/wide_pheromones
+	name = "Wide Pheromones"
+	desc = "Your pheromone strength is decreased by 0.5, but its range is increased by 3/6/9 tiles."
+	/// For the first structure, the strength to increase all pheromones by.
+	var/strength_increase_initial = -0.5
+	/// For each structure, the range to increase all pheromones by.
+	var/range_increase_per_structure = 3
+
+/datum/mutation_upgrade/veil/wide_pheromones/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Your pheromone strength is decreased by [strength_increase_initial * -1], but its range is increased by [range_increase_per_structure * new_amount] tiles."
+
+/datum/mutation_upgrade/veil/wide_pheromones/on_mutation_enabled()
+	add_strength_and_range(strength_increase_initial)
+	return ..()
+
+/datum/mutation_upgrade/veil/wide_pheromones/on_mutation_disabled()
+	add_strength_and_range(-strength_increase_initial)
+	return ..()
+
+/datum/mutation_upgrade/veil/wide_pheromones/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	if(!.)
+		return
+	add_strength_and_range(0, range_increase_per_structure * (new_amount - previous_amount))
+	restart_auras()
+
+/// Adds strength and range to all pheromone abilities by a chosen amount.
+/datum/mutation_upgrade/veil/wide_pheromones/proc/add_strength_and_range(strength = 0, range = 0)
+	var/datum/action/ability/xeno_action/pheromones/emit_recovery/recovery_pheromones = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_recovery]
+	if(recovery_pheromones)
+		recovery_pheromones.bonus_flat_strength += strength
+		recovery_pheromones.bonus_flat_range += range
+	var/datum/action/ability/xeno_action/pheromones/emit_warding/warding_pheromones = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_warding]
+	if(warding_pheromones)
+		warding_pheromones.bonus_flat_strength += strength
+		warding_pheromones.bonus_flat_range += range
+	var/datum/action/ability/xeno_action/pheromones/emit_frenzy/frenzy_pheromones = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_frenzy]
+	if(frenzy_pheromones)
+		frenzy_pheromones.bonus_flat_strength += strength
+		frenzy_pheromones.bonus_flat_range += range
+
+// Recreates auras if needed.
+/datum/mutation_upgrade/veil/wide_pheromones/proc/restart_auras()
+	if(!xenomorph_owner.current_aura)
+		return
+	var/pheromone_type = xenomorph_owner.current_aura.aura_types[1]
+	xenomorph_owner.current_aura.stop_emitting()
+	switch(pheromone_type)
+		if(AURA_XENO_RECOVERY)
+			var/datum/action/ability/xeno_action/pheromones/emit_recovery/recovery_pheromones = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_recovery]
+			if(recovery_pheromones)
+				recovery_pheromones.apply_pheros(AURA_XENO_RECOVERY)
+		if(AURA_XENO_WARDING)
+			var/datum/action/ability/xeno_action/pheromones/emit_warding/warding_pheromones = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_warding]
+			if(warding_pheromones)
+				warding_pheromones.apply_pheros(AURA_XENO_WARDING)
+		if(AURA_XENO_FRENZY)
+			var/datum/action/ability/xeno_action/pheromones/emit_frenzy/frenzy_pheromones = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_frenzy]
+			if(frenzy_pheromones)
+				frenzy_pheromones.apply_pheros(AURA_XENO_FRENZY)
