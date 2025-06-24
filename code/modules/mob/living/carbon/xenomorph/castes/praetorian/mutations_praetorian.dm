@@ -166,7 +166,7 @@
 		frenzy_pheromones.bonus_flat_strength += strength
 		frenzy_pheromones.bonus_flat_range += range
 
-// Recreates auras if needed.
+/// If the owner is already emitting an aura, recreate it.
 /datum/mutation_upgrade/veil/wide_pheromones/proc/restart_auras()
 	if(!xenomorph_owner.current_aura)
 		return
