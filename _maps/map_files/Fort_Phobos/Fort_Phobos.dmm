@@ -793,6 +793,10 @@
 /obj/item/roller,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/patrol_base/som/medical)
+"jI" = (
+/obj/item/plantable_flag/som,
+/turf/open/floor/mainship/office,
+/area/mainship/patrol_base/som/command)
 "jK" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/plating/ground/concrete,
@@ -2850,7 +2854,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Jh" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/yankee,
+/obj/machinery/computer/camera_advanced/overwatch/military/som/yankee,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -2871,10 +2875,8 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Jl" = (
+/obj/machinery/door/poddoor/mainship/open,
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull,
-/obj/machinery/door/poddoor/campaign/som{
-	dir = 8
-	},
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base/som)
 "Jm" = (
@@ -3149,7 +3151,7 @@
 /area/mainship/patrol_base/som)
 "Ne" = (
 /obj/machinery/camera/autoname/mainship/somship,
-/obj/machinery/computer/camera_advanced/overwatch/main/som,
+/obj/machinery/computer/camera_advanced/overwatch/military/main/som,
 /obj/machinery/light/red{
 	dir = 1
 	},
@@ -3275,7 +3277,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/mainship/patrol_base/som/barracks)
 "Ox" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/xray{
+/obj/machinery/computer/camera_advanced/overwatch/military/som/xray{
 	dir = 8
 	},
 /turf/open/floor/mainship/red{
@@ -3294,7 +3296,7 @@
 	},
 /area/mainship/patrol_base/som)
 "OG" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/zulu{
+/obj/machinery/computer/camera_advanced/overwatch/military/som/zulu{
 	dir = 4
 	},
 /turf/open/floor/mainship/red{
@@ -3650,7 +3652,7 @@
 /turf/closed/shuttle/dropship_regular/backhatch,
 /area/mainship/patrol_base/som/hanger)
 "Tz" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/whiskey,
+/obj/machinery/computer/camera_advanced/overwatch/military/som/whiskey,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
@@ -3840,7 +3842,7 @@
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som)
 "VP" = (
-/obj/machinery/computer/camera_advanced/overwatch/main/som,
+/obj/machinery/computer/camera_advanced/overwatch/military/main/som,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -11566,7 +11568,7 @@ Uk
 RO
 iT
 Sy
-Sy
+jI
 Sy
 Sy
 Sy

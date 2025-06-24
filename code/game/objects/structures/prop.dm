@@ -107,7 +107,7 @@
 		return
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/prop/computer/PC
@@ -167,6 +167,20 @@
 	density = TRUE
 	resistance_flags = RESIST_ALL
 
+/obj/structure/prop/mainship/gravestone
+	name = "grave marker"
+	desc = "It's a gravestone, used to mark the burial site of important people. Press F to pay respects to the fallen."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "gravestone1"
+	density = TRUE
+	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/mainship/gravestone/two
+	icon_state = "gravestone2"
+
+/obj/structure/prop/mainship/gravestone/three
+	icon_state = "gravestone3"
+
 /obj/structure/prop/mainship/holobarrier/passthrough
 	name = "\improper pressure-sealed holobarrier"
 	icon = 'icons/effects/effects.dmi'
@@ -209,13 +223,13 @@
 
 //RND Props
 /obj/machinery/prop/r_n_d/protolathe
-	name = "Protolathe"
+	name = "protolathe"
 	icon = 'icons/obj/machines/research.dmi'
 	desc = "Protolathe, used to be used to print tools and such."
 	icon_state = "protolathe"
 
 /obj/machinery/prop/computer/rdconsole
-	name = "R&D Console"
+	name = "\improper R&D console"
 	icon = 'icons/obj/machines/computer.dmi'
 	desc = "A research console."
 	icon_state = "computer"
@@ -223,15 +237,15 @@
 	broken_icon = "computer_blue_broken"
 
 /obj/machinery/prop/r_n_d/server
-	name = "R&D Server"
+	name = "\improper R&D server"
 	icon = 'icons/obj/machines/research.dmi'
-	desc = "A research server"
+	desc = "A research server."
 	icon_state = "server"
 
 /obj/machinery/prop/computer/rdservercontrol
-	name = "R&D Server Controller"
+	name = "\improper R&D server controller"
 	icon = 'icons/obj/machines/computer.dmi'
-	desc = "Oversees all research"
+	desc = "Oversees all research."
 	icon_state = "computer"
 	screen_overlay = "rdcomp"
 	broken_icon = "computer_blue_broken"
@@ -243,16 +257,16 @@
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/computer/crew
-	name = "Crew monitoring computer"
+	name = "crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
 	icon_state = "computer"
 	screen_overlay = "crew"
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/r_n_d/server/alt
-	name = "Alternate R&D Server"
+	name = "alternate R&D server"
 	icon = 'icons/obj/machines/research.dmi'
-	desc = "A research server"
+	desc = "A research server."
 	icon_state = "server_alt"
 //End RND props
 
@@ -410,8 +424,10 @@
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "TGMC1"
 	density = FALSE
+	plane = FLOOR_PLANE
+	layer = LOWER_RUNE_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	resistance_flags = UNACIDABLE
-	layer = ABOVE_TURF_LAYER
 
 /obj/structure/prop/mainship/name_stencil/T
 	icon_state = "TGMC1"
@@ -436,10 +452,15 @@
 	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "dropship1"
 	density = FALSE
-	layer = ABOVE_TURF_LAYER
+	plane = FLOOR_PLANE
+	layer = LOWER_RUNE_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/mainship/hangar_stencil/two
 	icon_state = "dropship2"
+
+/obj/structure/prop/mainship/hangar_stencil/three
+	icon_state = "dropship3"
 
 /obj/structure/prop/mainship/brokengen //all the aesthetics of having a generator without any of the function
 	name = "\improper G-11 geothermal generator"
@@ -455,14 +476,14 @@
 	icon_state = "cannon_cables"
 	density = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 
 /obj/structure/prop/mainship/supermatter //functionally inert, but will consume mobs and objects
 	name = "supermatter crystal"
 	desc = "A strangely translucent and iridescent crystal."
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "darkmatter"
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
 
@@ -493,7 +514,7 @@
 	desc = "A device which uses radiation and plasma to produce power."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "radcollector"
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/invincibleshutter
@@ -502,7 +523,7 @@
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	icon_state = "shutter1"
 	density = TRUE
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
 	allow_pass_flags = NONE
@@ -982,6 +1003,26 @@
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "fireplace"
 
+/obj/structure/prop/mainship/vat
+	name = "Stasis Vat"
+	desc = "A large vat used to store humans."
+	icon = 'icons/obj/machines/cryogenics2.dmi'
+	icon_state = "cell_off"
+	hit_sound = 'sound/effects/Glasshit.ogg'
+	max_integrity = 120
+	resistance_flags = XENO_DAMAGEABLE
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/mainship/vat/full
+	icon_state = "cell_off_occupied"
+
+/obj/structure/prop/mainship/vat/broken
+	desc = "A large vat used to store humans. This one doesnt seem functional..."
+	icon_state = "cell_broken"
+
+/obj/structure/prop/mainship/vat/broken/bloody
+	icon_state = "cell_bloody"
+
 //items props
 
 /obj/item/prop
@@ -1175,17 +1216,19 @@
 ///BROKEN VEHICLE PROPS
 /obj/structure/prop/vehicle
 	icon = 'icons/obj/vehicles/64x64.dmi'
-	layer = ABOVE_MOB_PROP_LAYER
+	layer = ABOVE_MOB_LAYER
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 300
+	coverage = 80
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 65, BOMB = 30, BIO = 100, FIRE = 75, ACID = 0)
 
 /obj/structure/prop/vehicle/van
 	name = "van"
 	desc = "An old van, seems to be broken down."
 	icon_state = "van"
-	coverage = 80
 	bound_height = 32
 	bound_width = 64
-	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/vehicle/van/Initialize(mapload)
 	. = ..()
@@ -1193,21 +1236,15 @@
 		bound_height = 64
 		bound_width = 32
 
-/obj/structure/prop/vehicle/van/destructible
-	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE
-
-/obj/structure/prop/vehicle/van/destructible/wreck
+/obj/structure/prop/vehicle/van/wreck
 	icon_state = "van_wrecked"
 
 /obj/structure/prop/vehicle/truck
 	name = "truck"
 	desc = "An old truck, seems to be broken down."
 	icon_state = "truck"
-	coverage = 80
 	bound_height = 32
 	bound_width = 64
-	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/vehicle/truck/Initialize(mapload)
 	. = ..()
@@ -1224,113 +1261,71 @@
 		bound_width = 32
 		pixel_x = -16
 
-/obj/structure/prop/vehicle/truck/destructible
-	max_integrity = 150
-	resistance_flags = XENO_DAMAGEABLE
-
-/obj/structure/prop/vehicle/truck/destructible/damaged
+/obj/structure/prop/vehicle/truck/damaged
 	icon_state = "truck_damaged"
 
-/obj/structure/prop/vehicle/truck/destructible/snow
+/obj/structure/prop/vehicle/truck/snow
 	icon_state = "truck_snow"
 
 /obj/structure/prop/vehicle/truck/truckcargo
 	icon_state = "truck_cargo"
+	max_integrity = 400
 
-/obj/structure/prop/vehicle/truck/truckcargo/destructible
-	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE
-
-/obj/structure/prop/vehicle/truck/truckcargo/destructible/snow
+/obj/structure/prop/vehicle/truck/truckcargo/snow
 	icon_state = "truck_cargo_snow"
 
 /obj/structure/prop/vehicle/crane
 	name = "crane"
 	desc = "An old crane, seems to be broken down."
 	icon_state = "crane"
-	coverage = 80
 	bound_height = 64
 	bound_width = 64
-	resistance_flags = RESIST_ALL
+	max_integrity = 400
 
-/obj/structure/prop/vehicle/crane/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
-
-/obj/structure/prop/vehicle/crane/destructible/damaged
+/obj/structure/prop/vehicle/crane/damaged
 	icon_state = "crane_damaged"
 
-/obj/structure/prop/vehicle/crane/destructible/wreck
+/obj/structure/prop/vehicle/crane/wreck
 	icon_state = "crane_wreck"
 
-/obj/structure/prop/vehicle/crane/destructible/snow
+/obj/structure/prop/vehicle/crane/snow
 	icon_state = "crane_snow"
 
 /obj/structure/prop/vehicle/crane/cranecargo
 	icon_state = "crane_cargo"
-
-/obj/structure/prop/vehicle/crane/cranecargo/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 400
 
 /obj/structure/prop/vehicle/crawler
 	name = "crawler"
 	desc = "An old crawler, seems to be broken down."
 	icon_state = "crawler"
-	coverage = 80
 	bound_height = 32
 	bound_width = 64
-	resistance_flags = RESIST_ALL
-
-/obj/structure/prop/vehicle/crawler/destructible
-	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE
-
+	max_integrity = 400
 
 /obj/structure/prop/vehicle/crawler/crawler_blue
 	icon_state = "crawler_crate_b"
 
-/obj/structure/prop/vehicle/crawler/crawler_blue/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
-
 /obj/structure/prop/vehicle/crawler/crawler_red
 	icon_state = "crawler_crate_r"
-
-/obj/structure/prop/vehicle/crawler/crawler_red/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/crawler/crawler_green
 	icon_state = "crawler_crate_g"
 
-/obj/structure/prop/vehicle/crawler/crawler_green/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
-
 /obj/structure/prop/vehicle/crawler/crawler_fuel
 	icon_state = "crawler_fuel"
 
-/obj/structure/prop/vehicle/crawler/crawler_fuel/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
-
 /obj/structure/prop/vehicle/crawler/crawler_cargo
 	icon_state = "crawler_cargo"
-
-/obj/structure/prop/vehicle/crawler/crawler_cargo/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/big_truck
 	name = "military truck"
 	desc = "A military truck, made for transporting equipment or personnel in bulk."
 	icon = 'icons/obj/vehicles/large_truck.dmi'
 	icon_state = "truck"
-	coverage = 80
 	bound_height = 128
 	bound_width = 128
-	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 700
 
 /obj/structure/prop/vehicle/big_truck/Initialize(mapload)
 	. = ..()
@@ -1392,7 +1387,6 @@
 	desc = "A decomissioned tank, all methods of propulsion have been disabled and the entrances sealed."
 	icon = 'icons/obj/structures/prop/tank_vertical.dmi'
 	icon_state = "tank_complete"
-	coverage = 80
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
@@ -1437,7 +1431,7 @@
 
 /obj/structure/prop/vehicle/tank/east/barrel
 	icon_state = "ltb_cannon_0"
-	layer = ABOVE_MOB_PROP_LAYER
+	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/tank/east/barrel/broken
@@ -1682,7 +1676,6 @@
 	desc = "A decomissioned APC, all methods of propulsion have been disabled and the entrances sealed."
 	icon = 'icons/obj/structures/prop/apc.dmi'
 	icon_state = "apc_base"
-	coverage = 70
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
@@ -1862,7 +1855,7 @@
 	desc = "A heavy cable node used for connecting high performance cables between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnector"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powerccable
@@ -1870,7 +1863,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powercableheavy"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powercconnectortwoside
@@ -1878,7 +1871,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnectortwoside"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powercconnectortwosidealt
@@ -1886,7 +1879,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnectortwosidealt"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powercconnectorthreeside
@@ -1894,7 +1887,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnectorthreeside"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powercconnectorfourside
@@ -1902,7 +1895,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnectorfourside"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/rails

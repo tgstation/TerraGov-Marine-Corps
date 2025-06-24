@@ -5,11 +5,10 @@
 	name = "baseturf editor"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
-
+	plane = POINT_PLANE
 	var/list/baseturf_to_replace
 	var/baseturf
 
-	layer = POINT_LAYER
 
 /obj/effect/baseturf_helper/Initialize(mapload)
 	. = ..()
@@ -374,10 +373,13 @@
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
 		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-	if(light.status == LIGHT_BROKEN || light.status == LIGHT_EMPTY)
+	if(light.status == LIGHT_BROKEN) //already broken, go home
+		return
+	if(light.status == LIGHT_EMPTY)
 		log_mapping("[src] at [AREACOORD(src)] tried to make [light] broken, but it couldn't be done!")
-	else
-		light.broken()
+		return
+
+	light.broken()
 
 /obj/effect/mapping_helpers/light/turnedoff
 	name = "light area turnoff helper"
@@ -581,7 +583,7 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
+	var/obj/structure/barricade/solid/foundbarricade = locate(/obj/structure/barricade/solid) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.barricade_upgrade_type)
@@ -599,7 +601,7 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
+	var/obj/structure/barricade/solid/foundbarricade = locate(/obj/structure/barricade/solid) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.barricade_upgrade_type)
@@ -618,7 +620,7 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
+	var/obj/structure/barricade/solid/foundbarricade = locate(/obj/structure/barricade/solid) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.barricade_upgrade_type)
@@ -636,12 +638,42 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/structure/barricade/plasteel/foundbarricade = locate(/obj/structure/barricade/plasteel) in loc
+	var/obj/structure/barricade/folding/foundbarricade = locate(/obj/structure/barricade/folding) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a plasteel barricade at [AREACOORD(src)]")
 	if(!foundbarricade.closed)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to open [foundbarricade] but it's already open!")
 	foundbarricade.toggle_open()
+
+/obj/effect/mapping_helpers/weld_vents
+	name = "vents welded helper"
+	icon_state = "airlock_welded_helper"
+	///probability we weld the vent
+	var/weld_chance = 100
+
+/obj/effect/mapping_helpers/weld_vents/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/atmospherics/components/unary/vent_pump/foundvent = locate(/obj/machinery/atmospherics/components/unary/vent_pump) in loc
+	var/obj/machinery/atmospherics/components/unary/vent_scrubber/foundscrubber = locate(/obj/machinery/atmospherics/components/unary/vent_scrubber) in loc
+	if(!foundvent && !foundscrubber)
+		CRASH("### MAP WARNING, [src] failed to find a plasteel barricade at [AREACOORD(src)]")
+	if(foundvent && foundvent.welded)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to weld [foundvent] but it's already welded!")
+	else if(foundvent && prob(weld_chance))
+		foundvent.welded = TRUE
+	if(foundscrubber && foundscrubber.welded)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to weld [foundscrubber] but it's already welded!")
+	else if(foundscrubber && prob(weld_chance))
+		foundscrubber.welded = TRUE
+
+/obj/effect/mapping_helpers/weld_vents/fiftyfifty
+	weld_chance = 50
+
+/obj/effect/mapping_helpers/weld_vents/lowchance
+	weld_chance = 15
 
 //needs to do its thing before spawn_rivers() is called
 /*

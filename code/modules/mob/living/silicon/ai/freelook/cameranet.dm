@@ -3,6 +3,8 @@
 // The datum containing all the chunks.
 
 #define CHUNK_SIZE 16 // Only chunk sizes that are to the power of 2. E.g: 2, 4, 8, 16, etc..
+/// Takes a position, transforms it into a chunk bounded position. Indexes at 1 so it'll land on actual turfs always
+#define GET_CHUNK_COORD(v) (max((FLOOR(v, CHUNK_SIZE)), 1))
 
 GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
@@ -14,82 +16,77 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 	var/list/cameras = list()
 	// The chunks of the map, mapping the areas that the cameras can see.
 	var/list/chunks = list()
-	var/ready = 0
 
-	// The object used for the clickable stat() button.
-	var/obj/effect/statclick/statclick
-
-	///this object is the static that ais see on obscured turfs, added to the turfs vis_contents
-	var/obj/effect/overlay/camera_static/vis_contents_opaque
-
-	///The image given to the effect in vis_contents on AI clients
-	var/image/obscured
+	/// List of images cloned by all chunk static images put onto turfs cameras cant see
+	/// Indexed by the plane offset to use
+	var/list/image/obscured_images
 
 /datum/cameranet/New()
-	vis_contents_opaque = new /obj/effect/overlay/camera_static()
+	obscured_images = list()
+	update_offsets(SSmapping.max_plane_offset)
+	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(on_offset_growth))
 
-	obscured = new('icons/effects/cameravis.dmi', vis_contents_opaque, null, CAMERA_STATIC_LAYER)
-	obscured.plane = CAMERA_STATIC_PLANE
+/datum/cameranet/proc/update_offsets(new_offset)
+	for(var/i in length(obscured_images) to new_offset)
+		var/image/obscured = new('icons/effects/cameravis.dmi')
+		SET_PLANE_W_SCALAR(obscured, CAMERA_STATIC_PLANE, i)
+		obscured.appearance_flags = RESET_TRANSFORM | RESET_ALPHA | RESET_COLOR | KEEP_APART
+		obscured.override = TRUE
+		obscured_images += obscured
+
+/datum/cameranet/proc/on_offset_growth(datum/source, old_offset, new_offset)
+	SIGNAL_HANDLER
+	update_offsets(new_offset)
 
 /// Checks if a chunk has been Generated in x, y, z.
 /datum/cameranet/proc/chunkGenerated(x, y, z)
-	x &= ~(CHUNK_SIZE - 1)
-	y &= ~(CHUNK_SIZE - 1)
+	x = GET_CHUNK_COORD(x)
+	y = GET_CHUNK_COORD(y)
+	if(GET_LOWEST_STACK_OFFSET(z) != 0)
+		var/turf/lowest = get_lowest_turf(locate(x, y, z))
+		return chunks["[x],[y],[lowest.z]"]
+
 	return chunks["[x],[y],[z]"]
 
 // Returns the chunk in the x, y, z.
 // If there is no chunk, it creates a new chunk and returns that.
 /datum/cameranet/proc/getCameraChunk(x, y, z)
-	x &= ~(CHUNK_SIZE - 1)
-	y &= ~(CHUNK_SIZE - 1)
-	var/key = "[x],[y],[z]"
+	x = GET_CHUNK_COORD(x)
+	y = GET_CHUNK_COORD(y)
+	var/turf/lowest = get_lowest_turf(locate(x, y, z))
+	var/key = "[x],[y],[lowest.z]"
 	. = chunks[key]
 	if(!.)
-		chunks[key] = . = new /datum/camerachunk(x, y, z, src)
+		chunks[key] = . = new /datum/camerachunk(x, y, lowest.z)
 
-/// Updates what the aiEye can see. It is recommended you use this when the aiEye moves or it's location is set.
-/datum/cameranet/proc/visibility(list/moved_eyes, client/C, list/other_eyes, use_static = TRUE)
+/// Updates what the camera eye can see. It is recommended you use this when a camera eye moves or its location is set.
+/datum/cameranet/proc/visibility(list/moved_eyes)
 	if(!islist(moved_eyes))
 		moved_eyes = moved_eyes ? list(moved_eyes) : list()
-	if(islist(other_eyes))
-		other_eyes = (other_eyes - moved_eyes)
-	else
-		other_eyes = list()
 
-	if(C)
-		if(use_static)
-			C.images += obscured
-		else
-			C.images -= obscured
-
-	for(var/mob/camera/aiEye/eye AS in moved_eyes)
+	for(var/mob/camera/eye as anything in moved_eyes)
 		var/list/visibleChunks = list()
+		//Get the eye's turf in case its located in an object like a mecha
+		var/turf/eye_turf = get_turf(eye)
 		if(eye.loc)
-			// 0xf = 15
 			var/static_range = eye.static_visibility_range
-			var/x1 = max(0, eye.x - static_range) & ~(CHUNK_SIZE - 1)
-			var/y1 = max(0, eye.y - static_range) & ~(CHUNK_SIZE - 1)
-			var/x2 = min(world.maxx, eye.x + static_range) & ~(CHUNK_SIZE - 1)
-			var/y2 = min(world.maxy, eye.y + static_range) & ~(CHUNK_SIZE - 1)
-
+			var/x1 = max(1, eye_turf.x - static_range)
+			var/y1 = max(1, eye_turf.y - static_range)
+			var/x2 = min(world.maxx, eye_turf.x + static_range)
+			var/y2 = min(world.maxy, eye_turf.y + static_range)
 
 			for(var/x = x1; x <= x2; x += CHUNK_SIZE)
 				for(var/y = y1; y <= y2; y += CHUNK_SIZE)
-					visibleChunks |= getCameraChunk(x, y, eye.z)
+					visibleChunks |= getCameraChunk(x, y, eye_turf.z)
 
 		var/list/remove = eye.visibleCameraChunks - visibleChunks
 		var/list/add = visibleChunks - eye.visibleCameraChunks
 
-		for(var/datum/camerachunk/chunk AS in remove)
-			chunk.remove(eye, FALSE)
+		for(var/datum/camerachunk/chunk as anything in remove)
+			chunk.remove(eye)
 
-		for(var/datum/camerachunk/chunk AS in add)
+		for(var/datum/camerachunk/chunk as anything in add)
 			chunk.add(eye)
-
-		if(!length(eye.visibleCameraChunks))
-			var/client/client = eye.GetViewerClient()
-			if(client && eye.use_static)
-				client.images -= obscured
 
 /// Updates the chunks that the turf is located in. Use this when obstacles are destroyed or when doors open.
 /datum/cameranet/proc/updateVisibility(atom/A, opacity_check = 1)
@@ -140,10 +137,10 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 				if(chunk)
 					if(choice == 0)
 						// Remove the camera.
-						chunk.cameras -= c
+						chunk.cameras["[T.z]"] -= c
 					else if(choice == 1)
 						// You can't have the same camera in the list twice.
-						chunk.cameras |= c
+						chunk.cameras["[T.z]"] |= c
 					chunk.hasChanged()
 
 /// Will check if a mob is on a viewable turf. Returns 1 if it is, otherwise returns 0.
@@ -163,22 +160,3 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 	if(chunk.visibleTurfs[position])
 		return TRUE
 
-/datum/cameranet/proc/stat_entry()
-	if(!statclick)
-		statclick = new /obj/effect/statclick/debug(null, "Initializing...", src)
-
-	stat(name, statclick.update("Cameras: [length(GLOB.cameranet.cameras)] | Chunks: [length(GLOB.cameranet.chunks)]"))
-
-/obj/effect/overlay/camera_static
-	name = "static"
-	icon = null
-	icon_state = null
-	anchored = TRUE  // should only appear in vis_contents, but to be safe
-	appearance_flags = RESET_TRANSFORM | TILE_BOUND
-	// this combination makes the static block clicks to everything below it,
-	// without appearing in the right-click menu for non-AI clients
-	mouse_opacity = MOUSE_OPACITY_ICON
-	invisibility = INVISIBILITY_ABSTRACT
-
-	layer = CAMERA_STATIC_LAYER
-	plane = CAMERA_STATIC_PLANE

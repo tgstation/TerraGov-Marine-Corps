@@ -795,6 +795,11 @@
 /obj/structure/bed,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
+"LY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/general_offices)
 "Mk" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -1300,7 +1305,7 @@ op
 Wf
 lq
 fJ
-fJ
+LY
 Eb
 ck
 IS

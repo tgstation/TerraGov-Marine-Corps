@@ -150,6 +150,10 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
+"jQ" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/filtration_plant)
 "jX" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -301,6 +305,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/s)
+"rj" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/filtration_plant)
 "rm" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -347,8 +355,9 @@
 /area/bigredv2/outside/filtration_plant)
 "ux" = (
 /obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "uU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor,
@@ -363,8 +372,9 @@
 /area/bigredv2/outside/filtration_plant)
 "wk" = (
 /obj/structure/cryofeed,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/engine,
-/area/space)
+/area/bigredv2/caves/rock)
 "wY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -399,6 +409,10 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"xK" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/outside/filtration_plant)
 "xL" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,
@@ -415,8 +429,9 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/engine,
-/area/space)
+/area/bigredv2/caves/rock)
 "yj" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/sign/safety/vent,
@@ -441,6 +456,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/s)
+"zD" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/caves/rock)
 "zX" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 1;
@@ -601,8 +620,9 @@
 /area/bigredv2/outside/s)
 "Ju" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "JF" = (
 /obj/machinery/computer/area_atmos/area,
 /turf/open/floor,
@@ -834,9 +854,9 @@
 /area/bigredv2/outside/s)
 
 (1,1,1) = {"
-em
+jQ
 OK
-em
+jQ
 em
 em
 em
@@ -849,7 +869,7 @@ Hd
 Ff
 Ff
 Ff
-Ff
+xK
 eH
 qc
 eH
@@ -900,7 +920,7 @@ kO
 HM
 Ey
 HM
-Ff
+xK
 Ff
 Ff
 Ff
@@ -942,15 +962,15 @@ mH
 Lx
 "}
 (5,1,1) = {"
-em
+jQ
 OK
+jQ
 em
 em
 em
 em
 em
-em
-em
+jQ
 UL
 Wt
 HM
@@ -1080,7 +1100,7 @@ Lx
 eT
 nt
 WS
-em
+jQ
 dn
 HM
 rT
@@ -1092,7 +1112,7 @@ HM
 HM
 HM
 eE
-tm
+rj
 gl
 UP
 ct
@@ -1116,10 +1136,10 @@ em
 em
 lo
 em
-Ff
+zD
 ux
 ux
-Ff
+zD
 mH
 UP
 mH
@@ -1143,10 +1163,10 @@ em
 HM
 JU
 CJ
-Ff
+zD
 xY
 xY
-Ff
+zD
 nG
 qK
 nG
@@ -1173,7 +1193,7 @@ CJ
 Ju
 wk
 wk
-Ff
+zD
 eH
 oz
 eH
@@ -1197,10 +1217,10 @@ Ru
 UL
 Bq
 Wn
-Ff
+zD
 xY
 xY
-Ff
+zD
 Is
 zq
 Is
@@ -1224,10 +1244,10 @@ em
 HM
 Bq
 CJ
-Ff
+zD
 wk
 wk
-Ff
+zD
 pg
 ME
 pg
@@ -1247,14 +1267,14 @@ em
 em
 Ru
 em
-em
+jQ
 HM
 Bq
 HM
-Ff
+zD
 ux
 ux
-Ff
+zD
 pg
 fI
 lK

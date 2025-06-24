@@ -111,7 +111,7 @@
 		var/marker_flags = GLOB.faction_to_minimap_flag[user.faction]
 		if(!marker_flags)
 			marker_flags = MINIMAP_FLAG_MARINE
-		SSminimaps.add_marker(source, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply", ABOVE_FLOAT_LAYER))
+		SSminimaps.add_marker(source, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply", MINIMAP_BLIPS_LAYER))
 
 	message_admins("[ADMIN_TPMONTY(user)] set up a supply beacon.") //do something with this
 	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
@@ -240,11 +240,11 @@
 	/// Name printed on the supply console
 	var/name = ""
 	/// Where the supply drops will land
-	var/turf/drop_location
+	var/atom/drop_location
 	/// The faction of the beacon
 	var/faction = ""
 
-/datum/supply_beacon/New(_name, turf/_drop_location, _faction, life_time = 0 SECONDS)
+/datum/supply_beacon/New(_name, atom/_drop_location, _faction, life_time = 0 SECONDS)
 	name = _name
 	drop_location = _drop_location
 	faction = _faction

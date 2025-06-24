@@ -10,7 +10,7 @@
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 60
-	attack_verb = list("hit", "bludgeoned", "whacked")
+	attack_verb = list("hits", "bludgeons", "whacks")
 
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
@@ -41,7 +41,7 @@
 		if(WT.remove_fuel(0,user))
 			var/obj/item/stack/sheet/metal/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
-			visible_message(span_warning("[src] is shaped into metal by [user] with the weldingtool."), null, span_warning(" You hear welding."))
+			visible_message(span_warning("[src] is shaped into metal by [user] with the weldingtool."), null, span_warning("You hear welding."))
 			var/obj/item/stack/rods/R = src
 			var/replace = (user.get_inactive_held_item()==R)
 			R.use(4)
@@ -85,7 +85,7 @@
 
 ///Builds a catwalk
 /obj/item/stack/rods/proc/place_catwalk(turf/target_turf, mob/living/user)
-	if(SEND_SIGNAL(target_turf, COMSIG_TURF_CHECK_COVERED))
+	if(target_turf.is_covered())
 		user.balloon_alert(user, "Already covered!")
 		return
 	if(amount < CATWALK_ROD_REQ)
@@ -94,7 +94,7 @@
 	user.balloon_alert(user, "Building")
 	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
-	if(SEND_SIGNAL(target_turf, COMSIG_TURF_CHECK_COVERED))
+	if(target_turf.is_covered())
 		user.balloon_alert(user, "Already covered!")
 		return
 	if(!use(CATWALK_ROD_REQ))

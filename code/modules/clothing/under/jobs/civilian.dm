@@ -49,6 +49,14 @@
 	icon_state = "clown"
 	adjustment_variants = list()
 
+/obj/item/clothing/under/rank/clown/erp
+	name = "reinforced clown suit"
+	desc = "<b><i>'HONK!'</i></b>"
+	has_sensor = 2
+	siemens_coefficient = 0.9
+	attachments_allowed = list(/obj/item/armor_module/storage/uniform/webbing/erp)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/webbing/erp)
+
 /obj/item/clothing/under/rank/head_of_personnel
 	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	name = "head of personnel's jumpsuit"

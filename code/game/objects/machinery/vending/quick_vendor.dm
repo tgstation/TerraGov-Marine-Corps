@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		.[X] = new X
 
 /obj/machinery/quick_vendor
-	name = "Kwik-E-Quip vendor"
+	name = "\improper Kwik-E-Quip vendor"
 	desc = "An advanced vendor to instantly arm soldiers with specific sets of equipment, allowing for immediate combat deployment. \
 	Mutually exclusive with the GHMME."
 	icon = 'icons/obj/machines/vending.dmi'
@@ -96,8 +96,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
-	///The faction of this quick load vendor
-	var/faction = FACTION_NEUTRAL
+	faction = FACTION_NEUTRAL
 	//the different tabs in the vendor
 	var/list/categories = list(
 		"Squad Marine",
@@ -141,7 +140,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	if(!is_operational())
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
 	. = ..()
@@ -215,13 +214,21 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 			var/obj/item/card/id/user_id = usr.get_idcard() //ui.user better?
 			var/user_job = user_id.rank
 			user_job = replacetext(user_job, "Fallen ", "") //So that jobs in valhalla can vend a loadout too
-			if(selected_loadout.jobtype != user_job)
+			if(selected_loadout.jobtype != user_job && selected_loadout.require_job != FALSE)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
 			if(user_id.id_flags & USED_GHMME) //Same check here, in case they opened the UI before vending a loadout somehow
 				to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
 				return FALSE
 			if(user_id.id_flags & CAN_BUY_LOADOUT)
+				for(var/points in user_id.marine_points)
+					if(user_id.marine_points[points] != GLOB.default_marine_points[points])
+						to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
+						return FALSE
+				for(var/option in user_id.marine_buy_choices)
+					if(user_id.marine_buy_choices[option] != GLOB.marine_selector_cats[option])
+						to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
+						return FALSE
 				user_id.id_flags &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
 				if(drop_worn_items)

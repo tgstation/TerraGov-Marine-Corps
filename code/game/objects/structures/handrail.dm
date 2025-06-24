@@ -31,13 +31,6 @@
 	balloon_alert_to_viewers("breaks [src]")
 	qdel(src)
 
-/obj/structure/barricade/handrail/attackby(obj/item/item, mob/user)
-	. = ..()
-	for(var/obj/effect/xenomorph/acid/A in src.loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return
-
 /obj/structure/barricade/handrail/type_b
 	icon_state = "handrail_b_0"
 	barricade_type = "handrail_b_0"

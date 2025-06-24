@@ -6,7 +6,6 @@
 	brute_damage_icon_state = "robot_brute"
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
-	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/robot
 	namepool = /datum/namepool/robotic
 
@@ -24,7 +23,7 @@
 
 	body_temperature = 350
 
-	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB)
+	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB, TRAIT_CRIT_IS_DEATH)
 	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
@@ -97,6 +96,8 @@
 	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/howner = owner
+	if(!howner.getBruteLoss() && !howner.getFireLoss())
+		return
 	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 10 SECONDS)
 	howner.balloon_alert_to_viewers("Repairing")
 

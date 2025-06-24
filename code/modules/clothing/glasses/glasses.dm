@@ -15,10 +15,13 @@
 	armor_protection_flags = EYES
 	var/deactive_state = "degoggles"
 	var/vision_flags = NONE
-	var/darkness_view = 2 //Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
-	var/lighting_alpha
+	/// A percentage of how much rgb to "max" on the lighting plane
+	/// This lets us brighten darkness without washing out bright color
+	var/lighting_cutoff = null
+	/// Similar to lighting_cutoff, except it has individual r g and b components in the same 0-100 scale
+	var/list/color_cutoffs = null
 	var/goggles = FALSE
 	///Sound played on activate() when turning on
 	var/activation_sound = 'sound/items/googles_on.ogg'
@@ -27,9 +30,17 @@
 	///Color to use for the HUD tint; leave null if no tint
 	var/tint
 
+/obj/item/clothing/glasses/examine_descriptor(mob/user)
+	return "eyewear"
+
+/obj/item/clothing/glasses/examine_tags(mob/user)
+	. = ..()
+	if(prescription)
+		.["prescription"] = "It will help reduce symptoms of nearsightedness when worn."
+
 /obj/item/clothing/glasses/Initialize(mapload)
 	. = ..()
-	if(active)	//For glasses that spawn active
+	if(active && toggleable)	//For glasses that spawn active
 		active = FALSE
 		activate()
 
@@ -59,6 +70,8 @@
 
 ///Toggle the functions of the glasses
 /obj/item/clothing/glasses/proc/activate(mob/user)
+	if(!toggleable)
+		return
 	active = !active
 
 	if(active && activation_sound)
@@ -233,17 +246,17 @@
 	worn_icon_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
 	inventory_flags = COVEREYES
-	inv_hide_flags = HIDEEYES
 	eye_protection = 2
 	activation_sound = null
 	deactivation_sound = null
+	toggleable = TRUE
 
 /obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
 /obj/item/clothing/glasses/welding/verb/verbtoggle()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Adjust welding goggles"
 	set src in usr
 
@@ -263,7 +276,6 @@
 ///Toggle the welding goggles on
 /obj/item/clothing/glasses/welding/proc/flip_up(mob/user)
 	DISABLE_BITFIELD(inventory_flags, COVEREYES)
-	DISABLE_BITFIELD(inv_hide_flags, HIDEEYES)
 	DISABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = 0
 	update_icon()
@@ -273,7 +285,6 @@
 ///Toggle the welding goggles off
 /obj/item/clothing/glasses/welding/proc/flip_down(mob/user)
 	ENABLE_BITFIELD(inventory_flags, COVEREYES)
-	ENABLE_BITFIELD(inv_hide_flags, HIDEEYES)
 	ENABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = initial(eye_protection)
 	update_icon()
@@ -371,12 +382,13 @@
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/fake/big
+	name = "big sunglasses"
 	desc = "A pair of larger than average designer sunglasses. Doesn't seem like it'll block flashes."
 	icon_state = "bigsunglasses"
 	worn_icon_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/sunglasses/fake/big/prescription
-	name = "prescription sunglasses"
+	name = "big prescription sunglasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/sechud
@@ -423,6 +435,7 @@
 	icon_state = "aviator_yellow"
 	worn_icon_state = "aviator_yellow"
 
+//todo rename this typepath so its not confused with glasses/night
 /obj/item/clothing/glasses/night_vision
 	name = "\improper BE-47 night vision goggles"
 	desc = "Goggles for seeing clearer in low light conditions and maintaining sight of the surrounding environment."
@@ -430,9 +443,8 @@
 	deactive_state = "night_vision_off"
 	worn_layer = COLLAR_LAYER	//The sprites are designed to render over helmets
 	worn_item_state_slots = list()
-	tint = COLOR_RED
-	darkness_view = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	// Red with a tint of green
+	color_cutoffs = list(40, 15, 10)
 	vision_flags = SEE_TURFS
 	toggleable = TRUE
 	goggles = TRUE
@@ -560,7 +572,6 @@
 	icon_state = "night_vision_mounted"
 	tint = COLOR_BLUE
 	vision_flags = NONE
-	darkness_view = 9	//The standalone version cannot see the edges
 	active_energy_cost = 2	//A little over 7 minutes of use
 	looping_sound_volume = 50
 

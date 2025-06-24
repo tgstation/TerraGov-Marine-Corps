@@ -58,9 +58,6 @@
 
 	if(master_gun)
 		apply_modifiers(master_gun, user, !folded)
-		for(var/X in master_gun.actions)
-			var/datum/action/A = X
-			A.update_button_icon()
 
 	return TRUE
 

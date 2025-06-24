@@ -40,7 +40,7 @@
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t19"
 	icon_state_mini = "mag_smg"
-	max_rounds = 30
+	max_rounds = 45
 	w_class = WEIGHT_CLASS_SMALL
 
 //-------------------------------------------------------
@@ -51,7 +51,7 @@
 	desc = "A 10x20mm caseless submachine gun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t90"
-	max_rounds = 50
+	max_rounds = 80
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_t90"
 
@@ -59,21 +59,22 @@
 //SMG-45 SMG ammo
 
 /obj/item/ammo_magazine/smg/standard_heavysmg
-	name = "\improper SMG-45 magazine (.45 ACP)"
-	desc = "A .45 ACP caseless submachinegun magazine."
+	name = "\improper SMG-45 magazine (.41 AE)"
+	desc = "A .41 AE caseless submachinegun magazine."
 	default_ammo = /datum/ammo/bullet/smg/heavy
-	caliber = CALIBER_45ACP
+	caliber = CALIBER_41AE
 	icon_state = "t45"
-	max_rounds = 40
+	max_rounds = 55
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_heavy_smg"
 	bonus_overlay = "t45_mag"
 
 /obj/item/ammo_magazine/smg/standard_heavysmg/squashhead
-	name = "\improper SMG-45 squash-head magazine (.45 ACP)"
-	desc = "A .45 ACP caseless submachinegun magazine that does a minituare explosion upon contact, will shred the armor off of basically anything."
+	name = "\improper SMG-45 squash-head magazine (.41 AE)"
+	desc = "A .41 AE caseless submachinegun magazine that does a minituare explosion upon contact, will shred the armor off of basically anything."
 	default_ammo = /datum/ammo/bullet/smg/squash
 	icon_state = "t45_sh"
+	icon_state_mini = "mag_heavy_smg_yellow"
 	bonus_overlay = "t45_mag_sh"
 
 //-------------------------------------------------------
@@ -97,7 +98,7 @@
 	desc = "A .32ACP caliber magazine for the CZ-81."
 	caliber = CALIBER_32ACP
 	icon_state = "skorpion"
-	icon_state_mini = "mag_rifle"
+	icon_state_mini = "mag_smg_dark"
 	max_rounds = 20 //Can also be 10.
 
 
@@ -232,4 +233,4 @@
 	icon_state = "ppsh_ext"
 	max_rounds = 55
 	w_class = WEIGHT_CLASS_SMALL
-	icon_state_mini = "mag_heavy_smg"
+	icon_state_mini = "mag_drum_yellow"

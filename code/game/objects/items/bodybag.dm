@@ -218,7 +218,7 @@
 		span_danger("We slash \the [src] open!"), null, 5)
 	return TRUE
 
-/obj/structure/closet/bodybag/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/structure/closet/bodybag/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	. = ..()
 	if(src != proj.original_target) //You miss unless you click directly on the bodybag
 		return FALSE
@@ -345,7 +345,7 @@
 		if(!(medical_record.fields["last_scan_time"]))
 			. += "<span class = 'deptradio'>No scan report on record</span>"
 		else
-			. += "<span class = 'deptradio'><a href='?src=[text_ref(src)];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
+			. += "<span class = 'deptradio'><a href='byond://?src=[text_ref(src)];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
 		break
 	if(occupant.stat != DEAD)
 		return

@@ -9,7 +9,7 @@
 	///Maximum units of reagents this container can hold
 	var/max_volume = 3000
 
-/obj/machinery/deployable/reagent_tank/Initialize()
+/obj/machinery/deployable/reagent_tank/Initialize(mapload)
 	. = ..()
 	create_reagents(max_volume, container_flags)
 	playsound(src, 'sound/machines/disposalflush.ogg', 50)
@@ -109,11 +109,11 @@
 	update_icon()
 
 /obj/machinery/deployable/reagent_tank/disassemble(mob/user)
-	. = ..()
 	var/obj/item/storage/internal_bag = get_internal_item()
 	for(var/mob/watching in internal_bag?.storage_datum.content_watchers)
 		internal_bag.storage_datum.close(watching)
 	playsound(src, 'sound/machines/elevator_openclose.ogg', 50)
+	return ..()
 
 /obj/item/storage/reagent_tank
 	name = "portable reagent dispenser"
@@ -133,7 +133,7 @@
 	///List of reagents this dispenser will start with
 	var/list/starting_reagents
 
-/obj/item/storage/reagent_tank/Initialize()
+/obj/item/storage/reagent_tank/Initialize(mapload)
 	. = ..()
 	create_reagents(max_volume, container_flags, starting_reagents)
 	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/reagent_tank, 3 SECONDS, 3 SECONDS)

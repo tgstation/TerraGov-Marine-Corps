@@ -49,9 +49,9 @@
 	)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 16,"rail_x" = 25, "rail_y" = 25, "under_x" = 37, "under_y" = 10, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -72,14 +72,14 @@
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/v_grip
 	starting_attachment_types = list(
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 	)
 
 /datum/lasrifle/base/plasma_rifle/rifle_standard
@@ -193,7 +193,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg
 	name = "\improper PL-51 plasma SMG"
-	desc = "The PL-51 Plasma SMG, ."
+	desc = "The PL-51 Plasma SMG is another experimental addition to the TGMC plasma weapon lineup, speculated by some to be part of a scheme to have AI design and generate weapon schematics and profiles. It shares the same cooling system as other plasma weapons, preventing sustained fire. In contrast to others in it's lineup, it is much lighter, easier to handle and can be fired one handed. Has two fire modes, Standard which is capable of ricochetting off walls and solid objects and Overcharge which is slower firing, but causes a small moderately damaging explosion on contact with a target. "
 	icon_state = "plasma_smg"
 	worn_icon_state = "plasma_smg"
 	gun_skill_category = SKILL_SMGS
@@ -209,14 +209,14 @@
 
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.7
-	scatter = 6
-	scatter_unwielded = 12
+	scatter = 9
+	scatter_unwielded = 15
 
 	damage_falloff_mult = 0.75
 
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15 SECONDS
-	heat_per_fire = 3
+	heat_per_fire = 3.3
 	rounds_per_shot = 12
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_smg/smg_standard,
@@ -224,9 +224,9 @@
 	)
 	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 17,"rail_x" = 25, "rail_y" = 25, "under_x" = 33, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -241,14 +241,14 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
 	starting_attachment_types = list(
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 	)
 
 /datum/lasrifle/base/plasma_smg/smg_standard
@@ -257,7 +257,7 @@
 	icon_state = "plasma_smg"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15 SECONDS
-	heat_per_fire = 3
+	heat_per_fire = 3.3
 	rounds_per_shot = 12
 	radial_icon_state = "plasma_bouncy"
 	message_to_user = "You set the guns's firemode to standard fire."

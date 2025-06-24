@@ -42,7 +42,7 @@
 	penetration = 20
 	sundering = 1.25
 
-/datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 3, slowdown = 2, stagger = 1 SECONDS)
 
 /datum/ammo/bullet/rifle/incendiary
@@ -67,11 +67,59 @@
 	penetration = 12.5
 	sundering = 1
 
-/datum/ammo/bullet/rifle/som_machinegun/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/rifle/som_machinegun/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 20, slowdown = 0.5)
+
+/datum/ammo/bullet/rifle/som_big
+	name = "heavy rifle bullet"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	damage_falloff = 0.5
+	accurate_range = 18
+	max_range = 30
+	damage = 60
+	penetration = 20
+	sundering = 2
+
+/datum/ammo/bullet/rifle/som_big/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	staggerstun(target_mob, proj, max_range = 9, slowdown = 0.75)
+
+/datum/ammo/bullet/rifle/som_big/incendiary
+	name = "heavy incendiary bullet"
+	hud_state = "hivelo_fire"
+	damage = 40
+	penetration = 10
+	sundering = 1
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
+	bullet_color = LIGHT_COLOR_FIRE
+
+/datum/ammo/bullet/rifle/som_big/incendiary/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	return
+
+/datum/ammo/bullet/rifle/som_big/anti_armour
+	name = "heavy AT bullet"
+	hud_state = "hivelo_impact"
+	damage = 40
+	penetration = 45
+	sundering = 8
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOVABLE
+	bullet_color = LIGHT_COLOR_BLUE
+	on_pierce_multiplier = 0.8
+
+/datum/ammo/bullet/rifle/som_big/anti_armour/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	staggerstun(target_mob, proj, max_range = 9, slowdown = 1, stagger = 0.5 SECONDS)
+	proj.proj_max_range = 0
+
+/datum/ammo/bullet/rifle/som_big/anti_armour/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
+	if(!isvehicle(target_obj))
+		proj.proj_max_range -= 20 //can shoot through 1 piece of cover
+		return
+	proj.damage *= 2
+	proj.proj_max_range = 0
 
 /datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
+	icon_state = "bullet_red"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0
@@ -98,7 +146,7 @@
 	penetration = 20
 	sundering = 6.5
 
-/datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 14, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/rifle/mpi_km
@@ -114,17 +162,17 @@
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0.5
-	ammo_behavior_flags = AMMO_BALLISTIC
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	accurate_range = 25
-	accurate_range_min = 6
 	max_range = 40
 	damage = 65
-	penetration = 15
+	penetration = 17.5
 	sundering = 2
 
 /datum/ammo/bullet/rifle/garand
 	name = "heavy marksman bullet"
 	hud_state = "sniper"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 75
 	penetration = 25
 	sundering = 1.25
@@ -141,6 +189,7 @@
 /datum/ammo/bullet/rifle/icc_confrontationrifle
 	name = "armor-piercing heavy rifle bullet"
 	hud_state = "rifle_ap"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 50
 	penetration = 40
 	sundering = 3.5

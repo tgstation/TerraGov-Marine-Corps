@@ -1,0 +1,11245 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"ag" = (
+/obj/machinery/door/airlock/mainship/maint,
+/obj/effect/ai_node,
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"aj" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"au" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	dir = 2;
+	name = "Gamma Dome Control"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"aB" = (
+/obj/structure/table/reinforced,
+/obj/structure/paper_bin,
+/obj/item/tool/pen/red,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"aC" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatsemi/purple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"aD" = (
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"aE" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/closed/wall/r_wall/unmeltable,
+/area/corsat/gamma/biodome)
+"aG" = (
+/turf/closed/wall/r_wall,
+/area/corsat/gamma/biodome)
+"aJ" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	locked = 1;
+	name = "Maintainance"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"aL" = (
+/obj/machinery/chem_dispenser,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"aM" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/gamma,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"aP" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"aT" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"aU" = (
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"aW" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"aX" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"aY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"bf" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"bg" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"bh" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"bj" = (
+/turf/open/floor/dark2,
+/area/corsat/gamma/airlock/control)
+"bk" = (
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "Toxins";
+	name = "Toxins Lockdown"
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	name = "Toxins Lab"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"bn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/corsat/gamma/biodome)
+"bo" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"bq" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"bu" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	dir = 2;
+	name = "Gamma Dome Control"
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"bx" = (
+/obj/machinery/faxmachine,
+/obj/structure/table/wood,
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"bA" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"bB" = (
+/obj/machinery/smartfridge/secure/virology,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"bE" = (
+/obj/machinery/chem_master,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"bM" = (
+/turf/open/floor/grayscale/round,
+/area/corsat/gamma/biodome)
+"bW" = (
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"ca" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"cf" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"ch" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ck" = (
+/obj/structure/table/mainship,
+/obj/machinery/door_control{
+	id = "GammaEastD";
+	name = "Entrance Airlock Control";
+	pixel_x = 5;
+	use_power = 0
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"cl" = (
+/obj/machinery/computer/skills{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"ct" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"cw" = (
+/obj/machinery/chem_master,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"cx" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"cz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"cA" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"cE" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"cK" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/virology)
+"cO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"cS" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"cZ" = (
+/obj/effect/landmark/excavation_site_spawner,
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"de" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"df" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/syringes,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"di" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"dm" = (
+/obj/machinery/door/window{
+	dir = 2;
+	name = "Research Desk"
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"dB" = (
+/obj/machinery/chem_master,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"dD" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round,
+/area/corsat/gamma/biodome)
+"dF" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/corsat/gamma/biodome/complex)
+"dK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"dL" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"dT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"ej" = (
+/obj/structure/table/mainship,
+/obj/item/camera,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"ep" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/gamma/airlock/control)
+"er" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ey" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"eJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/red,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"eO" = (
+/obj/structure/closet/wardrobe/virology_white,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"eS" = (
+/turf/closed/wall,
+/area/corsat/gamma/biodome/virology)
+"eU" = (
+/obj/machinery/smartfridge/chemistry/virology,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"eV" = (
+/obj/structure/closet/wardrobe/virology_white,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"fd" = (
+/obj/structure/table/mainship,
+/obj/machinery/science/centrifuge,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"fh" = (
+/obj/structure/flora/pottedplant/ten,
+/obj/effect/turf_decal/tile/corsatstraight/purple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"fn" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"fu" = (
+/obj/structure/fence,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"fz" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1;
+	name = "Chemistry"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"fA" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/virology)
+"fP" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"fS" = (
+/obj/effect/turf_decal/tile/corsatsemi/purple,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"fU" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"fW" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"fZ" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"gi" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/mainship,
+/obj/item/storage/box/beakers,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"gj" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"gm" = (
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"gp" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating,
+/area/corsat/gamma/airlock/control)
+"gt" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/biodome)
+"gv" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"gx" = (
+/obj/machinery/door_control{
+	id = "GammaEastW";
+	name = "Airlock Control";
+	pixel_x = -5;
+	use_power = 0
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door_control{
+	id = "GammaEastE";
+	name = "Airlock Control";
+	pixel_x = 5;
+	use_power = 0
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"gA" = (
+/obj/structure/closet/l3closet/general,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/virology)
+"gC" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"gD" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"gE" = (
+/obj/machinery/light,
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"gG" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"gL" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"gQ" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 1
+	},
+/turf/open/floor/dark2,
+/area/corsat/gamma/airlock/control)
+"gZ" = (
+/obj/structure/bed/chair/comfy/beige,
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"hb" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"hl" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"hm" = (
+/obj/machinery/door/window{
+	dir = 2;
+	name = "Research Desk"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"hq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"ht" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"hG" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"hK" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"hS" = (
+/obj/structure/flora/pottedplant/ten,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"hY" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ib" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"id" = (
+/obj/machinery/disease2/diseaseanalyser,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"ij" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"io" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"it" = (
+/obj/structure/flora/pottedplant/ten,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"iu" = (
+/obj/effect/turf_decal/tile/corsatstraight/purple,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"iv" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"iw" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/secure_data,
+/obj/effect/turf_decal/tile/corsatstraight/red,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ix" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"iz" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	locked = 1;
+	name = "Maintainance"
+	},
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"iC" = (
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "GammaLab";
+	name = "Privacy Shutters"
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "Director's Room"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/wood,
+/area/corsat/gamma/biodome/complex)
+"iE" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"iL" = (
+/obj/machinery/space_heater,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"iN" = (
+/obj/machinery/chem_master,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"iO" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "Research Complex"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"iQ" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"iS" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/skills{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"iV" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"je" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"jf" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"jg" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"jl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"jp" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/gamma,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"jx" = (
+/obj/machinery/computer/pandemic,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"jz" = (
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"jC" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"jD" = (
+/obj/machinery/door_control{
+	id = "Toxins";
+	name = "Lab Lockdown";
+	use_power = 0
+	},
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"jH" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"jL" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/atmos_alert{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"jO" = (
+/obj/structure/flora/pottedplant/ten,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"jP" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"jQ" = (
+/turf/template_noop,
+/area/corsat/gamma/biodome)
+"jR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"jY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"ka" = (
+/obj/effect/landmark/corpsespawner/scientist,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"kc" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"ke" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"kf" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"km" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"kn" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"ko" = (
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"kq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"kt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/computer/med_data/laptop{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"ku" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"ky" = (
+/obj/effect/turf_decal/tile/corsatstraight/purple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"kA" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"kF" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"kG" = (
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"kM" = (
+/obj/structure/table/mainship,
+/obj/item/storage/firstaid,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"kN" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"kO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"kQ" = (
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"kY" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"la" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/syringes,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"lb" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"lc" = (
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ld" = (
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/airlock/control)
+"lk" = (
+/obj/structure/table/mainship,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"ln" = (
+/obj/structure/flora/pottedplant/ten,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"lo" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"lv" = (
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"ly" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"lD" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"lI" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"lP" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/space_heater,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"lR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/docking_port/stationary/crashmode,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"me" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"mf" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"mi" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"mo" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"mq" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/security{
+	dir = 8;
+	network = list("gamma")
+	},
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"mt" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/station_alert{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"mF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"mI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"mP" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/corpsespawner/scientist,
+/obj/item/weapon/gun/pistol/holdout,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"mV" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"nq" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"nC" = (
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"nE" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"nI" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/syringes,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"nJ" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/biodome)
+"nN" = (
+/obj/machinery/meter,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"nO" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"nS" = (
+/turf/closed/wall/r_wall,
+/area/corsat/gamma/airlock/control)
+"nW" = (
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"oa" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"od" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"oe" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"og" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"oo" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"oz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"oC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"oH" = (
+/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"oN" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"oQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"oT" = (
+/obj/structure/closet/wardrobe/white,
+/obj/item/clothing/head/ushanka,
+/obj/item/clothing/head/ushanka,
+/obj/item/clothing/shoes/snow,
+/obj/item/clothing/shoes/snow,
+/obj/item/clothing/gloves/black,
+/obj/item/clothing/gloves/black,
+/obj/item/clothing/suit/storage/snow_suit,
+/obj/item/clothing/suit/storage/snow_suit,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"oW" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"oY" = (
+/obj/machinery/light,
+/obj/item/clothing/mask/gas,
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"pa" = (
+/obj/item/tool/wet_sign,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"pd" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"pi" = (
+/obj/machinery/power/apc/drained{
+	dir = 8;
+	start_charge = 0
+	},
+/obj/structure/closet/l3closet/scientist,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"pl" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"pn" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ps" = (
+/obj/structure/table/mainship,
+/obj/item/storage/fancy/vials,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"pt" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/glass/beaker,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"pv" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"py" = (
+/turf/closed/wall/r_wall,
+/area/corsat/gamma/biodome/toxins)
+"pA" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/wardrobe/toxins_white,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"pF" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 4;
+	id = "Viro";
+	name = "Virology Lockdown"
+	},
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/virology)
+"pL" = (
+/obj/machinery/photocopier,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"pS" = (
+/obj/structure/flora/pottedplant/ten,
+/obj/effect/turf_decal/tile/corsatstraight/purple,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"pU" = (
+/obj/structure/table/mainship,
+/obj/item/tool/hand_labeler,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"pW" = (
+/obj/item/camera,
+/obj/structure/table/wood,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"pY" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/toxins)
+"qf" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/obj/structure/flora/pottedplant/ten,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"qj" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"qk" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"qr" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"qs" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/corsat/gamma/biodome/complex)
+"qv" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"qw" = (
+/obj/structure/rack,
+/obj/item/storage/box/beakers,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"qC" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"qG" = (
+/obj/structure/sign/safety/airlock,
+/turf/closed/wall/r_wall,
+/area/corsat/gamma/airlock/control)
+"qJ" = (
+/obj/machinery/power/apc/drained{
+	dir = 8;
+	start_charge = 0
+	},
+/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"qN" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"qO" = (
+/obj/machinery/light,
+/obj/structure/table/mainship,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"qR" = (
+/obj/machinery/light,
+/obj/structure/rack,
+/obj/item/lightreplacer,
+/obj/item/storage/box/lights,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"qT" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"qZ" = (
+/obj/structure/coatrack,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"ra" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	name = "Virology Lab"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"rc" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"rg" = (
+/obj/structure/closet/wardrobe/toxins_white,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"rk" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ro" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/syringe/antiviral,
+/obj/item/reagent_containers/syringe/antiviral,
+/obj/item/reagent_containers/glass/beaker/vial,
+/obj/item/reagent_containers/glass/beaker/vial,
+/obj/item/reagent_containers/glass/beaker/vial,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"rt" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ry" = (
+/obj/effect/turf_decal/tile/full/graylarge,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"rG" = (
+/obj/item/reagent_containers/glass/bucket/janibucket,
+/obj/item/tool/mop,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"rH" = (
+/obj/structure/closet/wardrobe/science_white,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"rK" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"rT" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_y = 24
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/corsat/gamma/biodome/complex)
+"rV" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"rW" = (
+/obj/structure/table/mainship,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"rZ" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"sd" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"sf" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"sk" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"sm" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	name = "Maintainance"
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"so" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"sp" = (
+/obj/structure/sign/biohazard,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"sr" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"su" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"sw" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/corsat/gamma/airlock/control)
+"sx" = (
+/obj/item/tool/stamp/rd,
+/obj/structure/table/wood,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"sz" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "Toxins Lab"
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "Toxins";
+	name = "Toxins Lockdown"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"sB" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"sC" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"sE" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"sF" = (
+/obj/structure/flora/pottedplant/ten,
+/obj/effect/turf_decal/tile/corsatcorner/purple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"sZ" = (
+/obj/effect/turf_decal/tile/corsatstraight/purple,
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"tg" = (
+/obj/structure/table/mainship,
+/obj/item/storage/fancy/vials,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"ti" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"tj" = (
+/obj/structure/sign/biohazard,
+/obj/structure/table/mainship,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron/small_stack,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"tk" = (
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"to" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"ty" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/smartfridge/chemistry,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"tG" = (
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/dark2,
+/area/corsat/gamma/airlock/control)
+"tK" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/tile/corsatsemi/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"tW" = (
+/obj/structure/bed/chair/comfy/beige,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"uc" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "\improper Toilet Unit"
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/corsat/gamma/biodome/complex)
+"uf" = (
+/obj/item/storage/fancy/cigar,
+/obj/structure/table/wood,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"ug" = (
+/obj/structure/bed/chair/comfy/beige{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"uk" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"up" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 4;
+	id = "GammaControl";
+	name = "Observation Shutters";
+	use_power = 0
+	},
+/turf/open/floor/plating,
+/area/corsat/gamma/airlock/control)
+"ur" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"uz" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"uD" = (
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"uF" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"uH" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"uL" = (
+/obj/structure/table/mainship,
+/obj/item/tool/hand_labeler,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"uQ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"uT" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"uU" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"vd" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"vf" = (
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"vg" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"vj" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"vo" = (
+/obj/structure/rack,
+/obj/item/storage/box/pillbottles,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"vq" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"vA" = (
+/turf/closed/wall/r_wall,
+/area/corsat/gamma/biodome/complex)
+"vH" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/reagent_scanner,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"vU" = (
+/obj/structure/reagent_dispensers/wallmounted/virusfood{
+	pixel_y = -30
+	},
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/item/storage/pill_bottle/packet/bicaridine,
+/obj/item/reagent_containers/glass/bottle/ammonia,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"vV" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/obj/structure/xeno/tunnel,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"vZ" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"wa" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"wc" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"wf" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"wj" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"wk" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"wm" = (
+/obj/item/flashlight/lamp/green,
+/obj/structure/table/wood,
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"wn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"wu" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"ww" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	dir = 2;
+	name = "Gamma Dome Control"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"wz" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"wD" = (
+/obj/structure/fence,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"wR" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"wU" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"wZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"xb" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"xe" = (
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"xf" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"xh" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"xj" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/biodome)
+"xl" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"xn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"xu" = (
+/obj/structure/table/mainship,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron/small_stack,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"xw" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"xA" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"xE" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"xF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"xH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"xJ" = (
+/obj/effect/turf_decal/tile/corsatcorner/purple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"xK" = (
+/obj/machinery/light,
+/obj/structure/rack,
+/obj/item/reagent_containers/glass/bottle/capsaicin,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"xO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"xQ" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"xU" = (
+/obj/machinery/computer3,
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"xY" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"yc" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"yi" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"yk" = (
+/turf/open/floor/wood,
+/area/corsat/gamma/biodome/complex)
+"yl" = (
+/obj/structure/table/mainship,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"yq" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"yr" = (
+/obj/structure/table/mainship,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron/small_stack,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"ys" = (
+/obj/machinery/door/window{
+	dir = 2;
+	name = "Research Desk"
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"yt" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/airlock/control)
+"yB" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"yC" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight,
+/obj/effect/turf_decal/tile/corsatsemi/red,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"yI" = (
+/obj/structure/rack,
+/obj/item/storage/box/masks,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"yK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"yN" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"yO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"yQ" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"za" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatcorner/red,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"zc" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"zh" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"zs" = (
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"zt" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/gamma,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"zu" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"zF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"zI" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/dark2,
+/area/corsat/gamma/airlock/control)
+"zU" = (
+/obj/effect/turf_decal/tile/corsatcorner/purple,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"zW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Ad" = (
+/obj/machinery/power/apc/drained{
+	dir = 4;
+	start_charge = 0
+	},
+/obj/structure/closet/wardrobe/toxins_white,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Ae" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "Virology Lab"
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "Viro";
+	name = "Virology Lockdown"
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"Ai" = (
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "Viro";
+	name = "Virology Lockdown"
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "Virology Wing"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"Al" = (
+/obj/structure/janitorialcart,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Am" = (
+/obj/machinery/vending/snack,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Aw" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "GammaControl";
+	name = "Observation Shutters";
+	use_power = 0
+	},
+/turf/open/floor/plating,
+/area/corsat/gamma/airlock/control)
+"Ax" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Ay" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"AC" = (
+/obj/item/binoculars,
+/obj/structure/table/mainship,
+/obj/machinery/door_control{
+	id = "GammaControl";
+	name = "Observation Shutters";
+	pixel_y = 5;
+	use_power = 0
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"AD" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	name = "Subject Den"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"AR" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"AW" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/purple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"AY" = (
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Ba" = (
+/obj/item/clothing/mask/gas,
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Bd" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Bg" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Br" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow,
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Bt" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Bx" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"By" = (
+/obj/structure/sign/biohazard,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"BK" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"BM" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"BP" = (
+/obj/structure/fence,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"BU" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Ca" = (
+/obj/structure/sign/biohazard,
+/turf/closed/wall/r_wall,
+/area/corsat/gamma/biodome/virology)
+"Cg" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Cj" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Cl" = (
+/turf/closed/wall,
+/area/corsat/gamma/biodome/complex)
+"Cn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Cr" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	name = "Decontamination Chamber"
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 4;
+	id = "Viro";
+	name = "Virology Lockdown"
+	},
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"Ct" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"CA" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"CL" = (
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"CM" = (
+/obj/structure/closet/crate/science,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"CO" = (
+/obj/structure/window/reinforced,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Dd" = (
+/obj/machinery/door/airlock/mainship/maint{
+	name = "Maintainence"
+	},
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 4;
+	id = "GammaBioAtmos";
+	name = "Access Shutter"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Df" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Dj" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Dl" = (
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Dn" = (
+/obj/structure/bed/chair/office/light,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Do" = (
+/obj/structure/lamarr,
+/obj/structure/table/wood,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"Dq" = (
+/obj/structure/rack,
+/obj/item/storage/box/monkeycubes,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Dv" = (
+/obj/structure/sign/biohazard,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Dw" = (
+/obj/structure/flora/pottedplant/ten,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"DB" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"DE" = (
+/obj/machinery/light,
+/obj/structure/bed,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"DG" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"DH" = (
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"DJ" = (
+/obj/machinery/door/airlock/mainship/maint{
+	name = "Maintainence"
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"DK" = (
+/turf/closed/wall/r_wall,
+/area/corsat/gamma/biodome/virology)
+"DL" = (
+/obj/structure/fence,
+/obj/structure/sign/safety/airlock{
+	pixel_y = -32
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"DM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"DP" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"DQ" = (
+/obj/machinery/smartfridge/chemistry,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"DV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"DX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"DZ" = (
+/obj/machinery/meter,
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Eb" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	name = "Nitrogen Control Console"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Ed" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"Ei" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 8
+	},
+/obj/structure/prop/mainship/pipeprop/pump{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Eo" = (
+/obj/machinery/space_heater,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Et" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Ex" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"EA" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "Viro";
+	name = "Lab Lockdown";
+	use_power = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"ED" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"EL" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/dark2,
+/area/corsat/gamma/airlock/control)
+"EO" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"EP" = (
+/obj/structure/sign/biohazard,
+/obj/machinery/space_heater,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"EQ" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"ES" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"EX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Fp" = (
+/obj/structure/table/mainship,
+/obj/structure/paper_bin,
+/obj/item/tool/pen/blue,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Fs" = (
+/obj/structure/filingcabinet/filingcabinet,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Fw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"FD" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"FJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"FK" = (
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"FR" = (
+/obj/structure/bed/chair/office/light,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"FS" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"Ga" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Gj" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Go" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Gu" = (
+/obj/machinery/door_control{
+	id = "Toxins";
+	name = "Toxins Lockdown";
+	pixel_y = -5;
+	use_power = 0
+	},
+/obj/machinery/door_control{
+	id = "Viro";
+	name = "Virology Lockdown";
+	pixel_y = 8;
+	use_power = 0
+	},
+/obj/machinery/door_control{
+	id = "GammaLab";
+	name = "Privacy Shutters";
+	pixel_y = 1;
+	use_power = 0
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"GE" = (
+/turf/closed/wall,
+/area/corsat/gamma/biodome)
+"GG" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/gloves/latex,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"GP" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window,
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"GR" = (
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"GS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"GU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Hj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Hk" = (
+/obj/machinery/vending/coffee,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Hn" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Hu" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Hv" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Hy" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"HF" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"HG" = (
+/obj/machinery/portable_atmospherics/canister,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"HI" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"HN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"HP" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"HQ" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"HU" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"HW" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"HZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"Ic" = (
+/obj/structure/fence,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"If" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Ih" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Ik" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Im" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Ip" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Iq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Ir" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"ID" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/corsat/gamma/biodome/complex)
+"IJ" = (
+/obj/structure/xeno/tunnel,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"IN" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"IP" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"IS" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"IT" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"IU" = (
+/obj/structure/sign/biohazard,
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Jc" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Je" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/fence,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Js" = (
+/obj/machinery/light,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/dark2,
+/area/corsat/gamma/airlock/control)
+"JC" = (
+/obj/effect/turf_decal/tile/corsatsemi/red,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"JF" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"JI" = (
+/obj/machinery/door_control{
+	dir = 1;
+	id = "GammaBioAtmos";
+	name = "Access Shutters"
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"JJ" = (
+/obj/structure/rack,
+/obj/item/storage/bag/trash,
+/obj/item/storage/bag/trash,
+/obj/item/storage/bag/trash,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"JL" = (
+/obj/structure/table/mainship,
+/obj/item/storage/donut_box,
+/obj/item/tool/lighter/random,
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"JP" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"JR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"JS" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"JY" = (
+/obj/effect/landmark/corpsespawner/scientist,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Kc" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/mainship,
+/obj/structure/paper_bin,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Kd" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"Ke" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Kl" = (
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 1
+	},
+/obj/structure/prop/mainship/pipeprop/pump{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Kn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Kq" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Kw" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"Kx" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Ky" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"KF" = (
+/obj/structure/fence,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"KO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"KR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"KS" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/beakers,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"KT" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/gloves,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"KU" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "Containment Cell"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"KV" = (
+/obj/structure/rack,
+/obj/item/storage/box/pillbottles,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"KY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"KZ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/secure_data,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Lf" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	dir = 2;
+	name = "Gamma Dome Control"
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Lg" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	name = "Containment Unit"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"Lj" = (
+/obj/structure/window_frame/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/complex)
+"Lk" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Lu" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"Lx" = (
+/obj/effect/turf_decal/tile/corsatsemi/yellow,
+/obj/machinery/atmospherics/components/trinary/filter{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"LA" = (
+/obj/structure/rack,
+/obj/item/tank/air,
+/obj/item/tank/air,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/effect/turf_decal/tile/corsatcorner/yellow,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"LF" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	name = "Waste Tank Control"
+	},
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"LH" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/machinery/vending/medical,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"LI" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"LU" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/purple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"LV" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/med_data/laptop{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Mg" = (
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Mi" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Mj" = (
+/obj/machinery/chem_dispenser,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Ml" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/gloves,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Mm" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Mr" = (
+/obj/structure/filingcabinet/filingcabinet,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"Mt" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/l3closet/scientist,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Mx" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"MD" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"MF" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"MK" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"MN" = (
+/obj/effect/landmark/weed_node,
+/turf/closed/mineral/smooth/darkfrostwall,
+/area/corsat/gamma/biodome)
+"MR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"Na" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	name = "Mixed Air Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Nf" = (
+/obj/machinery/computer/general_air_control/large_tank_control,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Nh" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"Nk" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Nl" = (
+/obj/structure/flora/pottedplant/ten,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"Nm" = (
+/obj/structure/table/mainship,
+/obj/structure/paper_bin,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"No" = (
+/obj/structure/table/mainship,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Ny" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"NJ" = (
+/obj/machinery/light,
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"NL" = (
+/obj/structure/table/mainship,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"NN" = (
+/obj/machinery/door/airlock/mainship/maint{
+	name = "Maintainence"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"NS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"NT" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"NV" = (
+/obj/structure/flora/pottedplant,
+/obj/machinery/power/apc/drained{
+	dir = 8;
+	start_charge = 0
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Od" = (
+/obj/structure/fence,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/corsat/gamma/biodome)
+"Oe" = (
+/obj/structure/bed/chair/office/light,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Of" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Oh" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Oo" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Op" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/corsat/gamma/biodome)
+"Oq" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Ot" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Ou" = (
+/obj/machinery/smartfridge/chemistry,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Ov" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"Oz" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "Viro";
+	name = "Virology Lockdown"
+	},
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/virology)
+"OA" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"OB" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"OD" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"OH" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/item/tool/pen/red,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ON" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"OO" = (
+/obj/structure/closet/secure_closet/security,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"OP" = (
+/obj/structure/table/mainship,
+/obj/item/tool/hand_labeler,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"OU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security{
+	network = list("gamma")
+	},
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Pa" = (
+/obj/structure/flora/pottedplant/ten,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Pb" = (
+/obj/structure/safe,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"Pc" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -11
+	},
+/obj/structure/mirror{
+	pixel_y = 24
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/corsat/gamma/biodome/complex)
+"Pd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Pm" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"Ps" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Pt" = (
+/obj/structure/table/mainship,
+/obj/structure/paper_bin,
+/obj/item/tool/pen/blue,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Pu" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/purple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Pv" = (
+/obj/structure/rack,
+/obj/item/radio,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Pz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/wardrobe/virology_white,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"PB" = (
+/turf/closed/wall,
+/area/corsat/gamma/biodome/toxins)
+"PK" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 4;
+	id = "Toxins";
+	name = "Toxins Lockdown"
+	},
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/toxins)
+"PL" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"PS" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/masks,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"PY" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"PZ" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Qa" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Qh" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Ql" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"Qo" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Qp" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Qr" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Qs" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"Qu" = (
+/obj/structure/bed,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"Qw" = (
+/obj/item/reagent_containers/spray/cleaner,
+/obj/structure/rack,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/virology)
+"Qy" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/paper/Toxin,
+/obj/item/tool/pen/blue,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"QE" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/virology)
+"QG" = (
+/obj/machinery/meter,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"QI" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/atmos_alert{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"QK" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"QS" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"QU" = (
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
+	dir = 2;
+	name = "Gamma Dome Control"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Rh" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Rl" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	name = "Maintainance"
+	},
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "GammaBioAtmos";
+	name = "Access Shutter"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Rm" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Ro" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Rp" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/wood,
+/area/corsat/gamma/biodome/complex)
+"Rw" = (
+/obj/effect/turf_decal/tile/corsatcorner/purple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"RH" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"RL" = (
+/turf/closed/ice_rock/singleT{
+	dir = 4
+	},
+/area/corsat/gamma/biodome)
+"RM" = (
+/obj/structure/table/mainship,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"RQ" = (
+/obj/structure/sign/safety/airlock{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/corsat/gamma/biodome)
+"RT" = (
+/obj/structure/sign/safety/airlock{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/gamma,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"RW" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"RX" = (
+/obj/structure/closet/l3closet/general,
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/virology)
+"Sa" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"Sd" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Se" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Sg" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Sh" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"Sl" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor,
+/area/corsat/gamma/biodome)
+"Sn" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Sq" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"Ss" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/gamma/airlock/control)
+"Su" = (
+/turf/template_noop,
+/area/template_noop)
+"Sx" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"SB" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"SD" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"SL" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"SP" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"SR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"ST" = (
+/obj/structure/bookcase,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"SW" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Tb" = (
+/obj/structure/table/mainship,
+/obj/item/camera,
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Tc" = (
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "Viro";
+	name = "Virology Lockdown"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"Td" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"Ti" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Tl" = (
+/obj/structure/table/mainship,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Tu" = (
+/obj/effect/ai_node,
+/turf/open/floor/dark2,
+/area/corsat/gamma/biodome)
+"Ty" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "Toxins";
+	name = "Toxins Lockdown"
+	},
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/toxins)
+"TB" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"TC" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/corsat/gamma/biodome)
+"TD" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"TO" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"TU" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"TV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"TX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"TY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"TZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/corsat/gamma/biodome)
+"Ui" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Up" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"Us" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/station_alert{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Ut" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Uu" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/virology)
+"Uv" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"Uw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Uy" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"UE" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/virology)
+"UF" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/purple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"UG" = (
+/obj/structure/sink{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"UK" = (
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"UV" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"UX" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Vd" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1;
+	name = "Research Complex Gamma"
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Vr" = (
+/obj/structure/table/mainship,
+/obj/item/storage/firstaid/toxin,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Vy" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"VF" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"VH" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"VJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"VM" = (
+/obj/structure/window_frame/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/toxins)
+"VS" = (
+/obj/effect/turf_decal/tile/corsatsemi/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"VT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"VX" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Wk" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/corsat/gamma/biodome/complex)
+"Wm" = (
+/obj/structure/rack,
+/obj/item/storage/box/gloves,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Wp" = (
+/obj/structure/closet/jcloset,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Wq" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Wu" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Wy" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"WA" = (
+/obj/structure/table/mainship,
+/obj/machinery/door_control{
+	id = "GammaA";
+	name = "Airlock Control";
+	pixel_x = -5;
+	pixel_y = 6;
+	use_power = 0
+	},
+/obj/item/flashlight/lamp{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"WG" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"WJ" = (
+/obj/item/phone,
+/obj/structure/table/wood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"WN" = (
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "GammaLab";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/wood,
+/area/corsat/gamma/biodome/complex)
+"WR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"WU" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Xb" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/obj/machinery/vending/medical,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Xd" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/filingcabinet/filingcabinet,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"Xk" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Xq" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/pillbottles,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Xr" = (
+/obj/structure/table/mainship,
+/obj/structure/paper_bin,
+/obj/item/tool/pen/red,
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Xu" = (
+/obj/machinery/vending/coffee,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/complex)
+"Xz" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/corsat/gamma/biodome)
+"XB" = (
+/turf/open/floor/plating/ground/snow/layer1,
+/area/corsat/gamma/biodome)
+"XC" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"XD" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"XE" = (
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/obj/structure/table/wood,
+/turf/open/floor/grayscale/round/darkred,
+/area/corsat/gamma/biodome/complex)
+"XL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"XN" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"XP" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/toxins)
+"XR" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "GammaLab";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/complex)
+"XT" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"XU" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/virology)
+"XW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"XY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Ya" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Yb" = (
+/obj/machinery/photocopier,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Ye" = (
+/obj/effect/turf_decal/tile/corsatcorner/red,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"Yi" = (
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
+"Yj" = (
+/turf/open/floor/carpet,
+/area/corsat/gamma/biodome/complex)
+"Yt" = (
+/obj/machinery/light,
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Yu" = (
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "Toxins";
+	name = "Toxins Lockdown"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"Yv" = (
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/corsat/gamma/biodome)
+"Yw" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"YC" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"YG" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"YH" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/machinery/vending/medical,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"YK" = (
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"YQ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/vending/coffee,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"YR" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
+"YS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/corsat/gamma/biodome)
+"YT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"YV" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/obj/machinery/vending/medical,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"YW" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Zb" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/gamma/biodome/complex)
+"Zc" = (
+/obj/machinery/chem_dispenser,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/toxins)
+"Zj" = (
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"Zk" = (
+/obj/machinery/chem_dispenser,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/toxins)
+"Zl" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/corsat/gamma/biodome/complex)
+"Zn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/complex)
+"Zz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"ZF" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ZG" = (
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
+"ZJ" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/control)
+"ZM" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "Viro";
+	name = "Virology Lockdown"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/biodome/virology)
+"ZO" = (
+/turf/open/floor/plating/ground/snow/layer3,
+/area/corsat/gamma/biodome)
+"ZU" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/gamma/biodome/virology)
+"ZW" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/biodome/virology)
+"ZZ" = (
+/turf/closed/mineral/smooth/darkfrostwall,
+/area/corsat/gamma/biodome)
+
+(1,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+Op
+xj
+xj
+gt
+xj
+Op
+Op
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+FS
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(2,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+Op
+Op
+Op
+ZZ
+ZZ
+ZZ
+YK
+YK
+lb
+YK
+YK
+Yv
+ZZ
+Op
+Op
+Op
+Op
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Td
+ko
+Td
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(3,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+Op
+Yv
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+YK
+YK
+lb
+YK
+YK
+ZZ
+ZZ
+Yv
+YR
+YK
+kG
+YR
+Op
+Op
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+lo
+ko
+Lu
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(4,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+Yv
+Yv
+Yv
+Yv
+Yv
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+sf
+lb
+YK
+YK
+YK
+YK
+YK
+YK
+bh
+YK
+YR
+YR
+YK
+YK
+Op
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Td
+ko
+ko
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(5,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+bh
+KR
+KO
+KO
+KO
+KO
+xE
+KO
+KO
+KO
+KO
+KO
+xE
+KO
+bg
+yB
+KO
+xE
+Sh
+YR
+bh
+YK
+YK
+YK
+YR
+YK
+YK
+YK
+YK
+YK
+Op
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+de
+Tu
+Td
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(6,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+Op
+ZZ
+ZZ
+YK
+lb
+YK
+YK
+YK
+YK
+YK
+bh
+YK
+YK
+YK
+Yv
+Yv
+xh
+YK
+YK
+YK
+YK
+HP
+YR
+YK
+YK
+YK
+YK
+bh
+YK
+YK
+bh
+YK
+Yv
+Yv
+ZZ
+Op
+Op
+Op
+Su
+Su
+Su
+Su
+Op
+wk
+ko
+Td
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(7,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+ZZ
+ZZ
+ZZ
+YK
+YK
+lb
+bh
+Cl
+Cl
+Cl
+Cl
+Cl
+Zb
+Zb
+Cl
+Cl
+Cl
+Lj
+Zb
+Cl
+Cl
+YK
+lb
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+Yv
+Yv
+Yv
+ZZ
+ZZ
+Op
+Op
+Op
+Su
+Su
+Op
+ko
+ko
+lo
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(8,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+ZZ
+ZZ
+YK
+bh
+YK
+YK
+lb
+YK
+Cl
+nO
+Pv
+Cl
+HW
+dB
+Mj
+Xb
+HN
+Xb
+Mj
+dB
+vH
+Cl
+xh
+SL
+YK
+YK
+YK
+YK
+xh
+YK
+YK
+YK
+Sa
+YK
+xh
+Yv
+Yv
+Yv
+Yv
+ZZ
+ZZ
+Op
+Op
+Su
+Op
+lo
+gv
+ko
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(9,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+Op
+Op
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+lb
+Cl
+Cl
+Et
+Et
+Cl
+vo
+kQ
+HI
+kQ
+wc
+kQ
+HI
+kQ
+KV
+Cl
+Cl
+lb
+YK
+YK
+HQ
+YK
+YK
+YK
+YK
+YK
+HP
+YR
+YK
+YK
+Yv
+Yv
+Yv
+Yv
+Yv
+ZZ
+Op
+Op
+Op
+Td
+ko
+Td
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(10,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+YK
+YK
+bh
+YK
+bh
+YK
+YK
+YK
+HQ
+YK
+lb
+Cl
+pa
+JS
+qR
+Cl
+YH
+hb
+lk
+xw
+wz
+RM
+OP
+kQ
+fP
+Dl
+Cl
+lb
+YK
+bh
+YK
+YK
+YK
+YK
+YK
+YK
+HP
+YR
+YK
+YK
+bh
+YK
+Yv
+Yv
+Yv
+Yv
+ZZ
+ZZ
+Op
+Op
+ko
+Lu
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(11,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+YK
+YK
+YK
+aY
+KO
+KO
+KO
+KO
+IP
+KO
+di
+Cl
+Al
+aT
+JJ
+Cl
+Ou
+kQ
+Im
+Zn
+Ps
+kQ
+kQ
+kQ
+ku
+Nm
+Cl
+oz
+KO
+Ql
+Ql
+Ql
+KO
+Kw
+KO
+KO
+bg
+KO
+xE
+KO
+KO
+KO
+XW
+YK
+YK
+Yv
+Yv
+ZZ
+ZZ
+Op
+ag
+aE
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(12,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+ko
+Op
+xh
+aY
+fW
+KO
+KO
+di
+xh
+YK
+YK
+bh
+Yw
+YK
+xh
+Cl
+rG
+aT
+Wp
+Cl
+xY
+wc
+jH
+kQ
+Hu
+rH
+rH
+KS
+df
+xu
+Cl
+ZZ
+YK
+YK
+YR
+YK
+YK
+YK
+YK
+YK
+YK
+ZZ
+ZZ
+Yv
+YK
+YK
+lb
+YK
+YK
+YK
+Yv
+Yv
+Yv
+xh
+YK
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(13,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+ko
+Op
+YK
+lb
+YK
+eS
+pF
+pF
+pF
+eS
+YK
+YK
+YK
+YK
+Yv
+Cl
+Cl
+NN
+Cl
+Cl
+Zb
+kQ
+fz
+Zb
+Cl
+Cl
+Cl
+Cl
+Cl
+Cl
+Cl
+ZZ
+ZZ
+xh
+YK
+YK
+xh
+py
+PK
+VM
+PK
+py
+ZZ
+ZZ
+Yv
+YK
+lb
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(14,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+HF
+Op
+bh
+lb
+eS
+eS
+rW
+LV
+ct
+eS
+eS
+ZZ
+ZZ
+Yv
+GE
+Cl
+Cg
+vd
+GG
+Kc
+jC
+kQ
+jH
+ti
+Cl
+qZ
+ST
+ST
+kt
+cl
+Cl
+Cl
+ZZ
+YK
+bh
+YK
+aG
+py
+tg
+qN
+la
+py
+py
+ZZ
+ZZ
+YK
+lb
+ZZ
+YK
+YK
+YK
+YK
+YK
+YK
+ZZ
+ZZ
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(15,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+aY
+KO
+Kw
+KO
+di
+eS
+eO
+tk
+UX
+ON
+jz
+eS
+eS
+eS
+Cl
+Cl
+qf
+jC
+jH
+kQ
+kQ
+kQ
+hb
+jH
+fP
+XR
+yk
+yk
+yk
+yk
+yk
+Pb
+Cl
+Cl
+YK
+YK
+py
+py
+ty
+oe
+PY
+oe
+gE
+py
+py
+ZZ
+YK
+lb
+ZZ
+Yv
+ZZ
+YK
+YK
+YK
+YK
+Yv
+ZZ
+ZZ
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(16,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+YK
+lb
+YK
+YK
+YK
+ZZ
+eS
+Pz
+tk
+tk
+Rh
+Bt
+Rm
+bW
+ZM
+it
+rc
+jC
+kQ
+jH
+PZ
+ED
+so
+kQ
+jH
+uT
+XR
+yk
+TD
+wm
+Yj
+yk
+yk
+Do
+Cl
+YK
+YK
+py
+GR
+JP
+Mg
+Mg
+yq
+bA
+ry
+py
+Yv
+YK
+lb
+ZZ
+RL
+ZZ
+YK
+YK
+YK
+YK
+YK
+Yv
+ZZ
+ZZ
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(17,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+aY
+xE
+di
+xh
+YK
+xh
+ZZ
+eS
+eV
+xH
+PS
+KT
+tk
+tk
+tk
+Ai
+kQ
+kQ
+wc
+kQ
+jH
+su
+Cl
+Hk
+wc
+Ky
+Zn
+iC
+Rp
+tW
+WJ
+oC
+Zl
+yk
+sx
+XR
+YK
+YK
+py
+GR
+wa
+Mg
+DX
+CO
+qv
+GR
+py
+YK
+bh
+lb
+YK
+ZZ
+YK
+YK
+YR
+YR
+bh
+YK
+YK
+YK
+YK
+ZZ
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(18,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+lb
+YK
+DK
+DK
+pF
+pF
+DK
+DK
+eV
+hG
+Ro
+wj
+Qo
+Ip
+Qo
+Tc
+Zn
+Kn
+Zn
+Zn
+vd
+NL
+Cl
+Am
+kQ
+jH
+wc
+WN
+yk
+gZ
+DP
+ug
+yk
+ID
+XE
+Lj
+bh
+YK
+py
+ry
+hm
+Mg
+Xk
+ys
+qv
+ry
+py
+YK
+YK
+lb
+YK
+YK
+YK
+YK
+YR
+YR
+xh
+YK
+YK
+YK
+YK
+YK
+YK
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(19,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+YK
+lb
+bh
+DK
+Dn
+EO
+Wq
+ZU
+Oz
+kM
+tk
+iE
+Bx
+bf
+TV
+vf
+ZM
+jO
+ED
+Ot
+kQ
+zh
+Sd
+GU
+vq
+Kn
+vd
+PZ
+XR
+yk
+Yj
+bx
+Gu
+yk
+yk
+pL
+Cl
+bh
+bh
+py
+GR
+AR
+Mg
+xF
+yq
+ES
+GR
+py
+ZZ
+YK
+kn
+KO
+KO
+KO
+KO
+KO
+KO
+KO
+XW
+YK
+YK
+YK
+YK
+xh
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(20,1,1) = {"
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+KR
+KO
+di
+xh
+DK
+jl
+Fp
+Wy
+ON
+Oz
+Vr
+sE
+bo
+ON
+lv
+eS
+eS
+eS
+Cl
+Cl
+ln
+so
+kQ
+kQ
+kQ
+kQ
+ka
+jH
+fP
+XR
+yk
+yk
+yk
+yk
+yk
+gj
+Cl
+Cl
+YK
+YK
+py
+py
+KY
+SD
+xF
+gC
+xK
+py
+py
+ZZ
+YK
+lb
+YK
+ZZ
+YK
+YK
+YK
+bh
+YK
+lb
+YK
+bh
+YK
+YK
+YK
+xh
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(21,1,1) = {"
+ko
+ko
+ko
+ko
+ko
+Op
+Op
+lb
+YK
+DK
+DK
+DK
+vj
+Fs
+Yb
+Dv
+DK
+DK
+YW
+iE
+Zj
+eS
+GE
+Yi
+ZO
+ZO
+GE
+Cl
+Ih
+Ke
+pi
+Mt
+so
+kN
+jH
+Yt
+Cl
+pW
+uf
+Nl
+Xd
+Mr
+Cl
+Cl
+YR
+YK
+YK
+YR
+py
+py
+PB
+AD
+PB
+py
+py
+ZZ
+Yv
+YK
+lb
+bh
+ZZ
+ZZ
+ZZ
+YK
+YK
+YK
+cf
+mV
+YK
+YK
+YK
+YK
+YK
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+"}
+(22,1,1) = {"
+ko
+ko
+ko
+ko
+ko
+iz
+YK
+LI
+YK
+DK
+qj
+qT
+Dj
+Hn
+tk
+Rh
+Eo
+DK
+Ca
+Cr
+Ca
+DK
+Yi
+Yi
+Yv
+ZO
+Yi
+Cl
+Cl
+Cl
+Cl
+Cl
+iL
+wc
+xQ
+Of
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+YR
+YR
+kA
+kA
+YR
+YR
+py
+Pd
+xF
+NJ
+py
+YK
+YK
+YK
+YK
+lb
+YK
+ZZ
+ZZ
+ZZ
+kG
+YK
+YK
+lb
+YK
+YK
+QS
+YK
+YK
+YK
+YK
+Op
+Su
+Su
+Su
+Su
+Su
+"}
+(23,1,1) = {"
+ko
+Op
+Op
+Op
+Op
+Op
+YK
+lb
+DK
+DK
+qC
+tk
+ca
+JY
+fZ
+tk
+Rh
+eS
+Qw
+fA
+Uu
+DK
+Yi
+Yv
+Yv
+Yv
+Yi
+Zb
+hS
+rc
+pl
+Zb
+jC
+kQ
+jH
+uT
+Ty
+rg
+pA
+Ad
+oe
+HU
+py
+YK
+YK
+xh
+YK
+YK
+YK
+Ty
+lI
+xF
+CM
+VM
+YK
+YK
+bh
+GS
+yB
+KO
+XW
+ZZ
+ZZ
+ZZ
+YK
+bh
+lb
+YK
+YK
+YK
+bh
+YK
+YK
+YK
+Op
+Op
+Su
+Su
+Su
+Su
+"}
+(24,1,1) = {"
+Op
+Op
+Su
+Su
+Op
+aY
+KO
+Ex
+DK
+lv
+vj
+Ya
+EA
+Qo
+YC
+Qo
+CA
+Ae
+ZW
+UE
+RX
+DK
+ZO
+Yv
+Yv
+Yv
+Yi
+Zb
+MK
+yi
+Zn
+iO
+Zn
+RW
+kF
+Zn
+sz
+XY
+yO
+XY
+zW
+sk
+py
+bh
+YK
+YK
+YK
+YK
+bh
+VM
+DB
+xF
+CM
+Ty
+YK
+YK
+YK
+YK
+YK
+YK
+lb
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+lb
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+Op
+Su
+Su
+Su
+Su
+"}
+(25,1,1) = {"
+Su
+Su
+Su
+Op
+Op
+lb
+YK
+DK
+DK
+XU
+XU
+ra
+eS
+Mm
+YQ
+NV
+iE
+eS
+QE
+cK
+gA
+DK
+ZO
+Yv
+Yv
+Yv
+ZO
+Zb
+gL
+jH
+yI
+Zb
+Dw
+jH
+kQ
+Pa
+Ty
+iQ
+iQ
+SD
+xF
+oY
+py
+YK
+py
+PK
+PK
+py
+YK
+py
+DG
+xF
+qv
+py
+ZZ
+Yv
+YK
+YK
+YK
+YK
+lb
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+lb
+YK
+YK
+YK
+Yv
+ZZ
+YK
+YK
+YK
+Op
+Op
+Su
+Su
+Su
+"}
+(26,1,1) = {"
+Su
+Su
+Su
+Op
+YK
+SL
+YK
+DK
+fd
+nI
+Dj
+iE
+eS
+eS
+eS
+eS
+Lg
+eS
+eS
+eS
+eS
+DK
+Yi
+Yi
+Yv
+ZO
+ZO
+Cl
+JF
+Jc
+Wm
+Cl
+Cl
+Ik
+Vd
+Cl
+py
+ey
+AY
+Hv
+Ga
+Ba
+py
+py
+py
+Qy
+qN
+py
+py
+py
+DG
+xF
+qv
+py
+py
+ZZ
+ZZ
+ZZ
+YK
+bh
+lb
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+lb
+YK
+YK
+Yv
+Yv
+ZZ
+xh
+YK
+xh
+YK
+Op
+Su
+Su
+Su
+"}
+(27,1,1) = {"
+Su
+Su
+Op
+Op
+YK
+lb
+DK
+DK
+gi
+ca
+jY
+rZ
+eS
+Ny
+TU
+XU
+iE
+dL
+EP
+eS
+Ny
+DK
+DK
+Yi
+Yi
+ZO
+Cl
+Cl
+zs
+kQ
+WA
+Zb
+pS
+Ik
+FK
+fh
+py
+Ml
+Uw
+iV
+xF
+oa
+bk
+oe
+Nk
+oe
+PY
+aU
+DQ
+lP
+xe
+xF
+oa
+ej
+py
+py
+py
+py
+YK
+YK
+lb
+Yv
+ZZ
+ZZ
+ZZ
+YK
+lb
+YK
+YK
+ZZ
+ZZ
+ZZ
+Yv
+YK
+bh
+YK
+Op
+Op
+Su
+Su
+"}
+(28,1,1) = {"
+Su
+Su
+Op
+ZZ
+YK
+lb
+DK
+BM
+OB
+ca
+Ut
+tj
+eS
+Pm
+NS
+KU
+vZ
+mo
+Qo
+KU
+NS
+xl
+DK
+ZO
+Yi
+XB
+Cl
+Nm
+kc
+hb
+SP
+dm
+iu
+Ik
+FK
+LU
+vA
+vA
+vA
+Sg
+BK
+zu
+Yu
+mf
+XY
+sr
+XY
+XY
+XY
+me
+XY
+to
+Mg
+qO
+py
+cx
+Sq
+py
+py
+YK
+lb
+YK
+ZZ
+ZZ
+Yv
+YK
+SL
+YK
+Yv
+ZZ
+ZZ
+ZZ
+ZZ
+YK
+YK
+YK
+YK
+Op
+Su
+Su
+"}
+(29,1,1) = {"
+Su
+Su
+Op
+ZZ
+kA
+fU
+Oz
+aL
+gD
+Ui
+WR
+uL
+eS
+Qu
+eS
+eS
+By
+iE
+vV
+XU
+TU
+Qu
+DK
+XB
+ZG
+Yi
+Cl
+Tl
+UV
+uU
+iS
+Zb
+iu
+Ik
+FK
+Rw
+Cl
+Pc
+vA
+py
+PB
+PB
+PB
+UG
+Mg
+No
+Oq
+Mg
+Mg
+oQ
+Mg
+Mg
+Qp
+Nf
+pY
+Sq
+mP
+cx
+py
+YK
+lb
+YK
+YK
+ZZ
+Yv
+YK
+lb
+YK
+Yv
+ZZ
+ZZ
+ZZ
+ZZ
+IJ
+YK
+YK
+YK
+Op
+Su
+Su
+"}
+(30,1,1) = {"
+Su
+Op
+Op
+KR
+KO
+Ex
+Oz
+cw
+vj
+ps
+tk
+vU
+eS
+eS
+eS
+je
+vj
+yQ
+VF
+eS
+eS
+eS
+DK
+ZG
+TX
+ZG
+Cl
+Cl
+Zb
+Zb
+Zb
+Cl
+sZ
+Ik
+FK
+FK
+uc
+dF
+qs
+py
+XP
+qw
+PB
+jD
+Mg
+yr
+No
+Mg
+Mg
+Mg
+Mg
+Mg
+Mg
+oa
+pY
+Sq
+Sq
+TO
+py
+ZZ
+lb
+YK
+YK
+ZZ
+Yv
+YK
+lb
+YK
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+YK
+YK
+Yv
+Op
+Op
+Su
+"}
+(31,1,1) = {"
+Su
+Op
+Yv
+lb
+YK
+YK
+DK
+ro
+vj
+pt
+ca
+wR
+eS
+TU
+eS
+eS
+sp
+bo
+Rh
+XU
+Nh
+TU
+DK
+Yi
+cE
+ZG
+Cl
+Xu
+fS
+ky
+ky
+AW
+zU
+BU
+Se
+Sn
+Cl
+Cl
+Cl
+py
+TY
+Sq
+sm
+Mg
+Mg
+Mg
+Mg
+Mg
+bE
+LH
+iN
+Ct
+Mg
+Mg
+aJ
+Sq
+SB
+Sq
+py
+ZZ
+fU
+kA
+kA
+ZZ
+Sl
+kA
+fU
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+kA
+kA
+Yv
+Yv
+Op
+Su
+"}
+(32,1,1) = {"
+Su
+Op
+YK
+lb
+YK
+ZZ
+DK
+DK
+jl
+tk
+oW
+yN
+eS
+Pm
+NS
+KU
+Ay
+oN
+Qo
+KU
+wZ
+DE
+DK
+Yi
+cE
+ZO
+Cl
+yc
+iu
+Et
+jp
+Et
+FK
+Ik
+FK
+FK
+uc
+Wk
+qs
+py
+hl
+HG
+PB
+Dq
+VJ
+SD
+Mg
+FR
+Zc
+PB
+Zk
+WU
+Mg
+gC
+py
+Sq
+bq
+py
+py
+ZZ
+lb
+YK
+YK
+YK
+YK
+YK
+VT
+YK
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+YK
+YK
+YK
+Yv
+Op
+Su
+"}
+(33,1,1) = {"
+Su
+Op
+YK
+lb
+YK
+ZZ
+ZZ
+DK
+jx
+id
+eU
+bB
+eS
+Qu
+Sx
+XU
+Pt
+Zz
+IU
+eS
+Sx
+DK
+DK
+XB
+MR
+XB
+Cl
+Cl
+aC
+UF
+UF
+Pu
+xJ
+Ik
+FK
+sF
+Cl
+rT
+Cl
+py
+py
+py
+py
+py
+py
+YV
+Xq
+Cj
+Hy
+PB
+pU
+Cj
+Xq
+XC
+py
+py
+py
+py
+Yi
+YK
+kn
+oo
+KO
+KO
+KO
+KO
+bg
+XW
+YK
+ZZ
+ZZ
+Yv
+Yv
+YK
+ZG
+ZG
+YK
+Yv
+Op
+Su
+"}
+(34,1,1) = {"
+Op
+Op
+Yv
+lb
+YK
+YK
+ZZ
+DK
+DK
+pF
+pF
+DK
+DK
+DK
+DK
+DK
+DK
+DK
+DK
+DK
+DK
+DK
+ZO
+ZO
+MR
+ZO
+ZO
+Cl
+Zb
+Zb
+Cl
+Cl
+Zb
+Ik
+Vd
+Zb
+Cl
+Cl
+Cl
+ZO
+XB
+ZG
+ZO
+ZO
+py
+py
+PK
+PK
+py
+py
+py
+PK
+PK
+py
+py
+Yi
+Yi
+qr
+Yi
+Yi
+lb
+YK
+YK
+bh
+YK
+bh
+YK
+lb
+Kd
+Yi
+XB
+XB
+ZG
+ZG
+pv
+ZG
+ZG
+ZG
+Op
+Su
+"}
+(35,1,1) = {"
+Op
+Op
+ZZ
+VT
+ZG
+wf
+ZG
+km
+ZO
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+Yi
+Yi
+Yi
+Yi
+Yi
+ZO
+ZO
+ZO
+Ov
+lb
+YK
+XB
+ZO
+ZO
+ZO
+ZO
+GE
+ZG
+cE
+ZG
+ZG
+GE
+ZO
+ZO
+Yi
+ZG
+xf
+ZG
+XB
+ZO
+XB
+ZO
+ZO
+ZO
+ZO
+ZO
+Yi
+Yi
+Yi
+ZO
+ZG
+ZG
+ZG
+ZO
+Yi
+og
+YK
+YK
+YK
+ZZ
+ZZ
+YK
+MR
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+wf
+ZG
+ZG
+Op
+Op
+"}
+(36,1,1) = {"
+Op
+ZZ
+ZZ
+cE
+ZG
+ZG
+ZG
+XB
+Yi
+XB
+ZG
+ZG
+xf
+pv
+XB
+ZO
+Ov
+ZO
+km
+ZO
+ZO
+ZO
+ZO
+Yi
+VT
+Yv
+YK
+YK
+ZO
+ZO
+ZO
+YG
+ZG
+XD
+RH
+RH
+Ic
+mi
+xO
+RH
+RH
+Up
+RH
+kO
+RH
+YT
+TZ
+kf
+kf
+xO
+JR
+xO
+kf
+RH
+aj
+RH
+RH
+RH
+kf
+kf
+SR
+ZZ
+YK
+ZZ
+ZZ
+ZO
+ZO
+MR
+wf
+ZG
+wf
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+Ov
+ZO
+Op
+"}
+(37,1,1) = {"
+Op
+ZZ
+XB
+cE
+ZG
+ZG
+XB
+ZO
+Yi
+Yi
+Yi
+ZG
+PL
+RH
+kf
+xO
+xO
+kf
+kf
+xO
+HZ
+kf
+xO
+xO
+IS
+Yv
+Yv
+Yv
+YK
+ZO
+ZO
+YG
+ZG
+cE
+ZG
+ZG
+YG
+ZO
+ZO
+ZG
+EQ
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZO
+Yv
+Yv
+Yv
+ZO
+ZO
+ZO
+Oo
+ZG
+ZG
+ZG
+XB
+XB
+ZZ
+ZZ
+ZZ
+ZZ
+ZO
+ZO
+XB
+bn
+ZO
+XB
+ZG
+ZO
+ZG
+XB
+ZG
+ZG
+XB
+ZO
+ZO
+Op
+"}
+(38,1,1) = {"
+Op
+RQ
+ZG
+KF
+Xz
+XT
+XB
+ZO
+Xz
+Xz
+Xz
+ZG
+cE
+YG
+XT
+XT
+Yi
+qr
+Yi
+Yi
+ZO
+ZO
+Yi
+Yi
+lb
+Yv
+Yv
+Yv
+Yv
+Yv
+ZO
+YG
+ZG
+Oo
+wf
+ZG
+YG
+ZO
+XB
+wf
+ZG
+ZG
+ZG
+ZG
+wf
+ZG
+Yi
+Yv
+Yv
+Yv
+Yv
+Yv
+Yi
+Yi
+cE
+ZG
+ZG
+uH
+uH
+Yi
+Yi
+ZZ
+ZZ
+Yi
+XB
+XB
+Xz
+BP
+XT
+XB
+XB
+Xz
+Xz
+Xz
+ZG
+ZG
+YG
+XT
+XT
+Op
+"}
+(39,1,1) = {"
+xj
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+wf
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+XB
+XT
+Yi
+ZO
+ZO
+Ed
+ZO
+ZO
+ZO
+Yi
+og
+YK
+Yv
+Yv
+Yv
+YK
+ZO
+XB
+ZG
+cE
+ZG
+ZG
+XB
+ZO
+Yi
+Yi
+ZG
+ZG
+XB
+Yi
+ZG
+ZG
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+Yi
+MR
+ZG
+ZG
+uH
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+xj
+"}
+(40,1,1) = {"
+xj
+ZG
+ZG
+Oo
+ZG
+ZG
+gG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+XB
+Xz
+Yi
+ZO
+ZO
+ZO
+Yi
+Yi
+ZO
+qr
+dT
+YK
+xh
+Yv
+Yv
+YK
+ZO
+XB
+XB
+cE
+ZG
+wf
+XB
+Yi
+Yi
+Yi
+Vy
+ZO
+ZO
+Yi
+ZG
+YK
+bh
+YK
+Yv
+ZZ
+ZZ
+ZZ
+ZZ
+ZO
+od
+kf
+TZ
+RH
+RH
+RH
+aj
+RH
+RH
+RH
+RH
+kO
+RH
+nq
+RH
+kO
+RH
+RH
+RH
+RH
+sC
+RH
+RH
+RH
+RH
+nJ
+"}
+(41,1,1) = {"
+xj
+ZG
+wf
+hq
+RH
+aj
+RH
+YT
+RH
+RH
+RH
+RH
+IT
+MD
+ZG
+XB
+Yi
+Yi
+Kd
+Yv
+Yv
+ZO
+Yi
+ZO
+MR
+Yi
+Yi
+YK
+YK
+ZO
+ZO
+Xz
+XB
+cE
+gG
+ZG
+Xz
+Yi
+Yi
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+ZZ
+Yv
+ZO
+MR
+ZO
+XB
+ZO
+ZG
+ZG
+cE
+gG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+wf
+ZG
+ZG
+cE
+ZG
+ZG
+wf
+ZG
+xj
+"}
+(42,1,1) = {"
+xj
+ZG
+wf
+ZG
+ZG
+cE
+wf
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+Oo
+ZG
+ZO
+ZO
+ZO
+Yv
+ZZ
+Yv
+Yv
+Yi
+ZO
+og
+qr
+ZO
+Yi
+Yi
+ZO
+ZO
+Xz
+ZG
+cE
+ZG
+ZG
+Xz
+Yi
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+YK
+xh
+bh
+YK
+YK
+YK
+YK
+YK
+Yi
+XB
+uQ
+ZG
+XB
+YG
+ZG
+wf
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+XB
+XB
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+xj
+"}
+(43,1,1) = {"
+xj
+ZG
+ZG
+ZG
+ZG
+cE
+wf
+ZG
+Xz
+YG
+YG
+ZG
+ZG
+cE
+ZG
+YG
+ZO
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+YK
+Yi
+Qs
+xO
+kf
+RH
+RH
+yK
+XB
+Xz
+ZG
+cE
+ZG
+ZG
+Xz
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+YK
+bh
+Yi
+Yi
+lD
+Ir
+ZG
+ZG
+uH
+ZG
+ZG
+cE
+ZG
+YG
+fu
+XB
+ZO
+YG
+YG
+YG
+ZO
+Yi
+Xz
+Xz
+Xz
+cE
+ZG
+Xz
+Xz
+DL
+Op
+"}
+(44,1,1) = {"
+Op
+ZO
+ZO
+Xz
+Xz
+Je
+ZG
+ZG
+ZO
+ZO
+YG
+ZG
+ZG
+cE
+ZG
+YG
+YK
+Yv
+ZZ
+ZZ
+Yv
+YK
+YK
+YK
+Yi
+qr
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+ZO
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+YK
+YK
+YK
+YK
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+Yi
+ZG
+ZG
+lR
+ZG
+ZG
+uH
+ZG
+ZG
+cE
+ZG
+XT
+ZO
+ZO
+ZO
+ZO
+YK
+YK
+YK
+ZO
+ZO
+ZG
+ZG
+cE
+ZG
+XB
+ZO
+ZO
+Op
+"}
+(45,1,1) = {"
+Op
+ZO
+XB
+XB
+ZG
+XL
+ZG
+XB
+ZO
+ZO
+YG
+ZG
+ZG
+cE
+ZG
+YG
+ZO
+YK
+Yv
+Yv
+YK
+YK
+YK
+ZZ
+YK
+ZO
+Kd
+ZG
+lD
+Up
+RH
+RH
+RH
+Oh
+gm
+ZG
+ZO
+XB
+ZZ
+ZZ
+ZZ
+ZZ
+YK
+YK
+ZO
+ZO
+XB
+ZZ
+ZZ
+ZZ
+Yv
+ZO
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+Oo
+ZG
+ZO
+ZO
+Ov
+ZO
+YK
+Yv
+YK
+Yv
+YK
+ZO
+Yi
+XB
+cE
+ZG
+ZG
+ZO
+ZO
+Op
+"}
+(46,1,1) = {"
+Op
+Op
+ZO
+XB
+ZG
+ZG
+ZG
+Yi
+Ov
+ZO
+ZO
+ZG
+ZG
+cE
+ZG
+Xz
+ZO
+YK
+YK
+YK
+bh
+YK
+Yv
+ZZ
+ZZ
+YK
+Yi
+ZG
+ZG
+ZG
+ZG
+uH
+ZG
+cE
+aX
+ZG
+Xz
+XB
+ZO
+ZZ
+ZZ
+YK
+YK
+YK
+Ov
+ZO
+XB
+Yv
+ZZ
+ZZ
+Yv
+ZO
+XB
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+ZO
+ZO
+YK
+Yv
+Yv
+Yv
+Yv
+Yv
+YK
+YK
+ZO
+MR
+ZG
+ZG
+ZO
+Op
+Op
+"}
+(47,1,1) = {"
+Op
+Op
+ZO
+ZO
+YK
+Yv
+Yv
+YK
+Yi
+ZO
+XB
+ZG
+ZG
+Oo
+ZG
+Xz
+ZO
+Yi
+Yi
+YK
+YK
+YK
+ZZ
+ZZ
+ZZ
+ZZ
+ZO
+ZG
+ZG
+ZG
+ZG
+uH
+ZG
+Oo
+ZG
+ZG
+YG
+ZO
+ZO
+ZO
+YK
+YK
+bh
+ZO
+ZO
+ZG
+ZG
+ZG
+Yv
+Yv
+ZO
+ZO
+ZG
+ZG
+cE
+ZG
+ZO
+Xz
+ZG
+ZG
+cE
+ZG
+uH
+XB
+YK
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+Yv
+YK
+og
+ZG
+ZO
+ZO
+Op
+Op
+"}
+(48,1,1) = {"
+Su
+Op
+ZO
+YK
+Yv
+ZZ
+Yv
+Yv
+YK
+ZO
+Xz
+ZG
+ZG
+cE
+ZG
+XB
+ZO
+Yi
+ZO
+Yi
+YK
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+ZG
+wf
+ZG
+ZG
+ZG
+uH
+ZG
+cE
+ZG
+wf
+YG
+YG
+YG
+ZO
+XB
+Xz
+Xz
+XT
+ZG
+ZG
+uH
+uH
+YG
+Yi
+XB
+Xz
+uH
+uH
+cE
+XB
+XT
+Xz
+wf
+ZG
+cE
+ZG
+uH
+ZG
+YK
+Yv
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+og
+ZG
+XB
+ZO
+Op
+Su
+"}
+(49,1,1) = {"
+Su
+Op
+ZO
+YK
+Yv
+ZZ
+ZZ
+Yv
+YK
+ZO
+YG
+ZG
+ZG
+cE
+ZG
+ZO
+Ov
+Yi
+Yi
+Yi
+YK
+ZZ
+ZZ
+ZZ
+Yv
+Yi
+ZG
+ZG
+ZG
+ZG
+XB
+XB
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+uH
+ZG
+XB
+Yv
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+lb
+ZG
+ZO
+ZO
+Op
+Su
+"}
+(50,1,1) = {"
+Su
+Op
+ZO
+ZO
+YK
+Yv
+ZZ
+ZZ
+YK
+qr
+YG
+ZG
+wf
+cE
+ZG
+uH
+ZO
+Ov
+Yi
+qr
+YK
+YK
+Yv
+Yv
+ZO
+ZG
+ZG
+ZG
+ZG
+ZO
+ZO
+XB
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+wf
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+XB
+ZO
+ZO
+YK
+Yv
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+cE
+ZG
+ZO
+ZO
+Op
+Su
+"}
+(51,1,1) = {"
+Su
+Op
+Op
+ZO
+Yi
+Yv
+Yv
+YK
+ZG
+Yi
+YG
+ZG
+ZG
+cE
+ZG
+uH
+ZG
+Yi
+Yi
+Yi
+Yi
+ZO
+ZO
+ZO
+ZO
+ZG
+ZG
+ZG
+ZO
+ZO
+ZO
+uH
+ZG
+XD
+RH
+RH
+RH
+RH
+RH
+RH
+RH
+RH
+RH
+RH
+aj
+RH
+RH
+RH
+RH
+RH
+RH
+RH
+RH
+Qr
+nq
+RH
+RH
+RH
+RH
+RH
+Oh
+ZG
+ZO
+ZO
+ZO
+YK
+YK
+xh
+Yv
+Yv
+ZZ
+ZZ
+YK
+YK
+cE
+ZG
+XB
+Op
+Op
+Su
+"}
+(52,1,1) = {"
+Su
+jQ
+Op
+ZO
+Ov
+Yi
+ZO
+XB
+ZG
+ZG
+YG
+ZG
+ZG
+cE
+ZG
+uH
+uH
+uH
+ZG
+ZO
+XT
+XT
+XT
+Yi
+Yi
+uH
+Xz
+Xz
+XB
+ZO
+uH
+uH
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+wf
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+XB
+XB
+XB
+XB
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+YG
+ZO
+ZO
+Yi
+YK
+YK
+xh
+Yv
+Yv
+ZZ
+ZZ
+XB
+cE
+ZG
+XB
+Op
+Op
+Su
+"}
+(53,1,1) = {"
+Su
+Su
+Op
+ZO
+ZO
+Yi
+Kd
+wf
+ZG
+ZG
+ZG
+ZG
+nE
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+XB
+XB
+XB
+XB
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+XT
+XT
+XT
+ZG
+ZG
+uH
+uH
+uH
+cE
+ZG
+YG
+XT
+XT
+Yi
+ZZ
+ZZ
+YG
+BP
+XB
+ZG
+uH
+uH
+uH
+ZG
+PL
+Od
+wD
+kf
+kf
+xO
+KO
+KO
+KO
+XW
+YK
+YK
+YK
+ZO
+cE
+XB
+ZO
+Op
+Su
+Su
+"}
+(54,1,1) = {"
+Su
+Su
+Op
+Op
+ZO
+ZO
+Yi
+ZG
+EQ
+ZG
+ZG
+ZG
+ZG
+hq
+RH
+RH
+RH
+RH
+aj
+RH
+RH
+RH
+RH
+RH
+RH
+RH
+YT
+RH
+RH
+YT
+RH
+RH
+RH
+Oh
+ZG
+ZG
+Xz
+ZO
+XB
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZO
+ZO
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+MR
+ZO
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZO
+ZO
+Yi
+YK
+Yv
+Yv
+YK
+oz
+vg
+xO
+kf
+xO
+Qa
+ZO
+ZO
+Op
+Su
+Su
+"}
+(55,1,1) = {"
+Su
+Su
+Su
+Op
+ZO
+ZO
+ZG
+ZG
+ZG
+ZG
+Xz
+ZG
+ZG
+ZG
+ZG
+ZG
+wf
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+SW
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+Oo
+wf
+ZG
+Xz
+ZO
+ZO
+XB
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+XB
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+MR
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZO
+ZO
+Yv
+Yv
+Yv
+Yv
+Yv
+Yi
+og
+XB
+ZO
+ZG
+ZG
+ZO
+Op
+Op
+Su
+Su
+"}
+(56,1,1) = {"
+Su
+Su
+Su
+Op
+Op
+XB
+ZG
+ZG
+ZG
+ZG
+uH
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+Yi
+ZO
+ZO
+XB
+ZG
+wf
+ZG
+ZG
+PL
+Mi
+ZG
+Yv
+ZZ
+ZZ
+Yv
+Yv
+ZO
+MR
+ZG
+ZG
+wf
+ZG
+ZG
+XB
+MR
+ZO
+ZO
+YK
+Yv
+Yv
+ZZ
+ZZ
+Yv
+Yi
+cE
+ZG
+ZG
+ZG
+ZO
+ZO
+Op
+Su
+Su
+Su
+"}
+(57,1,1) = {"
+Su
+Su
+Su
+Su
+Op
+ZO
+XB
+wf
+ZG
+Yi
+XT
+XT
+uH
+ZG
+ZG
+uH
+uH
+uH
+cE
+ZG
+uH
+uH
+YG
+ZO
+XB
+Xz
+YG
+YG
+ZO
+km
+YG
+YG
+ZG
+cE
+ZG
+ZG
+Yi
+ZO
+ZO
+ZO
+ZO
+ZO
+ZO
+ZO
+cE
+ZG
+Yi
+Yv
+ZZ
+ZZ
+Yv
+Yv
+ZO
+MR
+ZG
+ZG
+ZG
+ZG
+ZO
+ZO
+mF
+ZO
+YK
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+ZG
+cE
+ZG
+ZG
+ZG
+ZO
+Op
+Op
+Su
+Su
+Su
+"}
+(58,1,1) = {"
+Su
+Su
+Su
+Su
+Op
+Op
+ZO
+ZG
+ZG
+ZO
+ZO
+XB
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZG
+ZG
+ZG
+XB
+XB
+XB
+ZO
+Yi
+Yi
+ZO
+ZO
+km
+YG
+ZG
+cE
+wf
+ZG
+ZO
+up
+up
+up
+up
+up
+up
+ZO
+bn
+Yi
+Yv
+Yv
+Yv
+ZZ
+Yv
+Yi
+XB
+bn
+ZG
+ZG
+ZG
+ZG
+XB
+ZO
+og
+Yi
+YK
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+ZG
+PL
+RH
+Mi
+ZG
+ZO
+Op
+Su
+Su
+Su
+Su
+"}
+(59,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Op
+xh
+YK
+YK
+qr
+ZO
+ZO
+ZG
+ZG
+kq
+RH
+RH
+RH
+nq
+Qr
+RH
+RH
+kf
+xO
+xO
+xO
+xO
+xO
+xO
+kf
+xA
+wD
+RH
+Ir
+ZG
+ZG
+ZO
+Aw
+tK
+OH
+uk
+Tb
+Aw
+ZO
+MR
+ZO
+Yv
+Yv
+Yv
+Yv
+Yi
+XB
+Yi
+Oo
+wf
+ZG
+ZZ
+ZZ
+ZZ
+Yi
+og
+YK
+YK
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+XB
+cE
+ZG
+ZG
+ZO
+Op
+Op
+Su
+Su
+Su
+Su
+"}
+(60,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Yv
+Yv
+Yv
+ZO
+ZO
+ZG
+XB
+og
+XB
+ZG
+ZG
+ZG
+XL
+ZG
+ZG
+ZO
+ZO
+Yi
+Yi
+YK
+Yv
+ZO
+Yi
+MR
+XT
+ZG
+cE
+wf
+ZG
+ZO
+Aw
+AC
+jg
+Oe
+ZJ
+Aw
+ZO
+MR
+ZO
+ZO
+ZO
+Yv
+Yi
+ZO
+ZO
+ZG
+cE
+ZG
+ZZ
+ZZ
+ZZ
+Yv
+ZO
+og
+YK
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+ZO
+Yi
+cE
+ZG
+ZO
+ZO
+Op
+Su
+Su
+Su
+Su
+Su
+"}
+(61,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+ZZ
+ZZ
+Yv
+Yv
+ZO
+ZO
+ZO
+og
+Yi
+Yi
+XB
+ZG
+ZG
+ZG
+XB
+Yi
+Yi
+YK
+Yv
+Yv
+ZZ
+ZO
+qr
+og
+XT
+ZG
+Iq
+ZG
+ZG
+hK
+Aw
+VX
+UK
+UK
+er
+Aw
+ZO
+xn
+kf
+kf
+kf
+kf
+Mx
+xO
+RH
+RH
+Bg
+pv
+ZZ
+ZZ
+Yv
+Yv
+ZO
+og
+YK
+Yv
+Yv
+Yv
+ZZ
+Yv
+Yv
+ac
+RH
+Qa
+XB
+ZO
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+"}
+(62,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+aG
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+Yv
+og
+qr
+ZO
+Yi
+YK
+YK
+Yi
+Yi
+Yi
+Yi
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+ZO
+og
+qG
+ld
+yt
+ld
+ld
+nS
+nS
+DV
+Go
+UK
+pn
+nS
+nS
+ZO
+ZO
+ZO
+ZO
+ZO
+MR
+XB
+ZG
+ZG
+EQ
+ZG
+pv
+ZZ
+Yv
+Yi
+Yi
+cO
+YK
+ZZ
+ZZ
+Yv
+Yv
+Yi
+XB
+cE
+ZG
+XB
+ZO
+ZO
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(63,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+ZZ
+ZZ
+ZZ
+Yv
+Yv
+MR
+Yi
+Yi
+YK
+ZZ
+ZZ
+YK
+ZO
+YK
+bh
+YK
+ZZ
+ZZ
+ZZ
+ZZ
+YK
+og
+nS
+aP
+Kx
+aP
+aP
+nS
+VS
+jP
+UK
+UK
+If
+nC
+nS
+nS
+nS
+nS
+nS
+nS
+MR
+XB
+ZG
+ZG
+ZG
+wf
+ZG
+pv
+XB
+ZO
+ZG
+cE
+ZZ
+ZZ
+ZZ
+Yi
+Yi
+ZG
+ZG
+cE
+ZG
+ZO
+ZO
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(64,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+YK
+YK
+Yv
+Yv
+YK
+lb
+ZO
+Yv
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+YK
+YK
+YK
+Yv
+ZZ
+ZZ
+ZZ
+YK
+og
+nS
+zt
+Ax
+UK
+zt
+nS
+xU
+UK
+iv
+Cn
+UK
+uF
+nS
+bj
+zI
+zI
+bj
+nS
+MR
+ZO
+ZO
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+ZG
+cE
+ZZ
+ZZ
+Yi
+Yi
+TC
+wf
+ZG
+cE
+ZG
+ZO
+ZO
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(65,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+YK
+bh
+YK
+YK
+YK
+Uv
+YK
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+YK
+YK
+YK
+Yv
+ZZ
+ZZ
+YK
+MR
+nS
+ch
+mI
+UK
+Kq
+ep
+aW
+UK
+UK
+Ax
+UK
+aB
+nS
+bj
+bj
+bj
+bj
+nS
+mF
+Yi
+XB
+Yi
+Yi
+ZG
+ZG
+ZG
+ZG
+ZG
+wf
+cE
+XB
+ZZ
+ZO
+ZG
+ZG
+ZG
+ZG
+mF
+ZO
+ZO
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(66,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Yv
+YK
+YK
+YK
+YK
+Uv
+YK
+YK
+Yv
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+Yv
+YK
+ZO
+Yi
+ZZ
+ZO
+ZO
+MR
+nS
+Kq
+UK
+Fw
+NT
+ep
+gx
+OA
+UK
+Ax
+Oe
+mt
+nS
+nS
+nS
+Ss
+Ss
+nS
+og
+Yi
+ZO
+Yv
+ZZ
+ZZ
+XB
+wn
+RH
+Qr
+RH
+wU
+TZ
+YT
+RH
+RH
+kf
+kf
+kf
+SR
+ZO
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(67,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+Op
+YK
+GS
+IS
+YK
+YK
+YK
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+qr
+Yi
+Yi
+Yi
+XB
+XB
+MR
+nS
+zt
+UK
+Ax
+zt
+nS
+OU
+ix
+UK
+Ax
+DM
+jL
+nS
+bj
+ep
+Lx
+Kl
+nS
+og
+Yi
+Yv
+Yv
+ZZ
+ZZ
+ZZ
+og
+ZG
+XL
+ZG
+ZG
+ZG
+ZG
+ZG
+XB
+ZO
+ZO
+ZO
+ZO
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(68,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+bh
+zF
+KO
+jR
+YK
+xh
+ZZ
+ZZ
+ZZ
+ZZ
+Yi
+Yi
+Yi
+ZO
+ZG
+ZG
+ZG
+MR
+nS
+aP
+sd
+Kx
+aP
+nS
+nS
+nS
+UK
+QU
+nS
+nS
+nS
+EL
+ep
+DZ
+nN
+nS
+og
+YK
+Yv
+ZZ
+ZZ
+ZZ
+Yv
+og
+ZG
+ZG
+ZG
+ZG
+ZO
+Yi
+Yi
+YK
+YK
+YK
+ZO
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(69,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+YK
+YK
+Uv
+YK
+bh
+YK
+Yv
+ZZ
+ZZ
+ZO
+ZO
+Yi
+ZG
+wf
+ZG
+ZG
+cE
+nS
+RT
+UK
+Ax
+zt
+If
+rK
+jP
+UK
+Ax
+If
+rK
+nS
+nS
+nS
+Br
+TB
+nS
+lb
+bh
+YK
+ZZ
+ZZ
+ZZ
+Yv
+lb
+ZG
+ZG
+ZG
+TC
+Yi
+Yi
+YK
+ZZ
+ZZ
+ZZ
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(70,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+YK
+lb
+YK
+YK
+YK
+YK
+Yv
+Yv
+Yi
+Yi
+ZG
+ZG
+wu
+RH
+RH
+OD
+nS
+cz
+UK
+dK
+Hj
+EX
+EX
+EX
+ib
+Bd
+Hj
+EX
+ww
+EX
+EX
+fn
+sB
+nS
+lb
+YK
+YK
+Yv
+ZZ
+Yv
+Yv
+lb
+YK
+qr
+Yi
+Yi
+YK
+bh
+YK
+MN
+ZZ
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(71,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+oz
+KO
+xE
+KO
+KO
+KO
+kf
+JR
+xO
+RH
+RH
+cZ
+ZG
+wf
+YS
+nS
+IN
+Qh
+Go
+UK
+UK
+UK
+UK
+Ax
+Qh
+UK
+Go
+bu
+UK
+UK
+rV
+Ti
+Rl
+zc
+YK
+YK
+YK
+Yv
+Yv
+YK
+lb
+YK
+YK
+YK
+YK
+YK
+YK
+YK
+Op
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(72,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+Yv
+Yv
+YK
+YK
+ZO
+ZO
+qr
+XB
+ZG
+XL
+ZG
+ZG
+ZG
+nS
+DH
+DH
+DH
+DH
+DH
+lc
+aM
+Ax
+UK
+zt
+qk
+nS
+Na
+Eb
+ur
+JI
+nS
+cf
+XN
+KO
+KO
+KO
+KO
+KO
+Ex
+YK
+YK
+ZZ
+ZZ
+ZZ
+xh
+YK
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(73,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+aG
+Yv
+Yv
+YK
+YK
+ZO
+ZO
+ZO
+ZG
+ZG
+ZG
+wf
+XB
+nS
+ep
+GP
+nS
+nS
+nS
+eJ
+Gj
+Ax
+UK
+ur
+pd
+nS
+nS
+nS
+nS
+DJ
+nS
+lb
+YK
+YK
+YK
+YK
+bh
+YK
+YK
+YK
+ZZ
+ZZ
+ZZ
+Op
+xj
+xj
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(74,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+Op
+ZZ
+ZZ
+Yv
+Yv
+Yi
+nS
+nS
+up
+up
+nS
+nS
+KZ
+MF
+nS
+JC
+aD
+za
+ck
+jf
+rk
+Wu
+QK
+cA
+nW
+nS
+io
+UK
+nS
+Dd
+nS
+nS
+nS
+nS
+YK
+YK
+YK
+Yv
+ZZ
+Op
+Op
+Op
+bM
+bM
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(75,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+ZZ
+ZZ
+Yv
+nS
+yC
+aD
+aD
+oT
+CL
+Uy
+aD
+nS
+Ye
+Wu
+kY
+cS
+Ax
+UK
+yl
+yl
+cS
+xb
+nS
+LA
+UK
+ZF
+Df
+ep
+bj
+tG
+nS
+YK
+YK
+Yv
+Op
+Op
+Op
+Su
+Op
+dD
+bM
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(76,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+Op
+ZZ
+nS
+iw
+OA
+UK
+Qh
+Go
+UK
+UK
+Lf
+UK
+UK
+UK
+UK
+jf
+VH
+EX
+EX
+EX
+EX
+ww
+EX
+FJ
+UK
+Ei
+nS
+bj
+Js
+nS
+ZZ
+Op
+Op
+Op
+Su
+Su
+Su
+Op
+bM
+bM
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(77,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+Op
+sw
+Xr
+Lk
+ij
+uD
+hY
+EX
+EX
+au
+EX
+EX
+EX
+EX
+ht
+UK
+UK
+UK
+UK
+UK
+bu
+UK
+UK
+UK
+QG
+gp
+gQ
+bj
+sw
+Op
+Op
+Su
+Su
+Su
+Su
+Su
+Op
+bM
+bM
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(78,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+sw
+sw
+sw
+sw
+JL
+mq
+OO
+OO
+nS
+lc
+Kq
+Kq
+zt
+Ax
+UK
+zt
+Kq
+Kq
+qk
+nS
+uz
+Us
+QI
+LF
+sw
+sw
+sw
+sw
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+bM
+bM
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(79,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+sw
+sw
+sw
+sw
+sw
+sw
+WG
+FD
+rt
+lc
+Ax
+Qh
+qk
+ke
+qJ
+oH
+sw
+sw
+sw
+sw
+sw
+sw
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Op
+bM
+bM
+Op
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(80,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+sw
+sw
+sw
+sw
+sw
+aP
+Kx
+aP
+aP
+sw
+sw
+sw
+sw
+Su
+Su
+Su
+ly
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}

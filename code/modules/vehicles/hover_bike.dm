@@ -9,7 +9,7 @@
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	coverage = 60
-	layer = ABOVE_LYING_MOB_LAYER
+	layer = MOB_BELOW_PIGGYBACK_LAYER
 	allow_pass_flags = PASSABLE
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
@@ -37,19 +37,19 @@
 
 /obj/vehicle/ridden/hover_bike/update_overlays()
 	. = ..()
-	. += mutable_appearance(icon, "hover_bike_toplayer", ABOVE_MOB_PROP_LAYER)
-	. += mutable_appearance(icon, "hover_bike_midlayer", ABOVE_MOB_LAYER)
+	. += mutable_appearance(icon, "hover_bike_toplayer", MOB_UPPER_LAYER)
+	. += mutable_appearance(icon, "hover_bike_midlayer", MOB_ABOVE_PIGGYBACK_LAYER)
 
 /obj/vehicle/ridden/hover_bike/post_unbuckle_mob(mob/living/M)
 	remove_occupant(M)
-	M.pass_flags &= ~pass_flags
+	M.remove_pass_flags(pass_flags, HOVERBIKE_TRAIT)
 	. = ..()
 	animate_hover()
 	animate(M)
 
 /obj/vehicle/ridden/hover_bike/post_buckle_mob(mob/living/M)
 	add_occupant(M)
-	M.pass_flags |= pass_flags
+	M.add_pass_flags(pass_flags, HOVERBIKE_TRAIT)
 	. = ..()
 	animate_hover()
 
@@ -64,7 +64,7 @@
 	if(!LAZYLEN(buckled_mobs))
 		return
 
-	if(COOLDOWN_CHECK(src, enginesound_cooldown))
+	if(COOLDOWN_FINISHED(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, 1.1 SECONDS)
 		playsound(get_turf(src), SFX_HOVER_TANK, 60, FALSE, 20)
 
@@ -72,7 +72,7 @@
 	return welder_repair_act(user, I, 15, 3 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/hover_bike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(src, light_impact_range = 4, flame_range = (rand(33) ? 3 : 0))
+	explosion(src, light_impact_range = 4, flame_range = (rand(33) ? 3 : 0), explosion_cause=blame_mob)
 	return ..()
 
 /obj/vehicle/ridden/hover_bike/lava_act()

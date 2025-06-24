@@ -30,10 +30,10 @@
 		src.bloodcolor = bloodcolor
 
 	if(istype(loc,/turf)) //basically if a badmin spawns it
-		Gib(loc)
+		Gib(loc, mapload)
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/spawner/gibspawner/proc/Gib(atom/location)
+/obj/effect/spawner/gibspawner/proc/Gib(atom/location, mapload = FALSE)
 	if(length(gibtypes) != length(gibamounts) || length(gibamounts) != length(gibdirections))
 		CRASH("GIB LENGTH MISMATCH")
 
@@ -44,28 +44,23 @@
 		s.start()
 
 	for(var/i = 1, i<= length(gibtypes), i++)
-		if(gibamounts[i])
-			for(var/j = 1, j<= gibamounts[i], j++)
-				var/gibType = gibtypes[i]
-				gib = new gibType(location)
+		if(!gibamounts[i])
+			continue
+		for(var/j = 1, j<= gibamounts[i], j++)
+			var/gibType = gibtypes[i]
+			gib = new gibType(location)
 
-				// Apply human species colouration to masks.
-				if(fleshcolor)
-					gib.fleshcolor = fleshcolor
-				if(bloodcolor)
-					gib.basecolor = bloodcolor
+			// Apply human species colouration to masks.
+			if(fleshcolor)
+				gib.fleshcolor = fleshcolor
+			if(bloodcolor)
+				gib.basecolor = bloodcolor
 
-				gib.update_icon()
+			gib.update_icon()
 
-				var/list/directions = gibdirections[i]
-				if(length(directions))
-					gib.streak(directions)
-
-
-
-
-
-/obj/effect/spawner/gibspawner
+			var/list/directions = gibdirections[i]
+			if(length(directions))
+				gib.streak(directions, mapload)
 
 /obj/effect/spawner/gibspawner/generic
 	gibtypes = list(/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs/core)

@@ -45,6 +45,14 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/time_between_round = 0
 	///What factions are used in this gamemode, typically TGMC and xenos
 	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
+	///Reduces the number of T3 slots xenos get by the value.
+	var/tier_three_penalty = 0
+	///Includes T3 xenos in the calculation for maximum T3 slots.
+	var/tier_three_inclusion = FALSE
+	///Caste Swap Timer
+	var/caste_swap_timer = 15 MINUTES
+	///List of castes we dont want to be evolvable depending on gamemode.
+	var/list/restricted_castes
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -61,7 +69,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
-	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
+	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT)
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
 
@@ -477,11 +485,20 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used Psychic Shield."
 	if(GLOB.round_statistics.psy_shield_blasts)
 		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a Psychic Shield."
+	if(GLOB.round_statistics.points_from_objectives)
+		parts += "[GLOB.round_statistics.points_from_objectives] requisitions points gained from objectives."
 	if(GLOB.round_statistics.points_from_mining)
 		parts += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
-
+	if(GLOB.round_statistics.points_from_xenos)
+		parts += "[GLOB.round_statistics.points_from_xenos] requisitions points gained from xenomorph sales."
+	if(GLOB.round_statistics.runner_items_stolen)
+		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by runners."
+	if(GLOB.round_statistics.acid_maw_fires)
+		parts += "[GLOB.round_statistics.acid_maw_fires] Acid Maw uses."
+	if(GLOB.round_statistics.acid_jaw_fires)
+		parts += "[GLOB.round_statistics.acid_jaw_fires] Acid Jaw uses."
 	if(GLOB.round_statistics.sandevistan_uses)
 		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a sandevistan"
 		if(GLOB.round_statistics.sandevistan_gibs)
@@ -590,7 +607,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		if(job.job_flags & JOB_FLAG_SPECIALNAME)
 			name_to_check = job.get_special_name(NP.client)
 		if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(name_to_check))
-			to_chat(usr, "<span class='warning'>Someone has already joined the round with this character name. Please pick another.<spawn>")
+			to_chat(usr, span_warning("Someone has already joined the round with this character name. Please pick another."))
 			return FALSE
 	if(!SSjob.AssignRole(NP, job, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
@@ -815,7 +832,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/datum/action/report/R = new
 	C.player_details.player_actions += R
 	R.give_action(C.mob)
-	to_chat(C,"<span class='infoplain'><a href='?src=[REF(R)];report=1'>Show roundend report again</a></span>")
+	to_chat(C,"<span class='infoplain'><a href='byond://?src=[REF(R)];report=1'>Show roundend report again</a></span>")
 
 /datum/action/report
 	name = "Show roundend report"
@@ -1003,3 +1020,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 ///Returns the armor color variant applicable for this mode
 /datum/game_mode/proc/get_map_color_variant()
 	return SSmapping.configs[GROUND_MAP].armor_style
+
+/// Adjusts the inputted jobworth list.
+/datum/game_mode/proc/get_adjusted_jobworth_list(list/jobworth_list)
+	return jobworth_list

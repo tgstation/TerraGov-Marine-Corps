@@ -96,9 +96,6 @@
 		return
 	if(!istype(user))
 		return
-	if(!COOLDOWN_CHECK(src, defib_cooldown))
-		balloon_alert(user, "toggled too recently")
-		return
 
 	//Job knowledge requirement
 	var/skill = user.skills.getRating(SKILL_MEDICAL)
@@ -108,7 +105,6 @@
 		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	COOLDOWN_START(src, defib_cooldown, 2 SECONDS)
 	ready = !ready
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
@@ -160,11 +156,9 @@
 		balloon_alert(user, "busy")
 		return
 
-	if(!COOLDOWN_CHECK(src, defib_cooldown))
+	if(!COOLDOWN_FINISHED(src, defib_cooldown))
 		balloon_alert(user, "recharging")
 		return
-
-	COOLDOWN_START(src, defib_cooldown, 2 SECONDS) // 2 seconds before you can try again, initially
 
 	//job knowledge requirement
 	var/medical_skill = user.skills.getRating(SKILL_MEDICAL)
@@ -224,6 +218,7 @@
 		return
 
 	// do the defibrillation effects now and check revive parameters in a moment
+	. = TRUE
 	sparks.start()
 	dcell.use(charge_cost)
 	update_icon()
@@ -232,9 +227,9 @@
 	span_notice("You shock [patient] with the paddles."))
 	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
 
-	COOLDOWN_START(src, defib_cooldown, 1 SECONDS) // 1 second before you can try again if you finish the do_after
+	COOLDOWN_START(src, defib_cooldown, DEFIBRILLATOR_COOLDOWN)
 
-	var/datum/internal_organ/heart/heart = patient.internal_organs_by_name["heart"]
+	var/datum/internal_organ/heart/heart = patient.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!issynth(patient) && !isrobot(patient) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
@@ -244,7 +239,7 @@
 		patient.setOxyLoss(0)
 		patient.updatehealth()
 
-		var/heal_target = patient.get_death_threshold() - patient.health + 1
+		var/heal_target = patient.get_crit_threshold() - patient.health + 1
 		var/all_loss = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss()
 		if(all_loss && (heal_target > 0))
 			var/brute_ratio = patient.getBruteLoss() / all_loss
@@ -253,6 +248,9 @@
 			if(tox_ratio)
 				patient.adjustToxLoss(-(tox_ratio * heal_target))
 			patient.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE) // explicitly also heals robot parts
+
+		if(HAS_TRAIT_FROM(patient, TRAIT_IMMEDIATE_DEFIB, SUPERSOLDIER_TRAIT))
+			heart.take_damage(15) // estimated to be 1/2 of the health of the heart so 2 zaps kill you
 
 	else if(!issynth(patient)) // TODO make me a trait :)
 		patient.adjustBruteLoss(-defib_heal_amt)
@@ -296,8 +294,8 @@
 	patient.resuscitate() // time for a smoke
 	patient.emote("gasp")
 	patient.flash_act()
-	patient.apply_effect(10, EYE_BLUR)
-	patient.apply_effect(20 SECONDS, PARALYZE)
+	patient.apply_effect(10, EFFECT_EYE_BLUR)
+	patient.apply_effect(20 SECONDS, EFFECT_UNCONSCIOUS)
 
 	ghost = patient.get_ghost(TRUE) // just in case they re-entered their body
 	if(ghost) // register a signal to bring them into their body on reconnect

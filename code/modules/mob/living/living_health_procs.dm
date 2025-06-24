@@ -44,6 +44,7 @@
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	oxyloss = clamp(oxyloss + amount, 0, maxHealth * 2)
+	return TRUE
 
 /mob/living/proc/setOxyLoss(amount)
 	if(status_flags & GODMODE)
@@ -93,7 +94,7 @@
 
 /mob/living/proc/updateStamina(feedback = TRUE)
 	hud_used?.staminas?.update_icon()
-	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_CHECK(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
+	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_FINISHED(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
 		return
 
 	if(feedback)

@@ -7,30 +7,30 @@
 	skills_type = /datum/skills/civilian/survivor
 	faction = FACTION_TERRAGOV
 
-/datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+/datum/job/survivor/after_spawn(mob/living/carbon/spawned_carbon, mob/M, latejoin = FALSE)
 	. = ..()
-
+	//todo this should be handled better
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-		C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(C), SLOT_HEAD)
-		C.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(C), SLOT_WEAR_SUIT)
-		C.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(C), SLOT_WEAR_MASK)
-		C.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(C), SLOT_SHOES)
-		C.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(C), SLOT_GLOVES)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(spawned_carbon), SLOT_HEAD)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(spawned_carbon), SLOT_W_UNIFORM)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(spawned_carbon), SLOT_WEAR_MASK)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(spawned_carbon), SLOT_SHOES)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(spawned_carbon), SLOT_GLOVES)
 
 	var/weapons = pick(SURVIVOR_WEAPONS)
-	var/obj/item/weapon/W = weapons[1]
-	var/obj/item/ammo_magazine/A = weapons[2]
-	C.equip_to_slot_or_del(new /obj/item/belt_harness(C), SLOT_BELT)
-	C.put_in_hands(new W(C))
-	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
-	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
-	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
+	var/obj/item/weapon/picked_weapon = weapons[1]
+	var/obj/item/ammo_magazine/picked_ammo = weapons[2]
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/belt_harness(spawned_carbon), SLOT_BELT)
+	spawned_carbon.put_in_hands(new picked_weapon(spawned_carbon))
+	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), SLOT_IN_BACKPACK)
+	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), SLOT_IN_BACKPACK)
+	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), SLOT_IN_BACKPACK)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(spawned_carbon), SLOT_IN_BACKPACK)
 
-	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(C), SLOT_GLASSES)
-	C.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(C), SLOT_R_STORE)
-	C.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(C), SLOT_L_STORE)
-	C.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(C), SLOT_IN_BACKPACK)
-	C.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/rugged(C), SLOT_HEAD)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(spawned_carbon), SLOT_GLASSES)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(spawned_carbon), SLOT_R_STORE)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(spawned_carbon), SLOT_L_STORE)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/rugged(spawned_carbon), SLOT_HEAD)
 
 	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_PRISON_STATION)
@@ -50,30 +50,15 @@
 		else
 			to_chat(M, span_notice("Through a miracle you managed to survive the attack. But are you truly safe now?"))
 
-/datum/job/survivor/radio_help_message(mob/M)
+/datum/job/survivor/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"In whatever case you have been through, you are here to survive and get yourself rescued.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"In whatever case you have been through, you are here to survive and get yourself rescued.
 You appreciate the support of TerraGov and Nanotrasen should you be rescued.
 You are not hostile to TGMC, nor you should oppose or disrupt their objective, unless an admin says otherwise.
 If you find any other survivors in the area, cooperate with them to increase your chances of survival.
 Depending on the job you've undertook, you may have additional skills to help others when needed.
-Good luck, but do not expect to survive."})
-
-
-//Assistant
-/datum/job/survivor/assistant
-	title = "Assistant Survivor"
-	outfit = /datum/outfit/job/survivor/assistant
-
-
-/datum/outfit/job/survivor/assistant
-	name = "Assistant Survivor"
-	jobtype = /datum/job/survivor/assistant
-
-	w_uniform = /obj/item/clothing/under/color/grey
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/norm
-	wear_suit = /obj/item/clothing/suit/armor/vest
+Good luck, but do not expect to survive."}
 
 
 //Scientist
@@ -83,16 +68,6 @@ Good luck, but do not expect to survive."})
 	outfit = /datum/outfit/job/survivor/scientist
 
 
-/datum/outfit/job/survivor/scientist
-	name = "Scientist Survivor"
-	jobtype = /datum/job/survivor/scientist
-
-	w_uniform = /obj/item/clothing/under/rank/scientist
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/tox
-
-
 //Doctor
 /datum/job/survivor/doctor
 	title = "Doctor's Assistant Survivor"
@@ -100,30 +75,10 @@ Good luck, but do not expect to survive."})
 	outfit = /datum/outfit/job/survivor/doctor
 
 
-/datum/outfit/job/survivor/doctor
-	name = "Doctor's Assistant Survivor"
-	jobtype = /datum/job/survivor/doctor
-
-	w_uniform = /obj/item/clothing/under/rank/medical
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/med
-
-
 //Liaison
 /datum/job/survivor/liaison
 	title = "Liaison Survivor"
 	outfit = /datum/outfit/job/survivor/liaison
-
-
-/datum/outfit/job/survivor/liaison
-	name = "Liaison Survivor"
-	jobtype = /datum/job/survivor/liaison
-
-	w_uniform = /obj/item/clothing/under/liaison_suit
-	wear_suit = /obj/item/clothing/suit/armor/bulletproof
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/norm
 
 
 //Security Guard
@@ -133,30 +88,11 @@ Good luck, but do not expect to survive."})
 	outfit = /datum/outfit/job/survivor/security
 
 
-/datum/outfit/job/survivor/security
-	name = "Security Guard Survivor"
-	jobtype = /datum/job/survivor/security
-
-	w_uniform = /obj/item/clothing/under/rank/security/corp
-	wear_suit = /obj/item/clothing/suit/armor/bulletproof
-	shoes = /obj/item/clothing/shoes/marine
-	back = /obj/item/storage/backpack/satchel/sec
-
 
 //Civilian
 /datum/job/survivor/civilian
 	title = "Civilian Survivor"
 	outfit = /datum/outfit/job/survivor/civilian
-
-
-/datum/outfit/job/survivor/civilian
-	name = "Civilian Survivor"
-	jobtype = /datum/job/survivor/civilian
-
-	w_uniform = /obj/item/clothing/under/pj/red
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/norm
 
 
 //Chef
@@ -166,63 +102,25 @@ Good luck, but do not expect to survive."})
 	outfit = /datum/outfit/job/survivor/chef
 
 
-/datum/outfit/job/survivor/chef
-	name = "Chef Survivor"
-	jobtype = /datum/job/survivor/chef
-
-	w_uniform = /obj/item/clothing/under/rank/chef
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/norm
-
-
 //Botanist
 /datum/job/survivor/botanist
 	title = "Botanist Survivor"
 	outfit = /datum/outfit/job/survivor/botanist
 
 
-/datum/outfit/job/survivor/botanist
-	name = "Botanist Survivor"
-	jobtype = /datum/job/survivor/botanist
-
-	w_uniform = /obj/item/clothing/under/rank/hydroponics
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/hydroponics
-
 
 //Atmospherics Technician
 /datum/job/survivor/atmos
-	title = "Atmospherics Technician Survivor"
+	title = "Atmos Technician Survivor"
 	skills_type = /datum/skills/civilian/survivor/atmos
 	outfit = /datum/outfit/job/survivor/atmos
 
-
-/datum/outfit/job/survivor/atmos
-	name = "Atmospherics Technician Survivor"
-	jobtype = /datum/job/survivor/atmos
-
-	w_uniform = /obj/item/clothing/under/rank/atmospheric_technician
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/eng
 
 
 //Chaplain
 /datum/job/survivor/chaplain
 	title = "Chaplain Survivor"
 	outfit = /datum/outfit/job/survivor/chaplain
-
-
-/datum/outfit/job/survivor/chaplain
-	name = "Chaplain Survivor"
-	jobtype = /datum/job/survivor/chaplain
-
-	w_uniform = /obj/item/clothing/under/rank/chaplain
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/norm
 
 
 //Miner
@@ -232,30 +130,12 @@ Good luck, but do not expect to survive."})
 	outfit = /datum/outfit/job/survivor/miner
 
 
-/datum/outfit/job/survivor/miner
-	name = "Miner Survivor"
-	jobtype = /datum/job/survivor/miner
-
-	w_uniform = /obj/item/clothing/under/rank/miner
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/norm
-
 
 //Salesman
 /datum/job/survivor/salesman
 	title = "Salesman Survivor"
 	outfit = /datum/outfit/job/survivor/salesman
 
-
-/datum/outfit/job/survivor/salesman
-	name = "Salesman Survivor"
-	jobtype = /datum/job/survivor/salesman
-
-	w_uniform = /obj/item/clothing/under/liaison_suit
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel
 
 
 //Colonial Marshal
@@ -264,29 +144,63 @@ Good luck, but do not expect to survive."})
 	skills_type = /datum/skills/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/marshal
 
+//Roboticist Survivor
+/datum/job/survivor/roboticist
+	title = "Roboticist Survivor"
+	skills_type = /datum/skills/civilian/survivor/atmos
+	outfit = /datum/outfit/job/survivor/roboticist
 
-/datum/outfit/job/survivor/marshal
-	name = "Colonial Marshal Survivor"
-	jobtype = /datum/job/survivor/marshal
+//Chemist Survivor
+/datum/job/survivor/chemist
+	title = "Pharmacy Technician Survivor"
+	skills_type = /datum/skills/civilian/survivor/scientist
+	outfit = /datum/outfit/job/survivor/chemist
 
-	w_uniform = /obj/item/clothing/under/CM_uniform
-	wear_suit = /obj/item/clothing/suit/storage/CMB
-	shoes = /obj/item/clothing/shoes/jackboots
-	back = /obj/item/storage/backpack/satchel/sec
+//Assistant
+/datum/job/survivor/assistant
+	title = "Assistant Survivor"
+	outfit = /datum/outfit/job/survivor/assistant
+
+//Bartender Survivor
+/datum/job/survivor/bartender
+	title = "Bartender Survivor"
+	outfit = /datum/outfit/job/survivor/bartender
 
 
-// Rambo Survivor
+//Roboticist Survivor
+/datum/job/survivor/roboticist
+	title = "Roboticist Survivor"
+	skills_type = /datum/skills/civilian/survivor/atmos
+	outfit = /datum/outfit/job/survivor/roboticist
+
+
+/datum/outfit/job/survivor/roboticist
+	name = "Roboticist Survivor"
+	jobtype = /datum/job/survivor/roboticist
+
+	w_uniform = /obj/item/clothing/under/rank/roboticist
+	wear_suit = /obj/item/clothing/suit/storage/labcoat/science
+	belt = /obj/item/storage/belt/utility/full
+	shoes = /obj/item/clothing/shoes/black
+	back = /obj/item/storage/backpack/satchel/tox
+	ears = /obj/item/radio/survivor
+	glasses = /obj/item/clothing/glasses/welding/flipped
+	l_pocket = /obj/item/storage/pouch/electronics/full
+	r_pocket = /obj/item/flashlight/combat
+
+/datum/outfit/job/survivor/roboticist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/deployable_vehicle/tiny, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
+
+// Rambo Survivor - pretty overpowered, pls spawn with caution
 /datum/job/survivor/rambo
-	title = "Survivor"
+	title = "Rambo Survivor"
 	skills_type = /datum/skills/civilian/survivor/master
 	outfit = /datum/outfit/job/survivor/rambo
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN
-
-/datum/outfit/job/survivor/rambo
-	name = "Survivor"
-	jobtype = /datum/job/survivor/rambo
-	w_uniform = /obj/item/clothing/under/color/grey
-	wear_suit = /obj/item/clothing/suit/armor/rugged
-	shoes = /obj/item/clothing/shoes/ruggedboot
-	back = /obj/item/storage/backpack/satchel/rugged
-	gloves = /obj/item/clothing/gloves/ruggedgloves

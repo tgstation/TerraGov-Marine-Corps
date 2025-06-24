@@ -71,7 +71,7 @@
 	)
 	worn_icon_state = "vali_spear"
 	force = 32
-	force_wielded = 60
+	force_activated = 60
 	throwforce = 60
 
 /obj/item/weapon/twohanded/spear/tactical/harvester/Initialize(mapload)
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, 60, TRUE)
+	AddComponent(/datum/component/harvester, 60)
 
 /obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
 	. = ..()

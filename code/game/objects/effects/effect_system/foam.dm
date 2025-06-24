@@ -29,10 +29,18 @@
 	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, 5)
 	AddComponent(/datum/component/slippery, 0.5 SECONDS, 0.2 SECONDS)
+	AddComponent(/datum/component/submerge_modifier, 10)
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/particle_effect/foam/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
+
+/obj/effect/particle_effect/foam/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_WET] = layer
 
 ///Finishes the foam, stopping it from processing and doing whatever it has to do.
 /obj/effect/particle_effect/foam/proc/kill_foam()
@@ -147,7 +155,7 @@
 	var/obj/effect/particle_effect/foam/F = new(location.resolve())
 	var/foamcolor = mix_color_from_reagents(carrying_reagents.reagent_list)
 	carrying_reagents.copy_to(F, spread_amount ? carrying_reagents.total_volume/spread_amount : carrying_reagents.total_volume) //this magically duplicates chems
-	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
+	F.add_atom_colour(foamcolor, FIXED_COLOR_PRIORITY)
 	F.spread_amount = spread_amount
 	F.foam_flags = foam_flags
 

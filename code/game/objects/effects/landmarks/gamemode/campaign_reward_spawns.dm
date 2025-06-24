@@ -4,8 +4,7 @@
 	desc = "THIS SHOULDN'T BE VISIBLE"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "tgmc_reward_spawn"
-	///Faction associated with this location
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 
 /obj/effect/landmark/reward_spawn_location/Initialize(mapload)
 	. = ..()

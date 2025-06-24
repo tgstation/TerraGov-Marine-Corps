@@ -84,7 +84,8 @@
 		return
 	weapon.reload()
 	update_appearance(UPDATE_ICON)
-	user.say(is_secondary ? "Loaded!" : "Up!")
+	var/obj/item/ammo_magazine/tank/callout = mag
+	user.say(is_secondary ? "Loaded!" : (callout.callout_name ? "[callout.callout_name], Up!" : "Up!"))
 
 ///Unloads the weapon attached to the breech
 /obj/structure/gun_breech/proc/do_unload(mob/living/user, obj/item/armored_weapon/weapon)
@@ -269,3 +270,15 @@
 	name = "Tank weapon"
 	mouse_opacity  = MOUSE_OPACITY_TRANSPARENT
 	layer = ABOVE_MOB_PLATFORM_LAYER
+
+/obj/structure/gun_breech/lvrt
+	name = "gun breech"
+	icon = 'icons/obj/armored/2x2/icc_lvrt.dmi'
+	icon_state = "lvrt_breech"
+
+/obj/structure/gun_breech/secondary/lvrt
+	name = "coaxial loading mechanism"
+	desc = "A feeding mechanism for loading ammo into the vehicle's coaxial feed."
+	icon = 'icons/obj/armored/2x2/icc_lvrt.dmi'
+	icon_state = "lvrt_secondary_breech"
+	is_secondary = TRUE

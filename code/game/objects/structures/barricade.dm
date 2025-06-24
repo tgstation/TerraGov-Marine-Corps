@@ -9,7 +9,7 @@
 	obj_flags = CAN_BE_HIT | IGNORE_DENSITY | BLOCKS_CONSTRUCTION_DIR
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
-	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
+	climb_delay = 2 SECONDS
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
 	barrier_flags = HANDLE_BARRIER_CHANCE
@@ -30,7 +30,7 @@
 	///is this barriade wired?
 	var/is_wired = FALSE
 
-/obj/structure/barricade/Initialize(mapload)
+/obj/structure/barricade/Initialize(mapload, mob/user)
 	. = ..()
 	update_icon()
 	var/static/list/connections = list(
@@ -38,6 +38,8 @@
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	if(user)
+		faction = user.faction
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
 	return prob(max(30,(100.0*obj_integrity)/max_integrity))
@@ -81,7 +83,7 @@
 
 	if(is_wired)
 		balloon_alert(xeno_attacker, "Wire slices into us")
-		xeno_attacker.apply_damage(10, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
+		xeno_attacker.apply_damage(15, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
 
 	return ..()
 
@@ -90,10 +92,9 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "Can't, it's melting")
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	if(!istype(I, /obj/item/stack/barbed_wire) || !can_wire)
 		return
@@ -103,6 +104,10 @@
 	balloon_alert_to_viewers("Setting up wire...")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD) || !can_wire)
 		return
+
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
@@ -136,7 +141,7 @@
 	new /obj/item/stack/barbed_wire(loc)
 
 
-/obj/structure/barricade/deconstruct(disassembled = TRUE)
+/obj/structure/barricade/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
@@ -220,7 +225,7 @@
 
 /obj/structure/barricade/verb/rotate()
 	set name = "Rotate Barricade Counter-Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(anchored)
@@ -231,7 +236,7 @@
 
 /obj/structure/barricade/verb/revrotate()
 	set name = "Rotate Barricade Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(anchored)
@@ -273,11 +278,6 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting!")
-			return
-
 	//Removing the barricades
 	if(!istype(I, /obj/item/tool/shovel) || user.a_intent == INTENT_HARM)
 		return
@@ -297,13 +297,7 @@
 
 	if(ET.folded)
 		return
-	var/deconstructed = TRUE
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t != src)
-			continue
-		deconstructed = FALSE
-		break
-	deconstruct(deconstructed)
+	deconstruct(!get_self_acid())
 
 /*----------------------*/
 // GUARD RAIL
@@ -348,17 +342,12 @@
 	can_wire = FALSE
 
 /obj/structure/barricade/wooden/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
 /obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
-
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting!")
-			return
 
 	if(!istype(I, /obj/item/stack/sheet/wood))
 		return
@@ -377,6 +366,10 @@
 
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 		return
+
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	if(!D.use(1))
 		return
@@ -400,16 +393,21 @@
 
 #define CADE_UPGRADE_REQUIRED_SHEETS 1
 
-/obj/structure/barricade/metal
+//cade armor defines
+#define CADE_UPGRADE_BOMB 80
+#define CADE_UPGRADE_MELEE list(melee = 30, bullet = 50, laser = 50, energy = 50)
+#define CADE_UPGRADE_ACID 75
+
+/obj/structure/barricade/solid
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon = 'icons/obj/structures/barricades/metal.dmi'
 	icon_state = "metal_0"
-	max_integrity = 200
+	max_integrity = 250
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/metal
-	stack_amount = 4
+	stack_amount = BUILD_COST_METAL_CADE
 	destroyed_stack_amount = 2
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "metal"
@@ -419,10 +417,16 @@
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
 
-/obj/structure/barricade/metal/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+/obj/structure/barricade/solid/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 75)
 
-/obj/structure/barricade/metal/update_overlays()
+/obj/structure/barricade/solid/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
+
+/obj/structure/barricade/solid/update_overlays()
 	. = ..()
 	if(!barricade_upgrade_type)
 		return
@@ -439,13 +443,13 @@
 			damage_state = 0
 	switch(barricade_upgrade_type)
 		if(CADE_TYPE_BOMB)
-			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+explosive_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "[barricade_type]+explosive_upgrade_[damage_state]")
 		if(CADE_TYPE_MELEE)
-			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+brute_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "[barricade_type]+brute_upgrade_[damage_state]")
 		if(CADE_TYPE_ACID)
-			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+burn_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "[barricade_type]+burn_upgrade_[damage_state]")
 
-/obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
+/obj/structure/barricade/solid/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
@@ -469,6 +473,10 @@
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 		return FALSE
 
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
+
 	if(!metal_sheets.use(2))
 		return FALSE
 
@@ -477,7 +485,7 @@
 	update_icon()
 
 
-/obj/structure/barricade/metal/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
+/obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
 	if(barricade_upgrade_type)
 		balloon_alert(user, "Already upgraded")
 		return FALSE
@@ -510,11 +518,11 @@
 
 	switch(choice)
 		if(CADE_TYPE_BOMB)
-			soft_armor = soft_armor.modifyRating(bomb = 50)
+			soft_armor = soft_armor.modifyRating(BOMB = CADE_UPGRADE_BOMB)
 		if(CADE_TYPE_MELEE)
-			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30, laser = 30, energy = 30)
+			soft_armor = soft_armor.modifyRating(MELEE = CADE_UPGRADE_MELEE["melee"], BULLET = CADE_UPGRADE_MELEE["bullet"], LASER = CADE_UPGRADE_MELEE["laser"], ENERGY = CADE_UPGRADE_MELEE["energy"])
 		if(CADE_TYPE_ACID)
-			soft_armor = soft_armor.modifyRating(acid = 20)
+			soft_armor = soft_armor.modifyRating(ACID = CADE_UPGRADE_ACID)
 			resistance_flags |= UNACIDABLE
 
 	barricade_upgrade_type = choice
@@ -526,7 +534,7 @@
 	update_icon()
 
 
-/obj/structure/barricade/metal/examine(mob/user)
+/obj/structure/barricade/solid/examine(mob/user)
 	. = ..()
 	switch(build_state)
 		if(BARRICADE_METAL_FIRM)
@@ -538,13 +546,13 @@
 
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
-/obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/solid/welder_act(mob/living/user, obj/item/I)
 	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, SKILL_ENGINEER_METAL, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "Too damaged. Use metal sheets.")
 
 
-/obj/structure/barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/solid/screwdriver_act(mob/living/user, obj/item/I)
 	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
@@ -578,7 +586,7 @@
 			return TRUE
 
 
-/obj/structure/barricade/metal/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/solid/wrench_act(mob/living/user, obj/item/I)
 	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
@@ -634,7 +642,7 @@
 			return TRUE
 
 
-/obj/structure/barricade/metal/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/solid/crowbar_act(mob/living/user, obj/item/I)
 	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
@@ -653,13 +661,7 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			var/deconstructed = TRUE
-			for(var/obj/effect/xenomorph/acid/A in loc)
-				if(A.acid_t != src)
-					continue
-				deconstructed = FALSE
-				break
-			deconstruct(deconstructed)
+			deconstruct(!get_self_acid())
 			return TRUE
 		if(BARRICADE_METAL_FIRM)
 
@@ -683,11 +685,11 @@
 
 			switch(barricade_upgrade_type)
 				if(CADE_TYPE_BOMB)
-					soft_armor = soft_armor.modifyRating(bomb = -50)
+					soft_armor = soft_armor.modifyRating(BOMB = -CADE_UPGRADE_BOMB)
 				if(CADE_TYPE_MELEE)
-					soft_armor = soft_armor.modifyRating(melee = -30, bullet = -30, laser = -30, energy = -30)
+					soft_armor = soft_armor.modifyRating(MELEE = -CADE_UPGRADE_MELEE["melee"], BULLET = -CADE_UPGRADE_MELEE["bullet"], LASER = -CADE_UPGRADE_MELEE["laser"], ENERGY = -CADE_UPGRADE_MELEE["energy"])
 				if(CADE_TYPE_ACID)
-					soft_armor = soft_armor.modifyRating(acid = -20)
+					soft_armor = soft_armor.modifyRating(ACID = -CADE_UPGRADE_ACID)
 					resistance_flags &= ~UNACIDABLE
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
@@ -697,7 +699,7 @@
 			return TRUE
 
 
-/obj/structure/barricade/metal/ex_act(severity)
+/obj/structure/barricade/solid/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(rand(400, 600), BRUTE, BOMB)
@@ -710,29 +712,40 @@
 
 	update_icon()
 
-
 #undef BARRICADE_METAL_LOOSE
 #undef BARRICADE_METAL_ANCHORED
 #undef BARRICADE_METAL_FIRM
 
+/obj/structure/barricade/solid/plasteel
+	name = "plasteel barricade"
+	desc = "A sturdy and easily assembled barricade made of reinforced plasteel plates, the pinnacle of strongpoints. Use a blowtorch to repair."
+	icon = 'icons/obj/structures/barricades/plasteel.dmi'
+	icon_state = "new_plasteel_0"
+	max_integrity = 400
+	stack_type = /obj/item/stack/sheet/plasteel
+	stack_amount = BUILD_COST_PLASTEEL_CADE
+	destroyed_stack_amount = 1
+	barricade_type = "new_plasteel"
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
+
 /*----------------------*/
-// PLASTEEL
+// Folding
 /*----------------------*/
 
 #define BARRICADE_PLASTEEL_LOOSE 0
 #define BARRICADE_PLASTEEL_ANCHORED 1
 #define BARRICADE_PLASTEEL_FIRM 2
 
-/obj/structure/barricade/plasteel
-	name = "plasteel barricade"
+/obj/structure/barricade/folding
+	name = "folding plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon = 'icons/obj/structures/barricades/plasteel.dmi'
 	icon_state = "plasteel_closed_0"
-	max_integrity = 500
-	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
+	max_integrity = 550
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/plasteel
-	stack_amount = 5
+	stack_amount = BUILD_COST_PLASTEEL_CADE_FOLDABLE
 	destroyed_stack_amount = 2
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "plasteel"
@@ -740,23 +753,33 @@
 	closed = TRUE
 	can_wire = TRUE
 	climbable = TRUE
+	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
 	///What state is our barricade in for construction steps?
 	var/build_state = BARRICADE_PLASTEEL_FIRM
 	var/busy = FALSE //Standard busy check
-	///ehther we react with other cades next to us ie when opening or so
+	///wether we react with other cades next to us ie when opening or so
 	var/linked = FALSE
-	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
+	///If we can be linked to nearby cades of the sametype
+	var/linkable = TRUE
+	///The skill type of this cade, used for fumble checks
+	var/skilltype = SKILL_ENGINEER_PLASTEEL
 
-/obj/structure/barricade/plasteel/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+/obj/structure/barricade/folding/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 100)
 
-/obj/structure/barricade/plasteel/handle_barrier_chance(mob/living/M)
+/obj/structure/barricade/folding/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
+
+/obj/structure/barricade/folding/handle_barrier_chance(mob/living/M)
 	if(closed)
 		return ..()
 	else
 		return FALSE
 
-/obj/structure/barricade/plasteel/examine(mob/user)
+/obj/structure/barricade/folding/examine(mob/user)
 	. = ..()
 
 	switch(build_state)
@@ -767,16 +790,16 @@
 		if(BARRICADE_PLASTEEL_LOOSE)
 			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
-/obj/structure/barricade/plasteel/welder_act(mob/living/user, obj/item/I)
-	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, SKILL_ENGINEER_PLASTEEL, 1)
+/obj/structure/barricade/folding/welder_act(mob/living/user, obj/item/I)
+	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, skilltype, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
-		balloon_alert(user, "Too damaged. Use plasteel sheets.")
+		balloon_alert(user, "Too damaged. Use [barricade_type] sheets.")
 
-/obj/structure/barricade/plasteel/screwdriver_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/folding/screwdriver_act(mob/living/user, obj/item/I)
 	if(!isscrewdriver(I))
 		return
 
-	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
 		return
 
 	if(LAZYACCESS(user.do_actions, src))
@@ -786,8 +809,8 @@
 
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 
@@ -803,19 +826,19 @@
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			build_state = BARRICADE_PLASTEEL_ANCHORED
 		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("bolt protection panel replaced")
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			build_state = BARRICADE_PLASTEEL_FIRM
 
-/obj/structure/barricade/plasteel/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/folding/crowbar_act(mob/living/user, obj/item/I)
 	if(!iscrowbar(I))
 		return
 
-	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
 		return
 
 	if(LAZYACCESS(user.do_actions, src))
@@ -825,15 +848,16 @@
 
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_FIRM)
-			balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
-			linked = !linked
-			for(var/direction in GLOB.cardinals)
-				for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
-					cade.update_icon()
-			update_icon()
+			if(linkable)
+				balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
+				linked = !linked
+				for(var/direction in GLOB.cardinals)
+					for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
+						cade.update_icon()
+				update_icon()
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 5 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("disassembling")
@@ -848,19 +872,13 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			var/deconstructed = TRUE
-			for(var/obj/effect/xenomorph/acid/A in loc)
-				if(A.acid_t != src)
-					continue
-				deconstructed = FALSE
-				break
-			deconstruct(deconstructed)
+			deconstruct(!get_self_acid())
 
-/obj/structure/barricade/plasteel/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/folding/wrench_act(mob/living/user, obj/item/I)
 	if(!iswrench(I))
 		return
 
-	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
 		return
 
 	if(LAZYACCESS(user.do_actions, src))
@@ -870,8 +888,8 @@
 
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("anchor bolts loosened")
@@ -892,8 +910,8 @@
 				balloon_alert(user, "can't anchor here")
 				return
 
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("secured bolts")
@@ -903,43 +921,48 @@
 			build_state = BARRICADE_PLASTEEL_ANCHORED
 			update_icon() //unanchored changes layer
 
-/obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
+/obj/structure/barricade/folding/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(istype(I, /obj/item/stack/sheet/plasteel))
-		var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
-		if(obj_integrity >= max_integrity * 0.3)
-			return
+	if(!istype(I, stack_type))
+		return
+	var/obj/item/stack/sheet/stack = I
+	if(obj_integrity >= max_integrity * 0.3)
+		return
 
-		if(plasteel_sheets.get_amount() < 2)
-			balloon_alert(user, "You need at least 2 plasteel")
-			return
+	if(stack.get_amount() < 2)
+		balloon_alert(user, "You need at least 2 [barricade_type] sheets")
+		return
 
-		if(LAZYACCESS(user.do_actions, src))
-			return
+	if(LAZYACCESS(user.do_actions, src))
+		return
 
-		balloon_alert_to_viewers("Repairing base...")
+	balloon_alert_to_viewers("Repairing base...")
 
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
-			return
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+		return
 
-		if(!plasteel_sheets.use(2))
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
-		repair_damage(max_integrity * 0.3, user)
-		balloon_alert_to_viewers("Base repaired")
-		update_icon()
+	if(!stack.use(2))
+		return
 
-/obj/structure/barricade/plasteel/attack_hand(mob/living/user)
+	repair_damage(max_integrity * 0.3, user)
+	balloon_alert_to_viewers("Base repaired")
+	update_icon()
+
+/obj/structure/barricade/folding/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 
 	toggle_open(null, user)
 
-/obj/structure/barricade/plasteel/proc/toggle_open(state, atom/user)
+/obj/structure/barricade/folding/proc/toggle_open(state, atom/user)
 	if(state == closed)
 		return
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -949,26 +972,26 @@
 	user?.visible_message(span_notice("[user] flips [src] [closed ? "closed" :"open"]."),
 		span_notice("You flip [src] [closed ? "closed" :"open"]."))
 
-	if(!linked)
+	if(!linked || !linkable)
 		update_icon()
 		return
 	for(var/direction in GLOB.cardinals)
-		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+		for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
 			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked)
 				cade.toggle_open(closed)
 
 	update_icon()
 
-/obj/structure/barricade/plasteel/update_overlays()
+/obj/structure/barricade/folding/update_overlays()
 	. = ..()
 	if(!linked)
 		return
 	for(var/direction in GLOB.cardinals)
-		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+		for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
 			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked && cade.closed == closed)
 				. += image(icon, icon_state = "[barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
 
-/obj/structure/barricade/plasteel/ex_act(severity)
+/obj/structure/barricade/folding/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(rand(450, 650), BRUTE, BOMB)
@@ -985,6 +1008,19 @@
 #undef BARRICADE_PLASTEEL_ANCHORED
 #undef BARRICADE_PLASTEEL_FIRM
 
+/obj/structure/barricade/folding/metal
+	name = "folding metal barricade"
+	desc = "A folding barricade made out of metal, making it slightly stronger than a normal metal barricade. Use a blowtorch to repair. Can be flipped down to create a path."
+	icon_state = "folding_metal_closed_0"
+	icon = 'icons/obj/structures/barricades/metal.dmi'
+	max_integrity = 350
+	stack_type = /obj/item/stack/sheet/metal
+	stack_amount = BUILD_COST_METAL_CADE_FOLDABLE
+	destroyed_stack_amount = 3
+	barricade_type = "folding_metal"
+	linkable = FALSE
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
+
 /*----------------------*/
 // SANDBAGS
 /*----------------------*/
@@ -994,7 +1030,7 @@
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon = 'icons/obj/structures/barricades/sandbags.dmi'
 	icon_state = "sandbag_0"
-	max_integrity = 300
+	max_integrity = 325
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sandbags
@@ -1017,11 +1053,6 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "it's melting!")
-			return
-
 	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = I
 		if(ET.folded)
@@ -1031,13 +1062,7 @@
 			return TRUE
 		user.visible_message(span_notice("[user] disassembles [src]."),
 		span_notice("You disassemble [src]."))
-		var/deconstructed = TRUE
-		for(var/obj/effect/xenomorph/acid/A in loc)
-			if(A.acid_t != src)
-				continue
-			deconstructed = FALSE
-			break
-		deconstruct(deconstructed)
+		deconstruct(!get_self_acid())
 		return TRUE
 
 	if(istype(I, /obj/item/stack/sandbags))
@@ -1056,6 +1081,10 @@
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
 			return
 
+		if(get_self_acid())
+			balloon_alert(user, "It's melting!")
+			return
+
 		if(!D.use(1))
 			return
 
@@ -1063,10 +1092,10 @@
 		balloon_alert_to_viewers("Repaired")
 		update_icon()
 
-/obj/structure/barricade/metal/deployable
+/obj/structure/barricade/solid/deployable
 	icon = 'icons/obj/structures/barricades/folding.dmi'
 	icon_state = "folding_0"
-	max_integrity = 300
+	max_integrity = 325
 	coverage = 100
 	barricade_type = "folding"
 	can_wire = TRUE
@@ -1077,7 +1106,7 @@
 	///What it deploys into. typecast version of internal_item
 	var/obj/item/weapon/shield/riot/marine/deployable/internal_shield
 
-/obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
+/obj/structure/barricade/solid/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	if(!_internal_item && !internal_shield)
 		return INITIALIZE_HINT_QDEL
@@ -1092,25 +1121,18 @@
 		is_wired = TRUE
 		climbable = FALSE
 
-/obj/structure/barricade/metal/deployable/get_internal_item()
+/obj/structure/barricade/solid/deployable/get_internal_item()
 	return internal_shield
 
-/obj/structure/barricade/metal/deployable/clear_internal_item()
+/obj/structure/barricade/solid/deployable/clear_internal_item()
 	internal_shield = null
 
-///Dissassembles the device
-/obj/structure/barricade/metal/deployable/proc/disassemble(mob/user)
-	if(CHECK_BITFIELD(internal_shield.item_flags, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "Cannot disassemble")
-		return
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
-
-/obj/structure/barricade/metal/deployable/Destroy()
+/obj/structure/barricade/solid/deployable/Destroy()
 	if(internal_shield)
 		QDEL_NULL(internal_shield)
 	return ..()
 
-/obj/structure/barricade/metal/deployable/MouseDrop(over_object, src_location, over_location)
+/obj/structure/barricade/solid/deployable/MouseDrop(over_object, src_location, over_location)
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr
@@ -1118,13 +1140,13 @@
 		return
 	disassemble(user)
 
-/obj/structure/barricade/metal/deployable/wire()
+/obj/structure/barricade/solid/deployable/wire()
 	. = ..()
 	//makes the shield item wired as well
 	internal_shield.is_wired = TRUE
 	internal_shield.modify_max_integrity(max_integrity + 50)
 
-/obj/structure/barricade/metal/deployable/attempt_barricade_upgrade()
+/obj/structure/barricade/solid/deployable/attempt_barricade_upgrade()
 	return //not upgradable
 
 

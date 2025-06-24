@@ -1,0 +1,655 @@
+2025-03-01:
+  The_Man:
+  - bugfix: You can no longer activate robot self-repair if brute and burn damage
+      is 0.
+  TiviPlus:
+  - balance: mech take fire damage
+  - admin: Added reload-config admin verb
+  - balance: Mech can now reload on the move
+  - bugfix: Fixed not all mech items respecting arms being blown off
+  - balance: Lightweight mech booster gets +1 dash range
+  - balance: Removed melee core speed boost
+  - bugfix: Fixed get mob not working on cryod mobs
+  - bugfix: fixed reload-admins not working
+  - bugfix: fixed mech sprint not updating the overlay correctly
+  blackdav123:
+  - rscadd: Marines have been better trained about nutrition and will stop eating
+      before they get fat.
+  - bugfix: Eating messages use the correct nutrition values.
+  fleewave:
+  - rscadd: Added a keybind that toggles click-drag on and off, preventing clicks
+      from not going through when off.
+  novaepee:
+  - spellcheck: 2025 tip update!
+2025-03-02:
+  Apple-107:
+  - rscadd: SG-153 Spotting Rifle Ammo Bin (Underbarrel of SG-62 Target Rifle) now
+      purchasable by Requisitions
+  - balance: Only the standard SR ammunition is available in ammo bin form, you still
+      have to purchase its specialized ammo in individual magazines.
+  - rscadd: SG-153 Spotting Rifle Ammo Bins can also be made by factory.
+  - bugfix: SG-153 uses 12.7mm Smart Magnum rounds rather than the nonsensical 12x7mm
+  Notamaniac:
+  - bugfix: Glasses/Goggles can no longer be toggled in hand creating an empty hud
+      visor sprite
+  TiviPlus:
+  - balance: mech dash has a cooldown now
+  - admin: Remove from tank admin verb has a confirmation popup now
+  - rscdel: Removed duplicate follow verbs that just listed what was already in the
+      orbit menu
+  - bugfix: Fixed drop pods not centering screen text
+  blackdav123:
+  - rscadd: Valhalla vehicle spawner buttons now include the three types of mechs.
+  fleewave:
+  - balance: Huggers now die if thrown onto a vehicle.
+  ivanmixo:
+  - bugfix: Neutral faction mobs can no longer be hive targets
+  - qol: Mousing over clickable UI elements and wall mounted machinery now turns your
+      cursor into a pointer
+  - bugfix: You can no longer hijack alamo shipside
+  yyzsong:
+  - rscadd: The Acid Maw may now fire a facehugger shot
+  - rscdel: The Acid Maw may no longer fire an acid gas shot
+  - rscadd: The Acid Jaws may now fire an acid gas shot
+  - rscdel: The Acid Jaws may no longer fire a facehugger shot
+2025-03-03:
+  TiviPlus:
+  - balance: nerfed mech power generation and increased boosting cost
+  yyzsong:
+  - bugfix: some messages will no longer have an unnecessary space before them.
+2025-03-04:
+  RipGrayson:
+  - rscadd: Added nodes to the campaign maps.
+  - rscadd: Added nodes to the campaign map modulars.
+  - rscadd: Added a mech bay to the debugdalus.
+  - rscadd: Added a droppod bay to the debugdalus.
+  - bugfix: Minions can now enter ERT shuttles.
+  - bugfix: Fixed some improperly rotated platforms on Chigusa.
+  ivanmixo:
+  - rscadd: Added a counter for sources of runtimes in runtime viewer
+  - admin: Maintainers now have access to player panel (minus notes, banning, kicking,
+      etc)
+  - qol: Testing with a local database should be easier now
+  - bugfix: Fixed chat subsystem resend blackbox runtime
+  - admin: Blocks admin keybinding usage by people who aren't admins/mentors
+  - bugfix: MREs no longer runtime when the last piece of food is removed from them
+  - admin: Mentors can no longer use the dsay verb
+  - bugfix: Fixed a valhalla button runtime
+  - bugfix: Fixed runtime when taking ammo out of tank ammo racks
+  - bugfix: Ammo counter for tank should update correctly now when manually unloading
+      breech
+  - admin: Perms change actually sends over assets and doesn't runtime
+  yyzsong:
+  - refactor: splits supplypacks.dm into multiple files
+2025-03-05:
+  Lumipharon:
+  - bugfix: Fixed a few AI weapon issues
+  - bugfix: Armoured vehicles now have their faction set by the driver
+  - qol: Added a human bot hud icon, and removed the SSD examine text from AI humans
+  Neocloudy:
+  - rscadd: You can now use the Ignore verb to stop seeing OOC messages from somebody.
+      Use the Unignore verb if you want to hear them again.
+  Rug-Dealer:
+  - rscadd: You can now right click supply beacons to access the supply interface.
+  Runian:
+  - bugfix: Taking damage from melting fire correctly causes your health to update.
+  - balance: In Nuclear War, resin silos emit all pheromones at a power of 4 and a
+      range of 30.
+  Sun-Soaked:
+  - rscadd: Dancer's Baton Pass now has a small animated visual to indicate that it's
+      being used
+  - balance: Dancer's baton pass no longer consumes their dodge, and now hits all
+      adjacent xenomorph allies.
+  The_Man:
+  - qol: Added Communication and Fix subheaders to OOC tab.
+  ivanmixo:
+  - bugfix: fixed a storage runtime
+  - bugfix: Fixed a runtime when disconnecting with xeno seethrough on, ability icon
+      for it will also update properly
+  - code_imp: You can no longer join valhalla before the round has started
+  - bugfix: Fixed a decap runtime
+2025-03-06:
+  Lumipharon:
+  - rscadd: Added human AI functionality for healing others
+  TiviPlus:
+  - rscadd: Added !tgs gameversion which is basically just a discord version of show
+      game revision
+  - rscadd: Added !tgs notify to ping you when round ends in discord
+  - rscadd: Added server side backend for linking byond to discord, and backend for
+      a command to ping you when round is over
+  - admin: added a version of admin discord commands that checks permissions. SDQL2
+      command now requires R_DEBUG to run if this is enabled
+2025-03-07:
+  Lumipharon:
+  - bugfix: get_line and get_tranversal_line are much more accurate
+  - bugfix: fixed the main overwatch console getting stuck to one squad
+  - bugfix: fixed various pass_flag related bugs
+  - refactor: refactored pass_flags to be managed via traits
+  - bugfix: fixed xeno turrets
+  - qol: Catwalks have an alpha layer under them now, which will catch clicks
+2025-03-08:
+  Lumipharon:
+  - rscadd: Added more things for NPC's to avoid as hazards
+  - rscadd: simian intelligence increased
+  TiviPlus:
+  - bugfix: fixed strains ignoring max caste limits
+  - bugfix: Strain swap will now show all strains you can swap, including the base
+      caste, excluding your own instead of all strains
+  - bugfix: Fixed monkey sprites being really small
+  - balance: You can no longer rearm mech weapons while firing
+  - code_imp: added MAPPING_DIRECTIONAL_HELPERS for mappers. please use this instead
+      of dir and pixel varedits and initialize() switches
+  - bugfix: Fixed failed mech dashes still using power
+  - qol: You can now use more advanced regexes in chat highlighting
+  - qol: Mech repair retargets itself to the chest now when a limb is repaired
+  Tiviplus, Lumipharon & Ripgrayson:
+  - refactor: Refactored the backend for rendering heavily in support of Multi-Z
+  - code_imp: Added plane controllers properly
+  - refactor: refactored night vision to support rgb night vision, instead of a flat
+      number
+  - refactor: Resorted all our layers and compressed them down
+  - bugfix: This has fixed some previous layering issues (and probably caused new
+      ones)
+  - code_imp: As a byproduct, some visual related stuff was optimized
+  - rscadd: 'NEW PERFORMANCE OPTIONS: Ambient occlusion can be turned off, multi-z
+      parallax can be turned off, multi-z prettiness can be turned down'
+  - refactor: Also changed the rendering method to match the 3/4 perspective. This
+      changes how some layering is performed and may result in some wonkiness in layering.
+      Please make an issue report if you see anything out of place.
+  - code_imp: Added get_turfs_by_zlevel and get_turfs_from_all_zlevels to interface
+      with area turf management. Use this where you can instead of looping over area
+      contents.
+  - code_imp: 'CODERS!!!: Since we now use SIDE_MAP, pixel_z and pixel_w now actually
+      do something. Go read the guide in github/guides/VISUALS.md'
+  - bugfix: Fixed shuttle walls and the gunner seats' turf on opendream layering under
+      the floor
+  - bugfix: Fixed some cases where you couldn't see a lit area
+  - bugfix: Fixed some overlays (e.g lighting) following screen alerts and mugshot
+      announcements
+  - bugfix: The Splashscreen should immediately load the correct way now
+  - bugfix: Xeno abilities that distort your screen (e.g ravager or behemoth rage)
+      will now apply it to all game-world objects by default
+  - bugfix: Improved the layering logic of minimap blips somewhat. They now use a
+      priority layering system
+  - bugfix: Fixed orbital cannon console layering under the cannon a little
+  - bugfix: Fixed Orbital cannon, it's tray, and the ship railgun popping in sometimes
+  - bugfix: Standardized how welders are used, as there was a bunch of unnecessary
+      duplication. Due to this many previously non-welding fuel consuming welds now
+      consume fuel, check if it's on correctly, etc.
+  - bugfix: Fixed using tools on mobs always returning the opposite value
+  - bugfix: Fixed base lighting not fully respecting it's alpha values
+  - admin: added a debug/edit planes ui
+  - bugfix: Fixed issues with some maps having mappers having edited thing's layers
+      and planes
+  - code_imp: added linting for plane and layer varedits
+  - code_imp: added MAP_SWITCH for mappers, this allows you to set one variable (like
+      layer or plane) when viewing in the mapviewer, and another in the game
+  larndey:
+  - rscadd: Urban Tower Model Tadpole
+  - imageadd: added "_urbantower.png" for dropship picking computer UI.
+  - code_imp: added Urban Tower Tadpole model to respective code files/lists.
+2025-03-09:
+  Lumipharon:
+  - bugfix: fixed one handed weapons appearing wielded by NPC's
+  - code_imp: Improved some NPC behavior when retreating
+  - rscadd: NPC obstacle handling improved
+  - qol: Barricades and sentries have their faction set by their deployer. NPC's will
+      avoid destroying friendly obstacles
+  - bugfix: fixed items not using the right attack delay when hitting objects
+2025-03-10:
+  Lumipharon:
+  - bugfix: NPC's actually wield their guns again
+  - qol: Grabbed friendly human NPC's will not move
+  Runian:
+  - rscadd: A new strain for Runner called Melter. Themed around acid.
+  - imageadd: Melter runner sprites.
+  TiviPlus:
+  - rscadd: Jumping out of a shuttle on the move will send you flying out of into
+      into the ground now
+  - bugfix: partially fixed the shuttle flying animation not working
+  - code_imp: optimized the map reader
+  - code_imp: maps will automatically now load multiz based on how they were mapped
+      instead of needing to be manually set
+  - code_imp: supports multiz on the transit z-layer
+  - code_imp: 'added "see_dirty_varedits" when compiling in #TESTING mode to show
+      dirty varedits from all loaded maps/templates'
+2025-03-11:
+  Lumipharon:
+  - bugfix: fixed SOM tank offsets
+  TiviPlus:
+  - refactor: refactored how proximity alerts for the proximity assembly and xeno
+      strucutre alerts are handled to optimize them and fix some edgecases
+  - rscadd: added open space turfs
+  - code_imp: added multi-z movement backend
+  - code_imp: added backend code for turf transparency
+  - bugfix: fixed ghosts being invis on multi-z maps
+  - bugfix: fixed dropship attachment points layering too low
+  - bugfix: fixed tallgrass layering over too much
+  - qol: Certain HUDs will now appear over game world objects. Most notably this means
+      that xeno HUDS now layer over smoke
+  - balance: MultiZ Cables can't be destroyed
+  - bugfix: Slumbridge,deltastation and other maps now have working parallax
+  - code_imp: Added backend for allowing items to have a FOV when worn
+  yyzsong:
+  - spellcheck: ajacent -> adjacent
+2025-03-12:
+  Lumipharon:
+  - bugfix: removed a stray dev verb
+  Neocloudy:
+  - bugfix: ignore/unignore actually works now.
+2025-03-13:
+  Lumipharon:
+  - bugfix: NPC's actually check turret and droid faction when looking for targets
+  Runian:
+  - bugfix: Warlock's Psyblast now goes over objects like many other xeno ranged abilities
+      as intended.
+  TiviPlus:
+  - rscadd: Glass floors are seethough
+  - rscadd: Added multiz stair subtype
+  - balance: mech legs now slow increasingly based on hp instead of when destroyed
+  - bugfix: Fixed pod launcher not always working
+  - code_imp: added backend for trams and elevators
+  - bugfix: tank riding should work better now for non-mobs
+  - qol: Added queen visually warping shriek wave
+  Tiviplus & Lumipharon:
+  - bugfix: fixed turfs sometimes turning into space tiles on ground maps, hopefully
+      for good
+  tyeagg:
+  - qol: each cas ammo now have their own crosshair
+  - imageadd: cas crosshairs
+2025-03-14:
+  Lumipharon:
+  - rscadd: Fixed and improved lighting effects from fire
+  - rscadd: Foam submerges like fire or tallgrass
+  - rscadd: Added revival mechanics to NPC medics
+  - rscadd: NPC's are a bit more intelligent with how they use chems
+  Pariah919:
+  - rscadd: Added new tank Autocannon. Has two ammo types- HE and AP. It fires faster
+      than LTAAP and does not have IFF.
+  Runian:
+  - rscadd: 'An xenomorph structure called: Recovery Node.'
+  - rscadd: Recovery Node doubles the regeneration power of nearby xenomorphs and
+      begins regeneration immediately.
+  - rscadd: Hivelord gets a new ability called "Plant Recovery Node".
+  - bugfix: Weapon X (Hunter) from Campaign correctly gains 60% regeneration power
+      per tick instead of 1000%.
+  TiviPlus:
+  - bugfix: fixed a runtime with new player huds
+  - rscadd: You can now throw ANY item up and down ladders instead of just grenades
+      and lamps
+  - rscadd: Added multiz ladders
+  - qol: ladders, if possible, will try to have you use left and right click to go
+      up and down respectively instead of opening a menu
+  - qol: said menu is no longer a window but a radial menu now
+  - qol: removed restriction on only one person being able to look through a ladder
+      at a time
+  tyeagg:
+  - rscadd: blood splatter on sharp melee and xeno claws
+  - code_imp: adjusted blood splatter particles
+  witherc6:
+  - rscadd: added paramedic labcoat to marine clothing vendor
+2025-03-15:
+  Lumipharon:
+  - rscadd: Various minor improvements to NPC behavior
+  - code_imp: Cleaned up some managed_inventory and snack code
+  - bugfix: fixed bayonets having no hit sound
+  - code_imp: Combat knife bayos are now just subtypes of normal bayonets
+  - rscadd: NPC's store equipped weapons when equipping new ones
+  - bugfix: NPC's no longer show as DNR on minimap/hud
+  - bugfix: NPC's won't try use guns that require deploying
+  - rscadd: NPC's will use autoburst when available
+  - bugfix: NPC's will no longer give chems to corpses
+  Runian:
+  - rscadd: A new tier 4 caste named Dragon. It is a combat-oriented caste.
+  - rscadd: A bunch of Dragon-related abilities.
+  - soundadd: Various sounds involving dragon and its ability.
+  - imageadd: Various sprites involving dragon and its abilities.
+  - imageadd: Attack slash effect unique to Dragon.
+  - code_imp: Ammo now set the icon of projectiles created from it.
+  The_Man:
+  - qol: Added "Interact with other hand" hotkey.
+  TiviPlus:
+  - code_imp: added ability to cache sounds serverside
+  - code_imp: passing invalid playsound() arguments will now cause a runtime
+  - qol: Mech turns are now silent
+  - bugfix: ' you can reattach all mech weapons properly now'
+  - rscadd: Trying to scroll while ctrl click is held will now make you try to look
+      up/down a zlevel
+  - rscadd: Trying to scroll while shift click is held (unless you're a ghost) will
+      try to move you up/down a zlevel
+  - rscadd: Added keybindings and verbs for moving up/down and looking up/down a zlevel.
+  - qol: trying to move up/down when theres a ladder on your turf will try to use
+      the ladder
+  - bugfix: Fixed untoggleable glasses turning themselves off on load with no way
+      to turn them on
+  - code_imp: added backend or directional explosions
+  - admin: admin explosion logs will now try to provide an explosion cause or user
+      to blame
+  - bugfix: ghosts can see mech hud now
+  yyzsong:
+  - rscadd: Adds the shotgun, sniper, flamer, and laser sentries to the valhalla req
+      vendor
+  - rscadd: Adds the minisentry and build-a-sentry to the valhalla req vendor
+  - spellcheck: Renames the valhalla req vendor's "Mounted" tab to the "Emplaced"
+      tab
+2025-03-16:
+  Lumipharon:
+  - balance: Derringer is once again limited in the gun vendor
+  - admin: Replace by AI smite works on humans
+  PibeCantina:
+  - bugfix: fixed disk not spawning
+  Runian:
+  - code_imp: Dragon's abilities use the managed passflag system.
+  - balance: Melter, a strain of Runner, now has +50 more health and +5 armor across
+      the board.
+  - balance: Minions sell for 10 points instead of 50 points. The same ratio applies
+      to CAS points.
+  Sun-Soaked, Comissioned by Elsa:
+  - balance: Gorger's drain and carnage attacks now steal greenblood from the target,
+      if they have a vali harness.
+  TiviPlus:
+  - balance: Crusher charges always target mech legs
+  - bugfix: Fixed tank autocannon not having interior fire sounds or ammo rack sprites
+  - bugfix: Tank autocannon AP and He no longer use the same icons
+  - bugfix: Fixed rendering wonkiness with non-self camera perspectives
+  - balance: Doubled xeno maw impact time from 6 to 12 seconds
+  - bugfix: Fixed acid layering under what its on top of sometimes
+  - bugfix: Fixed silo alerts alerting on friendlies
+  - bugfix: fixed floors layering too high
+  - qol: Mech overload automatically disables on running out of power
+  - bugfix: fixed queen shriek waves being hilariously slow
+2025-03-17:
+  Runian:
+  - balance: Dragon is now slower on average and even slower while using their ability,
+      Dragon Breath.
+  - balance: Dragon's armor gain while using Dragon Breath has been decreased from
+      15 to 10.
+2025-03-18:
+  Lumipharon:
+  - balance: Significantly nerfed mechs in campaign
+  TiviPlus:
+  - bugfix: fixed some UI and 516 issues
+  tyeagg:
+  - rscadd: more seamless looking blood decals
+  - rscadd: different crosshairs for some guns
+  - imageadd: new crosshair sprites for guns
+2025-03-19:
+  Lumipharon:
+  - balance: Nerfed tank autocannon and HE ammo, AP ammo slightly buffed
+  - bugfix: NPC's will no longer try to revive undefibbable patients
+  - bugfix: fixed NPC's not using guns
+  RipGrayson:
+  - rscadd: Added a multi-z test map.
+2025-03-20:
+  Apple-107:
+  - balance: Xenos now pick up jelly by default, and can activate it anytime (with
+      a channel) with use key or by clicking on themselves
+  Arturlang:
+  - rscadd: Cameras can now categorize people by role and the search input will now
+      also filter by role
+  Cheese:
+  - balance: Non-folding Plasteel cades can now be upgraded with metal, like metal
+      cades.
+  - rscadd: Only the actual hive leader can jack or capture alamo now, rather than
+      every T4. (The xeno at the top of the list in hive status is hive leader)
+  - balance: Dancer debuff scaling now also respects Shatter, Pyrofire, and Melting
+      debuffs.
+  Lewdcifer:
+  - bugfix: Fixes death timers for T4 strains.
+  Lumipharon:
+  - balance: Maw and Jaw structures now have a build limit of one each at any given
+      time
+  - qol: NPC's will stay buckled to medivac's and vehicles when not the driver
+  - qol: NPC's will no longer smash drop pods as obstacles
+  - balance: Weak explosions no longer damage weeds
+  - bugfix: fixed NPC's sometimes storing offhand placeholders
+  - qol: Added some more NPC hazard chat lines
+  Neocloudy:
+  - bugfix: Toggling round end sounds actually applies to round end sounds and not
+      just world rebooting sounds.
+  Runian:
+  - bugfix: You can no longer zap living beings that are incorporeal or have godmode.
+      (e.g. de-manifested Hivemind / flying Dragon).
+  TiviPlus:
+  - bugfix: fixed vents layering under the floor
+  - bugfix: Traps will now layer lower again
+  - bugfix: fixed screech being delayed by half a second
+  - bugfix: Openspace on multiz is unweedable
+  - bugfix: fixed some things like elevators screwing up rendering when changing z
+  - bugfix: The tram launches you through the windshield at mach 1 instead of mach
+      3
+  - bugfix: Probably fixed xeno wounds not layering properly in multiz
+  - balance: Falling down a zlevel will stun for 2 instead of 5 seconds per Z
+  breadhunt:
+  - rscdel: Removes flare launcher module
+  - rscadd: Adds grenade launcher module
+  - rscadd: Adds tanglefoot emitter module
+  - rscadd: Adds a tadpole-specific dropship fabricator for ease of use.
+  yyzsong:
+  - imageadd: glorp emoji
+2025-03-21:
+  Apple-107:
+  - rscadd: Tank Loaders now shout the ammo type when loaded ("HE, Up!")
+  - rscadd: Tank Gunners now shout when they are firing LTB ("On the way!")
+  Lumipharon:
+  - bugfix: Fixed some issues with NPC inventory management
+  Runian:
+  - bugfix: Dragon's Grab no longer permanently immobilizes marines that were failed
+      to be grabbed.
+  - admin: Player Panel now has Dragon as one of the Transformations.
+  TiviPlus:
+  - bugfix: mech no longer spams steps on tram movement
+  - bugfix: Mechs will no longer sparkle on spawn
+  - bugfix: partially fixed stairs being very cursed
+  - bugfix: fixed tank turret turning black on multiz maps
+  Tiviplus, Kuro, GregorMN:
+  - rscadd: Completely resprited mechs for xvh
+  - rscadd: Mechs now leave a wreck behidn when destroyed
+  - rscadd: Mechs can now mount "back weapons"
+  - bugfix: fixed hyperscale completely ignoring some color configs
+  - qol: New mecha boosting visual effects
+  - qol: Revamped the mech builder UI and made it much smaller
+  tyeagg:
+  - rscadd: emissives to projectiles and muzzle flashes
+  - imageadd: new muzzle flash and projectile sprites
+2025-03-22:
+  Lewdcifer:
+  - rscadd: Adds the Conqueror, a strain of the tier 4 caste, King.
+  - soundadd: Added various sound effects for the Conqueror.
+  - imageadd: Added various visuals for the Conqueror.
+  - balance: Bull is now immune to stuns, such as those of slugs, buckshot, and similar
+      sources.
+  - balance: As a tradeoff, the Bull can now be entangled in razorwire.
+  Lumipharon:
+  - rscadd: NPC's actually use their suit lights now
+  - rscadd: NPCs operate normally when doing suitable channeled actions
+  - rscadd: Added some more TGMC NPC presets
+  - rscadd: Improved the way NPC's escort things
+  RipGrayson:
+  - bugfix: Fixed an exploit with metal rods.
+  TiviPlus:
+  - qol: Attaching non-gun things now plays sounds
+  - bugfix: Fixed revolvers not playing their open sound
+  - bugfix: fixed projectiles trying to play a nonexistent sound constantly when they
+      hit an object
+  - bugfix: fixed a runtime with RR windup
+  - bugfix: fixed some issues with xenos when not using their own mob as eyes
+  - bugfix: fixed lift indicators not showing anything
+  - bugfix: fixed elevator control panels erroring sometimes when they shouldnt
+  - qol: AI can now hop between Z floors with a button
+  - bugfix: Standing on tank no longer lets you fly
+  - bugfix: Runners can no longer fly
+  - qol: look up/down should feel better to use
+  blackdav123:
+  - rscadd: Added a second Corporate Liaison slot to Nuclear War.
+  ivanmixo:
+  - spellcheck: You will no longer believe the lie that only drones can evolve into
+      Shrikes
+2025-03-23:
+  Apple-107:
+  - rscadd: Tank and APC armaments that weren't available in valhalla vendors are
+      now available.
+  Lumipharon:
+  - bugfix: NPC movement sometimes not turning off after a player takes control
+  - bugfix: fixed maw stopping xob from being built
+  Mantlecrawler:
+  - rscadd: Xadar has SFX and VFX now
+  - rscadd: Globadier now has mine types for each of their 5 grenades
+  - rscadd: Selecting a grenade as globadier will put a short description of its effects
+      in chat
+  - balance: Resin grenades from globadier now only fling marines and the owner globadier
+  - bugfix: Xadar now detonates properly when hitting a solid object
+2025-03-24:
+  GregorMN:
+  - qol: the pallettes for hyperscale (e.g armor and mechs) have been redone. All
+      existing palettes will automatically update to the new ones
+  Kuro020:
+  - balance: Dancer's damage debuff damage scaling reduced from 0.25 to 0.15
+  - balance: Dancer loses the ability to acid and build acid wells
+  Runian:
+  - bugfix: Dragon's Grab ability now correctly gains a cooldown upon ending a grab
+      early.
+  TiviPlus:
+  - bugfix: transparency should try to show space again
+  - rscadd: Added more mech weapons (rocket, micromissiles, shotgun, flamer)
+  - rscadd: Added an assault core module to the mech that emits a laser burst after
+      a windup when triggered
+  - bugfix: Allows reloading multiple mech weapons again
+  - qol: strain and caste swap cooldowns now say have much time you have left when
+      you click them
+  - bugfix: fixed strain swap cooldown not working
+  - bugfix: Mech ammo huds will now add and remove on 2.0 mech enter/leave properly
+  - code_imp: tweaked how mech overlays for abiltiies are added
+  - bugfix: Fixed projectiles being black on multiz
+  - qol: Selecting a mech weapon in the builder UI again will unselect it
+  - bugfix: fixed mech light being offset
+  - bugfix: Mech overload will now disable when a mob leaves
+  - bugfix: fixed the UI button to follow a xeno being clicked again not stoppping
+      you from watching the currently watched xeno
+  - bugfix: Fix grenades warning icon being black on multiz
+  - rscadd: Added mech cloaking module
+  - code_imp: added new warped_invisibile method of making things invisible, which
+      warps the air where the invisible thing is instead of just making them partially
+      translucent
+  - bugfix: fixed zlevel changes being called multiple times in some cases
+  - bugfix: Cut mech overload stop sound to not have part of the loop
+  - bugfix: Fixed mech arm layering on side directions
+  - bugfix: Tank gun and damage overlays are no longer black on multiz
+  - bugfix: fixed mechs not showing damage overlays for arms
+  - bugfix: fixed mech not showing damage overlays for destroyed limbs
+  - bugfix: fixed destroyed limbs not updating when boosting/firing
+  yyzsong:
+  - spellcheck: fixes tense in unbuckling text
+  - spellcheck: standardizes sentry and ammunition names for the sniper sentry, and
+      the magazine names for both the sniper and shotgun sentry
+  - spellcheck: updates nuke disk generator text
+  - spellcheck: COMISG -> COMSIG
+  - spellcheck: rewords TO job spawnin description
+  - spellcheck: adds a missing period to the body scanner's chat log message
+  - spellcheck: corrects breath -> breathe in the "fresh air fills your lungs" message
+  - spellcheck: adjusts wording for boiler, praetorian, and gorger abilities
+2025-03-25:
+  Lumipharon:
+  - bugfix: The pacifist movement amongminions has been stamped out
+2025-03-26:
+  Kuro020:
+  - balance: Mech rocket no longer completely deletes armor
+  - balance: Mech shotgun does sunder and has less falloff
+  - balance: Removed zoom module
+  TiviPlus:
+  - bugfix: Fixed assault armor speed and canceling
+  - bugfix: Assault armor does intended damage now and has its cooldown
+  - rscadd: Mechs can move diagonally now
+  - bugfix: Fixed config defaults being inverted for 6 years
+  - bugfix: fixed static lighting piercing multiz
+  breadhunt:
+  - rscadd: Tangle emitter starts disabled to prevent a bug
+  - qol: Tangle emitter now gives feedback on whether it's enabled/disabled when attached
+2025-03-27:
+  Atropos:
+  - bugfix: Sulaco now has working squad overwatch consoles
+  Cheese:
+  - rscadd: Resin huggers now extinguish their target
+  - balance: You can no longer crush huggers in hand, as a human
+  Kuro020:
+  - balance: Mech light booster/gen is lighter now to allow for better weight control
+  - balance: Mech GL has halved ammo capacity to curb spam, has lower weight to compensate
+  - balance: Mech micro rockets have been properly nerfed, their weight has been increased
+  - balance: Mech shotgun has the same falloff as marine shotgun now as opposed to
+      double, as well as lower weight
+  - balance: Mech flamer has lower weight
+  - balance: Mech rocket launcher has lower weight
+  Lewdcifer:
+  - balance: Being thrown while in crit will now apply oxyloss and update health.
+      This prevents xenos from dragging people for insane distances.
+  TiviPlus:
+  - bugfix: fixed an error icon in drop pod actions
+  - bugfix: fixed drop pods using the highlited targetting icon
+  - bugfix: Fixed supply beacons missing if the beacon moves
+  - rscadd: Added multiz camera support
+  - bugfix: Fixed colored NV goggles
+  - qol: Tad toggling NV toggles instantly now
+  - bugfix: fixed tad nv being invirted
+  - bugfix: fixed tad landing icons not showing a lot of the time
+  - bugfix: Fixed openspace jumping
+  - bugfix: Fixed non-singlefire weapons not sharing a fire cooldown
+  - balance: Drastically reduced damage on being hit by a tram
+  - admin: Mech projectiles now log who shot them when they hit mech
+  - qol: improved the mech builder ui and gave it a rotate button
+  tyeagg:
+  - rscadd: blood splatter turns towards angle
+2025-03-29:
+  Cheese:
+  - balance: Huggers can now be stripped in 2 seconds, rather than 4, when using help
+      intent on another mob
+  - code_imp: Stripping items now actually respects its custom strip timer (if any).
+      This may have unintended consequences
+  TiviPlus:
+  - bugfix: fixed some movement not doing all side effects all the time
+  tyeagg:
+  - rscadd: particles for mech walking jumping and dashing
+  - rscadd: sound effect while mech dashing
+  - rscadd: mech dashing no longer affects direction while strafing
+  - imageadd: boost overlay for new mech
+2025-03-30:
+  Isy232:
+  - balance: Adjusted how the T3 penalty is handled on crash, removing 1 whole T3
+      slot with a new minimum of 0 slots.
+  Isy232, ivanmixo:
+  - bugfix: Attempts to fix crash spawning >1 xeno per larva spawn cycle.
+  TiviPlus:
+  - bugfix: Fixed failed diag movement making the atom dir diagonal
+  - qol: As a side effect of the above, king no longer needs to hug a wall to shoot
+      laser diagonally, and just tracks the last attempted movement
+  - balance: Tram ignores smashing the nuke
+  - bugfix: Acid spray, sticky, firenados fall on openspace
+  - qol: Mech limb being destroyed now plays a sound
+  - code_imp: Splits hyperscale palettes into legacy (armor) and new (mech) palettes.
+      legacy palettes will eventually be transitioned to the new ones in a few months
+  - bugfix: Fix beams being black on multiz
+  - bugfix: Fixed mech GL not spinning the mech
+  - bugfix: Fix trams/elevator stuff being slashable (and doing nothing)
+  - bugfix: Fixed mech weapons visually duping
+  - bugfix: Fixed mech leg repair not fixing movespeed
+  yyzsong:
+  - balance: Increases resin jelly duration from 15 seconds to 30 seconds.
+2025-03-31:
+  Isy232, Ivanmixo:
+  - balance: Crash now requires 10 xenos for Queen and 14 for King and 8 for Hivelord.
+  - balance: Nuclear War now requires 4 xenos for Queen and 12 (unchanged) for King.
+  - code_imp: Xeno evolution pop requirement can now depend on game mode.
+  RipGrayson:
+  - rscadd: Added map icons for multi-z ladders, stairs and elevator panels.
+  TiviPlus:
+  - bugfix: Warlock shield no longer falls on multiz
+  - qol: Improved drop pod drops. They now use a permanent area that all drop pod
+      users drop into when dropping instead of creating a tiny one every time
+  - bugfix: fixed wierd teleporting riding interactions on trams with tank riders
+      and the tank hitbox
+  - rscadd: Added multiz sound support
+  - code_imp: added support for non-wallpiercing sounds
+  - bugfix: fixed transit zlevel having a bunch of plating
+  - bugfix: fixed wierd behaviour with things under shuttles showing when they shouldnt.
+      Shuttles will now always try to revert a plating instead
+  ivanmixo:
+  - bugfix: Server should no longer lag for a moment when spawning item heavy outfits

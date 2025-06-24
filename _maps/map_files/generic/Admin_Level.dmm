@@ -14,6 +14,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/tdome)
 "aaJ" = (
@@ -1540,7 +1541,7 @@
 	id = "kitchencounter";
 	name = "Kitchen Counter Shutters"
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/tool/kitchen/utensil/fork,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
@@ -1665,6 +1666,14 @@
 "cdI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/side,
+/area/centcom/valhalla)
+"cfr" = (
+/obj/machinery/chem_dispenser/soda{
+	dir = 8;
+	pixel_x = -17;
+	pixel_y = -1
+	},
+/turf/closed/mineral/smooth/indestructible,
 /area/centcom/valhalla)
 "cfQ" = (
 /obj/machinery/status_display/ai,
@@ -2702,6 +2711,11 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
+"dzs" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/tdome)
 "dAC" = (
 /turf/open/floor/freezer,
 /area/centcom/valhalla)
@@ -4528,9 +4542,6 @@
 	},
 /obj/effect/turf_decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced/windowstake{
-	dir = 4
-	},
 /obj/item/clothing/glasses/hud/xenohud,
 /obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/mainship/stripesquare,
@@ -4548,9 +4559,6 @@
 	},
 /obj/effect/turf_decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced/windowstake{
-	dir = 4
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
 "ghB" = (
@@ -4565,9 +4573,6 @@
 	},
 /obj/effect/turf_decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced/windowstake{
-	dir = 4
-	},
 /obj/item/clothing/glasses/hud/xenohud,
 /obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/mainship/stripesquare,
@@ -8212,10 +8217,15 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"lyt" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/tdome)
 "lzH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/tdome)
 "lAb" = (
@@ -8895,17 +8905,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"mGD" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black,
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla)
 "mGE" = (
 /obj/effect/turf_decal/tile/black{
 	dir = 8
@@ -9002,6 +9001,10 @@
 	dir = 3
 	},
 /turf/open/floor/engine,
+/area/centcom/valhalla)
+"mNo" = (
+/obj/machinery/vending/valhalla_reqtorio,
+/turf/open/floor/plating,
 /area/centcom/valhalla)
 "mOd" = (
 /obj/structure/sign/nosmoking_1,
@@ -10106,6 +10109,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/tdome)
 "oov" = (
@@ -10187,6 +10191,12 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
+"ovk" = (
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/centcom/valhalla/xenocave)
 "ovl" = (
 /obj/machinery/vending/cola/nopower,
 /turf/open/floor/tile/dark,
@@ -11200,9 +11210,6 @@
 	},
 /obj/effect/turf_decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
 "qhV" = (
@@ -11317,6 +11324,14 @@
 /obj/structure/prop/mainship/toolboxforacause2020,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
+"quo" = (
+/obj/machinery/power/geothermal/tbg{
+	dir = 4;
+	corrupted = "fallen_hive";
+	last_corrupted = "fallen_hive"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/centcom/valhalla/xenocave)
 "quJ" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/tile/black,
@@ -11526,8 +11541,8 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "qLa" = (
-/obj/machinery/power/geothermal{
-	corrupted = "fallen_hive"
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
@@ -13117,6 +13132,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/tdome)
 "sYL" = (
@@ -15334,9 +15350,6 @@
 /area/centcom/valhalla)
 "wfL" = (
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced/windowstake{
-	dir = 4
-	},
 /obj/item/clothing/glasses/hud/xenohud,
 /obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/mainship/stripesquare,
@@ -20088,11 +20101,11 @@ qpT
 mJp
 oHd
 oHd
+lyt
 oHd
 oHd
 oHd
-oHd
-oHd
+lyt
 oHd
 oHd
 mJp
@@ -20566,7 +20579,7 @@ wlz
 gFO
 xOn
 boq
-boq
+mNo
 boq
 nUd
 aMq
@@ -21114,7 +21127,7 @@ sEd
 wrn
 sEd
 mJp
-oHd
+lyt
 oHd
 aaB
 wSO
@@ -21122,7 +21135,7 @@ wSO
 wSO
 lzH
 oHd
-oHd
+lyt
 mJp
 tiO
 keG
@@ -22142,7 +22155,7 @@ qpT
 wrn
 qpT
 mJp
-oHd
+lyt
 oHd
 onv
 kuQ
@@ -22150,7 +22163,7 @@ kuQ
 kuQ
 sYH
 oHd
-oHd
+lyt
 mJp
 vnF
 keG
@@ -23172,11 +23185,11 @@ vBB
 fOQ
 dNn
 dNn
+dzs
 dNn
 dNn
 dNn
-dNn
-dNn
+dzs
 dNn
 dNn
 fOQ
@@ -23450,7 +23463,7 @@ mQe
 mQe
 mQe
 mQe
-tvb
+mQe
 mQe
 mQe
 mQe
@@ -23964,7 +23977,7 @@ mQe
 mQe
 mQe
 mQe
-mQe
+tvb
 mQe
 mQe
 mQe
@@ -24679,7 +24692,7 @@ aqy
 gzY
 lEp
 lEp
-lEp
+cfr
 lEp
 box
 box
@@ -25185,7 +25198,7 @@ sHO
 dhA
 boq
 boq
-mGD
+ghq
 hdk
 jcx
 ivs
@@ -25442,7 +25455,7 @@ gAO
 boq
 dAJ
 boq
-mGD
+ghq
 kcV
 jcx
 kqf
@@ -25499,21 +25512,21 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
 "}
 (34,1,1) = {"
 xrI
@@ -25756,21 +25769,21 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
 "}
 (35,1,1) = {"
 xrI
@@ -26013,21 +26026,21 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
 "}
 (36,1,1) = {"
 xrI
@@ -26270,21 +26283,21 @@ xrI
 xrI
 xrI
 xrI
-xrI
-wQi
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
+mQe
 "}
 (37,1,1) = {"
 xrI
@@ -26534,7 +26547,7 @@ xrI
 xrI
 xrI
 xrI
-wQi
+xrI
 xrI
 xrI
 xrI
@@ -27816,7 +27829,7 @@ vQc
 vQc
 xrI
 xrI
-xrI
+wQi
 xrI
 xrI
 xrI
@@ -28996,11 +29009,11 @@ boC
 fog
 fog
 fog
-qLa
-qLa
-qLa
-qLa
-qLa
+oXf
+oXf
+oXf
+oXf
+oXf
 oXf
 oXf
 oXf
@@ -29108,7 +29121,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+wQi
 xrI
 xrI
 xrI
@@ -30014,8 +30027,8 @@ boC
 boC
 boC
 fog
-qLa
-qLa
+oXf
+oXf
 fog
 fog
 boC
@@ -30277,7 +30290,7 @@ kmb
 fog
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -30290,7 +30303,7 @@ oXf
 oXf
 oXf
 kOY
-qLa
+quo
 fog
 boC
 fmN
@@ -30534,7 +30547,7 @@ oXf
 fog
 boC
 fog
-fog
+ovk
 oXf
 oXf
 oXf
@@ -30547,7 +30560,7 @@ oXf
 oXf
 oXf
 oXf
-qLa
+ovk
 fog
 boC
 fmN
@@ -30790,7 +30803,7 @@ kOY
 oXf
 fog
 boC
-boC
+fog
 fog
 kOY
 oXf
@@ -32838,7 +32851,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -33095,7 +33108,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 oXf
@@ -33609,7 +33622,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -33866,7 +33879,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 oXf
@@ -34380,7 +34393,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -34637,7 +34650,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 kOY
 oXf
@@ -34894,7 +34907,7 @@ xrI
 fmN
 boC
 fog
-qLa
+tqo
 oXf
 knX
 oXf
@@ -35150,8 +35163,8 @@ xrI
 xrI
 fmN
 boC
+boC
 fog
-tqo
 hda
 oXf
 oXf
@@ -36435,7 +36448,7 @@ xrI
 xrI
 fmN
 boC
-boC
+fog
 fog
 oXf
 oXf
@@ -36693,7 +36706,7 @@ xrI
 fmN
 boC
 fog
-tqo
+qLa
 oXf
 oXf
 oXf
@@ -36950,7 +36963,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -37207,7 +37220,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 kOY
 oXf
@@ -37721,7 +37734,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -37978,7 +37991,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 oXf
@@ -38492,7 +38505,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 kOY
 oXf
@@ -38749,7 +38762,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 oXf
@@ -39007,10 +39020,10 @@ fmN
 boC
 fog
 fog
-qLa
-qLa
-qLa
-qLa
+oXf
+oXf
+oXf
+oXf
 fog
 boC
 boC
@@ -39025,7 +39038,7 @@ oXf
 oXf
 oXf
 oXf
-qLa
+oXf
 fog
 boC
 fmN
@@ -39273,7 +39286,6 @@ boC
 boC
 boC
 fog
-qLa
 oXf
 oXf
 oXf
@@ -39282,7 +39294,8 @@ oXf
 oXf
 oXf
 oXf
-qLa
+oXf
+oXf
 fog
 boC
 fmN
@@ -39787,7 +39800,7 @@ boC
 boC
 boC
 fog
-qLa
+quo
 oXf
 oXf
 wPz
@@ -39796,7 +39809,7 @@ oXf
 oXf
 oXf
 oXf
-qLa
+quo
 fog
 boC
 fmN
@@ -40044,7 +40057,7 @@ boC
 boC
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 kOY
@@ -40053,7 +40066,7 @@ oXf
 oXf
 oXf
 kOY
-qLa
+ovk
 fog
 boC
 fmN
@@ -40301,7 +40314,7 @@ boC
 boC
 boC
 fog
-qLa
+oXf
 kOY
 oXf
 oXf
@@ -40310,7 +40323,7 @@ oXf
 oXf
 oXf
 oXf
-qLa
+oXf
 fog
 boC
 fmN

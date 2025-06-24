@@ -54,9 +54,6 @@
 		.cult .wrap {border-color: #292222;}
 		.cult .content {color: #FF0000; border-color: #4C4343; background-color: #3C3434;}
 
-		.clockcult .wrap {border-color: #170800;}
-		.clockcult .content {color: #B18B25; border-color: #000000; background-color: #5F380E;}
-
 		.pod .wrap {border-color: #052401;}
 		.pod .content {border-color: #326D29; background-color: #569F4B;}
 
@@ -80,12 +77,11 @@
 		.slimecore .wrap {border-color: #18640E;}
 		.slimecore .content {color: #6EA161; border-color: #11450B; background-color: #354E35;}
 
-		.operative .wrap {border-color: #1E0101;}
-		.operative .content {color: #FFFFFF; border-color: #750000; background-color: #350000;}
+		.operative .wrap {border-color: #13121b;}
+		.operative .content {color: #b01232; border-color: #13121b; background-color: #282831;}
 
 		.clockwork .wrap {border-color: #170800;}
 		.clockwork .content {color: #B18B25; border-color: #000000; background-color: #5F380E;}
-
 
 	</style>
 </head>
@@ -120,32 +116,45 @@
 				window.location = 'byond://winset?id='+tooltip.control+';anchor1=0,0;size=999x999';
 
 				//Get the real icon size according to the client view
-				var mapWidth = map['view-size'].x,
-					mapHeight = map['view-size'].y,
-					tilesShown = tooltip.client_view_w
-					realIconSize = mapWidth / tilesShown,
-					resizeRatio = realIconSize / tooltip.tileSize,
+				//FYI, this bit is even more borrowed from goon, our widescreen broke tooltips so I took a look at how they do it
+				//To improve our code. Thanks gooncoders, very cool
+				var mapWidth 		= map['view-size'].x,
+					mapHeight 		= map['view-size'].y,
+					tilesShownX 	= tooltip.client_view_w
+					tilesShownY 	= tooltip.client_view_h
+					realIconSizeX 	= mapWidth / tilesShownX,
+					realIconSizeY 	= mapHeight / tilesShownY,
+					resizeRatioX	= realIconSizeX / tooltip.tileSize,
+					resizeRatioY	= realIconSizeY / tooltip.tileSize,
 					//Calculate letterboxing offsets
-					leftOffset = (map.size.x - mapWidth) / 2,
-					topOffset = (map.size.y - mapHeight) / 2;
+					leftOffset 		= (map.size.x - mapWidth) / 2,
+					topOffset 		= (map.size.y - mapHeight) / 2;
 
 				//alert(realIconSize + ' | ' +tooltip.tileSize + ' | ' + resizeRatio); //DEBUG
 
-				//Parse out the tile and cursor locations from params (e.g. "icon-x=32;icon-y=29;screen-loc=3:10,15:29")
+				const parameters = new Object();
+
+				//Parse out the contents of params (e.g. "icon-x=32;icon-y=29;screen-loc=3:10,15:29")
+				//It is worth noting that params is not always ordered in the same way. We therefore need to write the code
+				//To load their values in independantly of their order
 				var paramsA = tooltip.params.cursor.split(';');
-				if (paramsA.length < 3) {return false;} //Sometimes screen-loc is never sent ahaha fuck you byond
+				for (var i = 0; i < paramsA.length; i++) {
+					var entry = paramsA[i];
+					var nameAndValue = entry.split("=");
+					parameters[nameAndValue[0]] = nameAndValue[1];
+				}
+
+				//Sometimes screen-loc is never sent ahaha fuck you byond
+				if (!parameters["icon-x"] || !parameters["icon-y"] || !parameters["screen-loc"]) {
+					return false;
+				}
 				//icon-x
-				var iconX = paramsA[0];
-				iconX = iconX.split('=');
-				iconX = parseInt(iconX[1]);
+				var iconX = parseInt(parameters["icon-x"]);
 				//icon-y
-				var iconY = paramsA[1];
-				iconY = iconY.split('=');
-				iconY = parseInt(iconY[1]);
+				var iconY = parseInt(parameters["icon-y"]);
 				//screen-loc
-				var screenLoc = paramsA[2];
-				screenLoc = screenLoc.split('=');
-				screenLoc = screenLoc[1].split(',');
+				var screenLoc = parameters["screen-loc"];
+				screenLoc = screenLoc.split(',');
 				if (screenLoc.length < 2) {return false;}
 				var left = screenLoc[0];
 				var top = screenLoc[1];
@@ -168,7 +177,7 @@
 						if ((iconX + westOffset) !== enteredX) { //Cursor entered on the offset tile
 							left = left + (westOffset < 0 ? 1 : -1);
 						}
-						leftOffset = leftOffset + (westOffset * resizeRatio);
+						leftOffset = leftOffset + (westOffset * resizeRatioX);
 					}
 				}
 
@@ -179,13 +188,13 @@
 						if (northOffset !== 0) {
 							if ((iconY + northOffset) === enteredY) { //Cursor entered on the original tile
 								top--;
-								topOffset = topOffset - ((tooltip.tileSize + northOffset) * resizeRatio);
+								topOffset = topOffset - ((tooltip.tileSize + northOffset) * resizeRatioY);
 							} else { //Cursor entered on the offset tile
 								if (northOffset < 0) { //Offset southwards
-									topOffset = topOffset - ((tooltip.tileSize + northOffset) * resizeRatio);
+									topOffset = topOffset - ((tooltip.tileSize + northOffset) * resizeRatioY);
 								} else { //Offset northwards
 									top--;
-									topOffset = topOffset - (northOffset * resizeRatio);
+									topOffset = topOffset - (northOffset * resizeRatioY);
 								}
 							}
 						}
@@ -198,12 +207,12 @@
 				}
 
 				//Clamp values
-				left = (left < 0 ? 0 : (left > tilesShown ? tilesShown : left));
-				top = (top < 0 ? 0 : (top > tilesShown ? tilesShown : top));
+				left = (left < 0 ? 0 : (left > tilesShownX ? tilesShownX : left));
+				top = (top < 0 ? 0 : (top > tilesShownY ? tilesShownY : top));
 
 				//Calculate where on the screen the popup should appear (below the hovered tile)
-				var posX = Math.round(((left - 1) * realIconSize) + leftOffset + tooltip.padding); //-1 to position at the left of the target tile
-				var posY = Math.round(((tilesShown - top + 1) * realIconSize) + topOffset + tooltip.padding); //+1 to position at the bottom of the target tile
+				var posX = Math.round(((left - 1) * realIconSizeX) + leftOffset + tooltip.padding); //-1 to position at the left of the target tile
+				var posY = Math.round(((tilesShownY - top + 1) * realIconSizeY) + topOffset + tooltip.padding); //+1 to position at the bottom of the target tile
 
 				//alert(mapWidth+' | '+mapHeight+' | '+tilesShown+' | '+realIconSize+' | '+leftOffset+' | '+topOffset+' | '+left+' | '+top+' | '+posX+' | '+posY); //DEBUG
 
@@ -222,11 +231,11 @@
 					pixelRatio = window.devicePixelRatio;
 				}
 
-				var docWidth = Math.floor($wrap.outerWidth() * pixelRatio),
-					docHeight = Math.floor($wrap.outerHeight() * pixelRatio);
+				var docWidth	= Math.floor($wrap.outerWidth() * pixelRatio),
+					docHeight	= Math.floor($wrap.outerHeight() * pixelRatio);
 
 				if (posY + docHeight > map.size.y) { //Is the bottom edge below the window? Snap it up if so
-					posY = (posY - docHeight) - realIconSize - tooltip.padding;
+					posY = (posY - docHeight) - realIconSizeY - tooltip.padding;
 				}
 
 				//Actually size, move and show the tooltip box

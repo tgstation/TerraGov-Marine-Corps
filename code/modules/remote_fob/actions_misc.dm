@@ -60,13 +60,13 @@
 	if(!do_after(fobdrone, 1.5 SECONDS, IGNORE_HELD_ITEM, buildplace, BUSY_ICON_BUILD))
 		return
 	console.metal_remaining -= 4
-	cade = new /obj/structure/barricade/metal(buildplace)
+	cade = new /obj/structure/barricade/solid(buildplace)
 	cade.setDir(fobdrone.dir)
 	if(console.do_wiring)
-		if(console.metal_remaining <= 1)
+		if(!console.metal_remaining)
 			fobdrone.balloon_alert(owner, "Not enough material for razor-wiring.")
 			return
-		console.metal_remaining -=2
+		console.metal_remaining -= 1
 		cade.wire()
 		fobdrone.balloon_alert(owner, "Barricade placed with wiring. [console.metal_remaining] metal sheets remaining.")
 		return
@@ -101,7 +101,7 @@
 	if(!do_after(fobdrone, 1.5 SECONDS, IGNORE_HELD_ITEM, buildplace, BUSY_ICON_BUILD))
 		return
 	console.plasteel_remaining -= 5
-	cade = new /obj/structure/barricade/plasteel(buildplace)
+	cade = new /obj/structure/barricade/folding(buildplace)
 	cade.setDir(fobdrone.dir)
 	cade.closed = FALSE
 	cade.density = TRUE

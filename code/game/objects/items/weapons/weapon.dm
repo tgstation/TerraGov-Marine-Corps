@@ -13,6 +13,8 @@
 	var/max_shots = 0 //codex, energy weapons
 	var/scope_zoom = FALSE//codex
 	var/self_recharge = FALSE //codex
+	///force level if two handed, activated etc
+	var/force_activated = 0
 
 /obj/item/weapon/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(target == user && !user.do_self_harm)

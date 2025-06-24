@@ -9,18 +9,12 @@
 
 	return ..()
 
-/obj/machinery/door/airlock/multi_tile/handle_weldingtool_overlay(removing = FALSE)
-	if(!removing)
-		if(dir & NORTH|SOUTH)
-			add_overlay(GLOB.welding_sparks_multitiledoor_vertical)
-		else
-			add_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
-	else
-		if(dir & NORTH|SOUTH)
-			cut_overlay(GLOB.welding_sparks_multitiledoor_vertical)
-		else
-			cut_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
 
+/obj/machinery/door/airlock/multi_tile/get_weld_spark_icon_and_state()
+	if(dir & NORTH|SOUTH)
+		return list('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_vertical")
+	else
+		return list('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_horizontal")
 
 ///Due to inheritance from parent we need no icon_state, just icon
 /obj/machinery/door/airlock/multi_tile/glass
@@ -315,10 +309,17 @@
 	icon = 'icons/obj/doors/mainship/2x1engidoor.dmi'
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/free_access
+	req_access = null
+
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass
 	name = "\improper Engineering Glass Airlock"
 	icon = 'icons/obj/doors/mainship/2x1engidoor_glass.dmi'
+	opacity = FALSE
 	glass = TRUE
+
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/glass/free_access
+	req_access = null
 
 //COMMAND
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor
@@ -397,6 +398,18 @@
 	openspeed = 17
 	no_panel = TRUE
 	opacity = TRUE
+
+/obj/machinery/door/airlock/multi_tile/prison
+	name = "elevator door"
+	icon = 'icons/obj/doors/prison/4x1_elevator.dmi'
+	icon_state = "door_closed"
+	width = 4
+	openspeed = 17
+	no_panel = TRUE
+	opacity = TRUE
+
+/obj/machinery/door/airlock/multi_tile/prison/glass
+	icon = 'icons/obj/doors/prison/4x1_elevator_access.dmi'
 
 /obj/machinery/door/airlock/multi_tile/urban
 	name = "\improper Airlock"

@@ -3,63 +3,25 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use 'sass:color';
-@use 'sass:meta';
+.theme-som:root {
+  --background_som_color: hsl(26.7, 95.4%, 17.1%);
 
-@use '../colors.scss' with (
-  $primary: #397439,
-  $fg-map-keys: (),
-  $bg-map-keys: ()
-);
-@use '../base.scss' with (
-  $color-bg: #552702,
-  $color-bg-grad-spread: 6%
-);
+  --background-color: var(--background_som_color);
+  --base-gradient-spread: 6%;
 
-.theme-som {
-  // Atomic classes
-  @include meta.load-css('../atomic/color.scss');
+  --color-disabled: hsl(0, 0%, 21.2%);
+  --color-selected: hsl(0, 90.3%, 32.4%);
+  --color-caution: hsl(29.5, 91%, 39%);
+  --color-danger: hsl(61.1, 100%, 30.8%);
+  --color-primary: hsl(120, 34.1%, 33.9%);
+  --button-color: vars(--color-primary);
 
-  // Components
-  @include meta.load-css(
-    '../components/Button.scss',
-    $with: (
-      'color-default': colors.$primary,
-      'color-disabled': #363636,
-      'color-selected': #9d0808,
-      'color-caution': #be6209,
-      'color-danger': #9a9d00
-    )
-  );
-  @include meta.load-css(
-    '../components/Input.scss',
-    $with: ('border-color': #87ce87)
-  );
-  @include meta.load-css(
-    '../components/NoticeBox.scss',
-    $with: ('background-color': #552702)
-  );
-  @include meta.load-css(
-    '../components/NumberInput.scss',
-    $with: ('border-color': #87ce87)
-  );
-  @include meta.load-css(
-    '../components/ProgressBar.scss',
-    $with: ('background-color': rgba(0, 0, 0, 0.5))
-  );
-  @include meta.load-css('../components/Section.scss');
-  @include meta.load-css(
-    '../components/Tooltip.scss',
-    $with: ('background-color': #4a0202)
-  );
+  --notice-box-background: var(--background_som_color);
 
-  // Layouts
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css(
-    '../layouts/TitleBar.scss',
-    $with: ('background-color': #552702)
-  );
+  --progress-bar-background: rgba(0, 0, 0, 0.5);
+  --tooltip-background: hsla(36, 100%, 50%, 0.75);
+
+  --titlebar-background: var(--background_som_color);
 
   .Layout__content {
     background-image: url('../../assets/bg-som.svg');

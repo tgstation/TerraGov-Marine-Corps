@@ -3,7 +3,7 @@
 	mission_icon = "raiding_base"
 	map_name = "Raiding base Zulu"
 	map_file = '_maps/map_files/Campaign maps/som_raid_base/som_raiding_base.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	starting_faction_objective_description = "Major Victory: Set and defend an orbital beacon inside the facility until a precision orbital strike can be called in."
 	hostile_faction_objective_description = "Major Victory: Prevent the enemy from activating an orbital beacon inside the facility."
@@ -64,13 +64,39 @@
 	items += "Beacons remaining: [beacons_remaining]"
 
 /datum/campaign_mission/raiding_base/load_pre_mission_bonuses()
-	spawn_mech(starting_faction, 0, 0, 3)
-	spawn_mech(hostile_faction, 0, 2)
 	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 	for(var/i = 1 to beacons_remaining)
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 		new beacon_type(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
+
+	var/tanks_to_spawn = 0
+	var/mechs_to_spawn = 0
+	var/current_pop = length(GLOB.clients)
+	switch(current_pop)
+		if(0 to 59)
+			tanks_to_spawn = 0
+		if(60 to 75)
+			tanks_to_spawn = 1
+		if(76 to 90)
+			tanks_to_spawn = 2
+		else
+			tanks_to_spawn = 3
+
+	switch(current_pop)
+		if(0 to 39)
+			mechs_to_spawn = 1
+		if(40 to 49)
+			mechs_to_spawn = 2
+		if(50 to 79)
+			mechs_to_spawn = 3
+		else
+			mechs_to_spawn = 4
+
+	spawn_tank(starting_faction, tanks_to_spawn)
+	spawn_tank(hostile_faction, tanks_to_spawn)
+	spawn_mech(hostile_faction, 0, 0, mechs_to_spawn)
+	spawn_mech(starting_faction, 0, 0, max(0, mechs_to_spawn - 1))
 
 /datum/campaign_mission/raiding_base/start_mission()
 	. = ..()
@@ -190,7 +216,7 @@
 	ob_called = TRUE
 	resume_mission_timer(src, TRUE)
 	//We handle this here instead of the beacon structure because it could be destroyed before this triggers
-	explosion(location, 45, flame_range = 20)
+	explosion(location, 45, flame_range = 20, explosion_cause="beacon explosion")
 	if(QDELETED(beacon))
 		return
 	qdel(beacon)
@@ -199,7 +225,7 @@
 	name = "TGMC Raiding Base"
 	map_name = "Jeneora Valley"
 	map_file = '_maps/map_files/Campaign maps/tgmc_raid_base/tgmc_raiding_base.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	starting_faction_objective_description = "Major Victory: Set and defend a bluespace beacon inside the facility until a bluespace strike can be called in."
 	hostile_faction_objective_description = "Major Victory: Prevent the enemy from activating a bluespace beacon inside the facility."
@@ -234,7 +260,6 @@
 	return list(
 		/area/campaign/tgmc_raiding/underground/command,
 		/area/campaign/tgmc_raiding/underground/command/east,
-		/area/campaign/tgmc_raiding/underground/command/captain,
 		/area/campaign/tgmc_raiding/underground/medbay,
 		/area/campaign/tgmc_raiding/underground/security/central_outpost,
 		/area/campaign/tgmc_raiding/underground/general/hallway,

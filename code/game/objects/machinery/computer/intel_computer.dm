@@ -13,15 +13,17 @@
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 	interaction_flags = INTERACT_MACHINE_TGUI
 
+	faction = FACTION_TERRAGOV
+
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
-	var/supply_reward = 600
+	var/supply_reward = 1000
 	///How much dropship points you get for completing the terminal
-	var/dropship_reward = 60
+	var/dropship_reward = 100
 
 	///How much progress we get every tick, up to 100
-	var/progress_interval = 1
+	var/progress_interval = 0.75
 	///Tracks how much of the terminal is completed
 	var/progress = 0
 	///have we logged into the terminal yet?
@@ -32,9 +34,6 @@
 	var/printing = FALSE
 	///When we reach max progress and get the points
 	var/printing_complete = FALSE
-	///What faction has launched the intel process
-	var/faction = FACTION_TERRAGOV
-
 
 /obj/machinery/computer/intel_computer/Initialize(mapload)
 	. = ..()
@@ -46,15 +45,26 @@
 	if(!printing)
 		STOP_PROCESSING(SSmachines, src)
 		return
-	progress += progress_interval
-	if(progress >= 100)
-		STOP_PROCESSING(SSmachines, src)
+	if (machine_stat & NOPOWER)
 		printing = FALSE
-		printing_complete = TRUE
-		SSpoints.supply_points[faction] += supply_reward
-		SSpoints.dropship_points += dropship_reward
-		minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
-		SSminimaps.remove_marker(src)
+		update_minimap_icon()
+		visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit.")
+		if(progress >= 50)
+			progress = 50
+		else
+			progress = 0
+		return
+	progress += progress_interval
+	if(progress <= 100)
+		return
+	STOP_PROCESSING(SSmachines, src)
+	printing = FALSE
+	printing_complete = TRUE
+	update_minimap_icon()
+	SSpoints.supply_points[faction] += supply_reward
+	SSpoints.dropship_points += dropship_reward
+	minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
+	SSminimaps.remove_marker(src)
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src
@@ -71,6 +81,11 @@
 	if(!ui)
 		ui = new(user, src, "IntelComputer", "IntelComputer")
 		ui.open()
+
+///Change minimap icon if its on or off
+/obj/machinery/computer/intel_computer/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", MINIMAP_LABELS_LAYER))
 
 /obj/machinery/computer/intel_computer/ui_data(mob/user)
 	var/list/data = list()
@@ -95,6 +110,7 @@
 			. = TRUE
 		if("start_progressing")
 			printing = TRUE
+			update_minimap_icon()
 			var/mob/living/ui_user = ui.user
 			faction = ui_user.faction
 			START_PROCESSING(SSmachines, src)

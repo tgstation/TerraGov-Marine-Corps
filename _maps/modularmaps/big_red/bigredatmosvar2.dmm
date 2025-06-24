@@ -168,8 +168,9 @@
 /area/bigredv2/outside/s)
 "nU" = (
 /obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "oi" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -401,12 +402,20 @@
 /obj/item/circuitboard/solar_tracker,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"yf" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/filtration_plant)
 "yq" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
 /area/bigredv2/outside/s)
+"yF" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/outside/filtration_plant)
 "yP" = (
 /obj/machinery/computer3/server/rack,
 /obj/effect/turf_decal/warning_stripes/box/threeside{
@@ -617,8 +626,9 @@
 /area/bigredv2/outside/s)
 "JO" = (
 /obj/structure/cryofeed,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/engine,
-/area/space)
+/area/bigredv2/caves/rock)
 "JQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -640,6 +650,10 @@
 /area/bigredv2/outside/filtration_plant)
 "Kl" = (
 /turf/closed/wall/r_wall,
+/area/bigredv2/outside/filtration_plant)
+"Km" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
 /area/bigredv2/outside/filtration_plant)
 "Kq" = (
 /turf/closed/wall/r_wall/unmeltable,
@@ -687,8 +701,9 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/engine,
-/area/space)
+/area/bigredv2/caves/rock)
 "PY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -748,8 +763,9 @@
 /area/bigredv2/outside/filtration_plant)
 "Sw" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "Sx" = (
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
@@ -764,6 +780,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"TZ" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/caves/rock)
 "Ub" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
 /obj/effect/turf_decal/warning_stripes,
@@ -871,9 +891,9 @@
 /area/bigredv2/outside/filtration_plant)
 
 (1,1,1) = {"
-Gf
+Km
 pu
-Gf
+Km
 Gf
 Gf
 Gf
@@ -886,7 +906,7 @@ ah
 Kq
 Kq
 Kq
-Kq
+yF
 aI
 aI
 aI
@@ -937,7 +957,7 @@ uK
 Rz
 wU
 jf
-Kq
+yF
 Kq
 Kq
 Kq
@@ -979,15 +999,15 @@ Lx
 zq
 "}
 (5,1,1) = {"
-Gf
+Km
 pu
+Km
 Gf
 Gf
 Gf
 Gf
 Gf
-Gf
-Gf
+Km
 Xt
 kN
 Rz
@@ -1117,7 +1137,7 @@ zq
 Cp
 RA
 Bl
-Gf
+Km
 CC
 Rz
 Tf
@@ -1129,7 +1149,7 @@ Rz
 Rz
 jf
 eB
-Kl
+yf
 Ab
 aj
 Lx
@@ -1153,10 +1173,10 @@ Gf
 Gf
 wE
 Gf
-Kq
+TZ
 nU
 nU
-Kq
+TZ
 Is
 oU
 Lx
@@ -1180,10 +1200,10 @@ Gf
 Rz
 Im
 xe
-Kq
+TZ
 OF
 OF
-Kq
+TZ
 HO
 Iu
 HO
@@ -1210,7 +1230,7 @@ xe
 Sw
 JO
 JO
-Kq
+TZ
 aI
 Lc
 aI
@@ -1234,10 +1254,10 @@ jW
 Xt
 Im
 dv
-Kq
+TZ
 OF
 OF
-Kq
+TZ
 yq
 oy
 ab
@@ -1261,10 +1281,10 @@ Gf
 Rz
 Im
 xe
-Kq
+TZ
 JO
 JO
-Kq
+TZ
 kO
 Gl
 kO
@@ -1284,14 +1304,14 @@ Gf
 Gf
 jW
 Gf
-Gf
+Km
 jf
 Im
 jf
-Kq
+TZ
 nU
 nU
-Kq
+TZ
 kO
 MA
 oZ

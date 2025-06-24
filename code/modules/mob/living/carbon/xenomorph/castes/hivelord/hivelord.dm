@@ -13,7 +13,6 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_NORMAL
-	var/list/tunnels = list() //list of active tunnels
 
 // ***************************************
 // *********** Init
@@ -26,3 +25,4 @@
 /mob/living/carbon/xenomorph/hivelord/get_status_tab_items()
 	. = ..()
 	. += "Active Tunnel Sets: [LAZYLEN(tunnels)] / [HIVELORD_TUNNEL_SET_LIMIT]"
+	. += "Active Recovery Pylons: [LAZYLEN(GLOB.hive_datums[hivenumber].recovery_pylons)] / [HIVELORD_RECOVERY_PYLON_SET_LIMIT]"

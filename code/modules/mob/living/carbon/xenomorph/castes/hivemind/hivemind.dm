@@ -10,23 +10,18 @@
 	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
-	resistance_flags = RESIST_ALL|BANISH_IMMUNE
-	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
+	resistance_flags = RESIST_ALL
 	density = FALSE
-
 	a_intent = INTENT_HELP
-
 	health = 1000
 	maxHealth = 1000
 	plasma_stored = 5
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
 
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_invisible = SEE_INVISIBLE_LIVING
 	invisibility = INVISIBILITY_MAXIMUM
 	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
-	see_in_dark = 8
 	move_on_shuttle = TRUE
 
 	hud_type = /datum/hud/hivemind
@@ -35,6 +30,10 @@
 	var/datum/weakref/core
 	///The minimum health we can have
 	var/minimum_health = -300
+	///pass_flags given when going incorporeal
+	var/incorporeal_pass_flags = PASS_LOW_STRUCTURE|PASS_THROW|PASS_PROJECTILE|PASS_AIR|PASS_FIRE
+	///pass_flags given when manifested
+	var/manifest_pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	var/obj/structure/xeno/hivemindcore/new_core = new /obj/structure/xeno/hivemindcore(loc, hivenumber)
@@ -43,6 +42,7 @@
 	new_core.parent = WEAKREF(src)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, PROC_REF(return_to_core))
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, PROC_REF(change_form))
+	add_pass_flags(incorporeal_pass_flags, INNATE_TRAIT)
 	update_action_buttons()
 
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
@@ -63,12 +63,12 @@
 		remove_status_effect(/datum/status_effect/spacefreeze)
 	health = maxHealth - getFireLoss() - getBruteLoss()
 	med_hud_set_health()
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	update_wounds()
 
 /mob/living/carbon/xenomorph/hivemind/handle_living_health_updates()
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	var/turf/T = loc
 	if(!istype(T))
@@ -110,7 +110,7 @@
 	if(status_flags & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	wound_overlay.icon_state = "none"
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
@@ -128,8 +128,9 @@
 	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
-		resistance_flags = BANISH_IMMUNE
-		pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
+		resistance_flags = NONE
+		remove_pass_flags(incorporeal_pass_flags, INNATE_TRAIT)
+		add_pass_flags(manifest_pass_flags, MANIFESTED_TRAIT)
 		density = TRUE
 		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
@@ -141,7 +142,8 @@
 		return
 	status_flags = initial(status_flags)
 	resistance_flags = initial(resistance_flags)
-	pass_flags = initial(pass_flags)
+	remove_pass_flags(manifest_pass_flags, MANIFESTED_TRAIT)
+	add_pass_flags(incorporeal_pass_flags, INNATE_TRAIT)
 	density = FALSE
 	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -157,19 +159,6 @@
 	return_to_core()
 	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
 
-/mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
-	SHOULD_BE_PURE(TRUE)
-	if(isnull(T))
-		return FALSE
-	. = TRUE
-	if(locate(/obj/fire/flamer) in T)
-		return FALSE
-	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
-		if(QDESTROYING(W))
-			continue
-		return
-	return FALSE
-
 /mob/living/carbon/xenomorph/hivemind/handle_weeds_adjacent_removed()
 	if(loc_weeds_type || check_weeds(get_turf(src)))
 		return
@@ -178,10 +167,10 @@
 	return
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
-	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(!(status_flags & INCORPOREAL) && TIMER_COOLDOWN_FINISHED(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		do_change_form()
 	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in contents)
-		sticky_bomb.clean_refs()
+		sticky_bomb.unstick_from(src)
 		sticky_bomb.forceMove(loc)
 	forceMove(get_turf(get_core()))
 
@@ -205,7 +194,7 @@
 	setDir(SOUTH)
 
 /mob/living/carbon/xenomorph/hivemind/Move(atom/newloc, direction, glide_size_override)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	if(!(status_flags & INCORPOREAL))
 		return ..()
@@ -221,14 +210,14 @@
 	abstract_move(newloc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
-	var/track = "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
-	show_message("[track] [speaker.hivemind_start()] [span_message("hisses, '[message]'")][speaker.hivemind_end()]", 2)
+	var/track = "<a href='byond://?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
+	return show_message("[track] [speaker.hivemind_start()] [span_message("hisses, '[message]'")][speaker.hivemind_end()]", 2)
 
 /mob/living/carbon/xenomorph/hivemind/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	if(href_list["hivemind_jump"])
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
@@ -257,21 +246,8 @@
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return
 
-/mob/living/carbon/xenomorph/hivemind/med_hud_set_health()
-	var/image/holder = hud_list[HEALTH_HUD_XENO]
-	if(!holder)
-		return
-
-	if(status_flags & INCORPOREAL)
-		holder.icon_state = ""
-
-	var/amount = round(health * 100 / maxHealth, 10)
-	if(!amount)
-		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
-	holder.icon_state = "health[amount]"
-
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	var/list/modifiers = params2list(params)
 	if(modifiers["right"])
@@ -342,7 +318,7 @@
 	if(isnull(our_parent))
 		return ..()
 	our_parent.playsound_local(our_parent, SFX_ALIEN_HELP, 30, TRUE)
-	to_chat(our_parent, span_xenohighdanger("Your core has been destroyed!"))
+	to_chat(our_parent, span_xenouserdanger("Your core has been destroyed!"))
 	xeno_message("A sudden tremor ripples through the hive... \the [our_parent] has been slain!", "xenoannounce", 5, our_parent.hivenumber)
 	GLOB.key_to_time_of_role_death[our_parent.key] = world.time
 	GLOB.key_to_time_of_death[our_parent.key] = world.time
@@ -371,7 +347,7 @@
 	var/health_percent = round((max_integrity / obj_integrity) * 100)
 	switch(health_percent)
 		if(-INFINITY to 25)
-			to_chat(our_parent, span_xenohighdanger("Your core is under attack, and dangerous low on health!"))
+			to_chat(our_parent, span_xenouserdanger("Your core is under attack, and dangerous low on health!"))
 		if(26 to 75)
 			to_chat(our_parent, span_xenodanger("Your core is under attack, and low on health!"))
 		if(76 to INFINITY)
@@ -384,7 +360,7 @@
  */
 /obj/structure/xeno/hivemindcore/proc/hivemind_proxy_alert(datum/source, atom/movable/hostile)
 	SIGNAL_HANDLER
-	if(!COOLDOWN_CHECK(src, hivemind_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
+	if(!COOLDOWN_FINISHED(src, hivemind_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
 		return
 
 	if(!isliving(hostile))

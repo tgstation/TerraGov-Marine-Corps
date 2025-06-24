@@ -24,15 +24,15 @@
 ///The amount of extra damage per melee skill level
 #define MELEE_SKILL_DAM_BUFF 0.15
 
-///Firearms skill; Increase or decrase accuracy, recoil, damage, and firing delay of most guns; ability to tac reload
-#define SKILL_FIREARMS "firearms"
+///Combat skill; Increase or decrase accuracy, recoil, damage, and firing delay of most guns; ability to tac reload
+#define SKILL_COMBAT "combat"
 
-#define SKILL_FIREARMS_UNTRAINED 0
-#define SKILL_FIREARMS_DEFAULT 1
-#define SKILL_FIREARMS_TRAINED 2
+#define SKILL_COMBAT_UNTRAINED 0
+#define SKILL_COMBAT_DEFAULT 1
+#define SKILL_COMBAT_TRAINED 2
 
 ///Damage mod for having the weapon specific skill above 0
-#define FIREARM_SKILL_DAM_MOD 0.05
+#define COMBAT_SKILL_DAM_MOD 0.05
 
 ///Pistols skill; Increase accuracy, recoil, and damage of pistols and revolvers.
 #define SKILL_PISTOLS "pistols"
@@ -135,7 +135,7 @@
 #define SKILL_POLICE_FLASH 1
 #define SKILL_POLICE_MP 2
 
-///Powerloader skill; movespeed when using a powerloader (broken currently)
+///Powerloader skill; movespeed when using a powerloader
 #define SKILL_POWERLOADER "powerloader"
 
 #define SKILL_POWERLOADER_DEFAULT 0
@@ -151,6 +151,12 @@
 #define SKILL_LARGE_VEHICLE_TRAINED 1
 #define SKILL_LARGE_VEHICLE_EXPERIENCED 2
 #define SKILL_LARGE_VEHICLE_VETERAN 3
+
+///mech vehicle skill; can you use greyscale mechs or not
+#define SKILL_MECH "mech"
+
+#define SKILL_MECH_DEFAULT 0
+#define SKILL_MECH_TRAINED 1
 
 ///Stamina skill - you do cardio, right?; buff stamina-related things
 #define SKILL_STAMINA "stamina"

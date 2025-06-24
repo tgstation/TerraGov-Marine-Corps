@@ -16,6 +16,8 @@
 	var/initial_render_target_value
 	///This component's personal uid
 	var/personal_uid
+	///The associated action
+	var/datum/action/toggle_seethrough/action
 
 /datum/component/seethrough_mob/Initialize(target_alpha = 170, animation_time = 0.5 SECONDS, clickthrough = TRUE)
 	. = ..()
@@ -33,17 +35,18 @@
 	uid++
 	src.personal_uid = uid
 
-	render_source_atom.appearance_flags |= ( RESET_COLOR | RESET_TRANSFORM | KEEP_APART)
+	render_source_atom.appearance_flags |= KEEP_APART
 
-	render_source_atom.vis_flags |= (VIS_INHERIT_ID | VIS_INHERIT_PLANE | VIS_INHERIT_LAYER)
+	render_source_atom.vis_flags |= (VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER)
 
 	render_source_atom.render_source = "*transparent_bigmob[personal_uid]"
 
-	var/datum/action/ability/xeno_action/toggle_seethrough/action = new(src)
+	action = new(src)
 	action.give_action(parent)
 
 /datum/component/seethrough_mob/Destroy(force)
 	QDEL_NULL(render_source_atom)
+	QDEL_NULL(action)
 	return ..()
 
 ///Set up everything we need to trick the client and keep it looking normal for everyone else
@@ -51,9 +54,10 @@
 	SIGNAL_HANDLER
 
 	var/mob/fool = parent
-	var/icon/current_mob_icon = icon(fool.icon, fool.icon_state)
-	render_source_atom.pixel_x = -fool.pixel_x
-	render_source_atom.pixel_y = ((current_mob_icon.Height() - 32) * 0.5)
+	var/datum/hud/our_hud = fool.hud_used
+	for(var/atom/movable/screen/plane_master/seethrough as anything in our_hud.get_true_plane_masters(SEETHROUGH_PLANE))
+		seethrough.unhide_plane(fool)
+
 	render_source_atom.name = "seethrough" //So our name is not just "movable" when looking at VVs
 
 	initial_render_target_value = fool.render_target
@@ -92,40 +96,47 @@
 	atom_parent.vis_contents -= render_source_atom
 	atom_parent.render_target = initial_render_target_value
 	remove_from?.images -= removee
-	remove_from.mob.update_appearance(UPDATE_ICON)
+	remove_from?.mob.update_appearance(UPDATE_ICON)
 
 ///Effect is disabled when they log out because client gets deleted
-/datum/component/seethrough_mob/proc/on_client_disconnect()
+/datum/component/seethrough_mob/proc/on_client_disconnect(datum/source)
 	SIGNAL_HANDLER
 
+	untrick_mob()
+	action.set_toggle(FALSE)
 	var/mob/fool = parent
-	UnregisterSignal(fool, COMSIG_MOB_LOGOUT)
-	clear_image(trickery_image, fool.client)
+	var/datum/hud/our_hud = fool.hud_used
+	for(var/atom/movable/screen/plane_master/seethrough as anything in our_hud.get_true_plane_masters(SEETHROUGH_PLANE))
+		seethrough.hide_plane(fool)
+	is_active = FALSE
 
-/datum/component/seethrough_mob/proc/toggle_active(datum/action/ability)
+/datum/component/seethrough_mob/proc/toggle_active()
 	is_active = !is_active
 	if(is_active)
 		trick_mob()
-		ability.set_toggle(TRUE)
+		action.set_toggle(TRUE)
 	else
 		untrick_mob()
-		ability.set_toggle(FALSE)
+		action.set_toggle(FALSE)
 
-/datum/action/ability/xeno_action/toggle_seethrough
+/datum/action/toggle_seethrough
 	name = "Toggle Seethrough"
 	desc = "Allows you to see behind your massive body and click through it."
+	action_icon = 'icons/Xeno/actions/general.dmi'
 	action_icon_state = "xenohide"
-	cooldown_duration = 1 SECONDS
-	use_state_flags = ABILITY_USE_LYING
 	action_type = ACTION_TOGGLE
+	/// Spam prevention as mashing the ability breaks a lot of things
+	COOLDOWN_DECLARE(toggle_cooldown)
 
-/datum/action/ability/xeno_action/toggle_seethrough/action_activate(atom/t)
+/datum/action/toggle_seethrough/action_activate(atom/t)
+	if(!COOLDOWN_FINISHED(src, toggle_cooldown))
+		return
 	. = ..()
 	var/datum/component/seethrough_mob/transparency = target
-	transparency.toggle_active(src)
-	add_cooldown()
+	transparency.toggle_active()
+	COOLDOWN_START(src, toggle_cooldown, 1 SECONDS)
 
-/datum/action/ability/xeno_action/toggle_seethrough/Destroy()
+/datum/action/toggle_seethrough/Destroy()
 	var/datum/component/seethrough_mob/transparency = target
 	if(transparency.is_active)
 		transparency.untrick_mob()

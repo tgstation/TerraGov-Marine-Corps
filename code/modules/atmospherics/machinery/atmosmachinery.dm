@@ -203,7 +203,7 @@
 /obj/machinery/atmospherics/proc/can_unwrench(mob/user)
 	return can_unwrench
 
-/obj/machinery/atmospherics/deconstruct(disassembled = TRUE)
+/obj/machinery/atmospherics/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		if(can_unwrench)
 			var/obj/item/pipe/stored = new construction_type(loc, null, dir, src)
@@ -229,7 +229,7 @@
 
 /obj/machinery/atmospherics/on_construction(obj_color, set_layer)
 	if(can_unwrench)
-		add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
+		add_atom_colour(obj_color, FIXED_COLOR_PRIORITY)
 		pipe_color = obj_color
 	setPipingLayer(set_layer)
 	var/turf/T = get_turf(src)
@@ -252,7 +252,7 @@
 	if(T.density)
 		to_chat(user, span_notice("You cannot climb out, the exit is blocked!"))
 		return
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTCRAWL))
+	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_VENTCRAWL))
 		return FALSE
 	var/silent_crawl = FALSE
 	var/vent_crawl_exit_time = 2 SECONDS
@@ -293,12 +293,12 @@
 
 				user.forceMove(target_move)
 				user.update_pipe_vision()
-				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
+				user.client.set_eye(target_move)  //Byond only updates the eye every tick, This smooths out the movement
 				var/silent_crawl = FALSE //Some creatures can move through the vents silently
 				if(isxeno(user))
 					var/mob/living/carbon/xenomorph/X = user
 					silent_crawl = X.xeno_caste.silent_vent_crawl
-				if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTSOUND) || silent_crawl)
+				if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_VENTSOUND) || silent_crawl)
 					return
 				TIMER_COOLDOWN_START(user, COOLDOWN_VENTSOUND, 3 SECONDS)
 				playsound(src, pick('sound/effects/alien/ventcrawl1.ogg','sound/effects/alien/ventcrawl2.ogg'), 50, TRUE, -3)

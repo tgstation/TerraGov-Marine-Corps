@@ -13,7 +13,7 @@
 	throw_speed = 1
 	throw_range = 7
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb = list("robusted")
+	attack_verb = list("robusts")
 
 
 /obj/item/storage/toolbox/emergency

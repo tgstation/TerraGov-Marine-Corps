@@ -89,12 +89,6 @@
 	icon_state = "ags_cloak"
 	default_ammo = /datum/ammo/grenade_container/ags_grenade/cloak
 
-/obj/item/ammo_magazine/standard_agls/tanglefoot
-	name = "AGLS-37 Tanglefoot magazine (40mm Caseless)"
-	desc = "A box holding 30 40mm caseless Tanglefoot grenades for the AGLS-37 automatic grenade launcher."
-	icon_state = "ags_pgas"
-	default_ammo = /datum/ammo/grenade_container/ags_grenade/tanglefoot
-
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns. Will penetrate walls and fortifications, before hitting a target and exploding, has less payload and punch than usual rounds."
@@ -218,6 +212,19 @@
 	desc = "A box of 300, 10x30mm caseless tungsten rounds for the KRD-61ESmounted heavy smartgun."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "kord"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
+	magazine_flags = NONE
+	caliber = CALIBER_10X30
+	max_rounds = 300
+	default_ammo = /datum/ammo/bullet/machinegun
+	reload_delay = 5 SECONDS
+	icon_state_mini = "mag_hmg"
+
+/obj/item/ammo_magazine/at45
+	name = "CC/AT45 drum magazine (10x30mm Caseless)"
+	desc = "A drum mag loaded with 10x30mm caseless rounds for the CC/AT45."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state = "at45"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	magazine_flags = NONE
 	caliber = CALIBER_10X30

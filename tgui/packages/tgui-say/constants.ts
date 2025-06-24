@@ -1,15 +1,16 @@
 /** Window sizes in pixels */
-export enum WINDOW_SIZES {
-  small = 30,
-  medium = 50,
-  large = 70,
-  width = 231,
+export enum WindowSize {
+  Small = 30,
+  Medium = 50,
+  Large = 70,
+  Width = 231,
 }
 
 /** Line lengths for autoexpand */
-export enum LINE_LENGTHS {
-  small = 22,
-  medium = 45,
+export enum LineLength {
+  Small = 20,
+  Medium = 39,
+  Large = 59,
 }
 
 /**
@@ -18,15 +19,14 @@ export enum LINE_LENGTHS {
  */
 export const RADIO_PREFIXES = {
   ':a ': 'Hive',
-  ':n ': 'io',
   ':v ': 'Cmd',
   ':e ': 'Engi',
   ':m ': 'Med',
   ':o ': 'AI',
   ':s ': 'CAS',
   ':u ': 'Req',
-  ':q ': 'alpha',
-  ':b ': 'bravo',
-  ':c ': 'charlie',
-  ':d ': 'delta',
+  ':q ': 'Alpha',
+  ':b ': 'Bravo',
+  ':c ': 'Charlie',
+  ':d ': 'Delta',
 } as const;

@@ -13,6 +13,14 @@
 		return new /datum/export_report(0, name, faction_selling)
 	return ..()
 
+/mob/living/carbon/xenomorph/supply_export(faction_selling)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/list/points = get_export_value()
+	GLOB.round_statistics.points_from_xenos += points[1]
+
 /**
  * Getter proc for the point value of this object
  *
@@ -37,22 +45,22 @@
 /mob/living/carbon/xenomorph/get_export_value()
 	switch(tier)
 		if(XENO_TIER_MINION)
-			. = list(50, 5)
+			. = list(10, 1)
 		if(XENO_TIER_ZERO)
-			. = list(70, 7)
+			. = list(35, 4)
 		if(XENO_TIER_ONE)
-			. = list(150, 15)
+			. = list(75, 8)
 		if(XENO_TIER_TWO)
-			. = list(350, 30)
+			. = list(175, 18)
 		if(XENO_TIER_THREE)
-			. = list(600, 50)
+			. = list(300, 30)
 		if(XENO_TIER_FOUR)
-			. = list(1100, 100)
+			. = list(550, 55)
 	return
 
 //I hate it but it's how it was so I'm not touching it further than this
 /mob/living/carbon/xenomorph/shrike/get_export_value()
-	return list(600, 50)
+	return list(300, 30)
 
 /obj/item/reagent_containers/food/snacks/req_pizza/get_export_value()
 	return list(10, 0)

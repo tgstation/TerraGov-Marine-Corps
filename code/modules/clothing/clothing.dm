@@ -66,6 +66,9 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
+/obj/item/clothing/examine_descriptor(mob/user)
+	return "clothing item"
+
 /obj/item/clothing/update_greyscale()
 	. = ..()
 	if(!greyscale_config)
@@ -144,14 +147,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
-	var/supporting_limbs = NONE
-	var/blood_overlay_type = "suit"
-	var/shield_state = "shield-blue"
-
-	// Strength of the armor light used by [proc/set_light()]
 	light_power = 3
 	light_range = 4
 	light_system = MOVABLE_LIGHT
+	///Blood overlay icon_state
+	var/blood_overlay_type = "suit"
 
 /obj/item/clothing/suit/Initialize(mapload)
 	. = ..()
@@ -199,7 +199,7 @@
 	blood_sprite_state = "bloodyhands"
 	armor_protection_flags = HANDS
 	equip_slot_flags = ITEM_SLOT_GLOVES
-	attack_verb = list("challenged")
+	attack_verb = list("challenges")
 
 
 /obj/item/clothing/gloves/update_greyscale(list/colors, update)
@@ -231,7 +231,7 @@
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message(span_warning(" [user] cuts the fingertips off of the [src]."),span_warning(" You cut the fingertips off of the [src]."))
+		user.visible_message(span_warning("[user] cuts the fingertips off of the [src]."),span_warning("You cut the fingertips off of the [src]."))
 
 		clipped = TRUE
 		name = "mangled [name]"
@@ -265,6 +265,15 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
 
+/obj/item/clothing/mask/examine_descriptor(mob/user)
+	return "mask"
+
+/obj/item/clothing/mask/examine_tags(mob/user)
+	. = ..()
+	if(anti_hug)
+		.["larval hugger proof"] = "It will protect the wearer from [anti_hug] larval hugger attack\s."
+	else if(initial(anti_hug) > 0 && !anti_hug)
+		.[span_warning("not larval hugger protective")] = "It won't protect the wearer from larval hugger attacks anymore. Replace it as soon as possible."
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes

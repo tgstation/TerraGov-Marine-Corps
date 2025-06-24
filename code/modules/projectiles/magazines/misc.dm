@@ -104,6 +104,15 @@
 	current_rounds = 200
 	max_rounds = 200
 
+/obj/item/ammo_magazine/packet/smart_spottingrifle
+	name = "box of 12.7mm Smart Magnum"
+	desc = "A box containing 25 rounds of 12.7mm spotting rifle rounds."
+	icon_state = "smartspottingrifle"
+	default_ammo = /datum/ammo/bullet/spottingrifle
+	caliber = CALIBER_12x7
+	current_rounds = 25
+	max_rounds = 25
+
 /obj/item/ammo_magazine/packet/scout_rifle
 	name = "Box of A19 high velocity bullets"
 	desc = "A box containing 150 rounds of A19 overpressured high velocity."
@@ -205,8 +214,8 @@
 	caliber = CALIBER_10X20_CASELESS
 	default_ammo = /datum/ammo/bullet/smg
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 150
-	max_rounds = 150
+	current_rounds = 240
+	max_rounds = 240
 
 /obj/item/ammo_magazine/packet/p4570
 	name = "packet of .45-70"
@@ -223,8 +232,28 @@
 	name = "packet of .380 ACP"
 	desc = "A packet containing 210 rounds of .380 ACP."
 	caliber = CALIBER_380ACP
-	icon_state = "380acp"
+	icon_state = "380_acp"
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 210
 	max_rounds = 210
+
+/obj/item/ammo_magazine/packet/p41ae
+	name = "packet of .41 AE"
+	desc = "A packet containing 160 rounds of .41 AE rounds."
+	caliber = CALIBER_41AE
+	icon_state = "41AE"
+	default_ammo = /datum/ammo/bullet/smg/heavy
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 165
+	max_rounds = 165
+
+/obj/item/ammo_magazine/packet/p41ae_squashhead
+	name = "packet of .41 AE squashhead"
+	desc = "A packet containing 160 rounds of .41 AE squashhead rounds."
+	caliber = CALIBER_41AE
+	icon_state = "41AE_squash"
+	default_ammo = /datum/ammo/bullet/smg/squash
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 165
+	max_rounds = 165

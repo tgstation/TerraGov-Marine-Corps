@@ -1,10 +1,7 @@
-/client/proc/cmd_select_equipment(mob/target in GLOB.mob_list)
-	set category = "Admin"
-	set name = "Select equipment"
 
-
-	var/datum/select_equipment/ui = new(usr, target)
-	ui.ui_interact(usr)
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_select_equipment, R_FUN, "Select equipment", "Select a mobs equipment", ADMIN_CATEGORY_FUN, mob/target in GLOB.human_mob_list|GLOB.observer_list)
+	var/datum/select_equipment/ui = new(user.mob, target)
+	ui.ui_interact(user.mob)
 
 /*
  * This is the datum housing the select equipment UI.
@@ -134,6 +131,7 @@
 		cached_outfits += list(outfit_entry("General", /datum/outfit, "Naked", priority=TRUE))
 		cached_outfits += make_outfit_entries("General", subtypesof(/datum/outfit) - typesof(/datum/outfit/job))
 		cached_outfits += make_outfit_entries("Jobs", typesof(/datum/outfit/job))
+		cached_outfits += make_outfit_entries("Survivor", typesof(/datum/outfit/job/survivor))
 
 	data["outfits"] = cached_outfits
 	return data
@@ -214,7 +212,6 @@
 			if(tgui_alert(usr,"Drop Items in Pockets? No will delete them.", "Robust quick dress shop", list("Yes", "No")) == "No")
 				delete_pocket = TRUE
 
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Select Equipment") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 	for(var/obj/item/item in human_target.get_equipped_items(include_pockets = delete_pocket))
 		qdel(item)
 

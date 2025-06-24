@@ -3,6 +3,7 @@
 	desc = "A hefty wooden crate."
 	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "densecrate"
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	density = TRUE
 	anchored = FALSE
 	var/dropmetal = TRUE
@@ -23,9 +24,9 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/largecrate/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
-/obj/structure/largecrate/deconstruct(disassembled = TRUE)
+/obj/structure/largecrate/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	spawn_stuff()
 	return ..()
 
@@ -130,7 +131,7 @@
 	desc = "A stack of black storage cases."
 	icon_state = "case_double"
 
-/obj/structure/largecrate/random/case/double/deconstruct(disassembled = TRUE)
+/obj/structure/largecrate/random/case/double/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	new /obj/structure/largecrate/random/case(loc)
 	new /obj/structure/largecrate/random/case(loc)
 	return ..()
@@ -208,7 +209,7 @@
 		/obj/item/tool/screwdriver,
 	)
 
-/obj/structure/largecrate/random/barrel/deconstruct(disassembled = TRUE)
+/obj/structure/largecrate/random/barrel/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(dropmetal)
 		new /obj/item/stack/sheet/metal/small_stack(src)
 	return ..()
@@ -234,7 +235,7 @@
 	. += span_notice("You need a blowtorch to weld this open!")
 
 /obj/structure/largecrate/random/barrel/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"

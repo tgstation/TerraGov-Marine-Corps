@@ -12,7 +12,6 @@
 	unload_sound = 'sound/weapons/guns/interact/pistol_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
-	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
@@ -71,6 +70,9 @@
 	recoil_unwielded = -2
 	akimbo_scatter_mod = 8
 
+/obj/item/weapon/gun/pistol/standard_pistol/standard
+	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
 //-------------------------------------------------------
 //PP-7 Plasma Pistol
 /obj/item/weapon/gun/pistol/plasma_pistol
@@ -90,7 +92,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/plasma_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
 	type_of_casings = null
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 21, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -314,7 +316,6 @@
 	icon_state = "deagle"
 	worn_icon_state = "deagle"
 	caliber = CALIBER_50AE //codex
-	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/deagle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
@@ -490,6 +491,9 @@
 	scatter = 3
 	scatter_unwielded = 7
 
+/obj/item/weapon/gun/pistol/highpower/standard
+	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/reddot, /obj/item/attachable/gyro)
+
 //-------------------------------------------------------
 //VP70
 
@@ -599,7 +603,6 @@
 		/obj/item/attachable/lace,
 	)
 
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 6, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 11, "stock_y" = 10)
 
 	fire_delay = 0.15 SECONDS
@@ -651,7 +654,7 @@
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 	)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 11, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 23, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 21,"rail_x" = 2, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 23, "stock_y" = 13)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.0
@@ -665,12 +668,11 @@
 	starting_attachment_types = list(/obj/item/attachable/reddot,/obj/item/attachable/compensator,/obj/item/attachable/lasersight,)
 
 /obj/item/weapon/gun/pistol/xmdivider
-	name = "\improper XM104 'Divider' Revolver"
+	name = "\improper CC/104 'Divider' Revolver"
 	desc = "Intertech's one of a kind revolver. Fires custom incendiary .357 rounds, has firemode switch of single action and burst fire. Kicks like a fucking mule. You remember High Command saying: 'Don't let this get into enemy hands'."
-	icon = 'icons/obj/items/guns/pistols64.dmi'
-	icon_state = "xm104"
-	worn_icon_state = "xm104"
-	fire_animation = "xm104_fire"
+	icon = 'icons/obj/items/guns/pistols.dmi'
+	icon_state = "c104"
+	worn_icon_state = "c104"
 	caliber = CALIBER_357 //codex
 	max_shells = 6
 	default_ammo_type = /obj/item/ammo_magazine/pistol/xmdivider
@@ -678,7 +680,7 @@
 	force = 8
 	actions_types = null
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,
@@ -687,7 +689,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
 	)
-	attachable_offset = list("muzzle_x" = 39, "muzzle_y" = 19, "rail_x" = 16, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20, "rail_x" = 17, "rail_y" = 22, "under_x" = 29, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
 	windup_delay = 0.5 SECONDS
 	aim_slowdown = 0.1
 	burst_amount = 3
@@ -769,7 +771,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	desc = "A powerful sidearm issued mainly to highly trained elite assassin necro-cyber-agents."
 	icon_state = "c70"
 	worn_icon_state = "c70"
-	muzzleflash_iconstate = "muzzle_flash_medium"
+
 	caliber = CALIBER_70MANKEY //codex
 	max_shells = 300 //codex
 	default_ammo_type = /obj/item/ammo_magazine/pistol/chimp
@@ -810,7 +812,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	attachable_allowed = list(
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/suppressor,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -828,43 +830,37 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/lace,
 	)
 
-// Smart pistol, based on Calico M-950
+// Smart pistol, based on the MP-9.
 /obj/item/weapon/gun/pistol/smart_pistol
-	name = "\improper SP-13 smart pistol"
-	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
-	icon = 'icons/obj/items/guns/pistols64.dmi'
+	name = "\improper SP-13 smart machinepistol"
+	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. Cutting edge advancements in cost cutting allows for anyone to use this pistol without training due to the simplified KTLD system used at the cost of the barrel muzzle device. Uses 9mm."
 	icon_state = "sp13"
 	worn_icon_state = "sp13"
 	caliber = CALIBER_9X19 //codex
-	max_shells = 30 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
+	max_shells = 40 //codex
+	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/lace,
 	)
 
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
-	gun_skill_category = SKILL_SMARTGUN
 	actions_types = list() // Inherits aimmode, but has IFF so..
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_SEMIAUTO)
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 
-	aim_slowdown = 0.2
-	wield_delay = 0.6 SECONDS
+	aim_slowdown = 0.35
+	wield_delay = 0.65 SECONDS
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.85
-	scatter = 3
-	scatter_unwielded = 7
-	recoil = -2
+	damage_falloff_mult = 0.75
+	scatter = 0
+	scatter_unwielded = 8
 	recoil_unwielded = 2

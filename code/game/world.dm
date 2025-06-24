@@ -166,20 +166,28 @@ GLOBAL_VAR(restart_counter)
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
 		var/realtime = world.realtime
-		var/texttime = time2text(realtime, "YYYY/MM/DD")
+		var/texttime = time2text(realtime, "YYYY/MM/DD", TIMEZONE_UTC)
 		GLOB.log_directory = "data/logs/[texttime]/round-"
+		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD", TIMEZONE_UTC)]_"
+		GLOB.picture_log_directory = "data/picture_logs/[texttime]/round-"
 		if(GLOB.round_id)
 			GLOB.log_directory += "[GLOB.round_id]"
+			GLOB.picture_logging_prefix += "R_[GLOB.round_id]_"
+			GLOB.picture_log_directory += "[GLOB.round_id]"
 		else
 			var/timestamp = replacetext(time_stamp(), ":", ".")
 			GLOB.log_directory += "[timestamp]"
+			GLOB.picture_log_directory += "[timestamp]"
+			GLOB.picture_logging_prefix += "T_[timestamp]_"
 	else
 		GLOB.log_directory = "data/logs/[override_dir]"
+		GLOB.picture_logging_prefix = "O_[override_dir]_"
+		GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
+
+	logger.init_logging()
 
 	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
-
-	logger.init_logging()
 
 	if(GLOB.round_id)
 		log_game("Round ID: [GLOB.round_id]")
@@ -199,31 +207,7 @@ GLOBAL_VAR(restart_counter)
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC	//redirect to server tools if necessary
 
-	var/static/list/bannedsourceaddrs = list()
-
-	var/static/list/lasttimeaddr = list()
 	var/static/list/topic_handlers = TopicHandlers()
-
-	//LEAVE THIS COOLDOWN HANDLING IN PLACE, OR SO HELP ME I WILL MAKE YOU SUFFER
-	if (bannedsourceaddrs[addr])
-		return
-
-	var/list/filtering_whitelist = CONFIG_GET(keyed_list/topic_filtering_whitelist)
-	var/host = splittext(addr, ":")
-	if(!filtering_whitelist[host[1]]) // We only ever check the host, not the port (if provided)
-		if(length(T) >= MAX_TOPIC_LEN)
-			log_admin_private("[addr] banned from topic calls for a round for too long status message")
-			bannedsourceaddrs[addr] = TOPIC_BANNED
-			return
-
-		if(lasttimeaddr[addr])
-			var/lasttime = lasttimeaddr[addr]
-			if(world.time < lasttime)
-				log_admin_private("[addr] banned from topic calls for a round for too frequent messages")
-				bannedsourceaddrs[addr] = TOPIC_BANNED
-				return
-
-		lasttimeaddr[addr] = world.time + 2 SECONDS
 
 	var/list/input = params2list(T)
 	var/datum/world_topic/handler
@@ -262,6 +246,23 @@ GLOBAL_VAR(restart_counter)
 	sleep(0)	//yes, 0, this'll let Reboot finish and prevent byond memes
 	qdel(src)	//shut it down
 
+/// Returns TRUE if the world should do a TGS hard reboot.
+/world/proc/check_hard_reboot()
+	if(!TgsAvailable())
+		return FALSE
+	var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
+	switch(ruhr)
+		if(-1)
+			return FALSE
+		if(0)
+			return TRUE
+		else
+			if(GLOB.restart_counter >= ruhr)
+				return TRUE
+			else
+				text2file("[++GLOB.restart_counter]", RESTART_COUNTER_PATH)
+				return FALSE
+
 /world/Reboot(ping)
 	if(ping)
 		// TODO: Replace the second arguments of send2chat with custom config tags. See __HELPERS/chat.dm
@@ -298,39 +299,25 @@ GLOBAL_VAR(restart_counter)
 		if(length(msg))
 			send2chat(msg.Join(" | "), CONFIG_GET(string/end_of_round_channel))
 
+	to_chat(world, span_boldannounce("Rebooting world..."))
 	Master.Shutdown()
-	TgsReboot()
 
 	#ifdef UNIT_TESTS
 	FinishTestRun()
 	return
 	#endif
 
-	if(TgsAvailable())
-		var/do_hard_reboot
-		// check the hard reboot counter
-		var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
-		switch(ruhr)
-			if(-1)
-				do_hard_reboot = FALSE
-			if(0)
-				do_hard_reboot = TRUE
-			else
-				if(GLOB.restart_counter >= ruhr)
-					do_hard_reboot = TRUE
-				else
-					text2file("[++GLOB.restart_counter]", RESTART_COUNTER_PATH)
-					do_hard_reboot = FALSE
+	if(check_hard_reboot())
+		log_world("World hard rebooted at [time_stamp()]")
+		shutdown_logging() // See comment below.
+		TgsEndProcess()
+		return ..()
 
-		if(do_hard_reboot)
-			log_world("World rebooted at [time_stamp()]")
-			shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
-			TgsEndProcess()
+	log_world("World rebooted at [time_stamp()]")
 
-	var/linkylink = CONFIG_GET(string/server)
-	if(linkylink)
-		for(var/cli in GLOB.clients)
-			cli << link("byond://[linkylink]")
+	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+
+	TgsReboot() // TGS can decide to kill us right here, so it's important to do it last
 
 	return ..()
 
@@ -380,6 +367,44 @@ GLOBAL_VAR(restart_counter)
 	// Finally set the new status
 	status = new_status
 
+
+/**
+ * Handles increasing the world's maxx var and initializing the new turfs and assigning them to the global area.
+ * If map_load_z_cutoff is passed in, it will only load turfs up to that z level, inclusive.
+ * This is because maploading will handle the turfs it loads itself.
+ */
+/world/proc/increase_max_x(new_maxx, map_load_z_cutoff = maxz)
+	if(new_maxx <= maxx)
+		return
+	var/old_max = world.maxx
+	maxx = new_maxx
+	if(!map_load_z_cutoff)
+		return
+	var/area/global_area = GLOB.areas_by_type[world.area] // We're guaranteed to be touching the global area, so we'll just do this
+	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
+	for (var/zlevel in 1 to map_load_z_cutoff)
+		var/list/to_add = block(
+			old_max + 1, 1, zlevel,
+			maxx, maxy, zlevel
+		)
+
+		global_area.turfs_by_zlevel[zlevel] += to_add
+
+/world/proc/increase_max_y(new_maxy, map_load_z_cutoff = maxz)
+	if(new_maxy <= maxy)
+		return
+	var/old_maxy = maxy
+	maxy = new_maxy
+	if(!map_load_z_cutoff)
+		return
+	var/area/global_area = GLOB.areas_by_type[world.area] // We're guaranteed to be touching the global area, so we'll just do this
+	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
+	for (var/zlevel in 1 to map_load_z_cutoff)
+		var/list/to_add = block(
+			1, old_maxy + 1, 1,
+			maxx, maxy, map_load_z_cutoff
+		)
+		global_area.turfs_by_zlevel[zlevel] += to_add
 
 /world/proc/incrementMaxZ()
 	maxz++

@@ -48,10 +48,22 @@
  * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
  */
-/proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE)
+/proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE, ignore_walls = TRUE)
+	if(isarea(source))
+		CRASH("playsound(): source is an area")
+
+	if(islist(soundin))
+		CRASH("playsound(): soundin attempted to pass a list! Consider using pick()")
+
+	if(!soundin)
+		CRASH("playsound(): no soundin passed")
+
+	if(vol < SOUND_AUDIBLE_VOLUME_MIN) // never let sound go below SOUND_AUDIBLE_VOLUME_MIN or bad things will happen
+		CRASH("playsound(): volume below SOUND_AUDIBLE_VOLUME_MIN. [vol] < [SOUND_AUDIBLE_VOLUME_MIN]")
+
 	var/turf/turf_source = get_turf(source)
 
-	if(!turf_source)
+	if (!turf_source)
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
@@ -61,29 +73,78 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		sound_range = round(0.5*vol) //if no specific range, the max range is equal to half the volume.
 
 	if(!frequency)
-		frequency = GET_RANDOM_FREQ // Same frequency for everybody
-	// Looping through the player list has the added bonus of working for mobs inside containers
-	var/sound/S = sound(get_sfx(soundin))
-	for(var/mob/M AS in GLOB.player_list|GLOB.aiEyes)
-		if(!M.client && !istype(M, /mob/camera/aiEye))
-			continue
-		if(ambient_sound && !(M.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
-			continue
-		var/turf/T = get_turf(M)
-		if(!T || T.z != turf_source.z || get_dist(M, turf_source) > sound_range)
-			continue
-		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S, sound_reciever = M)
+		frequency = GET_RANDOM_FREQ
+	var/sound/S = isdatum(soundin) ? soundin : sound(get_sfx(soundin))
+	var/source_z = turf_source.z
 
-	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
-		if(!armor.interior || armor.z != turf_source.z || get_dist(armor.loc, turf_source) > sound_range)
+	var/list/listeners
+
+	var/turf/above_turf = GET_TURF_ABOVE(turf_source)
+	var/turf/below_turf = GET_TURF_BELOW(turf_source)
+
+	// todo replace me with CALCULATE_MAX_SOUND_AUDIBLE_DISTANCE from tg so we dont have massive ass ranges fnr
+	var/audible_distance = sound_range
+
+	if(ignore_walls)
+		listeners = get_hearers_in_range(audible_distance, turf_source, RECURSIVE_CONTENTS_CLIENT_MOBS)
+		if(above_turf && istransparentturf(above_turf))
+			listeners += get_hearers_in_range(audible_distance, above_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+		if(below_turf && istransparentturf(turf_source))
+			listeners += get_hearers_in_range(audible_distance, below_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+	else //these sounds don't carry through walls
+		listeners = get_hearers_in_view(audible_distance, turf_source, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+		if(above_turf && istransparentturf(above_turf))
+			listeners += get_hearers_in_view(audible_distance, above_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+		if(below_turf && istransparentturf(turf_source))
+			listeners += get_hearers_in_view(audible_distance, below_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+		for(var/mob/listening_ghost as anything in SSmobs.dead_players_by_zlevel[source_z])
+			if(get_dist(listening_ghost, turf_source) <= audible_distance)
+				listeners += listening_ghost
+
+	// snowflake, ai eyes dont have a client
+	// this also ignores walls cus I cant be assed rn
+	for(var/mob/ai_eye AS in GLOB.aiEyes)
+		var/turf/eye_turf = get_turf(ai_eye)
+		if(!eye_turf || eye_turf.z != turf_source.z)
 			continue
-		for(var/mob/crew AS in armor.interior.occupants)
-			if(!crew.client)
-				continue
-			if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
-				continue
-			//turf source is null on purpose because it will not work properly since crew is on a different z
-			crew.playsound_local(null, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S, sound_reciever = crew)
+		if(get_dist(eye_turf, turf_source) <= audible_distance)
+			listeners += ai_eye
+
+
+	for(var/mob/listener AS in listeners)
+		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
+			continue
+		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
+
+	//We do tanks separately, since they are not actually on the source z, and we need some other stuff to get accurate directional sound
+	//todo stop ignoring walls
+	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
+		var/is_same_z = (armor.z == source_z) || (armor.z == above_turf?.z) || (armor.z == below_turf?.z)
+		if(!armor.interior || !is_same_z || get_dist(armor.loc, turf_source) > sound_range)
+			continue
+		// sounds vehicles with interiors make must be played inside the tank, see /obj/vehicle/sealed/armored/proc/play_interior_sound(...)
+		if(armor == source)
+			continue
+		if(!length(armor.interior.occupants))
+			continue
+		listeners += armor.interior.play_outside_sound(
+			turf_source,
+			soundin,
+			vol*0.5,
+			vary,
+			frequency,
+			falloff,
+			is_global,
+			channel,
+			ambient_sound,
+			S
+		)
+
+	return listeners
 
 /**
  * Plays a sound locally
@@ -99,12 +160,9 @@ A good representation is: 'byond applies a volume reduction to the sound every X
  * * channel - Optional: Picks a random available channel if not set
  * * sound_to_use - Optional: Will default to soundin
  * * distance_multiplier - Affects x and z hearing
- * * sound_reciever - Defaults to src, the thing that is hearing this sound
  */
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1, mob/sound_reciever)
-	if(!sound_reciever)
-		sound_reciever = src
-	if(!sound_reciever.client)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1)
+	if(!client)
 		return FALSE
 
 	if(!sound_to_use)
@@ -118,19 +176,14 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 	if(isturf(turf_source))
 		// 3D sounds, the technology is here!
-		var/turf/T = get_turf(src)
+		var/turf/turf_loc = get_turf(src)
 
-		//sound volume falloff with distance
-		var/distance = get_dist(T, turf_source)
+		if(sound_to_use.volume < SOUND_AUDIBLE_VOLUME_MIN)
+			return //Too quiet to be audible
 
-		distance *= distance_multiplier
-
-		if(sound_to_use.volume <= 2*distance)
-			return FALSE //no volume or too far away to hear such a volume level.
-
-		var/dx = turf_source.x - T.x // Hearing from the right/left
+		var/dx = turf_source.x - turf_loc.x // Hearing from the right/left
 		sound_to_use.x = dx * distance_multiplier
-		var/dz = turf_source.y - T.y // Hearing from infront/behind
+		var/dz = turf_source.y - turf_loc.y // Hearing from infront/behind
 		sound_to_use.z = dz * distance_multiplier
 		//The y value is for above your head, but there is no ceiling in 2d spessmens.
 		sound_to_use.y = 1
@@ -139,9 +192,9 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	if(!is_global)
 		sound_to_use.environment = SOUND_ENVIRONMENT_ROOM
 
-	SEND_SOUND(sound_reciever, sound_to_use)
+	SEND_SOUND(src, sound_to_use)
 
-/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1, mob/sound_reciever)
+/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1)
 	if(ear_deaf > 0)
 		return FALSE
 	return ..()
@@ -335,6 +388,10 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			soundin = 'sound/effects/alien/behemoth/roll.ogg'
 		if(SFX_BEHEMOTH_EARTH_PILLAR_HIT)
 			soundin = pick('sound/effects/alien/behemoth/earth_pillar_hit_1.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_2.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_3.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_4.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_5.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_6.ogg')
+		if(SFX_CONQUEROR_WILL_HOOK)
+			soundin = pick('sound/effects/alien/conqueror/will_hook_1.ogg', 'sound/effects/alien/conqueror/will_hook_2.ogg', 'sound/effects/alien/conqueror/will_hook_3.ogg')
+		if(SFX_CONQUEROR_WILL_EXTRA)
+			soundin = pick('sound/effects/alien/conqueror/will_extra_1.ogg', 'sound/effects/alien/conqueror/will_extra_2.ogg')
 
 		// Human
 		if(SFX_MALE_SCREAM)
@@ -385,5 +442,5 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			soundin = pick('sound/voice/robot/robot_warcry1.ogg', 'sound/voice/robot/robot_warcry2.ogg', 'sound/voice/robot/robot_warcry3.ogg')
 
 		if(SFX_HOVER_TANK)
-			soundin = pick('sound/vehicles/hover_1.ogg', 'sound/vehicles/hover_2.ogg', 'sound/vehicles/hover_3.ogg', 'sound/vehicles/hover_4.ogg')
+			soundin = pick('sound/vehicles/hover_tank/hover_1.ogg', 'sound/vehicles/hover_tank/hover_2.ogg', 'sound/vehicles/hover_tank/hover_3.ogg', 'sound/vehicles/hover_tank/hover_4.ogg')
 	return soundin

@@ -45,13 +45,15 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	thealert.owner = src
 
 	if(new_master)
-		var/old_layer = new_master.layer
-		var/old_plane = new_master.plane
-		new_master.layer = FLOAT_LAYER
-		new_master.plane = FLOAT_PLANE
-		thealert.add_overlay(new_master)
-		new_master.layer = old_layer
-		new_master.plane = old_plane
+		var/mutable_appearance/master_appearance = new(new_master)
+		master_appearance.appearance_flags = KEEP_TOGETHER
+		master_appearance.layer = FLOAT_LAYER
+		master_appearance.plane = FLOAT_PLANE
+		master_appearance.dir = SOUTH
+		master_appearance.pixel_x = new_master.pixel_x
+		master_appearance.pixel_y = new_master.pixel_y
+		master_appearance.pixel_z = new_master.pixel_z
+		thealert.add_overlay(strip_appearance_underlays(master_appearance))
 		thealert.icon_state = "template" // We'll set the icon to the client's ui pref in reorganize_alerts()
 		thealert.master = new_master
 	else
@@ -61,8 +63,8 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	alerts[category] = thealert
 	if(client && hud_used)
 		hud_used.reorganize_alerts()
-	thealert.transform = matrix(32, 6, MATRIX_TRANSLATE)
-	animate(thealert, transform = matrix(), time = 2.5, easing = CUBIC_EASING)
+	thealert.transform = matrix(32, 0, MATRIX_TRANSLATE)
+	animate(thealert, transform = matrix(), time = 1 SECONDS, easing = ELASTIC_EASING)
 
 	if(thealert.timeout)
 		addtimer(CALLBACK(src, PROC_REF(alert_timeout), thealert, category), thealert.timeout)
@@ -87,29 +89,40 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		client.screen -= alert
 	qdel(alert)
 
+/atom/movable/screen/alert/MouseEntered(location,control,params)
+	if(!QDELETED(src))
+		openToolTip(usr, src, params, title = name, content = desc)
+
+/atom/movable/screen/alert/MouseExited()
+	closeToolTip(usr)
+
 /atom/movable/screen/alert
 	icon = 'icons/mob/screen_alert.dmi'
 	icon_state = "default"
 	name = "Alert"
 	desc = "Something seems to have gone wrong with this alert, so report this bug please"
 	mouse_opacity = MOUSE_OPACITY_ICON
+	boxed_message_style = "boxed_message blue_box"
 	var/timeout = 0 //If set to a number, this alert will clear itself after that many deciseconds
 	var/severity = 0
 	var/alerttooltipstyle = ""
 	var/override_alerts = FALSE //If it is overriding other alerts of the same type
 	var/mob/owner //Alert owner
 
-
-/atom/movable/screen/alert/fire
-	name = "On Fire"
-	desc = "You're on fire. Stop, drop and roll to put the fire out or move to a vacuum area."
-	icon_state = "fire"
-
-/atom/movable/screen/alert/fire/Click()
-	var/mob/living/L = usr
-	if(!istype(L) || usr != owner)
+/atom/movable/screen/alert/Click(location, control, params)
+	if(!usr?.client)
 		return
-	L.resist()
+	var/paramslist = params2list(params)
+	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff (but 100% fucking should) so we'll cheat
+		to_chat(usr, fieldset_block(name, desc, boxed_message_style))
+		return
+	if(master)
+		return usr.client.Click(master, location, control, params)
+
+/atom/movable/screen/alert/Destroy()
+	master = null
+	owner = null
+	return ..()
 
 //GHOSTS
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages
@@ -118,6 +131,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	desc = "A new notification. You can enter it."
 	icon_state = "template"
 	timeout = 15 SECONDS
+	boxed_message_style = "boxed_message purple_box"
 	var/atom/target = null
 	var/action = NOTIFY_JUMP
 
@@ -144,11 +158,10 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 			switch(tgui_alert(G, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Jump to it", "Cancel")))
 				if("Join as Larva")
 					var/mob/living/carbon/human/original_corpse = G.can_reenter_corpse.resolve()
-					if(SSticker.mode.spawn_larva(G, target))
+					if(SSticker.mode.spawn_larva(G, target) && ishuman(original_corpse))
 						original_corpse?.set_undefibbable()
 				if("Jump to it")
 					G.forceMove(get_turf(target))
-
 
 //OBJECT-BASED
 
@@ -160,13 +173,13 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 /atom/movable/screen/alert/restrained/handcuffed
 	name = "Handcuffed"
 	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/restrained/Click()
 	if(!isliving(usr) || usr != owner)
 		return
 	var/mob/living/L = usr
 	return L.do_resist()
-
 
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 
@@ -207,39 +220,84 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 			reorganize_alerts(obs)
 	return TRUE
 
-/atom/movable/screen/alert/Click(location, control, params)
-	if(!usr?.client)
-		return
-	var/paramslist = params2list(params)
-	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		to_chat(usr, span_boldnotice("[name]</span> - <span class='info'>[desc]"))
-		return
-	if(master)
-		return usr.client.Click(master, location, control, params)
-
-/atom/movable/screen/alert/Destroy()
-	master = null
-	owner = null
-	return ..()
-
-
 //MECHS
 /atom/movable/screen/alert/nocell
 	name = "Missing Power Cell"
 	desc = "Unit has no power cell. No modules available until a power cell is reinstalled. Robotics may provide assistance."
 	icon_state = "no_cell"
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/emptycell
 	name = "Out of Power"
 	desc = "Unit's power cell has no charge remaining. No modules available until power cell is recharged."
 	icon_state = "empty_cell"
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/lowcell
 	name = "Low Charge"
 	desc = "Unit's power cell is running low."
 	icon_state = "low_cell"
+	boxed_message_style = "boxed_message red_box"
 
 /atom/movable/screen/alert/low_mech_integrity
 	name = "Mech Damaged"
 	desc = "Mech integrity is low."
 	icon_state = "low_mech_integrity"
+	boxed_message_style = "boxed_message red_box"
+
+// HUMAN WARNINGS
+/atom/movable/screen/alert/fire
+	name = "On Fire"
+	desc = "You're on fire. Stop, drop and roll to put the fire out, or use a fire extinguisher."
+	icon_state = "fire"
+	boxed_message_style = "boxed_message red_box"
+
+/atom/movable/screen/alert/fire/Click()
+	. = ..()
+	var/mob/living/L = usr
+	if(!istype(L) || usr != owner)
+		return
+	L.resist()
+
+/atom/movable/screen/alert/not_enough_oxy
+	name = "Choking"
+	desc = "You're not getting enough O2. This can be from internal damage or critical condition. Find a solution before you pass out or even die!"
+	icon_state = ALERT_NOT_ENOUGH_OXYGEN
+
+/atom/movable/screen/alert/hot
+	name = "Too Hot"
+	desc = "You're flaming hot! Try to extinguish yourself, and then take Kelotane to cool you down!"
+	icon_state = "hot"
+
+/atom/movable/screen/alert/cold
+	name = "Too Cold"
+	desc = "You're freezing cold! Get somewhere warmer, and layer up next time you go somewhere cold!"
+	icon_state = "cold"
+
+/atom/movable/screen/alert/lowpressure
+	name = "Low Pressure"
+	desc = "The air around you is hazardously thin! Get inside as soon as possible!"
+	icon_state = "lowpressure"
+
+/atom/movable/screen/alert/highpressure
+	name = "High Pressure"
+	desc = "The air around you is hazardously thick."
+	icon_state = "highpressure"
+
+/atom/movable/screen/alert/hungry
+	name = "Hungry"
+	desc = "You could use a bite to eat. Movement speed reduced."
+	icon_state = "hungry"
+	boxed_message_style = "boxed_message"
+
+/atom/movable/screen/alert/starving
+	name = "Starving"
+	desc = "You could eat a horse right now. Movement speed significantly reduced."
+	icon_state = "starving"
+	boxed_message_style = "boxed_message red_box"
+
+/atom/movable/screen/alert/stuffed
+	name = "Stuffed"
+	desc = "You had a bit too much to eat. Work out to lose the extra nutrition. Movement speed reduced."
+	icon_state = "stuffed"
+	boxed_message_style = "boxed_message green_box"

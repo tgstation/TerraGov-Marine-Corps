@@ -27,6 +27,9 @@
 				return
 
 	else //store item
+		if(I.last_equipped_slot)
+			if(equip_to_slot_if_possible(I, I.last_equipped_slot, FALSE, FALSE, FALSE))
+				return
 		if(s_active?.on_attackby(s_active, I, src)) //stored in currently open storage
 			return TRUE
 		if(slot_requested)
@@ -191,7 +194,7 @@
 		glasses = null
 		I.unequipped(src, SLOT_GLASSES)
 		var/obj/item/clothing/glasses/G = I
-		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+		if(G.vision_flags || G.invis_override || G.invis_view || !isnull(G.lighting_cutoff))
 			update_sight()
 		if(!QDELETED(src))
 			update_inv_glasses()
@@ -248,36 +251,12 @@
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
 /mob/living/carbon/human/equip_to_slot(obj/item/item_to_equip, slot, bitslot = FALSE)
-	if(!slot)
-		return
-	if(!istype(item_to_equip))
-		return
+	. = ..()
 	if(bitslot)
 		var/oldslot = slot
 		slot = slotbit2slotdefine(oldslot)
 	if(!has_limb_for_slot(slot))
 		return
-
-	if(item_to_equip == l_hand)
-		l_hand = null
-		item_to_equip.unequipped(src, SLOT_L_HAND)
-		update_inv_l_hand()
-
-	else if(item_to_equip == r_hand)
-		r_hand = null
-		item_to_equip.unequipped(src, SLOT_R_HAND)
-		update_inv_r_hand()
-
-	//removes item's actions, may be readded once re-equipped to the new slot
-	for(var/datum/action/A AS in item_to_equip.actions)
-		A.remove_action(src)
-
-	item_to_equip.screen_loc = null
-	item_to_equip.loc = src
-	item_to_equip.layer = ABOVE_HUD_LAYER
-	item_to_equip.plane = ABOVE_HUD_PLANE
-
-	item_to_equip.forceMove(src)
 
 	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into, if applicable
 
@@ -317,7 +296,7 @@
 			glasses = item_to_equip
 			item_to_equip.equipped(src, slot)
 			var/obj/item/clothing/glasses/G = item_to_equip
-			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+			if(G.vision_flags || G.invis_override || G.invis_view || !isnull(G.lighting_cutoff))
 				update_sight()
 			update_inv_glasses()
 		if(SLOT_GLOVES)
@@ -547,7 +526,7 @@
 
 	M.visible_message(span_danger("[src] tries to remove [M]'s [I.name]."), \
 					span_userdanger("[src] tries to remove [M]'s [I.name]."), null, 5)
-	if(do_after(src, HUMAN_STRIP_DELAY, NONE, M, BUSY_ICON_HOSTILE))
+	if(do_after(src, I.getstripdelay(), NONE, M, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
 			log_combat(src, M, "removed [key_name(I)] ([slot_to_process])")

@@ -19,6 +19,11 @@
 #define MAP_LAWANKA_OUTPOST "Lawanka Outpost"
 #define MAP_DAEDALUS_PRISON "Daedalus Prison"
 #define MAP_KUTJEVO_REFINERY "Kutjevo Refinery"
+#define MAP_CHIGUSA "Chigusa"
+#define MAP_LAVA_OUTPOST "Lava Outpost V1"
+#define MAP_CORSAT "CORSAT Research Station"
+#define MAP_BLUESUMMERS "Bluesummers Wreck Site"
+#define MAP_FIORINA "Fiorina Prison"
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
@@ -29,29 +34,8 @@
 #define MAP_FORT_PHOBOS "Fort Phobos"
 #define MAP_ITERON "Iteron"
 
-
-#define SEE_INVISIBLE_MINIMUM 5
-
-#define INVISIBILITY_LIGHTING 20
-
-#define SEE_INVISIBLE_LIVING 25
-
-#define INVISIBILITY_OBSERVER 60
-#define SEE_INVISIBLE_OBSERVER 60
-
-#define INVISIBILITY_MAXIMUM 100
-
-#define INVISIBILITY_ABSTRACT 101 //only used for abstract objects (e.g. spacevine_controller), things that are not really there.
-
-
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
-
-#define SEC_LEVEL_GREEN 0
-#define SEC_LEVEL_BLUE 1
-#define SEC_LEVEL_RED 2
-#define SEC_LEVEL_DELTA 3
-
 
 //=================================================
 #define HOSTILE_STANCE_IDLE 1
@@ -124,8 +108,3 @@
 #define WORLD_VIEW "15x15"
 #define WORLD_VIEW_NUM 7
 #define VIEW_NUM_TO_STRING(v) "[1 + 2 * v]x[1 + 2 * v]"
-
-#define TEXT_NORTH "[NORTH]"
-#define TEXT_SOUTH "[SOUTH]"
-#define TEXT_EAST "[EAST]"
-#define TEXT_WEST "[WEST]"

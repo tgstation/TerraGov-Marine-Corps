@@ -1,0 +1,10 @@
+//tram structure construction states
+#define TRAM_OUT_OF_FRAME 0
+#define TRAM_IN_FRAME 1
+#define TRAM_SCREWED_TO_FRAME 2
+
+#define BUILD_COST_METAL_CADE 4
+#define BUILD_COST_METAL_CADE_FOLDABLE 6
+
+#define BUILD_COST_PLASTEEL_CADE 3
+#define BUILD_COST_PLASTEEL_CADE_FOLDABLE 5

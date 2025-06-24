@@ -1,0 +1,341 @@
+2025-04-01:
+  Isy232:
+  - bugfix: Fixes my crash t3 balance change dividing by 0.
+  TiviPlus:
+  - bugfix: ' fixed a bunch of tgui stuff'
+  - bugfix: fixed preference preview being tiny
+  - bugfix: fixed tgui byond windows being tiny until they were edited
+  - code_imp: removed warning for being on 516
+2025-04-03:
+  Mantlecrawler:
+  - rscadd: Xenos can now place templates of resin walls during prep phase.
+  MiniMeatwad:
+  - balance: 2x faster acid casting on flares, plasma cost affected by dissolvability
+      (0.5x flares, 2x walls)
+  TiviPlus:
+  - bugfix: fixed space tiles again
+  - bugfix: fixed som ammorack layering under the floor
+  - bugfix: fixed som tank exit hatch layering under the floor
+  - bugfix: fixed wierd behavior with mech cloak and emissives
+  - bugfix: Mech relimb slashes will relay to torso when limb is destroyed
+  - balance: Mech repairpacks take 6 seconds to apply instead of 10 and disable your
+      weapons & movement while being used
+  - bugfix: Fixes directiona lbursts (canister,  buckshot) hitting solid objects if
+      it spawns inside them (tank hitbox, walls, etc)
+  - refactor: optimised (clientside and serverside) parallax, and made it's movement
+      look nicer
+  - bugfix: Fixes mech being diagonal sometimes (again)
+  - bugfix: fixed mech and tank not taking sticky weed slowdown as intended
+  - refactor: renamed the cooldown ending macros and added some new ones
+  - bugfix: melting fire no longer emits light and just emissively glows
+  - balance: melting fire now deals damage to vehicles
+  - bugfix: fixed sound not always workign immediately on spawn
+  - refactor: updated spatial tracking code somewhat
+  yyzsong:
+  - spellcheck: Jaeger and Hardsuit modular pieces are now plural (a chestplates ->
+      some chestplates)
+  - spellcheck: Adds \improper to some armor and clothing pieces
+  - spellcheck: Corrects some capitalization on storage modules I missed
+  - spellcheck: Renames IS Storage module to bulk storage module
+  - spellcheck: Renames helmet storage datum to be more generic (berets will no longer
+      show jaeger-pattern storage module)
+  - spellcheck: Chameloen -> chameleon
+2025-04-04:
+  TiviPlus:
+  - bugfix: Fixed toggle seethrough offsetting your sprite on 516
+  - bugfix: fixed m4 and m5 left clicking
+  - bugfix: mech/mobs/doors now block emissives correctly
+  - bugfix: fixed 516 tgui say not focusing on open all the time
+  - bugfix: Fixed being able to magdump mech rockets
+  - bugfix: Walking on top of doors on the above z doesnt make you fall
+  - code_imp: tgui loads faster now
+  - code_imp: the tgui title bar should play nicer now with other components like
+      buttons
+  - balance: conquerors obliteration works on vehicles now
+  - bugfix: fixed conqueror obliteration effects on multiz
+  - server: Changed client version warnings to be in config
+  - rscadd: Added Multiz minimap support
+  - bugfix: fixed dragon backhand doing nothing to mech
+  blackdav123:
+  - balance: Crash will always have at least two xenos, instead of one.
+2025-04-05:
+  Apple-107:
+  - balance: LTB Canister now ricochets off walls (2 times), has reduced scatter (Was
+      6, now 4), and increased range (Was 7, now 12)
+  Atropos:
+  - balance: Marine respawn time on crash is now 15 minutes
+  TiviPlus:
+  - bugfix: Fixed vent and c4 layering
+2025-04-06:
+  TiviPlus:
+  - qol: Mech builder colors are scrollable now
+  - bugfix: Mech builder UI looks less scrunched oup on 516
+  - qol: Mech builder weapon extra detail is smaller and better formatted now
+  - qol: Mech builder UI is less tall
+  - qol: Mech Builder UI now shows you more explicitly the Hand and Back weapons with
+      an icon
+  - qol: Mech builder UI scales better when being dragged around
+  - bugfix: Fixed mech boosting weapon overlays not updating
+  - refactor: Screech_act refactored, performance improved
+  - bugfix: Screech now calculates distance from queen for effect correctly instead
+      of just applying the minimum for mech/tank/apc
+  - bugfix: Screech now considers vehicles for line of sight calculations for screech
+      effects
+  - balance: Mech dash no longer lets you go over things
+  - bugfix: fixed being able to fire without windup for mech rpg
+  - qol: mech will now spin when checking windups
+2025-04-07:
+  Atropos:
+  - rscadd: You can now see people's ping with Who verb!
+2025-04-08:
+  TiviPlus:
+  - bugfix: Fixed shuttles offsetting mech
+  - bugfix: Fixed tank layering issues
+  - bugfix: minimap properly opens before you change zlevels again
+  - code_imp: optimized balloon alerts
+  - bugfix: Fixed admin announcement only allowing one character
+  - bugfix: Admin check hive status works again
+  - bugfix: Fixed tesla rifle not working
+  - admin: mentors can now see players' playtime
+  - bugfix: fixed misc tgui bugs
+  - bugfix: fixed chat scroll breaking sometimes
+  - bugfix: tank/apc fall down zlevels now
+  - bugfix: you can no longer fire the alternate mech gun while winding up a weapon
+  - balance: smg and rifle share cooldown and cannot be fired at the same time
+  - balance: mech shotgun and rocket pod share cooldown
+2025-04-09:
+  Abopos:
+  - qol: Spatial agents can now speak xeno common
+  TiviPlus:
+  - admin: winget in sdql works
+  - refactor: Overhauled how looking up and looking down function. they should now
+      not jitter, and trying to look up/down while already doing so will cancel the
+      previous look up/down in the opposite direction
+  - bugfix: Fixed tgui-say squad radio radio colors
+  - qol: You can now change the size of the command bar and info buttons bar (top
+      of the stat panel with changelogs)
+  - qol: added a preference to scale window sizes up or not (off by default as before
+      516)
+  - bugfix: improved non-standard monitor scaling on 516
+  - bugfix: Chat wont crash if we fail to play an admin sound
+2025-04-10:
+  Cerrik:
+  - bugfix: Attempt_restock() proc now values your feedback
+  Lewdcifer:
+  - balance: Xenos can no longer pull resin cocoons.
+  TiviPlus:
+  - balance: mech flamer has much less ammo in the mag and in reserve
+  breadhunt:
+  - rscdel: Removes second gen on Daedalus
+2025-04-11:
+  TiviPlus:
+  - refactor: movement will now execute canonically (ie the expected order, finishing
+      one before starting the next)
+2025-04-12:
+  Arar:
+  - bugfix: fixed welding inhand not showing
+  - code_imp: changed welding hat code to use balloon alerts when toggling
+  - refactor: refactored mentions of welding masks into welding helmets
+  Arturlang:
+  - rscadd: Special resin walls are now free, but weaker in health in comparison to
+      normal walls, they've been moved into normal secrete resin
+  - rscadd: Adds the ability to replace resin walls with different variants
+  - rscadd: add codex entries for resin wall armor stats.
+  Cerrik:
+  - bugfix: Adjusted the base class of the SAA revolver speedloader
+  Isy232:
+  - rscdel: Command tablets no longer check access for viewing.
+  TiviPlus:
+  - balance: Caps cloak mech gun cooldown CD after uncloaking to 1 second, and treats
+      the fire cooldown as half of it's reality for this purpose
+  - qol: Stat panel is only scrollable if needed
+  - qol: If larva queue is more than 2 people it will show how long it is in the tgui
+      "are you sure" popup when you try to observe
+  Tiviplus, Kuro, Tyeagg, GregorMN, Lumipharon:
+  - rscadd: XvH Mechs have been permanently reenabled. One slot will be granted every
+      20 players, starting at 40 players.
+  - rscadd: Mechs have been reworked to be faster compared to humans, but less tanky
+      (sort of a diver/flanker role)
+  - balance: Mechs no longer have directional armor, and are more mobile (diagonal
+      movement, spinning to fire)
+  - rscadd: Mechs have been resprited and repaletted and will update their sprite
+      on boosting or being destroyed, and they will leave a wreck
+  - qol: Mechs also have many new visual effects
+  - rscadd: Mech weapons are now split into back and hand weapons, and they can switch
+      between them quickly
+  - rscadd: Mechs now have a limb mechanic. Aiming arms (weakest limb, breaks in only
+      a few slashes) will disable the weapon on that limb, aiming the head will disable
+      it's NV, aiming legs will increasingly slow it down with damage taken until  it's
+      movement speed is halved at 0 HP. Slashing torso or an already destroyed limb
+      damages the actual mechs HP
+  - balance: crusher charges will always aim legs, which they will oneshot if they
+      manage to hit them
+  - balance: All mech weapons and (new) modules have been rebalanced and remade from
+      scratch
+  - rscadd: Mech now has a dash it can activate by double tapping into a direction,
+      which consumes energy
+  - qol: The mech Builder UI has been revamped
+  - balance: Only one mech can be spawned per person at the mech builder. Spatial
+      agents (the admin debug job) are exempt
+  tyeagg:
+  - rscadd: pda with audio log support for mappers
+2025-04-14:
+  Atropos:
+  - bugfix: Fixed Global narrate only allowing one character
+  breadhunt:
+  - bugfix: Bluespace gens can now be re-corrupted properly, if damaged but not exploded
+2025-04-15:
+  Atropos:
+  - rscadd: Small medical rig can now hold hyposprays (60u version)
+  Lewdcifer:
+  - balance: The Warrior's wall impact damage multiplier has been increased from x0.5
+      to x1.0 of the Warrior's melee damage.
+  - balance: The Warrior's punch damage multiplier has been increased from x1.0 to
+      x1.2.
+  Wisemonster:
+  - bugfix: Fixed mechs not spawning at the correct pop
+  - balance: Reduced behemoth's landslide mech damage to about 50
+  - balance: Reduced behemoth's enchanced landslide mech damage to about 70 damage
+  - balance: Reduced behemoth's seismic fracture  mech damage to about 70
+  - balance: Reduced behemoth's enhanced seismic fracture mech damage to about 90
+      per tile
+  - balance: Reduced behemoth's meteor mech damage to about 166  in total
+2025-04-29:
+  Arturlang:
+  - rscadd: Pattern building for xenos has been heavily overhauled and now has a hologram
+      that shows if you can build, and where it will build, and now supports any usual
+      xeno secrete resin buildable.
+  - bugfix: quickbuild no longer outputs chat messages for secreting resin
+  Atropos:
+  - admin: Added Tadpole logging (who picked it)
+  - spellcheck: Request Internet Sound -> Request Music
+  - bugfix: Replaced 2nd martin on sulaco with martina (very original)
+  - bugfix: Fixed round end screen not showing
+  - admin: set xeno buffs verb now also shows current autoballance
+  - admin: Added simple gib log
+  - admin: More nuke logging (enabling is seen in chat)
+  - bugfix: fixed PO+AC access on arachne
+  - bugfix: removed random space computers on sulaco
+  - balance: Synths essential kit now includes soap
+  - bugfix: fixed mentors being able to see admin stuff
+  - bugfix: fixed factory machines displaying incorrect times
+  - bugfix: fixed build mode explosion mode (throw in explosions wasnt working)
+  - admin: Admins hear bwoink when ticket gets tiered
+  - balance: Moved turrets on the thin tad to the side - allowing you to walk in the
+      middle
+  - rscadd: Request music verb has been added! you can now easily request music
+  - qol: Miners now give noise (+message) when theres a shipment ready!
+  - refactor: Cleaned up martina code
+  Isy232:
+  - balance: Xenos Caste swap timer in crash is now only 5 minutes.
+  - balance: Hivelord xenos requirement 8 => 5 in crash.
+  - balance: Xenos T3 slots now scale better beyond the 1st in crash, second slot
+      at 6 instead of 7 now.
+  Lewdcifer:
+  - balance: Conqueror's Endurance's maximum block health reduced from 1600 to 1200.
+  - balance: Conqueror's Endurance no longer allows the usage of other abilities while
+      it is active.
+  - balance: Vehicles (such as mechs and tanks) cannot be attacked while Conqueror's
+      Endurance is active.
+  - code_imp: Bump attacking is now a game preference, rather than an action.
+  Lumipharon:
+  - balance: Nerfed the cost and strength of the tesla turret
+  Neocloudy:
+  - spellcheck: 'Organ health in health analyzers: "Bruised" -> "Damaged", "Broken"
+      -> "Failing"'
+  - qol: Health analyzers have had their chem contents and organ damage displays reworked.
+      Chemical contents will display the estimated time until the chem metabolizes
+      out, how close it is to ODing, and estimated time until it stops ODing (if it
+      is ODing). Critical ODs are also labelled.
+  - qol: Organs that are halfway to Damaged status are now able to pop out on health
+      scans if they aren't technically Damaged yet.
+  - qol: Limbs are color coded on health analyzers. Robotic limbs appear blue, while
+      organic limbs change color based on their damage level, shifting from yellow
+      (low damage) to red (high damage) as they take more damage relative to their
+      maximum health before severing - low health limbs like extremities need less
+      damage to be colored orange/red.
+  - refactor: Refactored how health analyzers handle data and auto updates. Loading
+      screens won't occur when scanning somebody, auto updates take ~0.9s instead
+      of ~2s and runtimes won't occur if a scan happens too fast.
+  - qol: You can now opt out of being shown your scan using a preference. Showing
+      healthscans to people from other factions is no longer allowed. Showing healthscans
+      to people has a 3 second cooldown.
+  - bugfix: Accessible TGUI themes preference is now saved.
+  Runian:
+  - bugfix: Dragon Breath no longer continues to happen if Dragon enters critical
+      or dies prematurely.
+  - qol: You can now cancel Dragon Breath by reactivating the ability.
+  TiviPlus:
+  - admin: Updated vv to support appearances
+  - code_imp: Bitfield VV backend uses new defines now
+  - bugfix: Fixed crusher instakilling mechs
+  - qol: Dangerous weather will now play a screen alert warning when starting
+  - balance: Crushers charging mech legs will instead target chest if legs have no
+      hp
+  - code_imp: Swaps all pixel y to pixel z for falling from sky effects
+  - bugfix: Fix mechs being destroyed while not facing south and without an occupant
+      making overlays layer wrong
+  - refactor: refactored photographs a bit
+  - qol: photographs now respect openspace
+  - bugfix: fixed 516 photographs being blurry
+  - bugfix: fixed all mobs that got photograpehd hard deleting
+  - admin: Photographs can now be saved and logged if the config flag is enabled.
+      This also allows loading and saving photographs between rounds as well as the
+      associated metadata
+  - bugfix: fixed overlays layering wrong on 516 in some cases
+  - rscadd: Tank will gib people when it falls onto them from the above zlevel
+  - bugfix: You can no longer put tanks, apcs and mechs into closets
+  - admin: Admins now see how many lobby players there and and how many are afk
+  - bugfix: Fire alarms now are less bright
+  - code_imp: 516 byond is now required to host the game
+  - qol: you can now reset the adjustable pane splitters in chat settings
+  - qol: Elaborates what the multiz performance preference does better
+  - bugfix: Fixes multiz preference not looping properly
+  - balance: XvH Mech has 300 instead of 500 hp as originally intended
+  - qol: The Alert for not meeting certain requirements in the mech builder to deploy
+      is no longer a solo popup
+  - qol: Added requirement to mount at least one gun and one engine to the mech so
+      people dont deploy without them
+  - bugfix: Droppods will no longer randomly appear near the LZ sometimes
+  - bugfix: Vehicles are no longer capable of phasing accross spacetime
+  - bugfix: Fixed Byond windows in tgui crashing dreamseeker
+  - rscadd: Added a forum-byond account link verb. Will be enabled when the forum
+      has been fixed to be able to link accounts again
+  - rscadd: Added the mech overboost module which allows the mech to charge in the
+      direction its facing after a windup
+  - bugfix: Look up/down track the thing you're inside
+  - bugfix: Fix mech/tank being able to use equipment while stunned
+  - rscdel: Attack hand alternate on guns no longer toggles safety if there is no
+      underbarrel gun
+  - refactor: Weather now uses overlays instead of setting area icons
+  - qol: some weather is now visible over darkness
+  - bugfix: Weather overlays work on multiz properly
+  - bugfix: mentors can subtle message again
+  - qol: Pointing in held objects will now actually show what is being pointed at
+      above your head
+  - qol: Status bar (bottom left text thing) now scales with monitor scaling settings
+  - qol: When the server reboots it will post a message in the chat
+  - code_imp: Improved code relating to restarting the server
+  - bugfix: Fire now falls down Zlevels
+  breadhunt:
+  - bugfix: Jellypod landmarks no longer spawn tunnels
+  ivanmixo:
+  - code_imp: Added mapload to every Initialize (again) and converts some New()s to
+      Initialize()
+  - bugfix: Posters work again
+  - bugfix: The sniper stacking debuff should be more consistent with not applying
+      the damage modifier when there's only one shooter
+  - rscadd: Added a smite build mode
+  - bugfix: Build mode no longer runtimes
+  - qol: Buildmode has been improved in many places usability wise
+  jonash07:
+  - bugfix: fixed the staff officer's cap worn icon
+  nervere:
+  - bugfix: Fixed all directional inhand/wielded sprites for the SG-62.
+2025-04-30:
+  Atropos:
+  - admin: Tiering tickets unmarks them
+  Redory:
+  - bugfix: compact ammo box overlay now shows a full magazine
+  - imageadd: couple mini icons for the ammo boxes (mags, grenades, box overlays)
+  - imagedel: deleted some old mini-icons (old plasma cell, etc.)

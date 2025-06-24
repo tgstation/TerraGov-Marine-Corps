@@ -26,6 +26,9 @@
 		/obj/item/toy/plush/slime = 2,
 		/obj/item/toy/plush/moth = 2,
 		/obj/item/toy/plush/rouny = 1,
+		/obj/item/toy/plush/witch = 1,
+		/obj/item/toy/plush/fairy = 1,
+		/obj/item/toy/plush/royalqueen = 1,
 		)
 
 /obj/machinery/computer/arcade
@@ -145,7 +148,7 @@
 
 			else
 				var/atom/movable/prize = pick(contents)
-				prize.loc = src.loc
+				prize.forceMove(drop_location())
 
 	else if ((src.enemy_mp <= 5) && (prob(70)))
 		var/stealamt = rand(2,3)

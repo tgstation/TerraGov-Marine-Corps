@@ -60,12 +60,15 @@
 	user.visible_message(span_danger("[user] hits [src]. Nothing happens."), null, null, COMBAT_MESSAGE_RANGE)
 	log_message("Attack by hand/paw (no damage). Attacker - [user].", LOG_MECHA, color="red")
 
-/obj/vehicle/sealed/mecha/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit) //wrapper
-	log_message("Hit by projectile. Type: [hitting_projectile]([hitting_projectile.ammo.damage_type]).", LOG_MECHA, color="red")
+/obj/vehicle/sealed/mecha/bullet_act(atom/movable/projectile/proj, def_zone, piercing_hit) //wrapper
+	var/known_firer = key_name(proj.firer)
+	if(known_firer)
+		known_firer += " fired by [known_firer]"
+	log_message("Hit by projectile [known_firer]. Type: [proj]([proj.ammo.damage_type]).", LOG_MECHA, color="red")
 	// yes we *have* to run the armor calc proc here I love tg projectile code too
 	try_damage_component(
-		modify_by_armor(hitting_projectile.damage, hitting_projectile.ammo.armor_type, hitting_projectile.ammo.penetration, attack_dir = REVERSE_DIR(hitting_projectile.dir)),
-		hitting_projectile.def_zone,
+		modify_by_armor(proj.damage, proj.ammo.armor_type, proj.ammo.penetration, attack_dir = REVERSE_DIR(proj.dir)),
+		proj.def_zone,
 	)
 	return ..()
 
@@ -132,22 +135,26 @@
 /obj/vehicle/sealed/mecha/emp_act(severity)
 	. = ..()
 	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
-	use_power((cell.maxcharge * 0.2) / (severity))
-	take_damage(400 / severity, BURN, ENERGY)
+	use_power((cell.maxcharge * 0.4) / (severity))
+	take_damage(600 / severity, BURN, ENERGY)
 
 	for(var/mob/living/living_occupant AS in occupants)
-		living_occupant.Stagger((6 - severity) SECONDS)
+		living_occupant.Stagger((8 - severity) SECONDS)
 
 	log_message("EMP detected", LOG_MECHA, color="red")
 
-	var/disable_time = (4 - severity) SECONDS
+	var/disable_time = (5 - severity) SECONDS
 	if(!disable_time)
 		return
 	if(!equipment_disabled && LAZYLEN(occupants)) //prevent spamming this message with back-to-back EMPs
 		to_chat(occupants, span_warning("Error -- Connection to equipment control unit has been lost."))
 	mecha_flags |= MECHA_EMPED
 	update_appearance(UPDATE_OVERLAYS)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), disable_time, TIMER_UNIQUE | TIMER_OVERRIDE)
+	var/time_left = timeleft(emp_timer)
+	if(time_left)
+		disable_time += time_left
+		deltimer(emp_timer)
+	emp_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), disable_time, TIMER_DELETE_ME|TIMER_STOPPABLE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
 
@@ -176,6 +183,17 @@
 /obj/vehicle/sealed/mecha/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/mecha_ammo))
 		ammo_resupply(W, user)
+		return
+
+	if(istype(W, /obj/item/repairpack))
+		if(max_repairpacks <=0)
+			balloon_alert(user, "Repairpacks not supported")
+			return
+		if(stored_repairpacks >= max_repairpacks)
+			balloon_alert(user, "Repairpacks full")
+			return
+		stored_repairpacks++
+		qdel(W)
 		return
 
 	if(isidcard(W))

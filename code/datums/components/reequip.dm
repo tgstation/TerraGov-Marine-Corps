@@ -7,6 +7,8 @@
 	var/list/slots_to_try
 	///Ticks between the object being dropped and reequipped
 	var/reequip_delay = 0.3 SECONDS
+	/// Are we currently trying to catch the dropped parent?
+	var/active = TRUE
 
 /datum/component/reequip/Initialize(slots, _reequip_delay, ...)
 	if(!slots)
@@ -24,11 +26,15 @@
 ///Blocks any item with this component from being thrown
 /datum/component/reequip/proc/cancel_throw(source)
 	SIGNAL_HANDLER
+	if(!active)
+		return
 	return COMPONENT_MOVABLE_BLOCK_PRE_THROW
 
 ///Just holds a delay for the reequip attempt
 /datum/component/reequip/proc/begin_reequip(source, mob/user)
 	SIGNAL_HANDLER
+	if(!active)
+		return
 	addtimer(CALLBACK(src, PROC_REF(catch_wrapper), source, user), reequip_delay)
 
 ///Wrapper to ensure signals only come from One Spot

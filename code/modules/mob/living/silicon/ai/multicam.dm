@@ -3,12 +3,12 @@
 	var/mob/living/silicon/ai/ai
 	var/mutable_appearance/highlighted_background
 	var/highlighted = FALSE
-	var/mob/camera/aiEye/pic_in_pic/aiEye
+	var/mob/camera/aiEye/hud/pic_in_pic/aiEye
 
 
-/atom/movable/screen/movable/pic_in_pic/ai/Initialize(mapload)
+/atom/movable/screen/movable/pic_in_pic/ai/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	aiEye = new /mob/camera/aiEye/pic_in_pic()
+	aiEye = new /mob/camera/aiEye/hud/pic_in_pic()
 	aiEye.screen = src
 
 
@@ -29,7 +29,8 @@
 	highlighted_background = new /mutable_appearance()
 	highlighted_background.icon = 'icons/misc/pic_in_pic.dmi'
 	highlighted_background.icon_state = "background_highlight"
-	highlighted_background.layer = SPACE_LAYER
+	highlighted_background.layer = LOWER_FLOOR_LAYER
+	highlighted_background.appearance_flags = PIXEL_SCALE
 
 
 /atom/movable/screen/movable/pic_in_pic/ai/add_background()
@@ -96,7 +97,17 @@
 	name = ""
 	icon = 'icons/misc/pic_in_pic.dmi'
 	icon_state = "room_background"
+	plane = -19
+	layer = SPACE_LAYER
 
+/turf/open/ai_visible/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(multiz_offset_increase))
+	multiz_offset_increase(SSmapping)
+
+/turf/open/ai_visible/proc/multiz_offset_increase(datum/source)
+	SIGNAL_HANDLER
+	SET_PLANE_W_SCALAR(src, initial(plane), SSmapping.max_plane_offset)
 
 /area/ai_multicam_room
 	name = "AI Multicam Room"
@@ -129,22 +140,21 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 
 
 //Dummy camera eyes
-/mob/camera/aiEye/pic_in_pic
+/mob/camera/aiEye/hud/pic_in_pic
 	name = "Secondary AI Eye"
 	invisibility = INVISIBILITY_OBSERVER
 	mouse_opacity = MOUSE_OPACITY_ICON
 	icon_state = "ai_pip_camera"
+	icon_state_on = "ai_pip_camera"
 	var/atom/movable/screen/movable/pic_in_pic/ai/screen
 	var/list/cameras_telegraphed = list()
 	var/telegraph_cameras = TRUE
 	var/telegraph_range = 7
-	ai_detector_color = "#FF9900"
 
-
-/mob/camera/aiEye/pic_in_pic/GetViewerClient()
+/mob/camera/aiEye/hud/pic_in_pic/GetViewerClient()
 	return screen?.ai?.client
 
-/mob/camera/aiEye/pic_in_pic/setLoc(turf/T)
+/mob/camera/aiEye/hud/pic_in_pic/setLoc(turf/T)
 	if(T)
 		abstract_move(T)
 	else
@@ -156,23 +166,22 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	update_camera_telegraphing()
 
 
-/mob/camera/aiEye/pic_in_pic/get_visible_turfs()
+/mob/camera/aiEye/hud/pic_in_pic/get_visible_turfs()
 	return screen ? screen.get_visible_turfs() : list()
 
 
-/mob/camera/aiEye/pic_in_pic/proc/update_camera_telegraphing()
+/mob/camera/aiEye/hud/pic_in_pic/proc/update_camera_telegraphing()
 	if(!telegraph_cameras)
 		return
 	var/list/obj/machinery/camera/add = list()
 	var/list/obj/machinery/camera/remove = list()
 	var/list/obj/machinery/camera/visible = list()
-	for(var/VV in visibleCameraChunks)
-		var/datum/camerachunk/CC = VV
-		for(var/V in CC.cameras)
-			var/obj/machinery/camera/C = V
-			if(QDELETED(C) || !C.can_use() || (get_dist(C, src) > telegraph_range))
-				continue
-			visible |= C
+	for (var/datum/camerachunk/chunk as anything in visibleCameraChunks)
+		for (var/z_key in chunk.cameras)
+			for(var/obj/machinery/camera/camera as anything in chunk.cameras[z_key])
+				if (!camera.can_use() || (get_dist(camera, src) > telegraph_range))
+					continue
+				visible |= camera
 
 	add = visible - cameras_telegraphed
 	remove = cameras_telegraphed - visible
@@ -194,7 +203,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 		C.update_icon()
 
 
-/mob/camera/aiEye/pic_in_pic/proc/disable_camera_telegraphing()
+/mob/camera/aiEye/hud/pic_in_pic/proc/disable_camera_telegraphing()
 	telegraph_cameras = FALSE
 	for (var/V in cameras_telegraphed)
 		var/obj/machinery/camera/C = V
@@ -204,8 +213,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 		C.update_icon()
 	cameras_telegraphed.Cut()
 
-
-/mob/camera/aiEye/pic_in_pic/Destroy()
+/mob/camera/aiEye/hud/pic_in_pic/Destroy()
 	disable_camera_telegraphing()
 	return ..()
 
@@ -226,6 +234,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	C.set_view_size(3, 3, FALSE)
 	C.set_view_center(get_turf(eyeobj))
 	C.set_ai(src)
+	C.aiEye.name = "[name] (Secondary AI Eye)"
 	if(!silent)
 		to_chat(src, span_notice("Added new multicamera window."))
 	return C

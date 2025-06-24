@@ -17,15 +17,22 @@
 	light_range = 10
 	///Tank bitflags
 	var/armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
-	///Sound file(s) to play when we drive around
-	var/engine_sound = 'sound/ambience/tank_driving.ogg'
-	///frequency to play the sound with
-	var/engine_sound_length = 2 SECONDS
-	/// How long it takes to rev (vrrm vrrm!) TODO: merge this up to /vehicle here and on tg because of cars
-	COOLDOWN_DECLARE(enginesound_cooldown)
+
+	///sound loop that plays when we are not moving with a driver present
+	var/datum/looping_sound/idle_loop = /datum/looping_sound/tank_idle
+	/// sound loop that plays inside the tank when driver is in but we're not moving
+	var/datum/looping_sound/idle_inside_loop = /datum/looping_sound/tank_idle_interior
+	/// sound loop that plays while we move around
+	var/datum/looping_sound/drive_loop = /datum/looping_sound/tank_drive
+	/// sound that plays inside when we drive around
+	var/datum/looping_sound/drive_inside_loop = /datum/looping_sound/tank_drive_interior
+	/// sound to play outside the tank after the driver leaves
+	var/engine_off_sound = 'sound/vehicles/looping/tank_eng_interior_stop.ogg'
+	/// sound to play inside the tank after the driver leaves
+	var/engine_off_interior_sound = 'sound/vehicles/looping/tank_eng_stop.ogg'
 
 	///Cool and good turret overlay that allows independently swiveling guns
-	var/atom/movable/vis_obj/turret_overlay/turret_overlay
+	var/atom/movable/vis_obj/turret_overlay/turret_overlay = /atom/movable/vis_obj/turret_overlay
 	///Icon for the rotating turret icon. also should hold the icons for the weapon icons
 	var/turret_icon = 'icons/obj/armored/1x1/tinytank_gun.dmi'
 	///Iconstate for the rotating main turret
@@ -52,9 +59,18 @@
 	///Our driver utility module
 	var/obj/item/tank_module/gunner_utility_module
 	///list of weapons we allow to attach
-	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
+	var/list/permitted_weapons = list(
+		/obj/item/armored_weapon,
+		/obj/item/armored_weapon/ltaap,
+		/obj/item/armored_weapon/secondary_weapon,
+		/obj/item/armored_weapon/secondary_flamer,
+	)
 	///list of mods we allow to attach
-	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom)
+	var/list/permitted_mods = list(
+		/obj/item/tank_module/overdrive,
+		/obj/item/tank_module/passenger,
+		/obj/item/tank_module/ability/zoom
+	)
 	///Minimap flags to use for this vehcile
 	var/minimap_flags = MINIMAP_FLAG_MARINE
 	///minimap iconstate to use for this vehicle
@@ -72,8 +88,6 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
-	///modifier to view range when manning a control chair
-	var/vis_range_mod = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
@@ -89,11 +103,8 @@
 		damage_overlay.layer = layer+0.001
 		vis_contents += damage_overlay
 	if(armored_flags & ARMORED_HAS_PRIMARY_WEAPON)
-		turret_overlay = new()
-		turret_overlay.icon = turret_icon
-		turret_overlay.icon_state = turret_icon_state
-		turret_overlay.setDir(dir)
-		turret_overlay.layer = layer+0.002
+		turret_overlay = new turret_overlay(null, src)
+		setDir(dir) //update turret offsets if needed
 		if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 			switch(SSmapping.configs[GROUND_MAP].armor_style)
 				if(MAP_ARMOR_STYLE_JUNGLE)
@@ -105,6 +116,8 @@
 				if(MAP_ARMOR_STYLE_DESERT)
 					turret_overlay.icon_state += "_desert"
 		vis_contents += turret_overlay
+	else
+		turret_overlay = null
 	if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 		switch(SSmapping.configs[GROUND_MAP].armor_style)
 			if(MAP_ARMOR_STYLE_JUNGLE)
@@ -115,8 +128,17 @@
 				icon_state += "_urban"
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
-	if(minimap_icon_state)
-		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
+
+	if(idle_loop)
+		idle_loop = new idle_loop(list(src))
+	if(idle_inside_loop)
+		idle_inside_loop = new idle_inside_loop()
+	if(drive_loop)
+		drive_loop = new drive_loop(list(src))
+	if(drive_inside_loop)
+		drive_inside_loop = new drive_inside_loop()
+
+	update_minimap_icon()
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
@@ -130,7 +152,17 @@
 		QDEL_NULL(gunner_utility_module)
 	if(damage_overlay)
 		QDEL_NULL(damage_overlay)
-	if(turret_overlay)
+
+	// can be delled before init makes these due to globs
+	if(isdatum(idle_loop))
+		QDEL_NULL(idle_loop)
+	if(isdatum(idle_inside_loop))
+		QDEL_NULL(idle_inside_loop)
+	if(isdatum(drive_loop))
+		QDEL_NULL(drive_loop)
+	if(isdatum(drive_inside_loop))
+		QDEL_NULL(drive_inside_loop)
+	if(isatom(turret_overlay))
 		QDEL_NULL(turret_overlay)
 	if(isdatum(interior))
 		QDEL_NULL(interior)
@@ -154,11 +186,20 @@
 	if(Adjacent(entering_thing, src))
 		return list(get_turf(entering_thing))
 
-/obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE) //destroy sound is normally very quiet
 	new /obj/effect/temp_visual/explosion(get_turf(src), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	for(var/mob/living/nearby_mob AS in occupants + cheap_get_living_near(src, 7))
 		shake_camera(nearby_mob, 4, 2)
+	if(istype(blame_mob) && blame_mob.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
+		if(faction == blame_mob.faction)
+			personal_statistics.tanks_destroyed --
+			personal_statistics.mission_tanks_destroyed --
+		else
+			personal_statistics.tanks_destroyed ++
+			personal_statistics.mission_tanks_destroyed ++
+
 	return ..()
 
 /obj/vehicle/sealed/armored/update_icon_state()
@@ -216,9 +257,14 @@
 	. = ..()
 	if(!.)
 		return
-	play_engine_sound()
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
+	//we still need to handroll some parts of moved though since we skipped everything
+	last_move = direction
+	last_move_time = world.time
+	if(currently_z_moving)
+		var/turf/pitfall = get_turf(src)
+		pitfall.zFall(src, falling_from_move = TRUE)
 
 /obj/vehicle/sealed/armored/resisted_against(mob/living/user)
 	balloon_alert(user, "exiting...")
@@ -236,16 +282,21 @@
 /obj/vehicle/sealed/armored/Bump(atom/A)
 	. = ..()
 	if(HAS_TRAIT(A, TRAIT_STOPS_TANK_COLLISION))
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_VEHICLE_CRUSHSOUND))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_VEHICLE_CRUSHSOUND))
 			visible_message(span_danger("[src] is stopped by [A]!"))
-			playsound(src, 'sound/effects/metal_crash.ogg', 45)
+			playsound(A, 'sound/effects/metal_crash.ogg', 45)
 			TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
 		return
 	var/pilot
 	var/list/drivers = return_drivers()
 	if(length(drivers))
 		pilot = drivers[1]
-	A.vehicle_collision(src, get_dir(src, A), get_turf(loc), get_turf(loc), pilot)
+	A.vehicle_collision(src, get_dir(src, A), pilot)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_VEHICLE_CRUSHSOUND))
+		return
+	visible_message(span_danger("[src] rams [A]!"))
+	playsound(A, 'sound/effects/metal_crash.ogg', 45)
+	TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
 
 /obj/vehicle/sealed/armored/auto_assign_occupant_flags(mob/new_occupant)
 	if(interior) //handled by interior seats
@@ -262,11 +313,21 @@
 /obj/vehicle/sealed/armored/exit_location(mob/M)
 	return get_step(src, REVERSE_DIR(dir))
 
-/obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
-	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
-		return
-	COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
-	playsound(get_turf(src), engine_sound, 100, freq_vary, 20, frequency = sound_freq)
+/obj/vehicle/sealed/armored/emp_act(severity)
+	. = ..()
+	playsound(get_turf(src), 'sound/magic/lightningshock.ogg', 50, FALSE)
+	take_damage(400 / severity, BURN, ENERGY)
+	for(var/mob/living/living_occupant AS in occupants)
+		living_occupant.Stagger((6 - severity) SECONDS)
+
+/obj/vehicle/sealed/armored/process()
+	if(cooldown_vehicle_move + 10 > world.time)
+		return // tank is currently trying to move around
+	if(drive_loop?.timer_id)
+		drive_loop.stop()
+		idle_loop?.start(skip_startsound=TRUE)
+		drive_inside_loop?.stop(occupants)
+		idle_inside_loop?.start(occupants.Copy(), TRUE)
 
 ///called when a mob tried to leave our interior
 /obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)
@@ -295,7 +356,8 @@
 	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
 		return mob_try_enter(thing_to_load, user, TRUE)
-	user.temporarilyRemoveItemFromInventory(thing_to_load)
+	if(isitem(thing_to_load))
+		user.temporarilyRemoveItemFromInventory(thing_to_load)
 	thing_to_load.forceMove(interior.door.get_enter_location())
 	user.balloon_alert(user, "item thrown inside")
 	return TRUE
@@ -340,6 +402,10 @@
 		else
 			secondary_icons = list(secondary_weapon.hud_state_empty, secondary_weapon.hud_state_empty)
 		M?.hud_used?.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon?.ammo?.current_rounds)
+	if(idle_inside_loop?.timer_id)
+		idle_inside_loop.start(M, TRUE)
+	else if(drive_inside_loop?.timer_id)
+		drive_inside_loop.start(M, TRUE)
 
 /obj/vehicle/sealed/armored/after_add_occupant(mob/M)
 	. = ..()
@@ -350,28 +416,68 @@
 	. = ..()
 	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
 		RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, PROC_REF(on_mouseclick), TRUE)
+	if(. && (flag & VEHICLE_CONTROL_DRIVE) && !(datum_flags & DF_ISPROCESSING))
+		START_PROCESSING(SSfastprocess, src)
+		idle_loop.start()
+		idle_inside_loop.start(occupants.Copy())
 
 /obj/vehicle/sealed/armored/remove_controller_actions_by_flag(mob/M, flag)
 	. = ..()
 	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
 		UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
+	if(. && (flag & VEHICLE_CONTROL_DRIVE) && (driver_amount() == 0))
+		STOP_PROCESSING(SSfastprocess, src)
+		idle_loop?.stop()
+		drive_loop?.stop()
+		idle_inside_loop?.stop(occupants)
+		drive_inside_loop?.stop(occupants)
+		play_interior_sound(null, engine_off_interior_sound, 10, TRUE)
+		playsound(src, engine_off_sound, 30)
 
 /obj/vehicle/sealed/armored/remove_occupant(mob/M)
 	M?.hud_used?.remove_ammo_hud(primary_weapon)
 	M?.hud_used?.remove_ammo_hud(secondary_weapon)
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
+	idle_inside_loop?.output_atoms -= M
+	drive_inside_loop?.output_atoms -= M
 	return ..()
 
 /obj/vehicle/sealed/armored/relaymove(mob/living/user, direction)
 	. = ..()
-	if(!is_driver(user) && is_equipment_controller(user))
+	if(is_driver(user))
+		if(!drive_loop?.timer_id)
+			idle_loop?.stop()
+			drive_loop.start()
+			drive_inside_loop?.start(occupants.Copy())
+			idle_inside_loop?.stop(occupants)
+		return
+	if(is_equipment_controller(user))
 		swivel_turret(null, direction)
 
-/obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/vehicle/sealed/armored/onZImpact(turf/impacted_turf, levels, impact_flags)
+	. = ..()
+	if(pass_flags & HOVERING)
+		return
+	var/obj/hitboxtouse = hitbox ? hitbox : src
+	for(var/turf/landingzone in hitboxtouse.locs)
+		for(var/mob/living/crushed in landingzone)
+			crushed.gib()
+
+/obj/vehicle/sealed/armored/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	for(var/mob/living/carbon/human/crew AS in occupants)
 		if(crew.wear_id?.iff_signal & proj.iff_signal)
 			return FALSE
+	if(src == proj.shot_from)
+		return FALSE
+	if(src == proj.original_target)
+		return TRUE
+	if(!hitbox)
+		return ..()
+	if(proj.firer in hitbox.tank_desants)
+		return FALSE
+	if(proj.original_target in hitbox.tank_desants)
+		return FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)
@@ -461,14 +567,14 @@
 	else
 		try_easy_load(I, user)
 		return
-	if(length(weapon_to_load.ammo_magazine) >= weapon_to_load.maximum_magazines)
+	if((length(weapon_to_load.ammo_magazine) >= weapon_to_load.maximum_magazines) && weapon_to_load.ammo)
 		balloon_alert(user, "magazine already full")
 		return
 	user.temporarilyRemoveItemFromInventory(I)
 	I.forceMove(weapon_to_load)
 	if(!weapon_to_load.ammo)
 		weapon_to_load.ammo = I
-		balloon_alert(user, "primary gun loaded")
+		balloon_alert(user, "weapon loaded")
 		for(var/mob/occupant AS in occupants)
 			occupant?.hud_used?.update_ammo_hud(weapon_to_load, list(weapon_to_load.ammo.default_ammo.hud_state, weapon_to_load.ammo.default_ammo.hud_state_empty), weapon_to_load.ammo.current_rounds)
 	else
@@ -514,29 +620,6 @@
 		gunner_utility_module.on_unequip(user)
 		balloon_alert(user, "detached")
 		return
-	if(interior?.secondary_breech) // if interior handle by gun breech
-		return
-	if(istype(I, /obj/item/ammo_magazine))
-		if(!secondary_weapon)
-			balloon_alert(user, "no secondary weapon")
-			return
-		if(!(I.type in secondary_weapon.accepted_ammo))
-			balloon_alert(user, "not accepted ammo")
-			return
-		if(length(secondary_weapon.ammo_magazine) >= secondary_weapon.maximum_magazines)
-			balloon_alert(user, "magazine already full")
-			return
-		user.temporarilyRemoveItemFromInventory(I)
-		I.forceMove(secondary_weapon)
-		if(!secondary_weapon.ammo)
-			secondary_weapon.ammo = I
-			balloon_alert(user, "secondary gun loaded")
-			for(var/mob/occupant AS in occupants)
-				occupant?.hud_used?.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
-		else
-			secondary_weapon.ammo_magazine += I
-			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
-
 
 /obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
@@ -607,12 +690,24 @@
 		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
 		return FALSE
-	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
+	playsound(src, 'sound/vehicles/tankswivel.ogg', 80, TRUE)
+	play_interior_sound(null, 'sound/vehicles/turret_swivel_interior.ogg', 60, TRUE)
 	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 3 SECONDS)
+	if(primary_weapon)
+		TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_EQUIPMENT(primary_weapon.type), new_weapon_dir == REVERSE_DIR(turret_overlay.dir) ? 1 SECONDS : 0.5 SECONDS)
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
+
+///playsound_local identical args, use this when a sound should be played for the occupants.
+/obj/vehicle/sealed/armored/proc/play_interior_sound(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound/sound_to_use, distance_multiplier)
+	if(!interior)
+		return
+	for(var/mob/crew AS in interior.occupants)
+		if(!crew.client)
+			continue
+		crew.playsound_local(arglist(args))
 
 ///handles mouseclicks by a user in the vehicle
 /obj/vehicle/sealed/armored/proc/on_mouseclick(mob/user, atom/target, turf/location, control, list/modifiers)
@@ -653,21 +748,38 @@
 		return
 	INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/armored_weapon, begin_fire), user, target, modifiers)
 
+///Updates the vehicles minimap icon
+/obj/vehicle/sealed/armored/proc/update_minimap_icon()
+	if(!minimap_icon_state)
+		return
+	SSminimaps.remove_marker(src)
+	minimap_icon_state = initial(minimap_icon_state)
+	if(armored_flags & ARMORED_IS_WRECK)
+		minimap_icon_state += "_wreck"
+	SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, MINIMAP_BLIPS_LAYER))
+
 /atom/movable/vis_obj/turret_overlay
 	name = "Tank gun turret"
 	desc = "The shooty bit on a tank."
 	icon = 'icons/obj/armored/3x3/tank_gun.dmi' //set by owner
 	icon_state = "turret"
 	layer = ABOVE_ALL_MOB_LAYER
-	vis_flags = VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE
 	///overlay obj for for the attached gun
 	var/atom/movable/vis_obj/tank_gun/primary_overlay
 	///icon state for the secondary
 	var/image/secondary_overlay
 
+/atom/movable/vis_obj/turret_overlay/Initialize(mapload, obj/vehicle/sealed/armored/parent)
+	. = ..()
+	icon = parent.turret_icon
+	base_icon_state = parent.turret_icon_state
+	icon_state = parent.turret_icon_state
+	layer = parent.layer + 0.002
+	setDir(parent.dir)
+
 /atom/movable/vis_obj/turret_overlay/Destroy()
-	if(primary_overlay)
-		QDEL_NULL(primary_overlay)
+	QDEL_NULL(primary_overlay)
 	return ..()
 
 /atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
@@ -677,6 +789,7 @@
 
 	primary_overlay = new()
 	primary_overlay.icon = icon //VIS_INHERIT_ICON doesn't work with flick
+	primary_overlay.base_icon_state = gun_icon_state
 	primary_overlay.icon_state = gun_icon_state
 	vis_contents += primary_overlay
 
@@ -691,15 +804,35 @@
 	if(secondary_overlay)
 		update_appearance(UPDATE_OVERLAYS)
 
+/atom/movable/vis_obj/turret_overlay/offset
+	/**
+	 * in case snowflake offsets are needed of the turret, set this var to list(dir = list(x, y)) in initialize
+	 * when the parent vehicle rotates, we apply these snowflake offsets seperately. useful primarily for non-centered turrets
+	 */
+	var/list/turret_offsets
+
+/atom/movable/vis_obj/turret_overlay/offset/Initialize(mapload, obj/vehicle/sealed/armored/parent)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_offsets))
+	turret_offsets = list(TEXT_NORTH = list(10, 10), TEXT_EAST = list(-10, -10), TEXT_SOUTH = list(-100, -100), TEXT_WEST = list(100, 100))
+
+///sighandler for updating offsets on owning vehicle move
+/atom/movable/vis_obj/turret_overlay/offset/proc/update_offsets(obj/vehicle/sealed/armored/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	if(!turret_offsets["[new_dir]"])
+		return
+	pixel_x = turret_offsets["[new_dir]"][1]
+	pixel_y = turret_offsets["[new_dir]"][2]
+
 /atom/movable/vis_obj/tank_damage
 	name = "Tank damage overlay"
 	desc = "ow."
 	icon = 'icons/obj/armored/3x3/tank_damage.dmi' //set by owner
 	icon_state = "null" // set on demand
-	vis_flags = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID|VIS_INHERIT_PLANE
 
 /atom/movable/vis_obj/tank_gun
 	name = "Tank weapon"
-	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID|VIS_INHERIT_PLANE
 	pixel_x = -70
 	pixel_y = -69

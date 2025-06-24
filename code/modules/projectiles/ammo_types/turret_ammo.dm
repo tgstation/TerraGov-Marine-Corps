@@ -6,6 +6,7 @@
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
+	icon_state = "bullet_red"
 	bullet_color = COLOR_SOFT_RED
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
@@ -32,6 +33,7 @@
 
 /datum/ammo/bullet/turret/sniper
 	name = "antimaterial bullet"
+	icon_state = "bullet_large_red"
 	bullet_color = COLOR_SOFT_RED
 	accurate_range = 21
 	damage = 80
@@ -50,7 +52,7 @@
 	penetration = 40
 	damage_falloff = 1
 
-/datum/ammo/bullet/turret/buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/turret/buckshot/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, knockback = 1, max_range = 4)
 
 /datum/ammo/bullet/turret/spread
@@ -77,14 +79,14 @@
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 
 
-/datum/ammo/flamer/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/flamer/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob))
 
-/datum/ammo/flamer/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/flamer/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
-/datum/ammo/flamer/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/flamer/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/flamer/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/flamer/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)

@@ -1,7 +1,7 @@
 //The base setup for HvH gamemodes, not for actual use
 /datum/game_mode/hvh
 	name = "HvH base mode"
-	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
+	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	shutters_drop_time = 3 MINUTES
 	xeno_abilities_flags = ABILITY_CRASH
 	factions = list(FACTION_TERRAGOV, FACTION_SOM)
@@ -30,7 +30,7 @@
 
 /datum/game_mode/hvh/post_setup()
 	. = ..()
-	for(var/z_num in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+	for(var/z_num in SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
 		set_z_lighting(z_num)
 
 //sets TGMC and SOM squads
@@ -187,7 +187,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	if(!message)
 		return
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, GLOB.faction_to_portrait[user.faction])
+	user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", message, LEFT_ALIGN_TEXT), GLOB.faction_to_portrait[user.faction])
 
 ///Returns a message to play to a mob when they deploy into the AO
 /datum/game_mode/hvh/proc/get_deploy_point_message(mob/living/user)

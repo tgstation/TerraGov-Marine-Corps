@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 	return ..()									// then go ahead and delete the cable
 
-/obj/structure/cable/deconstruct(disassembled = TRUE)
+/obj/structure/cable/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/stack/cable_coil(drop_location(), 1)
 	return ..()
@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	throw_range = 5
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
-	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	attack_verb = list("whips", "lashes", "disciplines", "flogs")
 	singular_name = "cable piece"
 	usesound = 'sound/items/deconstruct.ogg'
 	var/obj/structure/cable/target_type = /obj/structure/cable

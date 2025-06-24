@@ -71,7 +71,7 @@
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
 			. += span_danger("This power cell looks jury rigged to explode!")
 
-/obj/item/cell/attack_self(mob/user as mob)
+/obj/item/cell/attack_self(mob/user as mob) // todo shitcode fixme
 	if(!rigged)
 		return ..()
 
@@ -89,7 +89,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		C.throw_mode_on()
-	overlays += new/obj/effect/overlay/danger
+	overlays += mutable_appearance('icons/obj/items/grenade.dmi', "danger", ABOVE_ALL_MOB_LAYER, src)
 	spawn(rand(3,50))
 		spark_system.start(src)
 		explode()
@@ -220,23 +220,14 @@
 /obj/item/cell/proc/is_fully_charged()
 	return charge == maxcharge
 
-/**
- * Determines explosivity based on charge, then explodes
- *
- * * 1000-cell	explosion(epicenter, 0, 0, 1, 1)
- * * 2500-cell	explosion(epicenter, 0, 0, 1, 1)
- * * 10000-cell	explosion(epicenter, 0, 1, 3, 3)
- * * 15000-cell	explosion(epicenter, 0, 2, 4, 4)
- */
+///Explodes, scaling with cell charge
 /obj/item/cell/proc/explode()
-	var/turf/epicenter = get_turf(loc)
 
-	var/devastation_range = 0 //round(charge/11000)
 	var/heavy_impact_range = clamp(round(sqrt(charge) * 0.01), 0, 3)
 	var/light_impact_range = clamp(round(sqrt(charge) * 0.15), 0, 4)
-	var/flash_range = clamp(round(sqrt(charge) * 0.15), -1, 4)
+	var/flash_range = clamp(round(sqrt(charge) * 0.05), -1, 4)
 
-	explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, 0, flash_range)
+	explosion(src, 0, heavy_impact_range, light_impact_range, 0, flash_range)
 
 	QDEL_IN(src, 1)
 
@@ -328,6 +319,9 @@
 	maxcharge = 300
 	minor_fault = 1
 
+/obj/item/cell/rtg // todo should kill this subtype
+	charge_overlay = null
+
 /obj/item/cell/rtg/small
 	name = "recharger cell"
 	desc = "This is a miniature radioisotope generator that can fit into APC's, but not laser-based weapory. The needed shielding lowers the maximum capacity significantly."
@@ -366,19 +360,15 @@
 	icon_state = "trashmelt"
 	worn_icon_state = "trashmelt"
 	w_class = WEIGHT_CLASS_HUGE
+	charge_overlay = null
 	self_recharge = TRUE
-	maxcharge = 1000
-	charge_amount = 30
+	maxcharge = 1400
+	charge_amount = 150
 
 /obj/item/cell/mecha/medium
 	name = "medium radiotope cell"
-	maxcharge = 1250
-	charge_amount = 40
-
-/obj/item/cell/mecha/large
-	name = "large radiotope cell"
-	maxcharge = 1500
-	charge_amount = 50
+	maxcharge = 650
+	charge_amount = 200
 
 /obj/item/cell/night_vision_battery
 	name = "night vision goggle battery"

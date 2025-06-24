@@ -233,14 +233,8 @@
 	default_ammo = /datum/ammo/rocket/oneuse
 	reload_delay = 30
 
-/obj/item/ammo_magazine/internal/launcher/rocket/oneuse
-	name = "\improper 68mm internal tube"
-	desc = "The internal tube of a one use rpg."
-	caliber = CALIBER_68MM
-	default_ammo = /datum/ammo/rocket/recoilless
-	max_rounds = 1
-	current_rounds = 0
-	reload_delay = 30
+/obj/item/ammo_magazine/rocket/oneuse/anti_tank
+	default_ammo = /datum/ammo/rocket/recoilless/heat/mech
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
@@ -304,7 +298,7 @@
 	bonus_overlay = "rpg_thermobaric"
 
 /obj/item/ammo_magazine/rocket/som/rad
-	name = "\improper 84mm  irrad RPG"
+	name = "\improper 84mm irrad RPG"
 	desc = "A irrad warhead for the V-71 rocket launcher. Releases a devastating milisecond burst of radiation, debilitating anything caught in the blast radius."
 	icon_state = "rpg_rad"
 	default_ammo = /datum/ammo/rocket/som/rad
@@ -351,32 +345,39 @@
 //VSD RPG
 
 /obj/item/ammo_magazine/rocket/vsd/he
-	name = "\improper 84mm HE 'Anti-Personnel' case"
-	desc = "84mm Anti Personnel case. The label reads: 'Makes big boom'."
+	name = "\improper 84mm HE 'Anti-Personnel' rocket"
+	desc = "84mm High Explosive Anti Personnel case. Designed for clearing out enemy personnel with a bang."
 	icon_state = "c153_he"
 	default_ammo = /datum/ammo/rocket/som
 	reload_delay = 2 SECONDS
 	bonus_overlay = "c153_he"
 
 /obj/item/ammo_magazine/rocket/vsd/incendiary
-	name = "\improper 84mm Incendiary 'Anti-Personnel' case"
-	desc = "84mm Incendiary Anti Personnel case. The label reads: 'Makes people go AAAAAAAHH'."
+	name = "\improper 84mm Incendiary 'Anti-Personnel' rocket"
+	desc = "84mm Incendiary Anti Personnel case. Designed for clearing out enemy personnel with some heat."
 	icon_state = "c153_incendiary"
 	default_ammo = /datum/ammo/rocket/wp/quad/som
 	bonus_overlay = "c153_incendiary"
 
 /obj/item/ammo_magazine/rocket/vsd/chemical
-	name = "\improper 84mm Chemical-Warhead 'Anti-Personnel' case"
-	desc = "Chemical Capped 84mm Anti Personnel case. The label reads: 'Makes people fucking die'."
+	name = "\improper 84mm Chemical-Warhead 'Anti-Personnel' rocket"
+	desc = "Chemical Capped 84mm Anti Personnel case. Designed for clearing out enemy personnel with choking air."
 	icon_state = "c153_chemical"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical/harmgas/vsd
 	bonus_overlay = "c153_chemical"
+
+/obj/item/ammo_magazine/rocket/vsd/heat
+	name = "\improper 84mm HEAT 'Anti-Tank' rocket"
+	desc = "A 84mm High Explosive Anti-Tank case. Designed to penetrate, and or spall enemy tanks."
+	icon_state = "c153_at"
+	default_ammo = /datum/ammo/rocket/som/heat
+	bonus_overlay = "c153_at"
 
 // railgun
 
 /obj/item/ammo_magazine/railgun
 	name = "railgun canister (Armor Piercing Discarding Sabot)"
-	desc = "A canister holding a tungsten projectile to be used inside a railgun. APDS is written across the canister, this round will penetrate through most armor, but will not leave much of a hole."
+	desc = "A canister holding a tungsten projectile to be used inside a railgun. APDS is written across the canister. This round will penetrate through most armor, but will not leave much of a hole."
 	caliber = CALIBER_RAILGUN
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	icon_state = "railgun"
@@ -424,7 +425,7 @@
 
 /obj/item/ammo_magazine/minigun_powerpack
 	name = "\improper MG-100 Vindicator powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your MG-100."
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 minigun system.\nClick the icon in the top left to reload your MG-100."
 	icon_state = "powerpack"
 	worn_icon_state = "powerpack"
 	icon = 'icons/obj/items/ammo/powerpack.dmi'
@@ -436,10 +437,6 @@
 	current_rounds = 500
 	max_rounds = 500
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-
-/obj/item/ammo_magazine/minigun_powerpack/snow
-	icon_state = "powerpack_snow"
-	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/fancy
 	icon_state = "powerpack_fancy"
@@ -495,5 +492,38 @@
 	icon_state = "coilgun"
 	default_ammo = /datum/ammo/bullet/coilgun
 	max_rounds = 5
+	reload_delay = 10
+	icon_state_mini = "mag_dmr"
+
+// VSD autocannon
+
+/obj/item/ammo_magazine/rifle/vsd_autocannon
+	name = "CC/AT32 Autocannon canister"
+	desc = "A canister holding 20mm rounds for the CC/AT32. Better not get infront of one of its shots."
+	caliber = CALIBER_20
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
+	icon_state = "at32"
+	default_ammo = /datum/ammo/bullet/auto_cannon
+	max_rounds = 100
+	reload_delay = 10
+	icon_state_mini = "mag_dmr"
+
+/obj/item/ammo_magazine/rifle/vsd_autocannon/explosive
+	name = "CC/AT32 Autocannon High Explosive canister"
+	desc = "A canister holding 40mm rounds for the CC/AT32. Better not get infront of one of its shots."
+	caliber = CALIBER_20
+	icon_state = "at32_he"
+	default_ammo = /datum/ammo/bullet/auto_cannon/flak
+	max_rounds = 100
+	reload_delay = 10
+	icon_state_mini = "mag_dmr"
+
+/obj/item/ammo_magazine/rifle/vsd_autocannon/at
+	name = "CC/AT32 Autocannon Solid Shot canister"
+	desc = "A canister holding a couple rounds of special 20mm rounds for the CC/AT32. Better not get infront of one of its shots."
+	caliber = CALIBER_20
+	icon_state = "at32_at"
+	default_ammo = /datum/ammo/bullet/auto_cannon/anti_tank
+	max_rounds = 30
 	reload_delay = 10
 	icon_state_mini = "mag_dmr"

@@ -289,6 +289,18 @@
 		/obj/structure/rack,
 	)
 
+/obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted
+	loot = list(
+		/obj/structure/rack = 25,
+		/obj/effect/spawner/random/misc/structure/table = 1,
+	)
+
+/obj/effect/spawner/random/misc/structure/table_or_rack/tableweighted
+	loot = list(
+		/obj/effect/spawner/random/misc/structure/table = 25,
+		/obj/structure/rack = 1,
+	)
+
 /obj/effect/spawner/random/misc/structure/table
 	name = "table spawner"
 	icon_state = "random_table"
@@ -330,6 +342,15 @@
 	loot = list(
 		/obj/structure/window_frame/colony = 9,
 		/obj/structure/window/framed/colony = 1,
+	)
+
+/obj/effect/spawner/random/misc/structure/broken_prison_window
+	name = "broken prison window spawner"
+	icon_state = "random_prison_window"
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/structure/window/framed/prison = 80,
+		/obj/structure/window_frame/prison = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn //used on regular maps, low chance to spawn broken and will always appear
@@ -600,6 +621,18 @@
 		/obj/structure/largecrate/random = 5,
 	)
 
+/obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies
+	name = "secure supplies spawner"
+	icon_state = "random_securecrate"
+	loot = list(
+		/obj/structure/largecrate/supply/supplies/mre = 55,
+		/obj/structure/largecrate/supply/supplies/water = 50,
+		/obj/structure/largecrate/supply/supplies/tables_racks = 40,
+		/obj/structure/largecrate/supply/supplies/coifs = 25,
+		/obj/structure/largecrate/supply/medicine/iv = 10,
+		/obj/structure/largecrate/supply/medicine/blood = 5,
+	)
+
 /obj/effect/spawner/random/misc/structure/broken_ship_window
 	name = "broken ship window spawner"
 	icon_state = "random_ship_window"
@@ -650,7 +683,7 @@
 	icon_state = "carone"
 	icon = 'icons/effects/random/64x64.dmi'
 	spawn_with_original_direction = TRUE
-	spawn_loot_chance = 35
+	spawn_loot_chance = 25
 	loot = list(
 		/obj/effect/spawner/random/misc/structure/large/car/red,
 		/obj/effect/spawner/random/misc/structure/large/car/black,

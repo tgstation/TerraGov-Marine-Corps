@@ -18,7 +18,7 @@
 	/// The amount of stacks applied on hit.
 	var/intoxication_stacks = 5
 
-/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(!iscarbon(target_mob))
 		return
 	var/mob/living/carbon/target_carbon = target_mob
@@ -56,7 +56,6 @@
 
 /datum/action/ability/xeno_action/toxic_slash/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	intoxication_stacks = SENTINEL_TOXIC_SLASH_STACKS_PER + xeno_owner.xeno_caste.additional_stacks
 	remaining_slashes = SENTINEL_TOXIC_SLASH_COUNT
 	ability_duration = addtimer(CALLBACK(src, PROC_REF(toxic_slash_deactivate), xeno_owner), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
@@ -73,7 +72,6 @@
 ///Called when Toxic Slash is active.
 /datum/action/ability/xeno_action/toxic_slash/proc/toxic_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/xeno_target = target
 	if(HAS_TRAIT(xeno_target, TRAIT_INTOXICATION_IMMUNE))
 		xeno_target.balloon_alert(xeno_owner, "Immune to Intoxication")
@@ -158,7 +156,6 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/drain_sting/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/xeno_target = A
 	var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
 	var/drain_potency = debuff.stacks * SENTINEL_DRAIN_MULTIPLIER
@@ -205,12 +202,14 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)
+	///Type of nade to be thrown
+	var/nade_type = /obj/item/explosive/grenade/smokebomb/xeno
 
 /datum/action/ability/activable/xeno/toxic_grenade/use_ability(atom/A)
 	. = ..()
 	succeed_activate()
 	add_cooldown()
-	var/obj/item/explosive/grenade/smokebomb/xeno/nade = new(get_turf(owner))
+	var/obj/item/explosive/grenade/smokebomb/xeno/nade = new nade_type(get_turf(owner))
 	nade.throw_at(A, 5, 1, owner, TRUE)
 	nade.activate(owner)
 	owner.visible_message(span_warning("[owner] vomits up a bulbous lump and throws it at [A]!"), span_warning("We vomit up a bulbous lump and throw it at [A]!"))
@@ -231,3 +230,28 @@
 	. = ..()
 	if(active)
 		. += image('icons/obj/items/grenade.dmi', "xenonade_active")
+
+//Neuro variant
+/datum/action/ability/activable/xeno/toxic_grenade/neuro
+	name = "Neuro grenade"
+	action_icon_state = "gas mine"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
+	desc = "Throws a lump of compressed neurotoxin, which explodes into a small gas cloud."
+	ability_cost = 200
+	cooldown_duration = 50 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
+	)
+	nade_type = /obj/item/explosive/grenade/smokebomb/xeno/neuro
+
+/obj/item/explosive/grenade/smokebomb/xeno/neuro
+	name = "Neuro grenade"
+	desc = "A fleshy mass that bounces along the ground. It seems to be heating up."
+	greyscale_colors = "#bfc208"
+	greyscale_config = /datum/greyscale_config/xenogrenade
+	det_time = 15
+	smoke_duration = 4
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/light
+	arm_sound = 'sound/voice/alien/yell_alt.ogg'
+	smokeradius = 3

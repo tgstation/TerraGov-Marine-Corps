@@ -607,6 +607,10 @@
 	},
 /turf/open/floor/tile/bar,
 /area/medical/medbay2)
+"eg" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/ground,
+/area/space)
 "ei" = (
 /obj/machinery/bioprinter{
 	stored_metal = 1000
@@ -2741,7 +2745,7 @@
 /obj/structure/window/reinforced,
 /obj/item/weapon/gun/flamer/hydro_cannon,
 /obj/item/tool/kitchen/rollingpin,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "qo" = (
@@ -3990,7 +3994,7 @@
 "zX" = (
 /obj/structure/window/reinforced,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "Al" = (
@@ -14647,9 +14651,9 @@ FZ
 af
 af
 af
-af
-af
-af
+eg
+eg
+eg
 af
 Wq
 BJ
@@ -14743,15 +14747,15 @@ PG
 PG
 Ou
 HY
-af
-af
-af
+eg
+eg
+eg
 af
 Ou
 HY
-af
-af
-af
+eg
+eg
+eg
 af
 Ou
 BJ
@@ -14845,15 +14849,15 @@ PG
 PG
 af
 af
+eg
+eg
+eg
 af
 af
 af
-af
-af
-af
-af
-af
-af
+eg
+eg
+eg
 af
 af
 bE
@@ -14947,9 +14951,9 @@ PG
 PG
 PG
 af
-af
-af
-af
+eg
+eg
+eg
 HY
 bd
 af

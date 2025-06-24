@@ -26,7 +26,7 @@
 			add_slowdown(1)
 		if(60 to 79)
 			if(!lying_angle && prob(20))
-				emote("me", 1, " is having trouble standing.")
+				emote("me", 1, "is having trouble standing.")
 			blur_eyes(2)
 			set_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			Stagger(3 SECONDS)
@@ -54,7 +54,7 @@
 			add_slowdown(12)
 			if(prob(20))
 				to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb", "You feel like you could die any moment now")]!"))
-			if(!COOLDOWN_CHECK(src, last_shock_effect)) //Check to see if we're on cooldown
+			if(!COOLDOWN_FINISHED(src, last_shock_effect)) //Check to see if we're on cooldown
 				return
 			if(!lying_angle)
 				emote("me", 1, "can no longer stand, collapsing!")

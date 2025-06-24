@@ -1,0 +1,984 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aE" = (
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"aN" = (
+/turf/closed/mineral/smooth/resin_hard/indestructible,
+/area/fiorina/oob)
+"aW" = (
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/fiberbush)
+"bh" = (
+/turf/closed/gm/dense{
+	desc = "It is made of Fiberbush(tm). It contains asbestos.";
+	name = "synthetic vegetation"
+	},
+/area/fiorina/tumor/fiberbush)
+"bk" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"bC" = (
+/obj/item/tool/wet_sign,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"de" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"ez" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"eF" = (
+/turf/closed/shuttle/dropship1/window{
+	dir = 1
+	},
+/area/fiorina/tumor/ship)
+"fE" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/fiberbush)
+"fI" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_y = 8
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"fN" = (
+/obj/structure/dropship_piece/one/cockpit/right,
+/turf/open/floor/plating,
+/area/fiorina/tumor/ship)
+"ga" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/gm/dense{
+	desc = "It is made of Fiberbush(tm). It contains asbestos.";
+	name = "synthetic vegetation"
+	},
+/area/fiorina/tumor/fiberbush)
+"gg" = (
+/turf/closed/shuttle/dropship1/corners/interior{
+	dir = 4
+	},
+/area/fiorina/tumor/ship)
+"gi" = (
+/obj/structure/girder/displaced,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/fiberbush)
+"hP" = (
+/obj/structure/inflatable/wall,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/ship)
+"ie" = (
+/obj/structure/largecrate/random/barrel/yellow,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"iT" = (
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"iU" = (
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/tumor/ship)
+"jZ" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space,
+/area/space)
+"kA" = (
+/obj/structure/bed/chair/dropship/pilot,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"kO" = (
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"kR" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_x = 11;
+	pixel_y = 10
+	},
+/obj/structure/largecrate/random/barrel/white,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"lI" = (
+/obj/effect/spawner/random/misc/soap,
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"me" = (
+/turf/closed/shuttle/dropship1/interiormisc/three{
+	dir = 4
+	},
+/area/fiorina/tumor/ship)
+"mz" = (
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"mF" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/mainship/plate{
+	dir = 5
+	},
+/area/fiorina/tumor/ship)
+"nF" = (
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 4
+	},
+/area/fiorina/tumor/ship)
+"nV" = (
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"od" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth/resin_hard,
+/area/fiorina/oob)
+"oh" = (
+/obj/structure/largecrate/random/barrel/blue,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/fiberbush)
+"om" = (
+/obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
+/obj/item/roller,
+/obj/item/roller{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"oH" = (
+/turf/closed/shuttle/dropship1/corners/alt{
+	dir = 1
+	},
+/area/fiorina/tumor/ship)
+"pm" = (
+/turf/closed/shuttle/dropship1/interiormisc/three,
+/area/fiorina/tumor/ship)
+"pw" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/computer/med_data/laptop{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"pV" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_x = 11;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"qi" = (
+/obj/structure/girder,
+/turf/open/floor/mainship/plate{
+	dir = 5
+	},
+/area/fiorina/tumor/ship)
+"qn" = (
+/turf/closed/shuttle/dropship1/corners/interior,
+/area/fiorina/tumor/ship)
+"qI" = (
+/turf/closed/shuttle/dropship1/corners/alt{
+	dir = 4
+	},
+/area/fiorina/tumor/ship)
+"rv" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"rK" = (
+/obj/structure/sink{
+	pixel_y = 15
+	},
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"sP" = (
+/obj/structure/barricade/folding{
+	dir = 4
+	},
+/turf/open/floor/mainship/plate{
+	dir = 5
+	},
+/area/fiorina/tumor/ship)
+"sX" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"tp" = (
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"tD" = (
+/obj/structure/lattice,
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space,
+/area/fiorina/oob)
+"tZ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"va" = (
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"vI" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"wO" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"xz" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/fiberbush)
+"xR" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"xS" = (
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 1
+	},
+/area/fiorina/tumor/ship)
+"xW" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/engineering/toolbox/electricalweighted{
+	pixel_y = 9
+	},
+/obj/effect/spawner/random/engineering/toolbox/mechanicalweighted,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"yv" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"AA" = (
+/turf/closed/shuttle/dropship1/edge/misc{
+	dir = 4
+	},
+/area/fiorina/tumor/ship)
+"BC" = (
+/obj/structure/dropship_piece/one/corner/rearright,
+/turf/open/floor/plating,
+/area/fiorina/tumor/ship)
+"BP" = (
+/turf/closed/shuttle/dropship1/edge/misc,
+/area/fiorina/tumor/ship)
+"Cc" = (
+/obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
+/obj/item/storage/backpack{
+	pixel_y = 7
+	},
+/obj/item/storage/backpack,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"CG" = (
+/turf/closed/shuttle/dropship1/cornersalt2{
+	dir = 4
+	},
+/area/fiorina/tumor/ship)
+"CH" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"CM" = (
+/turf/closed/shuttle/dropship1/edge,
+/area/fiorina/tumor/ship)
+"DJ" = (
+/turf/closed/shuttle/dropship1/cornersalt,
+/area/fiorina/tumor/ship)
+"DS" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"Ex" = (
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 8
+	},
+/area/fiorina/tumor/ship)
+"EF" = (
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/fiorina/tumor/fiberbush)
+"EW" = (
+/turf/closed/shuttle/dropship1/cornersalt2{
+	dir = 8
+	},
+/area/fiorina/tumor/ship)
+"Fd" = (
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"FV" = (
+/turf/open/floor/grass,
+/area/fiorina/tumor/fiberbush)
+"Gu" = (
+/obj/machinery/prop/structurelattice{
+	dir = 4
+	},
+/obj/machinery/prop/structurelattice{
+	dir = 4;
+	pixel_y = 9
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/fiberbush)
+"GR" = (
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/ship)
+"GS" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"Hb" = (
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"HH" = (
+/obj/structure/inflatable/wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/ship)
+"Ia" = (
+/turf/closed/shuttle/dropship1/corners,
+/area/fiorina/tumor/ship)
+"Iu" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"IF" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"Jg" = (
+/turf/closed/shuttle/dropship1/window,
+/area/fiorina/tumor/ship)
+"Jv" = (
+/obj/effect/landmark/resin_jelly_pod,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"JA" = (
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/tumor/ship)
+"JE" = (
+/obj/structure/flora/ausbushes{
+	desc = "Fiberbush(tm) infestations have been the leading cause in asbestos related deaths in spacecraft for 3 years in a row now.";
+	name = "Fiberbush(tm) tubers"
+	},
+/turf/open/floor/grass,
+/area/fiorina/tumor/fiberbush)
+"JP" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"JW" = (
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/fiberbush)
+"JY" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"Ki" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"Ks" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/item/clothing/head/soft{
+	pixel_y = 7
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"Ky" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"KC" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"KG" = (
+/turf/closed/shuttle/dropship1/window{
+	dir = 8
+	},
+/area/fiorina/tumor/ship)
+"Ld" = (
+/turf/open/space,
+/area/space)
+"Lz" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"LG" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/ship)
+"Nm" = (
+/turf/closed/shuttle/dropship1/corners/interior{
+	dir = 8
+	},
+/area/fiorina/tumor/ship)
+"NV" = (
+/turf/closed/mineral/smooth/resin_hard,
+/area/fiorina/oob)
+"Ok" = (
+/obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
+/obj/effect/spawner/random/medical/firstaid{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/obj/effect/spawner/random/medical/firstaid,
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"ON" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"OP" = (
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"PC" = (
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/turf/open/floor/mainship/plate{
+	dir = 5
+	},
+/area/fiorina/tumor/ship)
+"QZ" = (
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"RA" = (
+/obj/structure/largecrate/random/barrel/red,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"Sh" = (
+/obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_x = 11;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+"ST" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/flashlight/lamp{
+	pixel_x = 7;
+	pixel_y = 15
+	},
+/obj/structure/paper_bin{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/tool/pen/blue{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"TS" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/mainship/plate{
+	dir = 5
+	},
+/area/fiorina/tumor/ship)
+"Uh" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"UJ" = (
+/obj/effect/spawner/random/engineering/metal,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"UQ" = (
+/obj/machinery/door/airlock/mainship/maint,
+/obj/structure/cable,
+/turf/open/floor/mainship/plate{
+	dir = 5
+	},
+/area/fiorina/tumor/ship)
+"Vg" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"Vh" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"VB" = (
+/obj/machinery/light/small,
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/mainship/plate,
+/area/fiorina/tumor/ship)
+"VD" = (
+/obj/structure/bed,
+/obj/item/bedsheet/rd,
+/obj/item/toy/katana,
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"VW" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/coin/uranium{
+	desc = "You found one of the three uranium coins. It is entirely worthless."
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/obj/machinery/prop/computer/PC{
+	name = "Shuttle control deck";
+	pixel_x = 3
+	},
+/turf/open/floor/mainship,
+/area/fiorina/tumor/ship)
+"Wd" = (
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
+	},
+/area/fiorina/tumor/ship)
+"Wt" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/tumor/ship)
+"WN" = (
+/obj/structure/cable,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
+/area/fiorina/tumor/ship)
+"WQ" = (
+/obj/structure/dropship_piece/one/corner/rearleft,
+/turf/open/floor/plating,
+/area/fiorina/tumor/ship)
+"Xf" = (
+/obj/machinery/door/airlock/mainship/maint,
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/fiberbush)
+"Xm" = (
+/obj/structure/largecrate/random/barrel/white,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/fiberbush)
+"Yj" = (
+/obj/structure/dropship_piece/one/cockpit/left,
+/turf/open/floor/plating,
+/area/fiorina/tumor/ship)
+"YV" = (
+/obj/machinery/vending/nanomed{
+	pixel_y = 25
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/fiorina/tumor/ship)
+
+(1,1,1) = {"
+NV
+jZ
+jZ
+jZ
+NV
+NV
+tD
+jZ
+Ia
+Wd
+Wd
+CG
+Wd
+Wd
+WQ
+jZ
+Ld
+Ld
+Ld
+Ld
+Ld
+"}
+(2,1,1) = {"
+NV
+NV
+jZ
+jZ
+NV
+NV
+tD
+jZ
+Jg
+aE
+Cc
+CM
+rK
+fI
+BP
+jZ
+jZ
+jZ
+Ld
+Ld
+Ld
+"}
+(3,1,1) = {"
+NV
+NV
+jZ
+aN
+aN
+aN
+aN
+jZ
+KG
+tZ
+tp
+JP
+Ki
+lI
+me
+Wd
+WQ
+jZ
+jZ
+Ld
+Ld
+"}
+(4,1,1) = {"
+aN
+aN
+aN
+aN
+oH
+Wd
+Wd
+CG
+Nm
+Ki
+bC
+CM
+sX
+AA
+CM
+om
+DJ
+WQ
+jZ
+jZ
+jZ
+"}
+(5,1,1) = {"
+aN
+NV
+NV
+oH
+Nm
+Ok
+Fd
+CM
+kO
+QZ
+ON
+sX
+va
+Ks
+CM
+QZ
+ie
+DJ
+Wd
+Wd
+WQ
+"}
+(6,1,1) = {"
+aN
+NV
+oH
+Nm
+kA
+pw
+Ki
+DS
+yv
+Lz
+QZ
+GS
+Ki
+Ki
+GS
+bk
+QZ
+xS
+nF
+nF
+BC
+"}
+(7,1,1) = {"
+Yj
+Wd
+Nm
+tp
+tZ
+wO
+tp
+CM
+QZ
+xW
+nV
+CM
+VD
+Ky
+sX
+CH
+RA
+BP
+aN
+NV
+jZ
+"}
+(8,1,1) = {"
+eF
+VW
+rv
+tp
+Ki
+Ki
+QZ
+CM
+YV
+mz
+Uh
+pm
+AA
+ez
+Ex
+tp
+VB
+BP
+aN
+NV
+NV
+"}
+(9,1,1) = {"
+fN
+nF
+qn
+yv
+QZ
+xR
+tp
+KC
+Vg
+ST
+OP
+JP
+ON
+tp
+Hb
+Jv
+va
+BP
+aN
+aN
+aN
+"}
+(10,1,1) = {"
+aN
+NV
+qI
+qn
+kR
+Ki
+Ki
+CM
+iT
+pV
+UJ
+CM
+Sh
+GS
+Ki
+de
+Ki
+DJ
+Wd
+Wd
+WQ
+"}
+(11,1,1) = {"
+aN
+NV
+NV
+qI
+qn
+vI
+xS
+EW
+TS
+nF
+UQ
+EW
+gg
+IF
+Vg
+JY
+QZ
+xS
+nF
+nF
+BC
+"}
+(12,1,1) = {"
+bh
+NV
+NV
+NV
+qI
+nF
+BC
+hP
+iU
+GR
+Wt
+hP
+qI
+qi
+PC
+sP
+mF
+BC
+NV
+NV
+NV
+"}
+(13,1,1) = {"
+ga
+od
+od
+od
+od
+od
+Gu
+HH
+JA
+LG
+WN
+HH
+Gu
+oh
+xz
+xz
+xz
+Gu
+od
+od
+od
+"}
+(14,1,1) = {"
+JE
+NV
+FV
+EF
+FV
+aW
+aW
+Iu
+fE
+Vh
+Xf
+Iu
+Xm
+JW
+JW
+gi
+JW
+JW
+JW
+bh
+bh
+"}

@@ -5,7 +5,7 @@
 	earliest_start = 30 MINUTES
 	max_occurrences = 10
 
-	gamemode_blacklist = list("Crash","Combat Patrol","Sensor Capture")
+	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign")
 
 /datum/round_event_control/stock_uptick/can_spawn_event(players_amt, gamemode)
 	if(SSpoints.supply_points[FACTION_TERRAGOV] >= 300)

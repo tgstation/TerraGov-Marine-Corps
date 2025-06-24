@@ -1,12 +1,12 @@
 //Darude sandstorm starts playing
 /datum/weather/ash_storm/sand
 	name = "severe sandstorm"
-	telegraph_message = span_highdanger("You see a dust cloud rising over the horizon. That can't be good...")
-	telegraph_duration = 300
+	telegraph_message = span_userdanger("You see a dust cloud rising over the horizon. That can't be good...")
+	telegraph_duration = 600
 	telegraph_overlay = "dust_med"
 	telegraph_sound = 'sound/effects/siren.ogg'
 
-	weather_message = span_highdanger("<i>Hot sand and wind batter you! Get inside!</i>")
+	weather_message = span_userdanger("<i>Hot sand and wind batter you! Get inside!</i>")
 	weather_duration_lower = 600
 	weather_duration_upper = 1200
 	weather_overlay = "dust_high"
@@ -16,9 +16,11 @@
 	end_overlay = "dust_med"
 
 	target_trait = ZTRAIT_SANDSTORM
+	play_screen_indicator = TRUE
 
 	probability = 40
 	repeatable = FALSE
+	use_glow = FALSE
 
 /datum/weather/ash_storm/sand/weather_act(mob/living/L)
 	if(L.stat == DEAD)
@@ -32,6 +34,7 @@
 	name = "Sandfall"
 	desc = "A passing sandstorm blankets the area in sand."
 
+	telegraph_duration = 300
 	telegraph_message = span_danger("The wind begins to intensify, blowing sand up from the ground...")
 	telegraph_overlay = "dust_low"
 	telegraph_sound = null
@@ -43,6 +46,7 @@
 	end_overlay = "dust_low"
 
 	aesthetic = TRUE
+	play_screen_indicator = FALSE
 
 	probability = 60
 	repeatable = TRUE

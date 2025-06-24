@@ -12,7 +12,6 @@
 	emote_see = list("shakes its head.", "shivers.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	allow_pass_flags = PASS_MOB
 	pass_flags = PASS_MOB|PASS_LOW_STRUCTURE
 	mob_size = MOB_SIZE_SMALL
@@ -76,6 +75,7 @@
 	health = 200
 	maxHealth = 200
 
+
 /mob/living/simple_animal/cat/martin
 	name = "Martin"
 	desc = "Requisition's very own caracal. You wonder how much requisition paid to get this dogdang creature on board."
@@ -89,7 +89,13 @@
 	maxHealth = 200
 
 
-/mob/living/simple_animal/cat/Life()
+/mob/living/simple_animal/cat/martin/martina
+	name = "Martina"
+	desc = "Requisition's 2nd caracal. And this one's female? What the hell is going on? Who's paying for this?"
+	gender = FEMALE
+
+
+/mob/living/simple_animal/cat/Life(seconds_per_tick, times_fired)
 	if(!stat && !buckled && !client)
 		if(prob(1))
 			emote("me", 1, pick("stretches out for a belly rub.", "wags its tail.", "lies down."))

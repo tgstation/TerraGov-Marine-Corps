@@ -21,6 +21,8 @@ The Grenade Launchers
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
+	reload_sound = 'sound/weapons/guns/interact/ks23_insert.ogg'
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/explosive.dmi'
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
@@ -36,6 +38,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/upp,
 		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/sectoid,
+		/obj/item/explosive/grenade/creampie,
 		/obj/item/explosive/grenade/incendiary,
 		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
@@ -86,7 +89,7 @@ The Grenade Launchers
 	var/obj/item/explosive/grenade/grenade_to_launch = object_to_fire
 	var/turf/user_turf = get_turf(src)
 	grenade_to_launch.forceMove(user_turf)
-	gun_user?.visible_message(span_danger("[gun_user] fired a grenade!"), span_warning("You fire [src]!"))
+	gun_user?.visible_message(span_danger("[gun_user] fires a grenade from [gun_user?.p_their()] [src.name]!"), span_warning("You fire [src]!"))
 	log_bomber(gun_user, "fired a grenade ([grenade_to_launch]) from", src, "at [AREACOORD(user_turf)]")
 	play_fire_sound(loc)
 	grenade_to_launch.launched_det_time()
@@ -145,6 +148,14 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded
 	default_ammo_type = null
+
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher/erp
+	name = "\improper PL-70 assault pie launcher"
+	icon_state = "t70_erp"
+	worn_icon_state = "t70_erp"
+	fire_animation = "t70_erp_fire"
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+	default_ammo_type = /obj/item/explosive/grenade/creampie
 
 /obj/item/weapon/gun/grenade_launcher/underslung
 	name = "underslung grenade launcher"

@@ -2167,7 +2167,7 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/magmoor/engi)
 "bwo" = (
-/obj/structure/computerframe,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/purple{
 	dir = 1
 	},
@@ -2711,13 +2711,10 @@
 	},
 /area/magmoor/command/conference)
 "bOr" = (
-/obj/machinery/power/monitor{
-	name = "Core Power Monitoring"
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/tcomms,
+/turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "bOC" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -3295,6 +3292,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
+"ckg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/power)
 "cki" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/floor,
@@ -3610,7 +3614,7 @@
 "cul" = (
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/cryostasis)
@@ -8201,9 +8205,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/mining)
 "fDl" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
 "fDw" = (
@@ -8881,6 +8883,10 @@
 	dir = 6
 	},
 /area/magmoor/compound)
+"gao" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/magmoor/engi/thermal)
 "gaE" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -9541,6 +9547,9 @@
 "gxS" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
+/obj/machinery/power/monitor{
+	name = "Main Power Grid Monitoring"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "gxU" = (
@@ -11025,6 +11034,13 @@
 	dir = 10
 	},
 /area/magmoor/engi/power)
+"hKa" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/power)
 "hKg" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -11899,6 +11915,12 @@
 	},
 /turf/open/liquid/lava/autosmoothing/catwalk,
 /area/magmoor/compound/north)
+"iqB" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/magmoor/engi)
 "iqM" = (
 /obj/machinery/door/airlock/mainship/engineering/glass{
 	name = "\improper Observation Deck"
@@ -13660,6 +13682,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
+"jCa" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/magmoor/engi/thermal)
 "jCp" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
@@ -14721,9 +14747,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
 "klO" = (
@@ -15877,10 +15901,10 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/computer/intel_computer,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -17367,7 +17391,7 @@
 	dir = 4
 	},
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/mosque)
@@ -17425,9 +17449,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/magmoor/civilian/jani)
 "mgE" = (
@@ -17654,9 +17676,7 @@
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/civilian/mosque)
 "mqK" = (
@@ -18039,7 +18059,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
@@ -18773,10 +18793,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/lobby)
-"njq" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/orange,
-/area/magmoor/engi/thermal)
 "njG" = (
 /obj/structure/window_frame/colony,
 /obj/item/shard,
@@ -18791,7 +18807,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
@@ -19295,8 +19311,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/storage)
 "nFZ" = (
-/obj/structure/table/mainship,
-/obj/machinery/prop/computer/PC,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -19369,6 +19384,12 @@
 	},
 /turf/open/floor/grass,
 /area/magmoor/civilian/rnr)
+"nHT" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/magmoor/hydroponics/north)
 "nIo" = (
 /obj/structure/rock/basalt/pile/alt2,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -19487,6 +19508,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
+"nPT" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/mainship/mono,
+/area/magmoor/civilian/arrival)
 "nQe" = (
 /obj/structure/table/mainship,
 /obj/item/trash/tray,
@@ -19746,7 +19771,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/compound/north)
 "oat" = (
-/obj/structure/table/reinforced,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -19930,7 +19955,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
 "ohB" = (
@@ -20758,6 +20785,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "oJc" = (
@@ -23658,6 +23688,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+/obj/machinery/light,
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/engi/thermal)
 "qHK" = (
@@ -23751,9 +23782,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
 "qLP" = (
@@ -24270,9 +24299,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
 "rhd" = (
@@ -25187,7 +25214,7 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
 "rOQ" = (
-/obj/structure/rack,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 1
 	},
@@ -25960,7 +25987,7 @@
 /area/magmoor/civilian/dorms)
 "srz" = (
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/cryostasis)
@@ -26115,6 +26142,7 @@
 /obj/machinery/air_alarm{
 	dir = 4
 	},
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "syA" = (
@@ -26614,6 +26642,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
+/obj/machinery/light,
 /turf/open/floor/mainship/orange/corner{
 	dir = 8
 	},
@@ -26742,6 +26771,10 @@
 "sVr" = (
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/northeast)
+"sVs" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/thermal)
 "sWk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -28722,7 +28755,7 @@
 /turf/open/floor/grass,
 /area/magmoor/civilian/clean)
 "umS" = (
-/obj/machinery/computer3,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -30088,7 +30121,7 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
 "voh" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible{
+/obj/structure/prop/vehicle/crane/cranecargo{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -30398,6 +30431,13 @@
 	},
 /turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
+"vAF" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/thermal)
 "vAK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -31607,7 +31647,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/magmoor/command/lobby/east)
 "wuH" = (
@@ -32209,7 +32251,9 @@
 	},
 /area/magmoor/compound/east)
 "wOv" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/magmoor/command/lobby/east)
 "wOU" = (
@@ -33595,6 +33639,7 @@
 /area/magmoor/engi/storage)
 "xDW" = (
 /obj/machinery/light,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/blue{
 	dir = 6
 	},
@@ -33956,7 +34001,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)
 "xQQ" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete/lines,
@@ -34549,13 +34594,10 @@
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "ylq" = (
-/obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring"
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/tcomms,
+/turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "ylX" = (
 /obj/effect/spawner/random/misc/plant,
@@ -43557,7 +43599,7 @@ tky
 ybU
 kJp
 llg
-cbr
+nHT
 csb
 tDx
 jMC
@@ -44979,7 +45021,7 @@ lCK
 lCK
 lCK
 mGZ
-ezm
+tBz
 lCK
 lCK
 lCK
@@ -46139,7 +46181,7 @@ wCU
 wIH
 wCU
 hvR
-hyz
+uqV
 xOp
 xOp
 nkZ
@@ -46148,7 +46190,7 @@ beH
 ciK
 xOp
 mkw
-uqV
+hyz
 lCK
 ssf
 roE
@@ -47076,7 +47118,7 @@ lCK
 lCK
 lCK
 nka
-tBz
+ezm
 lCK
 lCK
 lCK
@@ -52008,7 +52050,7 @@ lrw
 pSu
 pSu
 cvs
-pSu
+nPT
 cIl
 eTo
 pUx
@@ -53514,9 +53556,9 @@ mNI
 mNI
 hUg
 wwg
-wwg
+jCa
 pJV
-wwg
+jCa
 pJV
 wwg
 gKh
@@ -54442,7 +54484,7 @@ jYO
 jxX
 jxX
 jxX
-wwg
+jCa
 wwg
 xdD
 qAe
@@ -54683,7 +54725,7 @@ yco
 ruR
 pWV
 sQM
-xdD
+gao
 nQM
 wwg
 hUg
@@ -54904,16 +54946,16 @@ xmI
 fcs
 ajM
 fwF
-jYO
+ckg
 cVC
 qzH
 ivX
 wwg
-yco
+vAF
 oiI
-xdD
-xdD
+sVs
 guR
+sVs
 pyN
 poK
 tvB
@@ -55141,10 +55183,10 @@ jYO
 aWS
 ldU
 fwA
-wwg
+jCa
 yco
-njq
-xdD
+oiI
+guR
 ylq
 guR
 fkU
@@ -55153,7 +55195,7 @@ oZS
 oZS
 dLW
 tQo
-wwg
+jCa
 amF
 mJw
 mJw
@@ -55607,10 +55649,10 @@ uRD
 lNt
 hmK
 lMq
-wwg
+jCa
 yco
-njq
-xdD
+oiI
+guR
 bOr
 guR
 pyN
@@ -55619,7 +55661,7 @@ sue
 pCV
 kTN
 ojh
-wwg
+jCa
 lRV
 lRV
 lRV
@@ -55836,16 +55878,16 @@ xmI
 jDH
 eVT
 oPF
-uRD
+hKa
 cVC
 qzH
 ivX
 wwg
-yco
+vAF
 oiI
-xdD
-xdD
+sVs
 guR
+sVs
 pyN
 yhm
 mCt
@@ -56081,7 +56123,7 @@ yco
 knJ
 neU
 qHm
-xdD
+gao
 iDQ
 wwg
 hUg
@@ -56306,7 +56348,7 @@ uRD
 nWI
 nWI
 nWI
-wwg
+jCa
 wwg
 xdD
 qAe
@@ -57242,9 +57284,9 @@ fbE
 mNI
 hUg
 wwg
-wwg
+jCa
 pJV
-wwg
+jCa
 pJV
 wwg
 gKh
@@ -60787,7 +60829,7 @@ rxA
 slR
 xce
 neY
-ilf
+iqB
 smc
 fkr
 rVx

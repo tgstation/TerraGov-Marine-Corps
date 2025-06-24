@@ -10,11 +10,12 @@
 	light_power = 3
 	light_system = MOVABLE_LIGHT
 	move_delay = 2.5	//set this to limit the speed of the vehicle
-	max_integrity = 150
+	max_integrity = IGUANA_MAX_INTEGRITY
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	atom_flags = BUMP_ATTACKABLE
-	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
+	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
 	allow_pass_flags = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
+	faction = FACTION_TERRAGOV
 	/// Needed to keep track of any slowdowns and/or diagonal movement
 	var/next_move_delay = 0
 	/// Path of "turret" attached
@@ -34,7 +35,7 @@
 	///Buller type we fire, declared as type but set to a reference in Initialize
 	var/datum/ammo/bullet/ammo
 	///The currently loaded and ready to fire projectile
-	var/obj/projectile/in_chamber = null
+	var/atom/movable/projectile/in_chamber = null
 	///Sound file or string type for playing the shooting sound
 	var/gunnoise = SFX_GUN_SMARTGUN
 	/// Serial number of the vehicle
@@ -47,11 +48,13 @@
 	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
+	/// If explosives should be usable on the vehicle
+	var/allow_explosives = TRUE
 	/// muzzleflash stuff
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
 	COOLDOWN_DECLARE(fire_cooldown)
 
-/obj/vehicle/unmanned/Initialize(mapload)
+/obj/vehicle/unmanned/Initialize(mapload, _internal_item, mob/deployer)
 	. = ..()
 	ammo = GLOB.ammo_list[ammo]
 	name += " " + num2text(serial)
@@ -59,8 +62,6 @@
 	flash = new /atom/movable/vis_obj/effect/muzzle_flash(src)
 	GLOB.unmanned_vehicles += src
 	prepare_huds()
-	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
-		sentry_status_hud.add_to_hud(src)
 	hud_set_machine_health()
 	if(spawn_equipped_type)
 		turret_path = spawn_equipped_type
@@ -71,7 +72,12 @@
 		max_rounds = initial(spawn_equipped_type.max_rounds)
 		update_icon()
 	hud_set_uav_ammo()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "uav"))
+	if(deployer)
+		faction = deployer.faction
+	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, "uav", MINIMAP_BLIPS_LAYER))
+	var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+	if(sentry_status_hud)
+		sentry_status_hud.add_to_hud(src)
 
 /obj/vehicle/unmanned/Destroy()
 	GLOB.unmanned_vehicles -= src
@@ -123,7 +129,9 @@
 	. = ..()
 	if(.)
 		return
-	if(istype(I, /obj/item/uav_turret) || istype(I, /obj/item/explosive/plastique))
+	if(istype(I, /obj/item/uav_turret))
+		return equip_turret(I, user)
+	if(istype(I, /obj/item/explosive/plastique) && allow_explosives)
 		return equip_turret(I, user)
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload_turret(I, user)
@@ -253,16 +261,16 @@
 		return TRUE //Already set!
 	if(current_rounds <= 0)
 		return FALSE
-	in_chamber = new /obj/projectile(src) //New bullet!
+	in_chamber = new /atom/movable/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
 	return TRUE
 
 
 ///Check if we have/create a new bullet and fire it at an atom target
 /obj/vehicle/unmanned/proc/fire_shot(atom/target, mob/user)
-	if(!COOLDOWN_CHECK(src, fire_cooldown))
+	if(!COOLDOWN_FINISHED(src, fire_cooldown))
 		return FALSE
-	if(load_into_chamber() && istype(in_chamber, /obj/projectile))
+	if(load_into_chamber() && istype(in_chamber, /atom/movable/projectile))
 		//Setup projectile
 		in_chamber.original_target = target
 		in_chamber.def_zone = pick("chest","chest","chest","head")

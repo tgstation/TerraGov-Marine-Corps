@@ -220,6 +220,19 @@
 	anti_hug = 6
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
+/obj/item/clothing/head/helmet/marine/specialist/tdf
+	name = "\improper Ace Class Hardsuit Helmet"
+	desc = "The helmet that pairs with the Ace hardsuit, heavily armored and reinforced."
+	icon = 'icons/mob/modular/tdf_helmets.dmi'
+	worn_icon_list = list(
+		slot_head_str = 'icons/mob/modular/tdf_helmets.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/hats_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/hats_right.dmi',
+	)
+	icon_state = "tdf_helmet_hardsuit"
+	worn_icon_state = "tdf_helmet_hardsuit"
+	item_map_variant_flags = NONE
+
 /obj/item/clothing/head/helmet/marine/grenadier
 	name = "\improper B17 helmet"
 	desc = "A heavy duty helmet created to complement the B17 marine armor. Practically explosive proof. Unless you stand next to a nuke or something like that."
@@ -500,49 +513,42 @@
 	soft_armor = list(MELEE = 65, BULLET = 70, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd
-	name = "Crasher multi-threat ballistic helmet"
-	desc = "Vyacheslav's grunt helmet, doesn't protect your chrome-dome much though."
-	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
+	name = "\improper Crasher MT/43 ballistic helmet"
+	desc = "Vyacheslav Security Detail's quality helmet, designed with modular slots and combat readiness."
+	icon = 'icons/mob/clothing/headwear/ert_headwear.dmi'
 	icon_state = "vsd_main"
 	worn_icon_state = "vsd_main"
 	worn_icon_list =  list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 	)
-	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 20, ACID = 30)
+	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 55, ACID = 40)
 
-/obj/item/clothing/head/helmet/marine/vsd/medic
-	name = "Crasher multi-threat 'medic' ballistic helmet"
-	icon_state = "vsd_medic"
-	worn_icon_state = "vsd_medic"
-
-/obj/item/clothing/head/helmet/marine/vsd/secondary
-	name = "Crasher multi-threat ballistic helmet"
-	icon_state = "vsd_secondary"
-	worn_icon_state = "vsd_secondary"
-
-/obj/item/clothing/head/helmet/marine/vsd/upp
-	name = "Crasher multi-threat ballistic helmet"
-	icon_state = "vsd_upp"
-	worn_icon_state = "vsd_upp"
-
-/obj/item/clothing/head/helmet/marine/vsd/pyro
-	name = "Crasher multi-threat 'pyro' ballistic helmet"
-	desc = "A modified helmet for the Vyacheslav Pyrotechnician."
-	icon_state = "vsd_pyro"
-	worn_icon_state = "vsd_pyro"
-	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 30, ENERGY = 30, BOMB = 25, BIO = 10, FIRE = 60, ACID = 30)
+/obj/item/clothing/head/helmet/marine/vsd/heavy
+	name = "\improper Crasher MT-H/43 powered ballistic helmet"
+	icon_state = "vsd_heavy"
+	worn_icon_state = "vsd_heavy"
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd/juggernaut
-	name = "Crasher multi-threat 'juggernaut' ballistic helmet"
-	desc = "Vyacheslav's juggernaut helmet, looks like a generic riot helmet. On the side of the helmet reads: 'GET SUM!'."
-	icon_state = "vsd_juggernaut_one"
-	worn_icon_state = "vsd_juggernaut_one"
-	soft_armor = list(MELEE = 50, BULLET = 85, LASER = 10, ENERGY = 10, BOMB = 25, BIO = 10, FIRE = 20, ACID = 30)
+	name = "\improper Crasher MT-H/43 'Ares' powered ballistic helmet"
+	desc = "Vyacheslav Security Detail's custom, modified helmet designed for the 'Ares' Juggernaut suit."
+	icon_state = "vsd_juggernaut_ballistic"
+	worn_icon_state = "vsd_juggernaut_ballistic"
+	inv_hide_flags = HIDEALLHAIR|HIDEEARS|HIDEMASK
+	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd/eod
-	name = "Crasher multi-threat 'syndicate' ballistic helmet"
-	desc = "Vyacheslav's syndicate funded helmet."
-	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEALLHAIR|HIDEMASK
-	icon_state = "vsd_juggernaut_two"
-	worn_icon_state = "vsd_juggernaut_two"
-	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 60, BIO = 10, FIRE = 20, ACID = 30)
+	name = "\improper Crasher MT-H/43 'Zeus' powered explosive-defensive helmet"
+	desc = "Vyacheslav Security Detail's custom, modified helmet designed for the 'Zeus' Juggernaut suit."
+	icon_state = "vsd_juggernaut_eod"
+	worn_icon_state = "vsd_juggernaut_eod"
+	inv_hide_flags = HIDEALLHAIR|HIDEEARS|HIDEMASK
+	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 80, BIO = 60, FIRE = 55, ACID = 40)
+
+/obj/item/clothing/head/helmet/marine/vsd/flamer
+	name = "\improper Crasher MT-H/43 'Apollo' powered fire-protected helmet"
+	desc = "Vyacheslav Security Detail's custom, modified helmet designed for the 'Apollo' Juggernaut suit."
+	icon_state = "vsd_juggernaut_pyro"
+	worn_icon_state = "vsd_juggernaut_pyro"
+	inv_hide_flags = HIDEALLHAIR|HIDEEARS|HIDEMASK
+	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 80, ACID = 40)

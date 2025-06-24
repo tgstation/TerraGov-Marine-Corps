@@ -522,9 +522,8 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/kill_zombies/check_completion()
 	for(var/mob/living/carbon/human/affectedmob in GLOB.mob_list)
 		if(iszombie(affectedmob))
-			for(var/datum/internal_organ/affectedorgan in affectedmob.internal_organs)
-				if(affectedorgan == affectedmob.internal_organs_by_name["heart"]) //zombies with hearts aren't truly dead
-					return FALSE
+			if(affectedmob.get_organ_slot(ORGAN_SLOT_HEART))
+				return FALSE
 	return TRUE
 
 /datum/objective/seize_area
@@ -536,7 +535,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	if(tgui_alert(admin, "Use the area we are currently in?", "Continue?", list("Yes", "No")) != "No")
 		defendedarea = get_area(admin)
 	else
-		var/area/new_target = input(admin,"Select target:", "Objective target") as null|anything in GLOB.sorted_areas
+		var/area/new_target = input(admin,"Select target:", "Objective target") as null|anything in get_sorted_areas()
 		defendedarea = new_target
 	update_explanation_text()
 
@@ -556,9 +555,8 @@ GLOBAL_LIST_EMPTY(possible_items)
 			return TRUE
 		for(targethuman in defendedarea)
 			if(iszombie(targethuman)) //zombies count as hostile forces to everyone but zombies
-				for(var/datum/internal_organ/affectedorgan in targethuman.internal_organs)
-					if(affectedorgan == targethuman.internal_organs_by_name["heart"])
-						return FALSE
+				if(targethuman.get_organ_slot(ORGAN_SLOT_HEART))
+					return FALSE
 			if(targethuman.stat == DEAD) //we don't care about dead humans
 				continue
 			if(isxeno(owner.current))
