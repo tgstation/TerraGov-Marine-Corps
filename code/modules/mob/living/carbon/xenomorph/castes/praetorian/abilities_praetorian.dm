@@ -695,11 +695,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	..()
 	var/mob/living/carbon/human/human_source = source
 	human_source.Paralyze(0.2 SECONDS * last_known_multiplier)
-	human_source.add_slowdown(2 * last_known_multiplier)
-	human_source.adjust_stagger(2.4 SECONDS * last_known_multiplier)
+	human_source.add_slowdown(0.6 * last_known_multiplier)
+	human_source.adjust_stagger(3 SECONDS * last_known_multiplier)
 	REMOVE_TRAIT(human_source, TRAIT_IMMOBILE, THROW_TRAIT)
-	if(last_known_multiplier >= 2)
-		human_mob.allow_pass_flags &= (PASS_MOB|PASS_XENO)
+	human_source.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
 
 /// Ends the ability by throwing all humans in the affected turfs to the initial turf.
 /datum/action/ability/activable/xeno/oppressor/abduct/proc/pull_them_in()
@@ -714,18 +713,17 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				continue
 			if(human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
 				continue
-			human_mobs += target
+			human_mobs += human_mob
+			human_mob.allow_pass_flags |= (PASS_MOB|PASS_XENO) // Without this, groups of affected humans will bump into each other while being thrown.
+
 	last_known_multiplier = human_mobs.len
 	if(last_known_multiplier)
 		for(var/mob/living/carbon/human/human_mob in human_mobs)
 			RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
-			xeno_owner.Knockdown(0.1 SECONDS)
 			ADD_TRAIT(human_mob, TRAIT_IMMOBILE, THROW_TRAIT) // Given that this throw will be slow compared to other abilities, we do not want humans to move DURING it.
-			if(last_known_multiplier >= 2)
-				human_mob.allow_pass_flags |= (PASS_MOB|PASS_XENO)
 			human_mob.throw_at(turf_line[1], 6, 2, xeno_owner, TRUE)
 			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE)
-		xeno_owner.add_slowdown(1 * last_known_multiplier)
+		xeno_owner.add_slowdown(0.3 * last_known_multiplier)
 		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
 	succeed_activate()
 	add_cooldown()
@@ -808,7 +806,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
 
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
-	carbon_target.throw_at(get_step(carbon_target, get_dir(carbon_target, xeno_owner))), 2, 2, xeno_owner, TRUE)
+	carbon_target.throw_at(get_step(carbon_target, get_dir(xeno_owner, carbon_target)), 2, 2, xeno_owner, TRUE)
 	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
 
 	succeed_activate()
