@@ -3051,6 +3051,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope/mini, // sabot
 		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
@@ -3058,16 +3059,16 @@
 	)
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 21, "under_x" = 36, "under_y" = 15, "stock_x" = 12, "stock_y" = 18)
 	gun_skill_category = SKILL_SHOTGUNS
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.55 SECONDS
 	burst_amount = 3
 	burst_scatter_mult = 2
 	burst_delay = 0.3 SECONDS
 	extra_delay = 1.2 SECONDS
 	accuracy_mult = 1
-	damage_mult = 0.60 // -40% dmg
+	damage_mult = 0.65 // -35% dmg
 	scatter = 8
 	burst_scatter_mult = 2
-	damage_falloff_mult = 0.25
+	movement_acc_penalty_mult = 2
