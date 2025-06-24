@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - balance: "Mateba ammo packets are now small sized (previously medium)"
