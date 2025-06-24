@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Powerfist correctly no longer knockbacks mobs who are anchored or have significant move resistance."

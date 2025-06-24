@@ -251,7 +251,7 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 
 	var/ntype = text2num(type)
 
-	var/dat = ""
+	var/list/dat = list()
 	if(M.client)
 		dat += "<center><p>Client</p></center>"
 		dat += "<center>"
@@ -296,20 +296,22 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 	var/log_source = M.logging;
 	if(source == LOGSRC_CLIENT && M.client)
 		log_source = M.client.player_details.logging
-
+	var/list/concatenated_logs = list()
 	for(var/log_type in log_source)
 		var/nlog_type = text2num(log_type)
 		if(nlog_type & ntype)
-			var/list/reversed = log_source[log_type]
-			if(islist(reversed))
-				reversed = reverseRange(reversed.Copy())
-				for(var/entry in reversed)
-					dat += "<font size=2px>[entry]<br>[reversed[entry]]</font><br>"
-			dat += "<hr>"
+			var/list/all_the_entrys = log_source[log_type]
+			for(var/entry in all_the_entrys)
+				concatenated_logs += "<b>[entry]</b><br>[all_the_entrys[entry]]"
+	if(length(concatenated_logs))
+		sortTim(concatenated_logs, cmp = /proc/cmp_text_dsc) //Sort by timestamp.
+		dat += "<font size=2px>"
+		dat += concatenated_logs.Join("<br>")
+		dat += "</font>"
 
-	var/datum/browser/browser = new(usr, "invidual_logging_[key_name(M)]", "<div align='center'>Logs</div>", 700, 550)
-	browser.set_content(dat)
-	browser.open(FALSE)
+	var/datum/browser/popup = new(usr, "invidual_logging_[key_name(M)]", "Individual Logs", 700, 600)
+	popup.set_content(dat.Join())
+	popup.open()
 
 
 /datum/admins/proc/individual_logging_panel_link(mob/M, log_type, log_src, label, selected_src, selected_type)
@@ -319,7 +321,8 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 	var/slabel = label
 	if(selected_type == log_type && selected_src == log_src)
 		slabel = "<b><font color='#ff8c8c'>\[[label]\]</font></b>"
-
+	//This is necessary because num2text drops digits and rounds on big numbers. If more defines get added in the future it could break again.
+	log_type = num2text(log_type, MAX_BITFLAG_DIGITS)
 	return "<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 
 

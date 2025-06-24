@@ -150,7 +150,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/trait/hp_boost/two
 	name = "Extreme constitution"
-	desc = "Military grade biological augmentations are used to harden your body against grievous bodily harm. Provides an addition +25 max health and +10 pain resistance."
+	desc = "Military grade biological augmentations are used to harden your body against grievous bodily harm. Provides an additional +25 max health and +10 pain resistance."
 	req_desc = "Requires Improved constitution."
 	ui_icon = "health_2"
 	prereq_perks = list(/datum/perk/trait/hp_boost)

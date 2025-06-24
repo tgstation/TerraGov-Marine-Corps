@@ -2775,8 +2775,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 	caliber = CALIBER_556X45 //codex
-
-	max_shells = 200  //codex
+	max_shells = 200 //codex
 	wield_delay = 1.4 SECONDS
 	aim_slowdown = 0.95
 	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
@@ -2825,15 +2824,15 @@
 /obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/foldable/bipod, /obj/item/attachable/extended_barrel)
 
-// C550
+// CC/67, the new C550!
 
 /obj/item/weapon/gun/rifle/vsd_rifle
-	name = "\improper C550 combat rifle"
-	desc = "Crash Core's first ever rifle. With designs reminiscent of the Sauer series, this gun is the perfect choice for CQC. Chambered in 10x27mm. Packs a kick to anyone standing infront of you. "
+	name = "\improper CC/67 assault rifle"
+	desc = "Crash Core's next-gen assault rifle, chambered in 10x27mm. Combat and Support worthy, this will pack a kick to anyone standing infront of you."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "c550"
 	worn_icon_state = "c550"
-	fire_sound = 'sound/weapons/guns/fire/DMR.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -2860,7 +2859,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 	)
 
-	attachable_offset = list("muzzle_x" = 58, "muzzle_y" = 18,"rail_x" = 24, "rail_y" = 21, "under_x" = 35, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 63, "muzzle_y" = 19,"rail_x" = 27, "rail_y" = 23, "under_x" = 40, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
 	burst_amount = 4
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	burst_delay = 0.15 SECONDS
@@ -2872,3 +2871,139 @@
 
 /obj/item/weapon/gun/rifle/vsd_rifle/medic
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
+
+/obj/item/weapon/gun/rifle/vsd_rifle/export
+	icon_state = "c550_export"
+	worn_icon_state = "c550_export"
+
+// CC/74
+
+/obj/item/weapon/gun/rifle/vsd_lmg_main
+	name = "\improper CC/74 Assault LMG"
+	desc = "The CC/74, newest Assault Light-Machinegun in the VSD arsenal. Chambered in 7.62x39mm, it crackles with power as it destroys anything in its cold iron sights."
+	icon = 'icons/obj/items/guns/machineguns64.dmi'
+	icon_state = "c74"
+	worn_icon_state = "c74"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
+	caliber = CALIBER_762X39 //codex
+	max_shells = 150  //codex
+	wield_delay = 1.4 SECONDS
+	aim_slowdown = 0.95
+	fire_sound = 'sound/weapons/guns/fire/hmg.ogg'
+	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_mg_main
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_mg_main)
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+	)
+
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	attachable_offset = list("muzzle_x" = 62, "muzzle_y" = 19,"rail_x" = 26, "rail_y" = 25, "under_x" = 31, "under_y" = 11, "stock_x" = 8, "stock_y" = 13)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+
+	fire_delay = 0.2	 SECONDS
+	scatter = 3
+	burst_amount = 1
+	movement_acc_penalty_mult = 8
+
+/obj/item/weapon/gun/rifle/vsd_lmg_main/recoilcomp
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator)
+
+/obj/item/weapon/gun/rifle/vsd_carbine
+	name = "\improper CC/77 assault carbine"
+	desc = "Crash Core's next-gen assault carbine, chambered in 10x24mm Caseless. Combat and Support worthy, this oughta hurt any person who stands in your way."
+	icon = 'icons/obj/items/guns/rifles64.dmi'
+	icon_state = "c77"
+	worn_icon_state = "c77"
+	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	aim_slowdown = 0.5
+	wield_delay =  0.9 SECONDS
+	max_shells = 45 //codex
+	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_carbine
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_carbine)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
+	)
+
+	attachable_offset = list("muzzle_x" = 62, "muzzle_y" = 18,"rail_x" = 29, "rail_y" = 24, "under_x" = 50, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
+	burst_amount = 3
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	burst_delay = 0.1 SECONDS
+	scatter = 0
+	fire_delay = 0.2 SECONDS
+
+/obj/item/weapon/gun/rifle/vsd_carbine/recoilcomp
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/angledgrip, /obj/item/attachable/compensator)
+
+/obj/item/weapon/gun/rifle/vsd_carbine/suppressed
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
+
+
+//VSD breaching shotgun
+
+/obj/item/weapon/gun/rifle/vsd_breaching
+	name = "\improper CC/B/31 Breaching Shotgun"
+	desc = "The Vyacheslav Security Detail's breaching shotgun, firing 12 gauge breaching slugs. This won't kill if the target is armored."
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+	)
+	icon_state = "cb31"
+	worn_icon_state = "cb31"
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/cb31
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/cb31)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+	)
+	max_shells = 25 //codex
+	item_map_variant_flags = NONE
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 32, "rail_y" = 28, "under_x" = 36, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
+
+	fire_delay = 1 SECONDS
+	accuracy_mult = 1.15
+	burst_amount = 1
+	scatter = -2
+	movement_acc_penalty_mult = 3
+
+/obj/item/weapon/gun/rifle/vsd_breaching/standard
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)

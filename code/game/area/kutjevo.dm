@@ -305,6 +305,7 @@
 	name = "Kutjevo - Central Colony Elevator"
 	icon_state = "colony_caves_0"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
+	ceiling = CEILING_UNDERGROUND
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/kutjevo/exterior/colony_north
