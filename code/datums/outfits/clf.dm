@@ -3,7 +3,7 @@
 	name = "CLF Standard"
 	jobtype = /datum/job/clf/standard
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/clf
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine/clf/full
@@ -126,7 +126,7 @@
 	name = "CLF Medic"
 	jobtype = /datum/job/clf/medic
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/clf
 	belt = /obj/item/storage/belt/lifesaver/full/upp
 	ears = /obj/item/radio/headset/distress/dutch
 	head = /obj/item/clothing/head/tgmcberet/bloodred
@@ -202,7 +202,7 @@
 	name = "CLF Specialist"
 	jobtype = /datum/job/clf/specialist
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/clf
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist/webbing
@@ -278,7 +278,7 @@
 	name = "CLF Leader"
 	jobtype = /datum/job/clf/leader
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/clf
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist/webbing
@@ -381,3 +381,46 @@
 		/obj/item/explosive/grenade/stick = 4,
 		/obj/item/explosive/grenade/smokebomb = 1,
 	)
+
+/datum/outfit/job/clf/breeder
+	name = "CLF Breeder"
+	jobtype = /datum/job/clf/breeder
+
+	id = /obj/item/card/id/dogtag/clf
+	ears = /obj/item/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/swimsuit/purple
+	shoes = /obj/item/clothing/shoes/sandal
+	belt = /obj/item/storage/holster/t19/full
+	r_pocket = /obj/item/flashlight
+	back = /obj/item/storage/backpack/lightpack
+
+/datum/outfit/job/clf/breeder/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/dylovene, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/spaceacillin, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/monkeycube/wrapped, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/monkeycube/wrapped, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BELT)
+
+/datum/outfit/job/civilian/synthetic/clf
+	name = SYNTHETIC
+	jobtype = /datum/job/clf/silicon/synthetic
+
+	id = /obj/item/card/id/dogtag/clf
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/rank/synthetic
+	shoes = /obj/item/clothing/shoes/white
+	gloves = /obj/item/clothing/gloves/insulated
+	r_pocket = /obj/item/storage/pouch/general/medium
+	l_pocket = /obj/item/storage/pouch/general/medium

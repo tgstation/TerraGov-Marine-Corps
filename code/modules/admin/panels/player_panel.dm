@@ -244,7 +244,7 @@ ADMIN_VERB(player_panel, R_ADMIN, "Player Panel", "View the player panel", ADMIN
 		M_job = html_encode(M_job)
 		var/M_name = html_encode(M.name)
 		var/M_rname = html_encode(M.real_name)
-		var/M_key = html_encode(M.key)
+		var/M_key = html_encode(key_name(M, include_link = FALSE, include_name = FALSE))
 		var/M_cid = html_encode(M.computer_id)
 		var/M_ip = html_encode(M.ip_address)
 
@@ -349,7 +349,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 	var/body
 
 	body += "<b>[M.name]</b>"
-
+	body += " played by <b>[key_name(M, include_link = FALSE, include_name = FALSE)]</b> "
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
 		body += " <a href='byond://?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key];close=1'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
@@ -506,6 +506,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 				body += "<a href='byond://?src=[ref];rankequip=[REF(M)]'>Rank and Equipment</a> | "
 				body += "<a href='byond://?src=[ref];editappearance=[REF(M)]'>Edit Appearance</a> | "
 				body += "<a href='byond://?src=[ref];randomname=[REF(M)]'>Randomize Name</a>"
+			if(isxeno(M))
+				body += "<br>"
+				body += "<a href='?src=[ref];togglerouny=[REF(M)]'>Toggle Rouny Sprites</a>"
+
 
 	log_admin("[key_name(user)] opened the player panel of [key_name(M)].")
 

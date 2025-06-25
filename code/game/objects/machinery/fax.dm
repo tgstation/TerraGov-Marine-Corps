@@ -15,12 +15,20 @@
 	var/obj/item/paper/message = null
 	var/sendcooldown = FALSE
 
-	var/department = CORPORATE_LIAISON
-	var/selected = "Nanotrasen"
+	var/department = ""
+	var/selected = "Ninetails"
 
 
 /obj/machinery/faxmachine/Initialize(mapload)
 	. = ..()
+	if(!department)
+		department = ""
+		if(is_ground_level(z))
+			department += "[SSmapping.configs[GROUND_MAP].map_name] - "
+		if(is_mainship_level(z))
+			department += "[SSmapping.configs[SHIP_MAP].map_name] - "
+		department += "[get_area_name(src, TRUE)]"
+	name += " ([department])"
 	GLOB.faxmachines += src
 
 
@@ -63,7 +71,7 @@
 	dat += "<hr>"
 
 	if(authenticated)
-		dat += "<b>Logged in to:</b> Nanotrasen Private Corporate Network<br><br>"
+		dat += "<b>Logged in to:</b> Ninetails Private Corporate Network<br><br>"
 		if(message)
 			dat += "<a href='byond://?src=[text_ref(src)];remove=1'>Remove Paper</a><br><br>"
 			if(sendcooldown)
@@ -126,7 +134,10 @@
 		authenticated = FALSE
 
 	if(href_list["dept"])
-		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall"))
+		var/list/fax_machine_departments = list("Ninetails Human Resources", "NTC Intel Division", "NTC Misc")
+		for(var/obj/machinery/faxmachine/machine in GLOB.faxmachines)
+			fax_machine_departments |= machine.department
+		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", fax_machine_departments)
 		if(!choice)
 			return
 		selected = choice
@@ -167,18 +178,26 @@
 		anchored = !anchored
 		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 
+/obj/machinery/faxmachine/liasion
+	department = CORPORATE_LIAISON
 
 /obj/machinery/faxmachine/cic
 	department = "Combat Information Center"
 
 /obj/machinery/faxmachine/cmp
-	department = "Brig"
+	department = "Corpsec Commander"
 
 /obj/machinery/faxmachine/brig
-	department = "Brig"
+	department = "Corpsec Brig"
 
 /obj/machinery/faxmachine/research
-	department = "Research"
+	department = "NTC Research"
 
 /obj/machinery/faxmachine/warden //Prison Station
 	department = "Warden"
+
+/obj/machinery/faxmachine/som
+	department = "SOM"
+
+/obj/machinery/faxmachine/clf
+	department = "CLF"

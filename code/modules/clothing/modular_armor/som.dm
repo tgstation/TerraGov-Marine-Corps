@@ -1,8 +1,8 @@
 //SOM modular armour
 
 /obj/item/clothing/suit/modular/som
-	name = "\improper SOM medium battle armor"
-	desc = "The M-21 battle armor is typically used by SOM infantry. It utilizes special light-weight alloys that provides good protection with only minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	name = "\improper SOM M-21 light battle armor"
+	desc = "The M-21 battle armor is typically used by SOM light infantry, or other specialists that require more mobility at the cost of some protection. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 55, ACID = 50)
 	icon = 'icons/mob/modular/som_armor.dmi'
 	worn_icon_list = list(
@@ -19,8 +19,10 @@
 		/obj/item/armor_module/module/valkyrie_autodoc/som,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/module/knight/som,
 		/obj/item/armor_module/module/mimir_environment_protection/som,
 		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield/som,
 		/obj/item/armor_module/module/eshield/som/overclocked,
 		/obj/item/armor_module/storage/general,
@@ -38,7 +40,9 @@
 
 	icon_state_variants = list(
 		"black",
+		"old",
 	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "black"
 
 	allowed_uniform_type = /obj/item/clothing/under
@@ -86,7 +90,7 @@
 	)
 
 /obj/item/clothing/suit/modular/som/light
-	name = "\improper SOM scout armor"
+	name = "\improper SOM M-11 scout armor"
 	desc = "The M-11 scout armor is a lightweight suit that that allows for minimal encumberance while still providing reasonable protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 50, ACID = 40)
 	icon_state = "som_light"
@@ -131,7 +135,7 @@
 
 
 /obj/item/clothing/suit/modular/som/heavy
-	name = "\improper SOM heavy battle armor"
+	name = "\improper SOM M-31 heavy battle armor"
 	desc = "A standard suit of M-31 heavy duty combat armor worn by SOM shock troops. Provides excellent protection however it does reduce mobility somewhat. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 65, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 60, ACID = 55)
 	icon_state = "som_heavy"
@@ -187,7 +191,7 @@
 	)
 
 /obj/item/clothing/suit/modular/som/heavy/leader
-	name = "\improper SOM Gorgon pattern assault armor"
+	name = "\improper SOM M-35 Gorgon pattern assault armor"
 	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armor provides the user with superior protection without severely impacting mobility. Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 55, FIRE = 65, ACID = 55)
 	icon_state = "som_leader"
@@ -260,7 +264,9 @@
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	icon_state_variants = list(
 		"black",
+		"old",
 	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "black"
 	visorless_offset_y = 0
 
