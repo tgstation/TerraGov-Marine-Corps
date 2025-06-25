@@ -65,11 +65,6 @@
 
 ///Make the user fly toward the target atom
 /obj/item/jetpack_marine/proc/use_jetpack(atom/A, mob/living/carbon/human/human_user)
-	if(human_user.buckled)
-		balloon_alert(human_user, "Cannot fly while buckled")
-		return FALSE
-	if(human_user.do_actions)
-		return FALSE
 	if(!do_after(human_user, 0.3 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, A))
 		return FALSE
 	S_TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, cooldown_time)
@@ -172,7 +167,7 @@
 	name = "Use jetpack"
 	action_icon_state = "axe_sweep"
 	desc = "Briefly fly using your jetpack."
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
+	use_state_flags = ABILITY_USE_STAGGERED
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK)
 
 /datum/action/ability/activable/item_toggle/jetpack/New(Target, obj/item/holder)
@@ -183,9 +178,6 @@
 /datum/action/ability/activable/item_toggle/jetpack/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
-		return FALSE
-	if(carbon_owner.do_actions)
-		carbon_owner.balloon_alert(carbon_owner, "Busy doing something")
 		return FALSE
 	var/obj/item/jetpack_marine/jetpack = holder_item
 	if(jetpack.fuel_left < FUEL_USE)
