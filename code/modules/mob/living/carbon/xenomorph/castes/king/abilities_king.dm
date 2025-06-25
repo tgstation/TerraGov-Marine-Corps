@@ -554,7 +554,7 @@ GLOBAL_LIST_EMPTY(active_summons)
 			sister.forceMove(get_turf(xeno_owner))
 			sisters_teleported ++
 			if(damage_multiplier_boost)
-				sister.apply_status_effect(STATUS_EFFECT_KING_SUMMON_DAMAGE_MODIFIER, damage_multiplier_boost)
+				sister.apply_status_effect(STATUS_EFFECT_DAMAGE_MODIFIER_KING_SUMMON, damage_multiplier_boost)
 
 
 	log_game("[key_name(owner)] has summoned hive ([sisters_teleported] Xenos) in [AREACOORD(owner)]")

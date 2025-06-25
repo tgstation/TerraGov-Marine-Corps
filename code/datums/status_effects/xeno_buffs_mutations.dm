@@ -112,6 +112,60 @@
 	id = "xenomorph_movespeed_modifier_queen_screech"
 	movespeed_id = MOVESPEED_ID_QUEEN_SCREECH
 
+/datum/status_effect/xenomorph_soft_armor_modifier
+	id = "xenomorph_soft_armor_modifier"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	duration = 4 SECONDS
+	/// The amount of soft armor currently added to the owner's existing soft armor.
+	var/datum/armor/soft_armor
+
+/datum/status_effect/xenomorph_soft_armor_modifier/on_creation(mob/living/new_owner, new_soft_armor, armor_type)
+	owner = new_owner
+	if(islist(new_soft_armor))
+		soft_armor = getArmor(arglist(new_soft_armor))
+	else if(isnum(new_soft_armor))
+		soft_armor = getArmor()
+		if(armor_type)
+			soft_armor = soft_armor.modifyRating("[armor_type]" = new_soft_armor)
+		else
+			soft_armor = soft_armor.modifyAllRatings(new_soft_armor)
+	else if(istype(new_soft_armor, /datum/armor))
+		soft_armor = new_soft_armor
+	return ..()
+
+/datum/status_effect/xenomorph_soft_armor_modifier/on_apply()
+	. = ..()
+	if(!isxeno(owner) || !soft_armor)
+		return FALSE
+	owner.soft_armor = owner.soft_armor.attachArmor(soft_armor)
+
+/datum/status_effect/xenomorph_soft_armor_modifier/on_remove()
+	if(!isxeno(owner) || !soft_armor)
+		return
+	owner.soft_armor = owner.soft_armor.detachArmor(soft_armor)
+
+/// Increases/decreases status effect and owner's soft armor.
+/datum/status_effect/xenomorph_soft_armor_modifier/proc/modify_armor(increased_soft_armor, armor_type)
+	var/sanitized_armor
+	if(islist(increased_soft_armor))
+		increased_soft_armor = getArmor(arglist(increased_soft_armor))
+	if(isnum(increased_soft_armor))
+		var/datum/armor/base_armor = getArmor()
+		if(armor_type)
+			increased_soft_armor = base_armor.modifyRating("[armor_type]" = increased_soft_armor)
+		else
+			increased_soft_armor = base_armor.modifyAllRatings(increased_soft_armor)
+	if(!istype(increased_soft_armor, /datum/armor))
+		return FALSE
+	owner.soft_armor = owner.soft_armor.attachArmor(increased_soft_armor)
+	soft_armor = soft_armor.attachArmor(increased_soft_armor)
+	return TRUE
+
+/datum/status_effect/xenomorph_soft_armor_modifier/mutation_dancer_flame_dance
+	id = "xenomorph_soft_armor_modifier_mutation_flame_dance"
+	duration = -1
+
 /**
  * Debuffs
  */
