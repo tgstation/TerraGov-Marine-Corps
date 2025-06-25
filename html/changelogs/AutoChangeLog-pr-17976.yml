@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - balance: "Added new cave system east of south lava lake on magmoor"
