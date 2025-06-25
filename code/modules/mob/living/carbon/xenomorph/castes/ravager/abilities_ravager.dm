@@ -115,6 +115,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
 	)
+	var/armor_penetration
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
@@ -152,6 +153,8 @@
 						atoms_to_ravage += get_step(furthest, turn(owner.dir, 90)).contents
 						atoms_to_ravage += get_step(furthest, turn(owner.dir, -90)).contents
 
+	if(armor_penetration)
+		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(handle_armor_penetration)) // Needed to give armor pen to `attack_alien_harm`.
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
 		if(ishitbox(ravaged) || isvehicle(ravaged))
 			ravaged.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage) //Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
@@ -159,7 +162,7 @@
 		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE) || !adjacent_relative.Adjacent(ravaged))
 			continue
 		if(!ishuman(ravaged))
-			ravaged.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage)
+			ravaged.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage, armor_penetration = armor_penetration)
 			ravaged.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 			continue
 		var/mob/living/carbon/human/human_victim = ravaged
@@ -169,9 +172,16 @@
 		human_victim.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 		shake_camera(human_victim, 2, 1)
 		human_victim.Paralyze(1 SECONDS)
+	if(armor_penetration)
+		UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 
 	succeed_activate()
 	add_cooldown()
+
+/// Adds armor piercing to attacked living beings.
+/datum/action/ability/activable/xeno/ravage/proc/handle_armor_penetration(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+	SIGNAL_HANDLER
+	armor_mod += armor_penetration
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
 /datum/action/ability/activable/xeno/ravage/proc/activate_particles(direction) // This could've been an animate()!

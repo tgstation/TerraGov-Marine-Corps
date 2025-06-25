@@ -56,6 +56,12 @@
 	///multiplier on plasma amount vs damage that is recieved on being attacked
 	var/plasma_damage_recieved_mult = 0.5
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/little_more,
+		/datum/mutation_upgrade/shell/deep_slash,
+		/datum/mutation_upgrade/shell/recurring_rage
+	)
+
 /datum/xeno_caste/ravager/on_caste_applied(mob/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
