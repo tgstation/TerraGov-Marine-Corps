@@ -233,3 +233,29 @@
   Nokia2Student:
   - balance: Queens got hivelord's resin construction
   - balance: Kings are now able to build resin structures
+2025-06-23:
+  Runian:
+  - balance: Fireproof resin walls now prevent flamers from penetrating them, making
+      them immediately stop upon reaching the fireproof wall.
+  revelation-8468:
+  - balance: Flare crates are now available to buy in requsitions for 75 points per
+      10 flare boxes (or 140 flares).
+2025-06-25:
+  Atropos:
+  - balance: Mateba ammo packets are now small sized (previously medium)
+  - admin: you can now search by ckey in orbit menu
+  - admin: Added new button to kick people from lobby in player panel
+  - bugfix: kamas now correctly layer under capes
+  Naaanii:
+  - balance: Xenos can rest/unrest while staggered
+  Runian:
+  - bugfix: Powerfist correctly no longer knockbacks mobs who are anchored or have
+      significant move resistance.
+  ViperSnake01:
+  - rscadd: Updated plasma-drain tip
+  - rscdel: Removed old plasma-drain tip
+  mudzbe:
+  - bugfix: Update SOM medium shield armor name and description
+  - bugfix: Fixes attachment activation sound
+  tomboy:
+  - rscadd: 'Conq rouny sprite: He learned how to raging demon lol'

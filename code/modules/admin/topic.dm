@@ -2230,6 +2230,24 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		return usr.client?.mark_datum(datum_to_mark)
 
+	else if(href_list["kick_all_from_lobby"])
+		if(!check_rights(R_ADMIN))
+			return
+		if(!SSticker.IsRoundInProgress())
+			to_chat(usr, "You may only use this when the game is running.", confidential = TRUE)
+			return
+		var/afkonly = text2num(href_list["afkonly"])
+		if(tgui_alert(usr,"Are you sure you want to kick all [afkonly ? "AFK" : ""] clients from the lobby?", "Message", list("Yes", "No")) != "Yes")
+			to_chat(usr, "Kick clients from lobby aborted", confidential = TRUE)
+			return
+		var/list/listkicked = kick_clients_in_lobby(span_danger("You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"]."), afkonly)
+
+		var/strkicked = ""
+		for(var/name in listkicked)
+			strkicked += "[name], "
+		message_admins("[key_name_admin(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
+		log_admin("[key_name(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
+
 	else if(href_list["play_internet"])
 		if(!check_rights(R_SOUND))
 			return
