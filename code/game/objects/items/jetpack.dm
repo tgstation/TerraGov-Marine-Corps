@@ -184,6 +184,9 @@
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE
+	if(carbon_owner.do_actions)
+		carbon_owner.balloon_alert(carbon_owner, "Busy doing something")
+		return FALSE
 	var/obj/item/jetpack_marine/jetpack = holder_item
 	if(jetpack.fuel_left < FUEL_USE)
 		carbon_owner.balloon_alert(carbon_owner, "No fuel")
