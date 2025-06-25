@@ -302,7 +302,7 @@ ADMIN_VERB(player_panel_extended, R_ADMIN, "Player Panel Extended", "View the ex
 		if(!M.ckey)
 			continue
 
-		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
+		dat += "<tr><td>[key_name(M, include_link = FALSE, include_name = FALSE)]</td>"
 		dat += "<td><a href='byond://?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>AI</td>"
@@ -351,7 +351,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 	body += "<b>[M.name]</b>"
 	body += " played by <b>[key_name(M, include_link = FALSE, include_name = FALSE)]</b> "
 	if(M.client)
-		body += " played by <b>[M.client]</b> "
 		body += " <a href='byond://?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key];close=1'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
 	if(isnewplayer(M))
