@@ -112,6 +112,10 @@
 	id = "xenomorph_movespeed_modifier_queen_screech"
 	movespeed_id = MOVESPEED_ID_QUEEN_SCREECH
 
+/datum/status_effect/xenomorph_movespeed_modifier/warlock_psy_shield
+	id = "xenomorph_movespeed_modifier_warlock_psy_shield"
+	movespeed_id = MOVESPEED_ID_WARLOCK_PSY_SHIELD
+
 /datum/status_effect/xenomorph_soft_armor_modifier
 	id = "xenomorph_soft_armor_modifier"
 	status_type = STATUS_EFFECT_REPLACE
@@ -147,7 +151,6 @@
 
 /// Increases/decreases status effect and owner's soft armor.
 /datum/status_effect/xenomorph_soft_armor_modifier/proc/modify_armor(increased_soft_armor, armor_type)
-	var/sanitized_armor
 	if(islist(increased_soft_armor))
 		increased_soft_armor = getArmor(arglist(increased_soft_armor))
 	if(isnum(increased_soft_armor))

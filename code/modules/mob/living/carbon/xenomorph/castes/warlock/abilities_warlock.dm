@@ -64,6 +64,14 @@
 	var/obj/effect/xeno/shield/active_shield
 	/// Whether to use the alternative mode of projectile reflection. Makes shields weaker, but sends projectiles toward a selected target.
 	var/alternative_reflection = FALSE
+	/// The amount of plasma required and consumed to reactivate the ability in order to detonate the shield.
+	var/detonation_cost = 200
+	/// Instead of canceling normally, attempt to detonate it instead.
+	var/always_detonate = FALSE
+	/// Can they manually detonate this? This does not prevent automatic detonation.
+	var/can_manually_detonate = TRUE
+	/// Can they move while the shield is active? If so, what movement speed modifier to give them?
+	var/movespeed_modifier_amount = 0
 
 /datum/action/ability/activable/xeno/psychic_shield/remove_action(mob/M)
 	if(active_shield)
@@ -89,8 +97,10 @@
 
 /datum/action/ability/activable/xeno/psychic_shield/use_ability(atom/targetted_atom)
 	if(active_shield)
-		if(ability_cost > xeno_owner.plasma_stored)
-			owner.balloon_alert(owner, "[ability_cost - xeno_owner.plasma_stored] more plasma!")
+		if(!can_manually_detonate)
+			return FALSE
+		if(detonation_cost > xeno_owner.plasma_stored)
+			owner.balloon_alert(owner, "[detonation_cost - xeno_owner.plasma_stored] more plasma!")
 			return FALSE
 		if(can_use_action(FALSE, ABILITY_USE_BUSY))
 			shield_blast(targetted_atom)
@@ -122,12 +132,18 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
 
 	if(alternative_reflection)
-		active_shield = new /obj/effect/xeno/shield/special(target_turf, owner)
+		active_shield = new /obj/effect/xeno/shield/special(target_turf, owner, src)
 	else
-		active_shield = new(target_turf, owner)
-	if(!do_after(owner, 6 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+		active_shield = new(target_turf, owner, src)
+	if(movespeed_modifier_amount)
+		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_PSY_SHIELD, TRUE, 0, NONE, TRUE, movespeed_modifier_amount)
+	if(!do_after(owner, 6 SECONDS, movespeed_modifier_amount ? IGNORE_LOC_CHANGE : NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY|ABILITY_IGNORE_PLASMA)))
+		if(always_detonate && active_shield && xeno_owner.plasma_stored >= detonation_cost)
+			shield_blast()
 		cancel_shield()
 		return
+	if(always_detonate && active_shield && xeno_owner.plasma_stored >= detonation_cost)
+		shield_blast()
 	cancel_shield()
 
 ///Removes the shield and resets the ability
@@ -135,6 +151,8 @@
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	if(movespeed_modifier_amount)
+		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_WARLOCK_PSY_SHIELD)
 	update_button_icon()
 	add_cooldown()
 	if(active_shield)
@@ -143,7 +161,7 @@
 
 ///AOE knockback triggerable by ending the shield early
 /datum/action/ability/activable/xeno/psychic_shield/proc/shield_blast(atom/targetted_atom)
-	succeed_activate()
+	succeed_activate(detonation_cost)
 
 	active_shield.reflect_projectiles(targetted_atom)
 
@@ -153,17 +171,17 @@
 	var/turf/upper_right
 	switch(active_shield.dir)
 		if(NORTH)
-			lower_left = locate(owner.x - 1, owner.y + 1, owner.z)
-			upper_right = locate(owner.x + 1, owner.y + 2, owner.z)
+			lower_left = locate(active_shield.x - 1, active_shield.y, active_shield.z)
+			upper_right = locate(active_shield.x + 1, active_shield.y + 1, active_shield.z)
 		if(SOUTH)
-			lower_left = locate(owner.x - 1, owner.y - 2, owner.z)
-			upper_right = locate(owner.x + 1, owner.y - 1, owner.z)
+			lower_left = locate(active_shield.x - 1, active_shield.y - 1, active_shield.z)
+			upper_right = locate(active_shield.x + 1, active_shield.y, active_shield.z)
 		if(WEST)
-			lower_left = locate(owner.x - 2, owner.y - 1, owner.z)
-			upper_right = locate(owner.x - 1, owner.y + 1, owner.z)
+			lower_left = locate(active_shield.x - 1, active_shield.y - 1, active_shield.z)
+			upper_right = locate(active_shield.x, active_shield.y + 1, active_shield.z)
 		if(EAST)
-			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
-			upper_right = locate(owner.x + 2, owner.y + 1, owner.z)
+			lower_left = locate(active_shield.x, active_shield.y - 1, active_shield.z)
+			upper_right = locate(active_shield.x + 1, active_shield.y + 1, active_shield.z)
 
 	for(var/turf/affected_tile AS in block(lower_left, upper_right)) //everything in the 2x3 block is found.
 		affected_tile.Shake(duration = 0.5 SECONDS)
@@ -196,11 +214,11 @@
 	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE
 	max_integrity = 650
 	layer = ABOVE_MOB_LAYER
-	///Who created the shield
+	/// Who created the shield?
 	var/mob/living/carbon/xenomorph/owner
-	///All the projectiles currently frozen by this obj
+	/// All the projectiles currently frozen by this obj.
 	var/list/frozen_projectiles = list()
-	/// If reflecting projectiles should go to a targetted atom.
+	/// Should reflecting projectiles should go to a targetted atom?
 	var/alternative_reflection = FALSE
 
 /obj/effect/xeno/shield/Initialize(mapload, creator)
@@ -551,28 +569,62 @@
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///The particle type that will be created when using this ability
 	var/particles/particle_type = /particles/warlock_charge/psy_blast
+	/// The ammo types that can be selected.
+	var/list/datum/ammo/energy/xeno/selectable_ammo_types = list(
+		/datum/ammo/energy/xeno/psy_blast
+	)
+	/// The currently selected ammo type.
+	var/list/datum/ammo/energy/xeno/selected_ammo_type
+	/// If Psychic Drain is used, how much bonus damage is granted?
+	var/psychic_drain_bonus_damage = 0
+
+/datum/action/ability/activable/xeno/psy_blast/New(Target)
+	. = ..()
+	if(length(selectable_ammo_types))
+		selected_ammo_type = selectable_ammo_types[1]
+
+/datum/action/ability/activable/xeno/psy_blast/give_action(mob/living/carbon/xenomorph/given_to_xenomorph)
+	if(given_to_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+		selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
+	return ..()
+/datum/action/ability/activable/xeno/psy_blast/remove_action(mob/living/carbon/xenomorph/removed_from_xenomorph)
+	if(removed_from_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+		selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
+	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/on_cooldown_finish()
 	owner.balloon_alert(owner, "Psy blast ready")
 	return ..()
 
-/datum/action/ability/activable/xeno/psy_blast/action_activate()
-	if(xeno_owner.selected_ability == src)
-		var/list/spit_types = xeno_owner.xeno_caste.spit_types
-		if(length(spit_types) <= 1)
-			return ..()
-		var/found_pos = spit_types.Find(xeno_owner.ammo.type)
-		if(!found_pos)
-			xeno_owner.ammo = GLOB.ammo_list[spit_types[1]]
-		else
-			xeno_owner.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
-		var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
-		ability_cost = selected_ammo.ability_cost
-		particle_type = selected_ammo.channel_particle
-		owner.balloon_alert(owner, "[selected_ammo]")
-		update_button_icon()
-	return ..()
+/datum/action/ability/activable/xeno/psy_blast/on_xeno_upgrade()
+	selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
 
+/datum/action/ability/activable/xeno/psy_blast/action_activate()
+	if(xeno_owner.selected_ability != src || !length(selectable_ammo_types))
+		return ..()
+
+	var/found_pos = selectable_ammo_types.Find(xeno_owner.ammo.type)
+	if(!found_pos)
+		xeno_owner.ammo = GLOB.ammo_list[selectable_ammo_types[1]]
+	else
+		xeno_owner.ammo = GLOB.ammo_list[selectable_ammo_types[(found_pos % length(selectable_ammo_types)) + 1]] // Pick the next selectable ammo type. If not, loop to the beginning.
+	var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
+	ability_cost = selected_ammo.ability_cost
+	particle_type = selected_ammo.channel_particle
+	switch(selected_ammo.type)
+		if(/datum/ammo/energy/xeno/psy_blast)
+			name = "Psychic Blast ([ability_cost])"
+			desc = "Launch a blast of psychic energy that deals light burn damage and staggers in an area. Direct hits deal additional light brute damage."
+		if(/datum/ammo/energy/xeno/psy_blast/psy_lance)
+			name = "Psychic Lance ([ability_cost])"
+			desc = "Launch a blast of psychic energy that deals high brute damage with high armor penetration. This can hit multiple mobs and goes through structures."
+		if(/datum/ammo/energy/xeno/psy_blast/psy_drain)
+			name = "Psychic Drain ([ability_cost])"
+			desc = "Launch a blast of psychic energy that deals light stamina damage, staggers, and knockbacks in a smaller area. Direct hits deal additional light stamina damage and briefly knockdowns."
+	desc += " Must remain stationary for a few seconds to use." // Extra space intentional.
+	owner.balloon_alert(xeno_owner, "[selected_ammo]")
+	update_button_icon()
+	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
