@@ -58,8 +58,8 @@
 
 	buyable_mutations = list(
 		/datum/mutation_upgrade/shell/little_more,
-		/datum/mutation_upgrade/shell/deep_slash,
-		/datum/mutation_upgrade/shell/recurring_rage
+		/datum/mutation_upgrade/spur/deep_slash,
+		/datum/mutation_upgrade/veil/recurring_rage
 	)
 
 /datum/xeno_caste/ravager/on_caste_applied(mob/xenomorph)

@@ -55,7 +55,7 @@
 /datum/mutation_upgrade/spur/deep_slash/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Ravage's armor penetration is increased by 10/15/20."
+	return "Ravage's armor penetration is increased by [get_ap(new_amount)]."
 
 /datum/mutation_upgrade/spur/deep_slash/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/ravage/ravage = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/ravage]
@@ -104,10 +104,6 @@
 	if(!rage)
 		return FALSE
 	RegisterSignals(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
-	return ..()
-
-/datum/mutation_upgrade/shell/borrowed_time/on_mutation_disabled()
-
 	return ..()
 
 /datum/mutation_upgrade/veil/recurring_rage/on_mutation_disabled()
