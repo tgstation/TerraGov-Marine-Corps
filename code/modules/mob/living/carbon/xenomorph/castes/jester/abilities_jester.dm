@@ -229,6 +229,18 @@
 		/datum/action/ability/xeno_action/smokescreen_spit,
 		/datum/action/ability/xeno_action/place_jelly_pod,
 		/datum/action/ability/xeno_action/regenerate_skin,
+		/datum/action/ability/xeno_action/zero_form_beam, //no fun allowed also buggy as hell
+		/datum/action/ability/xeno_action/dodge,
+		/datum/action/ability/xeno_action/centrifugal_force,
+		/datum/action/ability/activable/xeno/conqueror_will,
+		/datum/action/ability/xeno_action/tarot_deck_container,
+		/datum/action/ability/activable/xeno/earth_riser,
+		/datum/action/ability/activable/xeno/psychic_shield,
+		/datum/action/ability/xeno_action/acid_mine,
+		/datum/action/ability/activable/xeno/snatch,
+		/datum/action/ability/activable/xeno/drain_sting,
+		/datum/action/ability/xeno_action/sow,
+		/datum/action/ability/xeno_action/build_hugger_turret,
 	)
 	///List of all the parent abilties that should have themselves and all of their children also blacklisted
 	var/list/parent_blacklist_abilties = list(
@@ -247,13 +259,17 @@
 		/datum/action/ability/xeno_action/ready_charge,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/tarot_deck_container,
 
 	)
 	///List of all castes that should have all of their abilties removed.
 	var/list/blacklist_castes = list(
-		new /datum/xeno_caste/wraith/primordial,
-		new /datum/xeno_caste/hivemind,
-		new /datum/xeno_caste/jester/primordial,
+		new /datum/xeno_caste/wraith/primordial, ///no fun allowed
+		new /datum/xeno_caste/hivemind, ///No combat abilties
+		new /datum/xeno_caste/jester/primordial, ///Buggy
+		new /datum/xeno_caste/dragon, // no fun allowed
+		new /datum/xeno_caste/king/conqueror, ///Unbalanced and buggy
+		new /datum/xeno_caste/behemoth, ///Abilties rely on alot of snowflake maptext in order to not runntime
 	)
 
 GLOBAL_LIST_INIT(tarot_deck_actions, list())
@@ -270,7 +286,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		var/list/allabilties = subtypesof(/datum/action/ability/xeno_action) + subtypesof(/datum/action/ability/activable/xeno)
 		for(var/datum/action/ability/i AS in allabilties)
 			if(!(i in blacklist_actions))
-				GLOB.tarot_deck_actions += new i(xeno_owner)
+				GLOB.tarot_deck_actions += i
 	targetable.give_action(xeno_owner)
 	nontargetable.give_action(xeno_owner)
 
@@ -282,9 +298,9 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 /datum/action/ability/xeno_action/tarot_deck/action_activate()
 	if(ability_container) // If we have no ability then select one and inform the jester of what was selected
 		return
-	// ability_container = pick(GLOB.tarot_deck_actions)
-	ability_container = new /datum/action/ability/activable/xeno/pounce/runner
-	ability_container.name = "TEST"
+	var/picked_ability = pick(GLOB.tarot_deck_actions)
+	ability_container = new picked_ability
+	ability_container.ability_cost = 0
 	xeno_owner.balloon_alert(xeno_owner,"Picked [ability_container.name] for next use!")
 	if(ispath(ability_container.type, /datum/action/ability/activable/xeno))
 		targetable.active = TRUE
@@ -294,9 +310,8 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		targetable.hidden = FALSE
 		targetable.desc = ability_container.desc
 		targetable.container = ability_container
-		targetable.container.owner = owner
-		targetable.container.xeno_owner = xeno_owner
-		xeno_owner.selected_ability = ability_container
+		targetable.container.give_action(xeno_owner)
+		targetable.container.hidden = TRUE
 	else
 		nontargetable.active = TRUE
 		nontargetable.name = ability_container.name
@@ -305,9 +320,8 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		nontargetable.hidden = FALSE
 		nontargetable.desc = ability_container.desc
 		nontargetable.container = ability_container
-		nontargetable.container.owner = owner
-		nontargetable.container.xeno_owner = xeno_owner
-		xeno_owner.selected_ability = ability_container
+		nontargetable.container.give_action(xeno_owner)
+		nontargetable.container.hidden = TRUE
 	hidden = TRUE
 	active = FALSE
 	xeno_owner.update_action_buttons(TRUE)
@@ -333,21 +347,32 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		return FALSE
 	if(!container)
 		return FALSE
-	if(!container.can_use_ability(A))
+	if(!container.can_use_ability(A, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 
 /datum/action/ability/activable/xeno/tarot_deck_container/use_ability(atom/A)
 	container.xeno_owner = xeno_owner
 	container.owner = owner
-	if(container.use_ability(A))
-		hidden = TRUE
-		active = FALSE
-		var/datum/action/ability/xeno_action/tarot_deck/main_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tarot_deck]
-		main_ability.active = TRUE
-		main_ability.hidden = FALSE
-		xeno_owner.update_action_buttons(TRUE)
-		main_ability.ability_container = null
-		main_ability.add_cooldown()
+	container.select()
+	RegisterSignal(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE, PROC_REF(clean_up))
+	container.use_ability(A)
+
+///Called after the mimiced ability has been used, handles returning Tarot deck, deleting the contained ability, and hiding itself
+/datum/action/ability/activable/xeno/tarot_deck_container/proc/clean_up()
+	SIGNAL_HANDLER
+	hidden = TRUE
+	active = FALSE
+	var/datum/action/ability/xeno_action/tarot_deck/main_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tarot_deck]
+	main_ability.active = TRUE
+	main_ability.hidden = FALSE
+	xeno_owner.update_action_buttons(TRUE)
+	main_ability.ability_container = null
+	main_ability.add_cooldown()
+	UnregisterSignal(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE)
+	addtimer(CALLBACK(src, PROC_REF(delete_mimic)), 10 SECONDS)
+
+/datum/action/ability/activable/xeno/tarot_deck_container/proc/delete_mimic()
+	qdel(container)
 
 /datum/action/ability/xeno_action/tarot_deck_container
 	action_icon_state = "tarot"
@@ -368,15 +393,17 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		return FALSE
 	if(!container)
 		return FALSE
-	if(!container.can_use_action())
+	if(!container.can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 
 /datum/action/ability/xeno_action/tarot_deck_container/action_activate()
 	container.xeno_owner = xeno_owner
 	container.owner = owner
+	container.select()
 	if(container.action_activate())
 		hidden = TRUE
 		active = FALSE
+		container.remove_action(xeno_owner)
 		var/datum/action/ability/xeno_action/tarot_deck/main_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tarot_deck]
 		main_ability.active = TRUE
 		main_ability.hidden = FALSE

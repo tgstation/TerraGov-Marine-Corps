@@ -40,6 +40,7 @@
 	acid_spray_damage_on_hit = 45
 	acid_spray_damage = 20
 	acid_spray_structure_damage = 45
+	acid_spray_range = 5
 
 
 	// *** Flags *** //
