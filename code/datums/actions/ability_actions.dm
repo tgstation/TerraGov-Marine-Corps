@@ -175,13 +175,6 @@
 /datum/action/ability/proc/on_xeno_upgrade()
 	return
 
-///Handles removing and returning Tarot Deck, if this ability was granted through it
-/datum/action/ability/proc/return_tarot_deck(mobtoreturnto)
-	remove_action(mobtoreturnto)
-	var/datum/action/ability/replacement = new /datum/action/ability/xeno_action/tarot_deck(mobtoreturnto)
-	replacement.give_action(mobtoreturnto)
-	replacement.add_cooldown() // Automatically add the CD of the tarot_deck ability so that it cant be spammed
-
 /datum/action/ability/activable
 	action_type = ACTION_SELECT
 

@@ -149,55 +149,240 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAROT_DECK,
 	)
 	cooldown_duration = JESTER_TAROT_DECK_COOLDOWN
-	///The list of all possible abilties this ability can be swaped for
-	var/list/possible_abilities = list(
-		/datum/action/ability/activable/xeno/warrior/punch/jester, // Warrior punch
-		/datum/action/ability/xeno_action/tail_sweep/jester, // Defenders tailsweep
-		/datum/action/ability/activable/xeno/tail_trip/jester // Dancers tailsweep
+	///Wether or not this ability is active and can be used
+	var/active = TRUE
+	///Temporary storage for the ability to be used on next activation of this ability
+	var/datum/action/ability/ability_container
+	///Containers for for the two types of abilties, so that targetable abilties can be used even though this is a nontargeted ability
+	var/datum/action/ability/xeno_action/tarot_deck_container/nontargetable = new
+	var/datum/action/ability/activable/xeno/tarot_deck_container/targetable = new
+	///List of all abilties that cannot be picked. Includes noncombat abilties and or certain buggy / irrelevant abilties
+	var/list/blacklist_actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/chips,
+		/datum/action/ability/activable/xeno/cocoon,
+		/datum/action/ability/xeno_action/tarot_deck,
+		/datum/action/toggle_seethrough,
+		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/xeno/place_pattern,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/activable/xeno/recycle,
+		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/xeno_action/toggle_speed,
+		/datum/action/ability/xeno_action/build_tunnel,
+		/datum/action/ability/activable/xeno/essence_link,
+		/datum/action/ability/activable/xeno/psychic_cure/acidic_salve,
+		/datum/action/ability/xeno_action/enhancement,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/xeno_action/choose_hugger_type,
+		/datum/action/ability/activable/xeno/call_younger, //Is probally fine, but is restrictive in its use.
+		/datum/action/ability/xeno_action/carrier_panic,
+		/datum/action/ability/xeno_action/spawn_hugger,
+		/datum/action/ability/xeno_action/place_trap,
+		/datum/action/ability/activable/xeno/throw_hugger,
+		/datum/action/ability/activable/xeno/screech, // No fun allowed
+		/datum/action/ability/xeno_action/toggle_queen_zoom,
+		/datum/action/ability/xeno_action/set_xeno_lead,
+		/datum/action/ability/activable/xeno/queen_give_plasma,
+		/datum/action/ability/xeno_action/bulwark,
+		/datum/action/ability/xeno_action/ready_charge,
+		/datum/action/ability/xeno_action/attach_spiderlings,
+		/datum/action/ability/activable/xeno/spiderling_mark,
+		/datum/action/ability/activable/xeno/cannibalise,
+		/datum/action/ability/xeno_action/create_spiderling,
+		/datum/action/ability/xeno_action/pheromones/hivemind,
+		/datum/action/ability/xeno_action/xenohide,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/lay_egg,
+		/datum/action/ability/xeno_action/baneling_explode,
+		/datum/action/ability/xeno_action/primal_wrath,
+		/datum/action/ability/xeno_action/toggle_bomb,
+		/datum/action/ability/xeno_action/create_boiler_bomb,
+		/datum/action/ability/xeno_action/fortify,
+		/datum/action/ability/xeno_action/toggle_crest_defense,
+		/datum/action/ability/xeno_action/change_form,
+		/datum/action/ability/xeno_action/return_to_core,
+		/datum/action/ability/xeno_action/psychic_trace,
+		/datum/action/ability/xeno_action/conqueror_endurance,
+		/datum/action/ability/xeno_action/hive_message/free,
+		/datum/action/ability/xeno_action/bloodthirst,
+		/datum/action/ability/xeno_action/vampirism,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/spray_acid,
+		/datum/action/ability/activable/xeno/charge/forward_charge/unprecise,
+		/datum/action/ability/activable/xeno/bombard,
+		/datum/action/ability/activable/xeno/fly,
+		/datum/action/ability/activable/xeno/grab,
+		/datum/action/ability/activable/xeno/scorched_land,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/command_minions,
+		/datum/action/ability/activable/xeno/shoot_xeno_artillery,
+		/datum/action/ability/activable/xeno/hunter_mark,
+		/datum/action/ability/activable/xeno/warrior,
+		/datum/action/ability/xeno_action,
+		/datum/action/ability/activable/xeno,
+		/datum/action/ability/xeno_action/deathmark,
+		/datum/action/ability/xeno_action/toggle_agility,
+		/datum/action/ability/xeno_action/burrow,
+		/datum/action/ability/xeno_action/psychic_summon,
+		/datum/action/ability/xeno_action/smokescreen_spit,
+		/datum/action/ability/xeno_action/place_jelly_pod,
+		/datum/action/ability/xeno_action/regenerate_skin,
 	)
+	///List of all the parent abilties that should have themselves and all of their children also blacklisted
+	var/list/parent_blacklist_abilties = list(
+		/datum/action/ability/activable/xeno/bull_charge,
+		/datum/action/ability/xeno_action/stealth,
+		/datum/action/ability/xeno_action/toggle_long_range,
+		/datum/action/ability/xeno_action/select_reagent,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/create_jelly,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/transfer_plasma,
+		/datum/action/ability/xeno_action/ready_charge,
+		/datum/action/ability/xeno_action/call_of_the_burrowed,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+
+	)
+	///List of all castes that should have all of their abilties removed.
+	var/list/blacklist_castes = list(
+		new /datum/xeno_caste/wraith/primordial,
+		new /datum/xeno_caste/hivemind,
+		new /datum/xeno_caste/jester/primordial,
+	)
+
+GLOBAL_LIST_INIT(tarot_deck_actions, list())
+
+/datum/action/ability/xeno_action/tarot_deck/give_action(mob/living/L)
+	. = ..()
+	if(length(GLOB.tarot_deck_actions) == 0) //If the actions list is empty, this is the first tikme this round a jester has evolved, and the list must be constructed
+		for(var/datum/xeno_caste/i AS in blacklist_castes)
+			for(var/x in i.actions)
+				blacklist_actions += x
+		for(var/i in parent_blacklist_abilties)
+			for(var/x in typesof(i))
+				blacklist_actions += x
+		var/list/allabilties = subtypesof(/datum/action/ability/xeno_action) + subtypesof(/datum/action/ability/activable/xeno)
+		for(var/datum/action/ability/i AS in allabilties)
+			if(!(i in blacklist_actions))
+				GLOB.tarot_deck_actions += new i(xeno_owner)
+	targetable.give_action(xeno_owner)
+	nontargetable.give_action(xeno_owner)
+
+/datum/action/ability/xeno_action/tarot_deck/can_use_action(silent, override_flags)
+	. = ..()
+	if(!active)
+		return FALSE
 
 /datum/action/ability/xeno_action/tarot_deck/action_activate()
-	var/chosen = pick(possible_abilities)
-	var/datum/action/ability/togrant = new chosen
-	togrant.give_action(owner)
-	remove_action(xeno_owner)
+	if(ability_container) // If we have no ability then select one and inform the jester of what was selected
+		return
+	// ability_container = pick(GLOB.tarot_deck_actions)
+	ability_container = new /datum/action/ability/activable/xeno/pounce/runner
+	ability_container.name = "TEST"
+	xeno_owner.balloon_alert(xeno_owner,"Picked [ability_container.name] for next use!")
+	if(ispath(ability_container.type, /datum/action/ability/activable/xeno))
+		targetable.active = TRUE
+		targetable.name = ability_container.name
+		targetable.action_icon = ability_container.action_icon
+		targetable.action_icon_state = ability_container.action_icon_state
+		targetable.hidden = FALSE
+		targetable.desc = ability_container.desc
+		targetable.container = ability_container
+		targetable.container.owner = owner
+		targetable.container.xeno_owner = xeno_owner
+		xeno_owner.selected_ability = ability_container
+	else
+		nontargetable.active = TRUE
+		nontargetable.name = ability_container.name
+		nontargetable.action_icon = ability_container.action_icon
+		nontargetable.action_icon_state = ability_container.action_icon_state
+		nontargetable.hidden = FALSE
+		nontargetable.desc = ability_container.desc
+		nontargetable.container = ability_container
+		nontargetable.container.owner = owner
+		nontargetable.container.xeno_owner = xeno_owner
+		xeno_owner.selected_ability = ability_container
+	hidden = TRUE
+	active = FALSE
+	xeno_owner.update_action_buttons(TRUE)
 	succeed_activate()
 
-//Defender Spin, Warrior Punch, Dancer Spin
-
-/datum/action/ability/activable/xeno/spray_acid/line/jester/use_ability()
-	. = ..()
-	return_tarot_deck(owner)
-
-/datum/action/ability/activable/xeno/warrior/punch/jester
+//Containers for tarot deck, of both types of abilties.
+/datum/action/ability/activable/xeno/tarot_deck_container
+	action_icon_state = "tarot"
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	ability_cost = 0
+	hidden = TRUE
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAROT_DECK,
 	)
+	///Wether or not this ability is currently active and allowed to be used
+	var/active
+	///Container for the ability we are actively mimicing
+	var/datum/action/ability/activable/xeno/container
 
-/datum/action/ability/activable/xeno/warrior/punch/jester/do_ability()
+/datum/action/ability/activable/xeno/tarot_deck_container/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
-	return_tarot_deck(owner)
+	if(!active)
+		return FALSE
+	if(!container)
+		return FALSE
+	if(!container.can_use_ability(A))
+		return FALSE
 
-/datum/action/ability/xeno_action/tail_sweep/jester
+/datum/action/ability/activable/xeno/tarot_deck_container/use_ability(atom/A)
+	container.xeno_owner = xeno_owner
+	container.owner = owner
+	if(container.use_ability(A))
+		hidden = TRUE
+		active = FALSE
+		var/datum/action/ability/xeno_action/tarot_deck/main_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tarot_deck]
+		main_ability.active = TRUE
+		main_ability.hidden = FALSE
+		xeno_owner.update_action_buttons(TRUE)
+		main_ability.ability_container = null
+		main_ability.add_cooldown()
+
+/datum/action/ability/xeno_action/tarot_deck_container
+	action_icon_state = "tarot"
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	ability_cost = 0
+	hidden = TRUE
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAROT_DECK,
 	)
+	///Wether or not this ability is currently active and allowed to be used
+	var/active
+	///Container for the ability we are actively mimicing
+	var/datum/action/ability/xeno_action/container
 
-/datum/action/ability/xeno_action/tail_sweep/jester/action_activate()
+/datum/action/ability/xeno_action/tarot_deck_container/can_use_action(silent, override_flags)
 	. = ..()
-	return_tarot_deck(owner)
+	if(!active)
+		return FALSE
+	if(!container)
+		return FALSE
+	if(!container.can_use_action())
+		return FALSE
 
-/datum/action/ability/activable/xeno/tail_trip/jester
-	ability_cost = 0
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAROT_DECK,
-	)
-
-/datum/action/ability/activable/xeno/tail_trip/jester/use_ability(atom/target_atom)
-	. = ..()
-	return_tarot_deck(owner)
+/datum/action/ability/xeno_action/tarot_deck_container/action_activate()
+	container.xeno_owner = xeno_owner
+	container.owner = owner
+	if(container.action_activate())
+		hidden = TRUE
+		active = FALSE
+		var/datum/action/ability/xeno_action/tarot_deck/main_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tarot_deck]
+		main_ability.active = TRUE
+		main_ability.hidden = FALSE
+		xeno_owner.update_action_buttons(TRUE)
+		main_ability.ability_container = null
+		main_ability.add_cooldown()
 
 // ***************************************
 // *********** Doppelganger (Primo)
@@ -256,6 +441,8 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/toggle_seethrough,
+		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 	///The temporarily added abilties
