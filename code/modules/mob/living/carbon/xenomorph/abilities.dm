@@ -206,6 +206,7 @@
 		/turf/closed/wall/resin/regenerating/special/fireproof,
 		/turf/closed/wall/resin/regenerating/special/hardy,
 		/obj/alien/resin/sticky,
+		/obj/structure/bed/nest,
 		/obj/structure/mineral_door/resin,
 		)
 	/// Used for the dragging functionality of pre-shuttter building
