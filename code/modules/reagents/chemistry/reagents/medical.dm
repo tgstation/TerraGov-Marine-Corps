@@ -10,7 +10,9 @@
 
 /datum/reagent/medicine/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	if(method == VAPOR)
-		volume = floor(volume) //prevents microdosing from foam/smoke etc which duplicates chems
+		if(volume < 1)
+			return FALSE //prevents microdosing from foam/smoke etc which duplicates chems
+		volume *= 0.3
 	return ..()
 
 /datum/reagent/medicine/inaprovaline
