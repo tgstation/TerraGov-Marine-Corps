@@ -575,7 +575,7 @@
 	if(!.)
 		return
 	var/obj/item/I = user.get_active_held_item()
-	if(isgrabitem(I))
+	if(I.item_flags & ITEM_ABSTRACT)
 		return FALSE
 
 /datum/emote/living/carbon/human/trick/run_emote(mob/user, params, type_override, intentional, prefix)
