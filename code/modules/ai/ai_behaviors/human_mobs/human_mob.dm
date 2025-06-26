@@ -50,6 +50,7 @@
 	return ..()
 
 /datum/ai_behavior/human/start_ai()
+	. = ..()
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(on_take_damage))
 	RegisterSignal(mob_parent, COMSIG_AI_HEALING_MOB, PROC_REF(parent_being_healed))
 	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
@@ -70,10 +71,10 @@
 	if(human_ai_behavior_flags & HUMAN_AI_USE_WEAPONS)
 		RegisterSignals(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED), PROC_REF(equip_weaponry))
 		RegisterSignal(mob_parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(equip_weaponry))
-		equip_weaponry()
+		//equip_weaponry()
 	if(human_ai_behavior_flags & HUMAN_AI_AUDIBLE_CONTROL)
 		RegisterSignal(mob_parent, COMSIG_MOVABLE_HEAR, PROC_REF(recieve_message))
-	return ..()
+	//return ..()
 
 /datum/ai_behavior/human/cleanup_signals()
 	UnregisterSignal(mob_parent, list(
