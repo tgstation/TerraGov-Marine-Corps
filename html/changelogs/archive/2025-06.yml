@@ -119,3 +119,9 @@
   - bugfix: Fixes attachment activation sound
   tomboy:
   - rscadd: 'Conq rouny sprite: He learned how to raging demon lol'
+2025-06-26:
+  Atropos:
+  - balance: Added new cave system east of south lava lake on magmoor
+  Isy232:
+  - balance: Prison Station platinum miner by crashed ship (not underground and trivial
+      to defend) removed.
