@@ -575,7 +575,7 @@
 	if(!.)
 		return
 	var/obj/item/I = user.get_active_held_item()
-	if(HAS_TRAIT(I, TRAIT_NODROP))
+	if(isgrabitem(I))
 		return FALSE
 
 /datum/emote/living/carbon/human/trick/run_emote(mob/user, params, type_override, intentional, prefix)
@@ -583,7 +583,4 @@
 	if(!.)
 		return
 	var/obj/item/I = user.get_active_held_item()
-	if(I.)
-
-	// can_run_emote
 	I.do_trick(usr)
