@@ -277,6 +277,14 @@ export const GameSettings = (props) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Toggle Xeno Move Intent Keybind"
+                value="toggle_xeno_move_intent_keybind"
+                action="toggle_xeno_move_intent_keybind"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Toggles whether the Toggle Move Intent keybind works when you are a xeno."
+              />
             </LabeledList>
           </Section>
         </Stack.Item>

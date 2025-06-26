@@ -21523,6 +21523,10 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"qtW" = (
+/obj/machinery/dropship_part_fabricator/tadpole,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "quS" = (
 /obj/effect/landmark/start/latejoin,
 /obj/effect/ai_node,
@@ -66166,7 +66170,7 @@ aaa
 aaa
 nzi
 bFa
-aPF
+qtW
 aPF
 aPF
 aPF

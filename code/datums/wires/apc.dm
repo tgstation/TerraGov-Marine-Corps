@@ -45,7 +45,7 @@
 				addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/power/apc, reset), wire), 10)
 
 
-/datum/wires/apc/on_cut(index, mend)
+/datum/wires/apc/on_cut(index, mend, mob/user)
 	var/obj/machinery/power/apc/A = holder
 	var/charge_percent = clamp(round(A.cell?.percent()), 0, 100)
 	switch(index)
@@ -53,8 +53,7 @@
 			if(mend && !is_cut(WIRE_POWER1) && !is_cut(WIRE_POWER2))
 				A.shorted = FALSE
 				A.shock(usr, charge_percent)
-				var/mob/user = usr
-				if(user.client)
+				if(user?.client)
 					var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 					personal_statistics.apcs_repaired++
 			else

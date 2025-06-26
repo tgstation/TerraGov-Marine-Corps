@@ -34,14 +34,14 @@
 
 /turf/open/liquid/get_submerge_height(turf_only = FALSE)
 	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+	if(is_covered())
 		return
 	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 		return
 	. += mob_liquid_height
 
 /turf/open/liquid/get_submerge_depth()
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+	if(is_covered())
 		return 0
 	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 		return 0
@@ -57,7 +57,7 @@
 
 ///Returns TRUE if the AM is actually in the liquid instead of above it
 /turf/open/liquid/proc/check_submerge(atom/movable/submergee)
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+	if(is_covered())
 		return FALSE
 	if(submergee.throwing)
 		return FALSE

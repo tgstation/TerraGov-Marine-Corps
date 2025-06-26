@@ -353,6 +353,7 @@
 
 /obj/effect/ebeam/zeroform/Initialize(mapload)
 	. = ..()
+	notify_ai_hazard()
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
 
