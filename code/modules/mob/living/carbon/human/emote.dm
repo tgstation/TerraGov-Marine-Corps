@@ -570,9 +570,20 @@
 	key_third_person = "tricks"
 	emote_flags = EMOTE_ACTIVE_ITEM|EMOTE_RESTRAINT_CHECK
 
+/datum/emote/living/carbon/human/trick/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/I = user.get_active_held_item()
+	if(HAS_TRAIT(I, TRAIT_NODROP))
+		return FALSE
+
 /datum/emote/living/carbon/human/trick/run_emote(mob/user, params, type_override, intentional, prefix)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/I = user.get_active_held_item()
+	if(I.)
+
+	// can_run_emote
 	I.do_trick(usr)
