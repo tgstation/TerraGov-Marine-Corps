@@ -454,7 +454,6 @@
 			/obj/item/ammo_magazine/rifle/tx15_slug = 30,
 			/obj/item/ammo_magazine/rifle/sh410_sabot = 30,
 			/obj/item/ammo_magazine/rifle/sh410_buckshot = 30,
-			/obj/item/ammo_magazine/rifle/sh410_tracker = 30,
 			/obj/item/ammo_magazine/rifle/sh410_ricochet = 30,
 		),
 		"Machinegun" = list(
