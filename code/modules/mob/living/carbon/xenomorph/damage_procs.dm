@@ -180,7 +180,7 @@
 			if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
 				decal.icon_state = pick(decal.random_icon_states)
 
-		if(!(xeno_caste.caste_flags & CASTE_ACID_BLOOD))
+		if((xeno_caste.caste_flags & CASTE_NO_ACID_BLOOD))
 			return
 		var/splash_chance
 		for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.

@@ -31,7 +31,6 @@
 	deevolves_to = /datum/xeno_caste/spitter
 
 	// *** Flags *** //
-	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //

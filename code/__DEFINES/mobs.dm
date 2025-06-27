@@ -584,7 +584,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_IS_A_MINION (1<<6) // Whether we are classified as a minion caste. Minions are not counted toward silo spawn count ratio.
 
 #define CASTE_FIRE_IMMUNE (1<<7) // Are we immune to fire? This includes immunity from getting set on fire and effects of it.
-#define CASTE_ACID_BLOOD (1<<8) // Randomly inflicts burn damage to nearby humans when taking damage.
+#define CASTE_NO_ACID_BLOOD (1<<8) // Doesn't cause acid splatter
 #define CASTE_STAGGER_RESISTANT (1<<9) // Resistant to getting staggered from projectiles.
 
 #define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<10) // When at low life, does not alerts other Xenomorphs (who opt into these low-life alerts). Decreases the font size for the death announcement message.
