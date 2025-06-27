@@ -269,6 +269,7 @@
 #define TRAIT_RECOVERY_PYLON_TURF "recovery_pylon_turf" // Turf is affected by a recovery pylon.
 #define TRAIT_BLOODTHIRSTER "bloodthirster" // xeno has the bloodthirster ability
 #define TRAIT_MUTATION "mutation"
+#define TRAIT_WEB_PULLER "web_puller" // Target has a special interaction with Snaring Web structure (from Widow).
 
 //important_recursive_contents traits
 /*
