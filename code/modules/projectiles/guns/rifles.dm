@@ -3063,13 +3063,13 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
 	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 21, "under_x" = 36, "under_y" = 15, "stock_x" = 12, "stock_y" = 18)
 	gun_skill_category = SKILL_SHOTGUNS
-	fire_delay = 0.7 SECONDS
+	fire_delay = 0.6 SECONDS
 	burst_amount = 3
 	burst_scatter_mult = 2
 	burst_delay = 0.3 SECONDS
 	extra_delay = 1.2 SECONDS
 	accuracy_mult = 1
-	damage_mult = 0.8 // -20% take it or leave it
+	damage_mult = 0.75 // -25% take it or leave it
 	scatter = 8
 	burst_scatter_mult = 1.5
 	movement_acc_penalty_mult = 2
