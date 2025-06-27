@@ -450,7 +450,7 @@
 
 /datum/ammo/bullet/shotgun/sh410_buckshot/spread
 	name = "additional buckshot"
-	damage = 40
+	damage = 20
 
 /datum/ammo/bullet/shotgun/sh410_sabot
 	name = "light autoshotgun sabot shell"
@@ -461,4 +461,5 @@
 	shell_speed = 5
 	max_range = 30
 	damage = 50
-	penetration = 30
+	penetration = 40
+	sundering = 3
