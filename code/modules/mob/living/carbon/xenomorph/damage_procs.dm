@@ -155,8 +155,11 @@
 
 #undef HANDLE_OVERHEAL
 
+///Checks if we leave a splatter or do acid damage on hit
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1, sharp = FALSE, edge = FALSE)
 	if(!damage)
+		return FALSE
+	if(!isturf(loc))
 		return FALSE
 	var/chance = 25 //base chance
 	if(damtype == BRUTE)
@@ -166,28 +169,46 @@
 	if(edge) //Pierce weapons give the most bonus
 		chancemod += 12
 	chance += chancemod + (damage * 0.33)
-	var/turf/T = loc
-	if(!T || !istype(T))
+
+	if(radius <= 1 && !prob(chance))
 		return
 
-	if(radius > 1 || prob(chance))
+	var/obj/effect/decal/cleanable/blood/xeno/decal = locate(/obj/effect/decal/cleanable/blood/xeno) in loc
 
-		var/obj/effect/decal/cleanable/blood/xeno/decal = locate(/obj/effect/decal/cleanable/blood/xeno) in T
+	if(!decal) //Let's not stack blood, it just makes lagggggs.
+		add_splatter_floor(loc) //Drop some on the ground first.
+	else
+		if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
+			decal.icon_state = pick(decal.random_icon_states)
 
-		if(!decal) //Let's not stack blood, it just makes lagggggs.
-			add_splatter_floor(T) //Drop some on the ground first.
-		else
-			if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
-				decal.icon_state = pick(decal.random_icon_states)
+	if((xeno_caste.caste_flags & CASTE_NO_ACID_BLOOD))
+		return
+	acid_splash(chance * 2, radius)
 
-		if((xeno_caste.caste_flags & CASTE_NO_ACID_BLOOD))
-			return
-		var/splash_chance
-		for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.
-			splash_chance = (chance * 2) - (get_dist(src,victim) * 20)
-			if(prob(splash_chance))
-				victim.visible_message(span_danger("\The [victim] is scalded with hissing green blood!"), \
-				span_danger("You are splattered with sizzling blood! IT BURNS!"))
-				if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
-					victim.emote("scream")
-				victim.take_overall_damage(rand(15, 30), BURN, ACID, updating_health = TRUE)
+///Deals acid splash damage in an AOE around us
+/mob/living/carbon/xenomorph/proc/acid_splash(base_chance = 25, radius = 1)
+	var/splash_chance
+	for(var/victim in orange(radius, src))
+		if(!ismovable(victim))
+			continue
+		splash_chance = base_chance - (get_dist(src, victim) * 20)
+		if(!prob(splash_chance))
+			continue
+
+		if(isobj(victim))
+			var/obj/obj_victim = victim
+			obj_victim.take_damage(rand(15, 30), BURN, ACID, FALSE, get_dir(victim, src), 0, src)
+			continue
+
+		if(!isliving(victim) || isxeno(victim))
+			continue
+		var/mob/living/living_victim = victim
+		if(living_victim.stat == DEAD)
+			continue
+		living_victim.visible_message(span_danger("\The [living_victim] is scalded with hissing green blood!"), \
+		span_danger("You are splattered with sizzling blood! IT BURNS!"))
+		if(ishuman(living_victim)&& prob(60))
+			var/mob/living/carbon/human/human_victim = living_victim
+			if(human_victim.stat == CONSCIOUS && !(human_victim.species.species_flags & NO_PAIN))
+				human_victim.emote("scream")
+		living_victim.take_overall_damage(rand(15, 30), BURN, ACID, updating_health = TRUE)
