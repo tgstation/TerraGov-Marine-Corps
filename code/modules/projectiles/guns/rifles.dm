@@ -3056,7 +3056,6 @@
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/grenade_launcher/underslung, // maybe
 	)
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
@@ -3067,9 +3066,9 @@
 	burst_amount = 3
 	burst_scatter_mult = 2
 	burst_delay = 0.3 SECONDS
-	extra_delay = 1.2 SECONDS
+	extra_delay = 1.3 SECONDS
 	accuracy_mult = 1
 	damage_mult = 0.75 // -25% take it or leave it
-	scatter = 8
-	burst_scatter_mult = 1.5
-	movement_acc_penalty_mult = 2
+	scatter = 2
+	burst_scatter_mult = 2
+	damage_falloff_mult = 1

@@ -431,3 +431,35 @@
 /datum/ammo/bullet/shotgun/sh410_gas/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
 	trail_spread_system.set_up(0, target_turf, 3)
 	trail_spread_system.start()
+
+// The MBX has the fucking most dogshit shotgun shell rounds ever so I'm just gonna make my own .410 gauge
+
+/datum/ammo/bullet/shotgun/sh410_buckshot
+	name = "light autoshotgun magnum buckshot shell" //What a fucking mouthful
+	handful_icon_state = "light_shotgun_buckshot"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_buckshot/spread
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 8
+	accuracy_var_low = 10
+	accuracy_var_high = 10
+	max_range = 10
+	damage = 20
+	damage_falloff = 0.5
+
+/datum/ammo/bullet/shotgun/sh410_buckshot/spread
+	name = "additional buckshot"
+	damage = 40
+
+/datum/ammo/bullet/shotgun/sh410_sabot
+	name = "light autoshotgun sabot shell"
+	handful_icon_state = "light_shotgun_sabot"
+	icon_state = "shotgun_slug"
+	hud_state = "shotgun_sabot"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 5
+	max_range = 30
+	damage = 50
+	penetration = 40
+	sundering = 3
