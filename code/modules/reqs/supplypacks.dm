@@ -372,7 +372,7 @@ WEAPONS
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "TE-9001 mounted heavy laser"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable)
-	cost = 275
+	cost = 400
 
 
 /datum/supply_packs/weapons/heayvlaser_ammo
@@ -2115,7 +2115,7 @@ VEHICLES
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Dropship mounted TE-9001 heavy laser"
 	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavylaser)
-	cost = 200
+	cost = 400
 
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Dropship mounted HSG-102 mounted heavy smartgun ammo"
