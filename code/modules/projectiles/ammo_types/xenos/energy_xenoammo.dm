@@ -113,7 +113,7 @@
 
 /datum/ammo/energy/xeno/psy_blast/psy_drain/New()
 	. = ..()
-	var/datum/ammo/energy/xeno/psy_blast/base_ammo = GLOB.ammo_list[/datum/ammo/energy/xeno/psy_blast]
+	var/datum/ammo/energy/xeno/psy_blast/base_ammo = new /datum/ammo/energy/xeno/psy_blast
 	if(base_ammo)
 		damage = base_ammo.damage * 0.7
 		aoe_damage = base_ammo.aoe_damage * 0.7
