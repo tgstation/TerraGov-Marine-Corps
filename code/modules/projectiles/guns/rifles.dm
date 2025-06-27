@@ -3068,7 +3068,6 @@
 	burst_delay = 0.3 SECONDS
 	extra_delay = 1.3 SECONDS
 	accuracy_mult = 1
-	damage_mult = 0.75 // -25% take it or leave it
 	scatter = 2
 	burst_scatter_mult = 2
 	damage_falloff_mult = 1

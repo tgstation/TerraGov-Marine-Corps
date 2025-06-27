@@ -445,7 +445,7 @@
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	damage = 20
+	damage = 20 // This does more damage than 12g buck but you'll have to basically facetank it for a whole second and there's no stagger/stun associated with it so
 	damage_falloff = 0.5
 
 /datum/ammo/bullet/shotgun/sh410_buckshot/spread
@@ -460,6 +460,6 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 5
 	max_range = 30
-	damage = 50
+	damage = 30
 	penetration = 40
 	sundering = 3
