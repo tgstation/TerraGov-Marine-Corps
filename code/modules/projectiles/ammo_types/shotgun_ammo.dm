@@ -461,5 +461,4 @@
 	shell_speed = 5
 	max_range = 30
 	damage = 50
-	penetration = 40
-	sundering = 3
+	penetration = 30
