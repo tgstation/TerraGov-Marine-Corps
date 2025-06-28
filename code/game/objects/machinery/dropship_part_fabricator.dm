@@ -97,7 +97,7 @@
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.cas_points_used += cost
 
-	addtimer(CALLBACK(src, PROC_REF(do_build_dropship_part), part_type), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_build_dropship_part), part_type), 5 SECONDS)
 
 /// Gets the cost of the product we want to make
 /obj/machinery/dropship_part_fabricator/proc/get_cost(build_type)
