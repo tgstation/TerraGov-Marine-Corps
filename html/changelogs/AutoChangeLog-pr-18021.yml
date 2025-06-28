@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscdel: "CC/67 assault rifle can no longer be purchased from req as the export version no longer exists."
