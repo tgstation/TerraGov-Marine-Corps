@@ -205,7 +205,7 @@ WEAPONS
 /datum/supply_packs/weapons/sentry_sniper
 	name = "SST-574 sniper sentry"
 	contains = list(/obj/item/storage/box/crate/sentry_sniper)
-	cost = 600
+	cost = 400
 
 /datum/supply_packs/weapons/sentry_sniper_ammo
 	name = "SST-571 sniper sentry ammunition"
