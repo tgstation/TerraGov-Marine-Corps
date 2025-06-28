@@ -2752,10 +2752,6 @@
 	dir = 5
 	},
 /area/mainship/hallways/port_hallway)
-"cuA" = (
-/obj/structure/ship_ammo/cas/rocket/banshee,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "cvG" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 8
@@ -3512,7 +3508,6 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/starboard_hallway)
 "cZF" = (
-/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
@@ -7193,12 +7188,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"fYS" = (
-/obj/structure/dropship_equipment/cas/weapon/heavygun,
-/turf/open/floor/mainship/red{
-	dir = 10
-	},
-/area/mainship/hallways/hangar)
 "fZl" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
@@ -7365,12 +7354,6 @@
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/starboard_atmos)
-"gis" = (
-/obj/structure/dropship_equipment/cas/weapon/bomb_pod,
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/mainship/hallways/hangar)
 "gjc" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/storage/surgical_tray,
@@ -9670,10 +9653,6 @@
 "hVr" = (
 /turf/open/shuttle/escapepod/plain,
 /area/mainship/command/self_destruct)
-"hVs" = (
-/obj/structure/ship_ammo/cas/bomblet,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "hVB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -16252,12 +16231,6 @@
 	dir = 1
 	},
 /area/mainship/medical)
-"nir" = (
-/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
-/turf/open/floor/mainship/red{
-	dir = 10
-	},
-/area/mainship/hallways/hangar)
 "nju" = (
 /obj/structure/rack,
 /obj/item/storage/box/bodybags,
@@ -17072,10 +17045,6 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
-"nPy" = (
-/obj/structure/ship_ammo/cas/minirocket/illumination,
-/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "nQd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18535,7 +18504,6 @@
 /area/mainship/shipboard/brig)
 "oYF" = (
 /obj/machinery/light/mainship,
-/obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "oYS" = (
@@ -19967,12 +19935,6 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar)
-"qkU" = (
-/obj/structure/dropship_equipment/cas/weapon/heavygun,
-/turf/open/floor/mainship/red{
-	dir = 6
-	},
 /area/mainship/hallways/hangar)
 "qle" = (
 /obj/structure/table/mainship/nometal,
@@ -22672,10 +22634,6 @@
 	dir = 8
 	},
 /area/mainship/living/cryo_cells)
-"snq" = (
-/obj/structure/ship_ammo/cas/bomb/fourhundred,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "snB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -22794,10 +22752,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
-"sup" = (
-/obj/structure/ship_ammo/cas/rocket/keeper,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "suO" = (
 /obj/machinery/door/airlock/mainship/command/CPToffice{
 	dir = 2
@@ -23034,12 +22988,6 @@
 	dir = 4
 	},
 /area/mainship/hallways/port_ert)
-"sIN" = (
-/obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
-/turf/open/floor/mainship/red{
-	dir = 8
-	},
-/area/mainship/hallways/hangar)
 "sIR" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/supplydrop_console,
@@ -23084,7 +23032,6 @@
 	},
 /area/mainship/hallways/port_ert)
 "sLf" = (
-/obj/structure/dropship_equipment/cas/weapon/rocket_pod,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -23302,10 +23249,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/port_hallway)
-"sWd" = (
-/obj/structure/ship_ammo/cas/rocket/widowmaker,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "sWH" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security{
@@ -23424,11 +23367,6 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/firing_range)
-"tcz" = (
-/obj/machinery/light/mainship,
-/obj/structure/ship_ammo/cas/minirocket,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "tcP" = (
 /turf/open/shuttle/escapepod/two,
 /area/mainship/command/self_destruct)
@@ -26462,12 +26400,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
-"vGf" = (
-/obj/structure/dropship_equipment/cas/weapon/rocket_pod,
-/turf/open/floor/mainship/red{
-	dir = 6
-	},
-/area/mainship/hallways/hangar)
 "vGh" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -28936,10 +28868,6 @@
 /obj/structure/prop/mainship/cannon_cable_connector,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/shipboard/weapon_room)
-"xJQ" = (
-/obj/structure/ship_ammo/cas/minirocket,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "xKp" = (
 /obj/machinery/door/airlock/mainship/marine/general/smart{
 	dir = 2
@@ -38489,7 +38417,7 @@ feP
 pjA
 hIO
 daV
-fYS
+sLf
 lAQ
 xsN
 hjH
@@ -38591,7 +38519,7 @@ eZP
 vrr
 hIO
 kAs
-qkU
+cZF
 nQd
 hOX
 xlh
@@ -38693,7 +38621,7 @@ eZP
 qrL
 hIO
 daV
-nir
+sLf
 ovg
 xsN
 hjH
@@ -38999,7 +38927,7 @@ iFH
 fCm
 hIO
 kAs
-vGf
+cZF
 ska
 lqe
 rTR
@@ -39107,7 +39035,7 @@ iLr
 mFV
 noe
 pef
-sIN
+daV
 orq
 oUe
 khM
@@ -39311,7 +39239,7 @@ lqe
 mFV
 dQv
 sIT
-gis
+kAs
 orq
 oUe
 nYJ
@@ -41243,13 +41171,13 @@ rFA
 rFA
 sai
 hIO
-sWd
-sWd
+izT
+izT
 lXD
 qIX
 xlh
-xJQ
-xJQ
+izT
+izT
 hIO
 gVz
 mMV
@@ -41350,8 +41278,8 @@ izT
 mMV
 qIX
 hjH
-xJQ
-tcz
+izT
+oYF
 hIO
 bve
 lXD
@@ -41447,13 +41375,13 @@ vkb
 eju
 iwz
 hIO
-cuA
-cuA
+izT
+izT
 lXD
 maE
 xlh
-baL
-baL
+izT
+izT
 hIO
 oWp
 xez
@@ -41651,13 +41579,13 @@ vkb
 eju
 dAd
 hIO
-sup
-sup
+izT
+izT
 bnU
 aMs
 xlh
-baL
-baL
+izT
+izT
 edg
 eZl
 wOW
@@ -41758,7 +41686,7 @@ izT
 mMV
 ddU
 hjH
-nPy
+izT
 oYF
 edg
 oTu
@@ -41855,13 +41783,13 @@ vkb
 eju
 iwz
 hIO
-hVs
-snq
+izT
+izT
 nYE
 qIX
 khR
-nPy
-nPy
+izT
+izT
 edg
 rqg
 kvG

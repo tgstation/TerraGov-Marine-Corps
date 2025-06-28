@@ -664,10 +664,6 @@
 /obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/airoom)
-"aPM" = (
-/obj/structure/ship_ammo/cas/rocket/keeper,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "aQj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -1325,10 +1321,6 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
-"bDi" = (
-/obj/structure/ship_ammo/cas/rocket/banshee,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "bDn" = (
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/mainship/tcomms,
@@ -5635,7 +5627,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "gPw" = (
-/obj/structure/ship_ammo/cas/bomblet,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -5911,10 +5902,6 @@
 "hhf" = (
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
-"hhh" = (
-/obj/structure/dropship_equipment/cas/weapon/rocket_pod,
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar)
 "hhR" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -5937,13 +5924,6 @@
 	dir = 5
 	},
 /area/mainship/command/cic)
-"hiO" = (
-/obj/machinery/light/mainship{
-	dir = 1
-	},
-/obj/structure/ship_ammo/cas/rocket/widowmaker,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "hiV" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
@@ -7314,10 +7294,6 @@
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"jaz" = (
-/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "jaF" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -7405,10 +7381,6 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/mechpilotquarters)
-"jhO" = (
-/obj/structure/dropship_equipment/cas/weapon/bomb_pod,
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar)
 "jiE" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -8748,10 +8720,6 @@
 /obj/item/pizzabox,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"kZz" = (
-/obj/structure/ship_ammo/cas/minirocket/illumination,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "lal" = (
 /turf/closed/wall/mainship,
 /area/mainship/engineering/lower_engineering)
@@ -8826,10 +8794,6 @@
 	},
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
-"leF" = (
-/obj/structure/ship_ammo/cas/minirocket,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "leW" = (
 /turf/open/floor/mainship/purple/full,
 /area/mainship/hallways/boxingring)
@@ -9320,7 +9284,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/chapel)
 "lET" = (
-/obj/structure/ship_ammo/cas/bomb/fourhundred,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -10208,7 +10171,6 @@
 /turf/open/floor/cult,
 /area/medical/morgue)
 "mHa" = (
-/obj/structure/dropship_equipment/cas/weapon/heavygun,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -11211,7 +11173,6 @@
 /area/mainship/medical/upper_medical)
 "nNY" = (
 /obj/machinery/camera/autoname/mainship,
-/obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "nOv" = (
@@ -12141,13 +12102,6 @@
 	dir = 4
 	},
 /area/mainship/squads/general)
-"paT" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
-/obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar)
 "pbe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12493,10 +12447,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
-"ptb" = (
-/obj/structure/dropship_equipment/cas/weapon/heavygun,
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar)
 "puR" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -13566,7 +13516,6 @@
 	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
 	dir = 4
 	},
-/obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "qKw" = (
@@ -15168,7 +15117,6 @@
 /area/mainship/hull/lower_hull)
 "sPc" = (
 /obj/item/radio/intercom/general,
-/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "sPp" = (
@@ -19605,10 +19553,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
-"yao" = (
-/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar)
 "yaw" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/landinglight/alamo{
@@ -52756,11 +52700,11 @@ wPV
 uSh
 tyN
 hcF
-hhh
 hcF
-yao
 hcF
-ptb
+hcF
+hcF
+hcF
 tyN
 wEZ
 tyN
@@ -53013,9 +52957,9 @@ esN
 wPV
 tyN
 qtz
-hhh
+hcF
 dpY
-jaz
+dpY
 dpY
 mHa
 tyN
@@ -53526,9 +53470,9 @@ hRh
 esN
 pkN
 tyN
-hiO
-bDi
-aPM
+uDq
+mVM
+mVM
 gvv
 pbx
 tyN
@@ -54040,10 +53984,10 @@ hRh
 esN
 wPV
 tyN
-leF
-leF
+mVM
+mVM
 qKp
-leF
+mVM
 cXd
 tTm
 kiP
@@ -54297,10 +54241,10 @@ hRh
 esN
 wPV
 tyN
-kZz
-kZz
-kZz
-kZz
+mVM
+mVM
+mVM
+mVM
 niE
 mQH
 tlj
@@ -54555,8 +54499,8 @@ esN
 wPV
 jAX
 sPc
-bDi
-aPM
+mVM
+mVM
 ilf
 xuA
 mQH
@@ -55326,11 +55270,11 @@ esN
 wPV
 tyN
 nNY
-mEj
+mVM
 mEj
 gvv
 dpY
-paT
+mHa
 tyN
 wJQ
 tyN
@@ -55582,12 +55526,12 @@ hRh
 esN
 pkN
 tyN
-mEj
-mEj
+mVM
+mVM
 mEj
 agP
 hcF
-jhO
+hcF
 tyN
 lvi
 tyN
