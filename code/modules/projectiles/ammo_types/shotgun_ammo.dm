@@ -445,8 +445,9 @@
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	damage = 20 // This does more damage than 12g buck but you'll have to basically facetank it for a whole second and there's no stagger/stun associated with it so
+	damage = 20
 	damage_falloff = 0.5
+///Yes, it does do more damage than the 35 (on burst) but you'll have to facetank one and a half (ish) seconds of being PB'd and there's no stagger/etc so
 
 /datum/ammo/bullet/shotgun/sh410_buckshot/spread
 	name = "additional buckshot"
