@@ -888,7 +888,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(proj.ammo.ammo_behavior_flags & AMMO_SKIPS_ALIENS)
 		return FALSE
-	if(proj.ammo.ammo_behavior_flags & AMMO_SNIPER && proj.iff_signal)
+	if((proj.ammo.ammo_behavior_flags & AMMO_SNIPER) && proj.iff_signal)
 		var/datum/status_effect/incapacitating/recently_sniped/sniped = is_recently_sniped()
 		var/obj/item/weapon/gun/shooter = proj.shot_from
 
