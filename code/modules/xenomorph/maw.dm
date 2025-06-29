@@ -176,7 +176,7 @@
 /datum/maw_ammo/minion
 	name = "ball of minions"
 	radial_icon_state = "minion"
-	cooldown_time = 5 MINUTES
+	cooldown_time = 10 MINUTES
 	impact_time = 12 SECONDS
 	/// range_turfs that minions will be dropped around the target
 	var/drop_range = 7

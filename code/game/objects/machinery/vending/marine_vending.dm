@@ -160,7 +160,7 @@
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb = 25,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
-			/obj/item/explosive/grenade/smokebomb/antigas = 20,
+			/obj/item/explosive/grenade/smokebomb/antigas = 10,
 			/obj/item/explosive/grenade/sticky/cloaker = 10,
 			/obj/item/explosive/grenade/smokebomb/drain = 15,
 			/obj/item/explosive/grenade/mirage = 100,
@@ -495,6 +495,9 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/tool/hand_labeler = -1,
+			/obj/item/toy/deck/kotahi = -1,
+			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = 5,
 		),
 	)
@@ -747,6 +750,7 @@
 			/obj/item/compass = -1,
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
+			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = -1,
 		),
 	)
