@@ -49,6 +49,10 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/warrior_lunges = 0
 	var/warrior_agility_toggles = 0
 	var/warrior_grabs = 0
+	var/globadier_grenades_thrown = 0
+	var/globadier_mines_placed = 0
+	var/defender_charges = 0
+	var/defender_charge_victims = 0
 	var/defender_headbutts = 0
 	var/defender_tail_sweeps = 0
 	var/defender_tail_sweep_hits = 0

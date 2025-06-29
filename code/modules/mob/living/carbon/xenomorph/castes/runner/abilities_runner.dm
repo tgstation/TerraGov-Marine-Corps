@@ -434,7 +434,7 @@
 	emitted_gas.start()
 	succeed_activate()
 	add_cooldown()
-	GLOB.round_statistics.melter_acid_shrouds
+	GLOB.round_statistics.melter_acid_shrouds++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "melter_acid_shrouds")
 
 /datum/action/ability/activable/xeno/charge/acid_dash/melter/mob_hit(datum/source, mob/living/living_target)

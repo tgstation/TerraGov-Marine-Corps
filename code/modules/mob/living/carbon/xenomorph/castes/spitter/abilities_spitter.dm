@@ -230,6 +230,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	update_button_icon()
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.globadier_grenades_thrown++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "globadier_grenades_thrown")
 
 /datum/action/ability/activable/xeno/toss_grenade/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(selectgrenade))
@@ -520,6 +522,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	update_button_icon()
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.globadier_mines_placed++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "globadier_mines_placed")
 
 /datum/action/ability/xeno_action/acid_mine/process()
 	if(!timeleft(timer))
