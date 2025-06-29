@@ -310,6 +310,15 @@
 			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play queen like roles."))
 			return FALSE
 
+	var/population_lock = new_caste.evolve_population_lock
+	if(population_lock > GLOB.roundstart_players)
+		balloon_alert(src, "[population_lock] Minds are required to evolve [initial(new_caste.display_name)]")
+		to_chat(src, "[population_lock] Minds are required to evolve [initial(new_caste.display_name)]")
+		to_chat(src, "Population check failed")
+		return FALSE
+	else
+		to_chat(src, "Population check passed")
+
 	var/min_xenos = new_caste.evolve_min_xenos
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
 		balloon_alert(src, "[min_xenos] xenos needed to become a [initial(new_caste.display_name)]")
