@@ -37,6 +37,8 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	///Xeno Stats
 	var/acid_maw_fires = 0
 	var/acid_jaw_fires = 0
+	var/all_acid_applied = 0 // Acid applied to walls, items, etc. Seperate from the personal tracking.
+	var/behemoth_rock_victims = 0
 	var/boiler_acid_smokes = 0
 	var/boiler_neuro_smokes = 0
 	var/bull_crush_hit = 0

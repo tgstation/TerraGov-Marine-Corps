@@ -395,9 +395,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.total_projectile_hits[FACTION_XENO])
 		parts += "[GLOB.round_statistics.total_projectile_hits[FACTION_XENO]] projectiles managed to hit xenomorphs. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_XENO] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% accuracy total!"
 	if(GLOB.round_statistics.grenades_thrown)
-		parts += "[GLOB.round_statistics.grenades_thrown] total grenades exploding."
+		parts += "[GLOB.round_statistics.grenades_thrown] total grenades exploded."
 	else
 		parts += "No grenades exploded."
+	if(GLOB.round_statistics.ability_staggered)
+		parts += "[GLOB.round_statistics.ability_staggered] number of times a Xenomorph attempted to use an ability while staggered."
 	if(GLOB.round_statistics.mortar_shells_fired)
 		parts += "[GLOB.round_statistics.mortar_shells_fired] mortar shells were fired."
 	if(GLOB.round_statistics.howitzer_shells_fired)
@@ -423,24 +425,28 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.crusher_stomp_victims] people stomped by Crushers."
 	if(GLOB.round_statistics.praetorian_spray_direct_hits)
 		parts += "[GLOB.round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray."
+	if(GLOB.round_statistics.behemoth_rock_victims)
+		parts += "[GLOB.round_statistics.behemoth_rock_victims] people hit directly by a Behemoth boulder."
 	if(GLOB.round_statistics.weeds_planted)
 		parts += "[GLOB.round_statistics.weeds_planted] weed nodes planted."
 	if(GLOB.round_statistics.weeds_destroyed)
 		parts += "[GLOB.round_statistics.weeds_destroyed] weed tiles removed."
+	if(GLOB.round_statistics.all_acid_applied)
+		parts += "[GLOB.round_statistics.all_acid_applied] objects vomitted on with corrosive acid."
 	if(GLOB.round_statistics.trap_holes)
 		parts += "[GLOB.round_statistics.trap_holes] holes for acid and huggers were made."
 	if(GLOB.round_statistics.sentinel_drain_stings)
 		parts += "[GLOB.round_statistics.sentinel_drain_stings] number of times Sentinel drain sting was used."
 	if(GLOB.round_statistics.defender_charge_victims)
-		parts += "[GLOB.round_statistics.defender_charge_victims] people charged by Defenders."
+		parts += "[GLOB.round_statistics.defender_charge_victims] number of times people were charged down by Defenders."
 	if(GLOB.round_statistics.runner_savage_attacks)
 		parts += "[GLOB.round_statistics.runner_savage_attacks] number of times Runners savaged an enemy."
 	if(GLOB.round_statistics.runner_evasions)
-		parts += "[GLOB.round_statistics.runner_evasions] number of times Runners began evading."
+		parts += "[GLOB.round_statistics.runner_evasions] number of times Runners began to evade."
 	if(GLOB.round_statistics.runner_items_stolen)
 		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by Runners."
 	if(GLOB.round_statistics.melter_acid_shrouds)
-		parts += "[GLOB.round_statistics.melter_acid_shrouds] number of acid clouds created by Melters."
+		parts += "[GLOB.round_statistics.melter_acid_shrouds] number of times Melters created an acid shroud."
 	if(GLOB.round_statistics.melter_acidic_missiles)
 		parts += "[GLOB.round_statistics.melter_acidic_missiles] number of times Melters became an Acidic Missile."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
@@ -470,9 +476,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.spitter_scatter_spits)
 		parts += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 	if(GLOB.round_statistics.globadier_grenades_thrown)
-		parts += "[GLOB.round_statistics.globadier_grenades_thrown] number of grenades thrown by Globadiers."
+		parts += "[GLOB.round_statistics.globadier_grenades_thrown] number of times grenades were thrown by Globadiers."
 	if(GLOB.round_statistics.globadier_mines_placed)
-		parts += "[GLOB.round_statistics.globadier_mines_placed] number of mines placed by Globadiers."
+		parts += "[GLOB.round_statistics.globadier_mines_placed] number of times Globadiers placed a mine."
 	if(GLOB.round_statistics.globadier_XADAR_fired)
 		parts += "[GLOB.round_statistics.globadier_XADAR_fired] number of times Globadiers fired an Acid Rocket."
 	if(GLOB.round_statistics.ravager_endures)
