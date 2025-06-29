@@ -434,6 +434,8 @@
 	emitted_gas.start()
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.melter_acid_shrouds
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "melter_acid_shrouds")
 
 /datum/action/ability/activable/xeno/charge/acid_dash/melter/mob_hit(datum/source, mob/living/living_target)
 	. = ..()
@@ -542,6 +544,8 @@
 	if(xeno_owner.xeno_flags & XENO_LEAPING)
 		xeno_owner.xeno_flags &= ~XENO_LEAPING
 	acid_level = 0
+	GLOB.round_statistics.melter_acidic_missiles++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "melter_acidic_missiles")
 	add_cooldown()
 	succeed_activate()
 

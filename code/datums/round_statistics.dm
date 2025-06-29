@@ -57,6 +57,8 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/defender_fortifiy_toggles = 0
 	var/runner_savage_attacks = 0
 	var/runner_evasions = 0
+	var/melter_acid_shrouds = 0
+	var/melter_acidic_missiles = 0
 	var/weeds_planted = 0
 	var/weeds_destroyed = 0
 	var/grenades_thrown = 0
