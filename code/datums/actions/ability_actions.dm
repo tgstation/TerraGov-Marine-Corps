@@ -81,7 +81,10 @@
 	if(!(to_check_flags & ABILITY_USE_STAGGERED) && carbon_owner.IsStaggered())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
+		GLOB.round_statistics.ability_staggered++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "ability_staggered")
 		return FALSE
+
 
 	if(!(to_check_flags & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
