@@ -448,7 +448,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.pyrogen_fireballs)
 		parts += "[GLOB.round_statistics.pyrogen_fireballs] number of times Pyrogens conjured a Fireball."
 	if(GLOB.round_statistics.pyrogen_infernos)
-		parts += "[GLOB.round_statistics.pyrogen_infernos] number of times Pyrogens summoned an Inferno."
+		parts += "[GLOB.round_statistics.pyrogen_infernos] number of times Pyrogens erupted into an Inferno."
 	if(GLOB.round_statistics.pyrogen_firestorms)
 		parts += "[GLOB.round_statistics.pyrogen_firestorms] number of times Pyrogens conjured a Firestorm."
 	if(GLOB.round_statistics.ozelomelyn_stings)
