@@ -56,21 +56,21 @@
 	max_range = 8
 
 /datum/ammo/xeno/leash_ball/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_leashball(target_turf.density ? proj.loc : target_turf)
+	drop_leashball(target_turf.density ? proj.loc : target_turf, proj.firer.get_xeno_hivenumber())
 
 /datum/ammo/xeno/leash_ball/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/turf/target_turf = get_turf(target_mob)
-	drop_leashball(target_turf.density ? proj.loc : target_turf, proj.firer)
+	drop_leashball(target_turf.density ? proj.loc : target_turf, proj.firer.get_xeno_hivenumber())
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	var/turf/target_turf = get_turf(target_obj)
 	if(target_turf.density || (target_obj.density && !(target_obj.allow_pass_flags & PASS_PROJECTILE)))
 		target_turf = get_turf(proj)
-	drop_leashball(target_turf.density ? proj.loc : target_turf, proj.firer)
+	drop_leashball(target_turf.density ? proj.loc : target_turf, proj.firer.get_xeno_hivenumber())
 
 /datum/ammo/xeno/leash_ball/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_leashball(target_turf.density ? proj.loc : target_turf)
+	drop_leashball(target_turf.density ? proj.loc : target_turf, proj.firer.get_xeno_hivenumber())
 
 /// This spawns a leash ball and checks if the turf is dense before doing so
-/datum/ammo/xeno/leash_ball/proc/drop_leashball(turf/target_turf)
+/datum/ammo/xeno/leash_ball/proc/drop_leashball(turf/target_turf, hivenumber)
 	new /obj/structure/xeno/aoe_leash(get_turf(target_turf), hivenumber)

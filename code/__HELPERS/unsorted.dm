@@ -239,12 +239,13 @@
 // Ensure the frequency is within bounds of what it should be sending/receiving at
 /proc/sanitize_frequency(frequency, free = FALSE)
 	. = round(frequency)
+	if(!(. % 2)) // Ensure the last digit is an odd number
+		. += 1
 	if(free)
 		. = clamp(frequency, MIN_FREE_FREQ, MAX_FREE_FREQ)
 	else
 		. = clamp(frequency, MIN_FREQ, MAX_FREQ)
-	if(!(. % 2)) // Ensure the last digit is an odd number
-		. += 1
+
 
 
 // Format frequency by moving the decimal.

@@ -1,6 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ae" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
 "af" = (
@@ -1535,6 +1536,7 @@
 /area/lavaland/cave/southwest)
 "qB" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
 "qF" = (
@@ -3226,6 +3228,7 @@
 /area/lavaland/engie/refine)
 "Il" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
 "Im" = (
@@ -3432,6 +3435,7 @@
 "Kr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "Kt" = (
@@ -3670,6 +3674,7 @@
 /area/lavaland/cave/central)
 "MW" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/marking,
 /area/lavaland/cave/central)
 "MX" = (
@@ -3741,6 +3746,7 @@
 /area/lavaland/medical)
 "Oi" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/cave/northeast)
 "Ok" = (
@@ -3767,6 +3773,7 @@
 /area/lavaland/security/nuke)
 "Os" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)

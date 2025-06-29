@@ -58,7 +58,8 @@
 /datum/config_entry/flag/limbs_can_break
 
 /datum/config_entry/number/revive_grace_period
-	default = 5 MINUTES
+	config_entry_value = 1 HOURS
+	default = 1 HOURS
 	min_val = 0
 
 /datum/config_entry/flag/bones_can_break
