@@ -491,6 +491,20 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
 	if(GLOB.round_statistics.ravager_rages)
 		parts += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
+	if(GLOB.round_statistics.boiler_acid_smokes)
+		parts += "[GLOB.round_statistics.boiler_acid_smokes] number of times Boilers spat out a glob of acid."
+	if(GLOB.round_statistics.boiler_neuro_smokes)
+		parts += "[GLOB.round_statistics.boiler_neuro_smokes] number of times Boilers spat out a glob of neurotoxin."
+	if(GLOB.round_statistics.psy_crushes)
+		parts += "[GLOB.round_statistics.psy_crushes] number of times Warlocks used Psychic Crush."
+	if(GLOB.round_statistics.psy_blasts)
+		parts += "[GLOB.round_statistics.psy_blasts] number of times Warlocks used Psychic Blast."
+	if(GLOB.round_statistics.psy_lances)
+		parts += "[GLOB.round_statistics.psy_lances] number of times Warlocks used Psychic Lance."
+	if(GLOB.round_statistics.psy_shields)
+		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used Psychic Shield."
+	if(GLOB.round_statistics.psy_shield_blasts)
+		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a Psychic Shield."
 	if(GLOB.round_statistics.hunter_silence_targets)
 		parts += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
 	if(GLOB.round_statistics.larva_from_psydrain)
@@ -503,16 +517,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)
 		parts += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
-	if(GLOB.round_statistics.psy_crushes)
-		parts += "[GLOB.round_statistics.psy_crushes] number of times Warlocks used Psychic Crush."
-	if(GLOB.round_statistics.psy_blasts)
-		parts += "[GLOB.round_statistics.psy_blasts] number of times Warlocks used Psychic Blast."
-	if(GLOB.round_statistics.psy_lances)
-		parts += "[GLOB.round_statistics.psy_lances] number of times Warlocks used Psychic Lance."
-	if(GLOB.round_statistics.psy_shields)
-		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used Psychic Shield."
-	if(GLOB.round_statistics.psy_shield_blasts)
-		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a Psychic Shield."
 	if(GLOB.round_statistics.points_from_objectives)
 		parts += "[GLOB.round_statistics.points_from_objectives] requisitions points gained from objectives."
 	if(GLOB.round_statistics.points_from_mining)
