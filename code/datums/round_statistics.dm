@@ -35,7 +35,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/total_bullet_hits_on_xenos = 0
 	var/workout_counts = list()
 	///Xeno Stats
-	var/ability_staggered = 0 // Checks to see if a Xeno is trying to use an ability while staggered. Funny.
 	var/acid_maw_fires = 0
 	var/acid_jaw_fires = 0
 	var/all_acid_applied = 0 // Acid applied to walls, items, etc. Seperate from the personal tracking.

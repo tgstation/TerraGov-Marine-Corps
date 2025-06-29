@@ -398,8 +398,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.grenades_thrown] total grenades exploded."
 	else
 		parts += "No grenades exploded."
-	if(GLOB.round_statistics.ability_staggered)
-		parts += "[GLOB.round_statistics.ability_staggered] number of times a Xenomorph attempted to use an ability while staggered."
 	if(GLOB.round_statistics.mortar_shells_fired)
 		parts += "[GLOB.round_statistics.mortar_shells_fired] mortar shells were fired."
 	if(GLOB.round_statistics.howitzer_shells_fired)
