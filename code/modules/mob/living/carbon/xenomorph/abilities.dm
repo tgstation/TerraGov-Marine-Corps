@@ -631,6 +631,9 @@
 	X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), \
 	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.acid_applied++
 
 // ***************************************
 // *********** Super strong acid
