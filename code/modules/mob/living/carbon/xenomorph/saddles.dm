@@ -71,7 +71,7 @@
 	if(!isxeno(equipper))
 		return
 	var/mob/living/carbon/xenomorph/rouny = equipper
-	rouny.backpack_overlay.icon_state = src.style
+	rouny.backpack_overlay.icon_state = style
 	ENABLE_BITFIELD(rouny.buckle_flags, CAN_BUCKLE)
 	rouny.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher/runner)
 	rouny.RegisterSignal(rouny, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))

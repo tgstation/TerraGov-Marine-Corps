@@ -1101,6 +1101,20 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_ROCKET
 	hotkey_keys = list("Y")
 
+/datum/keybinding/xeno/deck_of_disaster
+	name = "deck_of_disaster"
+	full_name = "Jester: Deck of Disaster"
+	description = "Inflict your target with a random debuff"
+	keybind_signal = COMSIG_XENOABILITY_DECK_OF_DISASTER
+	hotkey_keys = list("R")
+
+/datum/keybinding/xeno/tarot_deck
+	name = "tarot_deck"
+	full_name = "Jester: Tarot Deck"
+	description = "Swap this ability for a random one. Press the bind again to select the new ability"
+	keybind_signal = COMSIG_XENOABILITY_TAROT_DECK
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/psychic_shield
 	name = "Psychic Shield"
 	full_name = "Warlock: Psychic Shield"
@@ -1260,66 +1274,6 @@
 	description = "Freezes bullets in their course, and they will start to move again only after a certain time"
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 	hotkey_keys = list("V")
-
-/datum/keybinding/xeno/flay
-	name = "Flay"
-	full_name = "Puppeteer: Flay"
-	description = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
-	keybind_signal = COMSIG_XENOABILITY_FLAY
-
-/datum/keybinding/xeno/pincushion
-	name = "Pincushion"
-	full_name = "Puppeteer: Pincushion"
-	description = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
-	keybind_signal = COMSIG_XENOABILITY_PINCUSHION
-
-/datum/keybinding/xeno/dread
-	name = "Dreadful Presence"
-	full_name = "Puppeteer: Dreadful Presence"
-	description = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
-	keybind_signal = COMSIG_XENOABILITY_DREADFULPRESENCE
-
-/datum/keybinding/xeno/refurbish_husk
-	name = "Refurbish Husk"
-	full_name = "Puppeteer: Refurbish Husk"
-	description = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
-	keybind_signal = COMSIG_XENOABILITY_REFURBISHHUSK
-
-/datum/keybinding/xeno/stitch_puppet
-	name = "Stitch Puppet"
-	full_name = "Puppeteer: Stitch Puppet"
-	description = "Uses 350 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
-	keybind_signal = COMSIG_XENOABILITY_PUPPET
-
-/datum/keybinding/xeno/organic_bomb
-	name = "Organic Bomb"
-	full_name = "Puppeteer: Organic Bomb"
-	description = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
-	keybind_signal = COMSIG_XENOABILITY_ORGANICBOMB
-
-/datum/keybinding/xeno/tendrils
-	name = "Tendrils"
-	full_name = "Puppeteer: Tendrils"
-	description = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
-	keybind_signal = COMSIG_XENOABILITY_TENDRILS
-
-/datum/keybinding/xeno/unleash_puppet
-	name = "Unleash puppets"
-	full_name = "Puppeteer: Unleash puppets"
-	description = "Unleash puppets to attack nearby humans."
-	keybind_signal = COMSIG_XENOABILITY_UNLEASHPUPPETS
-
-/datum/keybinding/xeno/recall_puppet
-	name = "Recall puppets"
-	full_name = "Puppeteer: Recall puppets"
-	description = "Recalls your puppets, making them follow you once more"
-	keybind_signal = COMSIG_XENOABILITY_RECALLPUPPETS
-
-/datum/keybinding/xeno/bestow_blessing
-	name = "Bestow Blessings"
-	full_name = "Puppeteer: Bestow Blessings"
-	description = "Give blessings to your puppets."
-	keybind_signal = COMSIG_XENOABILITY_BESTOWBLESSINGS
 
 /datum/keybinding/xeno/behemoth_roll
 	name = "Roll"
