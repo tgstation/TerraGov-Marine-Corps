@@ -1,5 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - rscadd: "new bike sounds, now has idling noises too"
-  - rscadd: "you can now rev the motorbike's engine on alt click"

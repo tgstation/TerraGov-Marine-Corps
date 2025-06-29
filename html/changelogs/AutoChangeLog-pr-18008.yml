@@ -1,4 +1,0 @@
-author: "Rug-Dealer"
-delete-after: True
-changes:
-  - bugfix: "Using a jetpack during a do_after no longer consumes the cooldown."

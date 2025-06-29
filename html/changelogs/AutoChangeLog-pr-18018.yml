@@ -1,4 +1,0 @@
-author: "Rug-Dealer"
-delete-after: True
-changes:
-  - bugfix: "You can no longer equip items if you don't actually have the limbs for them."
