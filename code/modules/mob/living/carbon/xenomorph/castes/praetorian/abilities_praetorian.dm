@@ -6,6 +6,8 @@
 	desc = "Spray a cone of dangerous acid at your target."
 	ability_cost = 300
 	cooldown_duration = 40 SECONDS
+	/// How will far can the acid go?
+	var/range = 5
 
 /datum/action/ability/activable/xeno/spray_acid/cone/use_ability(atom/A)
 	var/turf/target = get_turf(A)
@@ -29,7 +31,7 @@
 	span_xenowarning("We spew forth a cone of acid!"), null, 5)
 
 	xeno_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 1)
-	start_acid_spray_cone(target, xeno_owner.xeno_caste.acid_spray_range)
+	start_acid_spray_cone(target, range)
 	add_cooldown()
 	addtimer(CALLBACK(src, PROC_REF(reset_speed)), rand(2 SECONDS, 3 SECONDS))
 
@@ -118,6 +120,17 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		do_acid_cone_spray(next_normal_turf, distance_left - 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, spray)
 		do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, (distance_left < 5) ? CONE_PART_MIDDLE : CONE_PART_MIDDLE_DIAG, spray)
 
+/datum/action/ability/activable/xeno/spray_acid/cone/circle
+	name = "Spray Acid Circle"
+	desc = "Spray a cone of dangerous acid around you."
+	range = 1 // The tile underneath starts at 1 range.
+
+/datum/action/ability/activable/xeno/spray_acid/cone/circle/start_acid_spray_cone(turf/T, range)
+	for(var/direction in GLOB.alldirs)
+		if(direction in GLOB.cardinals)
+			do_acid_cone_spray(xeno_owner.loc, range, direction, CONE_PART_MIDDLE, xeno_owner, TRUE)
+		else
+			do_acid_cone_spray(xeno_owner.loc, range, direction, CONE_PART_MIDDLE_DIAG, xeno_owner, TRUE)
 
 // ***************************************
 // *********** Slime Grenade
@@ -451,6 +464,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
 	)
+	/// If the owner is on fire, should they be extinguished while spreading it to the affected as melting fire?
+	var/spreads_fire = FALSE
 
 /datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
 	. = ..()
@@ -469,6 +484,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	var/list/inrange = orange(1, xeno_owner)
 
+	var/melting_fire_stacks
+	if(spreads_fire && xeno_owner.is_on_fire())
+		melting_fire_stacks += xeno_owner.fire_stacks
+		var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(melting_fire)
+			melting_fire_stacks += melting_fire.stacks
+		xeno_owner.ExtinguishMob()
+
 	for (var/mob/living/carbon/human/living_target in inrange)
 		if(living_target.stat == DEAD)
 			continue
@@ -480,6 +503,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		living_target.AdjustKnockdown(buffed ? 1 SECONDS : 0.5 SECONDS)
 		living_target.adjust_stagger(buffed ? 3 SECONDS : 1.5 SECONDS)
 		living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
+		if(melting_fire_stacks)
+			var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			if(melting_fire)
+				melting_fire.add_stacks(melting_fire_stacks)
+			else
+				xeno_owner.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, melting_fire_stacks)
+
 	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "dancer_tail_trip"), 0.6 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(remove_swing), swing), 3 SECONDS)
 	succeed_activate()
@@ -513,6 +543,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAILHOOK,
 	)
+	/// If the owner is on fire, should they be extinguished while spreading it to the affected as melting fire?
+	var/spreads_fire = FALSE
+	/// How far should the affected be pushed away?
+	var/push_distance = -1
+	/// The additional damage that affected will take.
+	var/bonus_damage = 0
 
 /datum/action/ability/activable/xeno/tail_hook/use_ability(atom/target_atom)
 	. = ..()
@@ -528,6 +564,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) / 2)
 	var/list/inrange = orange(2, xeno_owner)
 
+	var/melting_fire_stacks
+	if(spreads_fire && xeno_owner.is_on_fire())
+		melting_fire_stacks += xeno_owner.fire_stacks
+		var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(melting_fire)
+			melting_fire_stacks += melting_fire.stacks
+		xeno_owner.ExtinguishMob()
+
 	for (var/mob/living/carbon/human/living_target in inrange)
 		var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, living_target))
 		//no hooking through solid obstacles
@@ -537,15 +581,24 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			continue
 		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into your flesh and yanks you towards it!"))
 		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
-		living_target.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+		living_target.apply_damage(damage + bonus_damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 		living_target.Shake(duration = 0.1 SECONDS)
 		living_target.spin(2 SECONDS, 1)
 
-		living_target.throw_at(xeno_owner, 1, 3, xeno_owner)
+		if(push_distance <= -1)
+			living_target.throw_at(xeno_owner, push_distance * -1, 3, xeno_owner)
+		else if(push_distance >= 1)
+			living_target.throw_at(get_step(xeno_owner, get_dir(xeno_owner, living_target)), push_distance, 3, xeno_owner)
+
 		living_target.adjust_slowdown(buffed? 0.9 : 0.3)
 		if(buffed)
 			living_target.AdjustKnockdown(0.1 SECONDS)
-
+		if(melting_fire_stacks)
+			var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			if(melting_fire)
+				melting_fire.add_stacks(melting_fire_stacks)
+			else
+				xeno_owner.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, melting_fire_stacks)
 	addtimer(CALLBACK(src, PROC_REF(remove_swing), hook), 3 SECONDS) //Remove cool SFX
 	succeed_activate()
 	add_cooldown()

@@ -128,14 +128,28 @@
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
-	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC) || QDELETED(src))
-		return
-	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
-	span_xenonotice("We tear down \the [src]."))
+	if(HAS_TRAIT(xeno_attacker, TRAIT_WEB_PULLER))
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts to pull in the leashes from \the [src]!"), \
+			span_xenonotice("We start to yank in the leashes from \the [src]."))
+		if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_DANGER) || QDELETED(src))
+			return
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] yanks all the leashes from \the [src]!"), \
+			span_xenonotice("We yanks all the leashes from \the [src]."))
+		playsound(src, 'sound/voice/alien/pounce.ogg', 25, TRUE)
+		for(var/mob/living/carbon/human/human_mob in leash_victims)
+			if(human_mob.stat == DEAD || human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
+			human_mob.throw_at(src, get_dist(src, human_mob), 2, xeno_attacker)
+			human_mob.Paralyze(0.5 SECONDS)
+	else
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
+			span_xenonotice("We start to tear down \the [src]."))
+		if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC) || QDELETED(src))
+			return
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] yanks all the leashes from \the [src]!"), \
+			span_xenonotice("We pull down \the [src]."))
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	take_damage(max_integrity)
 
 // ***************************************

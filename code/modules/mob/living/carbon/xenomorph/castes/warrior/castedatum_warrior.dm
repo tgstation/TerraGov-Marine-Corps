@@ -53,6 +53,12 @@
 		/datum/action/ability/activable/xeno/warrior/punch,
 	)
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/zoomies,
+		/datum/mutation_upgrade/spur/enhanced_strength,
+		/datum/mutation_upgrade/spur/friendly_toss
+	)
+
 /datum/xeno_caste/warrior/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

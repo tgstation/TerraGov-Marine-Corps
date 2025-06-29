@@ -12,10 +12,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NIGHTFALL,
 	)
-	/// How far nightfall will have an effect
+	/// How far will Nightfall will have an effect?
 	var/range = 12
-	/// How long till the lights go on again
+	/// How long until the lights go on again?
 	var/duration = 10 SECONDS
+	/// Multiplies the fuel of all active flares within range by this amount. Only done if this is above zero.
+	var/flare_fuel_multiplier
 
 /datum/action/ability/activable/xeno/nightfall/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to shut down lights again."))
@@ -29,7 +31,11 @@
 		if(isnull(light.loc) || (owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
 			continue
 		light.turn_light(null, FALSE, duration, TRUE, TRUE, TRUE)
-
+	if(flare_fuel_multiplier > 0)
+		for(var/obj/item/explosive/grenade/flare/activated_flare AS in GLOB.activated_flares)
+			if(isnull(activated_flare.loc) || (owner.loc.z != activated_flare.loc.z) || (get_dist(owner, activated_flare) >= range))
+				continue
+			activated_flare.fuel = ROUND_UP(activated_flare.fuel * flare_fuel_multiplier)
 
 // ***************************************
 // *********** Petrify
@@ -498,6 +504,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIVE_SUMMON,
 	)
+	/// Should the ability only summon minions?
+	var/minions_only = FALSE
+	/// For teleported xenomorphs, how much should damage_modifier be increased by? This lasts for 30 seconds.
+	var/damage_multiplier_boost
 
 /datum/action/ability/activable/xeno/psychic_summon/on_cooldown_finish()
 	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))
@@ -529,16 +539,23 @@ GLOBAL_LIST_EMPTY(active_summons)
 	if(!do_after(xeno_owner, 10 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(is_active_summon))))
 		add_cooldown(5 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+			if(minions_only && sister.tier != XENO_TIER_MINION)
+				continue
 			sister.remove_filter("summonoutline")
 		return fail_activate()
 
 	allxenos = xeno_owner.hive.get_all_xenos() //refresh the list to account for any changes during the channel
 	var/sisters_teleported = 0
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+		if(minions_only && sister.tier != XENO_TIER_MINION)
+			continue
 		sister.remove_filter("summonoutline")
 		if(sister.z == owner.z)
 			sister.forceMove(get_turf(xeno_owner))
 			sisters_teleported ++
+			if(damage_multiplier_boost)
+				sister.apply_status_effect(STATUS_EFFECT_DAMAGE_MODIFIER_KING_SUMMON, damage_multiplier_boost)
+
 
 	log_game("[key_name(owner)] has summoned hive ([sisters_teleported] Xenos) in [AREACOORD(owner)]")
 	xeno_owner.emote("roar")

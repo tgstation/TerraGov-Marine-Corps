@@ -11,6 +11,16 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRECHARGE,
 	)
+	/// Should they also slash upon hitting a mob?
+	var/should_slash = TRUE
+	/// How much damage is dealt for hitting through a mob?
+	var/charge_damage = PYROGEN_FIRECHARGE_DAMAGE
+	/// How much damage to add for each consumed melting fire stack? If zero, will not consume any melting fire stacks.
+	var/stack_damage = PYROGEN_FIRECHARGE_DAMAGE_PER_STACK
+	/// How much stacks of melting fire to add? This is after consumption.
+	var/stacks_to_add = 0
+	/// Upon hitting a mob, should they keep going or stop?
+	var/pierces_mobs = FALSE
 
 /datum/action/ability/activable/xeno/charge/fire_charge/use_ability(atom/target)
 	if(!target)
@@ -45,20 +55,28 @@
 	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
-///Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs
+/// Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs.
 /datum/action/ability/activable/xeno/charge/fire_charge/mob_hit(datum/source, mob/living/living_target)
 	. = TRUE
-	if(living_target.stat || isxeno(living_target) || living_target.status_flags & GODMODE) //we leap past xenos
+	if(living_target.stat || isxeno(living_target) || living_target.status_flags & GODMODE) // We leap past xenos.
 		return
-	living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
-	var/fire_damage = PYROGEN_FIRECHARGE_DAMAGE
-	if(living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE))
-		var/datum/status_effect/stacking/melting_fire/debuff = living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-		fire_damage += debuff.stacks * PYROGEN_FIRECHARGE_DAMAGE_PER_STACK
+	var/fire_damage = charge_damage
+	var/datum/status_effect/stacking/melting_fire/debuff = living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	if(stack_damage && debuff)
+		fire_damage += debuff.stacks * stack_damage
 		living_target.remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	living_target.take_overall_damage(fire_damage, BURN, FIRE, max_limbs = 2)
-	living_target.hitby(owner)
-
+	if(stacks_to_add)
+		debuff = living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(debuff)
+			debuff.add_stacks(2, xeno_owner)
+		else
+			living_target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 2, xeno_owner)
+	if(should_slash)
+		living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
+	if(fire_damage)
+		living_target.take_overall_damage(fire_damage, BURN, FIRE, max_limbs = 2)
+	if(!pierces_mobs)
+		living_target.hitby(owner)
 
 ///Cleans up after charge is finished
 /datum/action/ability/activable/xeno/charge/fire_charge/charge_complete()

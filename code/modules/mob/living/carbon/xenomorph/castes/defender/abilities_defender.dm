@@ -13,6 +13,16 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
 	)
+	/// How far does it knockback?
+	var/knockback_distance = 1
+	/// How long does it stagger?
+	var/stagger_duration = 0 SECONDS
+	/// How long does it paralyze?
+	var/paralyze_duration = 0.5 SECONDS
+	/// Brute damage multiplier.
+	var/brute_damage_multiplier = 1
+	/// Stamina damage multiplier.
+	var/stamina_damage_multiplier = 0
 
 /datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
@@ -43,10 +53,16 @@
 		var/affecting = H.get_limb(ran_zone(null, 0))
 		if(!affecting) //Still nothing??
 			affecting = H.get_limb("chest") //Gotta have a torso?!
-		H.knockback(xeno_owner, sweep_range, 4)
-		H.apply_damage(damage, BRUTE, affecting, MELEE)
-		H.apply_damage(damage, STAMINA, updating_health = TRUE)
-		H.Paralyze(0.5 SECONDS) //trip and go
+		if(brute_damage_multiplier > 0)
+			H.apply_damage(damage * brute_damage_multiplier, BRUTE, updating_health = TRUE)
+		if(stamina_damage_multiplier > 0)
+			H.apply_damage(damage * stamina_damage_multiplier, STAMINA, updating_health = TRUE)
+		if(knockback_distance >= 1)
+			H.knockback(xeno_owner, knockback_distance, 4)
+		if(stagger_duration)
+			H.adjust_stagger(stagger_duration)
+		if(paralyze_duration)
+			H.Paralyze(paralyze_duration)
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -94,7 +110,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
 	)
 	charge_range = DEFENDER_CHARGE_RANGE
-	///How long is the windup before charging
+	/// How long is the windup before charging?
 	var/windup_time = 0.5 SECONDS
 
 /datum/action/ability/activable/xeno/charge/forward_charge/use_ability(atom/A)
@@ -238,6 +254,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORTIFY,
 	)
+	/// The value of the movement modifier to apply. Zero and below keeps them immobile. Greater than zero makes them slower.
+	var/movement_modifier = 0
+	/// The amount of armor to be given when Fortify is active.
 	var/last_fortify_bonus = 0
 
 /datum/action/ability/xeno_action/fortify/give_action()
@@ -287,7 +306,10 @@
 	GLOB.round_statistics.defender_fortifiy_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_fortifiy_toggles")
 	if(on)
-		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		if(!movement_modifier)
+			ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		else
+			xeno_owner.add_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE, 0, NONE, FALSE, movement_modifier)
 		ADD_TRAIT(xeno_owner, TRAIT_STOPS_TANK_COLLISION, FORTIFY_TRAIT)
 		if(!silent)
 			to_chat(xeno_owner, span_xenowarning("We tuck ourselves into a defensive stance."))
@@ -298,7 +320,11 @@
 			to_chat(xeno_owner, span_xenowarning("We resume our normal stance."))
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-last_fortify_bonus)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		if(!movement_modifier)
+			REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		else
+			xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_MUTATION_SLOW_AND_STEADY, TRUE)
+			xeno_owner.client?.move_delay = world.time // To prevent unwanted slowdown: fortifying, move, immediate unfortifying, carried-over slowdown of 1s (don't want this), then move.
 		REMOVE_TRAIT(xeno_owner, TRAIT_STOPS_TANK_COLLISION, FORTIFY_TRAIT)
 
 	xeno_owner.fortify = on
@@ -321,6 +347,16 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGENERATE_SKIN,
 	)
+	/// The percentage of max health to heal.
+	var/percentage_to_heal = 0.12
+	/// Amount of stacks of debuffs / 2x seconds of buff to remove.
+	var/debuff_amount_to_remove = 0
+	/// The length of fire immunity & if nearby humans should be set on fire.
+	var/fire_immunity_length = 0 SECONDS
+	/// The percentage of sunder to heal to a nearby xenomorph. Positive is good. Negative is bad.
+	var/percentage_to_unsunder_ally = 0
+	/// Should a temporary armor debuff be applied upon usage? If so, how much?
+	var/temporary_armor_debuff_amount
 
 /datum/action/ability/xeno_action/regenerate_skin/on_cooldown_finish()
 	to_chat(xeno_owner, span_notice("We feel we are ready to shred our skin and grow another."))
@@ -330,7 +366,7 @@
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	if(xeno_owner.on_fire)
+	if(xeno_owner.on_fire && !fire_immunity_length)
 		to_chat(xeno_owner, span_xenowarning("We can't use that while on fire."))
 		return fail_activate()
 
@@ -340,10 +376,48 @@
 
 	xeno_owner.do_jitter_animation(1000)
 	xeno_owner.set_sunder(0)
-	xeno_owner.heal_overall_damage(25, 25, updating_health = TRUE)
+	var/health_to_heal = percentage_to_heal * xeno_owner.xeno_caste.max_health
+	HEAL_XENO_DAMAGE(xeno_owner, health_to_heal, FALSE)
+	xeno_owner.updatehealth()
+
+	if(debuff_amount_to_remove)
+		for(var/datum/status_effect/status_effect AS in xeno_owner.status_effects)
+			if((status_effect in GLOB.nonstackable_decreasable_debuffs_for_xenos) && status_effect.duration != 1)
+				status_effect.duration -= debuff_amount_to_remove * 2
+				status_effect.check_duration()
+				continue
+			if(status_effect in GLOB.stackable_decreasable_debuffs_for_xenos)
+				var/datum/status_effect/stacking/stacking_status_effect = status_effect
+				if(!stacking_status_effect)
+					continue
+				stacking_status_effect.add_stacks(-debuff_amount_to_remove)
+		xeno_owner.add_slowdown(-debuff_amount_to_remove)
+	if(fire_immunity_length)
+		xeno_owner.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING, fire_immunity_length)
+		if(xeno_owner.on_fire)
+			for (var/mob/living/carbon/human/nearby_human in orange(1, xeno_owner))
+				if(nearby_human.stat == DEAD || !xeno_owner.Adjacent(nearby_human))
+					continue
+				nearby_human.adjust_fire_stacks(xeno_owner.fire_stacks)
+				nearby_human.IgniteMob()
+			xeno_owner.ExtinguishMob()
+	if(percentage_to_unsunder_ally > 0)
+		var/mob/living/carbon/xenomorph/ideal_xenomorph_target
+		for(var/mob/living/carbon/xenomorph/nearby_xenomorph in orange(1, xeno_owner))
+			if(nearby_xenomorph.stat == DEAD || !xeno_owner.Adjacent(nearby_xenomorph))
+				continue
+			if(!xeno_owner.issamexenohive(nearby_xenomorph))
+				continue
+			if(!ideal_xenomorph_target || nearby_xenomorph.sunder > ideal_xenomorph_target.sunder)
+				ideal_xenomorph_target = nearby_xenomorph
+				continue
+		if(ideal_xenomorph_target)
+			ideal_xenomorph_target.adjust_sunder(ideal_xenomorph_target.sunder * -percentage_to_unsunder_ally)
+			ideal_xenomorph_target.do_jitter_animation(1000)
+	if(temporary_armor_debuff_amount)
+		xeno_owner.apply_status_effect(STATUS_EFFECT_FRESH_CARAPACE, temporary_armor_debuff_amount)
 	add_cooldown()
 	return succeed_activate()
-
 
 // ***************************************
 // *********** Centrifugal force

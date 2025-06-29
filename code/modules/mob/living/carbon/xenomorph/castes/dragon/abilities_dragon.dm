@@ -371,6 +371,14 @@
 	var/ability_timer
 	/// The timer id for the timer that occurs every tick while the ability is active.
 	var/tick_timer
+	/// The typepath of the melting fire that will be created.
+	var/obj/fire/melting_fire/selected_typepath = /obj/fire/melting_fire
+	/// An image list for the fire selection's radical menu.
+	var/selectable_fire_images_list = list()
+
+/datum/action/ability/activable/xeno/backhand/dragon_breath/New()
+	. = ..()
+	selectable_fire_images_list["Melting"] = image('icons/effects/fire.dmi', icon_state = "purple_3")
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/use_ability(atom/target)
 	if(!ability_timer)
@@ -426,6 +434,28 @@
 		return
 	end_ability()
 
+/datum/action/ability/activable/xeno/backhand/dragon_breath/alternate_action_activate()
+	if(length(selectable_fire_images_list) <= 1)
+		return
+	INVOKE_ASYNC(src, PROC_REF(switch_fire))
+	return COMSIG_KB_ACTIVATED
+
+/// Shows a radical menu that lets the owner choose which type of fire they want to use.
+/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/switch_fire()
+	var/fire_choice = show_radial_menu(owner, owner, selectable_fire_images_list, radius = 35)
+	if(!fire_choice)
+		return
+	switch(fire_choice)
+		if("Melting")
+			selected_typepath = /obj/fire/melting_fire
+			to_chat(owner, span_xenonotice("Our breath will spew melting fire."))
+		if("Shattering")
+			selected_typepath = /obj/fire/melting_fire/shattering
+			to_chat(owner, span_xenonotice("Our breath will spew shattering fire."))
+		if("Melting Acid")
+			selected_typepath = /obj/fire/melting_fire/melting_acid
+			to_chat(owner, span_xenonotice("Our breath will spew acidic fire."))
+
 /// Rotates the owner back to the starting direction.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/on_move(datum/source)
 	SIGNAL_HANDLER
@@ -439,7 +469,7 @@
 		affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, 90))
 		affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
 
-/// Performs the ability at a pace similar of CAS which is one width length at a length.
+/// Performs the ability at a pace similar of CAS which is one width length at a time.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/tick_effects()
 	xeno_owner.setDir(starting_direction) // To prevent them from spinning and looking funky while using this ability.
 	playsound(xeno_owner, SFX_GUN_FLAMETHROWER, 50, 1)
@@ -474,9 +504,9 @@
 
 /// Creates a melting fire if it does not exist. If it does, refresh it and affect all atoms in the same turf.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/refresh_or_create_fire(turf/target_turf)
-	var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in target_turf.contents
+	var/obj/fire/melting_fire/fire_in_turf = locate(selected_typepath) in target_turf.contents
 	if(!fire_in_turf)
-		new /obj/fire/melting_fire(target_turf)
+		new selected_typepath(target_turf)
 		return
 	fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
 	for(var/something_in_turf in get_turf(fire_in_turf))
