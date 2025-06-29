@@ -445,6 +445,12 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.melter_acidic_missiles] number of times Melters became an Acidic Missile."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		parts += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times neurotoxin sting was used."
+	if(GLOB.round_statistics.pyrogen_fireballs)
+		parts += "[GLOB.round_statistics.pyrogen_fireballs] number of times Pyrogens conjured a Fireball."
+	if(GLOB.round_statistics.pyrogen_infernos)
+		parts += "[GLOB.round_statistics.pyrogen_infernos] number of times Pyrogens summoned an Inferno."
+	if(GLOB.round_statistics.pyrogen_firestorms)
+		parts += "[GLOB.round_statistics.pyrogen_firestorms] number of times Pyrogens conjured a Firestorm."
 	if(GLOB.round_statistics.ozelomelyn_stings)
 		parts += "[GLOB.round_statistics.ozelomelyn_stings] number of times ozelomelyn sting was used."
 	if(GLOB.round_statistics.defiler_defiler_stings)
@@ -467,6 +473,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.globadier_grenades_thrown] number of grenades thrown by Globadiers."
 	if(GLOB.round_statistics.globadier_mines_placed)
 		parts += "[GLOB.round_statistics.globadier_mines_placed] number of mines placed by Globadiers."
+	if(GLOB.round_statistics.globadier_XADAR_fired)
+		parts += "[GLOB.round_statistics.globadier_XADAR_fired] number of times Globadiers fired an Acid Rocket."
 	if(GLOB.round_statistics.ravager_endures)
 		parts += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
 	if(GLOB.round_statistics.bull_crush_hit)
