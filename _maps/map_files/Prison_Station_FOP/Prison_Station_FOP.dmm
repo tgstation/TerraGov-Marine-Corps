@@ -44823,12 +44823,6 @@
 "okw" = (
 /turf/open/floor/wood,
 /area/prison/library)
-"onm" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/prison/cellblock/highsec/south/south)
 "ooN" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -69690,7 +69684,7 @@ aYR
 cmO
 cnF
 dAR
-onm
+dAR
 dAR
 dAR
 dAR
