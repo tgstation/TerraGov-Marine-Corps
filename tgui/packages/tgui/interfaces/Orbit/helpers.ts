@@ -43,19 +43,20 @@ const getHealthColor = (health: number) => {
 };
 
 /** Checks if a full name or job title matches the search. */
-export const isJobOrNameMatch = (
+export const isJobCkeyOrNameMatch = (
   observable: Observable,
   searchQuery: string,
 ) => {
   if (!searchQuery) {
     return true;
   }
-  const { caste, job, full_name } = observable;
+  const { caste, job, full_name, ckey } = observable;
 
   return (
     full_name?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
     caste?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
     job?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+    ckey?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
     false
   );
 };
