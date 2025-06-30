@@ -173,6 +173,7 @@
 	desc = "A packet containing 42 rounds of .454 casull."
 	icon_state = "454"
 	default_ammo = /datum/ammo/bullet/revolver/highimpact
+	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_454
 	current_rounds = 42
 	max_rounds = 42
