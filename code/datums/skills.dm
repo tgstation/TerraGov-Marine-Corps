@@ -575,6 +575,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/specialist/pmc
 	name = "PMC Specialist"
 	engineer = SKILL_ENGINEER_METAL
+	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/specialist/upp
 	name = "UPP Specialist"

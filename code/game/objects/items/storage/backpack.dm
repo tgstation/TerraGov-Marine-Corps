@@ -849,6 +849,11 @@
 	icon_state = "marinepack"
 	storage_type = /datum/storage/backpack/captain
 
+/obj/item/storage/backpack/lightpack/pmc
+	name = "PMC bag"
+	desc = "A heavy-duty bag carried by Nanotrasen PMC operatives."
+	icon_state = "pmc_bag"
+
 /obj/item/storage/backpack/lightpack/som
 	name = "mining rucksack"
 	desc = "A rucksack with origins dating back to the mining colonies."

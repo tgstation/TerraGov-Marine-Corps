@@ -296,38 +296,34 @@
 	item_flags = SYNTH_RESTRICTED
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc
-	name = "\improper PMC tactical helmet"
-	desc = "A protective helmet made from flexible aramid materials. Standard issue protection for a lot of security firms."
+	name = "\improper M4 Legionary pattern PMC helmet"
+	desc = "Standart issue helmet, produced by Nanotrasen's Armory Division for their mercenaries and security assets."
 	icon_state = "pmc_helmet"
-	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 60, ENERGY = 55, BOMB = 60, BIO = 50, FIRE = 55, ACID = 55)
+	soft_armor = list(MELEE = 65, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 50, FIRE = 55, ACID = 55)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	inventory_flags = BLOCKSHARPOBJ
-	inv_hide_flags = NONE
+	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
+	armor_protection_flags = HEAD|FACE|EYES
 	marine_helmet_flags = NONE
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/leader
 	name = "\improper PMC beret"
-	desc = "The pinacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts."
+	desc = "The pinacle of fashion, combined with protective faceplate, for any aspiring mercenary leader."
 	icon_state = "officer_hat"
-	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 65, ENERGY = 55, BOMB = 60, BIO = 50, FIRE = 55, ACID = 60)
+	soft_armor = list(MELEE = 70, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 65, BIO = 50, FIRE = 60, ACID = 60)
+	inv_hide_flags = NONE
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/sniper
-	name = "\improper PMC sniper helmet"
-	desc = "A helmet worn by PMC Marksmen"
+	name = "\improper M4-L Sagittarii pattern PMC helmet"
+	desc = "A custom model of M4 helmet for snipers."
 	icon_state = "pmc_sniper_hat"
-	armor_protection_flags = HEAD|FACE|EYES
-	soft_armor = list(MELEE = 65, BULLET = 75, LASER = 55, ENERGY = 60, BOMB = 70, BIO = 50, FIRE = 60, ACID = 60)
-	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
-	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
+	soft_armor = list(MELEE = 60, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 75, ACID = 75)
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
-	name = "\improper PMC gunner helmet"
-	desc = "A modification of the standard helmet used by a lot of security firms, has a visor for added protection."
+	name = "\improper M7-H Cathaphract pattern PMC helmet"
+	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat."
 	icon_state = "pmc_heavyhelmet"
-	armor_protection_flags = HEAD|FACE|EYES
-	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 80, ENERGY = 65, BOMB = 80, BIO = 50, FIRE = 65, ACID = 65)
-	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
-	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
+	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 50, FIRE = 65, ACID = 65)
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	name = "\improper PMC commando helmet"
