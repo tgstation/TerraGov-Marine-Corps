@@ -63,6 +63,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/globadier_XADAR_fired = 0
 	var/hunter_marks = 0
 	var/hunter_silence_targets = 0
+	var/hunter_cloaks = 0
 	var/larva_from_marine_spawning = 0
 	var/larva_from_silo = 0
 	var/larva_from_cocoon = 0
@@ -86,6 +87,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/pyrogen_infernos
 	var/queen_screech = 0
 	var/runner_savage_attacks = 0
+	var/runner_pounce_victims = 0
 	var/runner_evasions = 0
 	var/runner_items_stolen = 0
 	var/ravager_endures = 0

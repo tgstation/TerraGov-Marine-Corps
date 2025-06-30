@@ -422,7 +422,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.crusher_stomp_victims)
 		parts += "[GLOB.round_statistics.crusher_stomp_victims] people stomped by Crushers."
 	if(GLOB.round_statistics.praetorian_spray_direct_hits)
-		parts += "[GLOB.round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray."
+		parts += "[GLOB.round_statistics.praetorian_spray_direct_hits] people hit directly by a Praetorian acid spray."
 	if(GLOB.round_statistics.behemoth_rock_victims)
 		parts += "[GLOB.round_statistics.behemoth_rock_victims] people hit directly by a Behemoth boulder."
 	if(GLOB.round_statistics.weeds_planted)
@@ -437,8 +437,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.sentinel_drain_stings] number of times Sentinel drain sting was used."
 	if(GLOB.round_statistics.defender_charge_victims)
 		parts += "[GLOB.round_statistics.defender_charge_victims] number of times people were charged down by Defenders."
-	if(GLOB.round_statistics.runner_savage_attacks)
-		parts += "[GLOB.round_statistics.runner_savage_attacks] number of times Runners savaged an enemy."
+	if(GLOB.round_statistics.defender_tail_sweeps)
+		parts += "[GLOB.round_statistics.defender_tail_sweeps] number of times people were tail swept by Defenders, knocking down [GLOB.round_statistics.defender_tail_sweep_hits] people."
+	if(GLOB.round_statistics.runner_pounce_victims)
+		parts += "[GLOB.round_statistics.runner_pounce_victims] number of times Runners and Hunters pounced on people, out of which [GLOB.round_statistics.runner_savage_attacks] were savage attacks."
 	if(GLOB.round_statistics.runner_evasions)
 		parts += "[GLOB.round_statistics.runner_evasions] number of times Runners began to evade."
 	if(GLOB.round_statistics.runner_items_stolen)
@@ -446,15 +448,19 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.melter_acid_shrouds)
 		parts += "[GLOB.round_statistics.melter_acid_shrouds] number of times Melters created an acid shroud."
 	if(GLOB.round_statistics.melter_acidic_missiles)
-		parts += "[GLOB.round_statistics.melter_acidic_missiles] number of times Melters became an Acidic Missile."
+		parts += "[GLOB.round_statistics.melter_acidic_missiles] number of times Melters became an acidic missile."
+	if(GLOB.round_statistics.psychic_flings)
+		parts += "[GLOB.round_statistics.psychic_flings] number of times Shrikes used psychic fling."
+	if(GLOB.round_statistics.psychic_cures)
+		parts += "[GLOB.round_statistics.psychic_cures] number of times Shrikes healed a Xenomorph with psychic cure."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		parts += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times neurotoxin sting was used."
 	if(GLOB.round_statistics.pyrogen_fireballs)
-		parts += "[GLOB.round_statistics.pyrogen_fireballs] number of times Pyrogens conjured a Fireball."
+		parts += "[GLOB.round_statistics.pyrogen_fireballs] number of times Pyrogens conjured a fireball."
 	if(GLOB.round_statistics.pyrogen_infernos)
-		parts += "[GLOB.round_statistics.pyrogen_infernos] number of times Pyrogens erupted into an Inferno."
+		parts += "[GLOB.round_statistics.pyrogen_infernos] number of times Pyrogens erupted into an inferno."
 	if(GLOB.round_statistics.pyrogen_firestorms)
-		parts += "[GLOB.round_statistics.pyrogen_firestorms] number of times Pyrogens conjured a Firestorm."
+		parts += "[GLOB.round_statistics.pyrogen_firestorms] number of times Pyrogens conjured a firestorm."
 	if(GLOB.round_statistics.ozelomelyn_stings)
 		parts += "[GLOB.round_statistics.ozelomelyn_stings] number of times ozelomelyn sting was used."
 	if(GLOB.round_statistics.defiler_defiler_stings)
@@ -468,9 +474,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.xeno_rally_hive)
 		parts += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 	if(GLOB.round_statistics.hivelord_healing_infusions)
-		parts += "[GLOB.round_statistics.hivelord_healing_infusions] number of times Hivelords used Healing Infusion."
+		parts += "[GLOB.round_statistics.hivelord_healing_infusions] number of times Hivelords used healing infusion."
 	if(GLOB.round_statistics.spitter_acid_sprays)
-		parts += "[GLOB.round_statistics.spitter_acid_sprays] number of times Spitters spewed an Acid Spray."
+		parts += "[GLOB.round_statistics.spitter_acid_sprays] number of times Spitters spewed an acid spray."
 	if(GLOB.round_statistics.spitter_scatter_spits)
 		parts += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 	if(GLOB.round_statistics.globadier_grenades_thrown)
@@ -478,9 +484,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.globadier_mines_placed)
 		parts += "[GLOB.round_statistics.globadier_mines_placed] number of times Globadiers placed a mine."
 	if(GLOB.round_statistics.globadier_XADAR_fired)
-		parts += "[GLOB.round_statistics.globadier_XADAR_fired] number of times Globadiers fired an Acid Rocket."
+		parts += "[GLOB.round_statistics.globadier_XADAR_fired] number of times Globadiers fired an acid rocket."
 	if(GLOB.round_statistics.ravager_endures)
-		parts += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
+		parts += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used endure."
 	if(GLOB.round_statistics.bull_crush_hit)
 		parts += "[GLOB.round_statistics.bull_crush_hit] number of times Bulls crushed marines."
 	if(GLOB.round_statistics.bull_gore_hit)
@@ -491,6 +497,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
 	if(GLOB.round_statistics.hunter_marks)
 		parts += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
+	if(GLOB.round_statistics.hunter_cloaks)
+		parts += "[GLOB.round_statistics.hunter_cloaks] number of times Hunters cloaked themselves in darkness."
 	if(GLOB.round_statistics.ravager_rages)
 		parts += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
 	if(GLOB.round_statistics.boiler_acid_smokes)
@@ -498,15 +506,15 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.boiler_neuro_smokes)
 		parts += "[GLOB.round_statistics.boiler_neuro_smokes] number of times Boilers spat out a glob of neurotoxin."
 	if(GLOB.round_statistics.psy_crushes)
-		parts += "[GLOB.round_statistics.psy_crushes] number of times Warlocks used Psychic Crush."
+		parts += "[GLOB.round_statistics.psy_crushes] number of times Warlocks used psychic crush."
 	if(GLOB.round_statistics.psy_blasts)
-		parts += "[GLOB.round_statistics.psy_blasts] number of times Warlocks used Psychic Blast."
+		parts += "[GLOB.round_statistics.psy_blasts] number of times Warlocks used psychic blast."
 	if(GLOB.round_statistics.psy_lances)
-		parts += "[GLOB.round_statistics.psy_lances] number of times Warlocks used Psychic Lance."
+		parts += "[GLOB.round_statistics.psy_lances] number of times Warlocks used psychic lance."
 	if(GLOB.round_statistics.psy_shields)
-		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used Psychic Shield."
+		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used psychic shield."
 	if(GLOB.round_statistics.psy_shield_blasts)
-		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a Psychic Shield."
+		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a psychic shield."
 	if(GLOB.round_statistics.larva_from_psydrain)
 		parts += "[GLOB.round_statistics.larva_from_psydrain] larvas came from psydrain."
 	if(GLOB.round_statistics.larva_from_silo)
