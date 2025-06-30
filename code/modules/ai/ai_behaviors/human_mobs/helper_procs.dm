@@ -359,7 +359,7 @@
 	return AI_OBSTACLE_RESOLVED
 
 /obj/structure/barricade/folding/ai_handle_obstacle(mob/living/user, move_dir)
-	if(!can_interact(user))
+	if(!can_interact(user) || !user.dextrous)
 		return ..()
 	toggle_open(null, user)
 	return AI_OBSTACLE_RESOLVED
