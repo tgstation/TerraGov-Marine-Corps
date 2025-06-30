@@ -498,7 +498,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.hunter_marks)
 		parts += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
 	if(GLOB.round_statistics.hunter_cloaks)
-		parts += "[GLOB.round_statistics.hunter_cloaks] number of times Hunters cloaked themselves in darkness."
+		parts += "[GLOB.round_statistics.hunter_cloaks] number of times Hunters cloaked themselves in darkness, resulting in [GLOB.round_statistics.hunter_cloak_victims] successful stealth attacks."
 	if(GLOB.round_statistics.ravager_rages)
 		parts += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
 	if(GLOB.round_statistics.boiler_acid_smokes)

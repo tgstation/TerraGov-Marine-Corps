@@ -197,6 +197,8 @@
 	target.adjust_stagger(staggerslow_stacks SECONDS)
 	target.add_slowdown(staggerslow_stacks)
 	target.ParalyzeNoChain(1 SECONDS)
+	GLOB.round_statistics.hunter_cloak_victims++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_cloak_victims")
 
 	cancel_stealth()
 

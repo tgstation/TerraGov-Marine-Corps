@@ -64,6 +64,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/hunter_marks = 0
 	var/hunter_silence_targets = 0
 	var/hunter_cloaks = 0
+	var/hunter_cloak_victims = 0
 	var/larva_from_marine_spawning = 0
 	var/larva_from_silo = 0
 	var/larva_from_cocoon = 0
