@@ -36,7 +36,7 @@
 
 /// Returns the amount of deciseconds that should be added to Domination's stun duration.
 /datum/mutation_upgrade/spur/telefrag/proc/get_stun_duration(structure_count, include_initial = TRUE)
-	return (include_initial ? stun_initial : 0) + (stun_duration_per_structure * structure_count)
+	return (include_initial ? stun_duration_initial : 0) + (stun_duration_per_structure * structure_count)
 
 //*********************//
 //         Veil        //
