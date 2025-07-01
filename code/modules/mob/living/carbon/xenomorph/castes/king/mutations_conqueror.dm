@@ -10,7 +10,7 @@
 /datum/mutation_upgrade/shell/healing_jab/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "The effects of Jab from Conqueror's Will is replaced. It will instead heal you for [get_heal_percentage(new_amount)]% of your maximum health."
+	return "The effects of Jab from Conqueror's Will is replaced. It will instead heal you for [PERCENT(get_heal_percentage(new_amount))]% of your maximum health."
 
 /// Returns the percentage of maximum health that Jab should heal.
 /datum/mutation_upgrade/shell/healing_jab/proc/get_heal_percentage(structure_count)
