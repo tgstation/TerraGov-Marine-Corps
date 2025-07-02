@@ -260,12 +260,12 @@
 	)
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc
-	name = "\improper M4 Legionary pattern PMC armor"
-	desc = "Standart issue suit, designed for quick movement. produced by Nanotrasen's Armory Division. It's a preffered choice among mercenaries and security assets."
+	name = "\improper M4 pattern PMC armor"
+	desc = "A modification of outdated army vest. Even tho it doesn't have an advanced armor layering and protection against unwelcome enviroment, that armor is still produced by Nanotrasen Armory Divison for low ranking members of Nanotrasen PMC and security firms of Outer Rim."
 	icon_state = "pmc_armor"
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 15, FIRE = 45, ACID = 45)
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 15, FIRE = 35, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	armor_features_flags = NONE
+	armor_features_flags = ARMOR_LAMP_OVERLAY
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -282,20 +282,27 @@
 	)
 	item_map_variant_flags = NONE
 
+/obj/item/clothing/suit/storage/marine/veteran/pmc/standart
+	name = "\improper M4 Legionary pattern PMC armor"
+	desc = "Standart issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets."
+	icon_state = "pmc_armor_standart"
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 20, FIRE = 45, ACID = 45)
+	armor_features_flags = NONE
+
 /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
 	name = "\improper M6 Princeps pattern PMC armor"
 	desc = "A hardened modification of the M4 armor suit. The pinacle of protection and mobility. This particular exemplar looks like it belongs to a high-ranking officer."
 	icon_state = "officer_armor"
 	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
-
+	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
 	name = "\improper M4-L Sagittarii pattern PMC armor"
-	desc = "A lightweight modification of M4 armor suit, designed for prolonged waiting in dangerous enviroments, paying for that with reduced combat protection."
+	desc = "A lightweight modification of M4 armor suit, designed for prolonged sitting in dangerous enviroments, paying for that with reduced combat protection."
 	icon_state = "pmc_sniper"
 	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 55, ENERGY = 55, BOMB = 40, BIO = 75, FIRE = 75, ACID = 75)
 	inventory_flags = BLOCKSHARPOBJ
-	inv_hide_flags = HIDELOWHAIR
+	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
 	name = "\improper M7-H Cathaphract pattern PMC exo-armor"
@@ -303,7 +310,7 @@
 	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 80, BIO = 30, FIRE = 65, ACID = 65)
-	item_map_variant_flags = NONE
+	armor_features_flags = NONE
 
 /*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
@@ -315,6 +322,7 @@
 	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
 	starting_attachments = list(/obj/item/armor_module/storage/grenade)
 	resistance_flags = UNACIDABLE
+	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando/Initialize(mapload, ...)
 	. = ..()
