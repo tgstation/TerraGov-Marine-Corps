@@ -463,8 +463,6 @@
 	reagent_state = LIQUID
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	taste_description = "sourness"
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/space_cleaner/reaction_obj(obj/O, volume)
 	. = ..()
@@ -478,12 +476,6 @@
 /datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	L.wash()
-
-/datum/reagent/space_cleaner/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
-
-/datum/reagent/space_cleaner/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
