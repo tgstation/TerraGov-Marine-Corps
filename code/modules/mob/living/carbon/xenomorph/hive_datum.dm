@@ -1214,8 +1214,15 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
-	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours + threes*SSticker.mode.tier_three_inclusion) / 3 + length(psychictowers) + 1  - SSticker.mode.tier_three_penalty, 1))
-	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(psychictowers) * 2 + 1 - threes)
+	if(iscrashgamemode(SSticker.mode))
+		tier3_xeno_limit = FLOOR((zeros + ones + twos + threes + fours) / 3.5)
+		tier3_xeno_limit = max(threes, tier3_xeno_limit)
+
+		tier2_xeno_limit = FLOOR((zeros + ones + twos + threes + fours) / 2.5)
+		tier2_xeno_limit = max(twos, tier2_xeno_limit)
+	else
+		tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours + threes*SSticker.mode.tier_three_inclusion) / 3 + length(psychictowers) + 1  - SSticker.mode.tier_three_penalty, 1))
+		tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(psychictowers) * 2 + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos
@@ -1567,7 +1574,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 // Everything below can have a hivenumber set and these ensure easy hive comparisons can be made
 
-// atom level because of /atom/movable/projectile/var/atom/firer
+// atom level because of /obj/projectile/var/atom/firer
 /atom/proc/issamexenohive(atom/A)
 	if(!get_xeno_hivenumber() || !A?.get_xeno_hivenumber())
 		return FALSE
