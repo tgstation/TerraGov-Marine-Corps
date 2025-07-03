@@ -131,7 +131,7 @@
 	else if(isnum(new_soft_armor))
 		soft_armor = getArmor()
 		if(armor_type)
-			soft_armor = soft_armor.modifyRating("[armor_type]" = new_soft_armor)
+			soft_armor = soft_armor.modifyRating(arglist(list("[armor_type]" = new_soft_armor)))
 		else
 			soft_armor = soft_armor.modifyAllRatings(new_soft_armor)
 	else if(istype(new_soft_armor, /datum/armor))
@@ -156,7 +156,7 @@
 	if(isnum(increased_soft_armor))
 		var/datum/armor/base_armor = getArmor()
 		if(armor_type)
-			increased_soft_armor = base_armor.modifyRating("[armor_type]" = increased_soft_armor)
+			increased_soft_armor = base_armor.modifyRating(arglist(list("[armor_type]" = increased_soft_armor)))
 		else
 			increased_soft_armor = base_armor.modifyAllRatings(increased_soft_armor)
 	if(!istype(increased_soft_armor, /datum/armor))
