@@ -130,8 +130,8 @@
 /// On revival, enables the ability. If it was using the charge system, start the timer to restore charges.
 /datum/action/ability/xeno_action/conqueror_dash/proc/on_revive()
 	SIGNAL_HANDLER
-	enable_ability(xeno_owner, COMSIG_MOB_REVIVE)
-	UnregisterSignal()
+	enable_ability()
+	UnregisterSignal(xeno_owner, COMSIG_MOB_REVIVE)
 	if(maximum_charges && !charge_restoration_timer)
 		START_PROCESSING(SSprocessing, src)
 		restore_charge(TRUE)
