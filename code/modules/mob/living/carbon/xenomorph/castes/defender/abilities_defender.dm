@@ -153,6 +153,8 @@
 	target_turf = get_step_rand(target_turf) //Scatter
 	carbon_victim.throw_at(get_turf(target_turf), charge_range, 5, src)
 	carbon_victim.Paralyze(4 SECONDS)
+	GLOB.round_statistics.defender_charge_victims++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_charge_victims")
 
 /datum/action/ability/activable/xeno/charge/forward_charge/ai_should_use(atom/target)
 	. = ..()

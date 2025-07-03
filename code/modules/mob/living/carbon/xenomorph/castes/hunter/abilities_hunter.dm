@@ -52,6 +52,8 @@
 	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
 	last_stealth = world.time
 	stealth = TRUE
+	GLOB.round_statistics.hunter_cloaks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_cloaks")
 
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth_move))
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, PROC_REF(sneak_attack_pounce))
@@ -202,6 +204,8 @@
 	target.add_slowdown(staggerslow_stacks)
 	if(sneak_attack_stun_duration)
 		target.ParalyzeNoChain(sneak_attack_stun_duration)
+	GLOB.round_statistics.hunter_cloak_victims++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_cloak_victims")
 
 	cancel_stealth()
 
@@ -354,6 +358,8 @@
 	xeno_owner.Immobilize(self_immobilize_duration)
 	xeno_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(stun_duration)
+	GLOB.round_statistics.runner_pounce_victims++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_pounce_victims")
 
 /datum/action/ability/activable/xeno/pounce/proc/pounce_complete()
 	SIGNAL_HANDLER
