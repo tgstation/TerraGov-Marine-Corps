@@ -89,7 +89,7 @@
 				continue
 			var/mob/living/carbon/xenomorph/xenomorph_viewer = carbon_viewer
 			var/datum/armor/attaching_armor = getArmor()
-			attaching_armor = attaching_armor.modifyRating(petrify_armor)
+			attaching_armor = attaching_armor.modifyAllRatings(petrify_armor)
 			xenomorph_viewer.soft_armor = xenomorph_viewer.soft_armor.attachArmor(attaching_armor)
 			viewing_xenomorphs[xenomorph_viewer] = attaching_armor
 		if(!ishuman(carbon_viewer) || is_blind(carbon_viewer))

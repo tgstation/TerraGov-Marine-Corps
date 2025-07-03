@@ -72,6 +72,7 @@
 	)
 
 	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/stone_armor,
 		/datum/mutation_upgrade/spur/minion_king,
 		/datum/mutation_upgrade/veil/widefall,
 		/datum/mutation_upgrade/veil/flarefall
