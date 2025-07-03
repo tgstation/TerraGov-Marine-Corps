@@ -121,17 +121,3 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/sandevistan_uses = 0
 	var/sandevistan_gibs = 0
 	var/req_items_produced = list()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
