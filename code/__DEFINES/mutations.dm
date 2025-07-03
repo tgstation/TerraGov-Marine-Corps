@@ -64,3 +64,11 @@ GLOBAL_LIST_INIT(stackable_decreasable_debuffs_for_xenos, list(
 /// The minimum and maximum of chambers that can exist.
 #define MUTATION_CHAMBER_MINIMUM 0
 #define MUTATION_CHAMBER_MAXIMUM 3
+
+
+/// The charge VRef for Conqueror's Dash ability if it uses the charge cooldown system.
+#define VREF_MUTABLE_CONQ_DASH_CHARGES "VREF_CONQDASH_CHARGES"
+
+/// The timer VRef for Conqueror's Dash ability if it uses the charge cooldown system.
+#define VREF_MUTABLE_CONQ_DASH_CHARGETIMER "VREF_CONQDASH_CHARGETIMER"
+
