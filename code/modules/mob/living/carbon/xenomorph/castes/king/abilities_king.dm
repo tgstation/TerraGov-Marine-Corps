@@ -54,8 +54,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PETRIFY,
 	)
-	///List of mobs currently petrified
+	/// List of all humans currently petrified.
 	var/list/mob/living/carbon/human/petrified_humans = list()
+	/// List of all friendly xenomorphs that were looking at the owner at the time.
+	var/list/mob/living/carbon/xenomorph/viewing_xenomorphs = list()
+	/// The amount of armor to grant to friendly xenomorphs
+	var/petrify_armor
 
 /datum/action/ability/xeno_action/petrify/clean_action()
 	end_effects()
@@ -78,10 +82,19 @@
 
 	finish_charging()
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
-	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
-		if(is_blind(human))
-			continue
 
+	for(var/mob/living/carbon/carbon_viewer in view(PETRIFY_RANGE, owner.loc))
+		if(isxeno(carbon_viewer))
+			if(!petrify_armor)
+				continue
+			var/mob/living/carbon/xenomorph/xenomorph_viewer = carbon_viewer
+			var/datum/armor/attaching_armor = getArmor()
+			attaching_armor = attaching_armor.modifyRating(petrify_armor)
+			xenomorph_viewer.soft_armor = xenomorph_viewer.soft_armor.attachArmor(attaching_armor)
+			viewing_xenomorphs[xenomorph_viewer] = attaching_armor
+		if(!ishuman(carbon_viewer) || is_blind(carbon_viewer))
+			continue
+		var/mob/living/carbon/human/human = carbon_viewer
 		human.notransform = TRUE
 		human.status_flags |= GODMODE
 		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
@@ -130,6 +143,10 @@
 		human.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
 		human.overlays -= petrified_humans[human]
 	petrified_humans.Cut()
+
+	for(var/mob/living/carbon/xenomorph/xenomorph_viewer AS in viewing_xenomorphs)
+		xenomorph_viewer.soft_armor = xenomorph_viewer.soft_armor.detachArmor(viewing_xenomorphs[xenomorph_viewer])
+	viewing_xenomorphs.Cut()
 
 ///callback for removing the eye from viscontents
 /datum/action/ability/xeno_action/petrify/proc/remove_eye(obj/effect/eye)

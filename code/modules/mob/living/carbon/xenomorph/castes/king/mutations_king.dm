@@ -1,6 +1,29 @@
 //*********************//
 //        Shell        //
 //*********************//
+/datum/mutation_upgrade/shell/stone_armor
+	name = "Stone Armor"
+	desc = "Allies that are in range of Petrify are granted 5/10/15 armor for the duration of it."
+	/// For each structure, the additional amount of armor to grant to viewing xenomorphs during Petrify.
+	var/armor_per_structure = 5
+
+/datum/mutation_upgrade/shell/stone_armor/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Allies that are in range of Petrify are granted [get_armor(new_amount)] armor for the duration of it."
+
+/datum/mutation_upgrade/shell/stone_armor/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	if(!.)
+		return
+	var/datum/action/ability/xeno_action/petrify/petrify = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/petrify]
+	if(!petrify)
+		return
+	petrify.petrify_armor += get_armor(new_amount - previous_amount)
+
+/// Returns the amount of armor that Petrify will grant to all viewing xenomorphs.
+/datum/mutation_upgrade/shell/stone_armor/proc/get_armor(structure_count)
+	return armor_per_structure * structure_count
 
 //*********************//
 //         Spur        //
