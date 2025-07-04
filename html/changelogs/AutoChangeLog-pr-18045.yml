@@ -1,4 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - bugfix: "bike revs no longer appear to give you more fuel, where they were reducing max fuel, now correctly removes fuel"
