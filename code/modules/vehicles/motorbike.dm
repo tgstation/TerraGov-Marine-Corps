@@ -61,7 +61,7 @@
 
 /obj/vehicle/ridden/motorbike/AltClick(mob/user)
 	if(!(user in buckled_mobs)) return FALSE
-	if(!COOLDOWN_FINISHED(src, rev_cooldown)) return FALSE
+	if(!COOLDOWN_FINISHED(src, rev_cooldown) || fuel_count < 5) return FALSE
 	COOLDOWN_START(src, rev_cooldown, 3 SECONDS)
 	to_chat(user, span_notice("You rev the [src]'s engine."))
 	fuel_count -= 5
