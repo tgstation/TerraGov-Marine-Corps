@@ -92,8 +92,6 @@
 ///recenly hit by a sniper round
 #define STATUS_EFFECT_SNIPED /datum/status_effect/incapacitating/recently_sniped
 
-/// Reduction of a variable amount of all soft armor for 6 seconds.
-#define STATUS_EFFECT_FRESH_CARAPACE /datum/status_effect/armor_reduction/fresh_carapace
 /// Applies a movement speed multiplier of 0.4 for 6 seconds.
 #define STATUS_EFFECT_DREAD  /datum/status_effect/dread
 /// Deals a variable amount of stamina damage for 6 seconds.

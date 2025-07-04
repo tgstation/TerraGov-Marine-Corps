@@ -5,13 +5,13 @@ GLOBAL_LIST_INIT(spur_mutations, typecacheof(/datum/mutation_upgrade/spur))
 GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
 
 /// List of status effects (non-stackable) that should be decreased/removed when an xenomorph ability says so.
-// TODO: Does this need to exist? It is only one status effect.
+// TODO: Move this elsewhere where it makes sense.
 GLOBAL_LIST_INIT(nonstackable_decreasable_debuffs_for_xenos, list(
 	/datum/status_effect/shatter
 ))
 
 /// List of status effects (stackable) that should be decreased/removed when an xenomorph ability says so.
-// TODO: Does this need to exist? It is only one status effect (again).
+// TODO: Move this elsewhere where it makes sense.
 GLOBAL_LIST_INIT(stackable_decreasable_debuffs_for_xenos, list(
 	/datum/status_effect/stacking/microwave
 ))
