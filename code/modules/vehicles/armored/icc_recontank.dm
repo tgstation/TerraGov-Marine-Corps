@@ -11,7 +11,6 @@
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_HAS_UNDERLAY
 	permitted_weapons = list(/obj/item/armored_weapon/icc_lvrt_sarden, /obj/item/armored_weapon/icc_lvrt_cannon, /obj/item/armored_weapon/icc_coaxial)
 	permitted_mods = list(/obj/item/tank_module/ability/smoke_launcher)
-	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	minimap_icon_state = "apc"
 	max_integrity = 450
 	soft_armor = list(MELEE = 40, BULLET = 60 , LASER = 60, ENERGY = 60, BOMB = 40, BIO = 60, FIRE = 40, ACID = 40)

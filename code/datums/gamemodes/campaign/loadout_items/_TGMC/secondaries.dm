@@ -37,7 +37,7 @@
 
 /datum/loadout_item/secondary/gun/marine/smart_pistol
 	name = "SP-13 pistol"
-	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. Has good damage, penetration and magazine capacity. \
+	desc = "The SP-13 is a IFF-capable sidearm used by the Nine-Tailed Fox. Has good damage, penetration and magazine capacity. \
 	Expensive to manufacture, this sophisticated pistol is only occassionally used by smartgunners, or some higher ranking officers who have the skills to use it. Uses 9x19mm Parabellum ammunition."
 	ui_icon = "sp13"
 	item_typepath = /obj/item/weapon/gun/pistol/smart_pistol
@@ -85,7 +85,7 @@
 
 /datum/loadout_item/secondary/gun/marine/standard_machinepistol
 	name = "MP-19"
-	desc = "Equipped with a motion sensor. The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. \
+	desc = "Equipped with a motion sensor. The MP-19 is the Nine-Tailed Fox standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. \
 	It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	ui_icon = "t19"
 	item_typepath = /obj/item/weapon/gun/smg/standard_machinepistol/scanner
