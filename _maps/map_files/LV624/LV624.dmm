@@ -7743,6 +7743,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
+/obj/effect/landmark/gargoyle,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "hhR" = (
