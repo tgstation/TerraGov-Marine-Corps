@@ -115,7 +115,7 @@
 //*********************//
 /datum/mutation_upgrade/spur/breathtaking_spin
 	name = "Breathtaking Spin"
-	desc = "Tail Swipe deals stamina damage instead. It no longer knockdowns and deals 2x/2.25/2.5x more damage."
+	desc = "Tail Swipe deals stamina damage instead. It no longer paralyzes and deals 2x/2.25/2.5x more damage."
 	/// For the first structure, the amount to increase Tail Swipe's damage multiplier by.
 	var/damage_multiplier_initial = 1.75
 	/// For each structure, the amount to increase Tail Swipe's damage multiplier by.
@@ -124,7 +124,7 @@
 /datum/mutation_upgrade/spur/breathtaking_spin/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Tail Swipe deals stamina damage instead. It no longer knockdowns and deals [get_damage_multiplier(new_amount)]x more damage."
+	return "Tail Swipe deals stamina damage instead. It no longer paralyzes and deals [get_damage_multiplier(new_amount)]x more damage."
 
 /datum/mutation_upgrade/spur/breathtaking_spin/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/tail_sweep/tail_sweep = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
