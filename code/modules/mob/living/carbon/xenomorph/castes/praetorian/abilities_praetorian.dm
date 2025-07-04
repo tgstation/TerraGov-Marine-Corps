@@ -620,7 +620,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /// Called when the throw has ended.
 /datum/action/ability/activable/xeno/oppressor/proc/on_post_throw(datum/source)
 	SIGNAL_HANDLER
-	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_CALL_PARENT(TRUE) // Because we don't want to forget to unregister the signal.
 	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 
 /datum/action/ability/activable/xeno/oppressor/abduct
@@ -685,7 +685,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
 
 /datum/action/ability/activable/xeno/oppressor/abduct/on_post_throw(datum/source)
-	..()
+	. = ..()
 	var/mob/living/carbon/human/human_source = source
 	human_source.Paralyze(0.2 SECONDS * last_known_multiplier)
 	human_source.add_slowdown(0.6 * last_known_multiplier)
@@ -806,7 +806,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/oppressor/dislocate/on_post_throw(datum/source)
-	..()
+	. = ..()
 	var/mob/living/carbon/carbon_source = source
 	carbon_source.Paralyze(0.8 SECONDS)
 	carbon_source.adjust_stagger(2.4 SECONDS)
@@ -1052,7 +1052,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /// Called when the throw has ended for the impacted human.
 /datum/action/ability/activable/xeno/oppressor/advance/on_post_throw(datum/source)
-	..()
+	. = ..()
 	var/mob/living/living_source = source
 	living_source.Paralyze(1.5 SECONDS)
 
