@@ -1014,7 +1014,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/oppressor/tail_lash/on_post_throw(datum/source)
-	..()
+	. = ..()
 	var/mob/living/carbon/human/human_source = source
 	human_source.Paralyze(0.8 SECONDS)
 	human_source.adjust_stagger(2.4 SECONDS)
