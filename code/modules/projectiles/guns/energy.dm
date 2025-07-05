@@ -917,7 +917,7 @@
 	message_to_user = "You set the machine laser's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tem"
-	description = "Fires a rapid laser pulse with slightly reduced damage, but improved penetration and vastly improved energy efficiency."
+	description = "Fires a rapid laser pulse with slightly reduced sunder, but improved penetration and vastly improved energy efficiency."
 
 /datum/lasrifle/energy_mg_mode/standard/burst
 	rounds_per_shot = 8
