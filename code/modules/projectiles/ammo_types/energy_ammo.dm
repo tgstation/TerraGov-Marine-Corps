@@ -355,7 +355,7 @@
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
-	damage = 18
+	damage = 20
 	penetration = 15
 	sundering = 1
 
