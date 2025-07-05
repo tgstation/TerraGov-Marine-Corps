@@ -103,7 +103,7 @@
 /datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xenomorph_purchaser, upgrade_name)
 	if(!xenomorph_purchaser.hive || !upgrade_name)
 		return FALSE
-	if(!(xenomorph_purchaser.xeno_caste.caste_flags & CASTE_CAN_HAVE_MUTATION))
+	if(!(xenomorph_purchaser.xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED))
 		return FALSE
 	if(xenomorph_purchaser.fortify)
 		to_chat(usr, span_warning("You cannot buy mutations while fortified!"))
