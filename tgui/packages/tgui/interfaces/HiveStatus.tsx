@@ -214,7 +214,7 @@ const MutationsButton = (_props: any) => {
       <Button
         onClick={() => act('Mutations', { xeno: user_ref })}
         icon={'store'}
-        disabled={!!user_can_mutate}
+        disabled={!user_can_mutate}
       >
         Mutations
       </Button>
