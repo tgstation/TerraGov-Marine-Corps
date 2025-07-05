@@ -2,3 +2,15 @@
   Pariah919:
   - balance: 'Nerfed a bunch of VSD''s guns to be more in line with their counterparts
       in their class. Look at #18034 for more information!'
+2025-07-04:
+  Arturlang:
+  - bugfix: bike revs no longer appear to give you more fuel, where they were reducing
+      max fuel, now correctly removes fuel
+  Atropos:
+  - rscadd: Added new pepe emojis! (pepepog, pepeclown, reee, pepepray, pepenerd,
+      pepebed, pepeblanket)
+  - admin: Perms changes are now properly logged/shown
+  Lumipharon:
+  - bugfix: fixed a harddel with build holograms
+  revelation-8468:
+  - rscadd: 19 more stats for the round end panel. Also 1 personal stat.
