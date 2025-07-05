@@ -4,6 +4,7 @@
 #define RUNNER_POUNCE_RANGE 6 // in tiles
 #define RUNNER_SAVAGE_DAMAGE_MINIMUM 15
 #define RUNNER_SAVAGE_COOLDOWN 30 SECONDS
+#define RUNNER_SAVAGE_PLASMA_CONVERSION_RATE 0.15
 
 /datum/action/ability/activable/xeno/pounce/runner
 	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
@@ -17,18 +18,18 @@
 	pounce_range = RUNNER_POUNCE_RANGE
 	/// The turf that the ability was started on.
 	var/turf/starting_turf
-	/// The amount of bonus damage if it was started in dim light.
+	/// The multiplier to add as bonus damage if the Pounce was started in dim light.
 	var/dim_bonus_multiplier = 0
-	/// The amount of bonus damage for reaching a living being based on distance traveled. 100% = 0-1, Varies = 2-6, 0% = 7+
+	/// The multiplier to add as bonus damage which scales downward based on distance traveled. 100% = 0-1, 80/60/40/20% = 2-5, 0% = 6+
 	var/upclose_bonus_multiplier = 0
 	/// Whether Savage is active or not.
 	var/savage_activated = TRUE
-	/// The damage multiplier to Savage. If it is greater than 1, it will consume all plasma as well.
-	var/savage_damage_multiplier = 1
-	/// The amount of blurriness and confusion given to target.
+	/// The multiplier used to find Savage damage based on how much stored plasma there is. If it is higher than initial, Savage will consume all plasma.
+	var/savage_plasma_conversion_rate = RUNNER_SAVAGE_PLASMA_CONVERSION_RATE
+	/// If this is greater than 0, Savage damage won't be applied and will grant a temporary melee damage multiplier based on this amount.
+	var/savage_damage_conversion_rate = 0
+	/// The amount of deciseconds that confusion will last and the potency of the blurriness.
 	var/savage_debuff_amount = 0
-	/// Instead of Savage damage, it is converted to a 7s damage buff at a percentage multiplied by this ratio if it is above 0.
-	var/savage_damage_buff_alternative = 0
 	/// Savage's cooldown.
 	COOLDOWN_DECLARE(savage_cooldown)
 
@@ -65,19 +66,19 @@
 	if(!COOLDOWN_FINISHED(src, savage_cooldown))
 		owner.balloon_alert(owner, "Savage on cooldown ([COOLDOWN_TIMELEFT(src, savage_cooldown) * 0.1]s)")
 		return
-	var/savage_damage = max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15 * savage_damage_multiplier)
+	var/savage_damage = max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * savage_plasma_conversion_rate)
 	var/savage_cost = savage_damage * 2
 	if(xeno_owner.plasma_stored < savage_cost)
 		owner.balloon_alert(owner, "Not enough plasma to Savage ([savage_cost])")
 		return
-	if(savage_damage_buff_alternative)
-		xeno_owner.apply_status_effect(STATUS_EFFECT_MUTATION_RUNNER_FRENZY, PERCENT(savage_damage) * savage_damage_buff_alternative)
+	if(savage_damage_conversion_rate)
+		xeno_owner.apply_status_effect(STATUS_EFFECT_XENOMORPH_DAMAGE_MODIFIER_RUNNER_SAVAGE, savage_damage * savage_damage_conversion_rate)
 	else
 		living_target.attack_alien_harm(xeno_owner, savage_damage)
 	if(savage_debuff_amount)
-		living_target.adjust_blurriness(savage_debuff_amount)
-		living_target.AdjustConfused(savage_debuff_amount SECONDS)
-	xeno_owner.use_plasma(savage_damage_multiplier > 1 ? xeno_owner.plasma_stored : savage_cost)
+		living_target.adjust_blurriness(savage_debuff_amount * 0.2) // Blurriness goes away at a decent speed when nothing else keeps adding to it.
+		living_target.AdjustConfused(savage_debuff_amount)
+	xeno_owner.use_plasma(savage_plasma_conversion_rate > RUNNER_SAVAGE_PLASMA_CONVERSION_RATE ? xeno_owner.plasma_stored : savage_cost)
 	COOLDOWN_START(src, savage_cooldown, RUNNER_SAVAGE_COOLDOWN)
 	START_PROCESSING(SSprocessing, src)
 	GLOB.round_statistics.runner_savage_attacks++
@@ -99,7 +100,6 @@
 	cooldown.maptext = MAPTEXT("[round(COOLDOWN_TIMELEFT(src, savage_cooldown) * 0.1)]s")
 	visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN] = cooldown
 	button.add_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
-
 
 // ***************************************
 // *********** Evasion
@@ -123,7 +123,7 @@
 	)
 	/// Whether Evasion is currently active.
 	var/evade_active = FALSE
-	/// How long our Evasion will last.
+	/// How long our Evasion will last in seconds.
 	var/evasion_duration = 0
 	/// The starting duration of Evasion in seconds.
 	var/evasion_starting_duration = RUNNER_EVASION_DURATION
@@ -131,15 +131,15 @@
 	var/evasion_stacks = 0
 	/// Whether Auto Evasion is on or off.
 	var/auto_evasion = TRUE
-	/// Whether Evasion can automatically refresh upon the threshold / if Auto Evasion can be toggled on.
-	var/refresh_disabled = FALSE
+	/// Whether Auto Evasion can be toggled to on.
+	var/auto_evasion_togglable = TRUE
 	/// Should they gain/loss passthrough when Evade is active?
 	var/evasion_passthrough = FALSE
 	/// Were they already given passthrough?
 	var/has_passthrough = FALSE
-	/// The applied confusion amount if a human is ran through while the owner has passthrough. In deciseconds.
+	/// The amount of deciseconds of confusion should be applied to humans that are passed through, if applicable.
 	var/passthrough_confusion_length = 0
-	/// A list of humans that were touched while the owner had passthrough. Used to prevent stacking or repeating debuffs.
+	/// A list of humans that were touched / affected while the owner had passthrough. Used to prevent applying confusion more than once.
 	var/list/mob/living/carbon/human/touched_humans = list()
 
 /datum/action/ability/xeno_action/evasion/on_cooldown_finish()
@@ -155,7 +155,7 @@
 		return FALSE
 
 /datum/action/ability/xeno_action/evasion/alternate_action_activate()
-	if(refresh_disabled && !auto_evasion)
+	if(!auto_evasion_togglable && !auto_evasion)
 		return
 	auto_evasion = !auto_evasion
 	owner.balloon_alert(owner, "Auto Evasion [auto_evasion ? "activated" : "deactivated"]")
@@ -327,7 +327,7 @@
 	xeno_owner.add_filter("runner_evasion", 2, gauss_blur_filter(5))
 	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "runner_evasion"), 0.5 SECONDS)
 	xeno_owner.do_jitter_animation(4000)
-	if(evasion_stacks >= RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD && cooldown_remaining() && !refresh_disabled) // We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
+	if(evasion_stacks >= RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD && cooldown_remaining() && auto_evasion_togglable) // We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		clear_cooldown()
 		if(auto_evasion && xeno_owner.plasma_stored >= ability_cost)
 			action_activate()

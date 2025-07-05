@@ -45,6 +45,8 @@
 	duration = 7 SECONDS
 	// How much should the xenomorph owner's melee_damage_modifier be increased by?
 	var/damage_modifier = 0
+	/// If any, what color should the outline be?
+	var/outline_color = COLOR_VIVID_RED
 
 /datum/status_effect/xenomorph_damage_modifier/on_creation(mob/living/new_owner, new_damage_modifier)
 	owner = new_owner
@@ -57,17 +59,19 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_melee_damage_modifier += damage_modifier
-	xeno_owner.add_filter("[id]_outline", 3, outline_filter(1, COLOR_VIVID_RED))
+	if(outline_color)
+		xeno_owner.add_filter("[id]_outline", 3, outline_filter(1, outline_color))
 
 /datum/status_effect/xenomorph_damage_modifier/on_remove()
 	if(!isxeno(owner) || !damage_modifier)
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_melee_damage_modifier -= damage_modifier
-	xeno_owner.remove_filter("[id]_outline")
+	if(outline_color)
+		xeno_owner.remove_filter("[id]_outline")
 
-/datum/status_effect/xenomorph_damage_modifier/mutation_runner_frenzy
-	id = "xenomorph_damage_modifier_mutation_runner_frenzy"
+/datum/status_effect/xenomorph_damage_modifier/runner_savage
+	id = "xenomorph_damage_modifier_runner_savage"
 
 /datum/status_effect/xenomorph_damage_modifier/mutation_drone_revenge
 	id = "xenomorph_damage_modifier_mutation_drone_revenge"
