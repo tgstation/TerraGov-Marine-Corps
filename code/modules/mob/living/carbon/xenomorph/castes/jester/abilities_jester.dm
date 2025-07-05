@@ -157,6 +157,8 @@
 	var/datum/action/ability/xeno_action/tarot_deck_container/nontargetable = new
 	var/datum/action/ability/activable/xeno/tarot_deck_container/targetable = new
 	///List of all abilties that cannot be picked. Includes noncombat abilties and or certain buggy / irrelevant abilties
+	///Is a blacklist to cover the case of new caste gets added -> not added here, new abilties are then never added
+	///Players are much more vocal about broken or unbalanced abilties than they are about abilities they may or may not know exist.
 	var/list/blacklist_actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/chips,
@@ -302,7 +304,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	ability_container = new picked_ability
 	ability_container.ability_cost = 0
 	xeno_owner.balloon_alert(xeno_owner,"Picked [ability_container.name] for next use!")
-	if(ispath(ability_container.type, /datum/action/ability/activable/xeno))
+	if(ispath(ability_container.type, /datum/action/ability/activable))
 		targetable.active = TRUE
 		targetable.name = ability_container.name
 		targetable.action_icon = ability_container.action_icon
@@ -502,7 +504,6 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	if(ispath(picked_caste, /datum/xeno_caste/queen))
 		xeno_owner.add_filter("doppelganger_outline_extra", 4, outline_filter(1, "#FF66FF")) //Should we pick queen, add a additional outer outline for the extra pop
 	var/mob/living/carbon/xenomorph/jester/jestermob = xeno_owner
-	jestermob.has_doppelganger = TRUE
 	jestermob.doppelganger_caste = picked_caste
 	jestermob.update_icons()
 	xeno_owner.emote("roar")
@@ -510,6 +511,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	succeed_activate()
 	add_cooldown()
 
+///Handles removing all of the abilties that were previously added by this ability, and removing the overlays + stand reference
 /datum/action/ability/xeno_action/doppelganger/proc/remove_added_abilties()
 	for(var/action in added_ablties)
 		if(ispath(action, /datum/action/ability/xeno_action))
@@ -525,7 +527,6 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	added_plasma = 0
 	xeno_owner.remove_filter("doppelganger_outline")
 	var/mob/living/carbon/xenomorph/jester/jestermob = xeno_owner
-	jestermob.has_doppelganger = FALSE
 	jestermob.doppelganger_caste = null
 	jestermob.update_icons()
 

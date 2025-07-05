@@ -17,8 +17,6 @@
 	)
 	///An overlay of the caste thats picked for doppelganger, displayed ala stand style, from jojo
 	var/atom/movable/vis_obj/xeno_wounds/doppleganger_overlay/doppleganger_overlay
-	/// A true/false on wether the jester currently has a doppelganger
-	var/has_doppelganger = FALSE
 	///  What type of caste this jester's doppelganger is, if it has one
 	var/datum/xeno_caste/doppelganger_caste
 
@@ -34,7 +32,7 @@
 /mob/living/carbon/xenomorph/jester/proc/update_doppelganger_overlay()
 	if(!doppleganger_overlay)
 		return
-	if(!has_doppelganger)
+	if(!(doppelganger_caste == null))
 		doppleganger_overlay.icon_state = ""
 		return
 	var/mob/living/carbon/xenomorph = doppelganger_caste.caste_type_path

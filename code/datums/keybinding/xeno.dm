@@ -1115,6 +1115,13 @@
 	keybind_signal = COMSIG_XENOABILITY_TAROT_DECK
 	hotkey_keys = list("G")
 
+/datum/keybinding/xeno/doppleganger
+	name = "doppleganger"
+	full_name = "Jester: Doppelgänger"
+	description = "Take on the abilites of another, randomly chosen caste, for some time"
+	keybind_signal = COMSIG_XENOABILITY_DOPPELGANGER
+	hotkey_keys = list("X")
+
 /datum/keybinding/xeno/psychic_shield
 	name = "Psychic Shield"
 	full_name = "Warlock: Psychic Shield"
