@@ -323,6 +323,50 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
+/datum/hive_upgrade/building/mutation_chamber
+	gamemode_flags = ABILITY_NUCLEARWAR
+	/// The maximum amount of buildings that can exist before being disallowed from buying more.
+	var/max_chambers = MUTATION_CHAMBER_MAXIMUM
+
+/datum/hive_upgrade/building/mutation_chamber/shell
+	name = "Shell Mutation Chamber"
+	desc = "Constructs a chamber that allows xenos to buy survival mutations. Build up to 3 structures to increase mutation power."
+	icon = "shell"
+	psypoint_cost = MUTATION_SHELL_CHAMBER_COST
+	building_type = /obj/structure/xeno/mutation_chamber/shell
+
+/datum/hive_upgrade/building/mutation_chamber/shell/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(length(buyer.hive.shell_chambers) >= max_chambers)
+		to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active shell chambers!"))
+		return FALSE
+
+/datum/hive_upgrade/building/mutation_chamber/spur
+	name = "Spur Mutation Chamber"
+	desc = "Constructs a chamber that allows xenos to buy attack mutations. Build up to 3 structures to increase mutation power."
+	icon = "spur"
+	psypoint_cost = MUTATION_SPUR_CHAMBER_COST
+	building_type = /obj/structure/xeno/mutation_chamber/spur
+
+/datum/hive_upgrade/building/mutation_chamber/spur/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(length(buyer.hive.spur_chambers) >= max_chambers)
+		to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active spur chambers!"))
+		return FALSE
+
+/datum/hive_upgrade/building/mutation_chamber/veil
+	name = "Veil Mutation Chamber"
+	desc = "Constructs a chamber that allows xenos to buy utility mutations. Build up to 3 structures to increase mutation power."
+	icon = "veil"
+	psypoint_cost = MUTATION_VEIL_CHAMBER_COST
+	building_type = /obj/structure/xeno/mutation_chamber/veil
+
+/datum/hive_upgrade/building/mutation_chamber/veil/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(length(buyer.hive.veil_chambers) >= max_chambers)
+		to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active veil chambers!"))
+		return FALSE
+
 /datum/hive_upgrade/defence
 	category = "Defences"
 
