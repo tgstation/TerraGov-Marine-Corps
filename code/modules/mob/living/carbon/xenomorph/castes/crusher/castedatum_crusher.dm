@@ -43,7 +43,6 @@
 	minimap_icon = "crusher"
 
 	// *** Crusher Abilities *** //
-	stomp_damage = 60
 	crest_toss_distance = 6
 
 	actions = list(
@@ -53,6 +52,12 @@
 		/datum/action/ability/activable/xeno/stomp,
 		/datum/action/ability/xeno_action/ready_charge,
 		/datum/action/ability/activable/xeno/cresttoss,
+	)
+
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/tough_rock,
+		/datum/mutation_upgrade/shell/earthquake,
+		/datum/mutation_upgrade/shell/friendly_chest
 	)
 
 /datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)

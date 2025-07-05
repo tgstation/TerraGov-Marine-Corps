@@ -17,6 +17,10 @@
 	var/stealth_alpha_multiplier = 1
 	///Damage taken during stealth
 	var/total_damage_taken = 0
+	/// Should stealth stun? If, how long?
+	var/sneak_attack_stun_duration = 1 SECONDS
+	/// Additional damage added to slash on successful sneak attack. Multiplier is based on slash damage.
+	var/bonus_stealth_damage_multiplier = 0
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -191,12 +195,15 @@
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		staggerslow_stacks *= 2
 		flavour = "deadly"
+	if(bonus_stealth_damage_multiplier)
+		damage_mod += xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * bonus_stealth_damage_multiplier
 
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
 	target.adjust_stagger(staggerslow_stacks SECONDS)
 	target.add_slowdown(staggerslow_stacks)
-	target.ParalyzeNoChain(1 SECONDS)
+	if(sneak_attack_stun_duration)
+		target.ParalyzeNoChain(sneak_attack_stun_duration)
 	GLOB.round_statistics.hunter_cloak_victims++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_cloak_victims")
 
@@ -290,6 +297,10 @@
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// The range of this ability.
 	var/pounce_range = HUNTER_POUNCE_RANGE
+	/// The stun duration (inflicted to mob) on successful tackle.
+	var/stun_duration = XENO_POUNCE_STUN_DURATION
+	/// The immobilize duration (inflicted to self) on successful tackle.
+	var/self_immobilize_duration = XENO_POUNCE_STANDBY_DURATION
 	///pass_flags given when leaping
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
@@ -344,9 +355,9 @@
 ///Triggers the effect of a successful pounce on the target.
 /datum/action/ability/activable/xeno/pounce/proc/trigger_pounce_effect(mob/living/living_target)
 	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE)
-	xeno_owner.Immobilize(XENO_POUNCE_STANDBY_DURATION)
+	xeno_owner.Immobilize(self_immobilize_duration)
 	xeno_owner.forceMove(get_turf(living_target))
-	living_target.Knockdown(XENO_POUNCE_STUN_DURATION)
+	living_target.Knockdown(stun_duration)
 	GLOB.round_statistics.runner_pounce_victims++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_pounce_victims")
 
@@ -539,6 +550,8 @@
 	var/list/mob/illusion/illusions = list()
 	/// If swap has been used during the current set of illusions
 	var/swap_used = FALSE
+	/// The illusion that will take priority when mirage swapping.
+	var/mob/illusion/prioritized_illusion
 
 /datum/action/ability/xeno_action/mirage/remove_action()
 	illusions = list() //the actual illusions fade on their own, and the cooldown object may be qdel'd
@@ -575,14 +588,14 @@
 /// Swap places of hunter and an illusion
 /datum/action/ability/xeno_action/mirage/proc/swap()
 	swap_used = TRUE
-	if(!length(illusions))
+	if(!length(illusions) && !prioritized_illusion)
 		to_chat(xeno_owner, span_xenowarning("We have no illusions to swap with!"))
 		return
 
 	xeno_owner.playsound_local(xeno_owner, 'sound/effects/swap.ogg', 10, 0, 1)
 	var/turf/current_turf = get_turf(xeno_owner)
 
-	var/mob/selected_illusion = illusions[1]
+	var/mob/selected_illusion = prioritized_illusion ? prioritized_illusion : illusions[1]
 	if(selected_illusion.z != xeno_owner.z)
 		return
 	SEND_SIGNAL(xeno_owner, COMSIG_XENOABILITY_MIRAGE_SWAP)
@@ -602,6 +615,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
 	)
 	cooldown_duration = HUNTER_SILENCE_COOLDOWN
+	/// The multiplier of Silence's effects if owner's target (from Hunter's Mark) within the area.
+	var/hunter_mark_multiplier = HUNTER_SILENCE_MULTIPLIER
 
 /datum/action/ability/activable/xeno/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -640,7 +655,7 @@
 		var/silence_multiplier = 1
 		var/datum/action/ability/activable/xeno/hunter_mark/mark_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 		if(mark_action?.marked_target == target) //Double debuff stacks for the marked target
-			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
+			silence_multiplier = hunter_mark_multiplier
 		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
 		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
 		target.adjust_stagger(HUNTER_SILENCE_STAGGER_DURATION * silence_multiplier)

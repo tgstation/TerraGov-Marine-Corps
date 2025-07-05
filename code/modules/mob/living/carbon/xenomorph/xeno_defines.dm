@@ -103,8 +103,6 @@
 	var/list/spit_types
 
 	// *** Acid spray *** //
-	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
-	var/acid_spray_range = 0
 	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
 	var/acid_spray_duration = 1
 	///The damage acid spray causes on hit.
@@ -156,8 +154,6 @@
 	var/max_puppets = 0
 
 	// *** Crusher Abilities *** //
-	///The damage the stomp causes, counts armor
-	var/stomp_damage = 0
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
 
@@ -212,6 +208,9 @@
 	var/maximum_active_caste = INFINITY
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
+
+	/// All possible mutations that can be purchased.
+	var/list/datum/mutation_upgrade/buyable_mutations = list()
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -355,7 +354,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/selected_resin = /turf/closed/wall/resin/regenerating
 	//which special resin structure to build when we secrete special resin
 	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/bulletproof
-	///which reagent to slash with using reagent slash
+	/// Which reagent to slash with using reagent slash. Do not directly set this outside of initialization. Use `set_selected_reagent` instead.
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
 	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
@@ -431,6 +430,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
 
+	/// All active mutations they own.
+	var/list/datum/mutation_upgrade/owned_mutations = list()
+
 	//list of active tunnels
 	var/list/tunnels = list()
 	///Number of huggers the xeno is currently carrying
@@ -458,3 +460,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/mob/living/carbon/xenomorph/xeno = attacker
 	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
 	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
+
+
+/// Sets the xenomorph's selected reagent & sends a signal that it happened.
+/mob/living/carbon/xenomorph/proc/set_selected_reagent(datum/reagent/new_reagent_typepath)
+	var/datum/reagent/old_reagent_typepath = selected_reagent
+	selected_reagent = new_reagent_typepath
+	SEND_SIGNAL(src, COMSIG_XENO_SELECTED_REAGENT_CHANGED, old_reagent_typepath, new_reagent_typepath)

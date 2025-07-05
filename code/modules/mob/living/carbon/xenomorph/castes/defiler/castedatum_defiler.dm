@@ -71,6 +71,12 @@
 	// *** Pheromones *** //
 	aura_strength = 2.6 //It's .1 better than a carrier.
 
+	buyable_mutations = list(
+		/datum/mutation_upgrade/shell/panic_gas,
+		/datum/mutation_upgrade/spur/envenomed,
+		/datum/mutation_upgrade/veil/wide_gas
+	)
+
 /datum/xeno_caste/defiler/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

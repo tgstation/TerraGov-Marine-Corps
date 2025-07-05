@@ -67,12 +67,16 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
 	target_flags = ABILITY_MOB_TARGET
-
+	/// The multiplier of the owner's melee damage to apply to human targets immediately after usage.
+	var/immediate_damage_multiplier
+	/// The multiplier of the owner's melee damage to apply to human targets if they hit something before the throw ends.
+	var/collusion_damage_multiplier
+	/// The length of the stun.
+	var/stun_length = 2 SECONDS
 
 /datum/action/ability/activable/xeno/psychic_fling/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
 	return ..()
-
 
 /datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/movable/target, silent = FALSE, override_flags)
 	. = ..()
@@ -96,7 +100,6 @@
 		if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 			return FALSE
 
-
 /datum/action/ability/activable/xeno/psychic_fling/use_ability(atom/target)
 	var/mob/living/victim = target
 	GLOB.round_statistics.psychic_flings++
@@ -109,7 +112,7 @@
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
-	//Held facehuggers get killed for balance reasons
+	// Held facehuggers get killed for balance reasons.
 	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
 		hugger.kill_hugger()
 		owner.dropItemToGround(hugger)
@@ -117,7 +120,9 @@
 	succeed_activate()
 	add_cooldown()
 	if(ishuman(victim))
-		victim.apply_effects(2 SECONDS, 0.2 SECONDS) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
+		if(immediate_damage_multiplier)
+			victim.apply_damage(xeno_owner.xeno_caste.melee_damage * * xeno_owner.xeno_melee_damage_modifier * immediate_damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
+		victim.apply_effects(stun_length, 0.2 SECONDS) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
@@ -132,6 +137,48 @@
 		T = temp
 	victim.throw_at(T, fling_distance, 1, owner, TRUE)
 
+	if(collusion_damage_multiplier)
+		RegisterSignal(victim, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
+		RegisterSignal(victim, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_ended))
+
+/// Handles anything that would happen when a target is thrown into an atom using an ability.
+// Ripped from Warrior's Grapple_toss.
+/datum/action/ability/activable/xeno/psychic_fling/proc/thrown_into(datum/source, atom/hit_atom, impact_speed)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
+	var/mob/living/living_target = source
+	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "scream")
+	living_target.Knockdown(0.2 SECONDS)
+	new /obj/effect/temp_visual/warrior/impact(get_turf(living_target), get_dir(living_target, xeno_owner))
+	var/thrown_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * collusion_damage_multiplier
+	living_target.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
+	if(isliving(hit_atom))
+		var/mob/living/hit_living = hit_atom
+		if(hit_living.issamexenohive(xeno_owner))
+			return
+		INVOKE_ASYNC(hit_living, TYPE_PROC_REF(/mob, emote), "scream")
+		hit_living.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
+		hit_living.Knockdown(0.2 SECONDS)
+		step_away(hit_living, living_target, 1, 1)
+	if(isobj(hit_atom))
+		var/obj/hit_object = hit_atom
+		if(istype(hit_object, /obj/structure/xeno))
+			return
+		hit_object.take_damage(thrown_damage, BRUTE, MELEE)
+	if(iswallturf(hit_atom))
+		var/turf/closed/wall/hit_wall = hit_atom
+		if(!(hit_wall.resistance_flags & INDESTRUCTIBLE))
+			hit_wall.take_damage(thrown_damage, BRUTE, MELEE)
+
+/// Ends the target's throw.
+// Ripped from Warrior's Grapple_toss.
+/datum/action/ability/activable/xeno/psychic_fling/proc/throw_ended(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
+	/* So the reason why we do not flat out unregister this is because, when an atom makes impact with something, it calls throw_impact(). Calling it this way causes
+	stop_throw() to be called in most cases, because impacts can cause a bounce effect and ending the throw makes it happen. Given the way we have signals setup, unregistering
+	it at that point would cause thrown_into() to never get called, and that is exactly the reason why the line of code below exists. */
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 1)
 
 // ***************************************
 // *********** Unrelenting Force
@@ -233,12 +280,14 @@
 	)
 	var/heal_range = SHRIKE_HEAL_RANGE
 	target_flags = ABILITY_MOB_TARGET
-
+	/// The additional deciseconds added to the cooldown if it was used to heal themselves.
+	var/self_bonus_cooldown_duration
+	/// The multiplier to apply to healing if it was used to heal themselves.
+	var/self_heal_multiplier
 
 /datum/action/ability/activable/xeno/psychic_cure/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to cure sisters again."))
 	return ..()
-
 
 /datum/action/ability/activable/xeno/psychic_cure/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -256,7 +305,6 @@
 			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
 		return FALSE
 
-
 /datum/action/ability/activable/xeno/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
@@ -268,7 +316,6 @@
 			to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
-
 
 /datum/action/ability/activable/xeno/psychic_cure/use_ability(atom/target)
 	if(owner.do_actions)
@@ -291,8 +338,8 @@
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
-	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
-	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
+	patient.heal_wounds(target == xeno_owner && self_heal_multiplier ? SHRIKE_CURE_HEAL_MULTIPLIER : SHRIKE_CURE_HEAL_MULTIPLIER * self_heal_multiplier)
+	patient.adjust_sunder(target == xeno_owner && self_heal_multiplier ? -SHRIKE_CURE_HEAL_MULTIPLIER : -SHRIKE_CURE_HEAL_MULTIPLIER * self_heal_multiplier)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 		patient.SetUnconscious(0)
 		patient.SetStun(0)
@@ -306,8 +353,7 @@
 	log_combat(owner, patient, "psychically cured")
 
 	succeed_activate()
-	add_cooldown()
-
+	add_cooldown(target == xeno_owner && self_bonus_cooldown_duration ? cooldown_duration + self_bonus_cooldown_duration : null)
 
 // ***************************************
 // *********** Construct Acid Well
