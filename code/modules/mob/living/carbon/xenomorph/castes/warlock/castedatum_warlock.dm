@@ -33,6 +33,8 @@
 		/datum/action/ability/xeno_action/psychic_whisper,
 	)
 
+	doppelganger_color = "#c01ff1"
+
 /datum/xeno_caste/warlock/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
