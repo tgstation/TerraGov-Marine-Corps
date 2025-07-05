@@ -86,6 +86,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/generator_repairs_performed = 0
 	var/miner_repairs_performed = 0
 	var/apcs_repaired = 0
+	var/acid_applied = 0
 
 	var/generator_sabotages_performed = 0
 	var/miner_sabotages_performed = 0
@@ -273,6 +274,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Gave birth to [huggers_created] hugger\s."
 	if(impregnations)
 		support_stats += "Impregnated [impregnations] host\s."
+	if(acid_applied)
+		support_stats += "Applied acid to [acid_applied] object\s."
 
 	if(LAZYLEN(support_stats))
 		stats += "<hr>"

@@ -64,7 +64,7 @@
 	if(!COOLDOWN_FINISHED(src, rev_cooldown)) return FALSE
 	COOLDOWN_START(src, rev_cooldown, 3 SECONDS)
 	to_chat(user, span_notice("You rev the [src]'s engine."))
-	fuel_max -= 5
+	fuel_count -= 5
 	playsound(src, pick(rev_sounds), 50, TRUE, falloff = 3)
 	return TRUE
 

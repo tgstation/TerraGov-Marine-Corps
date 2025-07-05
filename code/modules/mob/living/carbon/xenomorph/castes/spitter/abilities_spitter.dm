@@ -232,6 +232,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	update_button_icon()
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.globadier_grenades_thrown++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "globadier_grenades_thrown")
 
 /datum/action/ability/activable/xeno/toss_grenade/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(selectgrenade))
@@ -522,6 +524,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	update_button_icon()
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.globadier_mines_placed++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "globadier_mines_placed")
 
 /datum/action/ability/xeno_action/acid_mine/process()
 	if(!timeleft(timer))
@@ -563,6 +567,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	update_button_icon()
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.globadier_mines_placed++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "globadier_mines_placed")
 
 // ***************************************
 // *********** Acid Rocket
@@ -598,3 +604,5 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	xeno_owner.adjustBruteLoss(xeno_owner.health * GLOBADIER_XADAR_PERCENT_HEALTH_PLAS_COST, TRUE)
 	succeed_activate(xeno_owner.plasma_stored * GLOBADIER_XADAR_PERCENT_HEALTH_PLAS_COST)
 	add_cooldown()
+	GLOB.round_statistics.globadier_XADAR_fired++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "globadier_XADAR_fired")

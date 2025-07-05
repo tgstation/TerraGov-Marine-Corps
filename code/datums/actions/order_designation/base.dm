@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 	var/designator_mode = INTERACT_DESIGNATOR_MODE
 
 /datum/action/ability/activable/build_designator/Destroy()
-	QDEL_NULL(hologram)
+	cleanup_hologram()
 	selected_mob = null
 	return ..()
 

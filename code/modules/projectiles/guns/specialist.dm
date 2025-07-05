@@ -1166,7 +1166,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
-	fire_delay = 0.8 SECONDS
+
+	fire_delay = 0.45 SECONDS
+	wield_delay = 0.85 SECONDS
 	windup_delay = 0 SECONDS
 	aim_slowdown = 2.75
 	accuracy_mult = 2
