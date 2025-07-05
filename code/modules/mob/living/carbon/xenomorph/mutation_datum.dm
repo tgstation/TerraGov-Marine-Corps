@@ -59,7 +59,7 @@
 
 	SStgui.close_user_uis(usr, src)
 
-/// Returns the cost of purchasing a mutation. Cost based on their caste tier and how many mutations they have so far.
+/// Returns the cost of purchasing a mutation. Cost is based on their caste tier and how many mutations they have so far.
 /datum/mutation_datum/proc/get_mutation_cost(mob/living/carbon/xenomorph/xenomorph_target)
 	var/expected_cost = MUTATION_BIOMASS_THRESHOLD_T4
 	switch(xenomorph_target.xeno_caste.tier)
@@ -84,22 +84,22 @@
 
 /// Returns TRUE if the xenomorph has a mutation in a certain category.
 /datum/mutation_datum/proc/has_any_mutation_in_category(mob/living/carbon/xenomorph/xenomorph_target, mutation_category)
-	switch(mutation_category)
-		if(MUTATION_SHELL)
-			for(var/datum/mutation_upgrade/owned_mutation AS in xenomorph_target.owned_mutations)
+	if(!length(xenomorph_target.owned_mutations))
+		return FALSE
+	for(var/datum/mutation_upgrade/owned_mutation AS in xenomorph_target.owned_mutations)
+		switch(mutation_category)
+			if(MUTATION_SHELL)
 				if(is_shell_mutation(owned_mutation))
 					return TRUE
-		if(MUTATION_SPUR)
-			for(var/datum/mutation_upgrade/owned_mutation AS in xenomorph_target.owned_mutations)
+			if(MUTATION_SPUR)
 				if(is_spur_mutation(owned_mutation))
 					return TRUE
-		if(MUTATION_VEIL)
-			for(var/datum/mutation_upgrade/owned_mutation AS in xenomorph_target.owned_mutations)
+			if(MUTATION_VEIL)
 				if(is_veil_mutation(owned_mutation))
 					return TRUE
 	return FALSE
 
-/// Returns TRUE if the mutation was successfully purchased.
+/// Tries to purchase a mutation based on its name. Returns TRUE if the mutation was successfully purchased.
 /datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xenomorph_purchaser, upgrade_name)
 	if(!xenomorph_purchaser.hive || !upgrade_name)
 		return FALSE
@@ -111,8 +111,8 @@
 
 	var/upgrade_price = get_mutation_cost(xenomorph_purchaser)
 	var/current_biomass = !isnull(SSpoints.xeno_biomass_points_by_hive[xenomorph_purchaser.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xenomorph_purchaser.hivenumber] : 0
-	if(current_biomass < upgrade_price)
-		to_chat(usr, span_warning("The hive does not have enough biomass!"))
+	if(current_biomass < get_mutation_cost(xenomorph_purchaser))
+		to_chat(usr, span_warning("The hive does not have enough biomass! [upgrade_price - current_biomass] more biomass is needed!"))
 		return FALSE
 
 	var/datum/mutation_upgrade/found_mutation
@@ -129,25 +129,14 @@
 	if(has_any_mutation_in_category(xenomorph_purchaser, found_mutation.category))
 		to_chat(usr, span_warning("You already have a mutation in this category!"))
 		return FALSE
+	if(!xenomorph_purchaser.hive.has_any_mutation_structures_in_category(found_mutation.required_structure))
+		to_chat(usr, span_warning("This mutation requires a [found_mutation.required_structure] chamber to exist!"))
+		return FALSE
 	for(var/datum/mutation_upgrade/owned_mutation AS in xenomorph_purchaser.owned_mutations)
 		if(!is_type_in_list(owned_mutation, found_mutation.conflicting_mutation_types))
 			continue
 		to_chat(usr, span_warning("That mutation is not compatible with the mutation: [owned_mutation.name]"))
 		return FALSE
-
-	switch(found_mutation.required_structure)
-		if(MUTATION_SHELL)
-			if(!length(xenomorph_purchaser.hive.shell_chambers))
-				to_chat(usr, span_xenonotice("This mutation requires a shell chamber to exist!"))
-				return FALSE
-		if(MUTATION_SPUR)
-			if(!length(xenomorph_purchaser.hive.spur_chambers))
-				to_chat(usr, span_xenonotice("This mutation requires a spur chamber to exist!"))
-				return FALSE
-		if(MUTATION_VEIL)
-			if(!length(xenomorph_purchaser.hive.veil_chambers))
-				to_chat(usr, span_xenonotice("This mutation requires a veil chamber to exist!"))
-				return FALSE
 
 	to_chat(xenomorph_purchaser, span_xenonotice("Mutation gained."))
 	xenomorph_purchaser.do_jitter_animation(500)

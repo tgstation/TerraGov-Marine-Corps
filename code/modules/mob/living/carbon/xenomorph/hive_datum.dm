@@ -1215,11 +1215,26 @@ to_chat will check for valid clients itself already so no need to double check f
 	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours + threes*SSticker.mode.tier_three_inclusion) / 3 + length(psychictowers) + 1  - SSticker.mode.tier_three_penalty, 1))
 	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(psychictowers) * 2 + 1 - threes)
 
-/// Returns true if there are any mutation structures active. Used to figure out if biomass should be awarded for certain activities.
-/datum/hive_status/proc/has_mutation_structures()
+/// Returns TRUE if the hive owns any mutation structures.
+/datum/hive_status/proc/has_any_mutation_structures()
 	if(length(shell_chambers) || length(spur_chambers) || length(veil_chambers))
 		return TRUE
 	return FALSE
+
+/// Returns TRUE if the hive owns any mutation structures in a particular category.
+/datum/hive_status/proc/has_any_mutation_structures_in_category(category)
+	switch(category)
+		if(MUTATION_SHELL)
+			if(length(shell_chambers))
+				return TRUE
+		if(MUTATION_SPUR)
+			if(length(spur_chambers))
+				return TRUE
+		if(MUTATION_VEIL)
+			if(length(veil_chambers))
+				return TRUE
+	return FALSE
+
 
 // ***************************************
 // *********** Corrupted Xenos
