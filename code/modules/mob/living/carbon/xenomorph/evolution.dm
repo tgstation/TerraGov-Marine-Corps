@@ -311,7 +311,7 @@
 			return FALSE
 
 	var/population_lock = new_caste.evolve_population_lock
-	if(population_lock > GLOB.roundstart_players)
+	if(population_lock > SSticker.mode.roundstart_players)
 		balloon_alert(src, "[population_lock] Initial Players are required to evolve [initial(new_caste.display_name)]")
 		return FALSE
 
