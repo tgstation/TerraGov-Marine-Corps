@@ -312,12 +312,8 @@
 
 	var/population_lock = new_caste.evolve_population_lock
 	if(population_lock > GLOB.roundstart_players)
-		balloon_alert(src, "[population_lock] Minds are required to evolve [initial(new_caste.display_name)]")
-		to_chat(src, "[population_lock] Minds are required to evolve [initial(new_caste.display_name)]")
-		to_chat(src, "Population check failed")
+		balloon_alert(src, "[population_lock] Initial Players are required to evolve [initial(new_caste.display_name)]")
 		return FALSE
-	else
-		to_chat(src, "Population check passed")
 
 	var/min_xenos = new_caste.evolve_min_xenos
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
