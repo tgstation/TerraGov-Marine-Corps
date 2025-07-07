@@ -1,6 +1,5 @@
 GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 
-GLOBAL_LIST_INIT(all_mutations, typecacheof(/datum/mutation_upgrade) - /datum/mutation_upgrade/shell - /datum/mutation_upgrade/spur - /datum/mutation_upgrade/veil)
 GLOBAL_LIST_INIT(shell_mutations, typecacheof(/datum/mutation_upgrade/shell))
 GLOBAL_LIST_INIT(spur_mutations, typecacheof(/datum/mutation_upgrade/spur))
 GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
