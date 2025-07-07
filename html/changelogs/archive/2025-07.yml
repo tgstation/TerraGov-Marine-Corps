@@ -14,3 +14,17 @@
   - bugfix: fixed a harddel with build holograms
   revelation-8468:
   - rscadd: 19 more stats for the round end panel. Also 1 personal stat.
+2025-07-07:
+  Runian:
+  - rscadd: Abduct, Dislocate, and Advance makes their affected targets flip to make
+      it much more obvious that the targets were affected by the ability.
+  - balance: Various effects from Oppressor's abilities now occur at the end of the
+      throw rather than the beginning.
+  - balance: Abduct now paralyzes for 0.2 seconds (from 0.5), slowdowns for 0.6 (from
+      0.8), and staggers for 3 seconds (from 4) multiplied by the amount of humans
+      affected (unchanged).
+  - balance: Dislocate and Tail Lash now paralyzes for 0.8 seconds (from 1) and staggers
+      for 2.4 seconds (from 3).
+  - balance: Advance now paralyzes for 1.5 seconds (from 2).
+  - bugfix: Abduct no longer causes affected humans to collide with other affected
+      humans while being thrown.
