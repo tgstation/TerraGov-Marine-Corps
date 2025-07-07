@@ -18061,7 +18061,7 @@
 /area/tinyblue/outside/building/marshal)
 "wCL" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	name = s
+	name = \improper Airlock
 	},
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/mining)
