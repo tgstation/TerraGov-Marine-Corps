@@ -7186,6 +7186,10 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 1
 	},
+/obj/item/toy/plush/rouny{
+	desc = "He forgor skull emoji";
+	name = "Tery"
+	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/console)
 "iWv" = (
