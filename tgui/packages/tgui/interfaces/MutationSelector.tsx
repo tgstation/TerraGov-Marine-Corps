@@ -6,42 +6,33 @@ import {
   Section,
   Tooltip,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Upgrade = {
   name: string;
+  type: string;
   desc: string;
-  owned: boolean;
+  owned: BooleanLike;
 };
 
 type BiomassData = {
   biomass: number;
+  cost: number;
   cost_text: number;
 };
 
-type ShellMutationData = {
+type MutationData = {
   shell_mutations: Upgrade[];
-  already_has_shell_mutation: boolean;
-  shell_chambers: number;
-  cost: number;
-  cost_text: string;
-  biomass: number;
-};
-
-type SpurMutationData = {
   spur_mutations: Upgrade[];
-  already_has_spur_mutation: boolean;
-  spur_chambers: number;
-  cost: number;
-  cost_text: string;
-  biomass: number;
-};
-
-type VeilMutationData = {
   veil_mutations: Upgrade[];
-  already_has_veil_mutation: boolean;
+  already_has_shell: BooleanLike;
+  already_has_spur: BooleanLike;
+  already_has_veil: BooleanLike;
+  shell_chambers: number;
+  spur_chambers: number;
   veil_chambers: number;
   cost: number;
   cost_text: string;
@@ -49,19 +40,48 @@ type VeilMutationData = {
 };
 
 export const MutationSelector = (_props: any) => {
+  const { data } = useBackend<MutationData>();
+  const {
+    shell_mutations,
+    spur_mutations,
+    veil_mutations,
+    already_has_shell,
+    already_has_spur,
+    already_has_veil,
+    shell_chambers,
+    spur_chambers,
+    veil_chambers,
+  } = data;
+
   return (
     <Window theme="xeno" width={500} height={600}>
       <Window.Content scrollable>
         <Section title="Biomass" key="Biomass">
           <BiomassBar />
         </Section>
-        <ShellMutationSection />
-        <SpurMutationSection />
-        <VeilMutationSection />
+        <MutationSection
+          category_name="Shell"
+          mutations={shell_mutations}
+          already_has={already_has_spur}
+          chambers={shell_chambers}
+        />
+        <MutationSection
+          category_name="Spur"
+          mutations={spur_mutations}
+          already_has={already_has_shell}
+          chambers={spur_chambers}
+        />
+        <MutationSection
+          category_name="Veil"
+          mutations={veil_mutations}
+          already_has={already_has_veil}
+          chambers={veil_chambers}
+        />
       </Window.Content>
     </Window>
   );
 };
+// MutationData
 
 const BiomassBar = (_props: any) => {
   const { data } = useBackend<BiomassData>();
@@ -80,23 +100,21 @@ const BiomassBar = (_props: any) => {
   );
 };
 
-const ShellMutationSection = (_props: any) => {
-  const { act, data } = useBackend<ShellMutationData>();
-  const {
-    shell_mutations,
-    already_has_shell_mutation,
-    shell_chambers,
-    cost,
-    cost_text,
-    biomass,
-  } = data;
+const MutationSection = (props: {
+  category_name: string;
+  mutations: Upgrade[];
+  already_has: BooleanLike;
+  chambers: number;
+}) => {
+  const { act, data } = useBackend<BiomassData>();
+  const { cost, cost_text, biomass } = data;
 
   return (
     <Collapsible
-      title={`Shell Mutations | Shell Chambers: ${shell_chambers}/3`}
+      title={`${props.category_name} Mutations | ${props.category_name} Chambers: ${props.chambers}/3`}
     >
-      {shell_mutations &&
-        shell_mutations.map((mutation) => (
+      {props.mutations &&
+        props.mutations.map((mutation) => (
           <Section
             title={`${mutation.name}`}
             mb={1}
@@ -105,95 +123,9 @@ const ShellMutationSection = (_props: any) => {
               <Button
                 content={`Buy (${cost_text})`}
                 key={mutation.name}
-                onClick={() => act('purchase', { upgrade_name: mutation.name })}
+                onClick={() => act('purchase', { upgrade_type: mutation.type })}
                 disabled={
-                  cost > biomass ||
-                  shell_chambers === 0 ||
-                  already_has_shell_mutation
-                }
-                selected={mutation.owned}
-              />
-            }
-          >
-            <Flex direction="column-reverse" align={'left'}>
-              {mutation.desc}
-            </Flex>
-          </Section>
-        ))}
-    </Collapsible>
-  );
-};
-
-const SpurMutationSection = (_props: any) => {
-  const { act, data } = useBackend<SpurMutationData>();
-  const {
-    spur_mutations,
-    already_has_spur_mutation,
-    spur_chambers,
-    cost,
-    cost_text,
-    biomass,
-  } = data;
-
-  return (
-    <Collapsible title={`Spur Mutations | Spur Chambers: ${spur_chambers}/3`}>
-      {spur_mutations &&
-        spur_mutations.map((mutation) => (
-          <Section
-            title={`${mutation.name}`}
-            mb={1}
-            key={mutation.name}
-            buttons={
-              <Button
-                content={`Buy (${cost_text})`}
-                key={mutation.name}
-                onClick={() => act('purchase', { upgrade_name: mutation.name })}
-                disabled={
-                  cost > biomass ||
-                  spur_chambers === 0 ||
-                  already_has_spur_mutation
-                }
-                selected={mutation.owned}
-              />
-            }
-          >
-            <Flex direction="column-reverse" align={'left'}>
-              {mutation.desc}
-            </Flex>
-          </Section>
-        ))}
-    </Collapsible>
-  );
-};
-
-const VeilMutationSection = (_props: any) => {
-  const { act, data } = useBackend<VeilMutationData>();
-  const {
-    veil_mutations,
-    already_has_veil_mutation,
-    veil_chambers,
-    cost,
-    cost_text,
-    biomass,
-  } = data;
-
-  return (
-    <Collapsible title={`Veil Mutations | Veil Chambers: ${veil_chambers}/3`}>
-      {veil_mutations &&
-        veil_mutations.map((mutation) => (
-          <Section
-            title={`${mutation.name}`}
-            mb={1}
-            key={mutation.name}
-            buttons={
-              <Button
-                content={`Buy (${cost_text})`}
-                key={mutation.name}
-                onClick={() => act('purchase', { upgrade_name: mutation.name })}
-                disabled={
-                  cost > biomass ||
-                  veil_chambers === 0 ||
-                  already_has_veil_mutation
+                  cost > biomass || props.chambers === 0 || props.already_has
                 }
                 selected={mutation.owned}
               />

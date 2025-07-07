@@ -1217,9 +1217,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /// Returns TRUE if the hive owns any mutation structures.
 /datum/hive_status/proc/has_any_mutation_structures()
-	if(length(shell_chambers) || length(spur_chambers) || length(veil_chambers))
-		return TRUE
-	return FALSE
+	return length(shell_chambers) || length(spur_chambers) || length(veil_chambers)
 
 /// Returns TRUE if the hive owns any mutation structures in a particular category.
 /datum/hive_status/proc/has_any_mutation_structures_in_category(category)

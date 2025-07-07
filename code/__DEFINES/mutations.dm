@@ -1,5 +1,6 @@
 GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 
+GLOBAL_LIST_INIT(all_mutations, typecacheof(/datum/mutation_upgrade) - /datum/mutation_upgrade/shell - /datum/mutation_upgrade/spur - /datum/mutation_upgrade/veil)
 GLOBAL_LIST_INIT(shell_mutations, typecacheof(/datum/mutation_upgrade/shell))
 GLOBAL_LIST_INIT(spur_mutations, typecacheof(/datum/mutation_upgrade/spur))
 GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
@@ -28,14 +29,10 @@ GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
 #define MUTATION_BIOMASS_THRESHOLD_T4 600
 
 /// The type path for status effect alerts.
-#define MUTATION_SHELL_ALERT /atom/movable/screen/alert/status_effect/shell
-#define MUTATION_SPUR_ALERT /atom/movable/screen/alert/status_effect/spur
-#define MUTATION_VEIL_ALERT /atom/movable/screen/alert/status_effect/veil
+#define MUTATION_SHELL_ALERT /atom/movable/screen/alert/shell
+#define MUTATION_SPUR_ALERT /atom/movable/screen/alert/spur
+#define MUTATION_VEIL_ALERT /atom/movable/screen/alert/veil
 
-/// All type paths for status effects.
-#define STATUS_EFFECT_MUTATION_SHELL /datum/status_effect/mutation_shell_upgrade
-#define STATUS_EFFECT_MUTATION_SPUR /datum/status_effect/mutation_spur_upgrade
-#define STATUS_EFFECT_MUTATION_VEIL /datum/status_effect/mutation_veil_upgrade
 
 /// Name of each mutation structure/category.
 #define MUTATION_SHELL "shell"

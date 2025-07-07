@@ -14,26 +14,23 @@
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/xenomorph_user = user
-	.["biomass"] = !isnull(SSpoints.xeno_biomass_points_by_hive[xenomorph_user.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xenomorph_user.hivenumber] : 0
-
 	.["shell_chambers"] = length(xenomorph_user.hive.shell_chambers)
 	.["spur_chambers"] = length(xenomorph_user.hive.spur_chambers)
 	.["veil_chambers"] = length(xenomorph_user.hive.veil_chambers)
+	.["biomass"] = !isnull(SSpoints.xeno_biomass_points_by_hive[xenomorph_user.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xenomorph_user.hivenumber] : 0
 
 /datum/mutation_datum/ui_static_data(mob/user)
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/xenomorph_user = user
-	.["already_has_shell_mutation"] = has_any_mutation_in_category(xenomorph_user, MUTATION_SHELL)
-	.["already_has_spur_mutation"] = has_any_mutation_in_category(xenomorph_user, MUTATION_SPUR)
-	.["already_has_veil_mutation"] = has_any_mutation_in_category(xenomorph_user, MUTATION_VEIL)
-
-	.["cost"] = get_mutation_cost(xenomorph_user)
-	.["cost_text"] = (get_mutation_cost(xenomorph_user) > MUTATION_BIOMASS_MAXIMUM || (.["already_has_shell_mutation"] && .["already_has_spur_mutation"] && .["already_has_veil_mutation"])) ? "∞" : .["cost"]
 	.["shell_mutations"] = list()
 	.["spur_mutations"] = list()
 	.["veil_mutations"] = list()
-
+	.["already_has_shell"] = has_any_mutation_in_category(xenomorph_user, MUTATION_SHELL)
+	.["already_has_spur"] = has_any_mutation_in_category(xenomorph_user, MUTATION_SPUR)
+	.["already_has_veil"] = has_any_mutation_in_category(xenomorph_user, MUTATION_VEIL)
+	.["cost"] = get_mutation_cost(xenomorph_user)
+	.["cost_text"] = (get_mutation_cost(xenomorph_user) > MUTATION_BIOMASS_MAXIMUM || (.["already_has_shell_mutation"] && .["already_has_spur_mutation"] && .["already_has_veil_mutation"])) ? "∞" : .["cost"]
 	for(var/datum/mutation_upgrade/mutation AS in xenomorph_user.xeno_caste.mutations)
 		var/list_name = "veil_mutations"
 		if(is_shell_mutation(mutation))
@@ -42,6 +39,7 @@
 			list_name = "spur_mutations"
 		.[list_name] += list(list(
 			"name" = mutation.name,
+			"type" = mutation.type,
 			"desc" = mutation.desc,
 			"owned" = has_mutation(xenomorph_user, mutation)
 		))
@@ -55,7 +53,7 @@
 
 	switch(action)
 		if("purchase")
-			try_purchase_mutation(usr, params["upgrade_name"])
+			try_purchase_mutation(usr, text2path(params["upgrade_type"]))
 
 	SStgui.close_user_uis(usr, src)
 
@@ -99,46 +97,40 @@
 					return TRUE
 	return FALSE
 
-/// Tries to purchase a mutation based on its name. Returns TRUE if the mutation was successfully purchased.
-/datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xenomorph_purchaser, upgrade_name)
-	if(!xenomorph_purchaser.hive || !upgrade_name)
+/// Tries to purchase a mutation based on its typepath. Returns TRUE if the mutation was successfully purchased.
+/datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xenomorph_purchaser, datum/mutation_upgrade/mutation_typepath)
+	if(!xenomorph_purchaser.hive || !istype(mutation_typepath))
 		return FALSE
 	if(!(xenomorph_purchaser.xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED))
 		return FALSE
+	if(!(mutation_typepath in xenomorph_purchaser.xeno_caste.mutations))
+		to_chat(xenomorph_purchaser, span_warning("That is not a valid mutation."))
+		return FALSE
 	if(xenomorph_purchaser.fortify)
-		to_chat(usr, span_warning("You cannot buy mutations while fortified!"))
+		to_chat(xenomorph_purchaser, span_warning("You cannot buy mutations while fortified!"))
 		return FALSE
 
 	var/upgrade_price = get_mutation_cost(xenomorph_purchaser)
 	var/current_biomass = !isnull(SSpoints.xeno_biomass_points_by_hive[xenomorph_purchaser.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xenomorph_purchaser.hivenumber] : 0
 	if(current_biomass < get_mutation_cost(xenomorph_purchaser))
-		to_chat(usr, span_warning("The hive does not have enough biomass! [upgrade_price - current_biomass] more biomass is needed!"))
+		to_chat(xenomorph_purchaser, span_warning("The hive does not have enough biomass! [upgrade_price - current_biomass] more biomass is needed!"))
 		return FALSE
-
-	var/datum/mutation_upgrade/found_mutation
-	for(var/datum/mutation_upgrade/mutation AS in xenomorph_purchaser.xeno_caste.mutations)
-		if(mutation.name == upgrade_name)
-			found_mutation = mutation
-			break
-
-	if(!found_mutation)
+	if(has_mutation(xenomorph_purchaser, mutation_typepath))
+		to_chat(xenomorph_purchaser, span_warning("You already own this mutation!"))
 		return FALSE
-	if(has_mutation(xenomorph_purchaser, found_mutation))
-		to_chat(usr, span_warning("You already own this mutation!"))
+	if(has_any_mutation_in_category(xenomorph_purchaser, mutation_typepath.category))
+		to_chat(xenomorph_purchaser, span_warning("You already have a mutation in this category!"))
 		return FALSE
-	if(has_any_mutation_in_category(xenomorph_purchaser, found_mutation.category))
-		to_chat(usr, span_warning("You already have a mutation in this category!"))
-		return FALSE
-	if(!xenomorph_purchaser.hive.has_any_mutation_structures_in_category(found_mutation.required_structure))
-		to_chat(usr, span_warning("This mutation requires a [found_mutation.required_structure] chamber to exist!"))
+	if(!xenomorph_purchaser.hive.has_any_mutation_structures_in_category(mutation_typepath.required_structure))
+		to_chat(xenomorph_purchaser, span_warning("This mutation requires a [mutation_typepath.required_structure] chamber to exist!"))
 		return FALSE
 	for(var/datum/mutation_upgrade/owned_mutation AS in xenomorph_purchaser.owned_mutations)
-		if(!is_type_in_list(owned_mutation, found_mutation.conflicting_mutation_types))
+		if(!is_type_in_list(owned_mutation, mutation_typepath.conflicting_mutation_types))
 			continue
-		to_chat(usr, span_warning("That mutation is not compatible with the mutation: [owned_mutation.name]"))
+		to_chat(xenomorph_purchaser, span_warning("That mutation is not compatible with the mutation: [owned_mutation.name]"))
 		return FALSE
 
 	to_chat(xenomorph_purchaser, span_xenonotice("Mutation gained."))
 	xenomorph_purchaser.do_jitter_animation(500)
-	new found_mutation(xenomorph_purchaser) // Everything else in handled during the mutation's New().
+	new mutation_typepath(xenomorph_purchaser) // Everything else in handled during the mutation's New().
 	return TRUE
