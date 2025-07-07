@@ -537,7 +537,7 @@
 	penetration = 100
 	max_range = 10
 	hitscan_effect_icon = "xray_beam"
-	on_pierce_multiplier = 0.8
+	on_pierce_multiplier = 0.9
 
 /datum/ammo/energy/lasgun/marine/xray/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	proj.proj_max_range -= 2
