@@ -1035,7 +1035,6 @@
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/n)
 "bmN" = (
-/obj/structure/lattice,
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/tinyblue/caves/facility/omicron)
@@ -1285,20 +1284,16 @@
 /area/tinyblue/outside/building/lz)
 "bDF" = (
 /obj/structure/table/wood,
-/obj/item/toy/crayon{
-	layer = 4
-	},
-/obj/item/toy/crayon/blue{
-	pixel_x = 4;
-	layer = 4
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/item/paper,
 /obj/item/toy/crayon/rainbow{
 	pixel_x = -3;
-	pixel_y = 4;
-	layer = 4
+	pixel_y = 4
 	},
-/obj/item/paper,
-/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/item/toy/crayon,
+/obj/item/toy/crayon/blue{
+	pixel_x = 4
+	},
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med)
 "bEV" = (
@@ -1660,7 +1655,6 @@
 	},
 /area/tinyblue/caves/facility/eta)
 "caM" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -4992,7 +4986,6 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
-	layer = 3.1;
 	name = "\improper Engine Safety Shutters";
 	id = "Reactor Shutters"
 	},
@@ -5738,12 +5731,6 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/wood/fancy,
 /area/tinyblue/outside/building/dorms/chapel)
-"hkm" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/white,
-/area/tinyblue/outside/building/virology)
 "hkQ" = (
 /obj/machinery/light{
 	dir = 8
@@ -6231,9 +6218,7 @@
 /turf/closed/wall/r_wall,
 /area/tinyblue/caves/facility/lambda)
 "hWC" = (
-/obj/structure/prop/urban/containersextended/whitewyleft{
-	layer = 5.1
-	},
+/obj/structure/prop/urban/containersextended/whitewyleft,
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo)
 "hWM" = (
@@ -7852,10 +7837,12 @@
 /turf/open/floor/tile/dark/blue2,
 /area/tinyblue/outside/building/admin)
 "jIO" = (
-/obj/structure/girder/reinforced,
-/obj/structure/girder/reinforced,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/ne)
+/obj/structure/monorail{
+	dir = 9
+	},
+/obj/structure/lattice,
+/turf/open/floor/mainship_hull,
+/area/tinyblue/caves/facility/omicron)
 "jJb" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -8201,7 +8188,6 @@
 /area/tinyblue/outside/n)
 "kbl" = (
 /obj/structure/prop/urban/containersextended/greywyright{
-	layer = 5.1;
 	pixel_y = -10
 	},
 /turf/open/floor/plating,
@@ -11613,7 +11599,6 @@
 /area/tinyblue/caves/facility/lambda)
 "onW" = (
 /obj/structure/prop/urban/containersextended/greywyleft{
-	layer = 5.1;
 	pixel_y = -10
 	},
 /turf/open/floor/plating,
@@ -12581,7 +12566,6 @@
 /turf/open/floor/plating/ground/ice,
 /area/tinyblue/caves/s)
 "pJV" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
@@ -18514,7 +18498,6 @@
 "xig" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/urban/secure_red_door{
-	layer = 3.1;
 	name = "\improper Engine Safety Shutters";
 	id = "Reactor Shutters"
 	},
@@ -22216,7 +22199,7 @@ sDT
 xTJ
 xTJ
 sDT
-hkm
+xTJ
 vyW
 xVX
 bkD
@@ -24573,7 +24556,7 @@ qPO
 sLi
 anF
 ije
-boy
+hWC
 gKR
 aHo
 kRc
@@ -24720,8 +24703,8 @@ jfR
 sLi
 anF
 ije
-fRU
-hWC
+uJQ
+boy
 dxw
 izc
 gQQ
@@ -24868,7 +24851,7 @@ sLi
 buK
 ije
 gxE
-uJQ
+fRU
 uqs
 xlf
 gQQ
@@ -33333,7 +33316,7 @@ rpa
 rpa
 pVW
 pVW
-jIO
+pVW
 rpa
 rpa
 rpa
@@ -37421,8 +37404,8 @@ uJX
 bVz
 oHw
 hKt
-eZD
-yhQ
+qRt
+jIO
 hKt
 kNv
 kpK
