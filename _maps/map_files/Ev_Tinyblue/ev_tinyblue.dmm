@@ -3997,14 +3997,6 @@
 "eZB" = (
 /turf/closed/wall/r_wall,
 /area/tinyblue/caves/ne)
-"eZD" = (
-/obj/structure/monorail{
-	dir = 6
-	},
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/floor/mainship_hull,
-/area/tinyblue/caves/facility/omicron)
 "eZZ" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
@@ -4508,7 +4500,7 @@
 /area/tinyblue/caves/facility/lambda/s)
 "fKt" = (
 /obj/machinery/door/airlock/centcom{
-	name = "\improper Omicron lab"
+	name = "\improper Omicron Lab"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11578,9 +11570,7 @@
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta)
 "omS" = (
-/obj/structure/prop/urban/containersextended/whitewyleft{
-	layer = 5.1
-	},
+/obj/structure/prop/urban/containersextended/whitewyleft,
 /turf/open/floor/plating,
 /area/tinyblue/caves/facility/omicron)
 "onh" = (
@@ -19399,14 +19389,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/dorms)
-"yhQ" = (
-/obj/structure/monorail{
-	dir = 9
-	},
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/floor/mainship_hull,
-/area/tinyblue/caves/facility/omicron)
 "yhZ" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
@@ -37550,8 +37532,8 @@ uJX
 bVz
 oHw
 hKt
-eZD
-yhQ
+qRt
+jIO
 hKt
 bVz
 miN
@@ -37696,8 +37678,8 @@ uJX
 uJX
 wyA
 hKt
-eZD
-yhQ
+qRt
+jIO
 hKt
 bVz
 oHw
