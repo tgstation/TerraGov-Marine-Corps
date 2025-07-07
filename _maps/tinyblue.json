@@ -7,7 +7,7 @@
 	},
 	"quickbuilds": 1500,
 	"armor": "ice",
-	"announce_text": "A very clear, surprisingly static-free has been received on our long-range communications interceptors, filled with nothing but the word 'Fuck you' repeated 1000 times. This hurt our leadership's feelings. TGMC, ready up and nuke the bastards!",
+	"announce_text": "A very clear, surprisingly static-free broadcast has been received on our long-range communications interceptors, filled with nothing but the word 'Fuck you' repeated 1000 times. This hurt our leadership's feelings. TGMC, ready up and nuke the bastards!",
 	"traits":[{
 		"weather_snowstorm": true,
 		"Baseturf": "/turf/open/floor/plating",
