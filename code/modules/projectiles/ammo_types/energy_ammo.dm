@@ -535,8 +535,11 @@
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 25
 	penetration = 100
-	max_range = 10
+	max_range = 9
 	hitscan_effect_icon = "xray_beam"
+
+/datum/ammo/energy/lasgun/marine/xray/piercing/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+	proj.proj_max_range -= 3
 
 /datum/ammo/energy/lasgun/marine/heavy_laser
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG|AMMO_ENERGY|AMMO_HITSCAN|AMMO_INCENDIARY
