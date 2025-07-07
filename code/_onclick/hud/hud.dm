@@ -75,6 +75,23 @@
 	/// Goes from 0 to the max (z level stack size - 1)
 	var/current_plane_offset = 0
 
+	///UI for screentips that appear when you mouse over things
+	var/atom/movable/screen/screentip/screentip_text
+
+	/// Whether or not screentips are enabled.
+	/// This is updated by the preference for cheaper reads than would be
+	/// had with a proc call, especially on one of the hottest procs in the
+	/// game (MouseEntered).
+	var/screentips_enabled = SCREENTIP_PREFERENCE_ENABLED
+	/// Whether to use text or images for click hints.
+	/// Same behavior as `screentips_enabled`--very hot, updated when the preference is updated.
+	var/screentip_images = TRUE
+	/// The color to use for the screentips.
+	/// This is updated by the preference for cheaper reads than would be
+	/// had with a proc call, especially on one of the hottest procs in the
+	/// game (MouseEntered).
+	var/screentip_color
+
 	// List of weakrefs to objects that we add to our screen that we don't expect to DO anything
 	// They typically use * in their render target. They exist solely so we can reuse them,
 	// and avoid needing to make changes to all idk 300 consumers if we want to change the appearance
@@ -87,6 +104,13 @@
 
 	var/datum/plane_master_group/main/main_group = new(PLANE_GROUP_MAIN)
 	main_group.attach_to(src)
+
+	var/datum/preferences/preferences = owner?.client?.prefs
+	screentip_color = preferences.screentip_color
+	screentips_enabled = preferences.screentips_enabled
+	screentip_images = preferences.screentip_images
+	screentip_text = new(null, src)
+	static_inventory += screentip_text
 
 	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
 		var/atom/movable/plane_master_controller/controller_instance = new mytype(null,src)

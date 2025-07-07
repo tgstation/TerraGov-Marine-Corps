@@ -140,6 +140,7 @@
 
 	update_minimap_icon()
 	GLOB.tank_list += src
+	register_context()
 
 /obj/vehicle/sealed/armored/Destroy()
 	if(primary_weapon)
@@ -201,6 +202,42 @@
 			personal_statistics.mission_tanks_destroyed ++
 
 	return ..()
+
+/obj/vehicle/sealed/armored/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	if(!held_item)
+		if(!interior)
+			context[SCREENTIP_CONTEXT_LMB] = "Remove primary magazine"
+			context[SCREENTIP_CONTEXT_RMB] = "Remove secondary magazine"
+			return CONTEXTUAL_SCREENTIP_SET
+		return
+	if(!held_item.tool_behaviour)
+		if(istype(held_item, /obj/item/armored_weapon))
+			context[SCREENTIP_CONTEXT_LMB] = "Attach primary weapon"
+			context[SCREENTIP_CONTEXT_RMB] = "Attach secondary weapon"
+			return CONTEXTUAL_SCREENTIP_SET
+		return
+	switch(held_item.tool_behaviour)
+		if(TOOL_WRENCH)
+			if(secondary_weapon)
+				context[SCREENTIP_CONTEXT_LMB] = "Detach secondary weapon"
+				return CONTEXTUAL_SCREENTIP_SET
+			return
+		if(TOOL_CROWBAR)
+			if(primary_weapon)
+				context[SCREENTIP_CONTEXT_LMB] = "Detach primary weapon"
+				return CONTEXTUAL_SCREENTIP_SET
+			return
+		if(TOOL_WELDER)
+			context[SCREENTIP_CONTEXT_LMB] = "Repair"
+			return CONTEXTUAL_SCREENTIP_SET
+		if(TOOL_SCREWDRIVER)
+			if(driver_utility_module)
+				context[SCREENTIP_CONTEXT_LMB] = "Detach driver utility"
+			if(gunner_utility_module)
+				context[SCREENTIP_CONTEXT_RMB] = "Detach gunner utility"
+			if(!length(context))
+				return
+			return CONTEXTUAL_SCREENTIP_SET
 
 /obj/vehicle/sealed/armored/update_icon_state()
 	. = ..()
