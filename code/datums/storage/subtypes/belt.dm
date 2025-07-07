@@ -189,6 +189,16 @@
 		/obj/item/tool/crowbar,
 	))
 
+/datum/storage/belt/marine/musket
+	storage_slots = 21
+	max_w_class = WEIGHT_CLASS_SMALL
+	max_storage_space = 42
+
+/datum/storage/belt/marine/musket/New(atom/parent)
+	. = ..()
+	set_holdable(list(
+		/obj/item/ammo_magazine/rifle/musket))
+
 /datum/storage/belt/shotgun
 	storage_slots = 14
 	max_w_class = WEIGHT_CLASS_SMALL

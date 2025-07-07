@@ -3005,3 +3005,50 @@
 
 /obj/item/weapon/gun/rifle/vsd_breaching/standard
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+// Musket
+
+/obj/item/weapon/gun/rifle/musket
+	name = "Flintlock Musket"
+	desc = "A primitive weapon from a more savage age. Takes a hell of a long time to reload, and produces thick smoke to boot. You could remove its bayonet to make it easier to wield."
+	icon = 'icons/obj/items/guns/marksman64.dmi'
+	icon_state = "musket"
+	worn_icon_state = "musket"
+	fire_sound = 'sound/weapons/guns/fire/musket_fire.ogg'
+	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
+	)
+	max_shells = 1
+	caliber = CALIBER_58_BALL //codex
+	default_ammo_type = /obj/item/ammo_magazine/rifle/musket
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/musket,
+	)
+	w_class = WEIGHT_CLASS_HUGE
+	force = 25
+	attack_speed = 12
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES|GUN_WIELDED_FIRING_ONLY|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	wield_delay = 0.7 SECONDS
+	aim_slowdown = 0.5
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/bayonet/swordbayonet,
+	)
+
+	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 11,"rail_x" = 16, "rail_y" = 8, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	burst_amount = 0
+	fire_delay = 2 SECONDS
+	windup_delay = 0.4 SECONDS
+	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
+	accuracy_mult = 1.1
+	recoil = 2
+	recoil_unwielded = 5
+	scatter_unwielded = 7
+	movement_acc_penalty_mult = 6
+	starting_attachment_types = list(/obj/item/attachable/bayonet/swordbayonet)

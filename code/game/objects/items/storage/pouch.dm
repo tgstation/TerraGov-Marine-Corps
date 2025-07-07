@@ -329,6 +329,7 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
 		/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini,
+		/obj/item/ammo_magazine/rifle/musket,
 	))
 
 /obj/item/storage/pouch/magazine/pistol/large

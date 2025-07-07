@@ -193,3 +193,31 @@
 	damage = 50
 	penetration = 40
 	sundering = 3.5
+
+/datum/ammo/bullet/rifle/musket
+	name = "musket cartridge"
+	handful_icon_state = "musket_cartridge"
+	hud_state = "sniper_crude"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	handful_amount = 5
+	shell_speed = 3
+	max_range = 15
+	damage = 120
+	penetration = 10
+	sundering = 15
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/smoke/musket
+	bonus_projectiles_amount = 6
+	bonus_projectiles_scatter = 10
+
+/datum/ammo/bullet/tx54_spread/smoke/musket
+	name = "smoke wisp"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_LEAVE_TURF|AMMO_PASS_THROUGH_MOB
+	max_range = 3
+	damage = 0
+	penetration = 0
+	sundering = 0
+	shrapnel_chance = 0
+	bullet_color = COLOR_TRANSPARENT_SHADOW
+
+/datum/ammo/bullet/rifle/musket/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	staggerstun(target_mob, proj, max_range = 6, stagger = 2 SECONDS, knockback = 3, slowdown = 2.25)

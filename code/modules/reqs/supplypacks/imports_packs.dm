@@ -305,3 +305,15 @@ Imports
 	name = "Loot box"
 	contains = list(/obj/item/loot_box/marine)
 	cost = 500
+
+/datum/supply_packs/imports/musket
+	name = "Flintlock Musket"
+	contains = list(/obj/item/weapon/gun/rifle/musket)
+	containertype = /obj/structure/closet/crate/trashcart
+	cost = 50
+
+/datum/supply_packs/imports/musket/ammo
+	name = "Musket Ammo Belt"
+	contains = list(/obj/item/storage/belt/marine/musket/loaded)
+	containertype = /obj/structure/closet/crate/weapon
+	cost = 10

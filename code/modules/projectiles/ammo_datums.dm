@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(target, shooter, source, range, speed, new_angle, TRUE, loc_override = origin_override)
+		new_proj.fire_at(target, shooter, source, isnull(range) ? new_proj.proj_max_range : range, speed, new_angle, TRUE, loc_override = origin_override)
 
 ///A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
 /datum/ammo/proc/fire_directionalburst(atom/movable/projectile/main_proj, mob/living/shooter, atom/source, projectile_amount, angle, target, loc_override)

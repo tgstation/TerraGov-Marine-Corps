@@ -798,3 +798,17 @@
 	default_ammo = /datum/ammo/bullet/shotgun/breaching
 	max_rounds = 25
 	bonus_overlay = "cb31"
+
+// Flintlock Musket
+
+/obj/item/ammo_magazine/rifle/musket
+	name = "\improper flintlock musket paper cartridge (.58 caliber)"
+	desc = "A paper cartridge containing a .58 caliber ball and black powder, intended for use in a musket."
+	caliber = CALIBER_58_BALL
+	w_class = WEIGHT_CLASS_TINY
+	icon_state = "musket_cartridge"
+	icon_state_mini = "knife"
+	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
+	default_ammo = /datum/ammo/bullet/rifle/musket
+	max_rounds = 1
+	reload_delay = 40

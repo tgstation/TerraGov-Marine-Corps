@@ -82,6 +82,22 @@
 		knife.forceMove(loc)
 	qdel(src)
 
+/obj/item/attachable/bayonet/swordbayonet
+	name = "sword bayonet"
+	desc = "A long, sharp blade that is designed to be attached to a musket. It's significant length transforms the musket into a formidible melee weapon, but it makes it harder to shoulder, and reduces accuracy while moving."
+	icon_state = "swordbayonet"
+	throwforce = 10
+
+	attach_delay = 0.5 SECONDS
+	detach_delay = 0.5 SECONDS
+	slot = ATTACHMENT_SLOT_MUZZLE
+	melee_mod = 45
+	wield_delay_mod = 3.5
+	movement_acc_penalty_mod = 2
+	accuracy_mod = 0
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."

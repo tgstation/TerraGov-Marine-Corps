@@ -344,7 +344,7 @@
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
-		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
+		ammo.fire_bonus_projectiles(src, shooter, source, null, speed, dir_angle, target)
 
 	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, hit_atoms))
 		target.do_projectile_hit(src)
@@ -1042,7 +1042,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		//If we have the the right kind of ammo, we can fire several projectiles at once.
 		if(ammo.bonus_projectiles_amount)
-			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
+			ammo.fire_bonus_projectiles(src, shooter, source, null, speed, dir_angle, target)
 
 	if(source.Adjacent(target) && PROJECTILE_HIT_CHECK(target, src, null, FALSE, hit_atoms))
 		target.do_projectile_hit(src)

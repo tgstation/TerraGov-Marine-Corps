@@ -11,8 +11,8 @@
 
 	shoes = /obj/item/clothing/shoes/marinechief
 	head = /obj/item/clothing/head/redcoat
-	belt = /obj/item/storage/belt/shotgun/martini/full
-	back = /obj/item/weapon/gun/shotgun/double/martini
+	belt = /obj/item/storage/belt/marine/musket/loaded
+	back = /obj/item/weapon/gun/rifle/musket
 	r_pocket = /obj/item/storage/pouch/firstaid
 	l_pocket = /obj/item/storage/holster/flarepouch/full
 

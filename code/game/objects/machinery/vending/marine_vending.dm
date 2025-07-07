@@ -1702,6 +1702,9 @@
 			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
 			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/mbx900/tracking = -1,
+			/obj/item/weapon/gun/rifle/musket = -1,
+			/obj/item/storage/belt/marine/musket/loaded = -1,
+			/obj/item/ammo_magazine/rifle/musket = -1,
 		),
 		"Sons of Mars" = list(
 			/obj/item/weapon/gun/rifle/som = -1,
