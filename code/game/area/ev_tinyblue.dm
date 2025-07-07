@@ -3,6 +3,7 @@
 	icon_state = "blue"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_COLONY
+	always_unpowered = TRUE
 
 /area/tinyblue/outside/c
 	name = "Central Colony Grounds"
@@ -117,6 +118,7 @@
 	icon_state = "blue"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	always_unpowered = FALSE
 
 /area/tinyblue/outside/building/lz
 	name = "Space Port"
