@@ -1042,6 +1042,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/tinyblue/outside/ne)
+"bok" = (
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/tinyblue/caves/se)
 "bow" = (
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/tinyblue/outside/building/dorms/rec)
@@ -2842,6 +2847,13 @@
 	dir = 5
 	},
 /area/tinyblue/caves/facility/lambda)
+"dvT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	welded = 1
+	},
+/turf/open/floor/plating,
+/area/tinyblue/caves/se)
 "dvW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
@@ -3178,6 +3190,12 @@
 /obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/tinyblue/caves/facility/eta)
+"dRw" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	name = "\improper Lambda Lab Maintenance"
+	},
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
+/area/tinyblue/caves/rock)
 "dRJ" = (
 /obj/effect/turf_decal/warning_stripes/nscenter{
 	dir = 8
@@ -3740,8 +3758,8 @@
 	},
 /area/tinyblue/outside/building/marshal)
 "eFJ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
 	},
 /turf/open/floor/prison/plate,
 /area/tinyblue/caves/facility/omicron)
@@ -7935,6 +7953,7 @@
 "jOY" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor,
 /area/tinyblue/outside/building/cargo)
 "jPi" = (
@@ -10082,6 +10101,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta)
+"mtc" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/tinyblue/caves/se)
 "mtX" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/ground/ice,
@@ -11631,6 +11656,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med)
+"orG" = (
+/turf/open/floor/plating,
+/area/tinyblue/caves/se)
 "orQ" = (
 /turf/open/floor/plating,
 /area/tinyblue/caves/facility/lambda/n)
@@ -14602,6 +14630,10 @@
 	dir = 1
 	},
 /area/tinyblue/outside/building/med)
+"snY" = (
+/obj/structure/prop/turbine,
+/turf/open/floor/plating,
+/area/tinyblue/caves/se)
 "soa" = (
 /obj/structure/monorail{
 	dir = 9
@@ -15072,6 +15104,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/tinyblue/caves/facility/lambda/n)
+"sYC" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/se)
 "sYG" = (
 /obj/structure/table,
 /obj/structure/prop/urban/misc/coffeestuff/coffeemachine1,
@@ -16971,7 +17007,6 @@
 /obj/effect/landmark/corpsespawner/roboticist/regular,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/omicron)
 "viA" = (
@@ -18450,6 +18485,16 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblackdeco,
 /area/tinyblue/outside/building/dorms/rec)
+"xgU" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	name = "\improper Lambda Lab Maintenance"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/tinyblue/caves/facility/omicron)
 "xgV" = (
 /obj/machinery/light{
 	dir = 1
@@ -37821,7 +37866,7 @@ uJX
 uJX
 gjJ
 gjJ
-gjJ
+jsn
 uJX
 wyA
 sOH
@@ -38111,11 +38156,11 @@ gjJ
 gjJ
 wVM
 gjJ
-gjJ
+sYC
 uJX
-gjJ
-gjJ
-gjJ
+sYC
+sYC
+sYC
 uJX
 wNw
 oAo
@@ -38258,7 +38303,7 @@ uJX
 gjJ
 gjJ
 gjJ
-gjJ
+sYC
 gjJ
 eyt
 gjJ
@@ -38405,7 +38450,7 @@ uJX
 uJX
 uJX
 gjJ
-gjJ
+sYC
 gjJ
 gjJ
 gjJ
@@ -38553,10 +38598,10 @@ uJX
 uJX
 uJX
 uJX
-gjJ
-wVM
-gjJ
-jsn
+bok
+mtc
+bok
+bok
 uJX
 wyA
 iLX
@@ -38700,10 +38745,10 @@ uJX
 uJX
 uJX
 uJX
-gjJ
-gjJ
-gjJ
-gjJ
+orG
+orG
+snY
+dvT
 uJX
 wNw
 oAo
@@ -38850,7 +38895,7 @@ qLd
 qLd
 qLd
 qLd
-qLd
+xgU
 qLd
 qLd
 joi
@@ -41932,7 +41977,7 @@ ldL
 ldL
 ldL
 ldL
-ldL
+dRw
 ldL
 ldL
 ldL
