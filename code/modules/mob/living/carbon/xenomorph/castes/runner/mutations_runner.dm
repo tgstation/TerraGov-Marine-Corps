@@ -98,7 +98,7 @@
 /// If their health is negative, activate it if possible. If it is full, let them activate it next time.
 /datum/mutation_upgrade/shell/borrowed_time/proc/check_current_health()
 	if(critical_threshold_boosted && !critical_threshold_timer && xenomorph_owner.health <= xenomorph_owner.health_threshold_crit + critical_threshold_amount)
-		ADD_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, TRAIT_MUTATION)
+		ADD_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
 		var/borrowed_time_length = get_duration(get_total_structures())
 		xenomorph_owner.Stagger(borrowed_time_length)
 		critical_threshold_timer = addtimer(CALLBACK(src, PROC_REF(reverse_critical_threshold)), borrowed_time_length, TIMER_UNIQUE|TIMER_STOPPABLE)
@@ -111,7 +111,7 @@
 /// Effectively removes the effects of this mutation ands its active effect.
 /datum/mutation_upgrade/shell/borrowed_time/proc/reverse_critical_threshold()
 	toggle()
-	REMOVE_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, TRAIT_MUTATION)
+	REMOVE_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
 	deltimer(critical_threshold_timer)
 	critical_threshold_timer = null
 	xenomorph_owner.updatehealth()
