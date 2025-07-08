@@ -3056,6 +3056,7 @@
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/suppressor, // please forward all complaints to atropos (he asked me to)
 	)
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
