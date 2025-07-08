@@ -1042,11 +1042,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/tinyblue/outside/ne)
-"bok" = (
-/turf/open/floor/plating/warning{
-	dir = 8
-	},
-/area/tinyblue/caves/se)
 "bow" = (
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/tinyblue/outside/building/dorms/rec)
@@ -1487,6 +1482,13 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/spiralplate,
 /area/tinyblue/outside/building/engi/filt)
+"bSb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	welded = 1
+	},
+/turf/open/floor/plating,
+/area/tinyblue/caves/se)
 "bSj" = (
 /obj/item/weapon/gun/rifle/tx11,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2847,13 +2849,6 @@
 	dir = 5
 	},
 /area/tinyblue/caves/facility/lambda)
-"dvT" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	welded = 1
-	},
-/turf/open/floor/plating,
-/area/tinyblue/caves/se)
 "dvW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
@@ -3190,12 +3185,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/tinyblue/caves/facility/eta)
-"dRw" = (
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	name = "\improper Lambda Lab Maintenance"
-	},
-/turf/closed/mineral/smooth/darkfrostwall/indestructible,
-/area/tinyblue/caves/rock)
 "dRJ" = (
 /obj/effect/turf_decal/warning_stripes/nscenter{
 	dir = 8
@@ -3208,6 +3197,9 @@
 	},
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo)
+"dTs" = (
+/turf/open/floor/plating,
+/area/tinyblue/caves/se)
 "dTx" = (
 /obj/structure/safe,
 /turf/open/floor/wood,
@@ -4594,6 +4586,16 @@
 /obj/structure/prop/urban/containersextended/medicalright,
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo)
+"fSm" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	name = "\improper Lambda Lab Maintenance"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/tinyblue/caves/facility/omicron)
 "fSB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9560,6 +9562,10 @@
 /obj/machinery/light,
 /turf/open/floor/officetiles,
 /area/tinyblue/caves/facility/lambda/s)
+"lIM" = (
+/obj/structure/prop/turbine,
+/turf/open/floor/plating,
+/area/tinyblue/caves/se)
 "lJp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -10101,12 +10107,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta)
-"mtc" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/warning{
-	dir = 8
-	},
-/area/tinyblue/caves/se)
 "mtX" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/ground/ice,
@@ -10783,6 +10783,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
+/area/tinyblue/caves/facility/omicron)
+"nfX" = (
+/turf/closed/wall/r_wall/urban/invincible,
 /area/tinyblue/caves/facility/omicron)
 "ngs" = (
 /obj/effect/landmark/weed_node,
@@ -11656,9 +11659,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med)
-"orG" = (
-/turf/open/floor/plating,
-/area/tinyblue/caves/se)
 "orQ" = (
 /turf/open/floor/plating,
 /area/tinyblue/caves/facility/lambda/n)
@@ -11950,6 +11950,9 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/gray,
 /area/tinyblue/outside/building/cargo/shop)
+"oPQ" = (
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
+/area/tinyblue/caves/facility/omicron)
 "oQs" = (
 /obj/structure/prop/mainship/research/destructive_analyzer,
 /turf/open/floor/tile/dark,
@@ -12162,6 +12165,9 @@
 	dir = 8
 	},
 /area/tinyblue/caves/facility/omicron)
+"pbk" = (
+/turf/closed/wall/r_wall/urban/invincible,
+/area/tinyblue/caves/rock)
 "pbl" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/scientist,
@@ -13120,6 +13126,10 @@
 	dir = 4
 	},
 /area/tinyblue/caves/facility/eta)
+"qEm" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/se)
 "qEB" = (
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/lambda/n)
@@ -14630,10 +14640,6 @@
 	dir = 1
 	},
 /area/tinyblue/outside/building/med)
-"snY" = (
-/obj/structure/prop/turbine,
-/turf/open/floor/plating,
-/area/tinyblue/caves/se)
 "soa" = (
 /obj/structure/monorail{
 	dir = 9
@@ -15104,10 +15110,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/tinyblue/caves/facility/lambda/n)
-"sYC" = (
-/obj/structure/fence,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/se)
 "sYG" = (
 /obj/structure/table,
 /obj/structure/prop/urban/misc/coffeestuff/coffeemachine1,
@@ -15885,6 +15887,12 @@
 	dir = 4
 	},
 /area/tinyblue/outside/building/med)
+"tXP" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/tinyblue/caves/se)
 "tXU" = (
 /obj/effect/spawner/random/food_or_drink/donut,
 /obj/effect/spawner/random/food_or_drink/donut,
@@ -16714,6 +16722,11 @@
 	dir = 8
 	},
 /area/tinyblue/caves/facility/eta/e)
+"uTD" = (
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/tinyblue/caves/se)
 "uTY" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/ai_node,
@@ -18485,16 +18498,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblackdeco,
 /area/tinyblue/outside/building/dorms/rec)
-"xgU" = (
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	name = "\improper Lambda Lab Maintenance"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/tinyblue/caves/facility/omicron)
 "xgV" = (
 /obj/machinery/light{
 	dir = 1
@@ -36694,7 +36697,7 @@ xGy
 xGy
 uJX
 uJX
-uJX
+ldL
 ldL
 ldL
 ldL
@@ -36841,17 +36844,17 @@ uJX
 uJX
 uJX
 uJX
-uJX
 ldL
-ldL
-ldL
-ldL
-ldL
-ldL
-ldL
-ldL
-ldL
-ldL
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
 ldL
 kwo
 "}
@@ -36988,8 +36991,8 @@ uJX
 uJX
 uJX
 uJX
-uJX
 ldL
+oPQ
 bVz
 dtX
 dtX
@@ -37134,10 +37137,10 @@ gjJ
 gjJ
 uJX
 uJX
-uJX
-uJX
-bVz
-oHw
+qLd
+oPQ
+oPQ
+oPQ
 hKt
 hKt
 tVR
@@ -37280,11 +37283,11 @@ gjJ
 wVM
 gjJ
 uJX
-uJX
-uJX
+qLd
+qLd
 bVz
-oHw
-hKt
+oPQ
+oPQ
 qRt
 sBR
 gkz
@@ -37426,8 +37429,8 @@ gjJ
 gjJ
 gjJ
 uJX
-uJX
-uJX
+qLd
+qLd
 bVz
 oHw
 hKt
@@ -37573,7 +37576,7 @@ gjJ
 gjJ
 gjJ
 uJX
-uJX
+qLd
 bVz
 oHw
 hKt
@@ -37720,7 +37723,7 @@ gjJ
 wVM
 gjJ
 uJX
-uJX
+qLd
 wyA
 hKt
 qRt
@@ -37728,12 +37731,12 @@ jIO
 hKt
 bVz
 oHw
-ldL
-ldL
-ldL
-ldL
-ldL
-ldL
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
 ldL
 kwo
 "}
@@ -37867,15 +37870,15 @@ uJX
 gjJ
 gjJ
 jsn
-uJX
+qLd
 wyA
 sOH
 eDn
 gMq
 bVz
 oHw
-ldL
-ldL
+nfX
+nfX
 ldL
 ldL
 ldL
@@ -38014,14 +38017,14 @@ uJX
 gjJ
 gjJ
 gjJ
-uJX
+qLd
 wyA
 ter
 sKm
 vMe
 bsN
-ldL
-ldL
+nfX
+nfX
 ldL
 ldL
 ldL
@@ -38156,18 +38159,18 @@ gjJ
 gjJ
 wVM
 gjJ
-sYC
+qEm
 uJX
-sYC
-sYC
-sYC
-uJX
+qEm
+qEm
+qEm
+qLd
 wNw
 oAo
 fvi
 oAo
 wYf
-ldL
+nfX
 ldL
 ldL
 ldL
@@ -38303,18 +38306,18 @@ uJX
 gjJ
 gjJ
 gjJ
-sYC
+qEm
 gjJ
 eyt
 gjJ
 wVM
-uJX
+qLd
 wyA
 nUy
 sKm
 fqv
 bsN
-ldL
+nfX
 ldL
 ldL
 ldL
@@ -38450,18 +38453,18 @@ uJX
 uJX
 uJX
 gjJ
-sYC
+qEm
 gjJ
 gjJ
 gjJ
 gjJ
-uJX
+qLd
 wyA
 oWe
 eDn
 wwP
 bsN
-ldL
+nfX
 ldL
 ldL
 ldL
@@ -38598,17 +38601,17 @@ uJX
 uJX
 uJX
 uJX
-bok
-mtc
-bok
-bok
-uJX
+uTD
+tXP
+uTD
+uTD
+qLd
 wyA
 iLX
 sKm
 gOt
 bsN
-ldL
+nfX
 ldL
 ldL
 ldL
@@ -38745,17 +38748,17 @@ uJX
 uJX
 uJX
 uJX
-orG
-orG
-snY
-dvT
-uJX
+dTs
+dTs
+lIM
+bSb
+qLd
 wNw
 oAo
 fvi
 oAo
 wYf
-ldL
+nfX
 ldL
 ldL
 ldL
@@ -38895,7 +38898,7 @@ qLd
 qLd
 qLd
 qLd
-xgU
+fSm
 qLd
 qLd
 joi
@@ -41542,13 +41545,13 @@ ldL
 ldL
 uJX
 uJX
-uJX
+pbk
 wNw
 oAo
 tRv
 oAo
 wYf
-uJX
+pbk
 ldL
 ldL
 ldL
@@ -41689,13 +41692,13 @@ ldL
 ldL
 ldL
 ldL
-ldL
+pbk
 wyA
 nUy
 sKm
 fqv
 bsN
-ldL
+pbk
 ldL
 ldL
 ldL
@@ -41836,13 +41839,13 @@ ldL
 ldL
 ldL
 ldL
-ldL
+pbk
 wyA
 oWe
 eDn
 wwP
 bsN
-ldL
+pbk
 ldL
 ldL
 ldL
@@ -41977,19 +41980,19 @@ ldL
 ldL
 ldL
 ldL
-dRw
 ldL
 ldL
 ldL
 ldL
 ldL
 ldL
+pbk
 wyA
 iLX
 sKm
 gOt
 bsN
-ldL
+pbk
 ldL
 ldL
 ldL
@@ -42130,13 +42133,13 @@ ldL
 ldL
 ldL
 ldL
-ldL
+pbk
 kjD
 bmN
 bmN
 bmN
 tch
-ldL
+pbk
 ldL
 ldL
 ldL
