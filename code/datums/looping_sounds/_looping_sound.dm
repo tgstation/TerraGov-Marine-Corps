@@ -65,7 +65,7 @@
 	output_atoms = null
 	return ..()
 
-///Performs checks for looping and optinally adds a new atom to output_atoms, then calls [/datum/looping_sound/proc/on_start()]
+///Performs checks for looping and optionally adds a new atom to output_atoms, then calls [/datum/looping_sound/proc/on_start()]
 /datum/looping_sound/proc/start(atom/add_thing, skip_startsound = skip_starting_sounds)
 	if(add_thing)
 		output_atoms |= add_thing
@@ -73,7 +73,7 @@
 		return
 	on_start(skip_startsound)
 
-///Performs checks for ending looping and optinally removes an atom from output_atoms, then calls [/datum/looping_sound/proc/on_stop()]
+///Performs checks for ending looping and optionally removes an atom from output_atoms, then calls [/datum/looping_sound/proc/on_stop()]
 /datum/looping_sound/proc/stop(atom/remove_thing)
 	if(remove_thing)
 		output_atoms -= remove_thing

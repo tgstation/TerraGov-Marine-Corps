@@ -617,7 +617,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // *********** Abduct
 // ***************************************
 
-/datum/action/ability/activable/xeno/abduct
+/// Called when the throw has ended.
+/datum/action/ability/activable/xeno/oppressor/proc/on_post_throw(datum/source)
+	SIGNAL_HANDLER
+	SHOULD_CALL_PARENT(TRUE) // Because we don't want to forget to unregister the signal.
+	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
+
+/datum/action/ability/activable/xeno/oppressor/abduct
 	name = "Abduct"
 	action_icon_state = "abduct"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
@@ -633,13 +639,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/list/obj/effect/xeno/abduct_warning/telegraphed_atoms
 	/// A timer for when to conclude the ability.
 	var/ability_timer
+	/// Multiplies various effects by this number. Changes whenever one or more human mobs are caught.
+	var/last_known_multiplier = 1
 
-
-/datum/action/ability/activable/xeno/abduct/Destroy()
+/datum/action/ability/activable/xeno/oppressor/abduct/Destroy()
 	cleanup_variables()
 	return ..()
 
-/datum/action/ability/activable/xeno/abduct/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/oppressor/abduct/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -658,7 +665,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			A.balloon_alert(xeno_owner, "path blocked")
 		return FALSE
 
-/datum/action/ability/activable/xeno/abduct/use_ability(atom/A)
+/datum/action/ability/activable/xeno/oppressor/abduct/use_ability(atom/A)
 	var/turf/targetted_turf = get_turf(A)
 	while(get_dist(xeno_owner, targetted_turf) > 7) // Allows targetting beyond maximum range to automatically do maximum range.
 		targetted_turf = get_step(targetted_turf, REVERSE_DIR(get_dir(xeno_owner, targetted_turf)))
@@ -677,8 +684,17 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
 
+/datum/action/ability/activable/xeno/oppressor/abduct/on_post_throw(datum/source)
+	. = ..()
+	var/mob/living/carbon/human/human_source = source
+	human_source.Paralyze(0.2 SECONDS * last_known_multiplier)
+	human_source.add_slowdown(0.6 * last_known_multiplier)
+	human_source.adjust_stagger(3 SECONDS * last_known_multiplier)
+	REMOVE_TRAIT(human_source, TRAIT_IMMOBILE, THROW_TRAIT)
+	human_source.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
+
 /// Ends the ability by throwing all humans in the affected turfs to the initial turf.
-/datum/action/ability/activable/xeno/abduct/proc/pull_them_in()
+/datum/action/ability/activable/xeno/oppressor/abduct/proc/pull_them_in()
 	SIGNAL_HANDLER
 	var/list/mob/living/carbon/human/human_mobs = list()
 	for(var/turf/turf_from_line AS in turf_line)
@@ -690,25 +706,24 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				continue
 			if(human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
 				continue
-			human_mobs += target
+			human_mobs += human_mob
+			human_mob.allow_pass_flags |= (PASS_MOB|PASS_XENO) // Without this, groups of affected humans will bump into each other while being thrown.
 
-	for(var/mob/living/carbon/human/human_mob in human_mobs)
-		human_mob.throw_at(owner, 6, 2, turf_line[1], FALSE)
-		human_mob.Paralyze(0.5 SECONDS)
-		human_mob.add_slowdown(0.8 * human_mobs.len)
-		human_mob.adjust_stagger(4 SECONDS * human_mobs.len)
-		human_mob.apply_effect(human_mobs.len >= 3 ? 1.5 SECONDS : 0.5 SECONDS, EFFECT_PARALYZE)
-		INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE)
-
-	if(human_mobs.len)
-		xeno_owner.add_slowdown(0.4 * human_mobs.len)
+	last_known_multiplier = human_mobs.len
+	if(last_known_multiplier)
+		for(var/mob/living/carbon/human/human_mob in human_mobs)
+			RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
+			ADD_TRAIT(human_mob, TRAIT_IMMOBILE, THROW_TRAIT) // Given that this throw will be slow compared to other abilities, we do not want humans to move DURING it.
+			human_mob.throw_at(turf_line[1], 6, 2, xeno_owner, TRUE)
+			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE)
+		xeno_owner.add_slowdown(0.3 * last_known_multiplier)
 		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
 	succeed_activate()
 	add_cooldown()
 	cleanup_variables()
 
 /// Ends the ability by punishing the owner.
-/datum/action/ability/activable/xeno/abduct/proc/failed_pull()
+/datum/action/ability/activable/xeno/oppressor/abduct/proc/failed_pull()
 	SIGNAL_HANDLER
 	xeno_owner.Knockdown(1 SECONDS)
 	xeno_owner.add_slowdown(0.9)
@@ -716,8 +731,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	add_cooldown()
 	cleanup_variables()
 
-/// Cleans up any variables, signals, and undoes any traits that the ability gave.
-/datum/action/ability/activable/xeno/abduct/proc/cleanup_variables()
+/// Cleans up any unneeded variables, signals, and undoes any traits that the ability gave.
+/datum/action/ability/activable/xeno/oppressor/abduct/proc/cleanup_variables()
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
@@ -738,7 +753,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // ***************************************
 // *********** Dislocate
 // ***************************************
-/datum/action/ability/activable/xeno/dislocate
+/datum/action/ability/activable/xeno/oppressor/dislocate
 	name = "Dislocate"
 	action_icon_state = "punch"
 	action_icon = 'icons/Xeno/actions/warrior.dmi'
@@ -750,7 +765,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	)
 	target_flags = ABILITY_MOB_TARGET
 
-/datum/action/ability/activable/xeno/dislocate/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/oppressor/dislocate/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -770,7 +785,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		carbon_target.balloon_alert(xeno_owner, "already dead")
 		return FALSE
 
-/datum/action/ability/activable/xeno/dislocate/use_ability(atom/target)
+/datum/action/ability/activable/xeno/oppressor/dislocate/use_ability(atom/target)
 	var/mob/living/carbon/carbon_target = target
 	var/datum/limb/target_limb = carbon_target.get_limb(xeno_owner.zone_selected)
 	if(!target_limb || (target_limb.limb_status & LIMB_DESTROYED))
@@ -783,13 +798,18 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	new /obj/effect/temp_visual/warrior/punch/weak(get_turf(carbon_target))
 	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
 
-	carbon_target.apply_effect(1 SECONDS, EFFECT_PARALYZE)
-	carbon_target.adjust_stagger(3 SECONDS)
-	carbon_target.knockback(xeno_owner, 2, 2)
+	RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
+	carbon_target.throw_at(get_step(carbon_target, get_dir(xeno_owner, carbon_target)), 2, 2, xeno_owner, TRUE)
 	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
 
 	succeed_activate()
 	add_cooldown()
+
+/datum/action/ability/activable/xeno/oppressor/dislocate/on_post_throw(datum/source)
+	. = ..()
+	var/mob/living/carbon/carbon_source = source
+	carbon_source.Paralyze(0.8 SECONDS)
+	carbon_source.adjust_stagger(2.4 SECONDS)
 
 // ***************************************
 // *********** Item Throw
@@ -940,7 +960,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // ***************************************
 // *********** Tail Lash
 // ***************************************
-/datum/action/ability/activable/xeno/tail_lash
+/datum/action/ability/activable/xeno/oppressor/tail_lash
 	name = "Tail Lash"
 	action_icon_state = "tail_lash"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
@@ -953,7 +973,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TAIL_LASH_SELECT,
 	)
 
-/datum/action/ability/activable/xeno/tail_lash/use_ability(atom/target)
+/datum/action/ability/activable/xeno/oppressor/tail_lash/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
 	var/turf/lower_left
@@ -980,9 +1000,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			var/mob/living/carbon/human/affected_human = affected
 			if(affected_human.stat == DEAD)
 				continue
-			affected_human.Paralyze(1 SECONDS)
-			affected_human.apply_effect(1 SECONDS, EFFECT_PARALYZE)
-			affected_human.adjust_stagger(3 SECONDS)
+			RegisterSignal(affected_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE)
 			var/throwlocation = affected_human.loc
 			for(var/x in 1 to 2)
@@ -995,10 +1013,16 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 	add_cooldown()
 
+/datum/action/ability/activable/xeno/oppressor/tail_lash/on_post_throw(datum/source)
+	. = ..()
+	var/mob/living/carbon/human/human_source = source
+	human_source.Paralyze(0.8 SECONDS)
+	human_source.adjust_stagger(2.4 SECONDS)
+
 // ***************************************
 // *********** Advance (Oppressor)
 // ***************************************
-/datum/action/ability/activable/xeno/advance_oppressor
+/datum/action/ability/activable/xeno/oppressor/advance
 	name = "Advance"
 	action_icon_state = "advance"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
@@ -1009,7 +1033,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR,
 	)
 
-/datum/action/ability/activable/xeno/advance_oppressor/use_ability(atom/target)
+/datum/action/ability/activable/xeno/oppressor/advance/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 	if(!do_after(xeno_owner, 0.8 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
 		return
@@ -1026,29 +1050,35 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 	add_cooldown()
 
+/// Called when the throw has ended for the impacted human.
+/datum/action/ability/activable/xeno/oppressor/advance/on_post_throw(datum/source)
+	. = ..()
+	var/mob/living/living_source = source
+	living_source.Paralyze(1.5 SECONDS)
+
 /// Shake the turf under for cool points.
-/datum/action/ability/activable/xeno/advance_oppressor/proc/on_move(datum/source)
+/datum/action/ability/activable/xeno/oppressor/advance/proc/on_move(datum/source)
 	SIGNAL_HANDLER
 	var/turf/current_turf = get_turf(source)
 	current_turf.Shake(duration = 0.2 SECONDS)
 
 /// Ends the charge when hitting an object.
-/datum/action/ability/activable/xeno/advance_oppressor/proc/obj_hit(datum/source, obj/obj_hit, speed)
+/datum/action/ability/activable/xeno/oppressor/advance/proc/obj_hit(datum/source, obj/obj_hit, speed)
 	SIGNAL_HANDLER
 	obj_hit.hitby(xeno_owner, speed)
 
 /// Ends the charge when hitting a human. Knocks them back pretty far.
-/datum/action/ability/activable/xeno/advance_oppressor/proc/mob_hit(datum/source, mob/living/living_hit)
+/datum/action/ability/activable/xeno/oppressor/advance/proc/mob_hit(datum/source, mob/living/living_hit)
 	SIGNAL_HANDLER
 	if(!ishuman(living_hit) || living_hit.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return
 
-	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), 5, 5, src)
-	living_hit.apply_effect(2 SECONDS, EFFECT_PARALYZE)
+	RegisterSignal(living_hit, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
+	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), 5, 5, xeno_owner, TRUE)
 	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE)
 
 /// Cleans up after charge is finished.
-/datum/action/ability/activable/xeno/advance_oppressor/proc/charge_complete()
+/datum/action/ability/activable/xeno/oppressor/advance/proc/charge_complete()
 	SIGNAL_HANDLER
 	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
 	xeno_owner.xeno_flags &= ~XENO_LEAPING

@@ -94,6 +94,8 @@
 	magic_bullshit.fire_at(target, xeno_owner, xeno_owner, PYROGEN_FIREBALL_MAXDIST, PYROGEN_FIREBALL_SPEED)
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.pyrogen_fireballs++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "pyrogen_fireballs")
 
 /datum/action/ability/activable/xeno/fireball/ai_should_start_consider()
 	return TRUE
@@ -157,6 +159,8 @@
 
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.pyrogen_firestorms++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "pyrogen_firestorms")
 
 /datum/action/ability/activable/xeno/firestorm/ai_should_start_consider()
 	return TRUE
@@ -213,6 +217,8 @@
 
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.pyrogen_infernos++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "pyrogen_infernos")
 
 // ***************************************
 // *********** Infernal Trigger
