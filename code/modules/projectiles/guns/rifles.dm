@@ -1415,6 +1415,7 @@
 	actions_types = list()
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	gun_features_flags = GUN_IS_ATTACHMENT|GUN_WIELDED_FIRING_ONLY|GUN_ATTACHMENT_FIRE_ONLY|GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
+	attach_features_flags = NONE
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.25
 	pixel_shift_x = 18
