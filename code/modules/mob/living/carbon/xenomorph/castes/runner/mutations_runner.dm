@@ -19,7 +19,7 @@
 /datum/mutation_upgrade/shell/upfront_evasion/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
-		return FALSE
+		return
 	evasion.auto_evasion_togglable = FALSE
 	if(evasion.auto_evasion) // Turning it off and giving them the notification it happened.
 		evasion.alternate_action_activate()
@@ -28,7 +28,7 @@
 /datum/mutation_upgrade/shell/upfront_evasion/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
-		return FALSE
+		return
 	evasion.auto_evasion_togglable = initial(evasion.auto_evasion_togglable)
 	if(!evasion.auto_evasion) // Turning it on (since most Runners like auto-evasion) and giving them the notification it happened.
 		evasion.alternate_action_activate()
@@ -40,7 +40,7 @@
 		return
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
-		return FALSE
+		return
 	evasion.evasion_starting_duration += get_duration(new_amount - previous_amount)
 
 /// Returns the amount of seconds that is added to Evasion's starting duration.
@@ -242,14 +242,14 @@
 /datum/mutation_upgrade/spur/sneak_attack/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.dim_bonus_multiplier += get_multiplier(0)
 	return ..()
 
 /datum/mutation_upgrade/spur/sneak_attack/on_mutation_disabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.dim_bonus_multiplier -= get_multiplier(0)
 	return ..()
 
@@ -259,7 +259,7 @@
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.dim_bonus_multiplier += get_multiplier(new_amount - previous_amount, FALSE)
 
 /// Returns the amount to increase Pounce's dim light damage multiplier.
@@ -282,14 +282,14 @@
 /datum/mutation_upgrade/spur/right_here/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.upclose_bonus_multiplier += get_multiplier(0)
 	return ..()
 
 /datum/mutation_upgrade/spur/right_here/on_mutation_disabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.upclose_bonus_multiplier -= get_multiplier(0)
 	return ..()
 
@@ -299,7 +299,7 @@
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.upclose_bonus_multiplier += get_multiplier(new_amount - previous_amount, FALSE)
 
 /// Returns the amount to increase Pounce's distance damage multiplier.
@@ -323,7 +323,7 @@
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.savage_plasma_conversion_rate += get_conversion_rate(new_amount - previous_amount)
 
 /// Returns the amount to increase Savage's plasma-to-damage conversion rate.
@@ -349,7 +349,7 @@
 /datum/mutation_upgrade/veil/headslam/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.stun_duration -= initial(pounce.stun_duration) * (1 - stun_duration_multiplier)
 	pounce.self_immobilize_duration -= initial(pounce.self_immobilize_duration) * (1 - stun_duration_multiplier)
 	return ..()
@@ -357,7 +357,7 @@
 /datum/mutation_upgrade/veil/headslam/on_mutation_disabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.stun_duration += initial(pounce.stun_duration) / (1 - stun_duration_multiplier)
 	pounce.self_immobilize_duration += initial(pounce.self_immobilize_duration) * (1 - stun_duration_multiplier)
 	return ..()
@@ -368,7 +368,7 @@
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.savage_debuff_amount += get_debuff_duration(new_amount - previous_amount, FALSE)
 
 /// Returns the amount of deciseconds to confuse and blur by.
@@ -391,14 +391,14 @@
 /datum/mutation_upgrade/veil/frenzy/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.savage_damage_conversion_rate += get_conversion_rate(0)
 	return ..()
 
 /datum/mutation_upgrade/veil/frenzy/on_mutation_disabled()
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.savage_damage_conversion_rate -= get_conversion_rate(0)
 	return ..()
 
@@ -408,7 +408,7 @@
 		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
-		return FALSE
+		return
 	pounce.savage_damage_conversion_rate += get_conversion_rate(new_amount - previous_amount, FALSE)
 
 /// Returns the rate in which Savage damage is converted to melee damage multiplier.
@@ -434,7 +434,7 @@
 /datum/mutation_upgrade/veil/passing_glance/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
-		return FALSE
+		return
 	evasion.evasion_passthrough = TRUE
 	evasion.passthrough_confusion_length += get_duration(0)
 	return ..()
@@ -442,7 +442,7 @@
 /datum/mutation_upgrade/veil/passing_glance/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
-		return FALSE
+		return
 	evasion.evasion_passthrough = FALSE
 	evasion.passthrough_confusion_length -= get_duration(0)
 	return ..()
@@ -453,7 +453,7 @@
 		return
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
-		return FALSE
+		return
 	evasion.passthrough_confusion_length += get_duration(new_amount - previous_amount, FALSE)
 
 /// Returns the amount of deciseconds that Evasion will confuse humans who are passed through.
