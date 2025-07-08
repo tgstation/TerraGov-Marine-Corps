@@ -14,6 +14,7 @@
 	explosion_block = 4
 
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 15, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 /turf/closed/wall/r_wall/get_acid_delay()
 	return 10 SECONDS
