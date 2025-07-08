@@ -2033,6 +2033,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\ravager\ravager.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\runner\abilities_runner.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\runner\castedatum_runner.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\runner\mutations_runner.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\runner\runner.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\scorpion\castedatum_scorpion.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\scorpion\scorpion.dm"
