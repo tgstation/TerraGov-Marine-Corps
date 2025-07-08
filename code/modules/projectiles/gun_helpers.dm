@@ -520,7 +520,6 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		balloon_alert(usr, "Cannot toggle ejection")
 		return
 
-
 	if(length(acceptable_guns) == 1)
 		var/obj/item/weapon/gun/chosen_gun = acceptable_guns[1]
 		TOGGLE_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
