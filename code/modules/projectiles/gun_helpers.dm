@@ -526,7 +526,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 		return
 
-	INVOKE_ASYNC(src, PROC_REF(select_auto_eject), usr, acceptable_guns)
+	INVOKE_ASYNC(src, PROC_REF(handle_auto_eject_async), usr, acceptable_guns)
 
 /// Offers a list to choose from. The selected weapon will have their auto ejection toggled.
 /obj/item/weapon/gun/proc/handle_auto_eject_async(user, list/obj/item/weapon/gun/acceptable_guns)
