@@ -32,7 +32,6 @@ GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
 #define MUTATION_SPUR_ALERT /atom/movable/screen/alert/spur
 #define MUTATION_VEIL_ALERT /atom/movable/screen/alert/veil
 
-
 /// Name of each mutation structure/category.
 #define MUTATION_SHELL "shell"
 #define MUTATION_SPUR "spur"
