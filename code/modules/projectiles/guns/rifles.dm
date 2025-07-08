@@ -3024,7 +3024,7 @@
 	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/shotgun.dmi'
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh410.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
-	caliber = CALIBER_410 //same as the MBX
+	caliber = CALIBER_410_AUTOSHOTGUN //same as the MBX
 	max_shells = 15 //vs 12 on ts15
 	force = 20
 	wield_delay =  0.8 SECONDS
@@ -3066,7 +3066,7 @@
 	fire_delay = 0.6 SECONDS
 	burst_amount = 3
 	burst_scatter_mult = 2
-	burst_delay = 0.4 SECONDS
+	burst_delay = 0.3 SECONDS
 	extra_delay = 1.3 SECONDS
 	accuracy_mult = 1
 	scatter = 2
