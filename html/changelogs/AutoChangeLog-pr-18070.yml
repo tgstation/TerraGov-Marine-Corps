@@ -1,0 +1,4 @@
+author: "jonash07"
+delete-after: True
+changes:
+  - bugfix: "Fixes howi and mortar guis displaying NaN for latitude offset"
