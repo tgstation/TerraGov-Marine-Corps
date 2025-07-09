@@ -884,6 +884,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajO" = (
@@ -891,6 +892,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajP" = (
@@ -899,6 +901,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajQ" = (
@@ -907,6 +910,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajT" = (
@@ -989,6 +993,7 @@
 /area/bigredv2/outside/marshal_office)
 "ako" = (
 /obj/item/detective_scanner,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "akp" = (
@@ -1016,6 +1021,7 @@
 	name = "\improper Marshal Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "akw" = (
@@ -1141,6 +1147,7 @@
 	dir = 1;
 	name = "\improper Marshal Office"
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "akS" = (
@@ -1149,14 +1156,11 @@
 /area/bigredv2/outside/marshal_office)
 "akT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "akU" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Office Complex 2";
-	name = "\improper Marshal Office Complex Shutters"
-	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "akW" = (
@@ -1259,6 +1263,10 @@
 /area/bigredv2/outside/marshal_office)
 "alC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
+/obj/structure/cable,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "alF" = (
@@ -2992,6 +3000,7 @@
 	},
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aCJ" = (
@@ -8261,6 +8270,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "dxa" = (
@@ -9336,6 +9346,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/shoes/black,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "fVM" = (
@@ -10242,6 +10253,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "hWw" = (
@@ -10256,6 +10268,15 @@
 "hXy" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
+"hXz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
 "hXQ" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/blue2,
@@ -10539,12 +10560,10 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "iEW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
+/turf/open/floor/grimy,
+/area/bigredv2/outside/marshal_office)
 "iFp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -11536,6 +11555,14 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/space_port)
+"kyZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
 "kzl" = (
 /obj/machinery/light{
 	dir = 1
@@ -11694,6 +11721,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "kVM" = (
@@ -12637,6 +12665,7 @@
 "ncW" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ndi" = (
@@ -13336,6 +13365,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ozz" = (
@@ -14788,6 +14818,12 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"rNl" = (
+/obj/structure/cable,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
 "rNZ" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -15466,6 +15502,7 @@
 "twH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "twI" = (
@@ -16005,12 +16042,12 @@
 /turf/open/floor/plating/ground/mars/cavetodirt,
 /area/bigredv2/caves/northeast/garbledradio)
 "uFc" = (
-/obj/structure/cable,
 /obj/machinery/power/geothermal/tbg{
 	dir = 4
 	},
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
+/obj/structure/cable,
+/turf/open/floor/grimy,
+/area/bigredv2/outside/marshal_office)
 "uFe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17484,12 +17521,10 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "xLL" = (
+/obj/machinery/power/tbg_turbine/heat,
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
+/turf/open/floor/grimy,
+/area/bigredv2/outside/marshal_office)
 "xLT" = (
 /obj/machinery/light{
 	dir = 4
@@ -37618,7 +37653,7 @@ wdZ
 lGe
 acp
 agz
-wWX
+hXz
 xnM
 acp
 acp
@@ -37834,7 +37869,7 @@ lGe
 ozk
 ako
 akR
-agz
+rNl
 kUV
 aic
 aer
@@ -38048,7 +38083,7 @@ lGe
 aer
 aiL
 lGe
-ote
+hsr
 lGe
 acp
 agz
@@ -38482,7 +38517,7 @@ acp
 acp
 aiN
 lGe
-wdZ
+kyZ
 akq
 acp
 acr
@@ -40218,7 +40253,7 @@ ahu
 lGe
 lGe
 lGe
-wdZ
+kyZ
 ajj
 acp
 luR
@@ -40522,7 +40557,7 @@ bkv
 boX
 bpo
 xTt
-xLL
+bqp
 uWz
 wOO
 nRv
@@ -40739,7 +40774,7 @@ bou
 bkE
 fOe
 liH
-uFc
+bqp
 liH
 lfR
 wOO
@@ -40956,7 +40991,7 @@ pOu
 bkE
 bpo
 wKN
-iEW
+bqp
 uWz
 bkE
 brZ
@@ -41089,7 +41124,7 @@ lGe
 aCB
 akv
 akT
-alC
+iEW
 twH
 alC
 qYI
@@ -41308,7 +41343,7 @@ acp
 adW
 alB
 mZU
-alB
+uFc
 alB
 alB
 adW
@@ -41525,7 +41560,7 @@ aer
 akS
 oCF
 amC
-alB
+xLL
 anH
 oCF
 apa
@@ -42609,7 +42644,7 @@ gQv
 gzM
 rCn
 twI
-rww
+gzM
 gzM
 gzM
 twI
