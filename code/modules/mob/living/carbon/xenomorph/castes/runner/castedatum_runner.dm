@@ -117,6 +117,8 @@
 		/datum/action/ability/xeno_action/xenohide,
 	)
 
+	mutations = list()
+
 /datum/xeno_caste/runner/melter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
