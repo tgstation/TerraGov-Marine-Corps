@@ -243,9 +243,22 @@
 		/datum/action/ability/activable/xeno/drain_sting,
 		/datum/action/ability/xeno_action/sow,
 		/datum/action/ability/xeno_action/build_hugger_turret,
+		/datum/action/ability/activable/xeno/inject_egg_neurogas,
+		/datum/action/ability/xeno_action/steam_rush,
+		/datum/action/ability/xeno_action/endure,
+		/datum/action/ability/xeno_action/reagent_slash,
+		/datum/action/ability/activable/xeno/psychic_summon,
+		/datum/action/ability/activable/xeno/acidic_missile,
+		/datum/action/ability/activable/xeno/web_hook,
+		/datum/action/ability/activable/xeno/leash_ball,
+		/datum/action/ability/xeno_action/mirage,
+		/datum/action/ability/activable/xeno/feast,
+		/datum/action/ability/activable/xeno/psy_blast,
+
 	)
 	///List of all the parent abilties that should have themselves and all of their children also blacklisted
 	var/list/parent_blacklist_abilties = list(
+		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/activable/xeno/bull_charge,
 		/datum/action/ability/xeno_action/stealth,
 		/datum/action/ability/xeno_action/toggle_long_range,
@@ -256,22 +269,21 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/plant_weeds,
-		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/activable/xeno/transfer_plasma,
 		/datum/action/ability/xeno_action/ready_charge,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/tarot_deck_container,
-
+		/datum/action/ability/activable/xeno/xeno_spit,
 	)
 	///List of all castes that should have all of their abilties removed.
 	var/list/blacklist_castes = list(
-		new /datum/xeno_caste/wraith/primordial, ///no fun allowed
-		new /datum/xeno_caste/hivemind, ///No combat abilties
-		new /datum/xeno_caste/jester/primordial, ///Buggy
-		new /datum/xeno_caste/dragon, // no fun allowed
-		new /datum/xeno_caste/king/conqueror, ///Unbalanced and buggy
-		new /datum/xeno_caste/behemoth, ///Abilties rely on alot of snowflake maptext in order to not runntime
+		/datum/xeno_caste/wraith = XENO_UPGRADE_PRIMO, // no fun allowed
+		/datum/xeno_caste/hivemind = XENO_UPGRADE_BASETYPE, // No combat abilties
+		/datum/xeno_caste/jester = XENO_UPGRADE_PRIMO, // Buggy
+		/datum/xeno_caste/dragon = XENO_UPGRADE_PRIMO, // no fun allowed
+		/datum/xeno_caste/king/conqueror = XENO_UPGRADE_PRIMO, // Unbalanced and buggy
+		/datum/xeno_caste/behemoth = XENO_UPGRADE_PRIMO, // Buggy
 	)
 
 GLOBAL_LIST_INIT(tarot_deck_actions, list())
@@ -279,7 +291,8 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 /datum/action/ability/xeno_action/tarot_deck/give_action(mob/living/L)
 	. = ..()
 	if(length(GLOB.tarot_deck_actions) == 0) //If the actions list is empty, this is the first tikme this round a jester has evolved, and the list must be constructed
-		for(var/datum/xeno_caste/i AS in blacklist_castes)
+		for(var/y in blacklist_castes)
+			var/datum/xeno_caste/i = GLOB.xeno_caste_datums[y][blacklist_castes[y]]
 			for(var/x in i.actions)
 				blacklist_actions += x
 		for(var/i in parent_blacklist_abilties)
@@ -430,32 +443,32 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	///How much plasma was added by this ability on use.
 	var/added_plasma
 
-	///Whitelist of the most common castes, 50% chance
+	///Whitelist of the most common castes, 40% chance
 	var/list/common_castes = list(
-		new /datum/xeno_caste/runner,
-		new /datum/xeno_caste/defender,
-		new /datum/xeno_caste/sentinel,
+		/datum/xeno_caste/runner,
+		/datum/xeno_caste/defender,
+		/datum/xeno_caste/sentinel,
 	)
 
-	///Whitelist of the somewhat common castes, 30% chance
+	///Whitelist of the somewhat common castes, 35% chance
 	var/list/uncommon_castes = list(
-		new /datum/xeno_caste/bull,
-		new /datum/xeno_caste/carrier,
-		new /datum/xeno_caste/spitter,
+		/datum/xeno_caste/bull,
+		/datum/xeno_caste/carrier,
+		/datum/xeno_caste/spitter,
 	)
 
-	///Whitelist of the somewhat rare castes, 15% chance
+	///Whitelist of the somewhat rare castes, 20% chance
 	var/list/rare_castes = list(
-		new /datum/xeno_caste/warrior,
-		new /datum/xeno_caste/warlock,
-		new /datum/xeno_caste/crusher,
-		new /datum/xeno_caste/ravager,
+		/datum/xeno_caste/warrior,
+		/datum/xeno_caste/warlock,
+		/datum/xeno_caste/crusher,
+		/datum/xeno_caste/ravager,
 	)
 
 	///Whitelist of the very rare castes, 5% chance
 	var/list/ultrare_castes = list(
-		new /datum/xeno_caste/queen,
-		new /datum/xeno_caste/defiler,
+		/datum/xeno_caste/queen,
+		/datum/xeno_caste/defiler,
 	)
 
 	///Blacklisted abilties, etiher to avoid buggy behaviour, duplicated abilties, or just general unbalancedness
@@ -472,22 +485,26 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		/datum/action/toggle_seethrough,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/place_pattern,
+		/datum/action/ability/xeno_action/toggle_crest_defense,
+		/datum/action/ability/xeno_action/fortify,
 	)
 
 	///The temporarily added abilties
 	var/list/added_ablties = list()
 
 /datum/action/ability/xeno_action/doppelganger/action_activate()
+	var/caste_type_path
 	var/datum/xeno_caste/picked_caste
 	switch(rand(1,100))
-		if(1 to 50)
-			picked_caste = pick(common_castes)
-		if(51 to 80)
-			picked_caste = pick(uncommon_castes)
-		if(81 to 95)
-			picked_caste = pick(rare_castes)
+		if(1 to 40)
+			caste_type_path = pick(common_castes)
+		if(41 to 75)
+			caste_type_path = pick(uncommon_castes)
+		if(75 to 95)
+			caste_type_path = pick(rare_castes)
 		if(96 to 100)
-			picked_caste = pick(ultrare_castes)
+			caste_type_path = pick(ultrare_castes)
+	picked_caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
 	for(var/action in picked_caste.actions)
 		if(!(action in blacklist_abilties))
 			if(ispath(action, /datum/action/ability/xeno_action))
@@ -523,7 +540,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 			ability.remove_action(xeno_owner)
 			added_ablties -= action
 		qdel(action)
-	xeno_owner.plasma_stored -= added_plasma
+	xeno_owner.plasma_stored = max(xeno_owner.plasma_stored - added_plasma, 0)
 	added_plasma = 0
 	xeno_owner.remove_filter("doppelganger_outline")
 	var/mob/living/carbon/xenomorph/jester/jestermob = xeno_owner

@@ -29,26 +29,11 @@
 	var/mob/living/carbon/xenomorph/owner
 	alpha = 180
 
-/mob/living/carbon/xenomorph/jester/proc/update_doppelganger_overlay()
-	if(!doppleganger_overlay)
+/mob/living/carbon/xenomorph/jester/setDir(newdir)
+	. = ..()
+	if((doppelganger_caste == null))
 		return
-	if(!(doppelganger_caste == null))
-		doppleganger_overlay.icon_state = ""
-		return
-	var/mob/living/carbon/xenomorph = doppelganger_caste.caste_type_path
-	doppleganger_overlay.icon_state = xenomorph.icon_state
-	doppleganger_overlay.icon = xenomorph.icon
-	if(stat == DEAD)
-		doppleganger_overlay.icon_state = "[xenomorph.icon_state] Dead"
-		return
-	if(lying_angle)
-		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-			doppleganger_overlay.icon_state = "[xenomorph.icon_state] Sleeping"
-			return
-		doppleganger_overlay.icon_state = "[xenomorph.icon_state] Knocked Down"
-		return
-	doppleganger_overlay.icon_state = "[xenomorph.icon_state]"
-	switch(dir)
+	switch(newdir)
 		if(NORTH)
 			doppleganger_overlay.pixel_x = 18
 			doppleganger_overlay.pixel_y = 20
@@ -65,6 +50,25 @@
 			doppleganger_overlay.pixel_x = -6
 			doppleganger_overlay.pixel_y = 20
 			doppleganger_overlay.layer = ABOVE_MOB_LAYER
+
+/mob/living/carbon/xenomorph/jester/proc/update_doppelganger_overlay()
+	if(!doppleganger_overlay)
+		return
+	if((doppelganger_caste == null))
+		doppleganger_overlay.icon_state = ""
+		return
+	var/mob/living/carbon/xenomorph = doppelganger_caste.caste_type_path
+	doppleganger_overlay.icon_state = xenomorph.icon_state
+	doppleganger_overlay.icon = xenomorph.icon
+	if(stat == DEAD)
+		doppleganger_overlay.icon_state = "[doppelganger_caste.caste_name] Dead"
+		return
+	if(lying_angle)
+		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
+			doppleganger_overlay.icon_state = "[doppelganger_caste.caste_name] Sleeping"
+			return
+		doppleganger_overlay.icon_state = "[doppelganger_caste.caste_name] Knocked Down"
+		return
 
 /mob/living/carbon/xenomorph/jester/update_icons(state_change = TRUE)
 	. = ..()
@@ -115,16 +119,18 @@
 	if(update_state)
 		chipcontainer.gamblestate += 1
 	if(chipcontainer.gamblestate != 4)
-		hud_used.jester_call_button.icon_state = "gamble_ui_call_off"
-		hud_used.jester_hold_button.icon_state = "gamble_ui_hold_off"
+		if(hud_used)
+			hud_used.jester_call_button.icon_state = "gamble_ui_call_off"
+			hud_used.jester_hold_button.icon_state = "gamble_ui_hold_off"
+			hud_used.jester_gamble_bar.icon_state = "gamble_bar_[chipcontainer.gamblestate]"
 		if(update_state)
 			addtimer(CALLBACK(src, PROC_REF(hud_set_gamble_bar)), 15 SECONDS)
-		hud_used.jester_gamble_bar.icon_state = "gamble_bar_[chipcontainer.gamblestate]"
 	else
 		playsound_local(get_turf(src),'sound/misc/gamblealert.ogg', 50, 1)
-		hud_used.jester_gamble_bar.icon_state = "gamble_bar_4"
-		hud_used.jester_call_button.icon_state = "gamble_ui_call_on"
-		hud_used.jester_hold_button.icon_state = "gamble_ui_hold_on"
+		if(hud_used)
+			hud_used.jester_gamble_bar.icon_state = "gamble_bar_4"
+			hud_used.jester_call_button.icon_state = "gamble_ui_call_on"
+			hud_used.jester_hold_button.icon_state = "gamble_ui_hold_on"
 		if(update_state)
 			chipcontainer.force_gamble_timer = addtimer(CALLBACK(src, PROC_REF(force_gamble)), 30 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 			balloon_alert(src, "Must gamble in 30 seconds!")
