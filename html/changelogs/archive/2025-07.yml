@@ -28,3 +28,6 @@
   - balance: Advance now paralyzes for 1.5 seconds (from 2).
   - bugfix: Abduct no longer causes affected humans to collide with other affected
       humans while being thrown.
+2025-07-09:
+  mudzbe:
+  - balance: TE-9001 heavy laser emplacement cost reduced
