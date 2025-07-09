@@ -529,6 +529,7 @@
 	icon_state = "floortube_empty"
 	base_icon_state = "floortube"
 	layer = MAP_SWITCH(ABOVE_OPEN_TURF_LAYER, LOW_OBJ_LAYER)
+	plane = FLOOR_PLANE
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
@@ -542,6 +543,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_TABLE_LAYER
+	plane = FLOOR_PLANE
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
