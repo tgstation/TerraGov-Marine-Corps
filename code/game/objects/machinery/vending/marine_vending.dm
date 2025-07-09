@@ -818,7 +818,7 @@
 			/obj/item/mecha_ammo/vendable/sniper = -1,
 			/obj/item/mecha_ammo/vendable/grenade = -1,
 			/obj/item/mecha_ammo/vendable/flamer = -1,
-			/obj/item/mecha_ammo/vendable/rpg = -1,
+			/obj/item/mecha_ammo/vendable/rpg = 2,
 		)
 	)
 
@@ -1986,7 +1986,7 @@
 			/obj/item/mecha_ammo/vendable/smg = -1,
 			/obj/item/mecha_ammo/vendable/burstpistol = -1,
 			/obj/item/mecha_ammo/vendable/pistol = -1,
-			/obj/item/mecha_ammo/vendable/rpg = -1,
+			/obj/item/mecha_ammo/vendable/rpg = 2,
 			/obj/item/mecha_ammo/vendable/minigun = -1,
 			/obj/item/mecha_ammo/vendable/grenade = -1,
 		),
