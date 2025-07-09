@@ -5469,7 +5469,6 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/obj/effect/mapping_helpers/weld_vents,
 /turf/open/floor/prison/plate,
 /area/tinyblue/caves/facility/omicron)
 "gQQ" = (
@@ -11159,7 +11158,6 @@
 	dir = 8;
 	welded = 1
 	},
-/obj/effect/mapping_helpers/weld_vents,
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/omicron)
 "nDq" = (
