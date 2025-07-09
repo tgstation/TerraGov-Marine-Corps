@@ -39948,6 +39948,16 @@
 	},
 /turf/open/floor/prison,
 /area/prison/hangar/civilian)
+"epK" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison/sterilewhite,
+/area/prison/residential/south)
 "epY" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/prison/yellow/full,
@@ -43935,16 +43945,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/se)
-"mKE" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/residential/south)
 "mKH" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -44823,12 +44823,6 @@
 "okw" = (
 /turf/open/floor/wood,
 /area/prison/library)
-"onm" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/prison/cellblock/highsec/south/south)
 "ooN" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -45195,10 +45189,6 @@
 	dir = 4
 	},
 /area/prison/hallway/central)
-"pkb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison/darkyellow/corner,
-/area/prison/engineering)
 "pkz" = (
 /obj/structure/bed/stool,
 /obj/item/paper/prison_station/inmate_handbook,
@@ -45676,9 +45666,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/cleanable/blood,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison,
 /area/prison/engineering)
 "qeF" = (
@@ -57852,7 +57840,7 @@ rJw
 bJB
 bGU
 qAa
-mKE
+epK
 bQG
 bGQ
 gJR
@@ -69696,7 +69684,7 @@ aYR
 cmO
 cnF
 dAR
-onm
+dAR
 dAR
 dAR
 dAR
@@ -84609,7 +84597,7 @@ cbJ
 cbJ
 tbt
 cos
-pkb
+cfs
 sgK
 uvN
 sar

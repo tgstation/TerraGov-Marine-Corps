@@ -158,7 +158,8 @@ GLOBAL_LIST_INIT(plasteel_recipes, list( \
 
 /obj/item/stack/sheet/plasteel/get_main_recipes()
 	. = ..()
-	. += GLOB.plasteel_recipes
+	for(var/item in GLOB.plasteel_recipes)
+		. += GLOB.plasteel_recipes[item]
 
 /obj/item/stack/sheet/plasteel/small_stack
 	amount = 10

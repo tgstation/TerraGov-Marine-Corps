@@ -372,7 +372,7 @@ WEAPONS
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "TE-9001 mounted heavy laser"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable)
-	cost = 800
+	cost = 400
 
 
 /datum/supply_packs/weapons/heayvlaser_ammo
@@ -1898,16 +1898,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/packet/pnato)
 	cost = 15
 
-/datum/supply_packs/imports/scar
-	name = "CC/67 assault rifle"
-	contains = list(/obj/item/weapon/gun/rifle/vsd_rifle/export)
-	cost = 120
-
-/datum/supply_packs/imports/scar/ammo
-	name = "CC/67 assault rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/vsd_rifle)
-	cost = 5
-
 /datum/supply_packs/imports/aug	//Vietnam time
 	name = "L&S EM-88 assault carbine"
 	contains = list(/obj/item/weapon/gun/rifle/icc_assaultcarbine/export)
@@ -2115,7 +2105,7 @@ VEHICLES
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Dropship mounted TE-9001 heavy laser"
 	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavylaser)
-	cost = 900
+	cost = 400
 
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Dropship mounted HSG-102 mounted heavy smartgun ammo"
