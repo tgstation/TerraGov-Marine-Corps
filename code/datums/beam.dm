@@ -197,5 +197,8 @@
 		if(check_path(source, target, PASS_PROJECTILE|PASS_GLASS) != get_turf(target))
 			continue
 		source.beam(target, icon_state="bfg", time = 3, maxdistance = zap_range + 2)
-		target.apply_damage(damage, BURN, BODY_ZONE_CHEST, ENERGY, FALSE, FALSE, TRUE, armor_pierce)
 		log_attack("[target] was zapped by [source]")
+		if(ishuman(target))
+			target.dust()
+			return
+		target.apply_damage(damage, BURN, BODY_ZONE_CHEST, ENERGY, FALSE, FALSE, TRUE, armor_pierce)
