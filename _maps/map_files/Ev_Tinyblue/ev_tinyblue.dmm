@@ -83,6 +83,15 @@
 	dir = 6
 	},
 /area/tinyblue/caves/facility/eta/e)
+"afU" = (
+/obj/effect/turf_decal/warning_stripes/linethick{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/linethick{
+	dir = 8
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "afV" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -511,6 +520,13 @@
 	dir = 5
 	},
 /area/tinyblue/outside/building/med)
+"aBf" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/structure/bed/chair,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "aBL" = (
 /obj/structure/catwalk,
 /obj/structure/bed/chair{
@@ -1712,6 +1728,9 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/lambda/n)
+"cdZ" = (
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "ceb" = (
 /obj/effect/spawner/random/engineering/structure/tank,
 /turf/open/floor/prison/darkyellow{
@@ -1936,6 +1955,11 @@
 	},
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/virology)
+"cro" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/ne)
 "csq" = (
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/lz)
@@ -2022,6 +2046,12 @@
 	dir = 5
 	},
 /area/tinyblue/outside/building/med/icu)
+"cyx" = (
+/obj/structure/platform/metalplatform/nondense{
+	dir = 6
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/outside/n)
 "cyS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -2057,6 +2087,10 @@
 	dir = 10
 	},
 /area/tinyblue/outside/building/admin)
+"cAg" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/s)
 "cAL" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab";
@@ -2423,6 +2457,10 @@
 	},
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/lz)
+"cZs" = (
+/obj/structure/table,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "cZW" = (
 /obj/structure/window/framed/mainship/hull,
 /obj/structure/sign/electricshock{
@@ -2525,6 +2563,10 @@
 	dir = 1
 	},
 /area/tinyblue/caves/facility/eta)
+"dgE" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/ne)
 "dgF" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -2992,6 +3034,12 @@
 	dir = 8
 	},
 /area/tinyblue/outside/building/lz)
+"dFp" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "dFB" = (
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -3368,6 +3416,15 @@
 	},
 /turf/open/floor/spiralplate,
 /area/tinyblue/caves/facility/eta/xeno)
+"ehH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/linethick{
+	dir = 1
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "eig" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
@@ -3972,7 +4029,13 @@
 /area/tinyblue/outside/building/dorms/bar)
 "eXs" = (
 /obj/effect/landmark/corpsespawner/miner/rig,
-/turf/open/floor/plating/ground/snow/layer0,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 8
+	},
+/obj/machinery/mining/brace{
+	dir = 4
+	},
+/turf/open/floor/tile/darkish,
 /area/tinyblue/outside/n)
 "eXF" = (
 /obj/structure/cargo_container/ch_red{
@@ -4038,6 +4101,12 @@
 	},
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/dorms/bar)
+"fax" = (
+/obj/structure/platform/metalplatform/nondense{
+	dir = 1
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/outside/n)
 "faH" = (
 /turf/open/floor/prison/darkred/corners{
 	dir = 4
@@ -4650,6 +4719,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/tinyblue/outside/building/med)
+"fVg" = (
+/obj/effect/turf_decal/warning_stripes/linethick{
+	dir = 1
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "fVx" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Eta Lab Delivery Area"
@@ -4838,12 +4913,19 @@
 	dir = 10
 	},
 /obj/effect/ai_node,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/spiralplate,
 /area/tinyblue/outside/building/engi/filt)
 "git" = (
 /obj/structure/closet/secure_closet/injection,
 /turf/open/floor,
 /area/tinyblue/outside/building/marshal)
+"giD" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "giJ" = (
 /turf/closed/wall/r_wall,
 /area/tinyblue/caves/facility/lambda/sec)
@@ -4912,6 +4994,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med)
+"gkC" = (
+/obj/structure/platform/metalplatform/nondense{
+	dir = 10
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/outside/n)
 "gkF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/freezer,
@@ -4973,6 +5061,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/n)
+"gnS" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/tinyblue/outside/se)
 "goi" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -5330,6 +5422,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/n)
+"gJs" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "gJA" = (
 /obj/structure/prop/vehicle/crane/snow,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -5696,6 +5793,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta/e)
+"hif" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/e)
 "hig" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5841,6 +5942,11 @@
 /obj/item/storage/fancy/egg_box,
 /turf/open/floor/freezer,
 /area/tinyblue/outside/building/dorms/eat)
+"hqJ" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/tinyblue/outside/se)
 "hsq" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -6230,6 +6336,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/n)
+"hVr" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "hVv" = (
 /obj/effect/spawner/random/engineering/structure/atmospherics_portable/icecolony,
 /turf/open/floor/wood,
@@ -6832,6 +6942,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/tinyblue/outside/building/cargo)
+"iDs" = (
+/turf/closed/wall,
+/area/tinyblue/caves/rock)
 "iDJ" = (
 /obj/structure/closet/bombclosetsecurity,
 /turf/open/floor/tile/vault{
@@ -7310,6 +7423,11 @@
 	},
 /turf/open/floor,
 /area/tinyblue/outside/building/toolshed)
+"jcC" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/outside/building/marshal)
 "jcW" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/effect/landmark/weed_node,
@@ -7671,6 +7789,10 @@
 	dir = 8
 	},
 /area/tinyblue/outside/building/cargo/shop)
+"jzl" = (
+/obj/machinery/mining/brace,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "jAa" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/paperbin,
@@ -7701,6 +7823,9 @@
 	dir = 1
 	},
 /area/tinyblue/caves/facility/lambda/s)
+"jAZ" = (
+/turf/closed/wall,
+/area/tinyblue/caves/s)
 "jBj" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9059,6 +9184,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/tinyblue/outside/building/admin)
+"lcW" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/tinyblue/outside/e)
 "ldw" = (
 /obj/machinery/computer/operating{
 	dir = 4;
@@ -9664,6 +9794,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
 /area/tinyblue/outside/building/virology)
+"lLV" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/freezer,
+/area/tinyblue/caves/facility/lambda/n)
 "lMv" = (
 /turf/open/floor/prison/sterilewhite,
 /area/tinyblue/caves/facility/lambda/n)
@@ -9694,6 +9828,17 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/e)
+"lOG" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/linethick{
+	dir = 1
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "lPb" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
@@ -10082,12 +10227,23 @@
 	dir = 4
 	},
 /area/tinyblue/caves/facility/eta/xeno)
+"mnl" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/e)
 "mny" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
 /area/tinyblue/outside/building/lz)
+"mnI" = (
+/obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/linethick{
+	dir = 1
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "mog" = (
 /obj/machinery/light{
 	dir = 8
@@ -10436,6 +10592,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark/gray,
 /area/tinyblue/outside/building/cargo/shop)
 "mLR" = (
@@ -11069,6 +11226,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/spiralplate,
 /area/tinyblue/outside/building/engi/filt)
+"nxY" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/se)
 "nyg" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/darkyellow{
@@ -11113,6 +11275,10 @@
 	dir = 1
 	},
 /area/tinyblue/caves/facility/omicron)
+"nzQ" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/tinyblue/outside/c)
 "nAC" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
@@ -11304,6 +11470,12 @@
 "nRk" = (
 /turf/open/floor/prison/whitepurple,
 /area/tinyblue/caves/facility/lambda/s)
+"nRm" = (
+/obj/effect/turf_decal/warning_stripes/linethick{
+	dir = 8
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "nRn" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -11458,6 +11630,11 @@
 	},
 /turf/open/floor/marking/delivery,
 /area/tinyblue/outside/building/cargo)
+"obJ" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/e)
 "obP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -11817,6 +11994,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med)
+"oAg" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "oAh" = (
 /turf/closed/wall,
 /area/tinyblue/caves/facility/eta)
@@ -11853,7 +12034,10 @@
 /area/tinyblue/caves/facility/lambda/s)
 "oCz" = (
 /obj/effect/spawner/random/engineering/pickaxe,
-/turf/open/floor/plating/ground/snow/layer0,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 5
+	},
+/turf/open/floor/tile/darkish,
 /area/tinyblue/outside/n)
 "oDA" = (
 /obj/effect/decal/cleanable/blood,
@@ -12534,6 +12718,13 @@
 	},
 /turf/open/floor/plating/ground/snow/layer2,
 /area/tinyblue/outside/e)
+"pDq" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 9
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/outside/n)
 "pDN" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 1
@@ -12818,6 +13009,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/mining)
 "pZI" = (
@@ -13251,6 +13443,15 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta)
+"qLD" = (
+/obj/structure/platform/metalplatform/nondense{
+	dir = 4
+	},
+/obj/machinery/mining/brace{
+	dir = 8
+	},
+/turf/open/floor/tile/darkish,
+/area/tinyblue/outside/n)
 "qLZ" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -14056,6 +14257,10 @@
 	dir = 5
 	},
 /area/tinyblue/caves/facility/eta)
+"rAq" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor,
+/area/tinyblue/outside/building/toolshed)
 "rBF" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/tile/dark/blue2,
@@ -15093,6 +15298,13 @@
 /obj/item/alien_embryo,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/tinyblue/caves/facility/eta/xeno)
+"sSc" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/machinery/floodlight/colony,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "sTE" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkyellow{
@@ -15560,6 +15772,9 @@
 	dir = 8
 	},
 /area/tinyblue/outside/building/lz)
+"twd" = (
+/turf/closed/wall,
+/area/tinyblue/caves/sw)
 "twg" = (
 /obj/effect/spawner/random/engineering/structure/atmospherics_portable/icecolony,
 /turf/open/floor/tile/white,
@@ -15756,6 +15971,10 @@
 /obj/item/tool/surgery/suture,
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/lambda/n)
+"tLj" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/s)
 "tMt" = (
 /obj/structure/table,
 /obj/machinery/computer/security/wooden_tv,
@@ -15927,6 +16146,10 @@
 	dir = 4
 	},
 /area/tinyblue/outside/building/med)
+"tWM" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/ne)
 "tXP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/warning{
@@ -16897,6 +17120,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor,
 /area/tinyblue/outside/building/dorms/plant)
 "vaP" = (
@@ -17205,6 +17429,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta/e)
+"vwj" = (
+/obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/table,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/caves/s)
 "vwv" = (
 /turf/closed/wall,
 /area/tinyblue/outside/building/admin)
@@ -17301,7 +17533,8 @@
 /area/tinyblue/outside/c)
 "vDm" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/ground/snow/layer0,
+/obj/structure/platform/metalplatform/nondense,
+/turf/open/floor/tile/darkish,
 /area/tinyblue/outside/n)
 "vDt" = (
 /obj/structure/cable,
@@ -17854,6 +18087,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
+/obj/machinery/miner/damaged,
 /turf/open/floor,
 /area/tinyblue/outside/building/cargo)
 "wkp" = (
@@ -17927,6 +18161,7 @@
 /area/tinyblue/outside/building/dorms/eat)
 "wni" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison,
 /area/tinyblue/caves/facility/omicron)
 "wnR" = (
@@ -17961,6 +18196,10 @@
 /obj/effect/spawner/random/engineering/structure/atmospherics_portable/icecolony,
 /turf/open/floor,
 /area/tinyblue/outside/building/dorms/plant)
+"wrh" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/se)
 "wrv" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor,
@@ -18059,6 +18298,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/freezer,
 /area/tinyblue/outside/building/virology)
+"wuX" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/tinyblue/outside/c)
 "wwa" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -18069,6 +18312,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/tinyblue/caves/facility/lambda/s)
+"wwz" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/n)
 "wwP" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -18392,6 +18639,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/marshal)
+"wTu" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/tile/darkish,
+/area/tinyblue/outside/n)
 "wTO" = (
 /obj/effect/spawner/random/engineering/structure/atmospherics_portable/icecolony,
 /turf/open/floor/tile/blue/taupeblue{
@@ -18736,6 +18987,7 @@
 "xsB" = (
 /obj/effect/decal/cleanable/ash,
 /obj/effect/ai_node,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/dmg3,
 /area/tinyblue/outside/building/virology)
 "xsD" = (
@@ -18803,6 +19055,10 @@
 /obj/item/paper/xenoresearch3,
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/omicron)
+"xwv" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/sw)
 "xwC" = (
 /turf/open/floor/carpet,
 /area/tinyblue/outside/building/admin)
@@ -19111,6 +19367,7 @@
 "xNK" = (
 /obj/effect/urban/decal/bloodtrail,
 /obj/item/tool/surgery/circular_saw,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med/icu)
 "xNM" = (
@@ -23774,7 +24031,7 @@ uJX
 uJX
 ycd
 ycd
-ycd
+xwv
 ycd
 ycd
 uJX
@@ -25394,9 +25651,9 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
+twd
+twd
+twd
 ycd
 ycd
 ycd
@@ -25541,12 +25798,12 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
-ycd
-ycd
-ycd
+jAZ
+cdZ
+cZs
+nRm
+afU
+owX
 uJX
 uJX
 xGy
@@ -25688,11 +25945,11 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
-owX
-owX
-xzH
+jAZ
+aBf
+vwj
+giD
+lOG
 owX
 owX
 xzH
@@ -25835,11 +26092,11 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
-owX
-owX
+jAZ
+oAg
+cdZ
+cdZ
+fVg
 owX
 owX
 owX
@@ -25982,11 +26239,11 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
-owX
-exb
+jAZ
+oAg
+jzl
+hVr
+mnI
 owX
 exb
 owX
@@ -26129,11 +26386,11 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
-uJX
-owX
+jAZ
+oAg
+gJs
+cdZ
+mnI
 owX
 owX
 owX
@@ -26276,12 +26533,12 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
+jAZ
+sSc
+dFp
+dFp
+ehH
+owX
 xzH
 owX
 uHn
@@ -26423,11 +26680,11 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
-uJX
-uJX
+jAZ
+jAZ
+jAZ
+iDs
+jAZ
 owX
 owX
 owX
@@ -26633,7 +26890,7 @@ iKK
 uJX
 htr
 ngU
-iFe
+jcC
 ngU
 htr
 hKy
@@ -29610,7 +29867,7 @@ pPw
 mmH
 vPH
 vPH
-vPH
+wuX
 vPH
 vPH
 mmH
@@ -29904,7 +30161,7 @@ pPw
 vPH
 vPH
 vHE
-vCd
+nzQ
 vCd
 vPH
 mmH
@@ -30016,9 +30273,9 @@ iKK
 uJX
 uJX
 uJX
-vDm
+pDq
 eXs
-iUv
+gkC
 iUv
 sXL
 kGL
@@ -30163,8 +30420,8 @@ iKK
 uJX
 uJX
 uJX
-iUv
-iUv
+fax
+wTu
 vDm
 iUv
 sXL
@@ -30311,8 +30568,8 @@ uJX
 uJX
 iUv
 oCz
-iUv
-iUv
+qLD
+cyx
 iUv
 fpK
 rIN
@@ -30567,7 +30824,7 @@ hTd
 owX
 owX
 owX
-owX
+tLj
 owX
 owX
 uJX
@@ -32420,7 +32677,7 @@ jQO
 lgn
 djE
 klg
-djE
+rAq
 djE
 jco
 sQb
@@ -32576,7 +32833,7 @@ dFB
 nJG
 nYH
 fIT
-evH
+gnS
 evH
 evH
 evH
@@ -32620,7 +32877,7 @@ owX
 owX
 owX
 owX
-owX
+cAg
 owX
 uJX
 uJX
@@ -32799,7 +33056,7 @@ iPA
 iKK
 iKK
 iPA
-iKK
+wwz
 iKK
 iKK
 iKK
@@ -32907,7 +33164,7 @@ xzH
 owX
 owX
 xzH
-owX
+tLj
 owX
 owX
 owX
@@ -33677,7 +33934,7 @@ uJX
 uJX
 uJX
 rpa
-rpa
+tWM
 rpa
 rpa
 rpa
@@ -33742,7 +33999,7 @@ xjT
 bAw
 tEe
 nYH
-vLg
+hqJ
 nYH
 kAH
 evH
@@ -34611,7 +34868,7 @@ wjc
 pFK
 tkp
 tkp
-dJc
+lcW
 tkp
 wXy
 mDV
@@ -35150,7 +35407,7 @@ kid
 tTh
 rFD
 kTq
-kTq
+lLV
 oGv
 tgR
 kTq
@@ -36114,7 +36371,7 @@ uJX
 uJX
 gjJ
 gjJ
-gjJ
+wrh
 gjJ
 gjJ
 gjJ
@@ -37030,7 +37287,7 @@ uJX
 uJX
 gjJ
 gjJ
-eyt
+nxY
 gjJ
 uJX
 uJX
@@ -37417,7 +37674,7 @@ nkm
 nkm
 nkm
 nkm
-nkm
+hif
 nkm
 nkm
 uJX
@@ -38556,7 +38813,7 @@ rpa
 rpa
 rpa
 rpa
-rpa
+tWM
 rpa
 rpa
 nhC
@@ -38849,7 +39106,7 @@ rpa
 rpa
 nhC
 rpa
-rpa
+dgE
 nhC
 rpa
 rpa
@@ -40189,7 +40446,7 @@ nkm
 nkm
 nkm
 nkm
-dvW
+obJ
 nkm
 nkm
 nkm
@@ -40354,7 +40611,7 @@ nkm
 nkm
 nkm
 nkm
-nkm
+mnl
 nkm
 nkm
 nkm
@@ -40536,7 +40793,7 @@ gjJ
 gjJ
 gjJ
 wVM
-gjJ
+wrh
 gjJ
 gjJ
 gjJ
@@ -40590,7 +40847,7 @@ xGy
 uJX
 rpa
 rpa
-nhC
+cro
 rpa
 kid
 kid
