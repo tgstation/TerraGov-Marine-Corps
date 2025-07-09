@@ -133,10 +133,8 @@
 "ajO" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /obj/effect/landmark/weed_node,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med)
 "ajV" = (
@@ -5142,6 +5140,9 @@
 /obj/item/weapon/gun/pistol/standard_pocketpistol,
 /obj/item/ammo_magazine/pistol/standard_pistol,
 /obj/item/ammo_magazine/pistol/standard_pistol,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/omicron)
 "gzw" = (
@@ -5468,6 +5469,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
+/obj/effect/mapping_helpers/weld_vents,
 /turf/open/floor/prison/plate,
 /area/tinyblue/caves/facility/omicron)
 "gQQ" = (
@@ -6008,6 +6010,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/darkred,
 /area/tinyblue/caves/facility/lambda)
+"hDX" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/freezer,
+/area/tinyblue/outside/building/virology)
 "hEg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -8946,6 +8955,14 @@
 "kWV" = (
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/marshal)
+"kXB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/brown{
+	dir = 4
+	},
+/area/tinyblue/outside/building/cargo/shop)
 "kXW" = (
 /turf/open/floor/prison/whitepurple{
 	dir = 6
@@ -9945,6 +9962,10 @@
 	},
 /turf/open/floor,
 /area/tinyblue/outside/building/marshal)
+"meZ" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor/tile/dark/green2,
+/area/tinyblue/caves/facility/eta)
 "mfo" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/prison/blue{
@@ -9994,6 +10015,7 @@
 /area/tinyblue/outside/building/med)
 "miM" = (
 /obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -10038,6 +10060,12 @@
 	},
 /turf/open/ground/jungle/clear,
 /area/tinyblue/caves/facility/eta/xeno)
+"mmj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/tinyblue/outside/building/virology)
 "mmB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -10839,6 +10867,7 @@
 /area/tinyblue/outside/building/virology)
 "nlm" = (
 /obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/tinyblue/outside/building/med)
 "nmH" = (
@@ -11130,6 +11159,7 @@
 	dir = 8;
 	welded = 1
 	},
+/obj/effect/mapping_helpers/weld_vents,
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/omicron)
 "nDq" = (
@@ -11369,6 +11399,9 @@
 	dir = 1
 	},
 /obj/item/tool/screwdriver,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/omicron)
 "nXm" = (
@@ -11703,6 +11736,9 @@
 "owf" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	name = "\improper Virology Lab Cell"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
 /turf/open/floor/sterileplate,
 /area/tinyblue/outside/building/virology)
@@ -13719,6 +13755,9 @@
 /area/tinyblue/outside/building/marshal)
 "rhn" = (
 /obj/item/tool/weldingtool,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/omicron)
 "rhw" = (
@@ -14826,6 +14865,9 @@
 "sBz" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/prison/whitepurple/corner,
 /area/tinyblue/caves/facility/lambda/n)
 "sBR" = (
@@ -16103,6 +16145,7 @@
 	dir = 1;
 	name = "\improper Medical Clinic Chemistry"
 	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med)
 "umc" = (
@@ -16405,6 +16448,9 @@
 /area/tinyblue/outside/building/dorms/chapel)
 "uCN" = (
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/tinyblue/outside/building/virology)
 "uCQ" = (
@@ -17020,6 +17066,9 @@
 /obj/effect/landmark/corpsespawner/roboticist/regular,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/omicron)
 "viA" = (
@@ -17391,10 +17440,8 @@
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/tinyblue/outside/building/dorms/rec)
 "vIZ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/virology)
 "vKi" = (
@@ -22528,7 +22575,7 @@ cGh
 oQD
 ubH
 dgL
-ubH
+mmj
 ayK
 cGh
 wce
@@ -22969,7 +23016,7 @@ rfK
 ubH
 ubH
 rfK
-wuR
+hDX
 lTd
 cGh
 uJX
@@ -25590,7 +25637,7 @@ fVa
 nlm
 miM
 ulS
-aph
+wmj
 ajO
 bRn
 vZT
@@ -25909,7 +25956,7 @@ gtL
 hig
 dPJ
 eGK
-iNB
+kXB
 gqH
 ije
 wIj
@@ -30791,7 +30838,7 @@ oAh
 oAh
 oAh
 ibU
-fzf
+meZ
 lIn
 pUw
 kne
@@ -40217,7 +40264,7 @@ eLy
 hys
 nBn
 nBn
-nBn
+tQz
 xbb
 bXr
 vBA
@@ -40364,7 +40411,7 @@ vBA
 dCS
 qLd
 qLd
-vBA
+sVi
 vrj
 qLd
 qLd
