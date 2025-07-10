@@ -123,7 +123,7 @@
 		return FALSE
 	if(user.do_actions || !ishuman(user) || attacked != user.pulling)
 		return FALSE
-	if(!do_after(user, 2 SECONDS, NONE, attacked, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), attacked)) || !user.pulling)
+	if(!do_mob(user, attacked, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), attacked)) || !user.pulling)
 		return TRUE
 	user.advance_grab_state(attacked)
 	return TRUE

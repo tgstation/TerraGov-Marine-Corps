@@ -165,7 +165,7 @@
 /obj/effect/temp_visual/order
 	icon = 'icons/effects/orders.dmi'
 	var/icon_state_on
-	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM)
+	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM, SQUAD_HUD_CLF, SQUAD_HUD_VSD, SQUAD_HUD_ICC)
 	duration = CIC_ORDER_DURATION
 
 /obj/effect/temp_visual/order/Initialize(mapload, faction)
@@ -227,6 +227,20 @@
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "smoke"
 	duration = 1.2 SECONDS
+
+/obj/effect/temp_visual/blink_portal
+	name = "blink portal"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "anom"
+	layer = VEHICLE_LAYER
+	duration = 0.5 SECONDS
+
+/obj/effect/temp_visual/banishment_portal
+	name = "banishment portal"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "bhole3"
+	layer = VEHICLE_LAYER
+	duration = WRAITH_BANISH_BASE_DURATION+1 //So we don't delete our contents early
 
 /obj/effect/temp_visual/acid_splatter
 	name = "acid_splatter"

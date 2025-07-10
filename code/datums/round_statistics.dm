@@ -54,6 +54,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/defender_crest_lowerings = 0
 	var/defender_crest_raises = 0 //manual disabling of the crest
 	var/defender_fortifiy_toggles = 0
+	var/tail_stabs = 0
 	var/defiler_defiler_stings = 0
 	var/defiler_neurogas_uses = 0
 	var/defiler_inject_egg_neurogas = 0
@@ -61,6 +62,8 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/globadier_grenades_thrown = 0
 	var/globadier_mines_placed = 0
 	var/globadier_XADAR_fired = 0
+	var/wraith_blinks = 0
+	var/wraith_banishes = 0
 	var/hunter_marks = 0
 	var/hunter_silence_targets = 0
 	var/hunter_cloaks = 0

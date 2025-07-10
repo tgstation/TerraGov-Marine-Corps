@@ -372,7 +372,7 @@
 					span_notice("You begin removing the support lines."))
 					playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -402,7 +402,7 @@
 					span_notice("You struggle to pry off the cover."))
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -417,7 +417,7 @@
 					span_notice("You start loosening the anchoring bolts securing the support rods."))
 					playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -432,7 +432,7 @@
 					span_notice("You begin uncrimping the hydraulic lines."))
 					playsound(src, 'sound/items/wirecutter.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -447,7 +447,7 @@
 					span_notice("You struggle to pry off the inner sheath."))
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))

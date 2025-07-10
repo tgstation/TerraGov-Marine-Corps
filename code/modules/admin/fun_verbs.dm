@@ -56,9 +56,7 @@ ADMIN_VERB(rouny_all, R_FUN, "Toggle Glob Xeno Rouny", "Toggle all living xenos 
 	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
 		if(!isliving(xenotorouny))
 			return
-		xenotorouny.xeno_flags ^= XENO_ROUNY
-	log_admin("[key_name(user)] toggled global rounification")
-	message_admins("[ADMIN_TPMONTY(user.mob)] toggled global rounification.")
+		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
 
 
 ADMIN_VERB(hive_status, R_FUN, "Check Hive Status", "Check the status of the hive.", ADMIN_CATEGORY_FUN)
@@ -94,7 +92,7 @@ ADMIN_VERB(ai_report, R_FUN, "AI Report", "Create an AI report to players", ADMI
 	message_admins("[ADMIN_TPMONTY(user.mob)] has created an AI report: [input]")
 
 ADMIN_VERB(command_report, R_FUN, "Command Report", "Create a custom command report", ADMIN_CATEGORY_FUN)
-	var/customname = tgui_input_text(user, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
+	var/customname = tgui_input_text(user, "Pick a title for the report.", "Title", "NTC Update", encode = FALSE)
 	if(!customname)
 		return
 	var/customsubtitle = tgui_input_text(user, "Pick a subtitle for the report.", "Subtitle", "", encode = FALSE)

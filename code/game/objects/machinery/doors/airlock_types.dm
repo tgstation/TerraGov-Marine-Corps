@@ -538,12 +538,12 @@
 	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 
 /obj/machinery/door/airlock/mainship/generic/corporate
-	name = "Corporate Liaison's Office"
+	name = "Operations Officer's Office"
 	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 	req_access = list(ACCESS_NT_CORPORATE)
 
 /obj/machinery/door/airlock/mainship/generic/corporate/quarters
-	name = "Corporate Liaison's Quarters"
+	name = "Operations Officer's Quarters"
 
 /obj/machinery/door/airlock/mainship/generic/bathroom
 	name = "\improper Bathroom"
@@ -818,6 +818,18 @@
 /obj/machinery/door/airlock/prison
 	name = "\improper Cell Door"
 	icon = 'icons/obj/doors/prison/celldoor.dmi'
+	
+/obj/machinery/door/airlock/prison/cell1
+	name = "\improper Brig Cell 1 Door"
+	id = "Brig Cell 1"
+	
+/obj/machinery/door/airlock/prison/cell2
+	name = "\improper Brig Cell 2 Door"
+	id = "Brig Cell 2"
+	
+/obj/machinery/door/airlock/prison/cell3
+	name = "\improper Brig Cell 3 Door"
+	id = "Brig Cell 3"
 
 /obj/machinery/door/airlock/prison/open
 	icon_state = "door_open"

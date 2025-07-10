@@ -120,6 +120,8 @@
 
 
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
+		if((volume * volume_multiplier) < SOUND_AUDIBLE_VOLUME_MIN)
+			return
 		playsound(source_loc, footstep_sounds, volume * volume_multiplier, sound_vary, DEFAULT_FOOTSTEP_SOUND_RANGE + e_range + range_adjustment)
 		return
 

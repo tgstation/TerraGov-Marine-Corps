@@ -993,9 +993,6 @@ GLOBAL_VAR_INIT(automute_on, null)
 	var/weight = SPAM_TRIGGER_WEIGHT_FORMULA(message)
 	total_message_weight += weight
 
-	var/message_cache = total_message_count
-	var/weight_cache = total_message_weight
-
 	if(last_message_time && world.time > last_message_time)
 		last_message_time = 0
 		total_message_count = 0
@@ -1003,6 +1000,10 @@ GLOBAL_VAR_INIT(automute_on, null)
 
 	else if(!last_message_time)
 		last_message_time = world.time + SPAM_TRIGGER_TIME_PERIOD
+
+	// Having this before the if instead of after requires every long messsage to be sent twice or else have it get locked out.
+	var/message_cache = total_message_count
+	var/weight_cache = total_message_weight
 
 	last_message = message
 
@@ -1014,6 +1015,8 @@ GLOBAL_VAR_INIT(automute_on, null)
 			to_chat(src, span_danger("You have exceeded the spam filter. An auto-mute was applied."))
 			create_message("note", ckey(key), "SYSTEM", "Automuted due to spam. Last message: '[last_message]'", null, null, FALSE, TRUE, null, FALSE, "Minor")
 			mute(src, mute_type, TRUE)
+		else
+			to_chat(src, span_danger("You have hit the spam filter limit."))
 		return TRUE
 
 	if(warning && GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
