@@ -621,17 +621,3 @@
 /obj/machinery/floor_warn_light/self_destruct/proc/disable()
 	icon_state = initial(icon_state)
 	set_light(0,0)
-
-//A list of all generator lights so that they can be turned on when the generator enters meltdown
-GLOBAL_LIST_EMPTY_TYPED(generator_alarm_lights, /obj/machinery/floor_warn_light/toggleable)
-
-/obj/machinery/floor_warn_light/toggleable/generator
-	name = "generator meltdown alarm light"
-
-/obj/machinery/floor_warn_light/toggleable/generator/Initialize(mapload)
-	. = ..()
-	GLOB.generator_alarm_lights += src
-
-/obj/machinery/floor_warn_light/toggleable/generator/Destroy()
-	. = ..()
-	GLOB.generator_alarm_lights -= src

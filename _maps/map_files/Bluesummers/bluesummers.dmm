@@ -49,10 +49,11 @@
 	},
 /area/bluesummers/inside/luxury)
 "acu" = (
-/obj/machinery/power/tbg_turbine/cold,
 /obj/structure/platform{
 	dir = 1
 	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "acB" = (
@@ -2928,7 +2929,6 @@
 /area/bluesummers/inside/engineering)
 "cMY" = (
 /obj/effect/landmark/excavation_site_spawner,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "cNx" = (
@@ -4490,13 +4490,6 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/cryostorage/south)
-"edg" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/floor,
-/area/bluesummers/inside/engineering/plant)
 "edE" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -14452,6 +14445,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
+/obj/machinery/power/geothermal,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "mnb" = (
@@ -14871,6 +14865,8 @@
 /obj/structure/platform{
 	dir = 10
 	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "mCO" = (
@@ -15548,10 +15544,6 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/holodeck)
-"neF" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/mainship,
-/area/bluesummers/inside/engineering/plant/control)
 "neG" = (
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/structure/prop/mainship/gelida/smallwire{
@@ -15669,6 +15661,8 @@
 /obj/structure/platform{
 	dir = 5
 	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "njF" = (
@@ -18836,10 +18830,6 @@
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/tile/dark/brown2,
 /area/bluesummers/inside/industrial)
-"pNM" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/mainship,
-/area/bluesummers/inside/engineering/plant)
 "pNR" = (
 /obj/effect/turf_decal/tracks/wheels/bloody,
 /obj/effect/landmark/weed_node,
@@ -19530,10 +19520,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/industrial)
-"qro" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/mainship,
-/area/bluesummers/inside/engineering/office)
 "qrr" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -20260,6 +20246,8 @@
 /obj/structure/platform{
 	dir = 9
 	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "qUV" = (
@@ -21029,6 +21017,8 @@
 /obj/structure/platform{
 	dir = 6
 	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "rCi" = (
@@ -22071,6 +22061,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
+/obj/machinery/power/geothermal,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "svz" = (
@@ -23799,10 +23790,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast/indoor)
-"tVp" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/plating/plating_catwalk,
-/area/bluesummers/inside/engineering/plant)
 "tVE" = (
 /obj/effect/turf_decal/mining,
 /turf/open/floor/plating/mainship/striped,
@@ -24876,10 +24863,6 @@
 /obj/effect/urban/decal/trash/five,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/cloning)
-"uOA" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/mainship,
-/area/bluesummers/inside/engineering)
 "uOJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/blue{
@@ -27692,7 +27675,6 @@
 "xzI" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "xzQ" = (
@@ -28161,11 +28143,9 @@
 	},
 /area/bluesummers/inside/robotics)
 "xYL" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/structure/platform,
+/obj/machinery/power/geothermal,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "xYO" = (
@@ -47314,7 +47294,7 @@ dQD
 lWK
 kjz
 aEB
-qro
+oNO
 rOc
 rOc
 oNO
@@ -47671,7 +47651,7 @@ rOc
 rOc
 rOc
 rOc
-uOA
+jwf
 aEB
 gGH
 aEB
@@ -48022,7 +48002,7 @@ rOc
 rOc
 gLa
 gLa
-pNM
+gLa
 hns
 cFN
 cFN
@@ -48032,7 +48012,7 @@ gYn
 cFN
 eDQ
 vMM
-pNM
+gLa
 gLa
 gLa
 jwf
@@ -48388,7 +48368,7 @@ gLa
 oFA
 ylm
 cFN
-tVp
+hXq
 nVs
 hXq
 lxG
@@ -48406,7 +48386,7 @@ aEB
 qHG
 fBf
 bWe
-qro
+oNO
 lVp
 xcK
 mCA
@@ -48581,9 +48561,9 @@ nTv
 dnP
 qeQ
 lZq
-uOA
 jwf
-uOA
+jwf
+jwf
 uny
 xKS
 fBf
@@ -48747,7 +48727,7 @@ dRV
 dQD
 dQD
 dQD
-pNM
+gLa
 coY
 eNc
 coY
@@ -48937,7 +48917,7 @@ nqV
 tYg
 xMM
 acu
-edg
+gLa
 xYL
 xID
 xID
@@ -49111,7 +49091,7 @@ dQD
 dQD
 pAN
 dQD
-pNM
+gLa
 laK
 ioa
 nIo
@@ -49134,7 +49114,7 @@ aQy
 vXq
 qWI
 aEB
-qro
+oNO
 oNO
 oNO
 oNO
@@ -49309,7 +49289,7 @@ nTv
 eNc
 ebg
 jbF
-uOA
+jwf
 jwf
 jwf
 tHS
@@ -49480,7 +49460,7 @@ gLa
 ahX
 tfH
 cFN
-tVp
+hXq
 hXq
 hXq
 hXq
@@ -49852,7 +49832,7 @@ tfH
 cFN
 cFN
 fgm
-pNM
+gLa
 gLa
 gLa
 rOc
@@ -50214,7 +50194,7 @@ tNf
 ogX
 tNf
 lZG
-neF
+mle
 mle
 mle
 mle
@@ -50227,7 +50207,7 @@ iEl
 xyD
 xKS
 lml
-uOA
+jwf
 fGa
 xKS
 hLP
@@ -50755,7 +50735,7 @@ uhe
 ymb
 kGU
 sug
-neF
+mle
 wiU
 hvh
 lTK
@@ -50932,7 +50912,7 @@ dQD
 kjz
 mle
 mle
-neF
+mle
 pMX
 jFg
 ymb
@@ -50946,7 +50926,7 @@ tGL
 hws
 noZ
 lMf
-neF
+mle
 gUn
 xKS
 aEB
@@ -51669,7 +51649,7 @@ mle
 mle
 mle
 mle
-neF
+mle
 mle
 mle
 mle

@@ -125,8 +125,10 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			SSpoints.add_strategic_psy_points(corrupted, points_generated)
 			SSpoints.add_tactical_psy_points(corrupted, points_generated*0.25)
 		return
+
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
+
 	if(!check_failure()) //Wait! Check to see if it breaks during processing
 		if(power_gen_percent < 100)
 			power_gen_percent++
