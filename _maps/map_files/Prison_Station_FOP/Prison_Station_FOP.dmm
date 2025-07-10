@@ -12,66 +12,6 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
-"aag" = (
-/turf/open/ground/coast/corner2{
-	dir = 8
-	},
-/area/prison/beach)
-"aaq" = (
-/turf/open/liquid/water/river,
-/area/prison/beach)
-"aar" = (
-/obj/structure/lattice,
-/turf/open/liquid/water/river,
-/area/prison/beach)
-"aas" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/prison/beach)
-"aat" = (
-/turf/open/floor/plating/ground/dirt,
-/area/prison/beach)
-"aau" = (
-/obj/item/toy/beach_ball,
-/turf/open/floor/plating/ground/dirt,
-/area/prison/beach)
-"aav" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/ground/dirt,
-/area/prison/beach)
-"aaw" = (
-/obj/item/clothing/under/color/black,
-/turf/open/floor/plating/ground/dirt,
-/area/prison/beach)
-"aax" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/prison/beach)
-"aay" = (
-/obj/effect/overlay/coconut,
-/turf/open/floor/plating/ground/dirt,
-/area/prison/beach)
-"aaz" = (
-/turf/open/ground/coast/corner,
-/area/prison/beach)
-"aaA" = (
-/turf/open/ground/coast/corner2,
-/area/prison/beach)
-"aaB" = (
-/turf/open/ground/coast/corner2{
-	dir = 1
-	},
-/area/prison/beach)
-"aaC" = (
-/turf/open/ground/coast/corner{
-	dir = 1
-	},
-/area/prison/beach)
-"aaD" = (
-/turf/open/ground/coast,
-/area/prison/beach)
 "aaE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -39547,6 +39487,11 @@
 	dir = 9
 	},
 /area/prison/material_processing)
+"dyO" = (
+/turf/open/ground/coast{
+	dir = 8
+	},
+/area/prison/beach)
 "dzi" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
@@ -41191,6 +41136,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood/broken,
 /area/prison/residential/south)
+"gXm" = (
+/obj/effect/overlay/coconut,
+/turf/open/floor/plating/ground/dirt,
+/area/prison/beach)
 "gYO" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 8
@@ -41222,6 +41171,10 @@
 /obj/structure/sink,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/east)
+"hce" = (
+/obj/structure/lattice,
+/turf/open/liquid/water/river,
+/area/prison/beach)
 "hcK" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/darkyellow{
@@ -41376,6 +41329,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hangar/main)
+"hui" = (
+/turf/open/ground/coast/corner2{
+	dir = 8
+	},
+/area/prison/beach)
 "hwj" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/bright_clean/two,
@@ -43464,6 +43422,12 @@
 /obj/structure/bed,
 /turf/open/floor/prison/cellstripe,
 /area/prison/cellblock/protective)
+"lIs" = (
+/obj/effect/landmark/gargoyle,
+/turf/open/floor/prison/darkyellow{
+	dir = 1
+	},
+/area/prison/engineering)
 "lJG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/cleanmarked,
@@ -43504,6 +43468,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
 /area/prison/quarters/research)
+"lOx" = (
+/turf/open/ground/coast{
+	dir = 1
+	},
+/area/prison/beach)
 "lOX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -43755,6 +43724,9 @@
 "mtd" = (
 /turf/open/floor/prison/bright_clean,
 /area/prison/medbay/foyer)
+"mtQ" = (
+/turf/open/ground/coast,
+/area/prison/beach)
 "mtS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green{
@@ -43925,11 +43897,6 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/highsec/s)
-"mJq" = (
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/prison/beach)
 "mJG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
@@ -43988,11 +43955,6 @@
 	},
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/material_processing)
-"mLM" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/prison/beach)
 "mMb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -44356,6 +44318,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/engineering)
+"nui" = (
+/obj/item/clothing/under/color/black,
+/turf/open/floor/plating/ground/dirt,
+/area/prison/beach)
 "nuz" = (
 /turf/closed/wall/r_wall/prison,
 /area/prison/residential/north)
@@ -44618,10 +44584,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
-"nRa" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating/ground/dirt,
-/area/prison/beach)
 "nRo" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -44704,6 +44666,10 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/carpet,
 /area/prison/quarters/research)
+"odQ" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/prison/beach)
 "oeg" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -45493,6 +45459,9 @@
 	},
 /turf/open/floor/prison,
 /area/prison/hallway/east)
+"pNf" = (
+/turf/open/ground/coast/corner2,
+/area/prison/beach)
 "pNt" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -45766,6 +45735,11 @@
 "qqY" = (
 /turf/closed/wall/r_wall/prison,
 /area/prison/maintenance/residential/access/north)
+"qru" = (
+/turf/open/ground/coast/corner2{
+	dir = 4
+	},
+/area/prison/beach)
 "qsb" = (
 /obj/machinery/light{
 	dir = 1
@@ -45832,6 +45806,11 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
+"qxg" = (
+/turf/open/ground/coast/corner{
+	dir = 1
+	},
+/area/prison/beach)
 "qxy" = (
 /obj/structure/toilet{
 	dir = 4
@@ -45922,11 +45901,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/canteen)
-"qFD" = (
-/turf/open/ground/coast/corner2{
-	dir = 4
-	},
-/area/prison/beach)
 "qGW" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -46526,11 +46500,6 @@
 /obj/effect/landmark/corpsespawner/prison_security,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
-"rGb" = (
-/turf/open/floor/prison/darkyellow{
-	dir = 1
-	},
-/area/prison/engineering)
 "rGJ" = (
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -46600,6 +46569,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/prison/residential/north)
+"rLx" = (
+/obj/item/toy/beach_ball,
+/turf/open/floor/plating/ground/dirt,
+/area/prison/beach)
 "rLE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -47115,6 +47088,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroid,
 /area/prison/residential/central)
+"sJp" = (
+/turf/open/liquid/water/river,
+/area/prison/beach)
 "sJB" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -47317,6 +47293,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/entrance)
+"tdu" = (
+/turf/open/ground/coast{
+	dir = 4
+	},
+/area/prison/beach)
 "tef" = (
 /obj/structure/cable,
 /turf/open/floor/prison/arrow,
@@ -47368,6 +47349,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/prison/security/head)
+"tlh" = (
+/turf/open/ground/coast/corner,
+/area/prison/beach)
 "tlK" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/prison,
@@ -47501,6 +47485,11 @@
 /obj/effect/spawner/modularmap/prison/civressouth,
 /turf/template_noop,
 /area/prison/residential/south)
+"tzo" = (
+/turf/open/ground/coast/corner{
+	dir = 8
+	},
+/area/prison/beach)
 "tzx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -47745,6 +47734,10 @@
 	dir = 1
 	},
 /area/prison/hangar/civilian)
+"ucn" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/ground/dirt,
+/area/prison/beach)
 "udi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -48723,6 +48716,9 @@
 	},
 /turf/open/floor/prison/darkyellow,
 /area/prison/material_processing)
+"wfu" = (
+/turf/open/floor/plating/ground/dirt,
+/area/prison/beach)
 "wfv" = (
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/entrance)
@@ -49456,11 +49452,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/prison/security/checkpoint/medsec)
-"xKe" = (
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/prison/beach)
 "xKi" = (
 /obj/structure/sink{
 	dir = 4
@@ -49583,6 +49574,16 @@
 	},
 /turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret/bioengineering)
+"ycN" = (
+/turf/open/ground/coast/corner{
+	dir = 4
+	},
+/area/prison/beach)
+"ydf" = (
+/turf/open/ground/coast/corner2{
+	dir = 1
+	},
+/area/prison/beach)
 "ydk" = (
 /obj/effect/turf_decal/woodsiding{
 	dir = 1
@@ -61643,9 +61644,9 @@ aLc
 azg
 rLr
 nuz
-aaq
-aaq
-aaq
+sJp
+sJp
+sJp
 aDc
 cew
 ckU
@@ -61900,9 +61901,9 @@ aLc
 azg
 rLr
 nuz
-aaq
-aaq
-aaq
+sJp
+sJp
+sJp
 aDc
 fLv
 jbN
@@ -62157,9 +62158,9 @@ aLb
 aLb
 aMB
 avl
-aaq
-aaq
-aaq
+sJp
+sJp
+sJp
 aRU
 aOo
 uNd
@@ -62414,9 +62415,9 @@ avN
 aLL
 avN
 nuz
-aaq
-aaq
-aaq
+sJp
+sJp
+sJp
 aDc
 grr
 jbN
@@ -62671,9 +62672,9 @@ avM
 axb
 axa
 nuz
-aar
-aar
-aar
+hce
+hce
+hce
 aDc
 aSU
 bgg
@@ -62928,9 +62929,9 @@ quq
 axb
 pCK
 nuz
-aaq
-aaq
-aaq
+sJp
+sJp
+sJp
 aDc
 fLv
 rqN
@@ -63185,9 +63186,9 @@ avM
 aLK
 rLr
 nuz
-aaq
-aaq
-aaq
+sJp
+sJp
+sJp
 aDc
 aDc
 aDc
@@ -63442,13 +63443,13 @@ nuz
 nuz
 nuz
 nuz
-aas
-aas
-aaB
-aaq
-mLM
-aat
-aat
+dyO
+dyO
+ydf
+sJp
+lOx
+wfu
+wfu
 aDc
 aSA
 jbN
@@ -63689,23 +63690,23 @@ aAa
 aAX
 aAa
 qqY
-aaq
-aar
-aar
-aaq
-aaq
-aaq
-aaq
-aaq
-mLM
-aat
-aat
-aat
-aaC
-aas
-xKe
-aat
-aat
+sJp
+hce
+hce
+sJp
+sJp
+sJp
+sJp
+sJp
+lOx
+wfu
+wfu
+wfu
+qxg
+dyO
+ycN
+wfu
+wfu
 aDc
 aXJ
 aYW
@@ -63946,23 +63947,23 @@ biv
 aAU
 biv
 qqY
-aaq
-aar
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-qFD
-mJq
-aat
-aat
-aat
-aat
-aat
-aat
-aat
+sJp
+hce
+sJp
+sJp
+sJp
+sJp
+sJp
+sJp
+qru
+tzo
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
 aDc
 rqN
 fLv
@@ -64203,23 +64204,23 @@ biv
 aAU
 adS
 qqY
-aaq
-aar
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-mLM
-aat
-aat
-aat
-aat
-aaz
-aax
-mJq
+sJp
+hce
+sJp
+sJp
+sJp
+sJp
+sJp
+sJp
+sJp
+lOx
+wfu
+wfu
+wfu
+wfu
+tlh
+tdu
+tzo
 aDc
 aDc
 aDc
@@ -64460,25 +64461,25 @@ biv
 rjV
 biv
 qqY
-aaq
-aar
-aag
-aas
-aaB
-aaq
-aaq
-aaq
-aag
-xKe
-aat
-nRa
-aat
-aaz
-aaA
-aaq
-qFD
-aaA
-aaq
+sJp
+hce
+hui
+dyO
+ydf
+sJp
+sJp
+sJp
+hui
+ycN
+wfu
+odQ
+wfu
+tlh
+pNf
+sJp
+qru
+pNf
+sJp
 aDc
 aZV
 baS
@@ -64720,22 +64721,22 @@ qqY
 azp
 azp
 qqY
-aat
-aaD
-aaq
-aaq
-aaq
-mLM
-aat
-aat
-aat
-aat
-aaD
-aaq
-aaq
-aaq
-aaq
-aaq
+wfu
+mtQ
+sJp
+sJp
+sJp
+lOx
+wfu
+wfu
+wfu
+wfu
+mtQ
+sJp
+sJp
+sJp
+sJp
+sJp
 aDc
 aDc
 aUa
@@ -64977,22 +64978,22 @@ azp
 ayE
 ayE
 azp
-aat
-aaC
-aas
-aas
-aas
-xKe
-aat
-aat
-aat
-aat
-aaD
-aaq
-aaq
-aaq
-aaq
-aaq
+wfu
+qxg
+dyO
+dyO
+dyO
+ycN
+wfu
+wfu
+wfu
+wfu
+mtQ
+sJp
+sJp
+sJp
+sJp
+sJp
 bdI
 aZW
 baT
@@ -65234,22 +65235,22 @@ azp
 ayE
 ayE
 azp
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aau
-aat
-aat
-aaC
-aas
-aas
-aaB
-aaq
-aaq
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+rLx
+wfu
+wfu
+qxg
+dyO
+dyO
+ydf
+sJp
+sJp
 bdI
 aZX
 baW
@@ -65491,22 +65492,22 @@ azp
 oeN
 ayE
 azp
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aav
-aay
-aat
-aat
-aat
-aaz
-aaA
-aaq
-aaq
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+ucn
+gXm
+wfu
+wfu
+wfu
+tlh
+pNf
+sJp
+sJp
 bdI
 aZY
 jLw
@@ -65748,22 +65749,22 @@ adf
 biv
 azR
 qqY
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aaD
-aaq
-aaq
-aaq
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+mtQ
+sJp
+sJp
+sJp
 bdI
 aZZ
 aZY
@@ -66005,22 +66006,22 @@ azp
 biv
 biv
 azp
-aat
-aaz
-aax
-aax
-mJq
-aat
-aay
-aaw
-aat
-aat
-aat
-aat
-aaC
-aaB
-aaq
-aaq
+wfu
+tlh
+tdu
+tdu
+tzo
+wfu
+gXm
+nui
+wfu
+wfu
+wfu
+wfu
+qxg
+ydf
+sJp
+sJp
 bdI
 aZZ
 aZY
@@ -66262,22 +66263,22 @@ azp
 ayE
 biv
 azp
-aax
-aaA
-aaq
-aaq
-mLM
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aaC
-aaB
-aaq
+tdu
+pNf
+sJp
+sJp
+lOx
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+qxg
+ydf
+sJp
 bdI
 aZZ
 apo
@@ -66519,19 +66520,19 @@ azp
 ayE
 ayE
 azp
-aaq
-aaq
-aaq
-aaq
-mLM
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
+sJp
+sJp
+sJp
+sJp
+lOx
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
 bdI
 bdC
 bdC
@@ -66776,19 +66777,19 @@ qqY
 azp
 azp
 qqY
-aaq
-aaq
-aaq
-aag
-xKe
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
+sJp
+sJp
+sJp
+hui
+ycN
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
 bdI
 bnh
 bnh
@@ -67030,22 +67031,22 @@ biv
 aAU
 biv
 qqY
-aaq
-aar
-aaq
-aaq
-aaq
-aag
-xKe
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
+sJp
+hce
+sJp
+sJp
+sJp
+hui
+ycN
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
 bdC
 bnh
 hVl
@@ -67287,22 +67288,22 @@ biv
 rIf
 biv
 qqY
-aaq
-aar
-aaq
-aaq
-aag
-xKe
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
+sJp
+hce
+sJp
+sJp
+hui
+ycN
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
 bdC
 bng
 ihU
@@ -67544,22 +67545,22 @@ biv
 aAU
 biv
 qqY
-aaq
-aar
-aaq
-aaq
-mLM
-aat
-aat
-aat
-nRa
-aat
-aat
-aat
-aat
-aat
-aaz
-aax
+sJp
+hce
+sJp
+sJp
+lOx
+wfu
+wfu
+wfu
+odQ
+wfu
+wfu
+wfu
+wfu
+wfu
+tlh
+tdu
 bdC
 bng
 bng
@@ -67801,22 +67802,22 @@ axo
 aAU
 biv
 qqY
-aar
-aar
-aaq
-aaq
-mLM
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aat
-aaD
-aaq
+hce
+hce
+sJp
+sJp
+lOx
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+wfu
+mtQ
+sJp
 bdI
 bnh
 bnh
@@ -85113,7 +85114,7 @@ cbJ
 ccn
 fuH
 bRC
-rGb
+lIs
 mcA
 bWc
 bWc
