@@ -73,6 +73,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
 
+	var/roundstart_players = 0
+
 
 /datum/game_mode/New()
 	initialize_emergency_calls()
@@ -110,6 +112,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
+	// Determine roundstart player count, used for population locks.
+	SSticker.mode.roundstart_players = length(GLOB.clients)
+	to_chat(world, "Round initialized with a Population of [SSticker.mode.roundstart_players]")
+	SSblackbox.record_feedback("text", "initial_players", 1, SSticker.mode.roundstart_players)
 	for(var/datum/job/job AS in valid_job_types)
 		job = SSjob.GetJobType(job)
 		if(!job) //dunno how or why but it errored in ci and i couldnt reproduce on local
