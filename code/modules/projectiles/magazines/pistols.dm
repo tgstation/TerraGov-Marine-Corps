@@ -187,6 +187,12 @@
 	icon_state_mini = "mag_pistol"
 	max_rounds = 18
 
+/obj/item/ammo_magazine/pistol/vp70/extended
+	name = "\improper 88M4 extended AP magazine (9mm)"
+	max_rounds = 30
+	icon_state = "88m4_extended"
+	icon_state_mini = "mag_pistol_yellow"
+
 //-------------------------------------------------------
 //VP78
 

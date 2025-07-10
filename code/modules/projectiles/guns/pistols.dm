@@ -510,7 +510,7 @@
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/vp70
-	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp70)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70/extended)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -544,6 +544,10 @@
 
 /obj/item/weapon/gun/pistol/vp70/beginner
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/lace)
+
+/obj/item/weapon/gun/pistol/vp70/burst
+	default_ammo_type = /obj/item/ammo_magazine/pistol/vp70/extended
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/burstfire_assembly, /obj/item/attachable/lace)
 
 //-------------------------------------------------------
 //VP78
@@ -864,3 +868,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	scatter = 0
 	scatter_unwielded = 8
 	recoil_unwielded = 2
+
+/obj/item/weapon/gun/pistol/smart_pistol/pmc
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+	)
