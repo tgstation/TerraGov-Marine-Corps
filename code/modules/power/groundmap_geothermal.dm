@@ -33,7 +33,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	. = ..()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ), PROC_REF(activate_corruption))
 	update_icon()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator", MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator", MINIMAP_BLIPS_LAYER))
 	if(is_ground_level(z))
 		GLOB.generators_on_ground += 1
 	if(corrupted)
@@ -83,6 +83,15 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			icon_state = "wrench"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
 
+
+/obj/machinery/power/geothermal/update_overlays()
+	. = ..()
+	if(corrupted)
+		. += image(icon, src, "overlay_corrupted", layer)
+
+/obj/machinery/power/geothermal/power_change()
+	return
+
 /obj/machinery/power/geothermal/update_desc(updates)
 	. = ..()
 	switch(buildstate)
@@ -96,8 +105,6 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		if(GEOTHERMAL_LIGHT_DAMAGE)
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
 
-/obj/machinery/power/geothermal/power_change()
-	return
 
 
 ///Allow generators to generate psych points
