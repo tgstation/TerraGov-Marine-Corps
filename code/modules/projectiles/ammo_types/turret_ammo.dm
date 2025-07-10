@@ -35,6 +35,7 @@
 	name = "antimaterial bullet"
 	icon_state = "bullet_large_red"
 	bullet_color = COLOR_SOFT_RED
+	ammo_behavior_flags = AMMO_SNIPER
 	accurate_range = 21
 	damage = 80
 	penetration = 50
