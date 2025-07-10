@@ -230,61 +230,44 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(corrupted)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
-			span_notice("You fumble around figuring out the resin tendrils on [src]."))
+			span_notice("You fumble around trying to burn off the resin tendrils."))
+			user.balloon_alert(user, "You fumble around trying to burn off the resin tendrils.")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 				return
-
 		if(!WT.remove_fuel(1, user))
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
-		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message(span_notice("[user] carefully starts burning [src]'s resin off."),
-		span_notice("You carefully start burning [src]'s resin off."))
-		add_overlay(GLOB.welding_sparks)
+		span_notice("You start carefully burning the resin off."))
+		user.balloon_alert(user, "You start carefully burning the resin off.")
 
-		if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
-			cut_overlay(GLOB.welding_sparks)
+		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		user.visible_message(span_notice("[user] burns [src]'s resin off."),
-		span_notice("You burn [src]'s resin off."))
-		cut_overlay(GLOB.welding_sparks)
 		corrupted = 0
 		stop_processing()
 		update_icon()
+	if(buildstate != GENERATOR_HEAVY_DAMAGE) //Already repaired!
 		return
-
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
-		span_notice("You fumble around figuring out [src]'s internals."))
+		user.balloon_alert(user, "You fumble around figuring out how the internals work.")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GENERATOR_HEAVY_DAMAGE || is_on)
 			return
-
 	if(!WT.remove_fuel(1, user))
 		to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		return
 
-	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
-	span_notice("You start welding [src]'s internal damage."))
-	add_overlay(GLOB.welding_sparks)
-
-	if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
-		cut_overlay(GLOB.welding_sparks)
+	user.balloon_alert(user, "You start welding the internals back together.")
+	if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 		return FALSE
 
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-	buildstate = GEOTHERMAL_MEDIUM_DAMAGE
-	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
-	span_notice("You weld [src]'s internal damage."))
-	cut_overlay(GLOB.welding_sparks)
+	buildstate = GENERATOR_MEDIUM_DAMAGE
+	user.balloon_alert(user, "You weld the internals back together.")
 	update_icon()
 	record_generator_repairs(user)
 	return TRUE
-
 
 /obj/machinery/power/geothermal/wirecutter_act(mob/living/user, obj/item/I)
 	if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
