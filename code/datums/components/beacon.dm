@@ -240,11 +240,11 @@
 	/// Name printed on the supply console
 	var/name = ""
 	/// Where the supply drops will land
-	var/atom/drop_location
+	var/turf/drop_location
 	/// The faction of the beacon
 	var/faction = ""
 
-/datum/supply_beacon/New(_name, atom/_drop_location, _faction, life_time = 0 SECONDS)
+/datum/supply_beacon/New(_name, turf/_drop_location, _faction, life_time = 0 SECONDS)
 	name = _name
 	drop_location = _drop_location
 	faction = _faction
