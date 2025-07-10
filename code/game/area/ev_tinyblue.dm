@@ -60,6 +60,9 @@
 	name = "Southern Caverns"
 	icon_state = "south"
 
+/area/tinyblue/caves/s/shallow
+	ceiling = CEILING_UNDERGROUND
+
 /area/tinyblue/caves/se
 	name = "Southeastern Caverns"
 	icon_state = "southeast"
@@ -67,6 +70,9 @@
 /area/tinyblue/caves/e
 	name = "Eastern Caverns"
 	icon_state = "east"
+
+/area/tinyblue/caves/e/shallow
+	ceiling = CEILING_UNDERGROUND
 
 /area/tinyblue/caves/ne
 	name = "Northeastern Caverns"
@@ -82,6 +88,11 @@
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+
+/area/tinyblue/caves/facility/engi
+	name = "Main Powerplant"
+	icon_state = "engine"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/tinyblue/caves/facility/omicron
 	name = "Omicron Research Facility"
@@ -161,7 +172,7 @@
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/tinyblue/outside/building/engi
-	name = "Electrical Powerplant"
+	name = "Electrical Substation"
 	icon_state = "engine"
 	minimap_color = MINIMAP_AREA_ENGI
 
