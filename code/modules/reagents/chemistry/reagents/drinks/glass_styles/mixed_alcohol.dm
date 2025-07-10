@@ -847,7 +847,7 @@
 
 /datum/glass_style/drinking_glass/tiltaellen
 	required_drink_type = /datum/reagent/consumable/ethanol/tiltaellen
-	name = "glass of tiltällen"
+	name = "glass of tiltallen"
 	desc = "Eww... it's curdled."
 	icon_state = "tiltaellen"
 
