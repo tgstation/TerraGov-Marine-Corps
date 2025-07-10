@@ -347,3 +347,87 @@
 	icon_state = "tcomsatcham"
 	area_flags = NO_DROPPOD
 	requires_power = FALSE
+
+// 2 zlevel areas
+// Open Space
+/area/metnal/z2/outside
+	name = "Metnal Air Space"
+	ceiling = NONE
+	outside = TRUE
+// Headquarters
+/area/metnal/z2/inside/relay
+	name = "Private Conference Room"
+	icon_state = "conference"
+	minimap_color = MINIMAP_AREA_COMMAND
+	area_flags = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/HQlvl2
+	name = "Headquarters Second Level"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
+	area_flags = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/deluxbedroom
+	name = "Deluxe Command Bedrooms"
+	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_COMMAND
+	area_flags = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/deluxearmory
+	name = "Command Armory"
+	icon_state = "armory"
+	minimap_color = MINIMAP_AREA_SEC
+	area_flags = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/comgym
+	name = "Command Gym"
+	icon_state = "locker"
+	minimap_color = MINIMAP_AREA_LIVING
+	area_flags = CEILING_OBSTRUCTED
+
+//Civilian Areas
+/area/metnal/z2/inside/dorms2z
+	name = "Dormitories Second Floor"
+	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
+	ceiling = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/theatre
+	name = "Civilian Theatre"
+	icon_state = "Theatre"
+	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
+	ceiling = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/bridge2z
+	name = "Superior NorthWest Bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+	ceiling = CEILING_OBSTRUCTED
+
+//Medical areas
+/area/metnal/z2/inside/medbay2z
+	name = "Infirmary Second Floor"
+	icon_state = "medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY
+	area_flags = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/Emergencyevac
+	name = "Fast Evacuation"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
+	area_flags = CEILING_NONE
+
+//Outside areas
+/area/metnal/z2/outside/hangar
+	name = "Command Hangar"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_ESCAPE
+	area_flags = CEILING_NONE
+
+/area/metnal/z2/outside/hterrace
+	name = "Headquarters Terrace"
+	icon_state = "quart"
+	minimap_color = MINIMAP_AREA_COLONY
+	area_flags = CEILING_NONE
+
+
