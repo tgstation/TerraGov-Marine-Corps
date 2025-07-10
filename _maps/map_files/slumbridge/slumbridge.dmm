@@ -30434,7 +30434,6 @@
 /turf/closed/wall/mainship,
 /area/slumbridge/inside/hydrotreatment)
 "wmA" = (
-/obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
