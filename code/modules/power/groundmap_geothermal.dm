@@ -248,12 +248,12 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		corrupted = 0
 		stop_processing()
 		update_icon()
-	if(buildstate != GENERATOR_HEAVY_DAMAGE) //Already repaired!
+	if(buildstate != GEOTHERMAL_HEAVY_DAMAGE) //Already repaired!
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.balloon_alert(user, "You fumble around figuring out how the internals work.")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GENERATOR_HEAVY_DAMAGE || is_on)
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 			return
 	if(!WT.remove_fuel(1, user))
 		to_chat(user, span_warning("You need more welding fuel to complete this task."))
@@ -263,7 +263,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 		return FALSE
 
-	buildstate = GENERATOR_MEDIUM_DAMAGE
+	buildstate = GEOTHERMAL_MEDIUM_DAMAGE
 	user.balloon_alert(user, "You weld the internals back together.")
 	update_icon()
 	record_generator_repairs(user)
