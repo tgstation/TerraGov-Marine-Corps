@@ -78,7 +78,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "afQ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/blue{
@@ -131,7 +131,7 @@
 "ais" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/prison/darkyellow,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "aiS" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
@@ -189,6 +189,9 @@
 	id = "Cargo Storage";
 	name = "Cargo Shutters"
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo/outpost)
 "als" = (
@@ -232,7 +235,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/whitegreen,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "anP" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -344,6 +347,7 @@
 "asR" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2,
 /area/tinyblue/caves/facility/eta)
 "atk" = (
@@ -563,6 +567,7 @@
 /area/tinyblue/outside/building/engi/filt)
 "aFC" = (
 /obj/structure/closet/crate/freezer,
+/obj/item/organ/liver,
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/lambda/n)
 "aFP" = (
@@ -719,7 +724,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "aMr" = (
 /obj/effect/spawner/random/misc/structure/stool,
 /turf/open/floor/urban/carpet/carpetblackdeco,
@@ -744,12 +749,9 @@
 /turf/open/floor,
 /area/tinyblue/outside/building/marshal)
 "aPe" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/turf/open/floor,
-/area/tinyblue/outside/building/toolshed)
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/tinyblue/outside/ne)
 "aPm" = (
 /obj/structure/table,
 /obj/item/tool/stamp/qm,
@@ -762,7 +764,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "aQl" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitepurple{
@@ -775,7 +777,7 @@
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "aRR" = (
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/tool,
@@ -840,8 +842,8 @@
 /turf/open/floor/prison,
 /area/tinyblue/caves/facility/eta/e)
 "aXS" = (
-/turf/closed/wall,
-/area/tinyblue/caves/facility/lambda)
+/turf/closed/wall/r_wall,
+/area/tinyblue/caves/s/shallow)
 "aZi" = (
 /obj/structure/prop/mainship/vat/broken/bloody,
 /turf/open/floor/bcircuit/off,
@@ -899,7 +901,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "bdV" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -974,7 +976,7 @@
 	name = "\improper Lambda Lab Cargo Storage"
 	},
 /turf/open/floor/prison/plate,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "biH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -988,7 +990,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "bjX" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -1047,7 +1049,7 @@
 "blk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "blp" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -1105,7 +1107,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/lambda/sec)
+/area/tinyblue/outside/e)
 "bqM" = (
 /turf/closed/wall/r_wall,
 /area/tinyblue/caves/facility/eta)
@@ -1143,7 +1145,7 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "btc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1202,7 +1204,7 @@
 "bvM" = (
 /obj/structure/coatrack,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "bwk" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1267,10 +1269,10 @@
 /area/tinyblue/outside/building/marshal)
 "bzE" = (
 /obj/effect/landmark/weed_node,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor,
 /area/tinyblue/outside/building/engi/filt)
 "bAw" = (
@@ -1385,7 +1387,7 @@
 /turf/open/floor/prison/whitepurple{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "bGs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/green2{
@@ -1457,9 +1459,7 @@
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med/icu)
 "bKp" = (
-/turf/open/floor/purpfour{
-	dir = 4
-	},
+/turf/open/floor/plating/dmg1,
 /area/tinyblue/caves/facility/eta/xeno)
 "bKF" = (
 /obj/structure/cable,
@@ -1496,7 +1496,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "bOi" = (
 /obj/effect/decal/cleanable/egg_smudge,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1526,7 +1526,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "bQp" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
@@ -1604,13 +1604,13 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "bUV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "bVm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -1657,7 +1657,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "bXM" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 1
@@ -1708,7 +1708,7 @@
 	},
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "cav" = (
 /obj/structure/sign/safety/storage{
 	dir = 1
@@ -1750,7 +1750,6 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/effect/landmark/weed_node,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/tinyblue/outside/building/toolshed)
 "cdn" = (
@@ -1781,12 +1780,9 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "ceg" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
@@ -1843,10 +1839,9 @@
 /obj/machinery/light,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
-/obj/item/weapon/twohanded/dualsaber,
 /obj/structure/closet/crate/secure/weapon,
 /turf/open/floor/prison/darkyellow,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "cig" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass,
@@ -1905,7 +1900,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "clC" = (
 /turf/open/floor/tile/white/warningstripe{
 	dir = 4
@@ -1956,7 +1951,7 @@
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "coQ" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2105,6 +2100,13 @@
 	dir = 5
 	},
 /area/tinyblue/outside/building/med/icu)
+"cys" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/tinyblue/outside/building/dorms/bar)
 "cyx" = (
 /obj/structure/platform/metalplatform/nondense{
 	dir = 6
@@ -2130,7 +2132,7 @@
 "czh" = (
 /obj/item/stool,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "czp" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -2160,7 +2162,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison/sterilewhite,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "cBl" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
@@ -2204,7 +2206,7 @@
 "cFb" = (
 /obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "cFy" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -2212,12 +2214,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/tinyblue/caves/facility/engi)
-"cFH" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/turf/open/floor/tile/dark,
-/area/tinyblue/caves/e/shallow)
 "cFZ" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -2310,7 +2306,7 @@
 "cLr" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/darkred,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "cLt" = (
 /obj/structure/cable,
 /obj/structure/table,
@@ -2373,13 +2369,10 @@
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo)
 "cPr" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/prison/whitepurple{
-	dir = 8
-	},
-/area/tinyblue/caves/facility/lambda)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor,
+/area/tinyblue/outside/building/marshal)
 "cPs" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark/blue2{
@@ -2441,6 +2434,11 @@
 	},
 /turf/open/floor,
 /area/tinyblue/outside/building/marshal)
+"cSq" = (
+/obj/effect/ai_node,
+/obj/structure/fence,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/e/shallow)
 "cSJ" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -2450,10 +2448,6 @@
 	},
 /turf/open/floor/tile/green/whitegreen,
 /area/tinyblue/outside/building/med)
-"cSL" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/s/shallow)
 "cTe" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 1
@@ -2472,7 +2466,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/rd,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "cUt" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -2596,7 +2590,7 @@
 "dcC" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "dcL" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -2792,7 +2786,7 @@
 "dlr" = (
 /obj/machinery/light,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "dlx" = (
 /obj/effect/spawner/random/engineering/pickaxe,
 /obj/effect/landmark/weed_node,
@@ -2817,13 +2811,13 @@
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "doE" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkyellow{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "doH" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/vault{
@@ -2892,7 +2886,7 @@
 	pixel_x = -8
 	},
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "dty" = (
 /turf/closed/wall,
 /area/tinyblue/outside/building/dorms/plant)
@@ -2957,7 +2951,6 @@
 /area/tinyblue/caves/facility/eta/xeno)
 "duY" = (
 /obj/effect/landmark/weed_node,
-/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/table,
 /turf/open/floor/carpet,
 /area/tinyblue/outside/building/admin)
@@ -2982,7 +2975,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "dvW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
@@ -3006,7 +2999,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "dxw" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
@@ -3030,10 +3023,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/tinyblue/caves/n)
-"dyM" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark,
-/area/tinyblue/caves/e/shallow)
 "dyU" = (
 /obj/structure/foamedmetal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3078,7 +3067,7 @@
 "dCp" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "dCS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
 	dir = 1;
@@ -3112,6 +3101,9 @@
 /area/tinyblue/outside/building/dorms/chapel)
 "dDV" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo/outpost)
 "dEi" = (
@@ -3141,7 +3133,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor,
+/turf/open/floor/plating/ground/ice,
 /area/tinyblue/outside/building/toolshed)
 "dFY" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -3154,7 +3146,7 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/tinyblue/outside/building/dorms)
-"dGV" = (
+"dGY" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
@@ -3274,9 +3266,10 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "dNB" = (
 /obj/structure/closet/crate/freezer,
+/obj/item/organ/lungs,
 /turf/open/floor/plating/dmg1,
 /area/tinyblue/caves/facility/lambda/n)
 "dNI" = (
@@ -3308,7 +3301,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "dOW" = (
 /obj/machinery/light{
 	dir = 4
@@ -3318,6 +3311,9 @@
 "dPu" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 8
@@ -3342,7 +3338,7 @@
 "dQM" = (
 /obj/item/shard,
 /turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "dQU" = (
 /obj/structure/table,
 /obj/item/tool/analyzer,
@@ -3369,9 +3365,9 @@
 /turf/open/floor/plating,
 /area/tinyblue/caves/se)
 "dTx" = (
-/obj/effect/landmark/weed_node,
-/turf/closed/mineral/smooth/bluefrostwall,
-/area/tinyblue/caves/rock)
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/tile/dark,
+/area/tinyblue/outside/s)
 "dTE" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -3386,7 +3382,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "dUq" = (
 /obj/machinery/iv_drip,
 /obj/effect/decal/cleanable/blood,
@@ -3415,12 +3411,9 @@
 	},
 /area/tinyblue/caves/facility/eta)
 "dWb" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "dWQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/warning,
@@ -3448,9 +3441,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/tinyblue/outside/building/admin)
-"dXV" = (
-/turf/closed/mineral/smooth/bluefrostwall,
-/area/tinyblue/caves/e/shallow)
 "dYu" = (
 /obj/structure/prop/nt_computer/rack,
 /obj/machinery/light/blue,
@@ -3617,9 +3607,6 @@
 	dir = 6
 	},
 /area/tinyblue/caves/facility/eta)
-"erd" = (
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/e/shallow)
 "erg" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/freezer,
@@ -3637,7 +3624,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison/sterilewhite,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "esp" = (
 /turf/open/floor/marking/asteroidwarning,
 /area/tinyblue/outside/building/lz)
@@ -3683,7 +3670,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "etP" = (
 /obj/machinery/light,
 /turf/open/floor/prison/blue,
@@ -3731,7 +3718,7 @@
 "eww" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "exa" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -3770,7 +3757,7 @@
 /turf/open/floor/prison/blue{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "eyd" = (
 /obj/item/autopsy_scanner,
 /obj/item/tool/surgery/retractor,
@@ -3975,13 +3962,13 @@
 "eIc" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreen,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "eIl" = (
 /obj/structure/table,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "eIz" = (
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 8
@@ -3993,7 +3980,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "eJl" = (
 /turf/open/floor/prison/darkpurple{
 	dir = 9
@@ -4009,7 +3996,7 @@
 /obj/item/paper/crumpled/bloody,
 /obj/item/paper/commendation,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "eKy" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4061,6 +4048,7 @@
 /area/tinyblue/outside/building/cargo/shop)
 "eNV" = (
 /obj/structure/closet/crate/radiation,
+/obj/item/weapon/gun/energy/lasgun/pulse,
 /turf/open/floor/plating,
 /area/tinyblue/caves/facility/lambda/n)
 "eOc" = (
@@ -4071,7 +4059,7 @@
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "eOB" = (
 /obj/structure/morgue{
 	dir = 1
@@ -4081,7 +4069,7 @@
 "ePz" = (
 /obj/structure/table,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "ePO" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -4146,6 +4134,7 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/tinyblue/caves/facility/eta/e)
 "eVq" = (
@@ -4156,7 +4145,7 @@
 "eWz" = (
 /obj/machinery/light,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/tinyblue/outside/building/admin)
+/area/tinyblue/outside/c)
 "eWB" = (
 /obj/structure/table/wood,
 /obj/item/ashtray/glass,
@@ -4250,10 +4239,6 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/misc/paperbin,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	welded = 1
-	},
 /turf/open/floor/tile/dark/gray,
 /area/tinyblue/outside/building/cargo/shop)
 "fca" = (
@@ -4330,9 +4315,8 @@
 /turf/open/floor,
 /area/tinyblue/outside/building/dorms)
 "fhw" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/tinyblue/caves/facility/eta)
+/turf/closed/wall,
+/area/tinyblue/outside/s)
 "fia" = (
 /obj/structure/bed/roller,
 /turf/open/floor/tile/green/whitegreen{
@@ -4382,7 +4366,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "flF" = (
 /obj/structure/table,
 /turf/open/floor/tile/brown{
@@ -4456,11 +4440,10 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "fpK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	welded = 1
+	dir = 8
 	},
 /turf/open/floor/tile/dark/gray,
 /area/tinyblue/caves/facility/engi)
@@ -4488,7 +4471,7 @@
 /turf/open/floor/prison/whitepurple{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "frY" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -4594,6 +4577,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2,
 /area/tinyblue/caves/facility/eta)
 "fzj" = (
@@ -4635,7 +4619,7 @@
 "fCD" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "fEQ" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -4673,6 +4657,7 @@
 "fGY" = (
 /obj/structure/table,
 /obj/item/toy/plush/therapy_blue,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/tinyblue/caves/facility/eta/e)
 "fHH" = (
@@ -4789,8 +4774,10 @@
 /turf/open/floor/plating,
 /area/tinyblue/caves/e/shallow)
 "fRz" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/outside/building/marshal)
 "fRU" = (
 /obj/structure/cable,
 /obj/structure/table,
@@ -4861,8 +4848,10 @@
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/e)
 "fVa" = (
-/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/tinyblue/outside/building/med)
 "fVg" = (
@@ -4882,7 +4871,7 @@
 /obj/item/disk/nuclear,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "fWn" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -4901,7 +4890,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "fXL" = (
 /obj/structure/table,
 /obj/machinery/door/window{
@@ -4987,7 +4976,6 @@
 	},
 /area/tinyblue/outside/building/med)
 "gdC" = (
-/obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5266,9 +5254,9 @@
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med)
 "grS" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/dmg2,
+/area/tinyblue/caves/facility/eta/xeno)
 "grV" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
@@ -5427,6 +5415,10 @@
 /area/tinyblue/outside/building/dorms/plant)
 "gCn" = (
 /obj/effect/landmark/weed_node,
+/obj/machinery/door_control{
+	name = "Reactor Safety Shutters";
+	id = "Reactor Shutters"
+	},
 /turf/open/floor/tile/brown{
 	dir = 1
 	},
@@ -5437,7 +5429,7 @@
 	id = "Eta Lockdown"
 	},
 /turf/open/floor/tile/dark,
-/area/tinyblue/outside/s)
+/area/tinyblue/caves/s/shallow)
 "gCU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -5445,7 +5437,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "gCV" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -5559,11 +5551,11 @@
 "gIJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "gJf" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "gJg" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -5596,13 +5588,13 @@
 	dir = 5
 	},
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "gKf" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "gKR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -5622,7 +5614,7 @@
 "gMl" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "gMq" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -5644,7 +5636,7 @@
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "gNV" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -5750,7 +5742,7 @@
 /turf/open/floor/prison/blue{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "gUJ" = (
 /obj/machinery/light,
 /obj/effect/landmark/weed_node,
@@ -5795,10 +5787,12 @@
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/tinyblue/outside/building/dorms/rec)
 "gWZ" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor,
-/area/tinyblue/outside/building/toolshed)
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/tinyblue/outside/building/dorms/bar)
 "gXe" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/tile/dark/blue2{
@@ -5968,7 +5962,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "hif" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
@@ -6059,11 +6053,12 @@
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
-/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/dorms/bar)
 "hnj" = (
 /obj/structure/table,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/tinyblue/caves/facility/eta/e)
 "hoo" = (
@@ -6192,7 +6187,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "hyb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -6309,7 +6304,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/prison/darkred,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "hDX" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6326,6 +6321,7 @@
 "hEv" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta/e)
 "hEP" = (
@@ -6480,7 +6476,7 @@
 "hRO" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/blue2,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "hRR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
@@ -6491,7 +6487,7 @@
 /obj/structure/bed/chair/comfy/beige,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "hSD" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 8;
@@ -6500,9 +6496,9 @@
 /turf/open/floor/freezer,
 /area/tinyblue/outside/building/dorms)
 "hSQ" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/r_wall,
-/area/tinyblue/outside/building/marshal)
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/s/shallow)
 "hSR" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/tool,
@@ -6544,8 +6540,9 @@
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/dorms/bar)
 "hWf" = (
-/turf/closed/wall/r_wall,
-/area/tinyblue/caves/facility/lambda)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/tinyblue/caves/e/shallow)
 "hWC" = (
 /obj/structure/prop/urban/containersextended/whitewyleft,
 /turf/open/floor/plating,
@@ -6609,6 +6606,10 @@
 	dir = 4
 	},
 /area/tinyblue/outside/building/admin)
+"ibn" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall,
+/area/tinyblue/outside/building/marshal)
 "ibF" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue,
@@ -6715,8 +6716,11 @@
 	dir = 1;
 	name = "\improper Lambda Lab Administration Wing"
 	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "ihf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6730,7 +6734,7 @@
 	name = "\improper Eta Lab Director's Office"
 	},
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "ihF" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6781,7 +6785,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "ikd" = (
 /obj/structure/prop/mainship/sensor_computer1/white,
 /turf/open/floor/tile/dark/blue2{
@@ -6821,10 +6825,6 @@
 	},
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/lambda/n)
-"ilu" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/tile/red/redtaupe,
-/area/tinyblue/outside/building/marshal)
 "ilw" = (
 /obj/structure/table,
 /obj/machinery/computer/pod/old{
@@ -6857,6 +6857,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2,
 /area/tinyblue/caves/facility/eta)
 "inh" = (
@@ -6871,7 +6872,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "iob" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
@@ -7001,6 +7002,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
 /obj/item/weapon/gun/shotgun/double,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/dorms/bar)
 "isz" = (
@@ -7011,7 +7013,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "isX" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -7049,7 +7051,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "iuR" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -7075,7 +7077,7 @@
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "iwU" = (
 /obj/machinery/science/analyser,
 /turf/open/floor/prison/whitepurple,
@@ -7210,9 +7212,14 @@
 /turf/open/floor,
 /area/tinyblue/outside/building/marshal)
 "iGG" = (
-/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/prison/blue{
+	dir = 8
+	},
+/area/tinyblue/caves/facility/eta/e)
 "iGP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -7310,6 +7317,12 @@
 /obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/bcircuit/off,
 /area/tinyblue/caves/facility/engi)
+"iKx" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/tinyblue/outside/building/cargo/outpost)
 "iKF" = (
 /obj/machinery/light{
 	dir = 1
@@ -7350,7 +7363,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "iMm" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	dir = 1;
@@ -7555,7 +7568,7 @@
 	welded = 1
 	},
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "iWa" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 1
@@ -7673,12 +7686,11 @@
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo)
 "jco" = (
-/obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
+	dir = 10
 	},
-/turf/open/floor,
-/area/tinyblue/outside/building/toolshed)
+/turf/open/floor/tile/dark,
+/area/tinyblue/caves/e/shallow)
 "jcC" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/excavation_site_spawner,
@@ -7725,7 +7737,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "jez" = (
 /obj/structure/monorail{
 	dir = 8
@@ -7821,7 +7833,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "jky" = (
 /obj/structure/prop/vehicle/crane/cranecargo{
 	dir = 8
@@ -7888,12 +7900,19 @@
 "jni" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "jnM" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/fancy,
 /area/tinyblue/outside/building/dorms/chapel)
+"jof" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/tinyblue/caves/se)
 "joi" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -8135,7 +8154,7 @@
 /area/tinyblue/caves/s)
 "jEx" = (
 /turf/open/floor/tile/dark/blue2,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "jFa" = (
 /obj/effect/landmark/dropship_start_location,
 /obj/structure/cable,
@@ -8185,7 +8204,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "jGW" = (
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/s/shallow)
@@ -8270,10 +8289,10 @@
 /area/tinyblue/outside/building/virology)
 "jKc" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 1
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/e)
 "jKe" = (
@@ -8291,6 +8310,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2,
 /area/tinyblue/caves/facility/eta)
 "jLe" = (
@@ -8313,7 +8333,7 @@
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "jMG" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -8345,8 +8365,10 @@
 /area/tinyblue/caves/facility/eta/xeno)
 "jOY" = (
 /obj/effect/landmark/corpsespawner/colonist,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/start/job/xenomorph,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
 /turf/open/floor,
 /area/tinyblue/outside/building/cargo)
 "jPi" = (
@@ -8634,13 +8656,14 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "keh" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	name = "\improper Eta Lab Relaxation";
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta/e)
 "keN" = (
@@ -8753,7 +8776,7 @@
 /turf/open/floor/prison/darkred{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "kjD" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
@@ -8797,7 +8820,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "knR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -8832,7 +8855,7 @@
 "kpO" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/tinyblue/outside/building/admin)
+/area/tinyblue/outside/s)
 "kqr" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -8844,7 +8867,7 @@
 "kqv" = (
 /obj/structure/prop/urban/xenobiology/small/hugger,
 /turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "krb" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
@@ -8882,7 +8905,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "ktr" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -8969,7 +8992,7 @@
 	id = "Eta Lockdown"
 	},
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "kAH" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -8999,7 +9022,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "kBB" = (
 /turf/closed/wall/r_wall,
 /area/tinyblue/caves/e/shallow)
@@ -9054,7 +9077,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/tinyblue/caves/facility/lambda/sec)
+/area/tinyblue/outside/e)
 "kEw" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
@@ -9137,7 +9160,7 @@
 /turf/open/floor/prison/whitepurple{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "kKB" = (
 /obj/machinery/light{
 	dir = 4
@@ -9186,7 +9209,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "kMb" = (
 /obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/paperbin,
@@ -9302,7 +9325,7 @@
 /obj/item/weapon/gun/pistol/holdout,
 /obj/effect/spawner/gibspawner/generic,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "kRI" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/machinery/light{
@@ -9368,18 +9391,18 @@
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/marshal)
 "kXB" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	welded = 1
 	},
 /turf/open/floor/tile/brown{
 	dir = 4
 	},
 /area/tinyblue/outside/building/cargo/shop)
 "kXW" = (
-/turf/open/floor/prison/whitepurple{
-	dir = 6
-	},
-/area/tinyblue/caves/facility/lambda)
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/tile/dark,
+/area/tinyblue/caves/s/shallow)
 "kYa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/blue,
@@ -9513,14 +9536,14 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "lec" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "lei" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -9551,7 +9574,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "lgy" = (
 /obj/item/alien_embryo,
 /turf/open/floor/tile/green/whitegreen,
@@ -9587,7 +9610,7 @@
 	id = "Eta Lockdown"
 	},
 /turf/open/floor/tile/dark,
-/area/tinyblue/outside/s)
+/area/tinyblue/caves/s/shallow)
 "liC" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/foamedmetal,
@@ -9614,6 +9637,7 @@
 	name = "\improper Eta Lab"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta/e)
 "lle" = (
@@ -9650,7 +9674,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "lmC" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 1;
@@ -9658,7 +9682,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "lnk" = (
 /turf/open/floor/tile/red/redtaupe,
 /area/tinyblue/outside/building/marshal)
@@ -9756,7 +9780,7 @@
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "lsN" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood/fancy,
@@ -9826,7 +9850,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/prison/darkred,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "lxT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -9862,7 +9886,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "lBT" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/tile/dark/blue2{
@@ -9879,6 +9903,7 @@
 /area/tinyblue/outside/building/med)
 "lDx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta/e)
 "lDA" = (
@@ -9912,10 +9937,9 @@
 /turf/open/floor/tile/dark/blue2,
 /area/tinyblue/outside/building/admin)
 "lEm" = (
-/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating,
-/area/tinyblue/outside/building/marshal)
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/se)
 "lEn" = (
 /obj/machinery/light{
 	dir = 4
@@ -9932,7 +9956,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "lFr" = (
 /obj/structure/table/wood/fancy,
 /obj/item/toy/plush/therapy_blue,
@@ -10198,12 +10222,13 @@
 /turf/open/floor/tile/blue/taupeblue,
 /area/tinyblue/outside/building/cargo/shop)
 "lRB" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 4
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
+/obj/machinery/door/poddoor/nt_lockdown/red{
+	name = "\improper Reactor Safety Shutters";
+	dir = 1
 	},
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/engi)
 "lSJ" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -10265,7 +10290,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/ne)
 "lUS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/ai_node,
@@ -10321,7 +10346,6 @@
 /turf/open/floor/freezer,
 /area/tinyblue/outside/building/dorms/eat)
 "lYk" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -10401,7 +10425,7 @@
 /obj/item/tool/stamp/qm,
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "mej" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -10419,6 +10443,7 @@
 /area/tinyblue/outside/building/marshal)
 "meZ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2,
 /area/tinyblue/caves/facility/eta)
 "mfo" = (
@@ -10490,7 +10515,7 @@
 /turf/open/floor/prison/whitepurple{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "mjh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -10529,19 +10554,11 @@
 	},
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/virology)
-"mmp" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor,
-/area/tinyblue/outside/building/marshal)
 "mmB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/prison,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "mmH" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/tinyblue/outside/c)
@@ -10606,7 +10623,7 @@
 /turf/open/floor/prison/darkred{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "mqW" = (
 /obj/machinery/constructable_frame/state_2,
 /turf/open/floor/urban/carpet/carpetblackdeco,
@@ -10632,7 +10649,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "muy" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -10652,6 +10669,14 @@
 	},
 /turf/closed/wall/r_wall/urban,
 /area/tinyblue/caves/facility/omicron)
+"mva" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor,
+/area/tinyblue/outside/building/marshal)
 "mvg" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -10773,7 +10798,7 @@
 	pixel_x = 5
 	},
 /turf/open/floor/prison/plate,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "mCm" = (
 /obj/structure/sink,
 /turf/open/floor/tile/purple/whitepurple,
@@ -10827,7 +10852,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "mFf" = (
 /obj/item/paper/crumpled,
 /obj/item/tool/wrench,
@@ -10873,6 +10898,7 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta/e)
 "mKp" = (
@@ -10888,8 +10914,9 @@
 	},
 /area/tinyblue/outside/building/cargo/shop)
 "mKJ" = (
-/turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/e/shallow)
 "mLh" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -11065,11 +11092,11 @@
 	},
 /area/tinyblue/outside/building/lz)
 "mTC" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4
-	},
-/turf/open/floor,
-/area/tinyblue/outside/building/engi/filt)
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/s/shallow)
+"mTG" = (
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/outside/building/toolshed)
 "mTS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11099,7 +11126,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "mUM" = (
 /obj/structure/table,
 /obj/machinery/faxmachine,
@@ -11124,10 +11151,8 @@
 /area/tinyblue/caves/facility/eta/xeno)
 "mWl" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/turf/open/floor,
-/area/tinyblue/outside/building/toolshed)
+/turf/open/floor/tile/dark,
+/area/tinyblue/outside/e)
 "mWF" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -11153,9 +11178,6 @@
 "mXh" = (
 /obj/structure/table,
 /obj/item/alienjar,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
 /obj/effect/ai_node,
 /turf/open/floor/carpet,
 /area/tinyblue/outside/building/admin)
@@ -11192,9 +11214,9 @@
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/virology)
 "mZg" = (
-/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
-/turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/e/shallow)
 "mZk" = (
 /obj/machinery/chem_master,
 /turf/open/floor/tile/purple/whitepurple{
@@ -11261,7 +11283,7 @@
 "ncF" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/darkyellow,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "ndr" = (
 /turf/open/floor/plating/warning{
 	dir = 4
@@ -11345,8 +11367,8 @@
 /turf/open/floor/plating/ground/ice,
 /area/tinyblue/caves/ne)
 "nib" = (
-/obj/effect/landmark/nuke_spawn,
 /obj/effect/ai_node,
+/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/omicron)
 "nim" = (
@@ -11442,6 +11464,12 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/dorms)
+"nqo" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/tinyblue/caves/se)
 "nqv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -11596,10 +11624,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/spiralplate,
 /area/tinyblue/outside/building/engi/filt)
-"nxs" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/s/shallow)
 "nxY" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
@@ -11610,7 +11634,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "nyl" = (
 /obj/effect/spawner/gibspawner/human,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11660,7 +11684,7 @@
 	dir = 8
 	},
 /turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "nBn" = (
 /turf/open/floor/prison/darkpurple{
 	dir = 4
@@ -11786,7 +11810,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/prison/sterilewhite,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "nLB" = (
 /obj/structure/table,
 /obj/item/healthanalyzer,
@@ -11817,7 +11841,7 @@
 "nOB" = (
 /obj/machinery/light,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/tinyblue/outside/building/admin)
+/area/tinyblue/outside/c)
 "nOI" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/white,
@@ -11871,7 +11895,7 @@
 /turf/open/floor/prison/whitepurple{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "nSR" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -11931,8 +11955,12 @@
 	},
 /area/tinyblue/outside/building/med)
 "nVE" = (
-/turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/prison/blue{
+	dir = 1
+	},
+/area/tinyblue/caves/facility/eta/e)
 "nVL" = (
 /obj/machinery/botany/editor,
 /turf/open/floor,
@@ -11940,7 +11968,7 @@
 "nVT" = (
 /obj/structure/closet/secure_closet/RD,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "nVV" = (
 /turf/closed/wall/r_wall,
 /area/tinyblue/outside/s)
@@ -11961,7 +11989,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "nXL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11975,7 +12003,6 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/tinyblue/outside/n)
 "nYv" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/green2{
@@ -11993,7 +12020,7 @@
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "nZi" = (
 /obj/effect/turf_decal/warning_stripes/linethick,
 /turf/open/floor/mainship/tcomms,
@@ -12056,10 +12083,10 @@
 /obj/structure/sink{
 	dir = 1
 	},
-/obj/structure/mirror{
-	pixel_y = -20
-	},
 /obj/machinery/light/small,
+/obj/structure/mirror{
+	dir = 1
+	},
 /turf/open/floor/freezer,
 /area/tinyblue/outside/building/dorms)
 "ogR" = (
@@ -12085,9 +12112,6 @@
 /area/tinyblue/outside/building/cargo/shop)
 "ohH" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo/outpost)
 "ohW" = (
@@ -12104,7 +12128,7 @@
 /obj/effect/spawner/random/misc/paperbin,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "ojP" = (
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall,
@@ -12120,7 +12144,7 @@
 /obj/item/circuitboard/machine/batteryrack,
 /obj/item/stack/cable_coil,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "oki" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -12180,6 +12204,7 @@
 "olY" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/carpet/edge2,
 /area/tinyblue/outside/building/admin)
 "omF" = (
@@ -12188,7 +12213,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "omS" = (
 /obj/structure/prop/urban/containersextended/whitewyleft,
 /turf/open/floor/plating,
@@ -12208,7 +12233,7 @@
 /turf/open/floor/prison/whitepurple{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "onW" = (
 /obj/structure/prop/urban/containersextended/greywyleft{
 	pixel_y = -10
@@ -12233,10 +12258,10 @@
 /area/tinyblue/outside/building/admin)
 "opQ" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/cargo/outpost)
 "oqy" = (
@@ -12261,10 +12286,9 @@
 /turf/open/floor/plating,
 /area/tinyblue/caves/facility/lambda/n)
 "osV" = (
-/turf/open/floor/prison/whitepurple{
-	dir = 5
-	},
-/area/tinyblue/caves/facility/lambda)
+/obj/structure/fence,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/e/shallow)
 "otc" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
@@ -12302,7 +12326,6 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/tile/dark/gray,
 /area/tinyblue/outside/building/cargo/shop)
 "owX" = (
@@ -12365,6 +12388,7 @@
 /area/tinyblue/caves/facility/eta)
 "ozs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2{
 	dir = 1
 	},
@@ -12497,14 +12521,8 @@
 	},
 /area/tinyblue/caves/facility/omicron)
 "oII" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/tinyblue/outside/building/admin)
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/tinyblue/caves/e/shallow)
 "oJS" = (
 /obj/structure/closet,
 /obj/structure/sign/poster{
@@ -12592,7 +12610,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitegreen/corner,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "oSy" = (
 /obj/structure/bed/chair/pew{
 	dir = 10
@@ -12754,7 +12772,7 @@
 /turf/open/floor/prison/darkred{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "pas" = (
 /obj/structure/prop/urban/vehicles/large/colonycrawlers/mining/mining1{
 	dir = 4
@@ -12803,7 +12821,7 @@
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "peg" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -12835,7 +12853,7 @@
 "pgy" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "pgQ" = (
 /obj/machinery/power/tbg_turbine/heat{
 	dir = 4
@@ -13015,7 +13033,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "pub" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark,
@@ -13137,10 +13155,6 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/mainship/tcomms,
 /area/tinyblue/caves/facility/lambda/s)
-"pEk" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/e/shallow)
 "pED" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -13150,14 +13164,14 @@
 /turf/open/floor/prison/blue{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "pEN" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
 /obj/machinery/light,
 /turf/open/floor/prison/darkyellow,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "pEQ" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /obj/machinery/light{
@@ -13203,10 +13217,6 @@
 "pHM" = (
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med/icu)
-"pIN" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/e/shallow)
 "pIQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -13301,7 +13311,16 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
+"pNo" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/dark,
+/area/tinyblue/outside/c)
 "pNx" = (
 /obj/machinery/light{
 	dir = 4
@@ -13319,7 +13338,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "pOk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -13357,7 +13376,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "pRi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -13383,13 +13402,13 @@
 "pTp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "pUw" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "pUU" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -13476,7 +13495,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "qdj" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/delivery,
@@ -13573,7 +13592,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "qgF" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/tcomms,
@@ -13603,7 +13622,7 @@
 /turf/open/floor/prison/whitepurple{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "qiA" = (
 /turf/open/floor/prison/blue{
 	dir = 1
@@ -13652,6 +13671,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/carpet/edge2,
 /area/tinyblue/outside/building/admin)
 "qoF" = (
@@ -13783,12 +13803,10 @@
 /turf/closed/wall/r_wall,
 /area/tinyblue/outside/building/lz)
 "qzm" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Lambda Lab"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison/sterilewhite,
-/area/tinyblue/caves/facility/lambda)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor/tile/dark,
+/area/tinyblue/caves/s/shallow)
 "qAu" = (
 /obj/effect/spawner/random/engineering/structure/atmospherics_portable/icecolony,
 /turf/open/floor/wood,
@@ -13829,7 +13847,7 @@
 "qEY" = (
 /obj/structure/prop/urban/xenobiology/small/egg,
 /turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "qFS" = (
 /obj/structure/table,
 /obj/item/paper/Toxin,
@@ -13885,7 +13903,7 @@
 "qKP" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/blue2,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "qLd" = (
 /turf/closed/wall/r_wall/urban,
 /area/tinyblue/caves/facility/omicron)
@@ -13941,7 +13959,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "qNb" = (
 /obj/machinery/door/poddoor/shutters/opened{
 	dir = 2;
@@ -13973,7 +13991,7 @@
 "qOO" = (
 /obj/machinery/computer/ordercomp,
 /turf/open/floor/prison/plate,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "qOT" = (
 /turf/open/floor/prison/whitepurple{
 	dir = 6
@@ -13995,7 +14013,7 @@
 /turf/open/floor/prison/whitepurple{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "qPy" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14039,7 +14057,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "qQz" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/green2{
@@ -14104,7 +14122,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "qSw" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -14182,7 +14200,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "qVU" = (
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -14270,10 +14288,13 @@
 /area/tinyblue/outside/building/dorms/chapel)
 "raL" = (
 /obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "rbk" = (
 /obj/effect/landmark/corpsespawner/prisoner/burst,
 /obj/effect/ai_node,
@@ -14307,7 +14328,7 @@
 /turf/open/floor/prison/darkred{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "rcI" = (
 /obj/structure/cable,
 /obj/item/shard,
@@ -14336,11 +14357,17 @@
 /turf/open/floor/elevatorshaft,
 /area/tinyblue/caves/facility/omicron)
 "rdp" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison/whitepurple{
-	dir = 10
+/obj/machinery/floodlight/colony,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/se)
+"rdy" = (
+/obj/machinery/door_control{
+	dir = 8;
+	name = "Eta Lockdown Shutters";
+	id = "Eta Lockdown"
 	},
-/area/tinyblue/caves/facility/lambda)
+/turf/open/floor/mainship/tcomms,
+/area/tinyblue/caves/facility/eta)
 "rdL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -14403,6 +14430,7 @@
 /area/tinyblue/outside/building/med/icu)
 "rgP" = (
 /obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/carpet/edge2,
 /area/tinyblue/outside/building/admin)
 "rgQ" = (
@@ -14451,7 +14479,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "rjm" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/green/whitegreen{
@@ -14485,7 +14513,7 @@
 /turf/open/floor/prison/blue{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "rjT" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
@@ -14531,9 +14559,7 @@
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/lambda/n)
 "rmn" = (
-/turf/open/floor/purpfour{
-	dir = 8
-	},
+/turf/open/floor/plating/dmg3,
 /area/tinyblue/caves/facility/eta/xeno)
 "rmr" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -14576,7 +14602,6 @@
 /turf/open/floor/plating/ground/ice,
 /area/tinyblue/caves/ne)
 "rph" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
@@ -14653,14 +14678,13 @@
 /turf/open/floor/plating,
 /area/tinyblue/caves/facility/omicron)
 "rtS" = (
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1;
-	name = "\improper Lambda Lab Maintenance"
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/turf/open/floor/plating/warning{
+	dir = 4
+	},
+/area/tinyblue/outside/building/cargo/outpost)
 "ruY" = (
 /obj/machinery/light{
 	dir = 1
@@ -14733,7 +14757,6 @@
 /turf/open/floor/tile/dark/blue2,
 /area/tinyblue/outside/building/admin)
 "rBL" = (
-/obj/structure/cable,
 /obj/effect/landmark/corpsespawner/security,
 /obj/item/weapon/gun/rifle/standard_carbine,
 /obj/item/ammo_magazine/rifle/standard_carbine,
@@ -14783,6 +14806,7 @@
 	dir = 10
 	},
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2,
 /area/tinyblue/caves/facility/eta)
 "rFj" = (
@@ -14797,13 +14821,14 @@
 /area/tinyblue/caves/e/shallow)
 "rFD" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/organ/brain,
 /turf/open/floor/freezer,
 /area/tinyblue/caves/facility/lambda/n)
 "rFM" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "rGm" = (
 /obj/effect/spawner/random/misc/structure/stool,
 /obj/effect/landmark/corpsespawner/colonist,
@@ -14863,7 +14888,7 @@
 "rKA" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "rLd" = (
 /obj/machinery/landinglight/lz1{
 	dir = 8
@@ -14974,17 +14999,22 @@
 /turf/open/floor,
 /area/tinyblue/outside/building/cargo)
 "rQO" = (
-/obj/machinery/light{
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/sw)
+/turf/open/floor/tile/dark,
+/area/tinyblue/outside/s)
 "rQV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/prison/whitepurple{
 	dir = 1
 	},
 /area/tinyblue/caves/facility/lambda/n)
+"rRa" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/tinyblue/caves/e/shallow)
 "rRu" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/wood,
@@ -14997,7 +15027,7 @@
 	light_range = 5
 	},
 /turf/closed/wall,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "rRL" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -15089,7 +15119,7 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/prison/darkyellow,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "rXf" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/spaceacillin,
@@ -15164,7 +15194,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "scj" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/brown{
@@ -15219,8 +15249,10 @@
 /turf/open/floor,
 /area/tinyblue/outside/building/dorms/plant)
 "sfa" = (
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/s/shallow)
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating,
+/area/tinyblue/outside/building/marshal)
 "sfg" = (
 /obj/structure/sink{
 	dir = 8
@@ -15283,7 +15315,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "sio" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted/colony,
 /obj/machinery/light{
@@ -15300,7 +15332,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "sjc" = (
 /obj/machinery/light/small,
 /turf/open/floor/urban/carpet/carpetblackdeco,
@@ -15435,10 +15467,6 @@
 	},
 /area/tinyblue/caves/facility/eta/e)
 "suG" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2{
@@ -15502,11 +15530,6 @@
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/dorms/chapel)
-"syE" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor,
-/area/tinyblue/outside/building/marshal)
 "syY" = (
 /obj/structure/bed/roller/hospital_empty,
 /turf/open/floor/tile/green/whitegreen{
@@ -15619,6 +15642,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/virology)
+"sDY" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/s/shallow)
 "sFk" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard,
@@ -15644,7 +15671,7 @@
 /obj/effect/mapping_helpers/airlock/welded,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "sJB" = (
 /obj/structure/stairs,
 /turf/open/floor/prison/plate,
@@ -15746,7 +15773,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "sOH" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -15761,17 +15788,9 @@
 	},
 /turf/open/floor/elevatorshaft,
 /area/tinyblue/caves/facility/omicron)
-"sOM" = (
-/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating,
-/area/tinyblue/outside/building/marshal)
 "sQb" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
-	},
-/turf/open/floor,
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall,
 /area/tinyblue/outside/building/toolshed)
 "sQc" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
@@ -15784,7 +15803,7 @@
 /obj/structure/table/wood,
 /obj/machinery/faxmachine,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "sRq" = (
 /obj/item/alien_embryo,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -15801,7 +15820,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "sTK" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -15811,11 +15830,6 @@
 	dir = 1
 	},
 /area/tinyblue/caves/facility/eta/xeno)
-"sUV" = (
-/obj/effect/ai_node,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark,
-/area/tinyblue/caves/e/shallow)
 "sVi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -15850,7 +15864,7 @@
 "sXL" = (
 /obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/r_wall,
-/area/tinyblue/outside/s)
+/area/tinyblue/caves/s/shallow)
 "sXN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -15901,12 +15915,6 @@
 	dir = 8
 	},
 /area/tinyblue/outside/building/admin)
-"tbe" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/turf/open/floor/tile/dark,
-/area/tinyblue/caves/e/shallow)
 "tbs" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -15929,7 +15937,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "tch" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -16022,7 +16030,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "tfS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/whitepurple,
@@ -16047,7 +16055,7 @@
 	dir = 6
 	},
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "tii" = (
 /obj/effect/landmark/corpsespawner/assistant,
 /obj/effect/decal/cleanable/blood,
@@ -16192,6 +16200,10 @@
 	dir = 1
 	},
 /area/tinyblue/caves/facility/lambda/sec)
+"tpv" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/tile/red/redtaupe,
+/area/tinyblue/outside/building/marshal)
 "tpA" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/diamond,
@@ -16274,8 +16286,9 @@
 /turf/closed/wall,
 /area/tinyblue/outside/building/cargo/shop)
 "tvf" = (
-/turf/open/floor/prison/sterilewhite,
-/area/tinyblue/caves/facility/lambda)
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall,
+/area/tinyblue/outside/building/marshal)
 "tvj" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/red2{
@@ -16333,7 +16346,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "tzp" = (
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/tinyblue/caves/s)
@@ -16357,7 +16370,6 @@
 	dir = 1;
 	name = "\improper Eta Lab Security Office"
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta)
@@ -16517,7 +16529,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "tMV" = (
 /obj/structure/sign/safety/hazard{
 	dir = 1
@@ -16540,7 +16552,7 @@
 /obj/structure/closet/crate/science,
 /obj/effect/spawner/random/engineering/powercell/empty_or_full,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "tQd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -16587,7 +16599,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "tTh" = (
 /turf/closed/wall/r_wall,
 /area/tinyblue/caves/facility/lambda/n)
@@ -16623,7 +16635,6 @@
 /turf/open/floor,
 /area/tinyblue/outside/building/cargo)
 "tVa" = (
-/obj/structure/fence,
 /turf/open/floor/plating/ground/ice,
 /area/tinyblue/caves/e/shallow)
 "tVJ" = (
@@ -16659,7 +16670,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "tWo" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/blue/taupeblue,
@@ -16710,9 +16721,6 @@
 /area/tinyblue/caves/facility/eta/xeno)
 "tZz" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/cargo/outpost)
 "tZJ" = (
@@ -16870,10 +16878,6 @@
 	dir = 4
 	},
 /area/tinyblue/outside/building/lz)
-"ujL" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall,
-/area/tinyblue/outside/building/marshal)
 "ulj" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/sign/double/map/right{
@@ -16916,7 +16920,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "umD" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
@@ -17040,7 +17044,7 @@
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "uvy" = (
 /obj/structure/prop/vehicle/apc/med,
 /obj/structure/prop/vehicle/apc/decoration/frontturretzero,
@@ -17116,7 +17120,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "uyg" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/ice,
@@ -17169,11 +17173,10 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	welded = 1
+	dir = 4
 	},
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "uBs" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
@@ -17330,7 +17333,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "uJk" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -17412,7 +17415,7 @@
 /obj/structure/cable,
 /obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "uMO" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
@@ -17435,8 +17438,14 @@
 /turf/open/ground/jungle/clear,
 /area/tinyblue/caves/facility/eta/xeno)
 "uNG" = (
-/turf/open/floor/plating/ground/snow/layer0,
-/area/tinyblue/caves/facility/eta)
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
+/obj/machinery/door/poddoor/mainship{
+	dir = 2;
+	name = "\improper Eta Lockdown";
+	id = "Eta Lockdown"
+	},
+/turf/open/floor/plating,
+/area/tinyblue/caves/facility/lambda/n)
 "uNU" = (
 /obj/effect/landmark/corpsespawner/prisoner/burst,
 /obj/effect/landmark/start/job/xenomorph,
@@ -17481,7 +17490,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "uPX" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -17608,7 +17617,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "uXS" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
@@ -17667,7 +17676,7 @@
 "vah" = (
 /obj/structure/table,
 /turf/open/floor/prison/plate,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "vak" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -17693,7 +17702,7 @@
 /area/lv624/lazarus/console)
 "vaU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+	dir = 5
 	},
 /turf/open/floor/carpet/edge2,
 /area/tinyblue/outside/building/admin)
@@ -17739,9 +17748,11 @@
 /turf/open/floor,
 /area/tinyblue/outside/building/toolshed)
 "vcG" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/tinyblue/outside/n)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/tile/dark,
+/area/tinyblue/caves/e/shallow)
 "vcT" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -17875,6 +17886,7 @@
 /area/tinyblue/outside/building/dorms/chapel)
 "vkN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2,
 /area/tinyblue/caves/facility/eta/e)
 "vkT" = (
@@ -17992,7 +18004,7 @@
 "vvG" = (
 /obj/structure/prop/urban/xenobiology/small/crackedegg,
 /turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "vvI" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
@@ -18029,6 +18041,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2,
 /area/tinyblue/caves/facility/eta)
 "vxE" = (
@@ -18063,7 +18076,7 @@
 /area/tinyblue/outside/building/virology)
 "vzf" = (
 /turf/open/floor/prison/plate,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "vzD" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/tile/dark/blue2{
@@ -18089,7 +18102,7 @@
 /obj/item/tool/screwdriver,
 /obj/machinery/light/small,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "vAZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -18264,7 +18277,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/light,
 /turf/open/floor/prison/darkred,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "vKN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -18304,7 +18317,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "vMK" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18336,10 +18349,6 @@
 	dir = 1
 	},
 /area/tinyblue/outside/building/marshal)
-"vPg" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/s/shallow)
 "vPq" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 1
@@ -18379,11 +18388,9 @@
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/dorms/eat)
 "vQP" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/tinyblue/caves/facility/lambda)
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/s/shallow)
 "vRy" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 9
@@ -18464,7 +18471,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison/blue,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "vWc" = (
 /obj/structure/closet/secure_closet/medical1,
 /obj/machinery/light{
@@ -18578,6 +18585,14 @@
 	dir = 6
 	},
 /area/tinyblue/caves/facility/lambda/s)
+"wcV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/prison/darkyellow{
+	dir = 8
+	},
+/area/tinyblue/caves/facility/lambda/n)
 "wdm" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood,
@@ -18597,7 +18612,7 @@
 /area/tinyblue/outside/building/med)
 "wdG" = (
 /turf/open/floor/prison/darkyellow,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "wdH" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
@@ -18647,7 +18662,7 @@
 "why" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "whX" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/window_frame/colony,
@@ -18680,9 +18695,6 @@
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/e)
 "wki" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1
-	},
 /obj/machinery/miner/damaged,
 /turf/open/floor,
 /area/tinyblue/outside/building/cargo)
@@ -18697,7 +18709,7 @@
 /obj/item/clothing/mask/facehugger/dead,
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "wkE" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
@@ -18813,7 +18825,7 @@
 /turf/open/floor/prison/blue{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "wrA" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18946,7 +18958,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "wyA" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
@@ -19046,7 +19058,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "wIj" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -19066,7 +19078,7 @@
 	dir = 8
 	},
 /turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "wJf" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -19122,7 +19134,7 @@
 /turf/open/floor/prison/whitepurple{
 	dir = 8
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "wLt" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -19270,7 +19282,7 @@
 "wUZ" = (
 /obj/item/paper/crumpled,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "wVD" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood,
@@ -19377,7 +19389,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "xdx" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -19445,10 +19457,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/se)
-"xiO" = (
-/obj/item/tool/weldingtool/experimental,
-/turf/closed/wall,
-/area/tinyblue/caves/facility/lambda)
 "xjT" = (
 /obj/structure/window_frame/colony,
 /obj/item/shard,
@@ -19497,9 +19505,9 @@
 /turf/open/floor/tile/brown,
 /area/tinyblue/caves/facility/engi)
 "xmP" = (
-/obj/effect/ai_node,
-/turf/open/floor/freezer,
-/area/tinyblue/caves/facility/lambda)
+/obj/machinery/floodlight/colony,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/s/shallow)
 "xnu" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -19607,7 +19615,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "xtW" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/weaponry/gun/shotgun,
@@ -19618,10 +19626,6 @@
 	dir = 8
 	},
 /area/tinyblue/outside/building/marshal)
-"xuz" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
-/area/tinyblue/outside/building/toolshed)
 "xuJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -19928,7 +19932,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "xJQ" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -20019,7 +20023,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "xQg" = (
 /turf/open/floor/plating/warning{
 	dir = 4
@@ -20055,7 +20059,7 @@
 /turf/open/floor/prison/blue{
 	dir = 9
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "xRe" = (
 /turf/open/floor/prison/whitepurple{
 	dir = 9
@@ -20091,6 +20095,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/green2/corner,
 /area/tinyblue/caves/facility/eta)
 "xSN" = (
@@ -20195,7 +20200,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/eta)
+/area/tinyblue/outside/s)
 "xXw" = (
 /obj/structure/platform/urban/metalplatform2{
 	dir = 5
@@ -20393,7 +20398,7 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/n)
 "yjd" = (
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/dorms/eat)
@@ -20402,7 +20407,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/tinyblue/caves/facility/eta/e)
+/area/tinyblue/caves/facility/eta)
 "yjG" = (
 /obj/structure/prop/mainship/telecomms,
 /turf/open/floor/mainship/tcomms,
@@ -20414,7 +20419,7 @@
 /obj/item/paper/crumpled,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
-/area/tinyblue/caves/facility/lambda)
+/area/tinyblue/caves/facility/lambda/s)
 "yli" = (
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 4
@@ -24458,7 +24463,7 @@ inh
 pBW
 xQg
 uyL
-xQg
+rtS
 xQg
 xQg
 pBW
@@ -24605,7 +24610,7 @@ mND
 xWw
 fiY
 fiY
-fiY
+iKx
 fiY
 fiY
 xWw
@@ -25961,7 +25966,7 @@ gxE
 xAc
 ycd
 ycd
-rQO
+ycd
 ycd
 ycd
 ycd
@@ -25984,7 +25989,7 @@ uJX
 ycd
 eQM
 ycd
-uJX
+ycd
 uJX
 uJX
 uJX
@@ -26131,7 +26136,7 @@ uJX
 ycd
 ycd
 ycd
-uJX
+ycd
 uJX
 uJX
 uJX
@@ -26278,7 +26283,7 @@ twd
 ycd
 ycd
 ycd
-uJX
+ycd
 uJX
 uJX
 uJX
@@ -26425,8 +26430,8 @@ cZs
 nRm
 afU
 owX
-uJX
-uJX
+owX
+owX
 xGy
 xGy
 xGy
@@ -26996,13 +27001,13 @@ iMe
 nvG
 iMe
 iMe
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
 uJX
 uJX
 uJX
@@ -27143,13 +27148,13 @@ iMe
 qVU
 gjI
 iMe
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
 uJX
 uJX
 uJX
@@ -27223,19 +27228,19 @@ htr
 hKy
 hKy
 hKy
-hSQ
-hSQ
-lEm
-mmp
+tvf
+tvf
+sfa
+mva
 rgQ
-lEm
-hSQ
-hSQ
-hSQ
-hSQ
-hSQ
-hSQ
-hSQ
+sfa
+tvf
+tvf
+tvf
+tvf
+tvf
+tvf
+tvf
 hpA
 hpA
 hpA
@@ -27292,11 +27297,11 @@ foh
 iMe
 uJX
 uJX
-nxs
-sfa
-sfa
-nxs
-sfa
+vQP
+mTC
+mTC
+vQP
+mTC
 uJX
 uJX
 uJX
@@ -27370,7 +27375,7 @@ htr
 hKy
 hKy
 cMU
-hSQ
+tvf
 oGq
 gJX
 meX
@@ -27382,7 +27387,7 @@ jCB
 kQZ
 tUc
 mCH
-hSQ
+tvf
 jaF
 jaF
 jSs
@@ -27439,12 +27444,12 @@ ikj
 iMe
 uJX
 uJX
-uJX
-sfa
-sfa
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
 uJX
 uJX
 uJX
@@ -27517,7 +27522,7 @@ htr
 hKy
 cMU
 dDi
-hSQ
+tvf
 rPq
 uHD
 pky
@@ -27529,7 +27534,7 @@ jXj
 qdX
 uow
 iQP
-hSQ
+tvf
 wmK
 vdp
 jSs
@@ -27585,16 +27590,16 @@ wEy
 wRx
 iMe
 uJX
-uJX
-uJX
-uJX
-sfa
-sfa
-sfa
-nxs
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+vQP
+mTC
+mTC
+mTC
 uJX
 uJX
 uJX
@@ -27664,7 +27669,7 @@ htr
 htr
 jlo
 jlo
-hSQ
+tvf
 vak
 wus
 fXL
@@ -27676,7 +27681,7 @@ vOe
 iYd
 cGs
 kFA
-hSQ
+tvf
 xUg
 jaF
 jSs
@@ -27731,18 +27736,18 @@ dOS
 jFn
 aSN
 iMe
-uJX
-uJX
-uJX
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
 owX
 owX
 owX
@@ -27817,13 +27822,13 @@ iBV
 ktL
 cUB
 cnt
-ilu
+tpv
 htr
 fje
 awI
 ycl
 iQP
-hSQ
+tvf
 uVE
 hpA
 hpA
@@ -27860,7 +27865,7 @@ pjh
 pjh
 pjh
 pjh
-hbe
+pNo
 nEg
 nEg
 nEg
@@ -27878,18 +27883,18 @@ oUg
 esC
 aRR
 iMe
-uJX
-uJX
-vPg
-sfa
-dGV
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
+mTC
+mTC
+hSQ
+mTC
+dGY
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
 xzH
 owX
 xzH
@@ -27958,7 +27963,7 @@ bbH
 bbH
 tGy
 sqD
-syE
+cPr
 vQp
 pAj
 eZc
@@ -27970,7 +27975,7 @@ kFH
 gyn
 wqx
 tbx
-hSQ
+tvf
 eVq
 fcZ
 pEQ
@@ -28025,17 +28030,17 @@ tTN
 haO
 kGu
 iMe
+mTC
+hSQ
+mTC
+mTC
 uJX
-vPg
-sfa
-sfa
 uJX
-uJX
-sfa
-sfa
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
+mTC
+mTC
 uJX
 owX
 owX
@@ -28105,7 +28110,7 @@ htr
 htr
 nZx
 aND
-hSQ
+tvf
 mBQ
 kNV
 cuo
@@ -28117,7 +28122,7 @@ oku
 ayD
 aKk
 tbx
-hSQ
+tvf
 qSw
 gQg
 cpS
@@ -28174,13 +28179,13 @@ iMe
 iMe
 bgU
 aBY
-sfa
-sfa
+mTC
+mTC
 uJX
 uJX
 uJX
-sfa
-nxs
+mTC
+vQP
 uJX
 uJX
 uJX
@@ -28252,7 +28257,7 @@ gFB
 jlo
 wqx
 wCg
-hSQ
+tvf
 fje
 kNV
 htr
@@ -28264,7 +28269,7 @@ jXj
 iGP
 cwL
 tSl
-hSQ
+tvf
 xfW
 pHM
 pHM
@@ -28321,13 +28326,13 @@ jsO
 iMe
 bgU
 bgU
-bqM
-oAh
-oAh
-oAh
-oAh
-oAh
-oAh
+nVV
+fhw
+fhw
+fhw
+fhw
+fhw
+fhw
 oAh
 oAh
 oAh
@@ -28399,7 +28404,7 @@ wOi
 geJ
 gyn
 txj
-hSQ
+tvf
 ooa
 kNV
 cuo
@@ -28411,7 +28416,7 @@ jXj
 wqx
 wqx
 ftO
-hSQ
+tvf
 hpA
 hpA
 hpA
@@ -28468,13 +28473,13 @@ aSN
 iMe
 bgU
 bgU
-bqM
-uNG
-uNG
-uNG
-uNG
-uNG
-uNG
+nVV
+wEb
+wEb
+wEb
+wEb
+wEb
+wEb
 oAh
 ikr
 hFD
@@ -28546,7 +28551,7 @@ hGA
 jlo
 vHw
 eig
-hSQ
+tvf
 jXj
 iiU
 wqx
@@ -28558,7 +28563,7 @@ bWm
 lJs
 uZz
 vmK
-hSQ
+tvf
 xDT
 iiw
 vyi
@@ -28615,12 +28620,12 @@ mhD
 iMe
 bgU
 bgU
-bqM
+nVV
 gKf
-fhw
-uNG
-uNG
-fhw
+qKv
+wEb
+wEb
+qKv
 dlr
 oAh
 hbw
@@ -28693,19 +28698,19 @@ htr
 htr
 jYv
 cRA
-hSQ
-ujL
+tvf
+ibn
 qTu
-ujL
-sOM
-sOM
-sOM
-hSQ
-hSQ
-hSQ
-hSQ
-hSQ
-hSQ
+ibn
+fRz
+fRz
+fRz
+tvf
+tvf
+tvf
+tvf
+tvf
+tvf
 mxI
 jFG
 bhO
@@ -28745,7 +28750,7 @@ xsj
 xwC
 rss
 xwC
-oII
+rss
 oUr
 xsj
 qKv
@@ -28762,13 +28767,13 @@ iMe
 iMe
 aBY
 bgU
-bqM
-rTp
-rTp
-rTp
-rTp
-rTp
-rTp
+nVV
+sVY
+sVY
+sVY
+sVY
+sVY
+sVY
 qNb
 rTp
 scE
@@ -28909,13 +28914,13 @@ axB
 lHN
 bgU
 bgU
-bqM
-rTp
+nVV
+sVY
 inC
-kKY
-kKY
-kKY
-kKY
+dWb
+dWb
+dWb
+dWb
 xVG
 rOx
 vru
@@ -29056,13 +29061,13 @@ aUC
 lHN
 jbc
 bgU
-bqM
-rTp
+nVV
+sVY
 kBr
-rTp
-rTp
-rTp
-rTp
+sVY
+sVY
+sVY
+sVY
 qNb
 ttQ
 iIt
@@ -29203,12 +29208,12 @@ mNp
 lHN
 bgU
 iyr
-bqM
-rTp
+nVV
+sVY
 tye
-rTp
-fhw
-uNG
+sVY
+qKv
+wEb
 dlr
 oAh
 lWj
@@ -29350,13 +29355,13 @@ iMe
 iMe
 bgU
 cXp
-bqM
+nVV
 vMJ
-ttQ
-rTp
-uNG
-uNG
-uNG
+rQO
+sVY
+wEb
+wEb
+wEb
 oAh
 qOi
 cRr
@@ -29386,7 +29391,7 @@ ima
 hbV
 arH
 rmn
-dsc
+grS
 owX
 owX
 owX
@@ -29497,11 +29502,11 @@ bgU
 bgU
 bgU
 xUE
-bqM
-rTp
-ttQ
-rTp
-uNG
+nVV
+sVY
+rQO
+sVY
+wEb
 oAh
 oAh
 oAh
@@ -29644,10 +29649,10 @@ bgU
 bgU
 xUE
 wEb
-bqM
-xWp
+nVV
+dTx
 dCp
-rTp
+sVY
 fBL
 als
 alQ
@@ -29791,10 +29796,10 @@ bgU
 bgU
 cXp
 wEb
-bqM
-grS
-ttQ
-rTp
+nVV
+hhg
+rQO
+sVY
 uQh
 ikd
 sho
@@ -29938,10 +29943,10 @@ bgU
 xUE
 wEb
 wEb
-bqM
-rTp
-ttQ
-rTp
+nVV
+sVY
+rQO
+sVY
 uQh
 aTZ
 akA
@@ -30085,17 +30090,17 @@ bgU
 xUE
 wEb
 dlr
-bqM
+nVV
 vMJ
-ttQ
-rTp
+rQO
+sVY
 xXw
 als
 rzr
 tqO
 jTS
 qDb
-sKS
+rdy
 yjG
 bqM
 fAU
@@ -30233,10 +30238,10 @@ sVY
 hhg
 sVY
 kAG
-rTp
-ttQ
-rTp
-uNG
+sVY
+rQO
+sVY
+wEb
 oAh
 oAh
 oAh
@@ -30380,9 +30385,9 @@ nEg
 rYW
 rYW
 xXa
-lQG
+nEg
 aLP
-rTp
+sVY
 dlr
 oAh
 wtr
@@ -30527,10 +30532,10 @@ sVY
 sVY
 sVY
 kAG
-rTp
+sVY
 omF
-lTa
-lQG
+rYW
+nEg
 wfJ
 gXQ
 cOe
@@ -30673,10 +30678,10 @@ xUE
 wEb
 wEb
 dlr
-bqM
+nVV
 vMJ
-dWb
-rTp
+hht
+sVY
 dlr
 oAh
 xWC
@@ -30833,14 +30838,14 @@ oAh
 oAh
 vPq
 fzf
-dVw
-dVw
+als
+als
 ihq
-dVw
-lIn
-lIn
+als
+oAh
+oAh
 sOF
-lIn
+oAh
 lIn
 lIn
 gIz
@@ -30961,7 +30966,7 @@ fIw
 fzV
 jPT
 vfZ
-mTC
+gUN
 mQM
 cwM
 jPT
@@ -30980,11 +30985,11 @@ sgK
 oAh
 vPq
 fzf
-dVw
+als
 aPq
 wyz
 qgl
-lIn
+oAh
 gJf
 why
 fCD
@@ -31127,11 +31132,11 @@ rTp
 als
 vPq
 fzf
-dVw
+als
 ksW
 hhX
 jEx
-lIn
+oAh
 uJa
 yjx
 gMl
@@ -31274,14 +31279,14 @@ kKY
 qLo
 bGs
 asR
-dVw
+als
 tMT
 fWl
 qKP
-lIn
+oAh
 uMx
 tPT
-fRz
+lAw
 lIn
 nAC
 iob
@@ -31421,7 +31426,7 @@ rTp
 als
 vPq
 vxm
-dVw
+als
 lmw
 caq
 jEx
@@ -31568,9 +31573,9 @@ wDD
 oAh
 cav
 fzf
-dVw
+als
 tWk
-tJW
+rTp
 hRO
 lIn
 uJX
@@ -31578,7 +31583,7 @@ uJX
 uJX
 lIn
 bfi
-hyt
+iGG
 szx
 lIn
 nsb
@@ -31707,7 +31712,7 @@ gCC
 lir
 gCC
 sXL
-nVV
+aXS
 bqM
 bqM
 oAh
@@ -31715,7 +31720,7 @@ oAh
 oAh
 ibU
 meZ
-lIn
+oAh
 pUw
 kne
 tbR
@@ -31995,7 +32000,7 @@ toD
 iNk
 xmq
 aBY
-sfa
+mTC
 uJX
 jGW
 mwO
@@ -32141,9 +32146,9 @@ kYe
 nrQ
 nJg
 jPT
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
 jGW
 mwO
 jGW
@@ -32165,7 +32170,7 @@ lDx
 lDx
 vkN
 keh
-aqC
+nVE
 eVp
 czp
 vwg
@@ -32288,9 +32293,9 @@ qNA
 eeh
 eeh
 eeh
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
 jGW
 mwO
 jGW
@@ -32379,7 +32384,7 @@ vFB
 vFB
 vFB
 cMU
-vcG
+hKy
 hKy
 rHv
 rHv
@@ -32435,13 +32440,13 @@ ixN
 fTa
 ixN
 eeh
-vPg
-sfa
-nxs
+hSQ
+mTC
+vQP
 jGW
 mwO
 ocx
-sfa
+mTC
 uJX
 uJX
 bqM
@@ -32583,12 +32588,12 @@ nCd
 nCd
 eeh
 uJX
-sfa
-sfa
+mTC
+mTC
 jGW
 mwO
 jGW
-sfa
+mTC
 uJX
 uJX
 bqM
@@ -32731,11 +32736,11 @@ eeh
 eeh
 uJX
 uJX
-sfa
+xmP
 jGW
 mwO
 qOU
-sfa
+mTC
 uJX
 uJX
 uJX
@@ -32882,8 +32887,8 @@ uJX
 jGW
 mwO
 jGW
-sfa
-sfa
+mTC
+mTC
 uJX
 uJX
 uJX
@@ -32990,7 +32995,7 @@ aMr
 mIe
 nDc
 kua
-kbB
+gWZ
 hmH
 lKt
 veR
@@ -32999,7 +33004,7 @@ tkp
 wjc
 wXy
 xIW
-xuz
+sQb
 nJG
 nJG
 nJG
@@ -33029,12 +33034,12 @@ uJX
 jGW
 mwO
 jGW
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
 uJX
 uJX
-sfa
+mTC
 owX
 xzH
 owX
@@ -33137,7 +33142,7 @@ vIG
 qtM
 nDc
 isi
-kDN
+cys
 ddl
 gnI
 kfA
@@ -33176,12 +33181,12 @@ uJX
 jGW
 mwO
 jGW
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
 owX
 owX
 owX
@@ -33300,8 +33305,8 @@ djE
 klg
 rAq
 djE
-jco
-sQb
+jQO
+djE
 djE
 djE
 nJG
@@ -33316,19 +33321,19 @@ kAH
 evH
 evH
 mxW
-sfa
-sfa
+mTC
+mTC
 uJX
 uJX
-jGW
-mwO
+kXW
+qzm
 wax
-nxs
-sfa
-sfa
-sfa
-nxs
-sfa
+vQP
+mTC
+mTC
+mTC
+vQP
+mTC
 exb
 xzH
 exb
@@ -33438,20 +33443,20 @@ rVD
 rVD
 tkp
 jKc
-puH
-gWZ
-gWZ
-gWZ
 mWl
-gWZ
-gWZ
+cnR
+cnR
+cnR
+vbR
+cnR
+cnR
 ccd
-gWZ
-aPe
+cnR
+cnR
 vbR
 cnR
 dFB
-nJG
+mTG
 nYH
 fIT
 gnS
@@ -33463,19 +33468,19 @@ ktr
 evH
 evH
 mxW
-nxs
-sfa
-sfa
-sfa
+vQP
+mTC
+mTC
+mTC
 jGW
 lZl
 jGW
-sfa
-sfa
-sfa
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
+mTC
+mTC
+mTC
 owX
 owX
 owX
@@ -33610,19 +33615,19 @@ vLg
 evH
 evH
 mxW
-sfa
-sfa
-sfa
-sfa
+mTC
+mTC
+mTC
+mTC
 qOU
 mwO
 jGW
-sfa
+mTC
 uJX
 uJX
 uJX
-sfa
-sfa
+mTC
+mTC
 xzH
 owX
 uJX
@@ -33691,7 +33696,7 @@ uJX
 gJT
 emY
 gJT
-gJT
+aPe
 eZa
 gJT
 gJT
@@ -33758,9 +33763,9 @@ bAw
 bAw
 uJX
 uJX
-sfa
-sfa
-nxs
+mTC
+mTC
+vQP
 jGW
 mwO
 jGW
@@ -33906,8 +33911,8 @@ bAw
 uJX
 uJX
 uJX
-sfa
-sfa
+mTC
+mTC
 jGW
 mwO
 jGW
@@ -34053,7 +34058,7 @@ uJX
 uJX
 uJX
 uJX
-cSL
+sDY
 uJX
 jGW
 mwO
@@ -34917,9 +34922,9 @@ evH
 evH
 evH
 evH
-erd
-erd
-uJX
+tVa
+tVa
+tVa
 uJX
 uJX
 uJX
@@ -35064,10 +35069,10 @@ evH
 evH
 vLg
 vLg
-erd
-erd
-uJX
-uJX
+tVa
+tVa
+tVa
+tVa
 uJX
 lKd
 lKd
@@ -35210,12 +35215,12 @@ evH
 evH
 evH
 evH
-pIN
-erd
-erd
-erd
-uJX
-uJX
+mKJ
+tVa
+tVa
+tVa
+tVa
+tVa
 lKd
 iqv
 iAR
@@ -35358,12 +35363,12 @@ evH
 nYH
 uJX
 uJX
-pIN
-erd
-erd
-uJX
-uJX
-lKd
+mKJ
+tVa
+tVa
+tVa
+tVa
+lRB
 mqf
 iJD
 fFC
@@ -35476,7 +35481,7 @@ ltn
 nhC
 rpa
 rpa
-erd
+tVa
 uJX
 giJ
 tpp
@@ -35505,12 +35510,12 @@ kAH
 uJX
 uJX
 uJX
-pEk
-pIN
-erd
-erd
-uJX
-lKd
+mZg
+mKJ
+tVa
+tVa
+tVa
+lRB
 mqf
 fFC
 ygz
@@ -35623,7 +35628,7 @@ ltn
 rpa
 rpa
 rpa
-pIN
+mKJ
 uJX
 giJ
 duv
@@ -35652,12 +35657,12 @@ nYH
 uJX
 uJX
 uJX
-erd
-erd
-erd
-erd
-uJX
-lKd
+tVa
+tVa
+tVa
+tVa
+tVa
+lRB
 tJN
 awP
 uyY
@@ -35770,8 +35775,8 @@ xGy
 uJX
 uJX
 rpa
-erd
-erd
+tVa
+tVa
 giJ
 fwt
 wJf
@@ -35799,12 +35804,12 @@ uJX
 uJX
 uJX
 uJX
-erd
-erd
-erd
-erd
-erd
-lKd
+tVa
+tVa
+tVa
+tVa
+tVa
+lRB
 scj
 fFC
 pgQ
@@ -35822,7 +35827,7 @@ qLZ
 sAh
 btc
 sAh
-gjJ
+rdp
 gjJ
 gjJ
 eyt
@@ -35917,8 +35922,8 @@ uJX
 uJX
 uJX
 uJX
-pEk
-erd
+mZg
+tVa
 giJ
 giJ
 giJ
@@ -35947,11 +35952,11 @@ uJX
 uJX
 uJX
 uJX
-erd
-erd
-erd
-erd
-lKd
+tVa
+tVa
+tVa
+tVa
+lRB
 wJt
 ezd
 fFC
@@ -35979,7 +35984,7 @@ sAh
 gjJ
 wVM
 gjJ
-uJX
+gjJ
 uJX
 uJX
 uJX
@@ -36064,19 +36069,19 @@ uJX
 uJX
 uJX
 uJX
-erd
-erd
+tVa
+tVa
 uJX
 uJX
 uJX
-erd
-erd
+tVa
+tVa
 duk
 kiI
 krs
 bst
 duk
-erd
+tVa
 uJX
 uJX
 uJX
@@ -36094,10 +36099,10 @@ uJX
 uJX
 uJX
 uJX
-erd
-erd
-pEk
-erd
+tVa
+tVa
+mZg
+tVa
 lKd
 boy
 oYl
@@ -36123,10 +36128,10 @@ dKT
 dKT
 vUo
 sAh
+gjJ
 uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
 uJX
 uJX
 uJX
@@ -36187,11 +36192,11 @@ wsM
 qiT
 fcf
 tkW
-aXS
-aXS
-aXS
-aXS
-aXS
+tkW
+tkW
+tkW
+tkW
+tkW
 uJX
 uJX
 rpa
@@ -36211,20 +36216,20 @@ tdQ
 rpa
 rpa
 rpa
-pIN
-erd
-erd
+mKJ
+tVa
+tVa
 uJX
 uJX
-erd
-erd
-erd
+tVa
+tVa
+tVa
 bst
 krs
 bst
-erd
-erd
-erd
+tVa
+tVa
+tVa
 uJX
 uJX
 lGi
@@ -36241,10 +36246,10 @@ uJX
 uJX
 uJX
 uJX
-erd
-erd
-erd
-erd
+tVa
+tVa
+tVa
+tVa
 lKd
 lKd
 lKd
@@ -36272,9 +36277,9 @@ vli
 sAh
 uJX
 uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
 uJX
 uJX
 uJX
@@ -36338,19 +36343,19 @@ bta
 cFb
 cFb
 dcC
-aXS
-aXS
-aXS
-aXS
-aXS
-aXS
-iGG
-iGG
-aXS
-aXS
-aXS
-aXS
-aXS
+tkW
+qft
+qft
+qft
+qft
+qft
+asA
+asA
+qft
+qft
+qft
+qft
+qft
 eZB
 rpa
 rpa
@@ -36358,20 +36363,20 @@ rpa
 nhC
 rpa
 nhC
-erd
-erd
-erd
+osV
+osV
+osV
 uJX
-pEk
-erd
-erd
-erd
+mZg
+tVa
+tVa
+tVa
 eGq
 krs
 bst
 mfX
-erd
-erd
+tVa
+tVa
 uJX
 uJX
 lGi
@@ -36388,18 +36393,18 @@ uJX
 uJX
 uJX
 uJX
-pIN
-erd
-erd
-pIN
-erd
-erd
+mKJ
+tVa
+tVa
+mKJ
+tVa
+tVa
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
+nkm
+nkm
+nkm
 uJX
 uJX
 uJX
@@ -36419,9 +36424,9 @@ heb
 sAh
 uJX
 uJX
-uJX
-uJX
-uJX
+eyt
+gjJ
+eyt
 uJX
 uJX
 uJX
@@ -36481,19 +36486,19 @@ iUy
 fuI
 fcf
 tkW
-nVE
+orQ
 foF
-nVE
+orQ
 dcC
-aXS
+tkW
 dtf
 iVA
 kRh
 sRj
-aXS
+qft
 kiO
 rcv
-iGG
+asA
 tib
 blk
 blk
@@ -36505,21 +36510,21 @@ asA
 qft
 qft
 rpa
-erd
-erd
-erd
+osV
 tVa
-erd
-erd
+tVa
+tVa
+tVa
+tVa
 uyg
-erd
+tVa
 bst
 krs
 bst
-erd
-erd
-erd
-erd
+tVa
+tVa
+tVa
+tVa
 uJX
 uJX
 uJX
@@ -36537,17 +36542,17 @@ uJX
 uJX
 uJX
 uJX
-erd
-erd
-erd
-erd
+tVa
+tVa
+tVa
+tVa
 uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
+nkm
+nkm
+nkm
+nkm
+nkm
+nkm
 uJX
 uJX
 uJX
@@ -36567,9 +36572,9 @@ kjD
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
 uJX
 uJX
 uJX
@@ -36632,7 +36637,7 @@ bMZ
 gJZ
 czh
 vAH
-aXS
+tkW
 nVT
 ptQ
 ykH
@@ -36652,23 +36657,23 @@ hFp
 sha
 qft
 uJX
-pIN
-erd
-pEk
+cSq
 tVa
-erd
-erd
-erd
-erd
+mZg
+tVa
+tVa
+tVa
+tVa
+tVa
 bst
 gfe
 bst
-erd
-erd
-erd
-pEk
-erd
-pIN
+tVa
+tVa
+tVa
+mZg
+tVa
+mKJ
 uJX
 uJX
 uJX
@@ -36688,14 +36693,14 @@ uJX
 nkm
 nkm
 nkm
+nkm
+nkm
+nkm
+nkm
+nkm
 uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
+nkm
+nkm
 uJX
 wVM
 gjJ
@@ -36715,8 +36720,8 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
+gjJ
+gjJ
 uJX
 uJX
 uJX
@@ -36775,19 +36780,19 @@ tkW
 vjh
 tkW
 tkW
-nVE
-vQP
+orQ
+jYQ
 ePz
 okc
-aXS
+tkW
 cTO
 wUZ
 uxP
 eKt
-aXS
+qft
 gNy
 cLr
-iGG
+asA
 bvM
 jni
 kcH
@@ -36800,23 +36805,23 @@ nRk
 qft
 uJX
 uJX
-erd
-erd
 tVa
-erd
-erd
-erd
-erd
+tVa
+tVa
+tVa
+tVa
+tVa
+tVa
 bst
 vAZ
-dyM
-dyM
-dyM
-dyM
-dyM
-tbe
-erd
-erd
+hWf
+hWf
+hWf
+hWf
+hWf
+vcG
+tVa
+tVa
 uJX
 uJX
 uJX
@@ -36836,13 +36841,13 @@ nkm
 dvW
 nkm
 nkm
+nkm
 uJX
 uJX
 uJX
 uJX
 uJX
-uJX
-uJX
+nkm
 eyt
 gjJ
 gjJ
@@ -36853,8 +36858,8 @@ vZU
 uJX
 uJX
 uJX
-uJX
-uJX
+gjJ
+gjJ
 sAh
 heb
 sAh
@@ -36862,8 +36867,8 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
+gjJ
+gjJ
 uJX
 uJX
 uJX
@@ -36922,23 +36927,23 @@ xrx
 jYQ
 orQ
 tkW
-aXS
+tkW
 ijK
-aXS
-aXS
-aXS
-aXS
-aXS
-aXS
-aXS
+tkW
+tkW
+tkW
+tkW
+tkW
+tkW
+tkW
 rRA
 nYY
 vKB
-aXS
-aXS
-aXS
-aXS
-aXS
+qft
+qft
+qft
+qft
+qft
 qft
 aog
 rMc
@@ -36948,23 +36953,23 @@ qft
 qft
 qft
 qft
+asA
+asA
+asA
 qft
-qft
-qft
-qft
-erd
-erd
+tVa
+tVa
 bst
 krs
 bst
-dXV
-dXV
-dXV
-erd
+oII
+oII
+oII
+tVa
 jMJ
-erd
-erd
-erd
+tVa
+tVa
+tVa
 uJX
 uJX
 uJX
@@ -36999,9 +37004,9 @@ gjJ
 vZU
 uJX
 uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
 sAh
 heb
 sAh
@@ -37009,8 +37014,8 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
+gjJ
+gjJ
 uJX
 uJX
 uJX
@@ -37069,19 +37074,19 @@ hgb
 jYQ
 pED
 tkW
-nVE
-vQP
+orQ
+jYQ
 dUf
 pTp
-lRB
+orQ
 uAb
-nVE
+orQ
 dUf
 eww
-aXS
+tkW
 jMA
 pgy
-iGG
+asA
 xQO
 coi
 pdf
@@ -37099,22 +37104,22 @@ ltQ
 goi
 wLt
 qft
-erd
-erd
+tVa
+tVa
 bst
 xYq
 dCg
 lNl
-dXV
-dXV
-erd
+oII
+oII
+tVa
 jMJ
-erd
-erd
-pEk
-erd
-erd
-erd
+tVa
+tVa
+mZg
+tVa
+tVa
+tVa
 nkm
 nkm
 nkm
@@ -37146,20 +37151,20 @@ gjJ
 vZU
 uJX
 uJX
-uJX
-uJX
+gjJ
+gjJ
 uJX
 sAh
 heb
 sAh
+gjJ
 uJX
 uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
+gjJ
+gjJ
 uJX
 uJX
 gjJ
@@ -37225,7 +37230,7 @@ lec
 dOU
 iwH
 dOU
-rtS
+iMm
 aQE
 hDW
 fXa
@@ -37255,13 +37260,13 @@ rFs
 rgo
 ifl
 gVx
-cFH
-sUV
-dyM
-dyM
-dyM
-dyM
-dyM
+jco
+rRa
+hWf
+hWf
+hWf
+hWf
+hWf
 whu
 whu
 lpb
@@ -37292,21 +37297,21 @@ gjJ
 gjJ
 vZU
 gjJ
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
 uJX
 sAh
 qho
 sAh
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
+gjJ
+gjJ
+gjJ
+gjJ
+gjJ
 uJX
 gjJ
 wVM
@@ -37363,19 +37368,19 @@ sWr
 wsL
 ilX
 tTh
-hWf
-hWf
-hWf
-hWf
-hWf
-hWf
-hWf
-hWf
-aXS
-aXS
+tTh
+tTh
+tTh
+tTh
+tTh
+tTh
+tTh
+tTh
+tkW
+tkW
 paq
 mqU
-iGG
+asA
 wrw
 pEF
 gSR
@@ -37393,8 +37398,8 @@ mUv
 pbl
 ksU
 asA
-erd
-erd
+tVa
+tVa
 bst
 cIt
 fQu
@@ -37402,13 +37407,13 @@ naR
 naR
 cEa
 ePT
-erd
-erd
-erd
-erd
-erd
-erd
-erd
+tVa
+tVa
+tVa
+tVa
+tVa
+tVa
+tVa
 nkm
 dvW
 nkm
@@ -37439,21 +37444,21 @@ fZi
 uTg
 jCU
 gjJ
-uJX
-uJX
-uJX
-uJX
+gjJ
+lEm
+gjJ
+gjJ
 sAh
 heb
 sAh
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
+gjJ
+gjJ
+gjJ
+gjJ
+gjJ
 gjJ
 gjJ
 gjJ
@@ -37513,20 +37518,20 @@ tTh
 kqv
 nAG
 kqv
-hWf
+tTh
 vvG
 wIL
 qEY
-hWf
-aXS
-aXS
+tTh
+qft
+qft
 erG
 siM
-iGG
-aXS
-aXS
-aXS
-aXS
+asA
+qft
+qft
+qft
+qft
 qft
 nmm
 gbZ
@@ -37540,8 +37545,8 @@ goU
 tQd
 nRk
 qft
-erd
-erd
+tVa
+tVa
 bst
 fWn
 uLK
@@ -37549,10 +37554,10 @@ naR
 qwg
 cEa
 gVx
-erd
-erd
-erd
-erd
+tVa
+tVa
+tVa
+tVa
 uJX
 uJX
 uJX
@@ -37586,25 +37591,25 @@ gjJ
 gjJ
 gjJ
 gjJ
-uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
+gjJ
 sAh
 vli
 sAh
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
+gjJ
+eyt
 gjJ
 gjJ
 gjJ
 gjJ
 gjJ
 gjJ
+eyt
 wVM
 uJX
 uJX
@@ -37657,21 +37662,21 @@ tkW
 tkW
 osi
 tTh
-mKJ
+kTq
 wkw
-mKJ
-hWf
-xmP
+kTq
+tTh
+xNM
 gIJ
 dQM
-hWf
-aXS
+tTh
+qft
 iuk
 qVe
 fld
 xQd
-aXS
-aXS
+qft
+qft
 uJX
 uJX
 qft
@@ -37696,9 +37701,9 @@ naR
 qwg
 oGj
 gVx
-erd
-erd
-erd
+tVa
+tVa
+tVa
 uJX
 uJX
 uJX
@@ -37733,14 +37738,14 @@ gjJ
 gjJ
 gjJ
 uJX
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
 uJX
 sAh
 heb
 sAh
-uJX
+gjJ
 uJX
 uJX
 gjJ
@@ -37804,21 +37809,21 @@ nOi
 tkW
 tkW
 tTh
-mZg
+vbs
 nJU
-mZg
-hWf
+vbs
+tTh
 eOq
 nJU
-mZg
-hWf
+vbs
+tTh
 riY
 qMT
 qRU
 jek
 jjU
 xdr
-aXS
+qft
 qft
 qft
 qft
@@ -37843,7 +37848,7 @@ oNO
 iiN
 rnv
 gVx
-erd
+tVa
 uJX
 uJX
 uJX
@@ -37880,18 +37885,18 @@ gjJ
 gjJ
 uJX
 uJX
-uJX
-uJX
+gjJ
+gjJ
 uJX
 uJX
 sAh
 heb
 sAh
-uJX
+gjJ
 uJX
 eyt
 gjJ
-gjJ
+eyt
 gjJ
 gjJ
 gjJ
@@ -37953,12 +37958,12 @@ ubZ
 atC
 kJZ
 frK
-cPr
+aHf
 qPi
 miU
 wLp
-rdp
-qzm
+ubZ
+atC
 hvS
 bXJ
 pRa
@@ -38027,7 +38032,7 @@ uJX
 gjJ
 uJX
 uJX
-uJX
+gjJ
 uJX
 uJX
 uJX
@@ -38098,21 +38103,21 @@ uLO
 sXN
 iOn
 lMv
-osV
+aIR
 bFP
-nSM
+aJV
 qhr
 onu
 nSM
-kXW
-tvf
+nDq
+lMv
 bdL
 ldR
 mud
 lgx
 tSC
 eIc
-tvf
+gbZ
 qWm
 oll
 eyS
@@ -38173,8 +38178,8 @@ uJX
 uJX
 gjJ
 uJX
-uJX
-uJX
+gjJ
+gjJ
 uJX
 uJX
 uJX
@@ -38244,22 +38249,22 @@ tkW
 iIE
 nmH
 uvf
-tkW
-aXS
-nVE
+tTh
+tTh
+orQ
 igQ
-aXS
-iGG
-iGG
-aXS
-xiO
+tTh
+vbs
+vbs
+tTh
+tTh
 kLW
 gCU
 uPU
 isz
 oRV
 tfN
-aXS
+qft
 qft
 asA
 asA
@@ -38319,9 +38324,9 @@ gjJ
 gjJ
 gjJ
 gjJ
-uJX
-dTx
-uJX
+gjJ
+wVM
+gjJ
 uJX
 uJX
 uJX
@@ -38391,22 +38396,22 @@ yan
 aoq
 wVD
 iOn
-tkW
+tTh
 mEe
 rFM
-rFM
+wcV
 raL
 rFM
 eIl
 shN
-aXS
-aXS
+tTh
+qft
 mud
 mUz
 xJt
 qQo
-aXS
-aXS
+qft
+qft
 rpa
 rpa
 nhC
@@ -38467,8 +38472,8 @@ gjJ
 gjJ
 gjJ
 gjJ
-uJX
-uJX
+gjJ
+gjJ
 uJX
 uJX
 uJX
@@ -38538,7 +38543,7 @@ yan
 jQa
 oVH
 iOn
-tkW
+tTh
 bjA
 mCf
 bQg
@@ -38546,13 +38551,13 @@ nXm
 yiV
 mCf
 pEN
-aXS
-aXS
-iGG
-tvf
+tTh
+qft
+asA
+gbZ
 cAL
-iGG
-aXS
+asA
+qft
 rpa
 rpa
 rpa
@@ -38615,9 +38620,9 @@ gjJ
 gjJ
 gjJ
 gjJ
-uJX
-uJX
-uJX
+gjJ
+gjJ
+gjJ
 uJX
 sAh
 heb
@@ -38685,7 +38690,7 @@ yan
 jQa
 xJQ
 iOn
-tkW
+tTh
 lFf
 mef
 ais
@@ -38693,7 +38698,7 @@ vzf
 iMf
 vzf
 wdG
-aXS
+uNG
 lUN
 rpa
 rpa
@@ -38708,7 +38713,7 @@ kid
 rpa
 rpa
 rpa
-qft
+asA
 poL
 jkS
 pwk
@@ -38832,7 +38837,7 @@ yan
 rQV
 hyi
 iOn
-tkW
+tTh
 bjA
 qOO
 lAW
@@ -38840,7 +38845,7 @@ rFM
 mEe
 vah
 rWE
-aXS
+uNG
 rpa
 rpa
 tdQ
@@ -38855,7 +38860,7 @@ kid
 rpa
 rpa
 rpa
-qft
+asA
 aKG
 rbX
 qft
@@ -38914,8 +38919,8 @@ gjJ
 gjJ
 gjJ
 kjD
-heb
-sAh
+jof
+nqo
 gjJ
 uJX
 uJX
@@ -38979,7 +38984,7 @@ tkW
 dyq
 aJV
 nDq
-tkW
+tTh
 dNd
 umv
 afv
@@ -38987,7 +38992,7 @@ nyg
 eIJ
 nyg
 pMi
-aXS
+tTh
 rpa
 tdQ
 nhC
@@ -39126,15 +39131,15 @@ tkW
 tkW
 cxd
 tkW
-tkW
-tkW
-aXS
+tTh
+tTh
+tTh
 bis
-aXS
+tTh
 bis
-aXS
-aXS
-aXS
+tTh
+tTh
+tTh
 rpa
 rpa
 rpa
@@ -39274,13 +39279,13 @@ vKN
 bMx
 kTq
 rlH
-tkW
+tTh
 sTE
 shN
-aXS
+tTh
 mEe
 xtL
-aXS
+tTh
 rpa
 rpa
 rpa
@@ -39421,13 +39426,13 @@ ilo
 xNM
 kTq
 qfZ
-tkW
+tTh
 ceb
 cie
-aXS
+tTh
 pNM
 ncF
-aXS
+tTh
 rpa
 cHv
 rpa
@@ -39568,13 +39573,13 @@ tkW
 hBQ
 tkW
 hBQ
-tkW
+tTh
 uXB
 clc
-aXS
+tTh
 dvJ
 doE
-aXS
+tTh
 rpa
 nhC
 rpa
@@ -39715,13 +39720,13 @@ tkW
 iJm
 tkW
 iJm
-tkW
-aXS
-aXS
-aXS
-aXS
-aXS
-aXS
+tTh
+tTh
+tTh
+tTh
+tTh
+tTh
+tTh
 rpa
 rpa
 rpa
@@ -40529,7 +40534,7 @@ uJX
 uJX
 uJX
 gjJ
-gjJ
+rdp
 sAh
 kjD
 sAh
