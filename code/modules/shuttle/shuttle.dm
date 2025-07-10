@@ -675,6 +675,7 @@
 		ripples += new /obj/effect/abstract/ripple(t, animate_time)
 	if(uses_dust)
 		particle_holder = new(S1.loc, /particles/shuttle_dust)
+		SET_PLANE_EXPLICIT(particle_holder, WALL_PLANE, src) //otherwise this will cause rendering issues due to sidemap
 		particle_holder.particles.position = generator(GEN_CIRCLE, width*12, height*12, NORMAL_RAND)
 		particle_holder.particles.width = width * 65
 		particle_holder.particles.height = height * 65

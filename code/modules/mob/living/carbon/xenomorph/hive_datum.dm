@@ -759,6 +759,8 @@
 	var/list/mob/living/carbon/xenomorph/seco_candidates = xenos_by_tier[XENO_TIER_THREE]
 
 	for(var/mob/living/carbon/xenomorph/potential_successor in prio_candidates)
+		if(!(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER))
+			continue
 		successor = potential_successor
 		if(isxenoqueen(potential_successor))
 			break

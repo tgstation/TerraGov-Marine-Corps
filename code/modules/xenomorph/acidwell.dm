@@ -9,6 +9,8 @@
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
+	plane = FLOOR_PLANE
+	layer = ABOVE_WEEDS_LAYER
 
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	destroy_sound = SFX_ALIEN_RESIN_MOVE

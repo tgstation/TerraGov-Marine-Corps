@@ -14,3 +14,41 @@
   - bugfix: fixed a harddel with build holograms
   revelation-8468:
   - rscadd: 19 more stats for the round end panel. Also 1 personal stat.
+2025-07-07:
+  Runian:
+  - rscadd: Abduct, Dislocate, and Advance makes their affected targets flip to make
+      it much more obvious that the targets were affected by the ability.
+  - balance: Various effects from Oppressor's abilities now occur at the end of the
+      throw rather than the beginning.
+  - balance: Abduct now paralyzes for 0.2 seconds (from 0.5), slowdowns for 0.6 (from
+      0.8), and staggers for 3 seconds (from 4) multiplied by the amount of humans
+      affected (unchanged).
+  - balance: Dislocate and Tail Lash now paralyzes for 0.8 seconds (from 1) and staggers
+      for 2.4 seconds (from 3).
+  - balance: Advance now paralyzes for 1.5 seconds (from 2).
+  - bugfix: Abduct no longer causes affected humans to collide with other affected
+      humans while being thrown.
+2025-07-09:
+  mudzbe:
+  - balance: TE-9001 heavy laser emplacement cost reduced
+2025-07-10:
+  Lewdcifer:
+  - code_imp: Priority candidates for hive leadership now need the appropriate flag
+      to become rulers. This basically means that Dragon can no longer be a hive ruler
+      (and it shouldn't be, because it doesn't have pheros).
+  Lumipharon:
+  - balance: Xray lasers are weakened by piercing through things, like other piercing
+      ammo types
+  - bugfix: fixed some floor layering/plane issues
+  - balance: Corpses and items are thrown off vehicles on move
+  - balance: Sand now does 2 damage instead of 6 to humans, but also applies stagger
+  - balance: Snow now applies slowdown to humans and other small mobs
+  - balance: Pyrogen flame dash CD is 12 seconds instead of 4
+  - balance: Minion proof latches have been installed on all folding cades
+  ViperSnake01:
+  - bugfix: Fixed Warrior aggressive grab throw bug.
+  - balance: Snipers no longer apply the sniper stacking debuff if dont have IFF.
+  jonash07:
+  - bugfix: Fixes howi and mortar guis displaying NaN for latitude offset
+  mudzbe:
+  - qol: Plasmacutter description mentions it being self charging

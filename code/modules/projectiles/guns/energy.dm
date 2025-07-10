@@ -967,7 +967,7 @@
 	icon_state = "tex"
 	worn_icon_state = "tex"
 	max_shots = 40 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/incendiary
 	rounds_per_shot = 15
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet/converted,
@@ -1007,7 +1007,7 @@
 
 /datum/lasrifle/energy_rifle_mode/xray
 	rounds_per_shot = 15
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/incendiary
 	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the xray rifle's charge mode to standard fire."
@@ -1018,7 +1018,7 @@
 
 /datum/lasrifle/energy_rifle_mode/xray/piercing
 	rounds_per_shot = 30
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/piercing
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
 	fire_delay = 0.6 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the xray rifle's charge mode to piercing mode."
