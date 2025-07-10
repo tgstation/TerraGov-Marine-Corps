@@ -354,6 +354,12 @@
 	name = "Metnal Air Space"
 	ceiling = NONE
 	outside = TRUE
+//Caves
+/area/metnal/z2/caves
+	name = "Enclosed Area"
+	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
+
 // Headquarters
 /area/metnal/z2/inside/relay
 	name = "Private Conference Room"
