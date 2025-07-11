@@ -712,15 +712,6 @@
 /obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_foyer)
-"aha" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	color = "#a6aeab";
-	dir = 4
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant/south_hallway)
 "ahb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -5697,14 +5688,6 @@
 /obj/structure/cable,
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/nt_research_complex/medical_annex)
-"baH" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	color = "#a6aeab";
-	dir = 6
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/squares,
-/area/lv759/indoors/power_plant/gas_generators)
 "baJ" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -7304,12 +7287,6 @@
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
-"bro" = (
-/obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
-/obj/structure/prop/urban/misc/floorprops/grate,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/plating,
-/area/lv759/indoors/power_plant/power_storage)
 "brp" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -10252,7 +10229,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/prison/bright_clean,
 /area/lv759/indoors/power_plant/south_hallway)
 "bSZ" = (
@@ -35655,10 +35631,6 @@
 	},
 /turf/open/ground/sandrock,
 /area/lv759/indoors/caves/west_caves)
-"gsa" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant)
 "gsc" = (
 /obj/structure/barricade/handrail/kutjevo,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -38356,16 +38328,6 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/south_west_street)
-"gUh" = (
-/obj/effect/ai_node,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	color = "#a6aeab";
-	dir = 4
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant/south_hallway)
 "gUj" = (
 /obj/structure/prop/urban/vehicles/meridian/purple{
 	dir = 1;
@@ -55084,7 +55046,6 @@
 	color = "#a6aeab";
 	dir = 4
 	},
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/prison/bright_clean,
 /area/lv759/indoors/power_plant/south_hallway)
 "jRJ" = (
@@ -57289,7 +57250,6 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/structure/prop/urban/misc/floorprops/grate,
 /obj/effect/landmark/weed_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/power_storage)
 "kmY" = (
@@ -78245,13 +78205,6 @@
 /obj/structure/largecrate/random,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
-"nWC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	color = "#a6aeab"
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant)
 "nWK" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/tool/wirecutters,
@@ -81547,7 +81500,6 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "oDu" = (
@@ -93669,12 +93621,6 @@
 	dir = 10
 	},
 /area/lv759/outdoors/landing_zone_2)
-"qNv" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor/mainship/black/full,
-/area/lv759/indoors/power_plant/geothermal_generators)
 "qNw" = (
 /obj/structure/rock/dark/large,
 /obj/effect/landmark/weed_node,
@@ -96822,7 +96768,6 @@
 "rqn" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/catwalk,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "rqv" = (
@@ -101792,7 +101737,6 @@
 "slz" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/prison/bright_clean,
 /area/lv759/indoors/power_plant)
 "slD" = (
@@ -101877,6 +101821,8 @@
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "sms" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/marked,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "smt" = (
@@ -109564,11 +109510,6 @@
 /obj/structure/grille,
 /turf/open/urbanshale/layer0_plate,
 /area/lv759/indoors/caves/north_caves)
-"tDF" = (
-/obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant)
 "tDL" = (
 /obj/machinery/landinglight/lz1,
 /obj/effect/landmark/weed_node,
@@ -116054,7 +115995,6 @@
 	color = "#a6aeab";
 	dir = 4
 	},
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/prison/bright_clean,
 /area/lv759/indoors/power_plant/south_hallway)
 "uHA" = (
@@ -117202,9 +117142,6 @@
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "uSm" = (
 /obj/structure/cable,
-/obj/machinery/power/geothermal/tbg{
-	dir = 4
-	},
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "uSr" = (
@@ -119547,14 +119484,6 @@
 	},
 /turf/open/floor/urban/tile/yellow_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
-"vmd" = (
-/obj/effect/ai_node,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	color = "#a6aeab"
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant)
 "vmh" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/officetiles,
@@ -124721,9 +124650,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "wga" = (
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "wgc" = (
@@ -126375,10 +126303,10 @@
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/hospital/morgue)
 "wvu" = (
-/obj/effect/ai_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant)
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/marked,
+/area/lv759/indoors/power_plant/geothermal_generators)
 "wvx" = (
 /obj/effect/ai_node,
 /turf/open/floor/urban/tile/tilewhite,
@@ -162916,7 +162844,7 @@ uTh
 ahA
 qQs
 xSj
-vmd
+qQs
 llx
 llx
 emz
@@ -163728,7 +163656,7 @@ cDy
 kXS
 kcN
 sBf
-gsa
+kpO
 qJw
 frg
 sZu
@@ -164342,9 +164270,9 @@ jVp
 qFG
 gKK
 rqn
-slY
-slY
-slY
+wvu
+wvu
+wvu
 oDs
 lYC
 pZu
@@ -164540,7 +164468,7 @@ tXp
 kXS
 ezQ
 qjY
-gsa
+kpO
 vuW
 bRA
 flS
@@ -165162,7 +165090,7 @@ efg
 pZu
 sRn
 bjD
-aha
+qcS
 esZ
 wCa
 vMi
@@ -165352,13 +165280,13 @@ qJS
 gFP
 yjT
 qKc
-gsa
+kpO
 ruw
 bRe
 gKK
 rqn
 sms
-qNv
+wga
 sms
 oDs
 rKj
@@ -165956,7 +165884,7 @@ gap
 wSB
 tYb
 cra
-baH
+ohf
 jpF
 nQQ
 jQv
@@ -165966,9 +165894,9 @@ ydP
 qFG
 gKK
 rqn
-slY
-slY
-slY
+wvu
+wvu
+wvu
 oDs
 lYC
 pZu
@@ -166164,7 +166092,7 @@ taO
 svX
 taO
 qlH
-nWC
+llx
 cdn
 sze
 uZz
@@ -166380,7 +166308,7 @@ wfh
 oYr
 wtB
 jmv
-gUh
+lGk
 qjZ
 hCj
 nBq
@@ -166976,7 +166904,7 @@ mEd
 jRV
 hJn
 fro
-wvu
+ieV
 bkN
 pZu
 pZu
@@ -167390,7 +167318,7 @@ tKE
 kmW
 sAd
 sAd
-bro
+sAd
 tKE
 iKP
 lyy
@@ -167788,7 +167716,7 @@ sMo
 xEz
 sMo
 vvd
-tDF
+dWX
 nNo
 gxs
 pPz
@@ -167987,7 +167915,7 @@ llx
 llx
 llx
 llx
-nWC
+llx
 qQs
 jIB
 fHE
@@ -167996,10 +167924,10 @@ tzp
 eTN
 qAZ
 lQl
-bro
+sAd
 sAd
 ciC
-bro
+sAd
 sNb
 vDV
 lyy

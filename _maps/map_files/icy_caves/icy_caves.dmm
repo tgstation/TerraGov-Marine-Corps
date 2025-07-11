@@ -637,7 +637,7 @@
 /area/icy_caves/caves/crashed_ship)
 "cN" = (
 /obj/structure/cable,
-/obj/machinery/power/smes/buildable/empty/dist,
+/obj/machinery/power/geothermal,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
 "cO" = (
@@ -1259,12 +1259,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
-"gz" = (
-/obj/effect/landmark/weed_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside/center)
 "gB" = (
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
@@ -1338,10 +1332,6 @@
 	dir = 10
 	},
 /area/icy_caves/caves/northwestmonorail)
-"gU" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside/center)
 "gX" = (
 /obj/machinery/light{
 	dir = 8
@@ -1397,10 +1387,6 @@
 	dir = 4
 	},
 /area/icy_caves/caves/cavesbrig)
-"ho" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/engineering)
 "hp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/green2{
@@ -1427,11 +1413,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/closed/wall/prison,
 /area/icy_caves/caves/cavesbrig)
-"hu" = (
-/obj/effect/landmark/start/job/survivor,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside/center)
 "hv" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/random/misc/paperbin,
@@ -4531,13 +4512,6 @@
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
-"wA" = (
-/obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/turf/open/floor/podhatch/floor,
-/area/icy_caves/outpost/engineering)
 "wC" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/green2{
@@ -5077,13 +5051,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
-"zi" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/engineering)
 "zj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -5094,10 +5061,6 @@
 /obj/machinery/power/apc/drained,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
-"zn" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/icy_caves/outpost/engineering)
 "zo" = (
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5613,13 +5576,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
-"BG" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/podhatch/floor,
-/area/icy_caves/outpost/engineering)
 "BH" = (
 /turf/closed/shuttle/dropship2/corners{
 	dir = 1
@@ -5649,9 +5605,6 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "BP" = (
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 8
-	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "BQ" = (
@@ -6219,12 +6172,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
-"EF" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside/center)
 "EG" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/structure/cable,
@@ -6458,6 +6405,7 @@
 "FK" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/power/geothermal,
 /turf/open/floor/podhatch/floor,
 /area/icy_caves/outpost/engineering)
 "FL" = (
@@ -7646,9 +7594,6 @@
 "Lq" = (
 /obj/machinery/light/small,
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 4
-	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "Lr" = (
@@ -9232,7 +9177,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/smes/buildable/empty/dist,
+/obj/machinery/power/geothermal,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
 "Ta" = (
@@ -9507,13 +9452,10 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ1)
 "Uv" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside/center)
+/obj/machinery/power/geothermal,
+/turf/open/floor/podhatch/floor,
+/area/icy_caves/outpost/engineering)
 "Uy" = (
 /obj/machinery/light{
 	dir = 1
@@ -10506,6 +10448,7 @@
 "YU" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
+/obj/machinery/power/geothermal,
 /turf/open/floor/podhatch/floor,
 /area/icy_caves/outpost/engineering)
 "YV" = (
@@ -23821,8 +23764,8 @@ li
 li
 li
 li
-Uv
-gz
+HA
+JW
 li
 VM
 Ya
@@ -24444,7 +24387,7 @@ Wq
 ic
 li
 my
-hu
+SV
 HA
 my
 li
@@ -24600,7 +24543,7 @@ Bs
 ic
 li
 kJ
-EF
+nu
 GS
 my
 li
@@ -25182,7 +25125,7 @@ YT
 ro
 ro
 rq
-ho
+ro
 ro
 ro
 ro
@@ -25335,7 +25278,7 @@ dq
 YT
 AU
 AU
-ho
+ro
 aB
 GG
 Og
@@ -25498,10 +25441,10 @@ sv
 si
 ol
 yC
-BG
-wA
-BG
-ho
+aW
+aW
+aW
+ro
 dE
 ZI
 ZI
@@ -25691,8 +25634,8 @@ ZI
 ZI
 ZI
 li
-Uv
-gU
+HA
+my
 li
 DD
 IE
@@ -25809,10 +25752,10 @@ sj
 si
 ce
 ol
-zn
+yx
 BI
-aW
-zi
+Uv
+BP
 ro
 si
 LG
@@ -25969,7 +25912,7 @@ Jo
 TA
 FK
 Lq
-ho
+ro
 si
 bL
 ZI
@@ -26115,7 +26058,7 @@ YT
 eK
 YT
 YT
-ho
+ro
 hg
 zN
 fN
@@ -26427,14 +26370,14 @@ ZI
 YT
 YT
 YT
-ho
 ro
 ro
 ro
 ro
 ro
 ro
-ho
+ro
+ro
 ro
 bR
 ro
