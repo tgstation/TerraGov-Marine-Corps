@@ -404,8 +404,20 @@
 	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
 	ceiling = CEILING_OBSTRUCTED
 
-/area/metnal/z2/inside/bridge2z
-	name = "Superior NorthWest Bridge"
+/area/metnal/z2/inside/bridgenw
+	name = "Aerial northwest bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+	ceiling = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/bridgen
+	name = "Northern bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+	ceiling = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/bridgeNE
+	name = "Aerial northeast bridge"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COLONY
 	ceiling = CEILING_OBSTRUCTED
