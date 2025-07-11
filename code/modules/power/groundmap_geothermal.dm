@@ -119,7 +119,11 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(corrupted && corruption_on)
 		if(!GLOB.generators_on_ground)	//Prevent division by 0
 			return PROCESS_KILL
-		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]))) //todo: Make this work for multi-z
+
+		var/total_humans_groundside = 0
+		for(var/z_level in SSmapping.levels_by_trait(ZTRAIT_GROUND))
+		total_humans_groundside += length(GLOB.humans_by_zlevel["[z_level]"])
+		if((total_humans_groundside > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
 			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
 			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground
 			SSpoints.add_strategic_psy_points(corrupted, points_generated)
