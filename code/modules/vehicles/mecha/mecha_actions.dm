@@ -450,6 +450,7 @@
 		shield_color = COLOR_TAN_ORANGE
 	chassis.transition_filter("pulsearmor", outline_filter(color = shield_color), LINEAR_EASING)
 
+/// Stops all effects
 /datum/action/vehicle/sealed/mecha/pulsearmor/proc/stop_shielding()
 	STOP_PROCESSING(SSprocessing, src)
 	block_remaining = 0
