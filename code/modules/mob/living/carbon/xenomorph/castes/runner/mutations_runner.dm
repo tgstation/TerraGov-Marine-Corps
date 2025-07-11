@@ -5,7 +5,7 @@
 	name = "Upfront Evasion"
 	desc = "Evasion is now 1/2/3 seconds longer, but no longer can auto-refresh."
 	conflicting_mutation_types = list(
-		/datum/mutation_upgrade/shell/upfront_evasion
+		/datum/mutation_upgrade/shell/ingrained_evasion
 	)
 
 	/// For each structure, the amount of seconds that is added to Evasion's starting duration.
