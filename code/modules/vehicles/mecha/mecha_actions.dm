@@ -387,3 +387,74 @@
 	update_button_icon()
 	if(istype(greyscale))
 		greyscale.remove_sparks()
+
+/datum/action/vehicle/sealed/mecha/pulsearmor
+	name = "Pulse Armor"
+	action_icon_state = "pulsearmor"
+	delay
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_PULSE_ARMOR,
+	)
+	///power cost of activation
+	var/power_cost = 250
+	///max damage that will be absorbed
+	var/block_max = 150
+	///remaining damage that will be absorbed
+	var/block_remaining
+	/// How much damage we take per second while shield active
+	var/decay_per_second = 15
+	/// How much we slow down the mech while shield is active
+	var/movespeed_mod = 3
+
+/datum/action/vehicle/sealed/mecha/pulsearmor/action_activate(trigger_flags)
+	. = ..()
+	if(!.)
+		return
+	if(block_remaining)
+		chassis.balloon_alert(owner, "already active")
+		return
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+		var/time = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_EQUIPMENT(type))/10
+		chassis.balloon_alert(owner, "[time] seconds")
+	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), 90 SECONDS)
+	block_remaining = block_max
+	playsound(chassis, 'sound/items/eshield_recharge.ogg', 40)
+	START_PROCESSING(SSprocessing, src)
+	RegisterSignal(chassis, COMSIG_ATOM_TAKE_DAMAGE, PROC_REF(on_attacked))
+	chassis.move_delay += movespeed_mod
+	chassis.add_filter("pulsearmor", 2, outline_filter(1, COLOR_BLUE_LIGHT))
+
+/datum/action/vehicle/sealed/mecha/pulsearmor/process(seconds_per_tick)
+	take_shield_damage(seconds_per_tick*decay_per_second)
+
+///intercepts all damage and send it to the shield
+/datum/action/vehicle/sealed/mecha/pulsearmor/proc/on_attacked(datum/source, damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+	SIGNAL_HANDLER
+	take_shield_damage(damage_amount)
+	return COMPONENT_NO_TAKE_DAMAGE
+
+///actually makes the existing shield take damage
+/datum/action/vehicle/sealed/mecha/pulsearmor/proc/take_shield_damage(damage)
+	if(!owner || !(owner in chassis.occupants))
+		stop_shielding()
+		return
+	block_remaining = max(block_remaining - damage, 0)
+	if(!block_remaining)
+		stop_shielding()
+		return
+	var/shield_color = COLOR_BLUE_LIGHT
+	var/percent_shield_left = block_remaining/block_max
+	if(percent_shield_left < 0.33)
+		shield_color = COLOR_MAROON
+	else if(percent_shield_left < 0.66)
+		shield_color = COLOR_TAN_ORANGE
+	chassis.transition_filter("pulsearmor", outline_filter(color = shield_color), LINEAR_EASING)
+
+/// Stops all effects
+/datum/action/vehicle/sealed/mecha/pulsearmor/proc/stop_shielding()
+	STOP_PROCESSING(SSprocessing, src)
+	block_remaining = 0
+	playsound(chassis.loc, 'sound/items/eshield_down.ogg', 40)
+	UnregisterSignal(chassis, COMSIG_ATOM_TAKE_DAMAGE)
+	chassis.remove_filter("pulsearmor")
+	chassis.move_delay -= movespeed_mod
