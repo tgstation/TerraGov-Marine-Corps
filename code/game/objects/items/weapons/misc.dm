@@ -120,9 +120,17 @@
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 	var/throw_distance = setting * LERP(5, 3, M.mob_size / MOB_SIZE_BIG)
 
+	RegisterSignal(M, COMSIG_MOVABLE_POST_THROW, PROC_REF(After_throw))
+	ADD_TRAIT(M, TRAIT_IMMOBILE, THROW_TRAIT)
 	M.knockback(user, throw_distance, 0.5 + (setting / 2))
 	cell.charge -= powerused
 	return ..()
+
+/// Called when the throw has ended.
+/obj/item/weapon/powerfist/proc/After_throw(datum/Thrown_mob)
+	SIGNAL_HANDLER
+	UnregisterSignal(Thrown_mob, COMSIG_MOVABLE_POST_THROW)
+	REMOVE_TRAIT(Thrown_mob, TRAIT_IMMOBILE, THROW_TRAIT)
 
 /obj/item/weapon/powerfist/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/cell))
