@@ -90,11 +90,11 @@
 			else
 				M.close()
 
-/obj/machinery/door_control/attack_hand(mob/living/user)
+/obj/machinery/door_control/attack_hand(mob/living/user, bypass_xenomorph_check)
 	. = ..()
 	if(.)
 		return
-	if(istype(user,/mob/living/carbon/xenomorph))
+	if(!bypass_xenomorph_check && istype(user,/mob/living/carbon/xenomorph))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, span_warning("[src] doesn't seem to be working."))
@@ -124,6 +124,10 @@
 
 /obj/machinery/door_control/attack_ai(mob/living/silicon/ai/AI)
 	return attack_hand(AI)
+
+/obj/machinery/door_control/punch_act(mob/living/carbon/xenomorph/xeno)
+	..()
+	return !attack_hand(xeno, TRUE)
 
 
 /obj/machinery/door_control/proc/unpress()
