@@ -34,7 +34,7 @@
 	on_structure_change(null, MUTATION_CHAMBER_MINIMUM, get_total_structures())
 
 /// Removes the status effect for having the mutation, unregisters various signals, and then updates with zero structures.
-/datum/mutation_upgrade/Destroy(force, ...)
+/datum/mutation_upgrade/Destroy(force)
 	if(alert)
 		xenomorph_owner.clear_alert("mutation_[category]")
 	if(xenomorph_owner.owned_mutations.Find(src))
