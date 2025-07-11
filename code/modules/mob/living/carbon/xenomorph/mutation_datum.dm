@@ -29,8 +29,8 @@
 	.["already_has_shell"] = has_any_mutation_in_category(xenomorph_user, MUTATION_SHELL)
 	.["already_has_spur"] = has_any_mutation_in_category(xenomorph_user, MUTATION_SPUR)
 	.["already_has_veil"] = has_any_mutation_in_category(xenomorph_user, MUTATION_VEIL)
+	.["maximum_biomass"] = MUTATION_BIOMASS_MAXIMUM // If current biomass is over this, it changes text accordingly.
 	.["cost"] = get_mutation_cost(xenomorph_user)
-	.["cost_text"] = (get_mutation_cost(xenomorph_user) > MUTATION_BIOMASS_MAXIMUM || (.["already_has_shell_mutation"] && .["already_has_spur_mutation"] && .["already_has_veil_mutation"])) ? "∞" : .["cost"]
 	for(var/datum/mutation_upgrade/mutation AS in xenomorph_user.xeno_caste.mutations)
 		var/list_name = "veil_mutations"
 		if(is_shell_mutation(mutation))
@@ -99,7 +99,7 @@
 
 /// Tries to purchase a mutation based on its typepath. Returns TRUE if the mutation was successfully purchased.
 /datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xenomorph_purchaser, datum/mutation_upgrade/mutation_typepath)
-	if(!xenomorph_purchaser.hive || !istype(mutation_typepath))
+	if(!xenomorph_purchaser.hive || !mutation_typepath)
 		return FALSE
 	if(!(xenomorph_purchaser.xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED))
 		return FALSE
