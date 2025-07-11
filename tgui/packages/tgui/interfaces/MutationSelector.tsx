@@ -20,8 +20,11 @@ type Upgrade = {
 
 type BiomassData = {
   biomass: number;
+  maximum_biomass: number;
   cost: number;
-  cost_text: number;
+  already_has_shell: BooleanLike;
+  already_has_spur: BooleanLike;
+  already_has_veil: BooleanLike;
 };
 
 type MutationData = {
@@ -35,8 +38,8 @@ type MutationData = {
   spur_chambers: number;
   veil_chambers: number;
   cost: number;
-  cost_text: string;
   biomass: number;
+  maximum_biomass: number;
 };
 
 export const MutationSelector = (_props: any) => {
@@ -62,13 +65,13 @@ export const MutationSelector = (_props: any) => {
         <MutationSection
           category_name="Shell"
           mutations={shell_mutations}
-          already_has={already_has_spur}
+          already_has={already_has_shell}
           chambers={shell_chambers}
         />
         <MutationSection
           category_name="Spur"
           mutations={spur_mutations}
-          already_has={already_has_shell}
+          already_has={already_has_spur}
           chambers={spur_chambers}
         />
         <MutationSection
@@ -85,10 +88,24 @@ export const MutationSelector = (_props: any) => {
 
 const BiomassBar = (_props: any) => {
   const { data } = useBackend<BiomassData>();
-  const { biomass, cost_text } = data;
+  const {
+    biomass,
+    maximum_biomass,
+    cost,
+    already_has_shell,
+    already_has_spur,
+    already_has_veil,
+  } = data;
 
   return (
-    <Tooltip content={`Costs ${cost_text} biomass to buy an another mutation!`}>
+    <Tooltip
+      content={`Costs ${
+        ((cost > maximum_biomass ||
+          (already_has_shell && already_has_spur && already_has_veil)) &&
+          '∞') ||
+        cost
+      } biomass to buy an another mutation!`}
+    >
       <Flex mb={1}>
         <Flex.Item grow>
           <ProgressBar color="green" value={biomass / 1800}>
@@ -107,8 +124,7 @@ const MutationSection = (props: {
   chambers: number;
 }) => {
   const { act, data } = useBackend<BiomassData>();
-  const { cost, cost_text, biomass } = data;
-
+  const { cost, biomass, maximum_biomass } = data;
   return (
     <Collapsible
       title={`${props.category_name} Mutations | ${props.category_name} Chambers: ${props.chambers}/3`}
@@ -121,7 +137,7 @@ const MutationSection = (props: {
             key={mutation.name}
             buttons={
               <Button
-                content={`Buy (${cost_text})`}
+                content={`Buy (${((cost > maximum_biomass || props.already_has) && '∞') || cost})`}
                 key={mutation.name}
                 onClick={() => act('purchase', { upgrade_type: mutation.type })}
                 disabled={
