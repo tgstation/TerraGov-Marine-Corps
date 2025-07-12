@@ -24,7 +24,7 @@
 	/// Who created that spray
 	var/mob/xeno_owner
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner, start_on_cooldown) //Self-deletes
 	. = ..()
 	notify_ai_hazard()
 	START_PROCESSING(SSprocessing, src)
@@ -100,6 +100,18 @@
 
 		var/atom/A = H
 		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
+
+/// Creates or replaces an xenomorph acid spray effect on a specific turf with a new one.
+/proc/xenomorph_spray(turf/spraying_turf, duration, damage, mob/living/carbon/xenomorph/xenomorph_creator, should_do_additional_visual_effect = FALSE, should_acid_act = FALSE)
+	var/obj/effect/xenomorph/spray/existing_spray = locate(/obj/effect/xenomorph/spray) in spraying_turf
+	if(existing_spray)
+		qdel(existing_spray)
+	if(should_do_additional_visual_effect)
+		new /obj/effect/temp_visual/acid_splatter(spraying_turf)
+	. = new /obj/effect/xenomorph/spray(spraying_turf, duration, damage, xenomorph_creator)
+	if(should_acid_act)
+		for(var/atom/atom_in_turf AS in spraying_turf)
+			atom_in_turf.acid_spray_act(xenomorph_creator)
 
 //Medium-strength acid // todo please god make me into an overlay and component already...
 /obj/effect/xenomorph/acid
