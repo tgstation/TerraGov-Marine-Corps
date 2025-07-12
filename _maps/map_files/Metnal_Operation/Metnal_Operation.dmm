@@ -58,17 +58,17 @@
 	dir = 1
 	},
 /area/metnal/outside/southwest)
+"acn" = (
+/obj/structure/bed/fancy,
+/obj/item/bedsheet/clown,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "acI" = (
 /obj/structure/mirror{
 	pixel_y = 28
 	},
 /turf/open/floor/tile/dark/gray,
 /area/metnal/z2/inside/comgym)
-"ada" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/start/job/xenomorph,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "adm" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -89,6 +89,12 @@
 	},
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
+"adQ" = (
+/obj/structure/stairs/multiz/directional/west{
+	layer = 10025
+	},
+/turf/open/lavaland/basalt,
+/area/metnal/outside/central)
 "aeE" = (
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/sterilewhite,
@@ -168,9 +174,6 @@
 "agr" = (
 /turf/closed/wall/prison,
 /area/metnal/inside/research)
-"agv" = (
-/turf/open/openspace,
-/area/metnal/z2/inside/bridgenw)
 "agw" = (
 /obj/machinery/light/mainship/small,
 /obj/structure/rack,
@@ -200,11 +203,6 @@
 	dir = 4
 	},
 /area/metnal/outside/west)
-"ahK" = (
-/obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
 "air" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood/alt_seven,
@@ -241,6 +239,17 @@
 	dir = 9
 	},
 /area/metnal/caves/southeast)
+"ajg" = (
+/obj/effect/decal/cleanable/blood{
+	dir = 8;
+	pixel_x = 12;
+	pixel_y = 3
+	},
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "ajk" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -326,6 +335,9 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/tile/dark/yellow2,
 /area/metnal/inside/substation)
+"amy" = (
+/turf/open/floor/wood,
+/area/metnal/z2/inside/HQlvl2)
 "amJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
@@ -489,6 +501,13 @@
 	dir = 10
 	},
 /area/metnal/inside/mining)
+"ars" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "ase" = (
 /obj/machinery/door/airlock/mainship/security/free_access,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -522,6 +541,10 @@
 /obj/structure/closet/wardrobe/black,
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
+"att" = (
+/obj/machinery/vending/cigarette/colony,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "atI" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -558,9 +581,13 @@
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
 "ave" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/metnal/z2/inside/deluxearmory)
+"avS" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/comgym)
 "avW" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -714,11 +741,6 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkfull,
 /area/metnal/outside/central)
-"aBm" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "aBq" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -786,6 +808,9 @@
 /obj/structure/powerloader_wreckage,
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
+"aCV" = (
+/turf/open/floor/urban/tile/tileblackcheckered,
+/area/metnal/z2/inside/HQlvl2)
 "aCY" = (
 /obj/effect/turf_decal/siding/white/corner,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -857,11 +882,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/darkpurple,
 /area/metnal/inside/research)
-"aEr" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/machinery/random_broken_computer/small,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "aEt" = (
 /obj/effect/spawner/random/misc/structure/wood_barricade,
 /obj/effect/turf_decal/siding/dark,
@@ -947,10 +967,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
-"aHv" = (
-/obj/structure/bed/chair/sofa/left,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "aHw" = (
 /obj/structure/table/wood{
 	flipped = 1
@@ -1024,6 +1040,13 @@
 	dir = 1
 	},
 /area/metnal/inside/cargo)
+"aJS" = (
+/obj/structure/barricade/wooden{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/HQlvl2)
 "aJU" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/urban/street/asphalt,
@@ -1047,10 +1070,6 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/southeast)
-"aKG" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "aKY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1065,11 +1084,6 @@
 	dir = 9
 	},
 /area/metnal/outside/north)
-"aLm" = (
-/obj/effect/landmark/xeno_resin_wall,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/metnal/z2/inside/bridgenw)
 "aLv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -1125,6 +1139,11 @@
 "aMv" = (
 /turf/open/floor/iron/textured,
 /area/metnal/inside/mining)
+"aMA" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/structure/musician/piano,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "aMK" = (
 /obj/structure/largecrate/supply/ammo/shotgun,
 /obj/effect/landmark/weed_node,
@@ -1137,12 +1156,6 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"aMW" = (
-/obj/structure/prop/urban/furniture/tables/tableblack{
-	dir = 8
-	},
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "aMX" = (
 /obj/structure/stairs/seamless/platform,
 /turf/open/floor/prison/plate,
@@ -1210,10 +1223,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/medical)
-"aPB" = (
-/obj/structure/punching_bag,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/comgym)
 "aPF" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1259,10 +1268,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/northwest)
-"aQx" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "aQC" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1507,6 +1512,11 @@
 	dir = 8
 	},
 /area/metnal/inside/experimentation)
+"aYO" = (
+/obj/effect/landmark/corpsespawner/marine/burst,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison,
+/area/metnal/z2/inside/comgym)
 "aZr" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -1538,6 +1548,13 @@
 	dir = 1
 	},
 /area/metnal/inside/medical)
+"aZM" = (
+/obj/machinery/power/apc/drained{
+	name = "Dormitory APC"
+	},
+/obj/effect/mapping_helpers/broken_apc/lowchance,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "aZT" = (
 /turf/open/floor/carpet/side{
 	dir = 8
@@ -1557,6 +1574,13 @@
 /obj/structure/bed/stool,
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
+"baJ" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "baK" = (
 /obj/structure/flora/desert/grass,
 /obj/effect/turf_decal/siding/wood{
@@ -1583,6 +1607,17 @@
 	dir = 8
 	},
 /area/metnal/inside/chapel)
+"bbQ" = (
+/obj/structure/table/mainship,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/effect/spawner/random/machinery/random_broken_computer/small,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "bcd" = (
 /turf/open/floor/prison/darkred/corners{
 	dir = 4
@@ -1711,12 +1746,6 @@
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/metnal/inside/substation)
-"bhn" = (
-/obj/structure/bed/chair/east{
-	dir = 8
-	},
-/turf/open/floor/tile/darkish,
-/area/metnal/z2/outside/hterrace)
 "bhs" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
@@ -1769,10 +1798,6 @@
 /obj/item/book/manual/barman_recipes,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
-"biZ" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "bjn" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/blue/plate,
@@ -1795,10 +1820,6 @@
 	dir = 8
 	},
 /area/metnal/outside/north)
-"bkh" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/comgym)
 "bkj" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /obj/effect/turf_decal/warning_stripes/thick/corner{
@@ -1959,10 +1980,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/auxstorage)
-"bpx" = (
-/obj/machinery/space_heater,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "bpH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1970,10 +1987,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/east)
-"bpK" = (
-/obj/structure/table/black,
-/turf/open/floor/tile/darkish,
-/area/metnal/z2/outside/hterrace)
 "bqh" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -2150,10 +2163,6 @@
 	dir = 1
 	},
 /area/metnal/inside/research)
-"btb" = (
-/obj/structure/bed/chair/sofa/corsat/right,
-/turf/open/floor/urban/tile/tileblackcheckered,
-/area/metnal/z2/inside/HQlvl2)
 "bte" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -2479,11 +2488,6 @@
 	dir = 5
 	},
 /area/metnal/outside/northeast)
-"bFT" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/paper,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "bGe" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 1
@@ -2537,6 +2541,10 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
+"bIg" = (
+/obj/structure/rack,
+/turf/open/floor/prison/plate,
+/area/metnal/z2/inside/deluxearmory)
 "bIl" = (
 /obj/structure/closet/crate/supply,
 /obj/item/clothing/gloves/insulated,
@@ -2592,6 +2600,12 @@
 /obj/item/clothing/head/chefhat,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/kitchen)
+"bJu" = (
+/obj/structure/barricade/wooden{
+	dir = 1
+	},
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/HQlvl2)
 "bJR" = (
 /obj/effect/turf_decal/siding/thinplating_new/light,
 /obj/structure/bed/chair{
@@ -2664,11 +2678,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical/chemistry)
-"bLt" = (
-/obj/structure/table/wood/fancy,
-/obj/item/card/id/silver,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "bLy" = (
 /obj/effect/turf_decal/caution,
 /obj/structure/cable,
@@ -2781,12 +2790,6 @@
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
-"bPK" = (
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/HQlvl2)
 "bPO" = (
 /obj/effect/turf_decal/caution/stand_clear,
 /obj/effect/decal/cleanable/blood/drip,
@@ -2944,6 +2947,11 @@
 	dir = 6
 	},
 /area/metnal/inside/cargo)
+"bTH" = (
+/obj/machinery/faxmachine/cic,
+/obj/structure/table/wood,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "bTJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/urban/carpet/carpetblack,
@@ -3114,10 +3122,8 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
-"cbr" = (
-/obj/machinery/light{
-	dir = 8
-	},
+"cbj" = (
+/obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/z2/inside/humanresources)
 "cby" = (
@@ -3150,9 +3156,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/metnal/inside/northmeetingroom)
-"ccC" = (
-/turf/open/floor/wood,
-/area/metnal/z2/inside/HQlvl2)
 "ccE" = (
 /obj/item/ammo_magazine/handful/slug,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3203,6 +3206,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
+"cfq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/comgym)
 "cfA" = (
 /obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/food_or_drink/burger/normal,
@@ -3221,9 +3231,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/metnal/z2/inside/Prison)
-"cgr" = (
-/turf/open/openspace,
-/area/metnal/z2/inside/bridgeNE)
 "cgI" = (
 /obj/structure/closet/secure_closet/walllocker/medical/full,
 /obj/effect/landmark/weed_node,
@@ -3256,6 +3263,12 @@
 /obj/item/tool/mop,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
+"chp" = (
+/obj/structure/table/wood/fancy,
+/obj/effect/urban/decal/trash/fourteen,
+/obj/effect/spawner/random/misc/cigarettes,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "chq" = (
 /obj/effect/turf_decal/siding/dark_green{
 	dir = 1
@@ -3263,10 +3276,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical)
-"chA" = (
-/obj/effect/spawner/gibspawner/xeno,
-/turf/open/floor/prison/yellow,
-/area/metnal/z2/inside/comgym)
 "chG" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/paper_bin,
@@ -3311,6 +3320,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
+"ciM" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/blood/writing{
+	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
+	dir = 4
+	},
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "ciZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -3396,6 +3413,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"clH" = (
+/obj/structure/punching_bag,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/comgym)
 "clT" = (
 /obj/structure/cable,
 /turf/open/urban/street/sidewalkfull,
@@ -3503,6 +3524,17 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"cpH" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "cqJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/darkred{
@@ -3532,6 +3564,10 @@
 	},
 /turf/open/floor/prison/whitegreen,
 /area/metnal/inside/medical)
+"crf" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/comgym)
 "cri" = (
 /obj/structure/flora/pottedplant/seventeen,
 /obj/machinery/light{
@@ -3772,10 +3808,17 @@
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/auxstorage)
-"cyw" = (
-/obj/machinery/disposal,
-/turf/open/floor/urban/tile/tileblackcheckered,
-/area/metnal/z2/inside/HQlvl2)
+"cyx" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/tool/pen/blue{
+	pixel_x = -6
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "cyG" = (
 /obj/effect/spawner/random/misc/plant,
 /obj/machinery/light{
@@ -3850,11 +3893,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southeast/garbledradio)
-"cBD" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/closet/firecloset,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "cBV" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Cargonia";
@@ -3887,6 +3925,10 @@
 	dir = 1
 	},
 /area/metnal/inside/research)
+"cCZ" = (
+/obj/machinery/vending/sovietsoda,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/HQlvl2)
 "cDh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4115,10 +4157,6 @@
 	},
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
-"cKa" = (
-/obj/machinery/vending/cigarette/colony,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "cKe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4181,14 +4219,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
-"cLd" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 8;
-	pixel_x = 0;
-	pixel_y = 3
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "cLf" = (
 /obj/machinery/light{
 	dir = 1
@@ -4295,6 +4325,13 @@
 	dir = 9
 	},
 /area/metnal/inside/research)
+"cOm" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "cOC" = (
 /obj/item/frame/rack,
 /obj/item/stack/cable_coil/five,
@@ -4329,13 +4366,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/mainship/mono,
 /area/metnal/outside/southwest)
-"cPZ" = (
-/obj/machinery/power/apc/drained{
-	name = "Dormitory APC"
-	},
-/obj/effect/mapping_helpers/broken_apc/lowchance,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "cQm" = (
 /obj/structure/rack,
 /obj/structure/cable,
@@ -4347,6 +4377,12 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest/garbledradio)
+"cQE" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison/yellow{
+	dir = 1
+	},
+/area/metnal/z2/inside/comgym)
 "cQH" = (
 /obj/effect/acid_hole,
 /turf/closed/wall/prison,
@@ -4604,15 +4640,15 @@
 	dir = 4
 	},
 /area/metnal/inside/substation)
-"cWe" = (
-/obj/machinery/vending/robotics,
-/turf/open/floor/prison/plate,
-/area/metnal/z2/inside/deluxearmory)
 "cWr" = (
 /obj/effect/urban/decal/trash/four,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
+"cWt" = (
+/obj/structure/safe,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "cWu" = (
 /obj/structure/cable,
 /turf/open/floor/prison/greenblue{
@@ -4993,6 +5029,10 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
+"ddT" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "ddU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5056,10 +5096,6 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
-"dfk" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "dfV" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 4
@@ -5121,6 +5157,14 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
+"dhk" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/z2/inside/HQlvl2)
+"dht" = (
+/obj/structure/bed/chair/sofa/right,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "dhw" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/tool,
@@ -5349,12 +5393,6 @@
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/carpet,
 /area/metnal/inside/colonydorms)
-"dnk" = (
-/obj/structure/bed/chair/comfy{
-	dir = 4
-	},
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "dnt" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/carpet/side,
@@ -5430,11 +5468,6 @@
 "dqN" = (
 /turf/open/lavaland/basalt/cave/autosmooth,
 /area/metnal/caves/southeast)
-"dsc" = (
-/obj/structure/bed/chair/east,
-/obj/effect/landmark/start/job/xenomorph,
-/turf/open/floor/tile/darkish,
-/area/metnal/z2/outside/hterrace)
 "dsp" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -5513,10 +5546,6 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/prison/blackfloor,
 /area/metnal/inside/experimentation)
-"duR" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "duU" = (
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/landmark/weed_node,
@@ -5614,6 +5643,13 @@
 	},
 /turf/open/floor/iron/textured,
 /area/metnal/inside/laundromat)
+"dyb" = (
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
+	dir = 2;
+	name = "\improper Operations Office"
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "dyr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5671,6 +5707,13 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
+"dAH" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/writing,
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "dAQ" = (
 /obj/structure/window_frame/prison,
 /turf/open/floor/prison/plate,
@@ -5680,6 +5723,12 @@
 	dir = 10
 	},
 /area/metnal/inside/cargo)
+"dBa" = (
+/obj/structure/bed/chair/east{
+	dir = 8
+	},
+/turf/open/floor/tile/darkish,
+/area/metnal/z2/outside/hterrace)
 "dBj" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -5694,16 +5743,24 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
-"dBR" = (
-/obj/structure/bed/chair/sofa/corsat,
-/turf/open/floor/urban/tile/tileblackcheckered,
-/area/metnal/z2/inside/HQlvl2)
 "dCb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
 	name = "\improper Colony Bar"
 	},
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
+"dCd" = (
+/obj/structure/table/mainship,
+/obj/structure/window/reinforced/tinted,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/item/tool/pen{
+	pixel_y = 4
+	},
+/obj/item/card/id/silver,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "dCC" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
@@ -5762,10 +5819,6 @@
 	},
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
-"dEd" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/metnal/z2/inside/bridgenw)
 "dEf" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -5924,13 +5977,10 @@
 /obj/structure/cargo_container/red,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
-"dJf" = (
-/obj/effect/landmark/weed_node,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
+"dIT" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "dJj" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/prison/plate,
@@ -5939,12 +5989,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
-"dJz" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "dJQ" = (
 /obj/machinery/light{
 	dir = 8
@@ -5982,12 +6026,6 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/northmeetingroom)
-"dKG" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "dKL" = (
 /obj/structure/cable,
 /obj/structure/cocoon/opened_cocoon,
@@ -6158,6 +6196,9 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
+"dPN" = (
+/turf/open/openspace,
+/area/metnal/z2/inside/bridgeNE)
 "dPO" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
@@ -6170,6 +6211,12 @@
 	dir = 1
 	},
 /area/metnal/caves/southwest/garbledradio)
+"dQq" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/table/black,
+/obj/structure/prop/computer/broken/ten,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "dQR" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
@@ -6424,6 +6471,12 @@
 /obj/structure/table/black,
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
+"dYg" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "dYl" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -6491,10 +6544,10 @@
 	},
 /turf/open/floor/prison,
 /area/metnal/inside/research)
-"ebc" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
+"eaT" = (
+/obj/structure/bed/chair/sofa/left,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "ebw" = (
 /turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
@@ -6525,6 +6578,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
+"ecp" = (
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "ecA" = (
 /turf/open/floor/prison,
 /area/metnal/inside/centralminingequip)
@@ -6579,12 +6638,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"edV" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4
-	},
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
 "eea" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -6635,10 +6688,18 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
+"efi" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/comgym)
 "efC" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitegreen,
 /area/metnal/inside/medical)
+"efJ" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "efL" = (
 /turf/open/floor/prison/blue,
 /area/metnal/inside/research)
@@ -6666,6 +6727,14 @@
 /obj/item/reagent_containers/food/drinks/cans/souto/grape,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"egQ" = (
+/obj/effect/decal/cleanable/blood/writing{
+	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
+	dir = 4
+	},
+/obj/machinery/disposal,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "ehc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6750,6 +6819,12 @@
 "ejj" = (
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/south)
+"eju" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "ejH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -6772,6 +6847,16 @@
 "ekr" = (
 /turf/open/urban/street/sidewalkfull,
 /area/metnal/outside/northwest)
+"ekv" = (
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper Dormitories Restroom"
+	},
+/obj/effect/decal/cleanable/blood/writing{
+	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
+	dir = 4
+	},
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "ekY" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -6813,6 +6898,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/central)
+"emi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/coffee,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "emk" = (
 /obj/structure/table/wood{
 	flipped = 1
@@ -6884,6 +6974,12 @@
 	},
 /turf/open/floor/prison/marked,
 /area/metnal/inside/auxstorage)
+"eoG" = (
+/obj/structure/mirror{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "eoH" = (
 /obj/effect/turf_decal/sandedge,
 /obj/structure/plasticflaps,
@@ -6896,10 +6992,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
-"epn" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/comgym)
 "epI" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/standard,
@@ -6998,13 +7090,6 @@
 	},
 /turf/open/floor/multi_tiles,
 /area/metnal/inside/Headquarters)
-"esA" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/firecloset,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "esK" = (
 /obj/structure/table/black,
 /obj/item/tool/pen,
@@ -7393,6 +7478,12 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest/garbledradio)
+"eBc" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "eBB" = (
 /obj/effect/spawner/random/engineering/shovel,
 /turf/open/floor/prison/darkbrown/full,
@@ -7436,11 +7527,6 @@
 	},
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/dorms2z)
-"eDC" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
 "eDX" = (
 /obj/item/clothing/glasses/hud/security,
 /obj/structure/closet/secure_closet/marshal,
@@ -7449,6 +7535,10 @@
 "eEh" = (
 /turf/open/floor/carpet/side,
 /area/metnal/inside/cafeteria)
+"eEF" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "eFe" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -7554,6 +7644,15 @@
 	dir = 1
 	},
 /area/metnal/inside/security)
+"eHU" = (
+/obj/effect/decal/cleanable/blood{
+	dir = 8;
+	pixel_x = 12;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "eIi" = (
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt/cave{
@@ -7631,11 +7730,6 @@
 /obj/item/trash/eat,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/emergencystorage)
-"eKa" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/firecloset,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "eKc" = (
 /obj/structure/bed/chair,
 /obj/effect/turf_decal/siding/thinplating_new/light{
@@ -7829,10 +7923,6 @@
 /obj/structure/cable,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
-"eQy" = (
-/obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
 "eQJ" = (
 /turf/open/floor/plate,
 /area/metnal/z2/outside/hangar)
@@ -7872,11 +7962,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/recreation)
-"eRy" = (
-/obj/machinery/faxmachine/cic,
-/obj/structure/table/wood,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "eRH" = (
 /obj/machinery/light{
 	light_color = "#da2f1b"
@@ -8020,10 +8105,12 @@
 /obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/urban/carpet/carpetpatternblue,
 /area/metnal/inside/bridge)
-"eVf" = (
-/obj/structure/table/black,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
+"eVg" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "eVo" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -8049,6 +8136,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest)
+"eWk" = (
+/obj/effect/landmark/weed_node,
+/obj/item/paper,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "eWr" = (
 /obj/machinery/chem_dispenser,
 /obj/effect/turf_decal/siding/dark_green{
@@ -8062,6 +8154,10 @@
 	dir = 6
 	},
 /area/metnal/inside/substation)
+"eWw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "eWE" = (
 /turf/open/floor/prison/darkred{
 	dir = 5
@@ -8188,18 +8284,26 @@
 	dir = 6
 	},
 /area/metnal/inside/mining)
+"faW" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/paper,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "fbf" = (
 /obj/effect/landmark/dropship_start_location,
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/metnal/inside/Headquarters)
+"fbH" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/metnal/z2/inside/bridgenw)
 "fbZ" = (
 /turf/closed/wall/prison,
 /area/metnal/z2/outside)
-"fcd" = (
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "fcf" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -8315,10 +8419,6 @@
 /obj/structure/cocoon/opened_cocoon,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
-"feT" = (
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
 "ffa" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -8365,9 +8465,12 @@
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
 "fgy" = (
-/obj/machinery/vending/tool/nopower,
-/turf/open/floor/prison/plate,
-/area/metnal/z2/inside/deluxearmory)
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "fgD" = (
 /turf/open/floor/carpet/side,
 /area/metnal/inside/colonydorms)
@@ -8384,11 +8487,6 @@
 /obj/structure/flora/pottedplant/fifteen,
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
-"fgY" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "fhr" = (
 /obj/machinery/shower{
 	dir = 8;
@@ -8403,6 +8501,12 @@
 "fhN" = (
 /turf/open/floor/prison,
 /area/metnal/inside/restroom)
+"fhP" = (
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/turf/open/floor/urban/tile/tileblackcheckered,
+/area/metnal/z2/inside/HQlvl2)
 "fhV" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -8425,12 +8529,6 @@
 	},
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
-"fip" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "fiq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -8557,6 +8655,11 @@
 /obj/structure/prop/urban/vehicles/large/mega_hauler_truck,
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
+"fmU" = (
+/obj/structure/table/wood/fancy,
+/obj/item/card/id/silver,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "fmZ" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/decal/cleanable/dirt,
@@ -8631,6 +8734,12 @@
 /obj/item/toy/beach_ball/basketball,
 /turf/open/floor/prison,
 /area/metnal/z2/inside/comgym)
+"foh" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "fos" = (
 /turf/open/floor/tile/green/whitegreencorner,
 /area/metnal/inside/research)
@@ -8775,13 +8884,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/marked,
 /area/metnal/inside/mineralextraction)
-"ftM" = (
-/obj/structure/bed/chair/comfy{
-	dir = 1
-	},
-/obj/effect/landmark/corpsespawner/colonist/burst,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "fua" = (
 /obj/item/trash/mre,
 /obj/effect/turf_decal/siding/dark{
@@ -8808,9 +8910,25 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/outside/north)
+"fus" = (
+/obj/structure/mirror{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/writing,
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "fuu" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/experimentation)
+"fuT" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "fuV" = (
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
@@ -8873,10 +8991,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
-"fxB" = (
-/obj/machinery/disposal,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
 "fxC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -8997,6 +9111,12 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"fBx" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
+	},
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "fBz" = (
 /obj/structure/closet/crate/secure,
 /obj/machinery/light{
@@ -9021,10 +9141,13 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest)
-"fCI" = (
-/obj/structure/prop/nt_computer/recorder,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/relay)
+"fDl" = (
+/obj/structure/bed/chair/office/dark/east,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "fDv" = (
 /obj/effect/acid_hole,
 /turf/closed/wall/r_wall/prison,
@@ -9173,10 +9296,6 @@
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plating,
 /area/metnal/inside/administration)
-"fHe" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "fHi" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt/glowing,
@@ -9303,13 +9422,6 @@
 /obj/effect/decal/cleanable/flour,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
-"fKH" = (
-/obj/effect/urban/decal/trash/fourteen,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "fKJ" = (
 /obj/item/clothing/shoes/red,
 /obj/item/clothing/under/librarian,
@@ -9407,6 +9519,14 @@
 	dir = 10
 	},
 /area/metnal/outside/northeast)
+"fPa" = (
+/obj/structure/showcase/coinpress,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
+"fPq" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/prison/plate,
+/area/metnal/z2/inside/deluxearmory)
 "fPG" = (
 /obj/effect/turf_decal/tile/full/brown,
 /obj/effect/landmark/weed_node,
@@ -9433,6 +9553,11 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
+"fQL" = (
+/obj/structure/table/wood,
+/obj/machinery/faxmachine/cic,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "fRg" = (
 /turf/open/floor/prison/marked,
 /area/metnal/inside/mining)
@@ -9577,6 +9702,10 @@
 /obj/machinery/iv_drip,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical)
+"fXC" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/comgym)
 "fXD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/engineering/metal/nooffset,
@@ -9669,6 +9798,13 @@
 	},
 /turf/open/floor/prison/whitegreen,
 /area/metnal/inside/research)
+"gbY" = (
+/obj/structure/bed/chair/comfy{
+	dir = 1
+	},
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "gcb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -9783,6 +9919,10 @@
 "gfh" = (
 /turf/closed/wall/prison,
 /area/metnal/inside/medical/chemistry)
+"gfk" = (
+/obj/effect/landmark/corpsespawner/freelancer,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/comgym)
 "gfq" = (
 /obj/structure/cable,
 /obj/structure/table/black,
@@ -9926,15 +10066,6 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/southeast)
-"gjD" = (
-/obj/structure/bed/chair/office/dark/west,
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "gjP" = (
 /obj/structure/cargo_container/gorg{
 	dir = 8
@@ -10053,13 +10184,6 @@
 /obj/effect/decal/cleanable/blood/six,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"gof" = (
-/obj/structure/platform/metalplatform{
-	dir = 4
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/relay)
 "gog" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/outside/southeast)
@@ -10187,6 +10311,18 @@
 /obj/structure/cable,
 /turf/open/floor/multi_tiles,
 /area/metnal/inside/Headquarters)
+"gsd" = (
+/obj/item/paper,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
+"gsp" = (
+/obj/structure/table/black,
+/obj/machinery/faxmachine,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "gsu" = (
 /obj/item/bedsheet/purple,
 /obj/structure/bed/chair/office/light,
@@ -10229,6 +10365,11 @@
 	dir = 1
 	},
 /area/metnal/outside/northeast)
+"gtk" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "gtr" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -10303,16 +10444,15 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
-"gwa" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "gwi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
+"gwt" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "gwB" = (
 /obj/effect/turf_decal/tile/transparent/blue/opposingcorners,
 /obj/structure/table/reinforced/prison,
@@ -10422,6 +10562,12 @@
 	dir = 9
 	},
 /area/metnal/inside/colonydorms)
+"gAr" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "gAy" = (
 /obj/structure/cable,
 /turf/open/floor/plate,
@@ -10515,23 +10661,10 @@
 	dir = 5
 	},
 /area/metnal/outside/north)
-"gDU" = (
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
 "gEy" = (
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/cement1,
 /area/metnal/outside/northeast)
-"gEC" = (
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	dir = 2;
-	name = "\improper Operations Office"
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "gED" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/landmark/weed_node,
@@ -10611,6 +10744,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southeast/garbledradio)
+"gHQ" = (
+/obj/effect/spawner/gibspawner/xeno,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/comgym)
 "gHT" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark,
@@ -10635,10 +10773,6 @@
 "gIH" = (
 /turf/open/floor/plating/heatinggrate,
 /area/metnal/outside/central)
-"gIY" = (
-/obj/structure/bed/chair/comfy,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "gJa" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
@@ -10677,16 +10811,6 @@
 "gJP" = (
 /turf/open/floor/mainship/mono,
 /area/metnal/outside/southwest)
-"gLf" = (
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Dormitories Restroom"
-	},
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "gLp" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
@@ -11046,10 +11170,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
-"gWA" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/relay)
 "gXo" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Dormitories Restroom"
@@ -11174,10 +11294,6 @@
 	dir = 8
 	},
 /area/metnal/caves/southwest/garbledradio)
-"haK" = (
-/obj/structure/bed/chair/sofa/right,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "haO" = (
 /obj/structure/bed/chair/sofa/right,
 /obj/effect/spawner/random/food_or_drink/beer,
@@ -11217,6 +11333,10 @@
 /obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /turf/open/floor/mainship_hull/gray,
 /area/metnal/inside/research)
+"hcw" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "hcY" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison/plate,
@@ -11266,6 +11386,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/multi_tiles,
 /area/metnal/inside/Headquarters)
+"heT" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/HQlvl2)
 "hfv" = (
 /obj/item/book/manual/detective,
 /obj/item/book/manual/security_space_law,
@@ -11282,6 +11406,12 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
+"hfB" = (
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "hfZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11398,12 +11528,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship_hull/gray,
 /area/metnal/inside/research)
-"hlf" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison/yellow{
-	dir = 1
-	},
-/area/metnal/z2/inside/comgym)
 "hlg" = (
 /turf/open/floor/wood,
 /area/metnal/z2/inside/theatre)
@@ -11537,6 +11661,13 @@
 /obj/structure/sign/safety/high_radiation,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"hpa" = (
+/obj/effect/decal/cleanable/blood/writing{
+	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
+	dir = 4
+	},
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "hpb" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/cable,
@@ -11613,10 +11744,6 @@
 /obj/item/instrument/jukebox,
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
-"hrQ" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "hrS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
@@ -11637,13 +11764,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical)
-"hsd" = (
-/obj/structure/platform/metalplatform{
-	dir = 8
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/relay)
 "hso" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -11725,6 +11845,15 @@
 	},
 /turf/open/floor/tile/barber,
 /area/metnal/inside/mining)
+"hwh" = (
+/obj/structure/table/mainship,
+/obj/structure/window/reinforced/tinted,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "hwp" = (
 /obj/effect/turf_decal/siding/dark/corner,
 /obj/effect/landmark/weed_node,
@@ -11779,6 +11908,11 @@
 	dir = 10
 	},
 /area/metnal/inside/research)
+"hyc" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "hyx" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -11879,10 +12013,11 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
-"hBq" = (
-/obj/machinery/vending/nanomed/nopower,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
+"hBm" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "hBv" = (
 /obj/structure/barricade/solid,
 /obj/structure/cable,
@@ -11991,17 +12126,6 @@
 	dir = 1
 	},
 /area/metnal/caves/south)
-"hES" = (
-/obj/machinery/light{
-	dir = 8;
-	pixel_y = -5
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "hEX" = (
 /obj/effect/turf_decal/siding/dark,
 /turf/open/lavaland/basalt,
@@ -12091,11 +12215,6 @@
 /obj/structure/xeno/tunnel,
 /turf/open/floor/urban/carpet/carpetpatternblue,
 /area/metnal/inside/executivedorms)
-"hGV" = (
-/obj/structure/table/wood/fancy,
-/obj/item/storage/donut_box,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "hHd" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -12321,11 +12440,6 @@
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/prison/plate,
 /area/metnal/z2/inside/deluxearmory)
-"hMM" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "hNf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
@@ -12369,11 +12483,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
-"hNM" = (
-/obj/structure/table/black,
-/obj/machinery/faxmachine,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "hNQ" = (
 /obj/structure/platform/metalplatform{
 	dir = 8
@@ -12427,15 +12536,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/black,
 /area/metnal/inside/executivedorms)
-"hOS" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "hOT" = (
 /obj/structure/bed/bunkbed,
 /obj/item/tool/kitchen/knife/shiv/plasma,
@@ -12459,18 +12559,6 @@
 	dir = 8
 	},
 /area/metnal/caves/west/garbledradio)
-"hPE" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
-	dir = 4
-	},
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
-"hPV" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "hQa" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
@@ -12478,10 +12566,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
-"hQj" = (
-/obj/effect/spawner/random/misc/structure/girder/highspawn,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
 "hQm" = (
 /obj/machinery/light{
 	dir = 1
@@ -12536,9 +12620,9 @@
 /obj/effect/landmark/corpsespawner/prisoner,
 /turf/open/floor/prison/red/full,
 /area/metnal/z2/inside/Prison)
-"hRL" = (
-/obj/machinery/vending/dinnerware,
-/turf/open/floor/wood,
+"hSd" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/darkish,
 /area/metnal/z2/outside/hterrace)
 "hSr" = (
 /obj/machinery/light{
@@ -12916,6 +13000,10 @@
 	dir = 8
 	},
 /area/metnal/outside/north)
+"idy" = (
+/obj/structure/table/black,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "idz" = (
 /obj/structure/stairs/multiz/directional/west{
 	layer = 10025
@@ -13110,6 +13198,15 @@
 "iid" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/z2/inside/HQlvl2)
+"iin" = (
+/turf/open/openspace,
+/area/metnal/z2/inside/bridgenw)
+"iis" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "iit" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
@@ -13135,6 +13232,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/west)
+"ijt" = (
+/obj/machinery/light,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "ijK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
@@ -13210,6 +13311,15 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"ilU" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "imb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -13258,13 +13368,6 @@
 	dir = 8
 	},
 /area/metnal/inside/research)
-"inU" = (
-/obj/item/paper,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "ioi" = (
 /obj/effect/decal/cleanable/blood/humanimprint/four,
 /obj/effect/ai_node,
@@ -13411,6 +13514,10 @@
 "its" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/z2/inside/deluxbedroom)
+"itU" = (
+/obj/item/weapon/gun/shotgun/double/derringer,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "itW" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/siding/white{
@@ -13470,10 +13577,6 @@
 	},
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
-"ivt" = (
-/obj/effect/urban/decal/trash/fourteen,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "ivu" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Bathroom"
@@ -13520,6 +13623,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"iwW" = (
+/obj/machinery/vending/tool/nopower,
+/turf/open/floor/prison/plate,
+/area/metnal/z2/inside/deluxearmory)
+"ixn" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "ixv" = (
 /obj/structure/closet/firecloset/full,
 /obj/effect/turf_decal/siding/thinplating_new/light{
@@ -13608,6 +13719,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/cafeteria)
+"izJ" = (
+/obj/effect/landmark/corpsespawner/commander/regular,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "izL" = (
 /obj/structure/bed/chair,
 /turf/open/floor/prison/whitegreen/full,
@@ -13727,17 +13842,20 @@
 "iFg" = (
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southwest/garbledradio)
+"iFl" = (
+/obj/structure/table/mainship,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/prop/computer/broken/ten,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "iFy" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/tile/barber,
 /area/metnal/inside/mining)
-"iFQ" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/flask/barflask,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "iFR" = (
 /obj/structure/morgue{
 	dir = 2
@@ -13810,6 +13928,14 @@
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/metnal/inside/landingzoneone)
+"iHK" = (
+/obj/structure/table/mainship,
+/obj/item/card/id/guest{
+	pixel_y = 0;
+	pixel_x = 6
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "iHV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -13858,11 +13984,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
-"iKL" = (
-/obj/effect/spawner/gibspawner/xeno,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/comgym)
 "iLc" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -13952,6 +14073,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/restroom)
+"iOg" = (
+/obj/structure/bed/chair/office/dark/west,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "iOq" = (
 /obj/structure/prop/mainship/sensor_computer2/black,
 /obj/effect/ai_node,
@@ -13995,6 +14121,13 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"iPE" = (
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "iPX" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/iron/dark/textured_edge{
@@ -14002,13 +14135,9 @@
 	},
 /area/metnal/inside/substation)
 "iQo" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/coffee{
-	pixel_x = 4;
-	pixel_y = 10
-	},
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "iQr" = (
 /obj/effect/spawner/random/machinery/random_broken_computer/medicalrecords,
 /obj/machinery/light,
@@ -14104,6 +14233,10 @@
 /obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/carpet/side,
 /area/metnal/inside/research)
+"iTD" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/prison/yellow,
+/area/metnal/z2/inside/comgym)
 "iTG" = (
 /obj/machinery/light{
 	dir = 8
@@ -14156,10 +14289,6 @@
 	dir = 1
 	},
 /area/metnal/inside/research)
-"iVg" = (
-/obj/machinery/disposal,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "iVu" = (
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
@@ -14222,6 +14351,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/south)
+"iXG" = (
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "iXJ" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 1
@@ -14332,6 +14466,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
+"jaw" = (
+/obj/structure/bed/chair/east,
+/turf/open/floor/tile/darkish,
+/area/metnal/z2/outside/hterrace)
 "jaG" = (
 /obj/machinery/constructable_frame/state_2,
 /obj/machinery/light{
@@ -14511,11 +14649,6 @@
 	},
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
-"jga" = (
-/obj/effect/landmark/weed_node,
-/obj/machinery/light,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "jgh" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
@@ -14548,6 +14681,10 @@
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
+"jhc" = (
+/obj/structure/table/wood/fancy,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "jhh" = (
 /obj/structure/stairs/multiz/directional/north{
 	layer = 10025
@@ -14570,6 +14707,11 @@
 /obj/structure/cable,
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/cafeteria)
+"jiw" = (
+/obj/structure/table/black,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/tile/darkish,
+/area/metnal/z2/outside/hterrace)
 "jix" = (
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt/glowing,
@@ -14611,22 +14753,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"jkr" = (
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
-/obj/structure/table/mainship,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "jkB" = (
 /turf/open/floor/prison/darkred/corners{
 	dir = 1
 	},
 /area/metnal/outside/west)
-"jkZ" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
+"jlr" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "jlw" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14746,12 +14881,12 @@
 "joS" = (
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
-"jpn" = (
-/obj/structure/bed/chair/comfy{
+"jpm" = (
+/obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "jpB" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/spawner/random/medical/firstaid,
@@ -14880,13 +15015,6 @@
 /obj/structure/cable,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/north)
-"jrG" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/urban/tile/tileblackcheckered,
-/area/metnal/z2/inside/HQlvl2)
 "jrP" = (
 /obj/effect/spawner/random/machinery/disposal,
 /obj/effect/turf_decal/siding/red,
@@ -14917,11 +15045,9 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "jsA" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
+/obj/structure/prop/nt_computer,
 /turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
+/area/metnal/z2/inside/relay)
 "jsN" = (
 /obj/structure/flora/pottedplant/twenty,
 /obj/structure/cable,
@@ -14981,11 +15107,6 @@
 	dir = 1
 	},
 /area/metnal/inside/mining)
-"juW" = (
-/obj/structure/table/wood,
-/obj/machinery/faxmachine/cic,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "jvi" = (
 /obj/structure/rack,
 /obj/item/clothing/head/hardhat/white,
@@ -15072,6 +15193,12 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/metnal/inside/emergencyequip)
+"jxH" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/HQlvl2)
 "jxL" = (
 /obj/machinery/door/airlock/glass_command{
 	dir = 1
@@ -15205,10 +15332,12 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southeast/garbledradio)
-"jBs" = (
-/obj/item/weapon/gun/shotgun/double/derringer,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
+"jBy" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "jBz" = (
 /obj/effect/turf_decal/siding/dark_green{
 	dir = 4
@@ -15232,15 +15361,6 @@
 "jBS" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/west)
-"jCl" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/paper,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "jCm" = (
 /obj/machinery/door/airlock/mainship/security/free_access,
 /turf/open/floor/prison/plate,
@@ -15308,10 +15428,6 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/north)
-"jDS" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison/plate,
-/area/metnal/z2/inside/deluxearmory)
 "jEi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -15362,17 +15478,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/multi_tiles,
 /area/metnal/inside/Headquarters)
-"jFU" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "jGf" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 9
 	},
 /area/metnal/caves/south)
+"jGh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/firecloset,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "jGx" = (
 /obj/structure/table/black,
 /turf/open/floor/prison/darkred,
@@ -15513,14 +15628,6 @@
 "jKq" = (
 /turf/open/floor/plating/heatinggrate,
 /area/metnal/outside/north)
-"jKK" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 8;
-	pixel_x = 12;
-	pixel_y = 3
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "jKV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -15581,10 +15688,6 @@
 /obj/item/newspaper,
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
-"jMo" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/HQlvl2)
 "jMx" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/substation)
@@ -15700,11 +15803,6 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
-"jSf" = (
-/obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/highchance,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
 "jSg" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 8
@@ -15722,6 +15820,13 @@
 	dir = 9
 	},
 /area/metnal/outside/north)
+"jSK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "jSP" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/misc/earmuffs,
@@ -15816,6 +15921,10 @@
 /obj/structure/bed,
 /turf/open/floor/plating,
 /area/metnal/inside/administration)
+"jVT" = (
+/obj/machinery/disposal,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "jWc" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 1
@@ -15955,10 +16064,6 @@
 	dir = 1
 	},
 /area/metnal/inside/colonydorms)
-"jZx" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/HQlvl2)
 "jZV" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/mainship/silver,
@@ -15971,6 +16076,10 @@
 	dir = 1
 	},
 /area/metnal/inside/cargo)
+"kab" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "kac" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/kitchen)
@@ -16161,6 +16270,11 @@
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"kgb" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigar,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "kgg" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/wood/variable/mosaic,
@@ -16174,6 +16288,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northeast)
+"kgI" = (
+/obj/structure/table/wood,
+/obj/item/whistle,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "kha" = (
 /obj/machinery/light{
 	dir = 4
@@ -16214,6 +16333,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
+"khU" = (
+/obj/structure/bed/chair/office/dark/west,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "khZ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
 	dir = 2
@@ -16261,10 +16388,6 @@
 	dir = 8
 	},
 /area/metnal/outside/south)
-"kje" = (
-/obj/effect/landmark/corpsespawner/freelancer,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/comgym)
 "kju" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/spawner/random/machinery/machine_frame,
@@ -16280,10 +16403,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/experimentation)
-"kjA" = (
-/obj/machinery/photocopier,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "kjJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -16314,10 +16433,6 @@
 	dir = 9
 	},
 /area/metnal/inside/research)
-"kkN" = (
-/obj/machinery/disposal,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "kkR" = (
 /obj/structure/window/framed/prison/colony,
 /turf/open/floor/wood/alt_eleven,
@@ -16379,8 +16494,8 @@
 	},
 /turf/open/floor/tile/barber,
 /area/metnal/inside/mining)
-"kmm" = (
-/obj/machinery/vending/dinnerware,
+"kmo" = (
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/officesquares,
 /area/metnal/z2/inside/humanresources)
 "kmq" = (
@@ -16475,6 +16590,10 @@
 	},
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
+"koT" = (
+/obj/machinery/space_heater,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "koV" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -16518,13 +16637,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
-"kqo" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "kqM" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred{
@@ -16552,13 +16664,11 @@
 /obj/effect/turf_decal/siding/dark,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
-"krt" = (
-/obj/structure/bed/chair/comfy{
-	dir = 4
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
+"krm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "krw" = (
 /obj/machinery/light{
 	light_color = "#da2f1b"
@@ -16624,6 +16734,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
+"ksS" = (
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "ktb" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 10
@@ -16701,14 +16817,6 @@
 	dir = 8
 	},
 /area/metnal/inside/landingzoneone)
-"kvy" = (
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/prop/computer/broken/ten,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "kvK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
 /turf/open/floor/prison/greenblue{
@@ -16823,22 +16931,12 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
-"kAK" = (
-/obj/effect/decal/cleanable/blood,
-/obj/structure/table/black,
-/obj/structure/prop/computer/broken/ten,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "kAM" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
 /area/metnal/inside/cargo)
-"kAO" = (
-/obj/effect/acid_hole,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/z2/inside/relay)
 "kAY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -16861,10 +16959,6 @@
 "kBW" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/metnal/z2/inside/bridgenw)
-"kBX" = (
-/obj/machinery/vending/cola,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "kCf" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/pickaxe,
@@ -17004,6 +17098,14 @@
 	},
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
+"kFS" = (
+/obj/effect/decal/cleanable/blood{
+	dir = 8;
+	pixel_x = 12;
+	pixel_y = 3
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "kFW" = (
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/central)
@@ -17072,10 +17174,6 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
-"kIN" = (
-/obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/prison/plate,
-/area/metnal/z2/inside/deluxearmory)
 "kIR" = (
 /obj/structure/closet/crate/mass_produced_crate/construction,
 /obj/item/tool/taperoll/engineering,
@@ -17186,18 +17284,6 @@
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/metnal/inside/landingzoneone)
-"kLu" = (
-/obj/effect/decal/cleanable/blood/writing,
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
-"kLA" = (
-/obj/structure/bed/chair/office/dark/west,
-/obj/effect/landmark/weed_node,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "kLB" = (
 /obj/structure/rack,
 /obj/effect/spawner/random_set/machineguns,
@@ -17301,11 +17387,6 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"kOl" = (
-/obj/structure/table/wood,
-/obj/item/storage/fancy/cigar,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "kOw" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 9
@@ -17325,10 +17406,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/whitegreen/full,
 /area/metnal/inside/medical)
-"kQv" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
 "kQC" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -17558,6 +17635,11 @@
 	dir = 5
 	},
 /area/metnal/inside/colonydorms)
+"kWD" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/disposal,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "kWQ" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -17583,10 +17665,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mining)
-"kXu" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship,
-/area/metnal/z2/inside/relay)
 "kXz" = (
 /turf/open/urban/street/sidewalkfull,
 /area/metnal/outside/west)
@@ -17792,10 +17870,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
-"ldj" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "ldl" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -17843,6 +17917,10 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"ldN" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "ldP" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/random/machinery/random_broken_computer/small/pc,
@@ -17858,13 +17936,6 @@
 	dir = 1
 	},
 /area/metnal/inside/medical)
-"leJ" = (
-/obj/structure/mirror{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/writing,
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "leK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -17949,6 +18020,10 @@
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
+"lgt" = (
+/obj/machinery/vending/robotics,
+/turf/open/floor/prison/plate,
+/area/metnal/z2/inside/deluxearmory)
 "lgx" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite/full,
@@ -18000,6 +18075,12 @@
 "lhK" = (
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/west)
+"lib" = (
+/obj/structure/bed/chair/comfy{
+	dir = 1
+	},
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "lip" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
@@ -18163,6 +18244,10 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"lnb" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/relay)
 "lng" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -18512,6 +18597,13 @@
 	},
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
+"lAP" = (
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "lAQ" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
@@ -18533,6 +18625,10 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_centre,
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/medical)
+"lBK" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/HQlvl2)
 "lBO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -18550,11 +18646,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
-"lCC" = (
-/obj/effect/landmark/corpsespawner/marine/burst,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison,
-/area/metnal/z2/inside/comgym)
 "lCQ" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 5
@@ -18644,11 +18735,6 @@
 /obj/effect/turf_decal/warning_stripes/box/arrow,
 /turf/open/floor/tile/barber,
 /area/metnal/inside/mining)
-"lEQ" = (
-/obj/item/toy/katana,
-/obj/structure/closet/cabinet,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "lEX" = (
 /obj/structure/xenoautopsy/jar_shelf,
 /turf/open/floor/carpet/side{
@@ -18953,11 +19039,6 @@
 	},
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
-"lMS" = (
-/obj/structure/window_frame/prison/reinforced,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "lNu" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 10
@@ -19031,17 +19112,6 @@
 "lPz" = (
 /turf/open/floor/prison/whitepurple/full,
 /area/metnal/inside/research)
-"lPS" = (
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/effect/spawner/random/machinery/random_broken_computer/small,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "lQc" = (
 /obj/structure/table/black,
 /obj/item/tool/pen/red,
@@ -19072,6 +19142,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/northeast)
+"lRN" = (
+/obj/effect/decal/cleanable/blood/writing,
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "lSg" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -19124,6 +19198,13 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/outside/southwest)
+"lTI" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
+	dir = 1;
+	name = "\improper Dormitories Computer Lab"
+	},
+/turf/open/floor/wood,
+/area/metnal/z2/inside/HQlvl2)
 "lTT" = (
 /obj/structure/table/black,
 /obj/item/tool/wrench,
@@ -19362,6 +19443,10 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkfull,
 /area/metnal/outside/northwest)
+"mbh" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "mbi" = (
 /turf/open/floor/prison/darkbrown{
 	dir = 4
@@ -19461,6 +19546,10 @@
 	dir = 8
 	},
 /area/metnal/inside/security)
+"mei" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "meP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/urban/street/sidewalkcenter{
@@ -19481,12 +19570,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/south/garbledradio)
-"mgh" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "mgk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/whitegreen/full,
@@ -19797,10 +19880,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/northwest)
-"moU" = (
-/obj/effect/acid_hole,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/z2/inside/comgym)
 "moV" = (
 /turf/open/floor/prison/red{
 	dir = 8
@@ -19814,10 +19893,6 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/carpet/side,
 /area/metnal/inside/colonydorms)
-"mqC" = (
-/obj/effect/urban/decal/trash/fourteen,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "mqZ" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/urban/carpet/carpetblack,
@@ -19860,11 +19935,6 @@
 	},
 /turf/open/floor/urban/tile/tileblackcheckered,
 /area/metnal/inside/Headquarters)
-"mth" = (
-/obj/structure/table/mainship,
-/obj/machinery/microwave,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "mtn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -20045,6 +20115,10 @@
 	},
 /turf/open/floor/plating/heatinggrate,
 /area/metnal/outside/central)
+"myq" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "myz" = (
 /turf/open/floor/carpet/side{
 	dir = 1
@@ -20098,10 +20172,6 @@
 	dir = 5
 	},
 /area/metnal/inside/meddesk)
-"mAB" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "mAY" = (
 /turf/open/floor/prison/blackfloor,
 /area/metnal/inside/experimentation)
@@ -20122,6 +20192,12 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northwest)
+"mBM" = (
+/obj/structure/bed/stool{
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "mBW" = (
 /obj/effect/turf_decal/siding/red/corner,
 /obj/effect/ai_node,
@@ -20177,13 +20253,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
-"mEG" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "mEJ" = (
 /obj/machinery/light,
 /turf/open/floor/prison/sterilewhite/full,
@@ -20285,6 +20354,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
+"mGA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "mGN" = (
 /obj/structure/table/black,
 /obj/item/toy/deck/kotahi,
@@ -20374,18 +20447,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/chapel)
-"mIU" = (
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/tinted,
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/item/tool/pen{
-	pixel_y = 4
-	},
-/obj/item/card/id/silver,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "mIV" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 1
@@ -20400,6 +20461,12 @@
 	dir = 5
 	},
 /area/metnal/inside/colonydorms)
+"mKc" = (
+/mob/living/simple_animal/cat/space{
+	name = "Chadius"
+	},
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "mKd" = (
 /obj/structure/table/mainship,
 /obj/item/tool/kitchen/rollingpin,
@@ -20515,16 +20582,16 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/cafeteria)
-"mOc" = (
-/obj/machinery/light,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "mOs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/security)
+"mOB" = (
+/obj/machinery/disposal,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "mOM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -20678,6 +20745,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
+"mSv" = (
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "mSx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -20685,12 +20756,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
-"mSH" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
 "mSO" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -20736,14 +20801,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
-"mUK" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 8;
-	pixel_x = 12;
-	pixel_y = 3
-	},
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "mUU" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -20766,10 +20823,6 @@
 "mVS" = (
 /turf/open/floor/tile/dark/gray,
 /area/metnal/z2/inside/deluxbedroom)
-"mWg" = (
-/obj/structure/prop/nt_computer,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/relay)
 "mWA" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -21034,10 +21087,6 @@
 "ndK" = (
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/caves/southeast/garbledradio)
-"ndU" = (
-/obj/structure/rack,
-/turf/open/floor/prison/plate,
-/area/metnal/z2/inside/deluxearmory)
 "ned" = (
 /obj/structure/prop/vehicle/van,
 /obj/effect/turf_decal/sandedge/corner2{
@@ -21234,11 +21283,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/auxstorage)
-"nlp" = (
-/obj/structure/bed/fancy,
-/obj/item/bedsheet/clown,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "nly" = (
 /obj/structure/closet/crate/mass_produced_crate/construction,
 /turf/open/floor/tile/dark,
@@ -21324,15 +21368,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
-"nnX" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "nol" = (
 /turf/closed/mineral/smooth/outdoor,
 /area/metnal/caves/south/garbledradio)
@@ -21345,16 +21380,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
-"noE" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "noJ" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/multi_tiles,
@@ -21428,6 +21453,12 @@
 	dir = 9
 	},
 /area/metnal/caves/south/garbledradio)
+"nrS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "nrZ" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/ai_node,
@@ -21502,6 +21533,12 @@
 	},
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
+"ntI" = (
+/obj/structure/barricade/wooden{
+	dir = 1
+	},
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "ntM" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/effect/landmark/weed_node,
@@ -21565,10 +21602,6 @@
 /obj/structure/window/framed/prison/colony,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
-"nuZ" = (
-/obj/machinery/vending/sovietsoda,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
 "nvc" = (
 /obj/effect/turf_decal/siding/wideplating/terracotta,
 /turf/open/floor/prison/plate,
@@ -21701,13 +21734,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/chapel)
-"nAH" = (
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
+"nAA" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/z2/inside/relay)
 "nAJ" = (
 /obj/item/clothing/head/warning_cone,
 /obj/effect/landmark/weed_node,
@@ -21820,6 +21850,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/northeast)
+"nDC" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "nDP" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -21900,6 +21934,10 @@
 /obj/item/trash/cigbutt,
 /turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/northwest)
+"nGp" = (
+/obj/effect/landmark/corpsespawner/commander/burst,
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "nGt" = (
 /obj/structure/cable,
 /turf/open/floor/iron/dark/textured,
@@ -22085,6 +22123,11 @@
 	dir = 10
 	},
 /area/metnal/outside/north)
+"nMg" = (
+/obj/machinery/power/apc/drained,
+/obj/effect/mapping_helpers/broken_apc/highchance,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "nMh" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/officesquares,
@@ -22114,9 +22157,14 @@
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/smooth/outdoor,
 /area/metnal/caves/rock)
-"nNn" = (
-/obj/structure/bed/chair/office/dark/west,
-/obj/effect/landmark/weed_node,
+"nNj" = (
+/obj/effect/urban/decal/trash/fourteen,
+/obj/machinery/light,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
+"nNr" = (
+/obj/structure/window_frame/prison/reinforced,
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/officesquares,
 /area/metnal/z2/inside/humanresources)
 "nNs" = (
@@ -22164,6 +22212,10 @@
 /obj/item/clothing/head/headband/rambo,
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
+"nOx" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "nPg" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt_alt,
@@ -22200,6 +22252,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"nQL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "nQM" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
@@ -22393,6 +22451,11 @@
 /obj/item/bedsheet,
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
+"nVg" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/urban/decal/trash/fourteen,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "nVi" = (
 /obj/structure/rack/nometal,
 /obj/item/stack/sheet/metal/medium_stack,
@@ -22453,10 +22516,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/urban/street/asphalt,
 /area/metnal/inside/landingzoneone)
-"nXb" = (
-/obj/machinery/vending/boozeomat/nopower,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "nXj" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/z2/inside/comgym)
@@ -22522,6 +22581,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical/chemistry)
+"nZb" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/tile/darkish,
+/area/metnal/z2/outside/hterrace)
 "nZl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
@@ -22623,6 +22686,10 @@
 	dir = 6
 	},
 /area/metnal/inside/substation)
+"oda" = (
+/obj/effect/spawner/gibspawner/xeno,
+/turf/open/floor/prison/yellow,
+/area/metnal/z2/inside/comgym)
 "odc" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -22668,6 +22735,12 @@
 /obj/structure/fence,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/southwest)
+"oei" = (
+/obj/structure/bed/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "oej" = (
 /turf/open/floor/carpet/side{
 	dir = 1
@@ -22706,10 +22779,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
-"ofj" = (
-/obj/structure/filingcabinet,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "ofB" = (
 /obj/structure/table/black,
 /obj/effect/spawner/random/misc/cigarettes,
@@ -23050,6 +23119,11 @@
 	dir = 8
 	},
 /area/metnal/inside/northmeetingroom)
+"opz" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/light,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "opD" = (
 /obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_centre,
@@ -23061,11 +23135,6 @@
 	},
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
-"opN" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "opP" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -23175,6 +23244,11 @@
 	dir = 4
 	},
 /area/metnal/inside/security)
+"osI" = (
+/obj/structure/table/mainship,
+/obj/item/card/id/silver,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "osY" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -23210,6 +23284,14 @@
 	dir = 10
 	},
 /area/metnal/outside/north)
+"ouc" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "ouf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt/cave{
@@ -23281,10 +23363,6 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
-"owE" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "owF" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/decal/blood,
@@ -23519,6 +23597,10 @@
 	dir = 6
 	},
 /area/metnal/inside/mineralextraction)
+"oDI" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/comgym)
 "oDJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalkcenter,
@@ -23622,10 +23704,6 @@
 	dir = 1
 	},
 /area/metnal/caves/northeast)
-"oGR" = (
-/obj/structure/table/wood/fancy,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "oHr" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt,
@@ -23644,10 +23722,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
-"oIg" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "oIo" = (
 /obj/structure/bed/roller,
 /obj/structure/sign/greencross{
@@ -23664,12 +23738,6 @@
 /obj/structure/closet/bodybag,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
-"oIC" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/HQlvl2)
 "oIE" = (
 /obj/structure/rock/small,
 /turf/open/lavaland/basalt,
@@ -23715,6 +23783,10 @@
 	dir = 1
 	},
 /area/metnal/inside/executivedorms)
+"oJP" = (
+/obj/machinery/light,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "oKC" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -23812,12 +23884,6 @@
 	},
 /turf/open/floor/wood/alt_two,
 /area/metnal/inside/research)
-"oNn" = (
-/obj/structure/table/wood/fancy,
-/obj/effect/urban/decal/trash/fourteen,
-/obj/effect/spawner/random/misc/cigarettes,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "oNx" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/prison/plate,
@@ -23858,6 +23924,10 @@
 /obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"oOz" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "oOU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -23937,10 +24007,6 @@
 /obj/machinery/photocopier,
 /turf/open/floor/prison/blue,
 /area/metnal/inside/research)
-"oRm" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/darkish,
-/area/metnal/z2/outside/hterrace)
 "oRo" = (
 /obj/structure/largecrate/random/barrel/white,
 /obj/effect/landmark/weed_node,
@@ -24201,6 +24267,10 @@
 /obj/item/fishing/rod/telescopic,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
+"oYY" = (
+/obj/effect/urban/decal/trash/fourteen,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "oZo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/light{
@@ -24237,6 +24307,11 @@
 	},
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
+"paA" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/closet/firecloset,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "paE" = (
 /obj/structure/stairs/multiz/directional/north{
 	layer = 10025
@@ -24314,12 +24389,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/kitchen)
-"pdz" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "pdQ" = (
 /turf/open/floor/officesquares,
 /area/metnal/z2/inside/humanresources)
@@ -24349,6 +24418,10 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
+"peD" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/prison,
+/area/metnal/z2/inside/comgym)
 "peZ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -24374,6 +24447,14 @@
 /obj/item/tank/anesthetic,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical)
+"pgJ" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_y = -5
+	},
+/obj/machinery/disposal,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "pgL" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/urban/carpet/carpetdarkerblue,
@@ -24384,6 +24465,10 @@
 	dir = 8
 	},
 /area/metnal/inside/northmeetingroom)
+"phg" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "phh" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -24523,6 +24608,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"pma" = (
+/obj/effect/urban/decal/trash/fourteen,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "pmd" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/reagentgrinder,
@@ -24674,12 +24766,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/northwest)
-"pqG" = (
-/mob/living/simple_animal/cat/space{
-	name = "Chadius"
-	},
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "prq" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
@@ -24702,9 +24788,10 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/recreation)
 "prB" = (
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/tile/darkish,
-/area/metnal/z2/outside/hterrace)
+/obj/item/toy/katana,
+/obj/structure/closet/cabinet,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "prF" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
@@ -24718,10 +24805,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/research)
-"prT" = (
-/obj/effect/spawner/gibspawner/human,
-/turf/open/floor/prison/yellow,
-/area/metnal/z2/inside/comgym)
 "pss" = (
 /obj/effect/turf_decal/woodsiding{
 	dir = 1
@@ -24802,10 +24885,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"pvI" = (
-/obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/comgym)
 "pvT" = (
 /turf/open/floor/tile/chapel,
 /area/metnal/inside/chapel)
@@ -24824,11 +24903,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest)
-"pxf" = (
-/obj/effect/landmark/corpsespawner/colonist/burst,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "pxu" = (
 /obj/effect/turf_decal/siding/wideplating/terracotta{
 	dir = 8
@@ -24917,6 +24991,10 @@
 	dir = 8
 	},
 /area/metnal/inside/executivedorms)
+"pzu" = (
+/obj/effect/spawner/gibspawner/xeno,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "pzG" = (
 /obj/structure/bed/stool,
 /obj/effect/spawner/random/clothing/general,
@@ -25012,6 +25090,14 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/experimentation)
+"pBK" = (
+/obj/item/ammo_casing/bullet,
+/obj/item/ammo_casing/bullet,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "pCG" = (
 /turf/open/openspace,
 /area/metnal/z2/caves)
@@ -25185,6 +25271,10 @@
 "pIy" = (
 /turf/closed/mineral/smooth/outdoor,
 /area/metnal/z2/caves)
+"pIC" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/metnal/z2/inside/bridgenw)
 "pIF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -25276,6 +25366,10 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southwest)
+"pMx" = (
+/obj/machinery/disposal,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "pMy" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
@@ -25373,6 +25467,16 @@
 /obj/structure/closet/fireaxecabinet,
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/substation)
+"pPU" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
+"pPV" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/comgym)
 "pPX" = (
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
@@ -25415,13 +25519,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/rock)
-"pRP" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/HQlvl2)
 "pSu" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/urban/street/asphalt,
@@ -25430,10 +25527,6 @@
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
-"pSy" = (
-/obj/structure/bed/chair/sofa/corsat/left,
-/turf/open/floor/urban/tile/tileblackcheckered,
-/area/metnal/z2/inside/HQlvl2)
 "pSB" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -25546,6 +25639,11 @@
 	dir = 5
 	},
 /area/metnal/inside/substation)
+"pUT" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "pVr" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/carpet/side{
@@ -25742,14 +25840,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/side,
 /area/metnal/inside/colonydorms)
-"qbC" = (
-/obj/machinery/light{
-	dir = 8;
-	pixel_y = -5
-	},
-/obj/machinery/disposal,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "qbF" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/effect/landmark/corpsespawner/colonist/regular,
@@ -25791,6 +25881,10 @@
 /obj/structure/window/framed/prison/colony,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"qcv" = (
+/obj/machinery/disposal,
+/turf/open/floor/urban/tile/tileblackcheckered,
+/area/metnal/z2/inside/HQlvl2)
 "qcw" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/structure/cable,
@@ -25912,13 +26006,6 @@
 "qfM" = (
 /turf/open/floor/prison/darkred,
 /area/metnal/outside/north)
-"qgb" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
-	},
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
 "qgc" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -26020,6 +26107,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/northwest)
+"qhM" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "qhR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -26055,6 +26146,9 @@
 /obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
+"qje" = (
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "qji" = (
 /obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/mainship,
@@ -26190,10 +26284,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
-"qoA" = (
-/obj/effect/acid_hole,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/z2/inside/deluxearmory)
 "qoG" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/mainship/silver,
@@ -26309,6 +26399,10 @@
 /obj/item/paper/Toxin,
 /turf/open/floor/mainship_hull/gray,
 /area/metnal/inside/research)
+"qrP" = (
+/obj/structure/bed/chair/sofa/corsat,
+/turf/open/floor/urban/tile/tileblackcheckered,
+/area/metnal/z2/inside/HQlvl2)
 "qrR" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 9
@@ -26328,6 +26422,12 @@
 /obj/item/fishing/reel/blue,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
+"qsC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "qsQ" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -26339,6 +26439,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/laundromat)
+"qtc" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "qtd" = (
 /turf/open/floor/carpet/side{
 	dir = 6
@@ -26466,16 +26573,19 @@
 "qwG" = (
 /turf/open/floor/prison/darkred/corners,
 /area/metnal/outside/northwest)
-"qwX" = (
-/obj/effect/landmark/weed_node,
-/obj/machinery/disposal,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "qwZ" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
+"qxf" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/urban/decal/trash/fourteen,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "qxq" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -26540,14 +26650,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
-"qyL" = (
-/obj/structure/table/mainship,
-/obj/item/card/id/guest{
-	pixel_y = 0;
-	pixel_x = 6
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "qyM" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -26568,10 +26670,6 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/northmeetingroom)
-"qyU" = (
-/obj/structure/closet/cabinet,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "qzw" = (
 /obj/structure/janitorialcart,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26666,6 +26764,10 @@
 /obj/machinery/light,
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
+"qAK" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "qAQ" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt/cave{
@@ -26714,13 +26816,6 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southwest)
-"qCy" = (
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
-	dir = 4
-	},
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "qDi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -26749,10 +26844,17 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/metnal/inside/centralminingequip)
-"qEC" = (
-/obj/effect/landmark/corpsespawner/freelancer,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
+"qEL" = (
+/obj/structure/table/mainship,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/effect/spawner/random/machinery/random_broken_computer/small,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "qET" = (
 /obj/effect/turf_decal/siding/white/corner,
 /obj/effect/turf_decal/siding/white/corner{
@@ -27013,10 +27115,6 @@
 /obj/machinery/light,
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
-"qLu" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "qLw" = (
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/tile/dark,
@@ -27039,12 +27137,6 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/central)
-"qMg" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "qMt" = (
 /obj/structure/urinal{
 	pixel_y = 32
@@ -27136,17 +27228,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"qOa" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "qOb" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
+"qOm" = (
+/obj/structure/prop/tgbrokenvendor/boozeomat,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "qOA" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
@@ -27268,6 +27357,10 @@
 	},
 /turf/open/floor/carpet,
 /area/metnal/inside/administration)
+"qRZ" = (
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "qSh" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
@@ -27533,11 +27626,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
-"raB" = (
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/disposal,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "raE" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/carpet/side{
@@ -27972,6 +28060,10 @@
 	dir = 4
 	},
 /area/metnal/inside/substation)
+"rlR" = (
+/obj/structure/bed/chair/sofa/corsat/left,
+/turf/open/floor/urban/tile/tileblackcheckered,
+/area/metnal/z2/inside/HQlvl2)
 "rmh" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/spawner/random/clothing/sunglasses,
@@ -28115,6 +28207,10 @@
 	},
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/laundromat)
+"rqi" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/metnal/z2/inside/bridgenw)
 "rqq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -28126,9 +28222,11 @@
 	dir = 8
 	},
 /area/metnal/inside/substation)
-"rqx" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/disposal,
+"rqC" = (
+/obj/machinery/door/airlock/glass_command,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/officesquares,
 /area/metnal/z2/inside/humanresources)
 "rqS" = (
@@ -28171,6 +28269,10 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/chapel)
+"rsm" = (
+/obj/machinery/photocopier,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "rsV" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/wall/prison,
@@ -28226,13 +28328,6 @@
 /obj/effect/spawner/random/engineering/structure/handheld_lighting,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
-"ruC" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/comgym)
 "ruH" = (
 /obj/structure/closet/secure_closet/chemical,
 /obj/effect/turf_decal/siding/dark_green,
@@ -28315,11 +28410,6 @@
 	dir = 8
 	},
 /area/metnal/caves/southwest/garbledradio)
-"ryi" = (
-/obj/effect/landmark/weed_node,
-/obj/item/paper,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "ryq" = (
 /obj/structure/platform/metalplatform,
 /turf/open/openspace,
@@ -28333,17 +28423,6 @@
 	},
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
-"ryO" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/food/drinks/coffee{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/tool/pen/blue{
-	pixel_x = -6
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "ryX" = (
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/blue/plate,
@@ -28411,10 +28490,6 @@
 /obj/machinery/prop/r_n_d/server/alt,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
-"rBu" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison/redfloor,
-/area/metnal/z2/inside/deluxearmory)
 "rBD" = (
 /obj/structure/closet/secure_closet/bar,
 /turf/open/floor/wood/alt_seven,
@@ -28424,10 +28499,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest)
-"rBS" = (
-/obj/effect/acid_hole,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/z2/inside/deluxbedroom)
 "rBU" = (
 /mob/living/simple_animal/mouse/gray,
 /turf/open/floor/tile/chapel,
@@ -28567,13 +28638,6 @@
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/recreation)
-"rGZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/paper,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "rHk" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 10
@@ -28598,12 +28662,6 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
-"rIU" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
-/turf/open/floor/prison/plate,
-/area/metnal/z2/inside/deluxearmory)
 "rIV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/textured,
@@ -28614,6 +28672,13 @@
 /obj/item/clothing/gloves/insulated,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
+"rJh" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/firecloset,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "rJm" = (
 /turf/open/floor/carpet,
 /area/metnal/inside/colonydorms)
@@ -28637,6 +28702,11 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
+"rKb" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "rKh" = (
 /turf/open/lavaland/basalt/cave/corner,
 /area/metnal/caves/west)
@@ -28714,6 +28784,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"rNu" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "rNA" = (
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mining)
@@ -28908,6 +28983,12 @@
 	dir = 10
 	},
 /area/metnal/inside/colonydorms)
+"rVb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
+	},
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "rVf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -28943,6 +29024,11 @@
 /obj/structure/prop/tgbrokenvendor/snackbrokeorange,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
+"rVR" = (
+/obj/effect/spawner/gibspawner/human,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison,
+/area/metnal/z2/inside/comgym)
 "rWa" = (
 /obj/structure/bed/chair/sofa/right,
 /obj/item/toy/plush/therapy_yellow,
@@ -29001,6 +29087,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/metnal/inside/restroom)
+"rXW" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "rXX" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 8
@@ -29098,6 +29189,12 @@
 	dir = 4
 	},
 /area/metnal/inside/landingzoneone)
+"saq" = (
+/obj/structure/prop/urban/furniture/tables/tableblack{
+	dir = 8
+	},
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "saA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_two,
@@ -29120,11 +29217,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
-"saW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/coffee,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "sbt" = (
 /obj/structure/girder,
 /turf/open/floor/prison/plate,
@@ -29152,6 +29244,10 @@
 /obj/item/weapon/gun/smg/mp7,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"sdi" = (
+/obj/machinery/vending/sovietsoda,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "sdl" = (
 /obj/effect/turf_decal/siding/red,
 /turf/open/lavaland/basalt,
@@ -29196,6 +29292,11 @@
 /obj/structure/curtain/black,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"seL" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "seM" = (
 /obj/structure/toilet,
 /obj/machinery/light{
@@ -29285,10 +29386,6 @@
 /obj/item/reagent_containers/glass/bottle/sleeptoxin,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"shh" = (
-/obj/structure/bed/chair/east,
-/turf/open/floor/tile/darkish,
-/area/metnal/z2/outside/hterrace)
 "shn" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/yellow{
@@ -29385,22 +29482,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
+"sjV" = (
+/obj/structure/table/black,
+/turf/open/floor/tile/darkish,
+/area/metnal/z2/outside/hterrace)
 "skn" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"sko" = (
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/effect/spawner/random/machinery/random_broken_computer/small,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "skC" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -29493,10 +29583,6 @@
 	dir = 1
 	},
 /area/metnal/outside/northwest)
-"slY" = (
-/obj/machinery/disposal,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
 "slZ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -29562,12 +29648,6 @@
 	dir = 9
 	},
 /area/metnal/inside/mining)
-"soC" = (
-/obj/structure/bed/chair/comfy{
-	dir = 8
-	},
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "soF" = (
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
@@ -29607,6 +29687,14 @@
 /obj/structure/cable,
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/research)
+"sqk" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "sqy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29649,12 +29737,6 @@
 /obj/structure/flora/pottedplant/seventeen,
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
-"sre" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/turf/open/floor/prison/yellow{
-	dir = 1
-	},
-/area/metnal/z2/inside/comgym)
 "srC" = (
 /obj/machinery/space_heater,
 /turf/open/floor/mainship/office,
@@ -29714,11 +29796,6 @@
 	},
 /turf/open/floor/carpet/side,
 /area/metnal/inside/colonydorms)
-"sta" = (
-/obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "stf" = (
 /turf/open/floor/prison/red/corner{
 	dir = 1
@@ -29778,6 +29855,14 @@
 	},
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
+"stQ" = (
+/obj/structure/bed/chair/office/dark/west,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "stR" = (
 /obj/structure/largecrate/mule,
 /obj/structure/prop/radio_prop,
@@ -29864,6 +29949,10 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
+"svh" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "svm" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
@@ -29954,10 +30043,6 @@
 	dir = 1
 	},
 /area/metnal/outside/south)
-"syl" = (
-/obj/effect/acid_hole,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/z2/inside/HQlvl2)
 "syy" = (
 /obj/structure/bed/chair/office/light/north,
 /obj/effect/landmark/weed_node,
@@ -30045,6 +30130,10 @@
 /obj/effect/mapping_helpers/broken_apc/highchance,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
+"sAM" = (
+/obj/effect/urban/decal/trash/fourteen,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "sAR" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 1
@@ -30053,15 +30142,6 @@
 	dir = 9
 	},
 /area/metnal/inside/mining)
-"sBc" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 8;
-	pixel_x = 12;
-	pixel_y = 3
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "sBi" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
@@ -30285,10 +30365,6 @@
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/wood/alt_two,
 /area/metnal/inside/research)
-"sGP" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
 "sHd" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -30382,12 +30458,6 @@
 "sIZ" = (
 /turf/open/urban/street/cement1,
 /area/metnal/outside/northeast)
-"sJb" = (
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/prison/yellow{
-	dir = 1
-	},
-/area/metnal/z2/inside/comgym)
 "sJy" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/power/monitor,
@@ -30403,14 +30473,6 @@
 /obj/effect/ai_node,
 /turf/closed/mineral/smooth/outdoor,
 /area/metnal/caves/rock)
-"sKb" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/urban/decal/trash/fourteen,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "sKk" = (
 /obj/structure/table/wood,
 /obj/item/paper,
@@ -30418,13 +30480,6 @@
 /obj/item/storage/bible,
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
-"sKz" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/writing,
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "sKD" = (
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -30612,6 +30667,10 @@
 /obj/structure/curtain/temple,
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/recreation)
+"sPt" = (
+/obj/machinery/vending/boozeomat/nopower,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "sPz" = (
 /obj/structure/bed/chair/sofa/right,
 /obj/effect/landmark/weed_node,
@@ -30637,10 +30696,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southwest)
-"sQH" = (
-/obj/structure/showcase/coinpress,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "sQN" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -30669,6 +30724,13 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/outside/central)
+"sRB" = (
+/obj/structure/platform/metalplatform{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/relay)
 "sRL" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/iron/dark/textured_edge{
@@ -30679,11 +30741,6 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"sRU" = (
-/obj/structure/table/black,
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/tile/darkish,
-/area/metnal/z2/outside/hterrace)
 "sSg" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -30701,6 +30758,11 @@
 /obj/item/tool/pen,
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/security)
+"sSA" = (
+/obj/structure/table/wood/fancy,
+/obj/item/storage/donut_box,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "sSI" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/insulated,
@@ -30747,10 +30809,6 @@
 	dir = 4
 	},
 /area/metnal/inside/medical)
-"sUQ" = (
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "sUW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -30764,12 +30822,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
-"sVv" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "sVN" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -30825,18 +30877,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
-"sXA" = (
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/tinted,
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
-"sXE" = (
-/turf/open/floor/urban/tile/tileblackcheckered,
-/area/metnal/z2/inside/HQlvl2)
 "sYj" = (
 /obj/effect/ai_node,
 /obj/structure/bed/chair,
@@ -30862,14 +30902,13 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
-"sYM" = (
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
+"sYW" = (
+/obj/structure/platform/metalplatform{
 	dir = 4
 	},
-/obj/machinery/disposal,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/relay)
 "sYX" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
@@ -31009,6 +31048,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/quartermaster)
+"tdJ" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/prison/yellow{
+	dir = 1
+	},
+/area/metnal/z2/inside/comgym)
 "tdN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/doctor/regular,
@@ -31177,10 +31222,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/outside/central)
-"tjk" = (
-/obj/effect/spawner/gibspawner/xeno,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
 "tjx" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt,
@@ -31343,10 +31384,6 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/south)
-"tmP" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "tnM" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
@@ -31504,11 +31541,6 @@
 	},
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
-"tuf" = (
-/obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc,
-/turf/open/floor/prison/plate,
-/area/metnal/z2/inside/deluxearmory)
 "tul" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 1
@@ -31592,6 +31624,12 @@
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"tvQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "tvR" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -31616,6 +31654,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
+"twF" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/z2/inside/comgym)
 "twY" = (
 /obj/structure/sign/biohazard{
 	dir = 8
@@ -31645,12 +31687,6 @@
 /obj/item/toy/prize/seraph,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
-"txw" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "txx" = (
 /obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/r_wall/prison,
@@ -31778,6 +31814,10 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"tCH" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "tCN" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/ai_node,
@@ -31840,6 +31880,10 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
+"tFp" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship,
+/area/metnal/z2/inside/relay)
 "tFt" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/spawner/random/clothing/coloredgloves/latex,
@@ -31921,6 +31965,10 @@
 /obj/effect/spawner/random_set/sidearms,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"tHf" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/z2/inside/deluxbedroom)
 "tHi" = (
 /turf/open/floor/carpet/side{
 	dir = 10
@@ -32023,11 +32071,6 @@
 "tKm" = (
 /turf/open/lavaland/basalt,
 /area/metnal/caves/northeast)
-"tKo" = (
-/obj/structure/table/black,
-/obj/item/reagent_containers/cup/glass/drinkingglass/filled/cola,
-/turf/open/floor/tile/darkish,
-/area/metnal/z2/outside/hterrace)
 "tKx" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -32142,6 +32185,9 @@
 /obj/effect/mapping_helpers/light/flickering/enable_random_flickering,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
+"tNT" = (
+/turf/open/floor/tile/darkish,
+/area/metnal/z2/outside/hterrace)
 "tNY" = (
 /obj/effect/decal/cleanable/blood/drip,
 /mob/living/simple_animal/corgi/puppy/mrwiggles,
@@ -32292,10 +32338,6 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southwest/garbledradio)
-"tRO" = (
-/obj/effect/landmark/corpsespawner/colonist/burst,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "tRR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -32398,11 +32440,6 @@
 	},
 /turf/open/space/basic,
 /area/metnal/z2/inside/bridgeE)
-"tTI" = (
-/obj/structure/platform/metalplatform,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/relay)
 "tTL" = (
 /turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/northwest)
@@ -32440,6 +32477,10 @@
 /obj/structure/prop/tgbrokenvendor/parts,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/auxstorage)
+"tUO" = (
+/obj/machinery/vending/nanomed/nopower,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "tUU" = (
 /obj/machinery/vending/cigarette/colony,
 /obj/machinery/light{
@@ -32449,6 +32490,15 @@
 	dir = 1
 	},
 /area/metnal/inside/cargo)
+"tVa" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "tVi" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -32564,6 +32614,12 @@
 	dir = 10
 	},
 /area/metnal/outside/northwest)
+"tYm" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "tYt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -32647,6 +32703,12 @@
 /obj/structure/closet/crate/mass_produced_crate/construction,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
+"ubA" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/turf/open/floor/prison/yellow{
+	dir = 1
+	},
+/area/metnal/z2/inside/comgym)
 "ubC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -32691,17 +32753,6 @@
 /obj/structure/mine_structure/wooden/support_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southeast/garbledradio)
-"ucv" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 8;
-	pixel_x = 12;
-	pixel_y = 3
-	},
-/obj/structure/bed/chair/comfy{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "ucD" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -33140,6 +33191,15 @@
 /obj/structure/window/framed/prison/colony,
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
+"unZ" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "uoh" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue/plate,
@@ -33384,6 +33444,11 @@
 "uuW" = (
 /turf/open/floor/prison/red/corner,
 /area/metnal/z2/inside/Prison)
+"uve" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/disposal,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "uvu" = (
 /obj/structure/rack,
 /obj/item/bodybag/cryobag,
@@ -33480,6 +33545,14 @@
 	dir = 8
 	},
 /area/metnal/inside/substation)
+"uyj" = (
+/obj/effect/decal/cleanable/blood{
+	dir = 8;
+	pixel_x = 12;
+	pixel_y = 3
+	},
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "uyw" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 1
@@ -33560,6 +33633,12 @@
 /obj/structure/rack/lectern,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/chapel)
+"uBy" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "uBE" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /obj/structure/rack,
@@ -33602,13 +33681,6 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grass/weedable,
 /area/metnal/inside/Headquarters)
-"uCM" = (
-/obj/structure/bed/chair/office/dark/east,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "uCR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33668,6 +33740,11 @@
 	dir = 8
 	},
 /area/metnal/inside/cafeteria)
+"uEA" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/machinery/random_broken_computer/small,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "uEX" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/mineral/smooth/indestructible,
@@ -33834,13 +33911,6 @@
 	},
 /turf/open/floor/prison/marked,
 /area/metnal/inside/auxstorage)
-"uKi" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	dir = 1;
-	name = "\improper Dormitories Computer Lab"
-	},
-/turf/open/floor/wood,
-/area/metnal/z2/inside/HQlvl2)
 "uKG" = (
 /obj/effect/ai_node,
 /turf/open/liquid/lava/autosmoothing/catwalk,
@@ -33908,10 +33978,6 @@
 /obj/item/tool/pickaxe,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
-"uMB" = (
-/obj/machinery/disposal,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/HQlvl2)
 "uMM" = (
 /obj/item/trash/cigbutt/cigarbutt,
 /turf/open/lavaland/basalt,
@@ -33976,10 +34042,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/recreation)
-"uNN" = (
-/obj/effect/landmark/corpsespawner/commander/burst,
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "uNT" = (
 /obj/effect/landmark/corpsespawner/marine/regular,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -34032,11 +34094,6 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
-"uPw" = (
-/obj/effect/spawner/random/misc/trash,
-/obj/structure/musician/piano,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "uPH" = (
 /obj/structure/stairs/seamless/platform_vert,
 /turf/open/lavaland/basalt,
@@ -34058,10 +34115,6 @@
 	dir = 4
 	},
 /area/metnal/inside/mining)
-"uPW" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/urban/tile/tileblackcheckered,
-/area/metnal/z2/inside/HQlvl2)
 "uPZ" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -34146,13 +34199,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/south/garbledradio)
-"uSP" = (
-/obj/machinery/door/airlock/glass_command,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "uSR" = (
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt/cave/corner,
@@ -34165,6 +34211,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/cafeteria)
+"uTv" = (
+/obj/machinery/power/apc/drained,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "uTH" = (
 /obj/machinery/conveyor{
 	id = "bunkerrecycle"
@@ -34195,6 +34246,14 @@
 	dir = 8
 	},
 /area/metnal/inside/research)
+"uUL" = (
+/obj/effect/decal/cleanable/blood{
+	dir = 8;
+	pixel_x = 0;
+	pixel_y = 3
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "uUY" = (
 /obj/machinery/light{
 	dir = 1
@@ -34287,6 +34346,13 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"uXc" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "uXy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -34342,6 +34408,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
+"uZl" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/urban/tile/tileblackcheckered,
+/area/metnal/z2/inside/HQlvl2)
 "uZs" = (
 /obj/structure/table/wood,
 /obj/item/paper,
@@ -34377,14 +34447,19 @@
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4,
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
+"vae" = (
+/obj/structure/bed/chair/office/dark/east,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "vaf" = (
 /obj/structure/prop/vehicle/truck/damaged,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
-"val" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
+"vas" = (
+/obj/structure/bed/chair/sofa/corsat/right,
+/turf/open/floor/urban/tile/tileblackcheckered,
+/area/metnal/z2/inside/HQlvl2)
 "vaC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -34425,6 +34500,13 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/northeast)
+"vbD" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "vce" = (
 /obj/structure/toilet,
 /turf/open/floor/iron/textured,
@@ -34485,11 +34567,6 @@
 /obj/item/clothing/tie/medal/gold/captain,
 /turf/open/floor/wood,
 /area/metnal/inside/northmeetingroom)
-"vex" = (
-/obj/effect/urban/decal/trash/fourteen,
-/obj/machinery/light,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "vez" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -34604,9 +34681,6 @@
 /obj/item/clothing/under/pj/blue,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
-"vht" = (
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "vhJ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -34640,6 +34714,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/south/garbledradio)
+"viK" = (
+/obj/machinery/computer/secure_data{
+	dir = 8
+	},
+/obj/structure/table/mainship,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "vja" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -34678,6 +34759,16 @@
 	dir = 1
 	},
 /area/metnal/outside/north)
+"vkG" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "vkO" = (
 /obj/structure/rack/nometal,
 /obj/item/stack/sheet/metal/medium_stack,
@@ -34732,12 +34823,6 @@
 /obj/structure/cocoon/opened_cocoon,
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
-"vmM" = (
-/obj/structure/sink{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "vni" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -34765,6 +34850,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
+"vnN" = (
+/obj/structure/platform/metalplatform,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/relay)
 "vnV" = (
 /obj/structure/curtain/black,
 /obj/effect/spawner/random/decal/blood,
@@ -34821,12 +34911,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/west)
-"vqc" = (
-/obj/structure/bed/stool{
-	pixel_y = 8
-	},
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "vqg" = (
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt/cave{
@@ -34937,13 +35021,6 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/prison,
 /area/metnal/inside/restroom)
-"vtf" = (
-/obj/effect/landmark/corpsespawner/colonist/burst,
-/obj/structure/bed/chair/comfy{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "vti" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -35264,10 +35341,6 @@
 /obj/item/reagent_containers/food/drinks/cans/iced_tea,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/recreation)
-"vBC" = (
-/obj/effect/landmark/corpsespawner/commander/regular,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "vBJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -35458,10 +35531,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
-"vGY" = (
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/comgym)
 "vHd" = (
 /obj/structure/prop/tgbrokenvendor/ntdonk,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -35498,13 +35567,6 @@
 	dir = 1
 	},
 /area/metnal/inside/experimentation)
-"vHE" = (
-/obj/effect/mapping_helpers/broken_apc/lowchance,
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "vHR" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 8
@@ -35844,10 +35906,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
-"vRE" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "vRR" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -35886,12 +35944,6 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"vSG" = (
-/obj/structure/bed/chair/comfy{
-	dir = 1
-	},
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "vSW" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -35904,15 +35956,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/metnal/outside/central)
-"vTi" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "vTj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -35943,6 +35986,10 @@
 "vTG" = (
 /turf/open/urban/street/sidewalkfull,
 /area/metnal/outside/northeast)
+"vTP" = (
+/obj/structure/bed/chair/sofa,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "vUc" = (
 /obj/structure/bed/chair/wood/wings,
 /obj/machinery/light{
@@ -36042,10 +36089,6 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/northwest)
-"vXd" = (
-/obj/machinery/vending/sovietsoda,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/HQlvl2)
 "vXu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -36101,6 +36144,10 @@
 	},
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
+"vZz" = (
+/obj/machinery/disposal,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "vZG" = (
 /obj/structure/rock/large,
 /obj/effect/ai_node,
@@ -36110,10 +36157,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"wal" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/metnal/z2/inside/bridgenw)
 "waq" = (
 /turf/closed/wall/prison,
 /area/metnal/z2/inside/bridgen)
@@ -36156,14 +36199,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
-"waR" = (
-/obj/machinery/light,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
-"waT" = (
-/obj/structure/prop/tgbrokenvendor/boozeomat,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "wbo" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -36171,6 +36206,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"wby" = (
+/obj/structure/table/mainship,
+/obj/machinery/microwave,
+/obj/machinery/light,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "wbI" = (
 /turf/open/urban/street/sidewalkfull,
 /area/metnal/caves/south)
@@ -36368,6 +36409,11 @@
 "whI" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/quartermaster)
+"whK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/disposal,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "whR" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
@@ -36378,11 +36424,10 @@
 	},
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
-"wio" = (
-/obj/effect/spawner/gibspawner/human,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison,
-/area/metnal/z2/inside/comgym)
+"wii" = (
+/obj/structure/prop/nt_computer/recorder,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/relay)
 "wiw" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -36400,6 +36445,11 @@
 /obj/structure/platform/metalplatform,
 /turf/open/openspace,
 /area/metnal/z2/inside/Prison)
+"wjc" = (
+/obj/machinery/power/apc/drained,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "wjF" = (
 /obj/item/shard{
 	pixel_x = -3;
@@ -36534,12 +36584,6 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"wno" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "wnq" = (
 /obj/structure/bed/chair/office/light/east,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -36579,6 +36623,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/outdoor,
 /area/metnal/caves/rock)
+"wok" = (
+/obj/machinery/power/apc/drained,
+/obj/effect/mapping_helpers/broken_apc,
+/turf/open/floor/prison/plate,
+/area/metnal/z2/inside/deluxearmory)
 "wou" = (
 /obj/machinery/light{
 	dir = 8
@@ -36808,6 +36857,18 @@
 "wxk" = (
 /turf/open/floor/tile/dark/gray,
 /area/metnal/inside/laundromat)
+"wxm" = (
+/obj/structure/table/wood/fancy,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
+"wxv" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = 4;
+	pixel_y = 10
+	},
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "wxK" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
@@ -36818,6 +36879,10 @@
 /obj/structure/mecha_wreckage/durand,
 /turf/open/floor/plating/dmg1,
 /area/metnal/z2/inside/deluxearmory)
+"wyg" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "wym" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -36864,14 +36929,6 @@
 	dir = 1
 	},
 /area/metnal/inside/medical)
-"wAh" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "wAn" = (
 /obj/effect/turf_decal/arrows,
 /turf/open/floor/prison/plate,
@@ -36929,6 +36986,10 @@
 "wCp" = (
 /turf/open/urban/street/sidewalkcenter,
 /area/metnal/outside/west)
+"wCz" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/gray,
+/area/metnal/z2/inside/deluxbedroom)
 "wCC" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 1
@@ -36993,6 +37054,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
+"wDY" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/redfloor,
+/area/metnal/z2/inside/deluxearmory)
 "wEa" = (
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt/cave{
@@ -37145,6 +37210,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/auxstorage)
+"wIK" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/HQlvl2)
 "wIM" = (
 /obj/effect/turf_decal/box/red,
 /turf/open/floor/prison/plate,
@@ -37205,11 +37274,6 @@
 /obj/item/storage/backpack/industrial,
 /turf/open/floor/carpet,
 /area/metnal/inside/security)
-"wKi" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/urban/decal/trash/fourteen,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "wKq" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 6
@@ -37217,6 +37281,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"wKs" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "wKv" = (
 /obj/structure/table/black,
 /obj/item/reagent_containers/food/drinks/cans/lemon_lime,
@@ -37348,6 +37416,10 @@
 	},
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
+"wQh" = (
+/obj/effect/landmark/corpsespawner/freelancer,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "wQF" = (
 /obj/effect/turf_decal/tile/transparent/blue/opposingcorners,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -37549,12 +37621,10 @@
 	},
 /turf/open/floor/urban/carpet/carpetpatternblue,
 /area/metnal/inside/executivedorms)
-"wVL" = (
-/obj/structure/table/mainship,
-/obj/machinery/microwave,
-/obj/machinery/light,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
+"wVK" = (
+/obj/structure/bed/chair/comfy,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/z2/inside/humanresources)
 "wVO" = (
 /obj/machinery/door_control{
 	id = "MedbayFoyer";
@@ -37652,6 +37722,10 @@
 /obj/structure/window/framed/prison/colony,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
+"wXO" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/comgym)
 "wYj" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/prison/plate,
@@ -37874,10 +37948,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
-"xgx" = (
-/obj/structure/bed/chair/sofa,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "xgY" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/spawner/random/misc/structure/supplycrate,
@@ -37972,18 +38042,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest/garbledradio)
-"xjo" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
-"xjH" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "xkf" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
@@ -38043,9 +38101,6 @@
 /obj/structure/bed,
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
-"xmr" = (
-/turf/open/floor/tile/darkish,
-/area/metnal/z2/outside/hterrace)
 "xmC" = (
 /turf/open/floor/prison/darkred{
 	dir = 4
@@ -38110,10 +38165,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical/chemistry)
-"xnS" = (
-/obj/effect/spawner/gibspawner/human,
-/turf/open/floor/multi_tiles,
-/area/metnal/z2/inside/comgym)
 "xnU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -38178,10 +38229,6 @@
 /obj/effect/spawner/random/engineering/insulatedgloves,
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
-"xqI" = (
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/metnal/z2/outside/hterrace)
 "xqM" = (
 /obj/effect/landmark/corpsespawner/miner,
 /turf/open/floor/prison/plate,
@@ -38190,6 +38237,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
+/obj/effect/landmark/weed_node,
 /turf/open/floor/urban/tile/tileblackcheckered,
 /area/metnal/z2/inside/HQlvl2)
 "xrS" = (
@@ -38218,10 +38266,6 @@
 /obj/structure/cable,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/west)
-"xso" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/HQlvl2)
 "xss" = (
 /obj/item/ammo_casing/cartridge,
 /obj/effect/landmark/weed_node,
@@ -38240,14 +38284,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"xsy" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/flask/barflask,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "xsz" = (
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkfull,
@@ -38317,18 +38353,6 @@
 	},
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
-"xvj" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
-"xvl" = (
-/obj/structure/bed/chair/office/dark/east,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "xvr" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -38385,6 +38409,13 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/east)
+"xwL" = (
+/obj/effect/mapping_helpers/broken_apc/lowchance,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "xwU" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/syringe/drugs,
@@ -38652,11 +38683,6 @@
 /obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/kitchen)
-"xGf" = (
-/obj/structure/table/mainship,
-/obj/item/card/id/silver,
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "xGg" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 1
@@ -38731,6 +38757,11 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkcenter,
 /area/metnal/outside/northeast)
+"xJl" = (
+/obj/structure/table/mainship,
+/obj/machinery/microwave,
+/turf/open/floor/officesquares,
+/area/metnal/z2/inside/humanresources)
 "xJy" = (
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalk{
@@ -38768,6 +38799,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical/chemistry)
+"xKA" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/wood,
+/area/metnal/z2/outside/hterrace)
 "xKF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -38856,12 +38891,6 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
-"xNF" = (
-/obj/machinery/light{
-	light_color = "#da2f1b"
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "xNM" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -38903,12 +38932,6 @@
 "xOQ" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/metnal/caves/nukestorage)
-"xPc" = (
-/obj/structure/stairs/multiz/directional/west{
-	layer = 10025
-	},
-/turf/open/lavaland/basalt,
-/area/metnal/outside/central)
 "xPM" = (
 /turf/open/floor/prison/darkred/corners{
 	dir = 4
@@ -38937,10 +38960,6 @@
 	},
 /turf/open/floor/plating,
 /area/metnal/inside/Headquarters)
-"xQo" = (
-/obj/effect/spawner/gibspawner/human,
-/turf/open/floor/mainship/office,
-/area/metnal/z2/inside/comgym)
 "xQx" = (
 /obj/structure/rock/basalt/pile/alt3,
 /turf/open/floor/mainship_hull/gray,
@@ -38951,12 +38970,6 @@
 	},
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
-"xQO" = (
-/obj/structure/mirror{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "xQP" = (
 /turf/open/floor/prison/whitepurple/full{
 	dir = 1
@@ -39010,11 +39023,6 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
-"xSz" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/urban/carpet/carpetblack,
-/area/metnal/z2/inside/humanresources)
 "xSL" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/spawner/random/machinery/microwave,
@@ -39061,6 +39069,10 @@
 	},
 /turf/open/floor/officesquares,
 /area/metnal/z2/inside/humanresources)
+"xUB" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/z2/inside/deluxearmory)
 "xUD" = (
 /obj/structure/bed/chair/sofa/left,
 /obj/effect/turf_decal/siding/wood{
@@ -39173,12 +39185,6 @@
 	dir = 8
 	},
 /area/metnal/inside/security)
-"xXp" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4
-	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
 "xXw" = (
 /obj/structure/table/black,
 /obj/structure/window/reinforced/tinted{
@@ -39191,10 +39197,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"xXN" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/comgym)
 "xXO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -39265,11 +39267,6 @@
 /obj/effect/spawner/random/misc/prizemecha,
 /turf/open/floor/urban/carpet/carpetpatternblue,
 /area/metnal/inside/executivedorms)
-"xZx" = (
-/obj/structure/table/wood,
-/obj/item/whistle,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "xZB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
 	name = "\improper Colony Bar"
@@ -39306,6 +39303,10 @@
 /obj/structure/rock/small,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
+"yaL" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/urban/carpet/carpetpatternblue,
+/area/metnal/z2/inside/deluxbedroom)
 "ybD" = (
 /obj/effect/landmark/corpsespawner/marine/regular,
 /obj/structure/bed/urban/chairs/brown{
@@ -39314,6 +39315,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/multi_tiles,
 /area/metnal/inside/Headquarters)
+"ycg" = (
+/obj/structure/bed/chair/east,
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/tile/darkish,
+/area/metnal/z2/outside/hterrace)
 "ycm" = (
 /obj/structure/table/black,
 /obj/item/folder,
@@ -39358,6 +39364,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
+"ydO" = (
+/obj/structure/table/black,
+/obj/item/reagent_containers/cup/glass/drinkingglass/filled/cola,
+/turf/open/floor/tile/darkish,
+/area/metnal/z2/outside/hterrace)
 "ydS" = (
 /obj/item/ashtray/glass,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -39396,14 +39407,12 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"yey" = (
-/obj/item/ammo_casing/bullet,
-/obj/item/ammo_casing/bullet,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+"yeN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
 	},
-/turf/open/floor/officesquares,
-/area/metnal/z2/inside/humanresources)
+/turf/open/floor/prison/plate,
+/area/metnal/z2/inside/deluxearmory)
 "yeQ" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -39482,12 +39491,6 @@
 	},
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
-"ygg" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/metnal/z2/inside/deluxbedroom)
 "ygG" = (
 /obj/machinery/light{
 	dir = 8
@@ -39497,10 +39500,6 @@
 /obj/effect/urban/decal/trash/four,
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
-"yhg" = (
-/obj/structure/safe,
-/turf/open/floor/urban/carpet/carpetpatternblue,
-/area/metnal/z2/inside/deluxbedroom)
 "yhi" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -39716,20 +39715,21 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/wood,
 /area/metnal/z2/inside/dorms2z)
-"ylF" = (
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/prison,
-/area/metnal/z2/inside/comgym)
 "ylG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/urban/street/sidewalkcenter,
 /area/metnal/outside/southeast)
+"ylI" = (
+/obj/machinery/disposal,
+/turf/open/floor/multi_tiles,
+/area/metnal/z2/inside/HQlvl2)
 "ylO" = (
 /obj/structure/bed/chair/office/dark/west,
 /obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
+	dir = 10
 	},
 /turf/open/floor/officesquares,
 /area/metnal/z2/inside/humanresources)
@@ -64453,8 +64453,8 @@ kVU
 siO
 gzx
 kLX
-xPc
-xPc
+adQ
+adQ
 kLX
 uow
 kez
@@ -86625,12 +86625,12 @@ vQJ
 pIy
 pIy
 pIy
-pCG
-pCG
-pCG
-pCG
-pCG
-kpB
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -86827,13 +86827,13 @@ vQJ
 pIy
 pIy
 pIy
-pCG
-pCG
 pIy
-pCG
-pCG
-kpB
-kpB
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 kpB
@@ -87029,14 +87029,14 @@ vQJ
 pIy
 pIy
 pIy
-pCG
-pCG
 pIy
 pIy
-pCG
-kpB
-kpB
-kpB
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -87231,14 +87231,14 @@ vQJ
 pIy
 pIy
 pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pCG
-pCG
 pIy
 pIy
-pIy
-kpB
-kpB
-kpB
 kpB
 kpB
 kpB
@@ -87433,13 +87433,13 @@ vQJ
 pIy
 pIy
 pIy
-pCG
-pCG
 pIy
 pIy
 pIy
-kpB
-kpB
+pIy
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -87635,12 +87635,12 @@ vQJ
 pIy
 pIy
 pIy
-pCG
-pCG
 pIy
 pIy
-kpB
-kpB
+pIy
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -87837,12 +87837,12 @@ vQJ
 pIy
 pIy
 pIy
-pCG
-pCG
-pCG
 pIy
-kpB
-kpB
+pIy
+pIy
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -88039,12 +88039,12 @@ vQJ
 pIy
 pIy
 pIy
-pCG
-pCG
-pCG
 pIy
-kpB
-kpB
+pIy
+pIy
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -88241,11 +88241,11 @@ vQJ
 pIy
 pIy
 pIy
-pCG
-pCG
-pCG
 pIy
-kpB
+pIy
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -88444,10 +88444,10 @@ pIy
 pIy
 pIy
 pIy
-pCG
-pCG
 pIy
-kpB
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -88646,10 +88646,10 @@ pIy
 pIy
 pIy
 pIy
-pCG
-kpB
-kpB
-kpB
+pIy
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -88848,10 +88848,10 @@ pIy
 pIy
 pIy
 pIy
-pCG
-kpB
-kpB
-kpB
+pIy
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -89051,9 +89051,9 @@ pIy
 pIy
 pIy
 pIy
-kpB
-kpB
-kpB
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -89253,9 +89253,9 @@ pIy
 pIy
 pIy
 pIy
-kpB
-kpB
-kpB
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -89484,11 +89484,11 @@ vDf
 vDf
 vDf
 oMM
-wal
+pIC
 gBV
 gBV
 gBV
-wal
+pIC
 oMM
 kpB
 kpB
@@ -90090,11 +90090,11 @@ vDf
 vDf
 vDf
 oMM
-wal
+pIC
 gBV
-dEd
+rqi
 gBV
-wal
+pIC
 oMM
 kpB
 kpB
@@ -90696,11 +90696,11 @@ kpB
 iNp
 iNp
 kBW
-wal
+pIC
 gBV
 gBV
 gBV
-wal
+pIC
 kBW
 iNp
 iNp
@@ -90905,19 +90905,19 @@ pna
 kRi
 kBW
 kBW
-wal
+pIC
 kBW
 kBW
-wal
+pIC
 kBW
 kBW
-wal
+pIC
 kBW
 kBW
-wal
+pIC
 kBW
 kBW
-wal
+pIC
 aVB
 hlg
 hlg
@@ -91300,25 +91300,25 @@ kpB
 kpB
 kpB
 sYD
-dEd
+rqi
 gBV
-dEd
+rqi
 gBV
 gBV
 gBV
-dEd
-gBV
-pna
-aLm
+rqi
 gBV
 pna
-aLm
+fbH
 gBV
 pna
-aLm
+fbH
 gBV
 pna
-aLm
+fbH
+gBV
+pna
+fbH
 gBV
 gBV
 gBV
@@ -91713,19 +91713,19 @@ pna
 kRi
 kBW
 kBW
-wal
+pIC
 kBW
 kBW
-wal
+pIC
 kBW
 kBW
-wal
+pIC
 kBW
 kBW
-wal
+pIC
 kBW
 kBW
-wal
+pIC
 aVB
 hlg
 hlg
@@ -91908,11 +91908,11 @@ kpB
 iNp
 iNp
 kBW
-wal
+pIC
 gBV
 gBV
 gBV
-wal
+pIC
 kBW
 iNp
 iNp
@@ -92514,11 +92514,11 @@ kpB
 kpB
 kpB
 iNp
-wal
+pIC
 gBV
-dEd
+rqi
 gBV
-wal
+pIC
 iNp
 kpB
 kpB
@@ -92918,11 +92918,11 @@ kpB
 kpB
 kpB
 iNp
-wal
+pIC
 pna
-aLm
+fbH
 gBV
-wal
+pIC
 iNp
 kpB
 kpB
@@ -93322,11 +93322,11 @@ kpB
 kpB
 kpB
 iNp
-wal
+pIC
 gBV
-aLm
+fbH
 pna
-wal
+pIC
 iNp
 kpB
 kpB
@@ -94936,7 +94936,7 @@ kpB
 kpB
 kpB
 iNp
-agv
+iin
 kBW
 kBW
 gBV
@@ -95138,7 +95138,7 @@ kpB
 kpB
 kpB
 iNp
-agv
+iin
 kBW
 kBW
 gBV
@@ -95381,19 +95381,19 @@ gnJ
 gnJ
 gnJ
 lBz
-aKG
+wKs
 lBz
-sUQ
+svh
 lBz
-aKG
+wKs
 lBz
 lBz
 lBz
-aKG
+wKs
 lBz
-uPw
+aMA
 lBz
-aKG
+wKs
 lBz
 lBz
 uwz
@@ -95582,21 +95582,21 @@ gnJ
 kQP
 kQP
 gnJ
-xqI
-fgY
-xqI
-vqc
-shh
-shh
-shh
-xmr
-dsc
-shh
-shh
-xmr
-shh
-shh
-dsc
+wxm
+gtk
+wxm
+mBM
+jaw
+jaw
+jaw
+tNT
+ycg
+jaw
+jaw
+tNT
+jaw
+jaw
+ycg
 lBz
 uwz
 kpB
@@ -95784,21 +95784,21 @@ kQP
 kQP
 kQP
 gnJ
-waT
+qOm
 lBz
-fgY
-vqc
-bpK
-bpK
-bpK
-prB
-bpK
-tKo
-bpK
-xmr
-bpK
-tKo
-bpK
+gtk
+mBM
+sjV
+sjV
+sjV
+nZb
+sjV
+ydO
+sjV
+tNT
+sjV
+ydO
+sjV
 lBz
 uwz
 kpB
@@ -95837,9 +95837,9 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -95986,21 +95986,21 @@ kQP
 kQP
 kQP
 gnJ
-kBX
-jBs
-xqI
-vqc
-bhn
-bhn
-bhn
-xmr
-bhn
-bhn
-bhn
-xmr
-bhn
-bhn
-bhn
+xKA
+itU
+wxm
+mBM
+dBa
+dBa
+dBa
+tNT
+dBa
+dBa
+dBa
+tNT
+dBa
+dBa
+dBa
 lBz
 uwz
 kpB
@@ -96039,9 +96039,9 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -96187,22 +96187,22 @@ kQP
 kQP
 kQP
 kQP
-kAO
+nAA
 lBz
-ada
-fgY
-vqc
-xmr
-oRm
-xmr
-xmr
-xmr
-oRm
-xmr
-prB
-xmr
-oRm
-xmr
+hBm
+gtk
+mBM
+tNT
+hSd
+tNT
+tNT
+tNT
+hSd
+tNT
+nZb
+tNT
+hSd
+tNT
 lBz
 uwz
 kpB
@@ -96240,10 +96240,10 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -96390,21 +96390,21 @@ kQP
 kQP
 kQP
 gnJ
-hRL
+ddT
 lBz
-fgY
-vqc
-shh
-shh
-shh
-xmr
-shh
-shh
-dsc
-xmr
-shh
-shh
-shh
+gtk
+mBM
+jaw
+jaw
+jaw
+tNT
+jaw
+jaw
+ycg
+tNT
+jaw
+jaw
+jaw
 lBz
 uwz
 kpB
@@ -96442,10 +96442,10 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -96581,7 +96581,7 @@ kpB
 kpB
 kpB
 kpB
-kAO
+nAA
 kQP
 kQP
 kQP
@@ -96592,21 +96592,21 @@ kQP
 kQP
 kQP
 gnJ
-waT
+qOm
 lBz
-xqI
-vqc
-bpK
-bpK
-tKo
-xmr
-bpK
-bpK
-bpK
-xmr
-tKo
-sRU
-bpK
+wxm
+mBM
+sjV
+sjV
+ydO
+tNT
+sjV
+sjV
+sjV
+tNT
+ydO
+jiw
+sjV
 lBz
 uwz
 kpB
@@ -96644,10 +96644,10 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -96794,21 +96794,21 @@ kQP
 kQP
 kQP
 gnJ
-xqI
-fgY
-xqI
-vqc
-bhn
-bhn
-bhn
-prB
-bhn
-bhn
-bhn
-xmr
-bhn
-bhn
-bhn
+wxm
+gtk
+wxm
+mBM
+dBa
+dBa
+dBa
+nZb
+dBa
+dBa
+dBa
+tNT
+dBa
+dBa
+dBa
 lBz
 uwz
 kpB
@@ -96846,10 +96846,10 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -96996,22 +96996,22 @@ kQP
 kQP
 kQP
 gnJ
-sta
-aKG
-sUQ
+wjc
+wKs
+svh
 lBz
 lBz
-aKG
-lBz
-lBz
-lBz
-aKG
+wKs
 lBz
 lBz
 lBz
-aKG
+wKs
 lBz
-sUQ
+lBz
+lBz
+wKs
+lBz
+svh
 uwz
 kpB
 kpB
@@ -97048,10 +97048,10 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -97199,8 +97199,8 @@ vAW
 gnJ
 gnJ
 iid
-ccC
-uKi
+amy
+lTI
 iid
 iid
 its
@@ -97219,7 +97219,7 @@ its
 its
 its
 its
-rBS
+tHf
 its
 kpB
 kpB
@@ -97250,10 +97250,10 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -97402,26 +97402,26 @@ gnJ
 pws
 pws
 pws
-kQv
-fxB
-syl
-duR
+wIK
+mOB
+dhk
+mei
 iwl
 iwl
-dnk
-dnk
-aQx
-kkN
-eRy
+hfB
+hfB
+iQo
+vZz
+bTH
 its
-sQH
+fPa
 iwl
 iwl
-aQx
-dJz
+iQo
+iis
 iwl
 iwl
-yhg
+cWt
 its
 kpB
 kpB
@@ -97607,23 +97607,23 @@ pXR
 pXR
 pws
 iid
-haK
-val
+dht
+nDC
 iwl
-oGR
-oGR
-val
+jhc
+jhc
+nDC
 iwl
-val
+nDC
 its
-dJf
+cOm
 iwl
 iwl
-krt
-dnk
+lAP
+hfB
 iwl
 iwl
-val
+nDC
 its
 kpB
 kpB
@@ -97809,11 +97809,11 @@ pXR
 pXR
 pws
 iid
-xgx
+vTP
 iwl
-vBC
-soC
-soC
+izJ
+oei
+oei
 iwl
 iwl
 iwl
@@ -97822,10 +97822,10 @@ iwl
 iwl
 iwl
 iwl
-aMW
-pqG
+saq
+mKc
 iwl
-wVL
+wby
 its
 kpB
 kpB
@@ -97995,39 +97995,39 @@ kpB
 kpB
 gnJ
 gnJ
-mWg
-mWg
-gWA
+jsA
+jsA
+lnb
 kQP
 kQP
 kQP
-gWA
+lnb
 kQP
 vAW
 gnJ
-kQv
+wIK
 pws
 pXR
 pXR
-kQv
+wIK
 iid
-xgx
-val
+vTP
+nDC
 iwl
 iwl
 iwl
-val
+nDC
 iwl
-val
+nDC
 its
-eRy
+bTH
 iwl
 iwl
-soC
-soC
+oei
+oei
 iwl
 iwl
-vRE
+efJ
 its
 kpB
 kpB
@@ -98207,14 +98207,14 @@ kQP
 kQP
 vAW
 gnJ
-nuZ
+sdi
 pws
 pXR
 pXR
 pws
 iid
-xgx
-aQx
+vTP
+iQo
 iwl
 its
 its
@@ -98225,11 +98225,11 @@ its
 its
 its
 its
-hBq
+tUO
 iwl
-aQx
+iQo
 iwl
-sYM
+egQ
 its
 kpB
 kpB
@@ -98397,15 +98397,15 @@ kpB
 kpB
 gnJ
 gnJ
-gWA
+lnb
 kQP
 kQP
 kQP
-gWA
+lnb
 kQP
 kQP
 kQP
-gWA
+lnb
 gnJ
 gnJ
 gnJ
@@ -98415,23 +98415,23 @@ pXR
 pXR
 pws
 iid
-aHv
+eaT
 iwl
 iwl
 its
-xZx
-val
+kgI
+nDC
 iwl
-val
+nDC
 iwl
 iwl
-qwX
+kWD
 its
-val
+nDC
 iwl
 iwl
 iwl
-hPE
+ciM
 its
 kpB
 kpB
@@ -98608,8 +98608,8 @@ kQP
 kQP
 kQP
 kQP
-kAO
-fxB
+nAA
+mOB
 pws
 pws
 pws
@@ -98617,11 +98617,11 @@ pXR
 pXR
 pws
 iid
-hPV
-val
+yaL
+nDC
 iwl
 its
-juW
+fQL
 iwl
 iwl
 iwl
@@ -98629,11 +98629,11 @@ iwl
 iwl
 iwl
 its
-nlp
-xsy
-lEQ
-kOl
-qCy
+acn
+sqk
+prB
+kgb
+hpa
 its
 kpB
 kpB
@@ -98798,7 +98798,7 @@ kpB
 kpB
 kpB
 gnJ
-fCI
+wii
 kQP
 kQP
 kQP
@@ -98811,7 +98811,7 @@ kQP
 kQP
 kQP
 gnJ
-mSH
+fBx
 pws
 pws
 pws
@@ -98819,12 +98819,12 @@ pXR
 pXR
 pws
 iid
-cPZ
+aZM
 iwl
 iwl
 its
-yhg
-aQx
+cWt
+iQo
 iwl
 its
 its
@@ -98835,7 +98835,7 @@ its
 its
 its
 its
-gLf
+ekv
 its
 kpB
 kpB
@@ -99003,41 +99003,41 @@ gnJ
 kQP
 tFU
 tFU
-gof
+sYW
 tFU
 eth
 uWe
-gof
+sYW
 tFU
 tFU
 kQP
-gWA
+lnb
 gnJ
 aBS
 pws
-kQv
+wIK
 pws
 pXR
 pXR
-kQv
+wIK
 iid
 iwl
-opN
+rXW
 iwl
 its
-qyU
-val
+ldN
+nDC
 iwl
 its
-kqo
-xQO
+vbD
+eoG
 mVS
 its
-uNN
-leJ
-sKz
-kLu
-kLu
+nGp
+fus
+dAH
+lRN
+lRN
 its
 kpB
 kpB
@@ -99202,7 +99202,7 @@ kpB
 kpB
 kpB
 gnJ
-tTI
+vnN
 vAW
 vAW
 vAW
@@ -99231,15 +99231,15 @@ iwl
 iwl
 iwl
 its
-owE
+wCz
 mVS
-qOa
+uXc
 its
-owE
-ygg
-ave
+wCz
+rVb
+kab
 mVS
-owE
+wCz
 its
 kpB
 kpB
@@ -99423,25 +99423,25 @@ pws
 pws
 pXR
 pXR
-edV
+eVg
 iid
 iwl
-val
-raB
+nDC
+uve
 its
-nlp
-iFQ
-kOl
+acn
+rNu
+kgb
 its
-txw
+dYg
 mVS
-vmM
+jBy
 its
 mVS
-vTi
-vmM
+unZ
+jBy
 mVS
-jFU
+jpm
 its
 kpB
 kpB
@@ -99636,14 +99636,14 @@ iid
 iid
 iid
 iid
-syl
+dhk
 iid
 iid
 iid
 iid
 iid
 iid
-syl
+dhk
 iid
 iid
 kpB
@@ -99838,15 +99838,15 @@ nMO
 qWf
 rqb
 vJr
-sXE
+aCV
 jKl
 nMO
 bvk
 nMO
 nMO
 vJr
-sXE
-sXE
+aCV
+aCV
 iid
 iid
 kpB
@@ -100021,35 +100021,35 @@ vAW
 vAW
 vAW
 com
-gWA
+lnb
 gnJ
 pws
 pws
-kQv
+wIK
 pws
 pXR
 pXR
-jZx
+lBK
 pXR
 pXR
 pXR
 pws
-uPW
+uZl
+fhP
+fhP
 xrJ
+fhP
+aCV
+aCV
+uZl
+fhP
+fhP
+fhP
 xrJ
-jrG
-xrJ
-sXE
-sXE
-uPW
-xrJ
-xrJ
-xrJ
-jrG
-sXE
-sXE
-sXE
-uPW
+aCV
+aCV
+aCV
+uZl
 iid
 kpB
 kpB
@@ -100212,7 +100212,7 @@ kpB
 kpB
 kpB
 gnJ
-tTI
+vnN
 vAW
 vAW
 vAW
@@ -100413,23 +100413,23 @@ kpB
 kpB
 kpB
 kpB
-kAO
+nAA
 kQP
 bcX
-hsd
+sRB
 bcX
 bcX
 lqG
 lqG
-hsd
+sRB
 bcX
 bcX
 kQP
-gWA
+lnb
 gnJ
 aBS
 pws
-kQv
+wIK
 pws
 pXR
 pXR
@@ -100438,24 +100438,24 @@ iid
 iid
 iid
 pws
-kQv
+wIK
 pws
 pws
-kQv
+wIK
 pws
 pws
 pws
-jZx
+lBK
 pXR
 pXR
-uMB
-jZx
+ylI
+lBK
 pXR
 pXR
 pws
 pws
-sXE
-hQj
+aCV
+qRZ
 kpB
 kpB
 kpB
@@ -100616,7 +100616,7 @@ kpB
 kpB
 kpB
 gnJ
-fCI
+wii
 kQP
 kQP
 kQP
@@ -100628,7 +100628,7 @@ kQP
 kQP
 kQP
 kQP
-kAO
+nAA
 pws
 pws
 pws
@@ -100645,8 +100645,8 @@ kMW
 jNl
 jNl
 pgL
-qgb
-jsA
+qtc
+ntI
 pXR
 lGm
 iid
@@ -100655,8 +100655,8 @@ iid
 pQy
 pXR
 pws
-kQv
-sXE
+wIK
+aCV
 iid
 kpB
 kpB
@@ -100820,18 +100820,18 @@ kpB
 gnJ
 gnJ
 gnJ
-gWA
+lnb
 kQP
 kQP
 hfw
 hfw
-gWA
+lnb
 kQP
 kQP
 kQP
-gWA
+lnb
 gnJ
-jSf
+nMg
 pws
 pws
 pws
@@ -100842,7 +100842,7 @@ pXR
 pXR
 pXR
 pXR
-oIC
+bJu
 pXR
 pXR
 pXR
@@ -100858,7 +100858,7 @@ oto
 pXR
 pws
 pws
-sXE
+aCV
 iid
 kpB
 kpB
@@ -101033,25 +101033,25 @@ kQP
 kQP
 kQP
 gnJ
-xso
+mbh
 pws
-kQv
+wIK
 pws
 pXR
 pXR
-jZx
+lBK
 pXR
 pXR
 pXR
 pXR
-pRP
+aJS
 pXR
 pXR
-jZx
+lBK
 pXR
 pXR
 pXR
-jZx
+lBK
 lGm
 iid
 iid
@@ -101060,7 +101060,7 @@ oto
 pXR
 pws
 pws
-sXE
+aCV
 iid
 kpB
 kpB
@@ -101226,19 +101226,19 @@ kpB
 kpB
 gnJ
 gnJ
-kXu
+tFp
 kQP
 kQP
-gWA
+lnb
 kQP
 kQP
 kQP
-gWA
+lnb
 gnJ
 iid
 iid
 iid
-mSH
+fBx
 pXR
 pXR
 kMW
@@ -101251,7 +101251,7 @@ pXR
 pXR
 pXR
 pXR
-oIC
+bJu
 pXR
 pXR
 lGm
@@ -101261,8 +101261,8 @@ iid
 xMa
 pXR
 pws
-kQv
-sXE
+wIK
+aCV
 iid
 kpB
 kpB
@@ -101429,10 +101429,10 @@ kpB
 kpB
 gnJ
 gnJ
-mWg
-mWg
-mWg
-mWg
+jsA
+jsA
+jsA
+jsA
 kQP
 kQP
 kQP
@@ -101447,7 +101447,7 @@ iid
 iid
 iid
 iid
-jMo
+heT
 pXR
 pXR
 lGm
@@ -101457,14 +101457,14 @@ pws
 pws
 pXR
 pXR
-vXd
-jMo
+cCZ
+heT
 pXR
 pXR
 pXR
 pws
 pws
-cyw
+qcv
 iid
 kpB
 kpB
@@ -101647,7 +101647,7 @@ pXR
 pXR
 pws
 pws
-fxB
+mOB
 pws
 pXR
 pXR
@@ -101656,13 +101656,13 @@ lGm
 iid
 opS
 pws
-jsA
+ntI
 pXR
 pXR
 pws
 pws
 pws
-qgb
+qtc
 pws
 pws
 pws
@@ -101847,18 +101847,18 @@ iid
 iid
 pXR
 pXR
-kQv
+wIK
 pws
 pws
 pws
 pXR
-jZx
+lBK
 pXR
 lGm
 iid
 opS
 pws
-jsA
+ntI
 pXR
 pXR
 pws
@@ -101867,7 +101867,7 @@ pws
 pws
 pws
 pws
-kQv
+wIK
 iid
 kpB
 kpB
@@ -102047,7 +102047,7 @@ eQJ
 eQJ
 eQJ
 gnJ
-syl
+dhk
 hZW
 iid
 iid
@@ -102059,16 +102059,16 @@ iid
 iid
 hIf
 iid
-kQv
+wIK
 pws
-jZx
+lBK
 pXR
 pws
-kQv
+wIK
 pws
-sXE
+aCV
 aay
-sXE
+aCV
 iid
 iid
 kpB
@@ -102658,10 +102658,10 @@ eQJ
 cPm
 cPm
 cPm
-jDS
+ave
 xyM
 xyM
-jDS
+ave
 cPm
 bvk
 vJr
@@ -103065,19 +103065,19 @@ cPm
 xyM
 xyM
 xyM
-ndU
+bIg
 cPm
-pSy
-sXE
-kQv
+rlR
+aCV
+wIK
 pws
-jZx
+lBK
 pXR
 pws
-kQv
+wIK
 pws
-sXE
-jrG
+aCV
+xrJ
 iid
 kpB
 kpB
@@ -103262,28 +103262,28 @@ fyO
 eQJ
 eQJ
 cPm
-rIU
+yeN
 xyM
 xyM
 xyM
 xyM
-ndU
+bIg
 cPm
-dBR
-sXE
+qrP
+aCV
 pws
 pws
 pXR
-bPK
-bPK
-bPK
+jxH
+jxH
+jxH
 pXR
-sXE
-sXE
+aCV
+aCV
 nXj
 nXj
 nXj
-moU
+twF
 nXj
 nXj
 kpB
@@ -103465,14 +103465,14 @@ eDh
 eQJ
 cPm
 xyM
-jDS
+ave
 xyM
-kIN
-jDS
-ndU
+fPq
+ave
+bIg
 cPm
-dBR
-sXE
+qrP
+aCV
 pws
 pws
 pXR
@@ -103480,10 +103480,10 @@ pXR
 pXR
 pXR
 pXR
-sXE
-sXE
+aCV
+aCV
 nXj
-xXN
+crf
 ukM
 wlv
 ukM
@@ -103673,8 +103673,8 @@ xyM
 xyM
 xyM
 cPm
-btb
-uPW
+vas
+uZl
 pws
 pws
 pws
@@ -103682,13 +103682,13 @@ pws
 pXR
 pXR
 pXR
-sXE
-sXE
+aCV
+aCV
 nXj
 acI
-ruC
+cfq
 wlv
-xXN
+crf
 nXj
 kpB
 kpB
@@ -104070,10 +104070,10 @@ eQJ
 eDh
 eQJ
 cPm
-tuf
+wok
 xyM
 xyM
-kIN
+fPq
 xyM
 xyM
 xyM
@@ -104082,17 +104082,17 @@ xyM
 xyM
 cPm
 srC
-eDC
+rKb
 oph
 oph
 oph
 mtJ
 mtJ
-feT
+oOz
 mtJ
 mtJ
-feT
-slY
+oOz
+jVT
 nXj
 kpB
 kpB
@@ -104273,14 +104273,14 @@ eDh
 eQJ
 cPm
 hML
-jDS
+ave
 xyM
 xyM
-jDS
+ave
 xyM
 xyM
 xyM
-jDS
+ave
 xyM
 rrU
 mtJ
@@ -104288,13 +104288,13 @@ oph
 oph
 oph
 oph
-bkh
+oDI
 mtJ
-tjk
+pzu
 net
 gSg
 nmW
-eQy
+wXO
 nXj
 kpB
 kpB
@@ -104476,22 +104476,22 @@ eQJ
 cPm
 sWF
 xyM
-ndU
+bIg
 cPm
 cPm
 cPm
 xyM
-kIN
+fPq
 xyM
 xyM
 xyM
-eQy
-aPB
-epn
-aPB
+wXO
+clH
+pPV
+clH
 oph
-aPB
-sGP
+clH
+phg
 mtJ
 dwJ
 dkQ
@@ -104676,9 +104676,9 @@ eQJ
 eDh
 eQJ
 cPm
-fgy
+iwW
 xyM
-ndU
+bIg
 cPm
 cPm
 cPm
@@ -104688,16 +104688,16 @@ xyM
 xyM
 cPm
 mtJ
-bkh
+oDI
 oph
 oph
 oph
-kje
+gfk
 mtJ
-xQo
+qAK
 dwJ
 pxv
-prT
+iTD
 mtJ
 nXj
 kpB
@@ -104854,8 +104854,8 @@ sYz
 kpB
 kpB
 sYz
-cgr
-cgr
+dPN
+dPN
 sYz
 kpB
 kpB
@@ -104880,7 +104880,7 @@ eQJ
 cPm
 xyM
 xyM
-ndU
+bIg
 cPm
 cPm
 cPm
@@ -104894,13 +104894,13 @@ nXj
 nXj
 oph
 oph
-iKL
+gHQ
 mtJ
 mtJ
-sJb
-lCC
+tdJ
+aYO
 cvG
-sGP
+phg
 nXj
 kpB
 kpB
@@ -105081,27 +105081,27 @@ eQJ
 eQJ
 rrU
 xyM
-jDS
+ave
 xyM
 xyM
-jDS
+ave
 xyM
 xyM
-kIN
-jDS
+fPq
+ave
 xyM
 cPm
 uJA
 uJA
 nXj
 oph
-xnS
+efi
 oph
-eQy
+wXO
 mtJ
-sre
-ylF
-chA
+ubA
+peD
+oda
 mtJ
 nXj
 kpB
@@ -105295,12 +105295,12 @@ xyM
 cPm
 mtJ
 oph
-vGY
+avS
 oph
-pvI
+fXC
 oph
 mtJ
-qEC
+wQh
 dwJ
 pxv
 cvG
@@ -105490,21 +105490,21 @@ cPm
 cPm
 lAK
 lAK
-qoA
+xUB
 cPm
 cPm
 cPm
 cPm
 mtJ
-bkh
+oDI
 oph
-kje
+gfk
 oph
-bkh
-xQo
+oDI
+qAK
 mtJ
-hlf
-wio
+cQE
+rVR
 cvG
 mtJ
 nXj
@@ -105686,7 +105686,7 @@ eQJ
 eQJ
 eQJ
 cPm
-rIU
+yeN
 xpV
 jGG
 xyM
@@ -105697,7 +105697,7 @@ jGG
 jcl
 xyM
 cPm
-gDU
+gAr
 oph
 dzN
 oph
@@ -105708,7 +105708,7 @@ mtJ
 dwJ
 fof
 cvG
-jkZ
+hcw
 nXj
 kpB
 kpB
@@ -105888,25 +105888,25 @@ eQJ
 eQJ
 eQJ
 cPm
-cWe
+lgt
 ktx
-rBu
+wDY
 dHB
 dHB
 dHB
 fWl
-rBu
+wDY
 dHB
 dON
 cPm
-feT
+oOz
 oph
 nXj
 nXj
 nXj
 oph
-sGP
-xQo
+phg
+qAK
 dwJ
 egy
 cvG
@@ -105948,13 +105948,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -106101,18 +106101,18 @@ dHB
 dHB
 aBE
 cPm
-ahK
-bkh
+uTv
+oDI
 dzN
 oph
 dzN
-bkh
-tjk
+oDI
+pzu
 mtJ
 xvT
 lwS
 dat
-tjk
+pzu
 nXj
 kpB
 kpB
@@ -106150,13 +106150,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -106292,7 +106292,7 @@ eQJ
 eQJ
 eQJ
 cPm
-jDS
+ave
 jVh
 mZI
 xyM
@@ -106301,20 +106301,20 @@ wyb
 xyM
 sFh
 lMv
-jDS
+ave
 cPm
-eQy
+wXO
 mtJ
 mtJ
 mtJ
 mtJ
 mtJ
 mtJ
-jkZ
+hcw
 mtJ
 mtJ
-jkZ
-feT
+hcw
+oOz
 nXj
 kpB
 kpB
@@ -106352,13 +106352,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -106516,7 +106516,7 @@ nXj
 nXj
 nXj
 nXj
-moU
+twF
 nXj
 kpB
 kpB
@@ -106554,13 +106554,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -106756,13 +106756,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -106958,13 +106958,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -107160,17 +107160,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -107362,17 +107362,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -107564,17 +107564,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -107766,17 +107766,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -107968,17 +107968,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -108170,17 +108170,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -108333,7 +108333,7 @@ mFk
 mFk
 cjh
 cjh
-lMS
+nNr
 mFk
 mFk
 mFk
@@ -108341,7 +108341,7 @@ mFk
 mFk
 mFk
 cjh
-lMS
+nNr
 cjh
 mFk
 mFk
@@ -108372,17 +108372,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -108532,20 +108532,20 @@ kpB
 kpB
 kpB
 mFk
-fip
-ofj
-ofj
-ofj
-hES
-vHE
-jkr
-jkr
-tRO
-qbC
-ofj
-ofj
-ofj
-pdz
+uBy
+tCH
+tCH
+tCH
+cpH
+xwL
+viK
+viK
+mSv
+pgJ
+tCH
+tCH
+tCH
+tvQ
 mFk
 mFk
 mFk
@@ -108574,17 +108574,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -108734,24 +108734,24 @@ kpB
 kpB
 kpB
 cjh
-xjo
-aBm
-oIg
-hMM
-jCl
+hyc
+pUT
+mGA
+seL
+fuT
 pdQ
-mqC
-jKK
-aBm
-bFT
-oIg
-ldj
+sAM
+kFS
+pUT
+krm
+mGA
+jlr
 pdQ
-tmP
-wKi
-xXp
+myq
+nVg
+nQL
 pdQ
-ldj
+jlr
 pdQ
 mFk
 kpB
@@ -108776,17 +108776,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -108940,21 +108940,21 @@ pdQ
 muC
 cIX
 pdQ
-uCM
+fDl
 pdQ
 pdQ
-oIg
-xvl
+mGA
+vae
 cIX
 pdQ
-xvl
-pxf
-oIg
+vae
+iXG
+mGA
 pdQ
-yey
-fcd
+pBK
+kmo
 muC
-xNF
+ecp
 mFk
 kpB
 kpB
@@ -108978,17 +108978,17 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -109137,23 +109137,23 @@ kpB
 kpB
 kpB
 kpB
-lMS
+nNr
 kwQ
 tnQ
 oXr
 iID
-sko
+bbQ
 oXr
-oIg
+mGA
 ofg
 tnQ
 oXr
 kEs
 tnQ
 oXr
-saW
-sBc
-qMg
+emi
+eHU
+tYm
 kEs
 tnQ
 oXr
@@ -109180,13 +109180,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -109344,18 +109344,18 @@ woS
 mQX
 jcK
 xUq
-lPS
-sXA
-oIg
+qEL
+hwh
+mGA
 ffJ
-kvy
-mIU
+iFl
+dCd
 xUq
 mQX
 gvG
-cKa
-oIg
-qMg
+att
+mGA
+tYm
 xUq
 mQX
 gvG
@@ -109382,13 +109382,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -109543,24 +109543,24 @@ kpB
 kpB
 cjh
 pdQ
-nNn
+iOg
 pdQ
 pdQ
-gjD
-wAh
-inU
-nnX
-kLA
-dKG
-fKH
 ylO
-tmP
+ouc
+gsd
+tVa
+stQ
+foh
+pma
+khU
+myq
 pdQ
-ryi
-xjH
+eWk
+jSK
 pdQ
-nNn
-xNF
+iOg
+ecp
 mFk
 kpB
 kpB
@@ -109584,13 +109584,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -109744,10 +109744,10 @@ kpB
 kpB
 kpB
 mFk
-rGZ
-cLd
-rqx
-sKb
+faW
+uUL
+whK
+qxf
 mFk
 ycE
 mFk
@@ -109755,13 +109755,13 @@ mFk
 mFk
 mFk
 mFk
-noE
-dKG
-mgh
-ebc
-hOS
-eKa
-oIg
+vkG
+foh
+pPU
+eWw
+ilU
+jGh
+mGA
 pdQ
 mFk
 kpB
@@ -109786,13 +109786,13 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
-oic
-oic
-oic
-oic
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
+kpB
 pIy
 pIy
 pIy
@@ -109951,15 +109951,15 @@ mFk
 mFk
 mFk
 mFk
-vht
+qje
 pdQ
-biZ
-biZ
+ixn
+ixn
 pdQ
 mFk
 mFk
 mFk
-uSP
+rqC
 mFk
 mFk
 mFk
@@ -109988,9 +109988,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -110143,25 +110143,25 @@ aam
 aam
 uxG
 iNd
-esA
+rJh
 pdQ
 pdQ
-iVg
-pdz
-ucv
-vtf
-jpn
-jpn
-pdz
-mAB
-vht
-mAB
-xvj
-vht
-vht
-cbr
+pMx
+tvQ
+ajg
+iPE
+ksS
+ksS
+tvQ
+cbj
+qje
+cbj
+baJ
+qje
+qje
+qsC
 pdQ
-gwa
+eju
 mFk
 kpB
 kpB
@@ -110190,9 +110190,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -110345,25 +110345,25 @@ aam
 aam
 uxG
 tTG
-vht
-mAB
-dfk
-vht
-mAB
-vht
-vht
-mAB
-vht
-dfk
-vSG
+qje
+cbj
+dIT
+qje
+cbj
+qje
+qje
+cbj
+qje
+dIT
+lib
 mFk
 mFk
 mFk
-mAB
-dfk
-vht
-vht
-xSz
+cbj
+dIT
+qje
+qje
+gwt
 mFk
 kpB
 kpB
@@ -110392,9 +110392,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -110547,25 +110547,25 @@ aam
 aam
 uxG
 aSa
-vht
-vht
-vht
-vht
-vht
-vht
-vht
-vht
-vht
-vht
-vSG
+qje
+qje
+qje
+qje
+qje
+qje
+qje
+qje
+qje
+qje
+lib
 mFk
 nag
 pdQ
-vht
-vht
-mUK
-vht
-vht
+qje
+qje
+uyj
+qje
+qje
 mFk
 kpB
 kpB
@@ -110594,9 +110594,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -110754,20 +110754,20 @@ ucD
 ctX
 pdQ
 pdQ
-mUK
-dfk
+uyj
+dIT
 pdQ
-jKK
+kFS
 pdQ
-vSG
+lib
 mFk
 nag
 pdQ
-vht
-vht
-vht
-hrQ
-mOc
+qje
+qje
+qje
+wyg
+oJP
 mFk
 mFk
 kpB
@@ -110796,9 +110796,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -110955,22 +110955,22 @@ gqX
 kRM
 tRo
 pdQ
-ldj
-vht
-vht
-ldj
+jlr
+qje
+qje
+jlr
 pdQ
 pdQ
-vSG
+lib
 mFk
 mFk
 mFk
-fHe
-vht
-vht
-vht
-ivt
-iVg
+qhM
+qje
+qje
+qje
+oYY
+pMx
 cjh
 kpB
 kpB
@@ -110998,9 +110998,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -111157,21 +111157,21 @@ cjh
 cjh
 cjh
 mFk
-sVv
-vht
-vht
-sVv
-qLu
+nrS
+qje
+qje
+nrS
+nOx
 pdQ
-mAB
-vht
-vht
-cbr
-xSz
-ivt
-vht
-vht
-mAB
+cbj
+qje
+qje
+qsC
+gwt
+oYY
+qje
+qje
+cbj
 pdQ
 cjh
 kpB
@@ -111200,9 +111200,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -111361,19 +111361,19 @@ kpB
 mFk
 mFk
 pdQ
-gEC
+dyb
 mFk
 mFk
-bpx
-wno
-vht
-vht
-vht
-vht
-vht
-gIY
-hGV
-vSG
+koT
+eBc
+qje
+qje
+qje
+qje
+qje
+wVK
+sSA
+lib
 pdQ
 cjh
 kpB
@@ -111402,9 +111402,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -111561,22 +111561,22 @@ kpB
 fbZ
 kpB
 mFk
-fip
-vht
-vht
+uBy
+qje
+qje
 pdQ
 mFk
 mFk
 mFk
 mFk
-kmm
-mqC
-jKK
+eEF
+sAM
+kFS
 pdQ
-gIY
-iQo
-vSG
-waR
+wVK
+wxv
+lib
+ijt
 mFk
 kpB
 kpB
@@ -111604,9 +111604,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -111763,22 +111763,22 @@ kpB
 kpB
 kpB
 qpz
-cBD
-vht
-dfk
-ldj
-qyL
-nAH
+paA
+qje
+dIT
+jlr
+iHK
+ars
 pdQ
 mFk
-nXb
+sPt
 pdQ
 pdQ
-qLu
-gIY
-oNn
-vSG
-tRO
+nOx
+wVK
+chp
+lib
+mSv
 cjh
 kpB
 kpB
@@ -111806,9 +111806,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -111965,21 +111965,21 @@ kpB
 kpB
 kpB
 qpz
-biZ
-vht
-vht
+ixn
+qje
+qje
 pdQ
-aEr
-ftM
-ldj
+uEA
+gbY
+jlr
 mFk
-mEG
+fgy
 pdQ
 pdQ
 pdQ
-gIY
-bLt
-vSG
+wVK
+fmU
+lib
 pdQ
 cjh
 kpB
@@ -112008,9 +112008,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -112167,21 +112167,21 @@ kpB
 kpB
 kpB
 mFk
-eVf
-vht
-vht
+idy
+qje
+qje
 pdQ
-xGf
-ryO
+osI
+cyx
 pdQ
 mFk
-mth
+xJl
 pdQ
-ldj
-jKK
-ivt
-vht
-mAB
+jlr
+kFS
+oYY
+qje
+cbj
 pdQ
 cjh
 kpB
@@ -112210,9 +112210,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -112369,22 +112369,22 @@ iNd
 kpB
 kpB
 mFk
-kjA
-vht
-vht
-vht
-dfk
-vht
-vht
+rsm
+qje
+qje
+qje
+dIT
+qje
+qje
 mFk
-mth
-tmP
+xJl
+myq
 pdQ
 pdQ
-wno
-hrQ
-vht
-vex
+eBc
+wyg
+qje
+nNj
 mFk
 kpB
 kpB
@@ -112412,9 +112412,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -112571,13 +112571,13 @@ iNd
 iNd
 kpB
 mFk
-kAK
-mAB
-vht
-vht
-mAB
-vht
-jga
+dQq
+cbj
+qje
+qje
+cbj
+qje
+opz
 mFk
 mFk
 mFk
@@ -112614,9 +112614,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -112773,10 +112773,10 @@ uxG
 iNd
 iNd
 mFk
-hNM
-vht
-vht
-sVv
+gsp
+qje
+qje
+nrS
 pdQ
 pdQ
 pdQ
@@ -112816,9 +112816,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -113018,9 +113018,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -113220,9 +113220,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -113422,9 +113422,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -113624,9 +113624,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -113826,9 +113826,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -114028,9 +114028,9 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
-oic
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -114230,8 +114230,8 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -114432,8 +114432,8 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -114634,8 +114634,8 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -114836,8 +114836,8 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -115038,8 +115038,8 @@ kpB
 kpB
 kpB
 kpB
-oic
-oic
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -115643,7 +115643,7 @@ kpB
 kpB
 kpB
 kpB
-pCG
+pIy
 pIy
 pIy
 pIy
@@ -115845,7 +115845,7 @@ kpB
 kpB
 kpB
 kpB
-pCG
+pIy
 pIy
 pIy
 pIy
@@ -116046,8 +116046,8 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -116248,8 +116248,8 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -116449,9 +116449,9 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -116650,10 +116650,10 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -116852,10 +116852,10 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -117053,11 +117053,11 @@ kpB
 kpB
 kpB
 kpB
-pCG
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -117255,11 +117255,11 @@ kpB
 kpB
 kpB
 kpB
-kpB
-kpB
-kpB
-kpB
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -117456,12 +117456,12 @@ kpB
 kpB
 kpB
 kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -117656,14 +117656,14 @@ kpB
 kpB
 kpB
 kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -117860,12 +117860,12 @@ kpB
 kpB
 pIy
 pIy
-kpB
-kpB
-kpB
-kpB
-kpB
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -118062,12 +118062,12 @@ kpB
 pIy
 pIy
 pIy
-pCG
-pCG
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -118264,12 +118264,12 @@ pIy
 pIy
 pIy
 pIy
-pCG
-pCG
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -118466,12 +118466,12 @@ pIy
 pIy
 pIy
 pIy
-pCG
-pCG
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -118668,12 +118668,12 @@ pIy
 pIy
 pIy
 pIy
-pCG
-pCG
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
@@ -118870,12 +118870,12 @@ pIy
 pIy
 pIy
 pIy
-pCG
-pCG
-pCG
-pCG
-pCG
-pCG
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 pIy
 pIy
 pIy
