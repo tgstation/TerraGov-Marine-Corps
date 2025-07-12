@@ -347,3 +347,132 @@
 	icon_state = "tcomsatcham"
 	area_flags = NO_DROPPOD
 	requires_power = FALSE
+
+// 2 zlevel areas
+// Open Space
+/area/metnal/z2/outside
+	name = "Metnal Air Space"
+	ceiling = NONE
+	outside = TRUE
+	minimap_color = MINIMAP_AREA_CELL_MAX
+	always_unpowered = TRUE
+// Inside parent
+/area/metnal/z2/inside
+	name = "Insidez2"
+	icon_state = "red"
+	ceiling = CEILING_METAL
+	outside = FALSE
+
+//Caves
+/area/metnal/z2/caves
+	name = "Enclosed Area"
+	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
+	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
+// Headquarters
+/area/metnal/z2/inside/relay
+	name = "Private Conference Room"
+	icon_state = "conference"
+	minimap_color = MINIMAP_AREA_COMMAND
+
+/area/metnal/z2/inside/HQlvl2
+	name = "Headquarters Second Level"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
+
+/area/metnal/z2/inside/deluxbedroom
+	name = "Deluxe Command Bedrooms"
+	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_COMMAND
+
+/area/metnal/z2/inside/deluxearmory
+	name = "Command Armory"
+	icon_state = "armory"
+	minimap_color = MINIMAP_AREA_SEC
+
+/area/metnal/z2/inside/comgym
+	name = "Command Gym"
+	icon_state = "locker"
+	minimap_color = MINIMAP_AREA_LIVING
+
+//Civilian Areas
+/area/metnal/z2/inside/dorms2z
+	name = "Dormitories Second Floor"
+	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/metnal/z2/inside/theatre
+	name = "Civilian Theatre"
+	icon_state = "Theatre"
+	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
+
+/area/metnal/z2/inside/humanresources
+	name = "Human Resources"
+	icon_state = "head_quarters"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
+
+/area/metnal/z2/inside/z2gens
+	name = "Emergency Generators"
+	icon_state = "engine"
+	minimap_color = MINIMAP_AREA_ENGI
+
+//bridges
+/area/metnal/z2/inside/bridgenw
+	name = "Aerial northwest bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+
+/area/metnal/z2/inside/bridgen
+	name = "Northern bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+
+/area/metnal/z2/inside/bridgeNE
+	name = "Aerial northeast bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+
+/area/metnal/z2/inside/bridgeE
+	name = "Aerial eastern bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+
+/area/metnal/z2/inside/bridgeSE
+	name = "Aerial southeastern bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+
+//Medical areas
+/area/metnal/z2/inside/medbay2z
+	name = "Infirmary Second Floor"
+	icon_state = "medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY
+
+/area/metnal/z2/inside/Emergencyevac
+	name = "Fast Evacuation"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
+	area_flags = CEILING_NONE
+
+//Marshalls (now a prison aparently)
+/area/metnal/z2/inside/Prison
+	name = "Reeducation Center"
+	icon_state = "sec_prison"
+	minimap_color = MINIMAP_AREA_CELL_HIGH
+
+//Outside areas
+/area/metnal/z2/outside/hangar
+	name = "Command Hangar"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_ESCAPE
+	area_flags = CEILING_NONE
+
+/area/metnal/z2/outside/hterrace
+	name = "Headquarters Terrace"
+	icon_state = "quart"
+	minimap_color = MINIMAP_AREA_COLONY
+	area_flags = CEILING_NONE
+
+
