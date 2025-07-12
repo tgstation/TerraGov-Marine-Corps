@@ -18,7 +18,7 @@
 		return
 	var/datum/action/ability/xeno_action/regenerate_skin/regenerate_skin = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!regenerate_skin)
-		return FALSE
+		return
 	regenerate_skin.debuff_removal_amount += -get_debuff_stacks(new_amount - previous_amount)
 
 /// Returns the amount that Regenerate Skin will increase negative status effects by.
@@ -84,7 +84,7 @@
 /datum/mutation_upgrade/shell/carapace_regrowth/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/regenerate_skin/regenerate_skin = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!regenerate_skin)
-		return FALSE
+		return
 	regenerate_skin.heal_multiplier += get_heal_multiplier(0)
 	regenerate_skin.armor_debuff_amount += armor_debuff_amount
 	return ..()
@@ -92,7 +92,7 @@
 /datum/mutation_upgrade/shell/carapace_regrowth/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/regenerate_skin/regenerate_skin = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!regenerate_skin)
-		return FALSE
+		return
 	regenerate_skin.heal_multiplier -= get_heal_multiplier(0)
 	regenerate_skin.armor_debuff_amount -= armor_debuff_amount
 	return ..()
@@ -103,7 +103,7 @@
 		return
 	var/datum/action/ability/xeno_action/regenerate_skin/regenerate_skin = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!regenerate_skin)
-		return FALSE
+		return
 	regenerate_skin.heal_multiplier += get_heal_multiplier(new_amount - previous_amount, FALSE)
 
 /// Returns the amount to increase Regenerate Skin's healing multiplier by.
@@ -129,7 +129,7 @@
 /datum/mutation_upgrade/spur/breathtaking_spin/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/tail_sweep/tail_sweep = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!tail_sweep)
-		return FALSE
+		return
 	tail_sweep.damage_multiplier += get_damage_multiplier(0)
 	tail_sweep.damage_type = STAMINA
 	tail_sweep.paralyze_duration -= initial(tail_sweep.paralyze_duration)
@@ -138,7 +138,7 @@
 /datum/mutation_upgrade/spur/breathtaking_spin/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/tail_sweep/tail_sweep = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!tail_sweep)
-		return FALSE
+		return
 	tail_sweep.damage_multiplier -= get_damage_multiplier(0)
 	tail_sweep.damage_type = initial(tail_sweep.damage_type)
 	tail_sweep.paralyze_duration += initial(tail_sweep.paralyze_duration)
@@ -150,7 +150,7 @@
 		return
 	var/datum/action/ability/xeno_action/tail_sweep/tail_sweep = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!tail_sweep)
-		return FALSE
+		return
 	tail_sweep.damage_multiplier += get_damage_multiplier(new_amount - previous_amount, FALSE)
 
 /// Returns the amount to increase Tail Swipe's damage multiplier by.
@@ -173,14 +173,14 @@
 /datum/mutation_upgrade/spur/power_spin/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/tail_sweep/tail_sweep = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!tail_sweep)
-		return FALSE
+		return
 	tail_sweep.knockback_distance += knockback_amount
 	return ..()
 
 /datum/mutation_upgrade/spur/power_spin/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/tail_sweep/tail_sweep = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!tail_sweep)
-		return FALSE
+		return
 	tail_sweep.knockback_distance -= knockback_amount
 	return ..()
 
@@ -190,7 +190,7 @@
 		return
 	var/datum/action/ability/xeno_action/tail_sweep/tail_sweep = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/tail_sweep]
 	if(!tail_sweep)
-		return FALSE
+		return
 	tail_sweep.stagger_duration += get_stagger_duration(new_amount - previous_amount)
 
 /// Returns the amount of deciseconds to increase Tail Swipe's stagger duration by.
@@ -261,7 +261,7 @@
 		return
 	var/datum/action/ability/xeno_action/regenerate_skin/regenerate_skin = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!regenerate_skin)
-		return FALSE
+		return
 	regenerate_skin.resin_jelly_duration += get_duration(new_amount - previous_amount)
 
 /// Returns the amount of deciseconds that the Resin Jelly status effect will have.
@@ -284,7 +284,7 @@
 /datum/mutation_upgrade/veil/slow_and_steady/on_mutation_enabled()
 	var/datum/action/ability/xeno_action/fortify/fortify = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!fortify)
-		return FALSE
+		return
 
 	fortify.should_immobilize = FALSE
 	fortify.set_movement_delay(fortify.movement_delay + get_delay(0))
@@ -293,7 +293,7 @@
 /datum/mutation_upgrade/veil/slow_and_steady/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/fortify/fortify = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!fortify)
-		return FALSE
+		return
 	fortify.should_immobilize = initial(fortify.should_immobilize)
 	fortify.set_movement_delay(fortify.movement_delay - get_delay(0))
 	return ..()
@@ -304,7 +304,7 @@
 		return
 	var/datum/action/ability/xeno_action/fortify/fortify = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!fortify)
-		return FALSE
+		return
 	fortify.set_movement_delay(fortify.movement_delay + get_delay(new_amount - previous_amount, FALSE))
 
 /// Returns the amount of deciseconds of delay to add to movement while Fortify is active.
@@ -328,7 +328,7 @@
 		return
 	var/datum/action/ability/xeno_action/regenerate_skin/regenerate_skin = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!regenerate_skin)
-		return FALSE
+		return
 	regenerate_skin.ally_unsunder_multiplier += get_multiplier(new_amount - previous_amount)
 
 /// Returns the amount to increase Regenerate Skin's ally sunder healing multiplier by.
