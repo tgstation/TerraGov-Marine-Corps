@@ -354,6 +354,7 @@
 	name = "Metnal Air Space"
 	ceiling = NONE
 	outside = TRUE
+	minimap_color = MINIMAP_AREA_CELL_MAX
 //Caves
 /area/metnal/z2/caves
 	name = "Enclosed Area"
@@ -404,6 +405,13 @@
 	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
 	ceiling = CEILING_OBSTRUCTED
 
+/area/metnal/z2/inside/humanresources
+	name = "Human Resources"
+	icon_state = "head_quarters"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
+	ceiling = CEILING_OBSTRUCTED
+
+//bridges
 /area/metnal/z2/inside/bridgenw
 	name = "Aerial northwest bridge"
 	icon_state = "bridge"
@@ -422,6 +430,18 @@
 	minimap_color = MINIMAP_AREA_COLONY
 	ceiling = CEILING_OBSTRUCTED
 
+/area/metnal/z2/inside/bridgeE
+	name = "Aerial eastern bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+	ceiling = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/bridgeSE
+	name = "Aerial southeastern bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COLONY
+	ceiling = CEILING_OBSTRUCTED
+
 //Medical areas
 /area/metnal/z2/inside/medbay2z
 	name = "Infirmary Second Floor"
@@ -434,6 +454,13 @@
 	icon_state = "red"
 	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
 	area_flags = CEILING_NONE
+
+//Marshalls (now a prison aparently)
+/area/metnal/z2/inside/Prison
+	name = "Reeducation Center"
+	icon_state = "sec_prison"
+	minimap_color = MINIMAP_AREA_CELL_HIGH
+	area_flags = CEILING_OBSTRUCTED
 
 //Outside areas
 /area/metnal/z2/outside/hangar
