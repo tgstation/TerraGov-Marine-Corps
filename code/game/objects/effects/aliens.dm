@@ -24,7 +24,7 @@
 	/// Who created that spray
 	var/mob/xeno_owner
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner, start_on_cooldown) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
 	notify_ai_hazard()
 	START_PROCESSING(SSprocessing, src)
