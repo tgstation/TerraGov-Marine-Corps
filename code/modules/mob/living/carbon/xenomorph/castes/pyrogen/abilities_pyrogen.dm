@@ -6,7 +6,7 @@
 	action_icon_state = "fireslash"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage depending on how many fire stacks they have."
-	cooldown_duration = 4 SECONDS
+	cooldown_duration = 12 SECONDS
 	ability_cost = 30
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRECHARGE,
