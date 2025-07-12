@@ -122,6 +122,11 @@
 	icon = 'icons/obj/items/guns/attachments/scope_64.dmi'
 	icon_state = "t76scope"
 
+/obj/item/attachable/scope/laser_sniper_scope
+	name = "Terra Experimental laser sniper rifle rail scope"
+	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment."
+	icon_state = "tes"
+
 /obj/item/attachable/scope/unremovable
 	attach_features_flags = ATTACH_ACTIVATION
 
@@ -181,11 +186,6 @@
 	zoom_tile_offset = 7
 	zoom_viewsize = 2
 	deployed_scope_rezoom = FALSE
-
-/obj/item/attachable/scope/unremovable/laser_sniper_scope
-	name = "Terra Experimental laser sniper rifle rail scope"
-	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment."
-	icon_state = "tes"
 
 /obj/item/attachable/scope/unremovable/plasma_sniper_scope
 	name = "PL-02 sniper rifle rail scope"
