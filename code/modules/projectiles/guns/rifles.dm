@@ -2860,21 +2860,19 @@
 	)
 
 	attachable_offset = list("muzzle_x" = 63, "muzzle_y" = 19,"rail_x" = 27, "rail_y" = 23, "under_x" = 40, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
-	burst_amount = 4
+	burst_amount = 3
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-	burst_delay = 0.15 SECONDS
+	burst_delay = 0.25 SECONDS
+	extra_delay = 0.15 SECONDS
 	scatter = 0
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.35 SECONDS
+	damage_mult = 0.5
 
 /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
 /obj/item/weapon/gun/rifle/vsd_rifle/medic
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
-
-/obj/item/weapon/gun/rifle/vsd_rifle/export
-	icon_state = "c550_export"
-	worn_icon_state = "c550_export"
 
 // CC/74
 
@@ -2917,7 +2915,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 
-	fire_delay = 0.2	 SECONDS
+	fire_delay = 0.25 SECONDS
 	scatter = 3
 	burst_amount = 1
 	movement_acc_penalty_mult = 8
@@ -2999,7 +2997,7 @@
 	item_map_variant_flags = NONE
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 32, "rail_y" = 28, "under_x" = 36, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
 
-	fire_delay = 1 SECONDS
+	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.15
 	burst_amount = 1
 	scatter = -2

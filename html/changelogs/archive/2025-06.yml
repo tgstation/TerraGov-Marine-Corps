@@ -132,3 +132,22 @@
   - balance: Increased minion maw cooldown to 10 minutes.
   blackdav123:
   - balance: SL and FC can now vend Skink scouting drones for 10 points.
+2025-06-29:
+  Arturlang:
+  - rscadd: new bike sounds, now has idling noises too
+  - rscadd: you can now rev the motorbike's engine on alt click
+  Lumipharon:
+  - bugfix: fixed a few turfs with missing damaged icons
+  - balance: Medium neurotoxin gas extinguishes fire like boiler neurotoxin
+  - bugfix: fixed a couple of NPC bugs
+  Rug-Dealer:
+  - bugfix: You can no longer equip items if you don't actually have the limbs for
+      them.
+  - qol: Radiopack beacon now moves with you
+  - bugfix: Using a jetpack during a do_after no longer consumes the cooldown.
+  - rscadd: Hand labelers and cards can now be found in the crash and valhalla marine
+      vendors, under the utility tab.
+  Runian:
+  - rscdel: CC/67 assault rifle can no longer be purchased from req as the export
+      version no longer exists.
+  - bugfix: You no longer can do *trick with grab item in hand.
