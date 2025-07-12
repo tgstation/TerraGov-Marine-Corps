@@ -356,6 +356,13 @@
 	outside = TRUE
 	minimap_color = MINIMAP_AREA_CELL_MAX
 	always_unpowered = TRUE
+// Inside parent
+/area/metnal/z2/inside
+	name = "Insidez2"
+	icon_state = "red"
+	ceiling = CEILING_METAL
+	outside = FALSE
+
 //Caves
 /area/metnal/z2/caves
 	name = "Enclosed Area"
@@ -363,93 +370,85 @@
 	area_flags = CANNOT_NUKE
 	minimap_color = MINIMAP_AREA_CAVES
 	always_unpowered = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
 // Headquarters
 /area/metnal/z2/inside/relay
 	name = "Private Conference Room"
 	icon_state = "conference"
 	minimap_color = MINIMAP_AREA_COMMAND
-	area_flags = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/HQlvl2
 	name = "Headquarters Second Level"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
-	area_flags = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/deluxbedroom
 	name = "Deluxe Command Bedrooms"
 	icon_state = "Sleep"
 	minimap_color = MINIMAP_AREA_COMMAND
-	area_flags = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/deluxearmory
 	name = "Command Armory"
 	icon_state = "armory"
 	minimap_color = MINIMAP_AREA_SEC
-	area_flags = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/comgym
 	name = "Command Gym"
 	icon_state = "locker"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = CEILING_OBSTRUCTED
 
 //Civilian Areas
 /area/metnal/z2/inside/dorms2z
 	name = "Dormitories Second Floor"
 	icon_state = "Sleep"
 	minimap_color = MINIMAP_AREA_LIVING
-	ceiling = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/theatre
 	name = "Civilian Theatre"
 	icon_state = "Theatre"
 	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
-	ceiling = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/humanresources
 	name = "Human Resources"
 	icon_state = "head_quarters"
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
-	ceiling = CEILING_OBSTRUCTED
+
+/area/metnal/z2/inside/z2gens
+	name = "Emergency Generators"
+	icon_state = "engine"
+	minimap_color = MINIMAP_AREA_ENGI
 
 //bridges
 /area/metnal/z2/inside/bridgenw
 	name = "Aerial northwest bridge"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COLONY
-	ceiling = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/bridgen
 	name = "Northern bridge"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COLONY
-	ceiling = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/bridgeNE
 	name = "Aerial northeast bridge"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COLONY
-	ceiling = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/bridgeE
 	name = "Aerial eastern bridge"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COLONY
-	ceiling = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/bridgeSE
 	name = "Aerial southeastern bridge"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COLONY
-	ceiling = CEILING_OBSTRUCTED
 
 //Medical areas
 /area/metnal/z2/inside/medbay2z
 	name = "Infirmary Second Floor"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
-	area_flags = CEILING_OBSTRUCTED
 
 /area/metnal/z2/inside/Emergencyevac
 	name = "Fast Evacuation"
@@ -462,7 +461,6 @@
 	name = "Reeducation Center"
 	icon_state = "sec_prison"
 	minimap_color = MINIMAP_AREA_CELL_HIGH
-	area_flags = CEILING_OBSTRUCTED
 
 //Outside areas
 /area/metnal/z2/outside/hangar
