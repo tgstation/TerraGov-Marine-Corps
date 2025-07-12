@@ -170,7 +170,6 @@
 	var/area/curr_area = get_area(location)
 	if(check_for_blacklist(source))
 		INVOKE_ASYNC(src, PROC_REF(deactivate), source)
-		parent.update_appearance()
 		return
 	beacon_datum.drop_location = location
 	GLOB.supply_beacon -= beacon_datum.name //prevents duplicate entries in supply console
