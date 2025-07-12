@@ -2487,9 +2487,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/metnal/inside/emergencyequip)
 "bFr" = (
-/obj/structure/stairs/multiz/directional/south{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/south,
 /turf/open/floor/prison/darkred{
 	dir = 10
 	},
@@ -3827,9 +3825,7 @@
 /turf/open/floor/prison,
 /area/metnal/z2/inside/Prison)
 "cxn" = (
-/obj/structure/stairs/multiz/directional/south{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/south,
 /turf/open/floor/urban/tile/tileblackcheckered,
 /area/metnal/inside/Headquarters)
 "cxv" = (
@@ -5181,9 +5177,7 @@
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
 "dgR" = (
-/obj/structure/stairs/multiz/directional/east{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/east,
 /turf/open/floor/plating,
 /area/metnal/outside/central)
 "dgX" = (
@@ -5645,9 +5639,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/structure/stairs/multiz/directional/east{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/east,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
 "dwJ" = (
@@ -10132,9 +10124,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/research)
 "gmu" = (
-/obj/structure/stairs/multiz/directional/north{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/north,
 /turf/open/floor/mainship,
 /area/metnal/inside/Headquarters)
 "gmJ" = (
@@ -13091,9 +13081,7 @@
 	},
 /area/metnal/outside/north)
 "idz" = (
-/obj/structure/stairs/multiz/directional/west{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/west,
 /turf/open/floor/plating,
 /area/metnal/outside/central)
 "idC" = (
@@ -14730,9 +14718,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
 "jhh" = (
-/obj/structure/stairs/multiz/directional/north{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/north,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
 "jhi" = (
@@ -18664,9 +18650,7 @@
 	},
 /area/metnal/outside/northwest)
 "lzZ" = (
-/obj/structure/stairs/multiz/directional/east{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/east,
 /turf/open/floor/plating,
 /area/metnal/inside/Headquarters)
 "lAk" = (
@@ -24482,9 +24466,7 @@
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
 "paE" = (
-/obj/structure/stairs/multiz/directional/north{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/north,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "paN" = (
@@ -26136,9 +26118,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
 "qfg" = (
-/obj/structure/stairs/multiz/directional/west{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/west,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "qfh" = (
@@ -28184,9 +28164,7 @@
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
 "rkJ" = (
-/obj/structure/stairs/multiz/directional/south{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/south,
 /turf/open/floor/prison/darkred{
 	dir = 6
 	},
@@ -28533,9 +28511,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "rwt" = (
-/obj/structure/stairs/multiz/directional/west{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/west,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "rwv" = (
@@ -28765,9 +28741,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/northwest)
 "rGg" = (
-/obj/structure/stairs/multiz/directional/east{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/east,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "rGj" = (
@@ -33139,9 +33113,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/stairs/multiz/directional/north{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/north,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "uif" = (
@@ -36422,9 +36394,7 @@
 /area/metnal/z2/inside/humanresources)
 "wdu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/stairs/multiz/directional/east{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/east,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
 "wdC" = (
@@ -36499,9 +36469,7 @@
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
 "wfy" = (
-/obj/structure/stairs/multiz/directional/west{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/west,
 /turf/open/floor/urban/carpet/carpetpatternblue,
 /area/metnal/inside/executivedorms)
 "wfA" = (
@@ -38521,9 +38489,7 @@
 /area/metnal/caves/southwest/garbledradio)
 "xtG" = (
 /obj/structure/cable,
-/obj/structure/stairs/multiz/directional/south{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/south,
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
 "xtN" = (
@@ -38644,9 +38610,7 @@
 /turf/open/lavaland/basalt/cave/corner,
 /area/metnal/caves/south/garbledradio)
 "xxm" = (
-/obj/structure/stairs/multiz/directional/south{
-	layer = 10025
-	},
+/obj/structure/stairs/multiz/directional/south,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "xxn" = (
