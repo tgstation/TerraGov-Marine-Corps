@@ -355,12 +355,14 @@
 	ceiling = NONE
 	outside = TRUE
 	minimap_color = MINIMAP_AREA_CELL_MAX
+	always_unpowered = TRUE
 //Caves
 /area/metnal/z2/caves
 	name = "Enclosed Area"
 	icon_state = "transparent"
 	area_flags = CANNOT_NUKE
-
+	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 // Headquarters
 /area/metnal/z2/inside/relay
 	name = "Private Conference Room"
