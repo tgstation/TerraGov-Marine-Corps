@@ -111,7 +111,7 @@
 	. = new /obj/effect/xenomorph/spray(spraying_turf, duration, damage, xenomorph_creator)
 	if(should_acid_act)
 		if(!xenomorph_creator)
-			CRASH("xenomorph_spray was called without an xenomorph_creator.")
+			CRASH("xenomorph_spray wanted should_acid_act, but had no xenomorph_creator.")
 		for(var/atom/atom_in_turf AS in spraying_turf)
 			atom_in_turf.acid_spray_act(xenomorph_creator)
 
