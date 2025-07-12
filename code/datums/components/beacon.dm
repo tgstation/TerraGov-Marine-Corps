@@ -117,11 +117,12 @@
 	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
 	user.visible_message("[user] activates [source]'s signal.")
 	user.show_message(span_notice("The [source] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(source)]\""), EMOTE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
-	beacon_datum = new /datum/supply_beacon("[user.name] + [curr_area]", get_turf(source), user.faction)
+	beacon_datum = new /datum/supply_beacon("[user.name] + [curr_area] + [initial(source.name)]", get_turf(source), user.faction)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
-	RegisterSignal(source, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
 	if(ismob(source.loc))
 		RegisterSignal(source.loc, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
+	else
+		RegisterSignal(source, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
 	RegisterSignal(source, COMSIG_ITEM_EQUIPPED, PROC_REF(equip))
 	RegisterSignal(source, COMSIG_ITEM_DROPPED, PROC_REF(dropped))
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SUPPLY_BEACON_CREATED, src)
@@ -158,6 +159,8 @@
 	UnregisterSignal(source,COMSIG_MOVABLE_MOVED)
 	if(source.loc)
 		UnregisterSignal(source.loc,COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(source, COMSIG_ITEM_EQUIPPED)
+	UnregisterSignal(source, COMSIG_ITEM_DROPPED)
 	source.update_appearance()
 
 ///Updates position and name of the beacon, or alternatively turns if off if it's in a blacklisted area.
@@ -167,9 +170,12 @@
 	var/area/curr_area = get_area(location)
 	if(check_for_blacklist(source))
 		INVOKE_ASYNC(src, PROC_REF(deactivate), source)
+		parent.update_appearance()
 		return
 	beacon_datum.drop_location = location
-	beacon_datum.name = "[src.activator.name] + [curr_area]"
+	GLOB.supply_beacon -= beacon_datum.name //prevents duplicate entries in supply console
+	beacon_datum.name = "[src.activator.name] + [curr_area] + [initial(source.name)]"
+	GLOB.supply_beacon[beacon_datum.name] = src
 	var/atom/movable/movableparent = parent
 	movableparent.update_appearance()
 
@@ -187,6 +193,8 @@
 ///Called on picking up or otherwise equipping the beacon
 /datum/component/beacon/proc/equip(obj/item/source)
 	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(source.loc, COMSIG_MOVABLE_MOVED)
 	RegisterSignal(source.loc, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
 
 ///Called on dropping the beacon
