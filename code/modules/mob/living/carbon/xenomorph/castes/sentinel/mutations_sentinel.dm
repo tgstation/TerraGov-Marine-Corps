@@ -6,7 +6,7 @@
 	desc = "Every 100/75/50 damage you take, 1 stacks of Intoxicated will be applied to nearby humans."
 	/// For the first structure, the damage needed to be taken.
 	var/damage_initial = 125
-	/// For each structure, the additional damage needed to be taken.
+	/// For each structure, the damage needed to be taken.
 	var/damage_per_structure = -25
 	/// The amount of damage taken so far before threshold is calculated.
 	var/damage_taken_so_far = 0
@@ -90,9 +90,9 @@
 /datum/mutation_upgrade/spur/acidic_slasher
 	name = "Acidic Slasher"
 	desc = "Your attack delay will be 0.05/0.1/0.15s faster and will always apply 1/2/3 stacks of Intoxicated against humans, but all melee damage is reduced by 50%."
-	/// For each structure, the additional amount of deciseconds to decrease their next move by.
+	/// For each structure, the amount of deciseconds to decrease their next move by.
 	var/attack_speed_decrease_per_structure = 0.5
-	/// For each structure, the additional amount of intoxicated to apply. decisecond to decrease their next move by.
+	/// For each structure, the amount of intoxicated to apply.
 	var/intoxicated_stack_per_structure = 1
 	/// The amount to decrease the melee damage modifier by.
 	var/melee_damage_modifier = 0.5
