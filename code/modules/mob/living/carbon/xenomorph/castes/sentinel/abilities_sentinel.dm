@@ -173,8 +173,10 @@
 
 	var/bonus_potency = 0
 	if(xenochemicals_unit_per_stack)
-		for(var/datum/reagent/toxin/reagent_typepath_in_list in GLOB.defiler_toxins_typecache_list)
-			bonus_potency += xeno_target.reagents.get_reagent_amount(reagent_typepath_in_list)
+		for(var/datum/reagent/target_reagent AS in xeno_target.reagents.reagent_list)
+			if(!is_type_in_typecache(target_reagent, GLOB.defiler_toxins_typecache_list))
+				continue
+			bonus_potency += target_reagent.reagents.get_reagent_amount(target_reagent)
 	bonus_potency = round(bonus_potency) / xenochemicals_unit_per_stack
 	var/drain_potency = (debuff.stacks + bonus_potency) * SENTINEL_DRAIN_MULTIPLIER * (xeno_owner.Adjacent(xeno_target) ? 1 : ranged_effectiveness)
 	if(debuff.stacks > debuff.max_stacks - 10)
