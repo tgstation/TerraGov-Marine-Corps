@@ -138,6 +138,7 @@
 	icon_state = "shuttle"
 	minimap_color = MINIMAP_AREA_LZ
 	ceiling = CEILING_NONE
+	area_flags = NEAR_FOB
 
 /area/tinyblue/outside/building/marshal
 	name = "Marshals Office"
