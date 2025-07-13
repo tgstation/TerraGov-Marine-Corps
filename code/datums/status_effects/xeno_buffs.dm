@@ -8,6 +8,11 @@
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
 
+/datum/status_effect/resin_jelly_coating/on_creation(mob/living/new_owner, set_duration)
+	if(set_duration)
+		duration = set_duration
+	return ..()
+
 /datum/status_effect/resin_jelly_coating/on_apply()
 	if(!isxeno(owner))
 		return FALSE
