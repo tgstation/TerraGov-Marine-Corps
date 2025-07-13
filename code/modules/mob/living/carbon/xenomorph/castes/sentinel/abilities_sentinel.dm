@@ -173,15 +173,10 @@
 
 	var/bonus_potency = 0
 	if(xenochemicals_unit_per_stack)
-		var/neurotox_amount = xeno_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin)
-		var/hemodile_amount = xeno_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)
-		var/transvitox_amount = xeno_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
-		var/sanguinal_amount = xeno_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)
-		var/ozelomelyn_amount = xeno_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn)
-		bonus_potency = round((neurotox_amount + hemodile_amount + transvitox_amount + sanguinal_amount + ozelomelyn_amount) / xenochemicals_unit_per_stack)
+		for(var/datum/reagent/toxin/reagent_typepath_in_list in GLOB.defiler_toxins_typecache_list)
+			bonus_potency += xeno_target.reagents.get_reagent_amount(reagent_typepath_in_list)
+	bonus_potency = round(bonus_potency) / xenochemicals_unit_per_stack
 	var/drain_potency = (debuff.stacks + bonus_potency) * SENTINEL_DRAIN_MULTIPLIER * (xeno_owner.Adjacent(xeno_target) ? 1 : ranged_effectiveness)
-	to_chat(world, "Bonus count was: [bonus_potency] Debuff count was: [debuff.stacks]")
-	to_chat(world, "Final drain potency was: [drain_potency]")
 	if(debuff.stacks > debuff.max_stacks - 10)
 		xeno_target.emote("scream")
 		xeno_owner.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
