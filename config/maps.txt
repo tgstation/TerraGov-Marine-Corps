@@ -118,3 +118,7 @@ map metnal
 map fiorina
 	minplayers 65
 endmap
+
+map smallblue
+	maxplayers 40
+endmap
