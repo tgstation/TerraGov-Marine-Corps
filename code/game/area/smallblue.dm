@@ -81,6 +81,7 @@
 /area/tinyblue/caves/n
 	name = "Northern Caverns"
 	icon_state = "north"
+	ceiling = CEILING_UNDERGROUND
 
 /area/tinyblue/caves/facility
 	name = "Unknown Area"
