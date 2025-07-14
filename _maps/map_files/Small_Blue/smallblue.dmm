@@ -1885,13 +1885,10 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 4
 	},
-/obj/item/toy/plush/rouny{
-	desc = "He forgor skull emoji";
-	name = "Tery"
-	},
 /obj/item/reagent_containers/cup/soda_cans/cola{
 	pixel_y = -10
 	},
+/obj/item/toy/plush/rouny,
 /turf/open/floor/wood,
 /area/tinyblue/caves/facility/omicron)
 "ciT" = (
@@ -8003,10 +8000,7 @@
 /obj/structure/bed/chair/sofa{
 	dir = 4
 	},
-/obj/item/toy/plush/moth{
-	name = "Atropos";
-	desc = "What the glorp is he doing here. Why does he need 3 monitors? Who knows..."
-	},
+/obj/item/toy/plush/moth,
 /turf/open/floor/wood,
 /area/tinyblue/caves/facility/omicron)
 "jiW" = (
