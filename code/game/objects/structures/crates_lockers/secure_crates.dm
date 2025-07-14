@@ -125,8 +125,8 @@
 	icon_unlocked = "secure_unlocked_weapons"
 
 /obj/structure/closet/crate/secure/nanotrasen
-	name = "secure Nanotrasen crate"
-	desc = "A secure crate with a Nanotrasen insignia on it."
+	name = "secure Ninetails crate"
+	desc = "A secure crate with a Ninetails insignia on it."
 	icon_state = "secure_locked_nanotrasen"
 	icon_opened = "secure_open_nanotrasen"
 	icon_locked = "secure_locked_nanotrasen"

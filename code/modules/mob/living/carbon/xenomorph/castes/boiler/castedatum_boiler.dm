@@ -56,15 +56,22 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/xeno_action/create_boiler_bomb,
 		/datum/action/ability/activable/xeno/bombard,
 		/datum/action/ability/xeno_action/toggle_long_range,
 		/datum/action/ability/xeno_action/toggle_bomb,
 		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 		/datum/action/ability/activable/xeno/acid_shroud,
 	)
 
@@ -85,8 +92,12 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/xeno_action/create_boiler_bomb,
@@ -94,6 +105,8 @@
 		/datum/action/ability/xeno_action/toggle_long_range,
 		/datum/action/ability/xeno_action/toggle_bomb,
 		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 		/datum/action/ability/activable/xeno/acid_shroud,
 	)
 
@@ -111,14 +124,20 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/xeno_action/smokescreen_spit,
 		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
 		/datum/action/ability/xeno_action/steam_rush,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 /datum/xeno_caste/boiler/sizzler/primordial
@@ -129,8 +148,12 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,
@@ -138,4 +161,6 @@
 		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
 		/datum/action/ability/xeno_action/steam_rush,
 		/datum/action/ability/activable/xeno/high_pressure_spit,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)

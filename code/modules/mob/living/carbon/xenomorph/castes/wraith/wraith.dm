@@ -9,7 +9,7 @@
 	maxHealth = 150
 	plasma_stored = 150
 	pixel_x = -16
-	tier = XENO_TIER_TWO
+	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_NORMAL
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,

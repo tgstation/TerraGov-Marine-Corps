@@ -2,10 +2,9 @@
 /datum/round_event_control/supply_drop
 	name = "Supply drop"
 	typepath = /datum/round_event/supply_drop
-	weight = 10
+	weight = 5
+	min_players = 5
 	earliest_start = 5 MINUTES
-
-	gamemode_whitelist = list("Combat Patrol", "Sensor Capture")
 
 /datum/round_event/supply_drop
 	///How long between the event firing and the supply drop actually landing
@@ -52,7 +51,9 @@
 			new /obj/item/loot_box/supply_drop/som(target_turf)
 		if(FACTION_ALIEN)
 			new /obj/effect/supply_drop/xenomorph(target_turf)
+		if(FACTION_XENO)
+			new /obj/effect/supply_drop/xenomorph(target_turf)
 		else
 			new /obj/item/loot_box/supply_drop(target_turf) //Marine box is the default
 	playsound(target_turf,'sound/effects/phasein.ogg', 80, FALSE)
-
+	qdel(src)

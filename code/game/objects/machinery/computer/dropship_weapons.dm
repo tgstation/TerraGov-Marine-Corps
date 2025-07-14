@@ -29,13 +29,18 @@
 	. = list()
 	.["equipment_data"] = list()
 	for(var/obj/effect/overlay/temp/laser_target/laser_target in GLOB.active_laser_targets)
+		if(user.faction != laser_target.faction) //we dont see others lasers
+			continue
 		var/area/laser_area = get_area(laser_target)
 		.["targets_data"] += list(list("target_name" = "[laser_target.name] ([laser_area.name])", "target_tag" = laser_target.target_id))
 	shuttle_equipments = shuttle.equipments
-	var/equipment_index = 1
-	for(var/obj/structure/dropship_equipment/equipment in shuttle.equipments)
-		.["equipment_data"] += list(list("name" = sanitize(copytext(equipment.name, 1, MAX_MESSAGE_LEN)), "equipment_tag" = equipment_index, "is_interactable" = (equipment.dropship_equipment_flags & IS_INTERACTABLE)))
+	var/equipment_index = 0
+	while(equipment_index < length(shuttle.equipments))
 		equipment_index++
+		var/obj/structure/dropship_equipment/equipment = shuttle.equipments[equipment_index]
+		if(istype(equipment))
+			.["equipment_data"] += list(list("id" = equipment_index, "name" = sanitize(copytext(equipment.name, 1, MAX_MESSAGE_LEN)), "eqp_tag" = equipment_index, "is_interactable" = (equipment.dropship_equipment_flags & IS_INTERACTABLE)))
+
 
 	.["selected_eqp_name"] = ""
 	.["selected_eqp_ammo_name"] = ""
@@ -79,7 +84,7 @@
 				L.visible_message(span_notice("[L] fumbles around figuring out how to use the automated targeting system."),
 				span_notice("You fumble around figuring out how to use the automated targeting system."))
 				var/fumbling_time = 10 SECONDS
-				if(!do_after(L, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(L, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return FALSE
 			for(var/X in GLOB.active_laser_targets)
 				var/obj/effect/overlay/temp/laser_target/LT = X
