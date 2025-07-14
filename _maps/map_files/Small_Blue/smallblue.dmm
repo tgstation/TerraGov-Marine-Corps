@@ -274,6 +274,10 @@
 	},
 /turf/open/floor,
 /area/tinyblue/outside/building/dorms/plant)
+"aoS" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/ground/sandrock,
+/area/tinyblue/caves/ne)
 "aoY" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -502,6 +506,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/tinyblue/outside/building/med)
+"ayn" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/white,
+/area/tinyblue/outside/building/virology)
 "ayD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -2611,6 +2619,12 @@
 	},
 /turf/open/floor,
 /area/tinyblue/outside/building/cargo)
+"dbi" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/dark,
+/area/tinyblue/outside/building/admin)
 "dbr" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/prison/blue{
@@ -6206,6 +6220,7 @@
 	dir = 1;
 	on = 1
 	},
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/bcircuit/anim,
 /area/tinyblue/caves/facility/lambda/s)
 "hmE" = (
@@ -9146,6 +9161,7 @@
 /turf/open/floor/prison/whitepurple,
 /area/tinyblue/caves/facility/lambda/s)
 "ksW" = (
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -11910,6 +11926,10 @@
 	dir = 10
 	},
 /area/tinyblue/outside/building/engi)
+"nwk" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/sw)
 "nwA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 1;
@@ -12911,6 +12931,10 @@
 	dir = 4
 	},
 /area/tinyblue/outside/building/engi)
+"oQP" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/tile/dark,
+/area/tinyblue/caves/se)
 "oRg" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerbloodempty,
 /obj/effect/decal/cleanable/blood,
@@ -16455,6 +16479,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/tinyblue/outside/building/mining)
 "tjj" = (
@@ -24370,7 +24395,7 @@ wuR
 uom
 uom
 rfK
-ubH
+ayn
 ubH
 rfK
 hDX
@@ -26610,7 +26635,7 @@ uJX
 uJX
 uJX
 mTG
-ycd
+nwk
 ycd
 ycd
 uJX
@@ -30247,7 +30272,7 @@ vwv
 iIH
 bOF
 ahO
-ahO
+dbi
 rMb
 rRL
 vsu
@@ -40869,7 +40894,7 @@ sAh
 sAh
 sAh
 sAh
-sAh
+oQP
 sAh
 amh
 sAh
@@ -40926,7 +40951,7 @@ cGR
 lgy
 lgy
 bWi
-bWi
+aoS
 bWi
 bWi
 lgy
