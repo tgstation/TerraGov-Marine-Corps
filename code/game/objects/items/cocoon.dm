@@ -49,6 +49,8 @@
 	SSpoints.add_tactical_psy_points(hivenumber, psych_points_output*0.25)
 	//Gives marine cloneloss for a total of 30.
 	victim.adjustCloneLoss(0.5)
+	if(GLOB.hive_datums[hivenumber].has_any_mutation_structures())
+		SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_COCOON_TICK)
 
 /obj/structure/cocoon/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
@@ -74,6 +76,8 @@
 		var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
 		hive_status.update_tier_limits()
 		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
+		if(GLOB.hive_datums[hivenumber].has_any_mutation_structures())
+			SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_COCOON_COMPLETION)
 		release_victim()
 	update_icon()
 

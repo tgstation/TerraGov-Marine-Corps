@@ -611,7 +611,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CANNOT_EVOLVE_IN_CAPTIVITY (1<<17) // Whether we cannot evolve in the research lab.
 #define CASTE_REQUIRES_FREE_TILE (1<<18) // Whether we require a free tile to evolve.
 #define CASTE_LEADER_TYPE (1<<19) // Whether this is a leader type caste (e.g. Queen/Shrike/King/Dragon). Restricts who can play these castes based on: playtime & if banned from Queen.
-#define CASTE_EXCLUDE_STRAINS (1<<20) // Excludes this caste/basetype from strain selection
+#define CASTE_EXCLUDE_STRAINS (1<<20) // Excludes this caste/basetype from strain selection.
+#define CASTE_MUTATIONS_ALLOWED (1<<21) // Whether we are allowed to access, view, and potentially purchase mutations for our caste/strain.
 // Xenomorph can_flags:
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0) // Are we allowed to carry facehuggers in our hands?
 #define CASTE_CAN_BE_GIVEN_PLASMA (1<<1) // Can we receive plasma / have our plasma be taken away?
