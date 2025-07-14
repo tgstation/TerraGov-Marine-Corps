@@ -4396,7 +4396,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/tinyblue/caves/w)
 "feX" = (
@@ -6596,11 +6595,6 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/grass,
 /area/tinyblue/outside/building/admin)
-"hMm" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/w)
 "hMD" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -10445,12 +10439,9 @@
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo)
 "lQc" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/bluefrostwall,
-/area/tinyblue/caves/rock)
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/sw)
 "lQm" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/green/whitegreen{
@@ -11425,10 +11416,6 @@
 /obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/tinyblue/caves/ne)
-"mVj" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/w)
 "mVk" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -19053,8 +19040,9 @@
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta)
 "wgz" = (
-/turf/closed/wall,
-/area/tinyblue/outside/building/virology)
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/sw)
 "whu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -21845,19 +21833,19 @@ ggf
 ggf
 rGK
 ggf
-lQc
-xGy
-xGy
-xGy
-xGy
-dFY
-dFY
-dFY
-dFY
-dFY
-dFY
-dFY
-dFY
+rTP
+uJX
+uJX
+uJX
+uJX
+ldL
+ldL
+ldL
+ldL
+ldL
+ldL
+ldL
+ldL
 ldL
 ldL
 ldL
@@ -21992,7 +21980,7 @@ wuj
 wuj
 uBs
 ggf
-lQc
+rTP
 uJX
 uJX
 uJX
@@ -22004,7 +21992,7 @@ ldL
 ldL
 ldL
 ldL
-dFY
+ldL
 ldL
 ldL
 ldL
@@ -22139,7 +22127,7 @@ wuj
 lDU
 esp
 ggf
-lQc
+rTP
 uJX
 uJX
 uJX
@@ -22151,7 +22139,7 @@ uJX
 uJX
 uJX
 uJX
-dFY
+ldL
 ldL
 ldL
 ldL
@@ -22286,7 +22274,7 @@ xCx
 esp
 esp
 ggf
-lQc
+rTP
 uJX
 uJX
 uJX
@@ -22298,7 +22286,7 @@ uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -22433,7 +22421,7 @@ cHB
 tRZ
 esp
 ggf
-lQc
+rTP
 uJX
 uJX
 uJX
@@ -22445,7 +22433,7 @@ uwk
 uJX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -22580,19 +22568,19 @@ xCx
 xCx
 esp
 ggf
-lQc
+rTP
 uJX
 uwk
 uwk
 uwk
 uwk
 wce
-mVj
 uwk
 uwk
 uwk
 uwk
-xGy
+uwk
+uJX
 uJX
 uJX
 uJX
@@ -22624,16 +22612,16 @@ uwk
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
 uJX
 uJX
 uJX
@@ -22739,7 +22727,7 @@ uwk
 wce
 uwk
 uwk
-jJO
+uwk
 uJX
 uJX
 uwk
@@ -22761,9 +22749,9 @@ cGh
 jGC
 cIc
 cGh
-wgz
-wgz
-wgz
+cGh
+cGh
+cGh
 uwk
 wce
 uwk
@@ -22771,8 +22759,8 @@ uwk
 uwk
 uwk
 uwk
+jJO
 uwk
-uwk
 uJX
 uJX
 uJX
@@ -22780,7 +22768,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -22886,7 +22874,7 @@ uwk
 uwk
 uwk
 uwk
-jJO
+uwk
 uwk
 rtc
 uwk
@@ -22910,7 +22898,7 @@ jGC
 cGh
 hyu
 izK
-wgz
+cGh
 uJX
 uJX
 rtc
@@ -22918,7 +22906,7 @@ wce
 uwk
 uwk
 uwk
-uwk
+jJO
 uwk
 rtc
 uJX
@@ -22927,8 +22915,8 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
+xGy
+xGy
 uJX
 uJX
 uJX
@@ -23033,7 +23021,7 @@ uwk
 uwk
 uwk
 uwk
-jJO
+uwk
 wce
 uwk
 uwk
@@ -23057,7 +23045,7 @@ khZ
 uaK
 cQw
 ubH
-wgz
+cGh
 uJX
 uJX
 uwk
@@ -23065,7 +23053,7 @@ uwk
 uwk
 uwk
 uJX
-uJX
+xGy
 uwk
 uwk
 uJX
@@ -23075,7 +23063,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -23180,7 +23168,7 @@ uJX
 uJX
 uwk
 uwk
-jJO
+uwk
 uwk
 uwk
 uJX
@@ -23204,7 +23192,7 @@ hoo
 cGh
 oQD
 joI
-wgz
+cGh
 uJX
 uJX
 uwk
@@ -23212,7 +23200,7 @@ uwk
 uwk
 uJX
 uJX
-uJX
+xGy
 uwk
 rtc
 ycd
@@ -23222,7 +23210,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -23327,7 +23315,7 @@ uJX
 uJX
 uJX
 uJX
-jJO
+uwk
 uwk
 uwk
 uJX
@@ -23340,9 +23328,9 @@ enY
 enY
 cKI
 enY
-wgz
-wgz
-wgz
+cGh
+cGh
+cGh
 cGh
 rfK
 rfK
@@ -23351,7 +23339,7 @@ rfK
 cGh
 hdQ
 ioY
-wgz
+cGh
 uJX
 uJX
 uwk
@@ -23359,7 +23347,7 @@ wce
 uwk
 uJX
 uJX
-uJX
+xGy
 uJX
 uwk
 ycd
@@ -23369,7 +23357,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -23471,10 +23459,10 @@ uJX
 uJX
 uJX
 uJX
-xGy
-xGy
-xGy
-xGy
+uJX
+uJX
+uJX
+uJX
 uwk
 uwk
 uJX
@@ -23487,18 +23475,18 @@ ipx
 rMK
 wSB
 lHB
-wgz
+cGh
 bbX
 rsi
-wgz
+cGh
 twg
 oWd
 ubH
 mld
-wgz
+cGh
 qiF
 iyQ
-wgz
+cGh
 uJX
 uJX
 uwk
@@ -23506,17 +23494,17 @@ uwk
 wce
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 ycd
 ycd
-ycd
+wgz
 uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -23609,7 +23597,7 @@ xCx
 xCx
 esp
 ggf
-lQc
+rTP
 uwk
 wce
 uJX
@@ -23618,7 +23606,7 @@ uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 uwk
 uwk
 uwk
@@ -23642,10 +23630,10 @@ xTJ
 vyW
 xVX
 bkD
-wgz
+cGh
 jJS
-wgz
-wgz
+cGh
+cGh
 uJX
 uwk
 uwk
@@ -23653,8 +23641,8 @@ uwk
 uwk
 uwk
 uwk
-uwk
-uwk
+jJO
+jJO
 ycd
 ycd
 eQM
@@ -23663,7 +23651,7 @@ ycd
 ycd
 ycd
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -23756,16 +23744,16 @@ xCx
 xCx
 esp
 ggf
-lQc
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-hMm
+rTP
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+rtc
 uwk
 uwk
 uwk
@@ -23781,10 +23769,10 @@ gzI
 jXh
 eZA
 lei
-wgz
+cGh
 vLC
 hPC
-wgz
+cGh
 iEt
 cqP
 hZF
@@ -23792,7 +23780,7 @@ xVX
 lJw
 vIZ
 nOI
-wgz
+cGh
 uwk
 uwk
 wce
@@ -23801,7 +23789,7 @@ uwk
 rtc
 uwk
 uwk
-uwk
+jJO
 ycd
 ycd
 ycd
@@ -23810,7 +23798,7 @@ ycd
 ycd
 eQM
 ueK
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -23939,7 +23927,7 @@ ubH
 dgL
 mmj
 ayK
-wgz
+cGh
 wce
 uwk
 rtc
@@ -23948,7 +23936,7 @@ uwk
 rtc
 wce
 uwk
-uJX
+xGy
 uJX
 uJX
 ycd
@@ -23957,7 +23945,7 @@ ycd
 uJX
 ycd
 eQM
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -24095,16 +24083,16 @@ uwk
 uwk
 rtc
 uwk
+xGy
+xGy
+xGy
 uJX
-uJX
+ycd
 uJX
 uJX
 ycd
-uJX
-uJX
 ycd
-ycd
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -24244,14 +24232,14 @@ uwk
 rtc
 uwk
 uJX
-uJX
-uJX
-ycd
-ycd
-ycd
-ycd
-ycd
-ycd
+xGy
+xGy
+lQc
+lQc
+lQc
+lQc
+lQc
+lQc
 uJX
 uJX
 uJX
