@@ -2285,6 +2285,8 @@
 #include "code\modules\reqs\supplypacks\operations_packs.dm"
 #include "code\modules\reqs\supplypacks\smartguns_packs.dm"
 #include "code\modules\reqs\supplypacks\supplies_packs.dm"
+#include "code\modules\reqs\supplypacks\vehicles_packs.dm"
+#include "code\modules\reqs\supplypacks\weapons_packs.dm"
 #include "code\modules\requisitions\fulton.dm"
 #include "code\modules\requisitions\supply_export.dm"
 #include "code\modules\screen_alert\_screen_alert.dm"
