@@ -462,14 +462,14 @@
 	icon_state = "sec_prison"
 	minimap_color = MINIMAP_AREA_CELL_HIGH
 
-//"Outside" areas
-/area/metnal/z2/inside/hangar
+//Outside areas
+/area/metnal/z2/outside/hangar
 	name = "Command Hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_ESCAPE
 	area_flags = CEILING_NONE
 
-/area/metnal/z2/inside/hterrace
+/area/metnal/z2/outside/hterrace
 	name = "Headquarters Terrace"
 	icon_state = "quart"
 	minimap_color = MINIMAP_AREA_COLONY
