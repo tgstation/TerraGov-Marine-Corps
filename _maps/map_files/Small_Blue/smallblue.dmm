@@ -6595,6 +6595,10 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/grass,
 /area/tinyblue/outside/building/admin)
+"hMm" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/sw)
 "hMD" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -10085,8 +10089,9 @@
 /turf/open/floor/wood,
 /area/tinyblue/outside/building/admin)
 "luY" = (
-/turf/closed/wall/r_wall/urban/invincible,
-/area/space)
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/tinyblue/caves/sw)
 "lvu" = (
 /obj/structure/rack,
 /obj/machinery/light{
@@ -10439,9 +10444,17 @@
 /turf/open/floor/plating,
 /area/tinyblue/outside/building/cargo)
 "lQc" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/sw)
+/obj/effect/turf_decal/warning_stripes/linethick{
+	dir = 8
+	},
+/obj/structure/barricade/handrail/urban/handrail{
+	dir = 8
+	},
+/obj/machinery/light/red{
+	dir = 1
+	},
+/turf/open/floor/rcircuit/anim,
+/area/tinyblue/caves/facility/omicron)
 "lQm" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/green/whitegreen{
@@ -10945,7 +10958,8 @@
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitorsmall_on{
 	light_color = "#00f4ff";
 	light_on = 1;
-	light_range = 2
+	light_range = 2;
+	light_power = 3
 	},
 /turf/closed/wall/r_wall/urban,
 /area/tinyblue/caves/facility/omicron)
@@ -13523,7 +13537,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/tinyblue/outside/building/mining)
+/area/tinyblue/outside/n)
 "pGO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -17314,7 +17328,7 @@
 "unm" = (
 /obj/machinery/light/blue,
 /turf/open/floor/tile/dark,
-/area/tinyblue/caves/facility/omicron)
+/area/tinyblue/caves/se)
 "unu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -18915,11 +18929,6 @@
 	},
 /turf/open/floor,
 /area/tinyblue/outside/building/cargo)
-"wax" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/tile/dark,
-/area/tinyblue/caves/s/shallow)
 "waG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19039,10 +19048,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/tinyblue/caves/facility/eta)
-"wgz" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/tinyblue/caves/sw)
 "whu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -19309,9 +19314,17 @@
 /turf/open/floor/freezer,
 /area/tinyblue/outside/building/virology)
 "wuX" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/tinyblue/outside/c)
+/obj/effect/turf_decal/warning_stripes/linethick{
+	dir = 4
+	},
+/obj/structure/barricade/handrail/urban/handrail{
+	dir = 4
+	},
+/obj/machinery/light/red{
+	dir = 1
+	},
+/turf/open/floor/rcircuit/anim,
+/area/tinyblue/caves/facility/omicron)
 "wwa" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -23499,7 +23512,7 @@ uJX
 uJX
 ycd
 ycd
-wgz
+luY
 uJX
 uJX
 uJX
@@ -24234,12 +24247,12 @@ uwk
 uJX
 xGy
 xGy
-lQc
-lQc
-lQc
-lQc
-lQc
-lQc
+hMm
+hMm
+hMm
+hMm
+hMm
+hMm
 uJX
 uJX
 uJX
@@ -30962,7 +30975,7 @@ pPw
 mmH
 vPH
 vPH
-wuX
+vPH
 vPH
 vPH
 mmH
@@ -31773,7 +31786,7 @@ owX
 owX
 owX
 xzH
-owX
+cAg
 owX
 xzH
 uJX
@@ -31919,7 +31932,7 @@ lIn
 owX
 owX
 owX
-tLj
+owX
 owX
 owX
 uJX
@@ -33796,7 +33809,7 @@ uJX
 uJX
 kXW
 qzm
-wax
+ocx
 vQP
 mTC
 mTC
@@ -34409,7 +34422,7 @@ owX
 owX
 owX
 owX
-owX
+tLj
 owX
 owX
 owX
@@ -34838,7 +34851,7 @@ owX
 owX
 owX
 owX
-owX
+cAg
 xzH
 owX
 owX
@@ -36764,7 +36777,7 @@ gjJ
 gjJ
 gjJ
 eyt
-wrh
+gjJ
 gjJ
 gjJ
 sNU
@@ -41505,7 +41518,7 @@ lgy
 lgy
 bWi
 gQH
-bWi
+jtq
 lgy
 fsP
 fsP
@@ -42089,7 +42102,7 @@ dFY
 ldL
 lgy
 bWi
-jtq
+bWi
 bWi
 lgy
 fsP
@@ -43077,7 +43090,7 @@ uzG
 uzG
 vaP
 qLd
-apq
+lQc
 apq
 qLd
 iTs
@@ -43371,7 +43384,7 @@ uzG
 uzG
 uzG
 qLd
-yfV
+wuX
 yfV
 qLd
 ldL
@@ -43659,15 +43672,15 @@ kwo
 kwo
 kwo
 kwo
-luY
-luY
-luY
-luY
-luY
-luY
-luY
-luY
-luY
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
+nfX
 kwo
 kwo
 kwo
