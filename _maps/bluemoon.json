@@ -1,7 +1,7 @@
 {
-    "map_name": "Smöl Blue",
-    "map_path": "map_files/Small_Blue",
-    "map_file": "smallblue.dmm",
+    "map_name": "Blue Moon",
+    "map_path": "map_files/Blue_Moon",
+    "map_file": "bluemoon.dmm",
 	"environment_traits": {
         "COLD": true
     },

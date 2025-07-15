@@ -17,9 +17,9 @@
 	bound_height = 64
 	density = TRUE
 
-/obj/structure/smolblu_sign
-	name = "Smöl Bleu Sign"
-	desc = "A large sign that reads 'Smöl Bleu, Solaris Ridge -', the rest of it is scraped away. This sign seems to have heating plates to prevent it from freezing, neat!"
+/obj/structure/bluemoon_sign
+	name = "Blue Moon Sign"
+	desc = "A large sign that reads 'Blue Moon, Solaris Ridge -', the rest of it is scraped away. This sign seems to have heating plates to prevent it from freezing, neat!"
 	icon = 'icons/obj/landing_signs.dmi'
 	icon_state = "blue_sign"
 	bound_width = 64
