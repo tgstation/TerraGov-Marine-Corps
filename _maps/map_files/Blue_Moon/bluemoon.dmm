@@ -768,6 +768,13 @@
 	},
 /turf/open/floor,
 /area/bluemoon/outside/building/marshal)
+"aOP" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/obj/structure/bluemoon_sign,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/bluemoon/outside/w)
 "aPe" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -25533,7 +25540,7 @@ uOd
 uOd
 bLN
 ggf
-vwE
+aOP
 mND
 sIG
 sIG
