@@ -68,3 +68,6 @@
   - code_imp: The framework for xenomorph mutations, only for Nuclear War.
   TiviPlus:
   - rscadd: Added mech pulse armor
+2025-07-15:
+  Runian:
+  - bugfix: Alerts from mutations now properly show up.
