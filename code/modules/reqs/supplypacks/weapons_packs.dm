@@ -206,7 +206,7 @@ WEAPONS
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "TE-9001 mounted heavy laser"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable)
-	cost = 800
+	cost = 400
 
 
 /datum/supply_packs/weapons/heayvlaser_ammo
