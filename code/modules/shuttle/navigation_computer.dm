@@ -19,6 +19,8 @@
 	var/obj/docking_port/stationary/my_port
 	/// The previous custom docking port that was safely landed at, for emergency landings
 	var/obj/docking_port/stationary/last_valid_ground_port
+	/// The shutter button of the shuttle
+	var/obj/machinery/door_control/shutter_button
 	/// The mobile docking port of the connected shuttle
 	var/obj/docking_port/mobile/shuttle_port
 	/// Traits forbided for custom docking
@@ -58,6 +60,10 @@
 		if(jumpto_ports[S.id])
 			z_lock |= S.z
 	whitelist_turfs = typecacheof(whitelist_turfs)
+	for(var/obj/machinery/door_control/D in range(3, src))
+		if(D.id == "minidropship_podlock")
+			shutter_button = D
+			break
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
 	if(my_port?.get_docked())

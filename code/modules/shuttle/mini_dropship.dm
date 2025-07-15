@@ -149,6 +149,11 @@
 		destination_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(shuttleId, TRUE)
 
+// Toggle the transit shutters from the shuttle computer
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_shutters()
+	if(shutter_button != null)
+		shutter_button.attack_hand(ui_user)
+
 ///The action of sending the shuttle back to its shuttle port on main ship
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/return_to_ship()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
@@ -294,6 +299,8 @@
 	switch(action)
 		if("take_off")
 			take_off()
+		if("toggle_shutters")
+			toggle_shutters()
 		if("return_to_ship")
 			return_to_ship()
 		if("toggle_nvg")
