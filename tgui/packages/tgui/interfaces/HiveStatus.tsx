@@ -586,6 +586,7 @@ const PopulationPyramid = (_props: any) => {
                   })
                   .filter((ti) => ti !== null)
                   .join(' | ')}
+                {primordial}
               </Box>
             );
           }
