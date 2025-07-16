@@ -1990,6 +1990,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\drone\abilities_drone.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\drone\castedatum_drone.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\drone\drone.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\drone\mutations_drone.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\gorger\abilities_gorger.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\gorger\castedatum_gorger.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\gorger\gorger.dm"

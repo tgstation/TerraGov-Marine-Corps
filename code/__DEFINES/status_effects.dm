@@ -19,6 +19,8 @@
 
 #define STATUS_EFFECT_XENO_ESSENCE_LINK /datum/status_effect/stacking/essence_link
 
+#define STATUS_EFFECT_XENO_ESSENCE_LINK_REVENGE /datum/status_effect/essence_link_revenge
+
 #define STATUS_EFFECT_XENO_SALVE_REGEN /datum/status_effect/salve_regen
 
 #define STATUS_EFFECT_XENO_ENHANCEMENT /datum/status_effect/drone_enhancement
