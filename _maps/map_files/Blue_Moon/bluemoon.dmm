@@ -6091,7 +6091,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/space/basic,
+/turf/open/floor/tile/white,
 /area/bluemoon/outside/building/med)
 "hfA" = (
 /obj/structure/table,
