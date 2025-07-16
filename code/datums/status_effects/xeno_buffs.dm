@@ -223,6 +223,7 @@
 		link_owner.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK_REVENGE, revenge_modifier)
 	essence_link_action.end_ability()
 
+/// Sets the percentage (0 - 1) of damage dealt to be healed and (un)registers signals as necessary.
 /datum/status_effect/stacking/essence_link/proc/set_lifesteal(desired_lifesteal_percentage)
 	if(lifesteal_percentage && !desired_lifesteal_percentage)
 		UnregisterSignal(link_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING)
