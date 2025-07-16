@@ -1,0 +1,4 @@
+author: "ViperSnake01"
+delete-after: True
+changes:
+  - balance: "SST-574 Sniper Sentry now applies sniper stacking debuff."
