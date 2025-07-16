@@ -535,6 +535,7 @@
 /datum/status_effect/stacking/intoxicated/on_remove()
 	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
 	debuff_owner = null
+	xenomorph_to_heal = null
 	QDEL_NULL(particle_holder)
 	return ..()
 
