@@ -54,7 +54,7 @@
 
 /datum/mutation_upgrade/shell/comforting_acid
 	name = "Comforting Acid"
-	desc = "Toxic Slash will cause humans to passively heal you for 1/1.5/2 health per stack of Intoxicated as long you stay near them."
+	desc = "Toxic Slash will cause humans to passively heal you for 1/1.5/2 health per stack of Intoxicated as as long you are adjacent to them."
 	/// For the first structure, the health to heal.
 	var/healing_initial = 0.5
 	/// For each structure, the additional health to heal.
