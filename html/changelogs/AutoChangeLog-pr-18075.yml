@@ -1,0 +1,5 @@
+author: "Mantlecrawler"
+delete-after: True
+changes:
+  - balance: " Double barrel unwielded recoil from 4 to 3"
+  - balance: " Double barrel wielded recoil from 1 to 0.5"
