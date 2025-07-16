@@ -17,9 +17,9 @@
 	set category = "Alien"
 
 	var/time_since = world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)
-	var/caste_swap_timer = SSticker.mode.caste_swap_timer
-	if(time_since < (caste_swap_timer))
-		to_chat(src, span_warning("Your caste swap timer has [(5 MINUTES - time_since)/10] seconds remaining."))
+	var/caste_swap_duration = SSticker.mode.caste_swap_cooldown
+	if(time_since < (caste_swap_duration))
+		to_chat(src, span_warning("Your caste swap timer has [(caste_swap_duration - time_since)/10] seconds remaining."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)
@@ -32,8 +32,8 @@
 	set category = "Alien"
 
 	var/time_since = world.time - (GLOB.key_to_time_of_strain_swap[key] ? GLOB.key_to_time_of_strain_swap[key] : -INFINITY)
-	if(time_since < (5 MINUTES))
-		to_chat(src, span_warning("Your strain swap timer has [(5 MINUTES - time_since)/10] seconds remaining."))
+	if(time_since < (XENO_STRAIN_SWAP_COOLDOWN))
+		to_chat(src, span_warning("Your strain swap timer has [(XENO_STRAIN_SWAP_COOLDOWN - time_since)/10] seconds remaining."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)

@@ -169,9 +169,7 @@
 
 	. += "Regeneration power: [max(regen_power * 100, 0)]%"
 
-	var/caste_swap_timer = SSticker.mode.caste_swap_timer
-
-	var/casteswap_value = ((GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)  + caste_swap_timer - world.time) * 0.1
+	var/casteswap_value = ((GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)  + SSticker.mode.caste_swap_cooldown - world.time) * 0.1
 	if(casteswap_value <= 0)
 		. += "Caste Swap Timer: READY"
 	else

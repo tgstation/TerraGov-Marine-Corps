@@ -49,8 +49,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/tier_three_penalty = 0
 	///Includes T3 xenos in the calculation for maximum T3 slots.
 	var/tier_three_inclusion = FALSE
-	///Caste Swap Timer
-	var/caste_swap_timer = 15 MINUTES
+	///How often you can caste swap
+	var/caste_swap_cooldown = 15 MINUTES
 	///List of castes we dont want to be evolvable depending on gamemode.
 	var/list/restricted_castes
 
