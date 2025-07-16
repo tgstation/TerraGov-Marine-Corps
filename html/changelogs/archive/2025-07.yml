@@ -71,3 +71,6 @@
 2025-07-15:
   Runian:
   - bugfix: Alerts from mutations now properly show up.
+2025-07-16:
+  mudzbe:
+  - balance: TE-9001 heavy laser emplacement cost reduced to 400
