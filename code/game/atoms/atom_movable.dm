@@ -1459,9 +1459,11 @@
 		return
 	throwing = new_throwing
 	if(throwing)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT) //prevents moving during the throw
 		add_pass_flags(PASS_THROW, THROW_TRAIT)
 		add_nosubmerge_trait(THROW_TRAIT)
 	else
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 		REMOVE_TRAIT(src, TRAIT_NOSUBMERGE, THROW_TRAIT)
 		remove_pass_flags(PASS_THROW, THROW_TRAIT)
 
