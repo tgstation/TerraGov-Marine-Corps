@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Drone now has 5 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
