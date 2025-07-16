@@ -481,11 +481,10 @@
 /area/bluemoon/outside/building/med)
 "axB" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison/whitepurple/corner,
-/area/bluemoon/caves/facility/lambda/s)
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/bluemoon/caves/facility/eta)
 "axO" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /obj/structure/cable,
@@ -525,11 +524,9 @@
 /turf/open/floor/tile/white,
 /area/bluemoon/outside/building/virology)
 "ayW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison/sterilewhite,
+/turf/open/floor/prison/whitepurple,
 /area/bluemoon/caves/facility/lambda/s)
 "azo" = (
 /obj/effect/ai_node,
@@ -881,6 +878,15 @@
 /obj/structure/prop/mainship/vat/broken/bloody,
 /turf/open/floor/bcircuit/off,
 /area/bluemoon/caves/facility/omicron)
+"baR" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table,
+/turf/open/floor/prison/whitepurple{
+	dir = 8
+	},
+/area/bluemoon/caves/facility/lambda/s)
 "bbv" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -1010,8 +1016,11 @@
 /turf/open/floor/prison/plate,
 /area/bluemoon/caves/facility/lambda/n)
 "biH" = (
-/turf/closed/wall,
-/area/bluemoon/caves/rock)
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bluemoon/outside/building/admin)
 "bjA" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 1
@@ -2165,12 +2174,8 @@
 /turf/open/floor,
 /area/bluemoon/outside/building/dorms)
 "cyX" = (
-/obj/structure/table,
-/obj/item/storage/box/gloves,
-/turf/open/floor/prison/whitepurple{
-	dir = 10
-	},
-/area/bluemoon/caves/facility/lambda/s)
+/turf/closed/wall,
+/area/bluemoon/caves/rock)
 "czf" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -3889,14 +3894,8 @@
 /turf/open/floor/plating,
 /area/bluemoon/outside/building/cargo/outpost)
 "eyS" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table,
-/turf/open/floor/prison/whitepurple{
-	dir = 8
-	},
-/area/bluemoon/caves/facility/lambda/s)
+/turf/closed/wall,
+/area/bluemoon/caves/e/shallow)
 "eyX" = (
 /turf/open/urbanshale/layer1,
 /area/bluemoon/caves/se)
@@ -7878,11 +7877,9 @@
 /turf/open/floor/tile/darkish,
 /area/bluemoon/outside/building/med/icu)
 "jbc" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bluemoon/outside/building/admin)
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/turf/open/floor/plating,
+/area/bluemoon/caves/e/shallow)
 "jbk" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Toolshed"
@@ -8203,9 +8200,11 @@
 /turf/open/urbanshale/layer1,
 /area/bluemoon/caves/se)
 "jsO" = (
-/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/turf/open/floor/plating,
-/area/bluemoon/caves/e/shallow)
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bluemoon/caves/facility/eta)
 "jtp" = (
 /obj/machinery/door/airlock/mainship/command/free_access{
 	dir = 1;
@@ -10778,9 +10777,11 @@
 	},
 /area/bluemoon/caves/facility/eta/e)
 "mhD" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/prison/whitepurple,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite,
 /area/bluemoon/caves/facility/lambda/s)
 "mhY" = (
 /obj/machinery/chem_dispenser,
@@ -11285,8 +11286,10 @@
 /turf/closed/wall/r_wall,
 /area/bluemoon/caves/rock)
 "mNp" = (
-/turf/closed/wall,
-/area/bluemoon/caves/e/shallow)
+/obj/effect/landmark/weed_node,
+/obj/structure/fence,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/bluemoon/outside/s)
 "mND" = (
 /turf/open/floor/tile/dark,
 /area/bluemoon/outside/w)
@@ -12889,15 +12892,6 @@
 	dir = 6
 	},
 /area/bluemoon/caves/facility/eta)
-"oNa" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 1;
-	name = "\improper Lambda Lab Reception"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison/sterilewhite,
-/area/bluemoon/caves/e/shallow)
 "oNb" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -14940,12 +14934,14 @@
 /turf/open/floor/prison,
 /area/bluemoon/caves/facility/eta/e)
 "rlH" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/research/glass/free_access{
+	dir = 1;
+	name = "\improper Lambda Lab Reception"
 	},
-/turf/open/floor/tile/dark,
-/area/bluemoon/caves/facility/eta)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/prison/sterilewhite,
+/area/bluemoon/caves/e/shallow)
 "rmn" = (
 /turf/open/floor/plating/dmg3,
 /area/bluemoon/caves/facility/eta/xeno)
@@ -15333,11 +15329,12 @@
 /turf/open/floor/spiralplate,
 /area/bluemoon/outside/building/engi/filt)
 "rOf" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark,
-/area/bluemoon/caves/facility/eta)
+/obj/structure/table,
+/obj/item/storage/box/gloves,
+/turf/open/floor/prison/whitepurple{
+	dir = 10
+	},
+/area/bluemoon/caves/facility/lambda/s)
 "rOx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -16300,6 +16297,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/marking/delivery,
 /area/bluemoon/outside/building/cargo)
+"tak" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/whitepurple/corner,
+/area/bluemoon/caves/facility/lambda/s)
 "taP" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/coffee,
@@ -19186,10 +19190,13 @@
 /turf/open/floor/prison,
 /area/bluemoon/caves/facility/omicron)
 "wnR" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/fence,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/bluemoon/outside/s)
+/obj/structure/sign/science{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/bluemoon/caves/facility/eta)
 "wpo" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/tile/dark/red2{
@@ -19343,14 +19350,6 @@
 	},
 /turf/open/floor/rcircuit/anim,
 /area/bluemoon/caves/facility/omicron)
-"wvU" = (
-/obj/structure/sign/science{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/green2{
-	dir = 8
-	},
-/area/bluemoon/caves/facility/eta)
 "wwa" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -28686,7 +28685,7 @@ iMe
 fYC
 iMe
 iMe
-wnR
+mNp
 mxW
 mxW
 uJX
@@ -30915,7 +30914,7 @@ jgO
 cwN
 mOF
 oFN
-wvU
+wnR
 iZI
 vKi
 vKi
@@ -31011,7 +31010,7 @@ vwv
 okL
 ggv
 ihU
-jbc
+biH
 mLJ
 ggv
 mTS
@@ -31060,8 +31059,8 @@ lJp
 jun
 tqU
 ron
-rOf
-rlH
+axB
+jsO
 mrY
 saa
 pVC
@@ -37465,7 +37464,7 @@ qft
 asA
 asA
 asA
-mNp
+eyS
 tVa
 bst
 krs
@@ -37606,13 +37605,13 @@ gbZ
 uzA
 qft
 dMF
-eyS
-cyX
+baR
+rOf
 asA
 ltQ
 goi
 wLt
-mNp
+eyS
 tVa
 bst
 xYq
@@ -37759,7 +37758,7 @@ asA
 hvL
 vdH
 gtc
-oNa
+rlH
 lNs
 czf
 oLz
@@ -37901,12 +37900,12 @@ iwU
 asA
 qZY
 oVN
-mhD
+ayW
 dgH
 mUv
 pbl
 ksU
-jsO
+jbc
 tVa
 bst
 cIt
@@ -38047,13 +38046,13 @@ rMc
 nqA
 asA
 aKG
-ayW
+mhD
 nRk
 aSY
 goU
 tQd
 nRk
-mNp
+eyS
 tVa
 bst
 fWn
@@ -38194,13 +38193,13 @@ xAo
 tGd
 qft
 aQl
-ayW
+mhD
 nRk
 qft
 rLS
 fnK
 qOT
-biH
+cyX
 uJX
 uyg
 hJU
@@ -38341,13 +38340,13 @@ rxi
 qft
 qft
 aKG
-ayW
+mhD
 nRk
 qft
 gmY
 jmk
 aAu
-biH
+cyX
 uJX
 uJX
 hJU
@@ -38494,7 +38493,7 @@ uFE
 qrS
 naV
 xDe
-biH
+cyX
 uJX
 uJX
 uJX
@@ -38635,13 +38634,13 @@ gbZ
 gbZ
 gbZ
 gbZ
-axB
+tak
 qOT
 qft
 nDM
 dZc
 wcU
-biH
+cyX
 uJX
 uJX
 uJX
