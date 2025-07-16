@@ -151,8 +151,9 @@
 
 // Toggle the transit shutters from the shuttle computer
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_shutters()
-	if(shutter_button != null)
-		shutter_button.attack_hand(ui_user)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_SHUTTER)
+		//RegisterSignal(/obj/machinery/door_control, COMSIG_GLOB_TADPOLE_SHUTTER)
+		// SEND_SIGNAL(src, COMSIG_PLANE_OFFSET_INCREASE, old_max, max_plane_offset)
 
 ///The action of sending the shuttle back to its shuttle port on main ship
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/return_to_ship()
