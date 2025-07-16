@@ -323,7 +323,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 	if(wearer.assigned_squad)
 		var/image/underlay = image('icons/UI_icons/map_blips.dmi', null, "squad_underlay", MINIMAP_BLIPS_LAYER)
-		var/image/overlay = image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon)
+		var/image/overlay = image('ntf_modular/icons/UI_icons/map_blips_job.dmi', null, wearer.job.minimap_icon)
 		overlay.color = wearer.assigned_squad.color
 		underlay.overlays += overlay
 
@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 		SSminimaps.add_marker(wearer, marker_flags, underlay)
 		return
-	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon), MINIMAP_BLIPS_LAYER)
+	SSminimaps.add_marker(wearer, marker_flags, image('ntf_modular/icons/UI_icons/map_blips_job.dmi', null, wearer.job.minimap_icon), MINIMAP_BLIPS_LAYER)
 
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()

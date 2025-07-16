@@ -68,7 +68,7 @@
 /obj/structure/xeno/lighttower
 	name = "Light tower"
 	desc = "A resin formation that looks like a small pillar. It just provides light, not much more."
-	icon = 'icons/Xeno/1x1building.dmi'
+	icon = 'ntf_modular/icons/Xeno/1x1building.dmi'
 	icon_state = "lighttower"
 	bound_width = 32
 	bound_height = 32
