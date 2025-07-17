@@ -65,6 +65,12 @@
 
 /mob/living/carbon/xenomorph/runner/melter
 	caste_base_type = /datum/xeno_caste/runner/melter
+	/// What type of damage should the second instance do?
+	var/second_damage_type = BRUTE
+	/// What armor is the second instance of damage calculated against?
+	var/second_damage_armor = MELEE
+	/// The amount of melting acid stacks to be applied.
+	var/applied_acid_stacks = 2
 
 /mob/living/carbon/xenomorph/runner/melter/Initialize(mapload)
 	. = ..()
@@ -82,18 +88,18 @@
 				atom_in_acid.acid_spray_act(src)
 	return ..()
 
-/// Deals a second instance of melee damage as burn damage to damageable objects.
+/// Deals a second instance of melee damage to damageable objects. Damage type and armor type may vary.
 /mob/living/carbon/xenomorph/runner/melter/proc/on_attack_obj(mob/living/carbon/xenomorph/source, obj/target)
 	SIGNAL_HANDLER
 	if(target.resistance_flags & XENO_DAMAGEABLE)
-		target.take_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, BURN, ACID)
+		target.take_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, second_damage_type, second_damage_armor)
 
-/// Deals a second instance of melee damage as burn damage to living beings.
+/// Deals a second instance of melee damage to living beings. Damage type and armor type may vary.
 /mob/living/carbon/xenomorph/runner/melter/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
 	SIGNAL_HANDLER
-	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, BURN, null, ACID)
+	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, second_damage_type, null, second_damage_armor)
 	var/datum/status_effect/stacking/melting_acid/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_ACID)
 	if(!debuff)
-		target.apply_status_effect(STATUS_EFFECT_MELTING_ACID, 2)
+		target.apply_status_effect(STATUS_EFFECT_MELTING_ACID, applied_acid_stacks)
 		return
-	debuff.add_stacks(2)
+	debuff.add_stacks(applied_acid_stacks)
