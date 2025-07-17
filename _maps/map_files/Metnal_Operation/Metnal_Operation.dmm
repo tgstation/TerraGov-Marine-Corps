@@ -3086,6 +3086,9 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical/chemistry)
+"bLi" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/metnal/z2/inside/comms)
 "bLw" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
@@ -29474,6 +29477,10 @@
 	dir = 4
 	},
 /area/metnal/inside/security)
+"pTF" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/indestructible,
+/area/metnal/z2/inside/comms)
 "pTG" = (
 /obj/machinery/door/airlock/mainship/command,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -125163,9 +125170,9 @@ vQJ
 vQJ
 vQJ
 vQJ
-vQJ
-vQJ
-vQJ
+bLi
+bLi
+bLi
 vQJ
 vQJ
 vQJ
@@ -125365,9 +125372,9 @@ vQJ
 vQJ
 vQJ
 vQJ
-vQJ
-vQJ
-vQJ
+bLi
+pTF
+bLi
 vQJ
 vQJ
 vQJ
@@ -125567,9 +125574,9 @@ vQJ
 vQJ
 vQJ
 vQJ
-vQJ
-vQJ
-vQJ
+bLi
+bLi
+bLi
 vQJ
 vQJ
 vQJ

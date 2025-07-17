@@ -474,3 +474,10 @@
 	icon_state = "quart"
 	minimap_color = MINIMAP_AREA_COLONY
 	area_flags = CEILING_NONE
+
+//comms
+/area/metnal/z2/inside/comms
+	name = "Telecomms"
+	icon_state = "tcomsatcham"
+	area_flags = NO_DROPPOD
+	requires_power = FALSE
