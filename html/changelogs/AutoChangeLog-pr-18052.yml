@@ -1,8 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "There are 3 new structures, but currently only obtained through admin intervention: Shell Mutation Chamber, Spur Mutation Chamber, and Veil Mutation Chamber. They are required to gain biomass and use mutations."
-  - rscadd: "Within Hive Status, there is a new button labeled \"Mutations\" where you can buy your caste/strain's specific mutations. It is disabled if your caste/strain is not allowed to buy any."
-  - rscadd: "Biomass is a new permanent resource that the Hive collectively owns. This is gained by draining or cocooning while there is an existing mutation structure."
-  - qol: "Within Hive Status, the Hive Blessings button is now visible to all xenomorphs. However, only xenomorphs who usually have access to it can click and access the Hive Blessings menu."
-  - code_imp: "The framework for xenomorph mutations, only for Nuclear War."
