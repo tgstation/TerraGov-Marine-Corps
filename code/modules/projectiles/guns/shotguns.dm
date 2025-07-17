@@ -230,8 +230,8 @@
 	burst_amount = 1
 	scatter = 3
 	scatter_unwielded = 10
-	recoil = 1
-	recoil_unwielded = 4
+	recoil = 0.5
+	recoil_unwielded = 3
 
 
 //-------------------------------------------------------

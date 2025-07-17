@@ -619,7 +619,7 @@
 	name = "Tanglefoot mini rocket stack"
 	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas. Moving this will require some sort of lifter."
 	icon_state = "minirocket_tfoot"
-	point_cost = 200
+	point_cost = 400
 	devastating_explosion_range = 0
 	travelling_time = 4 SECONDS
 	heavy_explosion_range = 0

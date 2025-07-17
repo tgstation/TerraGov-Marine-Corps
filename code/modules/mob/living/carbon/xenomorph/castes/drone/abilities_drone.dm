@@ -32,6 +32,12 @@
 	var/mob/living/carbon/xenomorph/linked_target
 	/// Time it takes for the attunement levels to increase.
 	var/attunement_cooldown = 60 SECONDS
+	/// A percentage of health to restore to the owner whenever the linked target deals slash damage.
+	var/lifesteal_percentage = 0
+	/// The additive amount to increase melee damage modifier to the survivor if the link ends due to death.
+	var/revenge_modifier = 0
+	/// The percentage of max health healed to the linked target (and dealt to owner) if it was disconnected via alternative action.
+	var/disconnection_heal_percentage = 0
 
 /datum/action/ability/activable/xeno/essence_link/can_use_ability(mob/living/carbon/xenomorph/target, silent = FALSE, override_flags)
 	if(!isxeno(target) || target.get_xeno_hivenumber() != xeno_owner.get_xeno_hivenumber())
@@ -56,7 +62,7 @@
 		if(!do_after(xeno_owner, DRONE_ESSENCE_LINK_WINDUP, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
 			xeno_owner.balloon_alert(xeno_owner, "Link cancelled")
 			return
-		xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target)
+		xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target, lifesteal_percentage, revenge_modifier)
 		existing_link = xeno_owner.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 		linked_target = target
 		target.balloon_alert(target, "Essence Link established")
@@ -66,14 +72,19 @@
 	if(!HAS_TRAIT(xeno_owner, TRAIT_ESSENCE_LINKED))
 		xeno_owner.balloon_alert(xeno_owner, "No link to cancel")
 		return
-	end_ability()
+	end_ability(TRUE)
 	return COMSIG_KB_ACTIVATED
 
 /// Ends the ability, removing signals and buffs.
-/datum/action/ability/activable/xeno/essence_link/proc/end_ability()
+/datum/action/ability/activable/xeno/essence_link/proc/end_ability(was_manually_disconnected = FALSE)
 	var/datum/action/ability/xeno_action/enhancement/enhancement_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/enhancement]
 	enhancement_action?.end_ability()
 	xeno_owner.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
+	if(was_manually_disconnected && existing_link.stacks)
+		var/health_to_heal = linked_target.maxHealth * disconnection_heal_percentage * existing_link.stacks
+		var/leftover_healing = health_to_heal
+		HEAL_XENO_DAMAGE(linked_target, leftover_healing, FALSE)
+		xeno_owner.adjustBruteLoss(health_to_heal - leftover_healing, TRUE)
 	existing_link = null
 	linked_target = null
 	add_cooldown()
@@ -85,7 +96,7 @@
 // ***************************************
 // *********** Acidic Salve
 // ***************************************
-/datum/action/ability/activable/xeno/psychic_cure/resin_salve
+/datum/action/ability/activable/xeno/psychic_cure/acidic_salve
 	name = "Resin Salve"
 	action_icon_state = "heal_xeno"
 	action_icon = 'icons/Xeno/actions/drone.dmi'
@@ -96,15 +107,23 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_SALVE,
 	)
 	heal_range = DRONE_HEAL_RANGE
-	target_flags = ABILITY_XENO_TARGET|ABILITY_HUMAN_TARGET
+	target_flags = ABILITY_MOB_TARGET
+	/// Should cast time / do_after be ignored if the target meets the health threshold?
+	var/bypass_cast_time_on_threshold = FALSE
+	/// The max health threshold the target needs to be under to qualify for bonus healing. Target must be connected to the owner with Essence Link with 1+ stacks.
+	var/bonus_healing_threshold = 0.1
+	/// The additional multiplier of healing if they meet the health threshold.
+	var/bonus_healing_additive_multiplier = 2
 
-/datum/action/ability/activable/xeno/psychic_cure/resin_salve/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/use_ability(atom/target)
 	if(!ismob(target))
 		return FALSE
 	if(xeno_owner.do_actions)
 		return FALSE
-	if(!do_after(xeno_owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-		return FALSE
+	var/mob/living/living_target = target
+	if((!bypass_cast_time_on_threshold || (living_target.health > (living_target.maxHealth * bonus_healing_threshold))))
+		if(!do_after(xeno_owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			return FALSE
 	xeno_owner.visible_message(span_xenowarning("\the [xeno_owner] vomits acid over [target], mending their wounds!"))
 	owner.changeNext_move(CLICK_CD_RANGE)
 	salve_healing(target)
@@ -115,15 +134,13 @@
 		personal_statistics.heals++
 
 /// Heals the target and gives them a regenerative buff, if applicable.
-/datum/action/ability/activable/xeno/psychic_cure/resin_salve/proc/salve_healing(mob/living/target)
+/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/proc/salve_healing(mob/living/target)
 	var/datum/action/ability/activable/xeno/essence_link/essence_link_action = owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	var/heal_multiplier = 1
 	if(essence_link_action.existing_link?.link_target == target)
-		var/remaining_health = round(target.maxHealth - (target.getBruteLoss() + target.getFireLoss()))
-		var/health_threshold = round(target.maxHealth / 10) // 10% of the target's maximum health
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
-		if(essence_link_action.existing_link.stacks > 0 && remaining_health <= health_threshold)
-			heal_multiplier = 3
+		if(essence_link_action.existing_link.stacks > 0 && (target.health <= (target.maxHealth * bonus_healing_threshold)))
+			heal_multiplier += bonus_healing_additive_multiplier
 	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/X = target

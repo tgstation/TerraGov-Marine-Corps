@@ -203,14 +203,13 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
 	cost = 50
 
-/datum/supply_packs/weapons/heayvlaser_emplacement
-	name = "Mounted Heavy Laser"
+/datum/supply_packs/weapons/heavy_laser_emplacement
+	name = "TE-9001 mounted heavy laser"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable)
-	cost = 800
+	cost = 400
 
-
-/datum/supply_packs/weapons/heayvlaser_ammo
-	name = "Mounted Heavy Laser Ammo (x1)"
+/datum/supply_packs/weapons/heavy_laser_ammo
+	name = "TE-9001 mounted heavy laser cell"
 	contains = list(/obj/item/cell/lasgun/heavy_laser)
 	cost = 15
 
