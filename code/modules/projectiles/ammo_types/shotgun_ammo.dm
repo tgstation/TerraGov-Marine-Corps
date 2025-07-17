@@ -22,7 +22,10 @@
 	sundering = 7.5
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
+    else
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
 
 
 /datum/ammo/bullet/shotgun/beanbag
@@ -37,7 +40,10 @@
 	accuracy = 5
 
 /datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 4 SECONDS, knockback = 1, slowdown = 2, hard_size_threshold = 1)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+    else
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
@@ -52,7 +58,10 @@
 	bullet_color = COLOR_TAN_ORANGE
 
 /datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	staggerstun(target_mob, proj, knockback = 2, slowdown = 1)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+    else
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
@@ -92,7 +101,10 @@
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
+    else
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
 
 /datum/ammo/bullet/hefa_buckshot
 	name = "hefa fragment"
@@ -182,26 +194,63 @@
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 3
-	max_range = 10
-	damage = 50
-	damage_falloff = 4
+	max_range = 8
+	damage = 55
+	damage_falloff = 5
+
+/datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+	if(iswallturf(target_turf))
+		var/turf/closed/wall/affected_turf = target_turf
+		affected_turf.take_damage(damage * 4, BRUTE, BULLET)
+
+/datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
+	if(istype(target_obj, /obj/machinery/door))
+		var/obj/machinery/door/affected_door = target_obj
+		affected_door.take_damage(damage * 4, BRUTE, BULLET)
 
 /datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, paralyze = 0, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
+    else
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
 
 /datum/ammo/bullet/shotgun/barrikada_slug
 	name = "heavy metal slug"
 	handful_icon_state = "heavy_shotgun_barrikada"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	shell_speed = 4
-	max_range = 15
-	damage = 125
-	penetration = 50
-	sundering = 15
+	shell_speed = 3
+	max_range = 6
+	damage = 110
+	penetration = 25
+	sundering = 9
+	damage_falloff = 10
+	var/vehicle_stun_duration = 2 SECONDS
 
 /datum/ammo/bullet/shotgun/barrikada/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
+
+//already pretty high damage not gonna lie so adding ap and stagger to vehicles
+/datum/ammo/bullet/shotgun/barrikada_slug/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
+	if(istype(target_obj, /obj/machinery/door))
+		var/obj/machinery/door/affected_door = target_obj
+		affected_door.take_damage(damage * 4, BRUTE, BULLET)
+	if(isvehicle(target_obj))
+		var/obj/vehicle/affected_vehicle = target_obj
+		if(ismecha(affected_vehicle))
+			affected_vehicle.take_damage(damage, BRUTE, BULLET, armour_penetration = 60)
+		else if(isarmoredvehicle(affected_vehicle)) // Obtained from hitbox.
+			affected_vehicle.take_damage(damage, BRUTE, BULLET, armour_penetration = 60)
+		else
+			affected_vehicle.take_damage(damage, BRUTE, BULLET, armour_penetration = 60)
+		if(!(affected_vehicle))
+			for(var/mob/living/carbon/human/human_occupant in affected_vehicle.occupants)
+				human_occupant.apply_effect(vehicle_stun_duration, EFFECT_PARALYZE)
+
+/datum/ammo/bullet/shotgun/barrikada_slug/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+	if(iswallturf(target_turf))
+		var/turf/closed/wall/affected_turf = target_turf
+		affected_turf.take_damage(damage * 4, BRUTE, BULLET)
 
 /datum/ammo/bullet/shotgun/heavy_spread
 	name = "additional buckshot"
@@ -210,6 +259,38 @@
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
+	damage = 60
+	damage_falloff = 4
+
+/datum/ammo/bullet/shotgun/heavy_flechette
+	name = "heavy flechette shell"
+	handful_icon_state = "heavy_shotgun_flechette"
+	icon_state = "flechette"
+	hud_state = "shotgun_flechette"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette/heavy_flechette_spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 3
+	accuracy_var_low = 8
+	accuracy_var_high = 8
+	max_range = 15
+	damage = 55
+	damage_falloff = 0.5
+	penetration = 20
+	sundering = 15
+
+/datum/ammo/bullet/shotgun/heavy_flechette/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
+	if(istype(target_obj, /obj/machinery/door))
+		var/obj/machinery/door/affected_door = target_obj
+		affected_door.take_damage(damage * 4, BRUTE, BULLET)
+
+/datum/ammo/bullet/shotgun/heavy_flechette/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+	if(iswallturf(target_turf))
+		var/turf/closed/wall/affected_turf = target_turf
+		affected_turf.take_damage(damage * 4, BRUTE, BULLET)
+
+/datum/ammo/bullet/shotgun/flechette/heavy_flechette_spread
+	name = "additional flechette"
 	damage = 50
 	damage_falloff = 4
 
@@ -350,7 +431,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 3
 	max_range = 5
-	damage = 200
+	damage = 100
 	penetration = 0
 	sundering = 5
 	///Bonus flat damage to walls, balanced around resin walls. Stolen from autocannons

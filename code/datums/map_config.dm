@@ -77,6 +77,8 @@
 				return LoadConfig("_maps/vapor_processing.json", error_if_missing, maptype)
 			if(SHIP_MAP)
 				return LoadConfig("_maps/debugdalus.json", error_if_missing, maptype)
+			if(ANTAG_MAP)
+				return LoadConfig("_maps/antagmap.json", error_if_missing, maptype)
 
 	var/json = file(filename)
 	if(!json)
