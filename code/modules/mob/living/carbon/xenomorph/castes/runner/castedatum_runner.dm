@@ -51,6 +51,8 @@
 		/datum/action/ability/activable/xeno/pounce/runner,
 	)
 
+	doppelganger_color = "#e06b0b"
+
 /datum/xeno_caste/runner/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
