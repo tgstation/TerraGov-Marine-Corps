@@ -85,7 +85,7 @@
 	critical_threshold_boosted = !critical_threshold_boosted
 	if(critical_threshold_boosted)
 		if(!silent)
-			to_chat(xenomorph_owner, span_notice("You feel like you're ready to be on Borrowed Time."))
+			xenomorph_owner.balloon_alert(xenomorph_owner, "Borrowed time ready!");
 		xenomorph_owner.health_threshold_crit -= critical_threshold_amount
 		return
 	xenomorph_owner.health_threshold_crit += critical_threshold_amount
@@ -103,7 +103,7 @@
 		xenomorph_owner.Stagger(borrowed_time_length)
 		critical_threshold_timer = addtimer(CALLBACK(src, PROC_REF(reverse_critical_threshold)), borrowed_time_length, TIMER_UNIQUE|TIMER_STOPPABLE)
 		xenomorph_owner.emote("roar")
-		to_chat(xenomorph_owner, span_warning("You feel like you're on Borrowed Time!"))
+		xenomorph_owner.balloon_alert(xenomorph_owner, "On borrowed time!");
 		return
 	if(!critical_threshold_boosted && xenomorph_owner.health >= xenomorph_owner.maxHealth)
 		toggle()

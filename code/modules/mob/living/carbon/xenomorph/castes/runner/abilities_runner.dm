@@ -55,10 +55,10 @@
 	update_button_icon()
 
 /datum/action/ability/activable/xeno/pounce/runner/use_ability(atom/A)
-	var/turf/owner_turf = xeno_owner.loc
+	var/turf/owner_turf = get_turf(xeno_owner)
 	if(isturf(owner_turf))
 		starting_turf = owner_turf
-	. = ..()
+	return ..()
 
 /datum/action/ability/activable/xeno/pounce/runner/trigger_pounce_effect(mob/living/living_target)
 	. = ..()
@@ -368,7 +368,7 @@
 
 /datum/action/ability/xeno_action/evasion/proc/on_passthrough_move()
 	SIGNAL_HANDLER
-	for(var/mob/living/carbon/human/human_right_here AS in cheap_get_humans_near(xeno_owner, 0))
+	for(var/mob/living/carbon/human/human_right_here AS in get_turf(xeno_owner))
 		if(human_right_here in touched_humans)
 			continue
 		touched_humans += human_right_here
