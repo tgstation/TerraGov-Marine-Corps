@@ -2950,12 +2950,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
-"bIj" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/metnal/z2/inside/dorms2z)
 "bIl" = (
 /obj/structure/closet/crate/supply,
 /obj/item/clothing/gloves/insulated,
@@ -13501,13 +13495,6 @@
 /obj/structure/sign/safety/high_radiation,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
-"hoV" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/effect/spawner/random/decal/blood,
-/turf/open/floor/wood,
-/area/metnal/z2/inside/dorms2z)
 "hpb" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/cable,
@@ -13521,12 +13508,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
-"hpw" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/metnal/z2/inside/dorms2z)
 "hpx" = (
 /obj/effect/turf_decal/tile/full/brown,
 /obj/effect/spawner/random/decal/blood,
@@ -28347,13 +28328,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
-"plz" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/machinery/vending/cola/nopower,
-/turf/open/floor/wood,
-/area/metnal/z2/inside/dorms2z)
 "plH" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/lavaland/basalt,
@@ -30872,13 +30846,6 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southwest)
-"qCP" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/machinery/vending/dinnerware/nopower,
-/turf/open/floor/wood,
-/area/metnal/z2/inside/dorms2z)
 "qDi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -40683,9 +40650,6 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "vHb" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -93545,7 +93509,7 @@ oej
 vuh
 bZA
 bZA
-bZA
+eSP
 bZA
 bZA
 bZA
@@ -93746,10 +93710,10 @@ vJt
 oej
 oYN
 bZA
-iOD
-eSP
-riF
-bZA
+syK
+syK
+syK
+syK
 bZA
 rNy
 fFW
@@ -93947,12 +93911,12 @@ syK
 syK
 oej
 vuh
-ayR
+bZA
 syK
 xZO
 xZO
 syK
-uJD
+bZA
 dVg
 fFW
 syK
@@ -94149,12 +94113,12 @@ pvh
 vJt
 oej
 ydf
-ayR
+bZA
 syK
+bZA
+bZA
 syK
-syK
-syK
-hoV
+iOD
 taQ
 fFW
 vJt
@@ -94351,12 +94315,12 @@ eVw
 syK
 oej
 vuh
-bIj
+bZA
 vHb
-qCP
-plz
+bZA
+bZA
 vHb
-hpw
+bZA
 dVg
 fFW
 syK
@@ -115928,20 +115892,20 @@ pIy
 pIy
 pIy
 pIy
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
-kpB
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
+pIy
 kpB
 kpB
 kpB
@@ -116143,7 +116107,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -116345,7 +116309,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -116547,7 +116511,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -116749,7 +116713,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -116951,7 +116915,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -117153,7 +117117,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -117355,7 +117319,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -117557,7 +117521,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -117759,7 +117723,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -117961,7 +117925,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -118163,7 +118127,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -118365,7 +118329,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -118567,7 +118531,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
@@ -118769,7 +118733,7 @@ kpB
 kpB
 kpB
 kpB
-kpB
+pIy
 kpB
 kpB
 kpB
