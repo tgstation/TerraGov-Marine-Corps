@@ -96,7 +96,7 @@
 // ***************************************
 // *********** Acidic Salve
 // ***************************************
-/datum/action/ability/activable/xeno/psychic_cure/resin_salve
+/datum/action/ability/activable/xeno/psychic_cure/acidic_salve
 	name = "Resin Salve"
 	action_icon_state = "heal_xeno"
 	action_icon = 'icons/Xeno/actions/drone.dmi'
@@ -115,7 +115,7 @@
 	/// The additional multiplier of healing if they meet the health threshold.
 	var/bonus_healing_additive_multiplier = 2
 
-/datum/action/ability/activable/xeno/psychic_cure/resin_salve/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/use_ability(atom/target)
 	if(!ismob(target))
 		return FALSE
 	if(xeno_owner.do_actions)
@@ -134,7 +134,7 @@
 		personal_statistics.heals++
 
 /// Heals the target and gives them a regenerative buff, if applicable.
-/datum/action/ability/activable/xeno/psychic_cure/resin_salve/proc/salve_healing(mob/living/target)
+/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/proc/salve_healing(mob/living/target)
 	var/datum/action/ability/activable/xeno/essence_link/essence_link_action = owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	var/heal_multiplier = 1
 	if(essence_link_action.existing_link?.link_target == target)
