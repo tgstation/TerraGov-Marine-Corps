@@ -356,6 +356,7 @@
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE_END)
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
 	xeno_owner.remove_pass_flags(leap_pass_flags, type)
+	xeno_owner.set_throwing(FALSE)
 
 /datum/action/ability/activable/xeno/pounce/ai_should_start_consider()
 	return TRUE
