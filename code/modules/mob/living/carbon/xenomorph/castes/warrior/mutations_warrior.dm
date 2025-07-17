@@ -121,4 +121,4 @@
 
 /// Returns the amount to increase both abilities' cooldown multiplier if it was used on an allied xenomorph.
 /datum/mutation_upgrade/veil/friendly_toss/proc/get_cooldown(structure_count, include_initial = TRUE)
-	return (include_initial ? cooldown_reduction_initial : 0) + (cooldown_reduction_per_structure * structure_count)
+	return (include_initial ? cooldown_initial : 0) + (cooldown_per_structure * structure_count)
