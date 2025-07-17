@@ -74,3 +74,26 @@
 2025-07-16:
   mudzbe:
   - balance: TE-9001 heavy laser emplacement cost reduced to 400
+2025-07-17:
+  Atropos:
+  - balance: You can no longer move during throws
+  - rscadd: Added medical overwatch to canterbury and big bury
+  - rscadd: Compact hive status now displays primo tiers
+  Lumipharon:
+  - balance: Greatly reduced the BFG's ability to pierce walls
+  - balance: Halved the number of grenades on crash
+  Mantlecrawler:
+  - balance: ' Double barrel unwielded recoil from 4 to 3'
+  - balance: ' Double barrel wielded recoil from 1 to 0.5'
+  Rug-Dealer:
+  - spellcheck: typo in heavylaser supply datum corrected (heayvlaser -> heavy_laser)
+  Runian:
+  - rscadd: Drone now has 5 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - balance: On Nuclear War, the amount of xenomorphs required to evolve into Queen
+      is decreased by 2 if there can be a mech and another 2 if there can be a tank
+      roundstart.
+  ViperSnake01:
+  - balance: Tanglefoot minirockets price increased from 200 to 400
+  - balance: SST-574 Sniper Sentry now applies sniper stacking debuff.

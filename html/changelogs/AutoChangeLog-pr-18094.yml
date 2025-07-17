@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - rscadd: "Compact hive status now displays primo tiers"
