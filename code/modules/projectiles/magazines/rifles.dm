@@ -230,26 +230,27 @@
 //MG-42 Light Machine Gun
 
 /obj/item/ammo_magazine/standard_lmg
-	name = "\improper MG-42 drum magazine (10x24mm)"
+	name = "\improper MG-42 drum magazine (10x23.5mm)"
 	desc = "A drum magazine for the MG-42 light machine gun."
 	icon_state = "t42"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum"
-	caliber = CALIBER_10X24_CASELESS
+	caliber = CALIBER_10X235_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 120
+	max_rounds = 135
+	reload_delay = 0.5 SECONDS
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
 
 /obj/item/ammo_magazine/standard_gpmg
-	name = "\improper MG-60 GPMG box magazine (10x26mm)"
+	name = "\improper MG-60 GPMG box magazine (10x25.5mm)"
 	desc = "A belt box for the MG-60 general purpose machinegun."
 	icon_state = "t60"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_gpmg"
-	caliber = CALIBER_10x26_CASELESS
+	caliber = CALIBER_10x255_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200

@@ -890,7 +890,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	caliber = CALIBER_10X24_CASELESS //codex
+	caliber = CALIBER_10X235_CASELESS //codex
 	max_shells = 120 //codex
 	force = 30
 	aim_slowdown = 0.8
@@ -938,8 +938,8 @@
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
 
-	fire_delay = 0.2 SECONDS
-	burst_delay = 0.15 SECONDS
+	fire_delay = 0.12 SECONDS
+	burst_delay = 0.1 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.5
@@ -970,7 +970,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	caliber = CALIBER_10x26_CASELESS //codex
+	caliber = CALIBER_10x255_CASELESS //codex
 	max_shells = 200 //codex
 	force = 35
 	aim_slowdown = 1.2
