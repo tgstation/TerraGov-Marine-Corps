@@ -1,0 +1,5 @@
+author: "PibeCantina"
+delete-after: True
+changes:
+  - bugfix: "Makes zstairs indestructible"
+  - bugfix: "Zstairs layer above weeds\n:cl:"

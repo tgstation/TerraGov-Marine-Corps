@@ -125,7 +125,7 @@
 		to_chat(xenomorph_purchaser, span_warning("This mutation requires a [mutation_typepath.required_structure] chamber to exist!"))
 		return FALSE
 	for(var/datum/mutation_upgrade/owned_mutation AS in xenomorph_purchaser.owned_mutations)
-		if(!is_type_in_list(owned_mutation, mutation_typepath.conflicting_mutation_types))
+		if(!(mutation_typepath in owned_mutation.conflicting_mutation_types))
 			continue
 		to_chat(xenomorph_purchaser, span_warning("That mutation is not compatible with the mutation: [owned_mutation.name]"))
 		return FALSE

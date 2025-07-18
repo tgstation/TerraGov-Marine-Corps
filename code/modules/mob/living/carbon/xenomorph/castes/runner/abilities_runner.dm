@@ -558,11 +558,7 @@
 	for(var/turf/acid_tile AS in RANGE_TURFS(acid_level - 1, xeno_owner.loc))
 		if(!line_of_sight(xeno_owner.loc, acid_tile))
 			continue
-		new /obj/effect/temp_visual/acid_splatter(acid_tile)
-		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			new /obj/effect/xenomorph/spray(acid_tile, 3 SECONDS, 16)
-			for (var/atom/movable/atom_in_acid AS in acid_tile)
-				atom_in_acid.acid_spray_act(xeno_owner)
+		xenomorph_spray(acid_tile, 3 SECONDS, 16, xeno_owner, TRUE, TRUE)
 	if(do_emote)
 		xeno_owner.emote("roar4")
 	if(end_ability_afterward)

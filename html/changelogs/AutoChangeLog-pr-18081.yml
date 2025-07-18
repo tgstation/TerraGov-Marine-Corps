@@ -1,0 +1,5 @@
+author: "revelation-8468"
+delete-after: True
+changes:
+  - balance: "The las sniper scope is now removeable."
+  - imageadd: "Edits the las sniper scope to be seperate from the weapon sprite."

@@ -107,7 +107,7 @@
 	proj.proj_max_range -= 2
 
 /datum/ammo/energy/bfg/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	proj.proj_max_range -= 2
+	proj.proj_max_range -= 10
 
 /datum/ammo/energy/bfg/drop_nade(turf/T)
 	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
