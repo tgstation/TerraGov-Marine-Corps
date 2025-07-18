@@ -225,7 +225,7 @@
 /obj/structure/mineral_door/resin/take_damage(damage_amount, damage_type, armor_type, effects, attack_dir, armour_penetration, mob/living/blame_mob)
 	if(damage_type != BRUTE && damage_type != BURN)
 		return
-	. = ..()
+	return ..()
 
 /obj/structure/mineral_door/resin/fire_act(burn_level)
 	take_damage(burn_level * 2, BURN, FIRE)
