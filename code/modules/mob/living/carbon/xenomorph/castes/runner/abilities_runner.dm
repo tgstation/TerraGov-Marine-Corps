@@ -184,7 +184,7 @@
  * Called when the owner is hit by a flamethrower projectile.
  * Reduces evasion stacks based on the damage received.
 */
-/datum/action/ability/xeno_action/evasion/proc/evasion_flamer_hit(datum/source, obj/projectile/proj)
+/datum/action/ability/xeno_action/evasion/proc/evasion_flamer_hit(datum/source, atom/movable/projectile/proj)
 	SIGNAL_HANDLER
 	if(!(proj.ammo.ammo_behavior_flags & AMMO_FLAME))
 		return
@@ -242,7 +242,7 @@
 	return COMPONENT_PRE_THROW_IMPACT_HIT
 
 /// This is where the dodgy magic happens
-/datum/action/ability/xeno_action/evasion/proc/evasion_dodge(datum/source, obj/projectile/proj, cardinal_move, uncrossing)
+/datum/action/ability/xeno_action/evasion/proc/evasion_dodge(datum/source, atom/movable/projectile/proj, cardinal_move, uncrossing)
 	SIGNAL_HANDLER
 	if(!evade_active) //If evasion is not active we don't dodge
 		return FALSE
@@ -434,6 +434,8 @@
 	emitted_gas.start()
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.melter_acid_shrouds++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "melter_acid_shrouds")
 
 /datum/action/ability/activable/xeno/charge/acid_dash/melter/mob_hit(datum/source, mob/living/living_target)
 	. = ..()
@@ -542,6 +544,8 @@
 	if(xeno_owner.xeno_flags & XENO_LEAPING)
 		xeno_owner.xeno_flags &= ~XENO_LEAPING
 	acid_level = 0
+	GLOB.round_statistics.melter_acidic_missiles++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "melter_acidic_missiles")
 	add_cooldown()
 	succeed_activate()
 

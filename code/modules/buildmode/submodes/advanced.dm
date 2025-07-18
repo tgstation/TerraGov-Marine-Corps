@@ -1,18 +1,17 @@
 /datum/buildmode_mode/advanced
 	key = "advanced"
-	
+
 	/// The type selected for building
 	var/atom/selected_type
 
 /datum/buildmode_mode/advanced/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Set object type")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Copy object type")] -> Left Mouse Button + Alt on turf/obj\n\
 		[span_bold("Place objects")] -> Left Mouse Button on turf/obj\n\
 		[span_bold("Delete objects")] -> Right Mouse Button\n\
 		\n\
 		Use the button in the upper left corner to change the direction of built objects."))
-	)
 
 /datum/buildmode_mode/advanced/change_settings(client/user)
 	var/target_path = input(user, "Enter typepath:", "Typepath", "/obj/structure/closet")
@@ -30,7 +29,7 @@
 
 /datum/buildmode_mode/advanced/handle_click(client/user, params, obj/object)
 	var/list/modifiers = params2list(params)
-	
+
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
 		if(LAZYACCESS(modifiers, ALT_CLICK))
 			if(istype(object, /turf) || istype(object, /obj) || istype(object, /mob))

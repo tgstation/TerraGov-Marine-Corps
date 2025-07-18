@@ -97,6 +97,9 @@
 	if(href_list["priv_msg"])
 		private_message(href_list["priv_msg"], null)
 		return
+	if (href_list["player_ticket_panel"])
+		view_latest_ticket()
+		return
 
 	if(href_list["commandbar_typing"])
 		handle_commandbar_typing(href_list)

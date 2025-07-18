@@ -133,6 +133,7 @@
 #define MOVEMENT_SWAP_TRAIT "movement_swap_trait"
 #define MANIFESTED_TRAIT "manifested_trait"
 #define HOVERBIKE_TRAIT "hoverbike_trait"
+#define MUTATION_TRAIT "mutation_trait"
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
@@ -216,6 +217,11 @@
 #define TRAIT_FOV_APPLIED "fov_applied"
 /// Expands our FOV by 30 degrees if restricted
 #define TRAIT_EXPANDED_FOV "expanded_fov"
+///xenos that can disable miners
+#define TRAIT_CAN_DISABLE_MINER "can_disable_miner"
+///xenos that can tear open holes
+#define TRAIT_CAN_TEAR_HOLE "can_tear_hole"
+
 
 ///Traits for managing AM pass_flags
 #define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"

@@ -83,6 +83,7 @@
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
 		return FALSE
 
+
 	if(!(to_check_flags & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot do this here")
@@ -204,9 +205,9 @@
 	if(!.)
 		return
 	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability == src)
-		return
 	if(carbon_owner.selected_ability)
+		if(carbon_owner.selected_ability == src)
+			return
 		carbon_owner.selected_ability.deselect()
 	select()
 

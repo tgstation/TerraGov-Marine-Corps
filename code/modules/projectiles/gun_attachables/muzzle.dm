@@ -248,3 +248,11 @@
 
 	update_icon()
 	return TRUE
+
+/obj/item/attachable/at45barrel
+	name = "\improper CC/AT45 barrel"
+	icon_state = "at45barrel"
+	icon = 'icons/obj/items/guns/attachments/muzzle.dmi'
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = ATTACHMENT_SLOT_MUZZLE
+	attach_features_flags = NONE

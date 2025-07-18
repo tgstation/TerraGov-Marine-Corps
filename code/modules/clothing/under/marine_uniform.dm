@@ -597,8 +597,8 @@
 	has_sensor = 0
 
 /obj/item/clothing/under/vsd
-	name = "V.S.D jumpsuit"
-	desc = "The standard uniform for Vyacheslav. Both technician use and combat use!"
+	name = "\improper VSD jumpsuit"
+	desc = "The standard uniform for the Vyacheslav Security Detail, weaved with kevlar and marked with blood."
 	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "vsd_uniform_main"
 	worn_icon_state = "vsd_uniform_main"
@@ -613,8 +613,25 @@
 /obj/item/clothing/under/vsd/medic
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
+/obj/item/clothing/under/vsd/alt
+	icon_state = "vsd_uniform_alt"
+	worn_icon_state = "vsd_uniform_alt"
+
+/obj/item/clothing/under/vsd/alt/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/alt/white_webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/vsd/officer
+	desc = "The standard uniform for officers in the Vyacheslav Security Detail, weaved with kevlar and marked with blood."
+	icon_state = "vsd_uniform_officer"
+	worn_icon_state = "vsd_uniform_officer"
+
+/obj/item/clothing/under/vsd/officer/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/vsd/secondary
-	name = "V.S.D jumpsuit"
 	icon_state = "vsd_uniform_secondary"
 	worn_icon_state = "vsd_uniform_secondary"
 
@@ -622,7 +639,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/upp
-	name = "V.S.D jumpsuit"
+	desc = "A standard uniform for a division in the Vyacheslav Security Detail, it's colors feel reminiscent."
 	icon_state = "upp_retired"
 	worn_icon_state = "upp_retired"
 
@@ -632,20 +649,38 @@
 /obj/item/clothing/under/vsd/upp/white_webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
+/obj/item/clothing/under/vsd/upp/alt
+	icon_state = "upp_secondary"
+	worn_icon_state = "upp_secondary"
+
+/obj/item/clothing/under/vsd/upp/alt/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/upp/alt/white_webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/vsd/upp/officer
+	desc = "A standard uniform for a officer in a division of the Vyacheslav Security Detail, it's colors feel reminiscent."
+	icon_state = "upp_retired_officer"
+	worn_icon_state = "upp_retired_officer"
+
+/obj/item/clothing/under/vsd/upp/officer/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/vsd/shirt
-	name = "V.S.D shirt"
+	name = "VSD shirt"
 	icon_state = "vsd_shirt"
 	worn_icon_state = "vsd_shirt"
 
 /obj/item/clothing/under/vsd/shirt/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
-/obj/item/clothing/under/vsd/sleeveless
-	name = "V.S.D shirt"
-	icon_state = "vsd_shirt_sleeveless"
-	worn_icon_state = "vsd_shirt_sleeveless"
+/obj/item/clothing/under/vsd/juggernaut
+	name = "VSD overalls"
+	icon_state = "vsd_alt_juggernaut"
+	worn_icon_state = "vsd_alt_juggernaut"
 
-/obj/item/clothing/under/vsd/sleeveless/webbing
+/obj/item/clothing/under/vsd/juggernaut/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 //TDF

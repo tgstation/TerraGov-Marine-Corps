@@ -103,7 +103,7 @@
 	if(isliving(O))
 		O.effect_smoke(src)
 		return
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/projectile))
+	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /atom/movable/projectile))
 		O.effect_smoke(src)
 
 /obj/effect/particle_effect/smoke/proc/on_exited(datum/source, mob/living/M, direction)
@@ -374,7 +374,7 @@
 
 ///Xeno neurotox smoke for Defilers; doesn't extinguish
 /obj/effect/particle_effect/smoke/xeno/neuro/medium
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
 ///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light

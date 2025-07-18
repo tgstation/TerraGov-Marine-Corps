@@ -6,7 +6,7 @@
 	name = "Rest"
 	action_icon_state = "resting"
 	desc = "Rest on weeds to regenerate health and plasma."
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_SOLIDOBJECT
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_STAGGERED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REST,
 	)
@@ -426,7 +426,7 @@
 	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
 		X.balloon_alert(X, "Stop emitting")
 		QDEL_NULL(X.current_aura)
-		if(isxenoqueen(X))
+		if(X.hive?.living_xeno_ruler == X)
 			X.hive?.update_leader_pheromones()
 		X.hud_set_pheromone()
 		return fail_activate()
@@ -435,7 +435,7 @@
 	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, SFX_ALIEN_DROOL, 25)
 
-	if(isxenoqueen(X))
+	if(X.hive?.living_xeno_ruler == X)
 		X.hive?.update_leader_pheromones()
 	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
 	succeed_activate()
@@ -631,6 +631,11 @@
 	X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), \
 	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.acid_applied++
+	GLOB.round_statistics.all_acid_applied++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "all_acid_applied")
 
 // ***************************************
 // *********** Super strong acid
@@ -783,7 +788,7 @@
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien/spitacid.ogg' : 'sound/voice/alien/spitacid2.ogg'
 	playsound(X.loc, sound_to_play, 25, 1)
 
-	var/obj/projectile/newspit = new /obj/projectile(current_turf)
+	var/atom/movable/projectile/newspit = new /atom/movable/projectile(current_turf)
 	ability_cost = X.ammo.spit_cost
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
@@ -893,6 +898,12 @@
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// Whatever our victim is injected with.
 	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
+	/// The amount of reagents injected for each recurring injection.
+	var/sting_amount = XENO_NEURO_AMOUNT_RECURRING
+	/// The type of gas that is emitted, if any. This only occurs on the first injection.
+	var/datum/effect_system/smoke_spread/sting_gas
+	/// The range of the gas emitted, if any.
+	var/sting_gas_range = 0
 
 /datum/action/ability/activable/xeno/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -926,7 +937,7 @@
 	succeed_activate()
 
 	add_cooldown()
-	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, sting_amount, gas_type = sting_gas, gas_range = sting_gas_range)
 
 	track_stats()
 
@@ -1195,6 +1206,8 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
+	if(X.hive.has_any_mutation_structures())
+		SSpoints.add_biomass_points(X.hivenumber, MUTATION_BIOMASS_PER_PSYDRAIN)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
@@ -1433,7 +1446,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 /// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
 /datum/action/ability/activable/xeno/place_pattern/proc/create_hologram(turf/target_turf)
 	var/atom/selected = xeno_owner.selected_resin
-	var/obj/effect/build_hologram/hologram = new(target_turf, selected)
+	var/obj/effect/build_hologram/hologram = new(target_turf, selected, FALSE, xeno_owner)
 	hologram.alpha = 0
 	hologram.layer = selected.layer + 1
 	hologram.step_size = 4 * ICON_SIZE_ALL

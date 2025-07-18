@@ -30,7 +30,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER|CASTE_CAN_HOLD_JELLY
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
@@ -55,6 +55,14 @@
 		/datum/action/ability/activable/xeno/xeno_spit/toxic_spit,
 		/datum/action/ability/xeno_action/toxic_slash,
 		/datum/action/ability/activable/xeno/drain_sting,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/toxic_blood,
+		/datum/mutation_upgrade/shell/comforting_acid,
+		/datum/mutation_upgrade/spur/acidic_slasher,
+		/datum/mutation_upgrade/spur/far_sting,
+		/datum/mutation_upgrade/veil/toxic_compatibility
 	)
 
 /datum/xeno_caste/sentinel/normal
@@ -99,6 +107,12 @@
 		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 		/datum/action/ability/activable/xeno/neurotox_sting,
 		/datum/action/ability/activable/xeno/xeno_spit,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/gaseous_blood,
+		/datum/mutation_upgrade/spur/toxic_claws,
+		/datum/mutation_upgrade/veil/toxic_spillage
 	)
 
 /datum/xeno_caste/sentinel/retrograde/primordial

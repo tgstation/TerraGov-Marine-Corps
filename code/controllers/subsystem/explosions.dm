@@ -162,8 +162,8 @@ SUBSYSTEM_DEF(explosions)
 
 	// Projectiles have special handling. They rely on a firer var and not fingerprints. Check special cases for firer being
 	// mecha, mob or an object such as the gun itself. Handle each uniquely.
-	if(istype(explosion_cause, /obj/projectile)) // todo we mostly pass ammo datums cus drop explosion doesnt pass the projectiles-pls fix
-		var/obj/projectile/fired_projectile = explosion_cause
+	if(istype(explosion_cause, /atom/movable/projectile)) // todo we mostly pass ammo datums cus drop explosion doesnt pass the projectiles-pls fix
+		var/atom/movable/projectile/fired_projectile = explosion_cause
 		if(ismob(fired_projectile.firer))
 			who_did_it = "\[Projectile firer: [ADMIN_LOOKUPFLW(fired_projectile.firer)]\]"
 			who_did_it_game_log = "\[Projectile firer: [key_name(fired_projectile.firer)]\]"

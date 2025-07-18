@@ -266,16 +266,22 @@
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
 			carbon_victim.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 			to_chat(carbon_victim, "You are smashed to the ground!")
-		else if(isvehicle(victim) || ishitbox(victim))
+			continue
+		if(isvehicle(victim) || ishitbox(victim))
 			var/obj/obj_victim = victim
 			var/hitbox_penalty = 0
 			if(ishitbox(victim))
 				hitbox_penalty = 20
 			obj_victim.take_damage((SHATTERING_ROAR_DAMAGE - hitbox_penalty) * 5 * severity, BRUTE, MELEE)
-		else if(istype(victim, /obj/structure/window))
+		continue
+		if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
 			if(window_victim.damageable)
 				window_victim.ex_act(EXPLODE_DEVASTATE)
+			continue
+		if(isfire(victim))
+			var/obj/fire/fire = victim
+			fire.reduce_fire(10)
 
 ///cleans up when the charge up is finished or interrupted
 /datum/action/ability/activable/xeno/shattering_roar/proc/finish_charging()
@@ -347,6 +353,7 @@
 
 /obj/effect/ebeam/zeroform/Initialize(mapload)
 	. = ..()
+	notify_ai_hazard()
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
 

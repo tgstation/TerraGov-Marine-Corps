@@ -28,8 +28,8 @@
 	deevolves_to = /datum/xeno_caste/spitter
 
 	// *** Flags *** //
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
-	caste_traits = null
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
+	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 50, ACID = 40)
@@ -49,6 +49,9 @@
 
 	// *** Minimap Icon *** //
 	minimap_icon = "praetorian"
+
+	// *** Ruler Abilities *** ///
+	queen_leader_limit = 4
 
 	// *** Abilities *** //
 	actions = list(
@@ -168,10 +171,10 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/abduct,
-		/datum/action/ability/activable/xeno/dislocate,
-		/datum/action/ability/activable/xeno/advance_oppressor,
-		/datum/action/ability/activable/xeno/tail_lash,
+		/datum/action/ability/activable/xeno/oppressor/abduct,
+		/datum/action/ability/activable/xeno/oppressor/dislocate,
+		/datum/action/ability/activable/xeno/oppressor/advance,
+		/datum/action/ability/activable/xeno/oppressor/tail_lash,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -193,10 +196,10 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/abduct,
-		/datum/action/ability/activable/xeno/dislocate,
-		/datum/action/ability/activable/xeno/advance_oppressor,
-		/datum/action/ability/activable/xeno/tail_lash,
+		/datum/action/ability/activable/xeno/oppressor/abduct,
+		/datum/action/ability/activable/xeno/oppressor/dislocate,
+		/datum/action/ability/activable/xeno/oppressor/advance,
+		/datum/action/ability/activable/xeno/oppressor/tail_lash,
 		/datum/action/ability/activable/xeno/item_throw,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,

@@ -17,9 +17,12 @@
 	///Chat lines when target dies or is destroyed
 	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
 
+/datum/ai_behavior/human/melee_interact(datum/source, atom/interactee, melee_tool = melee_weapon) //specifies the arg value
+	return ..()
+
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
-	if(human_ai_state_flags & HUMAN_AI_NEED_WEAPONS)
+	if((human_ai_state_flags & HUMAN_AI_NEED_WEAPONS) && !(human_ai_state_flags & HUMAN_AI_BUSY_ACTION))
 		equip_weaponry()
 	if(!gun)
 		return
@@ -215,9 +218,11 @@
 			if(machinery_target.machine_stat & BROKEN)
 				return AI_FIRE_TARGET_DEAD
 
-	if(get_dist(target, mob_parent) > target_distance)
+	var/dist = get_dist(target, mob_parent)
+	if(dist > target_distance)
 		return AI_FIRE_OUT_OF_RANGE
-	if(!line_of_sight(mob_parent, target)) //todo: This doesnt check if we can actually shoot past stuff in the line, but also checking path seems excessive
+	//dist 1 has issues with LOS checks, causing failure to fire when being hit diagonally past a wall
+	if((dist > 1) && !line_of_sight(mob_parent, target)) //todo: This doesnt check if we can actually shoot past stuff in the line, but also checking path seems excessive
 		return AI_FIRE_NO_LOS
 
 	//ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first

@@ -183,6 +183,10 @@
 	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 3x3 block is found.
 		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/atom/movable/affected AS in affected_tile)
+			if(isfire(affected))
+				var/obj/fire/fire = affected
+				fire.reduce_fire(10)
+				continue
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(duration = 0.5 SECONDS)
 				continue

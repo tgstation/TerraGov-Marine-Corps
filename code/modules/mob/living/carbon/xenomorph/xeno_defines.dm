@@ -68,6 +68,12 @@
 	var/evolution_threshold = 0
 	///Threshold amount of upgrade points to next maturity
 	var/upgrade_threshold = 0
+	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
+	var/evolve_min_xenos = 0
+	// Starting Population lock, equivalent to assault crewman availability.
+	var/evolve_population_lock = 0
+	// How many of this caste may be alive at once
+	var/maximum_active_caste = INFINITY
 
 	///Singular type path for the caste to deevolve to when forced to by the queen.
 	var/deevolves_to
@@ -76,9 +82,9 @@
 	///Bitwise flags denoting things a caste is or is not. Uses defines.
 	var/caste_flags = CASTE_EVOLUTION_ALLOWED
 	///Bitwise flags denoting things a caste can and cannot do. Uses defines.
-	var/can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	var/can_flags = CASTE_CAN_BE_LEADER
 	///list of traits granted to the owner by becoming this caste
-	var/list/caste_traits = list(TRAIT_CAN_VENTCRAWL)
+	var/list/caste_traits = list()
 	// How long the hive must wait before a new one of this caste can evolve
 	var/death_evolution_delay = 0
 	///whether or not a caste can hold eggs, and either 1 or 2 eggs at a time.
@@ -206,12 +212,11 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
-	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
-	var/evolve_min_xenos = 0
-	// How many of this caste may be alive at once
-	var/maximum_active_caste = INFINITY
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
+
+	/// All mutations that this caste can view and potentially purchase.
+	var/list/datum/mutation_upgrade/mutations = list()
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -439,6 +444,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/corrosive_ammo = 0
 	///Boiler Neuro ammo
 	var/neuro_ammo = 0
+
+	/// All active mutations they own.
+	var/list/datum/mutation_upgrade/owned_mutations = list()
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 
