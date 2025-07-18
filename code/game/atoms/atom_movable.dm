@@ -796,16 +796,17 @@
 
 	var/dist_since_sleep = 0
 
+	var/failed_to_move = FALSE
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST))  && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && (!failed_to_move && throwing) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
-					throwing = FALSE
+					failed_to_move = TRUE
 				error += dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -816,7 +817,7 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
-					throwing = FALSE
+					failed_to_move = TRUE
 				error -= dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -831,7 +832,7 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
-					throwing = FALSE
+					failed_to_move = TRUE
 				error += dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -842,7 +843,7 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
-					throwing = FALSE
+					failed_to_move = TRUE
 				error -= dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -852,7 +853,7 @@
 	//done throwing, either because it hit something or it finished moving
 	if(!originally_dir_locked)
 		atom_flags &= ~DIRLOCK
-	if(isobj(src) && throwing)
+	if(isobj(src) && (!failed_to_move && throwing))
 		throw_impact(get_turf(src), speed)
 	stop_throw(flying, original_layer)
 
@@ -1456,16 +1457,15 @@
 ///Toggles AM between throwing states
 /atom/movable/proc/set_throwing(new_throwing)
 	if(throwing == new_throwing)
-		return
+		return FALSE
 	throwing = new_throwing
 	if(throwing)
-		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT) //prevents moving during the throw
 		add_pass_flags(PASS_THROW, THROW_TRAIT)
 		add_nosubmerge_trait(THROW_TRAIT)
 	else
-		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 		REMOVE_TRAIT(src, TRAIT_NOSUBMERGE, THROW_TRAIT)
 		remove_pass_flags(PASS_THROW, THROW_TRAIT)
+	return TRUE
 
 ///Toggles AM between flying states
 /atom/movable/proc/set_flying(flying, new_layer)

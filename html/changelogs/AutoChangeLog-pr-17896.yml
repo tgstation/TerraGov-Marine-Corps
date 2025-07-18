@@ -1,0 +1,6 @@
+author: "Isy232"
+delete-after: True
+changes:
+  - rscadd: "Roundstart population value provided to all players when the round starts."
+  - balance: "Dragon locked to 50 roundstart population, King to 40."
+  - balance: "Dragon xenos evolution requirement 13 => 8, King xenos evolution requirement 12 => 8."

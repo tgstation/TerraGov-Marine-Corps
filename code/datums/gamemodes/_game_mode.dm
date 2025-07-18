@@ -49,8 +49,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/tier_three_penalty = 0
 	///Includes T3 xenos in the calculation for maximum T3 slots.
 	var/tier_three_inclusion = FALSE
-	///Caste Swap Timer
-	var/caste_swap_timer = 15 MINUTES
+	///How often you can caste swap
+	var/caste_swap_cooldown = 15 MINUTES
 	///List of castes we dont want to be evolvable depending on gamemode.
 	var/list/restricted_castes
 
@@ -72,6 +72,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT)
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
+
+	var/roundstart_players = 0
 
 
 /datum/game_mode/New()
@@ -110,6 +112,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
+	// Determine roundstart player count, used for population locks.
+	SSticker.mode.roundstart_players = length(GLOB.clients)
+	to_chat(world, "Round initialized with a Population of [SSticker.mode.roundstart_players]")
+	SSblackbox.record_feedback("text", "initial_players", 1, SSticker.mode.roundstart_players)
 	for(var/datum/job/job AS in valid_job_types)
 		job = SSjob.GetJobType(job)
 		if(!job) //dunno how or why but it errored in ci and i couldnt reproduce on local
