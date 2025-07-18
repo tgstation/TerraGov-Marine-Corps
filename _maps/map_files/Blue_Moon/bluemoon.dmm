@@ -1013,9 +1013,9 @@
 /area/bluemoon/caves/facility/lambda/n)
 "biH" = (
 /obj/machinery/light{
-	dir = 4
+	dir = 1
 	},
-/turf/open/floor/tile/dark,
+/turf/open/floor/carpet,
 /area/bluemoon/outside/building/admin)
 "bjA" = (
 /turf/open/floor/prison/darkyellow{
@@ -1980,9 +1980,6 @@
 /area/bluemoon/outside/building/marshal)
 "cnH" = (
 /obj/effect/spawner/random/engineering/structure/atmospherics_portable/icecolony,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/carpet/edge2,
 /area/bluemoon/outside/building/admin)
 "cnR" = (
@@ -14027,9 +14024,6 @@
 /turf/open/floor,
 /area/bluemoon/outside/building/toolshed)
 "qol" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/carpet/edge2,
 /area/bluemoon/outside/building/admin)
@@ -28948,7 +28942,7 @@ vwv
 axT
 jLe
 vwv
-xwC
+biH
 eGl
 dqX
 eGl
@@ -29242,7 +29236,7 @@ vwv
 opf
 jLe
 vwv
-xwC
+biH
 rss
 xwC
 rss
@@ -30998,7 +30992,7 @@ vwv
 okL
 ggv
 ihU
-biH
+ggv
 mLJ
 ggv
 mTS
@@ -31145,7 +31139,7 @@ vwv
 pir
 kEw
 jmt
-kEw
+pjt
 kEw
 kEw
 jmt
