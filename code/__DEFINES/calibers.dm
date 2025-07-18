@@ -30,7 +30,7 @@
 #define CALIBER_10X20_CASELESS "10x20mm caseless"
 
 // --- Rifles ---
-#define CALIBER_10X235_CASELESS "10x23.5mm caseless"
+#define CALIBER_10X24_CASELESS "10x24mm caseless"
 #define CALIBER_10X25_CASELESS "10x25mm caseless"
 #define CALIBER_10x27_CASELESS "10x27mm caseless"
 #define CALIBER_10x265_CASELESS "10x26.5mm caseless"
@@ -43,8 +43,9 @@
 #define CALIBER_10X28_CASELESS "10x28mm caseless" //Spec scout and OG Smartgun
 #define CALIBER_762X51 "7.62x51mm" //Minigun
 #define CALIBER_10X27_INCENDIARY_CASELESS "10x27mm incendiary caseless"
-#define CALIBER_10x255_CASELESS "10x26mm caseless" //GPMG and SG
+#define CALIBER_10x26_CASELESS "10x26mm caseless" //GPMG and SG
 #define CALIBER_ALIEN "alien alloy"
+#define CALIBER_93X225_CASELESS "(9.3x22.5mm caseless"
 
 // --- Shotguns ---
 #define CALIBER_12G "12 gauge"

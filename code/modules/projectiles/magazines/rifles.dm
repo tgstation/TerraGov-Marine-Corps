@@ -230,13 +230,13 @@
 //MG-42 Light Machine Gun
 
 /obj/item/ammo_magazine/standard_lmg
-	name = "\improper MG-42 drum magazine (10x23.5mm)"
+	name = "\improper MG-42 drum magazine (9.3x22.5mm)"
 	desc = "A drum magazine for the MG-42 light machine gun."
 	icon_state = "t42"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum"
-	caliber = CALIBER_10X24_CASELESS
-	default_ammo = /datum/ammo/bullet/rifle
+	caliber = CALIBER_93X225_CASELESS
+	default_ammo = /datum/ammo/bullet/rifle/light_machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 135
 	reload_delay = 0.5 SECONDS

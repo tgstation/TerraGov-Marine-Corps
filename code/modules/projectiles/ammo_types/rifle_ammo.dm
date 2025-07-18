@@ -53,6 +53,13 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
 	accuracy = -10
 
+/datum/ammo/bullet/rifle/light_machinegun
+	name = "light machinegun bullet"
+	hud_state = "rifle_heavy"
+	shell_speed = 2.1
+	damage = 21
+	penetration = 4
+
 /datum/ammo/bullet/rifle/machinegun
 	name = "machinegun bullet"
 	hud_state = "rifle_heavy"

@@ -879,7 +879,7 @@
 
 /obj/item/weapon/gun/rifle/standard_lmg
 	name = "\improper MG-42 Kauser light machine gun"
-	desc = "The Kauser MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
+	desc = "The Kauser MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down quick and dense fire support. It is generally used when someone wants to hold a position or provide fire support. It uses 9.3x22.5mm ammunition."
 
 	icon_state = "t42"
 	worn_icon_state = "t42"
@@ -890,10 +890,10 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	caliber = CALIBER_10X24_CASELESS //codex
-	max_shells = 120 //codex
+	caliber = CALIBER_93X225_CASELESS //codex
+	max_shells = 135 //codex
 	force = 30
-	aim_slowdown = 0.8
+	aim_slowdown = 0.7
 	wield_delay = 1.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg42.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -938,12 +938,12 @@
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
 
-	fire_delay = 0.12 SECONDS
-	burst_delay = 0.1 SECONDS
-	extra_delay = 0.05 SECONDS
+	fire_delay = 0.13 SECONDS
+	burst_delay = 0.11 SECONDS
+	extra_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.5
-	scatter = 2
+	scatter = 2.5
 	scatter_unwielded = 80
 	movement_acc_penalty_mult = 6
 
