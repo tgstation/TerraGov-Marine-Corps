@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: True
+changes:
+  - balance: "Existing acid puddles now delete themselves to allow for new acid puddles - this causes various abilities like Acid Dash and Acid Spray to have full effect while on existing acid puddles."
+  - bugfix: "Resin facehuggers no longer infinitely stack thin resin."
+  - code_imp: "The creation of acid spray puddles is now done through xenomorph_spray()."
