@@ -777,10 +777,6 @@
 /obj/structure/bluemoon_sign,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/bluemoon/outside/w)
-"aPe" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/bluemoon/outside/ne)
 "aPm" = (
 /obj/structure/table,
 /obj/item/tool/stamp/qm,
@@ -10218,10 +10214,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/blue2,
 /area/bluemoon/outside/building/admin)
-"lEm" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/ice,
-/area/bluemoon/caves/se)
 "lEn" = (
 /obj/machinery/light{
 	dir = 4
@@ -34199,7 +34191,7 @@ uJX
 gJT
 emY
 gJT
-aPe
+gJT
 eZa
 gJT
 gJT
@@ -37948,7 +37940,7 @@ uTg
 jCU
 gjJ
 gjJ
-lEm
+gjJ
 gjJ
 gjJ
 sAh
