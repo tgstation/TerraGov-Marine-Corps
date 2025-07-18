@@ -109,6 +109,12 @@
 		/datum/action/ability/activable/xeno/xeno_spit,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/gaseous_blood,
+		/datum/mutation_upgrade/spur/toxic_claws,
+		/datum/mutation_upgrade/veil/toxic_spillage
+	)
+
 /datum/xeno_caste/sentinel/retrograde/primordial
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_PRIMO

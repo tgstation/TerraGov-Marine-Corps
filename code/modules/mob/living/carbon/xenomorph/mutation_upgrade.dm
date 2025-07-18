@@ -113,7 +113,7 @@
 /datum/mutation_upgrade/shell
 	category = MUTATION_SHELL
 	required_structure = MUTATION_SHELL
-	alert = MUTATION_SHELL_ALERT
+	alert_typepath = MUTATION_SHELL_ALERT
 
 
 /atom/movable/screen/alert/shell
@@ -127,7 +127,7 @@
 /datum/mutation_upgrade/spur
 	category = MUTATION_SPUR
 	required_structure = MUTATION_SPUR
-	alert = MUTATION_SPUR_ALERT
+	alert_typepath = MUTATION_SPUR_ALERT
 
 /atom/movable/screen/alert/spur
 	name = "Spur Mutation"
@@ -140,7 +140,7 @@
 /datum/mutation_upgrade/veil
 	category = MUTATION_VEIL
 	required_structure = MUTATION_VEIL
-	alert = MUTATION_VEIL_ALERT
+	alert_typepath = MUTATION_VEIL_ALERT
 
 /atom/movable/screen/alert/veil
 	name = "Veil Mutation"

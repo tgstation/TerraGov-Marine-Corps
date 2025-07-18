@@ -407,18 +407,20 @@
 	name = "Reagent Slash"
 	action_icon_state = "reagent_slash"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
-	desc = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
+	desc = "For a short duration, the next 3 slashes made will inject a small amount of selected toxin."
 	cooldown_duration = 6 SECONDS
 	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
 	target_flags = ABILITY_MOB_TARGET
-	///How many remaining reagent slashes the Defiler has
+	/// How many remaining reagent slashes does this xenomorph have?
 	var/reagent_slash_count = 0
-	///Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does
+	/// How much units is injected on slash?
+	var/reagent_slash_amount = DEFILER_REAGENT_SLASH_INJECT_AMOUNT
+	/// Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does.
 	var/reagent_slash_duration_timer_id
-	///Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation
+	/// Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation.
 	var/reagent_slash_reagent
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
@@ -461,7 +463,7 @@
 
 	var/mob/living/carbon/carbon_target = target
 
-	carbon_target.reagents.add_reagent(reagent_slash_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT)
+	carbon_target.reagents.add_reagent(reagent_slash_reagent, reagent_slash_amount)
 	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	xeno_owner.visible_message(carbon_target, span_danger("[carbon_target] is pricked by [xeno_owner]'s spines!"))
 
