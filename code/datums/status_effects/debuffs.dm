@@ -968,7 +968,7 @@
 	. = ..()
 	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(owner, /particles/melting_acid_status)
-	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	particle_holder.particles.spawning = 1 + round(stacks / 4)
 
 /datum/status_effect/stacking/melting_acid/on_remove()
 	QDEL_NULL(particle_holder)
@@ -979,7 +979,7 @@
 	if(!owner)
 		return
 	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	particle_holder.particles.spawning = 1 + round(stacks / 4)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0
 	owner.apply_damage(5, BURN, null, ACID)
