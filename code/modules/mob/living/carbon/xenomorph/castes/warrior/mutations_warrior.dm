@@ -25,8 +25,7 @@
 		return
 	xenomorph_owner.add_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY, TRUE, 0, NONE, TRUE, agility_ability.speed_modifier) // We override it, so no need to remove first.
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.detachArmor(agility_ability.attached_armor)
-	agility_ability.attached_armor = new()
-	agility_ability.attached_armor = agility_ability.attached_armor.modifyAllRatings(agility_ability.armor_modifier)
+	agility_ability.attached_armor = new(agility_ability.armor_modifier, agility_ability.armor_modifier, agility_ability.armor_modifier, agility_ability.armor_modifier, agility_ability.armor_modifier, agility_ability.armor_modifier, agility_ability.armor_modifier, agility_ability.armor_modifier)
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.attachArmor(agility_ability.attached_armor)
 
 /// Returns the amount that Agility's speed should be modified by.

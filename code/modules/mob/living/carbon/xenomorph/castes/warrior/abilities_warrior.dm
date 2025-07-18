@@ -96,8 +96,7 @@
 		attached_armor = null
 		return
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY, TRUE, 0, NONE, TRUE, speed_modifier)
-	attached_armor = new()
-	attached_armor = attached_armor.modifyAllRatings(armor_modifier)
+	attached_armor = new(armor_modifier, armor_modifier, armor_modifier, armor_modifier, armor_modifier, armor_modifier, armor_modifier, armor_modifier)
 	xeno_owner.soft_armor = xeno_owner.soft_armor.attachArmor(attached_armor)
 	xeno_owner.toggle_move_intent(MOVE_INTENT_RUN)
 
