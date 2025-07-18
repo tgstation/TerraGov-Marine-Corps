@@ -17514,10 +17514,6 @@
 "uwW" = (
 /turf/open/floor,
 /area/bluemoon/outside/building/dorms/plant)
-"uxg" = (
-/obj/machinery/light,
-/turf/closed/mineral/smooth/darkfrostwall/indestructible,
-/area/bluemoon/caves/rock)
 "uxm" = (
 /obj/machinery/shower{
 	dir = 1;
@@ -22706,7 +22702,7 @@ ldL
 ldL
 ldL
 ldL
-uxg
+ldL
 ldL
 ldL
 kwo
@@ -26994,7 +26990,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+iKK
 iKK
 iKK
 ozt
@@ -27139,8 +27135,8 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
+iKK
+iKK
 iPA
 iKK
 iKK
@@ -27285,7 +27281,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+iKK
 iKK
 iKK
 iKK
