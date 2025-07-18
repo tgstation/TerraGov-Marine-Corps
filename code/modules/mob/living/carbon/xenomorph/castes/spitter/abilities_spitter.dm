@@ -173,7 +173,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PICK_GRENADE,
 	)
 	/// In exchange for using a grenade while at none, the percentage of maximum health to lose.
-	var/health_loss_percentage_per_grenade
+	var/health_loss_percentage_per_grenade = 0
 	/// The amount of deciseconds to add to the detonation if the grenade was thrown at themselves.
 	var/bonus_self_detonation_time
 	/// The current amount of grenades this ability has.
@@ -224,7 +224,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 /datum/action/ability/activable/xeno/toss_grenade/use_ability(atom/target)
 	if(current_grenades <= 0)
 		// For balance reasons, no exchanging life for healing grenades. The reason: infinite healing grenades.
-		if(health_loss_percentage_per_grenade == 0 || xeno_owner.selected_grenade == /obj/item/explosive/grenade/globadier/heal)
+		if(!health_loss_percentage_per_grenade || xeno_owner.selected_grenade == /obj/item/explosive/grenade/globadier/heal)
 			owner.balloon_alert(owner, "No grenades!")
 			return fail_activate()
 		var/health_to_lose = xeno_owner.xeno_caste.max_health * health_loss_percentage_per_grenade;

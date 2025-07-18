@@ -18,7 +18,7 @@
 	var/datum/action/ability/activable/xeno/toss_grenade/grenade_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/toss_grenade]
 	if(!grenade_ability)
 		return
-	ENABLE_BITFIELD(grenade_ability.use_state_flags, ABILITY_TARGET_SELF)
+	grenade_ability.use_state_flags |= ABILITY_TARGET_SELF
 	grenade_ability.bonus_self_detonation_time += get_duration(0)
 	return ..()
 
@@ -26,7 +26,7 @@
 	var/datum/action/ability/activable/xeno/toss_grenade/grenade_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/toss_grenade]
 	if(!grenade_ability)
 		return
-	DISABLE_BITFIELD(grenade_ability.use_state_flags, ABILITY_TARGET_SELF)
+	grenade_ability.use_state_flags &= ~ABILITY_TARGET_SELF
 	grenade_ability.bonus_self_detonation_time -= get_duration(0)
 	return ..()
 
