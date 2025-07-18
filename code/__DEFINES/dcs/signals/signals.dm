@@ -826,6 +826,8 @@
 #define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage" // (amount, amount_mod, passive)
 #define COMSIG_XENOMORPH_SUNDER_CHANGE "xenomorph_sunder_change" // (old, new)
 
+#define COMSIG_XENOMORPH_UPDATE_HEALTH "xenomorph_update_health" // From [/mob/living/carbon/xenomorph/updatehealth()]
+
 #define COMSIG_XENOMORPH_EVOLVED "xenomorph_evolved"
 #define COMSIG_XENOMORPH_DEEVOLVED "xenomorph_deevolved"
 #define COMSIG_XENOMORPH_WATCHXENO "xenomorph_watchxeno"

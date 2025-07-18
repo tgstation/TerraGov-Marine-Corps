@@ -193,7 +193,8 @@
 		health = maxHealth
 		stat = CONSCIOUS
 		return
-	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
+	health = maxHealth - getFireLoss() - getBruteLoss() // Xenos can only take brute and fire damage.
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_UPDATE_HEALTH)
 	med_hud_set_health() //todo: Make all damage update health so we can just kill pointless life updates entirely
 	update_stat()
 	update_wounds()

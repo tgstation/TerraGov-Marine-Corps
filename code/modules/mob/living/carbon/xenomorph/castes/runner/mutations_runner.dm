@@ -67,13 +67,13 @@
 	return "Your critical threshold is decreased by [critical_threshold_amount]. While you have negative health, you are staggered and cannot slash attack. If you have negative health for more than [get_duration(new_amount) * 0.1] seconds, your critical threshold is increased back until you reach full health."
 
 /datum/mutation_upgrade/shell/borrowed_time/on_mutation_enabled()
-	RegisterSignals(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
+	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_UPDATE_HEALTH, PROC_REF(on_health_update))
 	if(!critical_threshold_boosted && xenomorph_owner.health >= xenomorph_owner.maxHealth)
 		toggle(TRUE)
 	return ..()
 
 /datum/mutation_upgrade/shell/borrowed_time/on_mutation_disabled()
-	UnregisterSignal(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_UPDATE_HEALTH)
 	if(critical_threshold_timer)
 		reverse_critical_threshold()
 	else if(critical_threshold_boosted)
@@ -90,23 +90,23 @@
 		return
 	xenomorph_owner.health_threshold_crit += critical_threshold_amount
 
-/// Checks on the next tick if anything needs to be done with their new health since it is possible the health is inaccurate (because there can be other modifiers).
-/datum/mutation_upgrade/shell/borrowed_time/proc/on_damage(datum/source, amount, list/amount_mod)
-	SIGNAL_HANDLER
-	INVOKE_NEXT_TICK(src, PROC_REF(check_current_health))
-
 /// If their health is negative, activate it if possible. If it is full, let them activate it next time.
-/datum/mutation_upgrade/shell/borrowed_time/proc/check_current_health()
-	if(critical_threshold_boosted && !critical_threshold_timer && xenomorph_owner.health <= xenomorph_owner.health_threshold_crit + critical_threshold_amount)
-		ADD_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
-		var/borrowed_time_length = get_duration(get_total_structures())
-		xenomorph_owner.Stagger(borrowed_time_length)
-		critical_threshold_timer = addtimer(CALLBACK(src, PROC_REF(reverse_critical_threshold)), borrowed_time_length, TIMER_UNIQUE|TIMER_STOPPABLE)
-		xenomorph_owner.emote("roar")
-		xenomorph_owner.balloon_alert(xenomorph_owner, "On borrowed time!");
+/datum/mutation_upgrade/shell/borrowed_time/proc/on_health_update(datum/source)
+	SIGNAL_HANDLER
+	if(xenomorph_owner.health <= xenomorph_owner.get_death_threshold())
+		return // They're dead (and possibly gibbed) immediately after the signal is processed.
+	if(!critical_threshold_boosted)
+		if(xenomorph_owner.health >= xenomorph_owner.maxHealth)
+			toggle()
 		return
-	if(!critical_threshold_boosted && xenomorph_owner.health >= xenomorph_owner.maxHealth)
-		toggle()
+	if(critical_threshold_timer || xenomorph_owner.health > xenomorph_owner.health_threshold_crit + critical_threshold_amount)
+		return
+	ADD_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
+	var/borrowed_time_length = get_duration(get_total_structures())
+	xenomorph_owner.Stagger(borrowed_time_length)
+	critical_threshold_timer = addtimer(CALLBACK(src, PROC_REF(reverse_critical_threshold)), borrowed_time_length, TIMER_UNIQUE|TIMER_STOPPABLE)
+	INVOKE_ASYNC(xenomorph_owner, TYPE_PROC_REF(/mob, emote), "roar")
+	xenomorph_owner.balloon_alert(xenomorph_owner, "On borrowed time!");
 
 /// Effectively removes the effects of this mutation ands its active effect.
 /datum/mutation_upgrade/shell/borrowed_time/proc/reverse_critical_threshold()
