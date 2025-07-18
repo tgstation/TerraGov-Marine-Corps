@@ -744,9 +744,7 @@
 	playsound(loc, 'sound/bullets/acid_impact1.ogg', 50, 1)
 
 	for(var/turf/acid_tile AS in RANGE_TURFS(1, loc))
-		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
-		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
+		xenomorph_spray(acid_tile, 6 SECONDS, 16, null, TRUE)
 
 
 	var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src)) //Spawn acid smoke
@@ -774,7 +772,7 @@
 	playsound(loc, SFX_ALIEN_RESIN_BUILD, 50, 1)
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
-		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
+		if(!locate(/obj/alien/resin/sticky/thin) in sticky_tile.contents)
 			new /obj/alien/resin/sticky/thin(sticky_tile)
 
 	for(var/mob/living/target in range(1, loc))

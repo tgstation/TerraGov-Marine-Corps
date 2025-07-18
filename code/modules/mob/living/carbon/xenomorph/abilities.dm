@@ -675,20 +675,6 @@
 	to_chat(owner, span_xenodanger("We feel our acid glands refill. We can spray acid again."))
 	return ..()
 
-/datum/action/ability/activable/xeno/spray_acid/proc/acid_splat_turf(turf/T)
-	. = locate(/obj/effect/xenomorph/spray) in T
-	if(!.)
-		var/mob/living/carbon/xenomorph/X = owner
-
-		. = new /obj/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_duration, X.xeno_caste.acid_spray_damage, owner)
-
-		for(var/i in T)
-			var/atom/A = i
-			if(!A)
-				continue
-			A.acid_spray_act(owner)
-
-
 /datum/action/ability/activable/xeno/xeno_spit
 	name = "Xeno Spit"
 	action_icon_state = "shift_spit_neurotoxin"

@@ -81,7 +81,7 @@
 			if(get_dir(TF, prev_turf) & B.dir)
 				B.acid_spray_act(owner)
 
-		acid_splat_turf(TF)
+		xenomorph_spray(TF, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, TRUE)
 
 		distance++
 		if(distance > 7 || blocked)
@@ -293,8 +293,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	A.set_up(0.5, src)
 	A.start()
 	for(var/acid_tile in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
-		new /obj/effect/temp_visual/acid_splatter(acid_tile)
-		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
+		xenomorph_spray(acid_tile, 5 SECONDS, 40, null, TRUE)
 	qdel(src)
 
 /obj/item/explosive/grenade/globadier/update_overlays()
