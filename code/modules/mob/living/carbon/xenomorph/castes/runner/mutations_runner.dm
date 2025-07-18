@@ -99,7 +99,7 @@
 		if(xenomorph_owner.health >= xenomorph_owner.maxHealth)
 			toggle()
 		return
-	if(critical_threshold_timer || xenomorph_owner.health > xenomorph_owner.health_threshold_crit + critical_threshold_amount)
+	if(critical_threshold_timer || xenomorph_owner.health > xenomorph_owner.get_crit_threshold() + critical_threshold_amount)
 		return
 	ADD_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
 	var/borrowed_time_length = get_duration(get_total_structures())
