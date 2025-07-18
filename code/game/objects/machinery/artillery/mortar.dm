@@ -53,6 +53,10 @@
 		/obj/item/mortal_shell/smoke,
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/plasmaloss,
+		/obj/item/mortal_shell/smoke/satrapine,
+		/obj/item/mortal_shell/smoke/aphrotox,
+		/obj/item/mortal_shell/smoke/neuro,
+		/obj/item/mortal_shell/smoke/sleep,
 	)
 
 	use_power = NO_POWER_USE
@@ -214,7 +218,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 

@@ -1,5 +1,5 @@
 //Color variant defines
-#define NORMAL_COLOR ""
+#define SPEED_COLOR ""
 #define RESTING_COLOR "white"
 #define STICKY_COLOR "green"
 
@@ -19,10 +19,11 @@
 	plane = FLOOR_PLANE
 	max_integrity = 25
 	ignore_weed_destruction = TRUE
+	resistance_flags = UNACIDABLE | XENO_DAMAGEABLE
 
 	var/obj/alien/weeds/node/parent_node
 	///The color variant of the sprite
-	var/color_variant = NORMAL_COLOR
+	var/color_variant = SPEED_COLOR
 	///The healing buff when resting on this weed
 	var/resting_buff = 1
 	///If these weeds are not destroyed but just swapped
@@ -36,7 +37,7 @@
 /obj/alien/weeds/plasmacutter_act(mob/living/user, obj/item/I)
 	return FALSE // Just attack normally.
 
-/obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
+/obj/alien/weeds/Initialize(mapload, _hivenumber, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override)
@@ -136,6 +137,39 @@
 /obj/alien/weeds/footstep_override(atom/movable/source, list/footstep_overrides)
 	footstep_overrides[FOOTSTEP_RESIN] = layer
 
+/obj/alien/weeds/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
+		return
+	if(!issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB)
+		SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_OBJ, src)
+		if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker) & COMPONENT_NO_ATTACK_ALIEN)
+			return FALSE
+		if(!(resistance_flags & XENO_DAMAGEABLE))
+			to_chat(xeno_attacker, span_warning("We stare at \the [src] cluelessly."))
+			return FALSE
+		if(effects)
+			xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"),
+			span_danger("We slash [src]!"))
+			xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+			playsound(loc, SFX_ALIEN_CLAW_METAL, 25)
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		xeno_attacker.changeNext_move(CLICK_CD_MELEE)
+		take_damage(damage_amount, damage_type, armor_type, effects, get_dir(src, xeno_attacker), armor_penetration, xeno_attacker)
+		return TRUE
+	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB)
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts scooping up \the [src]!"), \
+		span_xenonotice("We start to scoop up \the [src]."))
+		if(!do_after(xeno_attacker, 2 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
+			return
+		if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the object already gone
+			return
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] scoops up \the [src]!"), \
+		span_xenonotice("We scoop up \the [src]."))
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+		take_damage(max_integrity) // Ensure its destroyed
+		return
+
 /obj/alien/weeds/sticky
 	name = "sticky weeds"
 	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
@@ -160,16 +194,19 @@
 
 	if(isxeno(crosser))
 		var/mob/living/carbon/xenomorph/X = crosser
-		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+		if(!issamexenohive(X))
+			X.next_move_slowdown = WEED_SLOWDOWN
+		else
+			X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
 		return
 
-	if(!ishuman(crosser))
+	if(!isliving(crosser))
 		return
 
 	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))
 		return
 
-	var/mob/living/carbon/human/victim = crosser
+	var/mob/living/victim = crosser
 
 	if(victim.lying_angle)
 		return
@@ -262,7 +299,7 @@
 	///The plasma cost multiplier for this node
 	var/ability_cost_mult = 1
 
-/obj/alien/weeds/node/Initialize(mapload, obj/alien/weeds/node/node)
+/obj/alien/weeds/node/Initialize(mapload, _hivenumber, obj/alien/weeds/node/node)
 	var/swapped = FALSE
 	for(var/obj/alien/weeds/W in loc)
 		if(W != src)
@@ -270,7 +307,7 @@
 			swapped = TRUE
 			qdel(W) //replaces the previous weed
 			break
-	. = ..(mapload, node, swapped)
+	. = ..(mapload, _hivenumber, node, swapped)
 
 	// Generate our full graph before adding to SSweeds
 	node_turfs = filled_turfs(src, node_range, "square")
@@ -306,6 +343,39 @@
 	. = ..()
 	. += mutable_appearance(icon, node_icon + "[rand(0,5)]")
 
+/obj/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
+		return
+	if(!issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB)
+		SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_OBJ, src)
+		if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker) & COMPONENT_NO_ATTACK_ALIEN)
+			return FALSE
+		if(!(resistance_flags & XENO_DAMAGEABLE))
+			to_chat(xeno_attacker, span_warning("We stare at \the [src] cluelessly."))
+			return FALSE
+		if(effects)
+			xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"),
+			span_danger("We slash [src]!"))
+			xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+			playsound(loc, SFX_ALIEN_CLAW_METAL, 25)
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		xeno_attacker.changeNext_move(12)
+		take_damage(max_integrity/2)
+		return TRUE
+	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB)
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts scooping up \the [src]!"), \
+		span_xenonotice("We start to scoop up \the [src]."))
+		if(!do_after(xeno_attacker, 2 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
+			return
+		if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the object already gone
+			return
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] scoops up \the [src]!"), \
+		span_xenonotice("We scoop up \the [src]."))
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+		take_damage(max_integrity) // Ensure its destroyed
+		return
+
 //Sticky weed node
 /obj/alien/weeds/node/sticky
 	name = STICKY_WEED
@@ -332,7 +402,15 @@
 		vehicle.last_move_time += WEED_SLOWDOWN
 		return
 
-	if(!ishuman(crosser))
+	if(isxeno(crosser))
+		var/mob/living/carbon/xenomorph/X = crosser
+		if(!issamexenohive(X))
+			X.next_move_slowdown = WEED_SLOWDOWN
+		else
+			X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+		return
+
+	if(!isliving(crosser))
 		return
 
 	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))

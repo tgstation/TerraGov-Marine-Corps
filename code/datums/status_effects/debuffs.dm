@@ -567,7 +567,7 @@
 		return
 	if(length(debuff_owner.do_actions))
 		return
-	if(!do_after(debuff_owner, 5 SECONDS, NONE, debuff_owner, BUSY_ICON_GENERIC))
+	if(!do_after(debuff_owner, 5 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
 		debuff_owner?.balloon_alert(debuff_owner, "Interrupted")
 		return
 	if(QDELETED(src))
@@ -943,6 +943,31 @@
 /datum/status_effect/incapacitating/dancer_tagged
 	id = "dancer_tagged"
 	duration = 15 SECONDS
+
+// ***************************************
+// *********** Xeno healing debuff
+// ***************************************
+/datum/status_effect/nohealthregen
+	id = "nohealthregen"
+	status_type = STATUS_EFFECT_REPLACE
+
+/datum/status_effect/nohealthregen/on_creation(mob/living/new_owner, set_duration)
+	if(isxeno(new_owner))
+		owner = new_owner
+		duration = set_duration
+		return ..()
+	else
+		CRASH("something applied nohealthregen on a nonxeno, dont do that")
+
+/datum/status_effect/nohealthregen/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_NOHEALTHREGEN, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/nohealthregen/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_NOHEALTHREGEN, TRAIT_STATUS_EFFECT(id))
+	return ..()
 
 // ***************************************
 // *********** Acid Melting

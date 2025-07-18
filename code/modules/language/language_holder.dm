@@ -110,7 +110,7 @@
 
 /datum/language_holder/xeno
 	languages = list(/datum/language/xenocommon)
-
+	shadow_languages = list(/datum/language/common, /datum/language/moth)
 
 /datum/language_holder/universal/New()
 	. = ..()
@@ -120,7 +120,8 @@
 	languages = list(/datum/language/common, /datum/language/machine)
 
 /datum/language_holder/synthetic
-	languages = list(/datum/language/common, /datum/language/machine, /datum/language/xenocommon)
+	languages = list(/datum/language/common, /datum/language/machine, /datum/language/moth)
+	shadow_languages = list(/datum/language/xenocommon)
 
 /datum/language_holder/moth
 	languages = list(/datum/language/common, /datum/language/moth)
@@ -132,6 +133,9 @@
 /datum/language_holder/zombie
 	languages = list(/datum/language/zombie)
 
+/datum/language_holder/monkey
+	languages = list(/datum/language/monkey)
+	shadow_languages = list(/datum/language/telepathy)
 
 /mob/living/verb/language_menu()
 	set category = "IC"

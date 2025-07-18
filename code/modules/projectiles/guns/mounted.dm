@@ -536,7 +536,7 @@
 
 /obj/item/weapon/gun/standard_atgun
 	name = "\improper AT-36 anti tank gun"
-	desc = "The AT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has an ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes. Alt-right click on it to anchor it so that it cannot be moved by anyone, then alt-right click again to move it."
+	desc = "The AT-36 is a light dual purpose anti tank and anti personnel weapon used by the NTC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has an ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes. Alt-right click on it to anchor it so that it cannot be moved by anyone, then alt-right click again to move it."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/machines/deployable/at36.dmi'
 	icon_state = "at36"
@@ -746,6 +746,7 @@
 	icon = 'icons/obj/machines/deployable/at45.dmi'
 	icon_state = "at45"
 	worn_icon_list = list(
+		slot_back_str = 'ntf_modular/icons/mob/clothing/back.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)

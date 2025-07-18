@@ -123,12 +123,12 @@
 	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/outside/nanotrasen_lab/outside
-	name = "Nanotrasen Compound"
+	name = "Ninetails Compound"
 	icon_state = "yellow"
 	ceiling = CEILING_NONE
 
 /area/bigredv2/outside/nanotrasen_lab/inside
-	name = "Nanotrasen Research Lab"
+	name = "Ninetails Research Lab"
 	icon_state = "engine"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE

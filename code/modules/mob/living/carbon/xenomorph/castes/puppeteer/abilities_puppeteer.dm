@@ -6,6 +6,7 @@
 	action_icon_state = "flay"
 	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
+
 	ability_cost = 0
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -283,8 +284,8 @@
 
 ///makes a puppet start a do_after to dexplode
 /datum/action/ability/activable/xeno/organic_bomb/proc/start_exploding_async(mob/living/puppet)
-	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls its stitched body!"))
-	if(do_after(puppet, 1.5 SECONDS, IGNORE_HELD_ITEM, puppet, BUSY_ICON_DANGER))
+	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls [puppet.p_their()] stitched body!"))
+	if(do_after(puppet, 1.5 SECONDS, FALSE, puppet, BUSY_ICON_DANGER))
 		detonate(puppet)
 
 ///detonates a puppet causing a spray of acid
@@ -366,7 +367,7 @@
 	var/mob/living/living_owner = owner
 	living_owner.face_atom(victim)
 	living_owner.visible_message(span_warning("[living_owner] begins to form biomass and force it into the ground!"))
-	if(!do_after(living_owner, 3 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(living_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = living_owner.health))))
+	if(!do_after(living_owner, 3 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(living_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = living_owner.health))))
 		return FALSE
 	their_turf.visible_message(span_warning("[living_owner]'s tendrils burst out from the ground!"))
 	for(var/turf/tile AS in RANGE_TURFS(1, their_turf))
