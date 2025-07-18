@@ -4160,7 +4160,7 @@
 /area/bluemoon/outside/building/cargo/shop)
 "eNV" = (
 /obj/structure/closet/crate/radiation,
-/obj/item/weapon/gun/energy/lasgun/pulse,
+/obj/item/weapon/gun/energy/lasgun/M43,
 /turf/open/floor/plating,
 /area/bluemoon/caves/facility/lambda/n)
 "eOc" = (
