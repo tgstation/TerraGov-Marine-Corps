@@ -67,6 +67,14 @@
 		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/scout,
+		/datum/mutation_upgrade/shell/together_in_claws,
+		/datum/mutation_upgrade/spur/revenge,
+		/datum/mutation_upgrade/veil/saving_grace,
+		/datum/mutation_upgrade/veil/vitality_transfer
+	)
+
 /datum/xeno_caste/drone/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
