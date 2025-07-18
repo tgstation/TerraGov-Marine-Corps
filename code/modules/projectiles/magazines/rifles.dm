@@ -235,7 +235,7 @@
 	icon_state = "t42"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum"
-	caliber = CALIBER_10X235_CASELESS
+	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 135
@@ -250,7 +250,7 @@
 	icon_state = "t60"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_gpmg"
-	caliber = CALIBER_10x255_CASELESS
+	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200

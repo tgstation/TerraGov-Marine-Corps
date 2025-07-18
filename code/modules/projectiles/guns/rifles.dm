@@ -890,7 +890,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	caliber = CALIBER_10X235_CASELESS //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 120 //codex
 	force = 30
 	aim_slowdown = 0.8
@@ -970,7 +970,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	caliber = CALIBER_10x255_CASELESS //codex
+	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 200 //codex
 	force = 35
 	aim_slowdown = 1.2
