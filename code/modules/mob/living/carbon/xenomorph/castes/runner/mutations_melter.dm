@@ -122,6 +122,6 @@
 	return ..()
 
 /// Returns the percentage used to speed up Corrosive Acid by.
-/datum/mutation_upgrade/veil/acid_reserves/proc/get_speedup(structure_count, include_initial = TRUE)
-	return (include_initial ? speedup_initial : 0) + (speedup_per_structure * structure_count)
+/datum/mutation_upgrade/veil/acid_reserves/proc/get_speedup(structure_count)
+	return speedup_initial + (speedup_per_structure * structure_count)
 
