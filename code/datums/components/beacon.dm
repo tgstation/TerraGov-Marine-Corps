@@ -173,7 +173,7 @@
 		return
 	beacon_datum.drop_location = location
 	GLOB.supply_beacon -= beacon_datum.name //prevents duplicate entries in supply console
-	beacon_datum.name = "[src.activator.name] + [curr_area] + [initial(source.name)]"
+	beacon_datum.name = initial(source.name) + " - [get_area(source)] - [activator]"
 	GLOB.supply_beacon[beacon_datum.name] = src
 	var/atom/movable/movableparent = parent
 	movableparent.update_appearance()
