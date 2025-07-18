@@ -669,10 +669,8 @@
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
 "auV" = (
-/obj/structure/bed/urban/chairs/black{
-	dir = 4
-	},
 /obj/effect/ai_node,
+/obj/structure/bed/urban/chairs/black,
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
 "ave" = (
@@ -7046,9 +7044,6 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
-/obj/structure/bed/urban/chairs/black{
-	dir = 4
-	},
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
 "dKJ" = (
@@ -7666,6 +7661,14 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/west)
+"dZb" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/bed/urban/chairs/black{
+	dir = 1;
+	pixel_y = 12
+	},
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/relay)
 "dZm" = (
 /obj/effect/landmark/corpsespawner/security/regular,
 /obj/effect/decal/cleanable/dirt,
@@ -8281,12 +8284,9 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
 "eth" = (
-/obj/structure/platform/metalplatform{
-	dir = 4
-	},
-/obj/structure/bed/urban/chairs/black{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/bed/urban/chairs/black,
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
 "eti" = (
@@ -10222,11 +10222,12 @@
 /turf/open/floor/prison,
 /area/metnal/inside/restroom)
 "fti" = (
-/obj/structure/bed/urban/chairs/black{
-	dir = 8
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
+/obj/structure/bed/urban/chairs/black{
+	dir = 1;
+	pixel_y = 12
+	},
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
 "ftp" = (
@@ -13166,10 +13167,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
 "hfw" = (
-/obj/structure/bed/urban/chairs/black{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/urban/chairs/black,
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
 "hfA" = (
@@ -18272,8 +18270,9 @@
 	},
 /area/metnal/inside/cafeteria)
 "jVo" = (
-/obj/structure/prop/urban/furniture/tables/tableblack{
-	dir = 8
+/obj/structure/bed/urban/chairs/black{
+	dir = 1;
+	pixel_y = 12
 	},
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
@@ -21123,11 +21122,10 @@
 	},
 /area/metnal/z2/inside/dorms2z)
 "lqG" = (
-/obj/structure/platform/metalplatform{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/urban/chairs/black{
-	dir = 4
+	dir = 1;
+	pixel_y = 12
 	},
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
@@ -22745,10 +22743,8 @@
 /area/metnal/inside/medical/chemistry)
 "mkC" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/bed/urban/chairs/black{
-	dir = 8
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/urban/chairs/black,
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
 "mkF" = (
@@ -25084,6 +25080,15 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"nyV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/bed/urban/chairs/black{
+	dir = 1;
+	pixel_y = 12
+	},
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/relay)
 "nyW" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/xeno_resin_wall,
@@ -29062,10 +29067,10 @@
 /turf/open/floor/multi_tiles,
 /area/metnal/z2/inside/comgym)
 "pGr" = (
-/obj/structure/prop/urban/furniture/tables/tableblack{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/prop/urban/furniture/tables/tableblack{
+	dir = 1
+	},
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
 "pGw" = (
@@ -37164,6 +37169,11 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southwest/garbledradio)
+"tRP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/bed/urban/chairs/black,
+/turf/open/floor/mainship/office,
+/area/metnal/z2/inside/relay)
 "tRR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -39352,12 +39362,8 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
 "uWe" = (
-/obj/structure/bed/urban/chairs/black{
-	dir = 8
-	},
-/obj/structure/platform/metalplatform{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/urban/chairs/black,
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
 "uWw" = (
@@ -42509,9 +42515,6 @@
 /obj/structure/platform/metalplatform{
 	dir = 8
 	},
-/obj/structure/bed/urban/chairs/black{
-	dir = 4
-	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
@@ -43795,8 +43798,8 @@
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
 "xnb" = (
-/obj/structure/bed/urban/chairs/black{
-	dir = 4
+/obj/structure/prop/urban/furniture/tables/tableblack{
+	dir = 1
 	},
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
@@ -44318,9 +44321,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/obj/structure/bed/urban/chairs/black{
-	dir = 8
-	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/office,
 /area/metnal/z2/inside/relay)
@@ -104507,12 +104507,12 @@ gnJ
 gnJ
 kMQ
 iCc
-gBH
+uWe
 xnb
-xnb
+jVo
 auV
 xnb
-iCc
+fti
 kMf
 mUW
 bdQ
@@ -104709,12 +104709,12 @@ prQ
 gBH
 gBH
 gBH
-kQP
-kQP
-jVo
+hfw
 kQP
 jVo
-gBH
+hfw
+kQP
+lqG
 cdW
 diI
 gnJ
@@ -104912,10 +104912,10 @@ qBU
 tFU
 lFk
 tFU
-eth
-uWe
+tFU
+tFU
 xCT
-eth
+tFU
 tFU
 cdW
 gQY
@@ -106326,10 +106326,10 @@ gmy
 vQl
 bcX
 bcX
-lqG
+bcX
 wDX
 dKz
-lqG
+bcX
 bcX
 cdW
 gQY
@@ -106527,12 +106527,12 @@ prQ
 kQP
 gBH
 dRm
-aao
-kRB
+eth
 pGr
-kRB
+dZb
+tRP
 pGr
-aao
+nyV
 uNw
 jsA
 bdQ
@@ -106729,12 +106729,12 @@ gnJ
 gnJ
 jra
 kQP
+uWe
 gBH
-hfw
 fti
 mkC
-hfw
 gBH
+lqG
 kQP
 gQY
 gnJ
