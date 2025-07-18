@@ -169,9 +169,7 @@
 
 	. += "Regeneration power: [max(regen_power * 100, 0)]%"
 
-	var/caste_swap_timer = SSticker.mode.caste_swap_timer
-
-	var/casteswap_value = ((GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)  + caste_swap_timer - world.time) * 0.1
+	var/casteswap_value = ((GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)  + SSticker.mode.caste_swap_cooldown - world.time) * 0.1
 	if(casteswap_value <= 0)
 		. += "Caste Swap Timer: READY"
 	else
@@ -507,11 +505,15 @@
 	to_chat(src, span_notice("You have [(xeno_flags & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
 
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4, datum/effect_system/smoke_spread/gas_type, gas_range)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
 	if(!do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
 		return FALSE
+	if(gas_type && gas_range)
+		var/datum/effect_system/smoke_spread/smoke_system = new gas_type()
+		smoke_system.set_up(gas_range, get_turf(C))
+		smoke_system.start()
 	var/i = 1
 	to_chat(C, span_danger("You feel a tiny prick."))
 	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
@@ -542,7 +544,9 @@
 	. = ..()
 	if(.)
 		return
+	var/old_sunder = sunder
 	sunder = clamp(sunder + (adjustment > 0 ? adjustment * xeno_caste.sunder_multiplier : adjustment), 0, xeno_caste.sunder_max)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_CHANGE, old_sunder, sunder)
 //Applying sunder is an adjustment value above 0, healing sunder is an adjustment value below 0. Use multiplier when taking sunder, not when healing.
 
 /mob/living/carbon/xenomorph/set_sunder(new_sunder)

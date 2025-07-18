@@ -104,8 +104,6 @@
 
 /datum/mutation_upgrade/shell/together_in_claws/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/essence_link/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!ability)
 		return
@@ -153,8 +151,6 @@
 
 /datum/mutation_upgrade/spur/revenge/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/essence_link/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!ability)
 		return
@@ -197,8 +193,6 @@
 
 /datum/mutation_upgrade/veil/saving_grace/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_cure/acidic_salve]
 	if(!ability)
 		return
@@ -221,8 +215,6 @@
 
 /datum/mutation_upgrade/veil/vitality_transfer/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/essence_link/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!ability)
 		return
