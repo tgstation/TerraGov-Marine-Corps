@@ -175,6 +175,11 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
 			/obj/item/reagent_containers/hypospray/advanced = 30,
+			/obj/item/reagent_containers/hypospray/advanced/bicaridine = -1,
+			/obj/item/reagent_containers/hypospray/advanced/kelotane = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tramadol = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
+			/obj/item/reagent_containers/hypospray/advanced/dylovene = -1,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
