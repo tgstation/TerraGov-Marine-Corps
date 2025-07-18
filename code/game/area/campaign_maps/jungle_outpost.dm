@@ -18,6 +18,11 @@
 	name = "Southwestern Jungle"
 	icon_state = "southwest"
 
+/area/campaign/jungle_outpost/ground/jungle/south_west/tcomms
+	icon_state = "tcomsatcham"
+	area_flags = NO_DROPPOD
+	requires_power = FALSE
+
 /area/campaign/jungle_outpost/ground/jungle/south_east
 	name = "Southeastern Jungle"
 	icon_state = "southeast"
