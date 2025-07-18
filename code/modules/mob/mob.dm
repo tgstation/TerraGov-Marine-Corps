@@ -893,10 +893,10 @@
 
 /mob/set_throwing(new_throwing)
 	. = ..()
-	if(isnull(.))
+	if(!.)
 		return
 	if(throwing)
-		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT) // Prevents moving during the throw.
 	else
 		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 

@@ -262,7 +262,6 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 					if(user_id.marine_buy_choices[option] != GLOB.marine_selector_cats[option])
 						to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
 						return FALSE
-				user_id.id_flags &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
 				if(drop_worn_items)
 					for(var/obj/item/inventory_items in ui.user)

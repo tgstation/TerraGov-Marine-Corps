@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Surt reduces melee and acid armour by 10 each"
+  - balance: "Robots are no longer immune to being set on fire"

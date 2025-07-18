@@ -624,6 +624,9 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_BE_QUEEN_HEALED (1<<7) // Does nothing.
 #define CASTE_CAN_HOLD_JELLY (1<<8) // Can we hold fireproof jelly in our hands?
 
+///How often we can swap strains
+#define XENO_STRAIN_SWAP_COOLDOWN 5 MINUTES
+
 //Charge-Crush
 #define CHARGE_OFF 0
 #define CHARGE_BUILDINGUP 1

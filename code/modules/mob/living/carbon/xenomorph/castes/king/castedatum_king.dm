@@ -29,8 +29,12 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
+/* NTF EDIT - No minimum for evolution
+	evolve_min_xenos = 8
+	evolve_population_lock = 40 // Mech
+*/
+	deevolves_to = /mob/living/carbon/xenomorph/drone //NTF Edit - allow evolution/regression
 	death_evolution_delay = 7 MINUTES
-	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_HAS_WOUND_MASK|CASTE_EVOLUTION_ALLOWED //NTF Edit - allow evolution/regression

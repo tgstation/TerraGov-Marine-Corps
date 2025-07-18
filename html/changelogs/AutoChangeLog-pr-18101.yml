@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Retrograde now has 3 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
+  - bugfix: "You can no longer buy mutations that conflict with your currently owned mutations."
+  - bugfix: "Drone mutations that used to not update as structures were built now do update accordingly."

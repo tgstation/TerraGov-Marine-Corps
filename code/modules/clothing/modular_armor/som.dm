@@ -301,7 +301,7 @@
 	desc = "A helmet paired with the 'Hades' armor module, designed for significantly improved protection from fire, without compromising normal durability."
 	icon_state = "som_helmet_light"
 	worn_icon_state = "som_helmet_light"
-	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 95, ACID = 50)
+	soft_armor = list(MELEE = 35, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 95, ACID = 40)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
