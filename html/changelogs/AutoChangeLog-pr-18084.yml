@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Defender now has 9 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
+  - balance: "Regenerate Skin now heals 12% of maximum health (50) total rather than: 25 burn damage and 25 brute damage."
