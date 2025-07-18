@@ -2041,6 +2041,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\sentinel\abilities_sentinel.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\sentinel\castedatum_sentinel.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\sentinel\mutations_retrograde.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\sentinel\mutations_sentinel.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\sentinel\sentinel.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\shrike\abilities_shrike.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\shrike\castedatum_shrike.dm"
