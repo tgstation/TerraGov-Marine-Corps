@@ -65,25 +65,23 @@
 //*********************//
 /datum/mutation_upgrade/spur/hit_and_run
 	name = "Hit and Run"
-	desc = "Scatter Spit's cast time is 60/40/20% of its original amount. It deals 50% of its original damage."
+	desc = "Scatter Spit's cast time is 60/40/20% of its original amount. It no longer deals bonus damage."
 	/// For the first structure, the multiplier used to add to Scatter Spit's cast time.
 	var/cast_multiplier_initial = -0.2
 	/// For each structure, the multiplier used to add to Scatter Spit's cast time.
 	var/cast_multiplier_per_structure = -0.2
-	/// The amount to add as a multiply all damage dealt by Scatter Spit.
-	var/damage_multiplier = -0.5
 
 /datum/mutation_upgrade/spur/hit_and_run/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Scatter Spit cast time is [PERCENT(1 + get_cast_multiplier(new_amount))]% of its original amount. It deals [-PERCENT(damage_multiplier)]% less damage."
+	return "Scatter Spit cast time is [PERCENT(1 + get_cast_multiplier(new_amount))]% of its original amount. It no longer deals bonus damage."
 
 /datum/mutation_upgrade/spur/hit_and_run/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/scatter_spit/scatter_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/scatter_spit]
 	if(!scatter_ability)
 		return
 	scatter_ability.cast_time += initial(scatter_ability.cast_time) * get_cast_multiplier(0)
-	scatter_ability.damage_multiplier += damage_multiplier
+	scatter_ability.should_get_upgrade_bonus = FALSE
 	return ..()
 
 /datum/mutation_upgrade/spur/hit_and_run/on_mutation_disabled()
@@ -91,7 +89,7 @@
 	if(!scatter_ability)
 		return
 	scatter_ability.cast_time -= initial(scatter_ability.cast_time) * get_cast_multiplier(0)
-	scatter_ability.damage_multiplier -= damage_multiplier
+	scatter_ability.should_get_upgrade_bonus = initial(scatter_ability.should_get_upgrade_bonus)
 	return ..()
 
 /datum/mutation_upgrade/spur/hit_and_run/on_structure_update(previous_amount, new_amount)
