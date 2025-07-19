@@ -8,12 +8,10 @@
 	var/cost_initial = 25
 	/// For each structure, the additional amount of plasma consumed.
 	var/cost_per_structure = -5
-	/// Timer ID for a proc that revokes the armor given when it times out.
+	/// The ID of a timer that will check if the owner needs to be re-extinguished.
 	var/timer_id
-	/// How long is the cooldown?
+	/// How long is the timer?
 	var/timer_length = 1 SECONDS
-	/// Can this be activated?
-	var/ready = FALSE
 
 /datum/mutation_upgrade/shell/acid_sweat/get_desc_for_alert(new_amount)
 	if(!new_amount)
@@ -48,7 +46,7 @@
 	xenomorph_owner.ExtinguishMob()
 	for(var/obj/fire/fire_in_turf in get_turf(xenomorph_owner))
 		qdel(fire_in_turf)
-	if(timer_length)
+	if(timer_length) // To re-extinguish them if they were set on fire while the timer is active.
 		timer_id = addtimer(CALLBACK(src, PROC_REF(try_extinguish), TRUE), timer_length, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /// Immediately after being set on fire, tries to extinguishes the owner and qdel all fires underneath them if possible.
