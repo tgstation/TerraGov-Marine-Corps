@@ -68,14 +68,14 @@
 //*********************//
 /datum/mutation_upgrade/veil/railgun
 	name = "Railgun"
-	desc = "Charging now takes 4/8/12 more steps to reach maximum charge."
+	desc = "Charge's maximum steps is increased by 4/8/12."
 	/// For each structure, the amount of additional steps required to reach maximum charge.
 	var/steps_per_structure = 4
 
 /datum/mutation_upgrade/veil/railgun/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Charging now takes [get_steps(new_amount)]  more steps to reach maximum charge."
+	return "Charge's maximum steps is increased by [get_steps(new_amount)]."
 
 /datum/mutation_upgrade/veil/railgun/on_structure_update(previous_amount, new_amount)
 	. = ..()
