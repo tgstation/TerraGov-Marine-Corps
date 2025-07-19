@@ -66,6 +66,10 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/obj/item/weapon/gun/rifle/light_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
+			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
+			/obj/item/ammo_magazine/rifle/sh410_ricochet = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -290,6 +294,9 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/obj/item/weapon/gun/rifle/light_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
+			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -502,6 +509,10 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/obj/item/weapon/gun/rifle/light_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
+			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
+			/obj/item/ammo_magazine/rifle/sh410_ricochet = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -807,6 +818,8 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_mmg/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/sh410/buckshot/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/sh410/sabot/full = -1,
 		),
 		"Mecha Ammo" = list(
 			/obj/item/mecha_ammo/vendable/pistol = -1,
