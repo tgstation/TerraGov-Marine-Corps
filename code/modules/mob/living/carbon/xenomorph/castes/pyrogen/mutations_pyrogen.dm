@@ -154,7 +154,7 @@
 /datum/mutation_upgrade/veil/burnt_wounds/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Melting fire stacks you inflict cause [PERCENT(get_percentage(new_amount)) ]% healing reduction against brute and burn."
+	return "Melting fire stacks you inflict cause [PERCENT(get_percentage(new_amount))]% healing reduction against brute and burn."
 
 /datum/mutation_upgrade/veil/burnt_wounds/on_mutation_enabled()
 	if(!isxenopyrogen(xenomorph_owner))
