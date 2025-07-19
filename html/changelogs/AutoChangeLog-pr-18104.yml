@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Certain abilities that involve throwing yourself to hit a target now correctly removes the trait involving immobilization."
-  - bugfix: "Certain abilities that involve throwing yourself to hit a target no longer causes you to appear to be floating on top of water."
