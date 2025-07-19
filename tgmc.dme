@@ -1998,6 +1998,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivelord\abilities_hivelord.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivelord\castedatum_hivelord.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivelord\hivelord.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\hivelord\mutations_hivelord.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivemind\abilities_hivemind.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivemind\castedatum_hivemind.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivemind\hivemind.dm"
