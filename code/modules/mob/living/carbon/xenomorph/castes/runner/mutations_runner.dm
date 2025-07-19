@@ -93,7 +93,7 @@
 /// If their health is negative, activate it if possible. If it is full, let them activate it next time.
 /datum/mutation_upgrade/shell/borrowed_time/proc/on_health_update(datum/source)
 	SIGNAL_HANDLER
-	var/health = (status_flags & GODMODE) ? xenomorph_owner.maxHealth : (xenomorph_owner.maxHealth - xenomorph_owner.getFireLoss() - xenomorph_owner.getBruteLoss())
+	var/health = (xenomorph_owner.status_flags & GODMODE) ? xenomorph_owner.maxHealth : (xenomorph_owner.maxHealth - xenomorph_owner.getFireLoss() - xenomorph_owner.getBruteLoss())
 	if(health <= xenomorph_owner.get_death_threshold())
 		return // They're dead (and possibly gibbed) immediately after the signal is processed.
 	if(!critical_threshold_boosted)
