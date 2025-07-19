@@ -53,6 +53,12 @@
 		/datum/action/ability/activable/xeno/inferno,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/flame_cloak,
+		/datum/mutation_upgrade/spur/only_fire,
+		/datum/mutation_upgrade/veil/burnt_wounds
+	)
+
 /datum/xeno_caste/pyrogen/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
