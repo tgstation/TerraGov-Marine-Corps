@@ -110,7 +110,7 @@
 	)
 	/// The amount of deciseconds for the do_after.
 	var/cast_time = 0.5 SECONDS
-	/// The multiplier in which the Spit's damage will be multiplied by.
+	/// The multiplier in which the spit's damage will be multiplied by.
 	var/damage_multiplier = 1
 
 /datum/action/ability/activable/xeno/scatter_spit/use_ability(atom/target)
@@ -123,7 +123,7 @@
 	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
 
 	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
-	newspit.generate_bullet(scatter_spit, scatter_spit.damage * (SPIT_UPGRADE_BONUS(xeno_owner))) // Note: This spit upgrade bonus only applies to the main projectile. Given that there are bonus projectiles, this is likely oversight.
+	newspit.generate_bullet(scatter_spit, scatter_spit.damage * (SPIT_UPGRADE_BONUS(xeno_owner))) // Note: This spit upgrade bonus only applies to the main projectile. Making it apply to the bonus projectiles would be a damage increase of 54/72.
 	newspit.damage *= max(0, damage_multiplier)
 	newspit.def_zone = xeno_owner.get_limbzone_target()
 
