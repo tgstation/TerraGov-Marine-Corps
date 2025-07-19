@@ -652,17 +652,18 @@
 
 /datum/status_effect/stacking/melting_fire/proc/set_creator(atom/xeno_creator)
 	if(!xeno_creator || !isxenopyrogen(xeno_creator))
-		xeno_creator = null
-	if(!debuff_creator)
-		debuff_creator = xeno_creator
+		if(healing_debuff)
+			UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
+			healing_debuff = 0
+		debuff_creator = null
 		return
 	var/mob/living/carbon/xenomorph/pyrogen/new_creator = xeno_creator
-	if(healing_debuff && !new_creator?.melting_fire_healing_reduction)
+	if(healing_debuff && !new_creator.melting_fire_healing_reduction)
 		UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
-	if(!healing_debuff && new_creator?.melting_fire_healing_reduction)
+	if(!healing_debuff && new_creator.melting_fire_healing_reduction)
 		RegisterSignals(debuff_owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE), PROC_REF(on_heal))
 	debuff_creator = new_creator
-	healing_debuff = new_creator?.melting_fire_healing_reduction
+	healing_debuff = new_creator.melting_fire_healing_reduction
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/melting_fire/proc/call_resist_debuff()
