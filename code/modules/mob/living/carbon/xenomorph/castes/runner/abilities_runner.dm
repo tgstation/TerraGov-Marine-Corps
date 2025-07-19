@@ -311,8 +311,8 @@
 		xeno_owner.allow_pass_flags &= ~PASS_MOB
 		xeno_owner.remove_pass_flags(PASS_MOB, type)
 		has_passthrough = FALSE
+		touched_humans.Cut()
 		UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
-
 	owner.balloon_alert(owner, "Evasion ended")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
 	hud_set_evasion(evasion_duration)
@@ -368,7 +368,7 @@
 
 /datum/action/ability/xeno_action/evasion/proc/on_passthrough_move()
 	SIGNAL_HANDLER
-	for(var/mob/living/carbon/human/human_right_here AS in get_turf(xeno_owner))
+	for(var/mob/living/carbon/human/human_right_here in get_turf(xeno_owner))
 		if(human_right_here in touched_humans)
 			continue
 		touched_humans += human_right_here

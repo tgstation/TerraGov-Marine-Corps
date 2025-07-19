@@ -67,13 +67,13 @@
 	return "Your critical threshold is decreased by [critical_threshold_amount]. While you have negative health, you are staggered and cannot slash attack. If you have negative health for more than [get_duration(new_amount) * 0.1] seconds, your critical threshold is increased back until you reach full health."
 
 /datum/mutation_upgrade/shell/borrowed_time/on_mutation_enabled()
-	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_UPDATE_HEALTH, PROC_REF(on_health_update))
+	RegisterSignal(xenomorph_owner, COMSIG_LIVING_UPDATE_HEALTH, PROC_REF(on_health_update))
 	if(!critical_threshold_boosted && xenomorph_owner.health >= xenomorph_owner.maxHealth)
 		toggle(TRUE)
 	return ..()
 
 /datum/mutation_upgrade/shell/borrowed_time/on_mutation_disabled()
-	UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_UPDATE_HEALTH)
+	UnregisterSignal(xenomorph_owner, COMSIG_LIVING_UPDATE_HEALTH)
 	if(critical_threshold_timer)
 		reverse_critical_threshold()
 	else if(critical_threshold_boosted)
@@ -93,13 +93,14 @@
 /// If their health is negative, activate it if possible. If it is full, let them activate it next time.
 /datum/mutation_upgrade/shell/borrowed_time/proc/on_health_update(datum/source)
 	SIGNAL_HANDLER
-	if(xenomorph_owner.health <= xenomorph_owner.get_death_threshold())
+	var/health = (status_flags & GODMODE) ? xenomorph_owner.maxHealth : (xenomorph_owner.maxHealth - xenomorph_owner.getFireLoss() - xenomorph_owner.getBruteLoss())
+	if(health <= xenomorph_owner.get_death_threshold())
 		return // They're dead (and possibly gibbed) immediately after the signal is processed.
 	if(!critical_threshold_boosted)
-		if(xenomorph_owner.health >= xenomorph_owner.maxHealth)
+		if(health >= xenomorph_owner.maxHealth)
 			toggle()
 		return
-	if(critical_threshold_timer || xenomorph_owner.health > xenomorph_owner.get_crit_threshold() + critical_threshold_amount)
+	if(critical_threshold_timer || health > xenomorph_owner.get_crit_threshold() + critical_threshold_amount)
 		return
 	ADD_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
 	var/borrowed_time_length = get_duration(get_total_structures())
