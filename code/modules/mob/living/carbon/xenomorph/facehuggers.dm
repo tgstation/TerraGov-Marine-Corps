@@ -95,6 +95,7 @@
 	source = S //set and register new source
 	RegisterSignal(S, COMSIG_QDELETING, PROC_REF(clear_hugger_source))
 
+/// Sets the fire immunity and adds/removes an outline filter if it gained or lost fire immunity.
 /obj/item/clothing/mask/facehugger/proc/set_fire_immunity(new_fire_immunity)
 	if(!fire_immune && new_fire_immunity)
 		add_filter("facehugger_fire_immunity_outline", 2, outline_filter(1, COLOR_TAN_ORANGE))
