@@ -28,3 +28,129 @@
   - balance: Advance now paralyzes for 1.5 seconds (from 2).
   - bugfix: Abduct no longer causes affected humans to collide with other affected
       humans while being thrown.
+2025-07-09:
+  mudzbe:
+  - balance: TE-9001 heavy laser emplacement cost reduced
+2025-07-10:
+  Lewdcifer:
+  - code_imp: Priority candidates for hive leadership now need the appropriate flag
+      to become rulers. This basically means that Dragon can no longer be a hive ruler
+      (and it shouldn't be, because it doesn't have pheros).
+  Lumipharon:
+  - balance: Xray lasers are weakened by piercing through things, like other piercing
+      ammo types
+  - bugfix: fixed some floor layering/plane issues
+  - balance: Corpses and items are thrown off vehicles on move
+  - balance: Sand now does 2 damage instead of 6 to humans, but also applies stagger
+  - balance: Snow now applies slowdown to humans and other small mobs
+  - balance: Pyrogen flame dash CD is 12 seconds instead of 4
+  - balance: Minion proof latches have been installed on all folding cades
+  ViperSnake01:
+  - bugfix: Fixed Warrior aggressive grab throw bug.
+  - balance: Snipers no longer apply the sniper stacking debuff if dont have IFF.
+  jonash07:
+  - bugfix: Fixes howi and mortar guis displaying NaN for latitude offset
+  mudzbe:
+  - qol: Plasmacutter description mentions it being self charging
+2025-07-13:
+  Runian:
+  - rscadd: 'There are 3 new structures, but currently only obtained through admin
+      intervention: Shell Mutation Chamber, Spur Mutation Chamber, and Veil Mutation
+      Chamber. They are required to gain biomass and use mutations.'
+  - rscadd: Within Hive Status, there is a new button labeled "Mutations" where you
+      can buy your caste/strain's specific mutations. It is disabled if your caste/strain
+      is not allowed to buy any.
+  - rscadd: Biomass is a new permanent resource that the Hive collectively owns. This
+      is gained by draining or cocooning while there is an existing mutation structure.
+  - qol: Within Hive Status, the Hive Blessings button is now visible to all xenomorphs.
+      However, only xenomorphs who usually have access to it can click and access
+      the Hive Blessings menu.
+  - code_imp: The framework for xenomorph mutations, only for Nuclear War.
+  TiviPlus:
+  - rscadd: Added mech pulse armor
+2025-07-15:
+  Runian:
+  - bugfix: Alerts from mutations now properly show up.
+2025-07-16:
+  mudzbe:
+  - balance: TE-9001 heavy laser emplacement cost reduced to 400
+2025-07-17:
+  Atropos:
+  - balance: You can no longer move during throws
+  - rscadd: Added medical overwatch to canterbury and big bury
+  - rscadd: Compact hive status now displays primo tiers
+  Lumipharon:
+  - balance: Greatly reduced the BFG's ability to pierce walls
+  - balance: Halved the number of grenades on crash
+  Mantlecrawler:
+  - balance: ' Double barrel unwielded recoil from 4 to 3'
+  - balance: ' Double barrel wielded recoil from 1 to 0.5'
+  Rug-Dealer:
+  - spellcheck: typo in heavylaser supply datum corrected (heayvlaser -> heavy_laser)
+  Runian:
+  - rscadd: Drone now has 5 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - balance: On Nuclear War, the amount of xenomorphs required to evolve into Queen
+      is decreased by 2 if there can be a mech and another 2 if there can be a tank
+      roundstart.
+  ViperSnake01:
+  - balance: Tanglefoot minirockets price increased from 200 to 400
+  - balance: SST-574 Sniper Sentry now applies sniper stacking debuff.
+2025-07-19:
+  Isy232:
+  - rscadd: Roundstart population value provided to all players when the round starts.
+  - balance: Dragon locked to 50 roundstart population, King to 40.
+  - balance: Dragon xenos evolution requirement 13 => 8, King xenos evolution requirement
+      12 => 8.
+  Lumipharon:
+  - bugfix: fixed mech light rockets being hugely more powerful than intended
+  - balance: Surt reduces melee and acid armour by 10 each
+  - balance: Robots are no longer immune to being set on fire
+  - bugfix: fixed the caste swap button displaying the wrong time in nuke war
+  PibeCantina:
+  - bugfix: Makes zstairs indestructible
+  - bugfix: 'Zstairs layer above weeds
+
+      :cl:'
+  Runian:
+  - rscadd: Defender now has 9 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - balance: 'Regenerate Skin now heals 12% of maximum health (50) total rather than:
+      25 burn damage and 25 brute damage.'
+  - rscadd: Melter now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Globadier now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.)
+  - balance: Existing acid puddles now delete themselves to allow for new acid puddles
+      - this causes various abilities like Acid Dash and Acid Spray to have full effect
+      while on existing acid puddles.
+  - bugfix: Resin facehuggers no longer infinitely stack thin resin.
+  - code_imp: The creation of acid spray puddles is now done through xenomorph_spray().
+  - rscadd: Retrograde now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: You can no longer buy mutations that conflict with your currently owned
+      mutations.
+  - bugfix: Drone mutations that used to not update as structures were built now do
+      update accordingly.
+  - rscadd: Warrior now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - qol: Toggle Automatic Magazine Ejection (Weapon) now lets you choose between your
+      weapon and the weapon's attachments.
+  - bugfix: Certain abilities that involve throwing yourself to hit a target now correctly
+      removes the trait involving immobilization.
+  - bugfix: Certain abilities that involve throwing yourself to hit a target no longer
+      causes you to appear to be floating on top of water.
+  - rscadd: Sentinel now has 5 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  revelation-8468:
+  - balance: The las sniper scope is now removeable.
+  - imageadd: Edits the las sniper scope to be seperate from the weapon sprite.
+  timothymtorres:
+  - bugfix: Fix quick vendor blacklisting marines from using points during crash

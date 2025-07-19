@@ -107,7 +107,7 @@
 	proj.proj_max_range -= 2
 
 /datum/ammo/energy/bfg/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	proj.proj_max_range -= 2
+	proj.proj_max_range -= 10
 
 /datum/ammo/energy/bfg/drop_nade(turf/T)
 	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
@@ -517,7 +517,7 @@
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 0.75)
 
-/datum/ammo/energy/lasgun/marine/xray
+/datum/ammo/energy/lasgun/marine/incendiary
 	name = "xray heat bolt"
 	hud_state = "laser_heat"
 	icon_state = "u_laser"
@@ -528,7 +528,7 @@
 	max_range = 15
 	hitscan_effect_icon = "u_laser_beam"
 
-/datum/ammo/energy/lasgun/marine/xray/piercing
+/datum/ammo/energy/lasgun/marine/xray
 	name = "xray piercing bolt"
 	hud_state = "laser_xray"
 	icon_state = "xray"
@@ -537,6 +537,16 @@
 	penetration = 100
 	max_range = 10
 	hitscan_effect_icon = "xray_beam"
+	on_pierce_multiplier = 0.9
+
+/datum/ammo/energy/lasgun/marine/xray/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+	proj.proj_max_range -= 2
+
+/datum/ammo/energy/lasgun/marine/xray/on_hit_mob(turf/target_turf, atom/movable/projectile/proj)
+	proj.proj_max_range--
+
+/datum/ammo/energy/lasgun/marine/xray/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
+	proj.proj_max_range--
 
 /datum/ammo/energy/lasgun/marine/heavy_laser
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG|AMMO_ENERGY|AMMO_HITSCAN|AMMO_INCENDIARY

@@ -824,6 +824,7 @@
 
 #define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage" // (amount, amount_mod, passive)
 #define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage" // (amount, amount_mod, passive)
+#define COMSIG_XENOMORPH_SUNDER_CHANGE "xenomorph_sunder_change" // (old, new)
 
 #define COMSIG_XENOMORPH_EVOLVED "xenomorph_evolved"
 #define COMSIG_XENOMORPH_DEEVOLVED "xenomorph_deevolved"
@@ -848,6 +849,11 @@
 
 #define COMSIG_XENO_DRAIN_HIT "xeno_drain_hit"
 #define COMSIG_XENO_CARNAGE_HIT "xeno_carnage_hit"
+
+// Mutations:
+#define COMSIG_GLOB_MUTATION_CHAMBER_SHELL "!mutation_chamber_shell" // From: [/obj/structure/xeno/mutation_chamber/shell] (previous_amount, new_amount)
+#define COMSIG_GLOB_MUTATION_CHAMBER_SPUR "!mutation_chamber_spur" // From: [/obj/structure/xeno/mutation_chamber/shell] (previous_amount, new_amount)
+#define COMSIG_GLOB_MUTATION_CHAMBER_VEIL "!mutation_chamber_veil" // From: [/obj/structure/xeno/mutation_chamber/shell] (previous_amount, new_amount)
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
