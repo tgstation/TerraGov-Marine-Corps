@@ -63,7 +63,6 @@
 /datum/mutation_upgrade/spur/speed_demon/proc/get_speed(structure_count)
 	return speed_per_structure * structure_count
 
-
 //*********************//
 //         Veil        //
 //*********************//
