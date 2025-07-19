@@ -31,7 +31,7 @@
 	if(attached_armor || !chosen_fire)
 		return
 	var/total_armor = get_armor(get_total_structures())
-	attached_armor = new(total_armor, total_armor, total_armor, total_armor, total_armor, total_armor, total_armor, total_armor)
+	attached_armor = getArmor(total_armor, total_armor, total_armor, total_armor, total_armor, total_armor, total_armor, total_armor)
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.attachArmor(attached_armor)
 	set_armor_granting_fire(chosen_fire)
 

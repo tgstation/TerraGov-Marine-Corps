@@ -650,6 +650,7 @@
 	. = ..()
 	set_creator(xeno_creator)
 
+/// Sets the debuff creator of this status effect. Sets and (un)registers signals regarding healing reduction accordingly.
 /datum/status_effect/stacking/melting_fire/proc/set_creator(atom/xeno_creator)
 	if(!xeno_creator || !isxenopyrogen(xeno_creator))
 		if(healing_debuff)
