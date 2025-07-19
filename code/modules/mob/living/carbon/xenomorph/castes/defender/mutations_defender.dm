@@ -257,8 +257,6 @@
 
 /datum/mutation_upgrade/veil/carapace_sweat/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/xeno_action/regenerate_skin/regenerate_skin = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!regenerate_skin)
 		return
@@ -300,8 +298,6 @@
 
 /datum/mutation_upgrade/veil/slow_and_steady/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/xeno_action/fortify/fortify = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 	if(!fortify)
 		return
@@ -324,8 +320,6 @@
 
 /datum/mutation_upgrade/veil/carapace_sharing/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/xeno_action/regenerate_skin/regenerate_skin = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/regenerate_skin]
 	if(!regenerate_skin)
 		return

@@ -81,8 +81,6 @@
 
 /datum/mutation_upgrade/shell/comforting_acid/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/xeno_action/toxic_slash/ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/toxic_slash]
 	if(!ability)
 		return
@@ -111,12 +109,12 @@
 	return "Your attack delay will be [(get_move_adjust(new_amount)) * 0.1]s faster and will always apply [get_intoxicated_stacks(intoxicated_stack_per_structure)] stacks of Intoxicated against humans, but all melee damage is reduced by [melee_damage_modifier * 100]%."
 
 /datum/mutation_upgrade/spur/acidic_slasher/on_mutation_enabled()
-	UnregisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING)
+	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack))
 	xenomorph_owner.xeno_melee_damage_modifier -= melee_damage_modifier
 	return ..()
 
 /datum/mutation_upgrade/spur/acidic_slasher/on_mutation_disabled()
-	UnregisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING)
+	UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING)
 	xenomorph_owner.xeno_melee_damage_modifier += melee_damage_modifier
 	return ..()
 
@@ -174,8 +172,6 @@
 
 /datum/mutation_upgrade/spur/far_sting/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/drain_sting/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/drain_sting]
 	if(!ability)
 		return
@@ -217,8 +213,6 @@
 
 /datum/mutation_upgrade/veil/toxic_compatibility/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/drain_sting/ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/drain_sting]
 	if(!ability)
 		return

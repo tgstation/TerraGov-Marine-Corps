@@ -139,8 +139,6 @@
 
 /datum/mutation_upgrade/veil/toxic_spillage/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/neurotox_sting/sting_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/neurotox_sting]
 	if(!sting_ability)
 		return
