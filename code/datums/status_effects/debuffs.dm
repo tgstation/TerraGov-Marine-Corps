@@ -620,7 +620,6 @@
 
 /// on remove has owner set to null
 /datum/status_effect/stacking/melting_fire/on_remove()
-	if(healing_debuff)
 	owner.vis_contents -= visual_fire
 	set_creator(null)
 	QDEL_NULL(visual_fire)
