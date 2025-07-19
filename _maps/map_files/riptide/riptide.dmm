@@ -240,7 +240,6 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/mainship/gray,
 /area/riptide/inside/engineering/bridge)
 "akp" = (
@@ -4516,13 +4515,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/variable/wide,
 /area/riptide/outside/southbeach)
-"dfI" = (
-/obj/structure/platform/nondense{
-	dir = 1
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/riptide/inside/engineering/bridge)
 "dgw" = (
 /obj/item/fishing/hook/rescue{
 	pixel_x = -4;
@@ -4552,7 +4544,6 @@
 	},
 /area/riptide/inside/landingzoneone)
 "dhr" = (
-/obj/machinery/power/tbg_turbine/cold,
 /turf/open/floor/bcircuit,
 /area/riptide/inside/engineering/bridge)
 "dhw" = (
@@ -11405,6 +11396,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/power/geothermal,
 /turf/open/floor/bcircuit,
 /area/riptide/inside/engineering/bridge)
 "ibT" = (
@@ -11714,7 +11706,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/marking/warning,
 /area/riptide/inside/engineering/bridge)
 "inT" = (
@@ -17478,7 +17469,6 @@
 /area/riptide/outside/southjungle)
 "mkT" = (
 /obj/effect/ai_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/marking,
 /area/riptide/inside/engineering/bridge)
 "mkU" = (
@@ -18342,10 +18332,6 @@
 	dir = 1
 	},
 /area/riptide/inside/syndicatecheckpoint)
-"mNm" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/marking,
-/area/riptide/inside/engineering/bridge)
 "mNw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22639,16 +22625,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachshop)
-"pLR" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/bcircuit,
-/area/riptide/inside/engineering/bridge)
 "pLW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/lvsanddecal/full,
@@ -29404,7 +29380,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/marking/warning,
 /area/riptide/inside/engineering/bridge)
 "tYA" = (
@@ -33857,8 +33832,9 @@
 /turf/open/floor/prison/plate,
 /area/riptide/caves/syndicatemining)
 "xlc" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/mainship/gray,
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/bcircuit,
 /area/riptide/inside/engineering/bridge)
 "xli" = (
 /obj/effect/decal/cleanable/dirt,
@@ -35078,12 +35054,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/riptide/inside/engineering/cave)
-"yeY" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
-/turf/open/floor/bcircuit,
-/area/riptide/inside/engineering/bridge)
 "yfb" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1
@@ -54317,7 +54287,7 @@ qOR
 nVU
 qOR
 bJm
-xlc
+bJm
 gQz
 hkd
 gQz
@@ -54325,7 +54295,7 @@ tmy
 xKP
 usd
 gQz
-xlc
+bJm
 bJm
 mpj
 aCu
@@ -55033,7 +55003,7 @@ nZz
 flS
 bHO
 omA
-xlc
+bJm
 hkd
 qhH
 oEz
@@ -55041,7 +55011,7 @@ sWC
 gQz
 gQz
 bIR
-xlc
+bJm
 lSx
 wRn
 mYl
@@ -55937,7 +55907,7 @@ hfK
 cVl
 wHl
 bJm
-xlc
+bJm
 tSD
 tSD
 tSD
@@ -56107,7 +56077,7 @@ bHO
 bHO
 lHX
 mmI
-xlc
+bJm
 pQT
 hTT
 hTT
@@ -56115,7 +56085,7 @@ agv
 agv
 ryN
 jNp
-xlc
+bJm
 bJm
 ovC
 bFU
@@ -56822,31 +56792,31 @@ csC
 bHO
 bHO
 lHX
-dfI
+cCK
 rXy
 suj
 mkT
-rWi
+xlc
 ibQ
-rWi
+xlc
 tYs
 rfr
 tLy
-xlc
+bJm
 iTq
 uaN
 hTT
-xlc
+bJm
 tLy
 tLy
-xlc
+bJm
 iTq
 uaN
 hTT
-xlc
+bJm
 tLy
 tLy
-xlc
+bJm
 iTq
 xdL
 ozA
@@ -57005,9 +56975,9 @@ wcH
 rXy
 suj
 xzv
-bJm
-bJm
-bJm
+dhr
+dhr
+dhr
 qSN
 xmx
 efU
@@ -57185,8 +57155,8 @@ rXy
 suj
 ufK
 dhr
-pLR
-yeY
+dhr
+dhr
 qSN
 xIV
 kHF
@@ -57359,31 +57329,31 @@ csC
 bHO
 bHO
 lHX
-dfI
+cCK
 rXy
 suj
-mNm
-rWi
-rWi
-rWi
+suj
+xlc
+xlc
+xlc
 inN
 hlX
 nWh
-xlc
+bJm
 iTq
 uaN
 lsl
-xlc
+bJm
 nWh
 nWh
-xlc
+bJm
 iTq
 uZd
 hTT
-xlc
+bJm
 nWh
 nWh
-xlc
+bJm
 iTq
 xdL
 ozA
@@ -58076,7 +58046,7 @@ aXC
 bHO
 lHX
 mmI
-xlc
+bJm
 ovC
 hTT
 xxJ
@@ -58084,7 +58054,7 @@ agv
 agv
 ryN
 jNp
-xlc
+bJm
 bJm
 ovC
 bVa
@@ -58264,7 +58234,7 @@ nhp
 uJK
 tNO
 bJm
-xlc
+bJm
 qal
 qal
 qal
@@ -59150,7 +59120,7 @@ sYO
 qOR
 nVU
 bsl
-xlc
+bJm
 mdX
 gQz
 hkd
@@ -59158,7 +59128,7 @@ tmy
 gQz
 hkd
 qCx
-xlc
+bJm
 bFX
 aPo
 aPo
@@ -59866,7 +59836,7 @@ wpl
 nvJ
 nvJ
 bJm
-xlc
+bJm
 gQz
 hFQ
 hFQ
