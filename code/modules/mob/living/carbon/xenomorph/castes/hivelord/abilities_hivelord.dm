@@ -122,7 +122,7 @@
 	if(!can_plasma_regenerate)
 		ADD_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, HIVELORD_ABILITY_TRAIT)
 	if(armor_amount)
-		attached_armor = new(armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount)
+		attached_armor = getArmor(armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.attachArmor(attached_armor)
 	set_toggle(TRUE)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(resinwalk_on_moved))
