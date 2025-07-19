@@ -45,6 +45,9 @@
 		pixel_y = ( (dir & 3) ? (dir == 1 ? -16 : 28) : 0 )
 		update_icon()
 
+	if(id == "minidropship_podlock")
+		RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_SHUTTER , PROC_REF(handle_pod))
+
 /obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
@@ -83,6 +86,7 @@
 					D.safe = 1
 
 /obj/machinery/door_control/proc/handle_pod()
+	SIGNAL_HANDLER
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			if(M.density)
