@@ -133,7 +133,7 @@
 
 ///Deactivates the beacon
 /datum/component/beacon/proc/deactivate(atom/movable/source, mob/user)
-		if(length(user?.do_actions))
+	if(length(user?.do_actions))
 		user.balloon_alert(user, "Busy!")
 		active = TRUE
 		return
