@@ -326,7 +326,6 @@
 	travelling_time = 1 SECONDS
 	ammo_count = 100
 	max_ammo_count = 100
-	ammo_used_per_firing = 40
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/laser_beam_gun
 	ammo_name = "charge"
 	transferable_ammo = TRUE

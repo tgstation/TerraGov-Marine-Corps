@@ -141,7 +141,6 @@
 	name = "Special Response Force Medic"
 	jobtype = /datum/job/special_forces/medic
 
-	glasses = /obj/item/clothing/glasses/night
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/marine/specops

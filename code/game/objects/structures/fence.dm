@@ -6,16 +6,14 @@
 	icon_state = "fence-icon"
 	density = TRUE
 	anchored = TRUE //We can not be moved.
-	coverage = 5
 	layer = ABOVE_WINDOW_LAYER
 	max_integrity = 150 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
 	resistance_flags = XENO_DAMAGEABLE
 	minimap_color = MINIMAP_FENCE
-	var/cut = FALSE //Cut fences can be passed through
-	coverage = 0 //4 rods doesn't provide any cover
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FENCE)
 	canSmoothWith = list(SMOOTH_GROUP_FENCE)
+	var/cut = FALSE //Cut fences can be passed through
 	///Chance for the fence to break on /init
 	var/chance_to_break = 80 //Defaults to 80%
 	///icon set we switch to when destroyed

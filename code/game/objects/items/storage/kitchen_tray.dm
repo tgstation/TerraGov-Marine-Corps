@@ -7,8 +7,6 @@
 		slot_l_hand_str = 'icons/mob/inhands/equipment/kitchen_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/kitchen_right.dmi',
 	)
-	desc = "A metal tray to lay food on."
-	throwforce = 12
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 5

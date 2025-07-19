@@ -16,7 +16,6 @@
 
 /obj/effect/spawner/random/machinery/random_broken_computer
 	name = "Generic broken computer spawner"
-	name = "random broken computer spawner"
 	icon_state = "random_broke_computer"
 	loot = list(
 		/obj/structure/prop/computer/broken = 20,

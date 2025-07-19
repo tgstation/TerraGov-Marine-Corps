@@ -78,7 +78,6 @@
 
 /atom/movable/screen/swap_hand
 	name = "swap hand"
-	name = "swap"
 	icon_state = "swap_1_m"
 	screen_loc = ui_swaphand1
 	mouse_over_pointer = MOUSE_HAND_POINTER

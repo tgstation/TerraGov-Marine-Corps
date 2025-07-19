@@ -9,7 +9,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	obj_flags = CAN_BE_HIT | IGNORE_DENSITY
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER

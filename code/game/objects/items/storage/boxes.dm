@@ -91,7 +91,6 @@
 /obj/item/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."
-	desc = "A biohazard alert warning is printed on the box"
 	spawn_type = /obj/item/reagent_containers/syringe
 	spawn_number = 7
 	icon_state = "syringe"

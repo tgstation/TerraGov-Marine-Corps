@@ -6,7 +6,6 @@
 	desc = "It controls doors, remotely."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl0"
-	desc = "A remote control-switch for a door."
 	power_channel = ENVIRON
 	anchored = TRUE
 	use_power = IDLE_POWER_USE

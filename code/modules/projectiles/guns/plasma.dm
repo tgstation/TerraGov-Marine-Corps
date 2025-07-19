@@ -200,7 +200,6 @@
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_3.ogg'
-	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/smg_standard/four
 
 	wield_delay = 0.3 SECONDS
