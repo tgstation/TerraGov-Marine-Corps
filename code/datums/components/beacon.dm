@@ -133,7 +133,7 @@
 
 ///Deactivates the beacon
 /datum/component/beacon/proc/deactivate(atom/movable/source, mob/user)
-	if(length(user?.do_actions))
+		if(length(user?.do_actions))
 		user.balloon_alert(user, "Busy!")
 		active = TRUE
 		return
@@ -172,7 +172,7 @@
 	var/turf/location = get_turf(parent)
 	var/area/curr_area = get_area(location)
 	if(check_for_blacklist(source))
-		INVOKE_ASYNC(src, PROC_REF(deactivate), source)
+		INVOKE_ASYNC(src, PROC_REF(deactivate), parent)
 		return
 	beacon_datum.drop_location = location
 	GLOB.supply_beacon -= beacon_datum.name //prevents duplicate entries in supply console
@@ -186,10 +186,10 @@
 	var/turf/location = get_turf(parent)
 	var/area/curr_area = get_area(location)
 	if(istype(curr_area) && curr_area.ceiling >= CEILING_DEEP_UNDERGROUND)
-		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
+		source.balloon_alert_to_viewers("The beacon won't work if you're standing deep underground.")
 		return TRUE
 	if(istype(curr_area, /area/shuttle/dropship))
-		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
+		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or the beacon won't transmit.")
 		return TRUE
 
 ///Called on picking up or otherwise equipping the beacon
