@@ -62,9 +62,12 @@
 	var/about_to_jump = FALSE
 	///Time to become active after moving into the facehugger's space.
 	var/proximity_time = 0.75 SECONDS
+	/// Should they not die in fire?
+	var/fire_immune = FALSE
+	/// How far can they leap?
+	var/leap_range = 4
 
-
-/obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
+/obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source, new_fire_immunity)
 	. = ..()
 	if(stat == CONSCIOUS)
 		lifetimer = addtimer(CALLBACK(src, PROC_REF(check_lifecycle)), FACEHUGGER_DEATH, TIMER_STOPPABLE)
@@ -74,6 +77,9 @@
 
 	if(input_source)
 		facehugger_register_source(input_source)
+
+	if(new_fire_immunity)
+		set_fire_immunity(new_fire_immunity)
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -88,6 +94,13 @@
 
 	source = S //set and register new source
 	RegisterSignal(S, COMSIG_QDELETING, PROC_REF(clear_hugger_source))
+
+/obj/item/clothing/mask/facehugger/proc/set_fire_immunity(new_fire_immunity)
+	if(!fire_immune && new_fire_immunity)
+		add_filter("facehugger_fire_immunity_outline", 2, outline_filter(1, COLOR_TAN_ORANGE))
+	if(fire_immune && !new_fire_immunity)
+		remove_filter("facehugger_fire_immunity_outline")
+	fire_immune = new_fire_immunity
 
 ///Clears the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
@@ -267,7 +280,7 @@
 	if(chosen_target)
 		visible_message(span_warning("\The scuttling [src] leaps at [chosen_target]!"), null, null, 4)
 		leaping = TRUE
-		throw_at(chosen_target, 4, 1)
+		throw_at(chosen_target, leap_range, 1)
 		return
 
 	remove_danger_overlay() //Remove the danger overlay
@@ -603,6 +616,8 @@
 	deltimer(lifetimer)
 	deltimer(activetimer)
 	remove_danger_overlay() //Remove the danger overlay
+	if(fire_immune)
+		set_fire_immunity(FALSE)
 
 	update_icon()
 	playsound(loc, 'sound/voice/alien/facehugger_dies.ogg', 25, 1)
@@ -647,6 +662,8 @@
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/fire_act(burn_level)
+	if(fire_immune)
+		return
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
