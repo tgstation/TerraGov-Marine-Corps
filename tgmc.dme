@@ -2004,6 +2004,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\hunter\abilities_hunter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hunter\castedatum_hunter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hunter\hunter.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\hunter\mutations_hunter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\king\abilities_conqueror.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\king\abilities_king.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\king\castedatum_king.dm"
