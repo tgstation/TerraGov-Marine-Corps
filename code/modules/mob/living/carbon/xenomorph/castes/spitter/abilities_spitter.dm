@@ -123,7 +123,7 @@
 	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
 
 	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
-	newspit.generate_bullet(scatter_spit, scatter_spit.damage * (SPIT_UPGRADE_BONUS(xeno_owner)))
+	newspit.generate_bullet(scatter_spit, scatter_spit.damage * (SPIT_UPGRADE_BONUS(xeno_owner))) // Note: This spit upgrade bonus only applies to the main projectile. Given that there are bonus projectiles, this is likely oversight.
 	newspit.damage *= max(0, damage_multiplier)
 	newspit.def_zone = xeno_owner.get_limbzone_target()
 
