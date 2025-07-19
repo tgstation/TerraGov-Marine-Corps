@@ -14,6 +14,8 @@
 	var/active_icon_state = ""
 	///The mob who activated this beacon
 	var/mob/activator
+	///Initial name of the beacon, used in GLOB.supply_beacon
+	var/beacon_name
 
 /datum/component/beacon/Initialize(_anchor = FALSE, _anchor_time = 0, _active_icon_state = "")
 	. = ..()
@@ -117,7 +119,8 @@
 	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
 	user.visible_message("[user] activates [source]'s signal.")
 	user.show_message(span_notice("The [source] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(source)]\""), EMOTE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
-	beacon_datum = new /datum/supply_beacon("[user.name] + [curr_area] + [initial(source.name)]", get_turf(source), user.faction)
+	beacon_name = initial(source.name)
+	beacon_datum = new /datum/supply_beacon("[curr_area] - [beacon_name] - [activator]", get_turf(source), user.faction)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	if(ismob(source.loc))
 		RegisterSignal(source.loc, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
@@ -173,8 +176,8 @@
 		return
 	beacon_datum.drop_location = location
 	GLOB.supply_beacon -= beacon_datum.name //prevents duplicate entries in supply console
-	beacon_datum.name = initial(source.name) + " - [get_area(source)] - [activator]"
-	GLOB.supply_beacon[beacon_datum.name] = src
+	beacon_datum.name = "[curr_area] - [beacon_name] - [activator]"
+	GLOB.supply_beacon[beacon_datum.name] = src.beacon_datum
 	var/atom/movable/movableparent = parent
 	movableparent.update_appearance()
 
@@ -215,7 +218,7 @@
 /datum/component/beacon/proc/on_update_name(atom/source, updates)
 	SIGNAL_HANDLER
 	if(active)
-		source.name = initial(source.name) + " - [get_area(source)] - [activator]" //Otherwise updatepos would stack the position - name
+		source.name = "[initial(source.name)] - [get_area(source)] - [activator]" //Otherwise updatepos would stack the position - name
 		return
 	source.name = initial(source.name)
 
