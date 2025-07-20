@@ -33,9 +33,9 @@
 /datum/mutation_upgrade/shell/staggered_panic/proc/on_update_health(datum/source)
 	SIGNAL_HANDLER
 	var/health = (xenomorph_owner.status_flags & GODMODE) ? xenomorph_owner.maxHealth : (xenomorph_owner.maxHealth - xenomorph_owner.getFireLoss() - xenomorph_owner.getBruteLoss())
-	if(can_be_activated || (health <= xenomorph_owner.get_death_threshold()))
+	if(can_be_activated || (health < xenomorph_owner.maxHealth))
 		return
-	can_be_activated = (health >= xenomorph_owner.maxHealth)
+	can_be_activated = TRUE
 
 /// If it is ready to activate and reaches the threshold, do the acid effect.
 /datum/mutation_upgrade/shell/staggered_panic/proc/on_staggered(datum/source, amount, ignore_canstun)
