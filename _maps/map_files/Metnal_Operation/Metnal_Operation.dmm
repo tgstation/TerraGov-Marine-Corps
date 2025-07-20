@@ -14721,9 +14721,6 @@
 /area/metnal/inside/quartermaster)
 "hVn" = (
 /obj/effect/turf_decal/tile/transparent/blue/opposingcorners,
-/obj/structure/nuke_disk_candidate{
-	set_associations = list("set1","set2")
-	},
 /turf/open/floor/prison/whitegreen/full,
 /area/metnal/z2/inside/medbay2z)
 "hVs" = (
@@ -24160,6 +24157,9 @@
 "mZv" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
+	},
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1","set2")
 	},
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
