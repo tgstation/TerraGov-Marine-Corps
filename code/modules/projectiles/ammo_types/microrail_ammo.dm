@@ -74,7 +74,6 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	accuracy_var_low = 5
 	accuracy_var_high = 5
-	max_range = 7
 	damage = 20
 	penetration = 20
 	sundering = 3
