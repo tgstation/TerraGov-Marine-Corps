@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "King's evolution requirement is no longer overridden by the Nuclear War's evolution requirement of 12."

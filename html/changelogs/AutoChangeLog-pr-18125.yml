@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - bugfix: "fixed setting attrition in campaign, you can no longer accidentally set it to 0"
