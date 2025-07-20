@@ -69,7 +69,7 @@
 /datum/mutation_upgrade/spur/necrotic_link/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Psychic Link no longer forces you to rest. While it is active, Drain is only [PERCENT(1 + get_multiplier(new_amount))] effective on corpses."
+	return "Psychic Link no longer forces you to rest. While it is active, Drain is only [PERCENT(1 + get_multiplier(new_amount))]% effective on corpses."
 
 /datum/mutation_upgrade/spur/necrotic_link/on_mutation_enabled()
 	. = ..()
