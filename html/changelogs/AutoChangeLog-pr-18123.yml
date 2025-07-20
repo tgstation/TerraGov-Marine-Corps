@@ -1,0 +1,4 @@
+author: "PibeCantina"
+delete-after: True
+changes:
+  - bugfix: "fixed z level stairs being destructible"
