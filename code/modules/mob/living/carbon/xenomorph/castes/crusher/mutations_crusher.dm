@@ -23,10 +23,6 @@
 /datum/mutation_upgrade/shell/tough_rock/on_mutation_enabled()
 	. = ..()
 	RegisterSignal(xenomorph_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
-	if(xenomorph_owner.last_move_time < (world.time - timer_length)) // Haven't moved for a while.
-		toggle()
-		return
-	timer_id = addtimer(CALLBACK(src, PROC_REF(toggle), TRUE), timer_length, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /datum/mutation_upgrade/shell/tough_rock/on_mutation_disabled()
 	UnregisterSignal(xenomorph_owner, list(COMSIG_MOVABLE_MOVED))
@@ -39,11 +35,15 @@
 
 /datum/mutation_upgrade/shell/tough_rock/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!attached_armor)
+	if(attached_armor)
+		var/diff = get_armor(new_amount - previous_amount)
+		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyAllRatings(diff)
+		attached_armor = attached_armor.modifyAllRatings(diff)
 		return
-	var/diff = get_armor(new_amount - previous_amount)
-	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyAllRatings(diff)
-	attached_armor = attached_armor.modifyAllRatings(diff)
+	if(xenomorph_owner.last_move_time < (world.time - timer_length)) // Haven't moved for a while.
+		toggle()
+		return
+	timer_id = addtimer(CALLBACK(src, PROC_REF(toggle), TRUE), timer_length, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /// Removes armor if they had it while moving. Restarts the timer.
 /datum/mutation_upgrade/shell/tough_rock/proc/on_movement(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
@@ -89,7 +89,7 @@
 /datum/mutation_upgrade/spur/earthquake/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Stomp's range is increased by [range_initial] and loses damage [falloff_initial] tile further. However, Stomp deals [PERCENT(1 + get_multiplier(new_amount))]% of its original damage and no longer has extra stun duration for stomping ontop of targets."
+	return "Stomp's range is increased by [range_initial] and the distance before damage begins to falloff is increased by [-falloff_initial]. However, Stomp deals [PERCENT(1 + get_multiplier(new_amount))]% of its original damage and no longer has extra stun duration for stomping ontop of targets."
 
 /datum/mutation_upgrade/spur/earthquake/on_mutation_enabled()
 	. = ..()
