@@ -23,7 +23,7 @@
 	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
 	if(!mirage_ability)
 		return
-	RegisterSignals(xenomorph_owner, COMSIG_XENOMORPH_UPDATE_HEALTH, PROC_REF(on_update_health))
+	RegisterSignals(xenomorph_owner, COMSIG_LIVING_UPDATE_HEALTH, PROC_REF(on_update_health))
 	if(xenomorph_owner.health >= xenomorph_owner.maxHealth)
 		can_be_activated = TRUE
 
@@ -32,7 +32,7 @@
 	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
 	if(!mirage_ability)
 		return
-	UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_UPDATE_HEALTH)
+	UnregisterSignal(xenomorph_owner, COMSIG_LIVING_UPDATE_HEALTH)
 	can_be_activated = FALSE
 	QDEL_NULL(mirage_ability.prioritized_illusion)
 	if(mirage_timer_id)
