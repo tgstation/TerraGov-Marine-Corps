@@ -100,7 +100,7 @@
 //*********************//
 /datum/mutation_upgrade/veil/acid_trail
 	name = "Acid Trail"
-	desc = "Whenever you move while carrying 7/5/3 stored globs, an acid splatter is created underneath you."
+	desc = "Whenever you move while carrying 7/5/3 stored globs, a short acid splatter is created underneath you."
 	/// For the first structure, the amount of stored globs threshold required to activate this effect.
 	var/globs_initial = 9
 	/// For each structure, the additional amount of stored globs threshold required to activate this effect.
@@ -124,7 +124,7 @@
 		return
 	if(get_globs(get_total_structures()) > (xenomorph_owner.corrosive_ammo + xenomorph_owner.neuro_ammo))
 		return
-	xenomorph_spray(get_turf(xenomorph_owner), 6 SECONDS, 16, null, TRUE)
+	xenomorph_spray(get_turf(xenomorph_owner), 2 SECONDS, 16, null, TRUE)
 
 /// Returns the amount of stored globs that the owner needs to have in order to gain its effect.
 /datum/mutation_upgrade/veil/acid_trail/proc/get_globs(structure_count, include_initial = TRUE)
