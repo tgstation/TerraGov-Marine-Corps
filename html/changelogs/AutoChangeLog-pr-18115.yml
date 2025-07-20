@@ -1,0 +1,6 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - rscadd: "Added new roof tilesets from Mojave Sun."
+  - soundadd: "Added a new footstep for the new metal roofs."
+  - bugfix: "Fixed smoothing on various tiles to work with the new roofs."
