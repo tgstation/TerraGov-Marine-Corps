@@ -1404,6 +1404,7 @@
 #include "code\game\turfs\open.dm"
 #include "code\game\turfs\open_ground.dm"
 #include "code\game\turfs\plating.dm"
+#include "code\game\turfs\roof_types.dm"
 #include "code\game\turfs\snow.dm"
 #include "code\game\turfs\space.dm"
 #include "code\game\turfs\turf.dm"
