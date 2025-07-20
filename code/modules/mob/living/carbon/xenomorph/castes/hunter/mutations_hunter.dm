@@ -41,11 +41,14 @@
 
 /// If their health is under the threshold, activate it if possible. If it is full, let them activate it next time.
 /datum/mutation_upgrade/shell/fleeting_mirage/proc/on_update_health(datum/source)
-	if(!can_be_activated && xenomorph_owner.health >= xenomorph_owner.maxHealth)
-		can_be_activated = TRUE
+	var/health = (xenomorph_owner.status_flags & GODMODE) ? xenomorph_owner.maxHealth : (xenomorph_owner.maxHealth - xenomorph_owner.getFireLoss() - xenomorph_owner.getBruteLoss())
+	if(health <= xenomorph_owner.get_death_threshold())
 		return
-	var/threshold = xenomorph_owner.maxHealth * get_threshold(get_total_structures())
-	if(!can_be_activated || xenomorph_owner.health > threshold || mirage_timer_id)
+	if(!can_be_activated)
+		if(xenomorph_owner.health >= xenomorph_owner.maxHealth)
+			can_be_activated = TRUE
+		return
+	if(health > xenomorph_owner.maxHealth * get_threshold(get_total_structures()) || mirage_timer_id)
 		return
 	can_be_activated = FALSE
 	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
