@@ -88,6 +88,11 @@
 	///What type of hugger are produced here
 	var/hugger_type = /obj/item/clothing/mask/facehugger
 
+/obj/alien/egg/hugger/Initialize(mapload, hivenumber, new_hugger_type)
+	. = ..()
+	if(new_hugger_type)
+		hugger_type = new_hugger_type
+
 /obj/alien/egg/hugger/update_icon_state()
 	. = ..()
 	overlays.Cut()
