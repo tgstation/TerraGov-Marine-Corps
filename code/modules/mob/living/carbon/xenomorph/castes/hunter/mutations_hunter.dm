@@ -4,9 +4,9 @@
 /datum/mutation_upgrade/shell/fleeting_mirage
 	name = "Fleeting Mirage"
 	desc = "Upon reaching 25/40/55% health, a mirage will appear and run away from you. That mirage takes priority when mirage swapping."
-	/// For the first structure, the percentage of maximum health that needs to be reached.
+	/// For the first structure, the maximum health threshold that the owner must be reach / be below of in order for the Illusion will appear.
 	var/health_threshold_initial = 0.1
-	/// For each structure, the additional percentage of maximum health that needs to be reached.
+	/// For each structure, the maximum health threshold that the owner must be reach / be below of in order for the Illusion will appear.
 	var/health_threshold_per_structure = 0.15
 	/// If the effect can be activated.
 	var/can_be_activated = FALSE
@@ -64,7 +64,7 @@
 		deltimer(mirage_timer_id)
 		mirage_timer_id = null
 
-/// Returns the maximum health threshold in which the Illusion will appear.
+/// Returns the maximum health threshold that the owner must be reach / be below of in order for the Illusion will appear.
 /datum/mutation_upgrade/shell/fleeting_mirage/proc/get_threshold(structure_count, include_initial = TRUE)
 	return (include_initial ? health_threshold_initial : 0) + (health_threshold_per_structure * structure_count)
 
@@ -117,9 +117,9 @@
 /datum/mutation_upgrade/veil/one_target
 	name = "One Target"
 	desc = "The effects of Silence against your Hunter's Mark target last 2.5/2.75/3x as long."
-	/// For the first structure, the multiplier to add to Silence's effectiveness against the Hunter's Mark target
+	/// For the first structure, the multiplier to add to Silence's effectiveness against the Hunter's Mark target.
 	var/multiplier_initial = 0.75
-	/// For each structure, the multiplier to add to Silence's effectiveness against the Hunter's Mark target
+	/// For each structure, the multiplier to add to Silence's effectiveness against the Hunter's Mark target.
 	var/multiplier_per_structure = 0.25
 
 /datum/mutation_upgrade/veil/one_target/get_desc_for_alert(new_amount)
