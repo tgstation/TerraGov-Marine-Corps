@@ -11,8 +11,6 @@
 	pixel_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_NORMAL
-	bubble_icon = "alienroyal"
-
 
 // ***************************************
 // *********** Icons
