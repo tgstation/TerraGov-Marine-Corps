@@ -154,7 +154,7 @@
 
 
 /datum/component/simple_rotation/proc/default_after_rotation(mob/user, rotation_type)
-	user.balloon_alert(user, "[rotation_type == ROTATION_FLIP ? "flipped" : "rotated"] [parent].")
+	user.balloon_alert(user, "[rotation_type == ROTATION_FLIP ? "flipped" : "rotated"]")
 
 
 /atom/movable/proc/simple_rotate_clockwise()

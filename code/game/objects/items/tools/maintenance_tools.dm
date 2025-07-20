@@ -375,7 +375,7 @@
 	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding)
-			balloon_alert(user, "That was stupid")
+			to_chat(user, span_userdanger("That was stupid of you."))
 			log_bomber(user, "triggered a weldpack explosion", src)
 			explosion(src, light_impact_range = 3, explosion_cause=user)
 			qdel(src)

@@ -391,22 +391,22 @@
 		if(NO_ERROR)
 			return TRUE
 		if(ERROR_CANT_WEED)
-			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
+			owner.balloon_alert(owner, span_notice("this spot can't hold weeds!"))
 			return FALSE
 		if(ERROR_NO_WEED)
-			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
+			owner.balloon_alert(owner, span_notice("this spot doesn't have weeds!"))
 			return FALSE
 		if(ERROR_NO_SUPPORT)
-			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
+			owner.balloon_alert(owner, span_notice("no adjacent structure for support!"))
 			return FALSE
 		if(ERROR_NOT_ALLOWED)
-			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
+			owner.balloon_alert(owner, span_notice("the queen mother prohibits building here!"))
 			return FALSE
 		if(ERROR_BLOCKER)
-			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
+			owner.balloon_alert(owner, span_notice("a sister is blocking this spot!"))
 			return FALSE
 		if(ERROR_FOG)
-			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
+			owner.balloon_alert(owner, span_notice("the fog won't let the resin grow!"))
 			return FALSE
 		// it fails a lot here when dragging , so its to prevent spam
 		if(ERROR_CONSTRUCT)
@@ -581,20 +581,20 @@
 		return FALSE
 	if(!owner.Adjacent(A))
 		if(!silent)
-			owner.balloon_alert(owner, "[A] is too far away")
+			owner.balloon_alert(owner, "too far away!")
 		return FALSE
 	if(ismob(A))
 		if(!silent)
-			owner.balloon_alert(owner, "We can't melt [A]")
+			owner.balloon_alert(owner, "can't melt that!")
 		return FALSE
 	switch(A.should_apply_acid(current_acid_type::acid_strength))
 		if(ATOM_CANNOT_ACID)
 			if(!silent)
-				owner.balloon_alert(owner, "We cannot dissolve [A]")
+				owner.balloon_alert(owner, "can't dissolve that!")
 			return FALSE
 		if(ATOM_STRONGER_ACID)
 			if(!silent)
-				owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
+				owner.balloon_alert(owner, "current acid is equal or higher in power!")
 			return FALSE
 
 /datum/action/ability/activable/xeno/corrosive_acid/use_ability(atom/A)

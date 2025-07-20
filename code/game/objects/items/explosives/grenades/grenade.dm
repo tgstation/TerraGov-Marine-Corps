@@ -50,7 +50,6 @@
 
 	activate(user)
 
-	balloon_alert_to_viewers("primes grenade")
 	if(initial(dangerous) && ishumanbasic(user))
 		var/nade_sound = user.gender == FEMALE ? SFX_FEMALE_FRAGOUT : SFX_MALE_FRAGOUT
 

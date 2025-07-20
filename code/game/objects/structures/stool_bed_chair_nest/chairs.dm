@@ -462,14 +462,14 @@
 	. = ..()
 	if(LAZYLEN(buckled_mobs) && chair_state == DROPSHIP_CHAIR_BROKEN)
 		unbuckle_mob(buckled_mobs[1])
-		balloon_alert_to_viewers("This chair is too damaged to stay sitting in")
+		balloon_alert_to_viewers("it's too damaged!")
 
 /obj/structure/bed/chair/dropship/doublewide/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(chair_state == DROPSHIP_CHAIR_BROKEN)
-		balloon_alert_to_viewers("This chair is too damaged to sit in")
+		balloon_alert_to_viewers("it's too damaged!")
 		return FALSE
 	if(leader_chair && buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
-		balloon_alert(buckling_mob, "You don't feel worthy enough to sit in this chair")
+		balloon_alert(buckling_mob, "you can't sit there!")
 		return FALSE
 	if(buckling_x)
 		src.pixel_x = buckling_x

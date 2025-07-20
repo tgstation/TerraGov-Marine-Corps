@@ -178,10 +178,10 @@
 	var/turf/location = get_turf(parent)
 	var/area/curr_area = get_area(location)
 	if(istype(curr_area) && curr_area.ceiling >= CEILING_DEEP_UNDERGROUND)
-		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
+		source.balloon_alert_to_viewers("underground!")
 		return TRUE
 	if(istype(curr_area, /area/shuttle/dropship))
-		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
+		source.balloon_alert_to_viewers("in a dropship!")
 		return TRUE
 
 ///Called on picking up or otherwise equipping the beacon

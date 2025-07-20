@@ -340,7 +340,7 @@
 		return FALSE
 
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return TRUE
 
 	if(obj_integrity <= max_integrity * repair_threshold)
@@ -418,7 +418,7 @@
 		return FALSE
 	if(internal_item.item_flags & DEPLOYED_NO_PICKUP)
 		if(user)
-			balloon_alert(user, "Cannot disassemble")
+			balloon_alert(user, "cannot disassemble!")
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 	return TRUE

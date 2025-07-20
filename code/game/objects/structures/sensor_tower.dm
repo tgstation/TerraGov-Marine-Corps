@@ -54,22 +54,22 @@
 ///Handles defender interactions with the tower
 /obj/structure/sensor_tower/proc/defender_interaction(mob/living/user)
 	if(!activated && !current_timer)
-		balloon_alert(user, "This sensor tower is not activated yet, don't let it be activated!")
+		balloon_alert(user, "not activated—keep it safe!")
 		return
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
+		balloon_alert(user, "fully activated—can't deactivate!")
 		return
 
-	balloon_alert(user, "You begin to stop the activation process!")
+	balloon_alert(user, "stopping activation...")
 	if(!do_after(user, deactivate_time, NONE, src))
 		return
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
+		balloon_alert(user, "fully activated—can't deactivate!")
 		return
 	if(!current_timer)
-		balloon_alert(user, "This sensor tower is not currently activated")
+		balloon_alert(user, "not activated!")
 		return
-	balloon_alert(user, "You stop the activation process!")
+	balloon_alert(user, "activation stopped")
 	deactivate()
 
 ///Handles attacker interactions with the tower
@@ -87,13 +87,13 @@
 ///Checks whether an attack can currently activate this tower
 /obj/structure/sensor_tower/proc/attacker_state_check(mob/living/user)
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated!")
+		balloon_alert(user, "fully activated!")
 		return FALSE
 	if(current_timer)
-		balloon_alert(user, "This sensor tower is currently activating!")
+		balloon_alert(user, "currently activating!")
 		return FALSE
 	if(already_activated)
-		balloon_alert(user, "There's already a sensor tower being activated!")
+		balloon_alert(user, "another tower is being activated!")
 		return FALSE
 	return TRUE
 

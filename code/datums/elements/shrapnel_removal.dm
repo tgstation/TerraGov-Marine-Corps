@@ -25,14 +25,14 @@
 
 /datum/element/shrapnel_removal/proc/attempt_remove(obj/item/removaltool, mob/living/M, mob/living/user)
 	if(!ishuman(M))
-		M.balloon_alert(user, "You only know how to remove shrapnel from humans!")
+		M.balloon_alert(user, "that's not a human!")
 		return
 	var/mob/living/carbon/human/target = M
 	var/datum/limb/targetlimb = user?.client?.prefs?.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
 	if(!targetlimb) //radial_medical can return null
 		return
 	if(!has_shrapnel(targetlimb))
-		M.balloon_alert(user, "There is nothing in limb!")
+		M.balloon_alert(user, "nothing in that limb!")
 		return
 	var/skill = user.skills.getRating(SKILL_MEDICAL)
 	if(skill < SKILL_MEDICAL_PRACTICED)
@@ -52,7 +52,7 @@
 				to_chat(user, span_notice("You stop searching for shrapnel in [target]"))
 				return
 			remove_shrapnel(user, target, targetlimb, skill)
-	to_chat(user, span_notice("You remove the last of the shrapnel from [target]"))
+	to_chat(user, span_notice("You remove the last of the shrapnel from [target]."))
 
 ///returns TRUE if the argument limb has any shrapnel in it
 /datum/element/shrapnel_removal/proc/has_shrapnel(datum/limb/targetlimb)

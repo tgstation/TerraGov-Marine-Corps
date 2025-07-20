@@ -359,10 +359,10 @@
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	TIMER_COOLDOWN_START(user, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
 	balloon_alert_to_viewers("Begins to shake violently", ignored_mobs = user)
-	balloon_alert(user, "You push on the door... [DisplayTimeText(breakout_time)] until escape")
+	to_chat(user, span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"))
 	if(!do_after(user, breakout_time, target = src))
 		if(!opened) //Didn't get opened in the meatime.
-			balloon_alert(user, "You fail to break out of [src]")
+			balloon_alert(user, "failed!")
 		return FALSE
 	if(opened || (!locked && !welded) ) //Did get opened in the meatime.
 		return TRUE
