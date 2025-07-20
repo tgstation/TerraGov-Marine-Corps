@@ -210,7 +210,8 @@
 		)
 	/// Used for the dragging functionality of pre-shuttter building
 	var/dragging = FALSE
-
+	/// The percentage of maximum health to heal the owner whenever a structure is built.
+	var/heal_percentage = 0
 
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/ability/activable/xeno/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
@@ -311,7 +312,9 @@
 		build_resin(get_turf(owner))
 	else
 		build_resin(get_turf(A))
-
+	if(heal_percentage)
+		var/health_healed = xeno_owner.maxHealth * heal_percentage
+		HEAL_XENO_DAMAGE(xeno_owner, health_healed, FALSE)
 /datum/action/ability/activable/xeno/secrete_resin/proc/get_wait()
 	. = base_wait
 	if(!scaling_wait)
