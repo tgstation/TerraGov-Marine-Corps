@@ -1995,6 +1995,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\gorger\abilities_gorger.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\gorger\castedatum_gorger.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\gorger\gorger.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\gorger\mutations_gorger.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivelord\abilities_hivelord.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivelord\castedatum_hivelord.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivelord\hivelord.dm"
