@@ -106,7 +106,7 @@
 	var/datum/action/ability/activable/xeno/stomp/stomp_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/stomp]
 	if(!stomp_ability)
 		return
-	stomp_ability.stomp_damage += initial(stomp_ability.stomp_damage) * get_multiplier(0)
+	stomp_ability.stomp_damage -= initial(stomp_ability.stomp_damage) * get_multiplier(0)
 	stomp_ability.stomp_range -= range_initial
 	stomp_ability.stomp_falloff -= falloff_initial
 	stomp_ability.distance_bonus_allowed = initial(stomp_ability.distance_bonus_allowed)
