@@ -742,8 +742,8 @@
 	#define ZIMPACT_NO_MESSAGE (1<<1)
 	/// Do not do the spin animation when landing
 	#define ZIMPACT_NO_SPIN (1<<2)
-
-
+// From [/mob/living/updatehealth()]
+#define COMSIG_LIVING_UPDATE_HEALTH "living_update_health"
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)
