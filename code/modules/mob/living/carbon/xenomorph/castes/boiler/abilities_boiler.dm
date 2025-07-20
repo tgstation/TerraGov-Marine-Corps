@@ -329,6 +329,24 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/line/boiler
 	cooldown_duration = 9 SECONDS
+	/// If the owner has this much stored globs, non-opaque gas is created along with the acid. Must be non-zero.
+	var/gaseous_spray_threshold = 0
+
+/datum/action/ability/activable/xeno/spray_acid/line/boiler/xenomorph_spray(turf/spraying_turf, duration, damage, mob/living/carbon/xenomorph/xenomorph_creator, should_do_additional_visual_effect, should_acid_act)
+	. = ..()
+	var/current_globs =  xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
+	if(!gaseous_spray_threshold || gaseous_spray_threshold > current_globs)
+		return
+	var/datum/effect_system/smoke_spread/xeno/smoke
+	switch(xeno_owner.ammo)
+		if(/datum/ammo/xeno/boiler_gas/corrosive)
+			smoke = new /datum/effect_system/smoke_spread/xeno/acid()
+		if(/datum/ammo/xeno/boiler_gas)
+			smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light()
+	if(!smoke)
+		return
+	smoke.set_up(0, get_turf(xeno_owner))
+	smoke.start()
 
 /datum/action/ability/activable/xeno/acid_shroud
 	name = "Acid Shroud"

@@ -669,7 +669,6 @@
 			to_chat(owner, span_warning("That's far too close!"))
 		return FALSE
 
-
 /datum/action/ability/activable/xeno/spray_acid/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien/drool1.ogg', 50, 1)
 	to_chat(owner, span_xenodanger("We feel our acid glands refill. We can spray acid again."))
