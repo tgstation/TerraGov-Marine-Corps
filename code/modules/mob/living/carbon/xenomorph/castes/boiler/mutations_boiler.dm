@@ -100,7 +100,7 @@
 //*********************//
 /datum/mutation_upgrade/veil/acid_trail
 	name = "Acid Trail"
-	desc = "Whenever you move whle carrying 7/5/3 stored globs, an acid splatter is created underneath you."
+	desc = "Whenever you move while carrying 7/5/3 stored globs, an acid splatter is created underneath you."
 	/// For the first structure, the amount of stored globs threshold required to activate this effect.
 	var/globs_initial = 9
 	/// For each structure, the additional amount of stored globs threshold required to activate this effect.
@@ -109,7 +109,7 @@
 /datum/mutation_upgrade/veil/acid_trail/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Whenever you move whle carrying [get_globs(new_amount)] stored globs, an acid splatter is created underneath you."
+	return "Whenever you move while carrying [get_globs(new_amount)] stored globs, an acid splatter is created underneath you."
 
 /datum/mutation_upgrade/veil/acid_trail/on_mutation_enabled()
 	RegisterSignal(xenomorph_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
