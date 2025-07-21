@@ -49,7 +49,7 @@
 			continue
 		xenomorph_spray(acid_tile, 6 SECONDS, 16, xenomorph_owner, TRUE, TRUE)
 	can_be_activated = FALSE
-	X.emote("hiss")
+	xenomorph_owner.emote("hiss")
 
 /// Returns the amount of stored globs that the owner needs to have in order to gain its effect.
 /datum/mutation_upgrade/shell/staggered_panic/proc/get_globs(structure_count)
