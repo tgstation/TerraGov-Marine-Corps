@@ -93,7 +93,7 @@
 				if(/datum/ammo/xeno/boiler_gas)
 					smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light()
 			if(smoke)
-				smoke.set_up(0, get_turf(xeno_owner))
+				smoke.set_up(0, TF)
 				smoke.start()
 		distance++
 		if(distance > 7 || blocked)
