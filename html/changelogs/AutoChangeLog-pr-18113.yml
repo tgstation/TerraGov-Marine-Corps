@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Sentinel's Drain Sting now works as intended."
-  - bugfix: "Sentinel's mutation Acidic Slasher now correctly deals its Intoxicated Stacks on slash."
-  - bugfix: "Various mutations now correctly get their effects when mutation structures are updated."
