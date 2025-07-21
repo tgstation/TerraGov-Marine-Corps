@@ -35,4 +35,5 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/burrow,
+		/datum/action/ability/xeno_action/psychic_whisper,
 	)

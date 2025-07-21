@@ -24,6 +24,7 @@
 	inventory_flags = NOSLIPPING
 	item_flags = SYNTH_RESTRICTED
 	siemens_coefficient = 0.6
+	slowdown = -0.5 //extra speed tradeoff for not being able to use a boot weapon, HoS only boots anyways
 
 /obj/item/clothing/shoes/ruggedboot
 	name = "Rugged Boots"
@@ -66,14 +67,13 @@
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
 	inventory_flags = NOSLIPPING
-	slowdown = SHOES_SLOWDOWN+1
 
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
 	worn_icon_state = "clown"
-	slowdown = SHOES_SLOWDOWN + 1
+	slowdown = SHOES_SLOWDOWN+1
 
 
 /obj/item/clothing/shoes/clown_shoes/Initialize(mapload)
@@ -134,6 +134,16 @@
 	desc = "The height of fashion, and they're pre-polished!"
 	icon_state = "laceups"
 
+/obj/item/clothing/shoes/high_heels
+	name = "high heels"
+	desc = "A pair of high-heeled shoes."
+	icon_state = "heels"
+
+/obj/item/clothing/shoes/high_heels/red
+	name = "red heels"
+	desc = "A pair of red high-heeled shoes."
+	icon_state = "heels_red"
+
 /obj/item/clothing/shoes/swimmingfins
 	desc = "Help you swim good."
 	name = "swimming fins"
@@ -158,5 +168,3 @@
 	icon_state = "tp_boots"
 	worn_icon_state = "tp_boots"
 	inventory_flags = NOSLIPPING
-
-

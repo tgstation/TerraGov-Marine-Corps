@@ -116,6 +116,13 @@
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/sh23
+	name = "\improper SH-23 stock"
+	desc = "A irremovable SH-23 stock."
+	icon_state = "sh23"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/icc_pdw
 	name = "\improper L-40 stock"
 	desc = "A irremovable L-40 stock."

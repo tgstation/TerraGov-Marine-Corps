@@ -32,23 +32,23 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/icc/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the ICC Squad Leader assigned to lead this group in responding to the TGMC distress signal sent nearby. Keep your team in one piece, take over this vessel and get the job done!</notice></p>")
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the ICC Squad Leader assigned to lead this group in responding to the NTC distress signal sent nearby. Keep your team in one piece, take over this vessel and get the job done!</notice></p>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/icc/medic)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You an ICCN Medic assigned to make sure this group of people don't die while responding to the TGMC distress signal sent nearby. Keep your team in one piece, take over this vessel and get the job done!</notice></p>")
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You an ICCN Medic assigned to make sure this group of people don't die while responding to the NTC distress signal sent nearby. Keep your team in one piece, take over this vessel and get the job done!</notice></p>")
 		medics++
 		return
 
 	if(prob(15))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/icc/guard)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a trained member of the ICCGF, unlike most you are a dedicated infantryman, better known as a 'Guardsman'. You have been attached to this ICCN group to investigate the TGMC distress signal sent nearby. Be the vanguard of your squad!")]</p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a trained member of the ICCGF, unlike most you are a dedicated infantryman, better known as a 'Guardsman'. You have been attached to this ICCN group to investigate the NTC distress signal sent nearby. Be the vanguard of your squad!")]</p>")
 		return
 
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/icc/standard)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a trained member of the ICCN, you have been assigned to this squad directed to investigate the TGMC distress signal sent nearby. Don't let you and your team's guard down!</notice></p>")
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a trained member of the ICCN, you have been assigned to this squad directed to investigate the NTC distress signal sent nearby. Don't let you and your team's guard down!</notice></p>")

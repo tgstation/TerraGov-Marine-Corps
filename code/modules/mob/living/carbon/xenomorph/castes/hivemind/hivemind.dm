@@ -1,4 +1,4 @@
-#define TIME_TO_TRANSFORM 1 SECONDS
+#define TIME_TO_TRANSFORM 1.6 SECONDS
 
 /mob/living/carbon/xenomorph/hivemind
 	caste_base_type =/datum/xeno_caste/hivemind
@@ -10,7 +10,7 @@
 	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|BANISH_IMMUNE
 	density = FALSE
 	a_intent = INTENT_HELP
 	health = 1000
@@ -115,8 +115,7 @@
 	wound_overlay.icon_state = "none"
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
-	flick(status_flags & INCORPOREAL ? "Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation" : "Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation_reverse", src)
-	setDir(SOUTH)
+	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
 	addtimer(CALLBACK(src, PROC_REF(do_change_form)), TIME_TO_TRANSFORM)
 
 /mob/living/carbon/xenomorph/hivemind/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
@@ -128,7 +127,7 @@
 	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
-		resistance_flags = NONE
+		resistance_flags = BANISH_IMMUNE
 		remove_pass_flags(incorporeal_pass_flags, INNATE_TRAIT)
 		add_pass_flags(manifest_pass_flags, MANIFESTED_TRAIT)
 		density = TRUE
@@ -149,7 +148,6 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	set_datum(FALSE)
 	hive.xenos_by_upgrade[upgrade] += src
-	setDir(SOUTH)
 	update_wounds()
 	update_icon()
 	update_action_buttons()
@@ -179,19 +177,17 @@
 	if(!isopenturf(T))
 		balloon_alert(src, "Can't teleport into a wall")
 		return
-	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM * 2)
-	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation_reverse", src)
-	setDir(SOUTH)
-	addtimer(CALLBACK(src, PROC_REF(end_teleport), T), TIME_TO_TRANSFORM)
+	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
+	flick("Hivemind_materialisation_fast_reverse", src)
+	addtimer(CALLBACK(src, PROC_REF(end_teleport), T), TIME_TO_TRANSFORM / 2)
 
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
+	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
 		balloon_alert(src, "No weeds in destination")
-		return
-	forceMove(T)
-	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation", src)
-	setDir(SOUTH)
+	else
+		forceMove(T)
 
 /mob/living/carbon/xenomorph/hivemind/Move(atom/newloc, direction, glide_size_override)
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
@@ -241,10 +237,30 @@
 	if(status_flags & INCORPOREAL)
 		icon_state = "hivemind_marker"
 		return
-	icon_state = "Hivemind_[initial(loc_weeds_type.color_variant)]"
+	icon_state = "Hivemind"
 
+/mob/living/carbon/xenomorph/hivemind/update_icon()
+	. = ..()
+	if(status_flags & INCORPOREAL)
+		invisibility = INVISIBILITY_MAXIMUM
+	else
+		invisibility = 0
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return
+
+/mob/living/carbon/xenomorph/hivemind/med_hud_set_health()
+	var/image/holder = hud_list[HEALTH_HUD_XENO]
+	if(!holder)
+		return
+
+	var/amount = round(health * 100 / maxHealth, 10)
+	if(!amount)
+		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon_state = "health[amount]"
+
+	holder.overlays.Cut()
+	if(status_flags & INCORPOREAL)
+		holder.overlays +=image('icons/Xeno/castes/hivemind.dmi', src, "hivemind_marker")
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
@@ -258,7 +274,6 @@
 	if(!(status_flags & INCORPOREAL))
 		start_teleport(target_turf)
 		return
-	setDir(SOUTH)
 	abstract_move(target_turf)
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClick(mob/user)
@@ -336,10 +351,10 @@
 			deconstruct(FALSE)
 			return
 
-	xeno_attacker.visible_message(span_danger("[xeno_attacker] nudges its head against [src]."), \
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] nudges [xeno_attacker.p_their()] head against [src]."), \
 	span_danger("You nudge your head against [src]."))
 
-/obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob, silent)
 	. = ..()
 	var/mob/living/carbon/xenomorph/hivemind/our_parent = get_parent()
 	if(isnull(our_parent))
@@ -367,8 +382,14 @@
 		return
 
 	var/mob/living/living_triggerer = hostile
+	if(get_xeno_hivenumber(hostile) == hivenumber)
+		return
 	if(living_triggerer.stat == DEAD) //We don't care about the dead
 		return
+	if(ishuman(hostile))
+		var/mob/living/carbon/human/human_triggerer = hostile
+		if(get_xeno_hivenumber(human_triggerer) == hivenumber)
+			return
 
 	if(isxeno(hostile))
 		var/mob/living/carbon/xenomorph/X = hostile

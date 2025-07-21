@@ -1,0 +1,142 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/shuttle/elevator/grating,
+/area/shuttle/dropship/elevator)
+"d" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/dropship/elevator)
+"e" = (
+/obj/machinery/computer/shuttle/shuttle_control/shipelevator{
+	pixel_y = -15
+	},
+/turf/closed/wall/mainship/outer/reinforced,
+/area/shuttle/dropship/elevator)
+"f" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"g" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/dropship/elevator)
+"h" = (
+/obj/machinery/door/poddoor/railing{
+	id = "cargobay_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"i" = (
+/obj/machinery/door/poddoor/railing{
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"j" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "cargobay_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"r" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "cargobay_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"w" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"z" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "cargobay_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"A" = (
+/obj/docking_port/mobile/shuttle/shipelevator,
+/turf/open/shuttle/elevator/grating,
+/area/shuttle/dropship/elevator)
+"F" = (
+/obj/machinery/door/poddoor/railing{
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/dropship/elevator)
+"K" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "cargobay_elevator_railing"
+	},
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+"Q" = (
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
+
+(1,1,1) = {"
+z
+f
+g
+f
+j
+"}
+(2,1,1) = {"
+K
+Q
+a
+Q
+w
+"}
+(3,1,1) = {"
+e
+a
+A
+a
+d
+"}
+(4,1,1) = {"
+K
+Q
+a
+Q
+w
+"}
+(5,1,1) = {"
+r
+i
+F
+i
+h
+"}

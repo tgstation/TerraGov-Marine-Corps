@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/spray_acid/line
 	name = "Spray Acid"
 	desc = "Spray a line of dangerous acid at your target."
+
 	ability_cost = 250
 	cooldown_duration = 30 SECONDS
 
@@ -103,6 +104,7 @@
 	action_icon_state = "scatter_spit"
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
 	desc = "Spits a spread of acid projectiles that splatter on the ground."
+
 	ability_cost = 280
 	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
