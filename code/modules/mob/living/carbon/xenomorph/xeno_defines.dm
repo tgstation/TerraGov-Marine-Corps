@@ -408,10 +408,6 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
 
-	// *** Boiler vars *** //
-	///When true the boiler gains speed and resets the duration on attack
-	var/steam_rush = FALSE
-
 	// *** Conqueror vars *** //
 	/// If Endurance is currently active.
 	var/endurance_active = FALSE

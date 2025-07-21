@@ -386,12 +386,20 @@
 		target_carbon.adjust_stagger(stagger_duration)
 		target_carbon.add_slowdown(slowdown_stacks)
 
+/datum/ammo/xeno/acid/airburst/heavy/neurotoxin
+	damage_type = STAMINA
+	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet/smokescreen/neurotoxin
+
 /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
 	max_range = 5
 	damage = 6
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
 	smoke_radius = 1
 	smoke_duration = 4
+
+/datum/ammo/xeno/acid/airburst_bomblet/smokescreen/neurotoxin
+	damage_type = STAMINA
+	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/light
 
 ///For the Sizzler Boiler's primo
 /datum/ammo/xeno/acid/heavy/high_pressure_spit
