@@ -85,7 +85,7 @@
 
 		xenomorph_spray(TF, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, TRUE)
 		var/current_globs = xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
-		if(xeno_owner.ammo && current_globs >= gaseous_spray_threshold)
+		if(xeno_owner.ammo && gaseous_spray_threshold && current_globs >= gaseous_spray_threshold)
 			var/datum/effect_system/smoke_spread/xeno/smoke
 			switch(xeno_owner.ammo.type)
 				if(/datum/ammo/xeno/boiler_gas/corrosive)
