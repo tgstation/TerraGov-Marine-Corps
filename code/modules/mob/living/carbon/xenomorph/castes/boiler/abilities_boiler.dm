@@ -379,21 +379,23 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	)
 	/// Holds the particles instead of the mob.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	/// Is the ability currently being used?
+	var/active = FALSE
 	/// The increase of speed when ability is active.
 	var/speed_buff = -1
 	/// How long the ability will last?
 	var/duration = 1.5 SECONDS
-	///Timer for steam rush's duration
+	/// Timer for steam rush's duration.
 	var/steam_rush_duration
-	/// How much extra burn damage is dealt on slash
+	/// How much extra burn damage is dealt on slash?
 	var/steam_damage = 10
 	/// The duration in deciseconds in which a trail of opaque gas will last.
 	var/gas_trail_duration = 0
 
 /datum/action/ability/xeno_action/steam_rush/action_activate()
-	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/sizzler/X = xeno_owner
 
-	if(X.steam_rush)
+	if(active)
 		to_chat(X, span_xenodanger("Our body is already spewing steam!"))
 		return
 
@@ -401,7 +403,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	X.visible_message(span_danger("[X]'s body starts to hiss with steam!"), \
 	span_xenowarning("We feel steam spraying from our body!"))
 
-	X.steam_rush = TRUE
+	active = TRUE
 
 	steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
@@ -443,7 +445,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	X.playsound_local(X, 'sound/voice/alien/hiss2.ogg', 50)
 
-	X.steam_rush = FALSE
+	active = FALSE
 	QDEL_NULL(particle_holder)
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
 	if(gas_trail_duration)
@@ -451,7 +453,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /// Creates a trail of acid smoke when moving.
 /datum/action/ability/xeno_action/steam_rush/proc/on_movement(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
-	if(!gas_trail_duration || xeno_owner.stat != CONSCIOUS)
+	if(xeno_owner.stat != CONSCIOUS)
 		return
 	var/datum/effect_system/smoke_spread/xeno/acid/opaque/smoke = new()
 	smoke.set_up(0, get_turf(xeno_owner), gas_trail_duration / (2 SECONDS))

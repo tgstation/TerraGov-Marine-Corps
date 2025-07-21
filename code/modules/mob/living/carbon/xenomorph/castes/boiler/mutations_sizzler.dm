@@ -17,7 +17,14 @@
 	var/datum/action/ability/xeno_action/steam_rush/rush_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/steam_rush]
 	if(!rush_ability)
 		return
+	var/previous_duration = rush_ability.gas_trail_duration
 	rush_ability.gas_trail_duration += get_duration(new_amount - previous_amount)
+	if(!rush_ability.active)
+		return
+	if(previous_duration && !rush_ability.gas_trail_duration)
+		rush_ability.UnregisterSignal(rush_ability.xeno_owner, COMSIG_MOVABLE_MOVED)
+	if(!previous_duration && rush_ability.gas_trail_duration)
+		rush_ability.RegisterSignal(rush_ability.xeno_owner, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/datum/action/ability/xeno_action/steam_rush, on_movement))
 
 /// Returns the duration in deciseconds that the gas from Steam Rush will last.
 /datum/mutation_upgrade/shell/gaseous_trail/proc/get_duration(structure_count)
