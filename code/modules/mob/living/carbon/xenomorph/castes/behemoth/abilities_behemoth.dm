@@ -1080,9 +1080,9 @@
 		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH)
 		landslide_action?.change_maximum_charges(initial(landslide_action.maximum_charges))
 		if(earth_riser_action)
-			earth_riser_action.change_maximum_pillars(earth_riser_action.maximum_pillars + earth_riser_pillars_changed)
+			earth_riser_action.change_maximum_pillars(earth_riser_action.maximum_pillars - earth_riser_pillars_changed)
 			earth_riser_pillars_changed = 0
-			earth_riser_action.cooldown_duration += earth_riser_action.cooldown_duration - earth_riser_cooldown_changed
+			earth_riser_action.cooldown_duration -= earth_riser_cooldown_changed
 			earth_riser_cooldown_changed = 0
 		owner.balloon_alert(owner, "Primal Wrath ended")
 		UnregisterSignal(xeno_owner, COMSIG_ABILITY_SUCCEED_ACTIVATE)
