@@ -42,12 +42,7 @@
 	for(var/turf/acid_tile AS in RANGE_TURFS(get_radius(get_total_structures()), current_turf))
 		if(!line_of_sight(current_turf, acid_tile))
 			continue
-		new /obj/effect/temp_visual/acid_splatter(acid_tile)
-		if(locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			continue
-		new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
-		for (var/atom/movable/atom_in_acid AS in acid_tile)
-			atom_in_acid.acid_spray_act(src)
+		xenomorph_spray(acid_tile, 6 SECONDS, 16, xenomorph_owner, TRUE, TRUE)
 	can_be_activated = FALSE
 
 /// Returns the radius for how far the acid will be spawned.
