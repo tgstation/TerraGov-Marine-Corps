@@ -50,8 +50,6 @@
 	SIGNAL_HANDLER
 	if(attached_armor)
 		toggle()
-	if(timer_id)
-		deltimer(timer_id)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(toggle)), timer_length, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /// Grants or removes armor.
