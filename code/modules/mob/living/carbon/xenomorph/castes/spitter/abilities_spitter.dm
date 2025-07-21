@@ -6,6 +6,8 @@
 	desc = "Spray a line of dangerous acid at your target."
 	ability_cost = 250
 	cooldown_duration = 30 SECONDS
+	/// If the owner makes use of and has this much stored globs, non-opaque gas is created along with the acid. Must be non-zero.
+	var/gaseous_spray_threshold = 0
 
 /datum/action/ability/activable/xeno/spray_acid/line/use_ability(atom/A)
 	var/turf/target = get_turf(A)
@@ -82,7 +84,17 @@
 				B.acid_spray_act(owner)
 
 		xenomorph_spray(TF, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, TRUE)
-
+		var/current_globs =  xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
+		if(xeno_owner.ammo && current_globs >= gaseous_spray_threshold)
+			var/datum/effect_system/smoke_spread/xeno/smoke
+				switch(xeno_owner.ammo)
+					if(/datum/ammo/xeno/boiler_gas/corrosive)
+						smoke = new /datum/effect_system/smoke_spread/xeno/acid()
+					if(/datum/ammo/xeno/boiler_gas)
+						smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light()
+				if(smoke)
+					smoke.set_up(0, get_turf(xeno_owner))
+					smoke.start()
 		distance++
 		if(distance > 7 || blocked)
 			break
