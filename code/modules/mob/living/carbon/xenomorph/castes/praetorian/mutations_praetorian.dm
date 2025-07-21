@@ -3,7 +3,7 @@
 //*********************//
 /datum/mutation_upgrade/shell/adaptive_armor
 	name = "Adaptive Armor"
-	desc = "When you are hit by a non-friendly projectile, you gain 10/15/20 armor against that particular projectile's armor type and lose 15/22.5/30 in all other types. This lasts only for 10 seconds until it reselects."
+	desc = "When you are hit by a non-friendly projectile, you gain 10/15/20 armor against that particular projectile's armor type and lose 15/22.5/30 in all other types. A colored outline appears around you for 10 seconds during the duration."
 	/// For the first structure, the amount of armor that should be given against the projectile's armor type that the owner was hit with.
 	var/defended_armor_initial = 5
 	/// For each structure, the  amount of armor that should be given against the projectile's armor type that the owner was hit with.
@@ -22,7 +22,7 @@
 /datum/mutation_upgrade/shell/adaptive_armor/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "When you are hit by a non-friendly projectile, you gain [get_defended_armor(new_amount)] armor against that particular projectile's armor type and lose [-get_other_armor(new_amount)] in all other types. This lasts only for [timer_length / 10] seconds until it reselects."
+	return "When you are hit by a non-friendly projectile, you gain [get_defended_armor(new_amount)] armor against that particular projectile's armor type and lose [-get_other_armor(new_amount)] in all other types. A colored outline appears around you for [timer_length * 0.1] seconds during the duration."
 
 /datum/mutation_upgrade/shell/adaptive_armor/on_mutation_enabled()
 	RegisterSignal(xenomorph_owner, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(pre_projectile_hit))
@@ -86,7 +86,7 @@
 //*********************//
 /datum/mutation_upgrade/spur/circular_acid
 	name = "Circular Acid"
-	desc = "Acid Spray now creates acid underneath you and in a circle around you in a radius of 2/3/4 tiles. "
+	desc = "Acid Spray now creates acid underneath you and in a circle around you in a radius of 2/3/4 tiles."
 	/// For the first structure, the amount to set Spray Acid Circle's range to.
 	var/range_initial = 1
 	/// For each structure, the amount to set Spray Acid Circle's range to.
