@@ -989,7 +989,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	minimal_access = ALL_ACCESS
 	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
 	outfit = /datum/outfit/job/civilian/synthetic
-	exp_requirements = XP_REQ_EXPERT
+	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
 	job_points_needed = 40
@@ -1001,7 +1001,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	html_description = {"
 		<b>Difficulty</b>: Soul Crushing<br /><br />
 		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
-		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
 	"}
