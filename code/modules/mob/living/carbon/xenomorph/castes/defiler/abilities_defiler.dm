@@ -174,6 +174,10 @@
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	/// Should the emitted smoke be opaque?
+	var/opaque = TRUE
+	/// The radius of emitted smoke.
+	var/radius = 2
 
 /datum/action/ability/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
@@ -219,18 +223,28 @@
 /datum/action/ability/xeno_action/emit_neurogas/proc/dispense_gas(time_left = 3, datum/effect_system/smoke_spread/emitted_gas)
 	if(time_left <= 0)
 		return
-	var/smoke_range = 2
-
 	if(!emitted_gas)
 		switch(xeno_owner.selected_reagent)
 			if(/datum/reagent/toxin/xeno_neurotoxin)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/light(xeno_owner)
 			if(/datum/reagent/toxin/xeno_hemodile)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile/light(xeno_owner)
 			if(/datum/reagent/toxin/xeno_transvitox)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox/light(xeno_owner)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn/light(xeno_owner)
 
 	if(xeno_owner.IsStaggered()) //If we got staggered, return
 		to_chat(xeno_owner, span_xenowarning("We try to emit toxins but are staggered!"))
@@ -243,9 +257,9 @@
 	var/turf/T = get_turf(xeno_owner)
 	playsound(T, 'sound/effects/smoke.ogg', 25)
 	if(time_left > 1)
-		emitted_gas.set_up(smoke_range, T)
+		emitted_gas.set_up(radius, T)
 	else //last emission is larger
-		emitted_gas.set_up(CEILING(smoke_range*1.3,1), T)
+		emitted_gas.set_up(CEILING(radius*1.3,1), T)
 	emitted_gas.start()
 	T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 	toggle_particles(FALSE)
