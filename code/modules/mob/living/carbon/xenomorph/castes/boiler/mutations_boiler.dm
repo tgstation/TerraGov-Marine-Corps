@@ -89,7 +89,7 @@
 	var/datum/action/ability/activable/xeno/spray_acid/line/boiler/spray_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/spray_acid/line/boiler]
 	if(!spray_ability)
 		return
-	spray_ability.gaseous_spray_threshold += get_globs(new_amount - previous_amount)
+	spray_ability.gaseous_spray_threshold += get_globs(new_amount - previous_amount, FALSE)
 
 /// Returns the amount of stored globs that the owner needs to have in order to gain its effect.
 /datum/mutation_upgrade/spur/gaseous_spray/proc/get_globs(structure_count, include_initial = TRUE)
