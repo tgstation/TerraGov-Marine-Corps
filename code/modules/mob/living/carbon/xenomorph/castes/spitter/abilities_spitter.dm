@@ -84,17 +84,17 @@
 				B.acid_spray_act(owner)
 
 		xenomorph_spray(TF, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, TRUE)
-		var/current_globs =  xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
+		var/current_globs = xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
 		if(xeno_owner.ammo && current_globs >= gaseous_spray_threshold)
 			var/datum/effect_system/smoke_spread/xeno/smoke
-				switch(xeno_owner.ammo)
-					if(/datum/ammo/xeno/boiler_gas/corrosive)
-						smoke = new /datum/effect_system/smoke_spread/xeno/acid()
-					if(/datum/ammo/xeno/boiler_gas)
-						smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light()
-				if(smoke)
-					smoke.set_up(0, get_turf(xeno_owner))
-					smoke.start()
+			switch(xeno_owner.ammo)
+				if(/datum/ammo/xeno/boiler_gas/corrosive)
+					smoke = new /datum/effect_system/smoke_spread/xeno/acid()
+				if(/datum/ammo/xeno/boiler_gas)
+					smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light()
+			if(smoke)
+				smoke.set_up(0, get_turf(xeno_owner))
+				smoke.start()
 		distance++
 		if(distance > 7 || blocked)
 			break
