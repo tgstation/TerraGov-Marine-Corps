@@ -97,3 +97,100 @@
   ViperSnake01:
   - balance: Tanglefoot minirockets price increased from 200 to 400
   - balance: SST-574 Sniper Sentry now applies sniper stacking debuff.
+2025-07-19:
+  Isy232:
+  - rscadd: Roundstart population value provided to all players when the round starts.
+  - balance: Dragon locked to 50 roundstart population, King to 40.
+  - balance: Dragon xenos evolution requirement 13 => 8, King xenos evolution requirement
+      12 => 8.
+  Lumipharon:
+  - bugfix: fixed mech light rockets being hugely more powerful than intended
+  - balance: Surt reduces melee and acid armour by 10 each
+  - balance: Robots are no longer immune to being set on fire
+  - bugfix: fixed the caste swap button displaying the wrong time in nuke war
+  PibeCantina:
+  - bugfix: Makes zstairs indestructible
+  - bugfix: 'Zstairs layer above weeds
+
+      :cl:'
+  Runian:
+  - rscadd: Defender now has 9 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - balance: 'Regenerate Skin now heals 12% of maximum health (50) total rather than:
+      25 burn damage and 25 brute damage.'
+  - rscadd: Melter now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Globadier now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.)
+  - balance: Existing acid puddles now delete themselves to allow for new acid puddles
+      - this causes various abilities like Acid Dash and Acid Spray to have full effect
+      while on existing acid puddles.
+  - bugfix: Resin facehuggers no longer infinitely stack thin resin.
+  - code_imp: The creation of acid spray puddles is now done through xenomorph_spray().
+  - rscadd: Retrograde now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: You can no longer buy mutations that conflict with your currently owned
+      mutations.
+  - bugfix: Drone mutations that used to not update as structures were built now do
+      update accordingly.
+  - rscadd: Warrior now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - qol: Toggle Automatic Magazine Ejection (Weapon) now lets you choose between your
+      weapon and the weapon's attachments.
+  - bugfix: Certain abilities that involve throwing yourself to hit a target now correctly
+      removes the trait involving immobilization.
+  - bugfix: Certain abilities that involve throwing yourself to hit a target no longer
+      causes you to appear to be floating on top of water.
+  - rscadd: Sentinel now has 5 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  revelation-8468:
+  - balance: The las sniper scope is now removeable.
+  - imageadd: Edits the las sniper scope to be seperate from the weapon sprite.
+  timothymtorres:
+  - bugfix: Fix quick vendor blacklisting marines from using points during crash
+2025-07-21:
+  Atropos:
+  - bugfix: fixed setting attrition in campaign, you can no longer accidentally set
+      it to 0
+  - bugfix: Tank/APC fabricator is now indestructible
+  PibeCantina:
+  - bugfix: fixed z level stairs being destructible
+  Runian:
+  - bugfix: King's evolution requirement is no longer overridden by the Nuclear War's
+      evolution requirement of 12.
+  - rscadd: Pyrogen now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Carrier now has 4 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Runner now has 9 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: Sentinel's Drain Sting now works as intended.
+  - bugfix: Sentinel's mutation Acidic Slasher now correctly deals its Intoxicated
+      Stacks on slash.
+  - bugfix: Various mutations now correctly get their effects when mutation structures
+      are updated.
+  - rscadd: Bull now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: Charging abilities no longer can cause your plasma to go negative and
+      also updates your plasma HUD.
+  - rscadd: Hivelord now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  TiviPlus:
+  - code_imp: cleaned up duplicate var defenitions in code
+  - spellcheck: as a result of the cleanup made some niche item descriptions less
+      boring
+  blackdav123:
+  - rscadd: Added new roof tilesets from Mojave Sun.
+  - soundadd: Added a new footstep for the new metal roofs.
+  - bugfix: Fixed smoothing on various tiles to work with the new roofs.
