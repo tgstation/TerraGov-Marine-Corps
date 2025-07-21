@@ -487,6 +487,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			var/combined_attrition = total_attrition_points + active_attrition_points
 			var/choice = tgui_input_number(user, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, combined_attrition, 0, 60 SECONDS)
+			if(isnull(choice))
+				return
 			//check again so you can't just hold the window open
 			if((current_mode.current_mission?.mission_state != MISSION_STATE_NEW) && (current_mode.current_mission?.mission_state != MISSION_STATE_LOADED))
 				to_chat(user, span_warning("Current mission already ongoing, unable to assign more personnel at this time."))

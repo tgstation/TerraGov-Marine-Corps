@@ -43,7 +43,6 @@
 	minimap_icon = "crusher"
 
 	// *** Crusher Abilities *** //
-	stomp_damage = 60
 	crest_toss_distance = 6
 
 	actions = list(
@@ -60,6 +59,12 @@
 		/datum/action/ability/activable/xeno/cresttoss,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/tough_rock,
+		/datum/mutation_upgrade/spur/earthquake,
+		/datum/mutation_upgrade/veil/friendly_chest
 	)
 
 /datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)

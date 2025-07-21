@@ -591,7 +591,6 @@
 	name = "Grab"
 	action_icon_state = "grab"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
 	desc = "After a windup, drag a marine in front of you and initiate a passive grab allowing you to drag them as you move. They are unable to move on their volition, but are fully capable of fighting back. Your grab automatically breaks if you stop grabbing or take too much damage."
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(

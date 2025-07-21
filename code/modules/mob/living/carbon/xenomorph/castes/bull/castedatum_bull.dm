@@ -63,6 +63,12 @@
 		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/unstoppable,
+		/datum/mutation_upgrade/spur/speed_demon,
+		/datum/mutation_upgrade/veil/railgun
+	)
+
 /datum/xeno_caste/bull/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

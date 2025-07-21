@@ -60,6 +60,12 @@
 		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/zoomies,
+		/datum/mutation_upgrade/spur/enhanced_strength,
+		/datum/mutation_upgrade/veil/friendly_toss
+	)
+
 /datum/xeno_caste/warrior/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

@@ -74,6 +74,13 @@
 		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/shared_jelly,
+		/datum/mutation_upgrade/spur/leapfrog,
+		/datum/mutation_upgrade/veil/oviposition,
+		/datum/mutation_upgrade/veil/life_for_life
+	)
+
 /datum/xeno_caste/carrier/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

@@ -3,7 +3,6 @@
 
 /datum/reagent/medicine
 	name = "Medicine"
-	taste_description = "bitterness"
 	reagent_state = LIQUID
 	taste_description = "bitterness"
 	reagent_ui_priority = REAGENT_UI_MEDICINE
@@ -1285,7 +1284,6 @@
 
 /datum/reagent/medicine/research
 	name = "Research precursor" //nothing with this subtype should be added to vendors
-	taste_description = "bitterness"
 	reagent_state = LIQUID
 	taste_description = "bitterness"
 	reagent_ui_priority = REAGENT_UI_IMMEDIATE

@@ -616,7 +616,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/big_ammo_box/smg
 	name = "big ammo box (10x20mm)"
-	caliber = CALIBER_10X20
 	icon_state = "big_m25"
 	base_icon_state = "big_m25"
 	default_ammo = /datum/ammo/bullet/smg

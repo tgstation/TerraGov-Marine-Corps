@@ -13,6 +13,9 @@
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16
 	bubble_icon = "alienroyal"
+	/// The percentage of brute/burn healing that will be negated for all Melting Fire status effects that this xenomorph caused.
+	var/melting_fire_healing_reduction = 0
+
 	fiery_stab = TRUE
 
 /mob/living/carbon/xenomorph/pyrogen/Initialize(mapload)

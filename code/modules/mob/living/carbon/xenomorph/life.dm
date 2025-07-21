@@ -191,13 +191,10 @@
 			clear_alert(ALERT_FIRE)
 
 /mob/living/carbon/xenomorph/updatehealth()
-	if(status_flags & GODMODE)
-		health = maxHealth
-		stat = CONSCIOUS
+	. = ..()
+	if(!. || QDELING(src)) // For godmode / if they got gibbed via update_stat.
 		return
-	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
-	med_hud_set_health() //todo: Make all damage update health so we can just kill pointless life updates entirely
-	update_stat()
+	med_hud_set_health() // Todo: Make all damage update health so we can just kill pointless life updates entirely.
 	update_wounds()
 
 /mob/living/carbon/xenomorph/handle_slowdown()

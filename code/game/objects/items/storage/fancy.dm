@@ -232,7 +232,6 @@
 	icon_state = "cigarcase"
 	worn_icon_state = "cigarcase"
 	icon = 'icons/obj/items/cigarettes.dmi'
-	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	w_class = WEIGHT_CLASS_SMALL
 	equip_slot_flags = ITEM_SLOT_BELT

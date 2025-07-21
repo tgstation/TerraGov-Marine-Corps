@@ -88,6 +88,12 @@
 		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/hardened_travel,
+		/datum/mutation_upgrade/spur/rejuvenating_build,
+		/datum/mutation_upgrade/veil/protective_light
+	)
+
 /datum/xeno_caste/hivelord/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

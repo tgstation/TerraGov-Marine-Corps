@@ -218,7 +218,8 @@
 		)
 	/// Used for the dragging functionality of pre-shuttter building
 	var/dragging = FALSE
-
+	/// The percentage of maximum health to heal the owner whenever a structure is built.
+	var/heal_percentage = 0
 
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/ability/activable/xeno/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
@@ -319,7 +320,9 @@
 		build_resin(get_turf(owner))
 	else
 		build_resin(get_turf(A))
-
+	if(heal_percentage)
+		var/health_healed = xeno_owner.maxHealth * heal_percentage
+		HEAL_XENO_DAMAGE(xeno_owner, health_healed, FALSE)
 /datum/action/ability/activable/xeno/secrete_resin/proc/get_wait()
 	. = base_wait
 	if(!scaling_wait)
@@ -1231,6 +1234,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LAY_EGG,
 	)
+	/// Should the egg contain the owner's selected_hugger_type instead?
+	var/use_selected_hugger = FALSE
 
 /datum/action/ability/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -1252,7 +1257,7 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber)
+	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null)
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()

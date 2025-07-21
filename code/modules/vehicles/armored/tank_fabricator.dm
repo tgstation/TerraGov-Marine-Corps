@@ -9,7 +9,8 @@
 	bound_width = 64
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
-	faction = FACTION_TERRAGOV
+	resistance_flags = RESIST_ALL
+	faction = FACTION_TERRAGOV // NTF edit - faction tanks
 	/// actual UI that will be interacted with
 	var/datum/supply_ui/vehicles/supply_ui
 

@@ -260,7 +260,6 @@ The Grenade Launchers
 	icon_state = "flaregun"
 	worn_icon_state = "gun"
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
-	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	gun_features_flags = NONE
 	gun_skill_category = SKILL_PISTOLS

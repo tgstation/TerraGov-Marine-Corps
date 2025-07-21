@@ -164,8 +164,6 @@
 	var/max_puppets = 0
 
 	// *** Crusher Abilities *** //
-	///The damage the stomp causes, counts armor
-	var/stomp_damage = 0
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
 
@@ -433,10 +431,6 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/behemoth_charging = FALSE
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
-
-	// *** Boiler vars *** //
-	///When true the boiler gains speed and resets the duration on attack
-	var/steam_rush = FALSE
 
 	// *** Conqueror vars *** //
 	/// If Endurance is currently active.

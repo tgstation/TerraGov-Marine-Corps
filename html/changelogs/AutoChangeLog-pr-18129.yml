@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Crusher now has 3 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
+  - bugfix: "The statistic counting the amount of victims affected by Crusher's Stomp now properly counts that instead only counting victims who were directly stomped on."
+  - code_imp: "The damage for Crusher's Stomp ability is no longer stored in the caste, but instead now stored in the ability itself."

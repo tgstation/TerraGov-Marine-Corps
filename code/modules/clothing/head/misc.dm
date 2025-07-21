@@ -102,7 +102,6 @@
 	name = "cueball helmet"
 	desc = "A large, featureless white orb mean to be worn on your head. How do you even see out of this thing?"
 	icon_state = "cueball"
-	inventory_flags = COVEREYES|COVERMOUTH
 	inv_hide_flags = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	worn_icon_state="cueball"
 	inventory_flags = NONE
