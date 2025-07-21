@@ -368,7 +368,7 @@
 
 /datum/action/ability/xeno_action/select_reagent/give_action(mob/living/L)
 	. = ..()
-	xeno_owner.selected_reagent = GLOB.defiler_toxin_type_list[1] //Set our default
+	xeno_owner.set_selected_reagent(GLOB.defiler_toxin_type_list[1]) //Set our default
 	update_button_icon() //Update immediately to get our default
 
 /datum/action/ability/xeno_action/select_reagent/update_button_icon()
@@ -379,9 +379,9 @@
 /datum/action/ability/xeno_action/select_reagent/action_activate()
 	var/i = GLOB.defiler_toxin_type_list.Find(xeno_owner.selected_reagent)
 	if(length(GLOB.defiler_toxin_type_list) == i)
-		xeno_owner.selected_reagent = GLOB.defiler_toxin_type_list[1]
+		xeno_owner.set_selected_reagent(GLOB.defiler_toxin_type_list[1])
 	else
-		xeno_owner.selected_reagent = GLOB.defiler_toxin_type_list[i+1]
+		xeno_owner.set_selected_reagent(GLOB.defiler_toxin_type_list[i+1])
 
 	var/atom/A = xeno_owner.selected_reagent
 	xeno_owner.balloon_alert(xeno_owner, "[initial(A.name)]")
@@ -408,7 +408,7 @@
 	for(var/toxin in GLOB.defiler_toxin_type_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
 		if(R.name == toxin_choice)
-			xeno_owner.selected_reagent = R.type
+			xeno_owner.set_selected_reagent(R.type)
 			break
 	xeno_owner.balloon_alert(xeno_owner, "[toxin_choice]")
 	update_button_icon()
@@ -438,6 +438,11 @@
 	var/reagent_slash_reagent
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/ability/xeno_action/reagent_slash/remove_action(mob/living/L)
+	if(reagent_slash_duration_timer_id)
+		reagent_slash_deactivate(xeno_owner)
+	return ..()
 
 /datum/action/ability/xeno_action/reagent_slash/action_activate()
 	. = ..()
