@@ -191,7 +191,7 @@
 // ***************************************
 // *********** Lunge
 // ***************************************
-#define WARRIOR_LUNGE_RANGE 4 // in tiles
+#define WARRIOR_LUNGE_RANGE 4.5
 
 /datum/action/ability/activable/xeno/warrior/lunge
 	name = "Lunge"
@@ -203,7 +203,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
 	)
 	target_flags = ABILITY_MOB_TARGET
-	/// The starting amount of distance that Fling can go.
+	/// The starting amount of distance that Fling can go. Compared against euclidean distance. Rounded down for lunge throw.
 	var/starting_lunge_distance = WARRIOR_LUNGE_RANGE
 	/// The target of our lunge, we keep it to check if we are adjacent every time we move.
 	var/atom/lunge_target
@@ -248,7 +248,7 @@
 	RegisterSignal(lunge_target, COMSIG_QDELETING, PROC_REF(clean_lunge_target))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
-	xeno_owner.throw_at(get_step_towards(A, xeno_owner), starting_lunge_distance, 2, xeno_owner)
+	xeno_owner.throw_at(get_step_towards(A, xeno_owner), FLOOR(starting_lunge_distance, 1), 2, xeno_owner)
 
 /// Check if we are close enough to grab.
 /datum/action/ability/activable/xeno/warrior/lunge/proc/check_if_lunge_possible(datum/source)
