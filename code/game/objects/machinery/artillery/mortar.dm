@@ -458,6 +458,7 @@
 	deployable_item = /obj/machinery/deployable/mortar/double
 
 /obj/machinery/deployable/mortar/double
+	tally_type = TALLY_MORTAR
 	reload_time = 2 SECONDS
 	fire_amount = 2
 	max_rounds = 2
