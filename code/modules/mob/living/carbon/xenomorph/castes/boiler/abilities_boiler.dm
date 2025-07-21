@@ -371,7 +371,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Steam Rush"
 	action_icon_state = "steam_rush"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Gain a short-lived speed boost. Slashes deal extra burn damage and extend the duration of the sped boost.."
+	desc = "Gain a short-lived speed boost. Slashes deal extra burn damage and extends the duration of the speed boost."
 	ability_cost = 100
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
