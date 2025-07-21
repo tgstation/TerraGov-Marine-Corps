@@ -367,10 +367,8 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	if(total_positions)
 		return
 	var/client_count = length(GLOB.clients)
-	client_count -= 20
-	client_count = FLOOR(client_count / 20, 1)
-	// effectively, 1 at 40, 2 at 60, 3 at 80, etc
-	if(client_count >= 1)
+	if(client_count >= NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED)
+		client_count = 1 + FLOOR((client_count - NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED) / NUCLEAR_WAR_MECH_INTERVAL_PER_SLOT, 1)
 		add_job_positions(client_count)
 
 /datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -394,9 +392,6 @@ Though you are an officer, your authority is limited to the dropship and the Con
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
 	new_human.wear_id.update_label()
 
-
-
-#define ASSAULT_CREWMAN_POPLOCK 50
 //tank/arty driver+gunner
 /datum/job/terragov/command/assault_crewman
 	title = ASSAULT_CREWMAN
@@ -435,7 +430,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/command/assault_crewman/on_pre_setup()
 	if(total_positions)
 		return
-	if(length(GLOB.clients) >= ASSAULT_CREWMAN_POPLOCK)
+	if(length(GLOB.clients) >= NUCLEAR_WAR_TANK_MINIMUM_POP_REQUIRED)
 		add_job_positions(2) //always 2 there are, a master and an apprentice
 
 /datum/job/terragov/command/assault_crewman/get_spawn_message_information(mob/M)

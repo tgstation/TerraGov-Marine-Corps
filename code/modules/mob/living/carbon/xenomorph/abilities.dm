@@ -631,6 +631,11 @@
 	X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), \
 	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.acid_applied++
+	GLOB.round_statistics.all_acid_applied++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "all_acid_applied")
 
 // ***************************************
 // *********** Super strong acid
@@ -893,6 +898,12 @@
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// Whatever our victim is injected with.
 	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
+	/// The amount of reagents injected for each recurring injection.
+	var/sting_amount = XENO_NEURO_AMOUNT_RECURRING
+	/// The type of gas that is emitted, if any. This only occurs on the first injection.
+	var/datum/effect_system/smoke_spread/sting_gas
+	/// The range of the gas emitted, if any.
+	var/sting_gas_range = 0
 
 /datum/action/ability/activable/xeno/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -926,7 +937,7 @@
 	succeed_activate()
 
 	add_cooldown()
-	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, sting_amount, gas_type = sting_gas, gas_range = sting_gas_range)
 
 	track_stats()
 
@@ -1195,6 +1206,8 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
+	if(X.hive.has_any_mutation_structures())
+		SSpoints.add_biomass_points(X.hivenumber, MUTATION_BIOMASS_PER_PSYDRAIN)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))

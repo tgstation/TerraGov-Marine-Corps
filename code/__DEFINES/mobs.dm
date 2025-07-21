@@ -601,6 +601,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_REQUIRES_FREE_TILE (1<<18) // Whether we require a free tile to evolve.
 #define CASTE_LEADER_TYPE (1<<19) // Whether this is a leader type caste (e.g. Queen/Shrike/King/Dragon). Restricts who can play these castes based on: playtime & if banned from Queen.
 #define CASTE_EXCLUDE_STRAINS (1<<20) // Excludes this caste/basetype from strain selection.
+#define CASTE_MUTATIONS_ALLOWED (1<<21) // Whether we are allowed to access, view, and potentially purchase mutations for our caste/strain.
 
 // Xenomorph can_flags:
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0) // Are we allowed to carry facehuggers in our hands?
@@ -610,6 +611,9 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<4) // Can we corrupt a generator?
 #define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher (or behemoth)?
 #define CASTE_CAN_BE_RULER (1<<6) // Caste can become a ruler if no queen / shrike / king exists in the hive.
+
+///How often we can swap strains
+#define XENO_STRAIN_SWAP_COOLDOWN 5 MINUTES
 
 //Charge-Crush
 #define CHARGE_OFF 0

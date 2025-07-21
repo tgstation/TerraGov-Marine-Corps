@@ -27,8 +27,14 @@
 		return
 	if(is_storm_immune(L))
 		return
-	L.adjustBruteLoss(6)
 	to_chat(L, span_danger("You are battered by the coarse sand!"))
+	if(!ishuman(L))
+		L.adjustBruteLoss(6)
+		return
+
+	L.adjustBruteLoss(2)
+	L.Stagger(2 SECONDS)
+
 
 /datum/weather/ash_storm/sand/harmless
 	name = "Sandfall"

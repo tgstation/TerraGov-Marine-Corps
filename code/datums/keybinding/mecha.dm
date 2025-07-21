@@ -100,3 +100,10 @@
 	keybind_signal = COMSIG_MECHABILITY_OVERBOOST
 	hotkey_keys = list("Q")
 
+
+/datum/keybinding/mecha/mech_pulse_armor
+	name = "mech_pulse_armor"
+	full_name = "Mecha Pulse Armor"
+	description = "Activate mecha pulse armor."
+	keybind_signal = COMSIG_MECHABILITY_PULSE_ARMOR
+	hotkey_keys = list("Q")
