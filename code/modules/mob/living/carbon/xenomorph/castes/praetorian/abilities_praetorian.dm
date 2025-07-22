@@ -92,7 +92,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/xenomorph/spray/spray = xenomorph_spray(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner)
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
-		A.acid_spray_act(owner)
+		// There would of been a snowflake check for carbons to paralyze them for the sake of making their density to FALSE and allowing it to continue,
+		// however, we want the spray to work on them and do things like statistics and damage. So, we tell it to skip the cooldown.
+		A.acid_spray_act(owner, TRUE)
 		if(((A.density && !(A.allow_pass_flags & PASS_PROJECTILE) && !(A.atom_flags & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
