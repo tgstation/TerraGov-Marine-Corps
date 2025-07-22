@@ -54,7 +54,7 @@
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)
 			continue
-		teleporter.charges += 2
+		teleporter.charges += 1
 		to_chat(faction.faction_leader, span_warning("An additional activation of the Teleporter Array is now ready for use."))
 		return
 
