@@ -245,8 +245,10 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
 	)
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_SOLIDOBJECT // Can use this while staggered.
-	/// How low the Ravager's health can go while under the effects of Endure before it dies? This is the amount that `get_crit_threshold()` and `get_death_threshold()` will return while the ability is active.
+	/// While this ability is active, what amount should the owner's `get_crit_threshold` and `get_death_threshold` return?
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
+	/// While this ability is active, what amount should be added to the number returned by `get_crit_threshold` and `get_death_threshold`? This is reset to zero when the ability ends.
+	var/bonus_endure_threshold = 0
 	/// Timer for Endure's duration.
 	var/endure_duration
 	/// Timer for Endure's warning.
@@ -306,7 +308,7 @@
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(bomb = -20) //Remove resistances  immunities.
 	REMOVE_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
 	REMOVE_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT)
-	endure_threshold = initial(endure_threshold) // Reset the endure vars to their initial states.
+	bonus_endure_threshold = 0 // Reset the endure vars to their initial states.
 	endure_duration = initial(endure_duration)
 	endure_warning_duration = initial(endure_warning_duration)
 
@@ -404,8 +406,8 @@
 		var/datum/action/ability/xeno_action/charge = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/charge]
 		var/datum/action/ability/xeno_action/ravage = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/ravage]
 		var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
-		if(endure_ability)
-			endure_ability.endure_threshold += RAVAGER_ENDURE_HP_LIMIT * rage_power
+		if(endure_ability && !bonus_endure_threshold)
+			endure_ability.bonus_endure_threshold = RAVAGER_ENDURE_HP_LIMIT * rage_power
 		if(charge)
 			charge.clear_cooldown() //Reset charge cooldown
 		if(ravage)
@@ -509,8 +511,6 @@
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE) //Reset speed
 	xeno_owner.adjust_sunder(rage_sunder) //Remove the temporary Sunder restoration
 	xeno_owner.use_plasma(rage_plasma) //Remove the temporary Plasma
-	if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) // If we're super pissed, it's time to get crazy.
-		endure_ability.endure_threshold -= RAVAGER_ENDURE_HP_LIMIT * rage_power
 
 	REMOVE_TRAIT(xeno_owner, TRAIT_STUNIMMUNE, RAGE_TRAIT)
 	REMOVE_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
