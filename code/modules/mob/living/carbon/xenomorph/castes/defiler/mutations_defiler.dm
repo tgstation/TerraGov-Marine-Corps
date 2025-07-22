@@ -139,7 +139,9 @@
 //*********************//
 /datum/mutation_upgrade/veil/wide_gas
 	name = "Wide Gas"
-	desc = "Emit Noxious Gas now emits non-opaque gas instead. The radius of the gas is increased by 0.6/1.2/1.8 tiles."
+	desc = "Emit Noxious Gas now emits non-opaque gas instead. The radius of the gas is increased by 0.7/1.3/1.9 tiles."
+	/// For each structure, the amount to increase the radius of the emitted gas from Emit Noxious Gas.
+	var/radius_initial = 0.1
 	/// For each structure, the amount to increase the radius of the emitted gas from Emit Noxious Gas.
 	var/radius_per_structure = 0.6
 
@@ -153,6 +155,7 @@
 	var/datum/action/ability/xeno_action/emit_neurogas/gas_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/emit_neurogas]
 	if(!gas_ability)
 		return
+	gas_ability.radius += get_radius(0)
 	gas_ability.opaque = FALSE
 
 /datum/mutation_upgrade/veil/wide_gas/on_mutation_disabled()
@@ -160,6 +163,7 @@
 	var/datum/action/ability/xeno_action/emit_neurogas/gas_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/emit_neurogas]
 	if(!gas_ability)
 		return FALSE
+	gas_ability.radius -= get_radius(0)
 	gas_ability.opaque = initial(gas_ability.opaque)
 
 /datum/mutation_upgrade/veil/wide_gas/on_structure_update(previous_amount, new_amount)
@@ -167,8 +171,9 @@
 	var/datum/action/ability/xeno_action/emit_neurogas/gas_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/emit_neurogas]
 	if(!gas_ability)
 		return
-	gas_ability.radius += get_radius(new_amount - previous_amount)
+	// Based on the numbers: (0.7) +1 radius for last gas, (1.3) +1 radius for gas, +1 radius for last gas, (1.9) +1 radius for gas, +2 radius for last gas.
+	gas_ability.radius += get_radius(new_amount - previous_amount, FALSE)
 
 /// Returns the amount to increase the radius of the emitted gas from Emit Noxious Gas.
-/datum/mutation_upgrade/veil/wide_gas/proc/get_radius(structure_count)
-	return radius_per_structure * structure_count
+/datum/mutation_upgrade/veil/wide_gas/proc/get_radius(structure_count, include_initial = TRUE)
+	return (include_initial ? radius_initial : 0) + (radius_per_structure * structure_count)
