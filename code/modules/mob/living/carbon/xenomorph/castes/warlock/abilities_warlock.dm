@@ -64,6 +64,8 @@
 	var/obj/effect/xeno/shield/active_shield
 	/// Whether to use the alternative mode of projectile reflection. Makes shields weaker, but sends projectiles toward a selected target.
 	var/alternative_reflection = FALSE
+	/// While the shield is active, what should be the ability cost be set to? Will revert back to initial ability cost afterward.
+	var/detonation_cost_a = 200
 
 /datum/action/ability/activable/xeno/psychic_shield/remove_action(mob/M)
 	if(active_shield)
@@ -230,24 +232,23 @@
 	proj.iff_signal = null
 	frozen_projectiles += proj
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, REVERSE_DIR(proj.dir), proj.ammo.penetration)
+	if(QDELETED(src)) // Could be deleted from take_damage / obj_destruction.
+		return
 	alpha = obj_integrity * 255 / max_integrity
-	if(obj_integrity <= 0)
-		release_projectiles()
-		owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 
 /obj/effect/xeno/shield/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	release_projectiles()
 	owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 	return ..()
 
-///Unfeezes the projectiles on their original path
+/// Unfreezes the projectiles on their original path.
 /obj/effect/xeno/shield/proc/release_projectiles()
 	for(var/atom/movable/projectile/proj AS in frozen_projectiles)
 		proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
 		proj.resume_move()
 	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
 
-///Reflects projectiles based on their relative incoming angle
+/// Unfreezes the projectles, then reflects them towards a specified atom or based on their relative incoming angle if nothing was specified.
 /obj/effect/xeno/shield/proc/reflect_projectiles(atom/targetted_atom)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
