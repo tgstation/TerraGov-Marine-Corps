@@ -174,7 +174,7 @@
 		return FALSE
 	if(target.z != user.z)
 		return FALSE
-	if(!(user in viewers(zoom_tile_offset + zoom_viewsize + 1, target)))
+	if(!(user in viewers(zoom_tile_offset + zoom_viewsize + 3, target)))
 		return FALSE
 	return TRUE
 
