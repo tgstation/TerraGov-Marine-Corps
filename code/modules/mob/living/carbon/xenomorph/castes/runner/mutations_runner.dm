@@ -36,8 +36,6 @@
 
 /datum/mutation_upgrade/shell/upfront_evasion/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
 		return
@@ -256,8 +254,6 @@
 
 /datum/mutation_upgrade/spur/sneak_attack/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -296,8 +292,6 @@
 
 /datum/mutation_upgrade/spur/right_here/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -320,8 +314,6 @@
 
 /datum/mutation_upgrade/spur/mutilate/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -365,8 +357,6 @@
 
 /datum/mutation_upgrade/veil/headslam/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -405,8 +395,6 @@
 
 /datum/mutation_upgrade/veil/frenzy/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -450,8 +438,6 @@
 
 /datum/mutation_upgrade/veil/passing_glance/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
 		return
