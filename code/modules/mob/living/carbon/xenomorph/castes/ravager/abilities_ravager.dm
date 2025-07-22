@@ -326,7 +326,7 @@
 /datum/action/ability/xeno_action/endure/proc/damage_taken(mob/living/carbon/xenomorph/xeno_owner, damage_taken)
 	SIGNAL_HANDLER
 	if(xeno_owner.health < 0)
-		to_chat(xeno_owner, "<span class='xenouserdanger' style='color: red;'>We are critically wounded! We can only withstand [-(endure_threshold - xeno_owner.health)] more damage before we perish!</span>")
+		to_chat(xeno_owner, "<span class='xenouserdanger' style='color: red;'>We are critically wounded! We can only withstand [-(endure_threshold + bonus_endure_threshold - xeno_owner.health)] more damage before we perish!</span>")
 		xeno_owner.overlay_fullscreen("endure", /atom/movable/screen/fullscreen/animated/bloodlust)
 	else
 		xeno_owner.clear_fullscreen("endure", 0.7 SECONDS)
