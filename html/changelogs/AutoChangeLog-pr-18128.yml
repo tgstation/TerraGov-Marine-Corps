@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "Sizzler now has 3 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
