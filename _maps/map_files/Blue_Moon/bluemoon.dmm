@@ -905,10 +905,10 @@
 /area/bluemoon/outside/building/virology)
 "bdd" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/bluemoon/caves/se)
 "bdj" = (
