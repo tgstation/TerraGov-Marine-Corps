@@ -2061,6 +2061,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\spitter\spitter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\warlock\abilities_warlock.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\warlock\castedatum_warlock.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\warlock\mutations_warlock.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\warlock\warlock.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\warrior\abilities_warrior.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\warrior\castedatum_warrior.dm"
