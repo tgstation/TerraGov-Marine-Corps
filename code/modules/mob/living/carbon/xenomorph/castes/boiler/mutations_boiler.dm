@@ -4,9 +4,9 @@
 /datum/mutation_upgrade/shell/staggered_panic
 	name = "Staggered Panic"
 	desc = "If you are staggered while carrying 7/6/5 stored globs, adjacent tiles will be sprayed with stunning acid. This recharges once you reach full health."
-	/// For the first structure, the amount of stored globs that the owner needs to have in order to gain its effect.
+	/// For the first structure, the increased amount of stored globs that the owner needs to have in order to gain its effect.
 	var/globs_initial = 8
-	/// For each structure, the amount of stored globs that the owner needs to have in order to gain its effect.
+	/// For each structure, the increased amount of stored globs that the owner needs to have in order to gain its effect.
 	var/globs_per_structure = -1
 	/// The radius of the acid.
 	var/acid_radius = 1
@@ -61,9 +61,9 @@
 /datum/mutation_upgrade/spur/gaseous_spray
 	name = "Gaseous Spray"
 	desc = "If you have 7/5/3 stored globs, your acid spray also leaves a trail of non-opaque gas of your selected glob type."
-	/// For the first structure, the amount of stored globs that the owner needs to have in order to gain its effect.
+	/// For the first structure, the increased amount of stored globs that the owner needs to have in order to gain its effect.
 	var/globs_initial = 9
-	/// For each structure, the amount of stored globs that the owner needs to have in order to gain its effect.
+	/// For each structure, the increased amount of stored globs that the owner needs to have in order to gain its effect.
 	var/globs_per_structure = -2
 
 /datum/mutation_upgrade/spur/gaseous_spray/get_desc_for_alert(new_amount)
