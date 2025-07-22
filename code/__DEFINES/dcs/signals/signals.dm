@@ -742,8 +742,8 @@
 	#define ZIMPACT_NO_MESSAGE (1<<1)
 	/// Do not do the spin animation when landing
 	#define ZIMPACT_NO_SPIN (1<<2)
-
-
+// From [/mob/living/updatehealth()]
+#define COMSIG_LIVING_UPDATE_HEALTH "living_update_health"
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)
@@ -752,6 +752,8 @@
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"	//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE "human_melee_unarmed_attack_alternate"	//same as above, but right click
 #define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"					//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)
+#define COMSIG_HUMAN_BRUTE_DAMAGE "human_brute_damage" // from [/mob/living/carbon/human/adjustBruteLoss] (amount, amount_mod)
+#define COMSIG_HUMAN_BURN_DAMAGE "human_burn_damage" // from [/mob/living/carbon/human/adjustFireLoss] (amount, amount_mod)
 #define COMSIG_HUMAN_LIMB_FRACTURED "human_limb_fractured"				//from [datum/limb/proc/fracture]: (mob/living/carbon/human/wearer, datum/limb/limb)
 ///from [/mob/living/carbon/human/proc/apply_overlay]: (cache_index, list/overlays_to_apply)
 #define COMSIG_HUMAN_APPLY_OVERLAY "human_overlay_applied"
