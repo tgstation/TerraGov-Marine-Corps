@@ -3,7 +3,7 @@
 //*********************//
 /datum/mutation_upgrade/shell/little_more
 	name = "Little More"
-	desc = "Endure further decreases your critical and death threshold by 20/35/50, further allowing your health to  "
+	desc = "Endure further decreases your critical and death threshold by 20/35/50."
 	/// For the first structure, the amount to increase the death/critical threshold given by Endure while it is active.
 	var/threshold_initial = -5
 	/// For each structure, the amount to increase the death/critical threshold given by Endure while it is active.
