@@ -300,7 +300,9 @@
 	for(var/turf/acid_tile AS in RANGE_TURFS(2, our_turf))
 		if(!line_of_sight(our_turf,acid_tile) || isclosedturf(acid_tile))
 			continue
-		xenomorph_spray(acid_tile, 12 SECONDS, 18, null, TRUE)
+		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
+		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
+			new /obj/effect/xenomorph/spray(acid_tile, 12 SECONDS, 18)
 // ***************************************
 // *********** Articulate
 // ***************************************

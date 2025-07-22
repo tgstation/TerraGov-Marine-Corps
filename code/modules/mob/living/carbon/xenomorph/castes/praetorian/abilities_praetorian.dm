@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(is_blocked)
 		return
 
-	var/obj/effect/xenomorph/spray/spray = xenomorph_spray(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner)
+	var/obj/effect/xenomorph/spray/spray = new(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner)
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)
@@ -173,16 +173,17 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /obj/item/explosive/grenade/sticky/xeno/prime()
 	for(var/turf/acid_tile AS in RANGE_TURFS(1, loc))
-		xenomorph_spray(acid_tile, 5 SECONDS, acid_spray_damage, null, TRUE)
+		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
+		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, acid_spray_damage)
 	playsound(loc, SFX_ACID_BOUNCE, 35)
 	qdel(src)
 
 /obj/item/explosive/grenade/sticky/xeno/stuck_to(atom/hit_atom)
 	. = ..()
-	xenomorph_spray(get_turf(src), 5 SECONDS, acid_spray_damage)
+	new /obj/effect/xenomorph/spray(get_turf(src), 5 SECONDS, acid_spray_damage)
 
 /obj/item/explosive/grenade/sticky/xeno/on_move_sticky()
-	xenomorph_spray(get_turf(src), 5 SECONDS, acid_spray_damage)
+	new /obj/effect/xenomorph/spray(get_turf(src), 5 SECONDS, acid_spray_damage)
 
 //Deals with picking up and using the grenade
 /obj/item/explosive/grenade/sticky/xeno/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
@@ -209,6 +210,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/recast_available = FALSE
 	///Is this the recast
 	var/recast = FALSE
+	///The last tile we dashed through, used when swapping with a human
+	var/turf/last_turf
 	/// If we should do acid_spray_act on those we pass over.
 	var/do_acid_spray_act = TRUE
 	///List of pass_flags given by this action
@@ -228,6 +231,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	xeno_owner.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	succeed_activate()
 
+	last_turf = get_turf(owner)
 	xeno_owner.add_pass_flags(charge_pass_flags, type)
 	owner.throw_at(A, charge_range, 2, owner)
 
@@ -258,7 +262,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 ///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
 /datum/action/ability/activable/xeno/charge/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
 	SIGNAL_HANDLER
-	xenomorph_spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, do_acid_spray_act)
+	last_turf = OldLoc
+	new /obj/effect/xenomorph/spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
+	if(!do_acid_spray_act)
+		return
+	for(var/obj/O in get_turf(xeno_owner))
+		O.acid_spray_act(xeno_owner)
 
 
 

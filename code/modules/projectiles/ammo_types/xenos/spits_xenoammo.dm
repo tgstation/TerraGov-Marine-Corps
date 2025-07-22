@@ -240,7 +240,7 @@
 /datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
 	if(T.density)
 		return
-	xenomorph_spray(T, puddle_duration, puddle_acid_damage)
+	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
@@ -461,4 +461,5 @@
 			continue
 		human_victim.throw_at(throwlocation, 6, 1.5, src, TRUE)
 	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", pass_flags_checked = PASS_AIR|PASS_PROJECTILE))
-		xenomorph_spray(acid_tile, 5 SECONDS, 40, null, TRUE)
+		new /obj/effect/temp_visual/acid_splatter(acid_tile)
+		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
