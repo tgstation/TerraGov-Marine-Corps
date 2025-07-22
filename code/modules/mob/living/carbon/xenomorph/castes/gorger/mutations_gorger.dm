@@ -103,13 +103,13 @@
 /datum/mutation_upgrade/veil/burst_healing
 	name = "Burst Healing"
 	desc = "Transfusion heals an additional 7.5/15/22.5% maximum health, but requires twice as much plasma."
-	/// For each structure, the percentage to add to Transfusion's maximum health healing.
-	var/percentage_per_structure = 0.075
+	/// For each structure, the amount to add to Transfusion's maximum health healing percentage. 1 = 100% of maximum health, 0.01 = 1% of maximum health.
+	var/amount_per_structure = 0.075
 
 /datum/mutation_upgrade/veil/burst_healing/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Transfusion heals an additional [PERCENT(get_percentage(new_amount))]% maximum health, but requires twice as much plasma."
+	return "Transfusion heals an additional [PERCENT(get_amount(new_amount))]% maximum health, but requires twice as much plasma."
 
 /datum/mutation_upgrade/veil/burst_healing/on_mutation_enabled()
 	. = ..()
@@ -130,8 +130,8 @@
 	var/datum/action/ability/activable/xeno/transfusion/transfusion_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/transfusion]
 	if(!transfusion_ability)
 		return
-	transfusion_ability.heal_percentage += get_percentage(new_amount - previous_amount)
+	transfusion_ability.heal_percentage += get_amount(new_amount - previous_amount)
 
-/// Returns the percentage to add to Transfusion's maximum health healing.
+/// Returns the amount to add to Transfusion's maximum health healing percentage.
 /datum/mutation_upgrade/veil/burst_healing/proc/get_percentage(structure_count, include_initial = TRUE)
 	return percentage_per_structure * structure_count
