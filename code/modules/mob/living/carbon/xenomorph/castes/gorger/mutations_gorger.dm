@@ -133,5 +133,5 @@
 	transfusion_ability.heal_percentage += get_amount(new_amount - previous_amount)
 
 /// Returns the amount to add to Transfusion's maximum health healing percentage.
-/datum/mutation_upgrade/veil/burst_healing/proc/get_percentage(structure_count, include_initial = TRUE)
-	return percentage_per_structure * structure_count
+/datum/mutation_upgrade/veil/burst_healing/proc/get_amount(structure_count, include_initial = TRUE)
+	return amount_per_structure * structure_count
