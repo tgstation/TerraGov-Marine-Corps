@@ -406,7 +406,7 @@
 		var/datum/action/ability/xeno_action/charge = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/charge]
 		var/datum/action/ability/xeno_action/ravage = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/ravage]
 		var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
-		if(endure_ability && !bonus_endure_threshold)
+		if(endure_ability && !endure_ability.bonus_endure_threshold)
 			endure_ability.bonus_endure_threshold = RAVAGER_ENDURE_HP_LIMIT * rage_power
 		if(charge)
 			charge.clear_cooldown() //Reset charge cooldown
