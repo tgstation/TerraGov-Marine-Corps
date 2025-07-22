@@ -6,7 +6,7 @@
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_scientist
 	ui_icon = "tele_active"
 	uses = 3
-	cost = 5
+	cost = 8
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
 	already_active_message = "The Teleporter Array is already activated!"
 	blacklist_mission_flags = MISSION_DISALLOW_TELEPORT
@@ -43,12 +43,12 @@
 //adds more charges
 /datum/campaign_asset/teleporter_charges
 	name = "Teleporter Array charges"
-	desc = "+6 uses of the Teleporter Array"
-	detailed_desc = "Central command have allocated the battalion with six additional uses of the Teleporter Array, with two added per use. Its extremely costly to run and demand is high across the conflict zone, so make them count."
+	desc = "+3 charges of the Teleporter Array"
+	detailed_desc = "Central command have allocated the battalion with three additional uses of the Teleporter Array. Its extremely costly to run and demand is high across the conflict zone, so make them count."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_scientist
 	ui_icon = "tele_uses"
 	uses = 3
-	cost = 6
+	cost = 3
 
 /datum/campaign_asset/teleporter_charges/activated_effect()
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
