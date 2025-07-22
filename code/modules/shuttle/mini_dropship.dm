@@ -149,7 +149,7 @@
 		destination_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(shuttleId, TRUE)
 
-// Toggle the transit shutters from the shuttle computer
+// Toggle the podlock shutters from the shuttle computer
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_shutters()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_SHUTTER)
 

@@ -30,7 +30,7 @@ export const Minidropship = (_props) => {
             Take off
           </Button>
           <Button onClick={() => act('toggle_shutters')}>
-            Toggle transit shutters
+            Toggle shutters
           </Button>
           <Button
             disabled={return_to_ship_locked}
