@@ -45,9 +45,6 @@
 		pixel_y = ( (dir & 3) ? (dir == 1 ? -16 : 28) : 0 )
 		update_icon()
 
-	if(id == "minidropship_podlock")
-		RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_SHUTTER , PROC_REF(handle_pod))
-
 /obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
@@ -353,3 +350,10 @@
 
 /obj/machinery/door_control/old/unmeltable
 	resistance_flags = RESIST_ALL
+
+/obj/machinery/door_control/minidropship
+	id = "minidropship_podlock"
+
+/obj/machinery/door_control/minidropship/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_SHUTTER, PROC_REF(handle_pod))
