@@ -81,7 +81,7 @@
 			if(get_dir(TF, prev_turf) & B.dir)
 				B.acid_spray_act(owner)
 
-		xenomorph_spray(TF, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, TRUE)
+		xenomorph_spray(TF, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, TRUE, TRUE)
 
 		distance++
 		if(distance > 7 || blocked)
