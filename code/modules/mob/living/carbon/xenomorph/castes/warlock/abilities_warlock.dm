@@ -65,7 +65,17 @@
 	/// Whether to use the alternative mode of projectile reflection. Makes shields weaker, but sends projectiles toward a selected target.
 	var/alternative_reflection = FALSE
 	/// While the shield is active, what should be the ability cost be set to? Will revert back to initial ability cost afterward.
-	var/detonation_cost_a = 200
+	var/detonation_cost = 200
+	/// While the shield is active, can the ability can activated again to detonate the shield?
+	var/can_manually_detonate = TRUE
+	/// If the owner has the plasma and the shield was canceled for a reason that isn't destruction or manual detonation, should the shield automatically detonate?
+	var/detonates_on_cancel = TRUE
+	/// While the shield is active, should the owner not to stand still and do nothing to keep the shield up?
+	var/self_maintaining = FALSE
+	/// While the shield is active, how strong of a movement speed modifier should be applied to the owner?
+	var/movement_speed_modifier = 0
+	/// The timer that cancels shield.
+	var/timer_id
 
 /datum/action/ability/activable/xeno/psychic_shield/remove_action(mob/M)
 	if(active_shield)
@@ -92,9 +102,9 @@
 /datum/action/ability/activable/xeno/psychic_shield/use_ability(atom/targetted_atom)
 	if(active_shield)
 		if(ability_cost > xeno_owner.plasma_stored)
-			owner.balloon_alert(owner, "[ability_cost - xeno_owner.plasma_stored] more plasma!")
+			owner.balloon_alert(owner, "need [ability_cost - xeno_owner.plasma_stored] more plasma!")
 			return FALSE
-		if(can_use_action(FALSE, ABILITY_USE_BUSY))
+		if(can_manually_detonate && can_use_action(FALSE, ABILITY_USE_BUSY))
 			shield_blast(targetted_atom)
 			cancel_shield()
 		return
@@ -103,6 +113,7 @@
 	if(targetted_atom)
 		owner.dir = get_cardinal_dir(owner, targetted_atom)
 
+	// Blocked by something in front of us.
 	var/turf/target_turf = get_step(owner, owner.dir)
 	if(target_turf.density)
 		owner.balloon_alert(owner, "Obstructed by [target_turf]")
@@ -118,8 +129,9 @@
 	action_icon_state = "psy_shield_reflect"
 	update_button_icon()
 	xeno_owner.update_glow(3, 3, "#5999b3")
-	xeno_owner.move_resist = MOVE_FORCE_EXTREMELY_STRONG
+	xeno_owner.move_resist = MOVE_FORCE_EXTREMELY_STRONG // This aims to prevent bumping (or shuffling) from a fair amount of xenomorph castes which may lead to the shield cancelling (and unloading the now-unfrozen projectiles into the bumper or bumpee).
 
+	ability_cost = detonation_cost
 	GLOB.round_statistics.psy_shields++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
 
@@ -127,13 +139,27 @@
 		active_shield = new /obj/effect/xeno/shield/special(target_turf, owner)
 	else
 		active_shield = new(target_turf, owner)
+	if(movement_speed_modifier)
+		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_PSYCHIC_SHIELD, TRUE, 0, NONE, TRUE, movement_speed_modifier)
+	if(self_maintaining)
+		timer_id = addtimer(CALLBACK(src, PROC_REF(cancel_shield)), 6 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+		return
 	if(!do_after(owner, 6 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+		if(detonates_on_cancel && ability_cost <= xeno_owner.plasma_stored && !QDELETED(active_shield))
+			shield_blast()
 		cancel_shield()
 		return
+	if(detonates_on_cancel && ability_cost <= xeno_owner.plasma_stored)
+		shield_blast()
 	cancel_shield()
 
-///Removes the shield and resets the ability
+/// Removes the shield and resets the ability.
 /datum/action/ability/activable/xeno/psychic_shield/proc/cancel_shield()
+	if(timer_id)
+		deltimer(timer_id)
+		timer_id = null
+	if(movement_speed_modifier)
+		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_WARLOCK_PSYCHIC_SHIELD)
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
@@ -187,6 +213,7 @@
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, 'sound/voice/alien/roar_warlock.ogg', 25)
 
+	ability_cost = initial(ability_cost) // Revert this back to normal since it could be different.
 	GLOB.round_statistics.psy_shield_blasts++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shield_blasts")
 
