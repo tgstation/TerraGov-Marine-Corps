@@ -61,7 +61,7 @@
 //*********************//
 /datum/mutation_upgrade/spur/web_yank
 	name = "Web Yank"
-	desc = "Leash Ball's cooldown is set to 80/65/50% of its original cooldown. Interacting with any Snaring Web will stun and pull in leashed humans after a 1s channel."
+	desc = "Leash Ball's cooldown is set to 80/65/50% of its original cooldown. Interacting with any Snaring Web will cause you to channel for 1 second which will stun and pull in leashed humans."
 	/// For the first structure, the multiplier to increase the cooldown by.
 	var/multiplier_initial = -0.05
 	/// For each structure, the multiplier to increase the cooldown by.
@@ -70,7 +70,7 @@
 /datum/mutation_upgrade/spur/web_yank/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Leash Ball's cooldown is set to [PERCENT(1 + get_multiplier(new_amount))] of its original cooldown. Interacting with any Snaring Web will cause you to channel for 1 second which will stun and pull in leashed humans."
+	return "Leash Ball's cooldown is set to [PERCENT(1 + get_multiplier(new_amount))]% of its original cooldown. Interacting with any Snaring Web will cause you to channel for 1 second which will stun and pull in leashed humans."
 
 /datum/mutation_upgrade/spur/web_yank/on_mutation_enabled()
 	. = ..()
