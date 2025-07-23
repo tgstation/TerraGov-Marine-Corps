@@ -85,7 +85,7 @@
 //*********************//
 /datum/mutation_upgrade/veil/mobile_mind
 	name = "Mobile Mind"
-	desc = "Psychic Shield no longer forces you to remain still to keep the shield up. However, the shield sizzles out when manually detonating and slows you down by 0.8/0.6/0.4."
+	desc = "Psychic Shield no longer forces you to remain still to keep the shield up. However, the shield sizzles out when manually detonating and slows you down by 0.8/0.6/0.4 while it is active."
 	/// For the first structure, the amount to increase Psychic Shield's movement speed modifier by.
 	var/movespeed_initial = 1
 	/// For each structure, the amount to increase Psychic Shield's movement speed modifier by.
@@ -94,7 +94,7 @@
 /datum/mutation_upgrade/veil/mobile_mind/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Psychic Shield no longer forces you to remain still to keep the shield up. However, the shield sizzles out when manually detonating and slows you down by [get_movespeed(new_amount)]."
+	return "Psychic Shield no longer forces you to remain still to keep the shield up. However, the shield sizzles out when manually detonating and slows you down by [get_movespeed(new_amount)] while it is active."
 
 /datum/mutation_upgrade/veil/mobile_mind/on_mutation_enabled()
 	. = ..()
