@@ -8910,7 +8910,7 @@
 "Py" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/mineral/smooth/indestructible,
-/area/campaign/jungle_outpost/ground/jungle/south_west)
+/area/storage/testroom)
 "Pz" = (
 /obj/structure/platform{
 	dir = 1
