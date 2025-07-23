@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - code_imp: "cleaned up duplicate var defenitions in code"
-  - spellcheck: "as a result of the cleanup made some niche item descriptions less boring"

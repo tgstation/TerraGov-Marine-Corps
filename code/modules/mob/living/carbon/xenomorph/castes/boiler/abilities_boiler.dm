@@ -371,7 +371,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Steam Rush"
 	action_icon_state = "steam_rush"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Gain a short-lived speed boost. Slashes deal extra burn damage and extend the duration of the sped boost.."
+	desc = "Gain a short-lived speed boost. Slashes deal extra burn damage and extends the duration of the speed boost."
 	ability_cost = 100
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
@@ -379,19 +379,23 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	)
 	/// Holds the particles instead of the mob.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	/// Is the ability currently being used?
+	var/active = FALSE
 	/// The increase of speed when ability is active.
 	var/speed_buff = -1
 	/// How long the ability will last?
 	var/duration = 1.5 SECONDS
-	///Timer for steam rush's duration
+	/// Timer for steam rush's duration.
 	var/steam_rush_duration
-	/// How much extra burn damage is dealt on slash
+	/// How much extra burn damage is dealt on slash?
 	var/steam_damage = 10
+	/// The duration in deciseconds in which a trail of opaque gas will last.
+	var/gas_trail_duration = 0
 
 /datum/action/ability/xeno_action/steam_rush/action_activate()
-	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/sizzler/X = xeno_owner
 
-	if(X.steam_rush)
+	if(active)
 		to_chat(X, span_xenodanger("Our body is already spewing steam!"))
 		return
 
@@ -399,7 +403,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	X.visible_message(span_danger("[X]'s body starts to hiss with steam!"), \
 	span_xenowarning("We feel steam spraying from our body!"))
 
-	X.steam_rush = TRUE
+	active = TRUE
 
 	steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
@@ -410,6 +414,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	particle_holder.pixel_x = 10
 
 	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(steam_slash))
+	if(gas_trail_duration)
+		RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 
 	succeed_activate()
 	add_cooldown()
@@ -439,9 +445,19 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	X.playsound_local(X, 'sound/voice/alien/hiss2.ogg', 50)
 
-	X.steam_rush = FALSE
+	active = FALSE
 	QDEL_NULL(particle_holder)
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
+	if(gas_trail_duration)
+		UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+
+/// Creates a trail of acid smoke when moving.
+/datum/action/ability/xeno_action/steam_rush/proc/on_movement(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
+	if(xeno_owner.stat != CONSCIOUS)
+		return
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/smoke = new()
+	smoke.set_up(0, get_turf(xeno_owner), gas_trail_duration / (2 SECONDS))
+	smoke.start()
 
 /datum/action/ability/xeno_action/steam_rush/on_cooldown_finish()
 	owner.balloon_alert(owner, "Steam rush ready.")
@@ -479,15 +495,17 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SMOKESCREEN_SPIT,
 	)
 	use_state_flags = ABILITY_USE_STAGGERED
-	/// Timer for the window you have to fire smokescreen spit
+/// Timer for the window you have to fire smokescreen spit.
 	var/smokescreen_spit_window
-	/// Duration of the window you have to fire smokescreen spit
+	/// Duration of the window you have to fire smokescreen spit.
 	var/window_duration = 1.5 SECONDS
+	/// The ammo type to change the owner's ammo to when activated.
+	var/datum/ammo/xeno/ammo_type = /datum/ammo/xeno/acid/airburst/heavy
 
 /datum/action/ability/xeno_action/smokescreen_spit/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
 
-	X.ammo = /datum/ammo/xeno/acid/airburst/heavy
+	X.ammo = ammo_type
 	X.update_spits(TRUE)
 	X.balloon_alert(owner, "We prepare to fire a smokescreen!")
 
@@ -502,7 +520,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
 
-	X.ammo = /datum/ammo/xeno/acid/airburst
+	X.ammo = null // update_spits() will reselect their ammo.
 	X.update_spits(TRUE)
 	X.balloon_alert(owner, "Our spit returns to normal.")
 

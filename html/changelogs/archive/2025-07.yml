@@ -154,3 +154,56 @@
   - imageadd: Edits the las sniper scope to be seperate from the weapon sprite.
   timothymtorres:
   - bugfix: Fix quick vendor blacklisting marines from using points during crash
+2025-07-21:
+  Atropos:
+  - bugfix: fixed setting attrition in campaign, you can no longer accidentally set
+      it to 0
+  - bugfix: Tank/APC fabricator is now indestructible
+  PibeCantina:
+  - bugfix: fixed z level stairs being destructible
+  Runian:
+  - bugfix: King's evolution requirement is no longer overridden by the Nuclear War's
+      evolution requirement of 12.
+  - rscadd: Pyrogen now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Carrier now has 4 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Runner now has 9 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: Sentinel's Drain Sting now works as intended.
+  - bugfix: Sentinel's mutation Acidic Slasher now correctly deals its Intoxicated
+      Stacks on slash.
+  - bugfix: Various mutations now correctly get their effects when mutation structures
+      are updated.
+  - rscadd: Bull now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: Charging abilities no longer can cause your plasma to go negative and
+      also updates your plasma HUD.
+  - rscadd: Hivelord now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  TiviPlus:
+  - code_imp: cleaned up duplicate var defenitions in code
+  - spellcheck: as a result of the cleanup made some niche item descriptions less
+      boring
+  blackdav123:
+  - rscadd: Added new roof tilesets from Mojave Sun.
+  - soundadd: Added a new footstep for the new metal roofs.
+  - bugfix: Fixed smoothing on various tiles to work with the new roofs.
+2025-07-22:
+  Runian:
+  - rscadd: Sizzler now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Crusher now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: The statistic counting the amount of victims affected by Crusher's Stomp
+      now properly counts that instead only counting victims who were directly stomped
+      on.
+  - code_imp: The damage for Crusher's Stomp ability is no longer stored in the caste,
+      but instead now stored in the ability itself.
