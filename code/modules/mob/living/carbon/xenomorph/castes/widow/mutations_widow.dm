@@ -3,7 +3,7 @@
 //*********************//
 /datum/mutation_upgrade/shell/hive_toughness
 	name = "Hive Toughness"
-	desc = "Being near any resin wall grants 10/15/20 soft armor in all categories."
+	desc = "Being adjacent to any resin wall grants 10/15/20 soft armor in all categories."
 	/// For the first structure, the amount of armor that should be given for being near resin walls.
 	var/armor_initial = 5
 	/// For each structure, the amount of armor that should be given for being near resin walls.
@@ -14,7 +14,7 @@
 /datum/mutation_upgrade/shell/hive_toughness/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Being near any resin wall now also grants [get_armor(new_amount)] soft armor in all categories."
+	return "Being adjacent to any resin wall now also grants [get_armor(new_amount)] soft armor in all categories."
 
 /datum/mutation_upgrade/shell/hive_toughness/on_mutation_enabled()
 	RegisterSignal(xenomorph_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
