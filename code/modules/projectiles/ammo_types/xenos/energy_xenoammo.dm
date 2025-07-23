@@ -108,15 +108,10 @@
 
 /datum/ammo/energy/xeno/psy_blast/psy_drain
 	name = "psychic drain"
+	damage = 24.5 // 35 * 0.7 = 24.5
 	damage_type = STAMINA
 	aoe_range = 1
-
-/datum/ammo/energy/xeno/psy_blast/psy_drain/New()
-	. = ..()
-	//var/datum/ammo/energy/xeno/psy_blast/base_ammo = new /datum/ammo/energy/xeno/psy_blast
-	var/datum/ammo/energy/xeno/psy_blast/compared_ammo
-	damage = initial(compared_ammo.damage) * 0.7 // TODO: Is this even possible? Can we really just use initial on a null variable?
-	damage = initial(compared_ammo.aoe_damage) * 0.7
+	aoe_damage = 31.5 // 45 * 0.7 = 31.5
 
 /datum/ammo/energy/xeno/psy_blast/psy_drain/drop_nade(turf/T, atom/movable/projectile/P)
 	if(!T || !isturf(T))
@@ -131,7 +126,7 @@
 			staggerstun(affected_human, P, 10, slowdown = 1)
 			affected_human.do_jitter_animation(500)
 			if(target_turf != T)
-				affected_human.knockback(T, 1, 5, get_ranged_target_turf(T, get_dir(T, affected_human), 1))
+				step_away(affected_human, T, 1)
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
 /datum/ammo/energy/xeno/psy_blast/psy_drain/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)

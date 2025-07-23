@@ -3,7 +3,7 @@
 //*********************//
 /datum/mutation_upgrade/shell/cautious_mind
 	name = "Cautious Mind"
-	desc = "Psychic Shield will attempt to detonate if it was canceled while the shield is intact. The detonation cost is now 125/100/75% of its original cost."
+	desc = "Psychic Shield will attempt to detonate if it was automatically canceled while the shield is intact. The detonation cost is now 125/100/75% of its original cost."
 	/// For the first structure,the multiplier of Psychic Shield's initial ability cost to add to the ability cost.
 	var/cost_multiplier_initial = 0.5
 	/// For each structure, the multiplier of Psychic Shield's initial ability cost to add to the ability cost.
@@ -85,7 +85,7 @@
 //*********************//
 /datum/mutation_upgrade/veil/mobile_mind
 	name = "Mobile Mind"
-	desc = "Psychic Shield now creates self-maintaining shield instead, but it cannot be manually detonated. While it is active, you are 0.8/0.6/0.4 slower."
+	desc = "Psychic Shield no longer forces you to remain still to keep the shield up. However, the shield sizzles out when manually detonating and slows you down by 0.8/0.6/0.4."
 	/// For the first structure, the amount to increase Psychic Shield's movement speed modifier by.
 	var/movespeed_initial = 1
 	/// For each structure, the amount to increase Psychic Shield's movement speed modifier by.
@@ -94,14 +94,14 @@
 /datum/mutation_upgrade/veil/mobile_mind/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Psychic Shield now creates self-maintaining shield instead, but it cannot be manually detonated. While it is active, you are [get_movespeed(new_amount)] slower."
+	return "Psychic Shield no longer forces you to remain still to keep the shield up. However, the shield sizzles out when manually detonating and slows you down by [get_movespeed(new_amount)]."
 
 /datum/mutation_upgrade/veil/mobile_mind/on_mutation_enabled()
 	. = ..()
 	var/datum/action/ability/activable/xeno/psychic_shield/shield_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_shield]
 	if(!shield_ability)
 		return
-	shield_ability.self_maintaining = TRUE
+	shield_ability.do_after_flags |= (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE)
 	shield_ability.can_manually_detonate = FALSE
 	shield_ability.movement_speed_modifier += get_movespeed(0)
 
@@ -110,7 +110,7 @@
 	var/datum/action/ability/activable/xeno/psychic_shield/shield_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_shield]
 	if(!shield_ability)
 		return
-	shield_ability.self_maintaining = initial(shield_ability.self_maintaining)
+	shield_ability.do_after_flags &= ~(IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE)
 	shield_ability.can_manually_detonate = initial(shield_ability.can_manually_detonate)
 	shield_ability.movement_speed_modifier -= get_movespeed(0)
 

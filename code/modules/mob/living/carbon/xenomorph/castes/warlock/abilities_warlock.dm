@@ -66,16 +66,14 @@
 	var/alternative_reflection = FALSE
 	/// While the shield is active, what should be the ability cost be set to? Will revert back to initial ability cost afterward.
 	var/detonation_cost = 200
-	/// While the shield is active, can the ability can activated again to detonate the shield?
+	/// While the shield is active, will reactivating the ability cause it to detonate instead of only canceling?
 	var/can_manually_detonate = TRUE
 	/// If the owner has the plasma and the shield was canceled for a reason that isn't destruction or manual detonation, should the shield automatically detonate?
-	var/detonates_on_cancel = TRUE
-	/// While the shield is active, should the owner not to stand still and do nothing to keep the shield up?
-	var/self_maintaining = FALSE
+	var/detonates_on_cancel = FALSE
+	/// The flags used for the do_after.
+	var/do_after_flags = NONE
 	/// While the shield is active, how strong of a movement speed modifier should be applied to the owner?
 	var/movement_speed_modifier = 0
-	/// The timer that cancels shield.
-	var/timer_id
 
 /datum/action/ability/activable/xeno/psychic_shield/remove_action(mob/M)
 	if(active_shield)
@@ -101,10 +99,13 @@
 
 /datum/action/ability/activable/xeno/psychic_shield/use_ability(atom/targetted_atom)
 	if(active_shield)
+		if(!can_manually_detonate)
+			cancel_shield()
+			return
 		if(ability_cost > xeno_owner.plasma_stored)
 			owner.balloon_alert(owner, "need [ability_cost - xeno_owner.plasma_stored] more plasma!")
 			return FALSE
-		if(can_manually_detonate && can_use_action(FALSE, ABILITY_USE_BUSY))
+		if(can_use_action(FALSE, ABILITY_USE_BUSY))
 			shield_blast(targetted_atom)
 			cancel_shield()
 		return
@@ -141,23 +142,17 @@
 		active_shield = new(target_turf, owner)
 	if(movement_speed_modifier)
 		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_PSYCHIC_SHIELD, TRUE, 0, NONE, TRUE, movement_speed_modifier)
-	if(self_maintaining)
-		timer_id = addtimer(CALLBACK(src, PROC_REF(cancel_shield)), 6 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-		return
-	if(!do_after(owner, 6 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, 6 SECONDS, do_after_flags, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), TRUE, ABILITY_USE_BUSY)))
 		if(detonates_on_cancel && ability_cost <= xeno_owner.plasma_stored && !QDELETED(active_shield))
-			shield_blast()
+			shield_blast(null, TRUE)
 		cancel_shield()
 		return
 	if(detonates_on_cancel && ability_cost <= xeno_owner.plasma_stored)
-		shield_blast()
+		shield_blast(null, TRUE)
 	cancel_shield()
 
 /// Removes the shield and resets the ability.
 /datum/action/ability/activable/xeno/psychic_shield/proc/cancel_shield()
-	if(timer_id)
-		deltimer(timer_id)
-		timer_id = null
 	if(movement_speed_modifier)
 		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_WARLOCK_PSYCHIC_SHIELD)
 	action_icon_state = "psy_shield"
@@ -170,12 +165,13 @@
 		QDEL_NULL(active_shield)
 
 ///AOE knockback triggerable by ending the shield early
-/datum/action/ability/activable/xeno/psychic_shield/proc/shield_blast(atom/targetted_atom)
+/datum/action/ability/activable/xeno/psychic_shield/proc/shield_blast(atom/targetted_atom, silent = TRUE)
 	succeed_activate()
 
 	active_shield.reflect_projectiles(targetted_atom)
 
-	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), span_xenowarning("We send out a huge blast of psychic energy!"))
+	if(!silent)
+		owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), span_xenowarning("We send out a huge blast of psychic energy!"))
 
 	var/turf/lower_left
 	var/turf/upper_right
