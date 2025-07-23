@@ -69,6 +69,12 @@
 		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/acid_sweat,
+		/datum/mutation_upgrade/spur/hit_and_run,
+		/datum/mutation_upgrade/veil/wet_claws
+	)
+
 /datum/xeno_caste/spitter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
