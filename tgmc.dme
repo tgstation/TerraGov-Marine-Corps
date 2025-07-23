@@ -2073,6 +2073,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\warrior\warrior.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\widow\abilities_widow.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\widow\castedatum_widow.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\widow\mutations_widow.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\widow\widow.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\wraith\abilities_wraith.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\wraith\castedatum_wraith.dm"
