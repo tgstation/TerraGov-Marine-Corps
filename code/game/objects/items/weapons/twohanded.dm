@@ -440,7 +440,7 @@
 
 /obj/item/weapon/twohanded/rocketsledge
 	name = "rocket sledge"
-	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick or Space to tighten your grip. Press AltRightClick to change modes."
+	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick or Unique Action to tighten your grip. Press AltRightClick to change modes."
 	icon_state = "rocketsledge"
 	worn_icon_state = "rocketsledge"
 	force = 30
