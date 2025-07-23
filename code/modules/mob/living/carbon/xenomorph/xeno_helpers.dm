@@ -18,13 +18,13 @@
 	if(!endure)
 		return
 	var/datum/action/ability/xeno_action/endure/endure_ability = actions_by_path[/datum/action/ability/xeno_action/endure]
-	return endure_ability.endure_threshold
+	return endure_ability.endure_threshold + endure_ability.bonus_endure_threshold
 
 /mob/living/carbon/xenomorph/get_death_threshold()
 	if(!endure)
 		return xeno_caste.crit_health
 	var/datum/action/ability/xeno_action/endure/endure_ability = actions_by_path[/datum/action/ability/xeno_action/endure]
-	return endure_ability.endure_threshold
+	return endure_ability.endure_threshold + endure_ability.bonus_endure_threshold
 
 ///Helper proc for giving the rally abilities
 /mob/living/carbon/xenomorph/proc/give_rally_abilities()

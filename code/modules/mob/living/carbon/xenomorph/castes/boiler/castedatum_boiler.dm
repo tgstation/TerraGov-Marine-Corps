@@ -121,6 +121,12 @@
 		/datum/action/ability/xeno_action/steam_rush,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/gaseous_trail,
+		/datum/mutation_upgrade/spur/neurotoxin_swap,
+		/datum/mutation_upgrade/veil/fast_acid
+	)
+
 /datum/xeno_caste/boiler/sizzler/primordial
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_PRIMO
