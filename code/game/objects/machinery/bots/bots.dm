@@ -33,7 +33,7 @@
 		if(!todays_voice)
 			todays_voice = pick(SStts.available_speakers)
 		voice = todays_voice
-	RegisterSignal(src, COMSIG_AREA_EXITED, PROC_REF(turn_around))
+	RegisterSignal(src, COMSIG_EXIT_AREA, PROC_REF(turn_around))
 	update_icon()
 	if(is_active)
 		start_processing()

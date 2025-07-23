@@ -281,7 +281,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	occupant.disabilities &= ~(BLIND | DEAF)
 	occupant.set_blindness(10, TRUE)
 	to_chat(occupant, {"
-<span class='notice'>You are a frestly spawned clone, you appear as a Squad marine, but nothing more.
+<span class='notice'>You are a frestly spawned clone, you appear as a Squad Operative, but nothing more.
 You remember nothing of your past life.
 
 You are weak, best rest up and get your strength before fighting.</span>"})

@@ -163,7 +163,7 @@
 	action_icon_state = "fly"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a long cast time, fly into the air. If you're already flying, land with a delay. Landing causes nearby marines to take lots of damage with vehicles taking up to 3x as much."
-	cooldown_duration = 120 SECONDS
+	cooldown_duration = 90 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLY,
 	)
@@ -177,23 +177,9 @@
 			if(!silent)
 				xeno_owner.balloon_alert(xeno_owner, "already landing")
 			return FALSE
-		var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
-		var/found_los_xenos = FALSE
-		for(var/mob/living/carbon/xenomorph/nearby_xeno AS in nearby_xenos)
-			if(nearby_xeno == xeno_owner)
-				continue
-			if(!xeno_owner.issamexenohive(nearby_xeno))
-				continue
-			if(line_of_sight(xeno_owner, nearby_xeno, 7))
-				found_los_xenos = TRUE
-				break
-		var/weeds_found = locate(/obj/alien/weeds) in xeno_owner.loc
-		if(!weeds_found && !found_los_xenos)
-			if(!silent)
-				if(nearby_xenos.len > 1)
-					xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight")
-				else
-					xeno_owner.balloon_alert(xeno_owner, "no weeds")
+	if(xeno_owner.eaten_mob)
+		if(!silent)
+			to_chat(xeno_owner, span_warning("Can't take off with someone inside!"))
 			return FALSE
 	if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 		if(!silent)
@@ -688,10 +674,10 @@
 	if(QDELETED(thrown_human) || thrown_human.stat == DEAD || !xeno_owner.Adjacent(thrown_human))
 		end_grabbing()
 		return
-	if(!xeno_owner.start_pulling(thrown_human) || !xeno_owner.get_active_held_item())
+	thrown_human.set_throwing(FALSE) //ENSURE to stop the throw state here so grabs succeed
+	if(!xeno_owner.start_pulling(thrown_human) || !isgrabitem(xeno_owner.get_active_held_item()))
 		end_grabbing()
 		return
-
 	grabbing_item = xeno_owner.get_active_held_item()
 	if(!grabbing_item)
 		end_grabbing()
@@ -708,7 +694,15 @@
 	new /obj/effect/temp_visual/dragon/grab(get_turf(grabbed_human))
 	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
-/// Cleans up everything associated with the grabbing and ends the ability.
+/// Cleans up everything associated with a failed grab and ends the ability.
+/datum/action/ability/activable/xeno/grab/proc/failed_to_grab()
+	if(grabbed_human)
+		REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+	grabbed_human = null
+	succeed_activate()
+	add_cooldown()
+
+/// Cleans up everything associated with a (successful) grab and ends the ability.
 /datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, no_cooldown = FALSE)
 	SIGNAL_HANDLER
 	if(grabbed_human)

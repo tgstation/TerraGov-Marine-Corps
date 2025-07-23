@@ -139,7 +139,7 @@
       update accordingly.
   - rscadd: Warrior now has 3 new mutations that they can purchase if their hive has
       enough biomass and mutation structures. Not accessible without admin intervention
-      for now.
+      for now.er
   - qol: Toggle Automatic Magazine Ejection (Weapon) now lets you choose between your
       weapon and the weapon's attachments.
   - bugfix: Certain abilities that involve throwing yourself to hit a target now correctly

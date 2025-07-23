@@ -1,13 +1,20 @@
+GLOBAL_VAR_INIT(max_larva_count_per_mob, 3) //Added for adminbus reasons
+
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
 ///Comment out if you don't want VOX to be enabled and have players download the voice sounds.
 #define AI_VOX
 
 // Overlay Indexes
-#define BODYPARTS_LAYER 28
-#define WOUND_LAYER 27
-#define MOTH_WINGS_LAYER 26
-#define DAMAGE_LAYER 25
+#define GENITAL_LAYER 33 //totally nothing bad is going to happen.
+#define BODYPARTS_LAYER 32
+#define WOUND_LAYER 31
+#define MOTH_WINGS_LAYER 30
+#define DAMAGE_LAYER 29
+#define UNDERWEAR_LAYER			28
+#define SOCKS_LAYER				27
+#define BRA_LAYER 26
+#define UNDERSHIRT_LAYER 25
 #define UNIFORM_LAYER 24
 #define ID_LAYER 23
 #define SHOES_LAYER 22
@@ -33,7 +40,7 @@
 #define FIRE_LAYER 2 //If you're on fire
 #define LASER_LAYER 1 //For sniper targeting laser
 
-#define TOTAL_LAYERS 28
+#define TOTAL_LAYERS 33
 
 #define MOTH_WINGS_BEHIND_LAYER 1
 
@@ -98,7 +105,7 @@
 #define CARBON_RECOVERY_OXYLOSS -5
 
 #define CARBON_KO_OXYLOSS 50
-#define HUMAN_CRITDRAG_OXYLOSS 6 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
+#define HUMAN_CRITDRAG_OXYLOSS 0 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
 
 #define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 2 //Amount of damage applied when your body temperature passes the 400K point
@@ -192,6 +199,7 @@
 #define XENO_HIVE_BETA "beta_hive"
 #define XENO_HIVE_ZETA "zeta_hive"
 #define XENO_HIVE_ADMEME "admeme_hive"
+#define XENO_HIVE_FORSAKEN "forsaken_hive"
 #define XENO_HIVE_FALLEN "fallen_hive"
 
 // =============================
@@ -371,7 +379,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_MATTER_AMOUNT 100
 
 //How long it takes for a human to become undefibbable
-#define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
+#define TIME_BEFORE_DNR 1300 //In life ticks, multiply by 2 to have seconds
 
 ///Default living `maxHealth`
 #define LIVING_DEFAULT_MAX_HEALTH 100
@@ -527,7 +535,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define XENO_ZOOMED (1<<2)
 ///mobhud on
 #define XENO_MOBHUD (1<<3)
-///rouny mode
+///rouny
 #define XENO_ROUNY (1<<4)
 
 
@@ -543,12 +551,15 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 
-#define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
+#define XENO_DEADHUMAN_DRAG_SLOWDOWN 1
 #define XENO_EXPLOSION_GIB_THRESHOLD 0.95 //if your effective bomb armour is less than 5, devestating explosions will gib xenos
 
 #define SPIT_UPGRADE_BONUS(Xenomorph) (Xenomorph.upgrade_as_number() ?  0.6 : 0.45 ) //Primo damage increase
 
 #define PLASMA_TRANSFER_AMOUNT 100
+
+#define XENO_LARVAL_AMOUNT_RECURRING 5
+#define XENO_LARVAL_CHANNEL_TIME 0.5 SECONDS
 
 #define XENO_NEURO_AMOUNT_RECURRING 5
 #define XENO_NEURO_CHANNEL_TIME 0.25 SECONDS
@@ -602,7 +613,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_LEADER_TYPE (1<<19) // Whether this is a leader type caste (e.g. Queen/Shrike/King/Dragon). Restricts who can play these castes based on: playtime & if banned from Queen.
 #define CASTE_EXCLUDE_STRAINS (1<<20) // Excludes this caste/basetype from strain selection.
 #define CASTE_MUTATIONS_ALLOWED (1<<21) // Whether we are allowed to access, view, and potentially purchase mutations for our caste/strain.
-
 // Xenomorph can_flags:
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0) // Are we allowed to carry facehuggers in our hands?
 #define CASTE_CAN_BE_GIVEN_PLASMA (1<<1) // Can we receive plasma / have our plasma be taken away?
@@ -611,6 +621,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<4) // Can we corrupt a generator?
 #define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher (or behemoth)?
 #define CASTE_CAN_BE_RULER (1<<6) // Caste can become a ruler if no queen / shrike / king exists in the hive.
+#define CASTE_CAN_BE_QUEEN_HEALED (1<<7) // Does nothing.
+#define CASTE_CAN_HOLD_JELLY (1<<8) // Can we hold fireproof jelly in our hands?
 
 ///How often we can swap strains
 #define XENO_STRAIN_SWAP_COOLDOWN 5 MINUTES
@@ -692,9 +704,10 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
-#define CARRIER_HUGGER_THROW_DISTANCE 5
+#define CARRIER_HUGGER_THROW_DISTANCE 7
 #define CARRIER_SLASH_HUGGER_DAMAGE 25
-
+///how many can be beared at once
+#define MAX_LARVA_PREGNANCIES GLOB.max_larva_count_per_mob
 //Defiler defines
 #define DEFILER_GAS_CHANNEL_TIME 0.5 SECONDS
 #define DEFILER_GAS_DELAY 1 SECONDS
@@ -804,6 +817,9 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define DEFENDER_CHARGE_RANGE 4
 
 //Baneling defines
+#define BANELING_CHARGE_MAX 2
+#define BANELING_CHARGE_GAIN_TIME 240 SECONDS
+#define BANELING_CHARGE_RESPAWN_TIME 30 SECONDS
 /// Not specified in seconds because it causes smoke to last almost four times as long if done so
 #define BANELING_SMOKE_DURATION 4
 #define BANELING_SMOKE_RANGE 4
@@ -824,6 +840,17 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Wraith defines
 
+#define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER 20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
+#define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER 4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target
+#define WRAITH_BLINK_RANGE 3
+
+#define WRAITH_BANISH_BASE_DURATION 10 SECONDS
+#define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER 0.5
+#define WRAITH_BANISH_VERY_SHORT_MULTIPLIER 0.3
+
+#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 SECONDS //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+#define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 
@@ -841,9 +868,10 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define PRAE_CHARGEDISTANCE 5
 
 //Dancer defines
-#define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets
+#define DANCER_IMPALE_PENETRATION 37 //armor penetration done by impale to marked targets - NTF Buff; Tailstab already exists
 #define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
 #define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
+#define DANCER_DODGE_BATONPASS_CD 7 SECONDS//the cooldown value added to dodge by Baton Pass
 
 //misc
 
@@ -914,7 +942,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define GRAB_PIXEL_SHIFT_NECK 16
 
 #define HUMAN_CARRY_SLOWDOWN 0.35
-#define HUMAN_EXPLOSION_GIB_THRESHOLD 0.1
+#define HUMAN_EXPLOSION_GIB_THRESHOLD 0.95
 
 
 // =============================
@@ -924,19 +952,12 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define SCREWYHUD_DEAD 2
 #define SCREWYHUD_HEALTHY 3
 
-// timed_action_flags parameter for `/proc/do_after`
-/// Can do the action even if mob moves location
-#define IGNORE_USER_LOC_CHANGE (1<<0)
-/// Can do the action even if the target moves location
-#define IGNORE_TARGET_LOC_CHANGE (1<<1)
-/// Can do the action even if the item is no longer being held
-#define IGNORE_HELD_ITEM (1<<2)
-/// Can do the action even if the mob is incapacitated (ex. handcuffed)
-#define IGNORE_INCAPACITATED (1<<3)
-/// Used to prevent important slowdowns from being abused by drugs like kronkaine
-#define IGNORE_SLOWDOWNS (1<<4)
-
+//do_mob() flags
 #define IGNORE_LOC_CHANGE (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE)
+#define IGNORE_USER_LOC_CHANGE (1<<0)
+#define IGNORE_TARGET_LOC_CHANGE (1<<1)
+#define IGNORE_HAND (1<<2)
+#define IGNORE_HELD_ITEM (1<<3)
 
 #define TIER_ONE_THRESHOLD 300
 

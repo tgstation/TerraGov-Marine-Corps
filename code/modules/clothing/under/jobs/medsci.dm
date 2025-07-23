@@ -8,7 +8,7 @@
 	worn_icon_state = "g_suit"
 
 /obj/item/clothing/under/rank/research_director/rdalt
-	desc = "A simple blue utilitarian jumpsuit that serves as the standard issue service uniform of support synthetics onboard TGMC facilities."
+	desc = "A simple blue utilitarian jumpsuit that serves as the standard issue service uniform of support synthetics onboard NTC facilities."
 	name = "synthetic service uniform"
 	icon_state = "rdalt"
 
