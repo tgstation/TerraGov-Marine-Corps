@@ -2,7 +2,7 @@
 	. = ..()
 	if(!isitem(target))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_CLICK_ALT, PROC_REF(on_alt_click))
+	RegisterSignals(target, list(COMSIG_CLICK_ALT, COMSIG_ITEM_UNIQUE_ACTION), PROC_REF(toggle_strap))
 	RegisterSignals(target, list(COMSIG_AI_EQUIPPED_GUN, COMSIG_AI_EQUIPPED_MELEE), PROC_REF(ai_try_strap))
 	ADD_TRAIT(target, TRAIT_STRAPPABLE, STRAPPABLE_ITEM_TRAIT)
 
@@ -12,7 +12,7 @@
 	REMOVE_TRAIT(source, TRAIT_STRAPPABLE, STRAPPABLE_ITEM_TRAIT)
 
 ///Toggles strap state
-/datum/element/strappable/proc/on_alt_click(datum/source, mob/user)
+/datum/element/strappable/proc/toggle_strap(datum/source, mob/user)
 	SIGNAL_HANDLER
 	var/obj/item/item_source = source
 	if(!item_source.can_interact(user) \
@@ -43,4 +43,4 @@
 			return
 	else if(unequip)
 		return
-	on_alt_click(source, user)
+	toggle_strap(source, user)
