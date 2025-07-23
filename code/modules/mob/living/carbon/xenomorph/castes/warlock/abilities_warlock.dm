@@ -680,7 +680,7 @@
 
 /datum/action/ability/activable/xeno/psy_blast/update_button_icon()
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
-	if(xeno_owner.ammo)
+	if(ammo_type)
 		action_icon_state = ammo_type.icon_state
 	return ..()
 

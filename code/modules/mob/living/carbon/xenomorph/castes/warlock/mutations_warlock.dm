@@ -46,7 +46,7 @@
 //*********************//
 /datum/mutation_upgrade/spur/draining_blast
 	name = "Draining Blast"
-	desc = "Psychic Blast now switch to a different type of beam called Psychic Drain; it deals 0.7x stamina damage, briefly knockdowns on direct impact, and knockback on non-direct impact. Psychic Drain's cooldown is 95/90/85% of its original cooldown. "
+	desc = "Psychic Blast now switch to a different type of beam called Psychic Drain; it deals 0.7x stamina damage, briefly knockdowns on direct impact, and knockback on non-direct impact. Psychic Drain's cooldown is 95/90/85% of its original cooldown."
 	/// For each structure, the multiplier to add to Psychic Blast's cooldown.
 	var/multiplier_per_structure = -0.05
 
