@@ -441,7 +441,7 @@
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_buckshot/spread
 	bonus_projectiles_amount = 4
-	bonus_projectiles_scatter = 8
+	bonus_projectiles_scatter = 5
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
