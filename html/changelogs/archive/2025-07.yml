@@ -194,3 +194,37 @@
   - rscadd: Added new roof tilesets from Mojave Sun.
   - soundadd: Added a new footstep for the new metal roofs.
   - bugfix: Fixed smoothing on various tiles to work with the new roofs.
+2025-07-22:
+  Runian:
+  - rscadd: Sizzler now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Crusher now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: The statistic counting the amount of victims affected by Crusher's Stomp
+      now properly counts that instead only counting victims who were directly stomped
+      on.
+  - code_imp: The damage for Crusher's Stomp ability is no longer stored in the caste,
+      but instead now stored in the ability itself.
+2025-07-23:
+  Rug-Dealer:
+  - bugfix: Tacbinos/rangefinders can now acquire targets (ctrl-click) on the 2 columns
+      at the edge of the screen in widescreen mode.
+  Runian:
+  - bugfix: Spray Acid Line now correctly extinguishes fire, stuns humans, etc.
+  - qol: Xenomorph structures spawned by admins within Valhalla or the Centcom Z-level
+      automatically assigns their hive to Fallen or Admeme respectively.
+  - qol: Valhalla xenomorphs can access the Mutations menu to view what mutations
+      are available to their caste and (potentially) buy mutations if they are capable
+      of doing so.
+  - rscadd: Behemoth now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Spitter now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Ravager now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - balance: Resin doors can only take brute and burn damage.
