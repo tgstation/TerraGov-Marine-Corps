@@ -1,4 +1,0 @@
-author: "Rug-Dealer"
-delete-after: True
-changes:
-  - bugfix: "Tacbinos/rangefinders can now acquire targets (ctrl-click) on the 2 columns at the edge of the screen in widescreen mode."

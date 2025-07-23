@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - qol: "Xenomorph structures spawned by admins within Valhalla or the Centcom Z-level automatically assigns their hive to Fallen or Admeme respectively."
-  - qol: "Valhalla xenomorphs can access the Mutations menu to view what mutations are available to their caste and (potentially) buy mutations if they are capable of doing so."

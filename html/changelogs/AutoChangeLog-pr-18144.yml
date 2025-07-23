@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Spray Acid Line now correctly extinguishes fire, stuns humans, etc."
