@@ -187,6 +187,15 @@
 	. = ..()
 	take_damage(burn_level / 2, BURN, FIRE)
 
+/obj/vehicle/sealed/mecha/combat/greyscale/emp_act(severity)
+	if(!emp_timer)
+		move_delay += MECH_EMP_SLOWDOWN
+	. = ..()
+
+/obj/vehicle/sealed/mecha/combat/greyscale/emp_restore()
+	. = ..()
+	move_delay -= MECH_EMP_SLOWDOWN
+
 /obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
 	. = ..()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_overload_mode)
