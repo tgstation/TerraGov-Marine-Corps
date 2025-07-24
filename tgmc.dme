@@ -1992,6 +1992,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\defiler\abilities_defiler.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\defiler\castedatum_defiler.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\defiler\defiler.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\defiler\mutations_defiler.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\dragon\abilities_dragon.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\dragon\castedatum_dragon.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\dragon\dragon.dm"
