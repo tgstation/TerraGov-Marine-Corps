@@ -4,8 +4,16 @@
 	name = "GENERIC CAMPAIGN DESTRUCTION OBJECTIVE"
 	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
 	faction = FACTION_TERRAGOV
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
 	///explosion smoke particle holder
 	var/obj/effect/abstract/particle_holder/explosion_smoke
+
+/obj/structure/campaign_objective/destruction_objective/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/campaign_objective/destruction_objective/Destroy()
 	QDEL_NULL(explosion_smoke)

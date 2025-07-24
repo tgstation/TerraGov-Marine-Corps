@@ -85,6 +85,13 @@
 	icon_state = "empty"
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
+/obj/structure/prop/train/empty/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/structure/prop/nt_computer
 	name = "server rack"
 	desc = "A server rack. Who knows what's on it?."
