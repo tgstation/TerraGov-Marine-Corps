@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Campaign: Light mechs are less tough, all mechs only have 1 repair pack"
