@@ -62,9 +62,9 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/freelancer/standard/one/campaign,
-		/datum/outfit/job/freelancer/standard/two/campaign,
-		/datum/outfit/job/freelancer/standard/three/campaign,
+		/datum/outfit/job/freelancer/standard/campaign,
+		/datum/outfit/job/freelancer/standard/pump/campaign,
+		/datum/outfit/job/freelancer/standard/tx11/campaign,
 	)
 
 /datum/job/freelancer/medic/campaign_bonus
@@ -72,27 +72,40 @@
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
-	outfit = /datum/outfit/job/freelancer/medic/campaign
+	outfits = list(
+		/datum/outfit/job/freelancer/medic/campaign,
+		/datum/outfit/job/freelancer/medic/marksman/campaign,
+	)
 
 /datum/job/freelancer/grenadier/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	outfits = list(
-		/datum/outfit/job/freelancer/grenadier/one/campaign,
-		/datum/outfit/job/freelancer/grenadier/two/campaign,
-	)
 	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/freelancer/grenadier/campaign,
+		/datum/outfit/job/freelancer/grenadier/hpr/campaign,
+	)
+
+/datum/job/freelancer/specialist/campaign_bonus
+	faction = FACTION_TERRAGOV
+	comm_title = "FL"
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/freelancer/specialist/campaign,
+	)
 
 /datum/job/freelancer/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	outfits = list(
-		/datum/outfit/job/freelancer/leader/one/campaign,
-		/datum/outfit/job/freelancer/leader/two/campaign,
-	)
 	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/freelancer/leader/campaign,
+		/datum/outfit/job/freelancer/leader/tx11/campaign,
+		/datum/outfit/job/freelancer/leader/tx55/campaign,
+	)
 
 //PMC
 /datum/job/pmc/standard/campaign_bonus

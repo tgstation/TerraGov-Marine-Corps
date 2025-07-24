@@ -636,20 +636,20 @@
 /obj/effect/landmark/corpsespawner/freelancer
 	name = "Freelancer mercenary"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
-	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
-	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/frelancer
+	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/freelancer
+	corpsemask = /obj/item/clothing/mask/gas/tactical/freelancer
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/freelancer
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/marine
+	corpseshoes = /obj/item/clothing/shoes/marine/brown
 
 /obj/effect/landmark/corpsespawner/freelancer_officer
 	name = "Freelancer mercenary"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
-	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
-	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/frelancer/beret
+	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy
+	corpsemask = /obj/item/clothing/mask/gas/tactical/freelancer
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/freelancer/beret
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/marine
+	corpseshoes = /obj/item/clothing/shoes/marine/brown
 
 #undef REGULAR_DEATH
 #undef COCOONED_DEATH
