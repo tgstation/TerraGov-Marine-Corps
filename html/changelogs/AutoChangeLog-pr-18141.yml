@@ -1,0 +1,7 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - balance: "Campaign teleporter now starts with one less charge but gains one each time the activation asset is used."
+  - balance: "Campaign teleporter activation asset now costs 8 instead of 5"
+  - balance: "Campaign teleporter charges now cost 3 instead of 6, and give 3 charges instead of 6."
+  - qol: "Campaign teleporter now provides better information when examined."
