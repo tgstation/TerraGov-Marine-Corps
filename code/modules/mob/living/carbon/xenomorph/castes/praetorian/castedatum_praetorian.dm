@@ -127,6 +127,12 @@
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/flame_dance,
+		/datum/mutation_upgrade/spur/bob_and_weave,
+		/datum/mutation_upgrade/veil/eb_and_flow
+	)
+
 /datum/xeno_caste/praetorian/dancer/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
