@@ -83,6 +83,7 @@
 	var/datum/action/ability/xeno_action/reagent_slash/slash_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/reagent_slash]
 	if(slash_ability)
 		slash_ability.remove_action(xenomorph_owner)
+		qdel(slash_ability)
 	RegisterSignal(xenomorph_owner, COMSIG_XENO_SELECTED_REAGENT_CHANGED, PROC_REF(on_selected_reagent))
 	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack_living))
 	on_selected_reagent(null, null, xenomorph_owner.selected_reagent) // Got to get our particles.
@@ -102,6 +103,7 @@
 	var/datum/action/ability/xeno_action/reagent_slash/slash_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/reagent_slash]
 	if(slash_ability)
 		slash_ability.remove_action(xenomorph_owner)
+		qdel(slash_ability)
 
 /// Creates particles to indicate what type of reagent is selected.
 /datum/mutation_upgrade/spur/envenomed/proc/on_selected_reagent(datum/source, datum/reagent/old_reagent_typepath, datum/reagent/new_reagent_typepath)
