@@ -1,0 +1,7 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Praetorian now has 3 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
+  - bugfix: "The distance calculation for Warrior's lunge has been changed to allow lunges beyond 5 tiles to be work."
+  - bugfix: "Throws made at an angle now correctly stop when they're suppose to rather than continuing until the end."
+  - bugfix: "Runner mutations now correctly apply their effects."
