@@ -27,7 +27,7 @@
 	SIGNAL_HANDLER
 	if(xenomorph_owner.stat == DEAD)
 		return
-	var/damage_until_threshold = xenomorph_owner.health - xenomorph_owner.health_threshold_crit
+	var/damage_until_threshold = xenomorph_owner.health - xenomorph_owner.get_crit_threshold()
 	if(damage_until_threshold > amount)
 		return
 	var/plasma_per_damage = get_plasma_per_damage(get_total_structures())
@@ -53,7 +53,7 @@
 /datum/mutation_upgrade/spur/suffocating_presence/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Dreadful Presence will inflict a temporary effect that deals [get_damage(new_amount)] stamina damage every second instead.
+	return "Dreadful Presence will inflict a temporary effect that deals [get_damage(new_amount)] stamina damage every second instead."
 
 /datum/mutation_upgrade/spur/suffocating_presence/on_mutation_enabled()
 	. = ..()
