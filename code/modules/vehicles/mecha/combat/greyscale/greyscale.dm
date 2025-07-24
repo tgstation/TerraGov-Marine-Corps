@@ -190,7 +190,7 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/emp_act(severity)
 	if(!emp_timer)
 		move_delay += MECH_EMP_SLOWDOWN
-	. = ..()
+	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/emp_restore()
 	. = ..()
