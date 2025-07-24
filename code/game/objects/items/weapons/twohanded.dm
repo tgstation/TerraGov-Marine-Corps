@@ -440,7 +440,7 @@
 
 /obj/item/weapon/twohanded/rocketsledge
 	name = "rocket sledge"
-	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick or Unique Action to tighten your grip. Press AltRightClick to change modes."
+	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick to tighten your grip. Press Spacebar to change modes."
 	icon_state = "rocketsledge"
 	worn_icon_state = "rocketsledge"
 	force = 30
@@ -529,7 +529,7 @@
 
 	return ..()
 
-/obj/item/weapon/twohanded/rocketsledge/AltRightClick(mob/user)
+/obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
 	if(knockback)
 		stun = crush_stun_amount
@@ -789,7 +789,7 @@
 
 /obj/item/weapon/twohanded/chainsaw/sword
 	name = "chainsword"
-	desc = "Cutting heretic and xenos never been easier. Wield or AltRightClick to activate."
+	desc = "Cutting heretic and xenos never been easier"
 	icon_state = "chainsword_off"
 	icon_state_on = "chainsword_on"
 	worn_icon_state = "chainsword"
@@ -802,7 +802,7 @@
 	additional_damage = 60
 
 /// Allow the chainsword variant to be activated without being wielded
-/obj/item/weapon/twohanded/chainsaw/sword/AltRightClick(mob/user)
+/obj/item/weapon/twohanded/chainsaw/sword/unique_action(mob/user)
 	. = ..()
 	if(CHECK_BITFIELD(item_flags, WIELDED))
 		return
