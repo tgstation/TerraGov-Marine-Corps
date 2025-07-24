@@ -54,7 +54,7 @@
 	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
 	if(!mirage_ability)
 		return
-	mirage_ability.prioritized_illusion = new /mob/illusion/xeno/fleeing(xenomorph_owner.loc, xenomorph_owner, xenomorph_owner, 10 SECONDS)
+	mirage_ability.prioritized_illusion = new(xenomorph_owner.loc, xenomorph_owner, xenomorph_owner, 10 SECONDS, /datum/ai_behavior/xeno/fleeing_illusion)
 	mirage_timer_id = addtimer(CALLBACK(src, PROC_REF(remove_illusion)), 10 SECONDS)
 
 /// Deletes the illusion.

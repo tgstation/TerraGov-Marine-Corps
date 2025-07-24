@@ -68,12 +68,12 @@
 /mob/illusion/xeno
 	var/datum/ai_behavior/ai_behavior_type = /datum/ai_behavior/xeno/illusion
 
-/mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time)
+/mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time, datum/ai_behavior/ai_behavior_typepath = /datum/ai_behavior/xeno/illusion)
 	. = ..()
 	if(.)
 		return INITIALIZE_HINT_QDEL
 	add_movespeed_modifier(MOVESPEED_ID_XENO_CASTE_SPEED, TRUE, 0, NONE, TRUE, MOB_RUN_MOVE_MOD + original_mob.xeno_caste.speed * 1.3)
-	AddComponent(/datum/component/ai_controller, ai_behavior_type, escorted_atom)
+	AddComponent(/datum/component/ai_controller, ai_behavior_typepath, escorted_atom)
 
 /mob/illusion/xeno/copy_appearance(mob/copy_mob)
 	. = ..()
@@ -81,9 +81,6 @@
 
 /mob/illusion/xeno/on_parent_del()
 	qdel(src)
-
-/mob/illusion/xeno/fleeing
-	ai_behavior_type = /datum/ai_behavior/xeno/fleeing_illusion
 
 /mob/illusion/mirage_nade/process()
 	. = ..()
