@@ -65,10 +65,7 @@
 /mob/illusion/proc/remove_hit_filter()
 	remove_filter(ILLUSION_HIT_FILTER)
 
-/mob/illusion/xeno
-	var/datum/ai_behavior/ai_behavior_type = /datum/ai_behavior/xeno/illusion
-
-/mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time, datum/ai_behavior/ai_behavior_typepath = /datum/ai_behavior/xeno/illusion)
+/mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time, ai_behavior_typepath = /datum/ai_behavior/xeno/illusion)
 	. = ..()
 	if(.)
 		return INITIALIZE_HINT_QDEL
