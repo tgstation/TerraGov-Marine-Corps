@@ -22,10 +22,10 @@
 	UnregisterSignal(xenomorph_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 	return ..()
 
-/// If they are awake and receive damage that would put them into critical, subtract damage as long they have plasma.
+/// If they receive damage that would put them into critical, subtract damage as long they have plasma.
 /datum/mutation_upgrade/shell/flesh_for_life/proc/on_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
-	if(!xenomorph_owner.stat == DEAD)
+	if(xenomorph_owner.stat == DEAD)
 		return
 	var/damage_until_threshold = xenomorph_owner.health - xenomorph_owner.health_threshold_crit
 	if(damage_until_threshold > amount)
