@@ -601,7 +601,7 @@
 
 /datum/action/ability/activable/xeno/psy_blast/on_xeno_upgrade()
 	. = ..()
-	if(locate(/datum/ammo/energy/xeno/psy_blast/psy_lance) in selectable_ammo_types)
+	if(/datum/ammo/energy/xeno/psy_blast/psy_lance in selectable_ammo_types)
 		return
 	selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
 
