@@ -2024,6 +2024,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\nymph\nymph.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\abilities_praetorian.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\castedatum_praetorian.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\mutations_dancer.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\praetorian.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\puppet\abilities_puppet.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\puppet\castedatum_puppet.dm"
