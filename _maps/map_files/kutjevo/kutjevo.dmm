@@ -85,7 +85,6 @@
 /area/kutjevo/exterior/scrubland/south)
 "adA" = (
 /obj/machinery/colony_floodlight_switch,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/r_wall/kutjevo,
 /area/kutjevo/interior/power)
 "adD" = (
@@ -821,7 +820,6 @@
 /turf/closed/wall/r_wall/kutjevo,
 /area/kutjevo/interior/power/comms)
 "aYg" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/kutjevo,
 /area/kutjevo/exterior/stonyfields)
 "aYi" = (
@@ -2172,7 +2170,6 @@
 /area/kutjevo/exterior/colony_north)
 "cva" = (
 /obj/structure/largecrate/random/secure,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/filtration)
 "cvf" = (
@@ -3120,9 +3117,7 @@
 /area/kutjevo/interior/construction)
 "dtq" = (
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
+/obj/machinery/power/geothermal,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "dtV" = (
@@ -3827,9 +3822,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
+/obj/machinery/power/geothermal,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "eeg" = (
@@ -7388,13 +7381,6 @@
 /obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/oob/dev_room)
-"hQV" = (
-/obj/structure/platform/metalplatform{
-	dir = 1
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/kutjevo,
-/area/kutjevo/interior/power)
 "hQZ" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13631,10 +13617,6 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med/auto_doc)
-"oxl" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/kutjevo,
-/area/kutjevo/interior/power)
 "oxr" = (
 /obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -18335,10 +18317,6 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med/cells)
-"twI" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/kutjevo/multi_tiles,
-/area/kutjevo/interior/power)
 "txe" = (
 /obj/structure/platform/rockcliff/red{
 	dir = 1
@@ -18475,10 +18453,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/complex/med/operating)
-"tEl" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/kutjevo,
-/area/kutjevo/interior/power)
 "tEA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
@@ -22001,13 +21975,6 @@
 	dir = 1
 	},
 /area/kutjevo/interior/colony_South/power2)
-"xfL" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg{
-	dir = 4
-	},
-/turf/open/floor/kutjevo/colors/orange,
-/area/kutjevo/interior/power)
 "xfT" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -30013,13 +29980,13 @@ ceG
 pyp
 pyp
 sNp
-tEl
+pyp
 hGH
 upQ
 hGH
 vdC
 vqW
-tEl
+pyp
 pyp
 pyp
 wdw
@@ -31182,7 +31149,7 @@ dyU
 pyp
 pyp
 sNp
-tEl
+pyp
 wEn
 xjY
 xjY
@@ -31355,7 +31322,7 @@ ddk
 ddk
 dbe
 tlv
-tEl
+pyp
 pyp
 pyp
 wdw
@@ -31525,7 +31492,7 @@ xzY
 mIr
 cvm
 pyp
-tEl
+pyp
 fdH
 fdH
 pyp
@@ -31683,10 +31650,10 @@ vVC
 vVC
 ePx
 pBV
-xfL
+dtq
 kGE
 tez
-twI
+wIG
 psz
 xVt
 una
@@ -31853,7 +31820,7 @@ pBV
 dtq
 kGE
 wIG
-twI
+wIG
 akd
 jrs
 cvm
@@ -31861,7 +31828,7 @@ dzD
 wIG
 wIG
 wIG
-oxl
+xgV
 pnM
 wIG
 ltX
@@ -32182,7 +32149,7 @@ cTz
 tIF
 ler
 ePx
-tEl
+pyp
 pyp
 adA
 kNb
@@ -33184,16 +33151,16 @@ tPO
 iiS
 ePx
 ePx
-tEl
 pyp
-tEl
+pyp
+pyp
 vbV
 pFZ
 tjI
 uma
 pFZ
 pFZ
-hQV
+vFc
 kEL
 wIG
 cEH
@@ -33855,13 +33822,13 @@ cTz
 ePx
 vtT
 dxF
-tEl
+pyp
 tql
 tql
 aYg
 tql
 huF
-tEl
+pyp
 pBV
 pBV
 pyp

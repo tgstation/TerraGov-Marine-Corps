@@ -1926,10 +1926,6 @@
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
-"aZN" = (
-/obj/machinery/power/tbg_turbine/cold,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "aZW" = (
 /obj/structure/flora/jungle/vines/heavy,
 /obj/structure/flora/jungle/plantbot1/alien,
@@ -3194,13 +3190,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
-"bSZ" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 1
-	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "bTH" = (
@@ -4563,7 +4552,8 @@
 	dir = 4;
 	on = 1
 	},
-/obj/machinery/floor_warn_light/toggleable/generator,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "dwP" = (
@@ -12120,7 +12110,8 @@
 /area/lv624/lazarus/tablefort)
 "mee" = (
 /obj/effect/landmark/corpsespawner/scientist,
-/obj/machinery/floor_warn_light/toggleable/generator,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "meq" = (
@@ -12888,7 +12879,8 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "mUa" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "mVi" = (
@@ -14047,11 +14039,6 @@
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage/dome)
-"osp" = (
-/obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "osD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -14853,7 +14840,6 @@
 	dir = 5
 	},
 /obj/effect/ai_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "psJ" = (
@@ -15133,11 +15119,6 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
-"pNY" = (
-/obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
 "pOk" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -15551,7 +15532,6 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "qjM" = (
@@ -17907,7 +17887,6 @@
 	dir = 1;
 	name = "\improper Engineering Dome"
 	},
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/engineering)
 "sKq" = (
@@ -18637,7 +18616,6 @@
 	on = 1
 	},
 /obj/effect/ai_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "tyv" = (
@@ -19172,13 +19150,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
-"udO" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	name = "\improper Engineering Dome"
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "udV" = (
 /obj/machinery/door/airlock/multi_tile/secure{
 	dir = 2
@@ -21400,12 +21371,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
-"wBk" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "wBZ" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
@@ -45308,7 +45273,7 @@ jNQ
 ygV
 ygV
 caq
-udO
+aCK
 caq
 ygV
 ygV
@@ -45851,9 +45816,9 @@ sJy
 wsP
 hdP
 mUa
-yiA
+mUa
 lma
-yiA
+mUa
 dwz
 spx
 caq
@@ -46033,9 +45998,9 @@ ygV
 wsP
 czt
 sTw
-aZN
-bSZ
-wBk
+sTw
+lma
+sTw
 osD
 aEb
 dXo
@@ -46215,9 +46180,9 @@ jNQ
 wkF
 hdo
 mUa
-yiA
+mUa
 lma
-yiA
+mUa
 mee
 ttF
 ygV
@@ -46950,7 +46915,7 @@ qyg
 oqA
 iMC
 tch
-mUa
+yiA
 aNK
 sTw
 cga
@@ -47123,11 +47088,11 @@ aen
 aen
 ygV
 ygV
-pNY
+tch
 tch
 gMJ
 lma
-osp
+lma
 aDZ
 lma
 lma
@@ -47855,7 +47820,7 @@ iVO
 agv
 jNQ
 hIs
-mUa
+yiA
 aEp
 kWA
 ygV

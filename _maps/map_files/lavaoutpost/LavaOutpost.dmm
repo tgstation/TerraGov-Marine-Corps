@@ -946,7 +946,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
-/obj/machinery/power/tbg_turbine/cold,
+/obj/machinery/power/geothermal,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "ks" = (
@@ -1542,10 +1542,6 @@
 /obj/structure/barricade/solid,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
-"qG" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "qK" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1737,9 +1733,8 @@
 "sq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "sw" = (
@@ -1909,7 +1904,6 @@
 "uy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/obj/machinery/power/geothermal/tbg,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "uz" = (
@@ -3868,11 +3862,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
-"Px" = (
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "Pz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -4262,6 +4251,8 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "Ts" = (
@@ -4444,10 +4435,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security)
-"Vd" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/lavaland/engie/engine)
 "Ve" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -4669,9 +4656,10 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/west)
 "XG" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/mineral/smooth/indestructible,
-/area/lavaland/cave/southwest)
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "XI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
@@ -10251,7 +10239,7 @@ HQ
 HQ
 HQ
 HQ
-XG
+KP
 aI
 aI
 aI
@@ -26278,7 +26266,7 @@ fw
 fw
 fw
 fw
-Vd
+fw
 fw
 fw
 fw
@@ -27046,13 +27034,13 @@ fE
 cW
 aY
 ds
-Vd
+fw
 aY
 dq
 gF
 aY
 aY
-Vd
+fw
 WU
 aY
 aY
@@ -27558,7 +27546,7 @@ al
 fw
 fw
 aY
-Vd
+fw
 fw
 ks
 ks
@@ -27568,16 +27556,16 @@ aY
 ks
 ks
 fw
-Vd
+fw
 aY
 fw
 fw
 fw
 fw
-Vd
 fw
 fw
-Vd
+fw
+fw
 al
 aZ
 al
@@ -27819,9 +27807,9 @@ aY
 ks
 ks
 ks
-qG
+aY
 ke
-qG
+aY
 ks
 ks
 ks
@@ -28076,9 +28064,9 @@ aY
 aY
 aY
 aY
-aY
+XG
 Tq
-aY
+XG
 aY
 aY
 aY
@@ -28590,9 +28578,9 @@ aY
 aY
 aY
 aY
-aY
+XG
 Tq
-aY
+XG
 aY
 aY
 aY
@@ -28847,9 +28835,9 @@ aY
 ks
 ks
 ks
-qG
+aY
 gF
-Px
+dq
 ks
 ks
 ks
@@ -29100,7 +29088,7 @@ al
 fw
 fw
 aY
-Vd
+fw
 fw
 ks
 ks
@@ -29110,16 +29098,16 @@ aY
 ks
 ks
 fw
-Vd
+fw
 gF
 fw
 fw
 fw
 fw
-Vd
 fw
 fw
-Vd
+fw
+fw
 al
 al
 aZ
@@ -29616,13 +29604,13 @@ bo
 cW
 aY
 WU
-Vd
+fw
 aY
 aY
 BC
 aY
 aY
-Vd
+fw
 eQ
 aY
 gF
@@ -30390,7 +30378,7 @@ fw
 fw
 fw
 fw
-Vd
+fw
 fw
 fw
 fw
