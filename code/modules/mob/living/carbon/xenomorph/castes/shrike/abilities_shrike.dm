@@ -169,11 +169,12 @@
 	if(collusion_paralyze_duration)
 		living_source.Paralyze(collusion_paralyze_duration)
 	if(isliving(hit_atom) && !living_source.issamexenohive(hit_atom))
-		INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
+		var/mob/living/living_hit = hit_atom
+		INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob, emote), "scream")
 		if(damage)
-			living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+			living_hit.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 		if(collusion_paralyze_duration)
-			living_source.Paralyze(collusion_paralyze_duration)
+			living_hit.Paralyze(collusion_paralyze_duration)
 
 // ***************************************
 // *********** Unrelenting Force
