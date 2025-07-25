@@ -169,7 +169,6 @@
 	if(collusion_paralyze_duration)
 		living_source.Paralyze(collusion_paralyze_duration)
 	if(isliving(hit_atom) && !living_source.issamexenohive(hit_atom))
-		new /obj/effect/temp_visual/warrior/impact(living_source.loc, get_dir(living_source, xeno_owner))
 		INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
 		if(damage)
 			living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
