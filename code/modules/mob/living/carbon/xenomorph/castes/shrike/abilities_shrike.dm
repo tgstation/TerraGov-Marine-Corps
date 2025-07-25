@@ -125,6 +125,8 @@
 		if(stun_duration)
 			victim.Stun(2 SECONDS)
 			victim.drop_all_held_items()
+		if(damage_multiplier)
+			victim.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
 		RegisterSignal(victim, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 		if(collusion_paralyze_duration || collusion_damage_multiplier)
 			RegisterSignal(victim, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
@@ -150,7 +152,8 @@
 	var/mob/living/living_source = source
 	UnregisterSignal(living_source, COMSIG_MOVABLE_POST_THROW)
 	if(collusion_paralyze_duration || collusion_damage_multiplier)
-		UnregisterSignal(living_source, COMSIG_MOVABLE_IMPACT) // Because it is possible we had no impacts.
+		// If we had an impact, we have to unregister it in the next tick as `on_throw_impact` doesn't happen if it was unregistered now.
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT), 1)
 		return
 	living_source.remove_pass_flags(PASS_MOB, THROW_TRAIT)
 
