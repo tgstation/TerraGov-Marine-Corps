@@ -33,6 +33,7 @@
 		#include "map_files\corsat\corsat.dmm"
 		#include "map_files\Bluesummers\bluesummers.dmm"
 		#include "map_files\Metnal_Operation\Metnal_Operation.dmm"
+		#include "map_files\Blue_Moon\bluemoon.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif
