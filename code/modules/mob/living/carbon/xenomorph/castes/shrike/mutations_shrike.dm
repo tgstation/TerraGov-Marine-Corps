@@ -57,7 +57,7 @@
 //*********************//
 /datum/mutation_upgrade/spur/smashing_fling
 	name = "Smashing Fling"
-	desc = "Psychic Fling deals 100/125/150% damage equal to your melee damage, enables collusions, but no longer immediately stuns. If the target collides with a human, object, or wall: they are briefly paralyzed and dealt damage again."
+	desc = "Psychic Fling deals 100/125/150% damage equal to your melee damage, enables collusions, but no longer immediately stuns. If the target collides with a human, object, or wall: both are briefly paralyzed and dealt damage again."
 	/// For the first structure, the multiplier of the owner's melee damage to deal as both immediate and collusion damage.
 	var/multiplier_initial = 0.75
 	/// For each structure, the multiplier of the owner's melee damage to deal as both immediate and collusion damage.
@@ -66,7 +66,7 @@
 /datum/mutation_upgrade/spur/smashing_fling/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Psychic Fling deals [PERCENT(get_multiplier(new_amount))]% damage equal to your melee damage, enables collusions, but no longer immediately stuns. If the target collides with a human, object, or wall: they are paralyzed and dealt damage again."
+	return "Psychic Fling deals [PERCENT(get_multiplier(new_amount))]% damage equal to your melee damage, enables collusions, but no longer immediately stuns. If the target collides with a human, object, or wall: both are paralyzed and dealt damage again."
 
 /datum/mutation_upgrade/spur/smashing_fling/on_mutation_enabled()
 	. = ..()

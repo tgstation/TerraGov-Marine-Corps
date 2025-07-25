@@ -67,11 +67,11 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
 	target_flags = ABILITY_MOB_TARGET
-	/// How long should humans be stunned? If they are to be stunned, they will also drop held items.
+	/// How long in deciseconds should humans be stunned i? If they are to be stunned, they will also drop held items.
 	var/stun_duration = 2 SECONDS
 	/// Should humans take damage immediately? If so, what is the multiplier of the owner's melee damage for determining how much damage to deal?
 	var/damage_multiplier = 0
-	/// If humans were to collide with something, how long should they be paralyzed for collusion?
+	/// If humans were to collide with something, how long in deciseconds should they be paralyzed for collusion?
 	var/collusion_paralyze_duration = 0
 	/// If humans were to collide with something, what is the multiplier of the owner's melee damage for determining how much damage to deal?
 	var/collusion_damage_multiplier = 0
@@ -162,22 +162,33 @@
 	SIGNAL_HANDLER
 	var/mob/living/living_source = source
 	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
-	if(!isliving(hit_atom) && !isobj(hit_atom) && !isclosedturf(hit_atom))
-		return
-	new /obj/effect/temp_visual/warrior/impact(living_source.loc, get_dir(living_source, xeno_owner))
-	INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
 	var/damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * collusion_damage_multiplier
+	var/valid_impact = FALSE
+	if(isliving(hit_atom))
+		valid_impact = TRUE
+		var/mob/living/living_hit = hit_atom
+		if(!living_source.issamexenohive(living_hit))
+			INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob, emote), "scream")
+			if(damage)
+				living_hit.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+			if(collusion_paralyze_duration)
+				living_hit.Paralyze(collusion_paralyze_duration)
+	if(isobj(hit_atom))
+		valid_impact = TRUE
+		var/obj/hit_object = hit_atom
+		if(!istype(hit_object, /obj/structure/xeno) && damage)
+			hit_object.take_damage(damage, BRUTE, MELEE)
+	if(iswallturf(hit_atom))
+		valid_impact = TRUE
+		var/turf/closed/wall/hit_wall = hit_atom
+		if(!(hit_wall.resistance_flags & INDESTRUCTIBLE) && damage)
+			hit_wall.take_damage(damage, BRUTE, MELEE)
+	if(!valid_impact)
+		return
 	if(damage)
 		living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 	if(collusion_paralyze_duration)
 		living_source.Paralyze(collusion_paralyze_duration)
-	if(isliving(hit_atom) && !living_source.issamexenohive(hit_atom))
-		var/mob/living/living_hit = hit_atom
-		INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob, emote), "scream")
-		if(damage)
-			living_hit.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
-		if(collusion_paralyze_duration)
-			living_hit.Paralyze(collusion_paralyze_duration)
 
 // ***************************************
 // *********** Unrelenting Force
