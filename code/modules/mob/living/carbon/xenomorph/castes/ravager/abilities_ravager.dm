@@ -253,6 +253,8 @@
 	var/endure_duration
 	/// Timer for Endure's warning.
 	var/endure_warning_duration
+	/// When this ability ends and the owner's health is under the reverted `get_death_threshold`, should they die instead?
+	var/death_beyond_threshold = FALSE
 
 /datum/action/ability/xeno_action/endure/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We feel able to imbue ourselves with plasma to Endure once again!"))
@@ -280,6 +282,7 @@
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_BRUTE_DAMAGE, PROC_REF(damage_taken)) //Warns us if our health is critically low
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_BURN_DAMAGE, PROC_REF(damage_taken))
 
+	xeno_owner.updatehealth() // To get them back up if they happen to activate the ability while in critical.
 	succeed_activate()
 	add_cooldown()
 
@@ -314,6 +317,10 @@
 
 	xeno_owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 	if(xeno_owner.health >= xeno_owner.get_crit_threshold())
+		return
+	if(death_beyond_threshold && xeno_owner.health < xeno_owner.get_death_threshold())
+		to_chat(xeno_owner, span_userdanger("The last of the plasma drains from our body... and so does our life..."))
+		xeno_owner.updatehealth() // Die.
 		return
 	var/total_damage = xeno_owner.getFireLoss() + xeno_owner.getBruteLoss()
 	var/burn_percentile_damage = xeno_owner.getFireLoss() / total_damage
@@ -362,11 +369,15 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
-	///Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP; min 0.25 at 50% of Max HP, max 1 while in negative HP. 0.5 and above triggers especial effects.
+	/// The percentage of the owner's maximum health that the owner's current health must be under to activate the ability.
+	var/minimum_health_rage_threshold = RAVAGER_RAGE_MIN_HEALTH_THRESHOLD
+	/// The percentage of the owner's maximum health to use to further increase / calculate rage power. Higher means more rage power which then means it is both easier to reach super rage.
+	var/rage_power_calculation_bonus = 0
+	/// Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP. Ignoring calculation bonus, this can ranges from [0.25 at 50% health] and [0.5 at 0% health]. 0.5 and above triggers special effects.
 	var/rage_power
-	///Determines the Sunder to impose when Rage ends
+	/// Determines the Sunder to impose when Rage ends.
 	var/rage_sunder
-	///Determines the Plasma to remove when Rage ends
+	/// Determines the Plasma to remove when Rage ends.
 	var/rage_plasma
 
 /datum/action/ability/xeno_action/rage/on_cooldown_finish()
@@ -379,18 +390,14 @@
 	if(!.)
 		return FALSE
 
-	if(xeno_owner.health > xeno_owner.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD) //Need to be at 50% of max hp or lower to rage
+	if(xeno_owner.health > xeno_owner.maxHealth * minimum_health_rage_threshold) //Need to be at 50% of max hp or lower to rage
 		if(!silent)
 			to_chat(xeno_owner, span_xenodanger("Our health isn't low enough to rage! We must take [xeno_owner.health - (xeno_owner.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD)] more damage!"))
 		return FALSE
 
 
 /datum/action/ability/xeno_action/rage/action_activate()
-	rage_power = (1-(xeno_owner.health/xeno_owner.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER //Calculate the power of our rage; scales with difference between current and max HP
-
-	if(xeno_owner.health < 0) //If we're at less than 0 HP, it's time to max rage.
-		rage_power = 0.5
-
+	rage_power = min(0.5, (1 - ((xeno_owner.health - (xeno_owner.maxHealth * rage_power_calculation_bonus)) / xeno_owner.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER) // Calculate the power of our rage; scales with difference between current and max HP.
 	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
 
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] becomes frenzied, bellowing with a shuddering roar!"), \
@@ -424,7 +431,7 @@
 		shake_camera(affected_mob, 1 SECONDS, 1)
 		affected_mob.Shake(duration = 1 SECONDS) //SFX
 
-		if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
+		if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD && affected_mob.hud_used) //If we're super pissed it's time to get crazy
 			var/atom/movable/plane_master_controller/game_plane_master_controller = affected_mob.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
 			game_plane_master_controller.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
 			for(var/dm_filter/filt AS in game_plane_master_controller.get_filters("rage_outcry"))
