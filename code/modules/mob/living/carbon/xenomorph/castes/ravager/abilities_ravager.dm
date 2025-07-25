@@ -371,7 +371,7 @@
 	)
 	/// The percentage of the owner's maximum health that the owner's current health must be under to activate the ability.
 	var/minimum_health_rage_threshold = RAVAGER_RAGE_MIN_HEALTH_THRESHOLD
-	/// The percentage of the owner's maximum health to use to further increase / calculate rage power. Higher means more rage power which then means it is both easier to reach super rage.
+	/// The percentage of the owner's maximum health to use to further increase / calculate rage power. Higher means more rage power which then means it is easier to reach super rage.
 	var/rage_power_calculation_bonus = 0
 	/// Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP. Ignoring calculation bonus, this can ranges from [0.25 at 50% health] and [0.5 at 0% health]. 0.5 and above triggers special effects.
 	var/rage_power
