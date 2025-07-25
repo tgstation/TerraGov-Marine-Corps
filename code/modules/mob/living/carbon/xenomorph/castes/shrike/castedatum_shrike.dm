@@ -79,6 +79,12 @@
 		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/lone_healer,
+		/datum/mutation_upgrade/spur/smashing_fling,
+		/datum/mutation_upgrade/veil/stand_in_recycler
+	)
+
 /datum/xeno_caste/shrike/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
