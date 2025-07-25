@@ -2045,6 +2045,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\queen\queen.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\ravager\abilities_ravager.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\ravager\castedatum_ravager.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\ravager\mutations_bloodthirster.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\ravager\mutations_ravager.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\ravager\ravager.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\runner\abilities_runner.dm"
