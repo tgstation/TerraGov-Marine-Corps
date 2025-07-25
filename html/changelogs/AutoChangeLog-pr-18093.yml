@@ -1,4 +1,0 @@
-author: "mudzbe"
-delete-after: True
-changes:
-  - qol: "Adds a button to toggle tadpole shutters within the tadpole console"
