@@ -82,13 +82,13 @@
 		/obj/item/weapon/gun/pistol/highpower/standard = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom = ITEM_SLOT_SECONDARY,
-		/obj/item/storage/backpack/marine/engineerpack/som = ITEM_SLOT_SECONDARY,
 	)
 	req_desc = "Requires a pistol secondary."
 
 /datum/loadout_item/belt/som/pistol_holster/default
 	jobs_supported = list(SOM_STAFF_OFFICER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
 /datum/loadout_item/belt/som/pistol_holster/officer
 	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after. Holds any pistol secondary, and plenty of ammo."
 	ui_icon = "vx12"
