@@ -154,7 +154,7 @@
 	if(time_left)
 		disable_time += time_left
 		deltimer(emp_timer)
-	emp_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), disable_time, TIMER_DELETE_ME|TIMER_STOPPABLE)
+	emp_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, emp_restore)), disable_time, TIMER_DELETE_ME|TIMER_STOPPABLE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
 

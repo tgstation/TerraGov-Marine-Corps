@@ -455,7 +455,7 @@
 	return TRUE
 
 ///Restores the mech after EMP
-/obj/vehicle/sealed/mecha/proc/restore_equipment()
+/obj/vehicle/sealed/mecha/proc/emp_restore()
 	emp_timer = null
 	mecha_flags &= ~MECHA_EMPED
 	equipment_disabled = FALSE
