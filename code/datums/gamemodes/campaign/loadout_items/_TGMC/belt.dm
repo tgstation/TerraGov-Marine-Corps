@@ -62,6 +62,10 @@
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Loaded full of buckshot and flechette shells."
 	item_typepath = /obj/item/storage/belt/shotgun/mixed
 	jobs_supported = list(SQUAD_MARINE)
+	item_whitelist = list(
+		/obj/item/weapon/gun/shotgun/pump/t35/standard = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/pump/t35/standard = ITEM_SLOT_BACK,
+	)
 
 /datum/loadout_item/belt/smg_holster
 	name = "SMG-25 holster"
