@@ -67,7 +67,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
 	target_flags = ABILITY_MOB_TARGET
-	/// How long in deciseconds should humans be stunned i? If they are to be stunned, they will also drop held items.
+	/// How long in deciseconds should humans be stunned? If they are to be stunned, they will also drop held items.
 	var/stun_duration = 2 SECONDS
 	/// Should humans take damage immediately? If so, what is the multiplier of the owner's melee damage for determining how much damage to deal?
 	var/damage_multiplier = 0
