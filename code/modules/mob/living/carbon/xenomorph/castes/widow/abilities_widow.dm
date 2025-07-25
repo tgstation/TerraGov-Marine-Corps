@@ -129,10 +129,12 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(HAS_TRAIT(xeno_attacker, TRAIT_WEB_PULLER))
+		xeno_attacker.balloon_alert(xeno_attacker, "pulling...")
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts to pull in the leashes from \the [src]!"), \
 			span_xenonotice("We grab hold of all of the leashes from \the [src]..."))
 		if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_DANGER) || QDELETED(src))
 			return
+		xeno_attacker.balloon_alert(xeno_attacker, "yanked!")
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] yanks all the leashes from \the [src]!"), \
 			span_xenonotice("We yank all the leashes from \the [src]!"))
 		playsound(src, 'sound/voice/alien/pounce.ogg', 25, TRUE)
