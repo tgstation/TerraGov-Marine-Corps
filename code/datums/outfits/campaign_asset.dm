@@ -292,28 +292,39 @@
 	)
 
 
-/datum/outfit/job/freelancer/standard/one/campaign
+/datum/outfit/job/freelancer/standard/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/standard/two/campaign
+/datum/outfit/job/freelancer/standard/pump/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/standard/three/campaign
+/datum/outfit/job/freelancer/standard/tx11/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/freelancer/medic/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/grenadier/one/campaign
+/datum/outfit/job/freelancer/medic/marksman/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/grenadier/two/campaign
+/datum/outfit/job/freelancer/grenadier/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/leader/one/campaign
+/datum/outfit/job/freelancer/grenadier/hpr/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/leader/two/campaign
+/datum/outfit/job/freelancer/specialist/campaign
+	ears = /obj/item/radio/headset/mainship
+
+
+/datum/outfit/job/freelancer/leader/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/freelancer/leader/tx55/campaign
+	ears = /obj/item/radio/headset/mainship
+	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer_custom/combat_patrol
+
+/datum/outfit/job/freelancer/leader/tx11/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/pmc/standard/campaign
