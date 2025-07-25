@@ -23,10 +23,10 @@
 	link_ability.movement_resistance = MOVE_FORCE_OVERPOWERING
 	if(!link_ability.psychic_link_status_effect)
 		return
+	xenomorph_owner.move_resist = link_ability.movement_resistance
 	if(!link_ability.attached_armor)
 		link_ability.attached_armor = getArmor(link_ability.armor_amount, link_ability.armor_amount, link_ability.armor_amount, link_ability.armor_amount, link_ability.armor_amount, link_ability.armor_amount, link_ability.armor_amount, link_ability.armor_amount)
 		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.attachArmor(link_ability.attached_armor)
-	xenomorph_owner.move_resist = link_ability.movement_resistance
 
 /datum/mutation_upgrade/shell/unmoving_link/on_mutation_disabled()
 	var/datum/action/ability/activable/xeno/psychic_link/link_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_link]
@@ -36,20 +36,22 @@
 	link_ability.movement_resistance = initial(link_ability.movement_resistance)
 	if(!link_ability.psychic_link_status_effect)
 		return
+	xenomorph_owner.move_resist = initial(xenomorph_owner.move_resist)
 	if(link_ability.attached_armor)
 		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.detachArmor(link_ability.attached_armor)
 		link_ability.attached_armor = null
-	xenomorph_owner.move_resist = initial(xenomorph_owner.move_resist)
 
 /datum/mutation_upgrade/shell/unmoving_link/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	var/datum/action/ability/activable/xeno/psychic_link/link_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_link]
 	if(!link_ability)
 		return
-	if(link_ability.attached_armor && previous_amount)
-		var/difference = get_armor(new_amount - previous_amount, FALSE)
-		link_ability.attached_armor = link_ability.attached_armor.modifyAllRatings(difference)
-		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyAllRatings(difference)
+	var/difference = get_armor(new_amount - previous_amount, FALSE)
+	link_ability.armor_amount += difference
+	if(!link_ability.psychic_link_status_effect || !link_ability.attached_armor)
+		return
+	link_ability.attached_armor = link_ability.attached_armor.modifyAllRatings(difference)
+	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyAllRatings(difference)
 
 /// Returns the amount of soft armor that Psychic Link should grant while it is active.
 /datum/mutation_upgrade/shell/unmoving_link/proc/get_armor(structure_count, include_initial = TRUE)

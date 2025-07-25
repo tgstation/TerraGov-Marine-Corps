@@ -551,7 +551,7 @@
 	/// Has the ability been used to swap to the current set of illusion yet?
 	var/swap_used = FALSE
 	/// The illusion that will take priority when mirage swapping.
-	var/mob/illusion/prioritized_illusion
+	var/mob/illusion/xeno/prioritized_illusion
 
 /datum/action/ability/xeno_action/mirage/remove_action()
 	illusions = list() // No need to manually delete the illusions as the illusions will delete themselves once their life time expires.

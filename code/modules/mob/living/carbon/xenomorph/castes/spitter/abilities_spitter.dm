@@ -88,10 +88,10 @@
 		if(xeno_owner.ammo && gaseous_spray_threshold && current_globs >= gaseous_spray_threshold)
 			var/datum/effect_system/smoke_spread/xeno/smoke
 			switch(xeno_owner.ammo.type)
-				if(/datum/ammo/xeno/boiler_gas/corrosive)
+				if(/datum/ammo/xeno/boiler_gas/corrosive, /datum/ammo/xeno/boiler_gas/corrosive/lance)
 					smoke = new /datum/effect_system/smoke_spread/xeno/acid()
-				if(/datum/ammo/xeno/boiler_gas)
-					smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light()
+				if(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/lance)
+					smoke = new /datum/effect_system/smoke_spread/xeno/neuro/light()
 			if(smoke)
 				smoke.set_up(0, TF)
 				smoke.start()

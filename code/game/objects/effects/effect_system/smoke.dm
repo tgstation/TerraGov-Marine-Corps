@@ -382,6 +382,12 @@
 	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
+///Xeno neurotox smoke for defiler seethrough smoke; doesn't extinguish or blind
+/obj/effect/particle_effect/smoke/xeno/neuro/lighter
+	alpha = 60
+	opacity = FALSE
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
+
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
 	alpha = 60
@@ -394,7 +400,7 @@
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/hemodile/light
-	alpha = 120
+	alpha = 60
 	opacity = FALSE
 
 /obj/effect/particle_effect/smoke/xeno/transvitox
@@ -402,7 +408,7 @@
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/transvitox/light
-	alpha = 120
+	alpha = 60
 	opacity = FALSE
 
 //Toxic smoke when the Defiler successfully uses Defile
@@ -416,7 +422,7 @@
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/ozelomelyn/light
-	alpha = 120
+	alpha = 60
 	opacity = FALSE
 
 /// Smoke that constantly makes pyrogen fire.
@@ -486,6 +492,9 @@
 
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
+
+/datum/effect_system/smoke_spread/xeno/neuro/lighter
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/lighter
 
 /datum/effect_system/smoke_spread/xeno/toxic
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/toxic
