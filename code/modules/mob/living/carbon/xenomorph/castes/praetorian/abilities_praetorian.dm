@@ -638,7 +638,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /// Called when the source has hit something.
 /datum/action/ability/activable/xeno/oppressor/proc/on_throw_impact(datum/source, atom/hit_atom, impact_speed)
 	SIGNAL_HANDLER
-	SHOULD_CALL_PARENT(TRUE) // Because we don't want to forget to unregister the signal.
 	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
 	if(!isliving(source))
 		return
