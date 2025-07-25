@@ -188,7 +188,11 @@
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
 
-	mutations = list()
+	mutations = list(
+		/datum/mutation_upgrade/shell/advance_away,
+		/datum/mutation_upgrade/spur/wall_bang,
+		/datum/mutation_upgrade/veil/low_charge
+	)
 
 /datum/xeno_caste/praetorian/oppressor/normal
 	upgrade = XENO_UPGRADE_NORMAL
