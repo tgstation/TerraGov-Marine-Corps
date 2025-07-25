@@ -767,11 +767,10 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
+		/obj/item/attachable/scope/laser_sniper_scope,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/buildasentry,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/attachable/gyro,
@@ -783,7 +782,7 @@
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
+	starting_attachment_types = list(/obj/item/attachable/scope/laser_sniper_scope)
 
 	aim_slowdown = 0.7
 	wield_delay = 0.9 SECONDS
@@ -962,7 +961,7 @@
 	icon_state = "tex"
 	worn_icon_state = "tex"
 	max_shots = 40 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/incendiary
 	rounds_per_shot = 15
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet/converted,
@@ -1001,7 +1000,7 @@
 
 /datum/lasrifle/energy_rifle_mode/xray
 	rounds_per_shot = 15
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/incendiary
 	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the xray rifle's charge mode to standard fire."
@@ -1012,7 +1011,7 @@
 
 /datum/lasrifle/energy_rifle_mode/xray/piercing
 	rounds_per_shot = 30
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/piercing
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
 	fire_delay = 0.6 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the xray rifle's charge mode to piercing mode."

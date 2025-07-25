@@ -174,6 +174,10 @@
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	/// Should the emitted smoke be opaque?
+	var/opaque = TRUE
+	/// The radius of emitted smoke.
+	var/radius = 2
 
 /datum/action/ability/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
@@ -219,18 +223,28 @@
 /datum/action/ability/xeno_action/emit_neurogas/proc/dispense_gas(time_left = 3, datum/effect_system/smoke_spread/emitted_gas)
 	if(time_left <= 0)
 		return
-	var/smoke_range = 2
-
 	if(!emitted_gas)
 		switch(xeno_owner.selected_reagent)
 			if(/datum/reagent/toxin/xeno_neurotoxin)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/light(xeno_owner)
 			if(/datum/reagent/toxin/xeno_hemodile)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile/light(xeno_owner)
 			if(/datum/reagent/toxin/xeno_transvitox)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox/light(xeno_owner)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn/light(xeno_owner)
 
 	if(xeno_owner.IsStaggered()) //If we got staggered, return
 		to_chat(xeno_owner, span_xenowarning("We try to emit toxins but are staggered!"))
@@ -243,9 +257,9 @@
 	var/turf/T = get_turf(xeno_owner)
 	playsound(T, 'sound/effects/smoke.ogg', 25)
 	if(time_left > 1)
-		emitted_gas.set_up(smoke_range, T)
+		emitted_gas.set_up(radius, T)
 	else //last emission is larger
-		emitted_gas.set_up(CEILING(smoke_range*1.3,1), T)
+		emitted_gas.set_up(CEILING(radius*1.3,1), T)
 	emitted_gas.start()
 	T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 	toggle_particles(FALSE)
@@ -354,7 +368,7 @@
 
 /datum/action/ability/xeno_action/select_reagent/give_action(mob/living/L)
 	. = ..()
-	xeno_owner.selected_reagent = GLOB.defiler_toxin_type_list[1] //Set our default
+	xeno_owner.set_selected_reagent(GLOB.defiler_toxin_type_list[1]) //Set our default
 	update_button_icon() //Update immediately to get our default
 
 /datum/action/ability/xeno_action/select_reagent/update_button_icon()
@@ -365,9 +379,9 @@
 /datum/action/ability/xeno_action/select_reagent/action_activate()
 	var/i = GLOB.defiler_toxin_type_list.Find(xeno_owner.selected_reagent)
 	if(length(GLOB.defiler_toxin_type_list) == i)
-		xeno_owner.selected_reagent = GLOB.defiler_toxin_type_list[1]
+		xeno_owner.set_selected_reagent(GLOB.defiler_toxin_type_list[1])
 	else
-		xeno_owner.selected_reagent = GLOB.defiler_toxin_type_list[i+1]
+		xeno_owner.set_selected_reagent(GLOB.defiler_toxin_type_list[i+1])
 
 	var/atom/A = xeno_owner.selected_reagent
 	xeno_owner.balloon_alert(xeno_owner, "[initial(A.name)]")
@@ -394,7 +408,7 @@
 	for(var/toxin in GLOB.defiler_toxin_type_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
 		if(R.name == toxin_choice)
-			xeno_owner.selected_reagent = R.type
+			xeno_owner.set_selected_reagent(R.type)
 			break
 	xeno_owner.balloon_alert(xeno_owner, "[toxin_choice]")
 	update_button_icon()
@@ -407,21 +421,28 @@
 	name = "Reagent Slash"
 	action_icon_state = "reagent_slash"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
-	desc = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
+	desc = "For a short duration, the next 3 slashes made will inject a small amount of selected toxin."
 	cooldown_duration = 6 SECONDS
 	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
 	target_flags = ABILITY_MOB_TARGET
-	///How many remaining reagent slashes the Defiler has
+	/// How many remaining reagent slashes does this xenomorph have?
 	var/reagent_slash_count = 0
-	///Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does
+	/// How much units is injected on slash?
+	var/reagent_slash_amount = DEFILER_REAGENT_SLASH_INJECT_AMOUNT
+	/// Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does.
 	var/reagent_slash_duration_timer_id
-	///Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation
+	/// Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation.
 	var/reagent_slash_reagent
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/ability/xeno_action/reagent_slash/remove_action(mob/living/L)
+	if(reagent_slash_duration_timer_id)
+		reagent_slash_deactivate(xeno_owner)
+	return ..()
 
 /datum/action/ability/xeno_action/reagent_slash/action_activate()
 	. = ..()
@@ -461,7 +482,7 @@
 
 	var/mob/living/carbon/carbon_target = target
 
-	carbon_target.reagents.add_reagent(reagent_slash_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT)
+	carbon_target.reagents.add_reagent(reagent_slash_reagent, reagent_slash_amount)
 	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	xeno_owner.visible_message(carbon_target, span_danger("[carbon_target] is pricked by [xeno_owner]'s spines!"))
 

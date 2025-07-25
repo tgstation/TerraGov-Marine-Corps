@@ -60,11 +60,15 @@
 	. += "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\""
 
 /obj/vehicle/ridden/motorbike/AltClick(mob/user)
-	if(!(user in buckled_mobs)) return FALSE
-	if(!COOLDOWN_FINISHED(src, rev_cooldown)) return FALSE
+	if(!(user in buckled_mobs))
+		return FALSE
+	if(!COOLDOWN_FINISHED(src, rev_cooldown))
+		return FALSE
+	if(fuel_count < 5)
+		return FALSE
 	COOLDOWN_START(src, rev_cooldown, 3 SECONDS)
 	to_chat(user, span_notice("You rev the [src]'s engine."))
-	fuel_max -= 5
+	fuel_count -= 5
 	playsound(src, pick(rev_sounds), 50, TRUE, falloff = 3)
 	return TRUE
 

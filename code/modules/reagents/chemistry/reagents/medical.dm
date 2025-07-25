@@ -3,10 +3,16 @@
 
 /datum/reagent/medicine
 	name = "Medicine"
-	taste_description = "bitterness"
 	reagent_state = LIQUID
 	taste_description = "bitterness"
 	reagent_ui_priority = REAGENT_UI_MEDICINE
+
+/datum/reagent/medicine/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
+	if(method == VAPOR)
+		if(volume < 1)
+			return FALSE //prevents microdosing from foam/smoke etc which duplicates chems
+		volume *= 0.3
+	return ..()
 
 /datum/reagent/medicine/inaprovaline
 	name = "Inaprovaline"
@@ -1285,7 +1291,6 @@
 
 /datum/reagent/medicine/research
 	name = "Research precursor" //nothing with this subtype should be added to vendors
-	taste_description = "bitterness"
 	reagent_state = LIQUID
 	taste_description = "bitterness"
 	reagent_ui_priority = REAGENT_UI_IMMEDIATE

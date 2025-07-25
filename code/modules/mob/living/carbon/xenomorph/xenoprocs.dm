@@ -159,6 +159,9 @@
 
 	. += "Health: [health]/[maxHealth][overheal ? " + [overheal]": ""]" //Changes with balance scalar, can't just use the caste
 
+	if((xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
+		. += "Biomass: [!isnull(SSpoints.xeno_biomass_points_by_hive[hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[hivenumber] : 0]/[MUTATION_BIOMASS_MAXIMUM]"
+
 	if(xeno_caste.plasma_max > 0)
 		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
 
@@ -166,9 +169,7 @@
 
 	. += "Regeneration power: [max(regen_power * 100, 0)]%"
 
-	var/caste_swap_timer = SSticker.mode.caste_swap_timer
-
-	var/casteswap_value = ((GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)  + caste_swap_timer - world.time) * 0.1
+	var/casteswap_value = ((GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)  + SSticker.mode.caste_swap_cooldown - world.time) * 0.1
 	if(casteswap_value <= 0)
 		. += "Caste Swap Timer: READY"
 	else
@@ -431,25 +432,25 @@
 
 
 // this mess will be fixed by obj damage refactor
-/atom/proc/acid_spray_act(mob/living/carbon/xenomorph/X)
+/atom/proc/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	return TRUE
 
-/obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
 	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return TRUE // normal density flag
 
-/obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	take_damage(2 * X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return FALSE // not normal density flag
 
-/mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X)
+/mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	ExtinguishMob()
 	if(isnestedhost(src))
 		return
 
-	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ACID))
+	if(!skip_cooldown && TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ACID))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
 
@@ -469,13 +470,13 @@
 	emote("scream")
 	Paralyze(2 SECONDS)
 
-/mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
+/mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	ExtinguishMob()
 
-/obj/fire/flamer/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/fire/flamer/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	qdel(src)
 
-/obj/hitbox/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/hitbox/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return TRUE
 
@@ -504,11 +505,15 @@
 	to_chat(src, span_notice("You have [(xeno_flags & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
 
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4, datum/effect_system/smoke_spread/gas_type, gas_range)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
 	if(!do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
 		return FALSE
+	if(gas_type && gas_range)
+		var/datum/effect_system/smoke_spread/smoke_system = new gas_type()
+		smoke_system.set_up(gas_range, get_turf(C))
+		smoke_system.start()
 	var/i = 1
 	to_chat(C, span_danger("You feel a tiny prick."))
 	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
@@ -539,7 +544,9 @@
 	. = ..()
 	if(.)
 		return
+	var/old_sunder = sunder
 	sunder = clamp(sunder + (adjustment > 0 ? adjustment * xeno_caste.sunder_multiplier : adjustment), 0, xeno_caste.sunder_max)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_CHANGE, old_sunder, sunder)
 //Applying sunder is an adjustment value above 0, healing sunder is an adjustment value below 0. Use multiplier when taking sunder, not when healing.
 
 /mob/living/carbon/xenomorph/set_sunder(new_sunder)

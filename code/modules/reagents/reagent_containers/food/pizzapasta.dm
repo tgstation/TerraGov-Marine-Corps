@@ -402,7 +402,6 @@
 	desc = "Now that's a nic'e meatball!"
 	icon_state = "meatballspaghetti"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("pasta" = 1, "meat" = 1)
 	trash = /obj/item/trash/plate
 	filling_color = "#DE4545"
 	bitesize = 3

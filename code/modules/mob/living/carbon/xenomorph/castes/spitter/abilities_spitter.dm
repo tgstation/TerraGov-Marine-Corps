@@ -6,6 +6,8 @@
 	desc = "Spray a line of dangerous acid at your target."
 	ability_cost = 250
 	cooldown_duration = 30 SECONDS
+	/// If the owner makes use of and has this much stored globs, non-opaque gas is created along with the acid. Must be non-zero.
+	var/gaseous_spray_threshold = 0
 
 /datum/action/ability/activable/xeno/spray_acid/line/use_ability(atom/A)
 	var/turf/target = get_turf(A)
@@ -81,7 +83,18 @@
 			if(get_dir(TF, prev_turf) & B.dir)
 				B.acid_spray_act(owner)
 
-		acid_splat_turf(TF)
+		xenomorph_spray(TF, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, TRUE, TRUE)
+		var/current_globs = xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
+		if(xeno_owner.ammo && gaseous_spray_threshold && current_globs >= gaseous_spray_threshold)
+			var/datum/effect_system/smoke_spread/xeno/smoke
+			switch(xeno_owner.ammo.type)
+				if(/datum/ammo/xeno/boiler_gas/corrosive)
+					smoke = new /datum/effect_system/smoke_spread/xeno/acid()
+				if(/datum/ammo/xeno/boiler_gas)
+					smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light()
+			if(smoke)
+				smoke.set_up(0, TF)
+				smoke.start()
 
 		distance++
 		if(distance > 7 || blocked)
@@ -108,9 +121,13 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
 	)
+	/// The amount of deciseconds for the do_after.
+	var/cast_time = 0.5 SECONDS
+	/// Should the projectile get bonus damage from SPIT_UPGRADE_BONUS?
+	var/should_get_upgrade_bonus = TRUE
 
 /datum/action/ability/activable/xeno/scatter_spit/use_ability(atom/target)
-	if(!do_after(xeno_owner, 0.5 SECONDS, NONE, target, BUSY_ICON_DANGER))
+	if(cast_time > 0 && !do_after(xeno_owner, cast_time, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	//Shoot at the thing
@@ -119,7 +136,7 @@
 	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
 
 	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
-	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner))
+	newspit.generate_bullet(scatter_spit, scatter_spit.damage * (should_get_upgrade_bonus ? SPIT_UPGRADE_BONUS(xeno_owner) : 0)) // Note: This spit upgrade bonus only applies to the main projectile. Making it apply to the bonus projectiles would be a damage increase of 54/72.
 	newspit.def_zone = xeno_owner.get_limbzone_target()
 
 	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
@@ -172,11 +189,17 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOSS_GRENADE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PICK_GRENADE,
 	)
-	///The current amount of grenades this ability has
+	/// In exchange for using a grenade while at none, the percentage of maximum health to lose.
+	var/health_loss_percentage_per_grenade = 0
+	/// The amount of deciseconds to add to the detonation if the grenade was thrown at themselves.
+	var/bonus_self_detonation_time
+	/// The current amount of grenades this ability has.
 	var/current_grenades = 6
-	///The max amount of grenades this ability can store
+	/// The max amount of grenades this ability can store.
 	var/max_grenades = 6
-	///The timer untill we regenerate another grenade
+	/// The amount of deciseconds for the timer that will restore a grenade charge.
+	var/grenade_cooldown = GLOBADIER_GRENADE_REGEN_COOLDOWN
+	/// The timer used for restoring a grenade charge.
 	var/timer
 
 /datum/action/ability/activable/xeno/toss_grenade/give_action(mob/living/L)
@@ -217,15 +240,25 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /datum/action/ability/activable/xeno/toss_grenade/use_ability(atom/target)
 	if(current_grenades <= 0)
-		owner.balloon_alert(owner, "No Grenades!")
-		return fail_activate()
+		// For balance reasons, no exchanging life for healing grenades. The reason: infinite healing grenades.
+		if(!health_loss_percentage_per_grenade || xeno_owner.selected_grenade == /obj/item/explosive/grenade/globadier/heal)
+			owner.balloon_alert(owner, "No grenades!")
+			return fail_activate()
+		var/health_to_lose = xeno_owner.xeno_caste.max_health * health_loss_percentage_per_grenade;
+		if(xeno_owner.health_threshold_crit > xeno_owner.health - health_to_lose) // Hugbox to stop them from suiciding into critical.
+			owner.balloon_alert(owner, "Not enough health!")
+			return fail_activate()
+		xeno_owner.adjustBruteLoss(health_to_lose, TRUE)
+		current_grenades++
 	var/obj/item/explosive/grenade/globadier/nade = new xeno_owner.selected_grenade(owner.loc, owner)
+	if(xeno_owner == target && bonus_self_detonation_time)
+		nade.det_time = max(0.5 SECONDS, nade.det_time + bonus_self_detonation_time)
 	nade.activate(owner)
 	nade.throw_at(target,GLOBADIER_GRENADE_THROW_RANGE,GLOBADIER_GRENADE_THROW_SPEED)
 	owner.visible_message(span_xenowarning("\The [owner] throws something towards \the [target]!"), \
 	span_xenowarning("We throw a grenade towards \the [target]!"))
 	current_grenades--
-	timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE|TIMER_STOPPABLE)
+	timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), grenade_cooldown, TIMER_UNIQUE|TIMER_STOPPABLE)
 	START_PROCESSING(SSprocessing, src)
 	update_button_icon()
 	succeed_activate()
@@ -248,14 +281,14 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER] = time
 	button.add_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER])
 
-///Handle automatic regeneration of grenades, every GLOBADIER_GRENADE_REGEN_COOLDOWN seconds
+/// Handle automatic regeneration of grenades. The cooldown is based on grenade_cooldown.
 /datum/action/ability/activable/xeno/toss_grenade/proc/regen_grenade()
 	if(!(current_grenades < max_grenades))
 		return
 	current_grenades++
 	update_button_icon()
 	if((current_grenades < max_grenades)) // Second if check as current_grenades has changed
-		timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE|TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), grenade_cooldown, TIMER_UNIQUE|TIMER_STOPPABLE)
 		return
 	owner.balloon_alert(owner, "Max Grenades!")
 
@@ -293,8 +326,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	A.set_up(0.5, src)
 	A.start()
 	for(var/acid_tile in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
-		new /obj/effect/temp_visual/acid_splatter(acid_tile)
-		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
+		xenomorph_spray(acid_tile, 5 SECONDS, 40, null, TRUE)
 	qdel(src)
 
 /obj/item/explosive/grenade/globadier/update_overlays()
