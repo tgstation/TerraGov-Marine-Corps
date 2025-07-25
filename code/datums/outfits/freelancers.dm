@@ -36,7 +36,7 @@
 		/obj/item/stack/medical/heal_pack/gauze = 1,
 	)
 
-//===========================STANDART================================
+//===========================STANDARD================================
 // PR412 with UGL
 /datum/outfit/job/freelancer/standard
 	name = "Freelancer Standard"
