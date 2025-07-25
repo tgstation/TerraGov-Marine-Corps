@@ -32,12 +32,22 @@
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made with traditional SOM leather. Loaded full of buckshot and flechette shells."
 	item_typepath = /obj/item/storage/belt/shotgun/som/mixed
 	jobs_supported = list(SOM_SQUAD_MARINE)
+	item_whitelist = list(
+		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/support = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_BACK,
+	)
 
 /datum/loadout_item/belt/som/shotgun_flechette
 	name = "Shotgun shell rig"
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made with traditional SOM leather. Loaded full of flechette shells."
 	item_typepath = /obj/item/storage/belt/shotgun/som/flechette
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
+	item_whitelist = list(
+		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/support = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_BACK,
+	)
 
 /datum/loadout_item/belt/som/grenades
 	name = "Grenade rig"
