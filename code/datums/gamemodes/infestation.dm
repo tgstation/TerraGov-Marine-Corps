@@ -39,6 +39,8 @@
 		new_tunnel.tunnel_desc = "["[get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
 	for(var/i in GLOB.xeno_jelly_pod_turfs)
 		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
+	for(var/i in GLOB.xeno_gargoyle_spawn_turfs)
+		new /obj/structure/xeno/resin_gargoyle(i, XENO_HIVE_NORMAL)
 
 	// Apply Evolution Xeno Population Locks:
 	for(var/datum/xeno_caste/caste AS in evo_requirements)
@@ -52,11 +54,11 @@
 	var/total_humans_groundside = 0
 	for(var/z_level in SSmapping.levels_by_trait(ZTRAIT_GROUND))
 		total_humans_groundside += length(GLOB.humans_by_zlevel["[z_level]"])
-	if(GLOB.corruptable_generators_groundside && round_stage == INFESTATION_MARINE_DEPLOYMENT && total_humans_groundside > (0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
-		for(var/hive in GLOB.gens_corruption_by_hive)
-			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT * (GLOB.gens_corruption_by_hive[hive]/GLOB.corruptable_generators_groundside)
-			SSpoints.add_strategic_psy_points(hive, points_generated)
-			SSpoints.add_tactical_psy_points(hive, points_generated*0.25)
+
+	if(round_stage == INFESTATION_MARINE_DEPLOYMENT && total_humans_groundside > (0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
+		for(var/hive in GLOB.hive_datums)
+			SSpoints.add_strategic_psy_points(hive, PASSIVE_PSYCH_POINT_OUTPUT)
+			SSpoints.add_tactical_psy_points(hive, PASSIVE_PSYCH_POINT_OUTPUT*0.25)
 
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
 		return
