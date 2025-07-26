@@ -169,6 +169,12 @@
 		/datum/action/ability/activable/xeno/conqueror_domination,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/healing_jab,
+		/datum/mutation_upgrade/spur/telefrag,
+		/datum/mutation_upgrade/veil/dasher
+	)
+
 /datum/xeno_caste/king/conqueror/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
