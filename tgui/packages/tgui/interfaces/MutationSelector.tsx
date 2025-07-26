@@ -22,7 +22,7 @@ type MutationBarData = {
   already_has_shell: BooleanLike;
   already_has_spur: BooleanLike;
   already_has_veil: BooleanLike;
-  disks_completed: BooleanLike;
+  disks_completed: number;
 };
 
 type MutationData = {
