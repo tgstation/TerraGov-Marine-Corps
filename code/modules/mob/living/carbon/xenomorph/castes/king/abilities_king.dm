@@ -82,13 +82,12 @@
 
 	finish_charging()
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
-	for(var/mob/living/carbon/carbon_viewer in view(PETRIFY_RANGE, owner.loc))
+	for(var/mob/living/carbon/carbon_viewer in get_hearers_in_view(PETRIFY_RANGE, owner.loc))
 		if(isxeno(carbon_viewer))
 			if(!petrify_armor)
 				continue
 			var/mob/living/carbon/xenomorph/xenomorph_viewer = carbon_viewer
-			var/datum/armor/attaching_armor = getArmor()
-			attaching_armor = attaching_armor.modifyAllRatings(petrify_armor)
+			var/datum/armor/attaching_armor = getArmor(petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor)
 			xenomorph_viewer.soft_armor = xenomorph_viewer.soft_armor.attachArmor(attaching_armor)
 			viewing_xenomorphs[xenomorph_viewer] = attaching_armor
 		if(!ishuman(carbon_viewer) || is_blind(carbon_viewer))
