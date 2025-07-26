@@ -88,12 +88,6 @@ SUBSYSTEM_DEF(points)
 		return
 	xeno_tactical_points_by_hive[hivenumber] += amount
 
-/// Add amount of biomass to the selected hive only if the gamemode support biomass.
-/datum/controller/subsystem/points/proc/add_biomass_points(hivenumber, amount)
-	if(!CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_BIOMASS_POINTS))
-		return
-	xeno_biomass_points_by_hive[hivenumber] += amount
-
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/living/user)
 	var/cost = 0
 	for(var/i in O.pack)
