@@ -133,7 +133,7 @@
 	/// For each structure, the chance of dodging a projectile or thrown object.
 	var/chance_per_structure = 10
 	/// If a projectile's accuracy is above this value, then the dodge chance is decreased by each point above it.
-	var/accuracy_reduction_threshold = 100
+	var/accuracy_reduction_threshold = 75
 
 /datum/mutation_upgrade/shell/ingrained_evasion/get_desc_for_alert(new_amount)
 	if(!new_amount)
