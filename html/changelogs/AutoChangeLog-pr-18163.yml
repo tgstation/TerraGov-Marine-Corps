@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Bloodthirster now has 3 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
+  - spellcheck: "Mutations: The description for Little More has been changed to be more accurate about what it does."
