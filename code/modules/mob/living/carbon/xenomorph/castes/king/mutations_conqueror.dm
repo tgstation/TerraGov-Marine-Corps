@@ -121,5 +121,5 @@
 	dash_ability.set_maximum_charges(get_dashes(new_amount), initial(dash_ability.cooldown_duration) * (cooldown_multiplier_initial))
 
 /// Returns the amount of additional uses that Dash should get.
-/datum/mutation_upgrade/veil/dasher/proc/get_dashes(structure_count, include_initial = TRUE)
-	return (include_initial ? 1 : 0) + (charges_per_structure * structure_count)
+/datum/mutation_upgrade/veil/dasher/proc/get_dashes(structure_count)
+	return 1 + (charges_per_structure * structure_count)
