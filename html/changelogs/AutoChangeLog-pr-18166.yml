@@ -1,0 +1,4 @@
+author: "Rug-Dealer"
+delete-after: True
+changes:
+  - qol: "Compasses now store the last set of coordinates they found, which can be transmitted to mortars by clicking on them."

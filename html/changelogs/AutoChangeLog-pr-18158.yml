@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Various multitile objects allow you to walk around on top of them normally, instead of being stuck in place"

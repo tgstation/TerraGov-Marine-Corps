@@ -109,8 +109,6 @@
 	var/list/spit_types
 
 	// *** Acid spray *** //
-	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
-	var/acid_spray_range = 0
 	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
 	var/acid_spray_duration = 1
 	///The damage acid spray causes on hit.
@@ -358,7 +356,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/selected_resin = /turf/closed/wall/resin/regenerating
 	//which special resin structure to build when we secrete special resin
 	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/bulletproof
-	///which reagent to slash with using reagent slash
+	/// Which reagent to slash with using reagent slash. Use `set_selected_reagent` when changing this.
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
 	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
@@ -460,3 +458,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/mob/living/carbon/xenomorph/xeno = attacker
 	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
 	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
+
+/// Sets the xenomorph's selected reagent & sends a signal indicating that it happened.
+/mob/living/carbon/xenomorph/proc/set_selected_reagent(datum/reagent/new_reagent_typepath)
+	if(selected_reagent == new_reagent_typepath)
+		return
+	SEND_SIGNAL(src, COMSIG_XENO_SELECTED_REAGENT_CHANGED, selected_reagent, new_reagent_typepath)
+	selected_reagent = new_reagent_typepath

@@ -119,21 +119,13 @@
 
 	return damage
 
-///Handles overheal for xeno receiving damage
-#define HANDLE_OVERHEAL(amount) \
-	if(overheal && amount > 0) { \
-		var/reduction = min(amount, overheal); \
-		amount -= reduction; \
-		adjustOverheal(src, -reduction); \
-	} \
-
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE, passive = FALSE)
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod, passive)
 	for(var/i in amount_mod)
 		amount -= i
-
-	HANDLE_OVERHEAL(amount)
+	if(overheal && amount > 0)
+		amount += adjustOverheal(-min(amount, overheal))
 
 	bruteloss = max(bruteloss + amount, 0)
 
@@ -145,15 +137,13 @@
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod, passive)
 	for(var/i in amount_mod)
 		amount -= i
-
-	HANDLE_OVERHEAL(amount)
+	if(overheal && amount > 0)
+		amount += adjustOverheal(-min(amount, overheal))
 
 	fireloss = max(fireloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
-
-#undef HANDLE_OVERHEAL
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1, sharp = FALSE, edge = FALSE)
 	if(!damage)
@@ -191,3 +181,13 @@
 				if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
 					victim.emote("scream")
 				victim.take_overall_damage(rand(15, 30), BURN, ACID, updating_health = TRUE)
+
+/// Changes xenomorph's overheal by an amount. Returns how much it was changed by.
+/mob/living/carbon/xenomorph/proc/adjustOverheal(amount)
+	var/old_overheal = overheal
+	overheal = clamp(overheal + amount, 0, xeno_caste.overheal_max)
+	if(overheal > 0)
+		add_filter("overheal_vis", 1, outline_filter(4 * (overheal / xeno_caste.overheal_max), "#60ce6f60"));
+	else
+		remove_filter("overheal_vis");
+	return (overheal - old_overheal)

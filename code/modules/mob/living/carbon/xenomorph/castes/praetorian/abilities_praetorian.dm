@@ -6,6 +6,8 @@
 	desc = "Spray a cone of dangerous acid at your target."
 	ability_cost = 300
 	cooldown_duration = 40 SECONDS
+	/// How will far can the acid go? Tile underneath starts at 1.
+	var/range = 5
 
 /datum/action/ability/activable/xeno/spray_acid/cone/use_ability(atom/A)
 	var/turf/target = get_turf(A)
@@ -29,7 +31,7 @@
 	span_xenowarning("We spew forth a cone of acid!"), null, 5)
 
 	xeno_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 1)
-	start_acid_spray_cone(target, xeno_owner.xeno_caste.acid_spray_range)
+	start_acid_spray_cone(target, range)
 	add_cooldown()
 	addtimer(CALLBACK(src, PROC_REF(reset_speed)), rand(2 SECONDS, 3 SECONDS))
 
@@ -92,7 +94,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/xenomorph/spray/spray = xenomorph_spray(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner)
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
-		A.acid_spray_act(owner)
+		// There would of been a snowflake check for carbons to paralyze them for the sake of making their density to FALSE and allowing it to continue,
+		// however, we want the spray to work on them and do things like statistics and damage. So, we tell it to skip the cooldown.
+		A.acid_spray_act(owner, TRUE)
 		if(((A.density && !(A.allow_pass_flags & PASS_PROJECTILE) && !(A.atom_flags & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
@@ -118,6 +122,16 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		do_acid_cone_spray(next_normal_turf, distance_left - 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, spray)
 		do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, (distance_left < 5) ? CONE_PART_MIDDLE : CONE_PART_MIDDLE_DIAG, spray)
 
+/datum/action/ability/activable/xeno/spray_acid/cone/circle
+	name = "Spray Acid Circle"
+	desc = "Spray a cone of dangerous acid around you."
+
+/datum/action/ability/activable/xeno/spray_acid/cone/circle/start_acid_spray_cone(turf/T, range)
+	for(var/direction in GLOB.alldirs)
+		if(direction in GLOB.cardinals)
+			do_acid_cone_spray(xeno_owner.loc, range, direction, CONE_PART_MIDDLE, xeno_owner, TRUE)
+		else
+			do_acid_cone_spray(xeno_owner.loc, range, direction, CONE_PART_MIDDLE_DIAG, xeno_owner, TRUE)
 
 // ***************************************
 // *********** Slime Grenade
