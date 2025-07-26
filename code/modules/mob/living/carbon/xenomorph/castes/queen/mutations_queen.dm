@@ -130,7 +130,7 @@
 		ozelomelyn_ability.remove_action(xenomorph_owner)
 		qdel(ozelomelyn_ability)
 
-/// Returns the multiplier of Neurotoxin Sting's initial sting amount to add to the ability..
+/// Returns the multiplier of Neurotoxin Sting's initial sting amount to add to the ability.
 /datum/mutation_upgrade/spur/alternative_sting/proc/get_multiplier(structure_count)
 	return multiplier_per_structure * structure_count
 
