@@ -1,5 +1,0 @@
-author: "Rug-Dealer"
-delete-after: True
-changes:
-  - rscadd: "Strapping strappable items (non-harvester melees and shields) can now be done via keybind."
-  - spellcheck: "Rocket sledge mode change specifies \"unique action\" and not \"spacebar\"."

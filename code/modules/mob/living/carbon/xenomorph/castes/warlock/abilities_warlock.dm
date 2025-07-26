@@ -610,7 +610,7 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/action_activate()
-	if(xeno_owner.selected_ability != src || !length(selectable_ammo_types))
+	if(xeno_owner.selected_ability != src || !length(selectable_ammo_types) || particle_holder)
 		return ..()
 
 	var/found_pos = selectable_ammo_types.Find(xeno_owner.ammo.type)
