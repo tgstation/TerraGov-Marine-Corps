@@ -27,7 +27,7 @@
 	.["shell_chambers"] = length(xenomorph_user.hive.shell_chambers)
 	.["spur_chambers"] = length(xenomorph_user.hive.spur_chambers)
 	.["veil_chambers"] = length(xenomorph_user.hive.veil_chambers)
-	.["disks_completed"] = HAS_TRAIT(user, VALHALLA_TRAIT) ? 3 : length(completed_disk_colors)
+	.["disks_completed"] = HAS_TRAIT(xenomorph_user, TRAIT_VALHALLA_XENO) ? 3 : length(completed_disk_colors)
 
 /datum/mutation_datum/ui_static_data(mob/user)
 	. = ..()
@@ -104,7 +104,7 @@
 	if(xenomorph_purchaser.fortify)
 		to_chat(xenomorph_purchaser, span_warning("You cannot buy mutations while fortified!"))
 		return FALSE
-	if(!HAS_TRAIT(xenomorph_purchaser, VALHALLA_TRAIT) && length(xenomorph_purchaser.owned_mutations) >= length(completed_disk_colors)) // Checking if buying another would put us over the completed disk count.
+	if(!HAS_TRAIT(xenomorph_purchaser, TRAIT_VALHALLA_XENO) && length(xenomorph_purchaser.owned_mutations) >= length(completed_disk_colors)) // Checking if buying another would put us over the completed disk count.
 		to_chat(xenomorph_purchaser, span_warning("The hive hasn't developed enough to get another mutation..."))
 		return FALSE
 	if(has_mutation(xenomorph_purchaser, mutation_typepath))

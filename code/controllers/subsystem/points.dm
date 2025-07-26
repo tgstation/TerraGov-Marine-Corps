@@ -16,8 +16,6 @@ SUBSYSTEM_DEF(points)
 	var/list/xeno_strategic_points_by_hive = list()
 	///Assoc list of xeno tactical points: xeno_tactical_points_by_hive["hivenum"]
 	var/list/xeno_tactical_points_by_hive = list()
-	/// Association list of xeno biomass points: xeno_biomass_points_by_hive["hivenum"]
-	var/list/xeno_biomass_points_by_hive = list()
 
 	var/ordernum = 1					//order number given to next order
 
