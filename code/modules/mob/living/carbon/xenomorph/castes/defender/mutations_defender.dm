@@ -126,7 +126,7 @@
 //*********************//
 /datum/mutation_upgrade/spur/breathtaking_spin
 	name = "Breathtaking Spin"
-	desc = "Tail Swipe deals stamina damage instead. It no longer paralyzes and deals 1.5x/1.5/1.75x more damage."
+	desc = "Tail Swipe deals stamina damage instead. It no longer paralyzes and deals 1.5x/1.75/2x more damage."
 	/// For the first structure, the amount to increase Tail Swipe's damage multiplier by.
 	var/damage_multiplier_initial = 1.25
 	/// For each structure, the amount to increase Tail Swipe's damage multiplier by.
