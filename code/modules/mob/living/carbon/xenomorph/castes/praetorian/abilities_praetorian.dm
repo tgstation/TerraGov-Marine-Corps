@@ -456,6 +456,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
 	)
+	/// If the owner is on fire, should they be extinguished while spreading it to the affected as melting fire?
+	var/spreads_fire = FALSE
 
 /datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
 	. = ..()
@@ -471,8 +473,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps its tail in a low circle!"))
 
 	var/damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier))
-
 	var/list/inrange = orange(1, xeno_owner)
+	var/melting_fire_stacks
+	if(spreads_fire && xeno_owner.is_on_fire())
+		melting_fire_stacks += xeno_owner.fire_stacks
+		var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(melting_fire)
+			melting_fire_stacks += melting_fire.stacks
+		xeno_owner.ExtinguishMob()
 
 	for (var/mob/living/carbon/human/living_target in inrange)
 		if(living_target.stat == DEAD)
@@ -485,6 +493,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		living_target.AdjustKnockdown(buffed ? 1 SECONDS : 0.5 SECONDS)
 		living_target.adjust_stagger(buffed ? 3 SECONDS : 1.5 SECONDS)
 		living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
+		if(melting_fire_stacks)
+			var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			if(melting_fire)
+				melting_fire.add_stacks(melting_fire_stacks)
+			else
+				living_target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, melting_fire_stacks)
+
 	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "dancer_tail_trip"), 0.6 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(remove_swing), swing), 3 SECONDS)
 	succeed_activate()
@@ -518,6 +533,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAILHOOK,
 	)
+	/// If the owner is on fire, should they be extinguished while spreading it to the affected as melting fire?
+	var/spreads_fire = FALSE
+	/// How far will the affected be pulled towards the owner? If negative, will push them away instead.
+	var/pull_distance = 1
+	/// How much additional damage should the affected take? This is a flat increase of damage.
+	var/bonus_damage = 0
 
 /datum/action/ability/activable/xeno/tail_hook/use_ability(atom/target_atom)
 	. = ..()
@@ -530,8 +551,15 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] swings the hook on its tail through the air!"))
 
-	var/damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) / 2)
+	var/damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) / 2) + bonus_damage
 	var/list/inrange = orange(2, xeno_owner)
+	var/melting_fire_stacks
+	if(spreads_fire && xeno_owner.is_on_fire())
+		melting_fire_stacks += xeno_owner.fire_stacks
+		var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(melting_fire)
+			melting_fire_stacks += melting_fire.stacks
+		xeno_owner.ExtinguishMob()
 
 	for (var/mob/living/carbon/human/living_target in inrange)
 		var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, living_target))
@@ -546,10 +574,19 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		living_target.Shake(duration = 0.1 SECONDS)
 		living_target.spin(2 SECONDS, 1)
 
-		living_target.throw_at(xeno_owner, 1, 3, xeno_owner)
+		if(pull_distance > 0) // Inward (positive)
+			living_target.throw_at(xeno_owner, pull_distance, 3, xeno_owner)
+		else if(pull_distance < 0) // Outward (negative)
+			living_target.knockback(xeno_owner, -pull_distance, 1)
 		living_target.adjust_slowdown(buffed? 0.9 : 0.3)
 		if(buffed)
 			living_target.AdjustKnockdown(0.1 SECONDS)
+		if(melting_fire_stacks)
+			var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			if(melting_fire)
+				melting_fire.add_stacks(melting_fire_stacks)
+			else
+				living_target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, melting_fire_stacks)
 
 	addtimer(CALLBACK(src, PROC_REF(remove_swing), hook), 3 SECONDS) //Remove cool SFX
 	succeed_activate()
