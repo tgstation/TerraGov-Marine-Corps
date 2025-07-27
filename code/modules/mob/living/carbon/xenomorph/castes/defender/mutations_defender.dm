@@ -67,7 +67,7 @@
 		return
 	if(proj.distance_travelled >= 2)
 		return
-		proj.damage *= 1.1
+	proj.damage *= 1.1
 
 /// Returns the amount of bullet armor that should be given.
 /datum/mutation_upgrade/shell/brittle_upclose/proc/get_bullet_armor(structure_count, include_initial = TRUE)
