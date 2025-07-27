@@ -174,6 +174,7 @@
 
 ///Any changes when a xeno with this ability evolves
 /datum/action/ability/proc/on_xeno_upgrade()
+	SIGNAL_HANDLER
 	return
 
 /datum/action/ability/activable

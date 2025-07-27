@@ -52,6 +52,12 @@
 		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/flesh_for_life,
+		/datum/mutation_upgrade/spur/suffocating_presence,
+		/datum/mutation_upgrade/veil/shifting_costs
+	)
+
 /datum/xeno_caste/puppeteer/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

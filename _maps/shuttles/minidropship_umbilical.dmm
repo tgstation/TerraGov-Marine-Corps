@@ -145,7 +145,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/transparent/dark_blue/full,
-/obj/machinery/door_control{
+/obj/machinery/door_control/minidropship{
 	dir = 4;
 	id = "minidropship_podlock";
 	name = "inner door-control";

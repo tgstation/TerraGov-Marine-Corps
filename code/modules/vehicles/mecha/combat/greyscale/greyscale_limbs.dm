@@ -338,11 +338,18 @@
 	weight = 50
 	greyscale_type = /datum/greyscale_config/mech_recon/torso
 
+/datum/mech_limb/torso/recon/hvh
+	health_set = 450
+	repairpacks = 1
+
 /datum/mech_limb/torso/assault
 	health_set = 700
 	repairpacks = 2
 	weight = 80
 	greyscale_type = /datum/greyscale_config/mech_assault/torso
+
+/datum/mech_limb/torso/assault/hvh
+	repairpacks = 1
 
 /datum/mech_limb/torso/vanguard
 	health_set = 1000

@@ -707,11 +707,11 @@
 	id = "dread"
 	status_type = STATUS_EFFECT_REPLACE
 	tick_interval = 2 SECONDS
+	duration = 6 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/dread
 
-/datum/status_effect/dread/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/dread/on_creation(mob/living/new_owner)
 	owner = new_owner
-	duration = set_duration
 	return ..()
 
 /datum/status_effect/dread/tick(delta_time)
@@ -728,6 +728,29 @@
 /datum/status_effect/dread/on_remove()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_XENO_DREAD)
 	return ..()
+
+/atom/movable/screen/alert/status_effect/draining_dread
+	name = "Draining Dread"
+	desc = "A dreadful presence. You take constant stamina damage until this expires."
+	icon_state = "dread"
+
+/datum/status_effect/draining_dread
+	id = "draining_dread"
+	status_type = STATUS_EFFECT_REPLACE
+	duration = 6 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/draining_dread
+	var/stamina_damage = 4
+
+/datum/status_effect/draining_dread/on_creation(mob/living/new_owner, set_stamina_damage)
+	owner = new_owner
+	if(set_stamina_damage)
+		stamina_damage = set_stamina_damage
+	return ..()
+
+/datum/status_effect/draining_dread/tick(delta_time)
+	. = ..()
+	owner.do_jitter_animation(250)
+	owner.adjustStaminaLoss(stamina_damage)
 
 // ***************************************
 // *********** Melting

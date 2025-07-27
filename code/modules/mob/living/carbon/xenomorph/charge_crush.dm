@@ -399,9 +399,19 @@
 			crush_sound = SFX_ALIEN_TAIL_ATTACK
 			to_chat(owner, span_notice("Now goring on impact."))
 
+/datum/action/ability/xeno_action/ready_charge/bull_charge/give_action(mob/living/carbon/xenomorph/given_to_xenomorph)
+	if(given_to_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+		agile_charge = TRUE
+	return ..()
+
+/datum/action/ability/xeno_action/ready_charge/bull_charge/remove_action(mob/living/carbon/xenomorph/removed_from_xenomorph)
+	if(removed_from_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+		agile_charge = FALSE
+	return ..()
+
 /datum/action/ability/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
-	var/mob/living/carbon/xenomorph/X = owner
-	agile_charge = (X.upgrade == XENO_UPGRADE_PRIMO)
+	. = ..()
+	agile_charge = (xeno_owner.upgrade == XENO_UPGRADE_PRIMO)
 
 /datum/action/ability/xeno_action/ready_charge/bull_charge/handle_momentum()
 	. = ..()

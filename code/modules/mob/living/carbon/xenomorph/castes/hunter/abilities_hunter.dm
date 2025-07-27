@@ -48,7 +48,12 @@
 	///Sneak attack armor penetration value
 	var/sneak_attack_armor_pen = HUNTER_SNEAK_SLASH_ARMOR_PEN
 	///Damage taken during stealth
+	/// Damage taken during Stealth.
 	var/total_damage_taken = 0
+	/// How long in deciseconds should Sneak Attack stun/paralyze for?
+	var/sneak_attack_stun_duration = 1 SECONDS
+	/// The multiplier to add as damage on Sneak Attack.
+	var/bonus_stealth_damage_multiplier = 0
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -235,6 +240,8 @@
 	else
 		armor_mod += sneak_attack_armor_pen
 		flavour = "deadly"
+	if(bonus_stealth_damage_multiplier)
+		damage_mod += xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * bonus_stealth_damage_multiplier
 
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
@@ -246,7 +253,8 @@
 		armor_mod += sneak_attack_armor_pen //should double it.
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
-	target.ParalyzeNoChain(paralyzesecs)
+	if(sneak_attack_stun_duration)
+		target.ParalyzeNoChain(sneak_attack_stun_duration)
 	GLOB.round_statistics.hunter_cloak_victims++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_cloak_victims")
 
@@ -592,17 +600,19 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MIRAGE,
 	)
 	cooldown_duration = 33 SECONDS
-	///How long will the illusions live
+	/// How long will the illusions live?
 	var/illusion_life_time = 10 SECONDS
-	///How many illusions are created
+	/// How many illusions should be created?
 	var/illusion_count = 3
-	/// List of illusions
+	/// List of illusions.
 	var/list/mob/illusion/illusions = list()
-	/// If swap has been used during the current set of illusions
+	/// Has the ability been used to swap to the current set of illusion yet?
 	var/swap_used = FALSE
+	/// The illusion that will take priority when mirage swapping.
+	var/mob/illusion/xeno/prioritized_illusion
 
 /datum/action/ability/xeno_action/mirage/remove_action()
-	illusions = list() //the actual illusions fade on their own, and the cooldown object may be qdel'd
+	illusions = list() // No need to manually delete the illusions as the illusions will delete themselves once their life time expires.
 	return ..()
 
 /datum/action/ability/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)
@@ -621,7 +631,7 @@
 	else
 		swap()
 
-/// Spawns a set of illusions around the hunter
+/// Spawns a set of illusions around the hunter.
 /datum/action/ability/xeno_action/mirage/proc/spawn_illusions()
 	var/mob/illusion/xeno/center_illusion = new (owner.loc, owner, owner, illusion_life_time)
 	for(var/i in 1 to (illusion_count - 1))
@@ -629,23 +639,23 @@
 	illusions += center_illusion
 	addtimer(CALLBACK(src, PROC_REF(clean_illusions)), illusion_life_time)
 
-/// Clean up the illusions list
+/// Clean up the illusions list.
 /datum/action/ability/xeno_action/mirage/proc/clean_illusions()
 	illusions = list()
 	add_cooldown()
 	swap_used = FALSE
 
-/// Swap places of hunter and an illusion
+/// Swap places of hunter and an illusion.
 /datum/action/ability/xeno_action/mirage/proc/swap()
 	swap_used = TRUE
-	if(!length(illusions))
+	if(!length(illusions) && !prioritized_illusion)
 		to_chat(xeno_owner, span_xenowarning("We have no illusions to swap with!"))
 		return
 
 	xeno_owner.playsound_local(xeno_owner, 'sound/effects/swap.ogg', 10, 0, 1)
 	var/turf/current_turf = get_turf(xeno_owner)
 
-	var/mob/selected_illusion = illusions[1]
+	var/mob/selected_illusion = prioritized_illusion ? prioritized_illusion : illusions[1]
 	if(selected_illusion.z != xeno_owner.z)
 		return
 	SEND_SIGNAL(xeno_owner, COMSIG_XENOABILITY_MIRAGE_SWAP)
@@ -666,6 +676,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
 	)
 	cooldown_duration = HUNTER_SILENCE_COOLDOWN
+	/// The multiplier of Silence's effects to the victim that the owner has selected with Hunter's Mark.
+	var/hunter_mark_multiplier = HUNTER_SILENCE_MULTIPLIER
 
 /datum/action/ability/activable/xeno/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
 	if(owner.status_flags & INCORPOREAL)
@@ -706,7 +718,7 @@
 		var/silence_multiplier = 1
 		var/datum/action/ability/activable/xeno/hunter_mark/mark_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 		if(mark_action?.marked_target == target) //Double debuff stacks for the marked target
-			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
+			silence_multiplier = hunter_mark_multiplier
 		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
 		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
 		target.adjust_stagger(HUNTER_SILENCE_STAGGER_DURATION * silence_multiplier)

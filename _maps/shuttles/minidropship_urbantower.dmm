@@ -47,7 +47,7 @@
 /obj/structure/bed/chair/dropship/pilot,
 /obj/structure/closet/crate/delta,
 /obj/item/book/manual/engineering_construction,
-/obj/machinery/door_control{
+/obj/machinery/door_control/minidropship{
 	id = "minidropship_podlock";
 	name = "inner door-control"
 	},

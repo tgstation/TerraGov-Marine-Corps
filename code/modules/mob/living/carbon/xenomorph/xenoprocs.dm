@@ -444,25 +444,25 @@
 
 
 // this mess will be fixed by obj damage refactor
-/atom/proc/acid_spray_act(mob/living/carbon/xenomorph/X)
+/atom/proc/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	return TRUE
 
-/obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
 	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return TRUE // normal density flag
 
-/obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	take_damage(2 * X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return FALSE // not normal density flag
 
-/mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X)
+/mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	ExtinguishMob()
 	if(isnestedhost(src))
 		return
 
-	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ACID))
+	if(!skip_cooldown && TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ACID))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
 
@@ -482,13 +482,13 @@
 	emote("scream")
 	Paralyze(2 SECONDS)
 
-/mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
+/mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	ExtinguishMob()
 
-/obj/fire/flamer/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/fire/flamer/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	qdel(src)
 
-/obj/hitbox/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/hitbox/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return TRUE
 

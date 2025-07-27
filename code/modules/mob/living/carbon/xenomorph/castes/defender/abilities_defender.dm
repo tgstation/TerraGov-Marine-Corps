@@ -189,6 +189,7 @@
 	last_crest_bonus = xeno_owner.xeno_caste.crest_defense_armor
 
 /datum/action/ability/xeno_action/toggle_crest_defense/on_xeno_upgrade()
+	. = ..()
 	if(xeno_owner.crest_defense)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-last_crest_bonus)
 		last_crest_bonus = xeno_owner.xeno_caste.crest_defense_armor
@@ -269,6 +270,7 @@
 	last_fortify_bonus = xeno_owner.xeno_caste.fortify_armor
 
 /datum/action/ability/xeno_action/fortify/on_xeno_upgrade()
+	. = ..()
 	if(xeno_owner.fortify)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-last_fortify_bonus)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(BOMB = -last_fortify_bonus)

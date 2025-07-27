@@ -553,7 +553,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/owner_heal = healing_on_hit
 	HEAL_XENO_DAMAGE(owner_xeno, owner_heal, FALSE)
-	adjustOverheal(owner_xeno, owner_heal * 0.5)
+	owner_xeno.adjustOverheal(owner_heal * 0.5)
 
 	if(plasma_mod >= HIGN_THRESHOLD)
 		owner_xeno.AdjustImmobilized(KNOCKDOWN_DURATION)
@@ -614,7 +614,7 @@
 		return
 	var/heal_amount = X.maxHealth * 0.08
 	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
-	adjustOverheal(X, heal_amount / 2)
+	X.adjustOverheal(heal_amount / 2)
 	X.use_plasma(plasma_drain)
 
 // ***************************************

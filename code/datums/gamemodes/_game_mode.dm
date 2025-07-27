@@ -523,6 +523,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used psychic shield."
 	if(GLOB.round_statistics.psy_shield_blasts)
 		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a psychic shield."
+	if(GLOB.round_statistics.transfusion_overheal)
+		parts += "[GLOB.round_statistics.transfusion_overheal] points of overhealing were given by Gorgers through Transfusion."
 	if(GLOB.round_statistics.larva_from_psydrain)
 		parts += "[GLOB.round_statistics.larva_from_psydrain] larvas came from psydrain."
 	if(GLOB.round_statistics.larva_from_silo)

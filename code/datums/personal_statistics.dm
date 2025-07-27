@@ -365,7 +365,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_traps_created * 4
 	credit_bonus += mission_grenades_primed * 2
 	credit_bonus += mission_heals * 1
-	credit_bonus += integrity_repaired * 0.1
+	credit_bonus += mission_integrity_repaired * 0.1
 
 	return max(floor(credit_bonus), 0)
 

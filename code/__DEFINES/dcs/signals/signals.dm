@@ -90,6 +90,7 @@
 
 //Signals for shuttle
 #define COMSIG_GLOB_SHUTTLE_TAKEOFF "!shuttle_take_off"
+#define COMSIG_GLOB_TADPOLE_SHUTTER "!shutter_toggle"
 
 /// sent after world.maxx and/or world.maxy are expanded: (has_exapnded_world_maxx, has_expanded_world_maxy)
 #define COMSIG_GLOB_EXPANDED_WORLD_BOUNDS "!expanded_world_bounds"
@@ -857,6 +858,8 @@
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
 #define COMSIG_XENOMORPH_LEAP_BUMP "xenomorph_leap_bump" //from /mob/living/carbon/xenomorph/bump
+
+#define COMSIG_XENO_SELECTED_REAGENT_CHANGED "xenomorph_selected_reagent_changed" // from [/mob/living/carbon/xenomorph/set_selected_reagent]: (/datum/reagent/old_reagent_typepath, /datum/reagent/new_reagent_typepath)
 
 #define COMSIG_XENO_DRAIN_HIT "xeno_drain_hit"
 #define COMSIG_XENO_CARNAGE_HIT "xeno_carnage_hit"

@@ -86,7 +86,7 @@
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
-	xeno_owner.selected_reagent = GLOB.baneling_chem_type_list[rand(1,length(GLOB.baneling_chem_type_list))]
+	xeno_owner.set_selected_reagent(GLOB.baneling_chem_type_list[rand(1,length(GLOB.baneling_chem_type_list))])
 	return TRUE
 
 // ***************************************
@@ -104,7 +104,7 @@
 
 /datum/action/ability/xeno_action/select_reagent/baneling/give_action(mob/living/L)
 	. = ..()
-	xeno_owner.selected_reagent = GLOB.baneling_chem_type_list[1]
+	xeno_owner.set_selected_reagent(GLOB.baneling_chem_type_list[1])
 	update_button_icon() //Update immediately to get our default
 
 /datum/action/ability/xeno_action/select_reagent/baneling/action_activate()
@@ -129,7 +129,7 @@
 	for(var/toxin in GLOB.baneling_chem_type_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
 		if(R.name == toxin_choice)
-			xeno_owner.selected_reagent = R.type
+			xeno_owner.set_selected_reagent(R.type)
 			break
 	xeno_owner.balloon_alert(xeno_owner, "[toxin_choice]")
 	update_button_icon()

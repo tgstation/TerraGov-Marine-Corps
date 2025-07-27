@@ -8456,6 +8456,10 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"lWY" = (
+/obj/machinery/vending/mech_vendor,
+/turf/open/floor/plating,
+/area/centcom/valhalla)
 "lXm" = (
 /obj/machinery/power/smes{
 	charge = 5e+006
@@ -21604,7 +21608,7 @@ wJM
 jFD
 ivs
 ivs
-boq
+lWY
 boq
 boq
 boq
