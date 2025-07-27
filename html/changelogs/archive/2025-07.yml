@@ -290,3 +290,35 @@
   tomboy:
   - rscadd: Add sh-410, new marine autoshotgun in marine weapon vendors and also valhalla
       vendors
+2025-07-27:
+  Lumipharon:
+  - code_imp: Removed some redundant imitation sidemap overlays
+  - qol: Various multitile objects allow you to walk around on top of them normally,
+      instead of being stuck in place
+  - balance: EMP's slowdown mechs
+  Rug-Dealer:
+  - qol: Compasses now store the last set of coordinates they found, which can be
+      transmitted to mortars by clicking on them.
+  Runian:
+  - bugfix: Warlock can no longer switch their ammo type while Psychic Blast is in
+      the process of firing.
+  - balance: 'Mutations: The gas from Wide Gas is now significantly easier to see
+      through.'
+  - bugfix: 'Mutations: Unmoving Link now correctly grants armor.'
+  - bugfix: 'Mutations: Gaseous Spray now accounts for Primordial Boiler''s lance
+      globs.'
+  - bugfix: 'Mutations: The illusion from Fleeting Mirage now correctly flees instead
+      of standing still.'
+  - rscadd: Puppeteer now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Widow now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Bloodthirster now has 3 new mutations that they can purchase if their
+      hive has enough biomass and mutation structures. Not accessible without admin
+      intervention for now.
+  - spellcheck: 'Mutations: The description for Little More has been changed to be
+      more accurate about what it does.'
+  TheRealMrN:
+  - rscadd: Added a mech weapons vendor to Valhalla
