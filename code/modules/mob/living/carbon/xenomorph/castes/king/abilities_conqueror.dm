@@ -41,12 +41,20 @@
 	set_toggle(TRUE)
 	enable_ability()
 	add_button_visuals()
+	restore_charge(0)
+	if(charge_restoration_timer)
+		START_PROCESSING(SSprocessing, src)
 
 /datum/action/ability/xeno_action/conqueror_dash/remove_action(mob/living/L)
 	toggled = FALSE
 	set_toggle(FALSE)
 	disable_ability()
 	remove_button_visuals()
+	if(datum_flags & DF_ISPROCESSING)
+		STOP_PROCESSING(SSprocessing, src)
+	if(charge_restoration_timer)
+		deltimer(charge_restoration_timer)
+		charge_restoration_timer = null
 	return ..()
 
 /datum/action/ability/xeno_action/conqueror_dash/update_button_icon()
