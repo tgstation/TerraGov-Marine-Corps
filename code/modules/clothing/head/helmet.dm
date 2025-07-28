@@ -297,7 +297,7 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc
 	name = "\improper M4 pattern PMC open helmet"
-	desc = "An open version of standart enclosed helmets. It lacks filtration and HUD systems, but the ease of use and price make it a good choice for low ranking mercenaries and security."
+	desc = "An open version of standard enclosed helmets. It lacks filtration and HUD systems, but the ease of use and price make it a good choice for low ranking mercenaries and security."
 	icon_state = "pmc_helmet"
 	soft_armor = list(MELEE = 65, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 30, FIRE = 45, ACID = 55)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -306,13 +306,25 @@
 	armor_protection_flags = HEAD|FACE|EYES
 	marine_helmet_flags = NONE
 
-/obj/item/clothing/head/helmet/marine/veteran/pmc/standart
+/obj/item/clothing/head/helmet/marine/veteran/pmc/standard
 	name = "\improper M4 Legionary pattern PMC helmet"
-	desc = "Standart issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets."
-	icon_state = "pmc_helmet_standart"
+	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets."
+	icon_state = "pmc_helmet_standard"
 	soft_armor = list(MELEE = 65, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 50, FIRE = 65, ACID = 55)
 	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
+
+/obj/item/clothing/head/helmet/marine/veteran/pmc/standard/stripes
+	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets. You like stripes, don't you?"
+	icon_state = "pmc_helmet_standard_stripes"
+
+/obj/item/clothing/head/helmet/marine/veteran/pmc/standard/twoface
+	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets. You could say we're of two minds on the subject."
+	icon_state = "pmc_helmet_standard_twoface"
+
+/obj/item/clothing/head/helmet/marine/veteran/pmc/standard/mantis
+	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets. You feel quite hungry."
+	icon_state = "pmc_helmet_standard_mantis"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/leader
 	name = "\improper PMC beret"
@@ -346,6 +358,27 @@
 	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 50, FIRE = 65, ACID = 65)
 	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
+
+/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/skull
+	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. It's rattling time."
+	icon_state = "pmc_heavyhelmet_skull"
+
+/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/hunter
+	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. I've got you in my sights."
+	icon_state = "pmc_heavyhelmet_hunter"
+
+/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/joker
+	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You love seeing people smile."
+	icon_state = "pmc_heavyhelmet_joker"
+
+/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/stripes
+	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You like stripes, don't you?"
+	icon_state = "pmc_heavyhelmet_stripes"
+
+/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/leader
+	name = "\improper M7-H Cathaphract pattern PMC officer helmet"
+	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. This particular helmet looks like it belongs to a high-ranking officer."
+	icon_state = "pmc_heavyhelmet_officer"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	name = "\improper PMC commando helmet"

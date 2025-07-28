@@ -282,25 +282,37 @@
 	)
 	item_map_variant_flags = NONE
 
-/obj/item/clothing/suit/storage/marine/veteran/pmc/standart
+/obj/item/clothing/suit/storage/marine/veteran/pmc/standard
 	name = "\improper M4 Legionary pattern PMC armor"
-	desc = "Standart issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets."
-	icon_state = "pmc_armor_standart"
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 20, FIRE = 45, ACID = 45)
+	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets."
+	icon_state = "pmc_armor_standard"
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 20, FIRE = 45, ACID = 45)
 	armor_features_flags = NONE
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge
+	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets. You're no longer a shiny, aren't you?"
+	icon_state = "pmc_armor_standard_sarge"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/standard/joker
+	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets. You're either one of the funniest, or most annoying man in your squad."
+	icon_state = "pmc_armor_standard_joker"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/standard/stripes
+	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets. You like stripes, don't you?"
+	icon_state = "pmc_armor_standard_stripes"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
 	name = "\improper M6 Princeps pattern PMC armor"
-	desc = "A hardened modification of the M4 armor suit. The pinacle of protection and mobility. This particular exemplar looks like it belongs to a high-ranking officer."
+	desc = "A hardened modification of the M4 armor suit. The pinacle of protection and mobility. This particular set looks like it belongs to a high-ranking officer."
 	icon_state = "officer_armor"
-	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
 	name = "\improper M4-L Sagittarii pattern PMC armor"
 	desc = "A lightweight modification of M4 armor suit, designed for prolonged sitting in dangerous enviroments, paying for that with reduced combat protection."
 	icon_state = "pmc_sniper"
-	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 55, ENERGY = 55, BOMB = 40, BIO = 75, FIRE = 75, ACID = 75)
+	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 40, BIO = 75, FIRE = 75, ACID = 75)
 	inventory_flags = BLOCKSHARPOBJ
 	armor_features_flags = NONE
 
@@ -309,8 +321,37 @@
 	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome."
 	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 80, BIO = 30, FIRE = 65, ACID = 65)
+	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 30, FIRE = 65, ACID = 65)
 	armor_features_flags = NONE
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/sarge
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're no longer a shiny, aren't you?"
+	icon_state = "pmc_heavyarmor_sarge"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/joker
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're either one of the funniest, or most annoying man in your squad."
+	icon_state = "pmc_heavyarmor_joker"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/stripes
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You like stripes, don't you?"
+	icon_state = "pmc_heavyarmor_stripes"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/leader
+	name = "\improper M7-H Cathaphract pattern PMC officer exo-armor"
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. This particular set looks like it belongs to a high-ranking officer, with integrated energy shield system."
+	icon_state = "pmc_heavyarmor_officer"
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/pocket,
+		/obj/item/armor_module/module/eshield/overclocked/pmc,
+		)
+	starting_attachments = list(
+		/obj/item/armor_module/storage/pocket,
+		/obj/item/armor_module/module/eshield/overclocked/pmc,
+		)
 
 /*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando

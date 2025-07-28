@@ -319,10 +319,106 @@
 /datum/outfit/job/pmc/standard/campaign
 	ears = /obj/item/radio/headset/mainship
 
+/datum/outfit/job/pmc/standard/sarge/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/sargetwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/sargethree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/sargefour/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/joker/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/jokertwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/stripes/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/stripestwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/stripesthree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/sarge/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/sargetwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/sargethree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/sargefour/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/joker/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/jokertwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/stripes/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/stripestwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/stripesthree/campaign
+	ears = /obj/item/radio/headset/mainship
+
 /datum/outfit/job/pmc/gunner/campaign
 	ears = /obj/item/radio/headset/mainship
 
+/datum/outfit/job/pmc/gunner/sarge/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/sargetwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/sargethree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/sargefour/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/joker/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/jokertwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/jokerthree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/jokerfour/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/stripes/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/stripestwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/stripesthree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/stripes/four/campaign
+	ears = /obj/item/radio/headset/mainship
+
 /datum/outfit/job/pmc/leader/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/leader/gunner/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/icc/standard/mpi_km/campaign

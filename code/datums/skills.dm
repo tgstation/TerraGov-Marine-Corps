@@ -544,6 +544,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/sl/pmc
 	name = "PMC Leader"
 	combat = SKILL_COMBAT_TRAINED
+	smartgun = SKILL_SMART_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
 	smgs = SKILL_SMGS_TRAINED
 	rifles = SKILL_RIFLES_TRAINED

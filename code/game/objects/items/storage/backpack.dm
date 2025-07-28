@@ -198,6 +198,11 @@
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
 
+/obj/item/storage/backpack/satchel/pmc
+	name = "PMC chestrig"
+	desc = "A heavy-duty chestrig used by Nanotrasen PMC contractors."
+	icon_state = "pmc_chestrig"
+
 //ERT backpacks.
 /obj/item/storage/backpack/ert
 	name = "emergency response team backpack"
@@ -851,7 +856,7 @@
 
 /obj/item/storage/backpack/lightpack/pmc
 	name = "PMC bag"
-	desc = "A heavy-duty bag carried by Nanotrasen PMC operatives."
+	desc = "A heavy-duty bag used by Nanotrasen PMC contractors."
 	icon_state = "pmc_bag"
 
 /obj/item/storage/backpack/lightpack/som

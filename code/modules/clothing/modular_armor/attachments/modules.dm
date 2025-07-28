@@ -488,6 +488,15 @@
 	shield_color_mid = LIGHT_COLOR_RED_ORANGE
 	shield_color_full = LIGHT_COLOR_ELECTRIC_CYAN
 
+/obj/item/armor_module/module/eshield/overclocked/pmc
+
+	name = "\improper Hastatus energy shield system"
+	desc = "A new model of energy shield systems, based on Svalinn serie. This version has removed the vulnerability issue, but created the new one with bulkiness of whole system, meaning it can be properly installed only on manufactural level."
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	attach_features_flags = ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	max_shield_health = 45
+	variants_by_parent_type = list(/obj/item/clothing/suit/storage/marine/veteran/pmc = null)
+
 /*
 	Loki illusion projection
 */
