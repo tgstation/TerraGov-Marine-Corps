@@ -19,6 +19,8 @@
 
 #define STATUS_EFFECT_XENO_ESSENCE_LINK /datum/status_effect/stacking/essence_link
 
+#define STATUS_EFFECT_XENO_ESSENCE_LINK_REVENGE /datum/status_effect/essence_link_revenge
+
 #define STATUS_EFFECT_XENO_SALVE_REGEN /datum/status_effect/salve_regen
 
 #define STATUS_EFFECT_XENO_ENHANCEMENT /datum/status_effect/drone_enhancement
@@ -91,6 +93,10 @@
 #define STATUS_EFFECT_SHATTER /datum/status_effect/shatter
 ///recenly hit by a sniper round
 #define STATUS_EFFECT_SNIPED /datum/status_effect/incapacitating/recently_sniped
+// Applies a movement speed multiplier of 0.4 for 6 seconds.
+#define STATUS_EFFECT_DREAD  /datum/status_effect/dread
+/// Deals a variable amount of stamina damage for 6 seconds.
+#define STATUS_EFFECT_DRAINING_DREAD  /datum/status_effect/draining_dread
 
 /////////////
 // NEUTRAL //

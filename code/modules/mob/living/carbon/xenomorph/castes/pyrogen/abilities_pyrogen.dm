@@ -6,11 +6,21 @@
 	action_icon_state = "fireslash"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage depending on how many fire stacks they have."
-	cooldown_duration = 4 SECONDS
+	cooldown_duration = 12 SECONDS
 	ability_cost = 30
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRECHARGE,
 	)
+	// Should they also slash upon hitting a mob?
+	var/should_slash = TRUE
+	/// How much damage is dealt for hitting through a mob?
+	var/charge_damage = PYROGEN_FIRECHARGE_DAMAGE
+	/// How much damage to add for each consumed melting fire stack? Only consumes melting fire stacks if it is above zero.
+	var/stack_damage = PYROGEN_FIRECHARGE_DAMAGE_PER_STACK
+	/// How much stacks of melting fire to add? These stacks are not consumed.
+	var/stacks_to_add = 0
+	/// Upon hitting a mob, should they keep going or stop?
+	var/pierces_mobs = FALSE
 
 /datum/action/ability/activable/xeno/charge/fire_charge/use_ability(atom/target)
 	if(!target)
@@ -45,20 +55,28 @@
 	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
-///Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs
+/// Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs.
 /datum/action/ability/activable/xeno/charge/fire_charge/mob_hit(datum/source, mob/living/living_target)
 	. = TRUE
-	if(living_target.stat || isxeno(living_target) || living_target.status_flags & GODMODE) //we leap past xenos
+	if(living_target.stat || isxeno(living_target) || living_target.status_flags & GODMODE) // We leap past xenos.
 		return
-	living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
-	var/fire_damage = PYROGEN_FIRECHARGE_DAMAGE
-	if(living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE))
-		var/datum/status_effect/stacking/melting_fire/debuff = living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-		fire_damage += debuff.stacks * PYROGEN_FIRECHARGE_DAMAGE_PER_STACK
-		living_target.remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	living_target.take_overall_damage(fire_damage, BURN, FIRE, max_limbs = 2)
-	living_target.hitby(owner)
-
+	if(should_slash)
+		living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
+	var/fire_damage = charge_damage
+	var/datum/status_effect/stacking/melting_fire/debuff = living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	if(!debuff)
+		if(stacks_to_add)
+			living_target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, stacks_to_add, xeno_owner)
+	else
+		var/stacks_to_give = stacks_to_add ? stacks_to_add : 0
+		if(stack_damage)
+			fire_damage += debuff.stacks * stack_damage
+			stacks_to_give -= debuff.stacks
+		debuff.add_stacks(stacks_to_give, xeno_owner)
+	if(fire_damage)
+		living_target.take_overall_damage(fire_damage, BURN, FIRE, max_limbs = 2)
+	if(!pierces_mobs)
+		living_target.hitby(owner)
 
 ///Cleans up after charge is finished
 /datum/action/ability/activable/xeno/charge/fire_charge/charge_complete()
@@ -94,6 +112,8 @@
 	magic_bullshit.fire_at(target, xeno_owner, xeno_owner, PYROGEN_FIREBALL_MAXDIST, PYROGEN_FIREBALL_SPEED)
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.pyrogen_fireballs++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "pyrogen_fireballs")
 
 /datum/action/ability/activable/xeno/fireball/ai_should_start_consider()
 	return TRUE
@@ -157,6 +177,8 @@
 
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.pyrogen_firestorms++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "pyrogen_firestorms")
 
 /datum/action/ability/activable/xeno/firestorm/ai_should_start_consider()
 	return TRUE
@@ -213,6 +235,8 @@
 
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.pyrogen_infernos++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "pyrogen_infernos")
 
 // ***************************************
 // *********** Infernal Trigger

@@ -4,8 +4,16 @@
 	name = "GENERIC CAMPAIGN DESTRUCTION OBJECTIVE"
 	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
 	faction = FACTION_TERRAGOV
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
 	///explosion smoke particle holder
 	var/obj/effect/abstract/particle_holder/explosion_smoke
+
+/obj/structure/campaign_objective/destruction_objective/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/campaign_objective/destruction_objective/Destroy()
 	QDEL_NULL(explosion_smoke)
@@ -60,21 +68,12 @@
 	///destroyed vehicle smoke effect
 	var/smoke_type = /particles/tank_wreck_smoke
 
-/obj/structure/campaign_objective/destruction_objective/mlrs/Initialize(mapload)
-	. = ..()
-	update_icon()
-
 /obj/structure/campaign_objective/destruction_objective/mlrs/update_icon_state()
 	. = ..()
 	if(destroyed_state)
 		icon_state = "[initial(icon_state)]_broken"
 	else
 		icon_state = initial(icon_state)
-
-/obj/structure/campaign_objective/destruction_objective/mlrs/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/plastique_act(mob/living/plastique_user)
 	if(plastique_user && plastique_user.ckey)
@@ -170,15 +169,6 @@
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	bound_width = 128
 
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/Initialize(mapload)
-	. = ..()
-	update_icon()
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
-
 /obj/effect/landmark/campaign_structure/train/carriage
 	name = "carriage objective"
 	icon_state = "carriage_lit"
@@ -206,20 +196,11 @@
 	bound_width = 64
 	faction = FACTION_SOM
 
-/obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack/Initialize(mapload)
-	. = ..()
-	update_icon()
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
-
 //NT base
 /obj/effect/landmark/campaign_structure/nt_pod
 	name = "Mysterious pod"
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
-	icon_state = "alien_pod_mapper"
+	icon_state = "alien_pod"
 	mission_types = list(/datum/campaign_mission/destroy_mission/base_rescue)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/nt_pod
 
@@ -231,14 +212,6 @@
 	bound_height = 64
 	bound_width = 64
 	pixel_y = 10
-
-/obj/structure/campaign_objective/destruction_objective/nt_pod/Initialize(mapload)
-	. = ..()
-	update_appearance(UPDATE_OVERLAYS)
-
-/obj/structure/campaign_objective/destruction_objective/nt_pod/update_overlays()
-	. = ..()
-	. += image(icon, icon_state = "alien_pod_overlay", layer = ABOVE_MOB_LAYER)
 
 /obj/structure/campaign_objective/destruction_objective/nt_pod/Destroy()
 	playsound(loc, 'sound/voice/predalien/death.ogg', 75, 0)

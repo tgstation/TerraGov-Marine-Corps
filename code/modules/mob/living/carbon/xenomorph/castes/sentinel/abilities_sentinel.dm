@@ -51,6 +51,8 @@
 	var/remaining_slashes = 0
 	/// Timer for the ability; we reference this to delete the timer if the effect lapses before the timer does.
 	var/ability_duration
+	/// The amount of health to heal the owner multiplied by stack amount whenever Intoxicated status effect ticks.
+	var/healing_per_stack = 0
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
@@ -77,10 +79,13 @@
 		xeno_target.balloon_alert(xeno_owner, "Immune to Intoxication")
 		return
 	playsound(xeno_target, 'sound/effects/spray3.ogg', 20, TRUE)
-	if(xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
-		var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
+	var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
+	if(debuff)
 		debuff.add_stacks(intoxication_stacks)
-	xeno_target.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks)
+		debuff.xenomorph_to_heal = xeno_owner
+		debuff.healing_per_stack = healing_per_stack
+	else
+		xeno_target.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks, xeno_owner, healing_per_stack)
 	remaining_slashes-- //Decrement the toxic slash count
 	if(!remaining_slashes) //Deactivate if we have no toxic slashes remaining
 		toxic_slash_deactivate(xeno_owner)
@@ -135,6 +140,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
 	)
+	/// How far can the target be in order for the ability to work?
+	var/targetable_range = 1
+	/// If the ability was used from a range that was above 1, then all effects are mulitplied by this value.
+	var/ranged_effectiveness = 0
+	/// If the target has any xeno-chemicals in them, how many units will be counted as one stack of Intoxicated? Only activated if it is more than 1.
+	var/xenochemicals_unit_per_stack = 0
 
 /datum/action/ability/activable/xeno/drain_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -145,8 +156,9 @@
 			A.balloon_alert(owner, "Cannot sting")
 		return FALSE
 	var/mob/living/carbon/target = A
-	if(!owner.Adjacent(target))
-		target.balloon_alert(owner, "Cannot reach")
+	if((get_dist(owner, target) > targetable_range) || !line_of_sight(owner, target))
+		if(!silent)
+			target.balloon_alert(owner, "Cannot reach")
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_INTOXICATION_IMMUNE))
 		target.balloon_alert(owner, "Immune to intoxication")
@@ -158,7 +170,15 @@
 /datum/action/ability/activable/xeno/drain_sting/use_ability(atom/A)
 	var/mob/living/carbon/xeno_target = A
 	var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
-	var/drain_potency = debuff.stacks * SENTINEL_DRAIN_MULTIPLIER
+
+	var/bonus_potency = 0
+	if(xenochemicals_unit_per_stack)
+		for(var/datum/reagent/target_reagent AS in xeno_target.reagents.reagent_list)
+			if(!is_type_in_typecache(target_reagent, GLOB.defiler_toxins_typecache_list))
+				continue
+			bonus_potency += xeno_target.reagents.get_reagent_amount(target_reagent)
+		bonus_potency = round(bonus_potency) / xenochemicals_unit_per_stack
+	var/drain_potency = (debuff.stacks + bonus_potency) * SENTINEL_DRAIN_MULTIPLIER * (xeno_owner.Adjacent(xeno_target) ? 1 : ranged_effectiveness)
 	if(debuff.stacks > debuff.max_stacks - 10)
 		xeno_target.emote("scream")
 		xeno_owner.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
@@ -170,7 +190,7 @@
 	xeno_owner.do_attack_animation(xeno_target, ATTACK_EFFECT_DRAIN_STING)
 	playsound(owner.loc, 'sound/effects/alien/tail_swipe1.ogg', 30)
 	xeno_owner.visible_message(message = span_xenowarning("\A [xeno_owner] stings [xeno_target]!"), self_message = span_xenowarning("We sting [xeno_target]!"))
-	debuff.stacks -= round(debuff.stacks * 0.7)
+	debuff.add_stacks(-round(debuff.stacks * 0.7))
 	succeed_activate()
 	add_cooldown()
 	GLOB.round_statistics.sentinel_drain_stings++

@@ -85,6 +85,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/generator_repairs_performed = 0
 	var/miner_repairs_performed = 0
 	var/apcs_repaired = 0
+	var/acid_applied = 0
 
 	var/generator_sabotages_performed = 0
 	var/miner_sabotages_performed = 0
@@ -272,6 +273,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Gave birth to [huggers_created] hugger\s."
 	if(impregnations)
 		support_stats += "Impregnated [impregnations] host\s."
+	if(acid_applied)
+		support_stats += "Applied acid to [acid_applied] object\s."
 
 	if(LAZYLEN(support_stats))
 		stats += "<hr>"
@@ -361,7 +364,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_traps_created * 4
 	credit_bonus += mission_grenades_primed * 2
 	credit_bonus += mission_heals * 1
-	credit_bonus += integrity_repaired * 0.1
+	credit_bonus += mission_integrity_repaired * 0.1
 
 	return max(floor(credit_bonus), 0)
 

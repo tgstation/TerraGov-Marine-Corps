@@ -35,7 +35,8 @@
 	if(user?.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.integrity_repaired += repair_amount
-		personal_statistics.mission_integrity_repaired += repair_amount
+		if(!is_ground_level(user.z)) //Can't trust players
+			personal_statistics.mission_integrity_repaired += repair_amount
 		personal_statistics.times_repaired++
 	obj_integrity += repair_amount
 
@@ -133,7 +134,7 @@
 	if(xeno_attacker.status_flags & INCORPOREAL) //Ghosts can't attack machines
 		return FALSE
 	SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_OBJ, src)
-	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker) & COMPONENT_NO_ATTACK_ALIEN)
+	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker, damage_amount) & COMPONENT_NO_ATTACK_ALIEN)
 		return FALSE
 	if(!(resistance_flags & XENO_DAMAGEABLE))
 		to_chat(xeno_attacker, span_warning("We stare at \the [src] cluelessly."))

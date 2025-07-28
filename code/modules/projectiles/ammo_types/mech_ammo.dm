@@ -34,7 +34,7 @@
 	max_range = 30
 	sundering = 15
 
-/datum/ammo/rocket/mech/light/drop_nade(turf/T)
+/datum/ammo/rocket/mech/drop_nade(turf/T)
 	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
 
 /datum/ammo/rocket/mech/heavy

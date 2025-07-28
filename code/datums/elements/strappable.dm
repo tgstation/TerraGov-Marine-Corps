@@ -2,7 +2,9 @@
 	. = ..()
 	if(!isitem(target))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_CLICK_ALT, PROC_REF(on_alt_click))
+	RegisterSignal(target, COMSIG_CLICK_ALT, PROC_REF(toggle_strap))
+	RegisterSignal(target, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
+	RegisterSignal(target, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
 	RegisterSignals(target, list(COMSIG_AI_EQUIPPED_GUN, COMSIG_AI_EQUIPPED_MELEE), PROC_REF(ai_try_strap))
 	ADD_TRAIT(target, TRAIT_STRAPPABLE, STRAPPABLE_ITEM_TRAIT)
 
@@ -12,7 +14,7 @@
 	REMOVE_TRAIT(source, TRAIT_STRAPPABLE, STRAPPABLE_ITEM_TRAIT)
 
 ///Toggles strap state
-/datum/element/strappable/proc/on_alt_click(datum/source, mob/user)
+/datum/element/strappable/proc/toggle_strap(datum/source, mob/user)
 	SIGNAL_HANDLER
 	var/obj/item/item_source = source
 	if(!item_source.can_interact(user) \
@@ -43,4 +45,23 @@
 			return
 	else if(unequip)
 		return
-	on_alt_click(source, user)
+	toggle_strap(source, user)
+
+///Called on picking up attached item
+/datum/element/strappable/proc/on_equip(obj/item/item_source)
+	SIGNAL_HANDLER
+	UnregisterSignal(item_source.loc, COMSIG_ITEM_TOGGLE_STRAP)
+	RegisterSignal(item_source.loc, COMSIG_ITEM_TOGGLE_STRAP, PROC_REF(toggle_held_strap))
+
+///Called on dropping attached item
+/datum/element/strappable/proc/on_drop(obj/item/item_source)
+	SIGNAL_HANDLER
+	UnregisterSignal(item_source.loc, COMSIG_ITEM_TOGGLE_STRAP)
+
+///Called when keybind is received, calls toggle_strap() only when held item has TRAIT_STRAPPABLE
+/datum/element/strappable/proc/toggle_held_strap(mob/user)
+	SIGNAL_HANDLER
+	var/obj/item_source = user.get_active_held_item()
+	if(!HAS_TRAIT(item_source, TRAIT_STRAPPABLE))
+		return
+	toggle_strap(item_source, user)

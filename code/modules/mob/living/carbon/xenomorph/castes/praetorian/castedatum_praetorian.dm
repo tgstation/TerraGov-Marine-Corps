@@ -39,7 +39,6 @@
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_range = 5
 	acid_spray_damage = 25
 	acid_spray_damage_on_hit = 55
 	acid_spray_structure_damage = 69
@@ -66,6 +65,12 @@
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/adaptive_armor,
+		/datum/mutation_upgrade/spur/circular_acid,
+		/datum/mutation_upgrade/veil/wide_pheromones
 	)
 
 /datum/xeno_caste/praetorian/normal
@@ -127,6 +132,12 @@
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/flame_dance,
+		/datum/mutation_upgrade/spur/bob_and_weave,
+		/datum/mutation_upgrade/veil/eb_and_flow
+	)
+
 /datum/xeno_caste/praetorian/dancer/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
@@ -171,15 +182,17 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/abduct,
-		/datum/action/ability/activable/xeno/dislocate,
-		/datum/action/ability/activable/xeno/advance_oppressor,
-		/datum/action/ability/activable/xeno/tail_lash,
+		/datum/action/ability/activable/xeno/oppressor/abduct,
+		/datum/action/ability/activable/xeno/oppressor/dislocate,
+		/datum/action/ability/activable/xeno/oppressor/advance,
+		/datum/action/ability/activable/xeno/oppressor/tail_lash,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
+
+	mutations = list()
 
 /datum/xeno_caste/praetorian/oppressor/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -196,10 +209,10 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/abduct,
-		/datum/action/ability/activable/xeno/dislocate,
-		/datum/action/ability/activable/xeno/advance_oppressor,
-		/datum/action/ability/activable/xeno/tail_lash,
+		/datum/action/ability/activable/xeno/oppressor/abduct,
+		/datum/action/ability/activable/xeno/oppressor/dislocate,
+		/datum/action/ability/activable/xeno/oppressor/advance,
+		/datum/action/ability/activable/xeno/oppressor/tail_lash,
 		/datum/action/ability/activable/xeno/item_throw,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,

@@ -1216,7 +1216,6 @@
 ///BROKEN VEHICLE PROPS
 /obj/structure/prop/vehicle
 	icon = 'icons/obj/vehicles/64x64.dmi'
-	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 300
@@ -1390,6 +1389,14 @@
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
+
+/obj/structure/prop/vehicle/tank/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/prop/vehicle/tank/north
 	icon = 'icons/obj/structures/prop/tank_vertical.dmi'

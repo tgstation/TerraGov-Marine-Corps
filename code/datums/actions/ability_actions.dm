@@ -83,6 +83,7 @@
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
 		return FALSE
 
+
 	if(!(to_check_flags & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot do this here")
@@ -173,6 +174,7 @@
 
 ///Any changes when a xeno with this ability evolves
 /datum/action/ability/proc/on_xeno_upgrade()
+	SIGNAL_HANDLER
 	return
 
 /datum/action/ability/activable

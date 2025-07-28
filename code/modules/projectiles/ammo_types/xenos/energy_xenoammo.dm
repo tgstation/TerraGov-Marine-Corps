@@ -105,3 +105,32 @@
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return
+
+/datum/ammo/energy/xeno/psy_blast/psy_drain
+	name = "psychic drain"
+	damage = 24.5 // 35 * 0.7 = 24.5
+	damage_type = STAMINA
+	aoe_range = 1
+	aoe_damage = 31.5 // 45 * 0.7 = 31.5
+
+/datum/ammo/energy/xeno/psy_blast/psy_drain/drop_nade(turf/T, atom/movable/projectile/P)
+	if(!T || !isturf(T))
+		return
+	playsound(T, 'sound/effects/portal_opening.ogg', 50)
+	var/list/turf/target_turfs = generate_cone(T, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
+	for(var/turf/target_turf AS in target_turfs)
+		for(var/mob/living/carbon/human/affected_human in target_turf)
+			if(affected_human.stat == DEAD)
+				continue
+			affected_human.apply_damage(aoe_damage, STAMINA, null, ENERGY, FALSE, FALSE, TRUE, penetration)
+			staggerstun(affected_human, P, 10, slowdown = 1)
+			affected_human.do_jitter_animation(500)
+			if(target_turf != T)
+				step_away(affected_human, T, 1)
+	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
+
+/datum/ammo/energy/xeno/psy_blast/psy_drain/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	drop_nade(get_turf(target_mob), proj)
+	if(ishuman(target_mob))
+		var/mob/living/carbon/human/living_human = target_mob
+		living_human.Knockdown(0.3 SECONDS)
