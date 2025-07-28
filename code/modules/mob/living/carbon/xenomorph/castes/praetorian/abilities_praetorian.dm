@@ -626,8 +626,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	// If the affected hit a wall while being thrown, what percentage of the owner's melee damage should be dealt to them?
 	var/wallbang_multiplier = 0
 
-/datum/action/ability/activable/xeno/oppressor
-
 /// Called when the throw has ended.
 /datum/action/ability/activable/xeno/oppressor/proc/on_post_throw(datum/source)
 	SIGNAL_HANDLER
