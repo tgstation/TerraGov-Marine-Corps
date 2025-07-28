@@ -1,4 +1,0 @@
-author: "tomboy"
-delete-after: True
-changes:
-  - rscadd: "Add sh-410, new marine autoshotgun in marine weapon vendors and also valhalla vendors"

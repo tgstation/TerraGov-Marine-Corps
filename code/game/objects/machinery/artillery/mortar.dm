@@ -242,6 +242,14 @@
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		ai_targeter = I
 
+	if(istype(I, /obj/item/compass))
+		var/obj/item/compass/compass = I
+		coords["targ_x"] = compass.target_turf.x
+		coords["targ_y"] = compass.target_turf.y
+		say("Targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		return TRUE
+
 	if(!istype(I, /obj/item/binoculars/tactical))
 		return
 	var/obj/item/binoculars/tactical/binocs = I
