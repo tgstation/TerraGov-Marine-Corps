@@ -7,7 +7,6 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED, PROC_REF(on_disk_printed))
 
-
 /datum/mutation_datum/ui_state(mob/user)
 	return GLOB.hive_ui_state
 
