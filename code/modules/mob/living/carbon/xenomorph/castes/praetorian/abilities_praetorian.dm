@@ -1121,7 +1121,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	RegisterSignal(living_hit, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 	RegisterSignal(living_hit, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
-	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), floor(throw_range), 5, xeno_owner, TRUE)
+	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), FLOOR(throw_range, 1), 5, xeno_owner, TRUE)
 	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE)
 
 /// Cleans up after charge is finished.
