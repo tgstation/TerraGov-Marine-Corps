@@ -371,14 +371,14 @@
 	var/ability_timer
 	/// The timer id for the timer that occurs every tick while the ability is active.
 	var/tick_timer
-	/// The typepath of the melting fire that will be created.
-	var/obj/fire/melting_fire/selected_typepath = /obj/fire/melting_fire
+	/// The typepath of what is to be created on each turf.
+	var/selected_typepath = /obj/fire/melting_fire
 	/// An image list for the fire selection's radical menu.
 	var/selectable_fire_images_list = list()
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/New()
 	. = ..()
-	selectable_fire_images_list["Melting"] = image('icons/effects/fire.dmi', icon_state = "purple_3")
+	selectable_fire_images_list[DRAGON_BREATH_MELTING] = image('icons/effects/fire.dmi', icon_state = "purple_3")
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/use_ability(atom/target)
 	if(!ability_timer)
@@ -397,13 +397,13 @@
 	if(!fire_choice)
 		return
 	switch(fire_choice)
-		if("Melting")
+		if(DRAGON_BREATH_MELTING)
 			selected_typepath = /obj/fire/melting_fire
 			to_chat(owner, span_xenonotice("Our breath will spew melting fire."))
-		if("Shattering")
+		if(DRAGON_BREATH_SHATTERING)
 			selected_typepath = /obj/fire/melting_fire/shattering
 			to_chat(owner, span_xenonotice("Our breath will spew shattering fire."))
-		if("Melting Acid")
+		if(DRAGON_BREATH_MELTING_ACID)
 			selected_typepath = /obj/fire/melting_fire/melting_acid
 			to_chat(owner, span_xenonotice("Our breath will spew acidic fire."))
 

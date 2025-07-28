@@ -53,8 +53,8 @@
 	if(!breath_ability)
 		return
 	breath_ability.cooldown_duration += initial(breath_ability.cooldown_duration) * get_multiplier(0)
-	breath_ability.selectable_fire_images_list["Shattering"] = image('icons/effects/fire.dmi', icon_state = "violet_3")
-	breath_ability.selectable_fire_images_list["Melting Acid"] = image('icons/effects/fire.dmi', icon_state = "green_3")
+	breath_ability.selectable_fire_images_list[DRAGON_BREATH_SHATTERING] = image('icons/effects/fire.dmi', icon_state = "violet_3")
+	breath_ability.selectable_fire_images_list[DRAGON_BREATH_MELTING_ACID] = image('icons/effects/fire.dmi', icon_state = "green_3")
 
 /datum/mutation_upgrade/spur/breath_of_variety/on_mutation_disabled()
 	. = ..()
@@ -62,8 +62,8 @@
 	if(!breath_ability)
 		return
 	breath_ability.cooldown_duration -= initial(breath_ability.cooldown_duration) * get_multiplier(0)
-	breath_ability.selectable_fire_images_list["Shattering"] = null
-	breath_ability.selectable_fire_images_list["Melting Acid"] = null
+	breath_ability.selectable_fire_images_list[DRAGON_BREATH_SHATTERING] = null
+	breath_ability.selectable_fire_images_list[DRAGON_BREATH_MELTING_ACID] = null
 
 /datum/mutation_upgrade/spur/breath_of_variety/on_structure_update(previous_amount, new_amount)
 	. = ..()
