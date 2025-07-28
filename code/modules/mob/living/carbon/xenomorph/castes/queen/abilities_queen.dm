@@ -593,6 +593,11 @@
 	/// List of turfs that are affected by this ability.
 	var/list/affected_turfs
 
+/datum/action/ability/xeno_action/bulwark/remove_action(mob/living/L)
+	if(particle_holder)
+		remove_affected_area()
+	return ..()
+
 /datum/action/ability/xeno_action/bulwark/action_activate()
 	if(particle_holder)
 		return
@@ -640,7 +645,7 @@
 
 /// Checks if the owner can still use the ability. If yes, pay the plasma and continue. If not, end the ability.
 /datum/action/ability/xeno_action/bulwark/proc/continue_or_end()
-	if(can_use_action(TRUE, ABILITY_IGNORE_COOLDOWN|ABILITY_USE_BUSY))
+	if(particle_holder && can_use_action(TRUE, ABILITY_IGNORE_COOLDOWN|ABILITY_USE_BUSY))
 		succeed_activate()
 		timer_id = addtimer(CALLBACK(src, PROC_REF(continue_or_end)), BULWARK_LOOP_TIME, TIMER_UNIQUE)
 		return
