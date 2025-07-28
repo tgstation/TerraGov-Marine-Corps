@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Campaign: You no longer get rewarded for repairing stuff in spawn"
-  - bugfix: "Campaign: Fixed the credit calculation using the wrong repair stat"

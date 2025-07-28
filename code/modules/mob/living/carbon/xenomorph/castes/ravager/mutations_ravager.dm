@@ -12,7 +12,7 @@
 /datum/mutation_upgrade/shell/little_more/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Endure's critical and death threshold is increased by [get_threshold(new_amount)]."
+	return "Endure further decreases your critical and death threshold by [-get_threshold(new_amount)]."
 
 /datum/mutation_upgrade/shell/little_more/on_mutation_enabled()
 	. = ..()

@@ -231,3 +231,99 @@
 2025-07-24:
   Lumipharon:
   - balance: 'Campaign: AG nades are available as a secondary kit'
+2025-07-25:
+  Atropos:
+  - bugfix: fixed job descriptions displaying incorrect times
+  Lumipharon:
+  - balance: Foam and smoke reagents apply a floor to medical reagent amounts - very
+      low volumes will no longer heal mobs
+  - balance: 'Campaign: You no longer get rewarded for repairing stuff in spawn'
+  - bugfix: 'Campaign: Fixed the credit calculation using the wrong repair stat'
+  - balance: 'Campaign: Fire support missions are a little easier for the defenders'
+  - bugfix: fixed overclocked shields not working for smartgunners
+  - balance: 'Campaign: Light mechs are less tough, all mechs only have 1 repair pack'
+  - balance: 'Campaign: Razorburn secondary kit costs 15 credits, and has 1 large
+      and 2 small nades'
+  Rug-Dealer:
+  - rscadd: Strapping strappable items (non-harvester melees and shields) can now
+      be done via keybind.
+  - spellcheck: Rocket sledge mode change specifies "unique action" and not "spacebar".
+  Runian:
+  - rscadd: Boiler now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Warlock now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Defiler now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Praetorian now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: The distance calculation for Warrior's lunge has been changed to allow
+      lunges beyond 5 tiles to be work.
+  - bugfix: Throws made at an angle now correctly stop when they're suppose to rather
+      than continuing until the end.
+  - bugfix: Runner mutations now correctly apply their effects.
+  - rscadd: Defender now has 9 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: A new round statistic that tracks how much overheal was given by Gorger's
+      Transfusion.
+  - code_imp: The adjustOverheal define is now a proc on the /xenomorph level.
+  - bugfix: Getting directly hit by Praetorian's Spray Acid Cone now ignores the cooldown
+      for taking acid damage - meaning that humans no longer can stop or ignore its
+      effects because just they were hit too recently by acid.
+  - rscadd: Hunter now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  blackdav123:
+  - balance: Campaign teleporter now starts with one less charge but gains one each
+      time the activation asset is used.
+  - balance: Campaign teleporter activation asset now costs 8 instead of 5
+  - balance: Campaign teleporter charges now cost 3 instead of 6, and give 3 charges
+      instead of 6.
+  - qol: Campaign teleporter now provides better information when examined.
+  mudzbe:
+  - qol: Adds a button to toggle tadpole shutters within the tadpole console
+  tomboy:
+  - rscadd: Add sh-410, new marine autoshotgun in marine weapon vendors and also valhalla
+      vendors
+2025-07-27:
+  Lumipharon:
+  - code_imp: Removed some redundant imitation sidemap overlays
+  - qol: Various multitile objects allow you to walk around on top of them normally,
+      instead of being stuck in place
+  - balance: EMP's slowdown mechs
+  Rug-Dealer:
+  - qol: Compasses now store the last set of coordinates they found, which can be
+      transmitted to mortars by clicking on them.
+  Runian:
+  - bugfix: Warlock can no longer switch their ammo type while Psychic Blast is in
+      the process of firing.
+  - balance: 'Mutations: The gas from Wide Gas is now significantly easier to see
+      through.'
+  - bugfix: 'Mutations: Unmoving Link now correctly grants armor.'
+  - bugfix: 'Mutations: Gaseous Spray now accounts for Primordial Boiler''s lance
+      globs.'
+  - bugfix: 'Mutations: The illusion from Fleeting Mirage now correctly flees instead
+      of standing still.'
+  - rscadd: Puppeteer now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Widow now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Bloodthirster now has 3 new mutations that they can purchase if their
+      hive has enough biomass and mutation structures. Not accessible without admin
+      intervention for now.
+  - spellcheck: 'Mutations: The description for Little More has been changed to be
+      more accurate about what it does.'
+  TheRealMrN:
+  - rscadd: Added a mech weapons vendor to Valhalla
+2025-07-28:
+  Runian:
+  - rscadd: Dancer now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.

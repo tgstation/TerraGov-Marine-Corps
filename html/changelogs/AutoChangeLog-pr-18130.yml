@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "Defender now has 9 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
-  - rscadd: "A new round statistic that tracks how much overheal was given by Gorger's Transfusion."
-  - code_imp: "The adjustOverheal define is now a proc on the /xenomorph level."

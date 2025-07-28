@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Foam and smoke reagents apply a floor to medical reagent amounts - very low volumes will no longer heal mobs"
