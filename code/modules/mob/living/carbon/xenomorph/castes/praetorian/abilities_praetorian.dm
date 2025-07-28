@@ -626,8 +626,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	// If the affected hit a wall while being thrown, what percentage of the owner's melee damage should be dealt to them?
 	var/wallbang_multiplier = 0
 
-/datum/action/ability/activable/xeno/oppressor
-
 /// Called when the throw has ended.
 /datum/action/ability/activable/xeno/oppressor/proc/on_post_throw(datum/source)
 	SIGNAL_HANDLER
@@ -738,7 +736,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	last_known_multiplier = human_mobs.len
 	if(last_known_multiplier)
 		for(var/mob/living/carbon/human/human_mob in human_mobs)
-
 			RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 			ADD_TRAIT(human_mob, TRAIT_IMMOBILE, THROW_TRAIT) // Given that this throw will be slow compared to other abilities, we do not want humans to move DURING it.
 			human_mob.throw_at(turf_line[1], 6, 2, xeno_owner, TRUE)
