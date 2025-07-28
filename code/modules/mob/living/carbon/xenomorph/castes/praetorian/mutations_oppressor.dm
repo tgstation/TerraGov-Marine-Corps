@@ -133,14 +133,3 @@
 /// Returns the multiplier of Advance's initial cast time to add to it.
 /datum/mutation_upgrade/veil/low_charge/proc/get_multiplier(structure_count, include_initial = TRUE)
 	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)
-
-/*
-
-	/// How long does it take to complete the do_after?
-	var/cast_time = 0.8 SECONDS
-	/// How far will humans that are hit be thrown? This is rounded down to the nearest whole number.
-	var/throw_range = 5
-	/// How long should humans that are hit be paralyzed?
-	var/paralyze_duration = 1.5 SECONDS
-
-*/
