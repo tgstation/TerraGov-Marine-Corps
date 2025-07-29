@@ -27,7 +27,7 @@
 
 /datum/mutation_upgrade/shell/brittle_upclose
 	name = "Brittle Upclose"
-	desc = "You can no longer be staggered by projectiles and gain 5/7.5/10 bullet armor, but lose 30/35/40 melee armor. Projectiles at pointblank range deal 10% more damage to you."
+	desc = "You can no longer be staggered by projectiles and gain 5/7.5/10 bullet armor, but lose 30/35/40 melee armor. Projectiles from pointblank range negate this bonus bullet armor."
 	/// For the first structure, the amount of bullet armor to increase by.
 	var/bullet_armor_increase_initial = 2.5
 	/// For each structure, the amount of additional bullet armor to increase by.
@@ -40,7 +40,7 @@
 /datum/mutation_upgrade/shell/brittle_upclose/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "You can no longer be staggered by projectiles. You gain [get_bullet_armor(new_amount)] bullet armor, but lose [-get_melee_armor(new_amount)] melee armor. Projectiles at pointblank range deal 10% more damage to you."
+	return "You can no longer be staggered by projectiles and gain [get_bullet_armor(new_amount)] bullet armor, but lose [-get_melee_armor(new_amount)] melee armor. Projectiles from pointblank range negate this bonus bullet armor."
 
 /datum/mutation_upgrade/shell/brittle_upclose/on_mutation_enabled()
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(get_melee_armor(0), get_bullet_armor(0))
@@ -60,14 +60,14 @@
 		return
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(get_melee_armor(new_amount - previous_amount, FALSE), get_bullet_armor(new_amount - previous_amount, FALSE))
 
-/// When hit by a non-friendly projectile at pointblank range, have the projectile deal 10% more damage.
+/// When hit by a non-friendly projectile at pointblank range, have the projectile deal additional damage.
 /datum/mutation_upgrade/shell/brittle_upclose/proc/pre_projectile_hit(datum/source, atom/movable/projectile/proj, cardinal_move, uncrossing)
 	SIGNAL_HANDLER
 	if(xenomorph_owner.issamexenohive(proj.firer))
 		return
 	if(proj.distance_travelled >= 2)
 		return
-	proj.damage *= 1.1
+	proj.damage *= (1 + (get_bullet_armor(get_total_structures()) / 100)) // Effectively negates the bonus bullet armor.
 
 /// Returns the amount of bullet armor that should be given.
 /datum/mutation_upgrade/shell/brittle_upclose/proc/get_bullet_armor(structure_count, include_initial = TRUE)
