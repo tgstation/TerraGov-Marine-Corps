@@ -1996,6 +1996,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\dragon\abilities_dragon.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\dragon\castedatum_dragon.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\dragon\dragon.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\dragon\mutations_dragon.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\drone\abilities_drone.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\drone\castedatum_drone.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\drone\drone.dm"
