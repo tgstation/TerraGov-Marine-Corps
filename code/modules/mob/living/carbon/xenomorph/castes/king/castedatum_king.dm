@@ -72,6 +72,12 @@
 		/datum/action/ability/xeno_action/blessing_menu,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/stone_armor,
+		/datum/mutation_upgrade/spur/minion_king,
+		/datum/mutation_upgrade/veil/widefall,
+		/datum/mutation_upgrade/veil/flarefall
+	)
 
 /datum/xeno_caste/king/normal
 	upgrade = XENO_UPGRADE_NORMAL
