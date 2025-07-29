@@ -50,6 +50,8 @@ GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)
 GLOBAL_LIST_EMPTY(nuke_disk_list)
 //list of all atoms which light can be shut down
 GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)
+// List of all flares that are activated.
+GLOBAL_LIST_EMPTY(activated_flares)
 //list of all main overwatch consoles
 GLOBAL_LIST_EMPTY(main_overwatch_consoles)
 ///List of all objectives in the campaign gamemode loaded in the current mission

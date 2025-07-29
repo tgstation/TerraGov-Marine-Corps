@@ -1,8 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Warlock can no longer switch their ammo type while Psychic Blast is in the process of firing."
-  - balance: "Mutations: The gas from Wide Gas is now significantly easier to see through."
-  - bugfix: "Mutations: Unmoving Link now correctly grants armor."
-  - bugfix: "Mutations: Gaseous Spray now accounts for Primordial Boiler's lance globs."
-  - bugfix: "Mutations: The illusion from Fleeting Mirage now correctly flees instead of standing still."
