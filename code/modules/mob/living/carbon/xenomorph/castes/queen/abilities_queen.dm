@@ -84,6 +84,8 @@
 	var/selected_screech = "screech"
 	/// Should allied xenomorphs in a 20-tile radius get a movement speed modifier for 4 seconds after using Screech? If so, what amount should be it?
 	var/movement_speed_modifier = 0
+	/// All xenomorphs that were given the movement speed modifier.
+	var/list/mob/living/carbon/xenomorph/speedy_xenomorphs = list()
 	/// The id of the timer that will remove the movement speed modifier.
 	var/timer_id
 
@@ -168,6 +170,7 @@
 	if(movement_speed_modifier)
 		for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, 20))
 			affected_xeno.add_movespeed_modifier(MOVESPEED_ID_QUEEN_SCREECH, TRUE, 0, NONE, TRUE, movement_speed_modifier)
+			speedy_xenomorphs += affected_xeno
 		timer_id = addtimer(CALLBACK(src, PROC_REF(revoke_movespeed_modifier)), 4 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /datum/action/ability/activable/xeno/screech/alternate_action_activate()
@@ -213,7 +216,8 @@
 
 /// Removes the movement speed modifier, if any.
 /datum/action/ability/activable/xeno/screech/proc/revoke_movespeed_modifier()
-	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_QUEEN_SCREECH)
+	for(var/mob/living/carbon/xenomorph/speed_xenomorph AS in speedy_xenomorphs)
+		speed_xenomorph.remove_movespeed_modifier(MOVESPEED_ID_QUEEN_SCREECH)
 	if(timer_id)
 		deltimer(timer_id)
 		timer_id = null
