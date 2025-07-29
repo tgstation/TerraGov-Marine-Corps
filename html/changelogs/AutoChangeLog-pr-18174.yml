@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscdel: "Biomass for mutations no longer exists. Many, if not all, references to it has been removed or changed."
+  - balance: "For each disk that marines have fully completed, xenomorphs are able to buy one additional mutation assuming other requirements are met."
