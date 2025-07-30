@@ -218,6 +218,7 @@
 /datum/action/ability/activable/xeno/screech/proc/revoke_movespeed_modifier()
 	for(var/mob/living/carbon/xenomorph/speed_xenomorph AS in speedy_xenomorphs)
 		speed_xenomorph.remove_movespeed_modifier(MOVESPEED_ID_QUEEN_SCREECH)
+	speedy_xenomorphs.Cut()
 	if(timer_id)
 		deltimer(timer_id)
 		timer_id = null
