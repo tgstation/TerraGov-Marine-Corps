@@ -254,7 +254,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 			xeno_owner.balloon_alert(xeno_owner, "No neurotoxin globules.")
 			return FALSE
 
-	if(!isturf(T) || T.z != S.z)
+	if(!isturf(T) || !(T.z in SSmapping.get_connected_levels(S.z)))
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "Invalid target.")
 		return FALSE
