@@ -29,7 +29,7 @@
 	damage = 25
 	penetration = 15
 	shrapnel_chance = 25
-	sundering = 2.5
+	sundering = 2
 
 /datum/ammo/bullet/minigun_light
 	name = "minigun bullet"
