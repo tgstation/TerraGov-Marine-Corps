@@ -6032,6 +6032,10 @@
 	dir = 1
 	},
 /area/riptide/inside/medical/offices)
+"ehL" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/riptide/caves/central)
 "eih" = (
 /turf/closed/wall,
 /area/riptide/outside/northislands)
@@ -64205,7 +64209,7 @@ uFp
 gbT
 gqq
 gqq
-gqq
+ehL
 gbT
 gbT
 gbT

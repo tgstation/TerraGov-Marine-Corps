@@ -6856,6 +6856,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/stonyfields)
+"hjY" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/kutjevo/exterior/colony_S_East)
 "hkO" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -60524,7 +60528,7 @@ vIi
 ygm
 ygm
 mnh
-ygm
+hjY
 wYE
 ygm
 vIi

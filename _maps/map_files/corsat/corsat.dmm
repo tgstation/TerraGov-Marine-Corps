@@ -45117,6 +45117,13 @@
 	},
 /turf/open/floor/plating,
 /area/corsat/sigma/hangar)
+"tJj" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 1
+	},
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/two)
 "tJn" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	name = "Security Office"
@@ -77257,7 +77264,7 @@ msS
 eZb
 lub
 wmK
-iFn
+tJj
 ukI
 ciY
 msS

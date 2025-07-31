@@ -20886,6 +20886,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
+"oaF" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/southwest)
 "oaN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/mainship/small{
@@ -54295,7 +54299,7 @@ bYE
 kEc
 kEc
 kEc
-kEc
+oaF
 kEc
 hmY
 jVs

@@ -39755,6 +39755,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
+"eaK" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating,
+/area/prison/cellblock/mediumsec/south)
 "eaN" = (
 /obj/effect/turf_decal/woodsiding,
 /obj/effect/turf_decal/woodsiding{
@@ -78193,7 +78197,7 @@ fMj
 fMj
 lEa
 fMj
-fMj
+eaK
 cyw
 bWl
 aab

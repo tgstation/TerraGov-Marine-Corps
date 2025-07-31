@@ -6753,6 +6753,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/science)
+"FC" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "FE" = (
 /obj/machinery/light{
 	dir = 8
@@ -25966,7 +25972,7 @@ zJ
 zJ
 BR
 BR
-RI
+FC
 BR
 Yx
 zJ

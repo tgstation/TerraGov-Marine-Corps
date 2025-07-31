@@ -1241,6 +1241,10 @@
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"ni" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southeast)
 "nz" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/lavaland/basalt,
@@ -45725,7 +45729,7 @@ wj
 wj
 wj
 wj
-wj
+ni
 wj
 wj
 ZS

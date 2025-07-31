@@ -32342,6 +32342,11 @@
 	dir = 1
 	},
 /area/magmoor/medical/storage)
+"wRn" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/cult,
+/area/magmoor/cave/north)
 "wRr" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -55619,7 +55624,7 @@ aPs
 aPs
 aPs
 aPs
-aPs
+wRn
 aPs
 aPs
 lRD

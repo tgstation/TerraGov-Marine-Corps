@@ -20446,6 +20446,12 @@
 /obj/effect/spawner/random/medical/heal_pack/bruteweighted,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
+"vBH" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/engine/cult{
+	dir = 2
+	},
+/area/lv624/ground/caves/central5/garbledradio)
 "vBM" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
@@ -33115,7 +33121,7 @@ qSi
 vzp
 vzp
 vzp
-vzp
+vBH
 vzp
 vzp
 vzp

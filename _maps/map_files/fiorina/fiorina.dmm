@@ -9236,6 +9236,11 @@
 	dir = 8
 	},
 /area/fiorina/station/security)
+"feq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
 "fes" = (
 /obj/machinery/disposal,
 /obj/item/tool/kitchen/rollingpin{
@@ -10751,6 +10756,12 @@
 /obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/aux_engi)
+"gaR" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/prison/darkpurple{
+	dir = 10
+	},
+/area/fiorina/tumor/servers)
 "gaV" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/light/small{
@@ -60082,7 +60093,7 @@ xcj
 tyb
 xud
 xXF
-vjY
+gaR
 xFR
 lBE
 ykI
@@ -60289,11 +60300,11 @@ jme
 qbw
 aXu
 qPN
-rsA
+sNE
 xcj
 uYp
 lBE
-eCk
+feq
 pwt
 iLk
 kvV

@@ -29435,6 +29435,10 @@
 	dir = 6
 	},
 /area/slumbridge/inside/zeta/south)
+"vDA" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/slumbridge/caves/northeastcaves)
 "vDC" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -66256,7 +66260,7 @@ kqR
 kqR
 kqR
 kqR
-kqR
+vDA
 kqR
 kqR
 pRb

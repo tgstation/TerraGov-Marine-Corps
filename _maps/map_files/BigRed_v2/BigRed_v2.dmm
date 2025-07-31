@@ -8393,6 +8393,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/w)
+"dPg" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "dPs" = (
 /obj/structure/table,
 /obj/item/radio/headset/survivor,
@@ -64363,7 +64367,7 @@ jcm
 tPk
 tzo
 tzo
-tzo
+dPg
 tzo
 tzo
 tzo

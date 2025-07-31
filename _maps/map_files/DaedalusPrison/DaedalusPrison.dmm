@@ -7962,6 +7962,10 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/colonydorms)
+"gAv" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/daedalusprison/caves/northwest)
 "gAD" = (
 /obj/structure/table/mainship,
 /turf/open/floor/prison/kitchen,
@@ -43539,7 +43543,7 @@ ira
 ngx
 ira
 ira
-ira
+gAv
 mEN
 hoO
 sLx

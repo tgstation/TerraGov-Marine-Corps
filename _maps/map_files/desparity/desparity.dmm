@@ -7728,6 +7728,11 @@
 	},
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
+"NI" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "NJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -14874,7 +14879,7 @@ ah
 ua
 ua
 bE
-nR
+NI
 ah
 wh
 wh

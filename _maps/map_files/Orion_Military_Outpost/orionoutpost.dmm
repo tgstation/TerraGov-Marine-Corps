@@ -1255,6 +1255,10 @@
 	dir = 9
 	},
 /area/orion_outpost/surface/building/administration)
+"gj" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "gk" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/mainship/mono,
@@ -26422,7 +26426,7 @@ sR
 GN
 GN
 GN
-GN
+gj
 GN
 GN
 GN

@@ -28344,6 +28344,10 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/carpet,
 /area/gelida/indoors/b_block/bar)
+"sWN" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves/garbledradio)
 "sWW" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/carpet,
@@ -48172,7 +48176,7 @@ eQn
 cYz
 cYz
 cYz
-cYz
+sWN
 ubb
 cYz
 cYz

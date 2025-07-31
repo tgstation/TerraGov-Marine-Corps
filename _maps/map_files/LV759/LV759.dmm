@@ -42308,6 +42308,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/lv759/indoors/colonial_marshals/reception)
+"hCb" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/engineership/engineer_floor3,
+/area/lv759/indoors/derelict_ship)
 "hCd" = (
 /obj/item/stool,
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -152882,7 +152887,7 @@ fvF
 rQx
 xOJ
 rni
-nMl
+hCb
 mhs
 vBl
 iAI

@@ -2636,6 +2636,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/industrial)
+"cwX" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg1,
+/area/bluesummers/caves/north)
 "cxk" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/plating/plating_catwalk,
@@ -21608,6 +21613,10 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/bluesummers/caves/cryostorage/south)
+"rZp" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating,
+/area/bluesummers/caves/north)
 "rZu" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/insulatedgloves,
@@ -43243,7 +43252,7 @@ tsh
 lPy
 qRE
 pyj
-eUV
+rZp
 lPy
 duD
 rOc
@@ -43424,7 +43433,7 @@ tMr
 fFU
 lPy
 pyj
-reD
+cwX
 hTx
 rOc
 duD

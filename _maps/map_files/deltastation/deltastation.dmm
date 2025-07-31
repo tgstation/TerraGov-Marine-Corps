@@ -102708,6 +102708,7 @@
 "uRc" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/ai_node,
+/obj/effect/landmark/xeno_spawner_spawn,
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "uRh" = (

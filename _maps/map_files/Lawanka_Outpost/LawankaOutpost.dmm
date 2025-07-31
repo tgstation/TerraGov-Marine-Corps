@@ -5097,6 +5097,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nukestorage)
+"elJ" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/west)
 "emj" = (
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/south)
@@ -31894,7 +31898,7 @@ rRZ
 rRZ
 rRZ
 rRZ
-rRZ
+elJ
 xqw
 rRZ
 roN
