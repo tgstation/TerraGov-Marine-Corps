@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Mutations: Rallying Cry no longer causes Queen's Screech to permanently grant movement speed to other xenomorphs."
