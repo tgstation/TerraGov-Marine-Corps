@@ -128,20 +128,25 @@
 	pass_flags = HOVERING|PASS_GRILLE
 	faction = FACTION_SOM
 	iff_signal = SOM_IFF
-	var/cloaked = FALSE //whether the probe is cloaked or not
-	var/cloak_time = 2 SECONDS //time it takes to cloak
-	var/last_uncloak_move = 0 //last world.time the probe moved and uncloaked
-	var/cloak_wait_elapsed = 0 //time since the last uncloak move, used to determine when to cloak
+	///Whether the probe is cloaked or not
+	var/cloaked = FALSE
+	///Time it takes to activate cloak
+	var/cloak_time = 2 SECONDS
+	///Last world.time the probe moved and tried to uncloak.
+	var/last_uncloak_move = 0
+	///Time since the last uncloak move, used to determine when to cloak.
+	var/cloak_wait_elapsed = 0
 
 /obj/vehicle/unmanned/deployable/tiny/martian/Initialize(mapload, _internal_item, mob/deployer)
 	. = ..()
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
+///Cloaks the probe and stops processing until it moves again.
 /obj/vehicle/unmanned/deployable/tiny/martian/proc/begin_cloaking()
 	cloaked = TRUE
 	playsound(src, 'sound/effects/pred_cloakon.ogg', 10, TRUE)
-	src.become_warped_invisible(30)
+	become_warped_invisible(30)
 	STOP_PROCESSING(SSobj, src)
 
 /obj/vehicle/unmanned/deployable/tiny/martian/process()
@@ -150,20 +155,16 @@
 		return
 	begin_cloaking()
 
-///moving will disable the cloak and reset the cloak timer.
+///Moving will disable the cloak and reset the cloak timer.
 /obj/vehicle/unmanned/deployable/tiny/martian/proc/on_move()
 	SIGNAL_HANDLER
 	if(cloaked)
 		cloaked = FALSE
-		src.stop_warped_invisible()
+		stop_warped_invisible()
 		playsound(src, 'sound/effects/pred_cloakoff.ogg', 30, TRUE)
 	last_uncloak_move = world.time
 	cloak_wait_elapsed = 0
 	START_PROCESSING(SSobj, src)
-
-/obj/vehicle/unmanned/deployable/tiny/martian/Destroy()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-	return ..()
 
 /obj/vehicle/unmanned/deployable/tiny/martian/disassemble(mob/user)
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
