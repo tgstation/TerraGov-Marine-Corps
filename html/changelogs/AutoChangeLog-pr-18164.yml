@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Campaign: Fixed some missing blacklist/whitelist restrictions in loadouts"

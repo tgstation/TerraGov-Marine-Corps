@@ -346,3 +346,10 @@
       for now.
   TiviPlus:
   - bugfix: Fixed boilers being unable to fire up/down zlevels
+2025-07-31:
+  Lumipharon:
+  - qol: 'Campaign: Fixed some missing blacklist/whitelist restrictions in loadouts'
+  Runian:
+  - rscadd: Conqueror now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
