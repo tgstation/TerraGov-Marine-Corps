@@ -429,11 +429,7 @@
 /// Ends the target's throw. Taken from Warrior code.
 /datum/action/ability/activable/xeno/conqueror_will/proc/kicked_end(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
-	/* So the reason why we do not flat out unregister this is because, when an atom makes impact with something, it calls throw_impact(). Calling it this way causes
-	stop_throw() to be called in most cases, because impacts can cause a bounce effect and ending the throw makes it happen. Given the way we have signals setup, unregistering
-	it at that point would cause thrown_into() to never get called, and that is exactly the reason why the line of code below exists. */
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 0.5)
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT))
 	var/mob/living/living_target = source
 	living_target.Knockdown(CONQUEROR_WILL_COMBO_DEBUFF)
 	if(living_target.pass_flags & PASS_XENO)

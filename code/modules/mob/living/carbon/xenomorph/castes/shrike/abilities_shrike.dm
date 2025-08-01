@@ -152,10 +152,7 @@
 	var/mob/living/living_source = source
 	UnregisterSignal(living_source, COMSIG_MOVABLE_POST_THROW)
 	if(collusion_paralyze_duration || collusion_damage_multiplier)
-		// In most cases: COMSIG_MOVABLE_POST_THROW (on_post_throw) happens first and then COMSIG_MOVABLE_IMPACT (on_throw_impact) happens afterward.
-		// The reason behind this is because some things call `stop_throw` before the impact even happens.
-		// Because of this, we have to unregister it in the next tick. Even if the impact didn't happen (or was on time), we want to unregister it anyways.
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT), 1)
+		UnregisterSignal(living_source, COMSIG_MOVABLE_IMPACT)
 		return
 	living_source.remove_pass_flags(PASS_MOB, THROW_TRAIT)
 

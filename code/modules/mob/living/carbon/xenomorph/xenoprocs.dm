@@ -328,7 +328,7 @@
 	if(isliving(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		if(SEND_SIGNAL(src, COMSIG_XENO_LIVING_THROW_HIT, hit_atom) & COMPONENT_KEEP_THROWING)
 			return FALSE
-		stop_throw() //Resert throwing since something was hit.
+		set_throwing(FALSE) //Resert throwing since something was hit.
 		return TRUE
 
 	return ..() //Do the parent otherwise, for turfs.
