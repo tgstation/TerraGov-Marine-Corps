@@ -2068,6 +2068,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\sentinel\sentinel.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\shrike\abilities_shrike.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\shrike\castedatum_shrike.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\shrike\mutations_shrike.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\shrike\shrike.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\spiderling\castedatum_spiderling.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\spiderling\spiderling.dm"
