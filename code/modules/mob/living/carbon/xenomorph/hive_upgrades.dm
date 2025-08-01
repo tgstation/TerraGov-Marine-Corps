@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	/// The maximum amount of buildings that can exist before being disallowed from buying more.
 	var/max_chambers = MUTATION_CHAMBER_MAXIMUM
 
-/datum/hive_upgrade/building/mutation_chamber/shell/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+/datum/hive_upgrade/building/mutation_chamber/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
 	if(!.)
 		return FALSE
