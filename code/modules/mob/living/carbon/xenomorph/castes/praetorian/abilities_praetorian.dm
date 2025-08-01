@@ -659,11 +659,28 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // *********** Abduct
 // ***************************************
 
+/datum/action/ability/activable/xeno/oppressor
+	// If the affected hit a wall while being thrown, what percentage of the owner's melee damage should be dealt to them?
+	var/wallbang_multiplier = 0
+
 /// Called when the throw has ended.
 /datum/action/ability/activable/xeno/oppressor/proc/on_post_throw(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_CALL_PARENT(TRUE) // Because we don't want to forget to unregister the signal.
-	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT))
+
+/// Called when the source has hit something.
+/datum/action/ability/activable/xeno/oppressor/proc/on_throw_impact(datum/source, atom/hit_atom, impact_speed)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
+	if(!isliving(source))
+		return
+	var/mob/living/living_source = source
+	new /obj/effect/temp_visual/warrior/impact(living_source.loc, get_dir(living_source, xeno_owner))
+	if(!wallbang_multiplier || !isclosedturf(hit_atom))
+		return
+	INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
+	living_source.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * wallbang_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
 
 /datum/action/ability/activable/xeno/oppressor/abduct
 	name = "Abduct"
@@ -840,6 +857,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	new /obj/effect/temp_visual/warrior/punch/weak(get_turf(carbon_target))
 	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
 
+	RegisterSignal(carbon_target, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 	carbon_target.throw_at(get_step(carbon_target, get_dir(xeno_owner, carbon_target)), 2, 2, xeno_owner, TRUE)
 	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
@@ -1042,6 +1060,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			var/mob/living/carbon/human/affected_human = affected
 			if(affected_human.stat == DEAD)
 				continue
+			RegisterSignal(affected_human, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 			RegisterSignal(affected_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE)
 			var/throwlocation = affected_human.loc
@@ -1074,10 +1093,24 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR,
 	)
+	/// How long does it take to complete the do_after?
+	var/cast_time = 0.8 SECONDS
+	/// How far will humans that are hit be thrown? This is rounded down to the nearest whole number.
+	var/throw_range = 5
+	/// How long should humans that are hit be paralyzed?
+	var/paralyze_duration = 1.5 SECONDS
+	/// Should the owner gain a movement speed modifier for 6 seconds after using Advance? If so, what amount should be it?
+	var/movement_speed_modifier = 0
+	/// The id of the timer that will remove the movement speed modifier.
+	var/timer_id
+
+/datum/action/ability/activable/xeno/oppressor/advance/remove_action(mob/living/L)
+	revoke_movespeed_modifier()
+	return ..()
 
 /datum/action/ability/activable/xeno/oppressor/advance/use_ability(atom/target)
 	xeno_owner.face_atom(target)
-	if(!do_after(xeno_owner, 0.8 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
+	if(!do_after(xeno_owner, cast_time, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
 		return
 	xeno_owner.face_atom(target)
 
@@ -1087,6 +1120,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 	xeno_owner.xeno_flags |= XENO_LEAPING
 
+	if(movement_speed_modifier)
+		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ADVANCE, TRUE, 0, NONE, TRUE, movement_speed_modifier)
+		timer_id = addtimer(CALLBACK(src, PROC_REF(revoke_movespeed_modifier)), 6 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	xeno_owner.throw_at(target, 5, 5, xeno_owner)
 	xeno_owner.emote("roar")
 	succeed_activate()
@@ -1096,7 +1132,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/oppressor/advance/on_post_throw(datum/source)
 	. = ..()
 	var/mob/living/living_source = source
-	living_source.Paralyze(1.5 SECONDS)
+	living_source.Paralyze(paralyze_duration)
 
 /// Shake the turf under for cool points.
 /datum/action/ability/activable/xeno/oppressor/advance/proc/on_move(datum/source)
@@ -1115,8 +1151,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!ishuman(living_hit) || living_hit.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return
 
+	RegisterSignal(living_hit, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 	RegisterSignal(living_hit, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
-	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), 5, 5, xeno_owner, TRUE)
+	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), FLOOR(throw_range, 1), 5, xeno_owner, TRUE)
 	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE)
 
 /// Cleans up after charge is finished.
@@ -1124,3 +1161,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	SIGNAL_HANDLER
 	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
+
+/// Removes the movement speed modifier, if any.
+/datum/action/ability/activable/xeno/oppressor/advance/proc/revoke_movespeed_modifier()
+	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ADVANCE)
+	if(timer_id)
+		deltimer(timer_id)
+		timer_id = null
