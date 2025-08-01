@@ -165,7 +165,7 @@
 
 /obj/effect/landmark/xeno_spawner_spawn/Initialize(mapload)
 	GLOB.xeno_spawner_turfs += loc
-	. = ..()
+	..()
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/xeno_tunnel_spawn
