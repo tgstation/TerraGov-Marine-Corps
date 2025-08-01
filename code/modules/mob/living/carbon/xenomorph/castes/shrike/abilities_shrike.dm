@@ -184,6 +184,7 @@
 			hit_wall.take_damage(damage, BRUTE, MELEE)
 	if(!valid_impact)
 		return
+	INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
 	if(damage)
 		living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 	if(collusion_paralyze_duration)
