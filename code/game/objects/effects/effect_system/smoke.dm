@@ -382,11 +382,10 @@
 	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
-///Xeno neurotox smoke for defiler seethrough smoke; doesn't extinguish or blind
-/obj/effect/particle_effect/smoke/xeno/neuro/lighter
+/// With much less alpha, but can extinguish fire.
+/obj/effect/particle_effect/smoke/xeno/neuro/light/extinguishing
 	alpha = 60
-	opacity = FALSE
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
@@ -493,8 +492,8 @@
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
 
-/datum/effect_system/smoke_spread/xeno/neuro/lighter
-	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/lighter
+/datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light/extinguishing
 
 /datum/effect_system/smoke_spread/xeno/toxic
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/toxic

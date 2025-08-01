@@ -72,6 +72,12 @@
 		/datum/action/ability/xeno_action/blessing_menu,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/stone_armor,
+		/datum/mutation_upgrade/spur/minion_king,
+		/datum/mutation_upgrade/veil/widefall,
+		/datum/mutation_upgrade/veil/flarefall
+	)
 
 /datum/xeno_caste/king/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -167,6 +173,12 @@
 		/datum/action/ability/activable/xeno/conqueror_will,
 		/datum/action/ability/xeno_action/conqueror_endurance,
 		/datum/action/ability/activable/xeno/conqueror_domination,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/healing_jab,
+		/datum/mutation_upgrade/spur/telefrag,
+		/datum/mutation_upgrade/veil/dasher
 	)
 
 /datum/xeno_caste/king/conqueror/normal
