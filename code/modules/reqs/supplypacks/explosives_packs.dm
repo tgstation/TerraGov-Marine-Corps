@@ -46,6 +46,11 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/visual/grenade/incendiary)
 	cost = 350
 
+/datum/supply_packs/explosives/mecha_explosives_refill
+	name = "Mecha high explosive missiles"
+	notes = "Contains 10 high explosive missiles for mecha"
+	contains = list(/obj/item/mecha_ammo/vendable/rpg)
+	cost = 200 // Price based on cost of RR (at 30 points per) rather than Sadar (at 50 points per). Given high price already, discount of 33.3% given since it is mech-exclusive. Calculated as: (30 * 10 * (2/3))
 
 /datum/supply_packs/explosives/explosives_cloaker
 	name = "M45 Cloaker grenade box crate"
