@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "King now has 4 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
+  - bugfix: "Psychic Summon now correctly sends a message in chat telling you that it is no longer on cooldown."

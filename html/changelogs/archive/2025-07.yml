@@ -322,3 +322,8 @@
       more accurate about what it does.'
   TheRealMrN:
   - rscadd: Added a mech weapons vendor to Valhalla
+2025-07-28:
+  Runian:
+  - rscadd: Dancer now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
