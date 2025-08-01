@@ -43,7 +43,7 @@
 	var/datum/effect_system/smoke_spread/emitted_gas
 	switch(xenomorph_owner.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
-			emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/light(xenomorph_owner)
+			emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing(xenomorph_owner)
 		if(/datum/reagent/toxin/xeno_hemodile)
 			emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile/light(xenomorph_owner)
 		if(/datum/reagent/toxin/xeno_transvitox)

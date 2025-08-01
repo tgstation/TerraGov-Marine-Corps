@@ -27,7 +27,7 @@
 
 /datum/mutation_upgrade/shell/brittle_upclose
 	name = "Brittle Upclose"
-	desc = "You can no longer be staggered by projectiles. You gain 5/7.5/10 bullet armor, but lose 30/35/40 melee armor."
+	desc = "You can no longer be staggered by projectiles and gain 5/7.5/10 bullet armor, but lose 30/35/40 melee armor. Projectiles from pointblank range negate this bonus bullet armor."
 	/// For the first structure, the amount of bullet armor to increase by.
 	var/bullet_armor_increase_initial = 2.5
 	/// For each structure, the amount of additional bullet armor to increase by.
@@ -40,15 +40,17 @@
 /datum/mutation_upgrade/shell/brittle_upclose/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "You can no longer be staggered by projectiles. You gain [get_bullet_armor(new_amount)] bullet armor, but lose [-get_melee_armor(new_amount)] melee armor."
+	return "You can no longer be staggered by projectiles and gain [get_bullet_armor(new_amount)] bullet armor, but lose [-get_melee_armor(new_amount)] melee armor. Projectiles from pointblank range negate this bonus bullet armor."
 
 /datum/mutation_upgrade/shell/brittle_upclose/on_mutation_enabled()
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(get_melee_armor(0), get_bullet_armor(0))
+	RegisterSignal(xenomorph_owner, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(pre_projectile_hit))
 	ADD_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, MUTATION_TRAIT)
 	return ..()
 
 /datum/mutation_upgrade/shell/brittle_upclose/on_mutation_disabled()
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(get_melee_armor(0), get_bullet_armor(0))
+	UnregisterSignal(xenomorph_owner, list(COMSIG_XENO_PROJECTILE_HIT))
 	REMOVE_TRAIT(xenomorph_owner, TRAIT_STAGGER_RESISTANT, MUTATION_TRAIT)
 	return ..()
 
@@ -57,6 +59,15 @@
 	if(!.)
 		return
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.modifyRating(get_melee_armor(new_amount - previous_amount, FALSE), get_bullet_armor(new_amount - previous_amount, FALSE))
+
+/// When hit by a non-friendly projectile at pointblank range, have the projectile deal additional damage.
+/datum/mutation_upgrade/shell/brittle_upclose/proc/pre_projectile_hit(datum/source, atom/movable/projectile/proj, cardinal_move, uncrossing)
+	SIGNAL_HANDLER
+	if(xenomorph_owner.issamexenohive(proj.firer))
+		return
+	if(proj.distance_travelled >= 2)
+		return
+	proj.damage *= (1 + (get_bullet_armor(get_total_structures()) / 100)) // Effectively negates the bonus bullet armor.
 
 /// Returns the amount of bullet armor that should be given.
 /datum/mutation_upgrade/shell/brittle_upclose/proc/get_bullet_armor(structure_count, include_initial = TRUE)
@@ -115,9 +126,9 @@
 //*********************//
 /datum/mutation_upgrade/spur/breathtaking_spin
 	name = "Breathtaking Spin"
-	desc = "Tail Swipe deals stamina damage instead. It no longer paralyzes and deals 2x/2.25/2.5x more damage."
+	desc = "Tail Swipe deals stamina damage instead. It no longer paralyzes and deals 1.5x/1.75/2x more damage."
 	/// For the first structure, the amount to increase Tail Swipe's damage multiplier by.
-	var/damage_multiplier_initial = 1.75
+	var/damage_multiplier_initial = 1.25
 	/// For each structure, the amount to increase Tail Swipe's damage multiplier by.
 	var/damage_multiplier_per_structure = 0.25
 
@@ -268,9 +279,9 @@
 
 /datum/mutation_upgrade/veil/slow_and_steady
 	name = "Slow and Steady"
-	desc = "You are no longer immobilized during Fortify. However, your move delay is increased by 1.4/1.2/1 seconds while it is active."
+	desc = "You are no longer immobilized during Fortify. However, your move delay is increased by 1.2/1/0.8 seconds while it is active."
 	/// For the first structure, the amount of deciseconds of delay to add to movement while Fortify is active.
-	var/movement_delay_initial = 1.6 SECONDS
+	var/movement_delay_initial = 1.4 SECONDS
 	/// For each structure, the amount of deciseconds of delay to add to movement while Fortify is active.
 	var/movement_delay_per_structure = -0.2 SECONDS
 

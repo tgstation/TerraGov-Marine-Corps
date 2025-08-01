@@ -2529,9 +2529,6 @@
 /turf/open/floor/prison,
 /area/fiorina/station/civres_blue)
 "bwr" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 1
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/fiorina/tumor/aux_engi)
@@ -6763,8 +6760,8 @@
 /turf/open/floor/prison/plate,
 /area/fiorina/lz/near_lzII)
 "dLp" = (
-/obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
-/obj/effect/spawner/random/engineering/tool,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/fiorina/tumor/aux_engi)
 "dLJ" = (
@@ -21348,8 +21345,9 @@
 /turf/open/floor/prison/plate,
 /area/fiorina/station/disco)
 "lCl" = (
-/obj/machinery/power/tbg_turbine/cold,
-/turf/open/floor/tile/dark,
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/plating,
 /area/fiorina/tumor/aux_engi)
 "lCr" = (
 /obj/structure/table/reinforced/prison{
@@ -23159,6 +23157,7 @@
 "mEd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/fiorina/tumor/aux_engi)
 "mEt" = (
@@ -26177,8 +26176,9 @@
 	},
 /area/fiorina/station/chapel)
 "omo" = (
+/obj/structure/cable,
 /obj/machinery/power/geothermal,
-/turf/open/floor/plating,
+/turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/aux_engi)
 "omv" = (
 /obj/item/stack/rods,
@@ -31079,12 +31079,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/servers)
-"qWS" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/fiorina/tumor/aux_engi)
 "qWX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -34373,8 +34367,8 @@
 /turf/open/floor/prison/blue,
 /area/fiorina/station/civres_blue)
 "sKX" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/fiorina/tumor/aux_engi)
 "sLe" = (
@@ -52145,7 +52139,7 @@ dyw
 dyw
 xTh
 mEd
-omo
+dLp
 xTh
 xTh
 xTh
@@ -52358,7 +52352,7 @@ yjX
 xTh
 gVK
 scw
-kmN
+omo
 xTh
 eVo
 vmD
@@ -52780,9 +52774,9 @@ dyw
 xTh
 yjX
 xTh
-lCl
 bwr
-qWS
+bwr
+bwr
 yhh
 rzI
 pdS
@@ -52993,8 +52987,8 @@ xTh
 yjX
 xTh
 dLp
-kFi
-gVK
+mEd
+lCl
 kFi
 ykF
 eul
@@ -53206,7 +53200,7 @@ yjX
 xTh
 xTh
 aMK
-omo
+cFZ
 aiT
 sXs
 kSK

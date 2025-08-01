@@ -229,7 +229,7 @@
 				if(opaque)
 					emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(xeno_owner)
 				else
-					emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/lighter(xeno_owner)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing(xeno_owner)
 			if(/datum/reagent/toxin/xeno_hemodile)
 				if(opaque)
 					emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile(xeno_owner)

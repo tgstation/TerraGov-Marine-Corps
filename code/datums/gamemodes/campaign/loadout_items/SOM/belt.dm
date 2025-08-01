@@ -32,12 +32,22 @@
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made with traditional SOM leather. Loaded full of buckshot and flechette shells."
 	item_typepath = /obj/item/storage/belt/shotgun/som/mixed
 	jobs_supported = list(SOM_SQUAD_MARINE)
+	item_whitelist = list(
+		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/support = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_BACK,
+	)
 
 /datum/loadout_item/belt/som/shotgun_flechette
 	name = "Shotgun shell rig"
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made with traditional SOM leather. Loaded full of flechette shells."
 	item_typepath = /obj/item/storage/belt/shotgun/som/flechette
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
+	item_whitelist = list(
+		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/support = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_BACK,
+	)
 
 /datum/loadout_item/belt/som/grenades
 	name = "Grenade rig"
@@ -72,13 +82,13 @@
 		/obj/item/weapon/gun/pistol/highpower/standard = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom = ITEM_SLOT_SECONDARY,
-		/obj/item/storage/backpack/marine/engineerpack/som = ITEM_SLOT_SECONDARY,
 	)
 	req_desc = "Requires a pistol secondary."
 
 /datum/loadout_item/belt/som/pistol_holster/default
 	jobs_supported = list(SOM_STAFF_OFFICER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
 /datum/loadout_item/belt/som/pistol_holster/officer
 	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after. Holds any pistol secondary, and plenty of ammo."
 	ui_icon = "vx12"
