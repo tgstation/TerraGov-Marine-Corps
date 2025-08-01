@@ -4018,10 +4018,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
-"aRt" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/deltastation/maintenance/disposal/incinerator)
 "aRu" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/effect/turf_decal/sandedge{
@@ -4999,10 +4995,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit)
-"bbg" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/deltastation/engineering/atmos/hfr_room)
 "bbp" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/spawner/random/misc/plant,
@@ -19161,7 +19153,6 @@
 /obj/effect/turf_decal/box/white{
 	color = "#9FED58"
 	},
-/obj/machinery/power/tbg_turbine/cold,
 /turf/open/floor/iron/dark/textured_large,
 /area/deltastation/engineering/atmos/hfr_room)
 "dUy" = (
@@ -19232,7 +19223,6 @@
 "dUS" = (
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/structure/cable,
-/obj/machinery/power/geothermal/tbg,
 /turf/open/floor/iron/dark/textured_large,
 /area/deltastation/engineering/atmos/hfr_room)
 "dUT" = (
@@ -31733,7 +31723,6 @@
 /area/deltastation/hallway/primary/fore)
 "gsm" = (
 /obj/structure/sign/securearea,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/atmos/project)
 "gso" = (
@@ -35693,10 +35682,6 @@
 /obj/effect/spawner/random/misc/structure/security_closet,
 /turf/open/floor/iron,
 /area/deltastation/security/office)
-"hgd" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/unmeltable,
-/area/deltastation/maintenance/solars/port/fore)
 "hge" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
@@ -38139,6 +38124,8 @@
 /area/deltastation/maintenance/department/science)
 "hIz" = (
 /obj/effect/landmark/weed_node,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/atmos/hfr_room)
 "hIB" = (
@@ -52832,7 +52819,6 @@
 	},
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "kMq" = (
@@ -64058,7 +64044,6 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "nec" = (
@@ -74625,6 +74610,8 @@
 /area/deltastation/cargo/office)
 "pnR" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/atmos/hfr_room)
 "pnS" = (
@@ -75215,7 +75202,6 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "ptM" = (
@@ -85036,11 +85022,6 @@
 /obj/effect/spawner/random/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/department/crew_quarters/bar)
-"rpf" = (
-/obj/effect/spawner/random/machinery/status_display,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/deltastation/engineering/atmos/project)
 "rpr" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -89026,7 +89007,6 @@
 	dir = 5
 	},
 /obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "sgD" = (
@@ -94644,10 +94624,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/service/library)
-"tmO" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/unmeltable,
-/area/deltastation/engineering/atmos/hfr_room)
 "tmR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/turf_decal/stripes/line,
@@ -95529,6 +95505,8 @@
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictwest)
 "tvx" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/atmos/hfr_room)
 "tvy" = (
@@ -118862,9 +118840,6 @@
 "xYv" = (
 /obj/effect/turf_decal/box/white,
 /obj/effect/landmark/weed_node,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
 /turf/open/floor/iron/dark/textured_large,
 /area/deltastation/engineering/atmos/hfr_room)
 "xYx" = (
@@ -143731,7 +143706,7 @@ aMA
 aMA
 sPQ
 ulL
-aRt
+xWA
 qCt
 xWA
 xWA
@@ -144499,11 +144474,11 @@ aMA
 sPe
 jST
 fct
-hgd
+aMA
 skU
 cCu
 oUb
-bbg
+rYY
 kpw
 rXw
 qgs
@@ -144754,7 +144729,7 @@ fCY
 fCY
 aMA
 aMA
-hgd
+aMA
 aMA
 aMA
 vgC
@@ -145274,7 +145249,7 @@ skz
 dSR
 dRh
 jNF
-bbg
+rYY
 tzK
 rUg
 laN
@@ -145536,7 +145511,7 @@ dTJ
 xHb
 lmf
 koL
-rpf
+fHC
 fHC
 eJT
 laN
@@ -146549,7 +146524,7 @@ wxm
 psq
 psq
 dLv
-tmO
+uCE
 gNZ
 ldm
 ptL
@@ -146816,7 +146791,7 @@ lMg
 xHm
 jsx
 iWz
-bbg
+rYY
 gpR
 tWR
 bsU
