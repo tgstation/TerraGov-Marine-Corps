@@ -1,0 +1,5 @@
+author: "Scav"
+delete-after: True
+changes:
+  - rscadd: "Added snack vendors to canterbury and bigbury"
+  - rscdel: "Removed one quick loadout vendor from canterbury and bigbury"
