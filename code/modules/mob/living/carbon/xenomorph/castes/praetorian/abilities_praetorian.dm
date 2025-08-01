@@ -667,11 +667,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/oppressor/proc/on_post_throw(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_CALL_PARENT(TRUE) // Because we don't want to forget to unregister the signal.
-	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
-	// In most cases: COMSIG_MOVABLE_POST_THROW (on_post_throw) happens first and then COMSIG_MOVABLE_IMPACT (on_throw_impact) happens afterward.
-	// The reason behind this is because some things call `stop_throw` before the impact even happens.
-	// Because of this, we have to unregister it in the next tick. Even if the impact didn't happen (or was on time), we want to unregister it anyways.
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT), 1)
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT))
 
 /// Called when the source has hit something.
 /datum/action/ability/activable/xeno/oppressor/proc/on_throw_impact(datum/source, atom/hit_atom, impact_speed)
