@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "Humans thrown by Oppressor's Advance, Dislocate, or Tail Lash will now scream and create a visual effect when they hit a wall."
-  - rscadd: "Oppressor now has 3 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."

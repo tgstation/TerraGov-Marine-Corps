@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "Shrike now has 3 new mutations that they can purchase if their hive has enough biomass and mutation structures. Not accessible without admin intervention for now."
-  - code_imp: "The signal for throw impacts is now sent first. This is a change from the signal from throw ending happening first and then throw impacts second."

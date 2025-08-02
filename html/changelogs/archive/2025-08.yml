@@ -17,3 +17,20 @@
   - balance: 'Mutations: Slow and Steady is now 0.2s faster at all ranks.'
   - balance: 'Mutations: Borrowed Time now applies a movement speed modifier of 0.9
       while it is active.'
+2025-08-02:
+  Atropos:
+  - balance: Removed bluespace generator from the game
+  Runian:
+  - rscadd: Shrike now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - code_imp: The signal for throw impacts is now sent first. This is a change from
+      the signal from throw ending happening first and then throw impacts second.
+  - rscadd: Humans thrown by Oppressor's Advance, Dislocate, or Tail Lash will now
+      scream and create a visual effect when they hit a wall.
+  - rscadd: Oppressor now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  Scav:
+  - rscadd: Added snack vendors to canterbury and bigbury
+  - rscdel: Removed one quick loadout vendor from canterbury and bigbury
