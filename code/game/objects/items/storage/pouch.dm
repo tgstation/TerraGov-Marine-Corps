@@ -604,6 +604,24 @@
 	. = ..()
 	storage_datum.sprite_slots = null
 
+/obj/item/storage/pouch/medkit/freelancer/PopulateContents()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
+/obj/item/storage/pouch/medkit/freelancer/leader/PopulateContents()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/isotonic(src)
+	new /obj/item/reagent_containers/hypospray/advanced/inaprovaline(src)
+
 /obj/item/storage/pouch/medical_injectors
 	name = "medical injector pouch"
 	desc = "A specialized medical pouch that can only hold auto-injectors."
