@@ -58,6 +58,14 @@
 	)
 	doppelganger_color = "#800538"
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/toxic_blood,
+		/datum/mutation_upgrade/shell/comforting_acid,
+		/datum/mutation_upgrade/spur/acidic_slasher,
+		/datum/mutation_upgrade/spur/far_sting,
+		/datum/mutation_upgrade/veil/toxic_compatibility
+	)
+
 /datum/xeno_caste/sentinel/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
@@ -100,6 +108,12 @@
 		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 		/datum/action/ability/activable/xeno/neurotox_sting,
 		/datum/action/ability/activable/xeno/xeno_spit,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/gaseous_blood,
+		/datum/mutation_upgrade/spur/toxic_claws,
+		/datum/mutation_upgrade/veil/toxic_spillage
 	)
 
 /datum/xeno_caste/sentinel/retrograde/primordial

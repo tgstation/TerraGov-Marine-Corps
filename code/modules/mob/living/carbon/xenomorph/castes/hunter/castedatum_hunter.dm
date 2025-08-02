@@ -68,6 +68,12 @@
 
 	doppelganger_color = "#803f0b18"
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/fleeting_mirage,
+		/datum/mutation_upgrade/spur/debilitating_strike,
+		/datum/mutation_upgrade/veil/one_target
+	)
+
 /datum/xeno_caste/hunter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

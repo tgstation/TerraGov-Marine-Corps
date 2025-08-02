@@ -189,7 +189,6 @@
 	name = "Gin"
 	description = "It's gin. In space. I say, good sir."
 	color = "#664300" // rgb: 102, 67, 0
-	taste_description = "pine"
 	boozepwr = 45
 	taste_description = "an alcoholic christmas tree"
 
@@ -859,7 +858,6 @@
 	description = "Whoah, this stuff looks volatile!"
 	color = "#9cc8b4" // rgb: 156,200,180
 	boozepwr = 0 //custom drunk effect
-	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
 	adj_dizzy = 6
 	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
 

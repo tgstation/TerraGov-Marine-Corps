@@ -3,7 +3,6 @@
 	jobtype = /datum/job/icc
 
 	id = /obj/item/card/id/silver
-	w_uniform = /obj/item/clothing/under/icc/webbing
 	belt = /obj/item/storage/belt/marine/icc
 	ears = /obj/item/radio/headset/distress/icc
 	w_uniform = /obj/item/clothing/under/icc/webbing
@@ -317,7 +316,7 @@
 /datum/outfit/job/icc/leader/icc_confrontationrifle
 	belt = /obj/item/storage/belt/marine/icc
 	suit_store = /obj/item/weapon/gun/rifle/icc_confrontationrifle/leader
-	
+
 	belt_contents = list(
 		/obj/item/ammo_magazine/rifle/icc_confrontationrifle = 6,
 	)

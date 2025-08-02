@@ -612,6 +612,9 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher (or behemoth)?
 #define CASTE_CAN_BE_RULER (1<<6) // Caste can become a ruler if no queen / shrike / king exists in the hive.
 
+///How often we can swap strains
+#define XENO_STRAIN_SWAP_COOLDOWN 5 MINUTES
+
 //Charge-Crush
 #define CHARGE_OFF 0
 #define CHARGE_BUILDINGUP 1
@@ -1023,3 +1026,9 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 ))
 
 #define POINT_TIME 4 SECONDS
+
+// Dragon
+
+#define DRAGON_BREATH_MELTING "Melting"
+#define DRAGON_BREATH_SHATTERING "Shattering"
+#define DRAGON_BREATH_MELTING_ACID "Melting Acid"

@@ -165,15 +165,6 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	} \
 } while(FALSE)
 
-///Adjusts overheal and returns the amount by which it was adjusted
-#define adjustOverheal(xeno, amount) \
-	xeno.overheal = max(min(xeno.overheal + amount, xeno.xeno_caste.overheal_max), 0); \
-	if(xeno.overheal > 0) { \
-		xeno.add_filter("overheal_vis", 1, outline_filter(4 * (xeno.overheal / xeno.xeno_caste.overheal_max), "#60ce6f60")); \
-	} else { \
-		xeno.remove_filter("overheal_vis"); \
-	}
-
 /// Used by the is_valid_for_resin_structure proc.
 /// 0 is considered valid , anything thats not 0 is false
 /// Simply not allowed by the area to build

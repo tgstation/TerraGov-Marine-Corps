@@ -646,10 +646,6 @@
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/south/security)
-"ary" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/corsat/gamma/engineering/core)
 "arA" = (
 /turf/open/shuttle/blackfloor,
 /area/corsat/gamma/hangar/monorail/railcart)
@@ -10566,11 +10562,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar/arrivals)
-"eJU" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/engineering/core)
 "eKd" = (
 /obj/machinery/light{
 	dir = 1
@@ -21201,6 +21192,8 @@
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
@@ -27693,10 +27686,6 @@
 	},
 /turf/open/floor/wood,
 /area/corsat/sigma/dorms)
-"mnm" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/engineering/core)
 "mnn" = (
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
@@ -28792,6 +28781,8 @@
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 8
 	},
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/grayscale/edge/black{
 	dir = 8
 	},
@@ -29799,9 +29790,6 @@
 "nft" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
 "nfJ" = (
@@ -30319,7 +30307,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 1
 	},
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
 "nrA" = (
@@ -37954,8 +37941,8 @@
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/south/engineering)
 "qId" = (
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
 "qIe" = (
@@ -41390,7 +41377,6 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
 "siL" = (
@@ -43282,9 +43268,10 @@
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/sigma/airlock/south)
 "sXx" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/corsat/gamma/engineering)
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/engineering/core)
 "sXy" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/grayscale/round/lightgray,
@@ -44580,21 +44567,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/omega/complex)
-"tyv" = (
-/obj/effect/ai_node,
-/obj/effect/turf_decal/warning_stripes/smallstripevertical{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/smallstripevertical{
-	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/box/arrow{
-	dir = 8
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 8
-	},
-/area/corsat/gamma/engineering/core)
 "tyK" = (
 /obj/effect/turf_decal/tile/corsatstraight/cyan{
 	dir = 4
@@ -92015,7 +91987,7 @@ joZ
 joZ
 joZ
 joZ
-ary
+joZ
 joZ
 joZ
 joZ
@@ -92276,11 +92248,11 @@ jmR
 jmR
 evr
 sYA
-ary
+joZ
 orU
 vXt
 okX
-sXx
+vpo
 orA
 xDH
 ocK
@@ -92781,13 +92753,13 @@ wSP
 wSP
 fdW
 uVP
-ary
+joZ
 nsi
 bxZ
-oFh
-oFh
-oFh
-oFh
+wYF
+sXx
+sXx
+sXx
 sae
 ijf
 cXS
@@ -93041,7 +93013,7 @@ uVP
 joZ
 mgx
 mtn
-mnm
+oFh
 oFh
 oFh
 oFh
@@ -93298,7 +93270,7 @@ uVP
 joZ
 mgv
 mrZ
-oFh
+wYF
 jCh
 jCh
 jCh
@@ -93556,16 +93528,16 @@ joZ
 nsi
 wYF
 wYF
-qId
-eJU
+wYF
+wYF
 nft
 nqM
 nSo
-ary
+joZ
 orU
 vXt
 okX
-sXx
+vpo
 piP
 ppv
 pwp
@@ -93818,11 +93790,11 @@ mTS
 mAT
 nqs
 nSu
-ary
+joZ
 eaD
 vXt
 gWh
-sXx
+vpo
 piR
 lJR
 pxj
@@ -94069,10 +94041,10 @@ lMb
 joZ
 mgv
 mrZ
-mAT
+qId
 mLo
 mLo
-tyv
+mLo
 nqs
 nOj
 joZ
@@ -94326,7 +94298,7 @@ lMt
 joZ
 mgx
 wYF
-mnm
+oFh
 oFh
 oFh
 oFh
@@ -94580,13 +94552,13 @@ fgX
 lrv
 lAd
 eyX
-ary
+joZ
 nsi
 bxZ
-oFh
-oFh
-oFh
-oFh
+wYF
+sXx
+sXx
+sXx
 nsr
 mAT
 cXS
@@ -95103,11 +95075,11 @@ crj
 crj
 die
 qcx
-ary
+joZ
 orU
 vXt
 gWh
-sXx
+vpo
 pjZ
 jEJ
 pzf
@@ -95356,7 +95328,7 @@ joZ
 joZ
 joZ
 joZ
-ary
+joZ
 joZ
 joZ
 joZ

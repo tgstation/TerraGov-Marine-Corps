@@ -54,6 +54,18 @@
 	)
 	doppelganger_color = "#1604bd"
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/brittle_upclose,
+		/datum/mutation_upgrade/shell/carapace_waxing,
+		/datum/mutation_upgrade/shell/carapace_regrowth,
+		/datum/mutation_upgrade/spur/breathtaking_spin,
+		/datum/mutation_upgrade/spur/sharpening_claws,
+		/datum/mutation_upgrade/spur/power_spin,
+		/datum/mutation_upgrade/veil/carapace_sweat,
+		/datum/mutation_upgrade/veil/carapace_sharing,
+		/datum/mutation_upgrade/veil/slow_and_steady
+	)
+
 /datum/xeno_caste/defender/ancient
 	upgrade = XENO_UPGRADE_NORMAL
 
