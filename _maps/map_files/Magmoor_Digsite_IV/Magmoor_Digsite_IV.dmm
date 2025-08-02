@@ -18152,6 +18152,11 @@
 /obj/machinery/conveyor,
 /turf/open/floor/plating,
 /area/magmoor/cargo/processing/south)
+"mNg" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/thermal)
 "mNI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -20764,12 +20769,6 @@
 /obj/structure/rock/basalt/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
-"oIN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/engi/thermal)
 "oJc" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
@@ -23887,6 +23886,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
+"qSn" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/cult,
+/area/magmoor/cave/north)
 "qSZ" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -25942,6 +25946,12 @@
 	dir = 8
 	},
 /area/magmoor/cargo/processing/south)
+"sqi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/thermal)
 "sql" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
@@ -26755,11 +26765,6 @@
 "sVr" = (
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/northeast)
-"sVs" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal,
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/engi/thermal)
 "sWk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -54943,9 +54948,9 @@ ivX
 wwg
 vAF
 oiI
-sVs
-sVs
-sVs
+mNg
+mNg
+mNg
 pyN
 poK
 tvB
@@ -55410,7 +55415,7 @@ bNR
 ony
 dsb
 odX
-oIN
+sqi
 ccs
 ony
 fCk
@@ -55583,7 +55588,7 @@ aPs
 aPs
 aPs
 aPs
-aPs
+qSn
 aPs
 aPs
 lRD
@@ -55875,9 +55880,9 @@ ivX
 wwg
 vAF
 oiI
-sVs
-sVs
-sVs
+mNg
+mNg
+mNg
 pyN
 yhm
 mCt

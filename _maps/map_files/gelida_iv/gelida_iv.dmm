@@ -19570,6 +19570,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/gelida/powergen)
+"nlp" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves/garbledradio)
 "nlB" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred/full,
@@ -48068,7 +48072,7 @@ eQn
 cYz
 cYz
 cYz
-cYz
+nlp
 ubb
 cYz
 cYz
