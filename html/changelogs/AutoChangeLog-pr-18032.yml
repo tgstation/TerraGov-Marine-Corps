@@ -1,4 +1,0 @@
-author: "ViperSnake01"
-delete-after: True
-changes:
-  - balance: "Snipers no longer apply the sniper stacking debuff if dont have IFF."

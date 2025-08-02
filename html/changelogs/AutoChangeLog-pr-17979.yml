@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Sand now does 2 damage instead of 6 to humans, but also applies stagger"
-  - balance: "Snow now applies slowdown to humans and other small mobs"

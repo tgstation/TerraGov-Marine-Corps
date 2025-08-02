@@ -211,6 +211,11 @@
 
 	///What color overlay this xeno produces as a doppelgänger to Jester
 	var/doppelganger_color = "#009900"
+
+	/// All mutations that this caste can view and potentially purchase.
+	var/list/datum/mutation_upgrade/mutations = list()
+
+
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
 	for(var/trait in caste_traits)
@@ -437,6 +442,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/corrosive_ammo = 0
 	///Boiler Neuro ammo
 	var/neuro_ammo = 0
+
+	/// All active mutations they own.
+	var/list/datum/mutation_upgrade/owned_mutations = list()
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 
