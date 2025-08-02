@@ -28,6 +28,25 @@ CREATE TABLE `discord_links` (
 ```
 
 ----------------------------------------------------
+Version 2.4, 02 February 2025, by ZephyrTFA
+Added `medals` to store persistent medals awared to a player.
+
+```
+CREATE TABLE `medals` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`ckey` VARCHAR(32) NOT NULL,
+	`issued_to_real_name` VARCHAR(255) NOT NULL,
+	`issued_to_rank` VARCHAR(255) NOT NULL,
+	`issued_by_real_name` VARCHAR(255) NOT NULL,
+	`issued_by_rank` VARCHAR(255) NOT NULL,
+	`medal_uid` VARCHAR(255) NOT NULL,
+	`medal_citation` VARCHAR(255) NOT NULL,
+	`issued_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`is_posthumous` TINYINT(1) UNSIGNED NOT NULL,
+	`deleted` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	PRIMARY KEY (`id`));
+```
+----------------------------------------------------
 Version 2.3, 04 February 2025, by TiviPlus
 Fixed admin rank table flags being capped at 16 in the DB instead of 24 (byond max)
 Fixed staminaloss in dead table being unsigned
