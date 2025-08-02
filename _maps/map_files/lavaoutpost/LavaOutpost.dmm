@@ -1,4 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "ae" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/lavaland/basalt,
@@ -704,6 +711,11 @@
 /obj/item/clothing/suit/storage/CMB,
 /turf/open/floor/tile/lightred/full,
 /area/lavaland/security/storage)
+"if" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "ih" = (
 /obj/machinery/smartfridge,
 /turf/open/floor/tile/bar,
@@ -942,13 +954,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/civilian/cargo)
-"kr" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/obj/machinery/power/geothermal,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "ks" = (
 /turf/open/liquid/water/river,
 /area/lavaland/engie/engine)
@@ -1229,6 +1234,11 @@
 /obj/item/explosive/plastique,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"nb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "nf" = (
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark2,
@@ -1730,13 +1740,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
-"sq" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "sw" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/lavaland/basalt,
@@ -1901,11 +1904,6 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/botany)
-"uy" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "uz" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Hydroponics"
@@ -1989,6 +1987,10 @@
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"vc" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southeast)
 "vi" = (
 /obj/vehicle/train/cargo/trolley,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -3344,6 +3346,13 @@
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
+"Ju" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/machinery/power/geothermal,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "Jw" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/orange,
@@ -3769,6 +3778,15 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
+"Ow" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "Ox" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
@@ -4246,15 +4264,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lavaland/medical/chemistry)
-"Tq" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "Ts" = (
 /obj/structure/table,
 /obj/structure/xenoautopsy,
@@ -4655,11 +4664,6 @@
 "XF" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/west)
-"XG" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "XI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
@@ -28064,9 +28068,9 @@ aY
 aY
 aY
 aY
-XG
-Tq
-XG
+if
+Ow
+if
 aY
 aY
 aY
@@ -28321,9 +28325,9 @@ kx
 kx
 kx
 at
-kr
-uy
-sq
+Ju
+nb
+ad
 Kr
 mI
 mI
@@ -28578,9 +28582,9 @@ aY
 aY
 aY
 aY
-XG
-Tq
-XG
+if
+Ow
+if
 aY
 aY
 aY
@@ -45713,7 +45717,7 @@ wj
 wj
 wj
 wj
-wj
+vc
 wj
 wj
 ZS

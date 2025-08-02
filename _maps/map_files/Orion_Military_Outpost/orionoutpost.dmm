@@ -2393,6 +2393,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
+"mc" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "md" = (
 /obj/machinery/iv_drip,
 /obj/structure/sink{
@@ -9457,6 +9461,11 @@
 /obj/structure/inflatable/popped/door,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/ground/underground/caveS/garbledradio)
+"TY" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/bcircuit,
+/area/orion_outpost/surface/building/engineering)
 "TZ" = (
 /obj/structure/table/mainship,
 /obj/machinery/microwave,
@@ -9627,11 +9636,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/prep)
-"UO" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal,
-/turf/open/floor/bcircuit,
-/area/orion_outpost/surface/building/engineering)
 "UP" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -21545,9 +21549,9 @@ Pq
 Xi
 pe
 mu
-UO
+TY
 hT
-UO
+TY
 pc
 iz
 Xi
@@ -21677,9 +21681,9 @@ Rw
 wF
 iz
 pc
-UO
+TY
 hT
-UO
+TY
 CJ
 Ay
 wF
@@ -21809,9 +21813,9 @@ sa
 wF
 iz
 pc
-UO
+TY
 hT
-UO
+TY
 Yr
 FX
 wF
@@ -26402,7 +26406,7 @@ sR
 GN
 GN
 GN
-GN
+mc
 GN
 GN
 GN

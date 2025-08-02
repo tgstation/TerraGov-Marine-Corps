@@ -9380,6 +9380,11 @@
 	dir = 4
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
+"bKg" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/engineership/engineer_floor3,
+/area/lv759/indoors/derelict_ship)
 "bKk" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/urban/decal/bloodtrail{
@@ -10222,15 +10227,6 @@
 	color = "#dfcfc0"
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
-"bSY" = (
-/obj/effect/ai_node,
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	color = "#a6aeab"
-	},
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant/south_hallway)
 "bSZ" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8;
@@ -17552,6 +17548,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/lv759/indoors/apartment/westbedrooms)
+"dhE" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/marked,
+/area/lv759/indoors/power_plant/geothermal_generators)
 "dhG" = (
 /obj/structure/barricade/handrail/strata{
 	dir = 8
@@ -24280,6 +24281,14 @@
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
+"ets" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	color = "#a6aeab";
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/lv759/indoors/power_plant/south_hallway)
 "ett" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 8
@@ -24579,6 +24588,10 @@
 	},
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/caves/west_caves)
+"ewk" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/black/full,
+/area/lv759/indoors/power_plant/geothermal_generators)
 "ewu" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light{
@@ -36720,6 +36733,14 @@
 	color = "#dfcfc0"
 	},
 /area/lv759/indoors/caves/west_caves)
+"gCv" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	color = "#a6aeab";
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/lv759/indoors/power_plant/south_hallway)
 "gCx" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/lattice/autosmooth,
@@ -55040,14 +55061,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
-"jRD" = (
-/obj/effect/landmark/weed_node,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	color = "#a6aeab";
-	dir = 4
-	},
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant/south_hallway)
 "jRJ" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -57246,12 +57259,6 @@
 /obj/item/trash/cigbutt,
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/north_street)
-"kmW" = (
-/obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
-/obj/structure/prop/urban/misc/floorprops/grate,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/lv759/indoors/power_plant/power_storage)
 "kmY" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/prison{
@@ -64582,6 +64589,11 @@
 /obj/structure/prop/urban/containersextended/graffiti/four,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
+"lEO" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/bright_clean,
+/area/lv759/indoors/power_plant)
 "lEQ" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -72049,6 +72061,13 @@
 /obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
+"mUi" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/open/floor/plating/heatinggrate,
+/area/lv759/indoors/power_plant/geothermal_generators)
 "mUk" = (
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/nt_security/checkpoint_east)
@@ -81495,13 +81514,6 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/janitor)
-"oDs" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/structure/catwalk,
-/turf/open/floor/plating/heatinggrate,
-/area/lv759/indoors/power_plant/geothermal_generators)
 "oDu" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -96765,11 +96777,6 @@
 	dir = 6
 	},
 /area/lv759/indoors/nt_research_complex/xenobiology)
-"rqn" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/catwalk,
-/turf/open/floor/plating/heatinggrate,
-/area/lv759/indoors/power_plant/geothermal_generators)
 "rqv" = (
 /obj/machinery/conveyor_switch{
 	id = "cargo_storage"
@@ -101734,11 +101741,6 @@
 	dir = 1
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
-"slz" = (
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant)
 "slD" = (
 /turf/open/floor/orange_edge{
 	dir = 6
@@ -101820,11 +101822,6 @@
 	},
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
-"sms" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/marked,
-/area/lv759/indoors/power_plant/geothermal_generators)
 "smt" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -102244,6 +102241,15 @@
 	color = "#dfcfc0"
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
+"sqp" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	color = "#a6aeab"
+	},
+/turf/open/floor/prison/bright_clean,
+/area/lv759/indoors/power_plant/south_hallway)
 "sqq" = (
 /obj/item/bedsheet/medical,
 /obj/effect/urban/decal/dirt,
@@ -104406,6 +104412,12 @@
 /obj/machinery/light/spot/blue,
 /turf/open/floor/mainship/black,
 /area/lv759/indoors/nt_research_complex/hallwaynorthexit)
+"sJB" = (
+/obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
+/obj/structure/prop/urban/misc/floorprops/grate,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating,
+/area/lv759/indoors/power_plant/power_storage)
 "sJD" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/lines4,
@@ -107697,6 +107709,11 @@
 	},
 /turf/open/floor/urban/tile/tilebeigecheckered,
 /area/lv759/indoors/colonial_marshals/north_office)
+"tmz" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/catwalk,
+/turf/open/floor/plating/heatinggrate,
+/area/lv759/indoors/power_plant/geothermal_generators)
 "tmC" = (
 /obj/structure/barricade/handrail/urban/handrail{
 	dir = 1
@@ -110266,6 +110283,11 @@
 /obj/effect/urban/decal/road/road_edge/five,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"tKt" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/mainship/black/full,
+/area/lv759/indoors/power_plant/geothermal_generators)
 "tKu" = (
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
@@ -115989,14 +116011,6 @@
 	},
 /turf/open/floor/freezer,
 /area/lv759/indoors/apartment/eastrestroomsshower)
-"uHu" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	color = "#a6aeab";
-	dir = 4
-	},
-/turf/open/floor/prison/bright_clean,
-/area/lv759/indoors/power_plant/south_hallway)
 "uHA" = (
 /obj/structure/platform/urban/metalplatform2,
 /obj/structure/barricade/handrail/wire{
@@ -117140,10 +117154,6 @@
 	},
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
-"uSm" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/black/full,
-/area/lv759/indoors/power_plant/geothermal_generators)
 "uSr" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/oil/streak,
@@ -124649,11 +124659,6 @@
 	dir = 6
 	},
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
-"wga" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/mainship/black/full,
-/area/lv759/indoors/power_plant/geothermal_generators)
 "wgc" = (
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -126302,11 +126307,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/hospital/morgue)
-"wvu" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal,
-/turf/open/floor/marked,
-/area/lv759/indoors/power_plant/geothermal_generators)
 "wvx" = (
 /obj/effect/ai_node,
 /turf/open/floor/urban/tile/tilewhite,
@@ -136099,6 +136099,11 @@
 	dir = 5
 	},
 /area/lv759/indoors/nt_office)
+"ygH" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/marked,
+/area/lv759/indoors/power_plant/geothermal_generators)
 "ygI" = (
 /turf/open/floor/prison{
 	dir = 4
@@ -152810,7 +152815,7 @@ fvF
 rQx
 xOJ
 rni
-nMl
+bKg
 mhs
 vBl
 iAI
@@ -162852,12 +162857,12 @@ iZK
 jIn
 rfs
 rfs
-uHu
+gCv
 hMJ
 rfs
 jIn
 rfs
-bSY
+sqp
 ucV
 lFP
 gPx
@@ -163863,16 +163868,16 @@ kpO
 lXD
 sCl
 iHz
-rqn
+tmz
 vUc
 vUc
 vUc
-oDs
+mUi
 lLt
 kKA
 wtB
 jmv
-jRD
+ets
 bWJ
 lFP
 hpP
@@ -164269,11 +164274,11 @@ kpO
 jVp
 qFG
 gKK
-rqn
-wvu
-wvu
-wvu
-oDs
+tmz
+dhE
+dhE
+dhE
+mUi
 lYC
 pZu
 lDX
@@ -164878,11 +164883,11 @@ kpO
 nYQ
 pZu
 oGX
-rqn
-sms
-wga
-sms
-oDs
+tmz
+ygH
+tKt
+ygH
+mUi
 lYC
 pZu
 lDX
@@ -165083,7 +165088,7 @@ ntA
 rwl
 naB
 slY
-uSm
+ewk
 slY
 dxr
 efg
@@ -165284,11 +165289,11 @@ kpO
 ruw
 bRe
 gKK
-rqn
-sms
-wga
-sms
-oDs
+tmz
+ygH
+tKt
+ygH
+mUi
 rKj
 pZu
 lFP
@@ -165893,11 +165898,11 @@ ieV
 ydP
 qFG
 gKK
-rqn
-wvu
-wvu
-wvu
-oDs
+tmz
+dhE
+dhE
+dhE
+mUi
 lYC
 pZu
 nNz
@@ -166299,11 +166304,11 @@ kpO
 xQY
 oYr
 gKK
-rqn
+tmz
 vUc
 vUc
 vUc
-oDs
+mUi
 wfh
 oYr
 wtB
@@ -167315,7 +167320,7 @@ dWA
 xZe
 baW
 tKE
-kmW
+sJB
 sAd
 sAd
 sAd
@@ -168528,7 +168533,7 @@ qhi
 lbl
 vUS
 tFs
-slz
+lEO
 xbM
 lNz
 qhi

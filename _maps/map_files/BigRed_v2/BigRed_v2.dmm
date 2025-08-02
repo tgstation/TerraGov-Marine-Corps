@@ -6199,6 +6199,12 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/s)
+"bto" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/filtration_plant)
 "btr" = (
 /obj/machinery/computer/station_alert,
 /obj/structure/table,
@@ -7516,6 +7522,10 @@
 	},
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
+"bPy" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "bPF" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/bomb_supply,
@@ -9416,11 +9426,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"gbg" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
 "gbB" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -11016,12 +11021,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
-"jwX" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
 "jwY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -17208,6 +17207,11 @@
 "xpr" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/space_port/two)
+"xpx" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/filtration_plant)
 "xpz" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
@@ -44557,7 +44561,7 @@ scS
 dKR
 bkt
 eKb
-jwX
+bto
 eKb
 aaa
 aaa
@@ -44773,9 +44777,9 @@ scS
 scS
 scS
 bkt
-gbg
-gbg
-gbg
+xpx
+xpx
+xpx
 aaa
 aaa
 aaa
@@ -64285,7 +64289,7 @@ jcm
 tPk
 tzo
 tzo
-tzo
+bPy
 tzo
 tzo
 tzo

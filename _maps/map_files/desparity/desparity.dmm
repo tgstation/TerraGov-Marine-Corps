@@ -3020,14 +3020,6 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
-"pU" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "pX" = (
 /obj/effect/landmark/corpsespawner/security/regular,
 /turf/open/floor/tile/dark,
@@ -4609,6 +4601,14 @@
 /obj/structure/girder,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
+"yj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "yk" = (
 /obj/structure/xenoautopsy/tank/broken,
 /turf/open/floor/tile/dark/red2/corner{
@@ -5383,6 +5383,11 @@
 	dir = 8
 	},
 /area/lv624/ground/river3)
+"BR" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "BU" = (
 /obj/structure/table,
 /obj/item/storage/bag/plants,
@@ -5904,6 +5909,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
+"EM" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "EN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6812,11 +6822,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
-"Jk" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "Jl" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /turf/open/floor/tile/purple/taupepurple{
@@ -14856,7 +14861,7 @@ ah
 ua
 ua
 bE
-nR
+EM
 ah
 wh
 wh
@@ -15077,9 +15082,9 @@ ua
 ua
 XJ
 qf
-Jk
-Jk
-Jk
+BR
+BR
+BR
 XJ
 ox
 hG
@@ -15285,9 +15290,9 @@ ua
 qI
 zj
 qf
-Jk
-pU
-Jk
+BR
+yj
+BR
 XJ
 qi
 rS

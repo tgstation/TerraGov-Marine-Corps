@@ -12235,6 +12235,10 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/cargo)
+"kaA" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/daedalusprison/caves/northwest)
 "kaT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -43512,7 +43516,7 @@ ira
 ngx
 ira
 ira
-ira
+kaA
 mEN
 hoO
 sLx

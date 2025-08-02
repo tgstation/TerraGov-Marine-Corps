@@ -92,6 +92,9 @@
 		new /obj/structure/xeno/silo(i)
 		new /obj/structure/xeno/pherotower(i)
 
+	for(var/i in GLOB.xeno_spawner_turfs)
+		new /obj/structure/xeno/spawner(i, XENO_HIVE_NORMAL)
+
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
