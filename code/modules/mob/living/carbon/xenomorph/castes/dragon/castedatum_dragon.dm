@@ -45,6 +45,7 @@
 	sunder_multiplier = 0.8
 
 	minimap_icon = "xenodragon"
+	doppelganger_color = "#65008d"
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
