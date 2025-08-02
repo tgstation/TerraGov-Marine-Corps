@@ -38,8 +38,8 @@
 		return
 	var/mob/living/carbon/xenomorph/jester/xeno = xeno_owner
 	if(prob(50))
-		///1/20th of chips added as damage mult.
-		var/addeddamagemult = 0.05 * chips
+		///1/40th of chips added as damage mult.
+		var/addeddamagemult = 0.025 * chips
 		damagemult += addeddamagemult
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "Now dealing [damagemult * 100]% more damage")
@@ -121,7 +121,7 @@
 		if(STATUS_EFFECT_STUN)
 			owner.balloon_alert(owner, "Knocked!")
 			target.Knockdown(XENO_POUNCE_STUN_DURATION) //Knockdown for 2 seconds
-			target.balloon_alert(owner, "You are tripped by a unseen force!")
+			target.balloon_alert(target, "You are tripped by a unseen force!")
 
 		if(STATUS_EFFECT_CONFUSED)
 			owner.balloon_alert(owner, "Confused!")
@@ -254,6 +254,11 @@
 		/datum/action/ability/xeno_action/mirage,
 		/datum/action/ability/activable/xeno/feast,
 		/datum/action/ability/activable/xeno/psy_blast,
+		/datum/action/ability/xeno_action/evasion,
+		/datum/action/ability/xeno_action/place_recovery_pylon,
+		/datum/action/ability/xeno_action/petrify,
+		/datum/action/ability/xeno_action/emit_neurogas,
+		/datum/action/ability/activable/xeno/psychic_link,
 
 	)
 	///List of all the parent abilties that should have themselves and all of their children also blacklisted
@@ -383,6 +388,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	xeno_owner.update_action_buttons(TRUE)
 	main_ability.ability_container = null
 	main_ability.add_cooldown()
+	container.remove_action(owner)
 	UnregisterSignal(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE)
 	addtimer(CALLBACK(src, PROC_REF(delete_mimic)), 10 SECONDS)
 
@@ -427,19 +433,259 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		main_ability.add_cooldown()
 
 // ***************************************
+// *********** Draw
+// ***************************************
+/datum/action/ability/xeno_action/draw
+	name = "Draw"
+	action_icon_state = "draw"
+	action_icon = 'icons/Xeno/actions/jester.dmi'
+	desc = "Draw two abilties, randomly - One from a deck focused on movement, and a second deck focused on defense."
+	ability_cost = 25
+	cooldown_duration = JESTER_DRAW_COOLDOWN
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW,
+	)
+
+	///List of all abilties the movement deck pulls from
+	var/list/movement_deck = list(
+		/datum/action/ability/activable/xeno/pounce,
+		/datum.action/ability/activable/xeno/warrior/lunge,
+		/datum/action/ability/activable/xeno/advance/jester,
+
+	)
+
+	///List of all abilties the defeense deck pulls from
+	var/list/defense_deck = list(
+		/datum/action/ability/xeno_action/mirage,
+		/datum/action/ability/activable/xeno/ravage,
+		/datum/action/ability/activable/xeno/feast,
+		/datum/action/ability/xeno_action/repulse,
+	)
+
+	///Container for the movement deck ability
+	var/datum/action/ability/activable/xeno/draw_deck_container/movement = new
+	///Container for the defense deck ability
+	var/datum/action/ability/activable/xeno/draw_deck_container/defense/defense = new
+
+/datum/action/ability/xeno_action/draw/give_action(mob/living/L)
+	. = ..()
+	movement.give_action(xeno_owner)
+	defense.give_action(xeno_owner)
+	xeno_owner.update_action_buttons(TRUE)
+
+/datum/action/ability/xeno_action/draw/action_activate()
+	. = ..()
+	var/defense_ability = pick(defense_deck)
+	var/movement_ability = pick(movement_deck)
+	movement.mimic(movement_ability)
+	defense.mimic(defense_ability)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/draw_deck_container
+	name = "Draw Deck : Agility"
+	desc = "When Draw is used, this turns into a agility focused ability. Currently, it is empty."
+	action_icon = 'icons/Xeno/actions/jester.dmi'
+	action_icon_state = "draw_agility"
+	ability_cost = 50
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_AGILITY,
+	)
+	///Wether or not this ability is currently active and allowed to be used
+	var/active
+	///Container for the ability we are actively mimicing
+	var/datum/action/ability/container
+
+/datum/action/ability/activable/xeno/draw_deck_container/defense
+	name = "Draw Deck: Defense"
+	desc = "When Draw is used, this turns into a defense focused ability. Currently, it is empty."
+	action_icon_state = "draw_defense"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_DEFENSE,
+	)
+
+///Takes in a ability, and turns itself into that ability. Also zeros the cost of the ability
+/datum/action/ability/activable/xeno/draw_deck_container/proc/mimic(datum/action/ability/ability_to_mimic)
+	var/datum/action/ability/clone = new ability_to_mimic
+	active = TRUE
+	clone.owner = owner
+	name = clone.name
+	action_icon = clone.action_icon
+	action_icon_state = clone.action_icon_state
+	desc = clone.desc
+	container = clone
+	container.give_action(xeno_owner)
+	container.hidden = TRUE
+	xeno_owner.update_action_buttons(TRUE)
+	container.ability_cost = 0
+	container.owner = owner
+	//Typecasting to approipate level to set xeno_owner, as almost every ability uses it at some point
+	if(ispath(ability_to_mimic, /datum/action/ability/activable/xeno))
+		var/datum/action/ability/activable/xeno/targetable = clone
+		targetable.xeno_owner = xeno_owner
+	else if(ispath(ability_to_mimic, /datum/action/ability/xeno_action))
+		var/datum/action/ability/xeno_action/nontargetable = clone
+		nontargetable.xeno_owner = xeno_owner
+
+/datum/action/ability/activable/xeno/draw_deck_container/can_use_action(silent, override_flags)
+	. = ..()
+	if(!active) // So that the ability gets darkened when it cant be used.
+		return FALSE
+
+/datum/action/ability/activable/xeno/draw_deck_container/can_use_ability(atom/A, silent, override_flags)
+	if(!active)
+		return FALSE
+	///Effectively checking what type of ability we are mimicing, and calling the appropiate can_use
+	if(hascall(container, "can_use_ability"))
+		var/datum/action/ability/activable/targetable = container //can_use_ability is defined at this level
+		if(!targetable.can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+			return FALSE
+	else if(hascall(container, "can_use_action"))
+		if(!container.can_use_action(TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+			return FALSE
+	return TRUE
+
+/datum/action/ability/activable/xeno/draw_deck_container/use_ability(atom/A)
+	container.select()
+	RegisterSignal(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE, PROC_REF(clean_up))
+	///Effectively checking what type of ability we are mimicing, and calling the appropiate use_ability
+	if(hascall(container, "use_ability"))
+		var/datum/action/ability/activable/targetable = container //use_ability is defined at this level
+		targetable.use_ability(A)
+	else if(hascall(container, "action_activate"))
+		container.action_activate()
+
+///Reset icons, deactivate so we cant be used again, and delete the contained ability
+/datum/action/ability/activable/xeno/draw_deck_container/proc/clean_up()
+	SIGNAL_HANDLER
+	active = FALSE
+	UnregisterSignal(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE)
+	action_icon = initial(action_icon)
+	action_icon_state = initial(action_icon_state)
+	name = initial(name)
+	desc = initial(desc)
+	addtimer(CALLBACK(src, PROC_REF(delete_mimic)), 10 SECONDS)
+
+///Handles removing the action and qdeling it - theres gotta be a way to remove this race condition...
+/datum/action/ability/activable/xeno/draw_deck_container/proc/delete_mimic()
+	container.remove_action(owner)
+	qdel(container)
+
+// ***************************************
+// *********** Repulse, Rapid Retreat
+// ***************************************
+// Note : These are all for Draw, and are only avalible through that ability.
+
+/datum/action/ability/xeno_action/repulse
+	name = "Repulse"
+	action_icon_state = "organic_bomb"
+	action_icon = 'icons/Xeno/actions/jester.dmi'
+	desc = "Fling all nearby humans away from you."
+	ability_cost = 50
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_DEFENSE,
+	)
+
+/datum/action/ability/xeno_action/repulse/action_activate()
+	. = ..()
+	var/list/nearby_hostiles = cheap_get_humans_near(owner, 1.5)
+	if(isemptylist(nearby_hostiles))
+		owner.balloon_alert(owner, "No nearby humans!")
+		return fail_activate()
+	for(var/mob/i in nearby_hostiles)
+		if(i.x < owner.x)
+			if(i.y > owner.y)
+				fling(JESTER_REPULSE_RANGE, NORTHWEST, i)
+			if(i.y == owner.y)
+				fling(JESTER_REPULSE_RANGE, WEST, i)
+			if(i.y < owner.y)
+				fling(JESTER_REPULSE_RANGE, SOUTHWEST, i)
+		if(i.x == owner.x)
+			if(i.y > owner.y)
+				fling(JESTER_REPULSE_RANGE, NORTH, i)
+			if(i.y < owner.y)
+				fling(JESTER_REPULSE_RANGE, SOUTH, i)
+		if(i.x > owner.x)
+			if(i.y > owner.y)
+				fling(JESTER_REPULSE_RANGE, NORTHEAST, i)
+			if(i.y == owner.y)
+				fling(JESTER_REPULSE_RANGE, EAST, i)
+			if(i.y < owner.y)
+				fling(JESTER_REPULSE_RANGE, SOUTHEAST, i)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/advance/jester
+	name = "Rapid Retreat"
+	action_icon_state = "crest_defense"
+	action_icon = 'icons/Xeno/actions/defender.dmi'
+	desc = "Rapidly retreat towards a location, disarming any marines in your path."
+	ability_cost = 175
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_AGILITY,
+	)
+	advance_range = 7
+
+/datum/action/ability/activable/xeno/advance/jester/use_ability(atom/A)
+	xeno_owner.face_atom(A)
+	var/datum/action/ability/xeno_action/ready_charge/bull_charge/charge = new
+	charge.hidden = TRUE
+	charge.give_action(xeno_owner)
+	var/aimdir = get_dir(xeno_owner, A)
+	if(charge)
+		charge.charge_on(FALSE)
+		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
+		charge.do_start_crushing()
+		charge.valid_steps_taken = charge.max_steps_buildup - 1
+		charge.charge_dir = aimdir //Set dir so check_momentum() does not cuck us
+	for(var/i=0 to max(get_dist(xeno_owner, A), advance_range))
+		xeno_owner.Move(get_step(xeno_owner, aimdir), aimdir)
+		aimdir = get_dir(xeno_owner, A)
+	charge.remove_action(xeno_owner)
+	qdel(charge)
+	succeed_activate()
+	add_cooldown()
+
+// ***************************************
+// *********** Patron of the Stars
+// ***************************************
+/datum/action/ability/activable/xeno/patron_of_the_stars
+	name = "Patron of the Stars"
+	action_icon_state = "patron"
+	action_icon = 'icons/Xeno/actions/jester.dmi'
+	desc = "Mark a location you can see. After a short channel, detonate the mark, sending out projectiles in a 360."
+	ability_cost = 75
+	cooldown_duration = JESTER_PATRON_OF_THE_STARS_COOLDOWN
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PATRON_OF_THE_STARS,
+	)
+
+/datum/action/ability/activable/xeno/patron_of_the_stars/use_ability(atom/A)
+	new /obj/effect/temp_visual/patron_sigil_stars(get_turf(A))
+	if(!do_after(xeno_owner, 0.6 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
+		return fail_activate()
+	var/datum/ammo/xeno/star_shrapnel/shell = GLOB.ammo_list[/datum/ammo/xeno/star_shrapnel]
+	for(var/i=0, i <= 360, i += 15)
+		var/atom/movable/projectile/newshell = new(get_turf(A))
+		newshell.generate_bullet(shell)
+		newshell.fire_at(shooter = xeno_owner,  source = A, range = newshell.ammo.max_range, angle = i)
+	succeed_activate()
+	add_cooldown()
+
+// ***************************************
 // *********** Doppelganger (Primo)
 // ***************************************
 
 /datum/action/ability/xeno_action/doppelganger
 	name = "Doppelgänger"
-	action_icon_state = "tarot"
+	action_icon_state = "doppelganger"
 	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Temporarily obtain the abilties of another caste"
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DOPPELGANGER,
 	)
-	cooldown_duration = JESTER_DOPPLEGANGER_COOLDOWN
+	cooldown_duration = JESTER_DOPPELGANGER_COOLDOWN
 	///How much plasma was added by this ability on use.
 	var/added_plasma
 
@@ -448,27 +694,33 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		/datum/xeno_caste/runner,
 		/datum/xeno_caste/defender,
 		/datum/xeno_caste/sentinel,
+		/datum/xeno_caste/spitter,
+		/datum/xeno_caste/pyrogen,
 	)
 
 	///Whitelist of the somewhat common castes, 35% chance
 	var/list/uncommon_castes = list(
 		/datum/xeno_caste/bull,
 		/datum/xeno_caste/carrier,
-		/datum/xeno_caste/spitter,
+		/datum/xeno_caste/hunter,
+		/datum/xeno_caste/shrike,
+		/datum/xeno_caste/warrior,
 	)
 
 	///Whitelist of the somewhat rare castes, 20% chance
 	var/list/rare_castes = list(
-		/datum/xeno_caste/warrior,
+		/datum/xeno_caste/widow,
 		/datum/xeno_caste/warlock,
 		/datum/xeno_caste/crusher,
 		/datum/xeno_caste/ravager,
+		/datum/xeno_caste/defiler,
 	)
 
 	///Whitelist of the very rare castes, 5% chance
 	var/list/ultrare_castes = list(
 		/datum/xeno_caste/queen,
-		/datum/xeno_caste/defiler,
+		/datum/xeno_caste/king,
+		/datum/xeno_caste/dragon, //teehee
 	)
 
 	///Blacklisted abilties, etiher to avoid buggy behaviour, duplicated abilties, or just general unbalancedness
@@ -487,6 +739,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		/datum/action/ability/activable/xeno/place_pattern,
 		/datum/action/ability/xeno_action/toggle_crest_defense,
 		/datum/action/ability/xeno_action/fortify,
+		/datum/action/ability/xeno_action/toggle_agility,
 	)
 
 	///The temporarily added abilties
@@ -504,6 +757,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 			caste_type_path = pick(rare_castes)
 		if(96 to 100)
 			caste_type_path = pick(ultrare_castes)
+	caste_type_path = /datum/xeno_caste/king
 	picked_caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
 	for(var/action in picked_caste.actions)
 		if(!(action in blacklist_abilties))
@@ -516,7 +770,10 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 				ability.give_action(xeno_owner)
 				added_ablties += ability
 	xeno_owner.plasma_stored += picked_caste.plasma_max
+	if(picked_caste.spit_types)
+		xeno_owner.ammo = picked_caste.spit_types[1]
 	added_plasma = picked_caste.plasma_max
+	xeno_owner.hud_set_plasma()
 	xeno_owner.add_filter("doppelganger_outline", 4, outline_filter(0.5, picked_caste.doppelganger_color)) //My stand, blatant cheating
 	if(ispath(picked_caste, /datum/xeno_caste/queen))
 		xeno_owner.add_filter("doppelganger_outline_extra", 4, outline_filter(1, "#FF66FF")) //Should we pick queen, add a additional outer outline for the extra pop
@@ -541,6 +798,8 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 			added_ablties -= action
 		qdel(action)
 	xeno_owner.plasma_stored = max(xeno_owner.plasma_stored - added_plasma, 0)
+	xeno_owner.hud_set_plasma()
+	xeno_owner.ammo = /datum/ammo/xeno/acid/medium
 	added_plasma = 0
 	xeno_owner.remove_filter("doppelganger_outline")
 	var/mob/living/carbon/xenomorph/jester/jestermob = xeno_owner

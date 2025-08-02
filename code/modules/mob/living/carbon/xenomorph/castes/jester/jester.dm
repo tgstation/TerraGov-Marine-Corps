@@ -16,14 +16,14 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 	///An overlay of the caste thats picked for doppelganger, displayed ala stand style, from jojo
-	var/atom/movable/vis_obj/xeno_wounds/doppleganger_overlay/doppleganger_overlay
+	var/atom/movable/vis_obj/xeno_wounds/doppelganger_overlay/doppelganger_overlay
 	///  What type of caste this jester's doppelganger is, if it has one
 	var/datum/xeno_caste/doppelganger_caste
 
 // ***************************************
 // *********** Doppelganger Overlays
 // ***************************************
-/atom/movable/vis_obj/xeno_wounds/doppleganger_overlay
+/atom/movable/vis_obj/xeno_wounds/doppelganger_overlay
 	layer = BELOW_MOB_LAYER
 	///The xeno this overlay belongs to
 	var/mob/living/carbon/xenomorph/owner
@@ -35,39 +35,39 @@
 		return
 	switch(newdir)
 		if(NORTH)
-			doppleganger_overlay.pixel_x = 18
-			doppleganger_overlay.pixel_y = 20
-			doppleganger_overlay.layer = BELOW_MOB_LAYER
+			doppelganger_overlay.pixel_x = 18
+			doppelganger_overlay.pixel_y = 20
+			doppelganger_overlay.layer = BELOW_MOB_LAYER
 		if(SOUTH)
-			doppleganger_overlay.pixel_x = -18
-			doppleganger_overlay.pixel_y = 20
-			doppleganger_overlay.layer = ABOVE_MOB_LAYER
+			doppelganger_overlay.pixel_x = -18
+			doppelganger_overlay.pixel_y = 20
+			doppelganger_overlay.layer = ABOVE_MOB_LAYER
 		if(WEST)
-			doppleganger_overlay.pixel_x = -10
-			doppleganger_overlay.pixel_y = 20
-			doppleganger_overlay.layer = BELOW_MOB_LAYER
+			doppelganger_overlay.pixel_x = -10
+			doppelganger_overlay.pixel_y = 20
+			doppelganger_overlay.layer = BELOW_MOB_LAYER
 		if(EAST)
-			doppleganger_overlay.pixel_x = -6
-			doppleganger_overlay.pixel_y = 20
-			doppleganger_overlay.layer = ABOVE_MOB_LAYER
+			doppelganger_overlay.pixel_x = -6
+			doppelganger_overlay.pixel_y = 20
+			doppelganger_overlay.layer = ABOVE_MOB_LAYER
 
 /mob/living/carbon/xenomorph/jester/proc/update_doppelganger_overlay()
-	if(!doppleganger_overlay)
+	if(!doppelganger_overlay)
 		return
 	if((doppelganger_caste == null))
-		doppleganger_overlay.icon_state = ""
+		doppelganger_overlay.icon_state = ""
 		return
 	var/mob/living/carbon/xenomorph = doppelganger_caste.caste_type_path
-	doppleganger_overlay.icon_state = xenomorph.icon_state
-	doppleganger_overlay.icon = xenomorph.icon
+	doppelganger_overlay.icon_state = xenomorph.icon_state
+	doppelganger_overlay.icon = xenomorph.icon
 	if(stat == DEAD)
-		doppleganger_overlay.icon_state = "[doppelganger_caste.caste_name] Dead"
+		doppelganger_overlay.icon_state = "[doppelganger_caste.caste_name] Dead"
 		return
 	if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-			doppleganger_overlay.icon_state = "[doppelganger_caste.caste_name] Sleeping"
+			doppelganger_overlay.icon_state = "[doppelganger_caste.caste_name] Sleeping"
 			return
-		doppleganger_overlay.icon_state = "[doppelganger_caste.caste_name] Knocked Down"
+		doppelganger_overlay.icon_state = "[doppelganger_caste.caste_name] Knocked Down"
 		return
 
 /mob/living/carbon/xenomorph/jester/update_icons(state_change = TRUE)
@@ -76,8 +76,8 @@
 
 /mob/living/carbon/xenomorph/jester/Initialize(mapload, do_not_set_as_ruler)
 	. = ..()
-	doppleganger_overlay = new(src, src)
-	vis_contents += doppleganger_overlay
+	doppelganger_overlay = new(src, src)
+	vis_contents += doppelganger_overlay
 
 // ***************************************
 // *********** Chips & Related mechanics
@@ -86,7 +86,7 @@
 	. = ..()
 	var/datum/action/ability/xeno_action/chips/chipcontainer = actions_by_path[/datum/action/ability/xeno_action/chips]
 	if(chipcontainer.chips < chipcontainer.maxchips)
-		chipcontainer.chips += 0.01 * damage // 100 Damage for a chip
+		chipcontainer.chips += 0.01 * damage // 100 Damage for 1 chip
 		hud_set_chips() //Update the chips display
 	if(chipcontainer.damagemult != 0)
 		INVOKE_ASYNC(src, PROC_REF(handle_bonus_damage), attacker, target, damage)

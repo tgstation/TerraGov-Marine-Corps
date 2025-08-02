@@ -359,6 +359,10 @@
 #define COMSIG_XENOABILITY_DECK_OF_DISASTER "xenoability_deck_of_disaster"
 #define COMSIG_XENOABILITY_TAROT_DECK "xenoability_tarot_deck"
 #define COMSIG_XENOABILITY_DOPPELGANGER "xenoability_doppelganger"
+#define COMSIG_XENOABILITY_DRAW "xenoability_draw"
+#define COMSIG_XENOABILITY_DRAW_DEFENSE "xenoability_draw_agility"
+#define COMSIG_XENOABILITY_DRAW_AGILITY "xenoability_draw_defense"
+#define COMSIG_XENOABILITY_PATRON_OF_THE_STARS "xenoability_patron_of_the_stars"
 
 #define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
 #define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"

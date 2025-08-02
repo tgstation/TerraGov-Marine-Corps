@@ -455,3 +455,17 @@
 	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", pass_flags_checked = PASS_AIR|PASS_PROJECTILE))
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
+
+
+///Jester: Patron of the stars
+/datum/ammo/xeno/star_shrapnel
+	name = "star shrapnel"
+	icon_state =  "rock_shard"
+	damage = 12
+	damage_type = BURN
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
+	max_range = 4
+	bullet_color = null
+	armor_type = ACID
+	shell_speed = 0.9
+

@@ -485,6 +485,7 @@
 	xeno_owner.visible_message(xeno_owner, span_notice("[xeno_owner] begins to overflow with vitality!"))
 	xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_FEAST, GORGER_FEAST_DURATION, xeno_owner.xeno_caste.feast_plasma_drain)
 	TIMER_COOLDOWN_START(src, FEAST_MISCLICK_CD, 2 SECONDS)
+	succeed_activate()
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/feast/ai_should_use(atom/target)

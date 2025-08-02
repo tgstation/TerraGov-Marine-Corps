@@ -66,6 +66,8 @@
 	vent_exit_speed = HUNTER_VENT_CRAWL_TIME
 	silent_vent_crawl = TRUE
 
+	doppelganger_color = "#803f0b18"
+
 /datum/xeno_caste/hunter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

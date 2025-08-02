@@ -47,6 +47,7 @@
 	queen_leader_limit = 4
 
 	minimap_icon = "xenoking"
+	doppelganger_color = "#dbb407"
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,

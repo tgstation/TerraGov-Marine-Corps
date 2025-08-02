@@ -49,6 +49,7 @@
 
 	// *** Abilities *** ///
 	resin_max_range = 1 // Widow can place resin structures from 1 tile away
+	doppelganger_color = "#921021"
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,

@@ -1115,8 +1115,36 @@
 	keybind_signal = COMSIG_XENOABILITY_TAROT_DECK
 	hotkey_keys = list("G")
 
-/datum/keybinding/xeno/doppleganger
-	name = "doppleganger"
+/datum/keybinding/xeno/draw
+	name = "tarot_deck"
+	full_name = "Jester: Draw"
+	description = "Randomly draw two abilites, one from a defense deck, and one from a movement deck. Can be used to override what was previously drawn."
+	keybind_signal = COMSIG_XENOABILITY_DRAW
+	hotkey_keys = list("V")
+
+/datum/keybinding/xeno/draw_agility
+	name = "tarot_deck"
+	full_name = "Jester: Draw - Agility"
+	description = "Use the agility focused ability, obtained from Draw."
+	keybind_signal = COMSIG_XENOABILITY_DRAW_AGILITY
+	hotkey_keys = list("B")
+
+/datum/keybinding/xeno/draw_defense
+	name = "tarot_deck"
+	full_name = "Jester: Draw - Defense"
+	description = "Use the defense focused ability, obtained from Draw"
+	keybind_signal = COMSIG_XENOABILITY_DRAW_DEFENSE
+	hotkey_keys = list("N")
+
+/datum/keybinding/xeno/patron_of_the_stars
+	name = "tarot_deck"
+	full_name = "Jester: Patron of the Stars"
+	description = "Remotely draw a sigil on the ground. When it detonates, it shoots out a circle of projectiles from its center, dealing damage to nearby marines."
+	keybind_signal = COMSIG_XENOABILITY_PATRON_OF_THE_STARS
+	hotkey_keys = list("H")
+
+/datum/keybinding/xeno/doppelganger
+	name = "doppelganger"
 	full_name = "Jester: Doppelgänger"
 	description = "Take on the abilites of another, randomly chosen caste, for some time"
 	keybind_signal = COMSIG_XENOABILITY_DOPPELGANGER

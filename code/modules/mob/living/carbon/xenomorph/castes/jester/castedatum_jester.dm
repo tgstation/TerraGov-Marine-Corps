@@ -13,15 +13,16 @@
 	gib_flick = "Jester Gibbed"
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.8
 
 	// *** Health & Plasma *** //
-	plasma_max = 350
-	plasma_gain = 35
-	max_health = 330
+	plasma_max = 450
+	plasma_gain = 40
+	max_health = 400
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 50, FIRE = 55, ACID = 50)
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -34,13 +35,16 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
+	spit_types = list(/datum/ammo/xeno/acid/medium)
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage_on_hit = 45
 	acid_spray_damage = 20
 	acid_spray_structure_damage = 45
 	acid_spray_range = 5
+
+	// *** Other Misc Stuff *** //
+	feast_plasma_drain = 20
 
 
 	// *** Flags *** //
@@ -53,7 +57,9 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/xeno_action/chips,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/patron_of_the_stars,
 		/datum/action/ability/activable/xeno/deck_of_disaster,
+		/datum/action/ability/xeno_action/draw,
 		/datum/action/ability/xeno_action/tarot_deck,
 	)
 
@@ -77,7 +83,9 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/xeno_action/chips,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/patron_of_the_stars,
 		/datum/action/ability/activable/xeno/deck_of_disaster,
+		/datum/action/ability/xeno_action/draw,
 		/datum/action/ability/xeno_action/tarot_deck,
 		/datum/action/ability/xeno_action/doppelganger,
 	)
