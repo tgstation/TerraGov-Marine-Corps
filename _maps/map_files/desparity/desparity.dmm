@@ -3020,12 +3020,6 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
-"pU" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "pX" = (
 /obj/effect/landmark/corpsespawner/security/regular,
 /turf/open/floor/tile/dark,
@@ -3544,13 +3538,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/fitness)
-"sz" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "sA" = (
 /obj/structure/sign/hydro{
 	dir = 4
@@ -4614,6 +4601,14 @@
 /obj/structure/girder,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
+"yj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "yk" = (
 /obj/structure/xenoautopsy/tank/broken,
 /turf/open/floor/tile/dark/red2/corner{
@@ -5388,6 +5383,11 @@
 	dir = 8
 	},
 /area/lv624/ground/river3)
+"BR" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "BU" = (
 /obj/structure/table,
 /obj/item/storage/bag/plants,
@@ -5909,6 +5909,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
+"EM" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "EN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6817,13 +6822,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
-"Jk" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "Jl" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /turf/open/floor/tile/purple/taupepurple{
@@ -6952,10 +6950,6 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle9)
-"JT" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/lv624/lazarus/engineering)
 "JV" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/wood,
@@ -7728,11 +7722,6 @@
 	},
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
-"NI" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/obj/effect/landmark/xeno_spawner_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
 "NJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -8984,13 +8973,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
-"Uc" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "Ud" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -14163,7 +14145,7 @@ ua
 FC
 FC
 zj
-JT
+zj
 Jd
 Jd
 zj
@@ -14172,7 +14154,7 @@ zj
 ox
 ox
 ox
-JT
+zj
 zj
 Ww
 Ww
@@ -14482,7 +14464,7 @@ nn
 nn
 nn
 qf
-JT
+zj
 vl
 uI
 XJ
@@ -14581,10 +14563,10 @@ zj
 zj
 GM
 zj
-JT
 zj
 zj
-JT
+zj
+zj
 Jd
 zj
 vv
@@ -14681,7 +14663,7 @@ FC
 ua
 ua
 ua
-JT
+zj
 vO
 oY
 DL
@@ -14879,7 +14861,7 @@ ah
 ua
 ua
 bE
-NI
+EM
 ah
 wh
 wh
@@ -14889,7 +14871,7 @@ FC
 FC
 ua
 ua
-JT
+zj
 iG
 iK
 kM
@@ -14898,10 +14880,10 @@ zj
 nU
 qf
 KR
-JT
+zj
 vO
 uY
-JT
+zj
 Wh
 OM
 IC
@@ -14997,7 +14979,7 @@ zj
 zj
 zj
 XJ
-JT
+zj
 zj
 zj
 Jd
@@ -15099,10 +15081,10 @@ kd
 ua
 ua
 XJ
-Jk
 qf
-qf
-qf
+BR
+BR
+BR
 XJ
 ox
 hG
@@ -15203,7 +15185,7 @@ ua
 ua
 ua
 XJ
-Uc
+qf
 NX
 kE
 Sy
@@ -15307,17 +15289,17 @@ ua
 ua
 qI
 zj
-sz
 qf
-pU
-qf
+BR
+yj
+BR
 XJ
 qi
 rS
 uz
 vL
 xZ
-JT
+zj
 Ww
 Ww
 Ww
@@ -15413,14 +15395,14 @@ FC
 zj
 zj
 zj
-JT
 zj
 zj
-JT
+zj
+zj
 XJ
 XJ
 XJ
-JT
+zj
 zj
 Ww
 zb

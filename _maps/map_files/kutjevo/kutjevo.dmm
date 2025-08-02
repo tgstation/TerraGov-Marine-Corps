@@ -83,11 +83,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
-"adA" = (
-/obj/machinery/colony_floodlight_switch,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/kutjevo,
-/area/kutjevo/interior/power)
 "adD" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -820,10 +815,6 @@
 /obj/machinery/colony_floodlight_switch,
 /turf/closed/wall/r_wall/kutjevo,
 /area/kutjevo/interior/power/comms)
-"aYg" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/kutjevo,
-/area/kutjevo/exterior/stonyfields)
 "aYi" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/kutjevo/colors/orange,
@@ -2170,11 +2161,6 @@
 	},
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_north)
-"cva" = (
-/obj/structure/largecrate/random/secure,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/kutjevo/multi_tiles,
-/area/kutjevo/interior/filtration)
 "cvf" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3118,13 +3104,6 @@
 	},
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction)
-"dtq" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor/kutjevo/colors/orange,
-/area/kutjevo/interior/power)
 "dtV" = (
 /obj/machinery/biogenerator,
 /turf/open/floor/kutjevo/grey/plate,
@@ -3822,16 +3801,6 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med)
-"edS" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/turf/open/floor/kutjevo/colors/orange,
-/area/kutjevo/interior/power)
 "eeg" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/kutjevo/tan,
@@ -6856,10 +6825,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/stonyfields)
-"hjY" = (
-/obj/effect/landmark/xeno_spawner_spawn,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/colony_S_East)
 "hkO" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -7392,13 +7357,6 @@
 /obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/oob/dev_room)
-"hQV" = (
-/obj/structure/platform/metalplatform{
-	dir = 1
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/kutjevo,
-/area/kutjevo/interior/power)
 "hQZ" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -11261,6 +11219,10 @@
 "mbS" = (
 /turf/closed/wall/kutjevo,
 /area/kutjevo/interior/complex/botany)
+"mbZ" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/kutjevo/exterior/colony_S_East)
 "mck" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/kutjevo/tan,
@@ -13635,10 +13597,6 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med/auto_doc)
-"oxl" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/kutjevo,
-/area/kutjevo/interior/power)
 "oxr" = (
 /obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -15191,6 +15149,9 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/kutjevo/colors/red/tile,
 /area/kutjevo/exterior/Northwest_Colony)
+"pWN" = (
+/turf/closed/wall/kutjevo,
+/area/kutjevo/exterior/stonyfields)
 "pXF" = (
 /obj/item/flashlight,
 /turf/open/floor/kutjevo/colors/orange,
@@ -17559,6 +17520,11 @@
 "sGs" = (
 /turf/closed/wall/kutjevo,
 /area/kutjevo/interior/complex/med/auto_doc)
+"sGW" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power)
 "sHg" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -18339,10 +18305,6 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med/cells)
-"twI" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/kutjevo/multi_tiles,
-/area/kutjevo/interior/power)
 "txe" = (
 /obj/structure/platform/rockcliff/red{
 	dir = 1
@@ -18479,10 +18441,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/complex/med/operating)
-"tEl" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/kutjevo,
-/area/kutjevo/interior/power)
 "tEA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
@@ -18633,6 +18591,10 @@
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_dunes)
+"tMo" = (
+/obj/structure/largecrate/random/secure,
+/turf/open/floor/kutjevo/multi_tiles,
+/area/kutjevo/interior/filtration)
 "tMF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -18692,6 +18654,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_dunes)
+"tQw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power)
 "tQL" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/kutjevo/tan,
@@ -21256,6 +21226,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_river)
+"wrV" = (
+/obj/machinery/colony_floodlight_switch,
+/turf/closed/wall/r_wall/kutjevo,
+/area/kutjevo/interior/power)
 "wrY" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -22005,13 +21979,6 @@
 	dir = 1
 	},
 /area/kutjevo/interior/colony_South/power2)
-"xfL" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg{
-	dir = 4
-	},
-/turf/open/floor/kutjevo/colors/orange,
-/area/kutjevo/interior/power)
 "xfT" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -26332,7 +26299,7 @@ rYf
 gPW
 aUi
 sgE
-cva
+tMo
 gPW
 koS
 ifC
@@ -30017,13 +29984,13 @@ ceG
 pyp
 pyp
 sNp
-tEl
+pyp
 hGH
 upQ
 hGH
 vdC
 vqW
-tEl
+pyp
 pyp
 pyp
 wdw
@@ -31186,7 +31153,7 @@ dyU
 pyp
 pyp
 sNp
-tEl
+pyp
 wEn
 xjY
 xjY
@@ -31359,7 +31326,7 @@ ddk
 ddk
 dbe
 tlv
-tEl
+pyp
 pyp
 pyp
 wdw
@@ -31520,7 +31487,7 @@ xpk
 xoV
 cTz
 pBV
-edS
+tQw
 kGE
 xzY
 xzY
@@ -31529,7 +31496,7 @@ xzY
 mIr
 cvm
 pyp
-tEl
+pyp
 fdH
 fdH
 pyp
@@ -31687,10 +31654,10 @@ vVC
 vVC
 ePx
 pBV
-xfL
+sGW
 kGE
 tez
-twI
+wIG
 psz
 xVt
 una
@@ -31854,10 +31821,10 @@ vVC
 vVC
 ePx
 pBV
-dtq
+sGW
 kGE
 wIG
-twI
+wIG
 akd
 jrs
 cvm
@@ -31865,7 +31832,7 @@ dzD
 wIG
 wIG
 wIG
-oxl
+xgV
 pnM
 wIG
 ltX
@@ -32186,9 +32153,9 @@ cTz
 tIF
 ler
 ePx
-tEl
 pyp
-adA
+pyp
+wrV
 kNb
 wIG
 wIG
@@ -33188,16 +33155,16 @@ tPO
 iiS
 ePx
 ePx
-tEl
 pyp
-tEl
+pyp
+pyp
 vbV
 pFZ
 tjI
 uma
 pFZ
 pFZ
-hQV
+vFc
 kEL
 wIG
 cEH
@@ -33859,13 +33826,13 @@ cTz
 ePx
 vtT
 dxF
-tEl
+pyp
 tql
 tql
-aYg
+pWN
 tql
 huF
-tEl
+pyp
 pBV
 pBV
 pyp
@@ -60528,7 +60495,7 @@ vIi
 ygm
 ygm
 mnh
-hjY
+mbZ
 wYE
 ygm
 vIi

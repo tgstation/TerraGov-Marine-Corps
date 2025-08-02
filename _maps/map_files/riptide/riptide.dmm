@@ -236,13 +236,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/shuttle/dropship/floor/alt,
 /area/riptide/caves/tram)
-"akm" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/mainship/gray,
-/area/riptide/inside/engineering/bridge)
 "akp" = (
 /obj/item/deployable_floodlight,
 /obj/structure/rack,
@@ -859,6 +852,12 @@
 /obj/structure/cable,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachbar)
+"aGU" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/riptide/inside/engineering/bridge)
 "aHc" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -4283,6 +4282,9 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/north/garbledradio)
+"cYf" = (
+/turf/open/floor/bcircuit,
+/area/riptide/inside/engineering/bridge)
 "cYl" = (
 /obj/structure/flora/drought/yucca,
 /turf/open/floor/plating/ground/drought/alt,
@@ -4516,13 +4518,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/variable/wide,
 /area/riptide/outside/southbeach)
-"dfI" = (
-/obj/structure/platform/nondense{
-	dir = 1
-	},
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/riptide/inside/engineering/bridge)
 "dgw" = (
 /obj/item/fishing/hook/rescue{
 	pixel_x = -4;
@@ -4551,10 +4546,6 @@
 	dir = 8
 	},
 /area/riptide/inside/landingzoneone)
-"dhr" = (
-/obj/machinery/power/tbg_turbine/cold,
-/turf/open/floor/bcircuit,
-/area/riptide/inside/engineering/bridge)
 "dhw" = (
 /obj/machinery/light{
 	dir = 4
@@ -4562,6 +4553,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/small,
 /area/riptide/caves/pmc/rnd)
+"dhJ" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/bcircuit,
+/area/riptide/inside/engineering/bridge)
 "dhK" = (
 /obj/structure/flora/ausbushes/pointybush,
 /turf/open/ground/grass/weedable,
@@ -6032,10 +6028,6 @@
 	dir = 1
 	},
 /area/riptide/inside/medical/offices)
-"ehL" = (
-/obj/effect/landmark/xeno_spawner_spawn,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/riptide/caves/central)
 "eih" = (
 /turf/closed/wall,
 /area/riptide/outside/northislands)
@@ -9271,6 +9263,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood/variable/wide,
 /area/riptide/outside/southbeach)
+"gss" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking,
+/area/riptide/inside/engineering/bridge)
 "gsG" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -11404,13 +11400,6 @@
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/riptide/inside/landingzoneone)
-"ibQ" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/bcircuit,
-/area/riptide/inside/engineering/bridge)
 "ibT" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/iron/smooth_large,
@@ -11713,14 +11702,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachshop)
-"inN" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/marking/warning,
-/area/riptide/inside/engineering/bridge)
 "inT" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/structure/cable,
@@ -14519,6 +14500,14 @@
 	},
 /turf/open/floor/plating,
 /area/riptide/caves/pmc/prison)
+"kkV" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/marking/warning,
+/area/riptide/inside/engineering/bridge)
 "kkY" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
@@ -17480,11 +17469,6 @@
 	},
 /turf/open/ground,
 /area/riptide/outside/southjungle)
-"mkT" = (
-/obj/effect/ai_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/marking,
-/area/riptide/inside/engineering/bridge)
 "mkU" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
@@ -18346,10 +18330,6 @@
 	dir = 1
 	},
 /area/riptide/inside/syndicatecheckpoint)
-"mNm" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/marking,
-/area/riptide/inside/engineering/bridge)
 "mNw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22643,16 +22623,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachshop)
-"pLR" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/bcircuit,
-/area/riptide/inside/engineering/bridge)
 "pLW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/lvsanddecal/full,
@@ -24375,6 +24345,14 @@
 /obj/item/stack/tile,
 /turf/open/floor/plating,
 /area/riptide/inside/breachedfob)
+"qMj" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/power/geothermal,
+/turf/open/floor/bcircuit,
+/area/riptide/inside/engineering/bridge)
 "qMx" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -29402,15 +29380,6 @@
 /obj/structure/rock/basalt/pile,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
-"tYs" = (
-/obj/effect/landmark/weed_node,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/marking/warning,
-/area/riptide/inside/engineering/bridge)
 "tYA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/xeno_resin_wall,
@@ -30000,6 +29969,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/ground,
 /area/riptide/outside/beachlzone)
+"uxP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/marking/warning,
+/area/riptide/inside/engineering/bridge)
 "uxT" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/grime,
@@ -33185,6 +33161,10 @@
 "wJG" = (
 /turf/open/ground,
 /area/riptide/outside/eastbeach)
+"wJQ" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/riptide/caves/central)
 "wKf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -33860,10 +33840,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/riptide/caves/syndicatemining)
-"xlc" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/mainship/gray,
-/area/riptide/inside/engineering/bridge)
 "xli" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/xeno,
@@ -35082,12 +35058,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/riptide/inside/engineering/cave)
-"yeY" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
-/turf/open/floor/bcircuit,
-/area/riptide/inside/engineering/bridge)
 "yfb" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1
@@ -54321,7 +54291,7 @@ qOR
 nVU
 qOR
 bJm
-xlc
+bJm
 gQz
 hkd
 gQz
@@ -54329,7 +54299,7 @@ tmy
 xKP
 usd
 gQz
-xlc
+bJm
 bJm
 mpj
 aCu
@@ -55037,7 +55007,7 @@ nZz
 flS
 bHO
 omA
-xlc
+bJm
 hkd
 qhH
 oEz
@@ -55045,7 +55015,7 @@ sWC
 gQz
 gQz
 bIR
-xlc
+bJm
 lSx
 wRn
 mYl
@@ -55941,7 +55911,7 @@ hfK
 cVl
 wHl
 bJm
-xlc
+bJm
 tSD
 tSD
 tSD
@@ -56111,7 +56081,7 @@ bHO
 bHO
 lHX
 mmI
-xlc
+bJm
 pQT
 hTT
 hTT
@@ -56119,7 +56089,7 @@ agv
 agv
 ryN
 jNp
-xlc
+bJm
 bJm
 ovC
 bFU
@@ -56826,31 +56796,31 @@ csC
 bHO
 bHO
 lHX
-dfI
+cCK
 rXy
 suj
-mkT
-rWi
-ibQ
-rWi
-tYs
+gss
+dhJ
+qMj
+dhJ
+kkV
 rfr
 tLy
-xlc
+bJm
 iTq
 uaN
 hTT
-xlc
+bJm
 tLy
 tLy
-xlc
+bJm
 iTq
 uaN
 hTT
-xlc
+bJm
 tLy
 tLy
-xlc
+bJm
 iTq
 xdL
 ozA
@@ -57009,9 +56979,9 @@ wcH
 rXy
 suj
 xzv
-bJm
-bJm
-bJm
+cYf
+cYf
+cYf
 qSN
 xmx
 efU
@@ -57188,9 +57158,9 @@ kLl
 rXy
 suj
 ufK
-dhr
-pLR
-yeY
+cYf
+cYf
+cYf
 qSN
 xIV
 kHF
@@ -57363,31 +57333,31 @@ csC
 bHO
 bHO
 lHX
-dfI
+cCK
 rXy
 suj
-mNm
-rWi
-rWi
-rWi
-inN
+suj
+dhJ
+dhJ
+dhJ
+uxP
 hlX
 nWh
-xlc
+bJm
 iTq
 uaN
 lsl
-xlc
+bJm
 nWh
 nWh
-xlc
+bJm
 iTq
 uZd
 hTT
-xlc
+bJm
 nWh
 nWh
-xlc
+bJm
 iTq
 xdL
 ozA
@@ -58080,7 +58050,7 @@ aXC
 bHO
 lHX
 mmI
-xlc
+bJm
 ovC
 hTT
 xxJ
@@ -58088,7 +58058,7 @@ agv
 agv
 ryN
 jNp
-xlc
+bJm
 bJm
 ovC
 bVa
@@ -58268,7 +58238,7 @@ nhp
 uJK
 tNO
 bJm
-xlc
+bJm
 qal
 qal
 qal
@@ -59154,7 +59124,7 @@ sYO
 qOR
 nVU
 bsl
-xlc
+bJm
 mdX
 gQz
 hkd
@@ -59162,7 +59132,7 @@ tmy
 gQz
 hkd
 qCx
-xlc
+bJm
 bFX
 aPo
 aPo
@@ -59870,7 +59840,7 @@ wpl
 nvJ
 nvJ
 bJm
-xlc
+bJm
 gQz
 hFQ
 hFQ
@@ -59878,7 +59848,7 @@ mdX
 gQz
 hkd
 usd
-akm
+aGU
 bJm
 wJG
 xKn
@@ -64209,7 +64179,7 @@ uFp
 gbT
 gqq
 gqq
-ehL
+wJQ
 gbT
 gbT
 gbT
