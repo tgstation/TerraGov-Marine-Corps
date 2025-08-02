@@ -137,6 +137,9 @@
 			data["tgui_input_big_buttons"] = tgui_input_big_buttons
 			data["tgui_input_buttons_swap"] = tgui_input_buttons_swap
 			data["clientfps"] = clientfps
+			data["screentip_color"] = screentip_color
+			data["screentips_enabled"] = screentips_enabled
+			data["screentip_images"] = screentip_images
 			data["chat_on_map"] = chat_on_map
 			data["max_chat_length"] = max_chat_length
 			data["see_chat_non_mob"] = see_chat_non_mob
@@ -735,6 +738,24 @@
 			desiredfps = clamp(desiredfps, 0, 240)
 			clientfps = desiredfps
 			parent.fps = desiredfps
+
+		if("screentip_color")
+			var/new_color = input(user, "Choose your screentip color:", "Screentip Color") as null|color
+			if(!new_color)
+				return
+			screentip_color = new_color
+
+		if("screentips_enabled")
+			switch(screentips_enabled)
+				if(SCREENTIP_PREFERENCE_DISABLED)
+					screentips_enabled = SCREENTIP_PREFERENCE_ENABLED
+				if(SCREENTIP_PREFERENCE_ENABLED)
+					screentips_enabled = SCREENTIP_PREFERENCE_CONTEXT_ONLY
+				if(SCREENTIP_PREFERENCE_CONTEXT_ONLY)
+					screentips_enabled = SCREENTIP_PREFERENCE_DISABLED
+
+		if("screentip_images")
+			screentip_images = !screentip_images
 
 		if("chat_on_map")
 			chat_on_map = !chat_on_map
