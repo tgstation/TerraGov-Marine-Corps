@@ -90,10 +90,9 @@
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
-/area/bluemoon/caves/facility/engi
-	name = "Main Powerplant"
-	icon_state = "engine"
-	minimap_color = MINIMAP_AREA_ENGI_CAVE
+/area/bluemoon/caves/facility/bunker
+	name = "Emergency Bunker"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/bluemoon/caves/facility/omicron
 	name = "Omicron Research Facility"
