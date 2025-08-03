@@ -247,7 +247,7 @@
 		/datum/action/ability/xeno_action/steam_rush,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/reagent_slash,
-		/datum/action/ability/activable/xeno/psychic_summon,
+		/datum/action/ability/xeno_action/psychic_summon,
 		/datum/action/ability/activable/xeno/acidic_missile,
 		/datum/action/ability/activable/xeno/web_hook,
 		/datum/action/ability/activable/xeno/leash_ball,
@@ -536,11 +536,11 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	if(!active)
 		return FALSE
 	///Effectively checking what type of ability we are mimicing, and calling the appropiate can_use
-	if(hascall(container, "can_use_ability"))
+	if(istype(container, /datum/action/ability/activable))
 		var/datum/action/ability/activable/targetable = container //can_use_ability is defined at this level
 		if(!targetable.can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 			return FALSE
-	else if(hascall(container, "can_use_action"))
+	else if(istype(container, /datum/action/ability/xeno_action))
 		if(!container.can_use_action(TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 			return FALSE
 	return TRUE
@@ -549,10 +549,10 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	container.select()
 	RegisterSignal(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE, PROC_REF(clean_up))
 	///Effectively checking what type of ability we are mimicing, and calling the appropiate use_ability
-	if(hascall(container, "use_ability"))
+	if(istype(container, /datum/action/ability/activable))
 		var/datum/action/ability/activable/targetable = container //use_ability is defined at this level
 		targetable.use_ability(A)
-	else if(hascall(container, "action_activate"))
+	else if(istype(container, /datum/action/ability/xeno_action))
 		container.action_activate()
 
 ///Reset icons, deactivate so we cant be used again, and delete the contained ability
@@ -757,7 +757,6 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 			caste_type_path = pick(rare_castes)
 		if(96 to 100)
 			caste_type_path = pick(ultrare_castes)
-	caste_type_path = /datum/xeno_caste/king
 	picked_caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
 	for(var/action in picked_caste.actions)
 		if(!(action in blacklist_abilties))
