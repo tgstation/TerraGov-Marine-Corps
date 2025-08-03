@@ -34,3 +34,11 @@
   Scav:
   - rscadd: Added snack vendors to canterbury and bigbury
   - rscdel: Removed one quick loadout vendor from canterbury and bigbury
+2025-08-03:
+  Lumipharon:
+  - balance: 'Campaign: Supply Depot missions have a 30 second delay before the attackers
+      can deploy'
+  Raven-Industries:
+  - bugfix: fixed campaign loadout UI at high screen scaling
+  blackdav123:
+  - rscadd: Minions now spawn on crash.

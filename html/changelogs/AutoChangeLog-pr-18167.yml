@@ -1,4 +1,0 @@
-author: "Raven-Industries"
-delete-after: True
-changes:
-  - bugfix: "fixed campaign loadout UI at high screen scaling"
