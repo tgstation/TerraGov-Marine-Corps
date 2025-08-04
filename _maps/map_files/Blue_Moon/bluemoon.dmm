@@ -7968,6 +7968,10 @@
 	},
 /turf/open/floor/freezer,
 /area/bluemoon/outside/building/dorms)
+"jfJ" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/e)
 "jfR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/brown{
@@ -41138,7 +41142,7 @@ xGy
 uJX
 nkm
 dvW
-nkm
+jfJ
 nkm
 dvW
 nkm
