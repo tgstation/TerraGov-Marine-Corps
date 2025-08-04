@@ -68,6 +68,12 @@
 	var/evolution_threshold = 0
 	///Threshold amount of upgrade points to next maturity
 	var/upgrade_threshold = 0
+	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
+	var/evolve_min_xenos = 0
+	// Starting Population lock, equivalent to assault crewman availability.
+	var/evolve_population_lock = 0
+	// How many of this caste may be alive at once
+	var/maximum_active_caste = INFINITY
 
 	///Singular type path for the caste to deevolve to when forced to by the queen.
 	var/deevolves_to
@@ -103,8 +109,6 @@
 	var/list/spit_types
 
 	// *** Acid spray *** //
-	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
-	var/acid_spray_range = 0
 	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
 	var/acid_spray_duration = 1
 	///The damage acid spray causes on hit.
@@ -156,8 +160,6 @@
 	var/max_puppets = 0
 
 	// *** Crusher Abilities *** //
-	///The damage the stomp causes, counts armor
-	var/stomp_damage = 0
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
 
@@ -206,12 +208,11 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
-	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
-	var/evolve_min_xenos = 0
-	// How many of this caste may be alive at once
-	var/maximum_active_caste = INFINITY
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
+
+	/// All mutations that this caste can view and potentially purchase.
+	var/list/datum/mutation_upgrade/mutations = list()
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -355,7 +356,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/selected_resin = /turf/closed/wall/resin/regenerating
 	//which special resin structure to build when we secrete special resin
 	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/bulletproof
-	///which reagent to slash with using reagent slash
+	/// Which reagent to slash with using reagent slash. Use `set_selected_reagent` when changing this.
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
 	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
@@ -405,10 +406,6 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
 
-	// *** Boiler vars *** //
-	///When true the boiler gains speed and resets the duration on attack
-	var/steam_rush = FALSE
-
 	// *** Conqueror vars *** //
 	/// If Endurance is currently active.
 	var/endurance_active = FALSE
@@ -440,6 +437,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///Boiler Neuro ammo
 	var/neuro_ammo = 0
 
+	/// All active mutations they own.
+	var/list/datum/mutation_upgrade/owned_mutations = list()
+
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 
 	///The resting cooldown
@@ -458,3 +458,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/mob/living/carbon/xenomorph/xeno = attacker
 	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
 	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
+
+/// Sets the xenomorph's selected reagent & sends a signal indicating that it happened.
+/mob/living/carbon/xenomorph/proc/set_selected_reagent(datum/reagent/new_reagent_typepath)
+	if(selected_reagent == new_reagent_typepath)
+		return
+	SEND_SIGNAL(src, COMSIG_XENO_SELECTED_REAGENT_CHANGED, selected_reagent, new_reagent_typepath)
+	selected_reagent = new_reagent_typepath

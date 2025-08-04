@@ -91,7 +91,6 @@
 /obj/item/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."
-	desc = "A biohazard alert warning is printed on the box"
 	spawn_type = /obj/item/reagent_containers/syringe
 	spawn_number = 7
 	icon_state = "syringe"
@@ -954,6 +953,45 @@
 /obj/item/storage/box/visual/magazine/compact/sh15/slug/full
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/tx15_slug
+
+// sh410
+/obj/item/storage/box/visual/magazine/compact/sh410
+	name = "SH-410 magazine box"
+	desc = "A box specifically designed to hold a large amount of SH-410 magazines."
+	closed_overlay = "mag_box_small_overlay_sh410"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/Initialize(mapload, ...)
+	. = ..()
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/ammo_magazine/rifle/sh410_buckshot,
+		/obj/item/ammo_magazine/rifle/sh410_sabot,
+		/obj/item/ammo_magazine/rifle/sh410_tracker,
+	))
+
+/obj/item/storage/box/visual/magazine/compact/sh410/buckshot
+	name = "SH-410 buckshot magazine box"
+	closed_overlay = "mag_box_small_overlay_sh410_buckshot"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/buckshot/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sh410_buckshot
+
+/obj/item/storage/box/visual/magazine/compact/sh410/sabot
+	name = "SH-410 sabot magazine box"
+	closed_overlay = "mag_box_small_overlay_sh410_sabot"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/sabot/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sh410_sabot
+
+/obj/item/storage/box/visual/magazine/compact/sh410/tracker
+	name = "SH-410 tracker magazine box"
+	closed_overlay = "mag_box_small_overlay_sh410_tracker"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/tracker/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sh410_tracker
 
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle
 	name = "Suspicious glowing box"

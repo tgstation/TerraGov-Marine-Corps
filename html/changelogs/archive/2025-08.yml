@@ -1,0 +1,44 @@
+2025-08-01:
+  Runian:
+  - bugfix: 'Mutations: Rallying Cry no longer causes Queen''s Screech to permanently
+      grant movement speed to other xenomorphs.'
+  - balance: 'Mutations: Brittle Upclose loses its bonus bullet armor against projectiles
+      at pointblank range.'
+  - balance: 'Mutations: Breathtaking Spin''s damage has been decreased by 0.5x at
+      all ranks.'
+  - balance: 'Mutations: Ingrained Evasion''s accuracy threshold has been reduced
+      from 100% to 75%, making it significantly easier for accuracy-focused weapons
+      to bypass evasion.'
+  - balance: 'Mutations: Gaseous Blood''s cooldown has been increased 3 seconds at
+      all ranks. The emitted gas now lasts 4 seconds from 10 seconds.'
+  - balance: 'Mutations: Toxic Claws injects 1 unit more of Neurotoxin at all ranks.'
+  - balance: 'Mutations: Panic Gas and Wide Gas now emits Neurotoxin gas that is significantly
+      easier to see through, but also extinguishes fire.'
+  - balance: 'Mutations: Slow and Steady is now 0.2s faster at all ranks.'
+  - balance: 'Mutations: Borrowed Time now applies a movement speed modifier of 0.9
+      while it is active.'
+2025-08-02:
+  Atropos:
+  - balance: Removed bluespace generator from the game
+  Runian:
+  - rscadd: Shrike now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - code_imp: The signal for throw impacts is now sent first. This is a change from
+      the signal from throw ending happening first and then throw impacts second.
+  - rscadd: Humans thrown by Oppressor's Advance, Dislocate, or Tail Lash will now
+      scream and create a visual effect when they hit a wall.
+  - rscadd: Oppressor now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  Scav:
+  - rscadd: Added snack vendors to canterbury and bigbury
+  - rscdel: Removed one quick loadout vendor from canterbury and bigbury
+2025-08-03:
+  Lumipharon:
+  - balance: 'Campaign: Supply Depot missions have a 30 second delay before the attackers
+      can deploy'
+  Raven-Industries:
+  - bugfix: fixed campaign loadout UI at high screen scaling
+  blackdav123:
+  - rscadd: Minions now spawn on crash.

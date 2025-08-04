@@ -28,8 +28,9 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
-	evolve_min_xenos = 13
+	evolve_min_xenos = 8
 	death_evolution_delay = 15 MINUTES
+	evolve_population_lock = 50 // Tank
 
 	// *** Flags *** //
 	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE
@@ -59,6 +60,12 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/regenerative_armor,
+		/datum/mutation_upgrade/spur/breath_of_variety,
+		/datum/mutation_upgrade/veil/benevolence
 	)
 
 /datum/xeno_caste/dragon/normal

@@ -1702,12 +1702,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2/corner,
 /area/daedalusprison/inside/cargo)
-"bvW" = (
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/turf/open/floor/prison/plate,
-/area/daedalusprison/inside/substation)
 "bwj" = (
 /obj/item/clothing/under/rank/prisoner,
 /turf/open/floor/rustyplating,
@@ -6789,10 +6783,6 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/hydroponics)
-"fAL" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/prison,
-/area/daedalusprison/inside/mining)
 "fBp" = (
 /turf/open/floor/prison,
 /area/daedalusprison/inside/centralbooth)
@@ -8248,10 +8238,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/daedalusprison/inside/security/secbreakroom)
-"gOU" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/prison,
-/area/daedalusprison/inside/substation)
 "gPf" = (
 /obj/structure/table/mainship,
 /obj/item/tool/soap/nanotrasen,
@@ -12249,6 +12235,10 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/cargo)
+"kaA" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/daedalusprison/caves/northwest)
 "kaT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -14818,13 +14808,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/centralhalls)
-"meV" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/plate,
-/area/daedalusprison/inside/substation)
 "meZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -15187,12 +15170,6 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/medical/chemistry)
-"muV" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor/prison/plate,
-/area/daedalusprison/inside/substation)
 "muX" = (
 /turf/open/floor/prison,
 /area/daedalusprison/inside/southclass)
@@ -40641,7 +40618,7 @@ sLx
 dQK
 nIV
 nIV
-gOU
+nIV
 nIV
 nIV
 sLx
@@ -41277,7 +41254,7 @@ sLx
 nIV
 aeJ
 hGE
-bvW
+hGE
 csc
 pfA
 erg
@@ -41486,17 +41463,17 @@ avY
 vXd
 liI
 sLx
-gOU
+nIV
 aeJ
 luA
-meV
+hGE
 uNE
 qSs
 kMu
 kXS
 dGz
 pFi
-fAL
+xxz
 nBL
 qyw
 iyH
@@ -41701,9 +41678,9 @@ sLx
 nIV
 jOK
 hGE
-muV
+hGE
 oYH
-gOU
+nIV
 cUX
 uJJ
 uJJ
@@ -42337,7 +42314,7 @@ sLx
 nIV
 nIV
 nIV
-gOU
+nIV
 nIV
 nIV
 goR
@@ -42980,7 +42957,7 @@ goR
 mdX
 iED
 uEH
-fAL
+xxz
 cwH
 rzf
 vmT
@@ -43539,7 +43516,7 @@ ira
 ngx
 ira
 ira
-ira
+kaA
 mEN
 hoO
 sLx
@@ -44252,7 +44229,7 @@ ebp
 dZR
 dZR
 dPT
-fAL
+xxz
 akQ
 rzf
 qyw

@@ -2827,6 +2827,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/campaign_structure/barricade/sandbags,
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor/plating/ground/dirt2,
 /area/campaign/jungle_outpost/ground/jungle)
 "nj" = (
@@ -2941,6 +2942,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 1
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
@@ -2998,6 +3000,7 @@
 /obj/structure/platform{
 	dir = 6
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
 "nX" = (
@@ -4270,6 +4273,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 1
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
 "tC" = (
@@ -5225,6 +5229,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 8
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "ye" = (
@@ -5271,6 +5276,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/campaign_structure/barricade/sandbags,
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
 "yp" = (
@@ -7642,6 +7648,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 8
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 4
 	},
@@ -8445,6 +8452,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 4
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "Nm" = (

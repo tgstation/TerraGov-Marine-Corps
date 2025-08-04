@@ -2,7 +2,7 @@
 	name = "Nuclear War"
 	config_tag = "Nuclear War"
 	silo_scaling = 2
-	round_type_flags = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD|MODE_FORCE_CUSTOMSQUAD_UI
+	round_type_flags = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD|MODE_FORCE_CUSTOMSQUAD_UI|MODE_MUTATIONS_OBTAINABLE
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
@@ -38,11 +38,16 @@
 	)
 
 	evo_requirements = list(
-		/datum/xeno_caste/king = 12,
 		/datum/xeno_caste/queen = 8,
 	)
 
 /datum/game_mode/infestation/nuclear_war/post_setup()
+	var/client_count = length(GLOB.clients)
+	if(client_count >= NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED)
+		evo_requirements[/datum/xeno_caste/queen] -= 2
+	if(client_count >= NUCLEAR_WAR_TANK_MINIMUM_POP_REQUIRED)
+		evo_requirements[/datum/xeno_caste/queen] -= 2
+
 	. = ..()
 
 	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)

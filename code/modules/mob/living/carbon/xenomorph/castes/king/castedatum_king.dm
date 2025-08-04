@@ -29,8 +29,9 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
-	evolve_min_xenos = 12
+	evolve_min_xenos = 8
 	death_evolution_delay = 7 MINUTES
+	evolve_population_lock = 40 // Mech
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_HAS_WOUND_MASK
@@ -71,6 +72,12 @@
 		/datum/action/ability/xeno_action/blessing_menu,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/stone_armor,
+		/datum/mutation_upgrade/spur/minion_king,
+		/datum/mutation_upgrade/veil/widefall,
+		/datum/mutation_upgrade/veil/flarefall
+	)
 
 /datum/xeno_caste/king/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -166,6 +173,12 @@
 		/datum/action/ability/activable/xeno/conqueror_will,
 		/datum/action/ability/xeno_action/conqueror_endurance,
 		/datum/action/ability/activable/xeno/conqueror_domination,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/healing_jab,
+		/datum/mutation_upgrade/spur/telefrag,
+		/datum/mutation_upgrade/veil/dasher
 	)
 
 /datum/xeno_caste/king/conqueror/normal

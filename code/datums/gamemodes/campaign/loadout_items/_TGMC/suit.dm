@@ -103,10 +103,11 @@
 	name = "H shield armor"
 	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
 	ui_icon = "heavy_armour_shield"
-	req_desc = "Requires a heavy helmet."
+	req_desc = "Requires a heavy or smartgunner helmet."
 	item_typepath = /obj/item/clothing/suit/modular/tdf/heavy/shield
 	item_whitelist = list(
-		/obj/item/clothing/head/modular/tdf/heavy = ITEM_SLOT_HEAD
+		/obj/item/clothing/head/modular/tdf/heavy = ITEM_SLOT_HEAD,
+		/obj/item/clothing/head/modular/tdf/sg = ITEM_SLOT_HEAD,
 	)
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE

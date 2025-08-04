@@ -51,6 +51,7 @@
 #define MODE_ALLOW_XENO_QUICKBUILD (1<<14)
 #define MODE_DISALLOW_RAILGUN (1<<15)
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
+#define MODE_MUTATIONS_OBTAINABLE (1<<17)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
@@ -155,3 +156,7 @@
 
 #define SENSOR_CAP_ADDITION_TIME_BONUS 3 MINUTES //additional time granted by capturing a sensor tower
 #define SENSOR_CAP_TIMER_PAUSED "paused"
+
+#define NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED 40 // This amount of clients must be connected at gamemode setup to get the first mech pilot slot.
+#define NUCLEAR_WAR_MECH_INTERVAL_PER_SLOT 20 // After meeting NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED, a mech pilot slot is open for each set of X clients.
+#define NUCLEAR_WAR_TANK_MINIMUM_POP_REQUIRED 50 // This amount of clients must be connected at gamemode setup to get two assault crewman jobs (and thus tank).

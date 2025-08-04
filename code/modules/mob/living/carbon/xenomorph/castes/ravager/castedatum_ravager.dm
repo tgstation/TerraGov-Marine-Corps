@@ -56,6 +56,12 @@
 	///multiplier on plasma amount vs damage that is recieved on being attacked
 	var/plasma_damage_recieved_mult = 0.5
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/little_more,
+		/datum/mutation_upgrade/spur/deep_slash,
+		/datum/mutation_upgrade/veil/recurring_rage
+	)
+
 /datum/xeno_caste/ravager/on_caste_applied(mob/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
@@ -116,6 +122,12 @@
 	)
 	plasma_damage_dealt_mult = 2
 	plasma_damage_recieved_mult = 0.75
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/no_end,
+		/datum/mutation_upgrade/spur/early_rage,
+		/datum/mutation_upgrade/veil/safety_trap
+	)
 
 /datum/xeno_caste/ravager/bloodthirster/normal
 	upgrade = XENO_UPGRADE_NORMAL

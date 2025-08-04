@@ -67,12 +67,18 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
 	target_flags = ABILITY_MOB_TARGET
-
+	/// How long in deciseconds should humans be stunned? If they are to be stunned, they will also drop held items.
+	var/stun_duration = 2 SECONDS
+	/// Should humans take damage immediately? If so, what is the multiplier of the owner's melee damage for determining how much damage to deal?
+	var/damage_multiplier = 0
+	/// If humans were to collide with something, how long in deciseconds should they be paralyzed for collusion?
+	var/collusion_paralyze_duration = 0
+	/// If humans were to collide with something, what is the multiplier of the owner's melee damage for determining how much damage to deal?
+	var/collusion_damage_multiplier = 0
 
 /datum/action/ability/activable/xeno/psychic_fling/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
 	return ..()
-
 
 /datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/movable/target, silent = FALSE, override_flags)
 	. = ..()
@@ -96,7 +102,6 @@
 		if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 			return FALSE
 
-
 /datum/action/ability/activable/xeno/psychic_fling/use_ability(atom/target)
 	var/mob/living/victim = target
 	GLOB.round_statistics.psychic_flings++
@@ -117,7 +122,16 @@
 	succeed_activate()
 	add_cooldown()
 	if(ishuman(victim))
-		victim.apply_effects(2 SECONDS, 0.2 SECONDS) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
+		if(stun_duration)
+			victim.Stun(2 SECONDS)
+			victim.drop_all_held_items()
+		if(damage_multiplier)
+			victim.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
+		RegisterSignal(victim, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
+		if(collusion_paralyze_duration || collusion_damage_multiplier)
+			RegisterSignal(victim, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
+		else
+			victim.add_pass_flags(PASS_MOB, THROW_TRAIT)
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
@@ -132,6 +146,49 @@
 		T = temp
 	victim.throw_at(T, fling_distance, 1, owner, TRUE)
 
+/// Called when the throw has ended.
+/datum/action/ability/activable/xeno/psychic_fling/proc/on_post_throw(datum/source)
+	SIGNAL_HANDLER
+	var/mob/living/living_source = source
+	UnregisterSignal(living_source, COMSIG_MOVABLE_POST_THROW)
+	if(collusion_paralyze_duration || collusion_damage_multiplier)
+		UnregisterSignal(living_source, COMSIG_MOVABLE_IMPACT)
+		return
+	living_source.remove_pass_flags(PASS_MOB, THROW_TRAIT)
+
+/// Called when the source has hit something.
+/datum/action/ability/activable/xeno/psychic_fling/proc/on_throw_impact(datum/source, atom/hit_atom, impact_speed)
+	SIGNAL_HANDLER
+	var/mob/living/living_source = source
+	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
+	var/damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * collusion_damage_multiplier
+	var/valid_impact = FALSE
+	if(isliving(hit_atom))
+		valid_impact = TRUE
+		var/mob/living/living_hit = hit_atom
+		if(!living_source.issamexenohive(living_hit))
+			INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob, emote), "scream")
+			if(damage)
+				living_hit.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+			if(collusion_paralyze_duration)
+				living_hit.Paralyze(collusion_paralyze_duration)
+	if(isobj(hit_atom))
+		valid_impact = TRUE
+		var/obj/hit_object = hit_atom
+		if(!istype(hit_object, /obj/structure/xeno) && damage)
+			hit_object.take_damage(damage, BRUTE, MELEE)
+	if(iswallturf(hit_atom))
+		valid_impact = TRUE
+		var/turf/closed/wall/hit_wall = hit_atom
+		if(!(hit_wall.resistance_flags & INDESTRUCTIBLE) && damage)
+			hit_wall.take_damage(damage, BRUTE, MELEE)
+	if(!valid_impact)
+		return
+	INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
+	if(damage)
+		living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+	if(collusion_paralyze_duration)
+		living_source.Paralyze(collusion_paralyze_duration)
 
 // ***************************************
 // *********** Unrelenting Force
@@ -231,9 +288,13 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
-	var/heal_range = SHRIKE_HEAL_RANGE
 	target_flags = ABILITY_MOB_TARGET
-
+	/// How far can the ability be used?
+	var/heal_range = SHRIKE_HEAL_RANGE
+	/// If the ability was used on themselves, what is the amount to multiply healing power by?
+	var/self_heal_multiplier = 1
+	/// If the ability was used on themselves, what is the amount to multiply cooldown duration by?
+	var/self_cooldown_multiplier = 1
 
 /datum/action/ability/activable/xeno/psychic_cure/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to cure sisters again."))
@@ -291,8 +352,8 @@
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
-	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
-	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
+	patient.heal_wounds(xeno_owner == patient ? SHRIKE_CURE_HEAL_MULTIPLIER * self_heal_multiplier : SHRIKE_CURE_HEAL_MULTIPLIER)
+	patient.adjust_sunder(xeno_owner == patient ?  -SHRIKE_CURE_HEAL_MULTIPLIER * self_heal_multiplier : -SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 		patient.SetUnconscious(0)
 		patient.SetStun(0)
@@ -306,7 +367,7 @@
 	log_combat(owner, patient, "psychically cured")
 
 	succeed_activate()
-	add_cooldown()
+	add_cooldown(xeno_owner == patient ? cooldown_duration * self_cooldown_multiplier : null)
 
 
 // ***************************************

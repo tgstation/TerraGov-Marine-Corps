@@ -206,7 +206,7 @@
 		charger.add_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE, TRUE, 100, NONE, TRUE, -CHARGE_SPEED(src))
 
 	if(valid_steps_taken > steps_for_charge)
-		charger.plasma_stored -= round(CHARGE_SPEED(src) * plasma_use_multiplier) //Eats up plasma the faster you go. //now uses a multiplier
+		charger.use_plasma(round(CHARGE_SPEED(src) * plasma_use_multiplier)) //Eats up plasma the faster you go. //now uses a multiplier
 
 		switch(charge_type)
 			if(CHARGE_CRUSH) //Xeno Crusher
@@ -362,7 +362,10 @@
 	max_steps_buildup = 10
 	crush_living_damage = 37
 	plasma_use_multiplier = 2
-
+	// How many steps below the maximum (`max_steps_buildup`) must be reached before the owner gets complete stagger immunity?
+	var/stagger_immunity_steps = 0
+	/// Has the trait TRAIT_STAGGERIMMUNE been given yet?
+	var/currently_stagger_immune = FALSE
 
 /datum/action/ability/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
 	. = ..()
@@ -396,9 +399,32 @@
 			crush_sound = SFX_ALIEN_TAIL_ATTACK
 			to_chat(owner, span_notice("Now goring on impact."))
 
+/datum/action/ability/xeno_action/ready_charge/bull_charge/give_action(mob/living/carbon/xenomorph/given_to_xenomorph)
+	if(given_to_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+		agile_charge = TRUE
+	return ..()
+
+/datum/action/ability/xeno_action/ready_charge/bull_charge/remove_action(mob/living/carbon/xenomorph/removed_from_xenomorph)
+	if(removed_from_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+		agile_charge = FALSE
+	return ..()
+
 /datum/action/ability/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
-	var/mob/living/carbon/xenomorph/X = owner
-	agile_charge = (X.upgrade == XENO_UPGRADE_PRIMO)
+	. = ..()
+	agile_charge = (xeno_owner.upgrade == XENO_UPGRADE_PRIMO)
+
+/datum/action/ability/xeno_action/ready_charge/bull_charge/handle_momentum()
+	. = ..()
+	if(!stagger_immunity_steps)
+		return
+	var/reached_stagger_immunity_steps = valid_steps_taken >= (max_steps_buildup - stagger_immunity_steps)
+	if(!currently_stagger_immune && reached_stagger_immunity_steps)
+		ADD_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, BULL_ABILITY_TRAIT)
+		currently_stagger_immune = TRUE
+		return
+	if(currently_stagger_immune && !reached_stagger_immunity_steps)
+		REMOVE_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, BULL_ABILITY_TRAIT)
+		currently_stagger_immune = FALSE
 
 /datum/action/ability/xeno_action/ready_charge/queen_charge
 	action_icon_state = "queen_ready_charge"

@@ -1679,6 +1679,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/lowsec)
+"aWl" = (
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/fiorina/tumor/aux_engi)
 "aWw" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/prison/plate{
@@ -2528,13 +2533,6 @@
 /obj/item/stack/rods,
 /turf/open/floor/prison,
 /area/fiorina/station/civres_blue)
-"bwr" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/fiorina/tumor/aux_engi)
 "bwu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/plate,
@@ -3630,6 +3628,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/fiorina/station/security)
+"ccB" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/prison/darkpurple{
+	dir = 10
+	},
+/area/fiorina/tumor/servers)
 "ccD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
@@ -5982,6 +5986,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/fiorina/station/transit_hub)
+"dsu" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
 "dsv" = (
 /obj/machinery/light/blue{
 	dir = 8;
@@ -6762,11 +6771,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/lz/near_lzII)
-"dLp" = (
-/obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
-/obj/effect/spawner/random/engineering/tool,
-/turf/open/floor/plating,
-/area/fiorina/tumor/aux_engi)
 "dLJ" = (
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -18505,6 +18509,11 @@
 	dir = 8
 	},
 /area/fiorina/station/botany)
+"kgx" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/plating,
+/area/fiorina/tumor/aux_engi)
 "kgy" = (
 /obj/machinery/light/blue,
 /turf/open/floor/prison,
@@ -21347,10 +21356,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/station/disco)
-"lCl" = (
-/obj/machinery/power/tbg_turbine/cold,
-/turf/open/floor/tile/dark,
-/area/fiorina/tumor/aux_engi)
 "lCr" = (
 /obj/structure/table/reinforced/prison{
 	flipped = 1
@@ -23156,11 +23161,6 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison,
 /area/fiorina/station/transit_hub)
-"mEd" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/geothermal,
-/turf/open/floor/plating,
-/area/fiorina/tumor/aux_engi)
 "mEt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -24568,6 +24568,11 @@
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/telecomm/lz1_tram)
+"nqe" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/aux_engi)
 "nql" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/prison/darkred/full,
@@ -26176,10 +26181,6 @@
 	dir = 1
 	},
 /area/fiorina/station/chapel)
-"omo" = (
-/obj/machinery/power/geothermal,
-/turf/open/floor/plating,
-/area/fiorina/tumor/aux_engi)
 "omv" = (
 /obj/item/stack/rods,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -29640,6 +29641,10 @@
 	dir = 10
 	},
 /area/fiorina/station/medbay)
+"qcV" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/fiorina/tumor/aux_engi)
 "qda" = (
 /obj/effect/forcefield,
 /obj/structure/platform/metalplatform{
@@ -31054,6 +31059,11 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/servers)
+"qWw" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/fiorina/tumor/aux_engi)
 "qWy" = (
 /obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
 /obj/item/tool/mop,
@@ -31079,12 +31089,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/servers)
-"qWS" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/fiorina/tumor/aux_engi)
 "qWX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -34372,11 +34376,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue,
 /area/fiorina/station/civres_blue)
-"sKX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/fiorina/tumor/aux_engi)
 "sLe" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 8
@@ -38143,6 +38142,12 @@
 	dir = 10
 	},
 /area/fiorina/station/research_cells)
+"uPT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/fiorina/tumor/aux_engi)
 "uPV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -52144,8 +52149,8 @@ aty
 dyw
 dyw
 xTh
-mEd
-omo
+uPT
+qWw
 xTh
 xTh
 xTh
@@ -52358,7 +52363,7 @@ yjX
 xTh
 gVK
 scw
-kmN
+nqe
 xTh
 eVo
 vmD
@@ -52569,7 +52574,7 @@ xTh
 yjX
 xTh
 gVK
-sKX
+aWl
 gVK
 cFZ
 ppG
@@ -52780,9 +52785,9 @@ dyw
 xTh
 yjX
 xTh
-lCl
-bwr
-qWS
+qcV
+qcV
+qcV
 yhh
 rzI
 pdS
@@ -52992,9 +52997,9 @@ xTh
 xTh
 yjX
 xTh
-dLp
-kFi
-gVK
+qWw
+uPT
+kgx
 kFi
 ykF
 eul
@@ -53206,7 +53211,7 @@ yjX
 xTh
 xTh
 aMK
-omo
+cFZ
 aiT
 sXs
 kSK
@@ -60082,7 +60087,7 @@ xcj
 tyb
 xud
 xXF
-vjY
+ccB
 xFR
 lBE
 ykI
@@ -60289,11 +60294,11 @@ jme
 qbw
 aXu
 qPN
-rsA
+sNE
 xcj
 uYp
 lBE
-eCk
+dsu
 pwt
 iLk
 kvV
