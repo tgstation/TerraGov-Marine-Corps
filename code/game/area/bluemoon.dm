@@ -32,7 +32,7 @@
 /area/bluemoon/outside/ne
 	name = "Northeastern Colony Grounds"
 	icon_state = "northeast"
-//a
+
 /area/bluemoon/caves
 	name = "Unknown Area"
 	icon_state = "bluenew"
