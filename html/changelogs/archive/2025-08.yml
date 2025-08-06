@@ -42,3 +42,6 @@
   - bugfix: fixed campaign loadout UI at high screen scaling
   blackdav123:
   - rscadd: Minions now spawn on crash.
+2025-08-06:
+  Scav:
+  - qol: Rearranged the positions of two vendors and the shower in canter medical
