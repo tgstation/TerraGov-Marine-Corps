@@ -1,0 +1,6 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - bugfix: "Dragon can once again evolve/deevolve"
+  - bugfix: "King caste is actually capable of building"
+  - bugfix: "Xenos can't damage their own hive structures with their own abilities"
