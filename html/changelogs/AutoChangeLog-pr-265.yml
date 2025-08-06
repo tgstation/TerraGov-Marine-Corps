@@ -1,0 +1,5 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Added Psychic Radiance, T4 and Warlock ability to broadcast your message to living in the line of sight"
+  - bugfix: "Watch xeno fixed for dragon, removed the second psydrain from dragon since they already had one"
