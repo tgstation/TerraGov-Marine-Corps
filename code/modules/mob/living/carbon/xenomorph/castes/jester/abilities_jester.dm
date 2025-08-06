@@ -449,7 +449,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	///List of all abilties the movement deck pulls from
 	var/list/movement_deck = list(
 		/datum/action/ability/activable/xeno/pounce,
-		/datum.action/ability/activable/xeno/warrior/lunge,
+		/datum/action/ability/activable/xeno/warrior/lunge,
 		/datum/action/ability/activable/xeno/advance/jester,
 
 	)
