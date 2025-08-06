@@ -325,6 +325,10 @@
 	if(isclosedturf(newloc) && !istype(newloc, /turf/closed/wall/resin))
 		return
 	for(var/atom/atom_on_turf AS in newloc.contents)
+		if(istype(atom_on_turf, /obj/structure/mineral_door/resin) && xeno_owner.issamexenohive(atom_on_turf))
+			continue
+		if(istype(atom_on_turf, /turf/closed/wall/resin) && xeno_owner.issamexenohive(atom_on_turf))
+			continue
 		if(atom_on_turf.CanPass(xeno_owner, newloc))
 			continue
 		if((atom_on_turf.resistance_flags & RESIST_ALL)) // This prevents them from going off into space during hijack.

@@ -9,6 +9,9 @@
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
 
+	if((istype(src, /turf/closed/wall/resin) || istype(src, /obj/structure/mineral_door/resin) || istype(src, /obj/structure/xeno) || istype(src, /obj/alien/weeds)) && blame_mob.issamexenohive(src))
+		return
+
 	if(armor_type)
 		damage_amount = round(modify_by_armor(damage_amount, armor_type, armour_penetration, null, attack_dir), DAMAGE_PRECISION)
 	if(damage_amount < DAMAGE_PRECISION)
