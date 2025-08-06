@@ -1007,7 +1007,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
-		if(possible_target == X || !possible_target.client || isxeno(possible_target))
+		if(possible_target == X || !possible_target.client) // Might as well be able to whisper fellow xenos
 			continue
 		target_list += possible_target
 
@@ -1030,6 +1030,45 @@
 	to_chat(L, span_psychicin("You hear a strange, alien voice in your head. <i>\"[msg]\"</i>"))
 	to_chat(X, span_psychicout("We said: \"[msg]\" to [L]"))
 	message_admins("[ADMIN_LOOKUP(X)] has sent [ADMIN_LOOKUP(L)] this psychic message: \"[msg]\" at [ADMIN_VERBOSEJMP(X)].")
+
+// ***************************************
+// *********** Psychic Radiance
+// ***************************************
+/datum/action/ability/xeno_action/psychic_radiance
+	name = "Psychic Radiance"
+	action_icon_state = "psychic_radiance"
+	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_RADIANCE,
+	)
+	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING // Proudly copypasted from psychic whisper
+	target_flags = ABILITY_MOB_TARGET
+
+/datum/action/ability/xeno_action/psychic_radiance/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/list/target_list = list()
+	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
+		if(possible_target == X || !possible_target.client || !isxeno(possible_target)) // Would ruin the whole point if we whisper to xenos too
+			continue
+		target_list += possible_target
+
+	if(!length(target_list))
+		to_chat(X, span_warning("There's nobody nearby to radiate to."))
+		return
+
+	if(!X.check_state())
+		return
+
+	var/msg = stripped_input("Message:", "Psychic Radiance")
+	if(!msg)
+		return
+
+	for(var/mob/living/L in target_list)
+		to_chat(L, span_psychicin("You hear a strange, alien voice in your head. <i>\"[msg]\"</i>"))
+		log_directed_talk(X, L, msg, LOG_SAY, "psychic radiance")
+
+	to_chat(X, span_psychicout("We radiated: \"[msg]\" to everyone nearby."))
+	message_admins("[ADMIN_LOOKUP(X)] has sent this psychic radiance: \"[msg]\" at [ADMIN_VERBOSEJMP(X)].")
 
 // ***************************************
 // *********** Psychic Influence

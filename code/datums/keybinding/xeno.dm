@@ -209,6 +209,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
+/datum/keybinding/xeno/psychic_radiance
+	name = "psychic_radiance"
+	full_name = "Psychic Radiance"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_RADIANCE
+
 /datum/keybinding/xeno/impregnate
 	name = "Impregnate"
 	full_name = "Impregnate"

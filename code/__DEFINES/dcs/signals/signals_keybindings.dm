@@ -269,6 +269,7 @@
 #define COMSIG_XENOABILITY_SCREECH_SWITCH "xenoability_screech_switch"
 
 #define COMSIG_XENOABILITY_PSYCHIC_WHISPER "xenoability_psychic_whisper"
+#define COMSIG_XENOABILITY_PSYCHIC_RADIANCE "xenoability_psychic_radiance"
 #define COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM "xenoability_toggle_queen_zoom"
 #define COMSIG_XENOABILITY_XENO_LEADERS "xenoability_xeno_leaders"
 #define COMSIG_XENOABILITY_QUEEN_HEAL "xenoability_queen_heal"
