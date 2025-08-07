@@ -4,6 +4,10 @@
 	map_name = "Ice Caves"
 	map_file = '_maps/map_files/icy_caves/icy_caves.dmm'
 	max_game_time = 12 MINUTES
+	shutter_open_delay = list(
+		MISSION_STARTING_FACTION = 30 SECONDS,
+		MISSION_HOSTILE_FACTION = 0,
+	)
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),

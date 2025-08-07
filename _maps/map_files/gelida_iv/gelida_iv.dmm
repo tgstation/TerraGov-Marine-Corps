@@ -792,13 +792,6 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
-"aBi" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/gelida/powergen)
 "aBu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -1042,13 +1035,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/executive)
-"aMm" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "aMR" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/item/clothing/mask/facehugger/dead{
@@ -1290,12 +1276,6 @@
 	},
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
-"aTS" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/gelida/powergen)
 "aUc" = (
 /obj/item/shard,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -5929,14 +5909,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
-"ean" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "eas" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -10685,16 +10657,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"hkP" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/gelida/powergen)
 "hlp" = (
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -11738,13 +11700,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"hVD" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating,
-/area/gelida/powergen)
 "hVN" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /obj/machinery/light,
@@ -19483,11 +19438,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
-"ngD" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating,
-/area/gelida/powergen)
 "ngP" = (
 /turf/closed/wall/r_wall,
 /area/gelida/landing_zone_2)
@@ -19634,6 +19584,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/gelida/powergen)
+"nlp" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves/garbledradio)
 "nlB" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred/full,
@@ -24047,10 +24001,6 @@
 /obj/structure/dispenser/oxygen,
 /turf/open/floor/tile/dark2,
 /area/gelida/outdoors/rock)
-"qfm" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating,
-/area/gelida/powergen)
 "qft" = (
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
@@ -26084,20 +26034,11 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
-"ruJ" = (
-/obj/effect/spawner/random/engineering/metal,
-/obj/structure/cable,
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "ruK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
-"ruP" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/gelida/powergen)
 "ruV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -30171,12 +30112,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"uov" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/gelida/powergen)
 "uoP" = (
 /obj/effect/acid_hole,
 /turf/closed/wall,
@@ -30499,13 +30434,6 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
-"uDs" = (
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "uDz" = (
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
@@ -32514,13 +32442,6 @@
 "vWC" = (
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/fitness)
-"vWK" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "vWS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -34001,15 +33922,6 @@
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
-"xfy" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/gelida/powergen)
 "xfT" = (
 /obj/structure/reagent_dispensers/water_cooler{
 	pixel_y = 16
@@ -34023,13 +33935,6 @@
 	dir = 1
 	},
 /area/gelida/outdoors/colony_streets/north_street)
-"xhA" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/gelida/powergen)
 "xhE" = (
 /obj/item/tool/shovel/etool,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -35646,11 +35551,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bridge)
-"ykf" = (
-/obj/effect/ai_node,
-/obj/structure/cable,
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "yks" = (
 /obj/item/storage/secure/safe{
 	pixel_y = 29
@@ -48194,7 +48094,7 @@ eQn
 cYz
 cYz
 cYz
-cYz
+nlp
 ubb
 cYz
 cYz
@@ -51492,7 +51392,7 @@ eQn
 cqM
 elo
 fPM
-ruP
+iqm
 fPM
 iJR
 jDC
@@ -51718,7 +51618,7 @@ fPM
 fPM
 iLi
 eqT
-ruP
+iqm
 kEl
 iqm
 lMM
@@ -51727,7 +51627,7 @@ mMd
 lMM
 iqm
 kEl
-ruP
+iqm
 eqT
 oXj
 fPM
@@ -51944,8 +51844,8 @@ iqm
 iqm
 iqm
 iqm
-ruP
-ruP
+iqm
+iqm
 iqm
 iqm
 iqm
@@ -52162,7 +52062,7 @@ iqm
 cqM
 iPn
 eqT
-ruP
+iqm
 kUo
 iqm
 lRq
@@ -52171,7 +52071,7 @@ lMM
 mli
 iqm
 kUo
-ruP
+iqm
 eqT
 oTT
 fPM
@@ -52380,7 +52280,7 @@ dqw
 gaR
 elo
 fPM
-ruP
+iqm
 cqM
 iLi
 eqT
@@ -52404,7 +52304,7 @@ fPM
 fPM
 etT
 iqm
-ruP
+iqm
 fPM
 fPM
 eQn
@@ -52619,7 +52519,7 @@ otr
 jKW
 oTT
 icv
-ruP
+iqm
 key
 qkR
 elo
@@ -52841,16 +52741,16 @@ jKW
 jKW
 oXj
 lBr
-ruP
+iqm
 qhP
 qkR
 nqU
 cqM
 pXd
 cqM
-hkP
-aTS
-hVD
+eqE
+fPM
+fPM
 cqM
 eQn
 cgS
@@ -53070,9 +52970,9 @@ nqU
 nqU
 pXd
 cqM
-uov
-uDs
-ngD
+fPM
+cqM
+lBr
 etT
 eQn
 cgS
@@ -53272,7 +53172,7 @@ nyC
 fPM
 iLi
 eqT
-ruP
+iqm
 kEl
 iqm
 mli
@@ -53281,7 +53181,7 @@ mli
 lMM
 iqm
 kEl
-ruP
+iqm
 eqT
 pbF
 cqM
@@ -53292,9 +53192,9 @@ cqM
 cqM
 pXd
 cqM
-uov
-aMm
-qfm
+fPM
+cqM
+fPM
 cqM
 eQn
 cgS
@@ -53498,25 +53398,25 @@ iqm
 iqm
 iqm
 iqm
-ruP
-ruP
+iqm
+iqm
 iqm
 iqm
 iqm
 iqm
 iqm
 oTT
-ykf
-vRt
-ykf
-kjv
-kjv
-kjv
-ruJ
-hNw
-ean
-vWK
-qfm
+dwS
+hNx
+dwS
+cqM
+cqM
+cqM
+bVQ
+etT
+dwS
+cqM
+fPM
 fPM
 eQn
 cgS
@@ -53716,7 +53616,7 @@ iqm
 fPM
 jaU
 eqT
-ruP
+iqm
 kUo
 iqm
 mli
@@ -53725,20 +53625,20 @@ lMM
 mMd
 iqm
 kUo
-ruP
+iqm
 eqT
 oTT
 cqM
-ruP
+iqm
 cqM
 etT
 cqM
 cqM
 cqM
 cqM
-xfy
-xhA
-aBi
+fPM
+lBr
+fPM
 fPM
 eQn
 cgS
@@ -54173,7 +54073,7 @@ jMk
 jMk
 pdD
 hYa
-ruP
+iqm
 gDd
 cqM
 cqM
@@ -54378,7 +54278,7 @@ eQn
 eQn
 eQn
 lBr
-ruP
+iqm
 cqM
 fPM
 fPM
@@ -54826,19 +54726,19 @@ iqm
 iqm
 iqm
 iqm
-ruP
+iqm
 hNx
 hNx
-ruP
+iqm
 iqm
 iqm
 nEg
 iqm
 vRt
 hNx
-ruP
 iqm
-ruP
+iqm
+iqm
 iqm
 etT
 cqM

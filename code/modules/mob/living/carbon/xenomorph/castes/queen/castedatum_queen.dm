@@ -96,6 +96,12 @@
 		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/healthy_bulwark,
+		/datum/mutation_upgrade/shell/bulwark_zone,
+		/datum/mutation_upgrade/spur/alternative_sting,
+		/datum/mutation_upgrade/veil/rallying_cry
+	)
 
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_NORMAL

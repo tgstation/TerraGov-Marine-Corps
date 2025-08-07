@@ -102,6 +102,7 @@
 	damtype = initial(damtype)
 	update_icon()
 	set_light_on(FALSE)
+	GLOB.activated_flares -= src
 	STOP_PROCESSING(SSobj, src)
 
 ///Activates the flare
@@ -115,6 +116,7 @@
 	update_icon()
 	set_light_on(TRUE)
 	playsound(src,'sound/items/flare.ogg', 15, 1)
+	GLOB.activated_flares += src
 	START_PROCESSING(SSobj, src)
 
 //Starts on

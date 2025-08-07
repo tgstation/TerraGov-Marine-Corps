@@ -10191,12 +10191,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"ovk" = (
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/centcom/valhalla/xenocave)
 "ovl" = (
 /obj/machinery/vending/cola/nopower,
 /turf/open/floor/tile/dark,
@@ -11328,10 +11322,8 @@
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "quo" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 4;
-	corrupted = "fallen_hive";
-	last_corrupted = "fallen_hive"
+/obj/machinery/power/geothermal{
+	corrupted = "fallen_hive"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
@@ -11543,12 +11535,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"qLa" = (
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/centcom/valhalla/xenocave)
 "qLI" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -30036,7 +30022,7 @@ fog
 fog
 boC
 fog
-qLa
+oXf
 kOY
 oXf
 oXf
@@ -30049,7 +30035,7 @@ oXf
 oXf
 oXf
 oXf
-qLa
+oXf
 fog
 boC
 fmN
@@ -30293,20 +30279,20 @@ kmb
 fog
 boC
 fog
-quo
-oXf
-oXf
-oXf
-oXf
-kOY
-oXf
 oXf
 oXf
 oXf
 oXf
 oXf
 kOY
-quo
+oXf
+oXf
+oXf
+oXf
+oXf
+oXf
+kOY
+oXf
 fog
 boC
 fmN
@@ -30550,7 +30536,6 @@ oXf
 fog
 boC
 fog
-ovk
 oXf
 oXf
 oXf
@@ -30563,7 +30548,8 @@ oXf
 oXf
 oXf
 oXf
-ovk
+oXf
+oXf
 fog
 boC
 fmN
@@ -32597,7 +32583,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -33111,7 +33097,7 @@ xrI
 fmN
 boC
 fog
-ovk
+quo
 oXf
 oXf
 oXf
@@ -33368,7 +33354,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 kOY
 oXf
@@ -33882,7 +33868,7 @@ xrI
 fmN
 boC
 fog
-ovk
+quo
 oXf
 oXf
 oXf
@@ -34139,7 +34125,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -34653,7 +34639,7 @@ xrI
 fmN
 boC
 fog
-ovk
+quo
 oXf
 kOY
 oXf
@@ -36709,7 +36695,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -37223,7 +37209,7 @@ xrI
 fmN
 boC
 fog
-ovk
+quo
 oXf
 kOY
 oXf
@@ -37480,7 +37466,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -37994,7 +37980,7 @@ xrI
 fmN
 boC
 fog
-ovk
+quo
 oXf
 oXf
 oXf
@@ -38251,7 +38237,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -38765,7 +38751,7 @@ xrI
 fmN
 boC
 fog
-ovk
+quo
 oXf
 oXf
 oXf
@@ -39546,16 +39532,16 @@ boC
 boC
 boC
 fog
-qLa
-kOY
-oXf
-oXf
-oXf
 oXf
 kOY
 oXf
+oXf
+oXf
+oXf
 kOY
-qLa
+oXf
+kOY
+oXf
 fog
 boC
 fmN
@@ -39803,7 +39789,7 @@ boC
 boC
 boC
 fog
-quo
+oXf
 oXf
 oXf
 wPz
@@ -39812,7 +39798,7 @@ oXf
 oXf
 oXf
 oXf
-quo
+oXf
 fog
 boC
 fmN
@@ -40060,16 +40046,16 @@ boC
 boC
 boC
 fog
-ovk
-oXf
-oXf
-kOY
-oXf
 oXf
 oXf
 oXf
 kOY
-ovk
+oXf
+oXf
+oXf
+oXf
+kOY
+oXf
 fog
 boC
 fmN

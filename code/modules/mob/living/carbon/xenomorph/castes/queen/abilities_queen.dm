@@ -232,6 +232,16 @@
 	)
 	// The type of screech that this ability will be doing.
 	var/selected_screech = "screech"
+	/// Should allied xenomorphs in a 20-tile radius get a movement speed modifier for 4 seconds after using Screech? If so, what amount should be it?
+	var/movement_speed_modifier = 0
+	/// All xenomorphs that were given the movement speed modifier.
+	var/list/mob/living/carbon/xenomorph/speedy_xenomorphs = list()
+	/// The id of the timer that will remove the movement speed modifier.
+	var/timer_id
+
+/datum/action/ability/activable/xeno/screech/remove_action(mob/living/L)
+	revoke_movespeed_modifier()
+	return ..()
 
 /datum/action/ability/activable/xeno/screech/on_cooldown_finish()
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
@@ -307,6 +317,11 @@
 
 			playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, 0)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+	if(movement_speed_modifier)
+		for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, 20))
+			affected_xeno.add_movespeed_modifier(MOVESPEED_ID_QUEEN_SCREECH, TRUE, 0, NONE, TRUE, movement_speed_modifier)
+			speedy_xenomorphs += affected_xeno
+		timer_id = addtimer(CALLBACK(src, PROC_REF(revoke_movespeed_modifier)), 4 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /datum/action/ability/activable/xeno/screech/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
@@ -348,6 +363,15 @@
 			desc = "A beneficial screech that grants an increase of 10% melee damage to you and nearby allies."
 			to_chat(owner, span_xenonotice("Our screech will bolster the damage of nearby allies."))
 	update_button_icon()
+
+/// Removes the movement speed modifier, if any.
+/datum/action/ability/activable/xeno/screech/proc/revoke_movespeed_modifier()
+	for(var/mob/living/carbon/xenomorph/speed_xenomorph AS in speedy_xenomorphs)
+		speed_xenomorph.remove_movespeed_modifier(MOVESPEED_ID_QUEEN_SCREECH)
+	speedy_xenomorphs.Cut()
+	if(timer_id)
+		deltimer(timer_id)
+		timer_id = null
 
 /datum/action/ability/activable/xeno/screech/update_button_icon()
 	action_icon_state = selected_screech
@@ -713,57 +737,109 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_BULWARK,
 	)
-	/// assoc list xeno = armor_diff
-	var/list/armor_mod_keys = list()
+	/// The multiplier of the soft armor from the affected's base caste. This amount will be added ontop of the affected's current soft armor.
+	var/armor_multiplier = BULWARK_ARMOR_MULTIPLIER
+	/// Associative list: [xeno] == armor_difference
+	var/list/armor_keys = list()
+	/// The flat amount of overheal to give to the affected. If it cannot be given, then it won't be subtracted from later.
+	var/flat_overheal = 0
+	/// Associative list: [xeno] == overheal_difference
+	var/list/overheal_keys = list()
+	/// Is the owner required to channel to use this ability? They will need to stay in the radius for the ability to continue.
+	var/channel_required = TRUE
+	/// If any, the timer ID to check if the ability should end / maintain the ability.
+	var/timer_id
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// List of turfs that are affected by this ability.
+	var/list/affected_turfs
+
+/datum/action/ability/xeno_action/bulwark/remove_action(mob/living/L)
+	if(particle_holder)
+		remove_affected_area()
+	return ..()
 
 /datum/action/ability/xeno_action/bulwark/action_activate()
-	var/list/turf/affected_turfs = RANGE_TURFS(BULWARK_RADIUS, owner)
+	if(particle_holder)
+		return
 	add_cooldown()
-
-	for(var/turf/target AS in affected_turfs)
-		//yes I realize this adds and removes it every move but its simple
-		//also we use this and not aura because we want speedy updates on entering
-		RegisterSignal(target, COMSIG_ATOM_EXITED, PROC_REF(remove_buff))
-		RegisterSignal(target, COMSIG_ATOM_ENTERED, PROC_REF(apply_buff))
-		ADD_TRAIT(target, TRAIT_BULWARKED_TURF, XENO_TRAIT)
-		for(var/mob/living/carbon/xenomorph/xeno in target)
-			apply_buff(null, xeno)
-
-	var/obj/effect/abstract/particle_holder/aoe_particles = new(owner.loc, /particles/bulwark_aoe)
-	aoe_particles.particles.position = generator(GEN_SQUARE, 0, 16 + (BULWARK_RADIUS-1)*32, LINEAR_RAND)
+	create_affected_area()
+	if(!channel_required)
+		timer_id = addtimer(CALLBACK(src, PROC_REF(continue_or_end)), BULWARK_LOOP_TIME, TIMER_UNIQUE)
+		return
 	while(do_after(owner, BULWARK_LOOP_TIME, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, TYPE_PROC_REF(/datum/action, can_use_action), FALSE, ABILITY_IGNORE_COOLDOWN|ABILITY_USE_BUSY)))
 		succeed_activate()
+	remove_affected_area()
 
-	aoe_particles.particles.spawning = 0
-	QDEL_IN(aoe_particles, 4 SECONDS)
+/// Creates the area in which the effects caused by the ability can be triggered from.
+/datum/action/ability/xeno_action/bulwark/proc/create_affected_area()
+	particle_holder = new(owner.loc, /particles/bulwark_aoe)
+	particle_holder.particles.position = generator(GEN_SQUARE, 0, 16 + (BULWARK_RADIUS - 1) * 32, LINEAR_RAND)
+	affected_turfs = RANGE_TURFS(BULWARK_RADIUS, xeno_owner)
+	for(var/turf/affected_turf AS in affected_turfs)
+		//yes I realize this adds and removes it every move but its simple
+		//also we use this and not aura because we want speedy updates on entering
+		RegisterSignal(affected_turf, COMSIG_ATOM_EXITED, PROC_REF(remove_buff))
+		RegisterSignal(affected_turf, COMSIG_ATOM_ENTERED, PROC_REF(apply_buff))
+		ADD_TRAIT(affected_turf, TRAIT_BULWARKED_TURF, XENO_TRAIT)
+		for(var/mob/living/carbon/xenomorph/affected_xeno in affected_turf)
+			apply_buff(null, affected_xeno)
 
-	for(var/turf/target AS in affected_turfs)
-		UnregisterSignal(target, list(COMSIG_ATOM_EXITED, COMSIG_ATOM_ENTERED))
-		REMOVE_TRAIT(target, TRAIT_BULWARKED_TURF, XENO_TRAIT)
-		for(var/mob/living/carbon/xenomorph/xeno AS in armor_mod_keys)
-			remove_buff(null, xeno)
+/// Reverts any changes caused by the ability.
+/datum/action/ability/xeno_action/bulwark/proc/remove_affected_area()
+	QDEL_IN(particle_holder, 4 SECONDS)
+	particle_holder.particles.spawning = 0
+	particle_holder = null
+	if(timer_id)
+		deltimer(timer_id)
+		timer_id = null
+	for(var/turf/affected_turf AS in affected_turfs)
+		UnregisterSignal(affected_turf, list(COMSIG_ATOM_EXITED, COMSIG_ATOM_ENTERED))
+		REMOVE_TRAIT(affected_turf, TRAIT_BULWARKED_TURF, XENO_TRAIT)
+	for(var/mob/living/carbon/xenomorph/affected_xeno in armor_keys)
+		remove_buff(null, affected_xeno)
+	for(var/mob/living/carbon/xenomorph/affected_xeno in overheal_keys)
+		remove_buff(null, affected_xeno)
+	armor_keys.Cut()
+	overheal_keys.Cut()
 	affected_turfs = null
 
-///adds buff to xenos
+/// Checks if the owner can still use the ability. If yes, pay the plasma and continue. If not, end the ability.
+/datum/action/ability/xeno_action/bulwark/proc/continue_or_end()
+	if(particle_holder && can_use_action(TRUE, ABILITY_IGNORE_COOLDOWN|ABILITY_USE_BUSY))
+		succeed_activate()
+		timer_id = addtimer(CALLBACK(src, PROC_REF(continue_or_end)), BULWARK_LOOP_TIME, TIMER_UNIQUE)
+		return
+	remove_affected_area()
+
+/// Adds any buffs to the affected xenomorph.
 /datum/action/ability/xeno_action/bulwark/proc/apply_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
 	SIGNAL_HANDLER
-	if(!isxeno(xeno) || armor_mod_keys[xeno] || !owner.issamexenohive(xeno))
+	if(!isxeno(xeno) || !owner.issamexenohive(xeno))
 		return
-	var/datum/armor/basearmor = getArmor(arglist(xeno.xeno_caste.soft_armor))
-	var/datum/armor/armordiff = basearmor.scaleAllRatings(BULWARK_ARMOR_MULTIPLIER)
-	xeno.soft_armor = xeno.soft_armor.attachArmor(armordiff)
-	armor_mod_keys[xeno] = armordiff
+	if(armor_multiplier && !armor_keys[xeno])
+		var/datum/armor/basearmor = getArmor(arglist(xeno.xeno_caste.soft_armor))
+		var/datum/armor/armor_difference = basearmor.scaleAllRatings(armor_multiplier)
+		xeno.soft_armor = xeno.soft_armor.attachArmor(armor_difference)
+		armor_keys[xeno] = armor_difference
+	if(flat_overheal && overheal_keys[xeno] == null) // Only want to grant overheal for the first time getting buffed.
+		overheal_keys[xeno] = xeno.adjustOverheal(flat_overheal)
 
-///removes the buff from xenos
+/// Removes any buffs from the affected xenomorph.
 /datum/action/ability/xeno_action/bulwark/proc/remove_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
 	SIGNAL_HANDLER
 	if(direction) // triggered by moving signal, check if next turf is in bulwark
 		var/turf/next = get_step(source, direction)
 		if(HAS_TRAIT(next, TRAIT_BULWARKED_TURF))
 			return
-	if(armor_mod_keys[xeno])
-		xeno.soft_armor = xeno.soft_armor.detachArmor(armor_mod_keys[xeno])
-		armor_mod_keys -= xeno
+	if(armor_keys[xeno])
+		xeno.soft_armor = xeno.soft_armor.detachArmor(armor_keys[xeno])
+		armor_keys -= xeno
+	if(overheal_keys[xeno])
+		xeno.adjustOverheal(-overheal_keys[xeno])
+		overheal_keys -= xeno
+	if(xeno == xeno_owner && !channel_required && timer_id) // Owner left the area early.
+		remove_affected_area()
 
 /particles/bulwark_aoe
 	icon = 'icons/effects/particles/generic_particles.dmi'

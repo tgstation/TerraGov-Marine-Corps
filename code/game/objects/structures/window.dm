@@ -87,7 +87,7 @@
 		throw_damage *= thrown_mob.mob_size * 8
 	take_damage(throw_damage)
 	if(obj_integrity > 0) //we only stop if we don't break the window
-		AM.stop_throw()
+		AM.set_throwing(FALSE)
 		. = TRUE
 	if(thrown_mob)
 		thrown_mob.take_overall_damage(speed * 5, BRUTE, MELEE, !., FALSE, TRUE, 0, 4) //done here for dramatic effect, and to make the damage sharp if we broke the window

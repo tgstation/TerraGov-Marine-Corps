@@ -1593,10 +1593,6 @@
 	dir = 9
 	},
 /area/orion_outpost/surface/building/atc)
-"ij" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/mainship/gray,
-/area/orion_outpost/surface/building/engineering)
 "ik" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/landing_pad_external)
@@ -2398,6 +2394,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
+"mc" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "md" = (
 /obj/machinery/iv_drip,
 /obj/structure/sink{
@@ -5655,13 +5655,6 @@
 	dir = 8
 	},
 /area/orion_outpost/ground/outpostnw)
-"Br" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/turf/open/floor/bcircuit,
-/area/orion_outpost/surface/building/engineering)
 "Bs" = (
 /obj/structure/cargo_container/red{
 	dir = 1
@@ -9110,13 +9103,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/ground/outpostsw)
-"So" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor/bcircuit,
-/area/orion_outpost/surface/building/engineering)
 "Sp" = (
 /obj/structure/prop/vehicle/crawler,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -9477,6 +9463,11 @@
 /obj/structure/inflatable/popped/door,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/ground/underground/caveS/garbledradio)
+"TY" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/bcircuit,
+/area/orion_outpost/surface/building/engineering)
 "TZ" = (
 /obj/structure/table/mainship,
 /obj/machinery/microwave,
@@ -9647,13 +9638,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/prep)
-"UO" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg{
-	dir = 4
-	},
-/turf/open/floor/bcircuit,
-/area/orion_outpost/surface/building/engineering)
 "UP" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -20645,7 +20629,7 @@ oX
 Eo
 Vp
 kL
-ij
+Xi
 Xi
 Xi
 Xi
@@ -20905,7 +20889,7 @@ kS
 er
 GI
 WA
-ij
+Xi
 XZ
 uk
 Vp
@@ -21175,7 +21159,7 @@ wF
 wF
 Vp
 vD
-ij
+Xi
 Xi
 Xi
 Xi
@@ -21434,7 +21418,7 @@ Pq
 Pq
 Pq
 Pq
-ij
+Xi
 iW
 iz
 pO
@@ -21442,7 +21426,7 @@ hd
 hT
 Ee
 TI
-ij
+Xi
 Pq
 Pq
 Pq
@@ -21569,9 +21553,9 @@ Pq
 Xi
 pe
 mu
+TY
 hT
-Br
-hT
+TY
 pc
 iz
 Xi
@@ -21701,9 +21685,9 @@ Rw
 wF
 iz
 pc
+TY
 hT
-UO
-hT
+TY
 CJ
 Ay
 wF
@@ -21833,9 +21817,9 @@ sa
 wF
 iz
 pc
+TY
 hT
-So
-hT
+TY
 Yr
 FX
 wF
@@ -22094,7 +22078,7 @@ Pq
 Pq
 Pq
 Pq
-ij
+Xi
 pZ
 iz
 eo
@@ -22102,7 +22086,7 @@ bs
 iz
 iz
 Xa
-ij
+Xi
 Pq
 Pq
 Pq
@@ -22360,10 +22344,10 @@ Xi
 Xi
 Xi
 Xi
-ij
+Xi
 Eo
 vD
-ij
+Xi
 Xi
 Xi
 Xi
@@ -22488,7 +22472,7 @@ cT
 on
 Nk
 QQ
-ij
+Xi
 Tl
 ih
 Rz
@@ -22632,7 +22616,7 @@ Eo
 eN
 zb
 qD
-ij
+Xi
 dx
 Yb
 Yb
@@ -22884,7 +22868,7 @@ cT
 Nk
 Nk
 QQ
-ij
+Xi
 Zo
 At
 jO
@@ -22893,7 +22877,7 @@ At
 bm
 Vh
 Vj
-ij
+Xi
 XC
 Le
 oX
@@ -23018,11 +23002,11 @@ Nk
 hP
 Xi
 Xi
-ij
 Xi
 Xi
 Xi
-ij
+Xi
+Xi
 Xi
 Ii
 Xi
@@ -26426,7 +26410,7 @@ sR
 GN
 GN
 GN
-GN
+mc
 GN
 GN
 GN

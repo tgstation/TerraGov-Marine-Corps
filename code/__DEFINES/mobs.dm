@@ -1037,3 +1037,9 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 ))
 
 #define POINT_TIME 4 SECONDS
+
+// Dragon
+
+#define DRAGON_BREATH_MELTING "Melting"
+#define DRAGON_BREATH_SHATTERING "Shattering"
+#define DRAGON_BREATH_MELTING_ACID "Melting Acid"

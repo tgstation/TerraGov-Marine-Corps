@@ -51,9 +51,10 @@
 #define MODE_ALLOW_XENO_QUICKBUILD (1<<14)
 #define MODE_DISALLOW_RAILGUN (1<<15)
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
-#define MODE_BIOMASS_POINTS (1<<17)
-#define MODE_SURVIVAL (1<<18)
-#define MODE_NO_GHOSTS (1<<19)
+#define MODE_MUTATIONS_OBTAINABLE (1<<17)
+#define MODE_BIOMASS_POINTS (1<<18)
+#define MODE_SURVIVAL (1<<19)
+#define MODE_NO_GHOSTS (1<<20)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Ninetails Major Victory"

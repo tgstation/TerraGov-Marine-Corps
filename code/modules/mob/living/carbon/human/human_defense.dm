@@ -234,7 +234,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			apply_damage(throw_damage, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 		if(thrown_mob.mob_size <= mob_size)
 			thrown_mob.apply_damage(speed, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
-		thrown_mob.stop_throw()
+		thrown_mob.set_throwing(FALSE)
 
 	else if(isitem(AM))
 		var/obj/item/thrown_item = AM
@@ -267,7 +267,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(thrown_item.thrower != src)
 			throw_damage = check_shields(COMBAT_MELEE_ATTACK, throw_damage, MELEE)
 			if(!throw_damage)
-				thrown_item.stop_throw()
+				thrown_item.set_throwing(FALSE)
 				visible_message(span_danger("[src] deflects \the [thrown_item]!"))
 				if(living_thrower)
 					log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: shield blocked)")
@@ -279,7 +279,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
 			return FALSE
 
-		thrown_item.stop_throw() // Hit the limb.
+		thrown_item.set_throwing(FALSE) // Hit the limb.
 		var/applied_damage = modify_by_armor(throw_damage, MELEE, thrown_item.penetration, zone)
 
 		if(applied_damage <= 0)

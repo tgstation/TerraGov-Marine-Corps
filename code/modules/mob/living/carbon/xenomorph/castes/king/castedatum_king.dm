@@ -87,6 +87,12 @@
 		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/stone_armor,
+		/datum/mutation_upgrade/spur/minion_king,
+		/datum/mutation_upgrade/veil/widefall,
+		/datum/mutation_upgrade/veil/flarefall
+	)
 
 /datum/xeno_caste/king/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -202,6 +208,12 @@
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
 		/datum/action/ability/activable/xeno/place_pattern,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/healing_jab,
+		/datum/mutation_upgrade/spur/telefrag,
+		/datum/mutation_upgrade/veil/dasher
 	)
 
 /datum/xeno_caste/king/conqueror/normal
