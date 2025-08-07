@@ -382,6 +382,7 @@
 	name = "bedroll"
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "anL" = (
@@ -2126,6 +2127,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "bva" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 4
 	},
@@ -3655,6 +3657,7 @@
 	name = "bedroll"
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/admin)
 "cBr" = (
@@ -4366,6 +4369,7 @@
 /area/gelida/indoors/a_block/dorm_north)
 "cYy" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 6
 	},
@@ -5040,6 +5044,7 @@
 "dxx" = (
 /obj/structure/bed/chair/comfy,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "dxy" = (
@@ -5933,6 +5938,7 @@
 /area/gelida/indoors/c_block/mining)
 "ebg" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/admin)
 "ebr" = (
@@ -8272,6 +8278,7 @@
 /area/gelida/outdoors/colony_streets/north_street)
 "fGk" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "fGo" = (
@@ -10227,7 +10234,7 @@
 "gUs" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "\improper Corporate Liason"
+	name = "\improper Operations Officer"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -12826,6 +12833,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/prison,
@@ -12938,6 +12946,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "iLM" = (
@@ -15234,6 +15243,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "kom" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
@@ -16316,6 +16326,7 @@
 "lcm" = (
 /obj/item/reagent_containers/food/drinks/flask/marine,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -16875,6 +16886,7 @@
 	},
 /obj/item/shard,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -16915,6 +16927,7 @@
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "lwd" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "lwk" = (
@@ -17548,6 +17561,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "lSo" = (
@@ -20391,6 +20405,7 @@
 "nNU" = (
 /obj/item/shard,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
@@ -20401,7 +20416,7 @@
 /area/gelida/indoors/b_block/hydro)
 "nOF" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Corporate Liason"
+	name = "\improper Operations Officer"
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
@@ -20707,6 +20722,7 @@
 /area/gelida/indoors/a_block/fitness)
 "nZi" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -20885,6 +20901,7 @@
 	name = "bedroll"
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -21726,6 +21743,7 @@
 /area/gelida/indoors/a_block/fitness)
 "oIO" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
@@ -22001,6 +22019,7 @@
 /area/gelida/indoors/c_block/mining)
 "oSL" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 9
 	},
@@ -22299,6 +22318,7 @@
 	name = "bedroll"
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 4
 	},
@@ -24573,6 +24593,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "qBz" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -25854,9 +25875,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "roD" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell{
-	dir = 1
-	},
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/tile/dark2{
 	dir = 4
 	},
@@ -26794,6 +26813,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -26876,7 +26896,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "saH" = (
 /obj/structure/showcase{
-	desc = "The display model for a NanoTrasen generation one synthetic. It almost feels like the eyes on this one follow you.";
+	desc = "The display model for a Ninetails generation one synthetic. It almost feels like the eyes on this one follow you.";
 	name = "Display synthetic"
 	},
 /obj/structure/window/reinforced,
@@ -30960,6 +30980,7 @@
 /area/gelida/indoors/b_block/bar)
 "uVl" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue,
 /area/gelida/indoors/a_block/admin)
 "uVp" = (
@@ -33370,6 +33391,7 @@
 "wHJ" = (
 /obj/structure/bed/roller,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},

@@ -520,9 +520,10 @@
 		tank_target.explode()
 		return
 	if(istype(object_target, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/resin_door = object_target
-		resin_door.toggle_state()
-		return
+		if(object_target.issamexenohive(xeno_owner))
+			var/obj/structure/mineral_door/resin/resin_door = object_target
+			resin_door.toggle_state()
+			return
 	if(object_target.obj_integrity <= LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD || istype(object_target, /obj/structure/closet))
 		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
 		new /obj/effect/temp_visual/behemoth/landslide/hit(object_turf)
@@ -867,9 +868,9 @@
 #define PRIMAL_WRATH_RANGE 12
 #define PRIMAL_WRATH_DAMAGE_MULTIPLIER 1.2
 #define PRIMAL_WRATH_SPEED_BONUS -0.3
-#define PRIMAL_WRATH_DECAY_MULTIPLIER 1.2
+#define PRIMAL_WRATH_DECAY_MULTIPLIER 0.5
 #define PRIMAL_WRATH_ACTIVE_DECAY_DIVISION 40
-#define PRIMAL_WRATH_GAIN_MULTIPLIER 0.3
+#define PRIMAL_WRATH_GAIN_MULTIPLIER 1
 #define PRIMAL_WRATH_LANDSLIDE_CHARGES 3
 
 /particles/primal_wrath
@@ -904,7 +905,7 @@
 			pixel_y += 6
 
 /atom/movable/vis_obj/wrath_block
-	icon = 'icons/Xeno/castes/behemoth.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/behemoth.dmi'
 	icon_state = "Behemoth Flashing"
 
 /datum/action/ability/xeno_action/primal_wrath
@@ -924,7 +925,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// Timer that determines when Wrath will start decaying.
-	var/decay_time = 60 SECONDS
+	var/decay_time = 3 MINUTES
 	/// Base amount of Wrath lost every valid tick.
 	var/decay_amount = 10
 	/// The overlay used when Primal Wrath blocks fatal damage.

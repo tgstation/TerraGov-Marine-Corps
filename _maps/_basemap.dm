@@ -23,7 +23,7 @@
 		#include "map_files\Arachne\TGS_Arachne.dmm"
 		#include "map_files\gelida_iv\gelida_iv.dmm"
 		#include "map_files\deltastation\deltastation.dmm"
-		#include "map_files\desparity\desparity.dmm"
+		#include "map_files\desparity\desparity2.dmm"
 		#include "map_files\Lawanka_Outpost\LawankaOutpost.dmm"
 		#include "map_files\slumbridge\slumbridge.dmm"
 		#include "map_files\DaedalusPrison\DaedalusPrison.dmm"

@@ -62,6 +62,7 @@
 /area/bigredv2/outside/chapel)
 "nQ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},

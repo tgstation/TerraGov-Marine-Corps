@@ -169,6 +169,7 @@
 	item_flags = TWOHANDED
 	force_activated = 75
 	attack_verb = list("attacks", "chops", "cleaves", "tears", "cuts")
+	attack_speed = 13
 
 /obj/item/weapon/twohanded/fireaxe/wield(mob/user)
 	. = ..()
@@ -198,7 +199,6 @@
 	force_activated = 80
 	penetration = 35
 	equip_slot_flags = ITEM_SLOT_BACK
-	attack_speed = 15
 	///Special attack action granted to users with the right trait
 	var/datum/action/ability/activable/weapon_skill/axe_sweep/special_attack
 

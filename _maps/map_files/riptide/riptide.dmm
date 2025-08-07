@@ -2341,6 +2341,7 @@
 /area/riptide/inside/abandonedsec)
 "bHm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
 "bHr" = (
@@ -6287,6 +6288,7 @@
 	pixel_y = -3
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood/alt_three,
 /area/riptide/inside/beachmotel)
 "erK" = (
@@ -13678,6 +13680,7 @@
 /area/riptide/outside/southislands)
 "jJc" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/freezer,
 /area/riptide/inside/medical/offices)
 "jJg" = (
@@ -14600,6 +14603,7 @@
 /obj/item/storage/bag/trash,
 /obj/item/trash/cigbutt,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grimy,
 /area/riptide/inside/syndicatestarboard)
 "kog" = (
@@ -20421,6 +20425,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/riptide/inside/tikihut)
 "ooc" = (
@@ -21468,6 +21473,7 @@
 /area/riptide/inside/warehouse)
 "oVL" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/warehouse)
 "oWL" = (
@@ -29174,6 +29180,7 @@
 "tSX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -33033,6 +33040,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/ground,
 /area/riptide/outside/northislands)
 "wHe" = (

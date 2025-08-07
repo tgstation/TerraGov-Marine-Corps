@@ -30,7 +30,7 @@
 	id = /obj/item/card/id/silver
 	w_uniform = /obj/item/clothing/under/rank/centcom_commander/sa
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/spatial_agent
+	ears = /obj/item/radio/headset/mainship/marine/spatial_agent
 	shoes = /obj/item/clothing/shoes/marinechief/sa
 	gloves = /obj/item/clothing/gloves/marine/officer/chief/sa
 	glasses = /obj/item/clothing/glasses/hud/sa/nodrop

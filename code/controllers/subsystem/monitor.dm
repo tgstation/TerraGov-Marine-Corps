@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(monitor)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
-	var/total_living_players = length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) + length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+	var/total_living_players = length(GLOB.alive_human_list) + length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 	current_points = calculate_state_points() / max(total_living_players, 10)//having less than 10 players gives bad results
 	maximum_connected_players_count = max(get_active_player_count(), maximum_connected_players_count)
 	if(gamestate == GROUNDSIDE)
@@ -95,7 +95,7 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.primo_T4 * PRIMO_T4_WEIGHT
 			. += stats.normal_T4 * NORMAL_T4_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
-			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
+			. += (length(GLOB.alive_human_list) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT
 			. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
 			. += length(stats.miniguns_in_use) * MINIGUN_PRICE * REQ_POINTS_WEIGHT
@@ -105,10 +105,10 @@ SUBSYSTEM_DEF(monitor)
 			. += length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) * SPAWNING_POOL_WEIGHT
 			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
 		if(SHUTTERS_CLOSED)
-			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * HUMAN_LIFE_WEIGHT_PREGAME
+			. += length(GLOB.alive_human_list) * HUMAN_LIFE_WEIGHT_PREGAME
 			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT_PREGAME
 		if(SHIPSIDE)
-			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * HUMAN_LIFE_WEIGHT_SHIPSIDE
+			. += length(GLOB.alive_human_list) * HUMAN_LIFE_WEIGHT_SHIPSIDE
 			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT_SHIPSIDE
 
 ///Keep the monitor informed about the position of humans
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(monitor)
 	human_on_ground = 0
 	human_in_FOB = 0
 	human_on_ship = 0
-	for(var/human in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
+	for(var/human in GLOB.alive_human_list)
 		var/turf/TU = get_turf(human)
 		var/area/myarea = TU.loc
 		if(is_ground_level(TU.z))
