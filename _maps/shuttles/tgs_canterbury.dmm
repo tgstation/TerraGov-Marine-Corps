@@ -550,6 +550,7 @@
 /obj/structure/sink{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cf" = (
