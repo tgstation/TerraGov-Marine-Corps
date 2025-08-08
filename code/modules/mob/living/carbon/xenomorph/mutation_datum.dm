@@ -92,7 +92,9 @@
 /datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xenomorph_purchaser, datum/mutation_upgrade/mutation_typepath)
 	if(!xenomorph_purchaser.hive || !mutation_typepath)
 		return FALSE
-	if(!(xenomorph_purchaser.xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED) && !HAS_TRAIT(xenomorph_purchaser, TRAIT_VALHALLA_XENO))
+	if(!(SSticker.mode?.round_type_flags & MODE_MUTATIONS_OBTAINABLE) && !HAS_TRAIT(xenomorph_purchaser, TRAIT_VALHALLA_XENO))
+		return FALSE
+	if(!(xenomorph_purchaser.xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED))
 		return FALSE
 	if(!(mutation_typepath in xenomorph_purchaser.xeno_caste.mutations))
 		to_chat(xenomorph_purchaser, span_warning("That is not a valid mutation."))
