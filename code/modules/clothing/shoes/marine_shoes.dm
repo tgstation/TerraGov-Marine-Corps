@@ -18,6 +18,7 @@
 		/obj/item/armor_module/storage/boot,
 		/obj/item/armor_module/storage/boot/full,
 		/obj/item/armor_module/storage/boot/som_knife,
+		/obj/item/armor_module/storage/boot/pmc_knife
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/boot)
 
@@ -91,6 +92,9 @@
 
 /obj/item/clothing/shoes/marine/pmc/full
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
+/obj/item/clothing/shoes/marine/pmc/elite_full
+	starting_attachments = list(/obj/item/armor_module/storage/boot/pmc_knife)
 
 /obj/item/clothing/shoes/marine/deathsquad
 	name = "\improper PMC commando boots"

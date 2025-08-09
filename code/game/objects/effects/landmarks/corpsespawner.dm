@@ -386,7 +386,7 @@
 	name = "Unknown PMC"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
 	corpseshoes = /obj/item/clothing/shoes/jackboots
-	corpseback = /obj/item/storage/backpack/satchel
+	corpseback = /obj/item/storage/backpack/satchel/pmc
 	corpsebelt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
