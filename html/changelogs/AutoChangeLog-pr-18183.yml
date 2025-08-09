@@ -1,0 +1,4 @@
+author: "Scav"
+delete-after: True
+changes:
+  - bugfix: "Re-added a light fixture in canter medical"
