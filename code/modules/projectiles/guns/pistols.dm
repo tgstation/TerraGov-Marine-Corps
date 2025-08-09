@@ -349,12 +349,15 @@
 	scatter_unwielded = 7
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.7
+	damage_mult = 1.15
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
 	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is in a gold finish, with lots of stylistic engravings."
 	icon_state = "g_deagle"
 	worn_icon_state = "g_deagle"
+	damage_mult = 1.25
+
 //-------------------------------------------------------
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 

@@ -508,6 +508,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_ENGI
 
+/datum/skills/freelancer_veteran
+	name = "freelancer veteran"
+	construction = SKILL_CONSTRUCTION_METAL
+	engineer = SKILL_ENGINEER_METAL
+	medical = SKILL_MEDICAL_NOVICE
+
 /datum/skills/special_forces_standard
 	name = "Special Response Force Standard"
 	construction = SKILL_CONSTRUCTION_METAL

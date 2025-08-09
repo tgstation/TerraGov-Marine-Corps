@@ -418,7 +418,7 @@
 	shoes = /obj/item/clothing/shoes/marine/clf/full
 	back = /obj/item/storage/holster/blade/machete/full
 	gloves = /obj/item/clothing/gloves/ruggedgloves
-	suit_store = /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
+	suit_store = /obj/item/weapon/gun/rifle/alf_machinecarbine/assault
 	belt = /obj/item/storage/belt/marine/alf_machinecarbine
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	r_pocket = /obj/item/flashlight/combat
