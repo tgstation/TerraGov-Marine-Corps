@@ -434,8 +434,8 @@
 	magazine_flags = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	default_ammo = /datum/ammo/bullet/minigun
-	current_rounds = 500
-	max_rounds = 500
+	current_rounds = 750
+	max_rounds = 750
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/ammo_magazine/minigun_powerpack/fancy
