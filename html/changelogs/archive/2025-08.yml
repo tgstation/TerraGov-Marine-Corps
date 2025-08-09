@@ -45,3 +45,8 @@
 2025-08-06:
   Scav:
   - qol: Rearranged the positions of two vendors and the shower in canter medical
+2025-08-09:
+  Scav:
+  - bugfix: Re-added a light fixture in canter medical
+  mudzbe:
+  - rscadd: Automated loadout vendors in specialist and leader rooms on sulaco
