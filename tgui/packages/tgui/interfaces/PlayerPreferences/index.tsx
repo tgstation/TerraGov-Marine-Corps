@@ -128,7 +128,7 @@ const NavigationSelector = (props) => {
       </Tabs.Tab>
       <Tabs.Tab
         selected={tabIndex === 8}
-        onClick={() => act('tab_change', { tabIndex: 7 })}
+        onClick={() => act('tab_change', { tabIndex: 8 })}
       >
         Draw Order
       </Tabs.Tab>
