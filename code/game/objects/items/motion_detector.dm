@@ -6,7 +6,6 @@
 	slot = ATTACHMENT_SLOT_RAIL
 	attachment_action_type = /datum/action/item_action/toggle
 	active = FALSE
-	var/datum/component/motion_detector/motion_detector_component
 
 /obj/item/attachable/motiondetector/Destroy()
 	if(active)
@@ -21,28 +20,30 @@
 	if(active)
 		deactivate(user)
 		return
-	motion_detector_component = user.AddComponent(/datum/component/motion_detector)
+	var/datum/component/motion_detector/motcomp = user.GetComponent(/datum/component/motion_detector)
+	motcomp = user.AddComponent(/datum/component/motion_detector)
 	RegisterSignal(user, COMSIG_COMPONENT_REMOVING, PROC_REF(deactivate_component))
 	active = TRUE
 	update_icon()
 
 /// Turns off / reverts everything that comes with activating it.
 /obj/item/attachable/motiondetector/proc/deactivate(mob/user)
-	if(motion_detector_component)
+	var/datum/component/motion_detector/motcomp = user.GetComponent(/datum/component/motion_detector)
+	if(motcomp)
 		UnregisterSignal(user, COMSIG_COMPONENT_REMOVING)
-		motion_detector_component.RemoveComponent()
-		motion_detector_component = null
+		qdel(motcomp)
 	active = FALSE
 	update_icon()
 
 /// As the result of the removed component, turns off / reverts everything that comes with activating it.
 /obj/item/attachable/motiondetector/proc/deactivate_component(datum/source, datum/component/removed_component)
 	SIGNAL_HANDLER
-	if(!motion_detector_component || removed_component != motion_detector_component)
+
+	var/datum/component/motion_detector/motcomp = GetComponent(/datum/component/motion_detector)
+	if(!motcomp || removed_component != motcomp)
 		return
 
 	UnregisterSignal(source, COMSIG_COMPONENT_REMOVING)
-	motion_detector_component = null
 	active = FALSE
 	update_icon()
 

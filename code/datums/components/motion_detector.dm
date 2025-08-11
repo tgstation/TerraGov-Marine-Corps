@@ -38,7 +38,7 @@
 /datum/component/motion_detector/proc/do_scan()
 	// If they are not around to enjoy the blips, component goes away.
 	if(!human_parent?.client || human_parent.stat != CONSCIOUS)
-		RemoveComponent()
+		qdel(src)
 		return
 
 	var/hostile_detected = FALSE

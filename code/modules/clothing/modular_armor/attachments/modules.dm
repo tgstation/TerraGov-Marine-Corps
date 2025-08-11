@@ -924,8 +924,6 @@
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/helmet/marine/veteran/pmc/sniper = "sensor_head_pmc")
-	active = FALSE
-	var/datum/component/motion_detector/motion_detector_component
 
 /obj/item/armor_module/module/tactical_sensor/Destroy()
 	if(active)
@@ -948,7 +946,8 @@
 	if(!active)
 		deactivate(user)
 		return
-	motion_detector_component = user.AddComponent(/datum/component/motion_detector)
+	var/datum/component/motion_detector/motcomp = user.GetComponent(/datum/component/motion_detector)
+	motcomp = user.AddComponent(/datum/component/motion_detector)
 	RegisterSignal(user, COMSIG_COMPONENT_REMOVING, PROC_REF(deactivate_component))
 	active = TRUE
 	icon_state = base_icon + "[active ? "_active" : ""]"
@@ -958,13 +957,14 @@
 /// Turns off / reverts everything that comes with activating it.
 /obj/item/armor_module/module/tactical_sensor/proc/deactivate(mob/user)
 	SIGNAL_HANDLER
-	if(!motion_detector_component)
+	var/datum/component/motion_detector/motcomp = user.GetComponent(/datum/component/motion_detector)
+
+	if(!motcomp)
 		return
 
 	if(user)
 		UnregisterSignal(user, COMSIG_COMPONENT_REMOVING)
-	motion_detector_component.RemoveComponent()
-	motion_detector_component = null
+		qdel(motcomp)
 	active = FALSE
 	icon_state = base_icon
 	worn_icon_state = icon_state
@@ -973,11 +973,12 @@
 /// As the result of the removed component, turns off / reverts everything that comes with activating it.
 /obj/item/armor_module/module/tactical_sensor/proc/deactivate_component(datum/source, datum/component/removed_component)
 	SIGNAL_HANDLER
-	if(!motion_detector_component || removed_component != motion_detector_component)
+
+	var/datum/component/motion_detector/motcomp = GetComponent(/datum/component/motion_detector)
+	if(!motcomp || removed_component != motcomp)
 		return
 
 	UnregisterSignal(source, COMSIG_COMPONENT_REMOVING)
-	motion_detector_component = null
 	active = FALSE
 	icon_state = base_icon
 	worn_icon_state = icon_state
