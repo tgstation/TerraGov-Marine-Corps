@@ -159,7 +159,6 @@
 		/obj/item/ammo_magazine/packet/p10x20mm = 2,
 		/obj/item/ammo_magazine/smg/m25 = 2,
 		/obj/item/explosive/grenade/m15 = 2,
-		/obj/item/explosive/grenade = 1,
 	)
 
 	l_pocket_contents = list(
@@ -249,7 +248,7 @@
 		/obj/item/stack/medical/heal_pack/gauze = 1,
 		/obj/item/weapon/gun/pistol/heavy = 1,
 		/obj/item/ammo_magazine/pistol/heavy = 3,
-		/obj/item/ammo_magazine/m412l1_hpr = 4,
+		/obj/item/ammo_magazine/m412l1_hpr = 3,
 		/obj/item/explosive/plastique = 1,
 	)
 
@@ -271,6 +270,7 @@
 // AR-55 grenadier
 /datum/outfit/job/freelancer/grenadier/tx55
 	belt = /obj/item/storage/belt/marine
+	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy
 	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer_custom/grenadier
 	r_pocket = /obj/item/storage/pouch/magazine/large
 
