@@ -62,7 +62,7 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/freelancer/standard/campaign,
+		/datum/outfit/job/freelancer/standard/m412/campaign,
 		/datum/outfit/job/freelancer/standard/pump/campaign,
 		/datum/outfit/job/freelancer/standard/tx11/campaign,
 	)
@@ -73,7 +73,7 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/freelancer/medic/campaign,
+		/datum/outfit/job/freelancer/medic/m25/campaign,
 		/datum/outfit/job/freelancer/medic/marksman/campaign,
 	)
 
@@ -83,17 +83,9 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/freelancer/grenadier/campaign,
+		/datum/outfit/job/freelancer/grenadier/alf/campaign,
 		/datum/outfit/job/freelancer/grenadier/hpr/campaign,
-	)
-
-/datum/job/freelancer/specialist/campaign_bonus
-	faction = FACTION_TERRAGOV
-	comm_title = "FL"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	job_cost = 0
-	outfits = list(
-		/datum/outfit/job/freelancer/specialist/campaign,
+		/datum/outfit/job/freelancer/grenadier/tx55/campaign,
 	)
 
 /datum/job/freelancer/leader/campaign_bonus
@@ -102,7 +94,7 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/freelancer/leader/campaign,
+		/datum/outfit/job/freelancer/leader/m41a/campaign,
 		/datum/outfit/job/freelancer/leader/tx11/campaign,
 		/datum/outfit/job/freelancer/leader/tx55/campaign,
 	)

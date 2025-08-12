@@ -39,7 +39,6 @@
 	ui_icon = "freelancers"
 	bonus_job_list = list(
 		/datum/job/freelancer/leader/campaign_bonus = 1,
-		/datum/job/freelancer/specialist/campaign_bonus = 1,
 		/datum/job/freelancer/grenadier/campaign_bonus = 2,
 		/datum/job/freelancer/medic/campaign_bonus = 1,
 		/datum/job/freelancer/standard/campaign_bonus = 5,

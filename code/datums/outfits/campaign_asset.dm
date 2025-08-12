@@ -292,7 +292,7 @@
 	)
 
 
-/datum/outfit/job/freelancer/standard/campaign
+/datum/outfit/job/freelancer/standard/m412/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/freelancer/standard/pump/campaign
@@ -301,23 +301,22 @@
 /datum/outfit/job/freelancer/standard/tx11/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/medic/campaign
+/datum/outfit/job/freelancer/medic/m25/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/freelancer/medic/marksman/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/grenadier/campaign
+/datum/outfit/job/freelancer/grenadier/alf/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/freelancer/grenadier/hpr/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/specialist/campaign
+/datum/outfit/job/freelancer/grenadier/tx55/campaign
 	ears = /obj/item/radio/headset/mainship
 
-
-/datum/outfit/job/freelancer/leader/campaign
+/datum/outfit/job/freelancer/leader/m41a/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/freelancer/leader/tx55/campaign

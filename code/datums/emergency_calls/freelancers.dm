@@ -3,9 +3,9 @@
 	base_probability = 26
 	alignement_factor = -1
 	///Number of current Grenadiers in this squad.
-	var/grenadiers
+	var/grenadiers = 0
 	///Max amount of Grenadiers allowed in this squad.
-	var/max_grenadiers = 3
+	var/max_grenadiers = 2
 	///Number of current Specialists in this squad.
 	var/specialists = 0
 	///Max amount of Specialists allowed in this squad.

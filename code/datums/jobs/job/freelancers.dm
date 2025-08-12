@@ -12,10 +12,10 @@
 /datum/job/freelancer/standard
 	title = "Freelancer Standard"
 	paygrade = "CBT"
-	outfit = /datum/outfit/job/freelancer/standard
+	outfit = /datum/outfit/job/freelancer/standard/m412
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/freelancer/standard,
+		/datum/outfit/job/freelancer/standard/m412,
 		/datum/outfit/job/freelancer/standard/pump,
 		/datum/outfit/job/freelancer/standard/tx11,
 	)
@@ -26,10 +26,10 @@
 	title = "Freelancer Medic"
 	paygrade = "MED"
 	skills_type = /datum/skills/combat_medic
-	outfit = /datum/outfit/job/freelancer/medic
+	outfit = /datum/outfit/job/freelancer/medic/m25
 	multiple_outfits = TRUE
 	outfits = list(
-	/datum/outfit/job/freelancer/medic,
+	/datum/outfit/job/freelancer/medic/m25,
 	/datum/outfit/job/freelancer/medic/marksman,
 	)
 
@@ -38,10 +38,10 @@
 	title = "Freelancer Veteran"
 	paygrade = "CBT"
 	skills_type = /datum/skills/freelancer_veteran
-	outfit = /datum/outfit/job/freelancer/grenadier
+	outfit = /datum/outfit/job/freelancer/grenadier/alf
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/freelancer/grenadier,
+		/datum/outfit/job/freelancer/grenadier/alf,
 		/datum/outfit/job/freelancer/grenadier/tx55,
 		/datum/outfit/job/freelancer/grenadier/hpr,
 	)
@@ -52,10 +52,10 @@
 	title = "Freelancer Specialist"
 	paygrade = "SPEC"
 	skills_type = /datum/skills/freelancer_veteran
-	outfit = /datum/outfit/job/freelancer/specialist
+	outfit = /datum/outfit/job/freelancer/specialist/rocketeer
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/freelancer/specialist,
+		/datum/outfit/job/freelancer/specialist/rocketeer,
 		/datum/outfit/job/freelancer/specialist/flamer,
 	)
 
@@ -64,9 +64,10 @@
 	title = "Freelancer Leader"
 	paygrade = "CMD"
 	skills_type = /datum/skills/sl
-	outfit = /datum/outfit/job/freelancer/leader
+	outfit = /datum/outfit/job/freelancer/leader/m41a
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/freelancer/leader,
+		/datum/outfit/job/freelancer/leader/m41a,
 		/datum/outfit/job/freelancer/leader/tx55,
+		/datum/outfit/job/freelancer/leader/tx11,
 	)

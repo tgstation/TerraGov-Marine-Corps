@@ -387,7 +387,7 @@
 	)
 
 /obj/item/clothing/head/helmet/marine/freelancer/medic
-	name = "\improper M3 Hardy Freelancer helmet"
+	name = "\improper M3 pattern CBRN Freelancer helmet"
 	desc = "A sturdy freelancer's blue helmet with white stripe ontop and integrated mimir filtration system. Many years ago on the Terra, the sign of that helmet was inspiring hope, but now - only apathy."
 	icon_state = "freelancer_helmet_medic"
 	soft_armor = list(MELEE = 55, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 60, BIO = 70, FIRE = 65, ACID = 75)
@@ -405,7 +405,7 @@
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 70, BOMB = 65, BIO = 55, FIRE = 55, ACID = 65)
 
 /obj/item/clothing/head/helmet/marine/freelancer/specialist
-	name = "\improper M3 pattern Hardy Freelancer specialist helmet"
+	name = "\improper M3 pattern Freelancer rocketeer helmet"
 	desc = "A sturdy freelancer's helmet with additional plates and protective riot visor. Many years ago on the Terra, the sign of that helmet was inspiring hope, but now - only apathy."
 	icon_state = "freelancer_helmet_specialist"
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 70, BOMB = 80, BIO = 55, FIRE = 65, ACID = 65)

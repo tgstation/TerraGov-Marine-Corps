@@ -374,7 +374,7 @@
 
 /obj/item/clothing/suit/storage/marine/veteran/freelancer
 	name = "\improper M3 pattern freelancer cuirass"
-	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the ICC and the TGMC."
+	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the ICC and the TerraGov."
 	icon_state = "freelancer_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 60, BIO = 55, FIRE = 55, ACID = 55)
@@ -419,7 +419,7 @@
 	name = "\improper B12 pattern freelancer cuirass"
 	desc = "A chunk of metal plates scrapped together on the M3 armor for maximum survivability. Not many mercenaries like to wear this, but it showed itself as suprisingly effective instrument in defenses and close quarters fights."
 	icon_state = "freelancer_armor_heavy"
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 70, BIO = 65, FIRE = 65, ACID = 65)
 	starting_attachments = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
