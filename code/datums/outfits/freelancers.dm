@@ -270,6 +270,7 @@
 
 // AR-55 grenadier
 /datum/outfit/job/freelancer/grenadier/tx55
+	belt = /obj/item/storage/belt/marine
 	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer_custom/grenadier
 	r_pocket = /obj/item/storage/pouch/magazine/large
 
