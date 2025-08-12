@@ -45,10 +45,16 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/defile,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/activable/xeno/inject_egg_neurogas,
@@ -59,6 +65,8 @@
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 	available_reagents_define = list(
@@ -66,6 +74,7 @@
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/reagent/toxin/xeno_aphrotoxin,
 	)
 
 	mutations = list(
@@ -88,10 +97,16 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/defile,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/activable/xeno/inject_egg_neurogas,
@@ -103,4 +118,6 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/tentacle,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)

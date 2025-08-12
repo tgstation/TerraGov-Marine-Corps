@@ -97,14 +97,14 @@
 // *********** Acidic Salve
 // ***************************************
 /datum/action/ability/activable/xeno/psychic_cure/acidic_salve
-	name = "Acidic Salve"
+	name = "Resin Salve"
 	action_icon_state = "heal_xeno"
 	action_icon = 'icons/Xeno/actions/drone.dmi'
-	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased."
+	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased. This heals humans aswell."
 	cooldown_duration = 5 SECONDS
 	ability_cost = 150
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_SALVE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_SALVE,
 	)
 	heal_range = DRONE_HEAL_RANGE
 	target_flags = ABILITY_MOB_TARGET
@@ -116,6 +116,8 @@
 	var/bonus_healing_additive_multiplier = 2
 
 /datum/action/ability/activable/xeno/psychic_cure/acidic_salve/use_ability(atom/target)
+	if(!ismob(target))
+		return FALSE
 	if(xeno_owner.do_actions)
 		return FALSE
 	var/mob/living/living_target = target
@@ -132,7 +134,7 @@
 		personal_statistics.heals++
 
 /// Heals the target and gives them a regenerative buff, if applicable.
-/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/proc/salve_healing(mob/living/carbon/xenomorph/target)
+/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/proc/salve_healing(mob/living/target)
 	var/datum/action/ability/activable/xeno/essence_link/essence_link_action = owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	var/heal_multiplier = 1
 	if(essence_link_action.existing_link?.link_target == target)
@@ -141,7 +143,11 @@
 			heal_multiplier += bonus_healing_additive_multiplier
 	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
+	var/mob/living/carbon/xenomorph/X = target
+	var/recovery_aura = isxeno(target) ? X.recovery_aura : 2
+	var/heal_amount = (DRONE_BASE_SALVE_HEAL + recovery_aura * target.maxHealth * 0.01) * heal_multiplier
+	if(!isxeno(target))
+		heal_amount = heal_amount/4
 	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
 	target.adjustBruteLoss(-heal_amount)
 	target.adjust_sunder(-heal_amount/10)

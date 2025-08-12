@@ -1,11 +1,11 @@
 name: Automatic Approve Workflows
 on:
-  schedule: 
+  schedule:
     - cron: "*/10 * * * *"
 jobs:
   automatic-approve:
     name: Automatic Approve Workflows
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Automatic Approve
         uses: mheap/automatic-approve-action@v1

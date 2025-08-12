@@ -110,3 +110,5 @@
 		extra_filters += TTS_FILTER_SILICON
 	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), human_owner, treated_message["tts_message"], human_owner.get_default_language(), human_owner.voice, human_owner.voice_filter, tts_listeners, FALSE, pitch = human_owner.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
 
+/atom/movable/screen/text/screen_text/command_order/automated/death_alert
+	letters_per_update = 4

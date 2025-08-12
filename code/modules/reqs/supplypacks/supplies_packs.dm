@@ -32,32 +32,32 @@ SUPPLIES
 	cost = 50
 
 /datum/supply_packs/supplies/carpplush
-	name = "Carp plushie"
+	name = "Carp Plushie"
 	contains = list(/obj/item/toy/plush/carp)
 	cost = 10
 
 /datum/supply_packs/supplies/lizplush
-	name = "Lizard plushie"
+	name = "Lizard Plushie"
 	contains = list(/obj/item/toy/plush/lizard)
 	cost = 10
 
 /datum/supply_packs/supplies/slimeplush
-	name = "Slime plushie"
+	name = "Slime Plushie"
 	contains = list(/obj/item/toy/plush/slime)
 	cost = 10
 
 /datum/supply_packs/supplies/mothplush
-	name = "Moth plushie"
+	name = "Moth Plushie"
 	contains = list(/obj/item/toy/plush/moth)
 	cost = 10
 
 /datum/supply_packs/supplies/rounyplush
-	name = "Rouny plushie"
+	name = "Rouny Plushie"
 	contains = list(/obj/item/toy/plush/rouny)
 	cost = 10
 
 /datum/supply_packs/supplies/queenplushie
-	name = "Royal queen plushie"
+	name = "Royal Queen Plushie"
 	contains = list(/obj/item/toy/plush/royalqueen)
 	cost = 10
 
