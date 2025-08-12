@@ -17112,7 +17112,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "kNy" = (
@@ -44338,7 +44338,7 @@ aPg
 aUt
 aPg
 aLf
-uux
+sQd
 xEi
 uux
 aLf
@@ -45887,7 +45887,7 @@ aLf
 kOs
 gXD
 wAF
-htm
+sQd
 aLf
 knr
 xJd
@@ -48192,7 +48192,7 @@ pjA
 fEv
 uwG
 aJy
-rOy
+sQd
 aMp
 xJd
 rOy
