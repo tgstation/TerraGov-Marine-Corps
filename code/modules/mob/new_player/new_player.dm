@@ -462,6 +462,9 @@
 	mind.transfer_to(observer, TRUE)
 	message_admins("[key_name_admin(observer)] joined as a ghost.")
 	observer.client?.init_verbs()
+	if(observer.client && check_rights_for(observer.client, R_ADMIN)) // no getting to know what you shouldn't unless you are an admin.
+		observer.set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		observer.set_invis_see(SEE_INVISIBLE_OBSERVER)
 	qdel(src)
 
 ///Toggles the new players ready state

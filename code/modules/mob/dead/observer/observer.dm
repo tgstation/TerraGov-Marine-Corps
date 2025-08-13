@@ -290,6 +290,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.ooc_notes_maybes = ooc_notes_maybes
 		ghost.ooc_notes_favs = ooc_notes_favs
 		ghost.ooc_notes_style = ooc_notes_style
+		if(client && check_rights_for(client, R_ADMIN))
+			ghost.set_sight(SEE_SELF|SEE_TURFS|SEE_MOBS|SEE_OBJS)
+			ghost.set_invis_see(SEE_INVISIBLE_OBSERVER)
+			ghost.update_sight()
 
 		if(!T)
 			T = SAFEPICK(GLOB.latejoin)
@@ -600,6 +604,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		set_invis_see(SEE_INVISIBLE_OBSERVER)
 	else
 		set_invis_see(SEE_INVISIBLE_LIVING)
+	if(client && check_rights_for(client, R_ADMIN))
+		set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 
 	updateghostimages()
 

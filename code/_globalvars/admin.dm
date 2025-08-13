@@ -51,3 +51,5 @@ GLOBAL_LIST_INIT(vv_special_lists, init_special_list_names())
 		if(isnull(locate(REF(value))))
 			output += varname
 	return output
+
+GLOBAL_VAR_INIT(observer_freedom, FALSE)
