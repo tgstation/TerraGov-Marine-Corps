@@ -209,9 +209,6 @@
 		balloon_alert(user, "Already has a decal")
 		return
 	var/datum/custom_decal/decal = SScustom_decals.radial_poll_user_fav_decals(user, src)
-	if(decal)
-		user_decal = image(decal.decal_icon, layer=layer+1)
-		update_decal_offsets()
 	if(!decal)
 		balloon_alert(user, "No favourited decals")
 		return
