@@ -212,7 +212,13 @@
 	if(decal)
 		user_decal = image(decal.decal_icon, layer=layer+1)
 		update_decal_offsets()
-		add_overlay(user_decal)
+	if(!decal)
+		balloon_alert(user, "No favourited decals")
+		return
+
+	user_decal = image(decal.decal_icon, layer=layer+1)
+	update_decal_offsets()
+	add_overlay(user_decal)
 
 /obj/vehicle/sealed/armored/multitile/setDir(newdir)
 	. = ..()
