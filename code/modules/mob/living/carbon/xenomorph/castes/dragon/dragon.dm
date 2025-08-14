@@ -108,10 +108,10 @@
 		if(accept_to_be_dragon != "Accept")
 			continue
 		future_dragon = xenomorph_alive
-		RegisterSignal(future_dragon, COMSIG_HIVE_XENO_DEATH, .proc/choose_another_dragon)
+		RegisterSignal(future_dragon, COMSIG_HIVE_XENO_DEATH, choose_another_dragon)
 		to_chat(future_dragon, span_notice("You have 5 minutes to go to the [src] to ascend to as the dragon! Your tracker will guide you to it."))
 		future_dragon.set_tracked(src)
-		addtimer(CALLBACK(src, .proc/choose_another_dragon), 5 MINUTES)
+		addtimer(CALLBACK(src, choose_another_dragon), 5 MINUTES)
 		return
 	//If no xeno accepted, give it to ghost
 	try_summon_dragon()
