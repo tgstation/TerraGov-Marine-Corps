@@ -105,6 +105,7 @@ GLOBAL_LIST_EMPTY(alert_consoles)
 ///list of all /obj/structure/xeno/tunnel
 GLOBAL_LIST_EMPTY(xeno_tunnels_by_hive)
 GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
+GLOBAL_LIST_EMPTY(xeno_spawner_turfs)
 GLOBAL_LIST_EMPTY(xeno_weed_node_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_wall_turfs)

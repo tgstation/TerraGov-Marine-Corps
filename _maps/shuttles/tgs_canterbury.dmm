@@ -526,7 +526,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cb" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cc" = (
@@ -550,6 +550,7 @@
 /obj/structure/sink{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cf" = (
@@ -557,7 +558,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cg" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "cl" = (
@@ -889,7 +890,7 @@ bI
 cs
 cJ
 YI
-cd
+cb
 bo
 cm
 "}
@@ -911,7 +912,7 @@ bz
 bI
 bK
 bU
-cb
+cd
 cg
 bo
 cn

@@ -83,10 +83,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
-"adA" = (
-/obj/machinery/colony_floodlight_switch,
-/turf/closed/wall/r_wall/kutjevo,
-/area/kutjevo/interior/power)
 "adD" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -819,9 +815,6 @@
 /obj/machinery/colony_floodlight_switch,
 /turf/closed/wall/r_wall/kutjevo,
 /area/kutjevo/interior/power/comms)
-"aYg" = (
-/turf/closed/wall/kutjevo,
-/area/kutjevo/exterior/stonyfields)
 "aYi" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/kutjevo/colors/orange,
@@ -2168,10 +2161,6 @@
 	},
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_north)
-"cva" = (
-/obj/structure/largecrate/random/secure,
-/turf/open/floor/kutjevo/multi_tiles,
-/area/kutjevo/interior/filtration)
 "cvf" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3115,11 +3104,6 @@
 	},
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction)
-"dtq" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal,
-/turf/open/floor/kutjevo/colors/orange,
-/area/kutjevo/interior/power)
 "dtV" = (
 /obj/machinery/biogenerator,
 /turf/open/floor/kutjevo/grey/plate,
@@ -3817,14 +3801,6 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med)
-"edS" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/power/geothermal,
-/turf/open/floor/kutjevo/colors/orange,
-/area/kutjevo/interior/power)
 "eeg" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/kutjevo/tan,
@@ -11243,6 +11219,10 @@
 "mbS" = (
 /turf/closed/wall/kutjevo,
 /area/kutjevo/interior/complex/botany)
+"mbZ" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/kutjevo/exterior/colony_S_East)
 "mck" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/kutjevo/tan,
@@ -15169,6 +15149,9 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/kutjevo/colors/red/tile,
 /area/kutjevo/exterior/Northwest_Colony)
+"pWN" = (
+/turf/closed/wall/kutjevo,
+/area/kutjevo/exterior/stonyfields)
 "pXF" = (
 /obj/item/flashlight,
 /turf/open/floor/kutjevo/colors/orange,
@@ -17537,6 +17520,11 @@
 "sGs" = (
 /turf/closed/wall/kutjevo,
 /area/kutjevo/interior/complex/med/auto_doc)
+"sGW" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power)
 "sHg" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -18603,6 +18591,10 @@
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_dunes)
+"tMo" = (
+/obj/structure/largecrate/random/secure,
+/turf/open/floor/kutjevo/multi_tiles,
+/area/kutjevo/interior/filtration)
 "tMF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -18662,6 +18654,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_dunes)
+"tQw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power)
 "tQL" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/kutjevo/tan,
@@ -21226,6 +21226,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_river)
+"wrV" = (
+/obj/machinery/colony_floodlight_switch,
+/turf/closed/wall/r_wall/kutjevo,
+/area/kutjevo/interior/power)
 "wrY" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -26295,7 +26299,7 @@ rYf
 gPW
 aUi
 sgE
-cva
+tMo
 gPW
 koS
 ifC
@@ -31483,7 +31487,7 @@ xpk
 xoV
 cTz
 pBV
-edS
+tQw
 kGE
 xzY
 xzY
@@ -31650,7 +31654,7 @@ vVC
 vVC
 ePx
 pBV
-dtq
+sGW
 kGE
 tez
 wIG
@@ -31817,7 +31821,7 @@ vVC
 vVC
 ePx
 pBV
-dtq
+sGW
 kGE
 wIG
 wIG
@@ -32151,7 +32155,7 @@ ler
 ePx
 pyp
 pyp
-adA
+wrV
 kNb
 wIG
 wIG
@@ -33825,7 +33829,7 @@ dxF
 pyp
 tql
 tql
-aYg
+pWN
 tql
 huF
 pyp
@@ -60491,7 +60495,7 @@ vIi
 ygm
 ygm
 mnh
-ygm
+mbZ
 wYE
 ygm
 vIi

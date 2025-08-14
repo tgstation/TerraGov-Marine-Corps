@@ -34,3 +34,25 @@
   Scav:
   - rscadd: Added snack vendors to canterbury and bigbury
   - rscdel: Removed one quick loadout vendor from canterbury and bigbury
+2025-08-03:
+  Lumipharon:
+  - balance: 'Campaign: Supply Depot missions have a 30 second delay before the attackers
+      can deploy'
+  Raven-Industries:
+  - bugfix: fixed campaign loadout UI at high screen scaling
+  blackdav123:
+  - rscadd: Minions now spawn on crash.
+2025-08-06:
+  Scav:
+  - qol: Rearranged the positions of two vendors and the shower in canter medical
+2025-08-09:
+  Scav:
+  - bugfix: Re-added a light fixture in canter medical
+  mudzbe:
+  - rscadd: Automated loadout vendors in specialist and leader rooms on sulaco
+2025-08-14:
+  Runian:
+  - rscadd: Mutations is now enabled and can be obtained without admin intervention
+      in Nuclear War.
+  - rscadd: 3 new structures in Hive Blessings that allows xenomorphs to access and
+      empower their mutations.
