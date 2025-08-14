@@ -50,3 +50,9 @@
   - bugfix: Re-added a light fixture in canter medical
   mudzbe:
   - rscadd: Automated loadout vendors in specialist and leader rooms on sulaco
+2025-08-14:
+  Runian:
+  - rscadd: Mutations is now enabled and can be obtained without admin intervention
+      in Nuclear War.
+  - rscadd: 3 new structures in Hive Blessings that allows xenomorphs to access and
+      empower their mutations.

@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "Mutations is now enabled and can be obtained without admin intervention in Nuclear War."
-  - rscadd: "3 new structures in Hive Blessings that allows xenomorphs to access and empower their mutations."
