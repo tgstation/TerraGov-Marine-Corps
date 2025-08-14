@@ -259,6 +259,9 @@
 		/datum/action/ability/xeno_action/petrify,
 		/datum/action/ability/xeno_action/emit_neurogas,
 		/datum/action/ability/activable/xeno/psychic_link,
+		/datum/action/ability/activable/xeno/infernal_trigger,
+		/datum/action/ability/activable/xeno/oppressor/abduct,
+		/datum/action/ability/activable/xeno/item_throw,
 
 	)
 	///List of all the parent abilties that should have themselves and all of their children also blacklisted
@@ -279,6 +282,7 @@
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/tarot_deck_container,
+		/datum/action/ability/activable/xeno/draw_deck_container,
 		/datum/action/ability/activable/xeno/xeno_spit,
 	)
 	///List of all castes that should have all of their abilties removed.
@@ -289,6 +293,7 @@
 		/datum/xeno_caste/dragon = XENO_UPGRADE_PRIMO, // no fun allowed
 		/datum/xeno_caste/king/conqueror = XENO_UPGRADE_PRIMO, // Unbalanced and buggy
 		/datum/xeno_caste/behemoth = XENO_UPGRADE_PRIMO, // Buggy
+		/datum/xeno_caste/warlock = XENO_UPGRADE_PRIMO, //Buggy
 	)
 
 GLOBAL_LIST_INIT(tarot_deck_actions, list())
@@ -332,6 +337,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		targetable.container = ability_container
 		targetable.container.give_action(xeno_owner)
 		targetable.container.hidden = TRUE
+		targetable.on_jester_roll()
 	else
 		nontargetable.active = TRUE
 		nontargetable.name = ability_container.name
@@ -342,6 +348,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		nontargetable.container = ability_container
 		nontargetable.container.give_action(xeno_owner)
 		nontargetable.container.hidden = TRUE
+		nontargetable.on_jester_roll()
 	hidden = TRUE
 	active = FALSE
 	xeno_owner.update_action_buttons(TRUE)
@@ -519,6 +526,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	xeno_owner.update_action_buttons(TRUE)
 	container.ability_cost = 0
 	container.owner = owner
+	container.on_jester_roll()
 	//Typecasting to approipate level to set xeno_owner, as almost every ability uses it at some point
 	if(ispath(ability_to_mimic, /datum/action/ability/activable/xeno))
 		var/datum/action/ability/activable/xeno/targetable = clone
@@ -659,6 +667,17 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PATRON_OF_THE_STARS,
 	)
+
+/datum/action/ability/activable/xeno/patron_of_the_stars/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!line_of_sight(owner, A, 9))
+		if(!silent)
+			owner.balloon_alert(owner, "Out of sight!")
+		return FALSE
+	if((A.z != owner.z) || get_dist(owner, A) > JESTER_PATRON_RANGE)
+		if(!silent)
+			A.balloon_alert(owner, "Too far!")
+		return FALSE
 
 /datum/action/ability/activable/xeno/patron_of_the_stars/use_ability(atom/A)
 	new /obj/effect/temp_visual/patron_sigil_stars(get_turf(A))

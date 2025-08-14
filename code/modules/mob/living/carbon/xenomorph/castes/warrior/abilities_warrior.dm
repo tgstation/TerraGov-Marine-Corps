@@ -280,6 +280,12 @@
 	if(empower_action?.combo_count < WARRIOR_EMPOWER_COMBO_THRESHOLD)
 		empower_action?.activate_empower()
 
+///Grants warrior's toss ability alongside itself, so it can be comboed well
+/datum/action/ability/activable/xeno/warrior/lunge/on_jester_roll()
+	var/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use/to_grant = new
+	to_grant.give_action(xeno_owner)
+	xeno_owner.update_action_buttons(TRUE)
+
 ////////////////////////
 /datum/action/ability/activable/xeno/warrior/lunge/ai_should_start_consider()
 	return TRUE
@@ -465,6 +471,14 @@
 	var/datum/action/ability/activable/xeno/warrior/fling/fling_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/warrior/fling]
 	fling_action?.add_cooldown(cooldown_to_set)
 
+///Single use version of grapple toss, for jester
+/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use
+	desc = "Throw a creature under our grasp up to [starting_toss_distance] tiles away. Distance reduced on larger targets. Usable on allies. Can only be used once."
+
+/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use/use_ability(atom/A)
+	. = ..()
+	remove_ability(owner)
+	xeno_owner.update_action_buttons(TRUE)
 
 // ***************************************
 // *********** Punch

@@ -177,6 +177,10 @@
 	SIGNAL_HANDLER
 	return
 
+///Called whenever this ability is granted to a jester via their RNG mimic abilties.
+/datum/action/ability/proc/on_jester_roll()
+	return
+
 /datum/action/ability/activable
 	action_type = ACTION_SELECT
 

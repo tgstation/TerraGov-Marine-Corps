@@ -86,11 +86,11 @@
 	. = ..()
 	var/datum/action/ability/xeno_action/chips/chipcontainer = actions_by_path[/datum/action/ability/xeno_action/chips]
 	if(chipcontainer.chips < chipcontainer.maxchips)
-		chipcontainer.chips += 0.01 * damage // 100 Damage for 1 chip
+		chipcontainer.chips += JESTER_CHIPS_RATIO * damage // ~75 Damage for 1 chip
 		hud_set_chips() //Update the chips display
 	if(chipcontainer.damagemult != 0)
 		INVOKE_ASYNC(src, PROC_REF(handle_bonus_damage), attacker, target, damage)
-	if(prob(15) && ishuman(target)) // 15% chance for a crit
+	if(prob(JESTER_CRIT_CHANCE) && ishuman(target)) // 15% chance for a crit
 		INVOKE_ASYNC(src, PROC_REF(crit_effect), attacker, target, damage)
 
 ///Takes the damagemult from the chips ability and applies its bonus damage, equally to all limbs
