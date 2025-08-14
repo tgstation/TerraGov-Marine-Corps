@@ -72,7 +72,7 @@
 /obj/structure/resin/dragon_den/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ownerhive = hivenumber
-	addtimer(CALLBACK(src, .proc/choose_dragon), 5 MINUTES)
+	addtimer(CALLBACK(src, choose_dragon()), 5 MINUTES)
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	hive.dragon_present += 1
 
@@ -122,7 +122,7 @@
 	if(future_dragon?.stat != DEAD)
 		to_chat(future_dragon, span_warning("You lost your chance to become the dragon..."))
 	future_dragon = null
-	INVOKE_ASYNC(src, .proc/choose_dragon)
+	INVOKE_ASYNC(src, choose_dragon())
 
 ///creates a new dragon and tries to get a mob for it
 /obj/structure/resin/dragon_den/proc/try_summon_dragon()
@@ -139,7 +139,7 @@
 		if(XENO_HIVE_ADMEME)
 			new_caste_type = /mob/living/carbon/xenomorph/dragon/admeme
 	var/mob/living/carbon/xenomorph/dragon/drogon = new new_caste_type()
-	RegisterSignal(drogon, COMSIG_MOB_LOGIN , .proc/on_dragon_occupied)
+	RegisterSignal(drogon, COMSIG_MOB_LOGIN , on_dragon_occupied())
 	if(future_dragon)
 		future_dragon.mind.transfer_to(drogon)
 		return
