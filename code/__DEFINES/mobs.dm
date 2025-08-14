@@ -602,6 +602,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_LEADER_TYPE (1<<19) // Whether this is a leader type caste (e.g. Queen/Shrike/King/Dragon). Restricts who can play these castes based on: playtime & if banned from Queen.
 #define CASTE_EXCLUDE_STRAINS (1<<20) // Excludes this caste/basetype from strain selection.
 #define CASTE_MUTATIONS_ALLOWED (1<<21) // Whether we are allowed to access, view, and potentially purchase mutations for our caste/strain.
+#define CASTE_EXCLUDE_BECOME_DRAGON (1<<22) // Whether we are excluded from being selected by dragon egg. This is used for castes that are not allowed to become a Dragon, like the Queen or Hivemind.
 
 // Xenomorph can_flags:
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0) // Are we allowed to carry facehuggers in our hands?

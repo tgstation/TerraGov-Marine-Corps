@@ -535,3 +535,36 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Unlocks the primordial for the first tier"
 	psypoint_cost = 600
 	icon = "primosent"
+
+/datum/hive_upgrade/xenos/dragon
+	name = "Dragon"
+	desc = "Places a dragons den that tallhosts can detect, then after a summon time selects a random sister to take over the mind of the Dragon. Requires at least 12 xenos to purchase."
+	icon = "dragon"
+	gamemode_flags = ABILITY_NUCLEARWAR
+	psypoint_cost = 1800
+
+/datum/hive_upgrade/xenos/dragon/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+	if(buyer.hive.dragon_present)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("Another dragon is alive already!"))
+		return FALSE
+	if(buyer.hive.total_xenos_for_evolving() < 12)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You need at least 12 xenos to summon a dragon!"))
+		return FALSE
+
+/datum/hive_upgrade/xenos/dragon/on_buy(mob/living/carbon/xenomorph/buyer)
+	to_chat(buyer, span_xenonotice("We begin constructing a dragons den for the Queen Mother..."))
+	if(!do_after(buyer, 15 SECONDS, FALSE, buyer, BUSY_ICON_HOSTILE))
+		return FALSE
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+	var/obj/structure/resin/dragon_den = new /obj/structure/resin/dragon_den(get_turf(buyer), buyer.hivenumber)
+	log_game("[key_name(buyer)] has created a dragon den in [AREACOORD(buyer)]")
+	xeno_message("<B>[buyer] has created a dragon den at [get_area(buyer)]. Defend it until the Queen Mother summons a dragon!</B>", hivenumber = buyer.hivenumber, target = dragon_den, arrow_type = /atom/movable/screen/arrow/leader_tracker_arrow)
+	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
+	return ..()
+
