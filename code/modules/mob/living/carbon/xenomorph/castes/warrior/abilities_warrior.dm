@@ -473,11 +473,10 @@
 
 ///Single use version of grapple toss, for jester
 /datum/action/ability/activable/xeno/warrior/grapple_toss/single_use
-	desc = "Throw a creature under our grasp up to [starting_toss_distance] tiles away. Distance reduced on larger targets. Usable on allies. Can only be used once."
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss/single_use/use_ability(atom/A)
 	. = ..()
-	remove_ability(owner)
+	remove_action(owner)
 	xeno_owner.update_action_buttons(TRUE)
 
 // ***************************************

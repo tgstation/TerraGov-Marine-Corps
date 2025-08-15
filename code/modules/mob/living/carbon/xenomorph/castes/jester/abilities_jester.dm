@@ -572,11 +572,13 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	action_icon_state = initial(action_icon_state)
 	name = initial(name)
 	desc = initial(desc)
+	xeno_owner.update_action_buttons(TRUE)
 	addtimer(CALLBACK(src, PROC_REF(delete_mimic)), 10 SECONDS)
 
 ///Handles removing the action and qdeling it - theres gotta be a way to remove this race condition...
 /datum/action/ability/activable/xeno/draw_deck_container/proc/delete_mimic()
 	container.remove_action(owner)
+	xeno_owner.update_action_buttons(TRUE)
 	qdel(container)
 
 // ***************************************
