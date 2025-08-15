@@ -66,6 +66,7 @@
 /area/bluemoon/caves/se
 	name = "Southeastern Caverns"
 	icon_state = "southeast"
+	area_flags = CANNOT_NUKE
 
 /area/bluemoon/caves/e
 	name = "Eastern Caverns"
@@ -102,6 +103,7 @@
 /area/bluemoon/caves/facility/eta
 	name = "Eta Research Facility"
 	icon_state = "anog"
+	area_falgs = CANNOT_NUKE
 
 /area/bluemoon/caves/facility/eta/e
 	name = "Eta Research Facility - Offices"

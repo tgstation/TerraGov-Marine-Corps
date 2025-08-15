@@ -6870,6 +6870,10 @@
 /obj/item/ammo_magazine/rifle/tx11,
 /turf/open/floor/plating,
 /area/bluemoon/outside/building/cargo)
+"idF" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/e)
 "ien" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/surgery/hemostat,
@@ -7968,10 +7972,6 @@
 	},
 /turf/open/floor/freezer,
 /area/bluemoon/outside/building/dorms)
-"jfJ" = (
-/obj/effect/landmark/xeno_spawner_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/bluemoon/caves/e)
 "jfR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/brown{
@@ -8549,7 +8549,7 @@
 /turf/open/floor/plating,
 /area/bluemoon/outside/building/lz)
 "jKr" = (
-/obj/structure/sign/electricshock{
+/obj/structure/sign/evac{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -41142,7 +41142,7 @@ xGy
 uJX
 nkm
 dvW
-jfJ
+idF
 nkm
 dvW
 nkm
