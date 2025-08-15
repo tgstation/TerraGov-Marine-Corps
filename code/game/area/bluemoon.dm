@@ -103,7 +103,7 @@
 /area/bluemoon/caves/facility/eta
 	name = "Eta Research Facility"
 	icon_state = "anog"
-	area_falgs = CANNOT_NUKE
+	area_flags = CANNOT_NUKE
 
 /area/bluemoon/caves/facility/eta/e
 	name = "Eta Research Facility - Offices"
