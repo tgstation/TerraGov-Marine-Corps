@@ -11693,7 +11693,6 @@
 /area/bluemoon/caves/ne)
 "nib" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/freezer,
 /area/bluemoon/caves/facility/omicron)
 "nim" = (
@@ -14980,6 +14979,15 @@
 	},
 /turf/open/floor,
 /area/bluemoon/outside/building/marshal)
+"roI" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/prison/darkpurple{
+	dir = 4
+	},
+/area/bluemoon/caves/facility/omicron)
 "rpa" = (
 /turf/open/floor/plating/ground/ice,
 /area/bluemoon/caves/ne)
@@ -41762,7 +41770,7 @@ sNU
 sNU
 eyX
 eyX
-fsP
+eyX
 qLd
 duL
 rpo
@@ -41909,7 +41917,7 @@ sNU
 sNU
 eyX
 eyX
-fsP
+eyX
 qLd
 fQr
 prw
@@ -42055,8 +42063,8 @@ sNU
 kJd
 eyX
 eyX
-fsP
-fsP
+eyX
+eyX
 qLd
 pai
 wni
@@ -42201,9 +42209,9 @@ sNU
 sNU
 azo
 eyX
-fxW
-fsP
-fsP
+eyX
+eyX
+eyX
 qLd
 cCZ
 nBn
@@ -42349,8 +42357,8 @@ eyX
 eyX
 eyX
 eyX
-fsP
-fsP
+eyX
+eyX
 qLd
 rOE
 atR
@@ -42493,11 +42501,11 @@ fsP
 mva
 mva
 eyX
-fsP
-fsP
-fsP
-fsP
-fsP
+eyX
+eyX
+fxW
+eyX
+eyX
 qLd
 tCr
 xDn
@@ -42640,14 +42648,14 @@ fsP
 fsP
 fsP
 fsP
-fsP
-fsP
-fsP
+eyX
+eyX
+eyX
 fsP
 fsP
 qLd
 joS
-kgv
+roI
 xVj
 rOE
 voo
