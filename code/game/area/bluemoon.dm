@@ -34,7 +34,7 @@
 	icon_state = "northeast"
 
 /area/bluemoon/caves
-	name = "Unknown Area"
+	name = "Caverns"
 	icon_state = "bluenew"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
