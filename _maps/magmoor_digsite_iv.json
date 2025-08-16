@@ -2,6 +2,7 @@
     "map_name": "Magmoor Digsite IV",
     "map_path": "map_files/Magmoor_Digsite_IV",
     "map_file": "Magmoor_Digsite_IV.dmm",
+	"parallax_icon": "lava",
 	"disk_sets": {
 		"set1": 1,
 		"set2": 1,
