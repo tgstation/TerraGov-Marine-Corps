@@ -1790,6 +1790,16 @@
 			/obj/item/weapon/gun/rifle/m412/elite = -1,
 			/obj/item/ammo_magazine/rifle/ap = -1,
 		),
+		"Freelancers" = list(
+			/obj/item/weapon/gun/rifle/tx11/freelancer_custom = -1,
+			/obj/item/ammo_magazine/rifle/tx11 = -1,
+			/obj/item/weapon/gun/rifle/m41a/freelancer_custom = -1,
+			/obj/item/ammo_magazine/rifle/m41a = -1,
+			/obj/item/weapon/gun/rifle/tx55/freelancer_custom = -1,
+			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,
+			/obj/item/weapon/gun/pistol/heavy/gold = -1,
+			/obj/item/ammo_magazine/pistol/heavy = -1,
+		),
 		"Syndicate" = list(
 			/obj/item/weapon/gun/rifle/vsd_rifle = -1,
 			/obj/item/ammo_magazine/rifle/vsd_rifle = -1,

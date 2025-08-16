@@ -285,6 +285,13 @@
 		/obj/item/attachable/bayonet/converted,
 	)
 
+/obj/item/weapon/gun/shotgun/pump/freelancer
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/gyro,
+	)
+
 //-------------------------------------------------------
 //A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
