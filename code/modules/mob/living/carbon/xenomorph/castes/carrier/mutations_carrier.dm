@@ -352,14 +352,14 @@
 
 /datum/mutation_upgrade/veil/swarm_trap
 	name = "Swarm Trap"
-	desc = "Your newly created traps can fit 2/3/4 huggers total, but the stun duration divided by the amount of the hugger inside the trap."
+	desc = "Your newly created traps can fit an additional 1/2/3 huggers, but the stun duration divided by the amount of the hugger inside the trap."
 	/// For each structure, the additional amount of huggers that can be stored in the traps.
 	var/huggers_per_structure = 1
 
 /datum/mutation_upgrade/veil/swarm_trap/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Your newly created traps can fit [get_huggers(new_amount)] huggers total, but the stun duration divided by the amount of the hugger inside the trap."
+	return "Your newly created traps can fit an additional [get_huggers(new_amount)] huggers, but the stun duration divided by the amount of the hugger inside the trap."
 
 /datum/mutation_upgrade/veil/swarm_trap/on_structure_update(previous_amount, new_amount)
 	. = ..()
