@@ -104,9 +104,11 @@
 //*********************//
 /datum/mutation_upgrade/veil/burst_healing
 	name = "Burst Healing"
-	desc = "Transfusion heals an additional 7.5/15/22.5% maximum health, but requires twice as much plasma."
+	desc = "Transfusion heals an additional 8/12/16% maximum health, but requires twice as much plasma."
+	/// For the first structure, the amount to add to Transfusion's maximum health healing percentage. 1 = 100% of maximum health, 0.01 = 1% of maximum health.
+	var/amount_initial = 0.04
 	/// For each structure, the amount to add to Transfusion's maximum health healing percentage. 1 = 100% of maximum health, 0.01 = 1% of maximum health.
-	var/amount_per_structure = 0.075
+	var/amount_per_structure = 0.04
 
 /datum/mutation_upgrade/veil/burst_healing/get_desc_for_alert(new_amount)
 	if(!new_amount)
@@ -119,6 +121,7 @@
 	if(!transfusion_ability)
 		return
 	transfusion_ability.ability_cost += initial(transfusion_ability.ability_cost)
+	transfusion_ability.heal_percentage += get_amount(0)
 
 /datum/mutation_upgrade/veil/burst_healing/on_mutation_disabled()
 	. = ..()
@@ -126,14 +129,15 @@
 	if(!transfusion_ability)
 		return
 	transfusion_ability.ability_cost -= initial(transfusion_ability.ability_cost)
+	transfusion_ability.heal_percentage -= get_amount(0)
 
 /datum/mutation_upgrade/veil/burst_healing/on_structure_update(previous_amount, new_amount)
 	. = ..()
 	var/datum/action/ability/activable/xeno/transfusion/transfusion_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/transfusion]
 	if(!transfusion_ability)
 		return
-	transfusion_ability.heal_percentage += get_amount(new_amount - previous_amount)
+	transfusion_ability.heal_percentage += get_amount(new_amount - previous_amount, FALSE)
 
 /// Returns the amount to add to Transfusion's maximum health healing percentage.
 /datum/mutation_upgrade/veil/burst_healing/proc/get_amount(structure_count, include_initial = TRUE)
-	return amount_per_structure * structure_count
+	return (include_initial ? amount_initial : 0) + (amount_per_structure * structure_count)
