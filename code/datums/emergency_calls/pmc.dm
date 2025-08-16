@@ -3,7 +3,14 @@
 	base_probability = 11
 	alignement_factor = -2
 	shuttle_id = SHUTTLE_DISTRESS_PMC
-
+	///Number of current Smartgunners in this squad.
+	var/smartgunners = 0
+	///Max amount of Smartgunners allowed in this squad.
+	var/max_smartgunners = 2
+	///Number of current Snipers in this squad.
+	var/snipers = 0
+	///Max amount of Snipers allowed in this squad.
+	var/max_snipers = 1
 
 /datum/emergency_call/pmc/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>After leaving your [pick(75;"distant", 20;"close", 5;"ever-lovingly close")] [pick("family", "friends", "band of friends", "friend group", "relatives", "cousins")] [pick("behind", "behind in safety", "behind secretly", "behind regrettably")], you decided to join the ranks of a private military contracting group working for Nanotrasen.</b>")
@@ -38,13 +45,14 @@
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are the leader of this private military contractor team in responding to the TGMC distress signal sent out nearby. Address the situation and get your team to safety!")]</p>")
 		return
 
-	if(prob(30))
+	if(smartgunners < max_smartgunners)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/gunner)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a PMC heavy gunner assigned to this team to respond to the TGMC distress signal sent out nearby. Be the back guard of your squad!")]</p>")
+		smartgunners++
 		return
 
-	if(prob(30))
+	if(snipers < max_snipers)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/sniper)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a PMC heavy sniper assigned to this team to respond to the TGMC distress signal sent out nearby. Support your squad with long ranged firepower!")]</p>")
