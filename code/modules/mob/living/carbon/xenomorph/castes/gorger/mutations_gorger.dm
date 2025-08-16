@@ -104,7 +104,11 @@
 //*********************//
 /datum/mutation_upgrade/veil/burst_healing
 	name = "Burst Healing"
-	desc = "Transfusion heals an additional 8/12/16% maximum health, but requires twice as much plasma."
+	desc = "Transfusion heals an additional 8/12/16% maximum health. The plasma cost is set to 150/175/200% of its their original value."
+	/// For the first structure, the multiplier to increase Transfusion's plasma cost by.
+	var/multiplier_initial = 0.25
+	/// For each structure, the multiplier to increase Transfusion's plasma cost by.
+	var/multiplier_per_structure = 0.25
 	/// For the first structure, the amount to add to Transfusion's maximum health healing percentage. 1 = 100% of maximum health, 0.01 = 1% of maximum health.
 	var/amount_initial = 0.04
 	/// For each structure, the amount to add to Transfusion's maximum health healing percentage. 1 = 100% of maximum health, 0.01 = 1% of maximum health.
@@ -120,7 +124,7 @@
 	var/datum/action/ability/activable/xeno/transfusion/transfusion_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/transfusion]
 	if(!transfusion_ability)
 		return
-	transfusion_ability.ability_cost += initial(transfusion_ability.ability_cost)
+	transfusion_ability.ability_cost += initial(transfusion_ability.ability_cost) * get_multiplier(0)
 	transfusion_ability.heal_percentage += get_amount(0)
 
 /datum/mutation_upgrade/veil/burst_healing/on_mutation_disabled()
@@ -128,7 +132,7 @@
 	var/datum/action/ability/activable/xeno/transfusion/transfusion_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/transfusion]
 	if(!transfusion_ability)
 		return
-	transfusion_ability.ability_cost -= initial(transfusion_ability.ability_cost)
+	transfusion_ability.ability_cost -= initial(transfusion_ability.ability_cost) * get_multiplier(0)
 	transfusion_ability.heal_percentage -= get_amount(0)
 
 /datum/mutation_upgrade/veil/burst_healing/on_structure_update(previous_amount, new_amount)
@@ -136,8 +140,15 @@
 	var/datum/action/ability/activable/xeno/transfusion/transfusion_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/transfusion]
 	if(!transfusion_ability)
 		return
+	transfusion_ability.ability_cost += initial(transfusion_ability.ability_cost) * get_multiplier(new_amount - previous_amount, FALSE)
 	transfusion_ability.heal_percentage += get_amount(new_amount - previous_amount, FALSE)
 
 /// Returns the amount to add to Transfusion's maximum health healing percentage.
 /datum/mutation_upgrade/veil/burst_healing/proc/get_amount(structure_count, include_initial = TRUE)
 	return (include_initial ? amount_initial : 0) + (amount_per_structure * structure_count)
+
+/// Returns the multiplier to increase Transfusion's plasma cost by.
+/datum/mutation_upgrade/veil/burst_healing/proc/get_multiplier(structure_count, include_initial = TRUE)
+	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)
+
+
