@@ -27,13 +27,9 @@
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
-	maximum_active_caste = 1
-	evolve_min_xenos = 8
-	death_evolution_delay = 15 MINUTES
-	evolve_population_lock = 50 // Tank
 
 	// *** Flags *** //
-	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE|CASTE_MUTATIONS_ALLOWED
+	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_LEADER_TYPE|CASTE_MUTATIONS_ALLOWED|CASTE_EXCLUDE_BECOME_DRAGON
 	can_flags = parent_type::can_flags|CASTE_CAN_CORRUPT_GENERATOR
 	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STUNIMMUNE, TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 

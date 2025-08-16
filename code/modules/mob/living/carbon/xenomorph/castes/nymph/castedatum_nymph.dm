@@ -24,7 +24,7 @@
 	max_health = 120
 
 	// *** Flags *** //
-	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION|CASTE_IS_BUILDER
+	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION|CASTE_IS_BUILDER|CASTE_EXCLUDE_BECOME_DRAGON
 	can_flags = CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
