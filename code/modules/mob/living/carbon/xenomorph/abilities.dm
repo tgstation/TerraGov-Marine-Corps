@@ -1026,7 +1026,7 @@
 	)
 	/// Should the egg contain the owner's selected_hugger_type instead?
 	var/use_selected_hugger = FALSE
-	/// The amount to pass to the egg which will then be used to multiply the created hugger's hand attach time by.
+	/// The amount to multiply the created hugger's hand attach time by.
 	var/hand_attach_time_multiplier = 1
 
 /datum/action/ability/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
@@ -1049,8 +1049,7 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	var/obj/alien/egg/hugger/egg = new(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null)
-	egg.hand_attach_time_multiplier = hand_attach_time_multiplier
+	var/obj/alien/egg/hugger/egg = new(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null, hand_attach_time_multiplier)
 
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 

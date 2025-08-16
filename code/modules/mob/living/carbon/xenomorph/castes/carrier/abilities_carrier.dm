@@ -113,7 +113,6 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			fake.activate_time = F.activate_time
 			fake.proximity_time = F.proximity_time
 			fake.leap_range = F.leap_range
-			xeno_owner.dropItemToGround(fake)
 			fake.stat = F.stat
 			fake.leaping = F.leaping
 			fake.facehugger_register_source(xeno_owner)
