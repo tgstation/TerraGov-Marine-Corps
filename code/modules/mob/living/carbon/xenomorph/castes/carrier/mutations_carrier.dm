@@ -110,6 +110,7 @@
 	if(!panic_ability)
 		return
 	panic_ability.succeed_cost += get_multiplier(new_amount - previous_amount, FALSE)
+	panic_ability.update_button_icon()
 
 /// Returns the multiplier of Carrier Panic's initial plasma cost to add to the ability.
 /datum/mutation_upgrade/shell/recurring_panic/proc/get_multiplier(structure_count, include_initial = TRUE)

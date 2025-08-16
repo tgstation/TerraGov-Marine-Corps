@@ -228,7 +228,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 // *********** Drop all hugger, panic button
 // ***************************************
 /datum/action/ability/xeno_action/carrier_panic
-	name = "Drop All Facehuggers"
+	name = "Carrier Panic"
 	action_icon_state = "carrier_panic"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
 	desc = "Drop all stored facehuggers in a fit of panic. Uses all remaining plasma!"
@@ -279,6 +279,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		xeno_owner.huggers--
 	succeed_activate(succeed_cost * xeno_owner.xeno_caste.plasma_max)
 	add_cooldown()
+
+/datum/action/ability/xeno_action/carrier_panic/update_button_icon()
+	desc = "Drop all stored facehuggers in a fit of panic."
+	if(succeed_cost > 0)
+		desc += (succeed_cost == 1 ? " Uses all remaining plasma!" : " Uses [PERCENT(succeed_cost)]% of your maximum plasma!")
+	return ..()
 
 // ***************************************
 // *********** Choose Hugger Type
