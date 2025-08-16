@@ -41,6 +41,10 @@
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
+	///if we want to allow users to draw decals
+	var/allow_decals = TRUE
+	///image being used for the user created decal
+	var/image/user_decal
 	///pass_flags given to desants, in addition to the vehicle's pass_flags
 	var/desant_pass_flags = PASS_FIRE|PASS_LOW_STRUCTURE
 	///particle holder for smoke effects
@@ -175,6 +179,49 @@
 /obj/vehicle/sealed/armored/multitile/proc/del_smoke()
 	QDEL_NULL(smoke_holder)
 	UnregisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE)
+
+///called to update the offsets of the user created decal to fit on the tank properly
+/obj/vehicle/sealed/armored/multitile/proc/update_decal_offsets()
+	if(!user_decal)
+		return
+	switch(dir)
+		if(NORTH)
+			user_decal.alpha = 0
+		if(SOUTH)
+			user_decal.alpha = 0
+		if(EAST)
+			user_decal.alpha = 255
+			var/matrix/newmatrix = matrix().Invert()
+			user_decal.transform = newmatrix.Scale(0.5)
+			user_decal.pixel_z = 16
+			user_decal.pixel_w = 80
+		if(WEST)
+			user_decal.alpha = 255
+			user_decal.transform = matrix().Scale(0.5)
+			user_decal.pixel_w = 32
+			user_decal.pixel_z = 16
+
+/obj/vehicle/sealed/armored/multitile/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/facepaint))
+		return
+	if(user_decal)
+		balloon_alert(user, "Already has a decal")
+		return
+	var/datum/custom_decal/decal = SScustom_decals.radial_poll_user_fav_decals(user, src)
+	if(!decal)
+		balloon_alert(user, "No favourited decals")
+		return
+
+	user_decal = image(decal.decal_icon, layer=layer+1)
+	update_decal_offsets()
+	add_overlay(user_decal)
+
+/obj/vehicle/sealed/armored/multitile/setDir(newdir)
+	. = ..()
+	cut_overlay(user_decal)
+	update_decal_offsets()
+	add_overlay(user_decal)
 
 //THe HvX tank is not balanced at all for HvH
 /obj/vehicle/sealed/armored/multitile/campaign
