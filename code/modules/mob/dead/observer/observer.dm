@@ -293,15 +293,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_role_death[ghost.key] = world.time
 
-/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
-	. = ..()
-	if(!. || can_reenter_corpse || aghosting)
-		return
-	var/mob/ghost = .
-	if(tier != XENO_TIER_MINION && hivenumber == XENO_HIVE_NORMAL)
-		GLOB.key_to_time_of_xeno_death[ghost.key] = world.time //If you ghost as a xeno that is not a minion, sets respawn timer
-
-
 /mob/dead/observer/Move(atom/newloc, direct, glide_size_override = 32)
 	if(updatedir)
 		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
@@ -464,12 +455,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!istype(L))
 		to_chat(src, span_warning("Mob already taken."))
 		return
-
-	if(isxeno(L))
-		var/mob/living/carbon/xenomorph/offered_xenomorph = L
-		if(offered_xenomorph.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(src))
-			XENODEATHTIME_MESSAGE(src)
-			return
 
 	switch(tgui_alert(usr, "Take over mob named: [L.real_name][L.job ? " | Job: [L.job]" : ""]", "Offered Mob", list("Yes", "No", "Follow")))
 		if("Yes")
