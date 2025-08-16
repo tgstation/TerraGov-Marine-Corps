@@ -95,7 +95,7 @@
 	if(new_hugger_type)
 		hugger_type = new_hugger_type
 	if(new_hand_attach_time_multiplier)
-		_hand_attach_time_multiplier = new_hand_attach_time_multiplier
+		hand_attach_time_multiplier = new_hand_attach_time_multiplier
 
 /obj/alien/egg/hugger/update_icon_state()
 	. = ..()

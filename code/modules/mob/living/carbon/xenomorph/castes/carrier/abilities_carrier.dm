@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		F.leaping = FALSE //Hugger is not leaping
 		F.facehugger_register_source(xeno_owner) //Set us as the source
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
-		if(fake_hugger_gradiant_percentage > 0 and !istype(F, /obj/item/clothing/mask/facehugger/combat/harmless))
+		if(fake_hugger_gradiant_percentage > 0 && !istype(F, /obj/item/clothing/mask/facehugger/combat/harmless))
 			var/obj/item/clothing/mask/facehugger/combat/harmless/fake = new(get_turf(xeno_owner), xeno_owner.hivenumber, xeno_owner)
 			fake.set_fire_immunity(F.fire_immune)
 			fake.impact_time = F.impact_time

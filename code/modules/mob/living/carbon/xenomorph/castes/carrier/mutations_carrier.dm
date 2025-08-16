@@ -356,7 +356,7 @@
 	/// For each structure, the additional amount of huggers that can be stored in the traps.
 	var/huggers_per_structure = 1
 
-/datum/mutation_upgrade/veil/life_for_life/get_desc_for_alert(new_amount)
+/datum/mutation_upgrade/veil/swarm_trap/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
 	return "Your newly created traps can fit [get_huggers(new_amount)] huggers total, but the stun duration divided by the amount of the hugger inside the trap."
