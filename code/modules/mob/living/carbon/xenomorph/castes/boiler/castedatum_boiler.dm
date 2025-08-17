@@ -45,7 +45,8 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 7
-	bomb_strength = 1.3 //Multiplier to the effectiveness of the boiler glob.
+	bomb_strength = 1.3
+	// Spit types are handled in Toggle Bombard Type, one of Boiler's abilities.
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 30
@@ -89,6 +90,7 @@
 	caste_desc = "A horrendously effective alien siege engine."
 	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "We have refined the art of bombardement to perfection. End them before they can utter a desperate plea."
+	// Primordial Upgrade: Corrosive Lance and Neurotoxin Lance are now selectable spit types in Toggle Bombard Type, one of Boiler's abilities.
 
 /datum/xeno_caste/boiler/sizzler
 	caste_type_path = /mob/living/carbon/xenomorph/boiler/sizzler
