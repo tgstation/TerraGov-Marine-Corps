@@ -93,20 +93,6 @@
 	// *** Ranged Attack *** //
 	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/lance, /datum/ammo/xeno/boiler_gas/corrosive, /datum/ammo/xeno/boiler_gas/corrosive/lance)
 
-	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/xeno_action/place_acidwell,
-		/datum/action/ability/activable/xeno/corrosive_acid/strong,
-		/datum/action/ability/xeno_action/create_boiler_bomb,
-		/datum/action/ability/activable/xeno/bombard,
-		/datum/action/ability/xeno_action/toggle_long_range,
-		/datum/action/ability/xeno_action/toggle_bomb,
-		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
-		/datum/action/ability/activable/xeno/acid_shroud,
-	)
-
 /datum/xeno_caste/boiler/sizzler
 	caste_type_path = /mob/living/carbon/xenomorph/boiler/sizzler
 	upgrade_name = ""
