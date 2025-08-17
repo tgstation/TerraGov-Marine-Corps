@@ -203,7 +203,7 @@
 
 /datum/mutation_upgrade/spur/rapid_fire
 	name = "Rapid Fire"
-	desc = "Your normal globs are replaced with fast globs. Fast globs are twice as fast, but the gas is transparent, smaller, and dissipates faster. If a fast glob is used, Bombard's cooldown to 50/40/30% of its original value."
+	desc = "Your normal globs are replaced with fast globs. Fast globs are twice as fast, but the gas is transparent, smaller, and dissipates in two seconds. If a fast glob is used, Bombard's cooldown to 50/40/30% of its original value."
 	/// For the first structure, the multiplier to add to Bombard's cooldown duration if the fast glob variants were used.
 	var/multiplier_initial = -0.3
 	/// For each structure, the multiplier to add to Bombard's cooldown duration if the fast glob variants were used.
@@ -212,7 +212,7 @@
 /datum/mutation_upgrade/spur/rapid_fire/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Your normal globs are replaced with fast globs. Fast globs are twice as fast, but the gas is transparent, smaller, and dissipates faster. If a fast glob is used, Bombard's cooldown to [PERCENT(1 + get_multiplier(new_amount))]% of its original value."
+	return "Your normal globs are replaced with fast globs. Fast globs are twice as fast, but the gas is transparent, smaller, and dissipates in two seconds. If a fast glob is used, Bombard's cooldown to [PERCENT(1 + get_multiplier(new_amount))]% of its original value."
 
 /datum/mutation_upgrade/spur/rapid_fire/on_mutation_enabled()
 	. = ..()
