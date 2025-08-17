@@ -2268,6 +2268,7 @@
 /datum/outfit/quick/vsd/medic
 	name = "KZ Medic"
 	jobtype = "KZ Medic"
+	w_uniform = /obj/item/clothing/under/vsd
 	belt = /obj/item/storage/belt/lifesaver/full/upp
 	glasses = /obj/item/clothing/glasses/hud/health
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
