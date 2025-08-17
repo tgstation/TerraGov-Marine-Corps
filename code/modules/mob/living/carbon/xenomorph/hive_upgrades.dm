@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/building/acid_maw
 	name = "Acid Maw"
 	desc = "Constructs an acid maw that allows the hive to unleash its most devastating bombardments from any location. This structure's acid is strong enough to eat through any ceiling above it, but it requires ten minutes to prepare each shot."
-	psypoint_cost = 1200
+	psypoint_cost = 1000
 	icon = "maw"
 	gamemode_flags = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/acid_maw
@@ -321,6 +321,11 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(buildloc.density)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
+	var/area/buildzone = get_area(buyer)
+	if(buildzone.ceiling >= CEILING_DEEP_UNDERGROUND)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We cannot fire this structure through deep cave ceilings! Find a shallow part of the cave to build in."))
 		return FALSE
 
 /datum/hive_upgrade/building/mutation_chamber
