@@ -149,6 +149,9 @@
 /datum/mutation_upgrade/spur/hip_fire
 	name = "Hip Fire"
 	desc = "Bombard's preparation and firing cast delay is set to 50/40/30% of their original value. You lose Long Range Sight."
+	conflicting_mutation_types = list(
+		/datum/mutation_upgrade/veil/binoculars
+	)
 	/// For the first structure, the multiplier to add to Bombard's cooldown duration.
 	var/multiplier_initial = -0.4
 	/// For each structure, the multiplier to add to Bombard's cooldown duration.
@@ -335,6 +338,10 @@
 /datum/mutation_upgrade/veil/binoculars
 	name = "Binoculars"
 	desc = "Bombard and Long Range Sight can go 2/4/6 tiles further. The time required to use Long Range Sight is set to 250% of its original value."
+	conflicting_mutation_types = list(
+		/datum/mutation_upgrade/spur/hip_fire
+	)
+
 	/// For each structure, the additional amount of additional range to increase Long Range Sight by.
 	var/range_per_structure = 2
 
