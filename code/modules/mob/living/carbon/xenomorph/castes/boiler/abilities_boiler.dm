@@ -26,10 +26,10 @@ GLOBAL_LIST_INIT(boiler_glob_list, list(
 GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	BOILER_GLOB_NEUROTOXIN = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_NEUROTOXIN),
 	BOILER_GLOB_NEUROTOXIN_LANCE = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_NEUROTOXIN_LANCE),
-	BOILER_GLOB_NEUROTOXIN_FAST = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_NEUROTOXIN), // Fast is a replacement of normal.
+	BOILER_GLOB_NEUROTOXIN_FAST = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_NEUROTOXIN_FAST),
 	BOILER_GLOB_CORROSIVE = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_CORROSIVE),
 	BOILER_GLOB_CORROSIVE_LANCE = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_CORROSIVE_LANCE),
-	BOILER_GLOB_CORROSIVE_FAST = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_CORROSIVE), // Fast is a replacement of normal.
+	BOILER_GLOB_CORROSIVE_FAST = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_CORROSIVE_FAST),
 	BOILER_GLOB_OZELOMELYN = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_OZELOMELYN),
 	BOILER_GLOB_HEMODILE = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_HEMODILE),
 	BOILER_GLOB_SANGUINAL = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_SANGUINAL),
