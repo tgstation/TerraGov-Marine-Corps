@@ -3060,7 +3060,7 @@
 
 /obj/item/weapon/gun/rifle/vsd_breaching
 	name = "\improper CC/B/31 Breaching Shotgun"
-	desc = "The Kaizoku Corporation's breaching shotgun, firing 16 gauge breaching slugs. This won't kill if the target is armored."
+	desc = "The Kaizoku Corporation's breaching shotgun, firing 16 gauge breaching slugs. Not optimal for combat."
 	icon = 'ntf_modular/icons/obj/items/guns/shotguns64.dmi'
 	worn_icon_list = list(
 		slot_s_store_str = 'ntf_modular/icons/mob/suit_slot.dmi',
