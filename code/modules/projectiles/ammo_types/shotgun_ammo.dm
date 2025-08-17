@@ -432,8 +432,8 @@
 	shell_speed = 3
 	max_range = 5
 	damage = 100
-	penetration = 0
-	sundering = 5
+	penetration = 10
+	sundering = 7.5
 	///Bonus flat damage to walls, balanced around resin walls. Stolen from autocannons
 	var/wall_bonus = 900
 
