@@ -578,6 +578,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/vsd
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank/vsd,
+		/obj/item/ammo_magazine/flamer_tank/large/X,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 	attachable_offset = list("rail_x" = 11, "rail_y" = 25, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20, "under_x" = 24, "under_y" = 15)

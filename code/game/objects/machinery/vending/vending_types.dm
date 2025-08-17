@@ -224,6 +224,7 @@
 			/obj/item/tool/soap = 3,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
+			/obj/item/stack/nanopaste = 15,
 		),
 	)
 	idle_power_usage = 211

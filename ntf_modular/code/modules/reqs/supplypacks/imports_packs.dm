@@ -68,6 +68,13 @@
 	contains = list(/obj/item/ammo_magazine/pistol/ntunity)
 	cost = 3
 
+/datum/supply_packs/medical/nanopaste
+	name = "Nanopaste (x5)"
+	contains = list(
+		/obj/item/stack/nanopaste = 5
+	)
+	cost = 150
+
 /* save until we got faction specific req
 /datum/supply_packs/imports/unity
 	name = "NT105 Unity Revolver"

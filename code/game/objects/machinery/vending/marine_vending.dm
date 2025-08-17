@@ -1044,6 +1044,7 @@
 			/obj/item/stack/medical/splint = -1,
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50,
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 50,
+			/obj/item/stack/nanopaste = 15,
 		),
 		"Misc" = list(
 			/obj/item/defibrillator = 8,
@@ -1104,6 +1105,7 @@
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = -1,
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = -1,
 			/obj/item/stack/medical/splint = -1,
+			/obj/item/stack/nanopaste = -1,
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = -1,
