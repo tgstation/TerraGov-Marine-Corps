@@ -39,7 +39,6 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/corrosive)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "boiler"
@@ -47,7 +46,6 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 7
 	bomb_strength = 1.3 //Multiplier to the effectiveness of the boiler glob.
-	bomb_delay = 32 SECONDS
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 30
@@ -70,8 +68,14 @@
 
 	mutations = list(
 		/datum/mutation_upgrade/shell/staggered_panic,
+		/datum/mutation_upgrade/shell/thick_containment,
+		/datum/mutation_upgrade/shell/dim_containment,
 		/datum/mutation_upgrade/spur/gaseous_spray,
-		/datum/mutation_upgrade/veil/acid_trail
+		/datum/mutation_upgrade/spur/hip_fire,
+		/datum/mutation_upgrade/spur/rapid_fire,
+		/datum/mutation_upgrade/veil/acid_trail,
+		/datum/mutation_upgrade/veil/chemical_mixing,
+		/datum/mutation_upgrade/veil/binoculars
 	)
 
 /datum/xeno_caste/boiler/normal
