@@ -1617,8 +1617,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	return ..()
 
 /obj/structure/xeno/trap/get_xeno_hivenumber()
-	if(hugger)
-		return hugger.hivenumber
+	if(length(huggers))
+		return huggers[1].hivenumber
 	return ..()
 
 /mob/living/carbon/human/get_xeno_hivenumber()
