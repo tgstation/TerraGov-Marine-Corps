@@ -21,3 +21,8 @@
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(genital_menu)
 	return ..()
+
+/mob/living/carbon/human/Login()
+	. = ..()
+	if(client)
+		update_genitals()

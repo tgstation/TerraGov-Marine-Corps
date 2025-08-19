@@ -2548,5 +2548,4 @@
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
 #include "ntf_modular\include.dm"
-#include "ntf_modular\code\game\objects\effects\effect_system\smoke.dm"
 // END_INCLUDE

@@ -8,6 +8,7 @@
 	icon_state = "chest"
 	worn_icon_state = "chest"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	shows_bottom_genital = TRUE
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,

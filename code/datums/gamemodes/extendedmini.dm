@@ -5,8 +5,8 @@
 	round_type_flags = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
 	shutters_drop_time = 3 MINUTES
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
-	factions = list(FACTION_TERRAGOV, FACTION_XENO, FACTION_CLF)
-	human_factions = list(FACTION_TERRAGOV, FACTION_CLF)
+	factions = list(FACTION_TERRAGOV, FACTION_XENO)
+	human_factions = list(FACTION_TERRAGOV)
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
@@ -26,7 +26,6 @@
 		/datum/job/terragov/medical/researcher = 1,
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 4,
-		/datum/job/clf/silicon/synthetic/clf = 1,
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/corpsman = 4,
@@ -40,11 +39,6 @@
 		/datum/job/other/prisoner = 4,
 		/datum/job/xenomorph = 8,
 		/datum/job/xenomorph/queen = 1,
-		/datum/job/clf/leader = 2,
-		/datum/job/clf/specialist = 2,
-		/datum/job/clf/medic = 4,
-		/datum/job/clf/standard = -1,
-		/datum/job/clf/breeder = -1,
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 2 MINUTES

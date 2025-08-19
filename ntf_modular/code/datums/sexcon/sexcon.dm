@@ -283,7 +283,7 @@
 				chosen_emote = "groan"
 		else
 			if(prob(40))
-				chosen_emote = "painmoan"
+				chosen_emote = "pain"
 	if(pain_amt >= PAIN_MED_EFFECT)
 		if(giving)
 			if(prob(50))

@@ -9,6 +9,7 @@
 	icon = null
 	worn_icon_list = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	shows_bottom_genital = TRUE
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -281,6 +282,7 @@
 	greyscale_config = /datum/greyscale_config/xenonaut/bikini
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 40, BIO = 40, FIRE = 50, ACID = 40)
+	shows_bottom_genital = TRUE
 
 /obj/item/clothing/suit/modular/xenonauten/light/bikini/som
 	name = "\improper SOM M-69 Bikini-pattern light armor"

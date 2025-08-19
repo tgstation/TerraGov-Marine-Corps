@@ -27,7 +27,6 @@
 	message = "groans."
 	emote_type = EMOTE_AUDIBLE
 
-
 /datum/emote/living/carbon/xenomorph/xurrender
     key = "xurrender"
     key_third_person = "xurrenders"

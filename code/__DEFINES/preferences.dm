@@ -127,31 +127,17 @@
 
 
 #define RELIGION_CHOICES list(\
-	"Christianity (Catholic)",\
-	"Christianity (Protestant, Anglicanism)",\
-	"Christianity (Protestant, Baptist)",\
-	"Christianity (Protestant, Lutheranism)",\
-	"Christianity (Protestant, Calvinism)",\
-	"Christianity (Protestant, Methodism)",\
-	"Christianity (Protestant, Adventism)",\
-	"Christianity (Protestant, Pentecostalism)",\
-	"Christianity (Protestant, Other)",\
-	"Christianity (Eastern Orthodoxy)",\
-	"Christianity (Oriental Orthodoxy)",\
-	"Christianity (Non-trinitarian Restorationism, Mormonism)",\
-	"Christianity (Non-trinitarian Restorationism, Jehovah's Witnesses)",\
-	"Christianity (Non-trinitarian Restorationism, Oneness Pentecostalism)",\
-	"Christianity (Other)",\
-	"Judaism",\
-	"Islam (Shia)",\
-	"Islam (Sunni)",\
-	"Buddhism",\
-	"Hinduism",\
-	"Sikhism",\
-	"Shintoism",\
-	"Adherents of the Machine God",\
-	"Paganism",\
-	"Other Religion",\
+	"Church of Moonbeam",\
+	"Church of Death",\
+	"Church of Solaria",\
+	"Church of Lunaria",\
+	"Church of Wanderer",\
+	"Church of The Plantmother",\
+	"Cult of Lamashtu",\
+	"Cult of Dismas",\
+	"Cult of Sinius",\
+	"Cult of Tenebrase",\
+	"Some Old world religion nobody knows about, how did you unbury that?",\
 	"Atheism",\
 	"None"\
 	)

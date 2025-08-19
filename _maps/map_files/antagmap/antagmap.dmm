@@ -4102,6 +4102,10 @@
 /obj/effect/landmark/start/latejoinmoff,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
+"vQ" = (
+/obj/machinery/vending/uniform_supply/icc/clf,
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/antag_ship/clf_base/techroom)
 "vR" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -6062,6 +6066,10 @@
 /obj/machinery/prop/computer/crew,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/commcenter)
+"Gn" = (
+/obj/item/toy/plush/rouny,
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/reedroom)
 "Go" = (
 /obj/effect/forcefield/fog,
 /turf/open/floor/plating/ground/dirt,
@@ -6830,6 +6838,10 @@
 	dir = 8
 	},
 /area/antag_ship/vsd/hall)
+"JU" = (
+/obj/machinery/vending/weapon/clf,
+/turf/closed/wall/brick,
+/area/antag_ship/clf_base/techroom)
 "JW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -7601,6 +7613,9 @@
 /obj/structure/cable,
 /turf/open/floor/wood/alt_three,
 /area/antag_ship/som/office/commander)
+"NZ" = (
+/turf/closed/wall/brick,
+/area/lv624/ground/caves/rock)
 "Oe" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
@@ -8775,6 +8790,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/requisition)
+"TK" = (
+/obj/machinery/vending/armor_supply/icc/clf,
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/antag_ship/clf_base/techroom)
 "TL" = (
 /obj/machinery/marine_selector/clothes/synth{
 	vendor_role = /datum/job/clf/silicon/synthetic/clf
@@ -12395,7 +12414,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -12423,7 +12442,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 "}
 (26,1,1) = {"
 VK
@@ -12490,7 +12509,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -12518,7 +12537,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 "}
 (27,1,1) = {"
 VK
@@ -12585,7 +12604,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -12613,7 +12632,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 "}
 (28,1,1) = {"
 VK
@@ -12680,7 +12699,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -12708,7 +12727,7 @@ uH
 CN
 CN
 CN
-CN
+VK
 "}
 (29,1,1) = {"
 VK
@@ -12775,7 +12794,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -12803,7 +12822,7 @@ AB
 CN
 CN
 CN
-CN
+VK
 "}
 (30,1,1) = {"
 VK
@@ -12870,7 +12889,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -12898,7 +12917,7 @@ uH
 CN
 CN
 CN
-CN
+VK
 "}
 (31,1,1) = {"
 VK
@@ -12965,7 +12984,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -12993,7 +13012,7 @@ uH
 CN
 CN
 CN
-CN
+VK
 "}
 (32,1,1) = {"
 VK
@@ -13060,7 +13079,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -13088,7 +13107,7 @@ uH
 CN
 CN
 CN
-CN
+VK
 "}
 (33,1,1) = {"
 VK
@@ -13155,7 +13174,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -13183,7 +13202,7 @@ AB
 CN
 CN
 CN
-CN
+VK
 "}
 (34,1,1) = {"
 VK
@@ -13250,7 +13269,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -13278,7 +13297,7 @@ uH
 CN
 CN
 CN
-CN
+VK
 "}
 (35,1,1) = {"
 VK
@@ -13345,7 +13364,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -13373,7 +13392,7 @@ uH
 CN
 CN
 CN
-CN
+VK
 "}
 (36,1,1) = {"
 VK
@@ -13440,7 +13459,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -13468,7 +13487,7 @@ uH
 CN
 CN
 CN
-CN
+VK
 "}
 (37,1,1) = {"
 VK
@@ -13563,7 +13582,7 @@ AB
 CN
 CN
 CN
-CN
+VK
 "}
 (38,1,1) = {"
 VK
@@ -18772,7 +18791,7 @@ SP
 iU
 GN
 GN
-aF
+NZ
 Nj
 Nv
 aK
@@ -18867,8 +18886,8 @@ aF
 aF
 GN
 GN
-aF
-Nj
+NZ
+JU
 Nv
 gK
 AN
@@ -18962,8 +18981,8 @@ SP
 aF
 aF
 bU
-aF
-Nj
+NZ
+vQ
 GG
 aK
 AN
@@ -19057,8 +19076,8 @@ SP
 uj
 GN
 GN
-aF
-Nj
+NZ
+TK
 Nv
 aK
 AN
@@ -19152,7 +19171,7 @@ SP
 iU
 GN
 GN
-aF
+NZ
 Nj
 Nv
 aK
@@ -21057,7 +21076,7 @@ NQ
 lF
 kE
 cG
-aV
+Gn
 AY
 FH
 aF

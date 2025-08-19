@@ -24,6 +24,9 @@
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
 
+	var/shows_bottom_genital = FALSE
+	var/shows_top_genital = FALSE
+
 /obj/item/clothing/Initialize(mapload)
 	. = ..()
 	attachments_allowed = string_list(attachments_allowed)

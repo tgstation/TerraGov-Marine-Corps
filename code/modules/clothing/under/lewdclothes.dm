@@ -11,6 +11,7 @@
 	icon_state = "pantsu"
 	worn_icon_state = "pantsu"
 	inventory_flags = GROIN
+	shows_top_genital = TRUE
 
 /obj/item/clothing/under/lewd/chaps
 	name = "black chaps"
@@ -18,12 +19,14 @@
 	icon_state = "chaps"
 	worn_icon_state = "chaps"
 	inventory_flags = LEGS
+	shows_top_genital = TRUE
 
 /obj/item/clothing/under/lewd/corset
 	name = "black corset"
 	desc = "NineTails is not resposible for any organ damage."
 	icon_state = "corset"
 	inventory_flags = CHEST|GROIN
+	shows_bottom_genital = TRUE
 
 /obj/item/clothing/under/lewd/stripper
 	name = "pink stripper outfit"
@@ -31,6 +34,7 @@
 	icon_state = "stripper_p"
 	worn_icon_state = "stripper_p"
 	inventory_flags = CHEST|GROIN
+	shows_bottom_genital = TRUE
 
 /obj/item/clothing/under/lewd/stripper/green
 	name = "green stripper outfit"
@@ -49,12 +53,15 @@
 	icon_state = "gear_harness"
 	worn_icon_state = "gear_harness"
 	inventory_flags = CHEST|GROIN
+	shows_top_genital = TRUE
+	shows_bottom_genital = TRUE
 
 /obj/item/clothing/under/lewd/keyholesweater
 	name = "keyhole sweater"
 	desc = "What is the point of this, anyway?"
 	icon_state = "keyholesweater"
 	worn_icon_state = "keyholesweater"
+	shows_bottom_genital = TRUE
 
 /obj/item/clothing/under/lewd/stripper/mankini
 	name = "pink mankini"

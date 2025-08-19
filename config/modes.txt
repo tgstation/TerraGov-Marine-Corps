@@ -35,11 +35,6 @@ mode Extended - Survivor-Heavy
 	votable 1
 endmode
 
-mode Secret of Life
-	requiredplayers 0
-	default
-endmode
-
 mode Zombie Crash
 	requiredplayers 2
 	votable 0
@@ -58,4 +53,19 @@ endmode
 mode Campaign
 	requiredplayers 65
 	votable 0
+endmode
+
+mode Secret of Life - main
+	requiredplayers 0
+	default
+endmode
+
+mode Secret of Life - alienonly
+	requiredplayers 8
+	votable 1
+endmode
+
+mode Secret of Life - nosub
+	requiredplayers 8
+	votable 1
 endmode
