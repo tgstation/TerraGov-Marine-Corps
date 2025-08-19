@@ -395,7 +395,7 @@
 
 //cade armor defines
 #define CADE_UPGRADE_BOMB 80
-#define CADE_UPGRADE_MELEE list(melee = 30, bullet = 50, laser = 50, energy = 50)
+#define CADE_UPGRADE_MELEE list(melee = 30, bullet = 80, laser = 80, energy = 80)
 #define CADE_UPGRADE_ACID 75
 
 /obj/structure/barricade/solid

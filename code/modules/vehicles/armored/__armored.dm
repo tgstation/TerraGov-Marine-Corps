@@ -49,7 +49,7 @@
 	///reference to our interior datum if set, uses the typepath its set to
 	var/datum/interior/armored/interior
 	///Skill required to enter this vehicle
-	var/required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
+	var/required_entry_skill = 0
 	///What weapon we have in our primary slot
 	var/obj/item/armored_weapon/primary_weapon
 	///What weapon we have in our secondary slot
@@ -69,7 +69,8 @@
 	var/list/permitted_mods = list(
 		/obj/item/tank_module/overdrive,
 		/obj/item/tank_module/passenger,
-		/obj/item/tank_module/ability/zoom
+		/obj/item/tank_module/ability/zoom,
+		/obj/item/tank_module/ability/smoke_launcher
 	)
 	///Minimap flags to use for this vehcile
 	var/minimap_flags = MINIMAP_FLAG_MARINE
@@ -388,6 +389,7 @@
 		RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(mob_exit), TRUE)
 		RegisterSignal(M, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against), TRUE)
 	. = ..()
+	update_minimap_icon()
 	if(primary_weapon)
 		var/list/primary_icons
 		if(primary_weapon.ammo)
@@ -441,7 +443,8 @@
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 	idle_inside_loop?.output_atoms -= M
 	drive_inside_loop?.output_atoms -= M
-	return ..()
+	. = ..()
+	update_minimap_icon()
 
 /obj/vehicle/sealed/armored/relaymove(mob/living/user, direction)
 	. = ..()
@@ -748,6 +751,26 @@
 		return
 	INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/armored_weapon, begin_fire), user, target, modifiers)
 
+/obj/vehicle/sealed/armored/proc/update_minimap_flags()
+	minimap_flags = 0
+	var/list/candidate_occupants = (return_controllers_with_flag(VEHICLE_CONTROL_DRIVE) | return_controllers_with_flag(VEHICLE_CONTROL_MELEE) | return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT) | return_controllers_with_flag(VEHICLE_CONTROL_SETTINGS)) | occupants
+	for(var/mob/occupant in candidate_occupants)
+		minimap_flags = GLOB.faction_to_minimap_flag[occupant.faction]
+		if(minimap_flags)
+			break
+	if(!minimap_flags)
+		minimap_flags = initial(minimap_flags)
+
+/obj/vehicle/sealed/armored/add_control_flags(mob/controller, flags)
+	. = ..()
+	if(.)
+		update_minimap_icon()
+
+/obj/vehicle/sealed/armored/remove_control_flags(mob/controller, flags)
+	. = ..()
+	if(.)
+		update_minimap_icon()
+
 ///Updates the vehicles minimap icon
 /obj/vehicle/sealed/armored/proc/update_minimap_icon()
 	if(!minimap_icon_state)
@@ -756,6 +779,7 @@
 	minimap_icon_state = initial(minimap_icon_state)
 	if(armored_flags & ARMORED_IS_WRECK)
 		minimap_icon_state += "_wreck"
+	update_minimap_flags()
 	SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, MINIMAP_BLIPS_LAYER))
 
 /atom/movable/vis_obj/turret_overlay

@@ -168,7 +168,8 @@
 /obj/effect/overlay/temp/Initialize(mapload, effect_duration)
 	. = ..()
 	flick(icon_state, src)
-	QDEL_IN(src, effect_duration ? effect_duration : src.effect_duration)
+	if(!(effect_duration < 0))
+		QDEL_IN(src, effect_duration ? effect_duration : src.effect_duration)
 
 /obj/effect/overlay/temp/point
 	name = "arrow"
@@ -213,7 +214,7 @@
 	///what kind of laser we are, used for signals
 	var/lasertype = LASER_TYPE_RAILGUN
 
-/obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null, assigned_faction)
 	. = ..()
 	if(named)
 		name = "\improper[named] at [get_area_name(src)]"
@@ -225,7 +226,7 @@
 		if(LASER_TYPE_RAILGUN)
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RAILGUN_LASER_CREATED, src)
 		if(LASER_TYPE_CAS)
-			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src, assigned_faction)
 		if(LASER_TYPE_OB)
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 
@@ -253,8 +254,9 @@
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
 	lasertype = LASER_TYPE_CAS
+	var/assigned_faction = FACTION_TERRAGOV
 
-/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null, assigned_faction = FACTION_TERRAGOV)
 	. = ..()
 	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src

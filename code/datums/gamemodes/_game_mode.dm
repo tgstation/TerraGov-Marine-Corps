@@ -25,7 +25,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	var/distress_cancelled = FALSE
 
-	var/deploy_time_lock = 15 MINUTES
+	var/deploy_time_lock = 10 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
 	//The respawn time for Xenomorphs
@@ -44,7 +44,9 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	 */
 	var/time_between_round = 0
 	///What factions are used in this gamemode, typically TGMC and xenos
-	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
+	var/list/factions = list(FACTION_TERRAGOV, FACTION_XENO)
+	///Factions that are used in this gamemode and which should have human members
+	var/list/human_factions = list(FACTION_TERRAGOV)
 	///Reduces the number of T3 slots xenos get by the value.
 	var/tier_three_penalty = 0
 	///Includes T3 xenos in the calculation for maximum T3 slots.
@@ -65,11 +67,11 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///If the gamemode has a whitelist of valid ship maps. Whitelist overrides the blacklist
 	var/list/whitelist_ship_maps
 	///If the gamemode has a blacklist of disallowed ship maps
-	var/list/blacklist_ship_maps = list(MAP_COMBAT_PATROL_BASE, MAP_ITERON)
+	var/list/blacklist_ship_maps = list(MAP_COMBAT_PATROL_BASE, MAP_ITERON, MAP_EAGLE)
 	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
-	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT)
+	var/list/blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_COLONY1, MAP_CORSAT)
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
 
@@ -131,9 +133,9 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	spawn_characters()
 	transfer_characters()
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY))
-	SSpoints.dropship_points = 0
-	SSpoints.supply_points[FACTION_TERRAGOV] = 0
-
+	for(var/faction in human_factions)
+		SSpoints.dropship_points[faction] = 0
+		SSpoints.supply_points[faction] = 0
 	for(var/hivenum in GLOB.hive_datums)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
 		hive.purchases.setup_upgrades()
@@ -348,7 +350,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 		if(isxeno(M))
 			var/mob/living/carbon/xenomorph/X = M
-			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+			do_eord_respawn(X)
 			INVOKE_ASYNC(X, TYPE_PROC_REF(/atom/movable, forceMove), picked)
 
 		else if(ishuman(M))

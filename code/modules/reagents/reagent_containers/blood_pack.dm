@@ -31,24 +31,46 @@
 			icon_state = "full"
 
 /obj/item/reagent_containers/blood/APlus
+	name = "BloodPack A+" //so it shows up correctly in req
 	blood_type = "A+"
 
 /obj/item/reagent_containers/blood/AMinus
+	name = "BloodPack A-"
 	blood_type = "A-"
 
 /obj/item/reagent_containers/blood/BPlus
+	name = "BloodPack B+"
 	blood_type = "B+"
 
 /obj/item/reagent_containers/blood/BMinus
+	name = "BloodPack B-"
 	blood_type = "B-"
 
 /obj/item/reagent_containers/blood/OPlus
+	name = "BloodPack O+"
 	blood_type = "O+"
 
 /obj/item/reagent_containers/blood/OMinus
+	name = "BloodPack O-"
 	blood_type = "O-"
 
 /obj/item/reagent_containers/blood/empty
 	name = "Empty BloodPack"
 	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
 	icon_state = "empty"
+
+/obj/item/reagent_containers/blood/random
+	name = "BloodPack \[random\]"
+
+/obj/item/reagent_containers/blood/random/Initialize(mapload)
+	blood_type = pickweight(
+		list(
+		"A+" = 20,
+		"A-" = 20,
+		"B+" = 20,
+		"B-" = 20,
+		"O+" = 20,
+		"O-" = 5,
+		)
+		)
+	. = ..()

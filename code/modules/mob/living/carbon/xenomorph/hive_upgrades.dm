@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	var/building_time = 10 SECONDS
 
 /datum/hive_upgrade/building/can_buy(mob/living/carbon/xenomorph/buyer, silent)
-	. = ..()
+	. = ..() //
 	if(!.)
 		return
 	var/turf/buildloc = get_turf(buyer)
@@ -146,8 +146,11 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 	if(!buildloc.is_weedable())
+		return FALSE
+
+	if(!buyer.loc_weeds_type)
 		if(!silent)
-			to_chat(buyer, span_warning("We can't do that here."))
+			to_chat(buyer, span_xenowarning("We can't do that here."))
 		return FALSE
 
 	var/obj/alien/weeds/alien_weeds = locate() in buildloc
@@ -161,7 +164,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, building_time, NONE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, building_time, TRUE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
@@ -415,7 +418,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 	if(!buyer.loc_weeds_type)
 		if(!silent)
-			to_chat(buyer, span_xenowarning("No weeds here!"))
+			to_chat(buyer, span_xenowarning("We can't do that here."))
 		return FALSE
 
 	if(!T.check_alien_construction(buyer, silent, /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
@@ -430,7 +433,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	return TRUE
 
 /datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, build_time, NONE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, build_time, TRUE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
@@ -468,8 +471,11 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 	if(!buildloc.is_weedable())
+		return FALSE
+
+	if(!buyer.loc_weeds_type)
 		if(!silent)
-			to_chat(buyer, span_warning("We can't do that here."))
+			to_chat(buyer, span_xenowarning("We can't do that here."))
 		return FALSE
 
 	var/obj/alien/weeds/alien_weeds = locate() in buildloc

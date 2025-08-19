@@ -1,13 +1,18 @@
 
 /datum/action/minimap/xeno
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_EXCAVATION_ZONE
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_EXCAVATION_ZONE|MINIMAP_FLAG_MARINE_CLF
+
+
+/datum/action/minimap/survivor
+	minimap_flags = MINIMAP_FLAG_MARINE
+	marker_flags = MINIMAP_FLAG_SURVIVOR
 
 /datum/action/minimap/researcher
-	minimap_flags = MINIMAP_FLAG_MARINE|MINIMAP_FLAG_EXCAVATION_ZONE
+	minimap_flags = MINIMAP_FLAG_MARINE|MINIMAP_FLAG_EXCAVATION_ZONE|MINIMAP_FLAG_SURVIVOR
 	marker_flags = MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/marine
-	minimap_flags = MINIMAP_FLAG_MARINE
+	minimap_flags = MINIMAP_FLAG_MARINE|MINIMAP_FLAG_SURVIVOR
 	marker_flags = MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/marine/external //Avoids keybind conflicts between inherent mob minimap and bonus minimap from consoles, CAS or similar.
@@ -27,8 +32,20 @@
 	minimap_flags = MINIMAP_FLAG_MARINE_SOM
 	marker_flags = MINIMAP_FLAG_MARINE_SOM
 
+/datum/action/minimap/vsd
+	minimap_flags = MINIMAP_FLAG_KZ
+	marker_flags = MINIMAP_FLAG_KZ
+
+/datum/action/minimap/icc
+	minimap_flags = MINIMAP_FLAG_ICC
+	marker_flags = MINIMAP_FLAG_ICC
+
+/datum/action/minimap/clf
+	minimap_flags = MINIMAP_FLAG_MARINE_CLF|MINIMAP_FLAG_XENO|MINIMAP_FLAG_EXCAVATION_ZONE
+	marker_flags = MINIMAP_FLAG_MARINE_CLF
+
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
+	minimap_flags = MINIMAP_FLAG_ALL
 	marker_flags = NONE
 
 /datum/action/minimap/observer/action_activate()

@@ -38,7 +38,9 @@
 	)
 
 	evo_requirements = list(
+/* NTF removal - evolution minimums
 		/datum/xeno_caste/queen = 8,
+NTF removal end*/
 	)
 
 /datum/game_mode/infestation/nuclear_war/post_setup()

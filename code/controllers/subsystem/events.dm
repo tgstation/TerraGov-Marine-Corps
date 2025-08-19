@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(events)
 	///Lower bound for how frequently events will occur
 	var/frequency_lower = 5 MINUTES
 	///the latest an event can happen after a previous event
-	var/frequency_upper = 15 MINUTES
+	var/frequency_upper = 10 MINUTES
 
 /datum/controller/subsystem/events/Initialize()
 	if(CONFIG_GET(flag/events_disallowed))

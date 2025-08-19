@@ -347,7 +347,7 @@ GLOBAL_VAR(restart_counter)
 	// Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	// Current outputt should look like
 	/*
-	Something — Lost in space...	|	TerraGov Marine Corps — Sulaco
+	Something — Lost in space...	|	Nine Tailed Fox — Sulaco
 	Map: Loading...					|	Map: Icy Caves
 	Mode: Lobby						|	Mode: Crash
 	Round time: 0:0					|	Round time: 4:54
@@ -359,8 +359,8 @@ GLOBAL_VAR(restart_counter)
 	var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
 
 	var/new_status = ""
-	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] &#8212; [shipname]</a></b>"
-	new_status += "<br>Map: <a href='[webmap_host][ground_map_file]'><b>[map_name]</a></b>"
+	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] - Now [MIN_COMPILER_VERSION] compatible! - [shipname]</a></b>"
+	new_status += "<br>Map: <b>[webmap_host ? "<a href='[webmap_host][ground_map_file]'>[map_name]</a>" : map_name]</b>"
 	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
 	new_status += "<br>Round time: <b>[gameTimestamp("hh:mm")]</b>"
 

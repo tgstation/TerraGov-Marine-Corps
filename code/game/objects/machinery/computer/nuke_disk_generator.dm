@@ -17,7 +17,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
-	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	resistance_flags = DROPSHIP_IMMUNE
 
 	///Time needed for the machine to generate the disc
 	var/segment_time = 1.5 MINUTES
@@ -47,7 +47,7 @@
 		"Booting up terminal-  -Terminal running",
 		"Establishing link to offsite mainframe- Link established",
 		"WARNING, DIRECTORY CORRUPTED, running search algorithms- nuke_fission_timing.exe found",
-		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
+		"Invalid credentials, upgrading permissions through NTC military override- Permissions upgraded, nuke_fission_timing.exe available",
 		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, getting ready to print",
 		"Program downloaded to disk. Have a nice day."
 	)
@@ -164,13 +164,18 @@
 				return
 
 			busy = FALSE
-
+			faction = usr.faction
 			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time, TIMER_STOPPABLE)
 			update_minimap_icon()
 			running = TRUE
 
 /obj/machinery/computer/nuke_disk_generator/ui_state(mob/user)
 	return GLOB.human_adjacent_state
+
+/obj/machinery/computer/nuke_disk_generator/examine(mob/user)
+	. = ..()
+	if(faction && current_timer)
+		. += "It is being operated by [faction]"
 
 /obj/machinery/computer/nuke_disk_generator/proc/complete_segment()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
@@ -200,8 +205,10 @@
 	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
 	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
 
-	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
-	SSpoints.dropship_points += disk_cycle_reward/10
+	if(!faction)
+		return
+	SSpoints.add_supply_points(faction, disk_cycle_reward)
+	SSpoints.add_dropship_points(faction, disk_cycle_reward/10)
 	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
 
 	say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")

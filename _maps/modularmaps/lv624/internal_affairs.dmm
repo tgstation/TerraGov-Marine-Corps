@@ -188,6 +188,7 @@
 /area/lv624/lazarus/internal_affairs)
 "qp" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -208,6 +209,7 @@
 /area/lv624/lazarus/internal_affairs)
 "sS" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "tF" = (
