@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Carrier now has 5 more new mutations that they can purchase."
+  - spellcheck: "Carrier's ability \"Drop All Facehuggers\" has been renamed to \"Carrier Panic\"."
