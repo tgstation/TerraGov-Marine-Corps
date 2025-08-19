@@ -1544,7 +1544,7 @@
 	count = 10
 	spawning = 1
 	gravity = list(0, 0.1)
-	color = LIGHT_COLOR_RED
+	color = LIGHT_COLOR_WHITE
 	lifespan = 13
 	fade = 5
 	fadein = 5
