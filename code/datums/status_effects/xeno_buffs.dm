@@ -772,18 +772,30 @@
 	id = "drain surge"
 	duration = 10 SECONDS
 	tick_interval = 2 SECONDS
-	status_type = STATUS_EFFECT_REFRESH
+	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
+	/// The amount of soft armor to add/remove from the owner.
+	var/armor_modifier = SENTINEL_DRAIN_SURGE_ARMOR_MOD
+	/// The amount of melee damage modifier to add/remove from the owner.
+	var/damage_modifier = 0
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/drain_surge/on_creation(mob/living/new_owner, new_armor_modifier, new_damage_modifier)
+	if(new_armor_modifier)
+		armor_modifier = new_armor_modifier
+	if(new_damage_modifier)
+		damage_modifier = new_damage_modifier
+	return ..()
 
 /datum/status_effect/drain_surge/on_apply()
 	if(!isxeno(owner))
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
-	X.soft_armor = X.soft_armor.modifyAllRatings(SENTINEL_DRAIN_SURGE_ARMOR_MOD)
-	X.visible_message(span_danger("[X]'s chitin glows with a vicious green!"), \
-	span_notice("You imbue your chitinous armor with the toxins of your victim!"), null, 5)
+	X.soft_armor = X.soft_armor.modifyAllRatings(armor_modifier)
+	X.xeno_melee_damage_modifier += damage_modifier
+	X.visible_message(span_danger("[X]'s [armor_modifier ? "chitin" : "claws"] glows with a vicious green!"), \
+	span_notice("You imbue your [armor_modifier ? "chitinous armor" : "claws"] with the toxins of your victim!"), null, 5)
 	X.color = "#7FFF00"
 	particle_holder = new(X, /particles/drain_surge)
 	particle_holder.pixel_x = 11
@@ -792,9 +804,10 @@
 
 /datum/status_effect/drain_surge/on_remove()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.soft_armor = X.soft_armor.modifyAllRatings(-SENTINEL_DRAIN_SURGE_ARMOR_MOD)
-	X.visible_message(span_danger("[X]'s chitin loses its green glow..."), \
-	span_notice("Your chitinous armor loses its glow."), null, 5)
+	X.soft_armor = X.soft_armor.modifyAllRatings(-armor_modifier)
+	X.xeno_melee_damage_modifier -= damage_modifier
+	X.visible_message(span_danger("[X]'s [armor_modifier ? "chitin" : "claws"] loses its green glow..."), \
+	span_notice("Your [armor_modifier ? "chitinous armor" : "claws"] loses its glow."), null, 5)
 	X.color = "#FFFFFF"
 	QDEL_NULL(particle_holder)
 	return ..()

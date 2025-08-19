@@ -113,7 +113,7 @@
 		human.overlays += stone_overlay
 		petrified_humans[human] = stone_overlay
 
-	if(!length(petrified_humans))
+	if(!length(petrified_humans) && !length(viewing_xenomorphs))
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 7, TIMER_CLIENT_TIME)
 		return

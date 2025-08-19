@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "4 more mutations for Sentinel."
+  - balance: "Mutations: Toxic Blood is in the Veil category and scales at 80/60/40 damage taken. This is changed from Shell and 100/75/50 damage taken."
+  - balance: "Drain Sting's knockdown / Drain Surge now accounts for bonus potency from mutations."

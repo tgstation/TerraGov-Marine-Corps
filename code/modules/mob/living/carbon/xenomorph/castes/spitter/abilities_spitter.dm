@@ -85,7 +85,7 @@
 				B.acid_spray_act(owner)
 
 		xenomorph_spray(TF, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, TRUE, TRUE)
-		var/current_globs = xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
+		var/current_globs = xeno_owner.corrosive_ammo + xeno_owner.neurotoxin_ammo
 		if(xeno_owner.ammo && gaseous_spray_threshold && current_globs >= gaseous_spray_threshold)
 			var/datum/effect_system/smoke_spread/xeno/smoke
 			switch(xeno_owner.ammo.type)

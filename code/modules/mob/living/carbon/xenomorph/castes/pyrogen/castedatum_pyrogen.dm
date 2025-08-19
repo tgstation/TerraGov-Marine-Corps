@@ -32,7 +32,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_FIRE_IMMUNE
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_FIRE_IMMUNE|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
