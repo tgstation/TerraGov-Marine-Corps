@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "King's Petrify now goes on cooldown if any xenomorphs affected by it were given armor."
