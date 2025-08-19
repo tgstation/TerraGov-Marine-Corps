@@ -295,7 +295,7 @@
 
 /datum/mutation_upgrade/veil/deflective_force
 	name = "Deflective Force"
-	desc = "Unrelenting Force now reflects all projectiles in its affected area. Reflecting more than 100 projectile damage resets Psychic Scream's cooldown to 50/40/30% of its original value."
+	desc = "Unrelenting Force now reflects all projectiles in its affected area. Reflecting more than 50 projectile damage resets Psychic Scream's cooldown to 50/40/30% of its original value."
 	/// For the first structure, the amount to multiply Psychic Scream's cooldown by if enough projectile damage was reflected.
 	var/multiplier_initial = 0.6
 	/// For each structure, the additional amount to multiply Psychic Scream's cooldown by if enough projectile damage was reflected.
@@ -304,7 +304,7 @@
 /datum/mutation_upgrade/veil/deflective_force/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Unrelenting Force now reflects all projectiles in its affected area. Reflecting more than 100 projectile damage resets Psychic Scream's cooldown to [PERCENT(get_multiplier(new_amount))]% of its original value."
+	return "Unrelenting Force now reflects all projectiles in its affected area. Reflecting more than 50 projectile damage resets Psychic Scream's cooldown to [PERCENT(get_multiplier(new_amount))]% of its original value."
 
 /datum/mutation_upgrade/veil/deflective_force/on_mutation_enabled()
 	. = ..()
