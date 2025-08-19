@@ -206,13 +206,12 @@
 /datum/mutation_upgrade/spur/gravity_tide/proc/get_distance(structure_count, include_initial = TRUE)
 	return (include_initial ? distance_initial : 0) + (distance_per_structure * structure_count)
 
-
-
-
-
 /datum/mutation_upgrade/spur/psychic_choke
 	name = "Psychic Choke"
 	desc = "You lose the ability Psychic Fling in exchange for the ability Psychic Choke. Psychic Choke lets you paralyze a marine as long you channel it. The damage threshold to disrupt Psychic Choke is 20/35/50."
+	conflicting_mutation_types = list(
+		/datum/mutation_upgrade/veil/utility_fling
+	)
 	/// For each structure, the amount to increase Psychic Choke's damage threshold.
 	var/threshold_per_structure = 15
 
@@ -335,6 +334,9 @@
 /datum/mutation_upgrade/veil/utility_fling
 	name = "Utility Fling"
 	desc = "Psychic Fling can be used on yourself and allied xenomorphs. Psychic Fling's cooldown is set to 40/30/20% of its original value if it was used on an item or xenomorph."
+	conflicting_mutation_types = list(
+		/datum/mutation_upgrade/spur/psychic_choke
+	)
 	/// For the first structure, the amount to multiply Psychic Fling's cooldown by if it was used on an xenomorph or item.
 	var/multiplier_initial = 0.5
 	/// For each structure, the additional amount to multiply Psychic Fling's cooldown by if it was used on an xenomorph or item.
@@ -367,3 +369,7 @@
 	if(!fling_ability)
 		return
 	fling_ability.friendly_cooldown_multiplier += get_multiplier(new_amount - previous_amount, FALSE)
+
+/// Returns the amount to multiply Psychic Fling's cooldown by if it was used on an xenomorph or item.
+/datum/mutation_upgrade/veil/utility_fling/proc/get_multiplier(structure_count, include_initial = TRUE)
+	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)

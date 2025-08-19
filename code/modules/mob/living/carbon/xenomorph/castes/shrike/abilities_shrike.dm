@@ -304,7 +304,7 @@
 		hugger.kill_hugger()
 		owner.dropItemToGround(hugger)
 
-	add_cooldown(cooldown_duration * (damage_deflected >= 100 ? projectile_cooldown_mulitplier : 1))
+	add_cooldown(cooldown_duration * (damage_deflected >= 50 ? projectile_cooldown_mulitplier : 1))
 	succeed_activate()
 
 /// Throws things back the other way.
