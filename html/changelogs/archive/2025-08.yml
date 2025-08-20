@@ -59,3 +59,22 @@
 2025-08-16:
   blackdav123:
   - bugfix: Fixed an area on Vapor Processing
+2025-08-20:
+  Atropos:
+  - admin: Vent crawling (entering, exiting) is now logged (view round logs)
+  Runian:
+  - bugfix: 'Mutations: Envenomed correctly checks for and uses plasma.'
+  - rscadd: Boiler now has 6 more new mutations that they can purchase.
+  - balance: 'Mutations: Staggered Panic now scales at 7/5/3 stored globs, changed
+      from 7/5/3 stored globs.'
+  - imageadd: Sprites for Ozelomelyn, Hemodile, and Sanguinal boiler globs.
+  - bugfix: King's Petrify now goes on cooldown if any xenomorphs affected by it were
+      given armor.
+  - rscadd: Carrier now has 5 more new mutations that they can purchase.
+  - spellcheck: Carrier's ability "Drop All Facehuggers" has been renamed to "Carrier
+      Panic".
+  - rscadd: 4 more mutations for Sentinel.
+  - balance: 'Mutations: Toxic Blood is in the Veil category and scales at 80/60/40
+      damage taken. This is changed from Shell and 100/75/50 damage taken.'
+  - balance: Drain Sting's knockdown / Drain Surge now accounts for bonus potency
+      from mutations.

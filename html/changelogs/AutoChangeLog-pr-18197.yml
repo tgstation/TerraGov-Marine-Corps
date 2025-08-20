@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Mutations: Envenomed correctly checks for and uses plasma."
