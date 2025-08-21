@@ -78,3 +78,13 @@
       damage taken. This is changed from Shell and 100/75/50 damage taken.'
   - balance: Drain Sting's knockdown / Drain Surge now accounts for bonus potency
       from mutations.
+2025-08-21:
+  Joe13413:
+  - balance: The acid maw now can no longer be placed in deep caverns. The acid maws
+      price has been reduced from 1200 to 1000.
+  Runian:
+  - balance: 'Mutations: Burst Healing now gives additional maximum health healing
+      to Transfusion of 8/12/16%, changed from 7.5/15/22.5%. Slightly better early,
+      but scales much less.'
+  - balance: 'Mutations: Burst Healing now increases Transfusion''s plasma cost by
+      50/75/100% instead of a constant 100%.'

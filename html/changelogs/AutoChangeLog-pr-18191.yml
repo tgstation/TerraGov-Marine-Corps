@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - balance: "Mutations: Burst Healing now gives additional maximum health healing to Transfusion of 8/12/16%, changed from 7.5/15/22.5%. Slightly better early, but scales much less."
-  - balance: "Mutations: Burst Healing now increases Transfusion's plasma cost by 50/75/100% instead of a constant 100%."
