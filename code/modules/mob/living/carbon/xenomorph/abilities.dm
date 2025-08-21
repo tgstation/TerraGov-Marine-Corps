@@ -1048,7 +1048,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
-		if(possible_target == X || !possible_target.client || !isxeno(possible_target)) // Would ruin the whole point if we whisper to xenos too
+		if(possible_target == X || !possible_target.client || isxeno(possible_target)) // Would ruin the whole point if we whisper to xenos too
 			continue
 		target_list += possible_target
 
