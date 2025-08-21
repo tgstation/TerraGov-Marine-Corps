@@ -56,6 +56,9 @@
 	name = "Southwestern Caverns"
 	icon_state = "southwest"
 
+/area/bluemoon/caves/sw/shallow
+	ceiling = CEILING_UNDERGROUND
+
 /area/bluemoon/caves/s
 	name = "Southern Caverns"
 	icon_state = "south"
@@ -78,6 +81,9 @@
 /area/bluemoon/caves/ne
 	name = "Northeastern Caverns"
 	icon_state = "northeast"
+
+/area/bluemoon/caves/ne/shallow
+	ceiling = CEILING_UNDERGROUND
 
 /area/bluemoon/caves/n
 	name = "Northern Caverns"
