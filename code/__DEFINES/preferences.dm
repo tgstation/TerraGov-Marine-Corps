@@ -137,7 +137,7 @@
 	"Cult of Dismas",\
 	"Cult of Sinius",\
 	"Cult of Tenebrase",\
-	"Some Old world religion nobody knows about, how did you unbury that?",\
+	"Some Old world religion",\
 	"Atheism",\
 	"None"\
 	)
