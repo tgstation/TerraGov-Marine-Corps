@@ -9,7 +9,7 @@
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
 
-	if((istype(src, /turf/closed/wall/resin) || istype(src, /obj/structure/mineral_door/resin) || istype(src, /obj/structure/xeno) || istype(src, /obj/alien/weeds)) && blame_mob.issamexenohive(src))
+	if((istype(src, /turf/closed/wall/resin) || istype(src, /obj/structure/mineral_door/resin) || istype(src, /obj/structure/xeno) || istype(src, /obj/alien/weeds)) && issamexenohive(blame_mob))
 		return
 
 	if(armor_type)
