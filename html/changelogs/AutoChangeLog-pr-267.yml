@@ -1,0 +1,7 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - bugfix: "Radiance will work on humans and not xenos"
+  - bugfix: "Kz flamethrower accepts basic fuel backpack"
+  - balance: "You can attachs scopes to kz marksman rifle"
+  - balance: "Ares powered armor is capable of stabilizing fracs"
