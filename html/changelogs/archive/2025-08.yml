@@ -81,3 +81,9 @@
       damage taken. This is changed from Shell and 100/75/50 damage taken.'
   - balance: Drain Sting's knockdown / Drain Surge now accounts for bonus potency
       from mutations.
+2025-08-22:
+  Nokia2Student:
+  - bugfix: Radiance will work on humans and not xenos
+  - bugfix: Kz flamethrower accepts basic fuel backpack
+  - balance: You can attachs scopes to kz marksman rifle
+  - balance: Ares powered armor is capable of stabilizing fracs
