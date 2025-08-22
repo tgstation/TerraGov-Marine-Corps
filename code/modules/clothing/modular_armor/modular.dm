@@ -152,6 +152,9 @@
 	///Uniform type that is allowed to be worn with this.
 	var/allowed_uniform_type = /obj/item/clothing/under/marine
 
+	shows_bottom_genital = TRUE
+	shows_top_genital = TRUE
+
 /obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	if(inhands)
 		return
