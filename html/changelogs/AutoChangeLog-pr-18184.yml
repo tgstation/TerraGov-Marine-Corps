@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - balance: "The xeno respawn timer has been removed. You can now spawn as soon as there is a burrowed available."
