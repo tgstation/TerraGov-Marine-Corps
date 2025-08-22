@@ -435,7 +435,7 @@
 
 /datum/keybinding/xeno/drop_all_hugger
 	name = "drop_all_hugger"
-	full_name = "Carrier: Drop All Facehuggers"
+	full_name = "Carrier: Carrier Panic"
 	description = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
 	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
 	hotkey_keys = list("Space")

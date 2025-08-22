@@ -72,6 +72,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 			forceMove(vent_found)
 			update_pipe_vision()
+			log_game("[src] Crawled into the vent at [AREACOORD(vent_found)]")
 	else
 		to_chat(src, span_warning("This ventilation duct is not connected to anything!"))
 

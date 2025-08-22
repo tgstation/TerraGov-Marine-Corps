@@ -226,11 +226,17 @@
 	var/total_xenos = xeno_hive.get_total_xeno_number() + (xeno_job.total_positions - xeno_job.current_positions)
 	return get_total_joblarvaworth() - (total_xenos * xeno_job.job_points_needed)
 
-/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
+/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags = COUNT_IGNORE_HUMAN_SSD)
 	. = 0
 
 	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
 		if(!H.job)
+			continue
+		if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))) // DNR'd humans don't count
+			continue
+		if(H.stat == DEAD && !H.has_working_organs())
+			continue
+		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
 		if(isspaceturf(H.loc))
 			continue
