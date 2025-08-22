@@ -249,4 +249,4 @@
 /obj/item/reagent_containers/pill/aphrotoxin
 	pill_desc = "An Aphrotoxin pill. Produced from xenomorphs. Causes weakness on the legs and intense lust."
 	list_reagents = list(/datum/reagent/toxin/xeno_aphrotoxin = 10)
-	pill_id = 22
+	pill_id = 8
