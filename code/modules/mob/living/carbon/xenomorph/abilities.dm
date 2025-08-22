@@ -1048,7 +1048,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
-		if(possible_target == X || !possible_target.client || !isxeno(possible_target)) // Would ruin the whole point if we whisper to xenos too
+		if(possible_target == X || !possible_target.client || isxeno(possible_target)) // Would ruin the whole point if we whisper to xenos too
 			continue
 		target_list += possible_target
 
@@ -1291,6 +1291,8 @@
 	)
 	/// Should the egg contain the owner's selected_hugger_type instead?
 	var/use_selected_hugger = FALSE
+	/// The amount to multiply the created hugger's hand attach time by.
+	var/hand_attach_time_multiplier = 1
 
 /datum/action/ability/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -1312,7 +1314,8 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null)
+	var/obj/alien/egg/hugger/egg = new(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null, hand_attach_time_multiplier)
+
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()

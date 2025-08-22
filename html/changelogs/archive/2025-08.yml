@@ -69,6 +69,10 @@
   blackdav123:
   - bugfix: Fixed an area on Vapor Processing
 2025-08-20:
+  Atropos:
+  - admin: Vent crawling (entering, exiting) is now logged (view round logs)
+  Runian:
+  - bugfix: 'Mutations: Envenomed correctly checks for and uses plasma.'
   Runian:
   - rscadd: Boiler now has 6 more new mutations that they can purchase.
   - balance: 'Mutations: Staggered Panic now scales at 7/5/3 stored globs, changed
@@ -76,8 +80,30 @@
   - imageadd: Sprites for Ozelomelyn, Hemodile, and Sanguinal boiler globs.
   - bugfix: King's Petrify now goes on cooldown if any xenomorphs affected by it were
       given armor.
+  - rscadd: Carrier now has 5 more new mutations that they can purchase.
+  - spellcheck: Carrier's ability "Drop All Facehuggers" has been renamed to "Carrier
+      Panic".master
   - rscadd: 4 more mutations for Sentinel.
   - balance: 'Mutations: Toxic Blood is in the Veil category and scales at 80/60/40
       damage taken. This is changed from Shell and 100/75/50 damage taken.'
   - balance: Drain Sting's knockdown / Drain Surge now accounts for bonus potency
       from mutations.
+2025-08-21:
+  Joe13413:
+  - balance: The acid maw now can no longer be placed in deep caverns. The acid maws
+      price has been reduced from 1200 to 1000.
+  Runian:
+  - balance: 'Mutations: Burst Healing now gives additional maximum health healing
+      to Transfusion of 8/12/16%, changed from 7.5/15/22.5%. Slightly better early,
+      but scales much less.'
+  - balance: 'Mutations: Burst Healing now increases Transfusion''s plasma cost by
+      50/75/100% instead of a constant 100%.'
+2025-08-22:
+  Joe13413:
+  - balance: Extended the areas of shallow caves on Desparity, Kutjevo Refinery, Magmoor
+      Digsite, Meridian Riptide, and Slumbridge.
+  Nokia2Student:
+  - bugfix: Radiance will work on humans and not xenos
+  - bugfix: Kz flamethrower accepts basic fuel backpack
+  - balance: You can attachs scopes to kz marksman rifle
+  - balance: Ares powered armor is capable of stabilizing fracs

@@ -1721,6 +1721,11 @@ to_chat will check for valid clients itself already so no need to double check f
 		return hivenumber
 	return ..()
 
+/obj/structure/xeno/trap/get_xeno_hivenumber()
+	if(length(huggers))
+		return huggers[1].hivenumber
+	return ..()
+
 /obj/machinery/deployable/mounted/sentry/get_xeno_hivenumber()
 	return hivenumber
 

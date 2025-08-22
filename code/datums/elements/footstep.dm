@@ -141,10 +141,13 @@
 			turf_footstep = source_loc.shoefootstep
 	if(!turf_footstep)
 		return
+	var/footstep_volume = footstep_sounds[turf_footstep][2] * volume * volume_multiplier
+	if(footstep_volume < SOUND_AUDIBLE_VOLUME_MIN)
+		return
 	playsound(
 		source_loc,
 		pick(footstep_sounds[turf_footstep][1]),
-		footstep_sounds[turf_footstep][2] * volume * volume_multiplier,
+		footstep_volume,
 		sound_vary,
 		DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[turf_footstep][3] + e_range + range_adjustment,
 	)
@@ -182,20 +185,26 @@
 	if((source.wear_suit?.armor_protection_flags | source.w_uniform?.armor_protection_flags | source.shoes?.armor_protection_flags) & FEET) //We are not disgusting barefoot bandits
 		var/static/list/footstep_sounds = GLOB.shoefootstep //static is faster
 		footstep_type = override_sound ? override_sound : source_loc.shoefootstep
+		var/footstep_volume = footstep_sounds[footstep_type][2] * volume * volume_multiplier
+		if(footstep_volume < SOUND_AUDIBLE_VOLUME_MIN)
+			return
 		playsound(
 			source_loc,
 			pick(footstep_sounds[footstep_type][1]),
-			footstep_sounds[footstep_type][2] * volume * volume_multiplier,
+			footstep_volume,
 			sound_vary,
 			DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[footstep_type][3] + e_range + range_adjustment,
 		)
 	else
 		var/static/list/bare_footstep_sounds = GLOB.barefootstep
 		footstep_type = override_sound ? override_sound : source_loc.barefootstep
+		var/footstep_volume = GLOB.barefootstep[footstep_type][2] * volume * volume_multiplier
+		if(footstep_volume < SOUND_AUDIBLE_VOLUME_MIN)
+			return
 		playsound(
 			source_loc,
 			pick(GLOB.barefootstep[footstep_type][1]),
-			GLOB.barefootstep[footstep_type][2] * volume * volume_multiplier,
+			footstep_volume,
 			sound_vary,
 			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[footstep_type][3] + e_range + range_adjustment,
 		)
