@@ -622,11 +622,11 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CHARGE_MAX 3
 
 //Hunter Defines
-#define HUNTER_STEALTH_COOLDOWN 50 //5 seconds
-#define HUNTER_STEALTH_WALK_PLASMADRAIN 2
+#define HUNTER_STEALTH_COOLDOWN 80 //8 seconds
+#define HUNTER_STEALTH_WALK_PLASMADRAIN 3
 #define HUNTER_STEALTH_RUN_PLASMADRAIN 5
 #define HUNTER_STEALTH_STILL_ALPHA 25 //90% transparency
-#define HUNTER_STEALTH_WALK_ALPHA 38 //85% transparency
+#define HUNTER_STEALTH_WALK_ALPHA 77 //70% transparency
 #define HUNTER_STEALTH_RUN_ALPHA 128 //50% transparency
 #define HUNTER_STEALTH_STEALTH_DELAY 30 //3 seconds before 95% stealth
 #define HUNTER_STEALTH_INITIAL_DELAY 20 //2 seconds before we can increase stealth
