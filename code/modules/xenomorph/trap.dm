@@ -135,7 +135,7 @@
 					break
 			if(!could_be_hugged)
 				return
-			drop_hugger()
+			drop_huggers()
 		if(TRAP_SMOKE_NEURO, TRAP_SMOKE_APHRO, TRAP_SMOKE_ACID)
 			smoke.start()
 		if(TRAP_ACID_WEAK)
