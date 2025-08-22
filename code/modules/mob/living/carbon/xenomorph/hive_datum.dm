@@ -1136,7 +1136,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidates) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
+	if(stored_larva > 0 && !LAZYLEN(candidates) && !XENODEATHTIME_CHECK(waiter.mob) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
 		xeno_job.occupy_job_positions(1)
 		if(!attempt_to_spawn_larva(waiter, TRUE))
 			xeno_job.free_job_positions(1)
@@ -1185,7 +1185,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/client/client_in_queue
 	var/oldest_death = 0
 	while(stored_larva > 0 && LAZYLEN(candidates))
-		client_in_queue = LAZYACCESS(candidates, 1)
+		for(var/i in 1 to LAZYLEN(candidates))
+			client_in_queue = LAZYACCESS(candidates, i)
+			if(!XENODEATHTIME_CHECK(client_in_queue.mob))
+				break
+			var/candidate_death_time = (GLOB.key_to_time_of_xeno_death[client_in_queue.key] + SSticker.mode?.xenorespawn_time) - world.time
+			if(oldest_death > candidate_death_time || !oldest_death)
+				oldest_death = candidate_death_time
+			client_in_queue = null // Deathtimer still running
 
 		if(!client_in_queue) // No valid candidates in the queue
 			if(oldest_death)

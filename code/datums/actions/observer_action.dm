@@ -65,6 +65,11 @@
 		return FALSE
 	if(tgui_alert(owner, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)) != "Yes")
 		return
+	if(isxeno(new_mob))
+		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
+		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(owner))
+			XENODEATHTIME_MESSAGE(owner)
+			return
 
 	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
 		to_chat(owner, span_warning("That mob is currently possessing a different mob."))

@@ -493,6 +493,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, span_warning("Mob already taken."))
 		return
 
+	if(isxeno(L))
+		var/mob/living/carbon/xenomorph/offered_xenomorph = L
+		if(offered_xenomorph.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(src))
+			XENODEATHTIME_MESSAGE(src)
+			return
+
 	switch(tgui_alert(usr, "Take over mob named: [L.real_name][L.job ? " | Job: [L.job]" : ""]", "Offered Mob", list("Yes", "No", "Follow")))
 		if("Yes")
 			L.take_over(src)
