@@ -2,16 +2,16 @@
 
 mode Crash
 	requiredplayers 4
-	votable 0
+	votable 1
 endmode
 
 mode Nuclear War
 	requiredplayers 10
-	votable 0
+	votable 1
 endmode
 
 mode Extended
-	requiredplayers 600
+	requiredplayers 0
 	votable 0
 endmode
 
@@ -31,7 +31,7 @@ mode Survival
 endmode
 
 mode Extended - Survivor-Heavy
-	requiredplayers 8
+	requiredplayers 0
 	votable 1
 endmode
 
@@ -61,11 +61,11 @@ mode Secret of Life - main
 endmode
 
 mode Secret of Life - alienonly
-	requiredplayers 8
+	requiredplayers 0
 	votable 1
 endmode
 
 mode Secret of Life - nosub
-	requiredplayers 8
+	requiredplayers 0
 	votable 1
 endmode
