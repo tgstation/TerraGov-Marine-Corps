@@ -10,6 +10,7 @@
 	maxHealth = 850
 	plasma_stored = 0
 	pixel_x = -48
+	footstep_type = FOOTSTEP_XENO_HEAVY
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6
 	tier = XENO_TIER_FOUR

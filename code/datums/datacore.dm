@@ -16,12 +16,13 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 
 // TODO: cleanup
-/datum/datacore/proc/get_manifest(monochrome, ooc)
+/datum/datacore/proc/get_manifest(monochrome, ooc, viewfaction)
 	var/list/eng = list()
 	var/list/med = list()
-	var/list/mar = list()
 	var/list/heads = list()
+	var/list/xeno = list()
 	var/list/misc = list()
+	var/list/other = list()
 	var/list/isactive = list()
 	var/list/squads = list()
 	var/list/support = list()
@@ -40,20 +41,38 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	"}
 
 	var/even = 0
-	// sort mobs
 
+	var/list/squad_names = SSjob?.squads_by_name
+	if(istype(squad_names))
+		for(var/squad_group_index in squad_names)
+			var/list/squad_group = squad_names[squad_group_index]
+			if(istype(squad_group))
+				for(var/squad_name in squad_group)
+					squads[squad_name] = list()
+	squads["No Squad"] = list()
+
+	var/non_empty_squad_exists = null
+
+	// sort mobs
 	for(var/datum/data/record/t in GLOB.datacore.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
 		var/squad_name = t.fields["squad"]
+		var/mobfaction = null
+		var/active = FALSE
+		var/deceased = TRUE
+
+		for(var/mob/living/M in GLOB.mob_living_list)
+			if(M.real_name == name)
+				if(ooc && !HAS_TRAIT(M, TRAIT_UNDEFIBBABLE))
+					deceased = FALSE
+				if(ooc && M.client && M.client.inactivity <= 10 * 60 * 10)
+					active = TRUE
+				mobfaction = M.job?.faction
+				break
 
 		if(ooc)
-			var/active = 0
-			for(var/mob/M in GLOB.player_list)
-				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
-					active = 1
-					break
-			isactive[name] = active ? "Active" : "Inactive"
+			isactive[name] = deceased ? "*Deceased*" : (active ? "Active" : "Inactive")
 		else
 			isactive[name] = t.fields["p_stat"]
 
@@ -71,11 +90,38 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			med[name] = rank
 			department = 1
 		if(rank in GLOB.jobs_marines)
-			squads[name] = squad_name
-			mar[name] = rank
+			if(!squad_name)
+				squad_name = "No Squad"
+			if(!(squad_name in squads))
+				squads[squad_name] = list()
+			squads[squad_name][name] = rank
+			non_empty_squad_exists = TRUE
 			department = 1
-		if(!department && !(name in heads) && (rank in GLOB.jobs_regular_all))
-			misc[name] = rank
+		if(!department && !(name in heads))
+			if(rank in GLOB.jobs_regular_all)
+				misc[name] = rank
+			else
+				if(ooc || (!mobfaction) || (viewfaction && viewfaction == mobfaction))
+					other[name] = rank
+
+	//Xenomorphs
+	if(ooc || viewfaction == FACTION_CLF || viewfaction == FACTION_TERRAGOV)
+		for(var/mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
+			if(!ooc)
+				if((viewfaction == FACTION_CLF) == (X.hivenumber == XENO_HIVE_CORRUPTED)) //clf can see everyone but corrupted, NTC can only see corrupted
+					break
+			var/name = X.real_name
+			var/rank = X.xeno_caste.caste_name
+			//var/squad_name = "N/A"
+			if(isdead(X))
+				isactive[name] = "*Deceased*"
+			else
+				if(ooc && (!X.client || (X.client.inactivity > 10 * 60 * 10)))
+					isactive[name] = "Inactive"
+				else
+					isactive[name] = "Active"
+			xeno[name] = rank
+
 	if(length(heads) > 0)
 		dat += "<tr><th colspan=3>Command</th></tr>"
 		for(var/name in heads)
@@ -86,14 +132,13 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		for(var/name in support)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[support[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(length(mar) > 0)
+	if(non_empty_squad_exists)
 		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
-		for(var/j in LAZYACCESS(SSjob.squads_by_name, FACTION_TERRAGOV))
+		for(var/j in squads)
 			if(length(squads[j]))
 				dat += "<tr><th colspan=3>[j]</th></tr>"
-			for(var/name in mar)
-				if(squads[name] == j)
-					dat += "<tr[even ? " class='alt'" : ""]><td>[mar[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+				for(var/name in squads[j])
+					dat += "<tr[even ? " class='alt'" : ""]><td>[squads[j][name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 					even = !even
 	if(length(eng) > 0)
 		dat += "<tr><th colspan=3>Engineering</th></tr>"
@@ -110,6 +155,17 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		dat += "<tr><th colspan=3>Miscellaneous</th></tr>"
 		for(var/name in misc)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[misc[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(length(other) > 0)
+		dat += "<tr><th colspan=3>Other</th></tr>"
+		for(var/name in other)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[other[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	// beno bois & gorls
+	if(length(xeno) > 0)
+		dat += "<tr><th colspan=3>Xenomorphs</th></tr>"
+		for(var/name in xeno)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[xeno[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 
 	dat += "</table>"

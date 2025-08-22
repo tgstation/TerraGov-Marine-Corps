@@ -235,6 +235,11 @@ export const CharacterCustomization = (props) => {
                 value={'tts_voice'}
                 action={'tts_voice'}
               />
+              <SelectFieldPreference
+                label={'Moth wings'}
+                value={'moth_wings'}
+                action={'moth_wings'}
+              />
               <TextFieldPreference label={'TTS pitch'} value={'tts_pitch'} />
             </LabeledList>
           </Flex.Item>

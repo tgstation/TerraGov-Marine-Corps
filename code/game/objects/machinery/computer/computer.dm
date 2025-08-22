@@ -2,6 +2,7 @@
 	name = "computer"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
+	dir = 2
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
@@ -115,8 +116,10 @@
 		return
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
-	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
+	if(dir == NORTH)
+		return
+	. += emissive_appearance(icon, screen_overlay, offset_spokesman = src, alpha = src.alpha)
+	. += mutable_appearance(icon, screen_overlay, offset_spokesman = src, alpha = src.alpha)
 
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
@@ -158,7 +161,7 @@
 	span_notice("You begin repairing the damage to [src]."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	if(!welder.remove_fuel(2, user))
@@ -187,7 +190,7 @@
 
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		var/obj/structure/computerframe/A = new(loc)
@@ -216,6 +219,7 @@
 
 	else
 		return attack_hand(user)
+	update_icon()
 
 
 /obj/machinery/computer/attack_hand(mob/living/user)

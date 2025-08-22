@@ -41,23 +41,27 @@
 	//Handle temperature/pressure differences between body and environment
 	handle_environment() //Optimized a good bit.
 
-/**
- * Marks the mob as unrevivable
- * Arguments:
- * * affects_synth - If synths should be affected
- */
+	if(sexcon)
+		sexcon.process_sexcon(1 SECONDS)
 
-/mob/living/carbon/human/proc/set_undefibbable(affects_synth = FALSE)
-	if(issynth(src) && !affects_synth) //synths do not dnr (unless they want to, todo: dnr'd synths should probably be put into ssd mob list or something).
+
+/mob/living/carbon/human/proc/set_undefibbable()
+	if(issynth(src)) //synths do not dnr.
+		return
+	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		return
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
 	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	SSmobs.stop_processing(src) //Last round of processing.
 
-	if((SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) && job?.job_cost)
-		job.free_job_positions(1)
+	job?.free_job_positions(1)
 	if(hud_list)
 		med_hud_set_status()
+	for(var/datum/data/record/general_record in GLOB.datacore.general)
+		if(!(general_record.fields["name"] == real_name))
+			continue
+		general_record.fields["p_stat"] = "*Deceased*"
+
 
 /mob/living/carbon/human/proc/handle_breath()
 	if(species.species_flags & NO_BREATHE)
