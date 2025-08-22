@@ -69,3 +69,8 @@ mode Secret of Life - nosub
 	requiredplayers 0
 	votable 1
 endmode
+
+mode Secret of Life - NTF vs CLF
+	requiredplayers 0
+	votable 1
+endmode
