@@ -72,8 +72,6 @@
   Atropos:
   - admin: Vent crawling (entering, exiting) is now logged (view round logs)
   Runian:
-  - bugfix: 'Mutations: Envenomed correctly checks for and uses plasma.'
-  Runian:
   - rscadd: Boiler now has 6 more new mutations that they can purchase.
   - balance: 'Mutations: Staggered Panic now scales at 7/5/3 stored globs, changed
       from 7/5/3 stored globs.'
@@ -107,3 +105,12 @@
   - bugfix: Kz flamethrower accepts basic fuel backpack
   - balance: You can attachs scopes to kz marksman rifle
   - balance: Ares powered armor is capable of stabilizing fracs
+2025-08-23:
+  blackdav123:
+  - balance: Crash now has more xenos with a 2:5 xeno to marine ratio instead of the
+      prior 1:3. This means xenos get their 3rd and 4th larva at 8 and 10 marines
+      instead of 10 and 12.
+  - balance: SSD and DNR marines no longer count for larva on crash. Keep fighting
+      to make a comeback!
+  chizzy376:
+  - bugfix: Fixed the xeno ship walls in Larval Pits
