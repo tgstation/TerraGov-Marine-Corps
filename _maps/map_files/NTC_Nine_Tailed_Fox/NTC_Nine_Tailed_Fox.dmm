@@ -216,6 +216,9 @@
 	dir = 8
 	},
 /obj/machinery/landinglight/alamo,
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "alb" = (
@@ -911,6 +914,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
@@ -1272,7 +1278,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship/cargo,
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
@@ -1320,6 +1329,16 @@
 	},
 /turf/closed/wall/mainship,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
+"bfA" = (
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/mainship/orange/corner{
+	dir = 8
+	},
+/area/outpost/cargo{
+	outside = 1
+	})
 "bfC" = (
 /obj/machinery/light{
 	dir = 1
@@ -1400,6 +1419,16 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
+	})
+"bmc" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
 	})
 "bmh" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
@@ -1523,6 +1552,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/machinery/conveyor/auto,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -2294,6 +2324,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"bWV" = (
+/obj/machinery/conveyor/auto,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "bXc" = (
 /obj/machinery/vending/marineFood{
 	name = "\improper Food and Drinks Vendor"
@@ -2660,6 +2694,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"cmI" = (
+/obj/machinery/conveyor/auto,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/outpost/cargo{
+	outside = 1
+	})
 "cnd" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
@@ -2889,6 +2931,17 @@
 	dir = 8
 	},
 /area/mainship/squads/specialist)
+"cwP" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "cwQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship,
@@ -3442,6 +3495,9 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -4865,6 +4921,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"esH" = (
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "esZ" = (
 /obj/machinery/power/smes{
 	output_level = 200000
@@ -4921,8 +4985,8 @@
 	},
 /area/mainship/squads/specialist)
 "ewq" = (
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/machinery/conveyor/auto{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
@@ -5040,6 +5104,17 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"eCL" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "Lowershiplockdown"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "eEo" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
@@ -5088,6 +5163,9 @@
 "eGC" = (
 /obj/machinery/light,
 /obj/structure/cable,
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -5273,6 +5351,15 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
+"eQh" = (
+/obj/effect/ai_node,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "eQu" = (
 /obj/machinery/light{
 	dir = 1
@@ -5347,6 +5434,16 @@
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
+"eSJ" = (
+/obj/machinery/landinglight/alamo{
+	id = "normandy";
+	dir = 1
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "eSQ" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -5479,6 +5576,9 @@
 	req_access = list(5);
 	name = "Lower Ship Lockdown Shutters"
 	},
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -5529,6 +5629,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/conveyor/auto,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -5638,6 +5739,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"fdR" = (
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "fdT" = (
 /obj/machinery/light{
 	dir = 8
@@ -6347,7 +6454,19 @@
 	})
 "fJi" = (
 /obj/machinery/light,
+/obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/mainship/cargo,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
+"fKH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
@@ -7462,6 +7581,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"gJY" = (
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "gKo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -8416,6 +8543,22 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
+"hDJ" = (
+/obj/structure/barricade/solid{
+	dir = 8
+	},
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
+/obj/structure/barricade/solid/plasteel{
+	dir = 1
+	},
+/obj/structure/barricade/solid/plasteel,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "hEy" = (
 /obj/machinery/chem_master,
 /obj/item/reagent_containers/glass/beaker/bluespace,
@@ -8425,6 +8568,12 @@
 	},
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
+	})
+"hFo" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
 	})
 "hFY" = (
 /obj/structure/cable,
@@ -8903,6 +9052,15 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
+"hZE" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/machinery/conveyor/auto,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "hZS" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -9075,6 +9233,17 @@
 	},
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
+	})
+"ihf" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
 	})
 "ihh" = (
 /obj/structure/disposalpipe/segment{
@@ -9772,6 +9941,14 @@
 /obj/item/tool/kitchen/utensil/fork,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
+"iQN" = (
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "iQP" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
@@ -9886,7 +10063,10 @@
 	})
 "iUl" = (
 /obj/machinery/camera/autoname,
-/turf/open/floor/mainship/cargo,
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
@@ -10181,6 +10361,17 @@
 	dir = 4
 	},
 /area/mainship/squads/req)
+"jjB" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "jjI" = (
 /obj/machinery/door/airlock/mainship/marine/general/corps,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -11383,6 +11574,7 @@
 	dir = 4
 	},
 /obj/machinery/landinglight/alamo,
+/obj/machinery/conveyor/auto,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "kow" = (
@@ -11494,6 +11686,15 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
+"ktn" = (
+/obj/structure/cable,
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "ktv" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -11638,6 +11839,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
+/obj/machinery/conveyor/auto,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "kyS" = (
@@ -12155,7 +12357,9 @@
 	},
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "kSB" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -12330,10 +12534,14 @@
 	name = "CEO Office"
 	})
 "lbF" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/outpost/cargo{
+	outside = 1
 	})
 "lbL" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -13233,6 +13441,9 @@
 	})
 "lLi" = (
 /obj/machinery/door_control/mainship/droppod,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -13422,6 +13633,23 @@
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/red,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
+"lTA" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
+"lTC" = (
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/outpost/cargo{
+	outside = 1
+	})
 "lUm" = (
 /obj/effect/landmark/start/job/squadmarine,
 /obj/effect/landmark/start/latejoin,
@@ -13578,6 +13806,9 @@
 "mdx" = (
 /obj/machinery/light{
 	light_color = "#da2f1b"
+	},
+/obj/machinery/conveyor/auto{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
@@ -14087,6 +14318,12 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
+"myy" = (
+/obj/machinery/conveyor/auto,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "myJ" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -14687,6 +14924,16 @@
 /obj/machinery/marine_selector/gear/leader,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"ndE" = (
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/outpost/cargo{
+	outside = 1
+	})
 "neE" = (
 /obj/structure/window/framed/mainship/hull,
 /obj/machinery/door/poddoor/mainship/ai/exterior{
@@ -14715,6 +14962,15 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/port_emb)
+"nfQ" = (
+/obj/structure/cable,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "nfT" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -15201,6 +15457,18 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"nGD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "nHa" = (
 /obj/structure/closet/secure_closet/miner{
 	req_access = null
@@ -15304,6 +15572,9 @@
 	})
 "nOr" = (
 /obj/effect/ai_node,
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -15656,6 +15927,15 @@
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
 	})
+"oaK" = (
+/obj/machinery/landinglight/alamo{
+	id = "normandy"
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "oaL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -15847,6 +16127,15 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
+	})
+"oiT" = (
+/obj/machinery/camera/autoname,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "ojb" = (
 /obj/structure/cable,
@@ -16486,6 +16775,15 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"oKt" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "oLi" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/microwave,
@@ -16551,10 +16849,15 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
 "oQY" = (
-/obj/machinery/computer/cryopod,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "oRa" = (
 /obj/structure/closet/radiation,
@@ -16938,6 +17241,13 @@
 "pin" = (
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"piB" = (
+/obj/machinery/landinglight/alamo{
+	id = "normandy"
+	},
+/obj/machinery/conveyor/auto,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "piZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -17111,6 +17421,12 @@
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
+	})
+"ptM" = (
+/obj/structure/reagent_dispensers/fueltank/xfuel,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "pui" = (
 /obj/structure/sink{
@@ -17953,6 +18269,15 @@
 	outside = 0;
 	name = "CEO Office"
 	})
+"qol" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/obj/machinery/conveyor/auto,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "qpw" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -18003,6 +18328,9 @@
 "qqZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
@@ -18075,8 +18403,10 @@
 	name = "Lower Power"
 	})
 "qte" = (
-/obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor/mainship/cargo,
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
@@ -18227,6 +18557,13 @@
 /obj/machinery/landinglight/cas{
 	dir = 8
 	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
+"qzA" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 4
+	},
+/obj/machinery/conveyor/auto,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "qzB" = (
@@ -18774,6 +19111,9 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
@@ -18946,6 +19286,12 @@
 "reV" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"rfj" = (
+/obj/machinery/conveyor/auto,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "rfy" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/binoculars,
@@ -19267,6 +19613,9 @@
 	id = "tankdoors";
 	name = "tank bay doors"
 	},
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -19563,6 +19912,14 @@
 /turf/closed/wall/mainship,
 /area/deltastation/engineering/main{
 	outside = 0
+	})
+"rPB" = (
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "rQo" = (
 /obj/structure/cable,
@@ -20193,6 +20550,17 @@
 /obj/machinery/fuelcell_recycler,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engine_core)
+"stZ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "suD" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -20841,6 +21209,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/workerprep)
+"sYa" = (
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "sYw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
@@ -21301,6 +21675,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -21446,6 +21823,20 @@
 /obj/machinery/telecomms/server/presets/alpha,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"tBZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "Lowershiplockdown";
+	name = "Lockdown Shutters"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "tCf" = (
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/squads/general)
@@ -21494,6 +21885,14 @@
 /obj/machinery/dropship_part_fabricator,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"tDP" = (
+/obj/machinery/conveyor/auto,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/outpost/cargo{
+	outside = 1
+	})
 "tDV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -21504,6 +21903,7 @@
 	possible_destinations = "floor2";
 	density = 0
 	},
+/obj/machinery/conveyor/auto,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -21542,6 +21942,9 @@
 /area/mainship/hull/lower_hull)
 "tFF" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -21609,6 +22012,13 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
+"tJJ" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/machinery/conveyor/auto,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "tJQ" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -22302,6 +22712,15 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
+"utN" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "uut" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -22543,6 +22962,9 @@
 	req_access = list(5);
 	name = "Lower Ship Lockdown Shutters"
 	},
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -22778,6 +23200,9 @@
 "uRK" = (
 /obj/machinery/door_control/mainship/mech{
 	dir = 4
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
@@ -23047,6 +23472,15 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/engine_core)
+"vee" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "ven" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
@@ -23306,6 +23740,9 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -23438,6 +23875,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
+"vut" = (
+/obj/machinery/conveyor/auto,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "vuD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/sterile/dark,
@@ -23571,6 +24012,12 @@
 /area/mainship/medical/upper_medical{
 	name = "Shipside Medbay"
 	})
+"vAw" = (
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "vAL" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2;
@@ -23903,6 +24350,15 @@
 	static_lighting = 1;
 	base_lighting_alpha = 0
 	})
+"vUt" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/conveyor/auto,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "vVP" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/food_or_drink/bread,
@@ -23919,6 +24375,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"vWS" = (
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "vXl" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -24002,6 +24469,12 @@
 "wcs" = (
 /turf/open/floor/prison/darkred/full,
 /area/mainship/hull/upper_hull)
+"wcI" = (
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "wcR" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
@@ -24124,6 +24597,16 @@
 /obj/machinery/door/airlock/mainship/generic/corporate,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/command/corporateliaison)
+"wgY" = (
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "Lowershiplockdown";
+	name = "Lockdown Shutters"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/upper_hull)
 "whh" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/grass,
@@ -24660,6 +25143,8 @@
 /area/mainship/living/cafeteria_starboard)
 "wIZ" = (
 /obj/structure/rack,
+/obj/structure/ob_ammo/warhead/explosive,
+/obj/structure/ob_ammo/warhead/explosive,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -24971,8 +25456,19 @@
 	outside = 0;
 	name = "Security Checkpoint"
 	})
+"wTh" = (
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/mainship/orange,
+/area/outpost/cargo{
+	outside = 1
+	})
 "wUR" = (
 /obj/structure/sign/evac,
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -25243,6 +25739,16 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"xgS" = (
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange/corner{
+	dir = 1
+	},
+/area/outpost/cargo{
+	outside = 1
+	})
 "xgW" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 8
@@ -25537,6 +26043,15 @@
 /obj/item/storage/bible,
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
+"xsM" = (
+/obj/machinery/camera/autoname,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "xtg" = (
 /obj/machinery/computer/crew,
 /obj/machinery/camera/autoname/mainship{
@@ -25552,6 +26067,9 @@
 /obj/structure/cable,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
+	},
+/obj/machinery/conveyor/auto{
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
@@ -25931,6 +26449,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/conveyor/auto,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -26071,6 +26590,16 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"xQp" = (
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/outpost/cargo{
+	outside = 1
+	})
 "xRm" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/black{
@@ -26218,6 +26747,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/hallways/bathroom)
+"xYI" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/conveyor/auto,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "xZt" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 9
@@ -29506,7 +30042,7 @@ gQj
 gQj
 gQj
 hdt
-dSF
+eCL
 fwn
 fwn
 fwn
@@ -29735,19 +30271,19 @@ kyS
 syL
 jrS
 aXE
-kyS
-kyS
-kyS
-kyS
+esH
+esH
+esH
+esH
 omg
-kyS
-aXE
-kyS
-kyS
+esH
+stZ
+esH
+esH
 jrS
 aXE
-syL
-kyS
+cwP
+esH
 wDa
 aya
 xQf
@@ -29972,18 +30508,18 @@ kyS
 tKP
 kyS
 jrS
-kyS
-kyS
+myy
+myy
 xJP
-kyS
-kyS
-kyS
-kyS
-kyS
-kyS
+myy
+myy
+myy
+myy
+myy
+myy
 kyS
 jrS
-kyS
+kSB
 hZA
 kyS
 cam
@@ -30102,7 +30638,7 @@ wDa
 wDa
 wDa
 ybJ
-kyS
+kSB
 kjD
 kyS
 cam
@@ -30221,7 +30757,7 @@ fOz
 fOz
 fOz
 wDa
-kyS
+kSB
 kjD
 kyS
 cam
@@ -30459,7 +30995,7 @@ fOz
 fOz
 fOz
 wDa
-kyS
+kSB
 kjD
 kyS
 cam
@@ -30477,8 +31013,8 @@ izo
 izo
 woS
 izo
-xPo
-kkx
+ndE
+wTh
 izo
 izo
 izo
@@ -30596,8 +31132,8 @@ izo
 izo
 woS
 izo
-xPo
-kkx
+ndE
+wTh
 izo
 woS
 izo
@@ -30697,7 +31233,7 @@ fOz
 fOz
 fOz
 wDa
-xjA
+fKH
 kjD
 kyS
 cam
@@ -30715,8 +31251,8 @@ woS
 woS
 woS
 izo
-xPo
-kkx
+ndE
+wTh
 izo
 woS
 izo
@@ -30816,7 +31352,7 @@ fOz
 fOz
 fOz
 wDa
-kyS
+kSB
 kjD
 kyS
 cam
@@ -30834,8 +31370,8 @@ woS
 woS
 woS
 izo
-xPo
-kkx
+ndE
+wTh
 izo
 woS
 izo
@@ -30920,9 +31456,9 @@ usA
 gkJ
 gkJ
 xDE
-xjA
+fKH
 tKP
-kyS
+qte
 wDa
 fOz
 fOz
@@ -30935,7 +31471,7 @@ fOz
 fOz
 fOz
 wDa
-kyS
+kSB
 kjD
 fYO
 cam
@@ -30953,8 +31489,8 @@ izo
 izo
 woS
 izo
-xPo
-kkx
+ndE
+wTh
 izo
 woS
 woS
@@ -31039,9 +31575,9 @@ ajL
 sfV
 kbD
 gkJ
-kyS
+kSB
 tKP
-kyS
+qte
 wDa
 nRW
 fOz
@@ -31054,7 +31590,7 @@ fOz
 fOz
 fOz
 wDa
-kyS
+kSB
 kjD
 kyS
 cam
@@ -31072,8 +31608,8 @@ izo
 izo
 woS
 izo
-xPo
-kkx
+ndE
+wTh
 izo
 izo
 woS
@@ -31158,9 +31694,9 @@ gfq
 gkJ
 gkJ
 gkJ
-kyS
+kSB
 tKP
-kyS
+qte
 wDa
 fOz
 fOz
@@ -31248,8 +31784,8 @@ oHt
 oHt
 phM
 ePf
-kyS
-kjD
+kSB
+ktn
 slL
 dyR
 gTW
@@ -31277,9 +31813,9 @@ iCo
 sfV
 rzb
 gkJ
-kyS
+kSB
 tKP
-kyS
+qte
 wDa
 fOz
 fOz
@@ -31367,8 +31903,8 @@ phM
 oHt
 phM
 iWD
-kyS
-kjD
+kSB
+ktn
 slL
 dQa
 swp
@@ -31396,9 +31932,9 @@ gbV
 gkJ
 gkJ
 gkJ
-hew
+xsM
 tKP
-kyS
+qte
 wDa
 pvV
 fOz
@@ -31422,22 +31958,22 @@ urx
 urx
 rJs
 ehv
-ehv
-ehv
-ehv
+lbF
+lbF
+lbF
 nOr
-ehv
+lbF
 ehv
 ehv
 tzm
 rJs
 ehv
 ehv
-ehv
-ehv
-ehv
-ehv
-ehv
+tDP
+tDP
+tDP
+tDP
+tDP
 ehv
 tzm
 urx
@@ -31486,8 +32022,8 @@ nPZ
 mjG
 asd
 iWD
-fYO
-kjD
+eQh
+ktn
 slL
 chh
 bJy
@@ -31515,9 +32051,9 @@ rUZ
 sfV
 kbD
 gkJ
-kyS
+kSB
 tKP
-kyS
+qte
 wDa
 fOz
 fOz
@@ -31541,22 +32077,22 @@ urx
 urx
 sVq
 uhY
-uhY
-uhY
-uhY
-uhY
-uhY
+cmI
+cmI
+cmI
+cmI
+cmI
 uhY
 uhY
 rsv
 sVq
 uhY
 uhY
-uhY
-uhY
-uhY
-uhY
-uhY
+xQp
+xQp
+xQp
+xQp
+xQp
 uhY
 rsv
 cte
@@ -31605,7 +32141,7 @@ lyD
 kKH
 phM
 iWD
-kyS
+kSB
 eGC
 slL
 slL
@@ -31634,9 +32170,9 @@ dHi
 gkJ
 gkJ
 gkJ
-xjA
+fKH
 tKP
-kyS
+qte
 wDa
 fOz
 fOz
@@ -31724,8 +32260,8 @@ cMb
 nAP
 icG
 ePf
-kyS
-kjD
+kSB
+ktn
 wnH
 wMI
 rdh
@@ -31755,7 +32291,7 @@ bTu
 gkJ
 kSB
 tKP
-kyS
+qte
 wDa
 fOz
 fOz
@@ -31843,8 +32379,8 @@ cMb
 nmW
 reL
 ePf
-kyS
-kjD
+kSB
+ktn
 wnH
 lxq
 nTM
@@ -31874,7 +32410,7 @@ gkJ
 xDE
 uBk
 pgF
-kyS
+qte
 ybJ
 wDa
 wDa
@@ -31905,8 +32441,8 @@ izo
 woS
 woS
 izo
-xPo
-kkx
+ndE
+wTh
 izo
 izo
 izo
@@ -31963,7 +32499,7 @@ nAP
 bSt
 ePf
 kyS
-kjD
+ktn
 slL
 gVq
 wmm
@@ -31979,37 +32515,37 @@ aXE
 kyS
 kyS
 kyS
-aXE
+stZ
+esH
+esH
+esH
+stZ
+esH
+ihf
+esH
 kyS
 kyS
 kyS
-aXE
-kyS
-lDI
-kyS
-kyS
-kyS
-kyS
-aXE
-kyS
+stZ
+esH
 tKP
-kyS
+esH
 ozw
 kyS
-kyS
-kyS
-kyS
-aXE
-kyS
-kyS
-kyS
-kyS
-kyS
+esH
+esH
+esH
+stZ
+esH
+esH
+esH
+esH
+esH
 gdr
 kyS
 juD
 kyS
-cam
+hFo
 aya
 mFm
 aya
@@ -32024,8 +32560,8 @@ woS
 woS
 woS
 izo
-xPo
-kkx
+ndE
+wTh
 izo
 izo
 izo
@@ -32144,7 +32680,7 @@ izo
 woS
 izo
 tFF
-kkx
+wTh
 uJZ
 izo
 fCs
@@ -32204,12 +32740,12 @@ hew
 kjD
 utK
 kyS
-kyS
-kyS
-kyS
-kyS
-kyS
-aXE
+esH
+esH
+esH
+esH
+esH
+stZ
 kyS
 euU
 kyS
@@ -32217,37 +32753,37 @@ kyS
 kyS
 tKP
 kyS
+myy
+myy
+myy
+myy
+myy
+myy
+myy
 kyS
 kyS
 kyS
 kyS
 kyS
-kyS
-kyS
-kyS
-kyS
-kyS
-kyS
-kyS
-kyS
-kyS
+myy
+myy
 kyS
 jrS
-kyS
-kyS
-kyS
+myy
+myy
+myy
 kyS
 juD
 goL
 vxX
 kyS
 kyS
-oQY
-jrS
-aoE
-tKP
 kyS
-cam
+jrS
+kyS
+tKP
+tQI
+srV
 aya
 mFm
 aya
@@ -32262,12 +32798,12 @@ izo
 izo
 woS
 izo
-xPo
-kkx
+ndE
+wTh
+izo
 iKR
 eMv
 bzX
-izo
 izo
 izo
 izo
@@ -32342,30 +32878,30 @@ sik
 sik
 sik
 sik
-xHJ
+haE
 qUF
 sCz
 xHJ
 qUF
 iXw
-xHJ
+haE
 asD
 asD
 asD
 asD
 asD
 asD
-kyS
-juD
+qte
+nGD
 mKo
 mKo
 iqW
 euW
 mKo
 knM
-cam
+qte
 tKP
-tQI
+kyS
 fJi
 aya
 pIE
@@ -32381,11 +32917,11 @@ izo
 izo
 woS
 izo
-xPo
-kkx
+ndE
+wTh
+woS
 vTs
 vWu
-izo
 woS
 jaF
 izo
@@ -32441,11 +32977,11 @@ ePf
 kyS
 kyS
 rcI
-kyS
-kyS
-kyS
-kyS
-kyS
+myy
+myy
+myy
+myy
+myy
 kyS
 kyS
 kyS
@@ -32474,15 +33010,15 @@ rSz
 fda
 pFH
 asD
-kyS
-juD
+qte
+nGD
 mKo
 cbA
 iqW
 sVH
 baH
 mKo
-cam
+qte
 tKP
 kyS
 cam
@@ -32500,11 +33036,11 @@ izo
 woS
 woS
 izo
-xPo
-kkx
+ndE
+wTh
+izo
 quO
 bwX
-izo
 izo
 cIF
 izo
@@ -32593,7 +33129,7 @@ iVB
 xIK
 aBO
 asD
-kyS
+qte
 vqb
 mKo
 iYD
@@ -32601,10 +33137,10 @@ vZP
 vZP
 fMt
 mKo
-cam
+qte
 tKP
 fYO
-cam
+aoE
 aya
 uXo
 aya
@@ -32619,8 +33155,8 @@ izo
 izo
 izo
 izo
-xPo
-kkx
+ndE
+wTh
 qsl
 fRo
 izo
@@ -32712,18 +33248,18 @@ bHP
 xIK
 hrA
 asD
-kyS
-juD
+qte
+nGD
 mKo
 jyM
 aoj
 vIh
 iXo
 mKo
-srV
+qte
 tKP
 kyS
-cam
+wDa
 aya
 mFm
 aya
@@ -32738,8 +33274,8 @@ izo
 izo
 izo
 kwl
-tzm
-rJs
+xgS
+bfA
 kwl
 eRO
 izo
@@ -32831,8 +33367,8 @@ qwO
 xAZ
 mrD
 asD
-kyS
-juD
+qte
+nGD
 mKo
 beY
 vZP
@@ -32842,7 +33378,7 @@ mKo
 qte
 tKP
 kyS
-cam
+kSB
 aya
 rmu
 cCs
@@ -32950,7 +33486,7 @@ gig
 eLx
 asD
 asD
-kyS
+qte
 cVa
 mKo
 cPi
@@ -32958,10 +33494,10 @@ rOZ
 fnN
 hHo
 mKo
-cam
+qte
 tKP
 kyS
-cam
+kSB
 aya
 mFm
 aya
@@ -33069,8 +33605,8 @@ lqb
 eHu
 jbT
 xHJ
-hew
-juD
+iUl
+nGD
 mKo
 mKo
 rxT
@@ -33080,7 +33616,7 @@ mKo
 bct
 euU
 kyS
-cam
+kSB
 aya
 uXo
 aya
@@ -33188,8 +33724,8 @@ lqb
 vYS
 pLH
 haE
-kyS
-juD
+qte
+nGD
 mKo
 gaG
 jkr
@@ -33199,7 +33735,7 @@ mKo
 iUl
 euU
 kyS
-cam
+kSB
 aya
 mFm
 aya
@@ -33315,10 +33851,10 @@ jkr
 eKG
 tJc
 mKo
-cam
+qte
 euU
 kyS
-cam
+kSB
 aya
 mFm
 aya
@@ -33434,10 +33970,10 @@ jkr
 qFX
 tJc
 mKo
-cam
+qte
 euU
 kyS
-cam
+kSB
 aya
 mFm
 aya
@@ -33523,9 +34059,9 @@ iBn
 scU
 cOb
 eeu
-kyS
+kSB
 kjD
-kyS
+qte
 nRZ
 mpq
 aOu
@@ -33545,7 +34081,7 @@ iqf
 iFL
 kYT
 haE
-kyS
+qte
 vqb
 mKo
 jIx
@@ -33553,10 +34089,10 @@ jkr
 nVt
 tJc
 mKo
-cam
+qte
 euU
 kyS
-cam
+kSB
 aya
 uXo
 aya
@@ -33642,9 +34178,9 @@ iIz
 ocd
 aiO
 eeu
-kyS
+kSB
 kjD
-kyS
+qte
 xHJ
 nRZ
 wFf
@@ -33664,18 +34200,18 @@ eTc
 gSv
 vsm
 xHJ
-kyS
-juD
+qte
+nGD
 mKo
 mKo
 nZu
 szL
 mKo
 mKo
-cam
+qte
 euU
 kyS
-cam
+kSB
 aya
 mFm
 aya
@@ -33761,9 +34297,9 @@ lKy
 uUO
 aiO
 eeu
-kyS
+kSB
 kjD
-kyS
+qte
 xHJ
 qeo
 hTn
@@ -33791,10 +34327,10 @@ nNv
 gjY
 kjD
 iTz
-lbF
+kjD
 euU
 kyS
-cam
+kSB
 aya
 tYs
 aya
@@ -33817,7 +34353,7 @@ vZa
 lZb
 lZb
 kXk
-urx
+lTC
 fmE
 phx
 urx
@@ -33880,9 +34416,9 @@ bJv
 vtU
 aiO
 eeu
-kyS
+kSB
 hZA
-uzt
+vWS
 xHJ
 xHv
 lkp
@@ -33902,18 +34438,18 @@ kzk
 onh
 eAS
 xHJ
-kyS
-kjD
+qte
+nfQ
 mmS
 mmS
 mmS
 iyL
 mmS
 mmS
-cam
+qte
 euU
 kyS
-cam
+kSB
 aya
 fnB
 aya
@@ -33936,7 +34472,7 @@ avf
 lgo
 saV
 ask
-urx
+lTC
 fmE
 urx
 urx
@@ -33999,9 +34535,9 @@ ivR
 wxw
 aiO
 eeu
-kyS
+kSB
 kjD
-kyS
+qte
 xHJ
 wiL
 wFf
@@ -34021,18 +34557,18 @@ niN
 jGk
 fDG
 xHJ
-kyS
-kjD
+qte
+nfQ
 mmS
 mTQ
 cuj
 bol
 gFz
 mmS
-kyS
+qte
 euU
 kyS
-cam
+kSB
 aya
 mFm
 aya
@@ -34055,7 +34591,7 @@ ame
 erG
 fnC
 vZa
-urx
+lTC
 fmE
 urx
 urx
@@ -34140,18 +34676,18 @@ adS
 wzz
 eAS
 xHJ
-kyS
-kjD
+qte
+nfQ
 mmS
 tRq
 wWu
 rYm
 pPN
 mmS
-kyS
+qte
 euU
 kyS
-cam
+kVN
 aya
 uXo
 aya
@@ -34174,7 +34710,7 @@ ecl
 qZG
 eVM
 gTE
-urx
+lTC
 fmE
 urx
 urx
@@ -34259,15 +34795,15 @@ mDp
 vYS
 fDG
 xHJ
-kyS
-kjD
+qte
+nfQ
 mmS
 cNo
 nqn
 kvc
 pPN
 fij
-xjA
+bct
 euU
 kyS
 wDa
@@ -34293,7 +34829,7 @@ ecl
 fXH
 kCB
 gTE
-urx
+lTC
 fmE
 urx
 urx
@@ -34378,8 +34914,8 @@ ocl
 vYS
 eAS
 xHJ
-hew
-hZA
+iUl
+bmc
 mmS
 fnl
 gKT
@@ -34412,7 +34948,7 @@ hTK
 iap
 saQ
 gTE
-urx
+lTC
 fmE
 urx
 urx
@@ -34497,8 +35033,8 @@ dGt
 iFL
 rOw
 xHJ
-kyS
-kjD
+qte
+nfQ
 mmS
 rTO
 rYm
@@ -34531,7 +35067,7 @@ ecl
 fXH
 pKW
 vZa
-urx
+lTC
 iAm
 urx
 urx
@@ -34616,7 +35152,7 @@ eTc
 gSv
 xHJ
 xHJ
-kyS
+qte
 xts
 mmS
 kQt
@@ -34735,8 +35271,8 @@ hHH
 nXf
 ihe
 xHV
-kyS
-kjD
+qte
+nfQ
 mmS
 jGg
 sOd
@@ -34854,8 +35390,8 @@ crB
 sSW
 qDK
 xHV
-kyS
-kjD
+qte
+nfQ
 mmS
 mmS
 skI
@@ -34973,8 +35509,8 @@ hOc
 oqJ
 xHV
 xHV
-kyS
-kjD
+qte
+nfQ
 mmS
 brP
 fVq
@@ -35111,17 +35647,17 @@ urx
 urx
 urx
 qXF
-urx
-aNn
-urx
-urx
-urx
-urx
 ewq
 aNn
-urx
-urx
-urx
+ewq
+ewq
+ewq
+ewq
+ewq
+aNn
+ewq
+ewq
+ewq
 urx
 urx
 urx
@@ -41290,7 +41826,7 @@ wCC
 eBQ
 fvh
 reV
-reV
+klh
 reV
 reV
 sBY
@@ -41413,7 +41949,7 @@ aMa
 aMa
 aMa
 aMa
-reV
+wvg
 oJY
 oJY
 oJY
@@ -41512,24 +42048,24 @@ fWn
 fWn
 tmD
 aYd
-hXu
-hXu
-hXu
+rPB
+gJY
+gJY
+dDs
+oQY
+gJY
+gJY
+jjB
+gJY
+qqZ
+gJY
+oQY
+gJY
+gJY
 dDs
 baz
-hXu
-hXu
-lau
-hXu
-qqZ
-hXu
-baz
-hXu
-hXu
-hXu
-baz
-lau
-hXu
+jjB
+gJY
 aMa
 aMa
 boT
@@ -41631,7 +42167,7 @@ dIf
 dIf
 mup
 aYd
-hXu
+rPB
 lXf
 sxd
 nRv
@@ -41645,7 +42181,7 @@ kIS
 rtT
 rtT
 rtT
-rtT
+tBZ
 rtT
 rtT
 hXu
@@ -41754,18 +42290,18 @@ tqz
 lWk
 hXu
 dDs
-hXu
-hXu
+rfj
+rfj
 fad
-hXu
-hXu
-hXu
-hXu
-hXu
-hXu
-hXu
-hXu
-hXu
+rfj
+rfj
+rfj
+rfj
+rfj
+rfj
+rfj
+dDs
+rPB
 kIS
 hXu
 uQq
@@ -41871,7 +42407,7 @@ mup
 aYd
 eXH
 lWk
-hXu
+iQN
 gop
 hgm
 hgm
@@ -41884,7 +42420,7 @@ aaH
 aaH
 aaH
 vYW
-hXu
+rPB
 rtT
 hXu
 uQq
@@ -41988,9 +42524,9 @@ mnN
 jEg
 gXC
 aYd
-hXu
+rPB
 lWk
-hXu
+iQN
 hgm
 xvH
 gcd
@@ -42003,24 +42539,24 @@ nsr
 vDJ
 nsr
 wSd
-hXu
+rPB
 rtT
 hXu
 uQq
 aMa
 iSM
 aMa
-tIk
-leX
-pin
-pin
-pin
-pin
-pin
-eUf
-jZf
-jZf
-jZf
+fdR
+eSJ
+vAw
+vAw
+vAw
+vAw
+vAw
+lTA
+utN
+utN
+utN
 jZf
 qDQ
 pin
@@ -42107,9 +42643,9 @@ jki
 afB
 jki
 aYd
-hXu
+rPB
 lWk
-hXu
+iQN
 hgm
 hgm
 hgm
@@ -42129,7 +42665,7 @@ uQq
 aMa
 iSM
 aMa
-tIk
+fdR
 leX
 pin
 pin
@@ -42226,9 +42762,9 @@ hXR
 uwx
 waJ
 aYd
-hXu
+rPB
 lWk
-hXu
+iQN
 hgm
 xvH
 gcd
@@ -42248,7 +42784,7 @@ uQq
 aMa
 vTo
 aMa
-dnc
+oKt
 leX
 pin
 pin
@@ -42345,9 +42881,9 @@ bQA
 sLf
 rba
 aYd
-hXu
+rPB
 lWk
-hXu
+iQN
 hgm
 hgm
 hgm
@@ -42360,14 +42896,14 @@ aRE
 vOb
 tCI
 wSd
-hXu
+rPB
 rtT
 hXu
 uQq
 aMa
 wnb
 aMa
-tIk
+fdR
 leX
 pin
 pin
@@ -42385,11 +42921,11 @@ pin
 pin
 pin
 pin
-pin
-pin
-pin
-mFP
-tIk
+vAw
+vAw
+vAw
+oaK
+wcI
 tIk
 izY
 eOY
@@ -42464,9 +43000,9 @@ hbR
 yae
 qpw
 aYd
-hXu
+rPB
 lWk
-hXu
+iQN
 hgm
 mCM
 wWw
@@ -42486,7 +43022,7 @@ uQq
 aMa
 iSM
 sLq
-tIk
+fdR
 leX
 pin
 pin
@@ -42585,7 +43121,7 @@ qpw
 aYd
 tqz
 lWk
-hXu
+iQN
 hgm
 mCM
 nny
@@ -42598,14 +43134,14 @@ rls
 eEo
 tCI
 vYW
-hXu
+rPB
 rtT
 hXu
 uQq
 aMa
 vTo
 aMa
-tIk
+fdR
 leX
 pin
 pin
@@ -42623,11 +43159,11 @@ pin
 pin
 pin
 pin
-pin
-pin
-pin
-mFP
-tIk
+bWV
+bWV
+bWV
+piB
+vut
 tIk
 kEG
 eOY
@@ -42675,7 +43211,7 @@ fRN
 vHZ
 rtT
 hJY
-hXu
+iQN
 ive
 bye
 nkv
@@ -42702,9 +43238,9 @@ aYd
 yae
 qpw
 aYd
-kPZ
+oiT
 lWk
-hXu
+iQN
 ayz
 ayz
 ayz
@@ -42717,14 +43253,14 @@ ayz
 ayz
 ayz
 ayz
-hXu
+rPB
 rtT
 ksD
 uQq
 aMa
 iSM
 aMa
-tIk
+fdR
 leX
 pin
 pin
@@ -42792,9 +43328,9 @@ pTu
 gaq
 pTu
 pTu
-hXu
+rPB
 ljl
-hXu
+iQN
 ive
 bye
 nkv
@@ -42821,9 +43357,9 @@ iDo
 yae
 ujP
 aYd
-hXu
+rPB
 lWk
-hXu
+iQN
 ayz
 xRV
 xRV
@@ -42836,14 +43372,14 @@ xRV
 xRV
 xRV
 ayz
-hXu
+rPB
 rtT
 hXu
 uQq
 aMa
 iSM
 aMa
-tIk
+fdR
 leX
 pin
 pin
@@ -42911,7 +43447,7 @@ rte
 gZb
 hnC
 pTu
-hXu
+rPB
 ljl
 mdx
 iAH
@@ -42940,9 +43476,9 @@ aYd
 sLj
 hZS
 aYd
-hXu
+rPB
 lWk
-hXu
+iQN
 ayz
 xRV
 xRV
@@ -42964,15 +43500,15 @@ ety
 bJK
 hQn
 leX
-pin
-pin
-pin
-pin
-pin
-msB
+bWV
+bWV
+bWV
+bWV
+bWV
+qzA
 kyy
-uXc
-uXc
+xYI
+xYI
 uXc
 iPl
 pin
@@ -43059,7 +43595,7 @@ aYd
 xPK
 dSb
 aYd
-hXu
+rPB
 lWk
 wUR
 ayz
@@ -43083,7 +43619,7 @@ rtT
 oHB
 tIk
 bPI
-pin
+sYa
 pin
 eaA
 eaA
@@ -43149,9 +43685,9 @@ kbR
 mFZ
 hnC
 pTu
-hXu
+rPB
 nJz
-hXu
+iQN
 iAH
 faP
 hcn
@@ -43178,7 +43714,7 @@ voX
 gsg
 vHO
 aYd
-hXu
+rPB
 lWk
 hXu
 cvm
@@ -43268,9 +43804,9 @@ bHY
 aas
 qeM
 pTu
-hXu
+rPB
 ljl
-hXu
+iQN
 ive
 bye
 nkv
@@ -43297,7 +43833,7 @@ wyz
 fwm
 hqD
 aYd
-hXu
+rPB
 lWk
 wUR
 ayz
@@ -43387,9 +43923,9 @@ sZo
 hRE
 cDw
 sTX
-hXu
+rPB
 ljl
-hXu
+iQN
 ive
 bye
 nkv
@@ -43418,7 +43954,7 @@ kQs
 aYd
 tqz
 lWk
-hXu
+iQN
 ayz
 xRV
 xRV
@@ -43506,9 +44042,9 @@ dik
 dWv
 cDw
 pTu
-hXu
+rPB
 ljl
-hXu
+iQN
 ive
 bye
 nkv
@@ -43535,9 +44071,9 @@ tTm
 mDB
 fiD
 aYd
-hXu
+rPB
 lWk
-hXu
+iQN
 ayz
 xRV
 xRV
@@ -43625,9 +44161,9 @@ lvc
 jql
 pTu
 pTu
-hXu
+rPB
 ljl
-hXu
+iQN
 iAH
 dUR
 dUR
@@ -43656,7 +44192,7 @@ arw
 aYd
 eXH
 dpK
-hXu
+iQN
 hhb
 ayz
 ayz
@@ -43747,21 +44283,21 @@ uIj
 hXu
 bCS
 hXu
-baz
-hXu
-hXu
-hXu
-hXu
-baz
-hXu
-hXu
-baz
-hXu
+oQY
+gJY
+gJY
+gJY
+gJY
+oQY
+gJY
+gJY
+oQY
+gJY
 bZI
-hXu
-hXu
-baz
-hXu
+gJY
+gJY
+oQY
+gJY
 uRK
 gXZ
 hXu
@@ -43777,15 +44313,15 @@ hXu
 lWk
 hXu
 opw
-hXu
-hXu
-hXu
-hXu
-baz
-hXu
-hXu
-hXu
-hXu
+gJY
+gJY
+gJY
+gJY
+oQY
+gJY
+gJY
+gJY
+dDs
 baz
 hXu
 hXu
@@ -43904,7 +44440,7 @@ neU
 neU
 ldu
 sqW
-xuz
+tBZ
 xuz
 xuz
 xuz
@@ -43934,9 +44470,9 @@ pin
 pin
 pin
 pin
-uXc
+vee
 akQ
-tIk
+wcI
 tIk
 gQx
 pUt
@@ -43982,9 +44518,9 @@ ljl
 hXu
 hXu
 uIj
-gXZ
+hXu
+rtT
 bJK
-cup
 cup
 cup
 cup
@@ -43994,10 +44530,10 @@ bJK
 rtT
 bJK
 cup
-cup
-cup
-cup
-cup
+bJK
+rtT
+hXu
+bJK
 cup
 bJK
 lWk
@@ -44015,15 +44551,15 @@ hXu
 mWV
 gbh
 dDs
-hXu
+rfj
 lSf
-hXu
-hXu
-dfL
-hXu
+rfj
+rfj
+vUt
+rfj
 wRc
 tpw
-hXu
+dDs
 hXu
 hXu
 hXu
@@ -44101,9 +44637,9 @@ ljl
 hXu
 hXu
 uIj
-gXZ
+hXu
+rtT
 cup
-jTF
 jTF
 jTF
 jTF
@@ -44113,14 +44649,14 @@ cup
 rtT
 cup
 jTF
-jTF
-jTF
-jTF
-jTF
+cup
+rtT
+hDJ
+cup
 jTF
 cup
 mpU
-hXu
+iQN
 xUc
 pvZ
 cIt
@@ -44142,7 +44678,7 @@ bJK
 bJK
 bJK
 tpw
-hXu
+dDs
 cFi
 uzi
 hXu
@@ -44172,9 +44708,9 @@ pin
 pin
 pin
 pin
-jZf
+tJJ
 knP
-tIk
+vut
 tIk
 kEG
 pUt
@@ -44220,9 +44756,9 @@ ljl
 hXu
 hXu
 uIj
-gXZ
+hXu
+rtT
 bJK
-cup
 cup
 cup
 cup
@@ -44232,14 +44768,14 @@ bJK
 rtT
 bJK
 cup
-cup
-cup
-cup
-cup
+bJK
+rtT
+hXu
+bJK
 cup
 bJK
 mpU
-hXu
+iQN
 pvZ
 mgx
 izG
@@ -44257,11 +44793,11 @@ oUd
 iWU
 yeP
 bJK
-ssx
+ptM
 ssx
 nGc
 tpw
-hXu
+dDs
 qHS
 sFd
 hXu
@@ -44345,20 +44881,20 @@ nax
 gKo
 gHi
 gHi
-gHi
-gHi
+hZE
+hZE
 tDV
 iSP
-gHi
+hZE
 bpS
-gHi
+hZE
 gKo
 kMd
 gHi
 gHi
 gHi
 jht
-hXu
+iQN
 pvZ
 exx
 hbj
@@ -44380,7 +44916,7 @@ pWL
 lcU
 bJK
 tpw
-hXu
+dDs
 xXK
 xXK
 hXu
@@ -44461,10 +44997,10 @@ uIj
 gXZ
 hXu
 xlD
-hXu
-hXu
-dfL
-hXu
+rfj
+rfj
+vUt
+iQN
 fFN
 qqa
 qqe
@@ -44473,11 +45009,11 @@ bJK
 fFN
 gXZ
 hXu
-hXu
-hXu
-dfL
-ali
-hXu
+rfj
+rfj
+vUt
+qol
+iQN
 jsH
 aFj
 nDi
@@ -47117,7 +47653,7 @@ kOX
 jtP
 kOX
 tpC
-kOX
+wgY
 kOX
 kOX
 kOX
