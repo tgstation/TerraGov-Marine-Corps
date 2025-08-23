@@ -1,3 +1,146 @@
+// ***************************************
+// *********** New Survivors
+// ***************************************
+/datum/outfit/job/new_survivor
+	name = "(New) Default Survivor"
+	jobtype = /datum/job/new_survivor
+
+	gloves = /obj/item/clothing/gloves/ruggedgloves
+	back = /obj/item/storage/backpack/satchel/norm
+	l_pocket = /obj/item/storage/pouch/medkit
+
+	backpack_contents = list(
+		/obj/item/compass = 1,
+		/obj/item/flashlight = 1,
+		/obj/item/tool/crowbar = 1,
+	)
+
+	l_pocket_contents = list(
+		/obj/item/storage/pill_bottle/packet/bicaridine = 1,
+		/obj/item/storage/pill_bottle/packet/kelotane = 1,
+		/obj/item/storage/pill_bottle/packet/tramadol = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/stack/medical/splint = 1,
+	)
+
+
+/datum/outfit/job/new_survivor/general
+	name = "(New) General Survivor"
+	jobtype = /datum/job/new_survivor/general
+
+	w_uniform = /obj/item/clothing/under/color/grey
+	shoes = /obj/item/clothing/shoes/black
+	ears = /obj/item/radio/survivor
+	belt = /obj/item/belt_harness
+	r_pocket = /obj/item/storage/pouch/tools
+
+	r_pocket_contents = list(
+		/obj/item/tool/screwdriver = 1,
+		/obj/item/tool/wirecutters = 1,
+		/obj/item/tool/weldingtool = 1,
+		/obj/item/tool/wrench = 1,
+	)
+
+
+/datum/outfit/job/new_survivor/engineer
+	name = "(New) Engineer Survivor"
+	jobtype = /datum/job/new_survivor/engineer
+
+	w_uniform = /obj/item/clothing/under/colonist
+	gloves = /obj/item/clothing/gloves/insulated
+	shoes = /obj/item/clothing/shoes/orange
+	back = /obj/item/storage/backpack/industrial
+	glasses = /obj/item/clothing/glasses/welding
+	ears = /obj/item/radio/survivor
+	head = /obj/item/clothing/head/hardhat
+	belt = /obj/item/storage/belt/utility
+	r_pocket = /obj/item/storage/pouch/construction
+
+	belt_contents = list(
+		/obj/item/tool/screwdriver = 1,
+		/obj/item/tool/wirecutters = 1,
+		/obj/item/tool/weldingtool/hugetank = 1,
+		/obj/item/tool/wrench = 1,
+		/obj/item/stack/cable_coil/twentyfive = 1,
+		/obj/item/tool/multitool = 1,
+	)
+
+	r_pocket_contents = list(
+		/obj/item/stack/sandbags_empty/full = 1,
+		/obj/item/stack/sheet/metal/large_stack = 1,
+		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/tool/shovel/etool = 1,
+	)
+
+
+/datum/outfit/job/new_survivor/security
+	name = "(New) Security Survivor"
+	jobtype = /datum/job/new_survivor/security
+
+	w_uniform = /obj/item/clothing/under/rank/security
+	wear_suit = /obj/item/clothing/suit/armor/patrol
+	suit_store = /obj/item/weapon/gun/pistol/g22
+	shoes = /obj/item/clothing/shoes/jackboots
+	back = /obj/item/storage/backpack/satchel/sec
+	glasses = /obj/item/clothing/glasses/hud/security
+	belt = /obj/item/storage/belt/security
+	ears = /obj/item/radio/survivor
+	head = /obj/item/clothing/head/tgmcberet/red
+	r_pocket = /obj/item/storage/pouch/magazine/large
+
+	belt_contents = list(
+		/obj/item/reagent_containers/spray/pepper = 1,
+		/obj/item/weapon/telebaton = 1,
+		/obj/item/restraints/handcuffs = 1,
+		/obj/item/tool/lighter/zippo = 1,
+		/obj/item/storage/fancy/cigarettes = 1,
+	)
+
+	r_pocket_contents = list(
+		/obj/item/ammo_magazine/pistol/g22 = 3,
+	)
+
+
+/datum/outfit/job/new_survivor/medical
+	name = "(New) Medical Survivor"
+	jobtype = /datum/job/new_survivor/medical
+
+	w_uniform = /obj/item/clothing/under/rank/medical
+	wear_suit = /obj/item/clothing/suit/storage/labcoat
+	gloves = /obj/item/clothing/gloves/latex
+	glasses = /obj/item/clothing/glasses/hud/health
+	shoes = /obj/item/clothing/shoes/white
+	back = /obj/item/storage/backpack/satchel/med
+	ears = /obj/item/radio/survivor
+	belt = /obj/item/storage/belt/rig
+	mask = /obj/item/clothing/mask/surgical
+	l_pocket = /obj/item/storage/pouch/surgery
+
+	belt_contents = list(
+		/obj/item/storage/pill_bottle/bicaridine = 1,
+		/obj/item/storage/pill_bottle/kelotane = 1,
+		/obj/item/storage/pill_bottle/tramadol = 1,
+		/obj/item/storage/pill_bottle/imidazoline = 1,
+		/obj/item/storage/pill_bottle/inaprovaline = 1,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 2,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack = 2,
+		/obj/item/stack/medical/splint = 3,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/roller = 1,
+		/obj/item/tweezers = 1,
+		/obj/item/defibrillator = 1,
+	)
+
+	l_pocket_contents = null
+
+
+// ***************************************
+// *********** Old Survivors
+// ***************************************
+/* these may still be used here and there but it is uncertain.
+they may be superseded by the above section of code.
+once we're sure, we can just remove everything below this comment, but only until then */
 /datum/outfit/job/survivor/assistant
 	name = "Assistant Survivor"
 	jobtype = /datum/job/survivor/assistant

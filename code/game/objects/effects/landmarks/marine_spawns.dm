@@ -110,6 +110,26 @@
 	icon_state = "AI"
 	job = /datum/job/terragov/silicon/ai
 
+/obj/effect/landmark/start/job/new_survivor
+	icon_state = "x"
+	job = /datum/job/new_survivor
+
+/obj/effect/landmark/start/job/new_survivor/general
+	icon_state = "Assistant"
+	job = /datum/job/new_survivor/general
+
+/obj/effect/landmark/start/job/survivor/engineer
+	icon_state = "Station Engineer"
+	job = /datum/job/new_survivor/engineer
+
+/obj/effect/landmark/start/job/survivor/security
+	icon_state = "Security Officer"
+	job = /datum/job/new_survivor/security
+
+/obj/effect/landmark/start/job/survivor/medical
+	icon_state = "Medical Doctor"
+	job = /datum/job/new_survivor/medical
+
 /obj/effect/landmark/start/job/survivor
 	icon_state = "Shaft Miner"
 	job = /datum/job/survivor/rambo
