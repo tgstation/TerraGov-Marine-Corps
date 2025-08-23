@@ -424,3 +424,29 @@
 	gloves = /obj/item/clothing/gloves/insulated
 	r_pocket = /obj/item/storage/pouch/general/medium
 	l_pocket = /obj/item/storage/pouch/general/medium
+
+/datum/outfit/job/clf/tech
+	name = "CLF Base Technician"
+	jobtype = /datum/job/clf/tech
+
+	id = /obj/item/card/id/dogtag/clf
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/marine/officer/engi
+	wear_suit = /obj/item/clothing/suit/storage/faction/militia
+	shoes = /obj/item/clothing/shoes/white
+	gloves = /obj/item/clothing/gloves/insulated
+	l_pocket = /obj/item/storage/pouch/general/medium
+	suit_store = /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
+	r_pocket = /obj/item/storage/pouch/shotgun
+	back = /obj/item/storage/backpack/lightpack
+
+	backpack_contents = list(
+		/obj/item/ammo_magazine/handful/buckshot = 2,
+		/obj/item/ammo_magazine/handful/flechette = 2,
+	)
+
+	r_pocket_contents = list(
+		/obj/item/ammo_magazine/handful/buckshot = 2,
+		/obj/item/ammo_magazine/handful/flechette = 2,
+	)

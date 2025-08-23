@@ -23,9 +23,10 @@
 		/datum/job/survivor/prisoner = 6,
 		/datum/job/survivor/stripper = 4,
 		/datum/job/survivor/maid = 4,
-		/datum/job/clf/standard = 2,
+		/datum/job/clf/standard = 1,
 		/datum/job/clf/medic = 1,
 		/datum/job/clf/specialist = 1,
+		/datum/job/clf/tech = 1,
 		/datum/job/clf/leader = 1,
 		/datum/job/xenomorph = 2
 	)

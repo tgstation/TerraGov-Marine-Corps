@@ -350,7 +350,7 @@
 
 /obj/item/clothing/under/marine/officer/ce
 	name = "chief ship engineer uniform"
-	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented ship engineer uniform. You suspect it's not as robust-proof as advertised."
+	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented chief ship engineer uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "EC_jumpsuit"
 	adjustment_variants = list(
 		"Half" = "_h",
@@ -358,7 +358,7 @@
 
 /obj/item/clothing/under/marine/officer/engi
 	name = "engineer uniform"
-	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented chief ship engineer uniform. You suspect it's not as robust-proof as advertised."
+	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented ship engineer uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "E_jumpsuit"
 	adjustment_variants = list(
 		"Half" = "_h",

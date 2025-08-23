@@ -167,3 +167,12 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += {"Your primary job is to support and assist all clf departments and personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."}
+
+/datum/job/clf/tech
+	title = "CLF Base Technician"
+	paygrade = "CLF4"
+	comm_title = "CLF4"
+	skills_type = /datum/skills/st
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ADDTOMANIFEST
+	outfit = /datum/outfit/job/clf/tech
+	multiple_outfits = FALSE
