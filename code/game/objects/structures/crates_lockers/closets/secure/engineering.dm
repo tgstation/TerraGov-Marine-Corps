@@ -35,6 +35,7 @@
 
 /obj/structure/closet/secure_closet/engineering_chief/som
 	name = "\improper SOM Chief Engineer's locker"
+	req_access = list(ACCESS_SOM_ENGINEERING)
 
 /obj/structure/closet/secure_closet/engineering_chief/som/PopulateContents()
 	new /obj/item/armor_module/storage/uniform/webbing(src)
@@ -62,7 +63,8 @@
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
-	req_access = list(ACCESS_MARINE_ENGINEERING)
+	req_access = list()
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_SOM_ENGINEERING, ACCESS_CLF_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	icon_state = "secureengelec1"
 	icon_closed = "secureengelec"
 	icon_locked = "secureengelec1"
@@ -88,7 +90,8 @@
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
-	req_access = list(ACCESS_MARINE_ENGINEERING)
+	req_access = list()
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_SOM_ENGINEERING, ACCESS_CLF_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	icon_state = "secureengweld1"
 	icon_closed = "secureengweld"
 	icon_locked = "secureengweld1"
@@ -149,6 +152,7 @@
 
 /obj/structure/closet/secure_closet/engineering_personal/som
 	name = "SOM engineer's locker"
+	req_access = list(ACCESS_SOM_ENGINEERING)
 
 /obj/structure/closet/secure_closet/engineering_personal/som/PopulateContents()
 	new /obj/item/armor_module/storage/uniform/brown_vest(src)
@@ -178,6 +182,7 @@
 
 /obj/structure/closet/secure_closet/engineering_personal/clf
 	name = "CLF engineer's locker"
+	req_access = list(ACCESS_CLF_ENGINEERING)
 
 /obj/structure/closet/secure_closet/engineering_personal/clf/PopulateContents()
 	new /obj/item/armor_module/storage/uniform/brown_vest(src)
