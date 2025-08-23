@@ -1985,8 +1985,8 @@
 /area/bluemoon/outside/building/admin)
 "cmx" = (
 /obj/structure/closet/crate/secure/explosives,
-/obj/item/explosive/grenade/flashbang,
-/obj/item/explosive/grenade/flashbang,
+/obj/item/explosive/grenade/flashbang/stun,
+/obj/item/explosive/grenade/flashbang/stun,
 /turf/open/floor/bcircuit/off,
 /area/bluemoon/outside/building/engi)
 "cmI" = (
