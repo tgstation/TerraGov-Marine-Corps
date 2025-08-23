@@ -5,6 +5,7 @@
 	faction = FACTION_CLF
 	shadow_languages = list(/datum/language/xenocommon)
 	job_category = JOB_CAT_MARINE
+	supervisors = "the xenomorphs and CLF Leaders"
 
 /datum/job/clf/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
@@ -87,6 +88,8 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 		/datum/outfit/job/clf/leader/upp_rifle,
 		/datum/outfit/job/clf/leader/lmg_d,
 	)
+	supervisors = "the xenomorphs"
+
 /datum/job/clf/breeder
 	title = "CLF Breeder"
 	paygrade = "CLF0"
