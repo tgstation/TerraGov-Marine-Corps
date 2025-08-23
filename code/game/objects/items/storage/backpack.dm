@@ -875,7 +875,7 @@
 	icon_state = "icc_bag"
 
 /obj/item/storage/backpack/lightpack/icc/guard
-	name = "\improper Modello/190"
+	name = "\improper Modello/190 (Black)"
 	desc = "A small lightweight buttpack made for use in a wide variety of operations, made with a synthetic black fibre."
 	icon_state = "icc_bag_guard"
 
