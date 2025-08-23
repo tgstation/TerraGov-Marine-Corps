@@ -76,6 +76,8 @@
 	switch(effect_type)
 		if(EFFECT_STUN)
 			Stun(effect)
+		if(EFFECT_KNOCKDOWN)
+			Knockdown(effect)
 		if(EFFECT_PARALYZE)
 			Paralyze(effect)
 		if(EFFECT_UNCONSCIOUS)

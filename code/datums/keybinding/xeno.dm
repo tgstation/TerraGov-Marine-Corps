@@ -1059,6 +1059,13 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_VORTEX
 	hotkey_keys = list("X")
 
+/datum/keybinding/xeno/psychic_choke
+	name = "psychic_choke"
+	full_name = "Shrike: Psychic Choke"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
+	hotkey_keys = list("E") // Same key as Psychic Fling as this ability effectively replaces it.
+
 /datum/keybinding/xeno/scatter_spit
 	name = "scatter_spit"
 	full_name = "Spitter: Scatter Spit"
