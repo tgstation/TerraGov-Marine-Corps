@@ -173,7 +173,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 
 /datum/job/clf/tech
 	title = "CLF Base Technician"
-	paygrade = "CLF4"
+	paygrade = "CLF5"
 	comm_title = "CLF4"
 	skills_type = /datum/skills/st
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ADDTOMANIFEST

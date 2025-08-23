@@ -92,6 +92,7 @@
 		/datum/job/vsd_squad/leader = 1,
 		/datum/job/icc_squad/standard = -1,
 		/datum/job/icc_squad/medic = 2,
+		/datum/job/icc_squad/tech = 2,
 		/datum/job/icc_squad/spec = 2,
 		/datum/job/icc_squad/leader = 2,
 	)
