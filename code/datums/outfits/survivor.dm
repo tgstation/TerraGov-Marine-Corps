@@ -6,23 +6,8 @@
 	jobtype = /datum/job/new_survivor
 
 	gloves = /obj/item/clothing/gloves/ruggedgloves
-	back = /obj/item/storage/backpack/satchel/norm
-	l_pocket = /obj/item/storage/pouch/medkit
-
-	backpack_contents = list(
-		/obj/item/compass = 1,
-		/obj/item/flashlight = 1,
-		/obj/item/tool/crowbar = 1,
-	)
-
-	l_pocket_contents = list(
-		/obj/item/storage/pill_bottle/packet/bicaridine = 1,
-		/obj/item/storage/pill_bottle/packet/kelotane = 1,
-		/obj/item/storage/pill_bottle/packet/tramadol = 1,
-		/obj/item/stack/medical/heal_pack/gauze = 1,
-		/obj/item/stack/medical/heal_pack/ointment = 1,
-		/obj/item/stack/medical/splint = 1,
-	)
+	back = /obj/item/storage/backpack/satchel/rugged/survivor
+	l_pocket = /obj/item/storage/pouch/medkit/som/survivor
 
 
 /datum/outfit/job/new_survivor/general
@@ -33,14 +18,7 @@
 	shoes = /obj/item/clothing/shoes/black
 	ears = /obj/item/radio/survivor
 	belt = /obj/item/belt_harness
-	r_pocket = /obj/item/storage/pouch/tools
-
-	r_pocket_contents = list(
-		/obj/item/tool/screwdriver = 1,
-		/obj/item/tool/wirecutters = 1,
-		/obj/item/tool/weldingtool = 1,
-		/obj/item/tool/wrench = 1,
-	)
+	r_pocket = /obj/item/storage/pouch/tools/full
 
 
 /datum/outfit/job/new_survivor/engineer
@@ -50,28 +28,12 @@
 	w_uniform = /obj/item/clothing/under/colonist
 	gloves = /obj/item/clothing/gloves/insulated
 	shoes = /obj/item/clothing/shoes/orange
-	back = /obj/item/storage/backpack/industrial
+	back = /obj/item/storage/backpack/industrial/survivor
 	glasses = /obj/item/clothing/glasses/welding
 	ears = /obj/item/radio/survivor
 	head = /obj/item/clothing/head/hardhat
-	belt = /obj/item/storage/belt/utility
-	r_pocket = /obj/item/storage/pouch/construction
-
-	belt_contents = list(
-		/obj/item/tool/screwdriver = 1,
-		/obj/item/tool/wirecutters = 1,
-		/obj/item/tool/weldingtool/hugetank = 1,
-		/obj/item/tool/wrench = 1,
-		/obj/item/stack/cable_coil/twentyfive = 1,
-		/obj/item/tool/multitool = 1,
-	)
-
-	r_pocket_contents = list(
-		/obj/item/stack/sandbags_empty/full = 1,
-		/obj/item/stack/sheet/metal/large_stack = 1,
-		/obj/item/stack/sheet/plasteel/medium_stack = 1,
-		/obj/item/tool/shovel/etool = 1,
-	)
+	belt = /obj/item/storage/belt/utility/survivor
+	r_pocket = /obj/item/storage/pouch/construction/som/survivor
 
 
 /datum/outfit/job/new_survivor/security
@@ -82,24 +44,12 @@
 	wear_suit = /obj/item/clothing/suit/armor/patrol
 	suit_store = /obj/item/weapon/gun/pistol/g22
 	shoes = /obj/item/clothing/shoes/jackboots
-	back = /obj/item/storage/backpack/satchel/sec
+	back = /obj/item/storage/backpack/satchel/sec/survivor
 	glasses = /obj/item/clothing/glasses/hud/security
-	belt = /obj/item/storage/belt/security
+	belt = /obj/item/storage/belt/security/survivor
 	ears = /obj/item/radio/survivor
 	head = /obj/item/clothing/head/tgmcberet/red
-	r_pocket = /obj/item/storage/pouch/magazine/large
-
-	belt_contents = list(
-		/obj/item/reagent_containers/spray/pepper = 1,
-		/obj/item/weapon/telebaton = 1,
-		/obj/item/restraints/handcuffs = 1,
-		/obj/item/tool/lighter/zippo = 1,
-		/obj/item/storage/fancy/cigarettes = 1,
-	)
-
-	r_pocket_contents = list(
-		/obj/item/ammo_magazine/pistol/g22 = 3,
-	)
+	r_pocket = /obj/item/storage/pouch/magazine/large/som/survivor
 
 
 /datum/outfit/job/new_survivor/medical
@@ -111,28 +61,11 @@
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	shoes = /obj/item/clothing/shoes/white
-	back = /obj/item/storage/backpack/satchel/med
+	back = /obj/item/storage/backpack/satchel/med/survivor
 	ears = /obj/item/radio/survivor
-	belt = /obj/item/storage/belt/rig
+	belt = /obj/item/storage/belt/rig/survivor
 	mask = /obj/item/clothing/mask/surgical
 	l_pocket = /obj/item/storage/pouch/surgery
-
-	belt_contents = list(
-		/obj/item/storage/pill_bottle/bicaridine = 1,
-		/obj/item/storage/pill_bottle/kelotane = 1,
-		/obj/item/storage/pill_bottle/tramadol = 1,
-		/obj/item/storage/pill_bottle/imidazoline = 1,
-		/obj/item/storage/pill_bottle/inaprovaline = 1,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 2,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack = 2,
-		/obj/item/stack/medical/splint = 3,
-		/obj/item/healthanalyzer = 1,
-		/obj/item/roller = 1,
-		/obj/item/tweezers = 1,
-		/obj/item/defibrillator = 1,
-	)
-
-	l_pocket_contents = null
 
 
 // ***************************************

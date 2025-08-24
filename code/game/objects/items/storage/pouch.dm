@@ -306,6 +306,15 @@
 	. = ..()
 	storage_datum.sprite_slots = null
 
+/obj/item/storage/pouch/magazine/large/som/survivor
+	desc = "A pouch that can contain three ammo magazines."
+
+/obj/item/storage/pouch/magazine/large/som/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/ammo_magazine/pistol/g22(src)
+	new /obj/item/ammo_magazine/pistol/g22(src)
+	new /obj/item/ammo_magazine/pistol/g22(src)
+
 /obj/item/storage/pouch/magazine/large/icc
 	desc = "This pouch can contain three ammo magazines, appears to be made with a synthetic tan fiber."
 	icon_state = "mag_icc"
@@ -604,6 +613,18 @@
 	. = ..()
 	storage_datum.sprite_slots = null
 
+/obj/item/storage/pouch/medkit/som/survivor
+	desc = "A standard use first aid pouch issued to colonists working in dangerous environments."
+
+/obj/item/storage/pouch/medkit/som/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/stack/medical/heal_pack/gauze(src)
+	new /obj/item/stack/medical/heal_pack/ointment(src)
+	new /obj/item/stack/medical/splint(src)
+
 /obj/item/storage/pouch/medical_injectors
 	name = "medical injector pouch"
 	desc = "A specialized medical pouch that can only hold auto-injectors."
@@ -863,6 +884,16 @@
 /obj/item/storage/pouch/construction/som/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.sprite_slots = null
+
+/obj/item/storage/pouch/construction/som/survivor
+	desc = "Designed to hold most construction materials, most notably sandbags, metal, and plasteel."
+
+/obj/item/storage/pouch/construction/som/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/stack/sandbags_empty/full(src)
+	new /obj/item/stack/sheet/metal/large_stack(src)
+	new /obj/item/stack/sheet/plasteel/medium_stack(src)
+	new /obj/item/tool/shovel/etool(src)
 
 /obj/item/storage/pouch/construction/icc
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool. Made with synthetic tan."
