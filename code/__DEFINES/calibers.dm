@@ -14,6 +14,7 @@
 #define CALIBER_41RIM ".41 Rimfire" //Derringer
 #define CALIBER_70MANKEY ".70 Mankey" //Don't ask
 #define CALIBER_41AE ".41 AE"
+#define CALIBER_15X50 "15x50mm rocket propelled" // gyrojet
 
 // Revolvers
 #define CALIBER_44 ".44 Magnum"
@@ -27,6 +28,7 @@
 #define CALIBER_32ACP ".32 ACP"
 #define CALIBER_762X25 "7.62x25mm"
 #define CALIBER_9X21 "9x21mm IMI"
+#define CALIBER_9X39 "9x39mm"
 #define CALIBER_10X20_CASELESS "10x20mm caseless"
 
 // --- Rifles ---
@@ -41,6 +43,7 @@
 #define CALIBER_3006 ".30-06"
 #define CALIBER_492X34_CASELESS "4.92x34mm caseless"
 #define CALIBER_10X28_CASELESS "10x28mm caseless" //Spec scout and OG Smartgun
+#define CALIBER_127X55 "12.7x55mm"
 #define CALIBER_762X51 "7.62x51mm" //Minigun
 #define CALIBER_10X27_INCENDIARY_CASELESS "10x27mm incendiary caseless"
 #define CALIBER_10x26_CASELESS "10x26mm caseless" //GPMG and SG
