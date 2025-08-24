@@ -162,6 +162,7 @@
 	. = ..()
 	new /obj/item/compass(src)
 	new /obj/item/flashlight(src)
+	new /obj/item/tool/crowbar(src)
 
 /obj/item/storage/backpack/satchel/eng
 	name = "industrial satchel"
@@ -177,6 +178,7 @@
 	. = ..()
 	new /obj/item/compass(src)
 	new /obj/item/flashlight(src)
+	new /obj/item/tool/crowbar(src)
 	new /obj/item/tool/soap(src)
 	new /obj/item/reagent_containers/spray/surgery(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
@@ -210,6 +212,7 @@
 	. = ..()
 	new /obj/item/compass(src)
 	new /obj/item/flashlight(src)
+	new /obj/item/tool/crowbar/red(src)
 
 /obj/item/storage/backpack/satchel/hyd
 	name = "hydroponics satchel"
