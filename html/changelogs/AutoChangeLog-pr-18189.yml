@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - imageadd: "Ported new parallax sprites from RU. Enjoy the new map specific space backgrounds."
