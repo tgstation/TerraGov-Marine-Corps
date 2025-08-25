@@ -136,6 +136,8 @@
 		attackby(behavior_datum.melee_weapon, interactor)
 
 /obj/item/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(!isturf(loc))
+		return
 	behavior_datum.pick_up_item(src)
 
 /obj/item/tool/weldingtool/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
