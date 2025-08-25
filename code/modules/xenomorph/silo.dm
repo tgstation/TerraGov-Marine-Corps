@@ -215,5 +215,19 @@
 				larba.ghostize(FALSE, FALSE)
 				larba.burrow()
 				shake(4 SECONDS)
+				if(!larba.client)
+					return
+				larba.client.screen.Cut()
+				if(!larba.client)
+					return
+
+				var/mob/new_player/nerd = new /mob/new_player()
+
+				nerd.key = larba.key
+				nerd.name = larba.key
+				if(!nerd.client)
+					qdel(nerd)
+					return
+
 			else
 				to_chat(user, span_xenonotice("We need to be a larva to fit there."))

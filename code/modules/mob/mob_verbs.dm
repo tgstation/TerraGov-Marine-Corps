@@ -123,8 +123,6 @@
 		return
 
 	var/mob/new_player/M = new /mob/new_player()
-	if(SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
-		M.faction = faction
 
 	M.key = key
 	M.name = key
