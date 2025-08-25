@@ -1,0 +1,19 @@
+{
+    "map_name": "Blue Moon",
+    "map_path": "map_files/Blue_Moon",
+    "map_file": "bluemoon.dmm",
+	"environment_traits": {
+        "COLD": true
+    },
+	"disk_sets": {
+		"basic": 1
+	},
+	"quickbuilds": 1000,
+	"armor": "ice",
+	"announce_text": "A Nanotrasen research site has activated its distress beacon and failed to respond to automated status checks. The ship has jumped in the vicinity of the colony via use of bluespace technology. TGMC, ready up and deploy!",
+	"traits":[{
+		"weather_snowstorm": true,
+		"Baseturf": "/turf/open/floor/plating",
+		"No Parallax": true
+	}]
+}
