@@ -371,6 +371,8 @@
 			. = size ? "CLFL" : "CLF Leader"
 		if("CLF4")
 			. = size ? "CLFS" : "CLF Specialist"
+		if("CLF5")
+			. = size ? "CLFT" : "CLF Base Technician"
 		if("SOM_E1")
 			. = size ? "PTE" : "SOM Private"
 		if("SOM_E2")
@@ -436,11 +438,13 @@
 		if("CM1")
 			. = size ? "CM" : "CM Standard"
 		if("CM2")
-			. = size ? "CM" : "CM Medic"
+			. = size ? "CMM" : "CM Medic"
 		if("CM3")
 			. = size ? "CMG" : "CM Guard"
 		if("CM4")
 			. = size ? "CML" : "CM Leader"
+		if("CM5")
+			. = size ? "CMT" : "CM Base Technician"
 		if("KZ1")
 			. = size ? "JSGT" : "KZ Junior Sergeant"
 		if("KZ2")

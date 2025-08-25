@@ -107,4 +107,28 @@ For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be v
 	ears = /obj/item/radio/headset/mainship/marine/icc
 	glasses = /obj/item/clothing/glasses/hud/health
 
+//ICC Base Technician
+/datum/job/icc_squad/tech
+	title = "CM Base Technician"
+	paygrade = "CM5"
+	comm_title = "CM"
+	skills_type = /datum/skills/st
+	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_ICC_CARGO, ACCESS_ICC_TADPOLE)
+	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
+	total_positions = 5
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
+	outfit = /datum/outfit/job/icc_squad/tech
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,
+	)
+
+/datum/outfit/job/icc_squad/tech
+	name = "CM Base Technician"
+	jobtype = /datum/job/icc_squad/tech
+
+	id = /obj/item/card/id/dogtag/engineer
+	ears = /obj/item/radio/headset/mainship/marine/icc
+	glasses = /obj/item/clothing/glasses/meson
+	gloves = /obj/item/clothing/gloves/insulated
 

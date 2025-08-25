@@ -81,7 +81,6 @@ export const BackgroundInformation = (props) => {
           onChange={(value) => setXenoDesc(value)}
         />
       </Section>
-
       <Stack>
         <Stack.Item grow>
           <Section
@@ -207,6 +206,8 @@ export const BackgroundInformation = (props) => {
           </Section>
         </Stack.Item>
       </Stack>
+      Set picture to &lsquo;!clear&rsquo; to clear
+      <hr />
       <Stack>
         <Stack.Item grow>
           <Section
@@ -234,7 +235,11 @@ export const BackgroundInformation = (props) => {
               value={profilePic}
               onChange={(value) => setProfilePic(value)}
             />
-            {profile_pic ? <img src={profile_pic} width={350} height={400} /> :""}
+            {profile_pic ? (
+              <img src={profile_pic} width={350} height={400} />
+            ) : (
+              ''
+            )}
           </Section>
         </Stack.Item>
         <Stack.Item grow>
@@ -266,7 +271,11 @@ export const BackgroundInformation = (props) => {
               value={nsfwprofilePic}
               onChange={(value) => setNSFWProfilePic(value)}
             />
-            {nsfwprofile_pic ? <img src={nsfwprofile_pic} width={350} height={400} /> :""}
+            {nsfwprofile_pic ? (
+              <img src={nsfwprofile_pic} width={350} height={400} />
+            ) : (
+              ''
+            )}
           </Section>
         </Stack.Item>
         <Stack.Item grow>
@@ -298,7 +307,11 @@ export const BackgroundInformation = (props) => {
               value={xenoprofilePic}
               onChange={(value) => setXenoProfilePic(value)}
             />
-            {xenoprofile_pic ? <img src={xenoprofile_pic} width={350} height={400} /> :""}
+            {xenoprofile_pic ? (
+              <img src={xenoprofile_pic} width={350} height={400} />
+            ) : (
+              ''
+            )}
           </Section>
         </Stack.Item>
       </Stack>

@@ -2672,6 +2672,7 @@
 "oe" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable,
+/obj/effect/landmark/start/job/som/icc_tech,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/icc/generator_room)
 "og" = (
@@ -8159,6 +8160,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/iron/grimy,
 /area/antag_ship/som/office/commander)
+"QQ" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/som/icc_tech,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/icc/generator_room)
 "QR" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -18263,7 +18269,7 @@ Ei
 SX
 oe
 CE
-SX
+QQ
 la
 la
 zb
@@ -18453,7 +18459,7 @@ eM
 SX
 oe
 tK
-SX
+QQ
 la
 la
 zb
