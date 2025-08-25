@@ -15,7 +15,7 @@
 	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	action_icon_state = "rewind"
 	ability_cost = 15
-	cooldown_duration = 3.5 SECONDS
+	cooldown_duration = 4.5 SECONDS
 	use_state_flags = ABILITY_USE_FORTIFIED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CONQUEROR_DASH,
