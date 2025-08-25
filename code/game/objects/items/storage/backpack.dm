@@ -98,6 +98,11 @@
 	icon_state = "engiepack"
 	worn_icon_state = "engiepack"
 
+/obj/item/storage/backpack/industrial/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/compass(src)
+	new /obj/item/flashlight(src)
+
 /obj/item/storage/backpack/toxins
 	name = "laboratory backpack"
 	desc = "It's a light backpack modeled for use in laboratories and other scientific institutions."
@@ -153,6 +158,12 @@
 	desc = "A rugged satchel for workers of all types."
 	icon_state = "satchel-norm"
 
+/obj/item/storage/backpack/satchel/rugged/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/compass(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/tool/crowbar(src)
+
 /obj/item/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
@@ -162,6 +173,15 @@
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
 	icon_state = "satchel-med"
+
+/obj/item/storage/backpack/satchel/med/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/compass(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/tool/crowbar(src)
+	new /obj/item/tool/soap(src)
+	new /obj/item/reagent_containers/spray/surgery(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
 
 /obj/item/storage/backpack/satchel/vir
 	name = "virologist satchel"
@@ -187,6 +207,12 @@
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
 	icon_state = "satchel-sec"
+
+/obj/item/storage/backpack/satchel/sec/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/compass(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/tool/crowbar/red(src)
 
 /obj/item/storage/backpack/satchel/hyd
 	name = "hydroponics satchel"
