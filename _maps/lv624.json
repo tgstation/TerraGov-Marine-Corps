@@ -2,6 +2,7 @@
     "map_name": "LV624",
     "map_path": "map_files/LV624",
     "map_file": "LV624.dmm",
+	"parallax_icon": "jungle",
 	"disk_sets": {
 		"basic": 1
 	},

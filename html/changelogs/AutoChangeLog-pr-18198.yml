@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - admin: "Vent crawling (entering, exiting) is now logged (view round logs)"
