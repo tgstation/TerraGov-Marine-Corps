@@ -55,17 +55,22 @@ mode Campaign
 	votable 0
 endmode
 
-mode Secret of Life - main
+mode Secret of Life - Main
 	requiredplayers 0
 	default
 endmode
 
-mode Secret of Life - alienonly
+mode Secret of Life - Alien only
 	requiredplayers 0
 	votable 1
 endmode
 
-mode Secret of Life - nosub
+mode Secret of Life - No Subfactions
+	requiredplayers 0
+	votable 1
+endmode
+
+mode Secret of Life - Classic
 	requiredplayers 0
 	votable 1
 endmode

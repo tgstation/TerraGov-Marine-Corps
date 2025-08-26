@@ -26,6 +26,7 @@
 #define MAP_FIORINA "Fiorina Prison"
 
 #define MAP_COLONY1 "Colony 1"
+#define MAP_LV_624BASES "LV624 Bases"
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
