@@ -340,6 +340,10 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/parallax_layer)
 
 /atom/movable/screen/parallax_layer/planet/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
+
+	if(SSmapping.configs[GROUND_MAP].parallax_icon)
+		icon_state = SSmapping.configs[GROUND_MAP].parallax_icon
+
 	var/client/boss = hud_owner?.mymob?.canon_client
 	if(!boss)
 		return

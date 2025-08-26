@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "Boiler now has 6 more new mutations that they can purchase."
-  - balance: "Mutations: Staggered Panic now scales at 7/5/3 stored globs, changed from 7/5/3 stored globs."
-  - imageadd: "Sprites for Ozelomelyn, Hemodile, and Sanguinal boiler globs."
