@@ -77,6 +77,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	var/roundstart_players = 0
 
+	var/allow_antag_map = FALSE
 
 /datum/game_mode/New()
 	initialize_emergency_calls()

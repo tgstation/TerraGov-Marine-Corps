@@ -7,6 +7,7 @@
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_ALIEN, FACTION_XENO, FACTION_CLF, FACTION_ICC, FACTION_VSD)
 	human_factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_CLF, FACTION_ICC, FACTION_VSD)
+	allow_antag_map = TRUE
 	//NTC, SOM and CLF are significant factions which have req access so they get more members, others aren't as invested and get 1 squad but usually get stronger gear (they are ERT anyway.)
 	valid_job_types = list(
 		/datum/job/terragov/command/ceo = 1,
@@ -102,6 +103,12 @@
 	bioscan_interval = 30 MINUTES
 	deploy_time_lock = 15 SECONDS
 
+/datum/game_mode/pre_setup()
+	/*dont know how to remove the zlevel this does nothing.
+	if(!allow_antag_map)
+	*/
+	. = ..()
+
 /datum/game_mode/infestation/extended_plus/secret_of_life/nosub
 	name = "Secret of Life - No subfactions"
 	config_tag = "Secret of Life - No Subfactions"
@@ -174,6 +181,7 @@
 	human_factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_CLF)
 	whitelist_ship_maps = list(MAP_EAGLE)
 	whitelist_ground_maps = list(MAP_LV_624BASES)
+	allow_antag_map = FALSE
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
