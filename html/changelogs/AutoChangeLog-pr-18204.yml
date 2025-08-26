@@ -1,7 +1,0 @@
-author: "ChaikaCherry"
-delete-after: True
-changes:
-  - balance: "MBX and 12 gauge tracker shells damage raised to 40 and 90 respectively."
-  - balance: "Ranges are both now 15"
-  - balance: "the status effect lasts for 60 seconds and drips every 3 seconds, leaving same number of drops."
-  - balance: "both had AP lowered from 100 to something reasonable."

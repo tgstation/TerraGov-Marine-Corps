@@ -105,3 +105,16 @@
   blackdav123:
   - imageadd: Ported new parallax sprites from RU. Enjoy the new map specific space
       backgrounds.
+2025-08-26:
+  ChaikaCherry:
+  - balance: MBX and 12 gauge tracker shells damage raised to 40 and 90 respectively.
+  - balance: Ranges are both now 15
+  - balance: the status effect lasts for 60 seconds and drips every 3 seconds, leaving
+      same number of drops.
+  - balance: both had AP lowered from 100 to something reasonable.
+  jonash07:
+  - balance: Conqueror's hp 800 -> 650
+  - balance: Conqueror's dash cd 3.5s -> 4.5s
+  revelation-8468:
+  - rscdel: Disables Dragon, Mech Pilot, and Armoured Crewman
+  - balance: Removes Dragon, MP, and AC from Nuclear War
