@@ -1,0 +1,5 @@
+author: "jonash07"
+delete-after: True
+changes:
+  - balance: "Conqueror's hp 800 -> 650"
+  - balance: "Conqueror's dash cd 3.5s -> 4.5s"
