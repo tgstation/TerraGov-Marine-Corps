@@ -39,7 +39,7 @@
 		<b>You answer to</b> NTC High Command<br /><br />
 		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Lead the NTF platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
+		<b>Duty</b>: Lead the NTF platoon and complete your mission. Support the marines and communicate with your command staff, execute orders. Coordinate with Operations officer.
 	"}
 	minimap_icon = "captain"
 
@@ -518,7 +518,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING
 	selection_color = "#fff5cc"
-	supervisors = "the acting captain"
+	supervisors = "the acting captain, Archercorp."
 	exp_type_department = EXP_TYPE_ENGINEERING
 
 
@@ -587,7 +587,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	comm_title = "ST"
 	paygrade = "PO3"
 	total_positions = 5
-	supervisors = "the chief ship engineer and the requisitions officer"
+	supervisors = "the chief ship engineer and the requisitions officer, Archercorp."
 	access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	skills_type = /datum/skills/st
@@ -639,7 +639,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 /datum/job/terragov/requisitions
 	job_category = JOB_CAT_REQUISITIONS
 	selection_color = "#BAAFD9"
-	supervisors = "the acting captain"
+	supervisors = "the acting captain, TRANSCO."
 	exp_type_department = EXP_TYPE_REQUISITIONS
 
 
@@ -722,7 +722,7 @@ A happy ship is a well-functioning ship."}
 	comm_title = "CMO"
 	paygrade = "SP"
 	total_positions = 1
-	supervisors = "the acting captain"
+	supervisors = "the acting captain, Novamed."
 	selection_color = "#99FF99"
 	access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
@@ -787,7 +787,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	comm_title = "MD"
 	paygrade = "MS"
 	total_positions = 4
-	supervisors = "the chief medical officer"
+	supervisors = "the chief medical officer, Novamed."
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
@@ -848,7 +848,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	comm_title = "Rsr"
 	paygrade = "RSRA"
 	total_positions = 2
-	supervisors = "the NT corporate office"
+	supervisors = "Novamed."
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/researcher
@@ -917,7 +917,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	title = CORPORATE_LIAISON
 	paygrade = "NT1"
 	comm_title = "OO"
-	supervisors = "the NT corporate office"
+	supervisors = "the NT corporate office, and the corporate council."
 	total_positions = 1
 	shadow_languages = list(/datum/language/xenocommon)
 	access = ALL_ACCESS
@@ -982,7 +982,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	req_admin_notify = TRUE
 	comm_title = "Syn"
 	paygrade = "Mk.I"
-	supervisors = "the acting captain"
+	supervisors = "the acting captain, Ninetails."
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
 	access = ALL_ACCESS
@@ -1056,7 +1056,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	comm_title = "AI"
 	total_positions = 1
 	selection_color = "#92c255"
-	supervisors = "your laws and the human crew"
+	supervisors = "your laws and the human crew."
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
