@@ -151,11 +151,10 @@
 	cooldown_duration = JESTER_TAROT_DECK_COOLDOWN
 	///Wether or not this ability is active and can be used
 	var/active = TRUE
-	///Temporary storage for the ability to be used on next activation of this ability
-	var/datum/action/ability/ability_container
-	///Containers for for the two types of abilties, so that targetable abilties can be used even though this is a nontargeted ability
-	var/datum/action/ability/xeno_action/tarot_deck_container/nontargetable = new
-	var/datum/action/ability/activable/xeno/tarot_deck_container/targetable = new
+	///Admin tarot deck override, for testing. Will always draw this ability, regardless of blacklist
+	var/tarot_override
+	///Container for the mimiced ability
+	var/datum/action/ability/activable/xeno/draw_deck_container/ability_container = new
 	///List of all abilties that cannot be picked. Includes noncombat abilties and or certain buggy / irrelevant abilties
 	///Is a blacklist to cover the case of new caste gets added -> not added here, new abilties are then never added
 	///Players are much more vocal about broken or unbalanced abilties than they are about abilities they may or may not know exist.
@@ -232,36 +231,25 @@
 		/datum/action/ability/xeno_action/place_jelly_pod,
 		/datum/action/ability/xeno_action/regenerate_skin,
 		/datum/action/ability/xeno_action/zero_form_beam, //no fun allowed also buggy as hell
-		/datum/action/ability/xeno_action/dodge,
 		/datum/action/ability/xeno_action/centrifugal_force,
 		/datum/action/ability/activable/xeno/conqueror_will,
-		/datum/action/ability/xeno_action/tarot_deck_container,
 		/datum/action/ability/activable/xeno/earth_riser,
-		/datum/action/ability/activable/xeno/psychic_shield,
 		/datum/action/ability/xeno_action/acid_mine,
-		/datum/action/ability/activable/xeno/snatch,
 		/datum/action/ability/activable/xeno/drain_sting,
-		/datum/action/ability/xeno_action/sow,
 		/datum/action/ability/xeno_action/build_hugger_turret,
 		/datum/action/ability/activable/xeno/inject_egg_neurogas,
 		/datum/action/ability/xeno_action/steam_rush,
 		/datum/action/ability/xeno_action/endure,
-		/datum/action/ability/xeno_action/reagent_slash,
 		/datum/action/ability/xeno_action/psychic_summon,
 		/datum/action/ability/activable/xeno/acidic_missile,
-		/datum/action/ability/activable/xeno/web_hook,
-		/datum/action/ability/activable/xeno/leash_ball,
-		/datum/action/ability/xeno_action/mirage,
-		/datum/action/ability/activable/xeno/feast,
 		/datum/action/ability/activable/xeno/psy_blast,
 		/datum/action/ability/xeno_action/evasion,
 		/datum/action/ability/xeno_action/place_recovery_pylon,
 		/datum/action/ability/xeno_action/petrify,
-		/datum/action/ability/xeno_action/emit_neurogas,
 		/datum/action/ability/activable/xeno/psychic_link,
 		/datum/action/ability/activable/xeno/infernal_trigger,
 		/datum/action/ability/activable/xeno/oppressor/abduct,
-		/datum/action/ability/activable/xeno/item_throw,
+		/datum/action/ability/activable/xeno/drain,
 
 	)
 	///List of all the parent abilties that should have themselves and all of their children also blacklisted
@@ -281,7 +269,6 @@
 		/datum/action/ability/xeno_action/ready_charge,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/tarot_deck_container,
 		/datum/action/ability/activable/xeno/draw_deck_container,
 		/datum/action/ability/activable/xeno/xeno_spit,
 	)
@@ -312,8 +299,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		for(var/datum/action/ability/i AS in allabilties)
 			if(!(i in blacklist_actions))
 				GLOB.tarot_deck_actions += i
-	targetable.give_action(xeno_owner)
-	nontargetable.give_action(xeno_owner)
+	ability_container.give_action(xeno_owner)
 
 /datum/action/ability/xeno_action/tarot_deck/can_use_action(silent, override_flags)
 	. = ..()
@@ -321,200 +307,42 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		return FALSE
 
 /datum/action/ability/xeno_action/tarot_deck/action_activate()
-	if(ability_container) // If we have no ability then select one and inform the jester of what was selected
-		return
-	var/picked_ability = pick(GLOB.tarot_deck_actions)
-	ability_container = new picked_ability
-	ability_container.ability_cost = 0
-	xeno_owner.balloon_alert(xeno_owner,"Picked [ability_container.name] for next use!")
-	if(ispath(ability_container.type, /datum/action/ability/activable))
-		targetable.active = TRUE
-		targetable.name = ability_container.name
-		targetable.action_icon = ability_container.action_icon
-		targetable.action_icon_state = ability_container.action_icon_state
-		targetable.hidden = FALSE
-		targetable.desc = ability_container.desc
-		targetable.container = ability_container
-		targetable.container.give_action(xeno_owner)
-		targetable.container.hidden = TRUE
-		targetable.on_jester_roll()
+	var/picked_ability
+	if(!tarot_override)
+		picked_ability = pick(GLOB.tarot_deck_actions)
 	else
-		nontargetable.active = TRUE
-		nontargetable.name = ability_container.name
-		nontargetable.action_icon = ability_container.action_icon
-		nontargetable.action_icon_state = ability_container.action_icon_state
-		nontargetable.hidden = FALSE
-		nontargetable.desc = ability_container.desc
-		nontargetable.container = ability_container
-		nontargetable.container.give_action(xeno_owner)
-		nontargetable.container.hidden = TRUE
-		nontargetable.on_jester_roll()
+		picked_ability = tarot_override
+	ability_container.mimic(picked_ability, TRUE)
 	hidden = TRUE
 	active = FALSE
 	xeno_owner.update_action_buttons(TRUE)
 	succeed_activate()
-
-//Containers for tarot deck, of both types of abilties.
-/datum/action/ability/activable/xeno/tarot_deck_container
-	action_icon_state = "tarot"
-	action_icon = 'icons/Xeno/actions/jester.dmi'
-	ability_cost = 0
-	hidden = TRUE
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAROT_DECK,
-	)
-	///Wether or not this ability is currently active and allowed to be used
-	var/active
-	///Container for the ability we are actively mimicing
-	var/datum/action/ability/activable/xeno/container
-
-/datum/action/ability/activable/xeno/tarot_deck_container/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-	if(!active)
-		return FALSE
-	if(!container)
-		return FALSE
-	if(!container.can_use_ability(A, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
-		return FALSE
-
-/datum/action/ability/activable/xeno/tarot_deck_container/use_ability(atom/A)
-	container.xeno_owner = xeno_owner
-	container.owner = owner
-	container.select()
-	RegisterSignal(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE, PROC_REF(clean_up))
-	container.use_ability(A)
-
-///Called after the mimiced ability has been used, handles returning Tarot deck, deleting the contained ability, and hiding itself
-/datum/action/ability/activable/xeno/tarot_deck_container/proc/clean_up()
-	SIGNAL_HANDLER
-	hidden = TRUE
-	active = FALSE
-	var/datum/action/ability/xeno_action/tarot_deck/main_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tarot_deck]
-	main_ability.active = TRUE
-	main_ability.hidden = FALSE
-	xeno_owner.update_action_buttons(TRUE)
-	main_ability.ability_container = null
-	main_ability.add_cooldown()
-	container.remove_action(owner)
-	UnregisterSignal(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE)
-	addtimer(CALLBACK(src, PROC_REF(delete_mimic)), 10 SECONDS)
-
-/datum/action/ability/activable/xeno/tarot_deck_container/proc/delete_mimic()
-	qdel(container)
-
-/datum/action/ability/xeno_action/tarot_deck_container
-	action_icon_state = "tarot"
-	action_icon = 'icons/Xeno/actions/jester.dmi'
-	ability_cost = 0
-	hidden = TRUE
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAROT_DECK,
-	)
-	///Wether or not this ability is currently active and allowed to be used
-	var/active
-	///Container for the ability we are actively mimicing
-	var/datum/action/ability/xeno_action/container
-
-/datum/action/ability/xeno_action/tarot_deck_container/can_use_action(silent, override_flags)
-	. = ..()
-	if(!active)
-		return FALSE
-	if(!container)
-		return FALSE
-	if(!container.can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
-		return FALSE
-
-/datum/action/ability/xeno_action/tarot_deck_container/action_activate()
-	container.xeno_owner = xeno_owner
-	container.owner = owner
-	container.select()
-	if(container.action_activate())
-		hidden = TRUE
-		active = FALSE
-		container.remove_action(xeno_owner)
-		var/datum/action/ability/xeno_action/tarot_deck/main_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tarot_deck]
-		main_ability.active = TRUE
-		main_ability.hidden = FALSE
-		xeno_owner.update_action_buttons(TRUE)
-		main_ability.ability_container = null
-		main_ability.add_cooldown()
-
-// ***************************************
-// *********** Draw
-// ***************************************
-/datum/action/ability/xeno_action/draw
-	name = "Draw"
-	action_icon_state = "draw"
-	action_icon = 'icons/Xeno/actions/jester.dmi'
-	desc = "Draw two abilties, randomly - One from a deck focused on movement, and a second deck focused on defense."
-	ability_cost = 25
-	cooldown_duration = JESTER_DRAW_COOLDOWN
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW,
-	)
-
-	///List of all abilties the movement deck pulls from
-	var/list/movement_deck = list(
-		/datum/action/ability/activable/xeno/pounce,
-		/datum/action/ability/activable/xeno/warrior/lunge,
-		/datum/action/ability/activable/xeno/advance/jester,
-
-	)
-
-	///List of all abilties the defeense deck pulls from
-	var/list/defense_deck = list(
-		/datum/action/ability/xeno_action/mirage,
-		/datum/action/ability/activable/xeno/ravage,
-		/datum/action/ability/activable/xeno/feast,
-		/datum/action/ability/xeno_action/repulse,
-	)
-
-	///Container for the movement deck ability
-	var/datum/action/ability/activable/xeno/draw_deck_container/movement = new
-	///Container for the defense deck ability
-	var/datum/action/ability/activable/xeno/draw_deck_container/defense/defense = new
-
-/datum/action/ability/xeno_action/draw/give_action(mob/living/L)
-	. = ..()
-	movement.give_action(xeno_owner)
-	defense.give_action(xeno_owner)
-	xeno_owner.update_action_buttons(TRUE)
-
-/datum/action/ability/xeno_action/draw/action_activate()
-	. = ..()
-	var/defense_ability = pick(defense_deck)
-	var/movement_ability = pick(movement_deck)
-	movement.mimic(movement_ability)
-	defense.mimic(defense_ability)
-	succeed_activate()
-	add_cooldown()
 
 /datum/action/ability/activable/xeno/draw_deck_container
-	name = "Draw Deck : Agility"
-	desc = "When Draw is used, this turns into a agility focused ability. Currently, it is empty."
+	name = "Tarot Card"
+	desc = "When Tarot Deck is used, this turns into a ability. Currently, it is empty. (report this as a bug if you see this)"
 	action_icon = 'icons/Xeno/actions/jester.dmi'
-	action_icon_state = "draw_agility"
-	ability_cost = 50
+	action_icon_state = "tarot"
+	ability_cost = 0
+	hidden = TRUE
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_AGILITY,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAROT_DECK,
 	)
 	///Wether or not this ability is currently active and allowed to be used
 	var/active
 	///Container for the ability we are actively mimicing
 	var/datum/action/ability/container
+	///Wether or not we should hide this ability after use, and reveal the parent tarot deck ability
+	var/should_hide = TRUE
 
-/datum/action/ability/activable/xeno/draw_deck_container/defense
-	name = "Draw Deck: Defense"
-	desc = "When Draw is used, this turns into a defense focused ability. Currently, it is empty."
-	action_icon_state = "draw_defense"
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_DEFENSE,
-	)
 
 ///Takes in a ability, and turns itself into that ability. Also zeros the cost of the ability
-/datum/action/ability/activable/xeno/draw_deck_container/proc/mimic(datum/action/ability/ability_to_mimic)
+/datum/action/ability/activable/xeno/draw_deck_container/proc/mimic(datum/action/ability/ability_to_mimic, inform = FALSE)
 	var/datum/action/ability/clone = new ability_to_mimic
+	if(inform)
+		xeno_owner.balloon_alert(xeno_owner,"Picked [clone.name] for next use!")
 	active = TRUE
+	hidden = FALSE
 	clone.owner = owner
 	name = clone.name
 	action_icon = clone.action_icon
@@ -523,10 +351,10 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	container = clone
 	container.give_action(xeno_owner)
 	container.hidden = TRUE
-	xeno_owner.update_action_buttons(TRUE)
 	container.ability_cost = 0
 	container.owner = owner
 	container.on_jester_roll()
+	xeno_owner.update_action_buttons(TRUE)
 	//Typecasting to approipate level to set xeno_owner, as almost every ability uses it at some point
 	if(ispath(ability_to_mimic, /datum/action/ability/activable/xeno))
 		var/datum/action/ability/activable/xeno/targetable = clone
@@ -567,6 +395,12 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 /datum/action/ability/activable/xeno/draw_deck_container/proc/clean_up()
 	SIGNAL_HANDLER
 	active = FALSE
+	if(should_hide)
+		hidden = TRUE
+		var/datum/action/ability/xeno_action/tarot_deck/main_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/tarot_deck]
+		main_ability.active = TRUE
+		main_ability.hidden = FALSE
+		main_ability.add_cooldown()
 	UnregisterSignal(owner, COMSIG_ABILITY_SUCCEED_ACTIVATE)
 	action_icon = initial(action_icon)
 	action_icon_state = initial(action_icon_state)
@@ -578,8 +412,81 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 ///Handles removing the action and qdeling it - theres gotta be a way to remove this race condition...
 /datum/action/ability/activable/xeno/draw_deck_container/proc/delete_mimic()
 	container.remove_action(owner)
-	xeno_owner.update_action_buttons(TRUE)
 	qdel(container)
+	xeno_owner.update_action_buttons(TRUE)
+
+// ***************************************
+// *********** Draw
+// ***************************************
+/datum/action/ability/xeno_action/draw
+	name = "Draw"
+	action_icon_state = "draw"
+	action_icon = 'icons/Xeno/actions/jester.dmi'
+	desc = "Draw two abilties, randomly - One from a deck focused on movement, and a second deck focused on defense."
+	ability_cost = 25
+	cooldown_duration = JESTER_DRAW_COOLDOWN
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW,
+	)
+
+	///List of all abilties the movement deck pulls from
+	var/list/movement_deck = list(
+		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/activable/xeno/warrior/lunge,
+		/datum/action/ability/activable/xeno/advance/jester,
+
+	)
+
+	///List of all abilties the defeense deck pulls from
+	var/list/defense_deck = list(
+		/datum/action/ability/xeno_action/mirage,
+		/datum/action/ability/activable/xeno/ravage,
+		/datum/action/ability/activable/xeno/feast,
+		/datum/action/ability/xeno_action/repulse,
+	)
+
+	///Container for the movement deck ability
+	var/datum/action/ability/activable/xeno/draw_deck_container/agility/movement = new
+	///Container for the defense deck ability
+	var/datum/action/ability/activable/xeno/draw_deck_container/defense/defense = new
+
+/datum/action/ability/xeno_action/draw/give_action(mob/living/L)
+	. = ..()
+	movement.give_action(xeno_owner)
+	defense.give_action(xeno_owner)
+	xeno_owner.update_action_buttons(TRUE)
+
+/datum/action/ability/xeno_action/draw/action_activate()
+	. = ..()
+	var/defense_ability = pick(defense_deck)
+	var/movement_ability = pick(movement_deck)
+	movement.mimic(movement_ability)
+	defense.mimic(defense_ability)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/draw_deck_container/agility
+	name = "Draw Deck : Agility"
+	desc = "When Draw is used, this turns into a agility focused ability. Currently, it is empty."
+	action_icon = 'icons/Xeno/actions/jester.dmi'
+	action_icon_state = "draw_agility"
+	ability_cost = 50
+	hidden = FALSE
+	should_hide = FALSE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_AGILITY,
+	)
+
+/datum/action/ability/activable/xeno/draw_deck_container/defense
+	name = "Draw Deck: Defense"
+	desc = "When Draw is used, this turns into a defense focused ability. Currently, it is empty."
+	action_icon_state = "draw_defense"
+	ability_cost = 50
+	hidden = FALSE
+	should_hide = FALSE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_DEFENSE,
+	)
 
 // ***************************************
 // *********** Repulse, Rapid Retreat

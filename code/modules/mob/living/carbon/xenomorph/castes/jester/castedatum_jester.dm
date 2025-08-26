@@ -8,9 +8,10 @@
 
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "jester" //used to match appropriate wound overlays
+	wound_type = "Jester" //used to match appropriate wound overlays
 	gib_anim = "Jester Gibs"
 	gib_flick = "Jester Gibbed"
+	minimap_icon = "jester"
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
@@ -43,7 +44,7 @@
 	acid_spray_structure_damage = 45
 
 	// *** Other Misc Stuff *** //
-	feast_plasma_drain = 20
+	feast_plasma_drain = 80
 
 
 	// *** Flags *** //
@@ -56,7 +57,7 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/xeno_action/chips,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/patron_of_the_stars,
+		// /datum/action/ability/activable/xeno/patron_of_the_stars,
 		/datum/action/ability/activable/xeno/deck_of_disaster,
 		/datum/action/ability/xeno_action/draw,
 		/datum/action/ability/xeno_action/tarot_deck,
@@ -82,7 +83,7 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/xeno_action/chips,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/patron_of_the_stars,
+		// /datum/action/ability/activable/xeno/patron_of_the_stars,
 		/datum/action/ability/activable/xeno/deck_of_disaster,
 		/datum/action/ability/xeno_action/draw,
 		/datum/action/ability/xeno_action/tarot_deck,
