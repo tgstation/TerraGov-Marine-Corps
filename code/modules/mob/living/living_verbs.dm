@@ -83,7 +83,7 @@
 		return
 	// Gamemode disallowed handler - END
 
-	if(stat == DEAD)
+	if(stat == DEAD || isxenohivemind(src))
 		ghostize(TRUE)
 	else
 		to_chat(usr, "Not dead yet.")
