@@ -617,7 +617,7 @@
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CHOKE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING, // Shares the same key as you can only have this ability or the other, never both at the same time.
 	)
 	target_flags = ABILITY_MOB_TARGET
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
@@ -695,9 +695,11 @@
 		return
 	end_choke()
 
+/// Should the choking continue? Used for the do_after.
 /datum/action/ability/activable/xeno/psychic_choke/proc/can_continue_choke()
 	return can_use_action(TRUE, ABILITY_USE_BUSY) && choked_human
 
+/// Ends the choke by reverting everything associated with choking.
 /datum/action/ability/activable/xeno/psychic_choke/proc/end_choke()
 	choked_human.SetStun(0)
 
