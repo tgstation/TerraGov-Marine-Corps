@@ -66,6 +66,8 @@
 	var/fire_immune = FALSE
 	/// How far can they leap?
 	var/leap_range = 4
+	/// How long in decisecond should it take to manually attach a facehugger to someone?
+	var/hand_attach_time = 1 SECONDS
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source, new_fire_immunity)
 	. = ..()
@@ -174,7 +176,7 @@
 	user.visible_message(span_warning("\ [user] attempts to plant [src] on [M]'s face!"), \
 	span_warning("We attempt to plant [src] on [M]'s face!"))
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
-		if(!do_after(user, 1 SECONDS, NONE, M, BUSY_ICON_DANGER))
+		if(!do_after(user, hand_attach_time, NONE, M, BUSY_ICON_DANGER))
 			return
 	if(!try_attach(M))
 		go_idle()
@@ -320,10 +322,10 @@
 		if(E?.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
-		if(T && !T.hugger)
+		if(T && (T.hugger_limit > length(T.huggers)))
 			visible_message(span_xenowarning("[src] crawls into [T]!"))
 			forceMove(T)
-			T.hugger = src
+			T.huggers += src
 			T.set_trap_type(TRAP_HUGGER)
 			go_idle(TRUE)
 			return FALSE
@@ -843,6 +845,16 @@
 		if(hivenumber == X.hive.hivenumber) //No friendly fire
 			return FALSE
 
+	return TRUE
+
+
+/obj/item/clothing/mask/facehugger/combat/harmless
+	name = "harmless hugger"
+	color = COLOR_BROWN
+
+/obj/item/clothing/mask/facehugger/combat/harmless/try_attach(mob/M, mob/user)
+	if(!combat_hugger_check_target(M))
+		return FALSE
 	return TRUE
 
 #undef FACEHUGGER_DEATH

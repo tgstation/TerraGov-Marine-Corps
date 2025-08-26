@@ -2,6 +2,7 @@
     "map_name": "Daedalus Prison",
     "map_path": "map_files/DaedalusPrison",
     "map_file": "DaedalusPrison.dmm",
+	"parallax_icon": "ice",
 	"environment_traits": {
         "COLD": true
     },

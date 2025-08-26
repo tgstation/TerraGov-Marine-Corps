@@ -134,8 +134,6 @@
 	var/max_ammo = 0
 	///Multiplier to the effectiveness of the boiler glob. 1 by default.
 	var/bomb_strength = 0
-	///Delay between firing the bombard ability for boilers
-	var/bomb_delay = 0
 
 	// *** Carrier Abilities *** //
 	///maximum amount of huggers a carrier can carry at one time.
@@ -397,6 +395,16 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
+	// *** Boiler vars *** //
+	/// If their stored globs (corrosive + neurotoxin) surpasses this amount, they begin to glow at an increasing intensity.
+	var/glob_luminosity_threshold = BOILER_LUMINOSITY_THRESHOLD
+	/// Should the glow be replaced with a movement modifier? If so, how much for each glob above the threshold?
+	var/glob_luminosity_slowing = 0
+	/// Stored corrosive globs created from Boiler's Create Bomb.
+	var/corrosive_ammo = 0
+	/// Stored neurotoxin globs created from Boiler's Create Bomb.
+	var/neurotoxin_ammo = 0
+
 	// *** Globadier vars *** //
 	var/obj/item/explosive/grenade/globadier/selected_grenade = /obj/item/explosive/grenade/globadier
 
@@ -432,10 +440,6 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/list/tunnels = list()
 	///Number of huggers the xeno is currently carrying
 	var/huggers = 0
-	///Boiler acid ammo
-	var/corrosive_ammo = 0
-	///Boiler Neuro ammo
-	var/neuro_ammo = 0
 
 	/// All active mutations they own.
 	var/list/datum/mutation_upgrade/owned_mutations = list()
