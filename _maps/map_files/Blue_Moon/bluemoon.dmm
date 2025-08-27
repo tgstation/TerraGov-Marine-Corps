@@ -3216,6 +3216,13 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bluemoon/outside/building/toolshed)
+"dFM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bluemoon/outside/c)
 "dFY" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
@@ -4902,6 +4909,14 @@
 	},
 /turf/open/floor/purpthree,
 /area/bluemoon/caves/facility/eta/xeno)
+"fMA" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/tile/dark,
+/area/bluemoon/outside/c)
 "fNK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -15757,8 +15772,9 @@
 /area/bluemoon/caves/facility/lambda/n)
 "slW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bluemoon/outside/w)
 "slX" = (
@@ -17424,6 +17440,13 @@
 	dir = 1
 	},
 /area/bluemoon/outside/building/lz)
+"uoX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bluemoon/outside/w)
 "upR" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
 	name = "\improper Operations";
@@ -26444,7 +26467,7 @@ inh
 eYz
 inh
 rgl
-inh
+uoX
 slW
 inh
 inh
@@ -30265,9 +30288,9 @@ dDi
 mmH
 mmH
 mmH
-vCd
 txg
-tjj
+dFM
+fMA
 mmH
 vCd
 vCd
