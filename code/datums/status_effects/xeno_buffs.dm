@@ -137,7 +137,7 @@
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
 	var/leftover_healing = heal_amount
-	HEAL_XENO_DAMAGE(link_target, leftover_healing, FALSE)
+	HEAL_XENO_DAMAGE(link_target, leftover_healing, TRUE)
 	var/sunder_change = link_target.adjust_sunder(-heal_amount / 10)
 	link_owner.use_plasma(ability_cost)
 	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
@@ -277,7 +277,7 @@
 	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
 	var/heal_amount = buff_owner.maxHealth * 0.01
 	var/leftover_healing = heal_amount
-	HEAL_XENO_DAMAGE(buff_owner, leftover_healing, FALSE)
+	HEAL_XENO_DAMAGE(buff_owner, leftover_healing, TRUE)
 	var/sunder_change = buff_owner.adjust_sunder(-1)
 	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing) // While it is true that this comes from Acidic Salve, it is only applied to Essence Link users.
 	GLOB.round_statistics.drone_essence_link_sunder += -sunder_change
