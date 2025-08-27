@@ -142,14 +142,14 @@
 	if(action == "switch_camera")
 		var/camera_reference = params["ref"]
 		var/list/cameras = get_available_cameras()
-		var/obj/machinery/camera/selected_camera
-
-		active_camera = cameras[camera_reference]
-		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+		var/obj/machinery/camera/selected_camera = cameras[camera_reference]
 
 		if(!selected_camera)
 			return TRUE
+		active_camera = selected_camera
+		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
 
+		last_turf = null
 		update_active_camera_screen()
 
 		return TRUE
