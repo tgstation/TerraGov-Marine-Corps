@@ -68,10 +68,10 @@
 		entering_xenomorph.xeno_caste.regen_delay = 1 SECONDS
 		entering_xenomorph.regen_power = max(-entering_xenomorph.xeno_caste.regen_delay, entering_xenomorph.regen_power)
 		entering_xenomorph.xeno_caste.regen_ramp_amount *= 2
-		entering_xenomorph.add_filter("recovery_pylon_outline", 1, outline_filter(2, COLOR_BLUE_LIGHT))
+		entering_xenomorph.add_filter("recovery_pylon_outline", 2, outline_filter(1, COLOR_BLUE_LIGHT))
 	else
 		entering_xenomorph.xeno_melee_damage_modifier += damage_modifier
-		entering_xenomorph.add_filter("recovery_pylon_outline", 1, outline_filter(2, COLOR_RED_LIGHT))
+		entering_xenomorph.add_filter("recovery_pylon_outline", 2, outline_filter(1, COLOR_RED_LIGHT))
 
 /// Reverses the buffs to leaving xenomorphs if they were given it.
 /obj/structure/xeno/recovery_pylon/proc/remove_buff(datum/source, atom/movable/leaving_movable, direction)
@@ -120,8 +120,8 @@
 	icon_state = list("cross" = 1, "x" = 1, "rectangle" = 1, "up_arrow" = 1, "down_arrow" = 1, "square" = 1)
 	width = 500
 	height = 500
-	count = 250
-	spawning = 20
+	count = 130
+	spawning = 10
 	gravity = list(0, 0.1)
 	color = LIGHT_COLOR_BLUE
 	lifespan = 13
@@ -136,8 +136,8 @@
 	icon_state = list("cross" = 1, "x" = 1, "rectangle" = 1, "up_arrow" = 1, "down_arrow" = 1, "square" = 1)
 	width = 500
 	height = 500
-	count = 1000
-	spawning = 50
+	count = 520
+	spawning = 40
 	gravity = list(0, 0.1)
 	color = LIGHT_COLOR_RED
 	lifespan = 13

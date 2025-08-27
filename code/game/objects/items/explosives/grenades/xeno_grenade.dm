@@ -1,4 +1,3 @@
-
 /obj/item/explosive/grenade/sticky/xeno
 	name = "\improper slime grenade"
 	desc = "A fleshy mass oozing acid. It appears to be rapidly decomposing."
