@@ -120,4 +120,5 @@ map fiorina
 endmap
 
 map medium_green
+	minplayers 60
 endmap
