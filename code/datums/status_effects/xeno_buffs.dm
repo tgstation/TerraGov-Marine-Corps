@@ -181,7 +181,7 @@
 	new /obj/effect/temp_visual/healing(get_turf(heal_target))
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
 	var/leftover_healing = heal_amount
-	HEAL_XENO_DAMAGE(heal_target, leftover_healing, FALSE)
+	HEAL_XENO_DAMAGE(heal_target, leftover_healing, TRUE)
 	var/sunder_change = heal_target.adjust_sunder(-heal_amount / 10)
 
 	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
