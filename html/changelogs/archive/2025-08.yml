@@ -118,3 +118,13 @@
   revelation-8468:
   - rscdel: Disables Dragon, Mech Pilot, and Armoured Crewman
   - balance: Removes Dragon, MP, and AC from Nuclear War
+2025-08-27:
+  Lumipharon:
+  - bugfix: fixed NPC's occasionally getting stuck trying to pick up items they are
+      already carrying
+  Runian:
+  - code_imp: Removes unused variable from boiler abilities and xenomorph abilities.
+  - spellcheck: 'Mutations: Neurotoxin Swap''s description now has the conjunction
+      "and" that it was missing.'
+  - spellcheck: 'Mutations: Telefrag''s description now uses the correct duration
+      to display as seconds.'
