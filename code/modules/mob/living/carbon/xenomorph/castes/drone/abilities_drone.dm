@@ -148,6 +148,8 @@
 	if(heal_multiplier > 1) // A signal depends on the above heals, so this has to be done here.
 		playsound(target,'sound/effects/magic.ogg', 75, 1)
 		essence_link_action.existing_link.add_stacks(-1)
+	GLOB.round_statistics.drone_acidic_salve += heal_amount
+	GLOB.round_statistics.drone_acidic_salve_sunder += heal_amount/10
 
 // ***************************************
 // *********** Enhancement

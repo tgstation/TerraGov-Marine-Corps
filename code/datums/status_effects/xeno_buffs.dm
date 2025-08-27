@@ -138,6 +138,7 @@
 		return
 	link_target.adjustFireLoss(-max(0, heal_amount - link_target.getBruteLoss()), passive = TRUE)
 	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
+	GLOB.round_statistics.drone_essence_link += heal_amount
 	link_owner.use_plasma(ability_cost)
 
 /// Shares the Resin Jelly buff with the linked xeno.
@@ -183,6 +184,8 @@
 	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
 	heal_target.adjust_sunder(-heal_amount/10)
 	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
+	GLOB.round_statistics.drone_essence_link += heal_amount
+	GLOB.round_statistics.drone_acidic_salve_sunder += heal_amount/10
 
 /// Toggles the link signals on or off.
 /datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
@@ -243,6 +246,7 @@
 		return
 	var/damage_to_heal = damage_dealt * lifesteal_percentage
 	HEAL_XENO_DAMAGE(link_owner, damage_to_heal, FALSE)
+	GLOB.round_statistics.drone_essence_link += (damage_dealt * lifesteal_percentage) - damage_to_heal // Amount actually healed.
 
 // ***************************************
 // *********** Salve Regeneration
@@ -273,6 +277,8 @@
 	buff_owner.adjustFireLoss(-max(0, heal_amount - buff_owner.getBruteLoss()), passive = TRUE)
 	buff_owner.adjustBruteLoss(-heal_amount, passive = TRUE)
 	buff_owner.adjust_sunder(-1)
+	GLOB.round_statistics.drone_essence_link += heal_amount // While it is true that this comes from Acidic Salve, it is only applied to Essence Link users.
+	GLOB.round_statistics.drone_essence_link_sunder += 1
 	return ..()
 
 // ***************************************
