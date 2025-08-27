@@ -224,8 +224,7 @@
 		var/mob/living/living_mover = mover
 		if((!(istype(living_mover))) || (living_mover.stat != CONSCIOUS))
 			return
-		if(isxeno(living_mover))
-			toggle_state()
+		toggle_state()
 		return TRUE
 
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
