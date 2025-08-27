@@ -151,11 +151,7 @@
 /// Ends the target's throw.
 /datum/action/ability/activable/xeno/warrior/proc/throw_ended(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
-	/* So the reason why we do not flat out unregister this is because, when an atom makes impact with something, it calls throw_impact(). Calling it this way causes
-	stop_throw() to be called in most cases, because impacts can cause a bounce effect and ending the throw makes it happen. Given the way we have signals setup, unregistering
-	it at that point would cause thrown_into() to never get called, and that is exactly the reason why the line of code below exists. */
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 1)
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT))
 	var/mob/living/living_target = source
 	living_target.Knockdown(0.5 SECONDS)
 	living_target.remove_pass_flags(PASS_XENO, THROW_TRAIT)
@@ -191,7 +187,7 @@
 // ***************************************
 // *********** Lunge
 // ***************************************
-#define WARRIOR_LUNGE_RANGE 4 // in tiles
+#define WARRIOR_LUNGE_RANGE 4.5
 
 /datum/action/ability/activable/xeno/warrior/lunge
 	name = "Lunge"
@@ -203,7 +199,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
 	)
 	target_flags = ABILITY_MOB_TARGET
-	/// The starting amount of distance that Fling can go.
+	/// The starting amount of distance that Fling can go. Compared against euclidean distance. Rounded down for lunge throw.
 	var/starting_lunge_distance = WARRIOR_LUNGE_RANGE
 	/// The target of our lunge, we keep it to check if we are adjacent every time we move.
 	var/atom/lunge_target
@@ -229,7 +225,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Dead")
 		return FALSE
-	if(get_dist_euclidean_square(living_target, owner) > starting_lunge_distance * 5)
+	if(get_dist_euclidean(living_target, owner) > starting_lunge_distance)
 		if(!silent)
 			owner.balloon_alert(owner, "Too far")
 		return FALSE
@@ -248,7 +244,7 @@
 	RegisterSignal(lunge_target, COMSIG_QDELETING, PROC_REF(clean_lunge_target))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
-	xeno_owner.throw_at(get_step_towards(A, xeno_owner), starting_lunge_distance, 2, xeno_owner)
+	xeno_owner.throw_at(get_step_towards(A, xeno_owner), FLOOR(starting_lunge_distance, 1), 2, xeno_owner)
 
 /// Check if we are close enough to grab.
 /datum/action/ability/activable/xeno/warrior/lunge/proc/check_if_lunge_possible(datum/source)
@@ -262,7 +258,7 @@
 	UnregisterSignal(lunge_target, COMSIG_QDELETING)
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_POST_THROW))
 	lunge_target = null
-	owner.stop_throw()
+	owner.set_throwing(FALSE)
 	owner.remove_filter("warrior_lunge")
 
 /// Do the grab on the target, and clean all previous vars

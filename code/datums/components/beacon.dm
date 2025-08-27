@@ -85,14 +85,22 @@
 ///Activates the beacon
 /datum/component/beacon/proc/activate(atom/movable/source, mob/user)
 	var/turf/location = get_turf(source)
-	var/area/curr_area = get_area(location)
-	if(check_for_blacklist(source))
+	var/area/A = get_area(location)
+	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		to_chat(user, span_warning("This won't work if you're standing deep underground."))
 		active = FALSE
 		return FALSE
+
+	if(istype(A, /area/shuttle/dropship))
+		to_chat(user, span_warning("You have to be outside the dropship to use this or it won't transmit."))
+		active = FALSE
+		return FALSE
+
 	if(length(user.do_actions))
 		user.balloon_alert(user, "Busy!")
 		active = FALSE
 		return
+
 	if(anchor && anchor_time)
 		var/delay = max(1.5 SECONDS, anchor_time - 2 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))
 		user.visible_message(span_notice("[user] starts setting up [source] on the ground."),
@@ -101,6 +109,7 @@
 			user.balloon_alert(user, "Keep still!")
 			active = FALSE
 			return
+
 	activator = user
 
 	if(anchor) //Only anchored beacons have cameras and lights

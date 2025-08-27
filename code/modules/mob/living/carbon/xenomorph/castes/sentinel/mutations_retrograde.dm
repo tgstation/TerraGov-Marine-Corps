@@ -3,9 +3,9 @@
 //*********************//
 /datum/mutation_upgrade/shell/gaseous_blood
 	name = "Gaseous Blood"
-	desc = "Everytime you take damage, you emit non-opaque light neurotoxin gas with a radius of 2. This can happen once every 5/3/1 seconds."
+	desc = "Everytime you take damage, you emit non-opaque light neurotoxin gas with a radius of 2. This can happen once every 8/6/4 seconds."
 	/// For the first structure, the cooldown in deciseconds.
-	var/cooldown_initial = 7 SECONDS
+	var/cooldown_initial = 10 SECONDS
 	/// For each structure, the increased cooldown in deciseconds.
 	var/cooldown_per_structure = -2 SECONDS
 	/// The type of gas that is emitted.
@@ -37,7 +37,7 @@
 	COOLDOWN_START(src, activation_cooldown, get_cooldown(get_total_structures()))
 
 	var/datum/effect_system/smoke_spread/smoke_system = new gas_type()
-	smoke_system.set_up(gas_range, get_turf(xenomorph_owner))
+	smoke_system.set_up(gas_range, get_turf(xenomorph_owner), 2) // 4 seconds of gas.
 	smoke_system.start()
 
 /// Returns the cooldown (in deciseconds) for the gas.
@@ -49,12 +49,12 @@
 //*********************//
 /datum/mutation_upgrade/spur/toxic_claws
 	name = "Toxic Claws"
-	desc = "You gain an ability that makes your slashes inject 5/6/7u Neurotoxin for the next 3 slashes. You no longer have the ability Neurotoxin Sting."
+	desc = "You gain an ability that makes your slashes inject 6/7/8u Neurotoxin for the next 3 slashes. You no longer have the ability Neurotoxin Sting."
 	conflicting_mutation_types = list(
 		/datum/mutation_upgrade/veil/toxic_spillage
 	)
 	/// For the first structure, the amount of reagents to inject per slash.
-	var/amount_initial = 4
+	var/amount_initial = 5
 	/// For each structure, the additional amount of reagents to inject per slash.
 	var/amount_per_structure = 1
 
@@ -70,7 +70,7 @@
 	var/datum/action/ability/xeno_action/reagent_slash/slash_ability = new()
 	slash_ability.give_action(xenomorph_owner)
 	slash_ability.reagent_slash_amount = get_amount(0)
-	xenomorph_owner.selected_reagent = /datum/reagent/toxin/xeno_neurotoxin
+	xenomorph_owner.set_selected_reagent(/datum/reagent/toxin/xeno_neurotoxin)
 	return ..()
 
 /datum/mutation_upgrade/spur/toxic_claws/on_mutation_disabled()
@@ -79,7 +79,7 @@
 		slash_ability.remove_action(xenomorph_owner) // No need to decrease the reagent slash amount since the ability is gone now.
 	var/datum/action/ability/activable/xeno/neurotox_sting/sting_ability = new()
 	sting_ability.give_action(xenomorph_owner)
-	xenomorph_owner.selected_reagent = initial(xenomorph_owner.selected_reagent)
+	xenomorph_owner.set_selected_reagent(initial(xenomorph_owner.selected_reagent))
 	return ..()
 
 /datum/mutation_upgrade/spur/toxic_claws/on_structure_update(previous_amount, new_amount)
@@ -139,8 +139,6 @@
 
 /datum/mutation_upgrade/veil/toxic_spillage/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/neurotox_sting/sting_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/neurotox_sting]
 	if(!sting_ability)
 		return

@@ -31,7 +31,7 @@
 	upgrade_threshold = TIER_ONE_THRESHOLD
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
@@ -50,6 +50,19 @@
 		/datum/action/ability/xeno_action/evasion,
 		/datum/action/ability/activable/xeno/pounce/runner,
 	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/upfront_evasion,
+		/datum/mutation_upgrade/shell/borrowed_time,
+		/datum/mutation_upgrade/shell/ingrained_evasion,
+		/datum/mutation_upgrade/spur/sneak_attack,
+		/datum/mutation_upgrade/spur/right_here,
+		/datum/mutation_upgrade/spur/mutilate,
+		/datum/mutation_upgrade/veil/headslam,
+		/datum/mutation_upgrade/veil/frenzy,
+		/datum/mutation_upgrade/veil/passing_glance
+	)
+
 
 /datum/xeno_caste/runner/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -87,7 +100,7 @@
 
 	// Gain acid blood for less speed (0.2).
 	speed = -1.2
-	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 
 	// +50 health
 	max_health = 350

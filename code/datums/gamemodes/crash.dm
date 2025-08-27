@@ -21,7 +21,6 @@
 		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
 	)
 	respawn_time = 15 MINUTES
-	xenorespawn_time = 3 MINUTES
 	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
 	tier_three_penalty = 1
 	tier_three_inclusion = TRUE
@@ -91,6 +90,9 @@
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/xeno/silo(i)
 		new /obj/structure/xeno/pherotower(i)
+
+	for(var/i in GLOB.xeno_spawner_turfs)
+		new /obj/structure/xeno/spawner(i, XENO_HIVE_NORMAL)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
@@ -223,11 +225,17 @@
 	var/total_xenos = xeno_hive.get_total_xeno_number() + (xeno_job.total_positions - xeno_job.current_positions)
 	return get_total_joblarvaworth() - (total_xenos * xeno_job.job_points_needed)
 
-/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
+/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags = COUNT_IGNORE_HUMAN_SSD)
 	. = 0
 
 	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
 		if(!H.job)
+			continue
+		if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))) // DNR'd humans don't count
+			continue
+		if(H.stat == DEAD && !H.has_working_organs())
+			continue
+		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
 		if(isspaceturf(H.loc))
 			continue

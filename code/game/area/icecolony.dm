@@ -11,7 +11,6 @@
 //Base Instance
 /area/ice_colony
 	name = "Ice Colony"
-	icon_state = "ice_colony"
 	icon_state = "cliff_blocked"
 	ambience = list('sound/ambience/ambi_snow.ogg')
 
@@ -766,8 +765,8 @@
 	icon_state = "quartstorage"
 
 /area/ice_colony/underground/requesition/sec_storage
-	name = "Underground Generator Room"
-	icon_state = "engine"
+	name = "Underground Requesitions Secure Storage"
+	icon_state = "storage"
 
 /*
 * Underground - Research

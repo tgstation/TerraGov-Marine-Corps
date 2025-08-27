@@ -595,6 +595,8 @@
 	var/mob/living/carbon/xenomorph/pyrogen/debuff_creator
 	/// Used for the fire effect.
 	var/obj/vis_melt_fire/visual_fire
+	// The percentage of brute/burn healing that should be negated.
+	var/healing_debuff = 0
 
 /obj/vis_melt_fire
 	name = "ouch ouch ouch"
@@ -614,13 +616,12 @@
 	debuff_owner.balloon_alert(debuff_owner, "Melting fire")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
-	if(new_creator && isxenopyrogen(new_creator)) // It is possible for a non-pyrogen to create this.
-		debuff_creator = new_creator
+	set_creator(new_creator)
 
 /// on remove has owner set to null
 /datum/status_effect/stacking/melting_fire/on_remove()
 	owner.vis_contents -= visual_fire
-	debuff_owner = null
+	set_creator(null)
 	QDEL_NULL(visual_fire)
 	return ..()
 
@@ -645,10 +646,25 @@
 	HEAL_XENO_DAMAGE(debuff_creator, amount_to_heal, FALSE)
 	debuff_creator.gain_plasma(5, TRUE)
 
-/datum/status_effect/stacking/melting_fire/add_stacks(stacks_added, atom/xeno_cause)
+/datum/status_effect/stacking/melting_fire/add_stacks(stacks_added, atom/xeno_creator)
 	. = ..()
-	if(xeno_cause && isxenopyrogen(xeno_cause))
-		debuff_creator = xeno_cause
+	set_creator(xeno_creator)
+
+/// Sets the debuff creator of this status effect. Sets and (un)registers signals regarding healing reduction accordingly.
+/datum/status_effect/stacking/melting_fire/proc/set_creator(atom/xeno_creator)
+	if(!xeno_creator || !isxenopyrogen(xeno_creator))
+		if(healing_debuff)
+			UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
+			healing_debuff = 0
+		debuff_creator = null
+		return
+	var/mob/living/carbon/xenomorph/pyrogen/new_creator = xeno_creator
+	if(healing_debuff && !new_creator.melting_fire_healing_reduction)
+		UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
+	if(!healing_debuff && new_creator.melting_fire_healing_reduction)
+		RegisterSignals(debuff_owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE), PROC_REF(on_heal))
+	debuff_creator = new_creator
+	healing_debuff = new_creator.melting_fire_healing_reduction
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/melting_fire/proc/call_resist_debuff()
@@ -672,6 +688,13 @@
 		span_notice("You extinguish yourself."), null, 5)
 	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST) // If their stacks hit zero, it is qdel'd right here.
 
+// If the owner of this status effect were to heal, a percentage of that healing will be negated.
+/datum/status_effect/stacking/melting_fire/proc/on_heal(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	if(amount >= 0 || !healing_debuff)
+		return
+	amount_mod += floor(amount) * healing_debuff
+
 // ***************************************
 // *********** dread
 // ***************************************
@@ -684,11 +707,11 @@
 	id = "dread"
 	status_type = STATUS_EFFECT_REPLACE
 	tick_interval = 2 SECONDS
+	duration = 6 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/dread
 
-/datum/status_effect/dread/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/dread/on_creation(mob/living/new_owner)
 	owner = new_owner
-	duration = set_duration
 	return ..()
 
 /datum/status_effect/dread/tick(delta_time)
@@ -705,6 +728,29 @@
 /datum/status_effect/dread/on_remove()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_XENO_DREAD)
 	return ..()
+
+/atom/movable/screen/alert/status_effect/draining_dread
+	name = "Draining Dread"
+	desc = "A dreadful presence. You take constant stamina damage until this expires."
+	icon_state = "dread"
+
+/datum/status_effect/draining_dread
+	id = "draining_dread"
+	status_type = STATUS_EFFECT_REPLACE
+	duration = 6 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/draining_dread
+	var/stamina_damage = 4
+
+/datum/status_effect/draining_dread/on_creation(mob/living/new_owner, set_stamina_damage)
+	owner = new_owner
+	if(set_stamina_damage)
+		stamina_damage = set_stamina_damage
+	return ..()
+
+/datum/status_effect/draining_dread/tick(delta_time)
+	. = ..()
+	owner.do_jitter_animation(250)
+	owner.adjustStaminaLoss(stamina_damage)
 
 // ***************************************
 // *********** Melting
@@ -968,7 +1014,7 @@
 	. = ..()
 	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(owner, /particles/melting_acid_status)
-	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	particle_holder.particles.spawning = 1 + round(stacks / 4)
 
 /datum/status_effect/stacking/melting_acid/on_remove()
 	QDEL_NULL(particle_holder)
@@ -979,7 +1025,7 @@
 	if(!owner)
 		return
 	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	particle_holder.particles.spawning = 1 + round(stacks / 4)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0
 	owner.apply_damage(5, BURN, null, ACID)

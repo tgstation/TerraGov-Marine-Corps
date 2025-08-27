@@ -35,7 +35,7 @@
 	deevolves_to = /datum/xeno_caste/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
@@ -65,6 +65,12 @@
 	vent_enter_speed = HUNTER_VENT_CRAWL_TIME
 	vent_exit_speed = HUNTER_VENT_CRAWL_TIME
 	silent_vent_crawl = TRUE
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/fleeting_mirage,
+		/datum/mutation_upgrade/spur/debilitating_strike,
+		/datum/mutation_upgrade/veil/one_target
+	)
 
 /datum/xeno_caste/hunter/normal
 	upgrade = XENO_UPGRADE_NORMAL

@@ -21,15 +21,6 @@
 	allow_pass_flags = PASS_AIR
 	bound_width = 128
 
-/obj/structure/prop/train/Initialize(mapload)
-	. = ..()
-	update_icon()
-
-/obj/structure/prop/train/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
-
 /obj/structure/prop/train/carriage
 	name = "rail carriage"
 	desc = "A heavy duty maglev carriage. I wonder what's inside?."
@@ -84,6 +75,13 @@
 	desc = "A heavy duty maglev railcar. This one is currently empty."
 	icon_state = "empty"
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+
+/obj/structure/prop/train/empty/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/prop/nt_computer
 	name = "server rack"
