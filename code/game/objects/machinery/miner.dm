@@ -269,6 +269,7 @@
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	miner_integrity = max_miner_integrity
 	faction = user.faction
+	log_combat(user, src, "claimed", addition = "for [faction]")
 	set_miner_status()
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
 	span_notice("You repair [src]'s tubing and plating."))
@@ -369,6 +370,7 @@
 		span_danger("We slash \the [src]!"), null, 5)
 		playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
 		miner_integrity -= 25
+		log_combat(xeno_attacker, src, "damaged")
 		set_miner_status()
 		if(miner_status == MINER_DESTROYED && xeno_attacker.client)
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
@@ -398,6 +400,7 @@
 		span_danger("You sabotage \the [src]!"), null, 5)
 		playsound(loc, "alien_claw_metal", 25, TRUE)
 		miner_integrity -= 25
+		log_combat(user, src, "damaged")
 		set_miner_status()
 
 /obj/machinery/miner/proc/set_miner_status()
