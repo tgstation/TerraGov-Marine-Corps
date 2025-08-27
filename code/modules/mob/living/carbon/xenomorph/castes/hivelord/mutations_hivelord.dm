@@ -276,7 +276,7 @@
 
 /datum/mutation_upgrade/veil/forward_light
 	name = "Forward Light"
-	desc = "Healing Infusion grants innate healing, but only lasts 50/60/70% as long."
+	desc = "Healing Infusion only lasts 50/60/70% as long, but grants innate healing which allows healing off of weeds."
 	/// For the first structure, the multiplier that will added to the Healing Infusion's duration and amount of healing tick.
 	var/multiplier_initial = -0.6
 	/// For each structure, the additional multiplier that will added to the Healing Infusion's duration and amount of healing tick.
@@ -285,7 +285,7 @@
 /datum/mutation_upgrade/veil/forward_light/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Healing Infusion grants innate healing, but only lasts [PERCENT(1 + get_multiplier(new_amount))]% as long."
+	return "Healing Infusion only lasts [PERCENT(1 + get_multiplier(new_amount))]% as long, but grants innate healing which allows healing off of weeds."
 
 /datum/mutation_upgrade/veil/forward_light/on_mutation_enabled()
 	. = ..()
