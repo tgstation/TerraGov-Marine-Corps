@@ -138,7 +138,6 @@
 		return
 	var/leftover_healing = heal_amount
 	HEAL_XENO_DAMAGE(link_target, leftover_healing, TRUE)
-	var/sunder_change = link_target.adjust_sunder(-heal_amount / 10)
 	link_owner.use_plasma(ability_cost)
 	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
 
