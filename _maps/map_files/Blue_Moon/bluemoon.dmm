@@ -2265,10 +2265,6 @@
 	dir = 10
 	},
 /area/bluemoon/outside/building/admin)
-"cFb" = (
-/obj/effect/spawner/random/engineering/structure/powergenerator,
-/turf/open/floor/plating,
-/area/bluemoon/caves/facility/lambda/n)
 "cFy" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/multi_tile/ice{
@@ -11776,7 +11772,6 @@
 /turf/open/floor/tile/dark,
 /area/bluemoon/outside/s)
 "nnf" = (
-/obj/item/stack/sheet/mineral/phoron/medium_stack,
 /obj/structure/closet/crate/science,
 /obj/effect/spawner/random/engineering/powercell/empty_or_full,
 /turf/open/floor/plating,
@@ -17001,6 +16996,7 @@
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /obj/structure/closet/crate/science,
 /obj/effect/spawner/random/engineering/powercell/empty_or_full,
+/obj/item/circuitboard/machine/pacman,
 /turf/open/floor/plating,
 /area/bluemoon/caves/facility/eta)
 "tQd" = (
@@ -17874,7 +17870,7 @@
 /area/bluemoon/caves/facility/lambda/n)
 "uMx" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/engineering/structure/powergenerator,
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor/plating,
 /area/bluemoon/caves/facility/eta)
 "uMO" = (
@@ -19641,8 +19637,8 @@
 /turf/open/floor/wood/fancy,
 /area/bluemoon/outside/building/dorms/chapel)
 "wNd" = (
-/obj/machinery/power/port_gen/pacman/mobile_power,
 /obj/structure/cable,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
 /area/bluemoon/caves/facility/lambda/s)
 "wNw" = (
@@ -36877,8 +36873,8 @@ lFr
 xnu
 tkW
 bta
-cFb
-cFb
+orQ
+orQ
 dcC
 tkW
 qft
