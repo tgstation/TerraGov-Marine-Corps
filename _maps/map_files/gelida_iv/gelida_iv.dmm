@@ -10588,7 +10588,7 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "hju" = (
@@ -31695,7 +31695,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "vuv" = (
 /obj/structure/table/mainship,
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "vuB" = (

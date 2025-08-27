@@ -6,3 +6,9 @@
 
 /obj/machinery/cic_maptable/drawable/big/icc
 	minimap_flag = MINIMAP_FLAG_ICC
+
+/obj/machinery/cic_maptable/survivor
+	minimap_flag = MINIMAP_FLAG_SURVIVOR
+
+/obj/machinery/cic_maptable/drawable/big/icc
+	minimap_flag = MINIMAP_FLAG_SURVIVOR
