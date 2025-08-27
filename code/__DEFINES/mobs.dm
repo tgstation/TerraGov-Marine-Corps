@@ -574,7 +574,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 // Xenomorph caste_flags:
 // TODO: A lot of caste_flags and can_flags should just be traits using caste_traits instead.
-#define CASTE_QUICK_HEAL_STANDING (1<0) // If standing, should we heal as fast as if we're resting?
+#define CASTE_QUICK_HEAL_STANDING (1<<0) // If standing, should we heal as fast as if we're resting?
 #define CASTE_INNATE_PLASMA_REGEN (1<<1) // Xenomorphs that regenerate plasma outside of weeds.
 #define CASTE_PLASMADRAIN_IMMUNE (1<<2) // Are we immune to plasma drain?
 
