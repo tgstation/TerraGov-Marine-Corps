@@ -4,7 +4,7 @@
 	dir = 2
 	},
 /turf/open/floor/marking/asteroidwarning{
-	 = ;
+	= ;
 	dir = 2
 	},
 /area/bigredv2/outside/space_port)
