@@ -2186,10 +2186,10 @@
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -5
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 5
 	},
 /turf/open/floor/wood,
@@ -3718,7 +3718,7 @@
 /obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double,
 /obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /obj/item/binoculars,
 /turf/open/floor/wood,
 /area/lv624/ground/caves{
@@ -4547,8 +4547,8 @@
 /obj/item/tool/minihoe,
 /obj/item/tool/hatchet,
 /obj/item/tool/hatchet,
-/obj/item/clothing/suit/apron/overalls,
-/obj/item/clothing/suit/apron/overalls,
+/obj/item/clothing/suit/storage/apron/overalls,
+/obj/item/clothing/suit/storage/apron/overalls,
 /obj/item/storage/bag/plants,
 /obj/item/storage/bag/plants,
 /obj/structure/closet/secure_closet/hydroponics{
@@ -4573,7 +4573,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ffI" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/lv624/ground/caves{
 	ceiling = 2;
@@ -5490,7 +5490,7 @@
 /area/mainship/hallways/ntf/dorm2)
 "gri" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/delta,
+/obj/machinery/computer/camera_advanced/overwatch/military/delta,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -5838,10 +5838,10 @@
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -5
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 5
 	},
 /turf/open/floor/wood,
@@ -7774,8 +7774,8 @@
 /obj/item/tool/minihoe,
 /obj/item/tool/hatchet,
 /obj/item/tool/hatchet,
-/obj/item/clothing/suit/apron/overalls,
-/obj/item/clothing/suit/apron/overalls,
+/obj/item/clothing/suit/storage/apron/overalls,
+/obj/item/clothing/suit/storage/apron/overalls,
 /obj/item/storage/bag/plants,
 /obj/item/storage/bag/plants,
 /obj/structure/closet/secure_closet/hydroponics,
@@ -8082,7 +8082,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/toughened,
-/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/weapon/sword/captain,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/commandbunks)
 "jnc" = (
@@ -9577,7 +9577,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "kXE" = (
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/military/alpha,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -10021,7 +10021,7 @@
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "lzc" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/charlie,
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
 /turf/open/floor/mainship/emerald{
 	dir = 4
 	},
@@ -10261,7 +10261,7 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/rag,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "lOW" = (
@@ -10872,7 +10872,7 @@
 	},
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "mwB" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "mxi" = (
@@ -15261,12 +15261,12 @@
 	})
 "rqU" = (
 /obj/machinery/vending/dinnerware,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "rrk" = (
@@ -15500,7 +15500,7 @@
 	},
 /area/mainship/hallways/hangar2)
 "rGF" = (
-/obj/machinery/computer/camera_advanced/overwatch/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -19582,7 +19582,7 @@
 /area/mainship/engineering/engineering_workshop)
 "wKi" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "wKr" = (
