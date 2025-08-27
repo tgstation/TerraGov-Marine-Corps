@@ -333,7 +333,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "cp" = (
-/obj/machinery/cic_maptable/droppod_maptable,
+/obj/machinery/cic_maptable/droppod_maptable/icc,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/icc/hangar/west)
 "cq" = (
@@ -2521,7 +2521,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/reedroom)
 "nw" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/clf,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/clf_base/techroom)
 "nx" = (
@@ -3401,8 +3401,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
 "rT" = (
-/obj/machinery/cic_maptable/drawable/big,
 /obj/structure/cable,
+/obj/machinery/cic_maptable/drawable/big/icc,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/commcenter)
 "rU" = (
