@@ -5824,7 +5824,7 @@
 	},
 /area/antag_ship/clf_base/hallways/inside)
 "ES" = (
-/obj/structure/window/framed/mainship,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship)
 "ET" = (
