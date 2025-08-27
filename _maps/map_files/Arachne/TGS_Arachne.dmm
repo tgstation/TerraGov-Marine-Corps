@@ -27378,6 +27378,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"wrl" = (
+/obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "wrs" = (
 /obj/machinery/door_control/mainship{
 	id = "AiCoreShutter";
@@ -27862,6 +27866,7 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "wKW" = (
+/obj/structure/dropship_equipment/electronics/spotlights,
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
@@ -36453,8 +36458,8 @@ ahW
 hIO
 ehy
 dxv
+wrl
 ikw
-wKW
 wKW
 qIG
 cSI

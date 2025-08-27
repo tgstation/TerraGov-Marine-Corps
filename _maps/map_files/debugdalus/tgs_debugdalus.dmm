@@ -3281,6 +3281,10 @@
 /mob/living/simple_animal/mouse,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/mechpilotquarters)
+"rAk" = (
+/obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "rDw" = (
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
@@ -4721,7 +4725,7 @@ sgk
 efN
 dwY
 dwY
-dwY
+rAk
 dwY
 acD
 aji
