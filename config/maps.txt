@@ -17,6 +17,10 @@ map lv624
 	default
 endmap
 
+map lv624bases
+	minplayers 0
+endmap
+
 map bigred_v2
         minplayers 1
 endmap

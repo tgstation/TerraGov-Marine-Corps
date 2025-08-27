@@ -71,13 +71,15 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
-	var/list/blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_COLONY1, MAP_CORSAT)
+	var/list/blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_COLONY1, MAP_CORSAT, MAP_LV_624BASES)
+	///If the gamemode has a whitelist of valid antag maps. Whitelist overrides the blacklist
+	var/list/whitelist_antag_maps
+	///If the gamemode has a blacklist of disallowed antag maps
+	var/list/blacklist_antag_maps = list(MAP_ANTAGMAP_NOSPAWN)
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
 
 	var/roundstart_players = 0
-
-	var/allow_antag_map = FALSE
 
 /datum/game_mode/New()
 	initialize_emergency_calls()

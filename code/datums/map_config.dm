@@ -218,3 +218,5 @@
 		return config_filename == "data/next_map.json" || fcopy(config_filename, "data/next_map.json")
 	else if(maptype == SHIP_MAP)
 		return config_filename == "data/next_ship.json" || fcopy(config_filename, "data/next_ship.json")
+	else if(maptype == ANTAG_MAP)
+		return config_filename == "data/next_antag.json" || fcopy(config_filename, "data/next_antag.json")

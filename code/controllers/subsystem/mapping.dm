@@ -360,10 +360,19 @@ SUBSYSTEM_DEF(mapping)
 	else if(maptype == SHIP_MAP)
 		if(!VM.MakeNextMap(maptype))
 			next_map_configs[SHIP_MAP] = load_map_configs(list(maptype), default = TRUE)
-			message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
+			message_admins("Failed to set new map with next_ship.json for [VM.map_name]! Using default as backup!")
 			return
 
 		next_map_configs[SHIP_MAP] = VM
+		return TRUE
+
+	else if(maptype == ANTAG_MAP)
+		if(!VM.MakeNextMap(maptype))
+			next_map_configs[ANTAG_MAP] = load_map_configs(list(maptype), default = TRUE)
+			message_admins("Failed to set new map with next_antag.json for [VM.map_name]! Using default as backup!")
+			return
+
+		next_map_configs[ANTAG_MAP] = VM
 		return TRUE
 
 /datum/controller/subsystem/mapping/proc/preloadTemplates(path = "_maps/templates/") //see master controller setup

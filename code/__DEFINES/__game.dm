@@ -39,6 +39,9 @@
 #define MAP_FORT_PHOBOS "Fort Phobos"
 #define MAP_ITERON "Iteron"
 
+#define MAP_ANTAGMAP_DEFAULT "Antag Map"
+#define MAP_ANTAGMAP_NOSPAWN "Antag Map - No Spawns"
+
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
 

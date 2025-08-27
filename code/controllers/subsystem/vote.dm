@@ -131,6 +131,32 @@ SUBSYSTEM_DEF(vote)
 				endround = TRUE
 		if("gamemode")
 			SSticker.save_mode(.) //changes the next game mode
+			var/antag_change_required
+			var/datum/game_mode/new_gamemode = config.pick_mode(.)
+			if(!(new_gamemode.whitelist_antag_maps && (SSmapping.configs[ANTAG_MAP].map_name in new_gamemode.whitelist_antag_maps)) && !(new_gamemode.blacklist_antag_maps && !(SSmapping.configs[ANTAG_MAP].map_name in new_gamemode.blacklist_antag_maps)))
+				antag_change_required = TRUE
+			if(antag_change_required)
+				var/list/maps = list()
+				if(!config.maplist)
+					WARNING("Could not set antag map: !config.maplist")
+					antag_change_required = FALSE
+				else
+					for(var/map in config.maplist[ANTAG_MAP])
+						var/datum/map_config/VM = config.maplist[ANTAG_MAP][map]
+						if(new_gamemode.whitelist_antag_maps)
+							if(!(VM.map_name in new_gamemode.whitelist_antag_maps))
+								continue
+						else if(new_gamemode.blacklist_antag_maps) //Can't blacklist and whitelist for the same map
+							if(VM.map_name in new_gamemode.blacklist_antag_maps)
+								continue
+						maps += VM
+					if(!length(maps))
+						WARNING("Could not set antag map: no valid antag maps found")
+						antag_change_required = FALSE
+					else
+						var/datum/map_config/next_antag = pick(maps)
+						log_mapping("changing antag map to [next_antag.map_name]")
+						SSmapping.changemap(next_antag, ANTAG_MAP)
 			if(GLOB.master_mode == .)
 				return
 			if(SSticker.HasRoundStarted())
@@ -138,7 +164,6 @@ SUBSYSTEM_DEF(vote)
 			else
 				var/ship_change_required
 				var/ground_change_required
-				var/datum/game_mode/new_gamemode = config.pick_mode(.)
 				GLOB.master_mode = . //changes the current gamemode
 				//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
 				if(!(new_gamemode.whitelist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) && !(new_gamemode.blacklist_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
@@ -157,6 +182,8 @@ SUBSYSTEM_DEF(vote)
 				else if(ground_change_required)
 					addtimer(CALLBACK(src, PROC_REF(initiate_vote), "groundmap", null, TRUE), 5 SECONDS)
 					SSticker.Reboot("Restarting server when valid ground map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+				else if(antag_change_required)
+					SSticker.Reboot("Restarting server to switch antag map", 15 SECONDS)
 			return
 		if("groundmap")
 			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
