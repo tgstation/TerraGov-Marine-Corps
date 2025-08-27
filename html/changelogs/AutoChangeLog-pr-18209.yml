@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - spellcheck: "Mutations: Neurotoxin Swap's description now has the conjunction \"and\" that it was missing."
-  - spellcheck: "Mutations: Telefrag's description now uses the correct duration to display as seconds."
