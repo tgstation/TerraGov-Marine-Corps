@@ -18751,12 +18751,6 @@
 	},
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
-"oKZ" = (
-/obj/item/paper{
-	info = "???"
-	},
-/turf/open/floor/wood/fancy,
-/area/storage/testroom)
 "oLm" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -31476,7 +31470,7 @@ wuf
 xaA
 xaA
 xaA
-oKZ
+xaA
 wFH
 rBv
 rBv
@@ -32384,7 +32378,7 @@ pUP
 xaA
 xaA
 xaA
-oKZ
+xaA
 wFH
 rBv
 rBv
