@@ -4808,13 +4808,6 @@
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
-"dou" = (
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/bigredv2/outside/library)
 "dpb" = (
 /obj/item/paper/crumpled/bloody,
 /obj/effect/ai_node,
@@ -9380,11 +9373,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"gIH" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/remains,
-/turf/open/shuttle/dropship/floor,
-/area/bigredv2/outside/general_offices)
 "gIK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/taupepurple{
@@ -13247,7 +13235,6 @@
 /area/bigredv2/caves/east/garbledradio)
 "jEI" = (
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
@@ -62592,7 +62579,7 @@ rTW
 gFY
 gFY
 rTW
-dou
+vjt
 jKX
 rTW
 gFY
@@ -68702,7 +68689,7 @@ uvI
 xOW
 uDi
 pAS
-gIH
+vrL
 inC
 dqc
 dUY
