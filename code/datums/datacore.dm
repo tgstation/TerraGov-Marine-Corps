@@ -24,8 +24,10 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/list/misc = list()
 	var/list/other = list()
 	var/list/isactive = list()
+	var/list/isactiveooc = list()
 	var/list/squads = list()
 	var/list/support = list()
+	ooc = TRUE
 
 	var/dat = {"
 	<head><style>
@@ -37,7 +39,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: #36373C"]}
 	</style></head>
 	<table class="manifest" width='350px'>
-	<tr class='head'><th>Rank</th><th>Name</th><th>Activity</th></tr>
+	<tr class='head'><th>Rank</th><th>Name</th><th>Activity(IC)</th><th>Activity(OOC)</th></tr>
 	"}
 
 	var/even = 0
@@ -71,10 +73,13 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 				mobfaction = M.job?.faction
 				break
 
-		if(ooc)
+		/*if(ooc)
 			isactive[name] = deceased ? "*Deceased*" : (active ? "Active" : "Inactive")
 		else
 			isactive[name] = t.fields["p_stat"]
+		*/
+		isactiveooc[name] = deceased ? "*Deceased*" : (active ? "Active" : "Inactive")
+		isactive[name] = t.fields["p_stat"]
 
 		var/department = 0
 		if(GLOB.jobs_command[rank])
@@ -116,56 +121,63 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			if(isdead(X))
 				isactive[name] = "*Deceased*"
 			else
+				/*
 				if(ooc && (!X.client || (X.client.inactivity > 10 * 60 * 10)))
 					isactive[name] = "Inactive"
 				else
 					isactive[name] = "Active"
+				*/
+				if((!X.client || (X.client.inactivity > 10 * 60 * 10)))
+					isactiveooc[name] = "Inactive"
+				else
+					isactiveooc[name] = "Active"
+				isactive[name] = "Active"
 			xeno[name] = rank
 
 	if(length(heads) > 0)
-		dat += "<tr><th colspan=3>Command</th></tr>"
+		dat += "<tr><th colspan=4>Command</th></tr>"
 		for(var/name in heads)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[heads[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			dat += "<tr[even ? " class='alt'" : ""]><td>[heads[name]]</td><td>[name]</td><td>[isactive[name]]</td><td>[isactiveooc[name]]</td></tr>"
 			even = !even
 	if(length(support) > 0)
 		dat += "<tr><th colspan=3>Auxiliary Support Staff</th></tr>"
 		for(var/name in support)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[support[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			dat += "<tr[even ? " class='alt'" : ""]><td>[support[name]]</td><td>[name]</td><td>[isactive[name]]</td><td>[isactiveooc[name]]</td></tr>"
 			even = !even
 	if(non_empty_squad_exists)
-		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
+		dat += "<tr><th colspan=4>Marine Personnel</th></tr>"
 		for(var/j in squads)
 			if(length(squads[j]))
 				dat += "<tr><th colspan=3>[j]</th></tr>"
 				for(var/name in squads[j])
-					dat += "<tr[even ? " class='alt'" : ""]><td>[squads[j][name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+					dat += "<tr[even ? " class='alt'" : ""]><td>[squads[j][name]]</td><td>[name]</td><td>[isactive[name]]</td><td>[isactiveooc[name]]</td></tr>"
 					even = !even
 	if(length(eng) > 0)
-		dat += "<tr><th colspan=3>Engineering</th></tr>"
+		dat += "<tr><th colspan=4>Engineering</th></tr>"
 		for(var/name in eng)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[eng[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			dat += "<tr[even ? " class='alt'" : ""]><td>[eng[name]]</td><td>[name]</td><td>[isactive[name]]</td><td>[isactiveooc[name]]</td></tr>"
 			even = !even
 	if(length(med) > 0)
-		dat += "<tr><th colspan=3>Medical</th></tr>"
+		dat += "<tr><th colspan=4>Medical</th></tr>"
 		for(var/name in med)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[med[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			dat += "<tr[even ? " class='alt'" : ""]><td>[med[name]]</td><td>[name]</td><td>[isactive[name]]</td><td>[isactiveooc[name]]</td></tr>"
 			even = !even
 	// misc guys
 	if(length(misc) > 0)
-		dat += "<tr><th colspan=3>Miscellaneous</th></tr>"
+		dat += "<tr><th colspan=4>Miscellaneous</th></tr>"
 		for(var/name in misc)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[misc[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			dat += "<tr[even ? " class='alt'" : ""]><td>[misc[name]]</td><td>[name]</td><td>[isactive[name]]</td><td>[isactiveooc[name]]</td></tr>"
 			even = !even
 	if(length(other) > 0)
-		dat += "<tr><th colspan=3>Other</th></tr>"
+		dat += "<tr><th colspan=4>Other</th></tr>"
 		for(var/name in other)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[other[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			dat += "<tr[even ? " class='alt'" : ""]><td>[other[name]]</td><td>[name]</td><td>[isactive[name]]</td><td>[isactiveooc[name]]</td></tr>"
 			even = !even
 	// beno bois & gorls
 	if(length(xeno) > 0)
-		dat += "<tr><th colspan=3>Xenomorphs</th></tr>"
+		dat += "<tr><th colspan=4>Xenomorphs</th></tr>"
 		for(var/name in xeno)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[xeno[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			dat += "<tr[even ? " class='alt'" : ""]><td>[xeno[name]]</td><td>[name]</td><td>[isactive[name]]</td><td>[isactiveooc[name]]</td></tr>"
 			even = !even
 
 	dat += "</table>"

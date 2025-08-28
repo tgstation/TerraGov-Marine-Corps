@@ -747,7 +747,8 @@
 	to_chat(usr, span_notice("[self ? "Your" : "[src]'s"] pulse is [get_pulse(GETPULSE_HAND)]."))
 
 
-/mob/living/carbon/human/verb/view_manifest()
+///mob/living/carbon/human/verb/view_manifest()
+/mob/living/verb/view_manifest()
 	set name = "View Crew Manifest"
 	set category = "IC"
 
