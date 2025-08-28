@@ -342,7 +342,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "asd" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadderCryo1";
 	height = 1
 	},
@@ -3696,7 +3696,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "dhf" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder4";
 	height = 1
 	},
@@ -4652,7 +4652,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder7";
 	height = 1
 	},
@@ -5052,7 +5052,7 @@
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "eGq" = (
 /obj/effect/ai_node,
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFCargoLadder";
 	height = 1
 	},
@@ -6891,7 +6891,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
 "gjl" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFCargoLadder";
 	height = 2
 	},
@@ -8415,7 +8415,7 @@
 	name = "Research"
 	})
 "hIK" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFbrigLadder";
 	height = 1
 	},
@@ -8970,7 +8970,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_study)
 "ifx" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder4";
 	height = 2
 	},
@@ -10506,7 +10506,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder5";
 	height = 2
 	},
@@ -14851,7 +14851,7 @@
 /turf/open/space/basic,
 /area/space)
 "nwM" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder8";
 	height = 2
 	},
@@ -16962,7 +16962,7 @@
 	})
 "pte" = (
 /obj/structure/cable,
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFbrigLadder";
 	height = 2
 	},
@@ -17236,7 +17236,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "pOb" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadderCryo2";
 	height = 1
 	},
@@ -17395,7 +17395,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
 "pWL" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder6";
 	height = 1
 	},
@@ -17593,7 +17593,7 @@
 	name = "Shipside Medbay"
 	})
 "qeM" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadderCryo1";
 	height = 2
 	},
@@ -18047,7 +18047,7 @@
 	name = "Shipside Corpsec Office"
 	})
 "qyN" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder8";
 	height = 1
 	},
@@ -18072,7 +18072,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
 "qAd" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder5";
 	height = 1
 	},
@@ -19145,7 +19145,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "rBy" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadderCryo2";
 	height = 2
 	},
@@ -19245,7 +19245,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder7";
 	height = 2
 	},
@@ -24734,7 +24734,7 @@
 	outside = 1
 	})
 "wRc" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "NTFLadder6";
 	height = 2
 	},

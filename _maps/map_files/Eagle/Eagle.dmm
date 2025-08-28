@@ -162,7 +162,7 @@
 /turf/open/space/basic,
 /area/space)
 "jX" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "eagleladder1";
 	height = 1
 	},
@@ -337,7 +337,7 @@
 /turf/open/space/transit/atmos,
 /area/space)
 "zU" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "eagleladder1";
 	height = 2
 	},
@@ -440,7 +440,7 @@
 	name = "The Eagle"
 	})
 "KW" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "eagleladder2";
 	height = 1
 	},
@@ -566,7 +566,7 @@
 	name = "The Eagle"
 	})
 "WD" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	id = "eagleladder2";
 	height = 2
 	},
