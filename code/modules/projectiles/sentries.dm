@@ -419,6 +419,18 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		if(human_occupant.wear_id?.iff_signal & iff_signal)
 			continue
 		potential_targets += nearby_tank
+	for(var/obj/vehicle/ridden/nearby_ridden AS in cheap_get_ridden_vehicles_near(src, range))
+		var/list/driver_list = nearby_ridden.return_drivers()
+		if(!length(driver_list))
+			continue
+		var/mob/living/carbon/human/human_occupant = driver_list[1]
+		if(human_occupant.wear_id?.iff_signal & iff_signal)
+			continue
+		potential_targets += nearby_ridden
+	for(var/obj/vehicle/unmanned/nearby_unmanned AS in cheap_get_unmanned_vehicles_near(src, range))
+		if(nearby_unmanned.iff_signal & iff_signal)
+			continue
+		potential_targets += nearby_unmanned
 	return length(potential_targets)
 
 ///Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.

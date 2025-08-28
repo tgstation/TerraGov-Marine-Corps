@@ -56,6 +56,35 @@
 			continue
 		. += nearby_mech
 
+///Returns a list of mechs via get_dist and same z level method, very cheap compared to range()
+/proc/cheap_get_ridden_vehicles_near(atom/source, distance)
+	. = list()
+	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
+	for(var/obj/vehicle/ridden/nearby_ridden AS in GLOB.ridden_vehicles_list)
+		if(isnull(nearby_ridden))
+			continue
+		if(source_turf.z != nearby_ridden.z)
+			continue
+		if(get_dist(source_turf, nearby_ridden) > distance)
+			continue
+		. += nearby_ridden
+
+/proc/cheap_get_unmanned_vehicles_near(atom/source, distance)
+	. = list()
+	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
+	for(var/obj/vehicle/unmanned/nearby_unmanned AS in GLOB.unmanned_vehicles)
+		if(isnull(nearby_unmanned))
+			continue
+		if(source_turf.z != nearby_unmanned.z)
+			continue
+		if(get_dist(source_turf, nearby_unmanned) > distance)
+			continue
+		. += nearby_unmanned
+
 ///Returns a list of vehicles via get_dist and same z level method, very cheap compared to range()
 /proc/cheap_get_tanks_near(atom/source, distance)
 	. = list()

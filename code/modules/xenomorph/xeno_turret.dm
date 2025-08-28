@@ -194,6 +194,15 @@
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
+	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+		if(tank.z == z && get_dist(tank, src) <= TURRET_SCAN_RANGE)
+			var/list/driver_list = tank.return_drivers()
+			if(!length(driver_list))
+				continue
+			var/mob/living/carbon/human/human_occupant = driver_list[1]
+			if(human_occupant.faction in hive?.allied_factions)
+				continue
+			potential_hostiles += tank
 	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
 		if(vehicle.z == z && get_dist(vehicle, src) <= TURRET_SCAN_RANGE)
 			if(vehicle.faction in hive?.allied_factions)
@@ -204,6 +213,15 @@
 			if(mech.faction in hive?.allied_factions)
 				continue
 			potential_hostiles += mech
+	for(var/obj/vehicle/ridden/ridden AS in GLOB.ridden_vehicles_list)
+		if(ridden.z == z && get_dist(ridden, src) <= TURRET_SCAN_RANGE)
+			var/list/driver_list = ridden.return_drivers()
+			if(!length(driver_list))
+				continue
+			var/mob/living/carbon/human/human_occupant = driver_list[1]
+			if(human_occupant.faction in hive?.allied_factions)
+				continue
+			potential_hostiles += ridden
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/xeno/xeno_turret/proc/shoot()
