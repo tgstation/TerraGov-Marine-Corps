@@ -10,12 +10,20 @@
 	///How wide our spawner area is, used to catch mistakes in mapping
 	var/spawner_width = 0
 
+/obj/effect/spawner/modularmap/New(loc, ...)
+	log_game("loading spawner for [mapid] at [COORD(src)]")
+	. = ..()
+	log_game("loaded spawner for [mapid] at [COORD(src)]")
+
 /obj/effect/spawner/modularmap/Initialize(mapload)
+	log_game("Initializing spawner for [mapid] at [COORD(src)]")
 	. = ..()
 	SSmodularmapping.markers += src
+	log_game("Initialized spawner for [mapid] at [COORD(src)]")
 
 ///Actually loads the modularmap: called by SSmodularmapping
 /obj/effect/spawner/modularmap/proc/load_modularmap()
+	log_game("about to load spawner for [mapid] at [COORD(src)]")
 	var/datum/map_template/modular/template
 	template = pick(SSmapping.modular_templates[mapid])
 	var/errored = FALSE
@@ -36,6 +44,7 @@
 		qdel(src)
 		return
 	var/turf/loadloc = get_turf(src)
+	log_game("attempting to load [template] for [mapid] at [COORD(loadloc)]")
 	qdel(src)
 	template.load(loadloc, template.keepcentered)
 

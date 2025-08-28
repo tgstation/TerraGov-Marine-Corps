@@ -155,7 +155,7 @@ SUBSYSTEM_DEF(vote)
 								continue
 						maps += VM
 						mapnames +="[VM.map_name]"
-						log_game("antag maps for gamemode [new_gamemode] - [english_list(mapsnames)]")
+						log_game("antag maps for gamemode [new_gamemode] - [english_list(mapnames)]")
 					if(!length(maps))
 						log_game("Could not set antag map: no valid antag maps found")
 						antag_change_required = FALSE
