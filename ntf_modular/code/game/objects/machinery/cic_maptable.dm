@@ -10,5 +10,5 @@
 /obj/machinery/cic_maptable/survivor
 	minimap_flag = MINIMAP_FLAG_SURVIVOR
 
-/obj/machinery/cic_maptable/drawable/big/icc
+/obj/machinery/cic_maptable/drawable/big/survivor
 	minimap_flag = MINIMAP_FLAG_SURVIVOR
