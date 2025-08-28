@@ -133,14 +133,18 @@ SUBSYSTEM_DEF(vote)
 			SSticker.save_mode(.) //changes the next game mode
 			var/antag_change_required
 			var/datum/game_mode/new_gamemode = config.pick_mode(.)
-			if(!(new_gamemode.whitelist_antag_maps && (SSmapping.configs[ANTAG_MAP].map_name in new_gamemode.whitelist_antag_maps)) && !(new_gamemode.blacklist_antag_maps && !(SSmapping.configs[ANTAG_MAP].map_name in new_gamemode.blacklist_antag_maps)))
+			log_game("new_gamemode.whitelist_antag_maps = [english_list(new_gamemode.whitelist_antag_maps)]")
+			log_game("SSmapping.configs\[ANTAG_MAP\].map_name = [SSmapping.configs[ANTAG_MAP].map_name]")
+			if(new_gamemode.whitelist_antag_maps ? (!(SSmapping.configs[ANTAG_MAP].map_name in new_gamemode.whitelist_antag_maps)) : (new_gamemode.blacklist_antag_maps && (SSmapping.configs[ANTAG_MAP].map_name in new_gamemode.blacklist_antag_maps)))
 				antag_change_required = TRUE
+			log_game("antag_change_required = [antag_change_required]")
 			if(antag_change_required)
 				var/list/maps = list()
 				if(!config.maplist)
 					WARNING("Could not set antag map: !config.maplist")
 					antag_change_required = FALSE
 				else
+					var/list/mapnames = list()
 					for(var/map in config.maplist[ANTAG_MAP])
 						var/datum/map_config/VM = config.maplist[ANTAG_MAP][map]
 						if(new_gamemode.whitelist_antag_maps)
@@ -150,12 +154,14 @@ SUBSYSTEM_DEF(vote)
 							if(VM.map_name in new_gamemode.blacklist_antag_maps)
 								continue
 						maps += VM
+						mapnames +="[VM.map_name]"
+						log_game("antag maps for gamemode [new_gamemode] - [english_list(mapsnames)]")
 					if(!length(maps))
-						WARNING("Could not set antag map: no valid antag maps found")
+						log_game("Could not set antag map: no valid antag maps found")
 						antag_change_required = FALSE
 					else
 						var/datum/map_config/next_antag = pick(maps)
-						log_mapping("changing antag map to [next_antag.map_name]")
+						log_game("changing antag map to [next_antag.map_name]")
 						SSmapping.changemap(next_antag, ANTAG_MAP)
 			if(GLOB.master_mode == .)
 				return
@@ -166,9 +172,9 @@ SUBSYSTEM_DEF(vote)
 				var/ground_change_required
 				GLOB.master_mode = . //changes the current gamemode
 				//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
-				if(!(new_gamemode.whitelist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) && !(new_gamemode.blacklist_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
+				if(new_gamemode.whitelist_ship_maps ? (!(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) : (new_gamemode.blacklist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
 					ship_change_required = TRUE
-				if(!(new_gamemode.whitelist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps)) && !(new_gamemode.blacklist_ground_maps && !(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
+				if(new_gamemode.whitelist_ground_maps ? (!(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps)) : (new_gamemode.blacklist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
 					ground_change_required = TRUE
 				//we queue up the required votes and restarts
 				if(ship_change_required && ground_change_required)
