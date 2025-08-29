@@ -468,9 +468,7 @@
 	surgery_category = new_surgery_category
 	surgery_procedure = new_surgery_procedure
 
-/proc/create_autodoc_surgery(limb_ref, surgery_category, surgery_procedure, unneeded=0, organ_ref=null)
-	return new /datum/autodoc_surgery(limb_ref, organ_ref, surgery_category, surgery_procedure)
-
+/// Generates a full list of surgeries that should be completed based on a human.
 /proc/generate_autodoc_surgery_list(mob/living/carbon/human/operated_human)
 	var/list/datum/autodoc_surgery/surgery_list = list()
 	for(var/datum/limb/operated_limb in operated_human.limbs)
@@ -532,6 +530,7 @@
 		surgery_list += new /datum/autodoc_surgery(null, operated_organ, SURGERY_CATEGORY_EXTERNAL, SURGERY_PROCEDURE_EXTERNAL_BLOOD)
 	return surgery_list
 
+/// Begins the surgery operation.
 /obj/machinery/autodoc/proc/begin_surgery_operation()
 	if(is_active())
 		return
@@ -575,7 +574,7 @@
 	loop_surgery_operation()
 	update_icon()
 
-/// Begins the surgery operation.
+/// Continues a surgery operation based on available information at the time.
 /obj/machinery/autodoc/proc/loop_surgery_operation()
 	if(timer_id)
 		deltimer(timer_id)
