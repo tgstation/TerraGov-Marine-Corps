@@ -392,12 +392,12 @@
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_tracker"
 	shell_speed = 4
-	max_range = 30
-	damage = 5
-	penetration = 100
+	max_range = 15
+	damage = 40
+	penetration = 30
 
 /datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 60 SECONDS, 3 SECONDS)
 
 /datum/ammo/bullet/shotgun/tracker
 	name = "shotgun tracker shell"
@@ -405,12 +405,12 @@
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_tracker"
 	shell_speed = 4
-	max_range = 30
-	damage = 5
-	penetration = 100
+	max_range = 15
+	damage = 90
+	penetration = 10
 
 /datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 60 SECONDS, 3 SECONDS)
 
 //I INSERT THE SHELLS IN AN UNKNOWN ORDER
 /datum/ammo/bullet/shotgun/blank

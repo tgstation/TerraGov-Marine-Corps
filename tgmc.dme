@@ -848,6 +848,7 @@
 #include "code\game\area\ai_monitored.dm"
 #include "code\game\area\area.dm"
 #include "code\game\area\bigred.dm"
+#include "code\game\area\bluemoon.dm"
 #include "code\game\area\bluesummers.dm"
 #include "code\game\area\centcom.dm"
 #include "code\game\area\corsat.dm"

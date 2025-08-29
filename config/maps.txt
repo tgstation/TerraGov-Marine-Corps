@@ -132,3 +132,7 @@ map metnal
 map fiorina
 	minplayers 1
 endmap
+
+map bluemoon
+	maxplayers 40
+endmap

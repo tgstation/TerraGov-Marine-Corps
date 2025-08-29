@@ -42,7 +42,8 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/iron/get_main_recipes()
 	. = ..()
-	. += GLOB.iron_recipes
+	for(var/item in GLOB.iron_recipes)
+		. += GLOB.iron_recipes[item]
 
 /obj/item/stack/sheet/mineral/sandstone
 	name = "sandstone brick"
@@ -60,7 +61,8 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/sandstone/get_main_recipes()
 	. = ..()
-	. += GLOB.sandstone_recipes
+	for(var/item in GLOB.sandstone_recipes)
+		. += GLOB.sandstone_recipes[item]
 
 /obj/item/stack/sheet/mineral/diamond
 	name = "diamond"
@@ -76,7 +78,8 @@ GLOBAL_LIST_INIT(diamond_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/diamond/get_main_recipes()
 	. = ..()
-	. += GLOB.diamond_recipes
+	for(var/item in GLOB.diamond_recipes)
+		. += GLOB.diamond_recipes[item]
 
 /obj/item/stack/sheet/mineral/uranium
 	name = "uranium"
@@ -92,7 +95,8 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/uranium/get_main_recipes()
 	. = ..()
-	. += GLOB.uranium_recipes
+	for(var/item in GLOB.uranium_recipes)
+		. += GLOB.uranium_recipes[item]
 
 /obj/item/stack/sheet/mineral/uranium/small_stack
 	amount = 10
@@ -115,7 +119,8 @@ GLOBAL_LIST_INIT(phoron_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/phoron/get_main_recipes()
 	. = ..()
-	. += GLOB.phoron_recipes
+	for(var/item in GLOB.phoron_recipes)
+		. += GLOB.phoron_recipes[item]
 
 /obj/item/stack/sheet/mineral/phoron/small_stack
 	amount = 10
@@ -141,7 +146,8 @@ GLOBAL_LIST_INIT(plastic_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/plastic/get_main_recipes()
 	. = ..()
-	. += GLOB.plastic_recipes
+	for(var/item in GLOB.plastic_recipes)
+		. += GLOB.plastic_recipes[item]
 
 /obj/item/stack/sheet/mineral/plastic/five
 	amount = 5
@@ -171,7 +177,8 @@ GLOBAL_LIST_INIT(gold_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/gold/get_main_recipes()
 	. = ..()
-	. += GLOB.gold_recipes
+	for(var/item in GLOB.gold_recipes)
+		. += GLOB.gold_recipes[item]
 
 /obj/item/stack/sheet/mineral/silver
 	name = "silver"
@@ -188,7 +195,8 @@ GLOBAL_LIST_INIT(silver_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/silver/get_main_recipes()
 	. = ..()
-	. += GLOB.silver_recipes
+	for(var/item in GLOB.silver_recipes)
+		. += GLOB.silver_recipes[item]
 
 
 //Valuable resource, cargo can sell it.
