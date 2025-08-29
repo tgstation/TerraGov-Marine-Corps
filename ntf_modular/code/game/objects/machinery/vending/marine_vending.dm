@@ -1713,6 +1713,11 @@
 
 /obj/machinery/vending/armor_supply/icc/clf
 
+/obj/machinery/vending/medical/icc
+	req_access = ACCESS_CIVILIAN_MEDICAL
+
+/obj/machinery/vending/medical/pmc
+
 /obj/machinery/vending/medical/som
 	name = "Stolen Medicament Vendor"
 	desc = "Medical Pharmaceutical dispenser. 'Provided' by Novamed Pharmaceuticals."
@@ -1724,8 +1729,9 @@
 	req_access = ACCESS_VSD_MEDPREP
 
 /obj/machinery/vending/medical/clf
-	name = "\improper Stolen NovaMed Plus"
-	req_access = null
+	name = "Stolen Medicament Vendor"
+	desc = "Medical Pharmaceutical dispenser. 'Provided' by Novamed Pharmaceuticals."
+	req_access = ACCESS_CIVILIAN_MEDICAL
 
 /obj/machinery/vending/MarineMed/pmc
 	name = "\improper MarineMed"
@@ -1734,14 +1740,17 @@
 /obj/machinery/vending/MarineMed/icc
 	name = "\improper MarineMed"
 	desc = "An ICCAF Medical drug dispenser. Provided by Ninetails Pharmaceuticals Division(TM)."
+	req_one_access = null
 
 /obj/machinery/vending/MarineMed/icc/clf
+	name = "\improper Stolen MarineMed"
+	desc = "A Medical drug dispenser, just like the NTC use. 'Provided' by Ninetails Pharmaceuticals Division(TM)."
 
 /obj/machinery/vending/MarineMed/vsd
 	name = "\improper KZ MarineMed"
 	faction = FACTION_VSD
 	desc = "KZ Medical drug dispenser. 'Provided' by Ninetails Pharmaceuticals Division(TM)."
-	req_one_access = list(ACCESS_VSD_MEDPREP)
+	req_one_access = null
 
 /obj/machinery/vending/weapon/clf
 	name = "CLF weapon stash"

@@ -500,7 +500,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/vending/medical/kz,
+/obj/machinery/vending/medical/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "du" = (
@@ -1301,8 +1301,12 @@
 	},
 /area/antag_ship/vsd/port)
 "ie" = (
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/antag_ship/clf_base/hallways/inside)
+/area/antag_ship/clf_base/prison)
 "ig" = (
 /obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating/ground/dirt,
@@ -2125,6 +2129,12 @@
 /obj/effect/turf_decal/trimline/yellow,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
+"lX" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	req_access = list(253)
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/prison)
 "lY" = (
 /obj/machinery/vending/uniform_supply/pmc,
 /obj/machinery/light/mainship{
@@ -2935,6 +2945,11 @@
 /obj/machinery/computer/supplycomp/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/requisition)
+"pB" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/blood/splatter/cum,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/prison)
 "pC" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/grayscale/black,
@@ -3041,7 +3056,7 @@
 	dir = 1
 	},
 /obj/machinery/microwave,
-/obj/structure/table/reinforced/flipped,
+/obj/structure/table/reinforced/prison,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/antag_ship/clf_base/prison)
 "qa" = (
@@ -4070,6 +4085,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
+"vM" = (
+/obj/effect/landmark/start/job/prisonerclf,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/prison)
 "vQ" = (
 /obj/machinery/vending/uniform_supply/icc/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -4234,7 +4253,7 @@
 /area/antag_ship/som/bridge)
 "wH" = (
 /turf/closed/wall/mainship/gray,
-/area/antag_ship/clf_base/hallways/inside)
+/area/antag_ship/clf_base/lounge)
 "wI" = (
 /obj/machinery/door/airlock/mainship/security/free_access{
 	req_access = list(211);
@@ -4852,9 +4871,12 @@
 /turf/open/floor/mainship/sterile,
 /area/antag_ship/som/medbay)
 "zR" = (
-/obj/machinery/door/airlock/mainship/security/glass{
-	req_access = list(211)
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
+/obj/machinery/reagentgrinder,
+/obj/structure/table/reinforced/prison,
+/obj/structure/table/reinforced/prison,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/antag_ship/clf_base/prison)
 "zU" = (
@@ -5440,11 +5462,12 @@
 /area/antag_ship/som/hangar)
 "Dd" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	req_access = list(211);
+	req_access = list(253);
 	dir = 2
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/antag_ship/clf_base/hallways/inside)
+/area/antag_ship/clf_base/lounge)
 "De" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -6490,6 +6513,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
+"IB" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/prisonerclf,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/prison)
 "IC" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -6781,8 +6809,8 @@
 	},
 /area/antag_ship/vsd/hall)
 "JU" = (
-/obj/machinery/vending/weapon/clf,
-/turf/closed/wall/brick,
+/obj/machinery/loadout_vendor/clf,
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/antag_ship/clf_base/techroom)
 "JW" = (
 /obj/effect/ai_node,
@@ -6964,9 +6992,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
 "Lb" = (
-/obj/machinery/vending/medical/shipside{
-	isshared = 0
-	},
+/obj/machinery/vending/medical/icc,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/medical_room)
 "Lg" = (
@@ -7082,7 +7108,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/antag_ship/clf_base/hallways/inside)
+/area/antag_ship/clf_base/lounge)
 "LK" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/adv,
@@ -7310,7 +7336,7 @@
 	dir = 1
 	},
 /obj/machinery/reagentgrinder,
-/obj/structure/table/reinforced/flipped,
+/obj/structure/table/reinforced/prison,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/antag_ship/clf_base/prison)
 "Nb" = (
@@ -7549,8 +7575,13 @@
 /turf/open/floor/wood/alt_three,
 /area/antag_ship/som/office/commander)
 "NZ" = (
-/turf/closed/wall/brick,
-/area/lv624/ground/caves/rock)
+/obj/effect/ai_node,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/lounge)
 "Oe" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
@@ -7580,10 +7611,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 8
 	},
-/obj/machinery/vending/MarineMed{
-	isshared = 0;
-	name = "\improper Stolen Medical Vendor"
-	},
+/obj/machinery/vending/MarineMed/icc/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "Oi" = (
@@ -7833,7 +7861,7 @@
 	dir = 1
 	},
 /obj/machinery/reagentgrinder,
-/obj/structure/table/reinforced/flipped,
+/obj/structure/table/reinforced/prison,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security/cell)
 "PB" = (
@@ -7865,6 +7893,13 @@
 "PL" = (
 /turf/closed/wall/brick,
 /area/antag_ship/clf_base/medbay)
+"PM" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	req_access = list(253);
+	dir = 2
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/lounge)
 "PN" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/rifle/mpi_km/black,
@@ -8690,7 +8725,7 @@
 	dir = 1
 	},
 /obj/machinery/microwave,
-/obj/structure/table/reinforced/flipped,
+/obj/structure/table/reinforced/prison,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security/cell)
 "TI" = (
@@ -8915,7 +8950,7 @@
 	},
 /area/antag_ship/clf_base/hallways/inside)
 "UM" = (
-/obj/machinery/vending/medical/shipside,
+/obj/machinery/vending/medical/pmc,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -9231,6 +9266,13 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/wood/alt_three,
 /area/antag_ship/som/office/commander)
+"Wi" = (
+/obj/machinery/vending/weapon/clf,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/antag_ship/clf_base/techroom)
 "Wj" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -18498,11 +18540,11 @@ aF
 KX
 Wn
 sq
-zR
+lX
 cu
 Wn
 sq
-zR
+lX
 cu
 Wn
 sE
@@ -18591,7 +18633,7 @@ CN
 tT
 aF
 WT
-Iy
+pB
 zN
 aF
 WT
@@ -18686,11 +18728,11 @@ CN
 tT
 aF
 WT
-Kq
+Rw
 uG
 aF
 WT
-Kq
+Rw
 uG
 aF
 WT
@@ -18707,7 +18749,7 @@ SP
 iU
 GN
 GN
-NZ
+SP
 Nj
 gI
 aK
@@ -18785,11 +18827,11 @@ Rw
 uG
 aF
 St
-Rw
+Kq
 uG
 aF
 St
-Rw
+vM
 uG
 aF
 Id
@@ -18802,7 +18844,7 @@ aF
 aF
 GN
 GN
-NZ
+SP
 JU
 gI
 gK
@@ -18884,7 +18926,7 @@ Iy
 ut
 aF
 pZ
-Iy
+IB
 ut
 aF
 Id
@@ -18897,9 +18939,9 @@ SP
 aF
 aF
 bU
-NZ
-vQ
-sw
+SP
+Wi
+gI
 aK
 AN
 lG
@@ -18974,12 +19016,12 @@ Na
 Rw
 ut
 aF
-Na
+zR
 Rw
 ut
 aF
 Na
-Rw
+vM
 ut
 aF
 SP
@@ -18992,8 +19034,8 @@ SP
 uj
 GN
 GN
-NZ
-TK
+SP
+vQ
 gI
 aK
 AN
@@ -19087,8 +19129,8 @@ SP
 iU
 GN
 GN
-NZ
-Nj
+SP
+TK
 gI
 aK
 AN
@@ -19182,7 +19224,7 @@ aF
 aF
 GN
 AF
-aF
+SP
 Nj
 sw
 Ns
@@ -19277,7 +19319,7 @@ aF
 aF
 GN
 GN
-Wp
+GN
 gI
 gI
 Ns
@@ -19351,15 +19393,15 @@ CN
 tT
 aF
 AD
-zR
+lX
 AD
 aF
 AD
-zR
+lX
 AD
 aF
 AD
-zR
+lX
 AD
 aF
 Ml
@@ -19445,17 +19487,17 @@ CN
 CN
 tT
 aF
-ie
-ie
-ie
+lH
+lH
+lH
+wH
+lH
+lH
+lH
 wH
 ie
-ie
-ie
-wH
-ie
-ie
-ie
+lH
+lH
 wH
 Hc
 fZ
@@ -19540,17 +19582,17 @@ CN
 CN
 tT
 aF
-ie
+lH
 LJ
-ie
+lH
+PM
+lH
+LJ
+lH
 Dd
-ie
-LJ
-ie
-Dd
-ie
-LJ
-ie
+mz
+NZ
+mz
 Dd
 lH
 lH
@@ -19643,7 +19685,7 @@ aF
 aF
 aF
 aF
-zR
+lX
 AD
 aF
 aF
@@ -19831,7 +19873,7 @@ Rw
 Rw
 Rw
 Rw
-bR
+gC
 Rw
 Qt
 Rw
