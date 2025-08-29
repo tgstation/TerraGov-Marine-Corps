@@ -584,7 +584,6 @@
 	if(!active_surgery)
 		active_surgery = surgery_list[1]
 
-	var/time_multiplier = (automatic_mode ? 1.5 : 1) * surgery_time_multiplier
 	var/datum/limb/limb_ref = active_surgery.limb_reference
 	var/datum/internal_organ/organ_ref = active_surgery.organ_reference
 	switch(active_surgery.surgery_category)
@@ -813,7 +812,6 @@
 					if(limb_ref.encased && limb_ref.surgery_open_stage < 3)
 						loop_in_time(open_encased(limb_ref))
 						return
-					var/obj/item/alien_embryo/A = locate(/obj/item/alien_embryo) in occupant
 					if(!limb_ref.surgery_open_stage)
 						loop_in_time(open_incision(occupant, limb_ref))
 						return
