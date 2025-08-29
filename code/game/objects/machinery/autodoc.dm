@@ -101,7 +101,6 @@
 	if(is_operational() || !occupant)
 		return
 	visible_message("[src] engages the safety override, ejecting the occupant.")
-	active_surgery = null
 	do_eject(AUTODOC_NOTICE_NO_POWER)
 
 /obj/machinery/autodoc/update_icon()
