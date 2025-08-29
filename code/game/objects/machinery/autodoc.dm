@@ -594,7 +594,7 @@
 					if(!active_surgery.checked_for_necessity)
 						say("Beginning organ restoration.")
 						active_surgery.checked_for_necessity = TRUE
-						if(!organ_ref || !organ_ref.damage)
+						if(!organ_ref)
 							handle_unnecessary_surgery()
 							return
 					if(!organ_ref.damage)
@@ -627,7 +627,7 @@
 					if(!active_surgery.checked_for_necessity)
 						say("Beginning corrective eye surgery.")
 						active_surgery.checked_for_necessity = TRUE
-						if(!organ_ref || !istype(organ_ref, /datum/internal_organ/eyes) || !(occupant.disabilities & NEARSIGHTED || occupant.disabilities & BLIND || organ_ref.damage > 0))
+						if(!organ_ref || !istype(organ_ref, /datum/internal_organ/eyes))
 							handle_unnecessary_surgery()
 							return
 					var/datum/internal_organ/eyes/eye_ref = organ_ref
@@ -669,7 +669,7 @@
 					if(!active_surgery.checked_for_necessity)
 						say("Beginning internal bleeding procedure.")
 						active_surgery.checked_for_necessity = TRUE
-						if(!limb_ref || !length(limb_ref.wounds))
+						if(!limb_ref)
 							handle_unnecessary_surgery()
 							return
 					if(!length(limb_ref.wounds))
@@ -856,7 +856,7 @@
 					if(!active_surgery.checked_for_necessity)
 						say("Beginning facial reconstruction surgery.")
 						active_surgery.checked_for_necessity = TRUE
-						if(!limb_ref || !istype(limb_ref, /datum/limb/head))
+						if(!limb_ref)
 							handle_unnecessary_surgery()
 							return
 					var/datum/limb/head/head_limb = limb_ref
