@@ -591,6 +591,9 @@
 	if(!length(illusions) && !prioritized_illusion)
 		to_chat(xeno_owner, span_xenowarning("We have no illusions to swap with!"))
 		return
+	var/datum/action/ability/xeno_action/stealth/stealth_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/stealth]
+	if(stealth_action?.stealth)
+		stealth_action.cancel_stealth()
 
 	xeno_owner.playsound_local(xeno_owner, 'sound/effects/swap.ogg', 10, 0, 1)
 	var/turf/current_turf = get_turf(xeno_owner)
