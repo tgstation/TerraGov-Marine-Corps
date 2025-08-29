@@ -237,6 +237,10 @@
 	icon_state = "Shaft Miner"
 	job = /datum/job/other/prisonersom
 
+/obj/effect/landmark/start/job/prisonerclf
+	icon_state = "Shaft Miner"
+	job = /datum/job/other/prisonerclf
+
 // pmc
 
 /obj/effect/landmark/start/job/pmc

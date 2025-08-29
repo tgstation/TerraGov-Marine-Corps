@@ -142,6 +142,23 @@
 	shoes = /obj/item/clothing/shoes/orange
 	ears = /obj/item/radio/headset
 
+/datum/job/other/prisonerclf
+	title = "CLF Prisoner"
+	paygrade = "Psnr"
+	comm_title = "Psnr"
+	outfit = /datum/outfit/job/prisonerclf
+	supervisors = "The CLF"
+	skills_type = /datum/skills/civilian
+	total_positions = -1
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ADDTOMANIFEST
+	job_category = JOB_CAT_CIVILIAN
+
+/datum/outfit/job/prisonerclf
+	id = /obj/item/card/id
+	w_uniform = /obj/item/clothing/under/rank/prisoner
+	shoes = /obj/item/clothing/shoes/orange
+	ears = /obj/item/radio/headset
+
 /datum/job/worker
 	title = "Worker"
 	paygrade = "Wrkr"

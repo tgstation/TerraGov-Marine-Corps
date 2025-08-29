@@ -7925,6 +7925,10 @@
 /obj/structure/droppod,
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/transport)
+"ON" = (
+/obj/effect/landmark/start/job/prisonerclf,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/prison)
 "OO" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -10232,6 +10236,11 @@
 	dir = 8
 	},
 /area/antag_ship/som/requisition)
+"Zw" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/prisonerclf,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/prison)
 "Zz" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -19116,7 +19125,7 @@ uD
 rw
 aF
 fP
-ir
+ON
 rw
 aF
 Id
@@ -19211,7 +19220,7 @@ qQ
 Oy
 aF
 YO
-qQ
+Zw
 Oy
 aF
 Id
@@ -19306,7 +19315,7 @@ ir
 Oy
 aF
 Fk
-ir
+ON
 Oy
 aF
 SP
