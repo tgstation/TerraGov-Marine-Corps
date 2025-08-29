@@ -1,3 +1,79 @@
+// ***************************************
+// *********** New Survivors
+// ***************************************
+/datum/outfit/job/new_survivor
+	name = "(New) Default Survivor"
+	jobtype = /datum/job/new_survivor
+
+	gloves = /obj/item/clothing/gloves/ruggedgloves
+	back = /obj/item/storage/backpack/satchel/rugged/survivor
+	l_pocket = /obj/item/storage/pouch/medkit/som/survivor
+
+
+/datum/outfit/job/new_survivor/general
+	name = "(New) General Survivor"
+	jobtype = /datum/job/new_survivor/general
+
+	w_uniform = /obj/item/clothing/under/color/grey
+	shoes = /obj/item/clothing/shoes/black
+	ears = /obj/item/radio/survivor
+	belt = /obj/item/belt_harness
+	r_pocket = /obj/item/storage/pouch/tools/full
+
+
+/datum/outfit/job/new_survivor/engineer
+	name = "(New) Engineer Survivor"
+	jobtype = /datum/job/new_survivor/engineer
+
+	w_uniform = /obj/item/clothing/under/colonist
+	gloves = /obj/item/clothing/gloves/insulated
+	shoes = /obj/item/clothing/shoes/orange
+	back = /obj/item/storage/backpack/industrial/survivor
+	glasses = /obj/item/clothing/glasses/welding
+	ears = /obj/item/radio/survivor
+	head = /obj/item/clothing/head/hardhat
+	belt = /obj/item/storage/belt/utility/survivor
+	r_pocket = /obj/item/storage/pouch/construction/som/survivor
+
+
+/datum/outfit/job/new_survivor/security
+	name = "(New) Security Survivor"
+	jobtype = /datum/job/new_survivor/security
+
+	w_uniform = /obj/item/clothing/under/rank/security
+	wear_suit = /obj/item/clothing/suit/armor/patrol
+	suit_store = /obj/item/weapon/gun/pistol/g22
+	shoes = /obj/item/clothing/shoes/jackboots
+	back = /obj/item/storage/backpack/satchel/sec/survivor
+	glasses = /obj/item/clothing/glasses/hud/security
+	belt = /obj/item/storage/belt/security/survivor
+	ears = /obj/item/radio/survivor
+	head = /obj/item/clothing/head/tgmcberet/red
+	r_pocket = /obj/item/storage/pouch/magazine/large/som/survivor
+
+
+/datum/outfit/job/new_survivor/medical
+	name = "(New) Medical Survivor"
+	jobtype = /datum/job/new_survivor/medical
+
+	w_uniform = /obj/item/clothing/under/rank/medical
+	wear_suit = /obj/item/clothing/suit/storage/labcoat
+	gloves = /obj/item/clothing/gloves/latex
+	glasses = /obj/item/clothing/glasses/hud/health
+	shoes = /obj/item/clothing/shoes/white
+	back = /obj/item/storage/backpack/satchel/med/survivor
+	ears = /obj/item/radio/survivor
+	belt = /obj/item/storage/belt/rig/survivor
+	mask = /obj/item/clothing/mask/surgical
+	l_pocket = /obj/item/storage/pouch/surgery
+
+
+// ***************************************
+// *********** Old Survivors
+// ***************************************
+/* these may still be used here and there but it is uncertain.
+they may be superseded by the above section of code.
+once we're sure, we can just remove everything below this comment, but only until then */
 /datum/outfit/job/survivor/assistant
 	name = "Assistant Survivor"
 	jobtype = /datum/job/survivor/assistant

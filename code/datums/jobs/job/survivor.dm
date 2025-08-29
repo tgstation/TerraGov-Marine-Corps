@@ -1,3 +1,50 @@
+// ***************************************
+// *********** New Survivors
+// ***************************************
+/datum/job/new_survivor
+	title = "Survivor"
+	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	display_order = JOB_DISPLAY_ORDER_SURVIVOR
+	skills_type = /datum/skills/new_survivor
+	outfit = /datum/outfit/job/new_survivor
+	faction = FACTION_NEUTRAL
+
+/datum/job/new_survivor/get_spawn_message_information(mob/M)
+	. = ..()
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are a member of this colony. Communications are lost, and you've no idea of what's happening.
+If you find any other colonists in the area, you should cooperate with them to increase your chances of survival.
+Depending on your job, you may have additional skills and items to help you, and others, as necessary.
+Good luck. You'll need it."}
+
+// Generalist / Unspecialized
+/datum/job/new_survivor/general
+	//skills_type = /datum/skills/new_survivor
+	outfit = /datum/outfit/job/new_survivor/general
+
+// Engineer
+/datum/job/new_survivor/engineer
+	skills_type = /datum/skills/new_survivor/engineer
+	outfit = /datum/outfit/job/new_survivor/engineer
+
+// Security
+/datum/job/new_survivor/security
+	skills_type = /datum/skills/new_survivor/security
+	outfit = /datum/outfit/job/new_survivor/security
+
+// Medical
+/datum/job/new_survivor/medical
+	skills_type = /datum/skills/new_survivor/medical
+	outfit = /datum/outfit/job/new_survivor/medical
+
+
+// ***************************************
+// *********** Old Survivors
+// ***************************************
+/* these may still be used here and there but it is uncertain.
+they may be superseded by the above section of code.
+once we're sure, we can just remove everything below this comment, but only until then */
 /datum/job/survivor
 	title = "Generic Survivor"
 	supervisors = "anyone who might rescue you"
