@@ -396,7 +396,7 @@
 //cade armor defines
 #define CADE_UPGRADE_BOMB 80
 #define CADE_UPGRADE_MELEE list(melee = 30, bullet = 50, laser = 50, energy = 50)
-#define CADE_UPGRADE_ACID 75
+#define CADE_UPGRADE_ACID 35
 
 /obj/structure/barricade/solid
 	name = "metal barricade"
