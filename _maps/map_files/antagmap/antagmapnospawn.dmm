@@ -4085,10 +4085,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
-"vM" = (
-/obj/effect/landmark/start/job/prisonerclf,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/antag_ship/clf_base/prison)
 "vQ" = (
 /obj/machinery/vending/uniform_supply/icc/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -6513,11 +6509,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
-"IB" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/start/job/prisonerclf,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/antag_ship/clf_base/prison)
 "IC" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -18831,7 +18822,7 @@ Kq
 uG
 aF
 St
-vM
+Rw
 uG
 aF
 Id
@@ -18926,7 +18917,7 @@ Iy
 ut
 aF
 pZ
-IB
+Iy
 ut
 aF
 Id
@@ -19021,7 +19012,7 @@ Rw
 ut
 aF
 Na
-vM
+Rw
 ut
 aF
 SP
@@ -19594,7 +19585,7 @@ mz
 NZ
 mz
 Dd
-lH
+mz
 lH
 mz
 lH
