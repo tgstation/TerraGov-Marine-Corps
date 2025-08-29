@@ -259,6 +259,40 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
+/datum/hive_upgrade/building/acid_jaws
+	name = "Acid Jaws"
+	desc = "Constructs an acid maw that allows the hive to bombard its enemies from afar. Must be placed outdoors."
+	psypoint_cost = 450
+	icon = "jaws"
+	gamemode_flags = ABILITY_NUCLEARWAR
+	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
+	building_type = /obj/structure/xeno/acid_maw/acid_jaws
+
+/datum/hive_upgrade/building/acid_jaws/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	for(var/atom/thing in GLOB.xeno_acid_jaws_by_hive[buyer.hivenumber])
+		if(thing.type != building_type)
+			continue
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We already have one!"))
+		return FALSE
+
+	var/turf/buildloc = get_turf(buyer)
+	if(!buildloc)
+		return FALSE
+
+	if(buildloc.density)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
+	var/area/buildzone = get_area(buyer)
+	if(buildzone.ceiling >= CEILING_UNDERGROUND)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We need open space to allow this structure to bombard enemies!"))
+		return FALSE
 
 /datum/hive_upgrade/building/mutation_chamber
 	/// The maximum amount of buildings that can exist before being disallowed from buying more.
