@@ -342,12 +342,17 @@
 	occupant = null
 	surgery_list = list()
 	active_surgery = null
-	update_icon()
+	filtering = 0
+	blood_transfer = 0
+	heal_brute = 0
+	heal_burn = 0
+	heal_toxin = 0
 	if(timer_id)
 		deltimer(timer_id)
 		timer_id = null
 	if(datum_flags & DF_ISPROCESSING)
 		stop_processing()
+	update_icon()
 
 /// Checks if a human can enter the machine.
 /obj/machinery/autodoc/proc/can_enter(mob/living/carbon/human/mover_of_occupant, mob/living/carbon/human/future_occupant, silent = FALSE)
@@ -445,7 +450,6 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
 	do_eject()
-
 
 /datum/autodoc_surgery
 	/// The limb that is referenced in the surgery.
@@ -1364,7 +1368,7 @@
 			connected.begin_surgery_operation()
 
 	if(href_list["ejectify"])
-		connected.eject()
+		connected.try_ejecting(usr)
 
 	updateUsrDialog()
 
@@ -1389,7 +1393,7 @@
 	if(!hasHUD(user,"medical"))
 		. += span_notice("It contains: [occupant].[active]")
 		if(timer_id)
-			. += span_notice("Next surgery step in [timeleft(timer_id)] seconds.")
+			. += span_notice("Next surgery step in [timeleft(timer_id) / 10] seconds.")
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical)
