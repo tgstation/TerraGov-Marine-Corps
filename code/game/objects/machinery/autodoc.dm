@@ -1237,7 +1237,7 @@
 			N.fields["autodoc_manual"] += new /datum/autodoc_surgery(null, null, SURGERY_CATEGORY_ORGAN, SURGERY_PROCEDURE_ORGAN_GERMS)
 
 		if(href_list["eyes"])
-			N.fields["autodoc_manual"] += new /datum/autodoc_surgery(null, connected.occupant.get_organ_slot(ORGAN_SLOT_EYES), SURGERY_CATEGORY_ORGAN, SURGERY_PROCEDURE_ORGAN_GERMS)
+			N.fields["autodoc_manual"] += new /datum/autodoc_surgery(null, connected.occupant.get_organ_slot(ORGAN_SLOT_EYES), SURGERY_CATEGORY_ORGAN, SURGERY_PROCEDURE_ORGAN_EYES)
 
 		var/needed = FALSE // This is to stop someone from just brainlessly choosing everything and getting benefits from it.
 		if(href_list["organdamage"])
