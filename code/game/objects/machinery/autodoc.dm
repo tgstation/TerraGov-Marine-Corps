@@ -854,7 +854,7 @@
 					if(!active_surgery.checked_for_necessity)
 						say("Beginning facial reconstruction surgery.")
 						active_surgery.checked_for_necessity = TRUE
-						if(!limb_ref || !istype(limb_ref,/datum/limb/head))
+						if(!limb_ref || !istype(limb_ref, /datum/limb/head))
 							handle_unnecessary_surgery()
 							return
 					var/datum/limb/head/head_limb = limb_ref
