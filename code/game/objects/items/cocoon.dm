@@ -6,10 +6,10 @@
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
 	hit_sound = 'sound/effects/alien/resin_break2.ogg'
-	max_integrity = 400
+	max_integrity = 100
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	///Which hive it belongs too
 	var/hivenumber
 	///What is inside the cocoon
@@ -27,6 +27,9 @@
 	if(!_hivenumber)
 		return
 	hivenumber = _hivenumber
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[hive.prefix][name]"
+	color = hive.color
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
@@ -105,7 +108,7 @@
 		busy = TRUE
 		var/channel = SSsounds.random_available_channel()
 		playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
-		if(!do_after(user, 8 SECONDS, NONE, src))
+		if(!do_after(user, 8 SECONDS, TRUE, src))
 			busy = FALSE
 			user.stop_sound_channel(channel)
 			return

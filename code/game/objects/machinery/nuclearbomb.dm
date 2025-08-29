@@ -168,7 +168,7 @@
 	if(!deployable)
 		return
 
-	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)

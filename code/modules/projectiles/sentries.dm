@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	var/iff_signal = NONE
 	///For minimap icon change if sentry is firing
 	var/firing
+	var/hivenumber = FALSE
 
 //------------------------------------------------------------------
 //Setup and Deletion
@@ -48,6 +49,13 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		var/mob/living/carbon/human/_deployer = deployer
 		var/obj/item/card/id/id = _deployer.get_idcard(TRUE)
 		iff_signal = id?.iff_signal
+		hivenumber = _deployer.get_xeno_hivenumber()
+	else
+		if(iff_signal & CLF_IFF)
+			hivenumber = XENO_HIVE_NORMAL
+		else
+			if(iff_signal & TGMC_LOYALIST_IFF)
+				hivenumber = XENO_HIVE_CORRUPTED
 	if(deployer)
 		faction = deployer.faction
 
@@ -55,6 +63,9 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
 
 	radio = new(src)
+	radio.freerange = TRUE
+	radio.canhear_range = 1
+	radio.set_frequency(GLOB.faction_default_frequency[faction] || FREQ_CIV_GENERAL)
 
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
@@ -77,14 +88,12 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	SSminimaps.remove_marker(src)
 	if(!z)
 		return
-	var/marker_flags
-	switch(iff_signal)
-		if(TGMC_LOYALIST_IFF)
-			marker_flags = MINIMAP_FLAG_MARINE
-		if(SOM_IFF)
-			marker_flags = MINIMAP_FLAG_MARINE_SOM
-		else
-			marker_flags = MINIMAP_FLAG_MARINE
+	var/marker_flags = 0
+	for(var/faction in GLOB.faction_to_minimap_flag)
+		if(iff_signal & GLOB.faction_to_iff[faction])
+			marker_flags |= GLOB.faction_to_minimap_flag[faction]
+	if(!marker_flags)
+		marker_flags = MINIMAP_FLAG_MARINE
 	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]", MINIMAP_BLIPS_LAYER))
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
@@ -369,7 +378,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 			notice = "<b>ALERT! [src] at: [AREACOORD_NO_Z(src)] has been destroyed!</b>"
 
 	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-	radio.talk_into(src, "[notice]", FREQ_COMMON)
+	radio.talk_into(src, "[notice]")
 
 /obj/machinery/deployable/mounted/sentry/process()
 	update_icon()
@@ -410,6 +419,18 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		if(human_occupant.wear_id?.iff_signal & iff_signal)
 			continue
 		potential_targets += nearby_tank
+	for(var/obj/vehicle/ridden/nearby_ridden AS in cheap_get_ridden_vehicles_near(src, range))
+		var/list/driver_list = nearby_ridden.return_drivers()
+		if(!length(driver_list))
+			continue
+		var/mob/living/carbon/human/human_occupant = driver_list[1]
+		if(human_occupant.wear_id?.iff_signal & iff_signal)
+			continue
+		potential_targets += nearby_ridden
+	for(var/obj/vehicle/unmanned/nearby_unmanned AS in cheap_get_unmanned_vehicles_near(src, range))
+		if(nearby_unmanned.iff_signal & iff_signal)
+			continue
+		potential_targets += nearby_unmanned
 	return length(potential_targets)
 
 ///Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.
@@ -557,7 +578,6 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 
 //Throwable turret
 /obj/machinery/deployable/mounted/sentry/cope
-	density = FALSE
 
 /obj/machinery/deployable/mounted/sentry/cope/sentry_start_fire()
 	var/obj/item/weapon/gun/internal_gun = get_internal_item()

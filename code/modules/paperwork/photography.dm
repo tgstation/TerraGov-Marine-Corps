@@ -207,7 +207,7 @@
 
 /obj/item/photo
 	name = "photo"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "photo"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',

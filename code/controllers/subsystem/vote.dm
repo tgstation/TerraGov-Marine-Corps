@@ -75,24 +75,7 @@ SUBSYSTEM_DEF(vote)
 		total_votes += votes
 		if(votes > greatest_votes)
 			greatest_votes = votes
-	//default-vote for everyone who didn't vote
-	if(!CONFIG_GET(flag/default_no_vote) && length(choices))
-		var/list/non_voters = GLOB.directory.Copy()
-		non_voters -= voted
-		for (var/non_voter_ckey in non_voters)
-			var/client/C = non_voters[non_voter_ckey]
-			if(!C || C.is_afk())
-				non_voters -= non_voter_ckey
-		if(length(non_voters) > 0)
-			if(mode == "restart")
-				choices["Continue Playing"] += length(non_voters)
-				if(choices["Continue Playing"] >= greatest_votes)
-					greatest_votes = choices["Continue Playing"]
-			else if(mode == "gamemode")
-				if(GLOB.master_mode in choices)
-					choices[GLOB.master_mode] += length(non_voters)
-					if(choices[GLOB.master_mode] >= greatest_votes)
-						greatest_votes = choices[GLOB.master_mode]
+	//default-vote for everyone who didn't vote -- REMOVED
 	. = list()
 	if(greatest_votes)
 		for(var/option in choices)
@@ -138,12 +121,48 @@ SUBSYSTEM_DEF(vote)
 	if(!.)
 		return
 	var/restart = FALSE
+	var/endround = FALSE
 	switch(mode)
 		if("restart")
 			if(. == "Restart Round")
 				restart = TRUE
+		if("endround")
+			if(. == "End Round and Restart")
+				endround = TRUE
 		if("gamemode")
 			SSticker.save_mode(.) //changes the next game mode
+			var/antag_change_required
+			var/datum/game_mode/new_gamemode = config.pick_mode(.)
+			log_game("new_gamemode.whitelist_antag_maps = [english_list(new_gamemode.whitelist_antag_maps)]")
+			log_game("SSmapping.configs\[ANTAG_MAP\].map_name = [SSmapping.configs[ANTAG_MAP].map_name]")
+			if(new_gamemode.whitelist_antag_maps ? (!(SSmapping.configs[ANTAG_MAP].map_name in new_gamemode.whitelist_antag_maps)) : (new_gamemode.blacklist_antag_maps && (SSmapping.configs[ANTAG_MAP].map_name in new_gamemode.blacklist_antag_maps)))
+				antag_change_required = TRUE
+			log_game("antag_change_required = [antag_change_required]")
+			if(antag_change_required)
+				var/list/maps = list()
+				if(!config.maplist)
+					WARNING("Could not set antag map: !config.maplist")
+					antag_change_required = FALSE
+				else
+					var/list/mapnames = list()
+					for(var/map in config.maplist[ANTAG_MAP])
+						var/datum/map_config/VM = config.maplist[ANTAG_MAP][map]
+						if(new_gamemode.whitelist_antag_maps)
+							if(!(VM.map_name in new_gamemode.whitelist_antag_maps))
+								continue
+						else if(new_gamemode.blacklist_antag_maps) //Can't blacklist and whitelist for the same map
+							if(VM.map_name in new_gamemode.blacklist_antag_maps)
+								continue
+						maps += VM
+						mapnames +="[VM.map_name]"
+						log_game("antag maps for gamemode [new_gamemode] - [english_list(mapnames)]")
+					if(!length(maps))
+						log_game("Could not set antag map: no valid antag maps found")
+						antag_change_required = FALSE
+					else
+						var/datum/map_config/next_antag = pick(maps)
+						log_game("changing antag map to [next_antag.map_name]")
+						SSmapping.changemap(next_antag, ANTAG_MAP)
 			if(GLOB.master_mode == .)
 				return
 			if(SSticker.HasRoundStarted())
@@ -151,12 +170,11 @@ SUBSYSTEM_DEF(vote)
 			else
 				var/ship_change_required
 				var/ground_change_required
-				var/datum/game_mode/new_gamemode = config.pick_mode(.)
 				GLOB.master_mode = . //changes the current gamemode
 				//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
-				if(!(new_gamemode.whitelist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) && !(new_gamemode.blacklist_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
+				if(new_gamemode.whitelist_ship_maps ? (!(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) : (new_gamemode.blacklist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
 					ship_change_required = TRUE
-				if(!(new_gamemode.whitelist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps)) && !(new_gamemode.blacklist_ground_maps && !(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
+				if(new_gamemode.whitelist_ground_maps ? (!(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps)) : (new_gamemode.blacklist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
 					ground_change_required = TRUE
 				//we queue up the required votes and restarts
 				if(ship_change_required && ground_change_required)
@@ -170,6 +188,8 @@ SUBSYSTEM_DEF(vote)
 				else if(ground_change_required)
 					addtimer(CALLBACK(src, PROC_REF(initiate_vote), "groundmap", null, TRUE), 5 SECONDS)
 					SSticker.Reboot("Restarting server when valid ground map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+				else if(antag_change_required)
+					SSticker.Reboot("Restarting server to switch antag map", 15 SECONDS)
 			return
 		if("groundmap")
 			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
@@ -185,10 +205,22 @@ SUBSYSTEM_DEF(vote)
 				break
 		if(!active_admins)
 			// No delay in case the restart is due to lag
-			SSticker.Reboot("Restart vote successful.", "restart vote", 1)
+			SSticker.Reboot("Restart vote successful.", 1)
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
+	if(endround)
+		var/active_admins = FALSE
+		for(var/client/C in GLOB.admins)
+			if(!C.is_afk() && check_rights_for(C, R_SERVER))
+				active_admins = TRUE
+				break
+		if(!active_admins)
+			SSticker.force_ending = TRUE
+			SSticker.mode.round_finished = "Democracy"
+		else
+			to_chat(world, "<span style='boltnotice'>Notice:End round vote will not restart the server automatically because there are active admins on.</span>")
+			message_admins("An end round vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
 
 
 
@@ -248,6 +280,8 @@ SUBSYSTEM_DEF(vote)
 		switch(vote_type)
 			if("restart")
 				choices.Add("Restart Round", "Continue Playing")
+			if("endround")
+				choices.Add("End Round and Restart", "Continue Playing")
 			if("gamemode")
 				multiple_vote = TRUE
 				for(var/datum/game_mode/mode AS in config.votable_modes)
@@ -405,6 +439,7 @@ SUBSYSTEM_DEF(vote)
 		"allow_vote_shipmap" = CONFIG_GET(flag/allow_vote_shipmap),
 		"allow_vote_mode" = CONFIG_GET(flag/allow_vote_mode),
 		"allow_vote_restart" = CONFIG_GET(flag/allow_vote_restart),
+		"allow_vote_endround" = CONFIG_GET(flag/allow_vote_endround),
 		"vote_happening" = vote_happening,
 	)
 
@@ -450,6 +485,9 @@ SUBSYSTEM_DEF(vote)
 		if("toggle_restart")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
+		if("toggle_endround")
+			if(usr.client.holder && upper_admin)
+				CONFIG_SET(flag/allow_vote_endround, !CONFIG_GET(flag/allow_vote_endround))
 		if("toggle_gamemode")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_mode, !CONFIG_GET(flag/allow_vote_mode))
@@ -462,6 +500,9 @@ SUBSYSTEM_DEF(vote)
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				initiate_vote("restart",usr.key)
+		if("endround")
+			if(CONFIG_GET(flag/allow_vote_endround) || usr.client.holder)
+				initiate_vote("endround",usr.key)
 		if("gamemode")
 			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
 				initiate_vote("gamemode",usr.key)

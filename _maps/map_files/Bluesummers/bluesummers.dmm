@@ -24749,7 +24749,7 @@
 /turf/open/floor/plating,
 /area/bluesummers/outside/north)
 "uJW" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /obj/structure/cable,
 /turf/open/floor/mainship/orange/full,
 /area/bluesummers/inside/engineering/office)
@@ -28078,7 +28078,7 @@
 	},
 /area/bluesummers/inside/biodome)
 "xTl" = (
-/obj/machinery/cic_maptable/drawable/big,
+/obj/machinery/cic_maptable/drawable/big/survivor,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/cryostorage/bridge)

@@ -21,7 +21,12 @@
 	var/starget = key_name(target)
 
 	var/mob/living/living_target = target
-	var/hp = istype(living_target) ? " (NEWHP: [living_target.health]) " : ""
+	var/obj/obj_target = target
+	var/hp = ""
+	if(istype(living_target))
+		hp = " (NEWHP: [living_target.health]) "
+	else if(istype(obj_target) && obj_target.max_integrity)
+		hp = " (New integrity: [obj_target.obj_integrity]/[obj_target.max_integrity]) "
 
 	var/sobject = ""
 	if(object)

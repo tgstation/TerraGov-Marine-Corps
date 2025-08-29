@@ -18,6 +18,8 @@
 		/datum/job/terragov/medical/researcher = 2,
 		/datum/job/terragov/civilian/liaison = 2,
 		/datum/job/terragov/silicon/synthetic = 1,
+		/datum/job/terragov/command/mech_pilot = 0,
+		/datum/job/terragov/command/assault_crewman = 0,
 		/datum/job/terragov/command/transport_crewman = 1,
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 1,
@@ -36,7 +38,9 @@
 	)
 
 	evo_requirements = list(
+/* NTF removal - evolution minimums
 		/datum/xeno_caste/queen = 8,
+NTF removal end*/
 	)
 
 /datum/game_mode/infestation/nuclear_war/post_setup()

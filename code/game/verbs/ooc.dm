@@ -361,9 +361,11 @@
 	if(!mob)
 		return
 
+/*
 	if(mob.stat == DEAD && !admin)
 		to_chat(src, span_warning("You must be alive to use LOOC."))
 		return
+*/
 
 	if(IsGuestKey(key))
 		to_chat(src, "Guests may not use LOOC.")
@@ -423,10 +425,11 @@
 			to_chat(in_range_mob, message)
 	else
 		message = span_looc("[span_prefix("LOOC:")] [mob.name]: [span_message("[msg]")]")
-		for(var/mob/in_range_mob in range(mob))
-			to_chat(in_range_mob, message)
-			if(in_range_mob.client?.prefs?.chat_on_map)
-				in_range_mob.create_chat_message(mob, raw_message = "(LOOC: [msg])", runechat_flags = OOC_MESSAGE)
+		var/turf/mobturf = get_turf(mob)
+		for(var/mob/M in GLOB.player_list)
+			var/turf/Mturf = get_turf(M)
+			if(mobturf.z == Mturf.z && get_dist(Mturf,mobturf) <= world.view)
+				to_chat(M, message)
 
 	for(var/client/recv_staff AS in GLOB.admins)
 		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE))
