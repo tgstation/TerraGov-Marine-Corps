@@ -315,11 +315,11 @@
 /obj/machinery/autodoc/proc/do_eject(notice_code)
 	for(var/atom/movable/movable_thing in contents)
 		movable_thing.forceMove(loc)
-	if(connected?.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
+	if(connected?.release_notice && occupant) // If auto-release notices are on as they should be, let the doctors know what's up.
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
 			if(AUTODOC_NOTICE_SUCCESS)
-				playsound(src.loc, 'sound/machines/ping.ogg', 50, FALSE) //All steps finished properly; this is the 'normal' notification.
+				playsound(src.loc, 'sound/machines/ping.ogg', 50, FALSE) // All steps finished properly; this is the 'normal' notification.
 			if(AUTODOC_NOTICE_DEATH)
 				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 				reason = "Reason for discharge: Patient death."
@@ -1148,7 +1148,7 @@
 	dat += "<hr><a href='byond://?src=[text_ref(src)];ejectify=1'>Eject Patient</a>"
 	if(!connected.active_surgery)
 		if(connected.automatic_mode)
-			dat += "<hr>Manual Surgery Interface Unavaliable, Automatic Mode Engaged."
+			dat += "<hr>Manual Surgery Interface Unavailable, Automatic Mode Engaged."
 		else
 			dat += "<hr>Manual Surgery Interface<hr>"
 			dat += "<b>Trauma Surgeries</b>"
@@ -1384,7 +1384,7 @@
 	if(!ishuman(occupant))
 		return
 	var/active = ""
-	if(active_surgery )
+	if(active_surgery)
 		active += " Surgical procedures are in progress."
 	if(!hasHUD(user,"medical"))
 		. += span_notice("It contains: [occupant].[active]")
