@@ -513,7 +513,8 @@
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(barricade_upgrade_type)
-		return
+		balloon_alert(user, "Already upgraded")
+		return FALSE
 
 	if(!metal_sheets.use(CADE_UPGRADE_REQUIRED_SHEETS))
 		return FALSE
