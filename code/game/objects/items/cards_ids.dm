@@ -267,6 +267,16 @@
 	access = ALL_SOM_ACCESS
 	iff_signal = SOM_IFF
 
+/obj/item/card/id/icc_spare
+	name = "spare "+ FACTION_ICC+" command ID"
+	desc = "A spare "+ FACTION_ICC + " command ID"
+	icon_state = "gold"
+	worn_icon_state = "gold_id"
+	registered_name = FACTION_ICC + " Commander"
+	assignment = FACTION_ICC + " Commander"
+	access = ALL_ICC_ACCESS
+	iff_signal = ICC_IFF
+
 /obj/item/card/id/captains_spare/survival
 	name = "identification card"
 	desc = "A colonist generalized ID card."
