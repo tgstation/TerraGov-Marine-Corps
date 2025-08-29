@@ -512,6 +512,8 @@
 	balloon_alert_to_viewers("attaching [choice]")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
+	if(barricade_upgrade_type)
+		return
 
 	if(!metal_sheets.use(CADE_UPGRADE_REQUIRED_SHEETS))
 		return FALSE
