@@ -23,6 +23,10 @@
 	name = "CLF Base Armory"
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 
+/area/antag_ship/clf_base/prison
+	name = "CLF Base Prison"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
+
 /area/antag_ship/clf_base/requisition
 	name = "CLF Base Requisition"
 	minimap_color = MINIMAP_AREA_REQ_CAVE

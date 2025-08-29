@@ -95,6 +95,7 @@ GLOBAL_LIST_EMPTY(all_req_one_access)
 #define ACCESS_CLF_CARGO 250
 #define ACCESS_CLF_TADPOLE 251
 #define ACCESS_CLF_ENGINEERING 252
+#define ACCESS_CLF_PRISON 253
 
 //=================================================
 
