@@ -128,3 +128,8 @@
       "and" that it was missing.'
   - spellcheck: 'Mutations: Telefrag''s description now uses the correct duration
       to display as seconds.'
+2025-08-29:
+  Atropos:
+  - bugfix: fixed recipes not appearing on some materials (eg. wood, iron, glass)
+  TheRealMrN, Atropos:
+  - rscadd: Added a new map, Blue Moon
