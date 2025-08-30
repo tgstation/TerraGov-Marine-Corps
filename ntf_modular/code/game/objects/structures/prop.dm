@@ -79,4 +79,4 @@
 	name = FACTION_ICC+" specialist"
 	desc = "Wearing 'Cuirassier' body armor, armed with a ML-41 assault machine gun, he seems fully prepared for combat!"
 	icon = 'ntf_modular/icons/obj/structures/prop/mainship.dmi'
-	icon_state = "ICC_guard_armed"
+	icon_state = "ICC_guard_specialist_armed"
