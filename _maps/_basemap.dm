@@ -34,6 +34,7 @@
 		#include "map_files\Bluesummers\bluesummers.dmm"
 		#include "map_files\Metnal_Operation\Metnal_Operation.dmm"
 		#include "map_files\Blue_Moon\bluemoon.dmm"
+		#include "map_files\Medium_Green\medium_green.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

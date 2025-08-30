@@ -1,0 +1,17 @@
+{
+    "map_name": "Medium Green",
+    "map_path": "map_files/Medium_Green",
+    "map_file": "medium_green.dmm",
+	"parallax_icon": "redrock",
+	"disk_sets": {
+		"basic": 1
+	},
+	"quickbuilds": 2300,
+	"armor": "desert",
+	"announce_text": "Morning marine... INTERN did you forget to calibrate sensors again? This is not a desert planet, it's a temperate one. Just look at the greenery on the sensors. Well, whatever, just get out there and do your job. You know the Explode nuke and get out of there.",
+	"traits":[{
+		"weather_sandstorm": true,
+		"Baseturf": "/turf/open/floor/plating",
+		"No Parallax": true
+	}]
+}
