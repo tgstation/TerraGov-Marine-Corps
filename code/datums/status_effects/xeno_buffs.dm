@@ -136,9 +136,10 @@
 		link_target.balloon_alert(link_target, "No plasma for link")
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
-	link_target.adjustFireLoss(-max(0, heal_amount - link_target.getBruteLoss()), passive = TRUE)
-	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(link_target, leftover_healing, TRUE)
 	link_owner.use_plasma(ability_cost)
+	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
 
 /// Shares the Resin Jelly buff with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
@@ -179,9 +180,12 @@
 
 	new /obj/effect/temp_visual/healing(get_turf(heal_target))
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
-	heal_target.adjustFireLoss(-max(0, heal_amount - heal_target.getBruteLoss()), passive = TRUE)
-	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	heal_target.adjust_sunder(-heal_amount/10)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(heal_target, leftover_healing, TRUE)
+	var/sunder_change = heal_target.adjust_sunder(-heal_amount / 10)
+
+	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
+	GLOB.round_statistics.drone_essence_link_sunder += -sunder_change
 	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
 
 /// Toggles the link signals on or off.
@@ -243,6 +247,7 @@
 		return
 	var/damage_to_heal = damage_dealt * lifesteal_percentage
 	HEAL_XENO_DAMAGE(link_owner, damage_to_heal, FALSE)
+	GLOB.round_statistics.drone_essence_link += (damage_dealt * lifesteal_percentage) - damage_to_heal // Amount actually healed.
 
 // ***************************************
 // *********** Salve Regeneration
@@ -270,9 +275,11 @@
 /datum/status_effect/salve_regen/tick(delta_time)
 	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
 	var/heal_amount = buff_owner.maxHealth * 0.01
-	buff_owner.adjustFireLoss(-max(0, heal_amount - buff_owner.getBruteLoss()), passive = TRUE)
-	buff_owner.adjustBruteLoss(-heal_amount, passive = TRUE)
-	buff_owner.adjust_sunder(-1)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(buff_owner, leftover_healing, TRUE)
+	var/sunder_change = buff_owner.adjust_sunder(-1)
+	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing) // While it is true that this comes from Acidic Salve, it is only applied to Essence Link users.
+	GLOB.round_statistics.drone_essence_link_sunder += -sunder_change
 	return ..()
 
 // ***************************************
