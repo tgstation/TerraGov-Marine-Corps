@@ -3934,9 +3934,6 @@
 /area/bluemoon/outside/building/cargo)
 "eBi" = (
 /obj/structure/cable,
-/obj/structure/barricade/solid{
-	dir = 8
-	},
 /obj/effect/landmark/corpsespawner/engineer/rig,
 /turf/open/floor/tile/brown{
 	dir = 8
