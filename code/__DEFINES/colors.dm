@@ -235,6 +235,8 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_ELECTRIC_CYAN "#00FFFF"
 /// More-saturated cyan. rgb(16, 21, 22)
 #define LIGHT_COLOR_LIGHT_CYAN "#40CEFF"
+/// Faint white blue. rgb(222, 239, 255)
+#define LIGHT_COLOR_FAINT_BLUE "#DEEFFF"
 /// Baby Blue rgb(0, 170, 220)
 #define LIGHT_COLOR_BABY_BLUE "#00AADC"
 /// Saturated blue. rgb(51, 117, 248)
