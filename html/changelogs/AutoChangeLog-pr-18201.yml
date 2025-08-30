@@ -1,0 +1,7 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "8 more mutations for Shrike."
+  - rscdel: "Mutations: Stand-In Recycler has been removed."
+  - balance: "Psychic Fling only kills facehuggers in hand if the target was a human."
+  - balance: "Mutations: Lone Healer no longer increases cooldown duration for Psychic Cure."
