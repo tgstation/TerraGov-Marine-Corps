@@ -575,34 +575,33 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 // Xenomorph caste_flags:
 // TODO: A lot of caste_flags and can_flags should just be traits using caste_traits instead.
-#define CASTE_INNATE_HEALING (1<<0) // Xenomorphs that heal outside of weeds. Larvas, for example.
-#define CASTE_QUICK_HEAL_STANDING (1<<1) // If standing, should we heal as fast as if we're resting?
-#define CASTE_INNATE_PLASMA_REGEN (1<<2) // Xenomorphs that regenerate plasma outside of weeds.
-#define CASTE_PLASMADRAIN_IMMUNE (1<<3) // Are we immune to plasma drain?
+#define CASTE_QUICK_HEAL_STANDING (1<<0) // If standing, should we heal as fast as if we're resting?
+#define CASTE_INNATE_PLASMA_REGEN (1<<1) // Xenomorphs that regenerate plasma outside of weeds.
+#define CASTE_PLASMADRAIN_IMMUNE (1<<2) // Are we immune to plasma drain?
 
-#define CASTE_IS_INTELLIGENT (1<<4) // Can we use human controls? Typically given to hive leaders for purposes of touching alamo/dropship controls.
-#define CASTE_IS_BUILDER (1<<5) // Whether we are classified as a builder caste. Allows specific construction options (like removing acid wells).
-#define CASTE_IS_A_MINION (1<<6) // Whether we are classified as a minion caste. Minions are not counted toward silo spawn count ratio.
+#define CASTE_IS_INTELLIGENT (1<<3) // Can we use human controls? Typically given to hive leaders for purposes of touching alamo/dropship controls.
+#define CASTE_IS_BUILDER (1<<4) // Whether we are classified as a builder caste. Allows specific construction options (like removing acid wells).
+#define CASTE_IS_A_MINION (1<<5) // Whether we are classified as a minion caste. Minions are not counted toward silo spawn count ratio.
 
-#define CASTE_FIRE_IMMUNE (1<<7) // Are we immune to fire? This includes immunity from getting set on fire and effects of it.
-#define CASTE_ACID_BLOOD (1<<8) // Randomly inflicts burn damage to nearby humans when taking damage.
-#define CASTE_STAGGER_RESISTANT (1<<9) // Resistant to getting staggered from projectiles.
+#define CASTE_FIRE_IMMUNE (1<<6) // Are we immune to fire? This includes immunity from getting set on fire and effects of it.
+#define CASTE_ACID_BLOOD (1<<7) // Randomly inflicts burn damage to nearby humans when taking damage.
+#define CASTE_STAGGER_RESISTANT (1<<8) // Resistant to getting staggered from projectiles.
 
-#define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<10) // When at low life, does not alerts other Xenomorphs (who opt into these low-life alerts). Decreases the font size for the death announcement message.
-#define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<11) // Do not announce to Hive if this Xenomorph died.
-#define CASTE_HIDE_IN_STATUS (1<<12) // Do not count them in the hive status TGUI.
-#define CASTE_NOT_IN_BIOSCAN (1<<13) // Do not count them toward the xenomorph count for the bioscan. Typically given to summoned minions (puppet/spiderling).
-#define CASTE_HAS_WOUND_MASK (1<<14) // Uses an alpha mask for wounded states.
+#define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<9) // When at low life, does not alerts other Xenomorphs (who opt into these low-life alerts). Decreases the font size for the death announcement message.
+#define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<10) // Do not announce to Hive if this Xenomorph died.
+#define CASTE_HIDE_IN_STATUS (1<<11) // Do not count them in the hive status TGUI.
+#define CASTE_NOT_IN_BIOSCAN (1<<12) // Do not count them toward the xenomorph count for the bioscan. Typically given to summoned minions (puppet/spiderling).
+#define CASTE_HAS_WOUND_MASK (1<<13) // Uses an alpha mask for wounded states.
 
 // Xenomorph caste_flags (for evolution):
 // TODO: Consider making a new variable for these.
-#define CASTE_EVOLUTION_ALLOWED (1<<15) // Are we allowed to evolve & do we gain any evolution points?
-#define CASTE_INSTANT_EVOLUTION (1<<16) // Whether we require no evolution progress to evolve to this caste.
-#define CASTE_CANNOT_EVOLVE_IN_CAPTIVITY (1<<17) // Whether we cannot evolve in the research lab.
-#define CASTE_REQUIRES_FREE_TILE (1<<18) // Whether we require a free tile to evolve.
-#define CASTE_LEADER_TYPE (1<<19) // Whether this is a leader type caste (e.g. Queen/Shrike/King/Dragon). Restricts who can play these castes based on: playtime & if banned from Queen.
-#define CASTE_EXCLUDE_STRAINS (1<<20) // Excludes this caste/basetype from strain selection.
-#define CASTE_MUTATIONS_ALLOWED (1<<21) // Whether we are allowed to access, view, and potentially purchase mutations for our caste/strain.
+#define CASTE_EVOLUTION_ALLOWED (1<<14) // Are we allowed to evolve & do we gain any evolution points?
+#define CASTE_INSTANT_EVOLUTION (1<<15) // Whether we require no evolution progress to evolve to this caste.
+#define CASTE_CANNOT_EVOLVE_IN_CAPTIVITY (1<<16) // Whether we cannot evolve in the research lab.
+#define CASTE_REQUIRES_FREE_TILE (1<<17) // Whether we require a free tile to evolve.
+#define CASTE_LEADER_TYPE (1<<18) // Whether this is a leader type caste (e.g. Queen/Shrike/King/Dragon). Restricts who can play these castes based on: playtime & if banned from Queen.
+#define CASTE_EXCLUDE_STRAINS (1<<19) // Excludes this caste/basetype from strain selection.
+#define CASTE_MUTATIONS_ALLOWED (1<<20) // Whether we are allowed to access, view, and potentially purchase mutations for our caste/strain.
 
 // Xenomorph can_flags:
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0) // Are we allowed to carry facehuggers in our hands?

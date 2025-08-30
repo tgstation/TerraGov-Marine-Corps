@@ -29,9 +29,9 @@
 	evolution_threshold = 50
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_INNATE_HEALING
+	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_RIDE_CRUSHER
-	caste_traits = list(TRAIT_CAN_VENTCRAWL)
+	caste_traits = list(TRAIT_CAN_VENTCRAWL, TRAIT_INNATE_HEALING)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)

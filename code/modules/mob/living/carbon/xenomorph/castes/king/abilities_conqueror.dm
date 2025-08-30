@@ -710,7 +710,7 @@
 		return
 	if(xeno_owner.endurance_health >= xeno_owner.endurance_health_max)
 		return
-	if(!xeno_owner.loc_weeds_type && !(xeno_owner.xeno_caste.caste_flags & CASTE_INNATE_HEALING))
+	if(!xeno_owner.loc_weeds_type && !HAS_TRAIT(xeno_owner, TRAIT_INNATE_HEALING))
 		return
 	var/regen_amount = 1 + (xeno_owner.xeno_caste.max_health * 0.0375)
 	if(xeno_owner.recovery_aura)

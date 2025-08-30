@@ -260,7 +260,7 @@
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE)
 	if(!I)
 		return
-	SEND_SIGNAL(src, COMSIG_MOB_DROPPING_ITEM)
+	SEND_SIGNAL(src, COMSIG_MOB_DROPPING_ITEM, I)
 	. = UnEquip(I, force, drop_location())
 	if(.)
 		I.pixel_x = initial(I.pixel_x) + rand(-6,6)

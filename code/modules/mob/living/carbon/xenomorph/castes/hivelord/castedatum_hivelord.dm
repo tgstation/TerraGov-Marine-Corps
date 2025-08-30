@@ -82,8 +82,14 @@
 
 	mutations = list(
 		/datum/mutation_upgrade/shell/hardened_travel,
-		/datum/mutation_upgrade/spur/rejuvenating_build,
-		/datum/mutation_upgrade/veil/protective_light
+		/datum/mutation_upgrade/shell/costly_travel,
+		/datum/mutation_upgrade/shell/rejuvenating_build,
+		/datum/mutation_upgrade/spur/combustive_jelly,
+		/datum/mutation_upgrade/spur/resin_splash,
+		/datum/mutation_upgrade/spur/hostile_pylon,
+		/datum/mutation_upgrade/veil/protective_light,
+		/datum/mutation_upgrade/veil/forward_light,
+		/datum/mutation_upgrade/veil/weed_specialist
 	)
 
 /datum/xeno_caste/hivelord/normal
