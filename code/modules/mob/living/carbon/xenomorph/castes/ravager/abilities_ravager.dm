@@ -386,7 +386,7 @@
 	return ..()
 
 /datum/action/ability/xeno_action/rage/can_use_action(atom/A, silent = FALSE, override_flags)
-	. = ..()
+	. = ..(silent, override_flags)
 	if(!.)
 		return FALSE
 
