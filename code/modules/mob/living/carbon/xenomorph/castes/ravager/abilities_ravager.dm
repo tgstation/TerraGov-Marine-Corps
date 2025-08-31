@@ -385,8 +385,8 @@
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/xeno_action/rage/can_use_action(atom/A, silent = FALSE, override_flags)
-	. = ..(silent, override_flags)
+/datum/action/ability/xeno_action/rage/can_use_action(silent = FALSE, override_flags)
+	. = ..()
 	if(!.)
 		return FALSE
 
