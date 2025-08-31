@@ -547,7 +547,7 @@
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 	if(istype(infestation_mode))
 		data["shuttle_hijacked"] = (infestation_mode.round_stage == INFESTATION_MARINE_CRASHING) //If we hijacked, our capture button greys out
-	data["hijack_disabled"] = !(SSticker.mode.round_type_flags & MODE_HIJACK_POSSIBLE)
+	data["hijack_disabled"] = data["shuttle_hijacked"] || !(SSticker.mode.round_type_flags & MODE_HIJACK_POSSIBLE) // Disable if already hijacking or hijacking not allowed.
 
 
 	var/locked = 0
