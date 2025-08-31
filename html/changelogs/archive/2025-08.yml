@@ -146,4 +146,12 @@
   - bugfix: fixed recipes not appearing on some materials (eg. wood, iron, glass)
   TheRealMrN, Atropos:
   - rscadd: Added a new map, Blue Moon
-
+2025-08-31:
+  Runian:
+  - rscadd: 8 more mutations for Shrike.
+  - rscdel: 'Mutations: Stand-In Recycler has been removed.'
+  - balance: Psychic Fling only kills facehuggers in hand if the target was a human.
+  - balance: 'Mutations: Lone Healer no longer increases cooldown duration for Psychic
+      Cure.'
+  - bugfix: You can no longer infinitely stack armor on barricades by upgrading when
+      you're not suppose to.

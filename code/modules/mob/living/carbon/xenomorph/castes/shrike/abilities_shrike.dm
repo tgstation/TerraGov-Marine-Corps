@@ -72,6 +72,8 @@
 	var/collusion_paralyze_duration = 0
 	/// If humans were to collide with something, what is the multiplier of the owner's melee damage for determining how much damage to deal?
 	var/collusion_damage_multiplier = 0
+	/// Can this ability be used on xenomorphs? If so, what amount should the cooldown duration be mulitplied by?
+	var/friendly_cooldown_multiplier = 0
 
 /datum/action/ability/activable/xeno/psychic_fling/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
@@ -83,7 +85,9 @@
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
-	if(!isitem(target) && !ishuman(target) && !isdroid(target))	//only items, droids, and mobs can be flung.
+	if(!isitem(target) && !ishuman(target) && !isdroid(target) && !isxeno(target)) // Only items, humans, droids, and xenomorphs.
+		return FALSE
+	if(isxeno(target) && !friendly_cooldown_multiplier)
 		return FALSE
 	if(target.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return FALSE
@@ -100,48 +104,48 @@
 			return FALSE
 
 /datum/action/ability/activable/xeno/psychic_fling/use_ability(atom/target)
-	var/mob/living/victim = target
+	var/atom/movable/movable_target = target
 	GLOB.round_statistics.psychic_flings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
 
-	owner.visible_message(span_xenowarning("A strange and violent psychic aura is suddenly emitted from \the [owner]!"), \
-	span_xenowarning("We violently fling [victim] with the power of our mind!"))
-	victim.visible_message(span_xenowarning("[victim] is violently flung away by an unseen force!"), \
-	span_xenowarning("You are violently flung to the side by an unseen force!"))
-	playsound(owner,'sound/effects/magic.ogg', 75, 1)
-	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
+	xeno_owner.visible_message(span_xenowarning("A strange and violent psychic aura is suddenly emitted from \the [xeno_owner]!"), \
+		span_xenowarning("We violently fling [movable_target] with the power of our mind!"))
+	movable_target.visible_message(span_xenowarning("[movable_target] is violently flung away by an unseen force!"), \
+		span_xenowarning("You are violently flung to the side by an unseen force!"))
+	playsound(xeno_owner, 'sound/effects/magic.ogg', 75, 1)
+	playsound(movable_target, 'sound/weapons/alien_claw_block.ogg', 75, 1)
 
-	//Held facehuggers get killed for balance reasons
-	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
-		hugger.kill_hugger()
-		owner.dropItemToGround(hugger)
-
-	succeed_activate()
-	add_cooldown()
-	if(ishuman(victim))
+	if(ishuman(movable_target))
+		// Held facehuggers get killed for balance reasons; preventing a near-immediate facehug after a stun.
+		for(var/obj/item/clothing/mask/facehugger/hugger in xeno_owner.get_held_items())
+			hugger.kill_hugger()
+			xeno_owner.dropItemToGround(hugger)
+		var/mob/living/carbon/human/human_target = movable_target
 		if(stun_duration)
-			victim.Stun(2 SECONDS)
-			victim.drop_all_held_items()
+			human_target.Stun(stun_duration)
+			human_target.drop_all_held_items()
 		if(damage_multiplier)
-			victim.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
-		RegisterSignal(victim, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
+			human_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
+		RegisterSignal(human_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 		if(collusion_paralyze_duration || collusion_damage_multiplier)
-			RegisterSignal(victim, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
+			RegisterSignal(human_target, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 		else
-			victim.add_pass_flags(PASS_MOB, THROW_TRAIT)
-		shake_camera(victim, 2, 1)
+			human_target.add_pass_flags(PASS_MOB, THROW_TRAIT)
+		shake_camera(human_target, 2, 1)
 
-	var/facing = get_dir(owner, victim)
-	var/fling_distance = (isitem(victim)) ? 4 : 3 //Objects get flung further away.
-	var/turf/T = victim.loc
+	var/facing = xeno_owner == movable_target ? xeno_owner.dir : get_dir(xeno_owner, movable_target)
+	var/fling_distance = (isitem(movable_target)) ? 4 : 3 // Objects get flung further away.
+	var/turf/T = movable_target.loc
 	var/turf/temp
-
 	for(var/x in 1 to fling_distance)
 		temp = get_step(T, facing)
 		if(!temp)
 			break
 		T = temp
-	victim.throw_at(T, fling_distance, 1, owner, TRUE)
+	movable_target.throw_at(T, fling_distance, 1, xeno_owner, TRUE)
+
+	add_cooldown(cooldown_duration * ((isxeno(movable_target) || isitem(movable_target)) ? friendly_cooldown_multiplier : 1))
+	succeed_activate()
 
 /// Called when the throw has ended.
 /datum/action/ability/activable/xeno/psychic_fling/proc/on_post_throw(datum/source)
@@ -202,12 +206,18 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
 	)
-
+	/// The amount of distance that to throw things.
+	var/throwing_distance = 6
+	/// Should this ability reflect projectiles as well? If so, what amount should the cooldown duration be mulitplied by if 100+ projectle damage was reflected?
+	var/projectile_cooldown_mulitplier = 0
+	/// Should things be thrown toward the owner first before getting thrown away?
+	var/rebound_throwing = FALSE
+	/// What direction was the owner facing at the start of the ability? Kept around to reuse for rebound signals.
+	var/starting_direction
 
 /datum/action/ability/activable/xeno/unrelenting_force/on_cooldown_finish()
 	to_chat(owner, span_notice("Our mind is ready to unleash another blast of force."))
 	return ..()
-
 
 /datum/action/ability/activable/xeno/unrelenting_force/use_ability(atom/target)
 	succeed_activate()
@@ -215,31 +225,36 @@
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
 	owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno_owner.is_a_rouny ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
-		owner.face_atom(target)
+		xeno_owner.face_atom(target)
+	starting_direction = xeno_owner.dir
 
 	var/turf/lower_left
 	var/turf/upper_right
-	switch(owner.dir)
+	switch(starting_direction)
 		if(NORTH)
-			lower_left = locate(owner.x - 1, owner.y + 1, owner.z)
-			upper_right = locate(owner.x + 1, owner.y + 3, owner.z)
+			lower_left = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 1, xeno_owner.y + 3, xeno_owner.z)
 		if(SOUTH)
-			lower_left = locate(owner.x - 1, owner.y - 3, owner.z)
-			upper_right = locate(owner.x + 1, owner.y - 1, owner.z)
+			lower_left = locate(xeno_owner.x - 1, xeno_owner.y - 3, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
 		if(WEST)
-			lower_left = locate(owner.x - 3, owner.y - 1, owner.z)
-			upper_right = locate(owner.x - 1, owner.y + 1, owner.z)
+			lower_left = locate(xeno_owner.x - 3, xeno_owner.y - 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
 		if(EAST)
-			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
-			upper_right = locate(owner.x + 3, owner.y + 1, owner.z)
+			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 3, xeno_owner.y + 1, xeno_owner.z)
 
 	var/list/things_to_throw = list()
+	var/list/atom/movable/projectile/things_to_deflect = list()
 	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 3x3 block is found.
 		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/atom/movable/affected AS in affected_tile)
 			if(isfire(affected))
 				var/obj/fire/fire = affected
 				fire.reduce_fire(10)
+				continue
+			if(projectile_cooldown_mulitplier && istype(affected, /atom/movable/projectile))
+				things_to_deflect += affected
 				continue
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(duration = 0.5 SECONDS)
@@ -256,9 +271,26 @@
 
 	for(var/atom/movable/affected AS in things_to_throw)
 		var/throwlocation = affected.loc
-		for(var/x in 1 to 6)
-			throwlocation = get_step(throwlocation, owner.dir)
-		affected.throw_at(throwlocation, 6, 1, owner, TRUE)
+		for(var/x in 1 to throwing_distance)
+			throwlocation = get_step(throwlocation, rebound_throwing ? REVERSE_DIR(starting_direction) : starting_direction)
+		if(rebound_throwing)
+			RegisterSignal(affected, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
+		affected.throw_at(throwlocation, throwing_distance, 1, xeno_owner, TRUE)
+
+	var/damage_deflected = 0
+	for(var/atom/movable/projectile/affected_projectile AS in things_to_deflect)
+		if(starting_direction == affected_projectile.dir)
+			continue
+		var/perpendicular_angle = Get_Angle(get_turf(xeno_owner), get_step(xeno_owner, starting_direction))
+		var/bounced_angle = perpendicular_angle + (perpendicular_angle - affected_projectile.dir_angle - (starting_direction == REVERSE_DIR(affected_projectile.dir) ? 180 : 90))
+		if(bounced_angle < 0)
+			bounced_angle += 360
+		else if(bounced_angle > 360)
+			bounced_angle -= 360
+		affected_projectile.distance_travelled = 0
+		affected_projectile.iff_signal = null
+		affected_projectile.fire_at(shooter = xeno_owner, source = get_step(xeno_owner, starting_direction), angle = bounced_angle, recursivity = TRUE)
+		damage_deflected += affected_projectile.damage
 
 	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
 	span_xenowarning("We send out a huge blast of psychic energy!"))
@@ -266,11 +298,23 @@
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, SFX_ALIEN_ROAR, 50)
 
-	//Held facehuggers get killed for balance reasons
+	// Held facehuggers get killed for balance reasons.
 	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
 		hugger.kill_hugger()
 		owner.dropItemToGround(hugger)
 
+	add_cooldown(cooldown_duration * (damage_deflected >= 50 ? projectile_cooldown_mulitplier : 1))
+	succeed_activate()
+
+/// Throws things back the other way.
+/datum/action/ability/activable/xeno/unrelenting_force/proc/on_throw_end(datum/source)
+	SIGNAL_HANDLER
+	var/atom/movable/movable_source = source
+	UnregisterSignal(movable_source, list(COMSIG_MOVABLE_POST_THROW))
+	var/throw_location = movable_source.loc
+	for(var/x in 1 to throwing_distance)
+		throw_location = get_step(throw_location, starting_direction)
+	movable_source.throw_at(throw_location, throwing_distance, 1, xeno_owner, TRUE)
 
 // ***************************************
 // *********** Psychic Cure
@@ -290,13 +334,22 @@
 	var/heal_range = SHRIKE_HEAL_RANGE
 	/// If the ability was used on themselves, what is the amount to multiply healing power by?
 	var/self_heal_multiplier = 1
-	/// If the ability was used on themselves, what is the amount to multiply cooldown duration by?
-	var/self_cooldown_multiplier = 1
+	/// The percentage of restored health that will be re-applied to the owner. 1 = 100%, 0.01 = 1%.
+	var/rebound_percentage = 0
+	/// The amount of deciseconds that the Resin Jelly Coating status effect will be applied.
+	var/resin_jelly_duration = 0
+	/// The amount of deciseconds that various status effects are delayed: Stun, Knockdown, and Stagger. Slowdown immunity is given, but not delayed.
+	var/delayed_status_duration = 0
+	/// List of all delayed status effects to be reapplied at the end.
+	var/list/delayed_status_list = list()
+	/// The xenomorph who is having their status effects being delayed.
+	var/mob/living/carbon/xenomorph/delayed_status_patient
+	/// Timer that will give back any delayed status effect.
+	var/delayed_status_timer
 
 /datum/action/ability/activable/xeno/psychic_cure/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to cure sisters again."))
 	return ..()
-
 
 /datum/action/ability/activable/xeno/psychic_cure/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -314,7 +367,6 @@
 			to_chat(owner, span_warning("It's too late. This won't be coming back."))
 		return FALSE
 
-
 /datum/action/ability/activable/xeno/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
@@ -326,7 +378,6 @@
 			to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
-
 
 /datum/action/ability/activable/xeno/psychic_cure/use_ability(atom/target)
 	if(owner.do_actions)
@@ -349,8 +400,9 @@
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
+	var/healing_results = list(0,0)
 	if(isxeno(target))
-		patient.heal_wounds(xeno_owner == patient ? SHRIKE_CURE_HEAL_MULTIPLIER * self_heal_multiplier : SHRIKE_CURE_HEAL_MULTIPLIER)
+		healing_results = patient.heal_wounds(xeno_owner == patient ? SHRIKE_CURE_HEAL_MULTIPLIER * self_heal_multiplier : SHRIKE_CURE_HEAL_MULTIPLIER)
 		patient.adjust_sunder(xeno_owner == patient ?  -SHRIKE_CURE_HEAL_MULTIPLIER * self_heal_multiplier : -SHRIKE_CURE_HEAL_MULTIPLIER)
 		if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 			patient.SetUnconscious(0)
@@ -360,22 +412,77 @@
 			patient.set_slowdown(0)
 		patient.updatehealth()
 	else
-		patient.psychic_cure()
+		healing_results = patient.psychic_cure()
+	var/amount_healed = healing_results[2] - healing_results[1]
+	if(rebound_percentage && amount_healed)
+		var/amount_to_heal = amount_healed * rebound_percentage
+		HEAL_XENO_DAMAGE(xeno_owner, amount_to_heal, FALSE)
+	if(resin_jelly_duration)
+		xeno_owner.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING, resin_jelly_duration)
+		xeno_owner.emote("roar")
+		if(xeno_owner != patient)
+			patient.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING, resin_jelly_duration)
+			patient.emote("roar")
 
-	owner.changeNext_move(CLICK_CD_RANGE)
-
+	if(delayed_status_patient)
+		end_delayed_status_effects()
+	if(delayed_status_duration)
+		start_delayed_status_effects(patient)
 	log_combat(owner, patient, "psychically cured")
 
 	succeed_activate()
-	add_cooldown(xeno_owner == patient ? cooldown_duration * self_cooldown_multiplier : null)
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/psychic_cure/proc/start_delayed_status_effects(mob/living/carbon/xenomorph/patient)
+	delayed_status_timer = addtimer(CALLBACK(src, PROC_REF(end_delayed_status_effects)), delayed_status_duration, TIMER_UNIQUE|TIMER_STOPPABLE)
+	delayed_status_patient = patient
+	ADD_TRAIT(delayed_status_patient, TRAIT_SLOWDOWNIMMUNE, SHRIKE_ABILITY_TRAIT)
+	RegisterSignal(patient, COMSIG_LIVING_STATUS_STUN, PROC_REF(on_stun))
+	RegisterSignal(patient, COMSIG_LIVING_STATUS_KNOCKDOWN, PROC_REF(on_knockdown))
+	RegisterSignal(patient, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(on_stagger))
+	delayed_status_patient.add_filter("psychic_cure_delayed", 2, outline_filter(2, COLOR_BLUE))
+
+/datum/action/ability/activable/xeno/psychic_cure/proc/end_delayed_status_effects()
+	if(delayed_status_timer)
+		deltimer(delayed_status_timer)
+		delayed_status_timer = null
+	REMOVE_TRAIT(delayed_status_patient, TRAIT_SLOWDOWNIMMUNE, SHRIKE_ABILITY_TRAIT)
+	UnregisterSignal(delayed_status_patient, COMSIG_LIVING_STATUS_STUN)
+	UnregisterSignal(delayed_status_patient, COMSIG_LIVING_STATUS_KNOCKDOWN)
+	UnregisterSignal(delayed_status_patient, COMSIG_LIVING_STATUS_STAGGER)
+	for(var/status_effect_name AS in delayed_status_list)
+		var/duration = delayed_status_list[status_effect_name]
+		delayed_status_patient.apply_effect(duration, status_effect_name)
+	delayed_status_patient.remove_filter("psychic_cure_delayed")
+	delayed_status_list.Cut()
+	delayed_status_patient = null
+
+/datum/action/ability/activable/xeno/psychic_cure/proc/on_stun(datum/source, amount, ignore_canstun)
+	SIGNAL_HANDLER
+	delayed_status_list[EFFECT_STUN] += amount
+	return COMPONENT_NO_STUN
+
+/datum/action/ability/activable/xeno/psychic_cure/proc/on_knockdown(datum/source, amount, ignore_canstun)
+	SIGNAL_HANDLER
+	delayed_status_list[EFFECT_KNOCKDOWN] += amount
+	return COMPONENT_NO_STUN
+
+/datum/action/ability/activable/xeno/psychic_cure/proc/on_stagger(datum/source, amount, ignore_canstun)
+	SIGNAL_HANDLER
+	delayed_status_list[EFFECT_STAGGER] += amount
+	return COMPONENT_NO_STUN
+
+// COMSIG_LIVING_STATUS_STAGGER
 
 
 /mob/living/proc/psychic_cure()
 	var/amount = 100
 	var/remainder = max(0, amount - getBruteLoss())
+	var/final_remainder = max(0, remainder - getFireLoss())
 	if(ishuman(src))
 		adjustBruteLoss(-amount)
 		adjustFireLoss(-remainder, updating_health = TRUE)
+	return list(final_remainder, 100)
 
 
 // ***************************************
@@ -508,3 +615,141 @@
 		var/turf/targetturf = get_turf(owner)
 		targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
 		movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
+
+
+#define PSYCHIC_CHOKE_DAMAGE_THRESHOLD 5
+
+// ***************************************
+// *********** Psychic Choke
+// ***************************************
+/datum/action/ability/activable/xeno/psychic_choke
+	name = "Psychic Choke"
+	action_icon_state = "fling"
+	action_icon = 'icons/Xeno/actions/shrike.dmi'
+	desc = "Channel at a distance to hold a human in your psychic grasp."
+	cooldown_duration = 12 SECONDS
+	ability_cost = 100
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING, // Shares the same key as you can only have this ability or the other, never both at the same time.
+	)
+	target_flags = ABILITY_MOB_TARGET
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// How much damage by the owner or the target has been taken so far while channeling?
+	var/damage_taken_so_far = 0
+	/// If damage taken reaches this amount, channeling will end.
+	var/damage_threshold = PSYCHIC_CHOKE_DAMAGE_THRESHOLD
+	/// What is the human being choked right now?
+	var/mob/living/carbon/human/choked_human
+
+/datum/action/ability/activable/xeno/psychic_choke/can_use_ability(atom/movable/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(QDELETED(target) || !ishuman(target))
+		return FALSE
+	var/dist = get_dist(xeno_owner, target)
+	switch(dist)
+		if(-1 to 1)
+			if(!silent)
+				xeno_owner.balloon_alert(target, "Too close!")
+			return FALSE
+		if(2 to 3)
+			if(!line_of_sight(xeno_owner, target, 3))
+				if(!silent)
+					xeno_owner.balloon_alert(target, "Not in line of sight!")
+				return FALSE
+		if(4 to INFINITY)
+			if(!silent)
+				xeno_owner.balloon_alert(target, "Too far!")
+			return FALSE
+	var/mob/living/carbon/human/human_target = target
+	if(human_target.stat == DEAD)
+		if(!silent)
+			xeno_owner.balloon_alert(target, "Already dead!")
+		return FALSE
+
+/datum/action/ability/activable/xeno/psychic_choke/use_ability(atom/target)
+	if(choked_human)
+		return
+	choked_human = target
+	xeno_owner.face_atom(choked_human)
+
+	xeno_owner.visible_message(span_xenowarning("A strange and violent psychic aura is suddenly emitted from \the [xeno_owner]!"), \
+		span_xenowarning("We choke [choked_human] with the power of our mind!"))
+	choked_human.visible_message(span_xenowarning("[choked_human] is suddenly grabbed by the neck by an unseen force!"), \
+		span_xenowarning("You are suddenly grabbed by an unseen force!"))
+	playsound(xeno_owner, 'sound/effects/magic.ogg', 75, 1)
+
+	choked_human.drop_all_held_items()
+	choked_human.Stun(4 SECONDS)
+
+	ADD_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, SHRIKE_ABILITY_TRAIT)
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(on_damage_taken))
+	RegisterSignal(choked_human, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(on_damage_taken))
+	RegisterSignals(choked_human, list(COMSIG_LIVING_STATUS_STUN,
+		COMSIG_LIVING_STATUS_KNOCKDOWN,
+		COMSIG_LIVING_STATUS_PARALYZE,
+		COMSIG_LIVING_STATUS_UNCONSCIOUS,
+		COMSIG_LIVING_STATUS_SLEEP,
+		COMSIG_LIVING_IGNITED), PROC_REF(end_choke))
+
+	var/angle = Get_Angle(get_turf(xeno_owner), get_turf(choked_human))
+	particle_holder = new(xeno_owner, /particles/psychic_choke)
+	particle_holder.pixel_x = 16
+	particle_holder.pixel_y = 0
+	particle_holder.particles.velocity = list(sin(angle) * 3.5, cos(angle) * 3.5)
+	particle_holder.particles.gravity = list(sin(angle) * 7, cos(angle) * 7)
+	particle_holder.particles.rotation = angle
+	xeno_owner.update_glow(3, 3, "#9e1f1f")
+
+	if(!do_after(xeno_owner, 4 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_continue_choke))))
+		end_choke()
+		return
+	end_choke()
+
+/// Should the choking continue? Used for the do_after.
+/datum/action/ability/activable/xeno/psychic_choke/proc/can_continue_choke()
+	return can_use_action(TRUE, ABILITY_USE_BUSY) && choked_human
+
+/// Ends the choke by reverting everything associated with choking.
+/datum/action/ability/activable/xeno/psychic_choke/proc/end_choke()
+	choked_human.SetStun(0)
+
+	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, SHRIKE_ABILITY_TRAIT)
+	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	UnregisterSignal(choked_human, COMSIG_HUMAN_DAMAGE_TAKEN)
+	UnregisterSignal(choked_human, list(COMSIG_LIVING_STATUS_STUN,
+		COMSIG_LIVING_STATUS_KNOCKDOWN,
+		COMSIG_LIVING_STATUS_PARALYZE,
+		COMSIG_LIVING_STATUS_UNCONSCIOUS,
+		COMSIG_LIVING_STATUS_SLEEP,
+		COMSIG_LIVING_IGNITED))
+
+	QDEL_NULL(particle_holder)
+	xeno_owner.update_glow()
+
+	choked_human = null
+	add_cooldown()
+	succeed_activate()
+
+/// Keeps track of how much damage has been taken so far by the owner and the choked human.
+/datum/action/ability/activable/xeno/psychic_choke/proc/on_damage_taken(datum/source, damage_amount)
+	damage_taken_so_far += damage_amount
+	if(damage_taken_so_far >= damage_threshold)
+		end_choke()
+
+/particles/psychic_choke
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "lemon"
+	width = 250
+	height = 250
+	count = 300
+	spawning = 20
+	lifespan = 12
+	fade = 12
+	grow = -0.02
+	velocity = list(0, 3)
+	position = generator(GEN_CIRCLE, 15, 17, NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(0.1, 0.1), list(0.5, 0.5), NORMAL_RAND)
+	color = "#970f0f"

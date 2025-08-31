@@ -49,7 +49,8 @@
 	if(target_human.stat == DEAD)
 		var/overheal_gain = 0
 		while((xeno_owner.health < xeno_owner.maxHealth || xeno_owner.overheal < xeno_owner.xeno_caste.overheal_max) && do_after(xeno_owner, 2 SECONDS, NONE, target_human, BUSY_ICON_HOSTILE))
-			overheal_gain = xeno_owner.heal_wounds(dead_multiplier)
+			var/list/healing_results = xeno_owner.heal_wounds(dead_multiplier)
+			overheal_gain = healing_results[1]
 			xeno_owner.adjustOverheal(overheal_gain)
 			xeno_owner.adjust_sunder(-2.5)
 		to_chat(xeno_owner, span_notice("We feel fully restored."))

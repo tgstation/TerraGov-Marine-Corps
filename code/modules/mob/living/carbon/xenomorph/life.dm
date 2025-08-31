@@ -105,10 +105,10 @@
 		amount *= regen_power
 	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 
-	var/list/heal_data = list(amount)
+	var/list/heal_data = list(amount, amount)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data, seconds_per_tick)
 	HEAL_XENO_DAMAGE(src, heal_data[1], TRUE)
-	return heal_data[1]
+	return heal_data // [1] = amount of unused healing, [2] = raw healing
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates(seconds_per_tick)
 	var/turf/T = loc

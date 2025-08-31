@@ -157,6 +157,7 @@ GLOBAL_VAR_INIT(max_larva_count_per_mob, 3) //Added for adminbus reasons
 //=================================================
 
 #define EFFECT_STUN "stun"
+#define EFFECT_KNOCKDOWN "knockdown"
 #define EFFECT_PARALYZE "paralyze"
 #define EFFECT_UNCONSCIOUS "unconscious"
 #define EFFECT_STAGGER "stagger"
