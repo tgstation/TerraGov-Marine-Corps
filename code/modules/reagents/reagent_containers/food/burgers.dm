@@ -270,12 +270,12 @@
 		name = "steamed ham"
 		desc = pick("Ahh, CMO, welcome. I hope you're prepared for an unforgettable luncheon!",
 		"And you call these steamed hams despite the fact that they are obviously microwaved?",
-		"TGMC Marine Corp? At this time of shift, in this time of year, in this sector of space, localized entirely within your freezer?",
+		"NTC Marine Corp? At this time of shift, in this time of year, in this sector of space, localized entirely within your freezer?",
 		"You know, these hamburgers taste quite similar to the ones they have at the Maltese Falcon.")
 
 /obj/item/reagent_containers/food/snacks/burger/packaged_burger
 	name = "Packaged Cheeseburger"
-	desc = "A soggy microwavable burger. There's no time given for how long to cook it. Packaged by the Nanotrasen Corporation."
+	desc = "A soggy microwavable burger. There's no time given for how long to cook it. Packaged by the Ninetails Corporation."
 	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "burger"
 	bitesize = 3

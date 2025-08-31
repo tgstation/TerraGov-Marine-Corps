@@ -29,8 +29,9 @@ SUBSYSTEM_DEF(weeds)
 
 		var/obj/alien/weeds/weed = locate(/obj/alien/weeds) in T
 		if(weed && !weed.parent_node && !istype(weed, /obj/alien/weeds/node))
-			weed.set_parent_node(node)
-			SSweeds_decay.decaying_list -= weed
+			if(weed.issamexenohive(node))
+				weed.set_parent_node(node)
+				SSweeds_decay.decaying_list -= weed
 
 		if(QDELETED(node) || QDELETED(T) || !T.is_weedable())
 			pending -= T
@@ -92,7 +93,7 @@ SUBSYSTEM_DEF(weeds)
 			if(istype(O, /obj/alien/weeds/node))
 				return
 			var/obj/alien/weeds/weed = O
-			if(weed.parent_node && weed.parent_node != node && get_dist_euclidean_square(node, weed) >= get_dist_euclidean_square(weed.parent_node, weed))
+			if(weed.parent_node && weed.parent_node != node && get_dist_euclidean_square(node, weed) >= get_dist_euclidean_square(weed.parent_node, weed) || (!(node.issamexenohive(weed))))
 				return
 			if((weed.type == weed_to_spawn) && (weed.color_variant == node.color_variant))
 				weed.set_parent_node(node)
@@ -100,4 +101,4 @@ SUBSYSTEM_DEF(weeds)
 			weed.swapped = TRUE
 			swapped = TRUE
 			qdel(O)
-	new weed_to_spawn(T, node, swapped)
+	new weed_to_spawn(T, node.hivenumber, node, swapped)

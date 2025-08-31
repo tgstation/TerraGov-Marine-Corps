@@ -14,8 +14,8 @@
 	speed = 0
 
 	// *** Plasma *** //
-	plasma_max = 600 //  75 is the cost of plant_weeds
-	plasma_gain = 60
+	plasma_max = 1200 //  75 is the cost of plant_weeds
+	plasma_gain = 80
 
 	// *** Health *** //
 	max_health = 100
@@ -50,6 +50,9 @@
 		/datum/action/ability/xeno_action/rally_hive/hivemind,
 		/datum/action/ability/activable/xeno/command_minions,
 		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/xeno_action/psychic_radiance,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/activable/xeno/plant_weeds/ranged,
 		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind,
 		/datum/action/ability/activable/xeno/transfer_plasma/hivemind,
@@ -58,8 +61,11 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/secrete_resin/hivemind,
+		/datum/action/ability/activable/psionic_interact,
 		/datum/action/ability/activable/xeno/shoot_xeno_artillery,
 		/datum/action/ability/activable/xeno/place_pattern,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)

@@ -26,6 +26,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	/obj/structure/bed/chair = new /datum/stack_recipe("chair", /obj/structure/bed/chair, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
 	/obj/structure/bed/chair/comfy/beige = new /datum/stack_recipe("comfy chair", /obj/structure/bed/chair/comfy/beige, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
 	/obj/structure/bed/chair/office/dark = new /datum/stack_recipe("office chair", /obj/structure/bed/chair/office/dark, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
+	/obj/item/construction_kit/bdsm/bed = new /datum/stack_recipe("kinky bed",/obj/item/construction_kit/bdsm/bed, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
+	/obj/item/construction_kit/bdsm/x_stand = new /datum/stack_recipe("x stand",/obj/item/construction_kit/bdsm/x_stand, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
+	/obj/item/construction_kit/pole = new /datum/stack_recipe("stripper pole",/obj/item/construction_kit/pole, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
 	/obj/item/frame/light_fixture = new /datum/stack_recipe("light fixture frame", /obj/item/frame/light_fixture, req_amount = 2, crafting_flags = NONE), \
 	/obj/item/frame/light_fixture/small = new /datum/stack_recipe("small light fixture frame", /obj/item/frame/light_fixture/small, crafting_flags = NONE), \
 	/obj/item/frame/table = new /datum/stack_recipe("table parts", /obj/item/frame/table, crafting_flags = NONE), \
@@ -254,7 +257,25 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	desc = "This roll of cloth is made from only the finest chemicals and bunny rabbits."
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
+	
+/obj/item/stack/sheet/cloth/attack_self(mob/user)
+	. = ..()
+	if(LAZYLEN(recipes)==1)
+		create_object(user, recipes[1], 1)
 
+GLOBAL_LIST_INIT(cloth_recipes, list ( \
+	new/datum/stack_recipe("fabric curtains", /obj/structure/curtain/temple, 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF, skill_req = SKILL_CONSTRUCTION_METAL), \
+	))
+
+/obj/item/stack/sheet/cloth/get_main_recipes()
+	. = ..()
+	. += GLOB.cloth_recipes
+
+/obj/item/stack/sheet/cloth/five
+	amount = 5
+
+/obj/item/stack/sheet/cloth/large_stack
+	amount = 50
 
 /*
 * Cardboard

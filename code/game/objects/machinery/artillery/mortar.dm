@@ -53,6 +53,10 @@
 		/obj/item/mortal_shell/smoke,
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/plasmaloss,
+		/obj/item/mortal_shell/smoke/satrapine,
+		/obj/item/mortal_shell/smoke/aphrotox,
+		/obj/item/mortal_shell/smoke/neuro,
+		/obj/item/mortal_shell/smoke/sleep,
 	)
 
 	use_power = NO_POWER_USE
@@ -77,7 +81,9 @@
 	for (var/obj/item/binoculars/tactical/binoc in mortar?.linked_item_binoculars)
 		binoc.set_mortar(src)
 	impact_cam = new
-	impact_cam.forceMove(src)
+	if(impact_cam.status)
+		impact_cam.toggle_cam()
+	impact_cam.moveToNullspace()
 	impact_cam.c_tag = "[strip_improper(name)] #[++id_by_type[type]]"
 
 /obj/machinery/deployable/mortar/Destroy()
@@ -214,7 +220,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 
@@ -289,10 +295,14 @@
 	//prevent runtime
 	if(fall_time < 0.5 SECONDS)
 		fall_time = 0.5 SECONDS
+	if(impact_cam.status)
+		impact_cam.toggle_cam()
 	impact_cam.forceMove(get_turf(target))
+	if(!impact_cam.status)
+		impact_cam.toggle_cam()
 	current_shots++
 	addtimer(CALLBACK(src, PROC_REF(falling), target, shell), fall_time)
-	addtimer(CALLBACK(src, PROC_REF(return_cam)), fall_time + 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(return_cam)), fall_time + 185 SECONDS)
 	addtimer(VARSET_CALLBACK(src, firing, FALSE), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
@@ -311,7 +321,9 @@
 /obj/machinery/deployable/mortar/proc/return_cam()
 	current_shots--
 	if(current_shots <= 0)
-		impact_cam.forceMove(src)
+		if(impact_cam.status)
+			impact_cam.toggle_cam()
+		impact_cam.moveToNullspace()
 
 ///Begins fall animation for projectile and plays fall sound
 /obj/machinery/deployable/mortar/proc/falling(turf/T, atom/movable/projectile/shell)

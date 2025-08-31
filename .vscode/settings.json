@@ -39,5 +39,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnSave": true
 	},
+	"scss.lint.emptyRules": "ignore",
+	"css.lint.emptyRules": "ignore",
 	"tgstationTestExplorer.project.DMEName": "tgmc.dme"
 }
