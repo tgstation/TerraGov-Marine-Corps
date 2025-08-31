@@ -1,7 +1,7 @@
 /datum/game_mode/hvh/campaign
 	name = "Campaign"
 	config_tag = "Campaign"
-	round_type_flags = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_DEAD_GRAB_FORBIDDEN
+	round_type_flags = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	whitelist_ship_maps = list(MAP_ITERON)
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
 	bioscan_interval = 3 MINUTES

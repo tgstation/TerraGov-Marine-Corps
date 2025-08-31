@@ -1,7 +1,6 @@
 /datum/game_mode/extended
 	name = "Extended"
 	config_tag = "Extended"
-	round_type_flags = MODE_DEAD_GRAB_FORBIDDEN
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
