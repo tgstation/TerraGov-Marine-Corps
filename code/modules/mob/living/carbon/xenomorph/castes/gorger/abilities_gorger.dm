@@ -506,6 +506,7 @@
 	)
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	use_state_flags = ABILITY_USE_STAGGERED
+	var/check_plasma_amount = TRUE
 
 /datum/action/ability/activable/xeno/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
@@ -513,7 +514,7 @@
 		return FALSE
 	if(xeno_owner.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return TRUE
-	if(xeno_owner.plasma_stored < xeno_owner.xeno_caste.feast_plasma_drain * 10)
+	if(xeno_owner.plasma_stored < xeno_owner.xeno_caste.feast_plasma_drain * 10 && check_plasma_amount)
 		if(!silent)
 			to_chat(xeno_owner, span_notice("Not enough to begin a feast. We need [xeno_owner.xeno_caste.feast_plasma_drain * 10] blood."))
 		return FALSE
@@ -545,3 +546,6 @@
 	return can_use_ability(target, TRUE)
 
 #undef FEAST_MISCLICK_CD
+
+/datum/action/ability/activable/xeno/feast/jester
+	check_plasma_amount = FALSE

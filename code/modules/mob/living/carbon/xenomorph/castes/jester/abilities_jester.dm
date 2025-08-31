@@ -143,7 +143,7 @@
 	name = "Tarot Deck"
 	action_icon_state = "tarot"
 	action_icon = 'icons/Xeno/actions/jester.dmi'
-	desc = "Swaps this ability for a random one, from a pool"
+	desc = "Swaps this ability for a random one, from a deck. Right click the picked ability to reroll it, at the cost of invoking the cooldown of this ability"
 	ability_cost = 75
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAROT_DECK,
@@ -250,6 +250,9 @@
 		/datum/action/ability/activable/xeno/infernal_trigger,
 		/datum/action/ability/activable/xeno/oppressor/abduct,
 		/datum/action/ability/activable/xeno/drain,
+		/datum/action/ability/activable/xeno/transfusion,
+		/datum/action/ability/activable/xeno/shattering_roar,
+		/datum/action/ability/activable/xeno/feast,
 
 	)
 	///List of all the parent abilties that should have themselves and all of their children also blacklisted
@@ -415,6 +418,9 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	qdel(container)
 	xeno_owner.update_action_buttons(TRUE)
 
+/datum/action/ability/activable/xeno/draw_deck_container/alternate_action_activate()
+	clean_up()
+
 // ***************************************
 // *********** Draw
 // ***************************************
@@ -434,6 +440,7 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		/datum/action/ability/activable/xeno/pounce,
 		/datum/action/ability/activable/xeno/warrior/lunge,
 		/datum/action/ability/activable/xeno/advance/jester,
+		/datum/action/ability/activable/xeno/charge/forward_charge/unprecise, //Beetle charge
 
 	)
 
@@ -441,14 +448,19 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	var/list/defense_deck = list(
 		/datum/action/ability/xeno_action/mirage,
 		/datum/action/ability/activable/xeno/ravage,
-		/datum/action/ability/activable/xeno/feast,
+		/datum/action/ability/activable/xeno/feast/jester,
 		/datum/action/ability/xeno_action/repulse,
+		/datum/action/ability/activable/xeno/acid_shroud,
 	)
 
 	///Container for the movement deck ability
 	var/datum/action/ability/activable/xeno/draw_deck_container/agility/movement = new
 	///Container for the defense deck ability
 	var/datum/action/ability/activable/xeno/draw_deck_container/defense/defense = new
+	///Storage for the last used movement deck ability, to prevent it from being rolled twice in a row
+	var/last_used_movement_ability
+	///Storage for the last used defense deck ability, to prevent it from being rolled twice in a row
+	var/last_used_defense_ability
 
 /datum/action/ability/xeno_action/draw/give_action(mob/living/L)
 	. = ..()
@@ -458,8 +470,14 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 
 /datum/action/ability/xeno_action/draw/action_activate()
 	. = ..()
-	var/defense_ability = pick(defense_deck)
-	var/movement_ability = pick(movement_deck)
+	var/list/movement_list = movement_deck - last_used_movement_ability
+	var/list/defense_list = defense_deck - last_used_defense_ability
+	var/defense_ability = pick(defense_list)
+	var/movement_ability = pick(movement_list)
+	last_used_movement_ability = movement_ability
+	last_used_defense_ability = defense_ability
+	movement.deselect()
+	defense.deselect()
 	movement.mimic(movement_ability)
 	defense.mimic(defense_ability)
 	succeed_activate()
@@ -477,6 +495,9 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_AGILITY,
 	)
 
+/datum/action/ability/activable/xeno/draw_deck_container/agility/alternate_action_activate()
+	return
+
 /datum/action/ability/activable/xeno/draw_deck_container/defense
 	name = "Draw Deck: Defense"
 	desc = "When Draw is used, this turns into a defense focused ability. Currently, it is empty."
@@ -487,6 +508,9 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAW_DEFENSE,
 	)
+
+/datum/action/ability/activable/xeno/draw_deck_container/defense/alternate_action_activate()
+	return
 
 // ***************************************
 // *********** Repulse, Rapid Retreat

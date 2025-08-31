@@ -283,7 +283,6 @@
 ///Grants warrior's toss ability alongside itself, so it can be comboed well
 /datum/action/ability/activable/xeno/warrior/lunge/on_jester_roll()
 	var/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use/toss = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use]
-	to_chat(world, toss)
 	if(toss)
 		toss.stacks = min(toss.stacks + 1, 10);
 		toss.button.cut_overlay(toss.visual_references[VREF_GRAPPLE_STACKS])
@@ -487,7 +486,7 @@
 
 ///Single use version of grapple toss, for jester
 /datum/action/ability/activable/xeno/warrior/grapple_toss/single_use
-	desc = "Throw a creature under our grasp away. Distance reduced on larger targets. Usable on allies. Obtaining mutiple copies of this ability will instead stack them, increasing range."
+	desc = "Throw a creature under our grasp away. Distance reduced on larger targets. Usable on allies. Obtaining multiple copies of this ability will instead stack them, increasing range."
 	var/stacks = 0
 
 /datum/action/ability/activable/xeno/warrior/grapple_toss/single_use/use_ability(atom/A)
