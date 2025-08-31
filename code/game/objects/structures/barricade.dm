@@ -396,7 +396,7 @@
 //cade armor defines
 #define CADE_UPGRADE_BOMB 80
 #define CADE_UPGRADE_MELEE list(melee = 30, bullet = 50, laser = 50, energy = 50)
-#define CADE_UPGRADE_ACID 75
+#define CADE_UPGRADE_ACID 35
 
 /obj/structure/barricade/solid
 	name = "metal barricade"
@@ -511,6 +511,9 @@
 
 	balloon_alert_to_viewers("attaching [choice]")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		return FALSE
+	if(barricade_upgrade_type)
+		balloon_alert(user, "Already upgraded")
 		return FALSE
 
 	if(!metal_sheets.use(CADE_UPGRADE_REQUIRED_SHEETS))
