@@ -285,5 +285,5 @@
 	damage = 25
 
 /datum/ammo/bullet/tx54_spread/tank_canister/incendiary/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
-	if(prob(25))
+	if(prob(35))
 		drop_flame(target_turf)
