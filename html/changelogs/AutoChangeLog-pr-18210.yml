@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - code_imp: "Removes unused variable from boiler abilities and xenomorph abilities."
