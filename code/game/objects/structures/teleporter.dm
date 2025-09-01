@@ -26,7 +26,10 @@
 	if(!kit?.cell)
 		. += "It is currently lacking a power cell."
 	if(kit?.linked_teleporter)
-		. += "It is currently linked to Teleporter #[kit.linked_teleporter.self_tele_tag] at [get_area(kit.linked_teleporter)]"
+		if(isobserver(user))
+			. += "It is currently linked to Teleporter #[kit.linked_teleporter.self_tele_tag][FOLLOW_LINK(user, kit.linked_teleporter)] at [get_area(kit.linked_teleporter)]"
+		else
+			. += "It is currently linked to Teleporter #[kit.linked_teleporter.self_tele_tag] at [get_area(kit.linked_teleporter)]"
 	else
 		. += "It is not linked to any other teleporter."
 
@@ -216,7 +219,10 @@
 	if(!cell)
 		. += "It is currently lacking a power cell."
 	if(linked_teleporter)
-		. += "It is currently linked to Teleporter #[linked_teleporter.self_tele_tag] at [get_area(linked_teleporter)]"
+		if(isobserver(user))
+			. += "It is currently linked to Teleporter #[linked_teleporter.self_tele_tag][FOLLOW_LINK(user, linked_teleporter)] at [get_area(linked_teleporter)]"
+		else
+			. += "It is currently linked to Teleporter #[linked_teleporter.self_tele_tag] at [get_area(linked_teleporter)]"
 	else
 		. += "It is not linked to any other teleporter."
 
