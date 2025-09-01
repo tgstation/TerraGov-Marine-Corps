@@ -333,7 +333,7 @@
 				forceMove(z_destination)
 
 
-	if(firer && !recursivity)
+	if(ismob(firer) && !recursivity)
 		record_projectile_fire(firer)
 		GLOB.round_statistics.total_projectiles_fired[firer.faction]++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[firer.faction]")
@@ -977,7 +977,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.sundering)
 		adjust_sunder(proj.sundering)
 
-	if(stat != DEAD && proj.firer)
+	if(stat != DEAD && ismob(proj.firer))
 		proj.firer.record_projectile_damage(damage, src)	//Tally up whoever the shooter was
 
 	if(damage)
@@ -1038,7 +1038,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	setDir(angle2dir(dir_angle))
 
 	if(!recursivity)	//Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
-		record_projectile_fire(shooter)
+		if(ismob(shooter))
+			record_projectile_fire(shooter)
 
 		//If we have the the right kind of ammo, we can fire several projectiles at once.
 		if(ammo.bonus_projectiles_amount)

@@ -1787,6 +1787,7 @@
 
 ///Applies gun modifiers to a projectile before firing
 /obj/item/weapon/gun/proc/apply_gun_modifiers(atom/movable/projectile/projectile_to_fire, atom/target, firer)
+	projectile_to_fire.firer = firer
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.sundering *= damage_mult
