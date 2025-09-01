@@ -6,6 +6,21 @@
 /proc/log_ffattack(text, list/data)
 	logger.Log(LOG_CATEGORY_ATTACK_FF, text)
 
+/proc/hp(var/atom/subject)
+	var/mob/living/living_subject = subject
+	var/obj/obj_subject = subject
+
+	if(istype(living_subject))
+		return "(NEWHP: [living_subject.health])"
+	else if(isobj(obj_subject) && obj_subject.max_integrity)
+		return "(New integrity: [obj_subject.obj_integrity]/[obj_subject.max_integrity])"
+
+/proc/logdetails(var/atom/subject)
+	if(!subject)
+		return "*NULL*"
+	return "[key_name(subject)]([subject.type])[hp(subject)][loc_name(subject)]"
+
+
 /**
  * Log a combat message in the attack log
  *
@@ -17,25 +32,16 @@
  * * addition - is any additional text, which will be appended to the rest of the log line
  */
 /proc/log_combat(atom/user, atom/target, what_done, atom/object=null, addition=null)
-	var/ssource = key_name(user)
-	var/starget = key_name(target)
-
-	var/mob/living/living_target = target
-	var/obj/obj_target = target
-	var/hp = ""
-	if(istype(living_target))
-		hp = " (NEWHP: [living_target.health]) "
-	else if(istype(obj_target) && obj_target.max_integrity)
-		hp = " (New integrity: [obj_target.obj_integrity]/[obj_target.max_integrity]) "
-
+	var/ssource = logdetails(user)
+	var/starget = logdetails(target)
 	var/sobject = ""
 	if(object)
-		sobject = " with [object]"
+		sobject = " with [logdetails(object)]"
 	var/saddition = ""
 	if(addition)
 		saddition = " [addition]"
 
-	var/postfix = "[sobject][saddition][hp]"
+	var/postfix = "[sobject][saddition]"
 
 	var/message = "[what_done] [starget][postfix]"
 	user?.log_message(message, LOG_ATTACK, color="red")
@@ -46,11 +52,11 @@
 
 /// Logging for bombs detonating
 /proc/log_bomber(atom/user, details, atom/bomb, additional_details, message_admins = FALSE)
-	var/bomb_message = "[details][bomb ? " [bomb.name] at [AREACOORD(bomb)]": ""][additional_details ? " [additional_details]" : ""]."
+	var/bomb_message = "[details][logdetails(bomb)][additional_details ? " [additional_details]" : ""]."
 
 	if(user)
 		user.log_message(bomb_message, LOG_ATTACK) //let it go to individual logs as well as the game log
-		bomb_message = "[key_name(user)] at [AREACOORD(user)] [bomb_message]."
+		bomb_message = "[logdetails(user)] [bomb_message]."
 	else
 		log_game(bomb_message)
 

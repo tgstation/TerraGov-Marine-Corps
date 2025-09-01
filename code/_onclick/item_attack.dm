@@ -166,7 +166,7 @@
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
 		user.ff_check(power, src)
-		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [attacking_item] in [AREACOORD(T)] (RAW DMG: [power]).")
+		log_ffattack("[logdetails(user)] attacked [logdetails(src)] with \the [logdetails(attacking_item)] (RAW DMG: [power]).")
 		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [attacking_item] in [ADMIN_VERBOSEJMP(T)] (RAW DMG: [power]).")
 
 	return TRUE
@@ -400,7 +400,7 @@
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
 		user.ff_check(power, src)
-		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [I] in [AREACOORD(T)] (RAW DMG: [power]).")
+		log_ffattack("[logdetails(user)] attacked [logdetails(src)] with \the [logdetails(I)] (RAW DMG: [power]).")
 		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [I] in [ADMIN_VERBOSEJMP(T)] (RAW DMG: [power]).")
 
 	return TRUE

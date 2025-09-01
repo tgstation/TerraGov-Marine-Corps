@@ -1,6 +1,6 @@
 /obj/item/teleporter_kit/premade
 	item_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
-	
+
 /obj/item/teleporter_kit/premade/Initialize(mapload)
 	.=..()
 	if(item_flags & IS_DEPLOYED)
@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(remotely_linked_teleporter_pairs, list())
 /obj/effect/remote_teleporter_linker
 	name = "Remote Teleporter Pair Linker"
 	var/id = "Teleporter Pair"
-	
+
 /obj/effect/remote_teleporter_linker/Initialize(mapload)
 	..()
 	. = INITIALIZE_HINT_QDEL
@@ -23,7 +23,7 @@ GLOBAL_LIST_INIT(remotely_linked_teleporter_pairs, list())
 
 	if(!kit)
 		qdel(src)
-		CRASH("remote_teleporter_linker at [loc_name(src)] with id [id] has no teleporter kit in its loc!")
+		CRASH("remote_teleporter_linker at [logdetails(src)] with id [id] has no teleporter kit in its loc!")
 
 	switch(LAZYLEN(GLOB.remotely_linked_teleporter_pairs[id]))
 		if(0)
@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(remotely_linked_teleporter_pairs, list())
 			var/crash_message = "Teleporter pair with id [id] has three or more elements! ("
 			var/list/bad_kit_messages = list()
 			for(var/bad_kit in GLOB.remotely_linked_teleporter_pairs[id])
-				bad_kit_messages += "\[\[[bad_kit]\] at \[[loc_name(bad_kit)]\]\]"
+				bad_kit_messages += "\[[logdetails(bad_kit)]\]"
 			crash_message += bad_kit_messages.Join(",")
 			crash_message += ")"
 			qdel(src)

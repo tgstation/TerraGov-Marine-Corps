@@ -77,7 +77,7 @@
 	if(!log_globally)
 		return
 
-	var/log_text = "[key_name(src)] [message] [loc_name(src)]"
+	var/log_text = "[logdetails(src)] [message]"
 	switch(message_type)
 		/// ship both attack logs and victim logs to the end of round attack.log just to ensure we don't lose information
 		if(LOG_ATTACK, LOG_VICTIM)
@@ -231,3 +231,4 @@
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
+	return "(NULLSPACE)"

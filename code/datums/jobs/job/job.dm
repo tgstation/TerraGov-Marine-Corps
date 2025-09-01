@@ -327,7 +327,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		if((src.species.species_type) in variant.species)
 			valid_outfits += variant
 	if(!length(valid_outfits))
-		log_runtime("Failed to find valid outfit when applying [assigned_role.title]([assigned_role.type]) to [key_name(src)]([src.type])(Species: [src.species.name]([src.species.type]))(at [loc_name(src)])")
+		log_runtime("Failed to find valid outfit when applying [assigned_role.title]([assigned_role.type]) to [logdetails(src)](Species: [src.species.name]([src.species.type]))")
 		assigned_role.outfit.equip(src)
 	var/datum/outfit/chosen_variant = pick(valid_outfits)
 	chosen_variant.equip(src)
