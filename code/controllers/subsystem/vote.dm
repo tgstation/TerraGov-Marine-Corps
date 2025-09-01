@@ -208,7 +208,7 @@ SUBSYSTEM_DEF(vote)
 			SSticker.Reboot("Restart vote successful.", 1)
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
-			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
+			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.", sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN), TRUE)
 	if(endround)
 		var/active_admins = FALSE
 		for(var/client/C in GLOB.admins)
@@ -220,7 +220,7 @@ SUBSYSTEM_DEF(vote)
 			SSticker.mode.round_finished = "Democracy"
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:End round vote will not restart the server automatically because there are active admins on.</span>")
-			message_admins("An end round vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
+			message_admins("An end round vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.", sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN), TRUE)
 
 
 
