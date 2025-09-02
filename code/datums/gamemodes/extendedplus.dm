@@ -160,11 +160,6 @@
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
-/* NTF removal
-	for(var/miner in GLOB.miner_list)
-		if(prob(65))
-			qdel(miner)
-*/
 //NTF addition start
 	if(length(GLOB.miner_list) > MINIMUM_MINERS)
 		var/list/obj/machinery/miner/platinum_list = list()
