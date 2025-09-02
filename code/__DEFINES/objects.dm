@@ -110,10 +110,10 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define SCOUT_CLOAK_INACTIVE_RECOVERY 5
 #define SCOUT_CLOAK_COOLDOWN 100
 #define SCOUT_CLOAK_TIMER 50
-#define SCOUT_CLOAK_SHOOTING 80
-#define SCOUT_CLOAK_RUN_ALPHA 32
-#define SCOUT_CLOAK_WALK_ALPHA 16
-#define SCOUT_CLOAK_STILL_ALPHA 8
+#define SCOUT_CLOAK_SHOOTING 204 //80% Transparency
+#define SCOUT_CLOAK_RUN_ALPHA 166 //65% Transparency
+#define SCOUT_CLOAK_WALK_ALPHA 128 //50% Transparency, same as a Hunter
+#define SCOUT_CLOAK_STILL_ALPHA 51 //20% Transparency
 #define SCOUT_CLOAK_MAX_ENERGY 100
 #define SCOUT_CLOAK_OFF_DAMAGE (1 << 0)
 #define SCOUT_CLOAK_OFF_ATTACK (1 << 1)

@@ -488,7 +488,7 @@
 	var/camo_last_shimmer = null
 	var/camo_energy = 100
 	var/mob/living/carbon/human/wearer = null
-	var/shimmer_alpha = 128
+	var/shimmer_alpha = 191 //75% Transparency during hostile actions, unless scout is using full auto this quickly recovers.
 	var/stealth_delay = null
 	actions_types = list(/datum/action/item_action/toggle)
 
