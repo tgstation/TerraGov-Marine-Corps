@@ -244,30 +244,30 @@
 
 /datum/mutation_upgrade/spur/maul/on_mutation_enabled()
 	. = ..()
-	var/datum/action/ability/activable/xeno/pounce/pounce_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	var/datum/action/ability/activable/xeno/pounce/pounce_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce]
 	if(!pounce_ability)
 		return
-	pounce_ability.cooldown_duration += get_multiplier(0)
+	pounce_ability.cooldown_duration += initial(pounce_ability.cooldown_duration) * get_multiplier(0)
 	pounce_ability.stun_duration -= initial(pounce_ability.stun_duration)
 	pounce_ability.self_immobilize_duration -= initial(pounce_ability.self_immobilize_duration)
 	pounce_ability.attack_on_pounce = TRUE
 
 /datum/mutation_upgrade/spur/maul/on_mutation_disabled()
 	. = ..()
-	var/datum/action/ability/activable/xeno/pounce/pounce_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	var/datum/action/ability/activable/xeno/pounce/pounce_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce]
 	if(!pounce_ability)
 		return
-	pounce_ability.cooldown_duration -= get_multiplier(0)
+	pounce_ability.cooldown_duration -= initial(pounce_ability.cooldown_duration) * get_multiplier(0)
 	pounce_ability.stun_duration += initial(pounce_ability.stun_duration)
 	pounce_ability.self_immobilize_duration += initial(pounce_ability.self_immobilize_duration)
 	pounce_ability.attack_on_pounce = FALSE
 
 /datum/mutation_upgrade/spur/maul/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	var/datum/action/ability/activable/xeno/pounce/pounce_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
+	var/datum/action/ability/activable/xeno/pounce/pounce_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce]
 	if(!pounce_ability)
 		return
-	pounce_ability.cooldown_duration += get_multiplier(new_amount - previous_amount, FALSE)
+	pounce_ability.cooldown_duration += initial(pounce_ability.cooldown_duration) * get_multiplier(new_amount - previous_amount, FALSE)
 
 /// Returns the amount of AP that a maximum powered stealth will get.
 /datum/mutation_upgrade/spur/maul/proc/get_multiplier(structure_count, include_initial = TRUE)
@@ -355,21 +355,21 @@
 
 /datum/mutation_upgrade/veil/faceblind
 	name = "Faceblind"
-	desc = "Stealth's sneak attack causes temporary blindness, but only mini-stuns. Mirage's cooldown is set to 90/80/70% of its original value."
+	desc = "Stealth's sneak attack causes temporary blindness, but no longer stuns. Mirage's cooldown is set to 90/80/70% of its original value."
 	/// For each structure, the additional multiplier of Mirage's cooldown duration to add to it.
 	var/multiplier_per_structure = -0.1
 
 /datum/mutation_upgrade/veil/faceblind/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Stealth's sneak attack no longer staggers or causes slowdown, but causes temporary blindness. Mirage's cooldown is set to [PERCENT(1 + get_multiplier(new_amount))]% of its original value."
+	return "Stealth's sneak attack causes temporary blindness, but no longer stuns. Mirage's cooldown is set to [PERCENT(1 + get_multiplier(new_amount))]% of its original value."
 
 /datum/mutation_upgrade/veil/faceblind/on_mutation_enabled()
 	. = ..()
 	var/datum/action/ability/xeno_action/stealth/stealth_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/stealth]
 	if(!stealth_ability)
 		return
-	stealth_ability.sneak_attack_stun_duration = 0.1 SECONDS
+	stealth_ability.sneak_attack_stun_duration = 0 SECONDS
 	stealth_ability.blinding_stacks = 2
 
 /datum/mutation_upgrade/veil/faceblind/on_mutation_disabled()

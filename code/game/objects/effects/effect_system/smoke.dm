@@ -59,7 +59,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/particle_effect/smoke/Destroy()
-	if(lifetime && (smoke_traits && SMOKE_CAMO))
+	if(smoke_traits && SMOKE_CAMO)
 		apply_smoke_effect(get_turf(src))
 		LAZYCLEARLIST(cloud?.smoked_mobs)
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CHEM) && LAZYLEN(cloud?.smoked_mobs)) //so the whole cloud won't stop working somehow
@@ -255,7 +255,9 @@
 	var/turf/_location = location?.resolve()
 	if(!QDELETED(_holder))
 		_location = get_turf(_holder)
-	new smoke_type(_location, range, lifetime)
+	var/obj/effect/particle_effect/smoke/S = new smoke_type(_location, range, lifetime)
+	S.apply_smoke_effect(get_turf(S))
+
 
 /////////////////////////////////////////////
 // Bad smoke
