@@ -315,11 +315,6 @@
 	barricade_type = "railing"
 	can_wire = FALSE
 
-/obj/structure/barricade/guardrail/update_icon()
-	. = ..()
-	if(dir == NORTH)
-		pixel_y = 12
-
 /*----------------------*/
 // WOOD
 /*----------------------*/
@@ -1036,16 +1031,6 @@
 	hit_sound = "sound/weapons/genhit.ogg"
 	barricade_type = "sandbag"
 	can_wire = TRUE
-
-/obj/structure/barricade/sandbags/update_icon()
-	. = ..()
-	if(dir == SOUTH)
-		pixel_y = -7
-	else if(dir == NORTH)
-		pixel_y = 7
-	else
-		pixel_y = 0
-
 
 /obj/structure/barricade/sandbags/attackby(obj/item/I, mob/user, params)
 	. = ..()
