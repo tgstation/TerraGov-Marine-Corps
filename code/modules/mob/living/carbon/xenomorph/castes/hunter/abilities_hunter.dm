@@ -14,13 +14,18 @@
 	var/last_stealth = null
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
-	var/stealth_alpha_multiplier = 1
 	/// Damage taken during Stealth.
 	var/total_damage_taken = 0
 	/// How long in deciseconds should Sneak Attack stun/paralyze for?
 	var/sneak_attack_stun_duration = 1 SECONDS
+	/// The multiplier of the amount of plasma to consume when moving while Stealth is active.
+	var/movement_cost_multiplier = 1
 	/// The multiplier to add as damage on Sneak Attack.
 	var/bonus_stealth_damage_multiplier = 0
+	/// How much bonus armor piercing should sneak attack get if it was done at maximum stealth level?
+	var/bonus_maximum_stealth_ap = 0
+	/// Should a successful sneak attack blind instead of inflicting stagger/slow?
+	var/blinds_instead = FALSE
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -115,7 +120,7 @@
 	stealth = FALSE
 	can_sneak_attack = FALSE
 	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
-	owner.alpha = initial(owner.alpha)
+	xeno_owner.remove_alpha_source("hunter_stealth")
 	total_damage_taken = 0
 
 ///Signal wrapper to verify that an object is damageable before breaking stealth
@@ -136,11 +141,12 @@
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth_move()
 	SIGNAL_HANDLER
 	if(owner.m_intent == MOVE_INTENT_WALK)
-		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
-		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
+		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * movement_cost_multiplier)
+
+		xeno_owner.set_alpha_source("hunter_stealth", HUNTER_STEALTH_WALK_ALPHA)
 	else
-		xeno_owner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
-		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
+		xeno_owner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * movement_cost_multiplier)
+		xeno_owner.set_alpha_source("hunter_stealth", HUNTER_STEALTH_RUN_ALPHA)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!xeno_owner.plasma_stored)
 		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
@@ -151,10 +157,10 @@
 	SIGNAL_HANDLER
 	total_damage_taken = max(total_damage_taken - 10, 0)
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY)
-		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
+		xeno_owner.set_alpha_source("hunter_stealth", HUNTER_STEALTH_RUN_ALPHA)
 		return
 	if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY)
-		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
+		xeno_owner.set_alpha_source("hunter_stealth", HUNTER_STEALTH_STILL_ALPHA)
 	if(!xeno_owner.plasma_stored)
 		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
@@ -195,13 +201,18 @@
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		staggerslow_stacks *= 2
 		flavour = "deadly"
+	if(bonus_maximum_stealth_ap && xeno_owner.alpha_sources["hunter_stealth"] == HUNTER_STEALTH_STILL_ALPHA)
+		armor_mod += bonus_maximum_stealth_ap
 	if(bonus_stealth_damage_multiplier)
 		damage_mod += xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * bonus_stealth_damage_multiplier
 
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
-	target.adjust_stagger(staggerslow_stacks SECONDS)
-	target.add_slowdown(staggerslow_stacks)
+	if(!blinds_instead)
+		target.adjust_stagger(staggerslow_stacks SECONDS)
+		target.add_slowdown(staggerslow_stacks)
+	else
+		target.blind_eyes(2)
 	if(sneak_attack_stun_duration)
 		target.ParalyzeNoChain(sneak_attack_stun_duration)
 	GLOB.round_statistics.hunter_cloak_victims++
@@ -301,7 +312,9 @@
 	var/stun_duration = XENO_POUNCE_STUN_DURATION
 	/// The immobilize duration (inflicted to self) on successful tackle.
 	var/self_immobilize_duration = XENO_POUNCE_STANDBY_DURATION
-	///pass_flags given when leaping
+	/// Should they attack/slash once as part of the pounce effects?
+	var/attack_on_pounce = FALSE
+	/// Pass_flags given when leaping.
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
@@ -358,6 +371,8 @@
 	xeno_owner.Immobilize(self_immobilize_duration)
 	xeno_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(stun_duration)
+	if(attack_on_pounce)
+		living_target.attack_alien_harm(xeno_owner)
 	GLOB.round_statistics.runner_pounce_victims++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_pounce_victims")
 
@@ -543,7 +558,7 @@
 	)
 	cooldown_duration = 33 SECONDS
 	/// How long will the illusions live?
-	var/illusion_life_time = 10 SECONDS
+	var/illusion_life_time = HUNTER_MIRAGE_ILLUSION_LIFETIME
 	/// How many illusions should be created?
 	var/illusion_count = 3
 	/// Should an illusion be created upon attacking a living being?
@@ -600,7 +615,7 @@
 		register_on_slash()
 	if(cloaking_gas)
 		var/datum/effect_system/smoke_spread/tactical_xeno/emitted_gas = new(xeno_owner)
-		emitted_gas.set_up(2, get_turf(xeno_owner))
+		emitted_gas.set_up(2, get_turf(xeno_owner), illusion_life_time / (2 SECONDS))
 		emitted_gas.start()
 	timer_id = addtimer(CALLBACK(src, PROC_REF(clean_illusions)), illusion_life_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	succeed_activate()

@@ -1025,13 +1025,13 @@
 	id = "xenomorph_cloaking"
 	alert_type = null
 
-/datum/status_effect/cloaking/on_apply()
+/datum/status_effect/xenomorph_cloaking/on_apply()
 	. = ..()
 	if(!isxeno(owner))
 		return FALSE
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
-	xenomorph_owner.update_alpha()
+	xenomorph_owner.set_alpha_source(id, HUNTER_STEALTH_STILL_ALPHA)
 
-/datum/status_effect/cloaking/on_remove()
+/datum/status_effect/xenomorph_cloaking/on_remove()
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
-	xenomorph_owner.update_alpha()
+	xenomorph_owner.remove_alpha_source(id)

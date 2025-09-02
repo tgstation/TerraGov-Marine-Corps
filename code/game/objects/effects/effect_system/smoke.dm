@@ -59,7 +59,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/particle_effect/smoke/Destroy()
-	if(lifetime && ((smoke_traits && SMOKE_CAMO) || (smoke_traits && SMOKE_CAMO_XENO)))
+	if(lifetime && (smoke_traits && SMOKE_CAMO))
 		apply_smoke_effect(get_turf(src))
 		LAZYCLEARLIST(cloud?.smoked_mobs)
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CHEM) && LAZYLEN(cloud?.smoked_mobs)) //so the whole cloud won't stop working somehow
@@ -106,13 +106,27 @@
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /atom/movable/projectile))
 		O.effect_smoke(src)
 
+/// Called when an atom leaves the turf containing the smoke.
 /obj/effect/particle_effect/smoke/proc/on_exited(datum/source, mob/living/M, direction)
 	SIGNAL_HANDLER
-	var/obj/effect/particle_effect/smoke/smoke_from_new_turf = locate() in get_turf(M)
-	if(istype(M) && !(smoke_from_new_turf?.smoke_traits && SMOKE_CAMO))
-		M.smokecloak_off()
-	if(isxeno(M) && !(smoke_from_new_turf?.smoke_traits && SMOKE_CAMO_XENO) && M.has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING))
-		M.remove_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING)
+	if(!istype(M))
+		return
+	var/should_turn_off_cloak = TRUE
+	var/turf/new_turf = get_turf(M)
+	for(var/obj/effect/particle_effect/smoke/smoke_inside_new_turf in new_turf.contents)
+		if(smoke_inside_new_turf.smoke_traits && SMOKE_CAMO)
+			if(!isxeno(M) && !(smoke_inside_new_turf.smoke_traits && SMOKE_XENO))
+				should_turn_off_cloak = FALSE
+				break
+			if(isxeno(M) && (smoke_inside_new_turf.smoke_traits && SMOKE_XENO))
+				should_turn_off_cloak = FALSE
+				break
+	if(should_turn_off_cloak)
+		if(!isxeno(M))
+			M.smokecloak_off()
+			return
+		if(M.has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING))
+			M.remove_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING)
 
 /obj/effect/particle_effect/smoke/proc/apply_smoke_effect(turf/T)
 	T.effect_smoke(src)
@@ -258,13 +272,14 @@
 /obj/effect/particle_effect/smoke/tactical
 	alpha = 40
 	opacity = FALSE
-	smoke_traits = SMOKE_CAMO
+	smoke_traits = SMOKE_CAMO // Only affects humans.
 
 /obj/effect/particle_effect/smoke/tactical_xeno
 	alpha = 40
 	opacity = FALSE
 	color = "#282e36"
-	smoke_traits = SMOKE_CAMO_XENO
+	minimum_effect_delay = 0
+	smoke_traits = SMOKE_CAMO|SMOKE_XENO // Only affects xenomorphs.
 
 /////////////////////////////////////////////
 // Sleep smoke

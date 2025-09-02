@@ -292,6 +292,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
 
+	/// All sources that affect our alpha.
+	var/alpha_sources = list()
+
 	///Hive name define
 	var/hivenumber = XENO_HIVE_NORMAL
 	///Hive datum we belong to
