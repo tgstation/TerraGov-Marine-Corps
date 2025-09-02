@@ -615,3 +615,19 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+/// Updates the xenomorph's alpha based on various sources.
+/mob/living/carbon/xenomorph/proc/update_alpha()
+	var/lowest_alpha_possible = initial(alpha)
+	// Hunter's Stealth
+	var/datum/action/ability/xeno_action/stealth/stealth_ability = actions_by_path[/datum/action/ability/xeno_action/stealth]
+	//if(stealth_ability && !isnull(stealth_ability.expected_alpha) && stealth_ability.expected_alpha < lowest_alpha_possible)
+	//	lowest_alpha_possible = stealth_ability.expected_alpha
+	// Night Shade
+	//if(HAS_TRAIT(src, TRAIT_STEALTH_PLANT) && HUNTER_STEALTH_RUN_ALPHA < lowest_alpha_possible)
+	//	lowest_alpha_possible = HUNTER_STEALTH_RUN_ALPHA
+	/// Tactical Smoke, Xenomorph Variant
+	if(has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING) && 5 < lowest_alpha_possible)
+		lowest_alpha_possible = 5
+	alpha = clamp(0, lowest_alpha_possible, 255)
+

@@ -97,6 +97,8 @@
 #define STATUS_EFFECT_DREAD  /datum/status_effect/dread
 /// Deals a variable amount of stamina damage for 6 seconds.
 #define STATUS_EFFECT_DRAINING_DREAD  /datum/status_effect/draining_dread
+/// Cloaked by xenomorph variant of tactical smoke.
+#define STATUS_EFFECT_XENOMORPH_CLOAKING  /datum/status_effect/xenomorph_cloaking
 
 /////////////
 // NEUTRAL //

@@ -71,6 +71,101 @@
 /datum/mutation_upgrade/shell/fleeting_mirage/proc/get_threshold(structure_count, include_initial = TRUE)
 	return (include_initial ? health_threshold_initial : 0) + (health_threshold_per_structure * structure_count)
 
+/datum/mutation_upgrade/shell/splitting_mirage
+	name = "Splitting Mirage"
+	desc = "Mirage will instead cause your slashes to create an illusion for the next 12/14/16 seconds. These illusions disappear when the time is up."
+	/// For each structure, the amount of deciseconds to increase Mirage's illusion lifespan by.
+	var/length_per_structure = 2 SECONDS
+
+/datum/mutation_upgrade/shell/splitting_mirage/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Mirage will instead cause your slashes to create an illusion for the next [get_length(new_amount)] seconds. These illusions disappear when the time is up."
+
+/datum/mutation_upgrade/shell/splitting_mirage/on_mutation_enabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
+	if(!mirage_ability)
+		return
+	mirage_ability.illusion_count -= initial(mirage_ability.illusion_count)
+	mirage_ability.illusion_on_slash = TRUE
+	if(length(mirage_ability.illusions)) // Ability is currently active.
+		mirage_ability.register_on_slash()
+
+/datum/mutation_upgrade/shell/splitting_mirage/on_mutation_disabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
+	if(!mirage_ability)
+		return
+	mirage_ability.illusion_count += initial(mirage_ability.illusion_count)
+	mirage_ability.illusion_on_slash = FALSE
+	if(length(mirage_ability.illusions)) // Ability is currently active.
+		mirage_ability.unregister_on_slash()
+
+/datum/mutation_upgrade/shell/splitting_mirage/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
+	if(!mirage_ability)
+		return
+	mirage_ability.illusion_life_time += get_length(new_amount - previous_amount)
+
+/// Returns the amount of deciseconds to increase Mirage's illusion lifespan by.
+/datum/mutation_upgrade/shell/splitting_mirage/proc/get_length(structure_count)
+	return length_per_structure * structure_count
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/datum/mutation_upgrade/shell/cloaking_mirage
+	name = "Cloaking Mirage"
+	desc = "Mirage will instead creates cloaking gas for 12/14/16 seconds in a radius of 2."
+	/// For each structure, the amount of deciseconds to increase Mirage's smoke duration by.
+	var/length_per_structure = 2 SECONDS
+
+/datum/mutation_upgrade/shell/cloaking_mirage/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Mirage will instead creates cloaking gas for [get_length(new_amount)]  in a radius of 2."
+
+/datum/mutation_upgrade/shell/cloaking_mirage/on_mutation_enabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
+	if(!mirage_ability)
+		return
+	mirage_ability.illusion_count -= initial(mirage_ability.illusion_count)
+	mirage_ability.cloaking_gas = TRUE
+
+/datum/mutation_upgrade/shell/cloaking_mirage/on_mutation_disabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
+	if(!mirage_ability)
+		return
+	mirage_ability.illusion_count += initial(mirage_ability.illusion_count)
+	mirage_ability.cloaking_gas = FALSE
+
+/datum/mutation_upgrade/shell/cloaking_mirage/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	var/datum/action/ability/xeno_action/mirage/mirage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/mirage]
+	if(!mirage_ability)
+		return
+	mirage_ability.illusion_life_time += get_length(new_amount - previous_amount)
+
+/// Returns the amount of deciseconds to increase Mirage's illusion lifespan by.
+/datum/mutation_upgrade/shell/cloaking_mirage/proc/get_length(structure_count)
+	return length_per_structure * structure_count
+
 //*********************//
 //         Spur        //
 //*********************//

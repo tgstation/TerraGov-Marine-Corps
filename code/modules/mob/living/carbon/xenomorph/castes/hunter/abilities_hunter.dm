@@ -546,61 +546,88 @@
 	var/illusion_life_time = 10 SECONDS
 	/// How many illusions should be created?
 	var/illusion_count = 3
+	/// Should an illusion be created upon attacking a living being?
+	var/illusion_on_slash = FALSE
+	/// Should cloaking gas be created upon activation?
+	var/cloaking_gas = FALSE
 	/// List of illusions.
 	var/list/mob/illusion/illusions = list()
 	/// Has the ability been used to swap to the current set of illusion yet?
 	var/swap_used = FALSE
 	/// The illusion that will take priority when mirage swapping.
 	var/mob/illusion/xeno/prioritized_illusion
+	/// The timer ID of the timer that clear all illusions.
+	var/timer_id
 
 /datum/action/ability/xeno_action/mirage/remove_action()
-	illusions = list() // No need to manually delete the illusions as the illusions will delete themselves once their life time expires.
+	clean_illusions(FALSE) // No need to manually delete the illusions as the illusions will delete themselves once their life time expires.
 	return ..()
 
 /datum/action/ability/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	if(swap_used)
-		if(!silent)
-			to_chat(owner, span_xenowarning("We already swapped with an illusion!"))
-		return FALSE
+	if(timer_id)
+		if(swap_used)
+			if(!silent)
+				xeno_owner.balloon_alert(xeno_owner, "Already swapped!")
+			return FALSE
+		if(!length(illusions) && !prioritized_illusion)
+			if(!silent)
+				xeno_owner.balloon_alert(xeno_owner, "No illusions to swap with!")
+			return FALSE
 
 /datum/action/ability/xeno_action/mirage/action_activate()
+	// Spawns a set of illusions around the hunter.
+	if(timer_id)
+		// Swap places of hunter and an illusion.
+		swap_used = TRUE
+		xeno_owner.playsound_local(xeno_owner, 'sound/effects/swap.ogg', 10, 0, 1)
+		var/turf/current_turf = get_turf(xeno_owner)
+
+		var/mob/selected_illusion = prioritized_illusion ? prioritized_illusion : illusions[1]
+		if(selected_illusion.z != xeno_owner.z)
+			return
+		SEND_SIGNAL(xeno_owner, COMSIG_XENOABILITY_MIRAGE_SWAP)
+		xeno_owner.forceMove(get_turf(selected_illusion.loc))
+		selected_illusion.forceMove(current_turf)
+		succeed_activate()
+		return
+	if(illusion_count)
+		var/mob/illusion/xeno/center_illusion = new (owner.loc, owner, owner, illusion_life_time)
+		for(var/i in 1 to (illusion_count - 1))
+			illusions += new /mob/illusion/xeno(owner.loc, owner, center_illusion, illusion_life_time)
+		illusions += center_illusion
+	if(illusion_on_slash)
+		register_on_slash()
+	if(cloaking_gas)
+		var/datum/effect_system/smoke_spread/tactical_xeno/emitted_gas = new(xeno_owner)
+		emitted_gas.set_up(2, get_turf(xeno_owner))
+		emitted_gas.start()
+	timer_id = addtimer(CALLBACK(src, PROC_REF(clean_illusions)), illusion_life_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	succeed_activate()
-	if (!length(illusions))
-		spawn_illusions()
-	else
-		swap()
 
-/// Spawns a set of illusions around the hunter.
-/datum/action/ability/xeno_action/mirage/proc/spawn_illusions()
-	var/mob/illusion/xeno/center_illusion = new (owner.loc, owner, owner, illusion_life_time)
-	for(var/i in 1 to (illusion_count - 1))
-		illusions += new /mob/illusion/xeno(owner.loc, owner, center_illusion, illusion_life_time)
-	illusions += center_illusion
-	addtimer(CALLBACK(src, PROC_REF(clean_illusions)), illusion_life_time)
+/// Registers the signal that creates an illusion on slash.
+/datum/action/ability/xeno_action/mirage/proc/register_on_slash()
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack_living))
 
-/// Clean up the illusions list.
-/datum/action/ability/xeno_action/mirage/proc/clean_illusions()
+/// Unregisters the signal that creates an illusion on slash.
+/datum/action/ability/xeno_action/mirage/proc/unregister_on_slash()
+	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
+
+/// Creates an illusion on slash.
+/datum/action/ability/xeno_action/mirage/proc/on_attack_living(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+	illusions += new /mob/illusion/xeno(owner.loc, owner, owner, timeleft(timer_id))
+
+/// Cleans up everything associated with activating the ability. By default, adds cooldown.
+/datum/action/ability/xeno_action/mirage/proc/clean_illusions(enforce_cooldown = TRUE)
 	illusions = list()
-	add_cooldown()
 	swap_used = FALSE
-
-/// Swap places of hunter and an illusion.
-/datum/action/ability/xeno_action/mirage/proc/swap()
-	swap_used = TRUE
-	if(!length(illusions) && !prioritized_illusion)
-		to_chat(xeno_owner, span_xenowarning("We have no illusions to swap with!"))
-		return
-
-	xeno_owner.playsound_local(xeno_owner, 'sound/effects/swap.ogg', 10, 0, 1)
-	var/turf/current_turf = get_turf(xeno_owner)
-
-	var/mob/selected_illusion = prioritized_illusion ? prioritized_illusion : illusions[1]
-	if(selected_illusion.z != xeno_owner.z)
-		return
-	SEND_SIGNAL(xeno_owner, COMSIG_XENOABILITY_MIRAGE_SWAP)
-	xeno_owner.forceMove(get_turf(selected_illusion.loc))
-	selected_illusion.forceMove(current_turf)
+	if(timer_id)
+		deltimer(timer_id)
+		timer_id = null
+	if(illusion_on_slash)
+		unregister_on_slash()
+	if(enforce_cooldown)
+		add_cooldown()
 
 // ***************************************
 // *********** Silence
