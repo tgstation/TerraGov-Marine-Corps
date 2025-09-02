@@ -280,6 +280,25 @@
 	if(empower_action?.combo_count < WARRIOR_EMPOWER_COMBO_THRESHOLD)
 		empower_action?.activate_empower()
 
+///Grants warrior's toss ability alongside itself, so it can be comboed well
+/datum/action/ability/activable/xeno/warrior/lunge/on_jester_roll()
+	var/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use/toss = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use]
+	if(toss)
+		toss.stacks = min(toss.stacks + 1, 10);
+		toss.button.cut_overlay(toss.visual_references[VREF_GRAPPLE_STACKS])
+		var/mutable_appearance/stacks_mutable = toss.visual_references[VREF_GRAPPLE_STACKS]
+		stacks_mutable.maptext = MAPTEXT(toss.stacks)
+		toss.visual_references[VREF_GRAPPLE_STACKS] = stacks_mutable
+		toss.button.add_overlay(toss.visual_references[VREF_GRAPPLE_STACKS])
+		return
+	var/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use/to_grant = new
+	var/mutable_appearance/stacks_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	stacks_maptext.pixel_x = 6
+	stacks_maptext.pixel_y = -5
+	to_grant.visual_references[VREF_GRAPPLE_STACKS] = stacks_maptext
+	to_grant.give_action(xeno_owner)
+	xeno_owner.update_action_buttons(TRUE)
+
 ////////////////////////
 /datum/action/ability/activable/xeno/warrior/lunge/ai_should_start_consider()
 	return TRUE
@@ -465,6 +484,19 @@
 	var/datum/action/ability/activable/xeno/warrior/fling/fling_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/warrior/fling]
 	fling_action?.add_cooldown(cooldown_to_set)
 
+///Single use version of grapple toss, for jester
+/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use
+	desc = "Throw a creature under our grasp away. Distance reduced on larger targets. Usable on allies. Obtaining multiple copies of this ability will instead stack them, increasing range."
+	var/stacks = 0
+
+/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use/use_ability(atom/A)
+	starting_toss_distance += stacks * 0.4
+	. = ..()
+	xeno_owner.update_action_buttons(TRUE)
+	remove_action(owner)
+
+/datum/action/ability/activable/xeno/warrior/grapple_toss/single_use/on_cooldown_finish()
+	return
 
 // ***************************************
 // *********** Punch

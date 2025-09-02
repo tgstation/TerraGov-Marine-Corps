@@ -8,6 +8,14 @@
 	name = "healing splatter"
 	icon_state = "mech_toxin"
 
+/// Used for jester's patron of the stars
+/obj/effect/temp_visual/patron_sigil_stars
+	name = "patron sigil"
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "jester_patron_stars"
+	pixel_x = -16
+	pixel_y = -16
+
 /particles/splatter
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smoke5"
