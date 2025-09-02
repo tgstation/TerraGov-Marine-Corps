@@ -1167,8 +1167,3 @@
 	barricade_type = "concrete"
 	can_wire = FALSE
 
-/obj/structure/barricade/concrete/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", dir == SOUTH ? BELOW_OBJ_LAYER : ABOVE_MOB_LAYER, dir)
-	new_overlay.pixel_y = (dir == SOUTH ? -32 : 32)
-	. += new_overlay
