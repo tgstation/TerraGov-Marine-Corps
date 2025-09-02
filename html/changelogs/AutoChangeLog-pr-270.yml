@@ -1,0 +1,7 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Xenos are now capable of reinforcing their grabs"
+  - rscadd: "Added an ability to bumpslash friendlies"
+  - qol: "Added a separate toggle for structure destroying"
+  - balance: "Now you're capable of stealing jelly from stew pods"
