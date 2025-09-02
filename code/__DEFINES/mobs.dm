@@ -150,6 +150,7 @@
 //=================================================
 
 #define EFFECT_STUN "stun"
+#define EFFECT_KNOCKDOWN "knockdown"
 #define EFFECT_PARALYZE "paralyze"
 #define EFFECT_UNCONSCIOUS "unconscious"
 #define EFFECT_STAGGER "stagger"
@@ -773,8 +774,13 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define BOILER_LUMINOSITY_AMMO 0.5 //don't set this to 0. How much each 'piece' of ammo in reserve glows by.
 #define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR LIGHT_COLOR_YELLOW
 #define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR LIGHT_COLOR_GREEN
-#define BOILER_BOMBARD_COOLDOWN_REDUCTION 1.5 //Amount of seconds each glob stored reduces bombard cooldown by
-#define	BOILER_LUMINOSITY_THRESHOLD 2 //Amount of ammo needed to start glowing
+#define BOILER_LUMINOSITY_AMMO_OZELOMELYN_COLOR LIGHT_COLOR_WHITE
+#define BOILER_LUMINOSITY_AMMO_HEMODILE_COLOR LIGHT_COLOR_PURPLE
+#define BOILER_LUMINOSITY_AMMO_SANGUINAL_COLOR LIGHT_COLOR_RED
+/// Amount of deciseconds each stored glob reduces bombard cooldown by.
+#define BOILER_BOMBARD_COOLDOWN_REDUCTION 1.5 SECONDS
+/// Amount of stored globs needed to start glowing.
+#define	BOILER_LUMINOSITY_THRESHOLD 2
 
 //Hivelord defines
 #define HIVELORD_TUNNEL_DISMANTLE_TIME 3 SECONDS
@@ -1016,3 +1022,9 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 ))
 
 #define POINT_TIME 4 SECONDS
+
+// Dragon
+
+#define DRAGON_BREATH_MELTING "Melting"
+#define DRAGON_BREATH_SHATTERING "Shattering"
+#define DRAGON_BREATH_MELTING_ACID "Melting Acid"

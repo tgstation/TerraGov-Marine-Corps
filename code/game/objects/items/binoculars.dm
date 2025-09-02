@@ -200,7 +200,7 @@
 
 	var/turf/TU = get_turf(A)
 	var/distance = get_dist(TU, get_turf(user))
-	var/zoom_screen_size = zoom_tile_offset + zoom_viewsize + 1
+	var/zoom_screen_size = zoom_tile_offset + zoom_viewsize + 3
 	if(!(TU.z in SSmapping.get_connected_levels(user.z)) || distance == -1 || (distance > zoom_screen_size))
 		to_chat(user, span_warning("You can't focus properly through \the [src] while looking through something else."))
 		return

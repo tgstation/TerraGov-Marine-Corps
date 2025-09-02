@@ -33,7 +33,7 @@
 	evolve_population_lock = 50 // Tank
 
 	// *** Flags *** //
-	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE
+	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_CORRUPT_GENERATOR
 	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STUNIMMUNE, TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
@@ -60,6 +60,12 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/regenerative_armor,
+		/datum/mutation_upgrade/spur/breath_of_variety,
+		/datum/mutation_upgrade/veil/benevolence
 	)
 
 /datum/xeno_caste/dragon/normal

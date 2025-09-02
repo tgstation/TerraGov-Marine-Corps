@@ -33,7 +33,7 @@
 	deevolves_to = /datum/xeno_caste/drone
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_INSTANT_EVOLUTION|CASTE_EVOLUTION_ALLOWED|CASTE_LEADER_TYPE
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_INSTANT_EVOLUTION|CASTE_EVOLUTION_ALLOWED|CASTE_LEADER_TYPE|CASTE_MUTATIONS_ALLOWED
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 	can_flags = parent_type::can_flags|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_RULER
 	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
@@ -77,6 +77,18 @@
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/place_pattern,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/lone_healer,
+		/datum/mutation_upgrade/shell/shared_cure,
+		/datum/mutation_upgrade/shell/resistant_cure,
+		/datum/mutation_upgrade/spur/smashing_fling,
+		/datum/mutation_upgrade/spur/psychic_choke,
+		/datum/mutation_upgrade/spur/gravity_tide,
+		/datum/mutation_upgrade/veil/delayed_condition,
+		/datum/mutation_upgrade/veil/deflective_force,
+		/datum/mutation_upgrade/veil/utility_fling
 	)
 
 /datum/xeno_caste/shrike/normal

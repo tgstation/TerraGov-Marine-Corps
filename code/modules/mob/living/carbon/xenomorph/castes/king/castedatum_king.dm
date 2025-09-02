@@ -34,7 +34,7 @@
 	evolve_population_lock = 40 // Mech
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_HAS_WOUND_MASK
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_HAS_WOUND_MASK|CASTE_MUTATIONS_ALLOWED
 	caste_traits = list(TRAIT_STOPS_TANK_COLLISION, TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_RULER
 
@@ -72,6 +72,12 @@
 		/datum/action/ability/xeno_action/blessing_menu,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/stone_armor,
+		/datum/mutation_upgrade/spur/minion_king,
+		/datum/mutation_upgrade/veil/widefall,
+		/datum/mutation_upgrade/veil/flarefall
+	)
 
 /datum/xeno_caste/king/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -131,7 +137,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 800
+	max_health = 650
 
 	// *** Sunder *** //
 	sunder_multiplier = 1.0
@@ -140,7 +146,7 @@
 	evolve_min_xenos = 0
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_MUTATIONS_ALLOWED
 	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_STOPS_TANK_COLLISION, TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
@@ -167,6 +173,12 @@
 		/datum/action/ability/activable/xeno/conqueror_will,
 		/datum/action/ability/xeno_action/conqueror_endurance,
 		/datum/action/ability/activable/xeno/conqueror_domination,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/healing_jab,
+		/datum/mutation_upgrade/spur/telefrag,
+		/datum/mutation_upgrade/veil/dasher
 	)
 
 /datum/xeno_caste/king/conqueror/normal

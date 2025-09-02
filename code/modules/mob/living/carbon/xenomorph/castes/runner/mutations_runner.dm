@@ -36,8 +36,6 @@
 
 /datum/mutation_upgrade/shell/upfront_evasion/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
 		return
@@ -49,7 +47,7 @@
 
 /datum/mutation_upgrade/shell/borrowed_time
 	name = "Borrowed Time"
-	desc = "Your critical threshold is decreased by 100. While you have negative health, you are staggered and cannot slash attack. If you have negative health for more than 2/3/4s, your critical threshold is increased back until you reach full health."
+	desc = "Your critical threshold is decreased by 100. While you have negative health, you are slowed, staggered and cannot slash attack. If you have negative health for more than 2/3/4s, your critical threshold is increased back until you reach full health."
 	/// For the first structure, the amount of deciseconds that they can keep the critical threshold once they get negative health.
 	var/duration_initial = 1 SECONDS
 	/// For each structure, the amount of deciseconds that they can keep the critical threshold once they get negative health.
@@ -60,11 +58,13 @@
 	var/critical_threshold_amount = 100
 	/// The timer that will reverse the critical threshold.
 	var/critical_threshold_timer
+	/// The movement speed modifier to apply while they have negative health.
+	var/movement_speed_modifier = 0.9
 
 /datum/mutation_upgrade/shell/borrowed_time/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Your critical threshold is decreased by [critical_threshold_amount]. While you have negative health, you are staggered and cannot slash attack. If you have negative health for more than [get_duration(new_amount) * 0.1] seconds, your critical threshold is increased back until you reach full health."
+	return "Your critical threshold is decreased by [critical_threshold_amount]. While you have negative health, you are slowed, staggered and cannot slash attack. If you have negative health for more than [get_duration(new_amount) * 0.1] seconds, your critical threshold is increased back until you reach full health."
 
 /datum/mutation_upgrade/shell/borrowed_time/on_mutation_enabled()
 	RegisterSignal(xenomorph_owner, COMSIG_LIVING_UPDATE_HEALTH, PROC_REF(on_health_update))
@@ -103,6 +103,7 @@
 	if(critical_threshold_timer || health > xenomorph_owner.get_crit_threshold() + critical_threshold_amount)
 		return
 	ADD_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
+	xenomorph_owner.add_movespeed_modifier(MOVESPEED_ID_RUNNER_BORROWED_TIME, TRUE, 0, NONE, TRUE, movement_speed_modifier)
 	var/borrowed_time_length = get_duration(get_total_structures())
 	xenomorph_owner.Stagger(borrowed_time_length)
 	critical_threshold_timer = addtimer(CALLBACK(src, PROC_REF(reverse_critical_threshold)), borrowed_time_length, TIMER_UNIQUE|TIMER_STOPPABLE)
@@ -113,6 +114,7 @@
 /datum/mutation_upgrade/shell/borrowed_time/proc/reverse_critical_threshold()
 	toggle()
 	REMOVE_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
+	xenomorph_owner.remove_movespeed_modifier(MOVESPEED_ID_RUNNER_BORROWED_TIME)
 	deltimer(critical_threshold_timer)
 	critical_threshold_timer = null
 	xenomorph_owner.updatehealth()
@@ -135,7 +137,7 @@
 	/// For each structure, the chance of dodging a projectile or thrown object.
 	var/chance_per_structure = 10
 	/// If a projectile's accuracy is above this value, then the dodge chance is decreased by each point above it.
-	var/accuracy_reduction_threshold = 100
+	var/accuracy_reduction_threshold = 75
 
 /datum/mutation_upgrade/shell/ingrained_evasion/get_desc_for_alert(new_amount)
 	if(!new_amount)
@@ -256,8 +258,6 @@
 
 /datum/mutation_upgrade/spur/sneak_attack/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -296,8 +296,6 @@
 
 /datum/mutation_upgrade/spur/right_here/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -320,8 +318,6 @@
 
 /datum/mutation_upgrade/spur/mutilate/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -365,8 +361,6 @@
 
 /datum/mutation_upgrade/veil/headslam/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -405,8 +399,6 @@
 
 /datum/mutation_upgrade/veil/frenzy/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/activable/xeno/pounce/runner/pounce = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/pounce/runner]
 	if(!pounce)
 		return
@@ -450,8 +442,6 @@
 
 /datum/mutation_upgrade/veil/passing_glance/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	if(!.)
-		return
 	var/datum/action/ability/xeno_action/evasion/evasion = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/evasion]
 	if(!evasion)
 		return

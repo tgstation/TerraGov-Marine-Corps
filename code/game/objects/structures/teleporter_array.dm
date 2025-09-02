@@ -1,6 +1,6 @@
 /obj/structure/teleporter_array
-	name = "TELEPORTER"
-	desc = "PLACEHOLDER."
+	name = "Teleporter Array"
+	desc = "A large scale teleporter array, capable of transporting an entire squad directly to the battlefield."
 	icon = 'icons/obj/structures/teleporter.dmi'
 	icon_state = "teleporter"
 	obj_flags = NONE
@@ -11,7 +11,7 @@
 	///Current state of teleporter
 	var/teleporter_status = TELEPORTER_ARRAY_READY
 	///How many times this can be used
-	var/charges = 3
+	var/charges = 2
 	///The target turf for teleportation
 	var/turf/target_turf
 	///The Z-level that the teleporter can teleport to
@@ -52,6 +52,13 @@
 	for(var/datum/action/innate/action AS in interaction_actions)
 		action.give_action(controller)
 
+///Provides number of charges remaining to the examine message.
+/obj/structure/teleporter_array/examine()
+	. = ..()
+	if(controller)
+		. += "The teleporter is currently being aimed by [controller]."
+	. += "The teleporter array has [charges] charges remaining."
+
 ///Enables the teleporter for us
 /obj/structure/teleporter_array/proc/enable_teleporter(forced = FALSE)
 	if(!forced && (teleporter_status == TELEPORTER_ARRAY_INOPERABLE))
@@ -86,8 +93,11 @@
 	if(teleporter_status == TELEPORTER_ARRAY_IN_USE)
 		to_chat(controller, span_warning("The Teleporter Array is already running!"))
 		return
-	if(!charges || teleporter_status == TELEPORTER_ARRAY_INACTIVE)
+	if(teleporter_status == TELEPORTER_ARRAY_INACTIVE)
 		to_chat(controller, span_warning("The Teleporter Array is not currently available for our use."))
+		return
+	if(!charges)
+		to_chat(controller, span_warning("The Teleporter Array has no charges remaining. Buy and activate more using attrition."))
 		return
 	if(!target_turf)
 		to_chat(controller, span_warning("The Teleporter Array Has no destination set."))

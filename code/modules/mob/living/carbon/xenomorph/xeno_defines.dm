@@ -109,8 +109,6 @@
 	var/list/spit_types
 
 	// *** Acid spray *** //
-	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
-	var/acid_spray_range = 0
 	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
 	var/acid_spray_duration = 1
 	///The damage acid spray causes on hit.
@@ -136,8 +134,6 @@
 	var/max_ammo = 0
 	///Multiplier to the effectiveness of the boiler glob. 1 by default.
 	var/bomb_strength = 0
-	///Delay between firing the bombard ability for boilers
-	var/bomb_delay = 0
 
 	// *** Carrier Abilities *** //
 	///maximum amount of huggers a carrier can carry at one time.
@@ -358,7 +354,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/selected_resin = /turf/closed/wall/resin/regenerating
 	//which special resin structure to build when we secrete special resin
 	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/bulletproof
-	///which reagent to slash with using reagent slash
+	/// Which reagent to slash with using reagent slash. Use `set_selected_reagent` when changing this.
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
 	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
@@ -399,6 +395,16 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
+	// *** Boiler vars *** //
+	/// If their stored globs (corrosive + neurotoxin) surpasses this amount, they begin to glow at an increasing intensity.
+	var/glob_luminosity_threshold = BOILER_LUMINOSITY_THRESHOLD
+	/// Should the glow be replaced with a movement modifier? If so, how much for each glob above the threshold?
+	var/glob_luminosity_slowing = 0
+	/// Stored corrosive globs created from Boiler's Create Bomb.
+	var/corrosive_ammo = 0
+	/// Stored neurotoxin globs created from Boiler's Create Bomb.
+	var/neurotoxin_ammo = 0
+
 	// *** Globadier vars *** //
 	var/obj/item/explosive/grenade/globadier/selected_grenade = /obj/item/explosive/grenade/globadier
 
@@ -434,10 +440,6 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/list/tunnels = list()
 	///Number of huggers the xeno is currently carrying
 	var/huggers = 0
-	///Boiler acid ammo
-	var/corrosive_ammo = 0
-	///Boiler Neuro ammo
-	var/neuro_ammo = 0
 
 	/// All active mutations they own.
 	var/list/datum/mutation_upgrade/owned_mutations = list()
@@ -460,3 +462,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/mob/living/carbon/xenomorph/xeno = attacker
 	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
 	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
+
+/// Sets the xenomorph's selected reagent & sends a signal indicating that it happened.
+/mob/living/carbon/xenomorph/proc/set_selected_reagent(datum/reagent/new_reagent_typepath)
+	if(selected_reagent == new_reagent_typepath)
+		return
+	SEND_SIGNAL(src, COMSIG_XENO_SELECTED_REAGENT_CHANGED, selected_reagent, new_reagent_typepath)
+	selected_reagent = new_reagent_typepath

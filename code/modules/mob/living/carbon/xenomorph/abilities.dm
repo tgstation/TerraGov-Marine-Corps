@@ -422,6 +422,10 @@
 	ability_cost = 30
 	desc = "Opens your pheromone options."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING|ABILITY_USE_BUCKLED
+	/// The amount to increase the aura's strength by. This is not used in determining the range.
+	var/bonus_flat_strength = 0
+	/// The amount to increase the aura's range by.
+	var/bonus_flat_range = 0
 
 /datum/action/ability/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -434,7 +438,7 @@
 		X.hud_set_pheromone()
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
-	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, -1, X.faction, X.hivenumber)
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + (X.xeno_caste.aura_strength * 2) + bonus_flat_range, X.xeno_caste.aura_strength + bonus_flat_strength, -1, X.faction, X.hivenumber)
 	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, SFX_ALIEN_DROOL, 25)
 
@@ -447,7 +451,19 @@
 	var/phero_choice = show_radial_menu(owner, owner, GLOB.pheromone_images_list, radius = 35)
 	if(!phero_choice)
 		return fail_activate()
-	apply_pheros(phero_choice)
+	switch(phero_choice)
+		if(AURA_XENO_RECOVERY)
+			var/datum/action/ability/xeno_action/pheromones/emit_recovery/recovery_pheromones = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_recovery]
+			if(recovery_pheromones)
+				recovery_pheromones.apply_pheros(AURA_XENO_RECOVERY)
+		if(AURA_XENO_WARDING)
+			var/datum/action/ability/xeno_action/pheromones/emit_warding/warding_pheromones = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_warding]
+			if(warding_pheromones)
+				warding_pheromones.apply_pheros(AURA_XENO_WARDING)
+		if(AURA_XENO_FRENZY)
+			var/datum/action/ability/xeno_action/pheromones/emit_frenzy/frenzy_pheromones = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_frenzy]
+			if(frenzy_pheromones)
+				frenzy_pheromones.apply_pheros(AURA_XENO_FRENZY)
 
 /datum/action/ability/xeno_action/pheromones/emit_recovery
 	name = "Toggle Recovery Pheromones"
@@ -1010,6 +1026,8 @@
 	)
 	/// Should the egg contain the owner's selected_hugger_type instead?
 	var/use_selected_hugger = FALSE
+	/// The amount to multiply the created hugger's hand attach time by.
+	var/hand_attach_time_multiplier = 1
 
 /datum/action/ability/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -1031,7 +1049,8 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null)
+	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null, hand_attach_time_multiplier)
+
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()
@@ -1197,8 +1216,6 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
-	if(X.hive.has_any_mutation_structures())
-		SSpoints.add_biomass_points(X.hivenumber, MUTATION_BIOMASS_PER_PSYDRAIN)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))

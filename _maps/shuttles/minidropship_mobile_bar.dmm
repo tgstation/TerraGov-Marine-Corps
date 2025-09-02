@@ -54,7 +54,7 @@
 	},
 /area/shuttle/minidropship)
 "r" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/minidropship{
 	dir = 4;
 	id = "minidropship_podlock";
 	name = "inner door-control";

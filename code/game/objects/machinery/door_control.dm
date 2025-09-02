@@ -82,6 +82,7 @@
 					D.safe = 1
 
 /obj/machinery/door_control/proc/handle_pod()
+	SIGNAL_HANDLER
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			if(M.density)
@@ -348,3 +349,10 @@
 
 /obj/machinery/door_control/old/unmeltable
 	resistance_flags = RESIST_ALL
+
+/obj/machinery/door_control/minidropship
+	id = "minidropship_podlock"
+
+/obj/machinery/door_control/minidropship/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_SHUTTER, PROC_REF(handle_pod))
