@@ -75,8 +75,8 @@
 	var/collusion_paralyze_duration = 0
 	/// If humans were to collide with something, what is the multiplier of the owner's melee damage for determining how much damage to deal?
 	var/collusion_damage_multiplier = 0
-	/// Can this ability be used on xenomorphs? If so, what amount should the cooldown duration be mulitplied by?
-	var/friendly_cooldown_multiplier = 0
+	/// Should the collusion duration/multiplier only register for xenomorphs; also allows targetting of other xenos. This means that only flung xenomorphs can deal its effects to collided things.
+	var/collusion_xenos_only = FALSE
 
 /datum/action/ability/activable/xeno/psychic_fling/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
@@ -90,7 +90,7 @@
 		return FALSE
 	if(!isitem(target) && !ishuman(target) && !isdroid(target) && !isxeno(target)) // Only items, humans, droids, and xenomorphs.
 		return FALSE
-	if(isxeno(target) && !friendly_cooldown_multiplier)
+	if(isxeno(target) && (target != xeno_owner) && !collusion_xenos_only)
 		return FALSE
 	if(target.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return FALSE
@@ -129,13 +129,19 @@
 			human_target.drop_all_held_items()
 		if(damage_multiplier)
 			human_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
+		shake_camera(human_target, 2, 1)
 		RegisterSignal(human_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
-		if(collusion_paralyze_duration || collusion_damage_multiplier)
+		if(!collusion_xenos_only && (collusion_paralyze_duration || collusion_damage_multiplier))
 			RegisterSignal(human_target, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 		else
 			human_target.add_pass_flags(PASS_MOB, THROW_TRAIT)
-		shake_camera(human_target, 2, 1)
-
+	if(isxeno(movable_target))
+		var/mob/living/carbon/xenomorph/xenomorph_target = movable_target
+		RegisterSignal(xenomorph_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
+		if(collusion_paralyze_duration || collusion_damage_multiplier)
+			RegisterSignal(xenomorph_target, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
+		else
+			xenomorph_target.add_pass_flags(PASS_MOB, THROW_TRAIT)
 	var/facing = xeno_owner == movable_target ? xeno_owner.dir : get_dir(xeno_owner, movable_target)
 	var/fling_distance = (isitem(movable_target)) ? 4 : 3 // Objects get flung further away.
 	var/turf/T = movable_target.loc
@@ -147,7 +153,7 @@
 		T = temp
 	movable_target.throw_at(T, fling_distance, 1, xeno_owner, TRUE)
 
-	add_cooldown(cooldown_duration * ((isxeno(movable_target) || isitem(movable_target)) ? friendly_cooldown_multiplier : 1))
+	add_cooldown()
 	succeed_activate()
 
 /// Called when the throw has ended.
@@ -170,8 +176,8 @@
 	if(isliving(hit_atom))
 		valid_impact = TRUE
 		var/mob/living/living_hit = hit_atom
-		if(!living_source.issamexenohive(living_hit))
-			INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob, emote), "scream")
+		if(!xeno_owner.issamexenohive(living_hit))
+			INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob, emote), isxeno(living_hit) ? "hiss1" : "scream")
 			if(damage)
 				living_hit.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 			if(collusion_paralyze_duration)
@@ -188,11 +194,12 @@
 			hit_wall.take_damage(damage, BRUTE, MELEE)
 	if(!valid_impact)
 		return
-	INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
-	if(damage)
-		living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
-	if(collusion_paralyze_duration)
-		living_source.Paralyze(collusion_paralyze_duration)
+	if(!xeno_owner.issamexenohive(living_source))
+		INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), isxeno(living_source) ? "hiss1" : "scream")
+		if(damage)
+			living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+		if(collusion_paralyze_duration)
+			living_source.Paralyze(collusion_paralyze_duration)
 
 // ***************************************
 // *********** Unrelenting Force
