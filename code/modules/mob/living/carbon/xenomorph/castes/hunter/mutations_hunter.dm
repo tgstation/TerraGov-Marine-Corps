@@ -74,6 +74,9 @@
 /datum/mutation_upgrade/shell/splitting_mirage
 	name = "Splitting Mirage"
 	desc = "Mirage will instead cause your slashes to create an illusion for the next 12/14/16 seconds. These illusions disappear when the time is up."
+	conflicting_mutation_types = list(
+		/datum/mutation_upgrade/veil/mirage_flood
+	)
 	/// For each structure, the amount of deciseconds to increase Mirage's illusion lifespan by.
 	var/length_per_structure = 2 SECONDS
 
@@ -116,6 +119,9 @@
 /datum/mutation_upgrade/shell/cloaking_mirage
 	name = "Cloaking Mirage"
 	desc = "Mirage will instead creates cloaking gas for 12/14/16 seconds in a radius of 2."
+	conflicting_mutation_types = list(
+		/datum/mutation_upgrade/veil/mirage_flood
+	)
 	/// For each structure, the amount of deciseconds to increase Mirage's smoke duration by.
 	var/length_per_structure = 2 SECONDS
 
@@ -157,6 +163,9 @@
 /datum/mutation_upgrade/spur/debilitating_strike
 	name = "Debilitating Strike"
 	desc = "Stealth's sneak attack no longer stuns. 1.25/1.5/1.75x of your slash damage is added onto sneak attack instead."
+	conflicting_mutation_types = list(
+		/datum/mutation_upgrade/veil/faceblind
+	)
 	/// For the first structure, the multiplier to add as additional damage when Sneak Attack was successfully used on living beings.
 	var/damage_multiplier_initial = 1
 	/// For each structure, the multiplier to add as additional damage when Sneak Attack was successfully used on living beings.
@@ -317,6 +326,10 @@
 /datum/mutation_upgrade/veil/mirage_flood
 	name = "Mirage Flood"
 	desc = "Mirage creates 4 additional illusions, but the duration is reduced by 5/3/1 seconds."
+	conflicting_mutation_types = list(
+		/datum/mutation_upgrade/shell/splitting_mirage,
+		/datum/mutation_upgrade/shell/cloaking_mirage
+	)
 	/// For the first structure, the amount of deciseconds to add to Mirage's illusion lifespan.
 	var/duration_initial = -7 SECONDS
 	/// For each structure, the additional amount of deciseconds to add to Mirage's illusion lifespan.
@@ -356,6 +369,9 @@
 /datum/mutation_upgrade/veil/faceblind
 	name = "Faceblind"
 	desc = "Stealth's sneak attack causes temporary blindness, but no longer stuns. Mirage's cooldown is set to 90/80/70% of its original value."
+	conflicting_mutation_types = list(
+		/datum/mutation_upgrade/spur/debilitating_strike
+	)
 	/// For each structure, the additional multiplier of Mirage's cooldown duration to add to it.
 	var/multiplier_per_structure = -0.1
 
