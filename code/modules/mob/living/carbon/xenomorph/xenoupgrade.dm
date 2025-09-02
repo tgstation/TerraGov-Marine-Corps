@@ -256,6 +256,9 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
+/mob/living/carbon/xenomorph/hunter/assassin
+	upgrade = XENO_UPGRADE_NORMAL
+
 /mob/living/carbon/xenomorph/hunter/assassin/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
@@ -455,6 +458,12 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/behemoth/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+
+/mob/living/carbon/xenomorph/behemoth/sieger
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/behemoth/sieger/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 
 //----BEHEMOTH END----//

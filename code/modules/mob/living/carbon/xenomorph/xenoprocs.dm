@@ -666,7 +666,7 @@
 
 /mob/living/carbon/xenomorph/verb/swapgender()
 	set name = "Swap Gender"
-	set desc = "Swap between xeno genders in an instant, nothing compared to evolving."
+	set desc = "Swap between xeno genders in an instant, nothing compared to evolving. Some may not have textures, PR it yourself."
 	set category = "Alien"
 
 	update_xeno_gender(src, TRUE)
@@ -710,4 +710,4 @@
 
 	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK) //ig if u cant see wounds u shouldnt see tiddies too maybe for things like being ethereal
 		apply_overlay(GENITAL_LAYER)
-	genital_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
+	genital_overlay.vis_flags &= ~VIS_HIDE // Show the overla

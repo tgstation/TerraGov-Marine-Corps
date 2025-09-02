@@ -133,6 +133,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		else
 			do_acid_cone_spray(xeno_owner.loc, range, direction, CONE_PART_MIDDLE_DIAG, xeno_owner, TRUE)
 
+#undef CONE_PART_MIDDLE
+#undef CONE_PART_LEFT
+#undef CONE_PART_RIGHT
+#undef CONE_PART_DIAG_LEFT
+#undef CONE_PART_DIAG_RIGHT
+#undef CONE_PART_MIDDLE_DIAG
+
 // ***************************************
 // *********** Slime Grenade
 // ***************************************

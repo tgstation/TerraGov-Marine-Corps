@@ -590,6 +590,7 @@
 	var/maximum_pillars = 3
 	/// List that contains all Earth Pillars created by this ability.
 	var/list/obj/structure/earth_pillar/active_pillars = list()
+	var/obj/structure/earth_pillar/pillar_type = /obj/structure/earth_pillar
 
 /datum/action/ability/activable/xeno/earth_riser/on_cooldown_finish()
 	owner.balloon_alert(owner, "[initial(name)] ready[maximum_pillars > 1 ? " ([length(active_pillars)]/[maximum_pillars])" : ""]")
@@ -660,7 +661,7 @@
 /datum/action/ability/activable/xeno/earth_riser/proc/do_ability(turf/target_turf, enhanced)
 	if(!target_turf)
 		return
-	var/new_pillar = new /obj/structure/earth_pillar(target_turf, xeno_owner, enhanced)
+	var/new_pillar = new pillar_type(target_turf, xeno_owner, enhanced)
 	RegisterSignal(new_pillar, COMSIG_XENOABILITY_EARTH_PILLAR_THROW, PROC_REF(pillar_thrown))
 	RegisterSignal(new_pillar, COMSIG_QDELETING, PROC_REF(pillar_destroyed))
 	active_pillars += new_pillar
@@ -1343,6 +1344,7 @@
 	name = "earth pillar"
 	icon_state = "earth_pillar"
 	ping = null
+	damage = 50
 	bullet_color = COLOR_LIGHT_ORANGE
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
 	shell_speed = 1

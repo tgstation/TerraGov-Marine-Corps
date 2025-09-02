@@ -248,6 +248,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 			unique_glob = FALSE
 			xeno_owner.neurotoxin_ammo++
 			xeno_owner.balloon_alert(xeno_owner, "Neurotoxin globule prepared.")
+
 	if(unique_glob)
 		if(xeno_owner.corrosive_ammo > xeno_owner.neurotoxin_ammo)
 			xeno_owner.neurotoxin_ammo++
