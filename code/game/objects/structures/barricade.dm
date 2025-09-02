@@ -259,7 +259,7 @@
 /obj/structure/barricade/snow
 	name = "snow barricade"
 	desc = "A mound of snow shaped into a sloped wall. Statistically better than thin air as cover."
-	icon = 'icons/obj/structures/barricades/sandbags.dmi'
+	icon = 'icons/obj/structures/barricades/snow.dmi'
 	icon_state = "snow_0"
 	barricade_type = "snow"
 	max_integrity = 75
