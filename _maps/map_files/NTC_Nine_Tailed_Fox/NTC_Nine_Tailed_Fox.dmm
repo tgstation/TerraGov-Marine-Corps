@@ -341,16 +341,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
-"asd" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadderCryo1";
-	height = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo{
-	static_lighting = 1;
-	base_lighting_alpha = 0
-	})
 "ash" = (
 /obj/structure/largecrate/supply/supplies/plasteel,
 /turf/open/floor/mainship/cargo,
@@ -3696,10 +3686,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "dhf" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder4";
-	height = 1
-	},
+/obj/structure/ladder,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "dhN" = (
@@ -3940,10 +3927,7 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "duO" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFCargoLadder";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/plating_catwalk,
 /area/outpost/cargo{
 	outside = 1
@@ -4667,10 +4651,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder7";
-	height = 1
-	},
+/obj/structure/ladder,
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
 	dir = 2;
 	id = "Lowershiplockdown"
@@ -5778,10 +5759,7 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "fiD" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFbrigLadder";
-	height = 1
-	},
+/obj/structure/ladder,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
@@ -6313,10 +6291,7 @@
 "fIA" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder7";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "fIL" = (
@@ -6957,10 +6932,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
 "gjl" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFCargoLadder";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "gjt" = (
@@ -7669,10 +7641,7 @@
 /area/mainship/living/tankerbunks)
 "gSq" = (
 /obj/structure/cable,
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder7";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/engine_smes{
 	outside = 0
@@ -8346,10 +8315,7 @@
 "hxt" = (
 /obj/structure/cable,
 /obj/structure/cable/multilayer/multiz,
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder7";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "hxQ" = (
@@ -9062,10 +9028,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_study)
 "ifx" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder4";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "ifN" = (
@@ -9799,10 +9762,7 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "iQQ" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder6";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
@@ -10593,10 +10553,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder5";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "jFp" = (
@@ -10707,10 +10664,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/ladder/id_linked{
-	id = "NTFbrigLadder";
-	height = 1
-	},
+/obj/structure/ladder,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -16276,10 +16230,7 @@
 	})
 "oCT" = (
 /obj/structure/cable,
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder7";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/lower_engineering{
 	name = "Lower Power"
@@ -17394,10 +17345,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "pOb" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadderCryo2";
-	height = 1
-	},
+/obj/structure/ladder,
 /turf/open/floor/mainship/mono,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -17748,10 +17696,7 @@
 	name = "Shipside Medbay"
 	})
 "qeM" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadderCryo1";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "qfa" = (
@@ -18236,10 +18181,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
 "qAd" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder5";
-	height = 1
-	},
+/obj/structure/ladder,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
 "qAC" = (
@@ -19295,13 +19237,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"rBy" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadderCryo2";
-	height = 2
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/living/cryo_cells)
 "rBz" = (
 /obj/structure/mirror,
 /obj/machinery/light/mainship{
@@ -21816,10 +21751,7 @@
 /area/mainship/living/tankerbunks)
 "tSm" = (
 /obj/structure/cable/multilayer/multiz,
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder7";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/main{
 	outside = 0
@@ -23511,10 +23443,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "vxX" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder6";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -24931,10 +24860,7 @@
 	outside = 1
 	})
 "wRc" = (
-/obj/structure/ladder/id_linked{
-	id = "NTFLadder6";
-	height = 2
-	},
+/obj/structure/ladder,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -31509,7 +31435,7 @@ nPZ
 nPZ
 nPZ
 mjG
-asd
+pOb
 iWD
 fYO
 kjD
@@ -44957,7 +44883,7 @@ vCU
 mpj
 kbR
 mFZ
-rBy
+qeM
 pTu
 shj
 gOK
