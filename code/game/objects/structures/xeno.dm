@@ -122,9 +122,12 @@
 	if(isxeno(crosser))
 		var/mob/living/carbon/xenomorph/X = crosser
 		if(!issamexenohive(X))
-			X.next_move_slowdown = WEED_SLOWDOWN
+			X.next_move_slowdown += slow_amt
 		else
 			X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+		return
+
+	if(issamexenohive(crosser))
 		return
 
 	if(!isliving(crosser))
