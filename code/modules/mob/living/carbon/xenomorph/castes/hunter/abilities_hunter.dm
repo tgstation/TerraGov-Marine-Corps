@@ -24,8 +24,8 @@
 	var/bonus_stealth_damage_multiplier = 0
 	/// How much bonus armor piercing should sneak attack get if it was done at maximum stealth level?
 	var/bonus_maximum_stealth_ap = 0
-	/// Should a successful sneak attack blind instead of inflicting stagger/slow?
-	var/blinds_instead = FALSE
+	/// How much does a successful sneak attack blind for?
+	var/blinding_stacks = 0
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -208,11 +208,10 @@
 
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
-	if(!blinds_instead)
-		target.adjust_stagger(staggerslow_stacks SECONDS)
-		target.add_slowdown(staggerslow_stacks)
-	else
-		target.blind_eyes(2)
+	target.adjust_stagger(staggerslow_stacks SECONDS)
+	target.add_slowdown(staggerslow_stacks)
+	if(blinding_stacks)
+		target.blind_eyes(blinding_stacks)
 	if(sneak_attack_stun_duration)
 		target.ParalyzeNoChain(sneak_attack_stun_duration)
 	GLOB.round_statistics.hunter_cloak_victims++

@@ -378,7 +378,7 @@
 	if(!stealth_ability)
 		return
 	stealth_ability.sneak_attack_stun_duration = initial(stealth_ability.sneak_attack_stun_duration)
-	stealth_ability.blinding_stacks = initial(stealth_ability.blinds_instead)
+	stealth_ability.blinding_stacks = initial(stealth_ability.blinding_stacks)
 
 /datum/mutation_upgrade/veil/faceblind/on_structure_update(previous_amount, new_amount)
 	. = ..()
