@@ -1613,6 +1613,7 @@
 			/obj/item/ammo_magazine/tank/ltb_cannon = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon/apfds = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon/canister = -1,
+			/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary = -1,
 			/obj/item/ammo_magazine/tank/autocannon = -1,
 			/obj/item/ammo_magazine/tank/autocannon/high_explosive = -1,
 			/obj/item/ammo_magazine/tank/bfg = -1,
