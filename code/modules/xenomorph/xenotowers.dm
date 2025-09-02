@@ -94,7 +94,7 @@
 /obj/structure/xeno/lighttower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(issamexenohive(X)))
 		return ..()
-	if(X.a_intent == INTENT_HARM) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
+	if(X.a_intent == INTENT_HARM && (X.xeno_flags & XENO_DESTROY_OWN_STRUCTURES)) // If we're on harm intend and have the toggle on, destroy it.
 		balloon_alert(X, "Removing...")
 		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 			balloon_alert(X, "Stopped removing")

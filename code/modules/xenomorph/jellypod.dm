@@ -51,10 +51,10 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(!issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_HARM)
+	if(!issamexenohive(xeno_attacker))
 		return ..()
 
-	if(xeno_attacker.a_intent == INTENT_HARM)
+	if(xeno_attacker.a_intent == INTENT_HARM && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		balloon_alert(xeno_attacker, "Destroying...")
 		if(do_after(xeno_attacker, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)

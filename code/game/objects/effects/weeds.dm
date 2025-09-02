@@ -156,7 +156,7 @@
 		xeno_attacker.changeNext_move(CLICK_CD_MELEE)
 		take_damage(damage_amount, damage_type, armor_type, effects, get_dir(src, xeno_attacker), armor_penetration, xeno_attacker)
 		return TRUE
-	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB)
+	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts scooping up \the [src]!"), \
 		span_xenonotice("We start to scoop up \the [src]."))
 		if(!do_after(xeno_attacker, 2 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
@@ -365,7 +365,7 @@
 		xeno_attacker.changeNext_move(12)
 		take_damage(max_integrity/2)
 		return TRUE
-	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB)
+	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts scooping up \the [src]!"), \
 		span_xenonotice("We start to scoop up \the [src]."))
 		if(!do_after(xeno_attacker, 2 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))

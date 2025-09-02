@@ -53,7 +53,7 @@
 	if(!issamexenohive(xeno_attacker))
 		return ..()
 
-	if(xeno_attacker.a_intent == INTENT_HARM && isxenodrone(xeno_attacker))
+	if(xeno_attacker.a_intent == INTENT_HARM && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		balloon_alert(xeno_attacker, "Uprooted the plant")
 		xeno_attacker.do_attack_animation(src)
 		deconstruct(TRUE)

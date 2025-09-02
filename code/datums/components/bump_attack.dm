@@ -93,7 +93,8 @@
 	if(!isnull(.))
 		return
 	if(bumper.issamexenohive(target))
-		return //No more nibbling.
+		if(!(bumper.xeno_flags & XENO_ALLIES_BUMP))
+			return //No more nibbling.
 	return xeno_do_bump_action(target)
 
 ///Handles living bump attacks.

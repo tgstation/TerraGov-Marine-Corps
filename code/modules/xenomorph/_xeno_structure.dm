@@ -104,7 +104,7 @@
 /obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!issamexenohive(xeno_attacker))
 		return ..()
-	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_HARM)
+	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_HARM && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
 		span_xenonotice("We start to tear down \the [src]."))
 		if(!do_after(xeno_attacker, 10 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))

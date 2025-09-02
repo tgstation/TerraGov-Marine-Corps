@@ -75,31 +75,29 @@
 		extra_desc = "It has [chargesleft] jelly globules remaining and seems latent."
 
 /obj/structure/xeno/resin_stew_pod/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if((xeno_attacker.ckey == creator_ckey) && issamexenohive(xeno_attacker))
-		if(xeno_attacker.a_intent == INTENT_HARM)
+	if(xeno_attacker.status_flags & INCORPOREAL)
+		return FALSE
+
+	if(issamexenohive(xeno_attacker))
+		if(xeno_attacker.a_intent == INTENT_HARM && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 			balloon_alert(xeno_attacker, "Destroying...")
 			if(do_after(xeno_attacker, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 				deconstruct(FALSE)
 			return
 
-		do
-			if(!(chargesleft > 0))
-				balloon_alert(xeno_attacker, "No jelly remaining")
-				to_chat(xeno_attacker, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
-				return
-
-			balloon_alert(xeno_attacker, "Retrieved jelly")
-			new /obj/item/resin_jelly/reqjelly(xeno_attacker.loc, hivenumber)
-			chargesleft--
-		while(do_mob(xeno_attacker, src, 1 SECONDS))
-
-	if(xeno_attacker.status_flags & INCORPOREAL)
-		return FALSE
-
-	if(xeno_attacker.a_intent == INTENT_HARM)
+	if(!issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_HARM)
 		return ..()
 
-	to_chat(xeno_attacker, span_xenonotice("This does not belong to us!") )
+	do
+		if(!(chargesleft > 0))
+			balloon_alert(xeno_attacker, "No jelly remaining")
+			to_chat(xeno_attacker, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
+			return
+
+		balloon_alert(xeno_attacker, "Retrieved jelly")
+		new /obj/item/resin_jelly/reqjelly(xeno_attacker.loc, hivenumber)
+		chargesleft--
+	while(do_mob(xeno_attacker, src, 1 SECONDS))
 
 /obj/structure/xeno/resin_stew_pod/Destroy()
 	if(loc && (chargesleft > 0))

@@ -353,7 +353,7 @@
 	if(!ishuman(puller))
 		return TRUE
 	var/mob/living/carbon/human/H = puller
-	if(hivenumber == XENO_HIVE_CORRUPTED) // we can grab friendly benos
+	if(hivenumber == XENO_HIVE_CORRUPTED && !(xeno_flags & XENO_ALLIES_BUMP)) // we can grab friendly benos
 		return TRUE
 	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
@@ -363,7 +363,10 @@
 
 /mob/living/carbon/xenomorph/resist_grab()
 	if(pulledby.grab_state)
-		visible_message(span_danger("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
+		if(!isxeno(pulledby))
+			visible_message(span_danger("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
+		else
+			return ..()
 	pulledby.stop_pulling()
 	. = 1
 

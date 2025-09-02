@@ -136,7 +136,10 @@ TUNNEL
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
 	to_chat(M, span_notice("Select a tunnel to go to."))
 
-	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
+	var/flag = MINIMAP_FLAG_XENO
+	if(hivenumber == XENO_HIVE_CORRUPTED)
+		flag = MINIMAP_FLAG_MARINE
+	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, flag)
 	M.client.screen += map
 	var/list/polled_coords = map.get_coords_from_click(M)
 	M?.client?.screen -= map

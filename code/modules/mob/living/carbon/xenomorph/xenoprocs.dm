@@ -513,6 +513,21 @@
 		H.remove_hud_from(src)
 	to_chat(src, span_notice("You have [(xeno_flags & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
 
+/mob/living/carbon/xenomorph/verb/toggle_bump_attack_allies()
+	set name = "Toggle Bump Attack Allies"
+	set desc = "Toggles the ability to bump attack your allies."
+	set category = "Alien"
+
+	xeno_flags ^= XENO_ALLIES_BUMP
+	to_chat(src, span_notice("You have [(xeno_flags & XENO_ALLIES_BUMP) ? "enabled" : "disabled"] the Bump Attack Allies Toggle."))
+
+/mob/living/carbon/xenomorph/verb/toggle_destroy_own_structures()
+	set name = "Toggle Destroy Own Structures"
+	set desc = "Toggles the ability to destroy your own structures."
+	set category = "Alien"
+
+	xeno_flags ^= XENO_DESTROY_OWN_STRUCTURES
+	to_chat(src, span_notice("You have [(xeno_flags & XENO_DESTROY_OWN_STRUCTURES) ? "enabled" : "disabled"] the Destroy Own Structures Toggle."))
 
 /mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, list/toxin = list(/datum/reagent/toxin/xeno_neurotoxin), channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4, datum/effect_system/smoke_spread/gas_type, gas_range, no_overdose = FALSE) //NTF edit - multiple chemicals in one injection
 	if(!C?.can_sting() || !toxin)

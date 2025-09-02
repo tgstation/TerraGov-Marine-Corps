@@ -42,7 +42,7 @@
 /obj/structure/xeno/recovery_pylon/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!(issamexenohive(xeno_attacker)))
 		return ..()
-	if(xeno_attacker.a_intent != INTENT_HARM || !(xeno_attacker.xeno_caste.caste_flags & CASTE_IS_BUILDER))
+	if(xeno_attacker.a_intent != INTENT_HARM || !(xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		return ..()
 	balloon_alert(xeno_attacker, "Removing...")
 	if(!do_after(xeno_attacker, 2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
