@@ -45,8 +45,7 @@ GLOBAL_DATUM_INIT(historic_scan_index, /datum/historic_scan_index, new)
 
 /// Holds an old body scanner/autodoc scan's TGUI data for later viewing
 /datum/historic_scan
-	/// `worldtime2text` of when the scan was made, held onto so
-	/// the `historic_scan_index` and outside sources can tell this datum exists
+	/// `worldtime2text` of when the scan was made
 	var/last_scan_time
 	/// Archived TGUI health scan data
 	var/list/data
