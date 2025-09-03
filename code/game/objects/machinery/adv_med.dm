@@ -208,6 +208,10 @@
 	scanner = new(src, SKILL_MEDICAL_UNTRAINED, SKILL_MEDICAL_UNTRAINED, TRACK_DISTANCE_DISABLED)
 	RegisterSignal(scanner, COMSIG_HEALTH_SCAN_DATA, PROC_REF(on_scanner_data))
 
+/obj/machinery/computer/body_scanconsole/Destroy()
+	QDEL_NULL(scanner)
+	return ..()
+
 /obj/machinery/computer/body_scanconsole/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
