@@ -1,7 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - qol: "Round type flags are now easily editable bit fields for those with VV access."
-  - bugfix: "It is no longer possible to infinitely hijack as an xenomorph."
-  - code_imp: "MODE_DEAD_GRAB_FORBIDDEN, a round type flag, has been renamed to MODE_XENO_GRAB_DEAD_ALLOWED. By default, xenos are not allowed to grab dead humans (no change) unless the gamemode says otherwise."
-  - code_imp: "MODE_HIJACK_POSSIBLE, a round type flag, is now used to allow xenomorphs to hijack."

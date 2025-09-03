@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed a runtime with mech weapons"
-  - bugfix: "Mech weapon windups work on the move like man portable weapons."
