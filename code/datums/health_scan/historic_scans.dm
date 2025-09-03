@@ -4,7 +4,7 @@ GLOBAL_DATUM_INIT(historic_scan_index, /datum/historic_scan_index, new)
 /// Holds `/datum/historic_scan` instances for viewing old body scanner/autodoc scans
 /datum/historic_scan_index
 	/// Associative list of `ref` -> `/datum/historic_scan`
-	var/list/datum/historic_scan/scans = list()
+	VAR_PRIVATE/list/datum/historic_scan/scans = list()
 
 /// Shows `patient`'s old scan to `user`, if it exists, otherwise gives feedback
 /datum/historic_scan_index/proc/show_old_scan_by_human(mob/living/carbon/human/patient, mob/user)
@@ -29,32 +29,27 @@ GLOBAL_DATUM_INIT(historic_scan_index, /datum/historic_scan_index, new)
 		CRASH("Patient provided to [type]/modify_or_add_patient is not a carbon human")
 	var/datum/historic_scan/temp = scans[ref(patient)]
 	if(isnull(temp))
-		temp = new(patient)
+		temp = new
 		scans[ref(patient)] = temp
+		RegisterSignal(patient, COMSIG_QDELETING, PROC_REF(patient_qdeleted))
 	temp.last_scan_time = worldtime2text()
 	temp.data = data
 
+/// Signal handler to, when a patient is being deleted,
+/// delete the datum assigned to them as it won't be viewable anyway
+/datum/historic_scan_index/proc/patient_qdeleted(datum/source, force)
+	SIGNAL_HANDLER
+	var/datum/historic_scan/temp = scans[ref(source)]
+	scans.Remove(ref(source))
+	qdel(temp)
+
 /// Holds an old body scanner/autodoc scan's TGUI data for later viewing
 /datum/historic_scan
-	/// Text ref to this datum's patient, held onto for
-	/// self-destruction when the patient is deleted
-	var/patient_ref
 	/// `worldtime2text` of when the scan was made, held onto so
 	/// the `historic_scan_index` and outside sources can tell this datum exists
 	var/last_scan_time
 	/// Archived TGUI health scan data
 	var/list/data
-
-/datum/historic_scan/New(mob/living/carbon/human/patient)
-	patient_ref = ref(patient)
-	RegisterSignal(patient, COMSIG_QDELETING, PROC_REF(patient_qdeleted))
-
-/// Signal handler to delete this datum when its patient is deleting
-/// and avoid having orphaned, unviewable scans
-/datum/historic_scan/proc/patient_qdeleted(force)
-	SIGNAL_HANDLER
-	GLOB.historic_scan_index.scans.Remove(patient_ref)
-	qdel(src)
 
 /datum/historic_scan/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
