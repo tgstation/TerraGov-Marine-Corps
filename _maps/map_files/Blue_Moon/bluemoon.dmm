@@ -15802,15 +15802,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/bluemoon/caves/facility/omicron)
-"snj" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor,
-/area/bluemoon/outside/building/dorms)
 "sns" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -32344,7 +32335,7 @@ rHv
 rHv
 rHv
 rHv
-snj
+fgV
 lTi
 cWM
 tui
