@@ -3589,6 +3589,11 @@
 	dir = 4
 	},
 /area/bluemoon/caves/facility/lambda/s)
+"dZk" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/bluemoon/outside/building/dorms)
 "eby" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -3653,6 +3658,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/bluemoon/caves/facility/lambda/n)
+"efm" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/sw)
 "egC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -5572,6 +5582,14 @@
 	dir = 1
 	},
 /area/bluemoon/outside/building/virology)
+"gzL" = (
+/obj/structure/closet/cabinet,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/wood,
+/area/bluemoon/outside/building/dorms)
 "gAn" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/podhatch{
@@ -6985,6 +7003,13 @@
 	dir = 8
 	},
 /area/bluemoon/outside/building/med/icu)
+"iiL" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bluemoon/outside/building/dorms)
 "iiN" = (
 /obj/structure/platform/metalplatform/nondense{
 	dir = 4
@@ -8391,9 +8416,11 @@
 /turf/open/floor/wood/fancy,
 /area/bluemoon/outside/building/dorms/chapel)
 "jEc" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/bluemoon/caves/s)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor,
+/area/bluemoon/outside/building/dorms)
 "jEx" = (
 /turf/open/floor/tile/dark/blue2,
 /area/bluemoon/caves/facility/eta)
@@ -8519,9 +8546,11 @@
 	},
 /area/bluemoon/caves/facility/eta/xeno)
 "jJO" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/bluemoon/caves/w)
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bluemoon/outside/building/dorms)
 "jJS" = (
 /obj/machinery/door/airlock/mainship/research/free_access{
 	name = "\improper Virology Lab Decontamination"
@@ -13105,12 +13134,6 @@
 	},
 /turf/open/floor/plating,
 /area/bluemoon/caves/facility/omicron)
-"oZI" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 1
-	},
-/turf/open/floor,
-/area/bluemoon/outside/building/dorms)
 "pac" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	name = "\improper Lambda Lab Surgery";
@@ -13481,10 +13504,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/bluemoon/caves/sw)
-"pBQ" = (
-/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/turf/open/floor,
-/area/bluemoon/outside/building/dorms)
 "pBW" = (
 /turf/closed/wall/r_wall,
 /area/bluemoon/outside/building/cargo/outpost)
@@ -13687,10 +13706,7 @@
 	},
 /area/bluemoon/caves/facility/lambda/n)
 "pNo" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
 /area/bluemoon/outside/building/dorms)
 "pNx" = (
@@ -14111,12 +14127,6 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/urban/carpet/carpetreddeco,
 /area/bluemoon/outside/building/dorms/rec)
-"qtV" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/turf/open/floor,
-/area/bluemoon/outside/building/dorms)
 "quG" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/white,
@@ -15270,11 +15280,6 @@
 /obj/structure/prop/urban/containersextended/medicalright,
 /turf/open/floor/plating,
 /area/bluemoon/caves/facility/omicron)
-"rIx" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor,
-/area/bluemoon/outside/building/dorms)
 "rIL" = (
 /obj/structure/bed/chair{
 	dir = 8;
@@ -17758,9 +17763,9 @@
 /turf/open/floor,
 /area/bluemoon/outside/building/engi/filt)
 "uHn" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/bluemoon/caves/s)
+/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/turf/open/floor,
+/area/bluemoon/outside/building/dorms)
 "uHq" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/handcuffs,
@@ -18268,8 +18273,8 @@
 /area/bluemoon/outside/building/engi)
 "veG" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
 	},
 /turf/open/floor,
 /area/bluemoon/outside/building/dorms)
@@ -18739,14 +18744,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/white,
 /area/bluemoon/outside/building/virology)
-"vJm" = (
-/obj/structure/closet/cabinet,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/wood,
-/area/bluemoon/outside/building/dorms)
 "vKi" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 8
@@ -19106,10 +19103,6 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/bluemoon/outside/building/mining)
-"wei" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor,
-/area/bluemoon/outside/building/dorms)
 "wfg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -22692,16 +22685,16 @@ uwk
 uJX
 uJX
 uJX
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
 uJX
 uJX
 uJX
@@ -22839,7 +22832,7 @@ uwk
 uwk
 uwk
 uwk
-jJO
+uwk
 uwk
 uJX
 uJX
@@ -22848,7 +22841,7 @@ uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -22986,7 +22979,7 @@ wce
 uwk
 uwk
 uwk
-jJO
+uwk
 uwk
 rtc
 uJX
@@ -22995,8 +22988,8 @@ uJX
 uJX
 uJX
 uJX
-xGy
-xGy
+uJX
+uJX
 uJX
 uJX
 uJX
@@ -23133,7 +23126,7 @@ uwk
 uwk
 uwk
 uJX
-xGy
+uJX
 uwk
 uwk
 uJX
@@ -23143,7 +23136,7 @@ uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -23280,7 +23273,7 @@ uwk
 uwk
 uJX
 uJX
-xGy
+uJX
 uwk
 rtc
 ycd
@@ -23290,7 +23283,7 @@ uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -23427,7 +23420,7 @@ wce
 uwk
 uJX
 uJX
-xGy
+uJX
 uJX
 uwk
 ycd
@@ -23437,7 +23430,7 @@ uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -23574,17 +23567,17 @@ uwk
 wce
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 ycd
 ycd
-luY
+ycd
 uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -23721,8 +23714,8 @@ uwk
 uwk
 uwk
 uwk
-jJO
-jJO
+uwk
+uwk
 ycd
 ycd
 eQM
@@ -23731,7 +23724,7 @@ ycd
 ycd
 ycd
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -23869,7 +23862,7 @@ uwk
 rtc
 uwk
 uwk
-jJO
+uwk
 ycd
 ycd
 ycd
@@ -23878,7 +23871,7 @@ ycd
 ycd
 eQM
 ueK
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -24016,7 +24009,7 @@ uwk
 rtc
 wce
 uwk
-xGy
+uJX
 uJX
 uJX
 ycd
@@ -24025,7 +24018,7 @@ ycd
 uJX
 ycd
 eQM
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -24163,16 +24156,16 @@ uwk
 uwk
 rtc
 uwk
-xGy
-xGy
-xGy
 uJX
-ycd
+uJX
 uJX
 uJX
 ycd
+uJX
+uJX
 ycd
-xGy
+ycd
+uJX
 uJX
 uJX
 uJX
@@ -24312,14 +24305,14 @@ uwk
 rtc
 uwk
 uJX
-xGy
-xGy
-hMm
-hMm
-hMm
-hMm
-hMm
-hMm
+uJX
+uJX
+ycd
+ycd
+ycd
+ycd
+ycd
+ycd
 uJX
 uJX
 uJX
@@ -24761,21 +24754,21 @@ ycd
 ycd
 eQM
 ycd
-ycd
-ycd
-ycd
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-ldL
-ldL
+hMm
+hMm
+hMm
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+dFY
+dFY
 ldL
 ldL
 ldL
@@ -24908,7 +24901,7 @@ ycd
 ycd
 ycd
 eQM
-ycd
+hMm
 gsK
 ycd
 ycd
@@ -24922,7 +24915,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 ldL
 ldL
 ldL
@@ -25055,7 +25048,7 @@ uJX
 uJX
 ycd
 gsK
-eQM
+efm
 ycd
 ycd
 ycd
@@ -25069,7 +25062,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 ldL
 ldL
 ldL
@@ -25202,7 +25195,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 ycd
 ycd
@@ -25216,7 +25209,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 ldL
 ldL
@@ -25349,21 +25342,21 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 ycd
 gsK
 ycd
 ycd
-ycd
+luY
 uJX
 uJX
 uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 ldL
 ldL
@@ -25496,7 +25489,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -25510,7 +25503,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 ldL
 ldL
@@ -25643,7 +25636,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -25657,7 +25650,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 ldL
 ldL
@@ -25790,7 +25783,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -25804,7 +25797,7 @@ gsK
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 ldL
 ldL
@@ -25937,7 +25930,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -25951,7 +25944,7 @@ ycd
 ycd
 uJX
 uJX
-uJX
+xGy
 uJX
 ldL
 ldL
@@ -26084,7 +26077,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+xGy
 uJX
 uJX
 uJX
@@ -26098,7 +26091,7 @@ ycd
 ycd
 ycd
 uJX
-uJX
+xGy
 uJX
 ldL
 ldL
@@ -26231,21 +26224,21 @@ uJX
 uJX
 uJX
 uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-uJX
-eQM
-ycd
-ycd
-ycd
-uJX
-uJX
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+xGy
+efm
+hMm
+hMm
+hMm
+xGy
+xGy
 uJX
 uJX
 uJX
@@ -26982,11 +26975,11 @@ owX
 owX
 owX
 uJX
-xGy
-xGy
-xGy
-xGy
-xGy
+uJX
+uJX
+uJX
+uJX
+uJX
 uJX
 uJX
 uJX
@@ -27129,20 +27122,20 @@ owX
 owX
 xzH
 owX
-uHn
 owX
 owX
 owX
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
+owX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
 uJX
 uJX
 uJX
@@ -27276,7 +27269,7 @@ owX
 owX
 owX
 owX
-uHn
+owX
 owX
 owX
 xzH
@@ -27289,7 +27282,7 @@ uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -27423,7 +27416,7 @@ owX
 exb
 nSS
 owX
-uHn
+owX
 owX
 exb
 owX
@@ -27436,7 +27429,7 @@ uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -27570,7 +27563,7 @@ owX
 owX
 owX
 owX
-uHn
+owX
 xzH
 owX
 uJX
@@ -27583,7 +27576,7 @@ exb
 owX
 uJX
 uJX
-xGy
+uJX
 uJX
 uJX
 uJX
@@ -27717,20 +27710,20 @@ owX
 xzH
 owX
 owX
-uHn
+owX
+owX
+owX
+owX
+uJX
+uJX
+uJX
+uJX
+uJX
 owX
 owX
 owX
 uJX
 uJX
-uJX
-uJX
-uJX
-owX
-owX
-owX
-uJX
-xGy
 uJX
 uJX
 uJX
@@ -27864,7 +27857,7 @@ owX
 owX
 owX
 uJX
-xGy
+uJX
 owX
 owX
 owX
@@ -27873,11 +27866,11 @@ uJX
 owX
 owX
 owX
-jEc
+owX
 xzH
 owX
 owX
-uHn
+owX
 owX
 uJX
 uJX
@@ -28011,8 +28004,8 @@ xzH
 owX
 uJX
 uJX
-xGy
-xGy
+uJX
+uJX
 xzH
 owX
 owX
@@ -28024,7 +28017,7 @@ mSG
 owX
 owX
 xzH
-uHn
+owX
 owX
 owX
 owX
@@ -28159,7 +28152,7 @@ owX
 uJX
 uJX
 uJX
-xGy
+uJX
 exb
 owX
 owX
@@ -28171,7 +28164,7 @@ exb
 owX
 owX
 owX
-uHn
+owX
 owX
 exb
 owX
@@ -28306,19 +28299,19 @@ owX
 owX
 owX
 uJX
-xGy
-xGy
-uHn
-uHn
-uHn
-uHn
+uJX
+uJX
+owX
+owX
+owX
+owX
 owX
 owX
 uJX
 uJX
 uJX
 uJX
-xGy
+uJX
 owX
 owX
 owX
@@ -28458,14 +28451,14 @@ owX
 owX
 owX
 xzH
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
-xGy
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
+uJX
 owX
 owX
 owX
@@ -31907,7 +31900,7 @@ vnx
 cMU
 cMU
 rHv
-vJm
+gzL
 gNh
 rHv
 fgV
@@ -32057,7 +32050,7 @@ krr
 gGd
 cia
 myi
-wei
+pNo
 tlc
 mRm
 rHv
@@ -32205,7 +32198,7 @@ aaB
 aFP
 rHv
 sgC
-rIx
+dZk
 wrv
 rHv
 ycE
@@ -32498,8 +32491,8 @@ rHv
 uUY
 xGI
 rHv
-oZI
-veG
+jJO
+iiL
 jqz
 tui
 hHX
@@ -32645,7 +32638,7 @@ krr
 gGd
 yhh
 myi
-pBQ
+uHn
 evY
 wJx
 iuR
@@ -32792,8 +32785,8 @@ rHv
 aaB
 aFP
 rHv
-qtV
-pNo
+jEc
+veG
 jqz
 tui
 myX
