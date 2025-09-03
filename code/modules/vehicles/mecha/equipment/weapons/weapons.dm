@@ -59,6 +59,11 @@
 	equip_cooldown = projectile_delay
 	muzzle_flash = new(src, muzzle_iconstate)
 
+/obj/item/mecha_parts/mecha_equipment/weapon/Destroy()
+	current_firer = null
+	current_target = null
+	return ..()
+
 /obj/item/mecha_parts/mecha_equipment/weapon/action_checks(atom/target, ignore_cooldown)
 	. = ..()
 	if(!.)
@@ -74,6 +79,7 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
+	current_firer = source
 	if(!action_checks(target))
 		return FALSE
 
@@ -85,7 +91,7 @@
 		windup_checked = WEAPON_WINDUP_CHECKING
 		if(windup_sound)
 			playsound(chassis.loc, windup_sound, 30, TRUE)
-		if(!do_after(source, windup_delay, NONE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
+		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 			return
@@ -94,7 +100,6 @@
 	if(QDELETED(current_target))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
-	current_firer = source
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
 		. = ..()
 		var/fire_return = fire()

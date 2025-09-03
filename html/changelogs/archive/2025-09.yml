@@ -1,0 +1,27 @@
+2025-09-01:
+  TheRealMrN:
+  - balance: Moved the nuke closer to the center of the map on Blue Moon
+2025-09-02:
+  Runian:
+  - rscadd: Statistics involving Drone's Acidic Salve and Essence Link.
+2025-09-03:
+  Lumipharon:
+  - bugfix: fixed a runtime with mech weapons
+  - bugfix: Mech weapon windups work on the move like man portable weapons.
+  - rscadd: 'Campaign: TGMC tank gets incendiary canister rounds'
+  - balance: 'Campaign: TGMC tank is faster, slightly tougher from the front, and
+      notably tougher on the sides'
+  - balance: 'Campaign: SOM engineers can get detpacks again'
+  - balance: Mech laser sword always hits chest
+  Runian:
+  - qol: Round type flags are now easily editable bit fields for those with VV access.
+  - bugfix: It is no longer possible to infinitely hijack as an xenomorph.
+  - code_imp: MODE_DEAD_GRAB_FORBIDDEN, a round type flag, has been renamed to MODE_XENO_GRAB_DEAD_ALLOWED.
+      By default, xenos are not allowed to grab dead humans (no change) unless the
+      gamemode says otherwise.
+  - code_imp: MODE_HIJACK_POSSIBLE, a round type flag, is now used to allow xenomorphs
+      to hijack.
+  Scav:
+  - qol: Set the transfer amount of protein shakes to 120 units.
+  TiviPlus:
+  - bugfix: Tac binocs can now laze OB when looking up and down
