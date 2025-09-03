@@ -3,17 +3,14 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 /datum/data
 	var/name = "data"
 
-
 /datum/data/record
 	name = "record"
 	var/list/fields = list()
-
 
 /datum/datacore
 	var/list/medical = list()
 	var/list/general = list()
 	var/list/security = list()
-
 
 // TODO: cleanup
 /datum/datacore/proc/get_manifest(monochrome, ooc)
@@ -237,8 +234,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	M.fields["alg_d"] = "No allergies have been detected in this patient."
 	M.fields["cdi"] = "None"
 	M.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
-	M.fields["last_scan_time"] = null
-	M.fields["last_scan_result"] = "No scan data on record" // body scanner results
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
 	if(H.med_record)
@@ -312,8 +307,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	M.fields["alg_d"] = "No allergies have been detected in this patient."
 	M.fields["cdi"] = "None"
 	M.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
-	M.fields["last_scan_time"] = 0
-	M.fields["last_scan_result"] = "No scan data on record"
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
 	GLOB.datacore.medical += M

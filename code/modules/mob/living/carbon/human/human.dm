@@ -605,14 +605,7 @@
 			to_chat(usr, span_warning("[src] is too far away."))
 			return
 
-		for(var/datum/data/record/medical_record in GLOB.datacore.medical)
-			if(!(medical_record.fields["name"] == real_name))
-				continue
-			if(medical_record.fields["last_scan_time"] && medical_record.fields["last_scan_result"])
-				var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-				popup.set_content(medical_record.fields["last_scan_result"])
-				popup.open(FALSE)
-			break
+		GLOB.historic_scan_index.show_old_scan_by_human(src, usr)
 
 	return ..()
 

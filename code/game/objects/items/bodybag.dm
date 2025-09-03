@@ -339,14 +339,11 @@
 		return
 	if(!hasHUD(user,"medical"))
 		return
-	for(var/datum/data/record/medical_record AS in GLOB.datacore.medical)
-		if(medical_record.fields["name"] != occupant.real_name)
-			continue
-		if(!(medical_record.fields["last_scan_time"]))
-			. += "<span class = 'deptradio'>No scan report on record</span>"
-		else
-			. += "<span class = 'deptradio'><a href='byond://?src=[text_ref(src)];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
-		break
+	var/scan_time = GLOB.historic_scan_index.get_last_scan_time(occupant)
+	if(scan_time)
+		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [scan_time]...</a>\n"
+	else
+		. += "[span_deptradio("No body scan report on record for occupant")]"
 	if(occupant.stat != DEAD)
 		return
 	var/timer = 0 // variable for DNR timer check
@@ -373,14 +370,7 @@
 		if(get_dist(usr, src) > WORLD_VIEW_NUM)
 			to_chat(usr, span_warning("[src] is too far away."))
 			return
-		for(var/datum/data/record/R in GLOB.datacore.medical)
-			if(R.fields["name"] != bodybag_occupant.real_name)
-				continue
-			if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-				var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-				popup.set_content(R.fields["last_scan_result"])
-				popup.open(FALSE)
-			break
+		GLOB.historic_scan_index.show_old_scan_by_human(bodybag_occupant, usr)
 
 
 /obj/item/trash/used_stasis_bag

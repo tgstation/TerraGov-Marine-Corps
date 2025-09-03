@@ -1,5 +1,3 @@
-GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
-
 /**
  * An evil, no-good component-like datum for health analyzer functionality.
  *
@@ -55,7 +53,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	atom/scan_owner,
 	skill_bypass_fumble = SKILL_MEDICAL_NOVICE,
 	skill_auto_update = SKILL_MEDICAL_NOVICE,
-	autoupdate_distance = DEFAULT_TRACK_DISTANCE
+	autoupdate_distance = TRACK_DISTANCE_DEFAULT
 )
 	if(!isatom(scan_owner))
 		stack_trace("[type] created on a non-atom: [scan_owner.type]")
@@ -160,7 +158,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "MedScanner", "Medical Scanner")
+		ui = new(user, src, "MedScanner", "Health Scan")
 		ui.open()
 	allow_live_autoupdating = TRUE
 
@@ -205,7 +203,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"is_robotic_species" = !!(patient.species?.species_flags & ROBOTIC_LIMBS)
 		),
 
-		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes
+		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes,
 	)
 
 	var/temp_color = "white"
@@ -390,4 +388,5 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			ssd = "Space Sleep Disorder detected." // SSD
 	data["ssd"] = ssd
 
+	SEND_SIGNAL(src, COMSIG_HEALTH_SCAN_DATA, patient, data.Copy())
 	return data
