@@ -156,6 +156,8 @@
 	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
 	SSpoints.add_strategic_psy_points(XENO_HIVE_CORRUPTED, 1400)
 	SSpoints.add_tactical_psy_points(XENO_HIVE_CORRUPTED, 300)
+	SSpoints.add_biomass_points(XENO_HIVE_NORMAL, 0) // Solely to make sure it isn't null.
+	SSpoints.add_biomass_points(XENO_HIVE_CORRUPTED, 0) // Solely to make sure it isn't null.
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()

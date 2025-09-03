@@ -1499,6 +1499,8 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
+	if(X.hive.has_any_mutation_structures())
+		SSpoints.add_biomass_points(X.hivenumber, MUTATION_BIOMASS_PER_PSYDRAIN)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
