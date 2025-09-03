@@ -37,6 +37,7 @@
 	whitelist_ground_maps = list(MAP_COLONY1)
 	blacklist_ground_maps = null
 	whitelist_ship_maps = list(MAP_EAGLE) //since it dont have survivor spawns, they should spawn at colony itself. And can be used to spawn marines later. Eagle is a fast dropship for emergency response.
+	whitelist_antag_maps = list(MAP_ANTAGMAP_NOSPAWN)
 	bioscan_interval = 0
 
 /datum/game_mode/infestation/survival/post_setup()
