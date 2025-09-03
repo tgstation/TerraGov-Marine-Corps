@@ -6,5 +6,6 @@
 #define LOOC_CHANNEL "LOOC"
 #define MOOC_CHANNEL "MOOC"
 #define XOOC_CHANNEL "XOOC"
+#define XMOOC_CHANNEL "XMOOC"
 #define ADMIN_CHANNEL "Admin"
 #define MENTOR_CHANNEL "Mentor"

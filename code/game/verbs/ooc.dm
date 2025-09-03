@@ -345,6 +345,111 @@
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#ca6200'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
+/client/verb/xmooc_wrapper()
+	set hidden = TRUE
+	var/message = input("", "XMOOC \"text\"") as null|text
+	xmooc(message)
+
+/client/verb/xmooc(msg as text) // Combined XOOC & MOOC
+	set name = "XMOOC"
+	set category = "OOC.Communication"
+
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
+
+	if(!mob)
+		return
+	if(IsGuestKey(key))
+		to_chat(src, "Guests may not use XMOOC.")
+		return
+	if(mob.stat == DEAD && !admin)
+		to_chat(src, span_warning("You must be alive to use XMOOC."))
+		return
+	if(!((mob in GLOB.human_mob_list) || (mob in GLOB.xeno_mob_list) || (mob in GLOB.ai_list)) && !admin)
+		to_chat(src, span_warning("You must be a human or xeno to use XMOOC."))
+		return
+
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+
+	if(!msg)
+		return
+	if(NON_ASCII_CHECK(msg))
+		return
+
+	msg = emoji_parse(msg)
+
+	if(!(prefs.toggles_chat & CHAT_OOC))
+		to_chat(src, span_warning("You have OOC muted."))
+		return
+
+	if(!check_rights(R_ADMIN, FALSE))
+		if(!GLOB.ooc_allowed)
+			to_chat(src, span_warning("OOC is globally muted"))
+			return
+		if(prefs.muted & MUTE_OOC)
+			to_chat(src, span_warning("You cannot use OOC (muted)."))
+			return
+		if(handle_spam_prevention(msg, MUTE_OOC))
+			return
+		if(findtext(msg, "byond://"))
+			to_chat(src, span_danger("Advertising other servers is not allowed."))
+			log_admin_private("[key_name(usr)] has attempted to advertise in OOC: [msg]")
+			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
+			return
+
+	if(is_banned_from(ckey, "OOC"))
+		to_chat(src, span_warning("You have been banned from OOC."))
+		return
+
+	var/list/filter_result = is_ooc_filtered(msg)
+	if(!CAN_BYPASS_FILTER(usr) && filter_result)
+		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		log_filter("XMOOC", msg, filter_result)
+		return
+
+	// Protect filter bypassers from themselves.
+	// Demote hard filter results to soft filter results if necessary due to the danger of accidentally speaking in OOC.
+	var/list/soft_filter_result = filter_result || is_soft_ooc_filtered(msg)
+
+	if(soft_filter_result)
+		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+
+	mob.log_talk(msg, LOG_MOOC)
+
+	// Send chat message to non-admins
+	for(var/client/recv_client AS in GLOB.clients)
+		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
+			continue
+		if(!(recv_client.mob in GLOB.human_mob_list) && !(recv_client.mob in GLOB.xeno_mob_list) && !(recv_client.mob in GLOB.observer_list) && !(recv_client.mob in GLOB.ai_list) || check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE)) // If the client is a human, a xeno, an observer, and not staff.
+			continue
+
+		// If the verb caller is an admin and not a human mob, use their key, or if they're stealthmode, hide their key instead.
+		var/display_name = mob.name
+		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
+		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
+			display_name = display_key
+
+		var/avoid_highlight = recv_client == src
+		to_chat(recv_client, "<font color='#c7594B'>[span_ooc("<span class='prefix'>XMOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+
+	// Send chat message to admins
+	for(var/client/recv_staff AS in GLOB.admins)
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE)) // Check if the client is still staff.
+			continue
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
+			continue
+		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
+			continue
+
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
+
+		var/avoid_highlight = recv_staff == src
+		to_chat(recv_staff, "<font color='#c7594B'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XMOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+
 /client/verb/looc_wrapper()
 	set hidden = TRUE
 	var/message = input("", "LOOC \"text\"") as null|text

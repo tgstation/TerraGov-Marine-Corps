@@ -160,6 +160,11 @@
 	if(CONFIG_GET(flag/log_mooc))
 		WRITE_LOG(GLOB.world_game_log, "MOOC: [text]")
 
+/proc/log_xmooc(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] XMOOC: [text]")
+	if(CONFIG_GET(flag/log_xmooc))
+		WRITE_LOG(GLOB.world_game_log, "XMOOC: [text]")
+
 /proc/log_looc(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] LOOC: [text]")
 	if(CONFIG_GET(flag/log_looc))

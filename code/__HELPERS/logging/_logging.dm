@@ -104,6 +104,8 @@
 			log_xooc(log_text)
 		if(LOG_MOOC)
 			log_mooc(log_text)
+		if(LOG_XMOOC)
+			log_xmooc(log_text)
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_ADMIN_PRIVATE)
