@@ -44,7 +44,7 @@
 	)
 	/// The selected type of weeds that will be planted.
 	var/obj/alien/weeds/node/weed_type = /obj/alien/weeds/node
-	/// WWhether automatic weeding is active.
+	/// Whether automatic weeding is active.
 	var/auto_weeding = FALSE
 	/// The turf that was last weeded. Used for auto weeding.
 	var/turf/last_weeded_turf

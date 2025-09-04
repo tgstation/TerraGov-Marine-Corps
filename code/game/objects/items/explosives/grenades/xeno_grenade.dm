@@ -1,5 +1,5 @@
 /obj/item/explosive/grenade/sticky/xeno
-	name = "\improper slime grenade"
+	name = "slime grenade"
 	desc = "A fleshy mass oozing acid. It appears to be rapidly decomposing."
 	greyscale_colors = "#42A500"
 	greyscale_config = /datum/greyscale_config/xenogrenade
