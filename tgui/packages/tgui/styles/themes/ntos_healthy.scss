@@ -6,7 +6,7 @@
 .theme-ntos_healthy:root {
   --color-base: hsl(184, 40%, 10%);
   --color-primary: hsl(184, 71.4%, 35.7%);
-  --color-label: hsl(184, 81%, 52.5%);
+  --color-label: hsl(184, 65%, 65%);
   --color-good: hsl(184, 72.4%, 44.1%);
   --color-average: hsl(41.1, 73%, 43.5%);
 
@@ -14,6 +14,7 @@
   --base-gradient-spread: 6;
 
   --notice-box-background: hsl(184, 74.7%, 29.4%);
+  --notice-box-color: white;
 
   --button-background-default: hsla(184, 80%, 53%, 0.25);
   --button-background-disabled: hsl(184, 17.8%, 35.3%);
