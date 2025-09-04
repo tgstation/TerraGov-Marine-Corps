@@ -1,7 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Removed a stray pixel on female monkeys"
-  - code_imp: "Fixed some funky barricade code"
-  - qol: "Plasteel upgrades are slightly more distinct from their metal counterparts"
-  - imageadd: "Improved barricade sprites, mainly fixing their positions and perspective"

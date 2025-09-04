@@ -25,3 +25,9 @@
   - qol: Set the transfer amount of protein shakes to 120 units.
   TiviPlus:
   - bugfix: Tac binocs can now laze OB when looking up and down
+2025-09-04:
+  Lumipharon:
+  - bugfix: Removed a stray pixel on female monkeys
+  - code_imp: Fixed some funky barricade code
+  - qol: Plasteel upgrades are slightly more distinct from their metal counterparts
+  - imageadd: Improved barricade sprites, mainly fixing their positions and perspective
