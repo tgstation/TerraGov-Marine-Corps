@@ -16,30 +16,3 @@
 		var/msg = "As this ship was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "[span_alert("skeleton crew")] additional access may" : "[span_green("full crew,")] only the job's necessities"] have been added to the crew's ID cards."
 		. += separator_hr("[span_role_header("Access Information")]")
 		. += msg
-
-/datum/job/terragov/return_spawn_type(datum/preferences/prefs)
-	switch(prefs?.species)
-		if("Combat Robot")
-			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
-				switch(prefs?.robot_type)
-					if("Basic")
-						return /mob/living/carbon/human/species/robot
-					if("Hammerhead")
-						return /mob/living/carbon/human/species/robot/alpharii
-					if("Chilvaris")
-						return /mob/living/carbon/human/species/robot/charlit
-					if("Ratcher")
-						return /mob/living/carbon/human/species/robot/deltad
-					if("Sterling")
-						return /mob/living/carbon/human/species/robot/bravada
-			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
-			return /mob/living/carbon/human
-		if("Mothellian")
-			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
-				return /mob/living/carbon/human/species/moth
-		if("Vatborn")
-			return /mob/living/carbon/human/species/vatborn
-		if("Prototype Supersoldier")
-			return /mob/living/carbon/human/species/prototype_supersoldier
-		else
-			return /mob/living/carbon/human
