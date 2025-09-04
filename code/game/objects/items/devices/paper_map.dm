@@ -117,6 +117,7 @@
 	handle_locator(user)
 	if(length(SSmapping.get_connected_levels(targetted_zlevel)) > 1)
 		user.client.screen += z_indicator
+		z_indicator.set_indicated_z(targetted_zlevel)
 		user.client.screen += z_up
 		user.client.screen += z_down
 	RegisterSignal(src, COMSIG_ITEM_UNEQUIPPED, PROC_REF(close_map))
@@ -135,6 +136,7 @@
 	UnregisterSignal(src, COMSIG_ITEM_UNEQUIPPED)
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
 
+///Handles showing/hiding the "you are here" locator on the minimap
 /obj/item/paper_map/proc/handle_locator(mob/owner)
 	if(!map)
 		owner.client?.screen -= locator
