@@ -142,6 +142,7 @@
 	item_to_deploy.toggle_deployment_flag(TRUE)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, PROC_REF(undeploy))
 	RegisterSignal(item_to_deploy, COMSIG_MOVABLE_MOVED, PROC_REF(on_item_move))
+	log_combat(user, src, "deployed")
 
 ///Qdels the deployed object if the internal item is somehow removed
 /datum/component/deployable_item/proc/on_item_move(obj/item/source, old_loc, movement_dir, forced, old_locs)

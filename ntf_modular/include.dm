@@ -72,6 +72,7 @@
 #include "code\game\objects\machinery\artillery\shells.dm"
 #include "code\game\objects\machinery\cic_maptable.dm"
 #include "code\game\objects\machinery\computer\voucher.dm"
+#include "code\game\objects\machinery\deployable.dm"
 #include "code\game\objects\machinery\vending\marine_vending.dm"
 #include "code\game\objects\structures\crates_lockers\largecrate_supplies.dm"
 #include "code\game\objects\structures\dancing_pole.dm"
