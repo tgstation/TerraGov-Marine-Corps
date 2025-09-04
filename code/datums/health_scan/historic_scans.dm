@@ -15,11 +15,7 @@
  * /obj/machinery/computer/body_scanconsole/proc/on_scanner_data(...)
  * 	SIGNAL_HANDLER
  * 	var/datum/data/record/medical_record = find_medical_record(patient, TRUE)
- * 	medical_record.fields["autodoc_data"] = generate_autodoc_surgery_list(connected.occupant)
- * 	var/datum/historic_scan/historic_scan = medical_record.fields["historic_scan"]
- * 	if(isnull(historic_scan))
- * 		historic_scan = new(patient)
- * 		medical_record.fields["historic_scan"] = historic_scan
+ * 	var/datum/historic_scan/historic_scan = (medical_record.fields["historic_scan"] ||= new /datum/historic_scan(patient))
  * 	medical_record.fields["historic_scan_time"] = worldtime2text()
  * 	historic_scan.data = data
  * ```

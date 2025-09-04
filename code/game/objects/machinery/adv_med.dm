@@ -265,10 +265,7 @@
 /obj/machinery/computer/body_scanconsole/proc/on_scanner_data(datum/health_scan/source, mob/living/carbon/human/patient, list/data)
 	SIGNAL_HANDLER
 	var/datum/data/record/medical_record = find_medical_record(patient, TRUE)
-	medical_record.fields["autodoc_data"] = generate_autodoc_surgery_list(connected.occupant)
-	var/datum/historic_scan/historic_scan = medical_record.fields["historic_scan"]
-	if(isnull(historic_scan))
-		historic_scan = new(patient)
-		medical_record.fields["historic_scan"] = historic_scan
-	medical_record.fields["historic_scan_time"] = worldtime2text()
+	var/datum/historic_scan/historic_scan = (medical_record.fields["historic_scan"] ||= new /datum/historic_scan(patient))
 	historic_scan.data = data
+	medical_record.fields["historic_scan_time"] = worldtime2text()
+	medical_record.fields["autodoc_data"] = generate_autodoc_surgery_list(connected.occupant)
