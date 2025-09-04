@@ -316,7 +316,13 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	GLOB.datacore.medical += M
 	return M
 
-/// Finds the medical record of `human` or creates it if it doesn't exist
+/**
+ * Finds and returns the medical record of `human` using their `real_name`.
+ *
+ * Setting `allow_record_creation` to TRUE will allow creating and returning a
+ * fresh record datum if one can't be found. Otherwise, null will be returned
+ * if no record can be found and creation isn't allowed.
+ */
 /proc/find_medical_record(mob/living/carbon/human/human, allow_record_creation = FALSE)
 	var/datum/data/record/final_record
 	for(var/datum/data/record/candidate in GLOB.datacore.medical)

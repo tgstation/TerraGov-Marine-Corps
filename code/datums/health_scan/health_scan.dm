@@ -24,7 +24,7 @@
 	/// Var for if we should set autoupdating in [/datum/health_scan/ui_status] at all.
 	/// Check the comment in that proc for more, but basically tgui's system for managing autoupdating
 	/// is far too vague for what we're doing. We have to use a workaround to avoid dimming the UI and closing it.
-	/// *This var is not for disabling autoupdates in the first place.*
+	/// This var can't disable autoupdates in the first place—set `track_distance` to `TRACK_DISTANCE_DISABLED` for that.
 	VAR_PRIVATE/allow_live_autoupdating = FALSE
 	/// Current mob being tracked by the scanner.
 	var/mob/living/carbon/human/patient
@@ -37,6 +37,7 @@
 	/// Skill required to have the scanner auto refresh.
 	var/upper_skill_threshold
 	/// Distance the user can be away from the patient and still get autoupdates.
+	/// Set to [TRACK_DISTANCE_DISABLED] to disable autoupdating entirely.
 	var/track_distance
 	/// Cooldown for showing a scan to somebody.
 	COOLDOWN_DECLARE(show_scan_cooldown)
