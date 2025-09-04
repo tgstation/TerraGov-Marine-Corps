@@ -234,6 +234,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	M.fields["alg_d"] = "No allergies have been detected in this patient."
 	M.fields["cdi"] = "None"
 	M.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
+	M.fields["historic_scan"] = null
+	M.fields["historic_scan_time"] = 0
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
 	if(H.med_record)
@@ -307,7 +309,19 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	M.fields["alg_d"] = "No allergies have been detected in this patient."
 	M.fields["cdi"] = "None"
 	M.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
+	M.fields["historic_scan"] = null
+	M.fields["historic_scan_time"] = 0
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
 	GLOB.datacore.medical += M
 	return M
+
+/// Finds the medical record of `human` or creates it if it doesn't exist
+/proc/find_medical_record(mob/living/carbon/human/human, allow_record_creation = FALSE)
+	var/datum/data/record/final_record
+	for(var/datum/data/record/candidate in GLOB.datacore.medical)
+		if(candidate.fields["name"] == human.real_name)
+			final_record = candidate
+	if(isnull(final_record) && allow_record_creation)
+		final_record = create_medical_record(human)
+	return final_record

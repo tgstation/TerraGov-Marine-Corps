@@ -326,17 +326,6 @@
 	else
 		return FALSE
 
-
-/// Finds the medical record of `patient` or creates it if it doesn't exist.
-/obj/machinery/proc/find_medical_record(mob/living/carbon/human/patient)
-	var/datum/data/record/final_record
-	for(var/datum/data/record/candidate in GLOB.datacore.medical)
-		if(candidate.fields["name"] == patient.real_name)
-			final_record = candidate
-	if(isnull(final_record))
-		final_record = create_medical_record(patient)
-	return final_record
-
 /obj/machinery/proc/remove_eye_control(mob/living/user)
 	return
 

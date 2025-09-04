@@ -160,6 +160,9 @@
 	if(!ui)
 		ui = new(user, src, "MedScanner", "Health Scan")
 		ui.open()
+	if(!track_distance)
+		ui.set_autoupdate(FALSE)
+		return
 	allow_live_autoupdating = TRUE
 
 /datum/health_scan/ui_status(mob/user, datum/ui_state/state)

@@ -239,8 +239,6 @@
 		return
 
 	scanner.analyze_vitals(connected.occupant, user)
-	var/datum/data/record/final_record = find_medical_record(connected.occupant)
-	final_record.fields["autodoc_data"] = generate_autodoc_surgery_list(connected.occupant)
 
 /obj/machinery/bodyscanner/examine(mob/living/user)
 	. = ..()
@@ -266,4 +264,11 @@
 /// a historic scan for the connected pod's occupant
 /obj/machinery/computer/body_scanconsole/proc/on_scanner_data(datum/health_scan/source, mob/living/carbon/human/patient, list/data)
 	SIGNAL_HANDLER
-	GLOB.historic_scan_index.modify_or_add_patient(patient, data)
+	var/datum/data/record/medical_record = find_medical_record(patient, TRUE)
+	medical_record.fields["autodoc_data"] = generate_autodoc_surgery_list(connected.occupant)
+	var/datum/historic_scan/historic_scan = medical_record.fields["historic_scan"]
+	if(isnull(historic_scan))
+		historic_scan = new(patient)
+		medical_record.fields["historic_scan"] = historic_scan
+	medical_record.fields["historic_scan_time"] = worldtime2text()
+	historic_scan.data = data

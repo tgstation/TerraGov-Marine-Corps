@@ -605,7 +605,11 @@
 			to_chat(usr, span_warning("[src] is too far away."))
 			return
 
-		GLOB.historic_scan_index.show_old_scan_by_human(src, usr)
+		var/datum/data/record/medical_record = find_medical_record(src)
+		if(isnull(medical_record))
+			return
+		var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+		scan.ui_interact(usr)
 
 	return ..()
 

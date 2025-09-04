@@ -1,54 +1,49 @@
-/// Holds `/datum/historic_scan` instances for viewing old body scanner/autodoc scans
-GLOBAL_DATUM_INIT(historic_scan_index, /datum/historic_scan_index, new)
-
-/// Holds `/datum/historic_scan` instances for viewing old body scanner/autodoc scans
-/datum/historic_scan_index
-	/// Associative list of `ref` -> `/datum/historic_scan`
-	VAR_PRIVATE/list/datum/historic_scan/scans = list()
-
-/// Shows `patient`'s old scan to `user`, if it exists, otherwise gives feedback
-/datum/historic_scan_index/proc/show_old_scan_by_human(mob/living/carbon/human/patient, mob/user)
-	var/datum/historic_scan/temp = scans[ref(patient)]
-	if(!temp)
-		to_chat(user, span_warning("No historic scan found for [patient]!"))
-		return
-	temp.ui_interact(user)
-
-/// Gets the scan time of `patient`'s old scan, if it exists, otherwise returns null
-/datum/historic_scan_index/proc/get_last_scan_time(mob/living/carbon/human/patient)
-	var/datum/historic_scan/temp = scans[ref(patient)]
-	if(!temp || !istext(temp.last_scan_time))
-		return
-	return temp.last_scan_time
-
-/// Updates or creates a scan datum for `patient`
-/datum/historic_scan_index/proc/modify_or_add_patient(mob/living/carbon/human/patient, list/data)
-	if(!islist(data))
-		CRASH("Data provided to [type]/modify_or_add_patient is not a list")
-	if(!ishuman(patient))
-		CRASH("Patient provided to [type]/modify_or_add_patient is not a carbon human")
-	var/datum/historic_scan/temp = scans[ref(patient)]
-	if(isnull(temp))
-		temp = new
-		scans[ref(patient)] = temp
-		RegisterSignal(patient, COMSIG_QDELETING, PROC_REF(patient_qdeleted))
-	temp.last_scan_time = worldtime2text()
-	temp.data = data
-
-/// Signal handler to, when a patient is being deleted,
-/// delete the datum assigned to them as it won't be viewable anyway
-/datum/historic_scan_index/proc/patient_qdeleted(datum/source, force)
-	SIGNAL_HANDLER
-	var/datum/historic_scan/temp = scans[ref(source)]
-	scans.Remove(ref(source))
-	qdel(temp)
-
-/// Holds an old body scanner/autodoc scan's TGUI data for later viewing
+/**
+ * Holds TGUI data from [/datum/health_scan/ui_data] and [COMSIG_HEALTH_SCAN_DATA] for later viewing.
+ * These can be read (or written to, if you have something using a health scanner) wherever needed.
+ *
+ * Example read usage:
+ * ```
+ * /obj/structure/closet/bodybag/examine(...)
+ * 	var/datum/data/record/medical_record = find_medical_record(some_patient)
+ * 	if(!isnull(medical_record?.fields["historic_scan"]))
+ * 		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [medical_record.fields["historic_scan_time"]]...</a>"
+ * // shown to users later in Topic
+ * ```
+ * Example write usage:
+ * ```
+ * /obj/machinery/computer/body_scanconsole/proc/on_scanner_data(...)
+ * 	SIGNAL_HANDLER
+ * 	var/datum/data/record/medical_record = find_medical_record(patient, TRUE)
+ * 	medical_record.fields["autodoc_data"] = generate_autodoc_surgery_list(connected.occupant)
+ * 	var/datum/historic_scan/historic_scan = medical_record.fields["historic_scan"]
+ * 	if(isnull(historic_scan))
+ * 		historic_scan = new(patient)
+ * 		medical_record.fields["historic_scan"] = historic_scan
+ * 	medical_record.fields["historic_scan_time"] = worldtime2text()
+ * 	historic_scan.data = data
+ * ```
+ */
 /datum/historic_scan
-	/// `worldtime2text` of when the scan was made
-	var/last_scan_time
 	/// Archived TGUI health scan data
 	var/list/data
+
+/datum/historic_scan/New(mob/living/carbon/human/patient)
+	if(!ishuman(patient))
+		stack_trace("[type] created with an invalid patient")
+		return qdel(src)
+	RegisterSignal(patient, COMSIG_QDELETING, PROC_REF(patient_qdeleted))
+
+/// Signal handler to self destruct when the assigned patient is deleted
+/// because this datum will be orphaned and unviewable permanently anyway
+/datum/historic_scan/proc/patient_qdeleted(mob/living/carbon/human/source, force)
+	SIGNAL_HANDLER
+	var/datum/data/record/final_record = find_medical_record(source)
+	if(isnull(final_record))
+		return qdel(src)
+	final_record.fields["historic_scan"] = null
+	final_record.fields["historic_scan_time"] = 0
+	qdel(src)
 
 /datum/historic_scan/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()

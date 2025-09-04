@@ -659,7 +659,7 @@
 
 /// Populates `patient`'s medical record `autodoc_data` field with applicable surgeries
 /obj/machinery/autodoc/proc/autodoc_scan(mob/living/carbon/human/patient)
-	var/datum/data/record/final_record = find_medical_record(patient)
+	var/datum/data/record/final_record = find_medical_record(patient, TRUE)
 	final_record.fields["autodoc_data"] = generate_autodoc_surgery_list(patient)
 	use_power(active_power_usage)
 	visible_message(span_notice("\The [src] pings as it stores the scan report of [patient.real_name]."))
@@ -1380,9 +1380,9 @@
 	if(!hasHUD(user,"medical"))
 		. += span_notice("It contains: [occupant].[active]")
 		return
-	var/scan_time = GLOB.historic_scan_index.get_last_scan_time(occupant)
-	if(scan_time)
-		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [scan_time]...</a>\n"
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	if(!isnull(medical_record?.fields["historic_scan"]))
+		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [medical_record.fields["historic_scan_time"]]...</a>"
 	else
 		. += "[span_deptradio("No body scan report on record for occupant")]"
 
@@ -1396,4 +1396,6 @@
 		return
 	if(!ishuman(occupant))
 		return
-	GLOB.historic_scan_index.show_old_scan_by_human(occupant, usr)
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+	scan.ui_interact(usr)

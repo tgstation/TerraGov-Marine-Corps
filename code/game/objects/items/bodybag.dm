@@ -264,7 +264,6 @@
 		balloon_alert(bodybag_occupant, "smoke forces you out")
 		open() //Get out
 
-
 /obj/item/storage/box/bodybags
 	name = "body bags"
 	desc = "This box contains body bags."
@@ -272,7 +271,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	spawn_type = /obj/item/bodybag
 	spawn_number = 7
-
 
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
@@ -282,14 +280,12 @@
 	unfoldedbag_path = /obj/structure/closet/bodybag/cryobag
 	var/used = FALSE
 
-
 /obj/structure/closet/bodybag/cryobag
 	name = "stasis bag"
 	bag_name = "stasis bag"
 	desc = "A reusable plastic bag designed to prevent additional damage to an occupant."
 	icon = 'icons/obj/cryobag.dmi'
 	foldedbag_path = /obj/item/bodybag/cryobag
-
 
 /obj/structure/closet/bodybag/cryobag/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/healthanalyzer))
@@ -303,7 +299,6 @@
 	J.attack(bodybag_occupant, user) // yes this is awful -spookydonut // TODO
 	return TRUE
 
-
 /obj/structure/closet/bodybag/cryobag/open()
 	if(bodybag_occupant)
 		REMOVE_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
@@ -311,12 +306,10 @@
 		bodybag_occupant.record_time_in_stasis()
 	return ..()
 
-
 /obj/structure/closet/bodybag/cryobag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
 	if(!ishuman(mob_to_stuff))
 		return FALSE //Humans only.
 	return TRUE
-
 
 /obj/structure/closet/bodybag/cryobag/close()
 	. = ..()
@@ -331,7 +324,6 @@
 		visible_message(span_notice("\The [src] rejects the corpse."))
 	open()
 
-
 /obj/structure/closet/bodybag/cryobag/examine(mob/living/user)
 	. = ..()
 	var/mob/living/carbon/human/occupant = bodybag_occupant
@@ -339,9 +331,9 @@
 		return
 	if(!hasHUD(user,"medical"))
 		return
-	var/scan_time = GLOB.historic_scan_index.get_last_scan_time(occupant)
-	if(scan_time)
-		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [scan_time]...</a>\n"
+	var/datum/data/record/medical_record = find_medical_record(bodybag_occupant)
+	if(!isnull(medical_record?.fields["historic_scan"]))
+		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [medical_record.fields["historic_scan_time"]]...</a>"
 	else
 		. += "[span_deptradio("No body scan report on record for occupant")]"
 	if(occupant.stat != DEAD)
@@ -359,7 +351,6 @@
 	else
 		. += span_scanner("Patient have [timer] seconds left before DNR")
 
-
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -370,15 +361,17 @@
 		if(get_dist(usr, src) > WORLD_VIEW_NUM)
 			to_chat(usr, span_warning("[src] is too far away."))
 			return
-		GLOB.historic_scan_index.show_old_scan_by_human(bodybag_occupant, usr)
-
+		var/datum/data/record/medical_record = find_medical_record(bodybag_occupant)
+		if(isnull(medical_record))
+			return
+		var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+		scan.ui_interact(usr)
 
 /obj/item/trash/used_stasis_bag
 	name = "used stasis bag"
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_used"
 	desc = "It's been ripped open. You will need to find a machine capable of recycling it."
-
 
 //MARINE SNIPER TARPS
 

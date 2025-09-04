@@ -201,9 +201,9 @@
 	if(!hasHUD(user,"medical"))
 		. += span_notice("It contains: [occupant].[feedback]")
 		return
-	var/scan_time = GLOB.historic_scan_index.get_last_scan_time(occupant)
-	if(scan_time)
-		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [scan_time]...</a>\n"
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	if(!isnull(medical_record?.fields["historic_scan"]))
+		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [medical_record.fields["historic_scan_time"]]...</a>"
 	else
 		. += "[span_deptradio("No body scan report on record for occupant")]"
 
@@ -220,7 +220,9 @@
 		return
 	if(!ishuman(occupant))
 		return
-	GLOB.historic_scan_index.show_old_scan_by_human(occupant, usr)
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+	scan.ui_interact(usr)
 
 /obj/machinery/sleeper/process()
 	if (machine_stat & (NOPOWER|BROKEN))

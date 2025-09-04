@@ -536,11 +536,11 @@
 		msg += "[span_deptradio("Triage holo card:")] <a href='byond://?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> | "
 
 		// scan reports
-		var/scan_time = GLOB.historic_scan_index.get_last_scan_time(src)
-		if(scan_time)
-			msg += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Body scan from [scan_time]...</a>\n"
+		var/datum/data/record/medical_record = find_medical_record(src)
+		if(!isnull(medical_record?.fields["historic_scan"]))
+			msg += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Body scan from [medical_record.fields["historic_scan_time"]]...</a>\n"
 		else
-			msg += "[span_deptradio("No body scan report on record")]"
+			msg += "[span_deptradio("No body scan report on record")]\n"
 
 	if(hasHUD(user,"squadleader"))
 		msg += separator_hr("SL Utilities")
