@@ -1748,7 +1748,7 @@
 	var/structure_damage_multiplier = 2
 	///how much we want to blur eyes, slowdown and stagger.
 	var/disorientamount = 2
-
+	var/can_hit_turf = FALSE
 
 /datum/action/ability/activable/xeno/tail_stab/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -1762,8 +1762,9 @@
 		return
 	if(owner.status_flags & INCORPOREAL) //Cant while incorporeal
 		return FALSE
+	var/mob/living/carbon/xenomorph/xeno = owner
 	//i could not make it so the mob turns away if at range here, for some reason, the xeno one for example or empty tile.
-	if(!line_of_sight(owner, A, range))
+	if(!line_of_sight(owner, A, range) && !((get_dist(owner,A) <= range) && isturf(A) && can_hit_turf))
 		if(!silent)
 			to_chat(owner, span_xenodanger("Our target must be closer!"))
 		return FALSE
@@ -1778,15 +1779,21 @@
 			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
 			add_cooldown(1 SECONDS)
 			playsound(owner, "alien_tail_swipe", 50, TRUE)
-			owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
+			if(!xeno.blunt_stab)
+				owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
+			else
+				owner.do_attack_animation(A, ATTACK_EFFECT_SMASH)
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A) && (!can_hit_turf && isturf(A)))
 		if(!silent)
 			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
 			add_cooldown(1 SECONDS)
 			playsound(owner, "alien_tail_swipe", 50, TRUE)
-			owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
+			if(!xeno.blunt_stab)
+				owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
+			else
+				owner.do_attack_animation(A, ATTACK_EFFECT_SMASH)
 		return FALSE
 
 	if(isliving(A))
@@ -1824,8 +1831,11 @@
 		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
 	else
 		xeno.face_away_from_atom(src) //Face away from the target so your tail may reach if not adjacent
-	xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
-	xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	if(!xeno.blunt_stab)
+		xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
+		xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	else
+		xeno.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
 		attack_generic(xeno, damage * structure_damage_multiplier, BRUTE, "", FALSE)
 	xeno.visible_message(span_xenodanger("\The [xeno] pierces [src] with a [stab_description]"), \
@@ -1906,8 +1916,11 @@
 		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
 	else
 		xeno.face_away_from_atom(src) //Face away from the target so your tail may reach if not adjacent
-	xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
-	xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	if(!xeno.blunt_stab)
+		xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
+		xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	else
+		xeno.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	attack_alien(xeno, damage * structure_damage_multiplier, BRUTE, "", FALSE)
 	xeno.visible_message(span_xenodanger("\The [xeno] stab [src] with a [stab_description]"), \
 		span_xenodanger("We stab [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
@@ -1921,8 +1934,11 @@
 		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
 	else
 		xeno.face_away_from_atom(src) //Face away from the target so your tail may reach if not adjacent
-	xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
-	xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	if(!xeno.blunt_stab)
+		xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
+		xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	else
+		xeno.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	attack_generic(xeno, damage * structure_damage_multiplier, BRUTE, "", FALSE)
 	xeno.visible_message(span_xenodanger("\The [xeno] stabs [src] with a [stab_description]"), \
 		span_xenodanger("We stab [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
@@ -1996,8 +2012,11 @@
 		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
 	else
 		xeno.face_away_from_atom(src) //Face away from the target so your tail may reach if not adjacent
-	xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
-	xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	if(!xeno.blunt_stab)
+		xeno.do_attack_animation(src, ATTACK_EFFECT_REDSTAB)
+		xeno.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	else
+		xeno.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 
 	adjust_stagger(disorientamount SECONDS)
 	add_slowdown(disorientamount)

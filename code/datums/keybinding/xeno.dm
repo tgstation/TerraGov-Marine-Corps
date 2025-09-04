@@ -1549,3 +1549,9 @@
 	keybind_signal = COMSIG_XENOABILITY_SCORCHED_LAND
 	hotkey_keys = list("G")
 
+/datum/keybinding/xeno/rock_burst
+	name = "rock_burst"
+	full_name = "Shard burst"
+	description = "Sprays rock shards"
+	keybind_signal = COMSIG_XENOABILITY_SPRAY_SHARD
+	hotkey_keys = list("F")

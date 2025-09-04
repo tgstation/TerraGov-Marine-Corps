@@ -1344,7 +1344,7 @@
 	name = "earth pillar"
 	icon_state = "earth_pillar"
 	ping = null
-	damage = 50
+	damage = 40
 	bullet_color = COLOR_LIGHT_ORANGE
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
 	shell_speed = 1
@@ -1419,8 +1419,6 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/attack_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * damage_multiplier
 	for(var/turf/affected_turf AS in affected_turfs)
-		if(isclosedturf(affected_turf))
-			continue
 		new /obj/effect/temp_visual/behemoth/crack(affected_turf)
 		playsound(affected_turf, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 15)
 		var/attack_vfx = enhanced? /obj/effect/temp_visual/behemoth/seismic_fracture/enhanced : /obj/effect/temp_visual/behemoth/seismic_fracture

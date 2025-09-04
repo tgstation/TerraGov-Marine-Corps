@@ -389,6 +389,7 @@
 #define COMSIG_XENOABILITY_EARTH_PILLAR_THROW "xenoability_earth_pillar_throw"
 #define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
 #define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
+#define COMSIG_XENOABILITY_SPRAY_SHARD "xenoability_spray_shard"
 
 #define COMSIG_XENOABILITY_ABDUCT "xenoability_abduct"
 #define COMSIG_XENOABILITY_DISLOCATE "xenoability_dislocate"
