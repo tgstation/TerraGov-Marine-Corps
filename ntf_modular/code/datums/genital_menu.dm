@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(possible_boob_sprite_names, list(
 		ui.open()
 
 /datum/genital_menu/ui_state(mob/user)
-	return GLOB.language_menu_state
+	return GLOB.genital_menu_state
 
 /datum/genital_menu/ui_data(mob/user)
 	var/list/data = list(
