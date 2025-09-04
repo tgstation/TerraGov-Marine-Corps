@@ -25,7 +25,7 @@
 	/// Check the comment in that proc for more, but basically tgui's system for managing autoupdating
 	/// is far too vague for what we're doing. We have to use a workaround to avoid dimming the UI and closing it.
 	/// *This var is not for disabling autoupdates in the first place.*
-	VAR_PRIVATE/allow_live_autoupdating = TRUE
+	VAR_PRIVATE/allow_live_autoupdating = FALSE
 	/// Current mob being tracked by the scanner.
 	var/mob/living/carbon/human/patient
 	/// The atom we will use for autoupdate tracking.
@@ -99,6 +99,8 @@
  * Otherwise, we return `TRUE`.
  */
 /datum/health_scan/proc/autoupdate_checks(mob/living/user, mob/living/patient)
+	if(!track_distance) // checking being disabled should go first
+		return FALSE
 	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return FALSE
 	if(get_turf(owner) != get_turf(user))
@@ -160,7 +162,9 @@
 	if(!ui)
 		ui = new(user, src, "MedScanner", "Health Scan")
 		ui.open()
-	if(!track_distance)
+	if(!autoupdate_checks(user, patient))
+		// Stop native autoupdating at the gate to avoid double-dipping
+		// updates when they really shouldn't happen in the first place
 		ui.set_autoupdate(FALSE)
 		return
 	allow_live_autoupdating = TRUE
