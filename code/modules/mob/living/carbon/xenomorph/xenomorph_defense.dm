@@ -32,8 +32,6 @@ Contains most of the procs that are called when a xeno is attacked by something
 			to_chat(src, span_xenowarning("We feel our plasma reserves being drained as we pass through the smoke."))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
-	//if((S.smoke_traits && SMOKE_CAMO) && (S.smoke_traits && SMOKE_XENO) && !has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING))
-	//	apply_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING)
 
 /mob/living/carbon/xenomorph/Stun(amount, updating, ignore_canstun)
 	amount *= 0.5 // half length
