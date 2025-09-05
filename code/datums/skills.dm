@@ -229,6 +229,47 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		SKILL_STAMINA = stamina,
 	)
 
+
+// ***************************************
+// *********** New Survivors
+// ***************************************
+// Generalist / Unspecialized / really just the Assistant, who are we kidding
+/datum/skills/new_survivor
+	name = "Survivor"
+	unarmed = SKILL_UNARMED_TRAINED
+	combat = SKILL_COMBAT_TRAINED
+	stamina = SKILL_STAMINA_SUPER
+
+// Engineer
+/datum/skills/new_survivor/engineer
+	name = "Colonist Engineer"
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_ADVANCED
+	powerloader = SKILL_POWERLOADER_MASTER
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+
+// Security
+/datum/skills/new_survivor/security
+	name = "Colony Security"
+	unarmed = SKILL_UNARMED_MASTER
+	melee_weapons = SKILL_MELEE_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	leadership = SKILL_LEAD_BEGINNER
+	police = SKILL_POLICE_MP
+
+// Medical
+/datum/skills/new_survivor/medical
+	name = "Colony Medical"
+	leadership = SKILL_LEAD_BEGINNER
+	medical = SKILL_MEDICAL_COMPETENT
+	surgery = SKILL_SURGERY_PROFESSIONAL
+
+//--=[ END OF NEW SURVIVORS ]=--//
+
+
 /datum/skills/civilian
 	name = "Civilian"
 	unarmed = SKILL_UNARMED_WEAK

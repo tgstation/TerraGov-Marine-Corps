@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define ismarinecaptainjob(J) (istype(J, /datum/job/terragov/command/captain))
 #define issommarinecommandjob(J) (istype(J, /datum/job/som/command))
 #define iscorporateliaisonjob(J) (istype(J, /datum/job/terragov/civilian/liaison))
-#define issurvivorjob(J) (istype(J, /datum/job/survivor))
+#define issurvivorjob(J) (istype(J, /datum/job/survivor) || istype(J, /datum/job/new_survivor))
 #define ischaplainjob(J) (istype(J, /datum/job/survivor/chaplain))
 #define isxenosjob(J) (istype(J, /datum/job/xenomorph))
 

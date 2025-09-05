@@ -51,7 +51,6 @@
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 	new /obj/item/tool/multitool(src)
 
-
 /obj/item/storage/belt/utility/atmostech/PopulateContents()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/wrench(src)
@@ -59,6 +58,16 @@
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/t_scanner(src)
+
+/obj/item/storage/belt/utility/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/tool/screwdriver(src)
+	new /obj/item/tool/wirecutters(src)
+	new /obj/item/tool/weldingtool/hugetank(src)
+	new /obj/item/tool/wrench(src)
+	new /obj/item/tool/crowbar(src)
+	new /obj/item/stack/cable_coil(src, 30, pick("red","yellow","orange"))
+	new /obj/item/tool/multitool(src)
 
 /obj/item/storage/belt/medical_small
 	name = "\improper M276 pattern light medical rig"
@@ -279,6 +288,25 @@
 	new /obj/item/tool/research/excavation_tool(src)
 	new /obj/item/healthanalyzer(src)
 
+/obj/item/storage/belt/rig/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/imidazoline(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/roller(src)
+	new /obj/item/tweezers(src)
+	new /obj/item/defibrillator(src)
+
 /obj/item/storage/belt/hypospraybelt
 	name = "\improper M276 pattern hypospray belt"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers. You could probably fit a syringe case too."
@@ -343,6 +371,18 @@
 	icon_state = "swatbelt"
 	worn_icon_state = "swatbelt"
 	storage_type = /datum/storage/belt/security/tactical
+
+/obj/item/storage/belt/security/survivor
+	desc = "A standard belt given to security officers in most colonies."
+
+/obj/item/storage/belt/security/survivor/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/weapon/telebaton(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/tool/lighter/zippo(src)
+	new /obj/item/storage/fancy/cigarettes(src)
 
 /obj/item/storage/belt/marine
 	name = "\improper M276 pattern ammo load rig"
