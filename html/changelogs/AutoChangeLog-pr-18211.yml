@@ -1,0 +1,7 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "6 more mutations for Hivelord."
+  - qol: "Recovery Pylons now outline xenomorphs inside of it to make it obvious that they're affected by it."
+  - balance: "Mutations: Rejuvenating Build, one of Hivelord's mutations, have been moved to Shell from Spur."
+  - code_imp: "Innate healing is no longer a caste_flag and has been replaced by a trait."
