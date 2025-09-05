@@ -62,7 +62,7 @@
 	papermap.change_z_shown(--currentz)
 
 /obj/item/paper_map
-	name = "\improper paper map"
+	name = "paper map"
 	desc = "An ancient tool used by primitives to help them navigate."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "map"
