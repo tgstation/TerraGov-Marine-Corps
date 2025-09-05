@@ -1045,8 +1045,8 @@
 	if(!isxeno(owner))
 		return FALSE
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
-	xenomorph_owner.set_alpha_source(id, HUNTER_STEALTH_STILL_ALPHA)
+	xenomorph_owner.set_alpha_source(ALPHA_SOURCE_XENOMORPH_CLOAKING, HUNTER_STEALTH_STILL_ALPHA)
 
 /datum/status_effect/xenomorph_cloaking/on_remove()
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
-	xenomorph_owner.remove_alpha_source(id)
+	xenomorph_owner.remove_alpha_source(ALPHA_SOURCE_XENOMORPH_CLOAKING)

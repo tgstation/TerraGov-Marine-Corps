@@ -143,10 +143,10 @@
 	if(owner.m_intent == MOVE_INTENT_WALK)
 		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * movement_cost_multiplier)
 
-		xeno_owner.set_alpha_source("hunter_stealth", HUNTER_STEALTH_WALK_ALPHA)
+		xeno_owner.set_alpha_source(ALPHA_SOURCE_HUNTER_STEALTH, HUNTER_STEALTH_WALK_ALPHA)
 	else
 		xeno_owner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * movement_cost_multiplier)
-		xeno_owner.set_alpha_source("hunter_stealth", HUNTER_STEALTH_RUN_ALPHA)
+		xeno_owner.set_alpha_source(ALPHA_SOURCE_HUNTER_STEALTH, HUNTER_STEALTH_RUN_ALPHA)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!xeno_owner.plasma_stored)
 		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
@@ -157,10 +157,10 @@
 	SIGNAL_HANDLER
 	total_damage_taken = max(total_damage_taken - 10, 0)
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY)
-		xeno_owner.set_alpha_source("hunter_stealth", HUNTER_STEALTH_RUN_ALPHA)
+		xeno_owner.set_alpha_source(ALPHA_SOURCE_HUNTER_STEALTH, HUNTER_STEALTH_RUN_ALPHA)
 		return
 	if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY)
-		xeno_owner.set_alpha_source("hunter_stealth", HUNTER_STEALTH_STILL_ALPHA)
+		xeno_owner.set_alpha_source(ALPHA_SOURCE_HUNTER_STEALTH, HUNTER_STEALTH_STILL_ALPHA)
 	if(!xeno_owner.plasma_stored)
 		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
@@ -201,7 +201,7 @@
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		staggerslow_stacks *= 2
 		flavour = "deadly"
-	if(bonus_maximum_stealth_ap && xeno_owner.alpha_sources["hunter_stealth"] == HUNTER_STEALTH_STILL_ALPHA)
+	if(bonus_maximum_stealth_ap && xeno_owner.alpha_sources[ALPHA_SOURCE_HUNTER_STEALTH] == HUNTER_STEALTH_STILL_ALPHA)
 		armor_mod += bonus_maximum_stealth_ap
 	if(bonus_stealth_damage_multiplier)
 		damage_mod += xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * bonus_stealth_damage_multiplier

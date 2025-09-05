@@ -617,25 +617,3 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
-
-
-/// Sets an alpha source before updating our alpha.
-/mob/living/carbon/xenomorph/proc/set_alpha_source(source, desired_alpha)
-	alpha_sources[source] = desired_alpha
-	update_alpha()
-
-/// Removes an alpha source before updating alpha.
-/mob/living/carbon/xenomorph/proc/remove_alpha_source(source)
-	if(!(source in alpha_sources))
-		return
-	alpha_sources -= source
-	update_alpha()
-
-/// Updates our alpha based on alpha sources.
-/mob/living/carbon/xenomorph/proc/update_alpha()
-	alpha = initial(alpha)
-	for(var/source_name AS in alpha_sources)
-		var/new_alpha = alpha_sources[source_name]
-		if(new_alpha >= alpha)
-			continue
-		alpha = new_alpha
