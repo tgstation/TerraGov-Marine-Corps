@@ -120,7 +120,7 @@
 	stealth = FALSE
 	can_sneak_attack = FALSE
 	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
-	xeno_owner.remove_alpha_source("hunter_stealth")
+	xeno_owner.remove_alpha_source(ALPHA_SOURCE_HUNTER_STEALTH)
 	total_damage_taken = 0
 
 ///Signal wrapper to verify that an object is damageable before breaking stealth
