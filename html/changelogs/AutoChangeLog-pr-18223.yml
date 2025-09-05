@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Mutations: Recurring Rage no longer spams you with balloon alerts when you're resting with Rage off cooldown."
