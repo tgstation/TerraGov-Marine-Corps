@@ -40,7 +40,7 @@
 	var/relativez = linked_zs.Find(currentz)
 	if(relativez == length(linked_zs))
 		return //topmost z with nothing above. we still play effects just dont do anything
-	papermap.change_z_shown(++currentz)
+	papermap.change_z_shown(null, ++currentz)
 
 /atom/movable/screen/paper_map_extras/minimap_z_down
 	name = "go down"
@@ -59,7 +59,7 @@
 	var/relativez = linked_zs.Find(currentz)
 	if(relativez == 1)
 		return //bottommost z with nothing below. we still play effects just dont do anything
-	papermap.change_z_shown(--currentz)
+	papermap.change_z_shown(null, --currentz)
 
 /obj/item/paper_map
 	name = "paper map"
@@ -128,6 +128,7 @@
 	SIGNAL_HANDLER
 	unequipper.client.screen -= SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
 	map = null
+	interactee = null
 	if(length(SSmapping.get_connected_levels(targetted_zlevel)) > 1)
 		unequipper.client.screen -= z_indicator
 		unequipper.client.screen -= z_up
@@ -156,15 +157,21 @@
 	SIGNAL_HANDLER
 	handle_locator(interactee)
 	if((length(SSmapping.get_connected_levels(targetted_zlevel)) > 1) && (newz in SSmapping.get_connected_levels(targetted_zlevel)))
-		change_z_shown(newz)
+		change_z_shown(null, newz)
 
-/obj/item/paper_map/proc/change_z_shown(newz)
+///Updates the z level shown on this map
+/obj/item/paper_map/proc/change_z_shown(datum/source, newz)
+	SIGNAL_HANDLER
+	if(!isnum(newz))
+		return
+	if(!interactee)
+		targetted_zlevel = newz
+		return
 	if(map)
 		interactee.client?.screen -= map
 	map = null
 
-	if((length(SSmapping.get_connected_levels(targetted_zlevel)) > 1) && (newz in SSmapping.get_connected_levels(targetted_zlevel)))
-		targetted_zlevel = newz
+	targetted_zlevel = newz
 	z_indicator.set_indicated_z(newz)
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flag)
 	interactee.client?.screen += map
