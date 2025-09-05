@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	///Type of nade to be thrown
 	var/nade_type = /obj/item/explosive/grenade/sticky/xeno
 
-/datum/action/ability/xeno_action/sticky_grenade/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/sticky_grenade/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

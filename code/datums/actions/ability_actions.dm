@@ -52,7 +52,7 @@
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
 
-/datum/action/ability/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/can_use_action(silent, override_flags, selecting)
 	var/mob/living/carbon/carbon_owner = owner
 	if(!carbon_owner)
 		return FALSE
@@ -228,7 +228,7 @@
 		carbon_owner.selected_ability = null
 	return ..()
 
-/datum/action/ability/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/can_use_action(silent, override_flags, selecting)
 	if(selecting)
 		return ..(silent, ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA|ABILITY_USE_STAGGERED)
 	return ..()

@@ -75,7 +75,7 @@
 	. = ..()
 	RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(clean_portals))
 
-/datum/action/ability/xeno_action/portal/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/portal/can_use_action(silent, override_flags, selecting)
 	if(locate(/obj/effect/wraith_portal) in get_turf(owner))
 		if(!silent)
 			to_chat(owner, span_xenowarning("There is already a portal here!"))
