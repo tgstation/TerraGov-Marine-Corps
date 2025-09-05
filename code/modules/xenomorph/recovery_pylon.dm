@@ -9,13 +9,23 @@
 	bound_x = 0
 	pixel_x = -16
 	pixel_y = -16
+	/// How far as a radius should we affect? 0 = 1x1, 1 = 3x3, 2 = 5x5, 3 = 7x7, etc.
+	var/radius = 1
+	/// Should we apply a damage modifier instead? If so, how much?
+	var/damage_modifier = 0
 	/// List of buffed xenomorphs.
 	var/list/mob/living/carbon/xenomorph/buffed_xenos = list()
 	/// Holds the particles.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/obj/structure/xeno/recovery_pylon/Initialize(mapload, _hivenumber)
+/obj/structure/xeno/recovery_pylon/Initialize(mapload, _hivenumber, new_radius, new_damage_modifier)
 	. = ..()
+	if(new_radius)
+		radius = new_radius
+	if(new_damage_modifier > 0)
+		damage_modifier = new_damage_modifier
+		name = "hostile pylon"
+		add_atom_colour(LIGHT_COLOR_RED, FIXED_COLOR_PRIORITY)
 	GLOB.hive_datums[hivenumber].recovery_pylons += src
 	create_effects()
 	update_minimap_icon()
@@ -54,9 +64,14 @@
 	if((entering_xenomorph in buffed_xenos) || entering_xenomorph.hivenumber != src.hivenumber)
 		return
 	buffed_xenos += entering_xenomorph
-	entering_xenomorph.xeno_caste.regen_delay = 1 SECONDS
-	entering_xenomorph.regen_power = max(-entering_xenomorph.xeno_caste.regen_delay, entering_xenomorph.regen_power)
-	entering_xenomorph.xeno_caste.regen_ramp_amount *= 2
+	if(!damage_modifier)
+		entering_xenomorph.xeno_caste.regen_delay = 1 SECONDS
+		entering_xenomorph.regen_power = max(-entering_xenomorph.xeno_caste.regen_delay, entering_xenomorph.regen_power)
+		entering_xenomorph.xeno_caste.regen_ramp_amount *= 2
+		entering_xenomorph.add_filter("recovery_pylon_outline", 2, outline_filter(1, COLOR_BLUE_LIGHT))
+	else
+		entering_xenomorph.xeno_melee_damage_modifier += damage_modifier
+		entering_xenomorph.add_filter("recovery_pylon_outline", 2, outline_filter(1, COLOR_RED_LIGHT))
 
 /// Reverses the buffs to leaving xenomorphs if they were given it.
 /obj/structure/xeno/recovery_pylon/proc/remove_buff(datum/source, atom/movable/leaving_movable, direction)
@@ -69,27 +84,31 @@
 	if(!(leaving_xenomorph in buffed_xenos))
 		return
 	buffed_xenos -= leaving_xenomorph
-	leaving_xenomorph.xeno_caste.regen_delay = initial(leaving_xenomorph.xeno_caste.regen_delay)
-	leaving_xenomorph.xeno_caste.regen_ramp_amount /= 2
+	if(!damage_modifier)
+		leaving_xenomorph.xeno_caste.regen_delay = initial(leaving_xenomorph.xeno_caste.regen_delay)
+		leaving_xenomorph.xeno_caste.regen_ramp_amount /= 2
+	else
+		leaving_xenomorph.xeno_melee_damage_modifier -= damage_modifier
+	leaving_xenomorph.remove_filter("recovery_pylon_outline")
 
 /// Creates what this structure is suppose to do.
 /obj/structure/xeno/recovery_pylon/proc/create_effects()
-	var/list/turf/affected_turfs = RANGE_TURFS(1, src) // There should be no issue as long these buildings don't overlap.
+	var/list/turf/affected_turfs = RANGE_TURFS(radius, src) // There should be no issue as long these buildings don't overlap.
 	for(var/turf/affected_turf AS in affected_turfs)
 		RegisterSignal(affected_turf, COMSIG_ATOM_EXITED, PROC_REF(remove_buff))
 		RegisterSignal(affected_turf, COMSIG_ATOM_ENTERED, PROC_REF(apply_buff))
 		ADD_TRAIT(affected_turf, TRAIT_RECOVERY_PYLON_TURF, XENO_TRAIT)
 		for(var/mob/living/carbon/xenomorph/affected_xeno in affected_turf)
 			apply_buff(null, affected_xeno)
-	particle_holder = new(get_turf(src), /particles/recovery_pylon_aoe)
-	particle_holder.particles.position = generator(GEN_SQUARE, 0, 48, LINEAR_RAND)
+	particle_holder = new(get_turf(src), !damage_modifier ? /particles/recovery_pylon_aoe : /particles/recovery_pylon_aoe/red)
+	particle_holder.particles.position = generator(GEN_SQUARE, 0, 16 + (radius * 32), LINEAR_RAND)
 
 /// Removes what this structure is suppose to do.
 /obj/structure/xeno/recovery_pylon/proc/delete_effects()
 	if(particle_holder)
 		particle_holder.particles.spawning = 0
 		QDEL_IN(particle_holder, 4 SECONDS)
-	var/list/turf/affected_turfs = RANGE_TURFS(1, src)
+	var/list/turf/affected_turfs = RANGE_TURFS(radius, src)
 	for(var/turf/affected_turf AS in affected_turfs)
 		UnregisterSignal(affected_turf, list(COMSIG_ATOM_EXITED, COMSIG_ATOM_ENTERED))
 		REMOVE_TRAIT(affected_turf, TRAIT_RECOVERY_PYLON_TURF, XENO_TRAIT)
@@ -101,10 +120,26 @@
 	icon_state = list("cross" = 1, "x" = 1, "rectangle" = 1, "up_arrow" = 1, "down_arrow" = 1, "square" = 1)
 	width = 500
 	height = 500
-	count = 500
-	spawning = 20
+	count = 130
+	spawning = 10
 	gravity = list(0, 0.1)
 	color = LIGHT_COLOR_BLUE
+	lifespan = 13
+	fade = 5
+	fadein = 5
+	scale = 0.8
+	friction = generator(GEN_NUM, 0.1, 0.15)
+	spin = generator(GEN_NUM, -20, 20)
+
+/particles/recovery_pylon_aoe/red
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = list("cross" = 1, "x" = 1, "rectangle" = 1, "up_arrow" = 1, "down_arrow" = 1, "square" = 1)
+	width = 500
+	height = 500
+	count = 520
+	spawning = 40
+	gravity = list(0, 0.1)
+	color = LIGHT_COLOR_RED
 	lifespan = 13
 	fade = 5
 	fadein = 5
