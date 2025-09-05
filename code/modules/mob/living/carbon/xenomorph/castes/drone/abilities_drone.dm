@@ -178,7 +178,7 @@
 	. = ..()
 	INVOKE_NEXT_TICK(src, PROC_REF(link_essence_action))
 
-/datum/action/ability/xeno_action/enhancement/can_use_action()
+/datum/action/ability/xeno_action/enhancement/can_use_action(silent, override_flags, selecting)
 	if(existing_enhancement)
 		return TRUE
 	if(!HAS_TRAIT(owner, TRAIT_ESSENCE_LINKED))

@@ -73,7 +73,7 @@
 	button.add_overlay(visual_references[VREF_MUTABLE_CONQ_DASH_CHARGETIMER])
 	return ..()
 
-/datum/action/ability/xeno_action/conqueror_dash/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/conqueror_dash/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -677,7 +677,7 @@
 		disable_ability()
 	return ..()
 
-/datum/action/ability/xeno_action/conqueror_endurance/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/conqueror_endurance/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -829,7 +829,7 @@
 	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 30, 0)
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 
-/datum/action/ability/activable/xeno/conqueror_domination/can_use_action(silent, override_flags)
+/datum/action/ability/activable/xeno/conqueror_domination/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -958,7 +958,7 @@
 	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 30, 0)
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 
-/datum/action/ability/xeno_action/conqueror_obliteration/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/conqueror_obliteration/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

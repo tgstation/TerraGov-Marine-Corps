@@ -100,7 +100,7 @@
 	resinwalk_off(TRUE) // Ensure we remove the movespeed
 	return ..()
 
-/datum/action/ability/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/toggle_speed/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(speed_activated)
 		return TRUE
@@ -201,7 +201,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL,
 	)
 
-/datum/action/ability/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/build_tunnel/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -287,7 +287,7 @@
 	)
 	use_state_flags = ABILITY_USE_LYING
 
-/datum/action/ability/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_jelly_pod/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
@@ -328,7 +328,7 @@
 	)
 	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 
-/datum/action/ability/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/create_jelly/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -449,7 +449,7 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT,
 	)
 
-/datum/action/ability/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/sow/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
@@ -502,7 +502,7 @@
 	)
 	use_state_flags = ABILITY_USE_LYING
 
-/datum/action/ability/xeno_action/place_recovery_pylon/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_recovery_pylon/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/current_turf = get_turf(owner)
 	if(!current_turf || !current_turf.is_weedable() || current_turf.density)

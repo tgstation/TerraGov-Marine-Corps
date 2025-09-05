@@ -733,7 +733,7 @@
 		return
 	return ..()
 
-/datum/action/ability/activable/xeno/warrior/punch/flurry/can_use_action(silent, override_flags)
+/datum/action/ability/activable/xeno/warrior/punch/flurry/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(cooldown_timer && current_charges > 0)
 		return TRUE

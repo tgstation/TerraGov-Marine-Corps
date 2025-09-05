@@ -178,7 +178,7 @@
 		return FALSE
 	return ..()
 
-/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_action(silent, override_flags, selecting)
 	if (owner?.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
@@ -867,7 +867,7 @@
 	UnregisterSignal(L, COMSIG_XENOMORPH_POUNCE)
 	return ..()
 
-/datum/action/ability/xeno_action/xenohide/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/xenohide/can_use_action(silent, override_flags, selecting)
 	if(HAS_TRAIT(owner, TRAIT_TANK_DESANT))
 		if(!silent)
 			owner.balloon_alert(owner, "cannot while on vehicle")

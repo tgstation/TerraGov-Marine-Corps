@@ -488,7 +488,7 @@
 	)
 	use_state_flags = ABILITY_USE_LYING
 
-/datum/action/ability/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_acidwell/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)

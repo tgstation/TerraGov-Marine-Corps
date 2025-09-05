@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	/// The amount of huggers that can be stored in the created trap.
 	var/trap_hugger_limit = 1
 
-/datum/action/ability/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_trap/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/xeno_action/spawn_hugger/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/spawn_hugger/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -254,7 +254,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
-/datum/action/ability/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/carrier_panic/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -349,7 +349,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_HUGGER_TURRET,
 	)
 
-/datum/action/ability/xeno_action/build_hugger_turret/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/build_hugger_turret/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
