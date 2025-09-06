@@ -208,9 +208,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Sets the faction leader
 /datum/faction_stats/proc/set_faction_leader(mob/living/new_leader)
+	if(faction_leader == new_leader)
+		return
 	var/old_leader = faction_leader
 	faction_leader = new_leader
-	RegisterSignals(faction_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE))
+	RegisterSignals(faction_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE), PROC_REF(unset_faction_leader))
 
 	if(old_leader && old_leader != faction_leader)
 		UnregisterSignal(old_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE))
@@ -292,7 +294,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/proc/apply_cash(amount)
 	if(!amount)
 		return
-	amount *= 1 + loss_bonus
+	amount *= (1 + loss_bonus)
 	accumulated_mission_reward += amount
 	for(var/i in individual_stat_list)
 		var/datum/individual_stats/player_stats = individual_stat_list[i]
