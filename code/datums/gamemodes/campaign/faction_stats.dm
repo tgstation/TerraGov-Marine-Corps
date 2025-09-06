@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	You are the only one that can choose the next mission for your faction. If your faction wins a mission, select the next one in the Faction UI screen, in the Missions tab."))
 
 ///Unsets the faction leader and finds a new one after a delay
-/datum/faction_stats/proc/unset_faction_leader(mob/source, mystery_arg, timer_delay = 10 SECONDS) //COMSIG_QDELETING has a mystery arg and I don't want to delete it in case it actually does something
+/datum/faction_stats/proc/unset_faction_leader(mob/source, mystery_arg, timer_delay = 15 SECONDS) //COMSIG_QDELETING has a mystery arg and I don't want to delete it in case it actually does something
 	SIGNAL_HANDLER
 	if(faction_leader)
 		UnregisterSignal(faction_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE))
