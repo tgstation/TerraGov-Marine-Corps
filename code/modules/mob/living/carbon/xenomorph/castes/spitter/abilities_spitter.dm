@@ -491,7 +491,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(current_charges < max_charges) //If we still have less than the total amount of mines, call the timer again to add another mine after the regen time
 		timer = addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE|TIMER_STOPPABLE)
 
-/datum/action/ability/xeno_action/acid_mine/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/acid_mine/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)

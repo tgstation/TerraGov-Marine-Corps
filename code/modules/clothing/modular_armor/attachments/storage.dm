@@ -69,10 +69,9 @@
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "magazine storage module"
-	desc = "Designed for mounting on the TGMC's modular armor systems. Holds some magazines. Don’t expect to fit specialist munitions or LMG drums in, but you can get some good mileage. Looks like it might slow you down a bit."
+	desc = "Designed for mounting on the TGMC's modular armor systems. Holds some magazines. Don’t expect to fit specialist munitions or LMG drums in, but you can get some good mileage."
 	icon_state = "mod_mag_bag"
 	storage_type = /datum/storage/internal/ammo_mag
-	slowdown = 0.1
 
 /obj/item/armor_module/storage/ammo_mag/freelancer/PopulateContents()
 	new /obj/item/ammo_magazine/rifle/m16(src)
@@ -91,6 +90,13 @@
 	new /obj/item/ammo_magazine/rifle/tx54(src)
 	new /obj/item/ammo_magazine/rifle/tx54/incendiary(src)
 	new /obj/item/ammo_magazine/rifle/tx54/incendiary(src)
+
+/obj/item/armor_module/storage/satchel
+	name = "IS Pattern Storage module"
+	desc = "Designed for mounting on the MAGNUM mercenaries modular armor. Impedes movement somewhat, but holds about as much as a satchel could."
+	icon_state = "mod_is_bag"
+	storage_type = /datum/storage/internal/satchel
+	slowdown = 0.2
 
 /obj/item/armor_module/storage/engineering
 	name = "engineering storage module"

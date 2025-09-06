@@ -659,7 +659,7 @@
 	undeployed_icon_state = "hl_system"
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder
-	name = "mortar deployment system"
+	name = "double barrel mortar deployment system"
 	desc = "A box that deploys a TA-55DB mortar. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "mortar_system"
 	point_cost = 300

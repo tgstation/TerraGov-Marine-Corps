@@ -33,24 +33,42 @@
 #define FLAGS_SDEVAC_TIMELOCK (1<<2)
 
 
-//Mode defines
-#define MODE_INFESTATION (1<<0) //TODO this flag is way too general
+// Mode defines.
+/// Should larva queue information be displayed in the status tab?
+#define MODE_INFESTATION (1<<0)
+/// Should late joining be disabled?
 #define MODE_NO_LATEJOIN (1<<1)
+/// Should shutters automatically open after a certain period of time?
 #define MODE_LATE_OPENING_SHUTTER_TIMER (1<<2)
+///  Should fog that only xenomorphs can passthrough be created?
 #define MODE_XENO_SPAWN_PROTECT (1<<3)
+/// Is a xenomorph ruler required? Failure to meet requirement eventually causes Orphan Hive / Xenomorph Loss.
 #define MODE_XENO_RULER (1<<4)
+/// Can any xenomorph hive gain Strategic / Tactical points ever?
 #define MODE_PSY_POINTS (1<<5)
+/// Upon hijack, should the normal xenomorph hive gain a base amount of Strategic / Tactical points?
 #define MODE_PSY_POINTS_ADVANCED (1<<6)
+/// Should hijacking the Alamo be an option? This does not prevent capturing the Alamo.
 #define MODE_HIJACK_POSSIBLE (1<<7)
-#define MODE_DEAD_GRAB_FORBIDDEN (1<<8)
+/// Should xenomorph be allowed to grab dead humans?
+#define MODE_XENO_GRAB_DEAD_ALLOWED (1<<8)
+/// Should resin silos have additional effects beyond serving as a respawn point? This includes, but not limited to: pheromones and larva point generation.
 #define MODE_SILO_RESPAWN (1<<9)
+/// Should robotic species be prevented from joining (exceptions apply). Limits some supply packs from being chosen/obtained.
 #define MODE_HUMAN_ONLY (1<<10)
+/// Required for any HvH gamemode to function.
 #define MODE_TWO_HUMAN_FACTIONS	(1<<11)
+/// Prevents all organ damage, internal bleeding, and shrapnel.
 #define MODE_NO_PERMANENT_WOUNDS (1<<12)
+/// Should newly created silos spawn minions?
 #define MODE_SILOS_SPAWN_MINIONS (1<<13)
+/// Should the normal xenomorph hive have access to quickbuild?
 #define MODE_ALLOW_XENO_QUICKBUILD (1<<14)
+/// Should railgun be disabled?
 #define MODE_DISALLOW_RAILGUN (1<<15)
+/// Should marines be told to pick/create a squad when they spawn / at a certain time?
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
+/// Should xenomorphs be allowed to buy mutations (including its structures)?
 #define MODE_MUTATIONS_OBTAINABLE (1<<17)
 #define MODE_BIOMASS_POINTS (1<<18)
 #define MODE_SURVIVAL (1<<19)

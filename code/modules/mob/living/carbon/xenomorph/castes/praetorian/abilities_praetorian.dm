@@ -154,9 +154,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)
 	///Type of nade to be thrown
-	var/nade_type = /obj/item/explosive/grenade/sticky/xeno
+	var/nade_type = /obj/item/explosive/grenade/sticky/xeno/acid
 
-/datum/action/ability/xeno_action/sticky_grenade/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/sticky_grenade/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -166,51 +166,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return FALSE
 
 /datum/action/ability/xeno_action/sticky_grenade/action_activate()
-	var/obj/item/explosive/grenade/sticky/xeno/nade = new(owner.loc)
+	var/obj/item/explosive/grenade/sticky/xeno/acid/nade = new(owner.loc)
 	owner.put_in_hands(nade)
 	to_chat(owner, span_xenonotice("We vomit up a sticky lump.")) // Ewww...
 	add_cooldown()
 	succeed_activate()
 	nade.activate(owner)
-
-/obj/item/explosive/grenade/sticky/xeno/update_overlays()
-	. = ..()
-	if(active)
-		. += image('icons/obj/items/grenade.dmi', "xenonade_active")
-
-/obj/item/explosive/grenade/sticky/xeno
-	name = "\improper slime grenade"
-	desc = "A fleshy mass oozing acid. It appears to be rapidly decomposing."
-	greyscale_colors = "#42A500"
-	greyscale_config = /datum/greyscale_config/xenogrenade
-	self_sticky = TRUE
-	arm_sound = 'sound/voice/alien/yell_alt.ogg'
-	worn_icon_state = null
-	worn_icon_list = null
-	var/acid_spray_damage = 15
-
-/obj/item/explosive/grenade/sticky/xeno/give_component()
-	AddComponent(/datum/component/sticky_item/move_behaviour, icon, initial(icon_state) + "_stuck")
-
-/obj/item/explosive/grenade/sticky/xeno/prime()
-	for(var/turf/acid_tile AS in RANGE_TURFS(1, loc))
-		xenomorph_spray(acid_tile, 5 SECONDS, acid_spray_damage, null, TRUE)
-	playsound(loc, SFX_ACID_BOUNCE, 35)
-	qdel(src)
-
-/obj/item/explosive/grenade/sticky/xeno/stuck_to(atom/hit_atom)
-	. = ..()
-	xenomorph_spray(get_turf(src), 5 SECONDS, acid_spray_damage)
-
-/obj/item/explosive/grenade/sticky/xeno/on_move_sticky()
-	xenomorph_spray(get_turf(src), 5 SECONDS, acid_spray_damage)
-
-//Deals with picking up and using the grenade
-/obj/item/explosive/grenade/sticky/xeno/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
-		return FALSE
-	attack_hand(xeno_attacker)
-
 
 // ***************************************
 // *********** Acid dash

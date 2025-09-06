@@ -542,7 +542,7 @@
 		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER,
 	)
 
-/datum/action/innate/squad_message/can_use_action()
+/datum/action/innate/squad_message/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(owner.stat)
 		to_chat(owner, span_warning("You cannot give orders in your current state."))

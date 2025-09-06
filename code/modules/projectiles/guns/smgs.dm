@@ -109,7 +109,7 @@
 	force = 20
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_smg)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_smg, /obj/item/ammo_magazine/smg/standard_smg/ap)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -150,6 +150,9 @@
 /obj/item/weapon/gun/smg/standard_smg/tactical
 	starting_attachment_types = list(/obj/item/attachable/compensator, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
+/obj/item/weapon/gun/smg/standard_smg/freelancer
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg/ap
 //-------------------------------------------------------
 //Da slapper.
 
