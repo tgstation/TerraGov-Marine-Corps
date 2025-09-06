@@ -174,7 +174,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
-	if(corrupted) //you have no reason to interact with it if its already corrupted
+	if(corrupted == xeno_attacker.hivenumber) //you have no reason to interact with it if its already corrupted
 		return
 
 	if(CHECK_BITFIELD(xeno_attacker.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
@@ -183,6 +183,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			return
 		corrupt(xeno_attacker.hivenumber)
 		to_chat(xeno_attacker, span_notice("You have corrupted [src]"))
+		log_combat(xeno_attacker, src, "corrupted", addition = "for hive [xeno_attacker.hivenumber]")
 		record_generator_sabotages(xeno_attacker)
 		return
 
@@ -258,6 +259,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
+		log_combat(user, src, "decorrupted", addition = "from hive [corrupted]")
 		corrupted = 0
 		stop_processing()
 		update_icon()

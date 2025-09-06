@@ -1,5 +1,5 @@
 //Do not decrease this unles you know what you're doing.
-#define MAX_SAVE_SLOTS 10
+#define MAX_SAVE_SLOTS 100
 
 #define AGE_MIN 18
 #define AGE_MAX 85
@@ -29,6 +29,7 @@
 #define BE_SQUAD_STRICT (1<<4)
 #define BE_ALIEN_UNREVIVABLE (1<<5)
 #define BE_SSD_RANDOM_NAME (1<<6)
+#define BE_HIVE_TARGET (1<<7)
 
 #define BE_SPECIAL_DEFAULT (BE_DEATHMATCH)
 
@@ -68,7 +69,7 @@
 #define CHAT_STATISTICS (1<<12)
 #define CHAT_LOOC (1<<13)
 
-#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_DEBUGLOGS|CHAT_GHOSTRADIO|CHAT_FFATTACKLOGS|CHAT_ENDROUNDLOGS|CHAT_GHOSTHIVEMIND|CHAT_STATISTICS|CHAT_LOOC)
+#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_DEBUGLOGS|CHAT_GHOSTRADIO|CHAT_FFATTACKLOGS|CHAT_ENDROUNDLOGS|CHAT_GHOSTHIVEMIND|CHAT_STATISTICS|CHAT_LOOC)
 
 #define DISABLE_DEATHRATTLE (1<<0)
 #define DISABLE_ARRIVALRATTLE (1<<1)
@@ -109,46 +110,34 @@
 #define CHARACTER_CUSTOMIZATION 1
 #define BACKGROUND_INFORMATION 2
 #define GEAR_CUSTOMIZATION 3
-#define JOB_PREFERENCES 4
-#define GAME_SETTINGS 5
-#define KEYBIND_SETTINGS 6
-#define DRAW_ORDER 7
+#define FLAVOR_CUSTOMIZATION 4
+#define JOB_PREFERENCES 5
+#define GAME_SETTINGS 6
+#define KEYBIND_SETTINGS 7
+#define DRAW_ORDER 8
 
 #define USE_GENDER "use_gender"
 
 #define CITIZENSHIP_CHOICES list(\
-	"Earth Born",\
-	"Sol Born",\
-	"Colony Born"\
+	"Phantom City (Earth)",\
+	"Nomad (Earth)",\
+	"Local (Colony born)",\
+	"Foreign (Another Planet Somehow)"\
 	)
 
 
 #define RELIGION_CHOICES list(\
-	"Christianity (Catholic)",\
-	"Christianity (Protestant, Anglicanism)",\
-	"Christianity (Protestant, Baptist)",\
-	"Christianity (Protestant, Lutheranism)",\
-	"Christianity (Protestant, Calvinism)",\
-	"Christianity (Protestant, Methodism)",\
-	"Christianity (Protestant, Adventism)",\
-	"Christianity (Protestant, Pentecostalism)",\
-	"Christianity (Protestant, Other)",\
-	"Christianity (Eastern Orthodoxy)",\
-	"Christianity (Oriental Orthodoxy)",\
-	"Christianity (Non-trinitarian Restorationism, Mormonism)",\
-	"Christianity (Non-trinitarian Restorationism, Jehovah's Witnesses)",\
-	"Christianity (Non-trinitarian Restorationism, Oneness Pentecostalism)",\
-	"Christianity (Other)",\
-	"Judaism",\
-	"Islam (Shia)",\
-	"Islam (Sunni)",\
-	"Buddhism",\
-	"Hinduism",\
-	"Sikhism",\
-	"Shintoism",\
-	"Adherents of the Machine God",\
-	"Paganism",\
-	"Other Religion",\
+	"Church of Moonbeam",\
+	"Church of Death",\
+	"Church of Solaria",\
+	"Church of Lunaria",\
+	"Church of Wanderer",\
+	"Church of The Plantmother",\
+	"Cult of Lamashtu",\
+	"Cult of Dismas",\
+	"Cult of Sinius",\
+	"Cult of Tenebrase",\
+	"Some Old world religion",\
 	"Atheism",\
 	"None"\
 	)
@@ -201,6 +190,7 @@
 	"Join as Chestburster" = BE_ALIEN,\
 	"Take Own Chestburster" = BE_ALIEN_UNREVIVABLE,\
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
+	"Eligible for Hive Target" = BE_HIVE_TARGET,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT,\
 	"Use random name when taking SSD mobs" = BE_SSD_RANDOM_NAME\
 	)

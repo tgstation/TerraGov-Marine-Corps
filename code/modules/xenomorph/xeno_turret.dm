@@ -10,7 +10,7 @@
 	max_integrity = 1500
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE |PORTAL_IMMUNE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE |PORTAL_IMMUNE|XENO_DAMAGEABLE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
 	allow_pass_flags = PASS_AIR|PASS_THROW
 	///What kind of spit it uses
@@ -35,7 +35,10 @@
 ///Change minimap icon if its firing or not firing
 /obj/structure/xeno/xeno_turret/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]", MINIMAP_BLIPS_LAYER))
+	if(hivenumber != XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]", MINIMAP_BLIPS_LAYER))
+	if(hivenumber == XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]", MINIMAP_BLIPS_LAYER))
 
 /obj/structure/xeno/xeno_turret/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -176,24 +179,49 @@
 ///Populates the target list on process
 /obj/structure/xeno/xeno_turret/proc/scan()
 	potential_hostiles.Cut()
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
 		if(nearby_human.stat == DEAD)
 			continue
-		if(nearby_human.get_xeno_hivenumber() == hivenumber)
+		if(issamexenohive(nearby_human))
+			continue
+		if(nearby_human.faction in hive?.allied_factions)
 			continue
 		potential_hostiles += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, TURRET_SCAN_RANGE))
-		if(GLOB.hive_datums[hivenumber] == nearby_xeno.hive)
+		if(issamexenohive(nearby_xeno))
 			continue
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
+	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+		if(tank.z == z && get_dist(tank, src) <= TURRET_SCAN_RANGE)
+			var/list/driver_list = tank.return_drivers()
+			if(!length(driver_list))
+				continue
+			var/mob/living/carbon/human/human_occupant = driver_list[1]
+			if(human_occupant.faction in hive?.allied_factions)
+				continue
+			potential_hostiles += tank
 	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
 		if(vehicle.z == z && get_dist(vehicle, src) <= TURRET_SCAN_RANGE)
+			if(vehicle.faction in hive?.allied_factions)
+				continue
 			potential_hostiles += vehicle
 	for(var/obj/vehicle/sealed/mecha/mech AS in GLOB.mechas_list)
 		if(mech.z == z && get_dist(mech, src) <= TURRET_SCAN_RANGE)
+			if(mech.faction in hive?.allied_factions)
+				continue
 			potential_hostiles += mech
+	for(var/obj/vehicle/ridden/ridden AS in GLOB.ridden_vehicles_list)
+		if(ridden.z == z && get_dist(ridden, src) <= TURRET_SCAN_RANGE)
+			var/list/driver_list = ridden.return_drivers()
+			if(!length(driver_list))
+				continue
+			var/mob/living/carbon/human/human_occupant = driver_list[1]
+			if(human_occupant.faction in hive?.allied_factions)
+				continue
+			potential_hostiles += ridden
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/xeno/xeno_turret/proc/shoot()
@@ -207,11 +235,10 @@
 	var/atom/movable/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
 	newshot.def_zone = pick(GLOB.base_miss_chance)
-	newshot.fire_at(hostile, null, src, ammo.max_range, ammo.shell_speed)
+	newshot.fire_at(hostile, src, src, ammo.max_range, ammo.shell_speed)
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
-		hugger_ammo.hivenumber = hivenumber
 	firing = TRUE
 	update_minimap_icon()
 

@@ -45,6 +45,15 @@
 2025-08-06:
   Scav:
   - qol: Rearranged the positions of two vendors and the shower in canter medical
+2025-08-07:
+  Nokia2Student:
+  - rscadd: Added Psychic Radiance, T4 and Warlock ability to broadcast your message
+      to living in the line of sight
+  - bugfix: Watch xeno fixed for dragon, removed the second psydrain from dragon since
+      they already had one
+  - bugfix: Dragon can once again evolve/deevolve
+  - bugfix: King caste is actually capable of building
+  - bugfix: Xenos can't damage their own hive structures with their own abilities
 2025-08-09:
   Scav:
   - bugfix: Re-added a light fixture in canter medical
@@ -63,7 +72,6 @@
   Atropos:
   - admin: Vent crawling (entering, exiting) is now logged (view round logs)
   Runian:
-  - bugfix: 'Mutations: Envenomed correctly checks for and uses plasma.'
   - rscadd: Boiler now has 6 more new mutations that they can purchase.
   - balance: 'Mutations: Staggered Panic now scales at 7/5/3 stored globs, changed
       from 7/5/3 stored globs.'
@@ -72,7 +80,7 @@
       given armor.
   - rscadd: Carrier now has 5 more new mutations that they can purchase.
   - spellcheck: Carrier's ability "Drop All Facehuggers" has been renamed to "Carrier
-      Panic".
+      Panic".master
   - rscadd: 4 more mutations for Sentinel.
   - balance: 'Mutations: Toxic Blood is in the Veil category and scales at 80/60/40
       damage taken. This is changed from Shell and 100/75/50 damage taken.'
@@ -92,6 +100,11 @@
   Joe13413:
   - balance: Extended the areas of shallow caves on Desparity, Kutjevo Refinery, Magmoor
       Digsite, Meridian Riptide, and Slumbridge.
+  Nokia2Student:
+  - bugfix: Radiance will work on humans and not xenos
+  - bugfix: Kz flamethrower accepts basic fuel backpack
+  - balance: You can attachs scopes to kz marksman rifle
+  - balance: Ares powered armor is capable of stabilizing fracs
 2025-08-23:
   blackdav123:
   - balance: Crash now has more xenos with a 2:5 xeno to marine ratio instead of the
@@ -99,8 +112,8 @@
       instead of 10 and 12.
   - balance: SSD and DNR marines no longer count for larva on crash. Keep fighting
       to make a comeback!
-  - balance: The xeno respawn timer has been removed. You can now spawn as soon as
-      there is a burrowed available.
+  chizzy376:
+  - bugfix: Fixed the xeno ship walls in Larval Pits
 2025-08-25:
   blackdav123:
   - imageadd: Ported new parallax sprites from RU. Enjoy the new map specific space
@@ -134,8 +147,6 @@
   TheRealMrN, Atropos:
   - rscadd: Added a new map, Blue Moon
 2025-08-31:
-  Lumipharon:
-  - bugfix: Acid barricade upgrades no longer give far more resist than intended
   Runian:
   - rscadd: 8 more mutations for Shrike.
   - rscdel: 'Mutations: Stand-In Recycler has been removed.'
@@ -144,5 +155,3 @@
       Cure.'
   - bugfix: You can no longer infinitely stack armor on barricades by upgrading when
       you're not suppose to.
-  STUPIDFUCKER12345:
-  - balance: "Removed the ability to build the xenomorph Maw\n\U0001F191"

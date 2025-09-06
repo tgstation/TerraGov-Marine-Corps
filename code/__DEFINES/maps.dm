@@ -25,6 +25,7 @@ require only minor tweaks.
 #define ZTRAIT_RESERVED "Transit/Reserved"
 #define ZTRAIT_GROUND "Ground"
 #define ZTRAIT_MARINE_MAIN_SHIP "Marine Main Ship"
+#define ZTRAIT_ANTAG_MAIN_SHIP "Antag Ship"
 #define ZTRAIT_DOUBLE_SHIPS "Double Marine Ship"
 #define ZTRAIT_AWAY "Away"
 
@@ -59,6 +60,7 @@ require only minor tweaks.
 
 // default trait definitions, used by SSmapping
 #define ZTRAITS_MAIN_SHIP list(ZTRAIT_MARINE_MAIN_SHIP = TRUE)
+#define ZTRAITS_ANTAG_SHIP list(ZTRAIT_ANTAG_MAIN_SHIP = TRUE)
 #define ZTRAITS_GROUND list(ZTRAIT_GROUND = TRUE)
 #define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
 #define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
@@ -96,8 +98,9 @@ require only minor tweaks.
 
 #define GROUND_MAP "ground_map"
 #define SHIP_MAP "ship_map"
-#define ALL_MAPTYPES list(GROUND_MAP, SHIP_MAP)
-#define MAP_TO_FILENAME list(GROUND_MAP = "data/next_map.json", SHIP_MAP = "data/next_ship.json")
+#define ANTAG_MAP "antag map"
+#define ALL_MAPTYPES list(GROUND_MAP, SHIP_MAP, ANTAG_MAP)
+#define MAP_TO_FILENAME list(GROUND_MAP = "data/next_map.json", SHIP_MAP = "data/next_ship.json", ANTAG_MAP = "data/next_antag.json")
 
 // traity things
 #define MAP_COLD "COLD"

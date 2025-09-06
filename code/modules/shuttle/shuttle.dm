@@ -404,9 +404,12 @@
 	///Reference of the shuttle docker holding the mobile docking port
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/shuttle_computer
 
-/obj/docking_port/mobile/register()
-	. = ..()
-	SSshuttle.mobile += src
+//ntf edit, moved those from supply sibling to parent here.
+	var/list/gears = list()
+	var/list/obj/machinery/door/poddoor/railing/railings = list()
+	///prefix for railings and gear todo should probbaly be defines instead?
+	var/railing_gear_name
+//ntf edit end
 
 /obj/docking_port/mobile/Destroy(force)
 	if(force)
@@ -1059,3 +1062,43 @@
 			dheight = width - port_x_offset
 #undef WORLDMAXX_CUTOFF
 #undef WORLDMAXY_CUTOFF
+
+//ntf edit, moved those from supply sibling to parent here.
+/obj/docking_port/mobile/register()
+	. = ..()
+	SSshuttle.mobile += src
+	for(var/obj/machinery/gear/G in GLOB.machines)
+		if(G.id == (railing_gear_name+"_elevator_gear"))
+			gears += G
+			RegisterSignal(G, COMSIG_QDELETING, PROC_REF(clean_gear))
+	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
+		if(R.id == (railing_gear_name+"_elevator_railing"))
+			railings += R
+			RegisterSignal(R, COMSIG_QDELETING, PROC_REF(clean_railing))
+			R.linked_pad = src
+			R.open()
+
+/obj/docking_port/mobile/on_ignition()
+	for(var/j in railings)
+		var/obj/machinery/door/poddoor/railing/R = j
+		R.close()
+	for(var/i in gears)
+		var/obj/machinery/gear/G = i
+		G.start_moving(NORTH)
+
+///Signal handler when a gear is destroyed
+/obj/docking_port/mobile/proc/clean_gear(datum/source)
+	SIGNAL_HANDLER
+	gears -= source
+
+///Signal handler when a railing is destroyed
+/obj/docking_port/mobile/proc/clean_railing(datum/source)
+	SIGNAL_HANDLER
+	railings -= source
+//ntf edit end
+
+/obj/docking_port/mobile/afterShuttleMove()
+	. = ..()
+	for(var/j in railings)
+		var/obj/machinery/door/poddoor/railing/R = j
+		R.open()

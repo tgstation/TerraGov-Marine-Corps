@@ -11509,7 +11509,7 @@
 	},
 /area/metnal/inside/mining)
 "hOt" = (
-/obj/machinery/cic_maptable/drawable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
 "hOK" = (

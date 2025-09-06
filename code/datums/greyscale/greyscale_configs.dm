@@ -97,6 +97,15 @@
 /datum/greyscale_config/armor_mk1/skirmisher
 	icon_file = 'icons/mob/modular/mark_one/skirmisher.dmi'
 
+/datum/greyscale_config/armor_mk1/kabuto
+	icon_file = 'icons/mob/modular/mark_one/kabuto.dmi'
+
+/datum/greyscale_config/armor_mk1/hotaru
+	icon_file = 'icons/mob/modular/mark_one/hotaru.dmi'
+
+/datum/greyscale_config/armor_mk1/dashe
+	icon_file = 'icons/mob/modular/mark_one/dashe.dmi'
+
 /datum/greyscale_config/armor_mk1/mjolnir
 	icon_file = 'icons/mob/modular/mark_one/mjolnir.dmi'
 
@@ -167,6 +176,9 @@
 /datum/greyscale_config/armor_mk2/trooper
 	icon_file = 'icons/mob/modular/mark_two/trooper.dmi'
 
+/datum/greyscale_config/armor_mk2/hotaru
+	icon_file = 'icons/mob/modular/mark_two/hotaru.dmi'
+
 /datum/greyscale_config/armor_mk2/mjolnir_open
 	icon_file = 'icons/mob/modular/mark_two/mjolnir_open.dmi'
 
@@ -183,6 +195,15 @@
 
 /datum/greyscale_config/xenonaut/pilot
 	prefix = "pilot_"
+
+/datum/greyscale_config/xenonaut/bulletproof
+	prefix = "bulletproof_"
+
+/datum/greyscale_config/xenonaut/ablative
+	prefix = "ablative_"
+
+/datum/greyscale_config/xenonaut/bikini
+	prefix = "bikini_"
 
 /datum/greyscale_config/xenonaut/helm
 	json_config = 'code/datums/greyscale/json_configs/xenonaut_helm.json'
@@ -259,6 +280,10 @@
 /datum/greyscale_config/protein
 	json_config = 'code/datums/greyscale/json_configs/protein.json'
 	icon_file = 'icons/obj/items/food/mre.dmi'
+
+/datum/greyscale_config/nutrient_jelly
+	json_config = 'code/datums/greyscale/json_configs/nutrient_jelly.json'
+	icon_file = 'icons/obj/items/food/xeno.dmi'
 
 ///AMMO - for both bullets and magazines
 /datum/greyscale_config/ammo

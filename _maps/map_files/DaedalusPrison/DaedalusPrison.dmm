@@ -27341,7 +27341,7 @@
 /turf/open/floor/tile/dark,
 /area/daedalusprison/inside/medical)
 "wej" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/pmcdropship)
 "weu" = (

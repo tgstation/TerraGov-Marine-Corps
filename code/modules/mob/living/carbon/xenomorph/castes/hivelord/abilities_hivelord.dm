@@ -45,7 +45,7 @@
 	xeno_owner.face_atom(recycled_xeno) //Face towards the target so we don't look silly
 	xeno_owner.visible_message(span_warning("\The [xeno_owner] starts breaking apart \the [recycled_xeno]'s carcass."), \
 	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
-	if(!do_after(owner, 7 SECONDS, IGNORE_HELD_ITEM, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, ABILITY_USE_BUSY)))
 		return
 
 	xeno_owner.record_recycle_points(recycled_xeno)
@@ -64,11 +64,15 @@
 	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
+		/turf/closed/wall/resin/membrane/thick,
+		/obj/alien/resin/sticky,
+		/obj/structure/mineral_door/resin/thick,
+		/obj/structure/bed/nest,
+		/obj/structure/bed/nest/wall,
+		/obj/structure/xeno/lighttower,
 		/turf/closed/wall/resin/regenerating/special/bulletproof,
 		/turf/closed/wall/resin/regenerating/special/fireproof,
 		/turf/closed/wall/resin/regenerating/special/hardy,
-		/obj/alien/resin/sticky,
-		/obj/structure/mineral_door/resin/thick,
 	)
 
 // ***************************************
@@ -215,11 +219,11 @@
 	var/turf/T = get_turf(owner)
 	if(locate(/obj/structure/xeno/tunnel) in T)
 		if(!silent)
-			T.balloon_alert(owner, "Tunnel already here")
+			owner.balloon_alert(owner, "Tunnel already here")
 		return
 	if(!T.can_dig_xeno_tunnel())
 		if(!silent)
-			T.balloon_alert(owner, "Cannot dig, bad terrain")
+			owner.balloon_alert(owner, "Cannot dig, bad terrain")
 		return FALSE
 	if(owner.get_active_held_item())
 		if(!silent)
@@ -243,7 +247,7 @@
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	T.balloon_alert(xeno_owner, "Tunnel dug")
+	owner.balloon_alert(xeno_owner, "Tunnel dug")
 	xeno_owner.visible_message(span_xenonotice("\The [xeno_owner] digs out a tunnel entrance."), \
 	span_xenonotice("We dig out a tunnel, connecting it to our network."), null, 5)
 	var/obj/structure/xeno/tunnel/newt = new(T, xeno_owner.get_xeno_hivenumber())
@@ -299,12 +303,12 @@
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
-			T.balloon_alert(owner, "Cannot place pod")
+			owner.balloon_alert(owner, "Cannot place pod")
 		return FALSE
 
 	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
-			T.balloon_alert(owner, "Cannot place pod, no weeds")
+			owner.balloon_alert(owner, "Cannot place pod, no weeds")
 		return FALSE
 
 	if(!T.check_disallow_alien_fortification(owner, silent))
@@ -341,11 +345,11 @@
 		return
 	if(owner.l_hand || owner.r_hand)
 		if(!silent)
-			owner.balloon_alert(owner, "Cannot jelly, need empty hands")
+			owner.balloon_alert(owner, "Cannot create jelly, need empty hands")
 		return FALSE
 
 /datum/action/ability/xeno_action/create_jelly/action_activate()
-	var/obj/item/resin_jelly/jelly = new(owner.loc)
+	var/obj/item/resin_jelly/jelly = new(owner.loc, xeno_owner.hivenumber)
 	owner.put_in_hands(jelly)
 	to_chat(owner, span_xenonotice("We create a globule of resin from our ovipositor.")) // Ewww...
 	add_cooldown()
