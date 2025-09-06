@@ -129,6 +129,9 @@
 	update_icon()
 	update() //areas should be lit on startup
 
+	register_context()
+	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "Toggle interface lock")
+
 	if(mapload)
 		has_electronics = APC_ELECTRONICS_SECURED
 
