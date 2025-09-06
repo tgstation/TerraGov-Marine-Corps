@@ -212,7 +212,7 @@
 	if(isxeno(user))
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		return . *= 8
+		return . *= 4.5
 	var/skill = user.skills.getRating(SKILL_ENGINEER)
 	if(skill < SKILL_ENGINEER_ENGI) //We don't have proper skills; time to fumble and bumble.
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
