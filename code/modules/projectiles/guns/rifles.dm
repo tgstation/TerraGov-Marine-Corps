@@ -844,6 +844,9 @@
 	wield_delay = 0.7 SECONDS
 	damage_mult = 1.2
 
+/obj/item/weapon/gun/rifle/m16/freelancer
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted, /obj/item/weapon/gun/shotgun/combat/masterkey)
+
 /obj/item/weapon/gun/rifle/m16/ugl
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted, /obj/item/weapon/gun/grenade_launcher/underslung)
 
@@ -902,6 +905,9 @@
 	damage_mult = 1.2
 	scatter = 1
 	movement_acc_penalty_mult = 4
+
+/obj/item/weapon/gun/rifle/famas/freelancermedic
+	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
 
 //-------------------------------------------------------
 //MG-42 Light Machine Gun
@@ -1833,6 +1839,12 @@
 	damage_falloff_mult = 3
 
 	movement_acc_penalty_mult = 4
+
+/obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet/converted,
+	)
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine/assault
 	starting_attachment_types = list(

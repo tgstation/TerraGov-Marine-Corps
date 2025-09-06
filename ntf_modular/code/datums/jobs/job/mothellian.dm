@@ -319,7 +319,7 @@ You serve in the Mothellian Military in order to bring profit to your family and
 
 ///actual grenadier
 /datum/outfit/job/mothellian/grenadier/three
-	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer
+	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer_custom
 	r_pocket = /obj/item/storage/pouch/magazine/large
 
 /datum/outfit/job/mothellian/grenadier/three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -423,7 +423,7 @@ You serve in the Mothellian Military in order to bring profit to your family and
 ///tx55
 /datum/outfit/job/mothellian/leader/three
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/mothellian/unique/leader/three
-	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer
+	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer_custom
 	r_pocket = /obj/item/storage/pouch/magazine/large
 
 /datum/outfit/job/mothellian/leader/three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

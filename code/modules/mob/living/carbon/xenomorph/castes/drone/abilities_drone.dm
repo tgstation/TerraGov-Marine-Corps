@@ -143,7 +143,8 @@
 			heal_multiplier += bonus_healing_additive_multiplier
 	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
+	var/mob/living/carbon/xenomorph/X = target
+	var/heal_amount = (DRONE_BASE_SALVE_HEAL + X.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
 	var/leftover_healing = heal_amount
 	var/sunder_change = 0
 	if(isxeno(target))

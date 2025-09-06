@@ -81,7 +81,7 @@
 		return FALSE
 	if(!plasmacutter.start_cut(user, name, src))
 		return FALSE
-	if(!do_after(user, P.calc_delay(user), NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, plasmacutter.calc_delay(user), NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 
 	plasmacutter.cut_apart(user, name, src)
