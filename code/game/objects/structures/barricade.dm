@@ -1032,6 +1032,13 @@
 	barricade_type = "sandbag"
 	can_wire = TRUE
 
+/obj/structure/barricade/sandbags/setDir(newdir)
+	. = ..()
+	if(dir == SOUTH)
+		pixel_y = -7
+	else
+		pixel_y = 0
+
 /obj/structure/barricade/sandbags/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
