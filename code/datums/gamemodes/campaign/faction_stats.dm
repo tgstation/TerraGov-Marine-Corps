@@ -210,8 +210,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/proc/set_faction_leader(mob/living/new_leader)
 	var/old_leader = faction_leader
 	faction_leader = new_leader
+	RegisterSignals(faction_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE))
 
 	if(old_leader && old_leader != faction_leader)
+		UnregisterSignal(old_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE))
 		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list_faction[faction])
 			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[old_leader] has been demoted from the role of faction commander", LEFT_ALIGN_TEXT), faction_portrait)
 	if(!faction_leader)
@@ -223,6 +225,14 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	to_chat(faction_leader, span_userdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal. \
 	Attrition must be set BEFORE a mission starts ensure you team has access to respawns. Check this in the Faction UI screen. \
 	You are the only one that can choose the next mission for your faction. If your faction wins a mission, select the next one in the Faction UI screen, in the Missions tab."))
+
+///Unsets the faction leader and finds a new one after a delay
+/datum/faction_stats/proc/unset_faction_leader(mob/source, mystery_arg, timer_delay = 10 SECONDS) //COMSIG_QDELETING has a mystery arg and I don't want to delete it in case it actually does something
+	SIGNAL_HANDLER
+	if(faction_leader)
+		UnregisterSignal(faction_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE))
+		faction_leader = null
+	addtimer(CALLBACK(src, PROC_REF(get_selector)), timer_delay)
 
 ///Adds a new asset to the faction for use
 /datum/faction_stats/proc/add_asset(datum/campaign_asset/new_asset)
@@ -275,8 +285,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	generate_new_mission()
 	update_static_data_for_all_viewers()
+	unset_faction_leader(timer_delay = AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
 	addtimer(CALLBACK(src, PROC_REF(return_to_base), completed_mission), AFTER_MISSION_TELEPORT_DELAY)
-	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
 
 ///applies cash rewards to the faction and all individuals
 /datum/faction_stats/proc/apply_cash(amount)
