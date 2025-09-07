@@ -19,12 +19,12 @@
 	icon_state = "apc"
 
 
-/obj/item/storage/box/ntc_mre
+/obj/item/storage/box/tgmc_mre
 	name = "\improper NTC meal ready to eat"
 	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\n\nOn the box is a picture of a shouting Squad Leader. \n\"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
 	icon_state = "mre1"
 
-/obj/item/storage/box/ntc_mre/Initialize(mapload, ...)
+/obj/item/storage/box/tgmc_mre/Initialize(mapload, ...)
 	. = ..()
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)

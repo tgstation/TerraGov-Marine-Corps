@@ -16,7 +16,7 @@
 	var/list/prizes = list(
 		/obj/item/spacecash/c10 = 4,
 		/obj/item/tool/lighter/zippo = 2,
-		/obj/item/storage/box/ntc_mre = 2,
+		/obj/item/storage/box/tgmc_mre = 2,
 		/obj/item/camera = 2,
 		/obj/item/camera_film = 4,
 		/obj/item/toy/plush/farwa = 4,
