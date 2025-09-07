@@ -48,3 +48,12 @@
   - balance: 'Mutations: Utility Fling has renamed to Body Fling, is now a spur mutation,
       and no longer gives cooldown reduction. It now deals 150/175/200% damage and
       paralyzes humans for 2 seconds if they are hit by flung xenomorphs.'
+2025-09-07:
+  Rug-Dealer:
+  - balance: Double barrel mortar now spawns roundstart, like the HSG nest.
+  - balance: 'Double barrel mortar spread: 2 -> 1'
+  - spellcheck: Makes it more obvious that the double barrel mortar exists.
+  Vany3045:
+  - rscadd: New specialist role for freelancers.
+  - balance: Many tweaks for freelancers and their stuff. Details are here [#18157](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18157#issue-3258258047).
+  - imageadd: new sprites for the freelancers equipment.
