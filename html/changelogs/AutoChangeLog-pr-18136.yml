@@ -1,6 +1,0 @@
-author: "Rug-Dealer"
-delete-after: True
-changes:
-  - balance: "Double barrel mortar now spawns roundstart, like the HSG nest."
-  - balance: "Double barrel mortar spread: 2 -> 1"
-  - spellcheck: "Makes it more obvious that the double barrel mortar exists."

@@ -5,6 +5,8 @@
   Runian:
   - rscadd: Statistics involving Drone's Acidic Salve and Essence Link.
 2025-09-03:
+  EaglePhntm:
+  - rscadd: Added Behemoth sieger strain
   Lumipharon:
   - bugfix: fixed a runtime with mech weapons
   - bugfix: Mech weapon windups work on the move like man portable weapons.
@@ -13,6 +15,11 @@
       notably tougher on the sides'
   - balance: 'Campaign: SOM engineers can get detpacks again'
   - balance: Mech laser sword always hits chest
+  Nokia2Student:
+  - rscadd: Xenos are now capable of reinforcing their grabs
+  - rscadd: Added an ability to bumpslash friendlies
+  - qol: Added a separate toggle for structure destroying
+  - balance: Now you're capable of stealing jelly from stew pods
   Runian:
   - qol: Round type flags are now easily editable bit fields for those with VV access.
   - bugfix: It is no longer possible to infinitely hijack as an xenomorph.
@@ -25,13 +32,6 @@
   - qol: Set the transfer amount of protein shakes to 120 units.
   TiviPlus:
   - bugfix: Tac binocs can now laze OB when looking up and down
-  EaglePhntm:
-  - rscadd: Added Behemoth sieger strain
-  Nokia2Student:
-  - rscadd: Xenos are now capable of reinforcing their grabs
-  - rscadd: Added an ability to bumpslash friendlies
-  - qol: Added a separate toggle for structure destroying
-  - balance: Now you're capable of stealing jelly from stew pods
 2025-09-04:
   Lumipharon:
   - bugfix: Removed a stray pixel on female monkeys
@@ -58,3 +58,12 @@
   - balance: 'Mutations: Utility Fling has renamed to Body Fling, is now a spur mutation,
       and no longer gives cooldown reduction. It now deals 150/175/200% damage and
       paralyzes humans for 2 seconds if they are hit by flung xenomorphs.'
+2025-09-07:
+  Rug-Dealer:
+  - balance: Double barrel mortar now spawns roundstart, like the HSG nest.
+  - balance: 'Double barrel mortar spread: 2 -> 1'
+  - spellcheck: Makes it more obvious that the double barrel mortar exists.
+  Vany3045:
+  - rscadd: New specialist role for freelancers.
+  - balance: Many tweaks for freelancers and their stuff. Details are here [#18157](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18157#issue-3258258047).
+  - imageadd: new sprites for the freelancers equipment.

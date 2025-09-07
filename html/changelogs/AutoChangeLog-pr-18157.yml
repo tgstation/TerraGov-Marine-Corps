@@ -1,6 +1,0 @@
-author: "Vany3045"
-delete-after: True
-changes:
-  - rscadd: "New specialist role for freelancers."
-  - balance: "Many tweaks for freelancers and their stuff. Details are here [#18157](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18157#issue-3258258047)."
-  - imageadd: "new sprites for the freelancers equipment."
