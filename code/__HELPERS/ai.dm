@@ -105,6 +105,20 @@
 			continue
 		. += nearby_tank
 
+/proc/cheap_get_sentries_near(atom/source, distance)
+	. = list()
+	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
+	for(var/obj/machinery/deployable/mounted/sentry/nearby_sentry AS in GLOB.sentry_list)
+		if(isnull(nearby_sentry))
+			continue
+		if(source_turf.z != nearby_sentry.z)
+			continue
+		if(get_dist(source_turf, nearby_sentry) > distance)
+			continue
+		. += nearby_sentry
+
 ///Returns the nearest target that has the right target flag
 /proc/get_nearest_target(atom/source, distance, target_flags, attacker_faction, attacker_hive, need_los = FALSE)
 	if(!source)

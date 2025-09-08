@@ -81,6 +81,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		camera.c_tag = "[name] ([rand(0, 1000)])"
 
 	GLOB.marine_turrets += src
+	GLOB.sentry_list += src
 	set_on(TRUE)
 
 ///Change minimap icon if its firing or not firing
@@ -117,6 +118,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		if(internal_sentry)
 			UnregisterSignal(internal_sentry, COMSIG_MOB_GUN_FIRED)
 	GLOB.marine_turrets -= src
+	GLOB.sentry_list -= src
 	return ..()
 
 /obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE, mob/living/blame_mob)
@@ -431,6 +433,13 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		if(nearby_unmanned.iff_signal & iff_signal)
 			continue
 		potential_targets += nearby_unmanned
+	for(var/obj/machinery/deployable/mounted/sentry/nearby_sentry AS in cheap_get_sentries_near(src, range))
+		if(nearby_sentry.iff_signal & iff_signal)
+			continue
+		var/datum/hive_status/hive = GLOB.hive_datums[nearby_sentry.get_xeno_hivenumber()]
+		if(istype(hive) && (faction in hive.allied_factions))
+			continue
+		potential_targets += nearby_sentry
 	return length(potential_targets)
 
 ///Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.
