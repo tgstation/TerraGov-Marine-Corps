@@ -124,7 +124,7 @@
 			continue
 
 		if(crew.stat == DEAD)
-			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(crew.client, R_ADMIN)) // no getting to know what you shouldn't
+			if((!SSticker.mode || CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS)) && !check_rights_for(crew.client, R_ADMIN)) // no getting to know what you shouldn't
 				continue
 
 		crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
