@@ -52,7 +52,8 @@ SUBSYSTEM_DEF(job)
 		if(!job.map_check())
 			continue
 		occupations += job
-		name_occupations[job.title] = job
+		if(!name_occupations[job.title]) //we have multiple jobs with the same title, such as vatborn
+			name_occupations[job.title] = job
 		type_occupations[J] = job
 	sortTim(occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
 
