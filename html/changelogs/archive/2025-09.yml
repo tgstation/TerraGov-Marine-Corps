@@ -67,3 +67,9 @@
   - rscadd: New specialist role for freelancers.
   - balance: Many tweaks for freelancers and their stuff. Details are here [#18157](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18157#issue-3258258047).
   - imageadd: new sprites for the freelancers equipment.
+2025-09-09:
+  Lumipharon:
+  - imageadd: added inhand sprites for the rebota
+  - admin: Unsetting custom info actually works
+  - bugfix: fixed some barricade sprite issues
+  - bugfix: fixed comms not working on the 1st mission of campaign
