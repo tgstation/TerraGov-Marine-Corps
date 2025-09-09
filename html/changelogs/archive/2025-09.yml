@@ -5,6 +5,8 @@
   Runian:
   - rscadd: Statistics involving Drone's Acidic Salve and Essence Link.
 2025-09-03:
+  EaglePhntm:
+  - rscadd: Added Behemoth sieger strain
   Lumipharon:
   - bugfix: fixed a runtime with mech weapons
   - bugfix: Mech weapon windups work on the move like man portable weapons.
@@ -13,6 +15,11 @@
       notably tougher on the sides'
   - balance: 'Campaign: SOM engineers can get detpacks again'
   - balance: Mech laser sword always hits chest
+  Nokia2Student:
+  - rscadd: Xenos are now capable of reinforcing their grabs
+  - rscadd: Added an ability to bumpslash friendlies
+  - qol: Added a separate toggle for structure destroying
+  - balance: Now you're capable of stealing jelly from stew pods
   Runian:
   - qol: Round type flags are now easily editable bit fields for those with VV access.
   - bugfix: It is no longer possible to infinitely hijack as an xenomorph.
@@ -31,6 +38,9 @@
   - code_imp: Fixed some funky barricade code
   - qol: Plasteel upgrades are slightly more distinct from their metal counterparts
   - imageadd: Improved barricade sprites, mainly fixing their positions and perspective
+  Nokia2Student:
+  - rscadd: XMOOC
+  - rscadd: Purchasable mutations for xenos
 2025-09-06:
   Runian:
   - rscadd: 6 more mutations for Hivelord.

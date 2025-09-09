@@ -214,7 +214,7 @@
 			return
 
 		balloon_alert_to_viewers("Starts [blocked ? "unwelding" : "welding"]")
-		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			balloon_alert_to_viewers("Stops welding")
 			return
 
@@ -237,7 +237,7 @@
 				"You hear metal strain.")
 		var/old_density = density
 
-		if(!do_after(user, 30, NONE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
 			return
 
 		if(blocked || density != old_density)

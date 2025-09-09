@@ -55,6 +55,21 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Trooper armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/trooper
 
+/obj/item/armor_module/armor/arms/marine/kabuto
+	name = "\improper Style Pattern Kabuto arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Kabuto armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/kabuto
+
+/obj/item/armor_module/armor/arms/marine/hotaru
+	name = "\improper Style Pattern Hotaru arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Hotaru armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru
+
+/obj/item/armor_module/armor/arms/marine/dashe
+	name = "\improper Style Pattern Dashe arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Dashe armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
+
 /obj/item/armor_module/armor/arms/marine/mjolnir
 	name = "\improper Jaeger Pattern Mjolnir arm plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mjolnir armor piece."
@@ -99,4 +114,12 @@
 	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt_two
 
 
+/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/clementia
+	name = "\improper Crasher Super-Heavy MT/41 'Clementia' arm plates"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Clementia' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt
 
+/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/hephaestus
+	name = "\improper Crasher Super-Heavy MT/41 'Hephaestus' arm plates"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Hephaestus' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt_two

@@ -48,37 +48,37 @@
 		return TRUE
 	return FALSE
 
-/**
- * Check if that stack is buyable in a points vendor (currently, only metal, sandbags and plasteel)
- */
 /proc/buy_stack(obj/item/stack/stack_to_buy_type, datum/loadout_seller/seller, mob/living/user, amount)
-	//Hardcode to check the category. Why is this function even here? But it doesn't work, and here I am doing hardcode to make it work because it's hardcoded anyway.
-	var/item_cat = ""
-	if(user.job.title == SQUAD_LEADER)
-		item_cat = CAT_LEDSUP
-	else if (user.job.title == SQUAD_ENGINEER)
-		item_cat = CAT_ENGSUP
-	else if(user.job.title == FIELD_COMMANDER)
-		item_cat = CAT_FCSUP
-	else
+	var/user_job = user.job.title
+	user_job = replacetext(user_job, "Fallen ", "") // Normalize job name for Valhalla jobs
+
+	// Try finding the stack in one of the shared vendors
+	for(var/type in (GLOB.loadout_linked_vendor[seller.faction] + GLOB.loadout_linked_vendor[user_job]))
+		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
+			if(item_datum.product_path == stack_to_buy_type && item_datum.amount != 0)
+				item_datum.amount--
+				return TRUE
+
+	// Check in the job-specific points vendor
+	var/list/listed_products = GLOB.job_specific_points_vendor[user_job]
+	if(!listed_products)
 		return FALSE
 
-	var/base_amount = 0
-	var/base_price = 0
-	if(ispath(stack_to_buy_type, /obj/item/stack/sheet/metal) && user.job.title == SQUAD_ENGINEER)
-		base_amount = 10
-		base_price = METAL_PRICE_IN_GEAR_VENDOR
-	else if(ispath(stack_to_buy_type, /obj/item/stack/sheet/plasteel) && user.job.title == SQUAD_ENGINEER)
-		base_amount = 10
-		base_price = PLASTEEL_PRICE_IN_GEAR_VENDOR
-	else if(ispath(stack_to_buy_type, /obj/item/stack/sandbags_empty))
-		base_amount = 25
-		base_price = SANDBAG_PRICE_IN_GEAR_VENDOR
+	for(var/item_type in listed_products)
+		if(!ispath(item_type, stack_to_buy_type.merge_type))
+			continue
+		var/item_info = listed_products[item_type]
+		var/obj/item/stack/item_object = new item_type
+		var/base_amount = get_item_stack_number(item_object)
+		var/base_price = item_info[3]
 
-	if(base_amount && (round(amount / base_amount) * base_price <= seller.available_points[item_cat]))
-		var/points_cost = round(amount / base_amount) * base_price
-		seller.available_points[item_cat] -= points_cost
-		return TRUE
+		if(!base_amount)
+			return FALSE
+
+		if(base_amount && (round(amount / base_amount) * base_price <= seller.available_points[item_info[1]]))
+			var/points_cost = round(amount / base_amount) * base_price
+			seller.available_points[item_info[1]] -= points_cost
+			return TRUE
 
 ///Return wich type of item_representation should representate any item_type
 /proc/item2representation_type(item_type)
@@ -109,15 +109,20 @@
 	return /datum/item_representation
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor
-/proc/is_handful_buyable(ammo_type)
-	for(var/datum/vending_product/item_datum AS in GLOB.vending_records[/obj/machinery/vending/weapon])
-		var/product_path = item_datum.product_path
-		if(!ispath(product_path, /obj/item/ammo_magazine))
-			continue
-		var/obj/item/ammo_magazine/ammo = product_path
-		if(initial(ammo.default_ammo) == ammo_type)
-			return TRUE
-	return FALSE
+/proc/is_handful_buyable(ammo_type, datum/loadout_seller/seller, mob/living/user)
+	var/user_job = user.job.title
+	user_job = replacetext(user_job, "Fallen ", "") // valhalla
+	//If we can find it for in a shared vendor, we buy it
+	for(var/type in (GLOB.loadout_linked_vendor[seller.faction] + GLOB.loadout_linked_vendor[user_job]))
+		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
+			var/product_path = item_datum.product_path
+			if(!ispath(product_path, /obj/item/ammo_magazine))
+				continue
+			var/obj/item/ammo_magazine/ammo = product_path
+			if(initial(ammo.default_ammo) == ammo_type)
+				item_datum.amount--
+				return TRUE
+		return FALSE
 
 /// Will give a headset corresponding to the user job to the user
 /proc/give_free_headset(mob/living/carbon/human/user, faction)
@@ -126,7 +131,13 @@
 	if(user.job.outfit.ears)
 		user.equip_to_slot_or_del(new user.job.outfit.ears(user), SLOT_EARS, override_nodrop = TRUE)
 		return
+	if(user.faction == FACTION_ICC)
+		user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine/icc(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
+		return
 	if(!user.assigned_squad)
+		return
+	if(user.faction == FACTION_SOM)
+		user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/som(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 		return
 	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 

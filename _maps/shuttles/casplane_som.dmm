@@ -1,0 +1,288 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aC" = (
+/obj/structure/somcas/five{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"aL" = (
+/obj/structure/somcas/four{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"dY" = (
+/obj/structure/somcas/two{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"ei" = (
+/obj/structure/somcas/eight{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"lA" = (
+/obj/structure/somcas,
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"or" = (
+/obj/structure/somcas/one{
+	dir = 1
+	},
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"sD" = (
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"sV" = (
+/obj/structure/somcas/six{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"vr" = (
+/obj/structure/somcas/five{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"vH" = (
+/obj/structure/somcas/six{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"wg" = (
+/obj/structure/somcas/one,
+/obj/docking_port/mobile/marine_dropship/casplane/som,
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"yO" = (
+/obj/structure/somcas/three{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"Cy" = (
+/obj/docking_port/mobile/marine_dropship/casplane/som,
+/obj/structure/somcas/one,
+/obj/structure/somcas{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"CG" = (
+/obj/structure/somcas/five{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"DO" = (
+/obj/structure/somcas/five,
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"DR" = (
+/obj/structure/somcas/two{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"Eh" = (
+/obj/structure/somcas/two{
+	dir = 1
+	},
+/obj/structure/somcas/three{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"EQ" = (
+/obj/effect/attach_point/weapon/cas/left{
+	icon = 'ntf_modular/icons/obj/structures/prop/somship.dmi';
+	icon_state = "somcas_misc_one_flipped";
+	ship_tag = "som_cas_dock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"Fj" = (
+/obj/structure/caspart/caschair/som,
+/turf/open/floor/plating/dmg1,
+/area/shuttle/cas)
+"FT" = (
+/obj/structure/somcas/one{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"GG" = (
+/obj/structure/somcas/six,
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"IC" = (
+/obj/structure/somcas/eight,
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"IF" = (
+/obj/structure/somcas{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"Jf" = (
+/obj/structure/caspart/minigun{
+	icon = 'icons/obj/structures/prop/somship.dmi';
+	icon_state = "somcas_misc_five";
+	dir = 8;
+	density = 0
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"Jp" = (
+/obj/structure/caspart/minigun{
+	icon = 'icons/obj/structures/prop/somship.dmi';
+	icon_state = "somcas_misc_five";
+	density = 0;
+	pixel_x = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"MF" = (
+/obj/structure/somcas/six{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"Ot" = (
+/obj/structure/somcas/two,
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"SA" = (
+/obj/effect/attach_point/weapon/cas{
+	icon = 'icons/obj/structures/prop/somship.dmi';
+	icon_state = "somcas_misc_one";
+	ship_tag = "som_cas_dock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"Tl" = (
+/obj/structure/somcas/three{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"Us" = (
+/obj/structure/somcas/one{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"XU" = (
+/obj/structure/somcas/four{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"YD" = (
+/obj/structure/somcas/four{
+	dir = 1
+	},
+/obj/structure/somcas/four{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/cas)
+"Zj" = (
+/turf/template_noop,
+/area/template_noop)
+"Zw" = (
+/obj/structure/somcas/four,
+/turf/open/floor/plating,
+/area/shuttle/cas)
+
+(1,1,1) = {"
+Zj
+Zj
+Zj
+DR
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+"}
+(2,1,1) = {"
+Zj
+Zj
+Tl
+Eh
+XU
+Zj
+Zj
+Zj
+Zj
+Zj
+"}
+(3,1,1) = {"
+Zj
+Jp
+EQ
+IC
+YD
+MF
+aC
+CG
+sD
+Zj
+"}
+(4,1,1) = {"
+lA
+Fj
+IF
+Cy
+wg
+or
+FT
+Us
+GG
+vH
+"}
+(5,1,1) = {"
+Zj
+Jf
+SA
+ei
+Zw
+sV
+vr
+DO
+sD
+Zj
+"}
+(6,1,1) = {"
+Zj
+Zj
+yO
+Ot
+aL
+Zj
+Zj
+Zj
+Zj
+Zj
+"}
+(7,1,1) = {"
+Zj
+Zj
+Zj
+dY
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+"}

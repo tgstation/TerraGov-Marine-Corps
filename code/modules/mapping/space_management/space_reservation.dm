@@ -56,6 +56,9 @@
 		new /area/drop_transition(floor)
 		floor.change_area(old_area, floor.loc)
 
+/datum/turf_reservation/banish
+	turf_type = /turf/closed/banish_space
+
 /datum/turf_reservation/proc/Release()
 	bottom_left_turfs.Cut()
 	top_right_turfs.Cut()
