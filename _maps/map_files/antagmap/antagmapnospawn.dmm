@@ -909,6 +909,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/antag_ship)
 "fI" = (
@@ -8723,6 +8724,7 @@
 	},
 /obj/item/storage/box/visual/magazine/compact/pepperball/full,
 /obj/machinery/camera/autoname/mainship/somship,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security/cell)
 "TJ" = (
