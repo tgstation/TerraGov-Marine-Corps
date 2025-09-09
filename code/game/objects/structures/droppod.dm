@@ -570,7 +570,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
 	var/choosing = FALSE
 
-/datum/action/innate/set_drop_target/can_use_action()
+/datum/action/innate/set_drop_target/can_use_action(silent, override_flags, selecting)
 	if(choosing)
 		return FALSE
 	return ..()

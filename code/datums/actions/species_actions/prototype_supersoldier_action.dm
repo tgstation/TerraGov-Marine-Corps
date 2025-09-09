@@ -32,7 +32,7 @@
 	return ..()
 
 
-/datum/action/supersoldier_stims/can_use_action()
+/datum/action/supersoldier_stims/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

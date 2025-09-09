@@ -119,6 +119,7 @@
 #define HEATRAY_BEAM_ABILITY_TRAIT "heatray_ability_trait"
 #define DRAGON_ABILITY_TRAIT "dragon_ability_trait"
 #define HIVELORD_ABILITY_TRAIT "hivelord_ability_trait"
+#define SHRIKE_ABILITY_TRAIT "shrike_ability_trait"
 #define VALHALLA_TRAIT "valhalla"
 #define WEIGHTBENCH_TRAIT "weightbench"
 #define BOILER_ROOTED_TRAIT "boiler_rooted"
@@ -223,7 +224,8 @@
 #define TRAIT_CAN_DISABLE_MINER "can_disable_miner"
 ///xenos that can tear open holes
 #define TRAIT_CAN_TEAR_HOLE "can_tear_hole"
-
+/// Allows xenomorphs to heal without needing to be on weeds.
+#define TRAIT_INNATE_HEALING "innate_healing"
 
 ///Traits for managing AM pass_flags
 #define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"

@@ -641,7 +641,7 @@
 	var/obj/structure/barricade/folding/foundbarricade = locate(/obj/structure/barricade/folding) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a plasteel barricade at [AREACOORD(src)]")
-	if(!foundbarricade.closed)
+	if(foundbarricade.is_open)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to open [foundbarricade] but it's already open!")
 	foundbarricade.toggle_open()
 

@@ -175,7 +175,7 @@
 	owner.balloon_alert(owner, "Evasion ready")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
-/datum/action/ability/xeno_action/evasion/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/evasion/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(xeno_owner.on_fire)
 		if(!silent)
