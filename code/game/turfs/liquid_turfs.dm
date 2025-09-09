@@ -29,6 +29,11 @@
 /turf/open/liquid/is_weedable()
 	return FALSE
 
+/turf/open/liquid/can_have_cabling()
+	if(locate(/obj/structure/catwalk, src))
+		return TRUE
+	return FALSE
+
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	return atom_entered(src, arrived)

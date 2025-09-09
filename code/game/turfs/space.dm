@@ -14,6 +14,11 @@
 	//This is used to optimize the map loader
 	return
 
+/turf/open/space/can_have_cabling()
+	if(locate(/obj/structure/lattice, src))
+		return TRUE
+	return FALSE
+
 // override for space turfs, since they should never hide anything
 /turf/open/space/levelupdate()
 	for(var/obj/O in src)
