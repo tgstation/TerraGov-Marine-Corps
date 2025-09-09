@@ -52,7 +52,7 @@
 	var/obj/machinery/computer/autodoc_console/connected
 	/// The human that is currently inside of the machine.
 	var/mob/living/carbon/human/occupant = null
-	// Do users need access to interact with this?
+	/// Do users need access to interact with this?
 	var/locked = FALSE
 	/// A list of surgeries that should be done in order.
 	var/list/datum/autodoc_surgery/surgery_list = list()
@@ -255,7 +255,7 @@
 		cryobag.open()
 		user.start_pulling(grabbed_mob)
 	if(!ishuman(grabbed_mob))
-		to_chat(user, span_notice("\ [src] is compatible with humanoid anatomies only!"))
+		to_chat(user, span_notice("[src] is compatible with humanoid anatomies only!"))
 		return
 	try_entering(user, grabbed_mob)
 	return TRUE
@@ -312,13 +312,13 @@
 
 /// Ejects the occupant and ends all surgery if applicable.
 /obj/machinery/autodoc/proc/do_eject(notice_code)
-	for(var/atom/movable/movable_thing in contents)
+	for(var/atom/movable/movable_thing AS in contents)
 		movable_thing.forceMove(loc)
 	if(connected?.release_notice && occupant) // If auto-release notices are on as they should be, let the doctors know what's up.
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
 			if(AUTODOC_NOTICE_SUCCESS)
-				playsound(src.loc, 'sound/machines/ping.ogg', 50, FALSE) // All steps finished properly; this is the 'normal' notification.
+				playsound(loc, 'sound/machines/ping.ogg', 50, FALSE) // All steps finished properly; this is the 'normal' notification.
 			if(AUTODOC_NOTICE_DEATH)
 				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 				reason = "Reason for discharge: Patient death."
