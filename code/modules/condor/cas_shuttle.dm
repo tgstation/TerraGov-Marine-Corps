@@ -138,9 +138,13 @@
 		to_chat(user, span_warning("You are currently on your return flight!"))
 		return
 	if(!eyeobj)
-		eyeobj = new()
-		eyeobj.origin = src
-		cas_mini.override_locator(eyeobj)
+		if(user.faction == FACTION_SOM)
+			eyeobj = new /mob/camera/aiEye/remote/hud/som(null, GLOB.som_cameranet)
+		else
+			eyeobj = new()
+	cas_mini.minimap_flags = GLOB.faction_to_minimap_flag[user.faction]
+	cas_mini.marker_flags = GLOB.faction_to_minimap_flag[user.faction]
+	cas_mini.override_locator(eyeobj)
 
 	if(eyeobj.eye_user)
 		to_chat(user, span_warning("CAS mode is already in-use!"))
@@ -149,7 +153,7 @@
 	SSmonitor.process_human_positions()
 
 	#ifndef TESTING
-	if(SSmonitor.human_on_ground <= 1)
+	if(SSmonitor.human_on_ground < 1)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	#endif
@@ -161,9 +165,7 @@
 		starting_point = tgui_input_list(user, "Select a CAS target", "CAS Targeting", GLOB.active_cas_targets)
 
 	else //if we don't have any targets use the minimap to select a starting position
-		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
-		if(faction == FACTION_SOM)
-			map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE_SOM)
+		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, GLOB.faction_to_minimap_flag[user.faction])
 		user.client.screen += map
 		var/list/polled_coords = map.get_coords_from_click(user)
 		user?.client?.screen -= map

@@ -48,7 +48,7 @@
 				network = list("marinesl", "marine")
 			if(/datum/job/terragov/command/pilot)
 				dat += " pilot's"
-				network = list("dropship1")
+				network = list("dropship1", "landing zones")
 			if(/datum/job/terragov/command/transportofficer)
 				dat += " transport officer's"
 				network = list("dropship2")
@@ -212,7 +212,7 @@
 
 /obj/item/hud_tablet/pilot
 	name = "pilot officers's hud tablet"
-	network = list("dropship1")
+	network = list("dropship1", "landing zones")
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/transportofficer

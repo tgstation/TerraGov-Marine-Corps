@@ -18,7 +18,7 @@
 	buckle_flags = NONE
 	has_unlimited_silicon_privilege = TRUE
 
-	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
+	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2", "landing zones")
 	var/obj/machinery/camera/current
 
 	var/mob/camera/aiEye/hud/eyeobj

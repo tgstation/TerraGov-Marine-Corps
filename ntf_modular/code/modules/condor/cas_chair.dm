@@ -42,17 +42,6 @@
 	width = 8
 	height = 11
 
-/obj/docking_port/mobile/marine_dropship/casplane/som/Initialize(mapload)
-	. = ..()
-	if(faction == FACTION_SOM)
-		cas_mini.minimap_flags = MINIMAP_FLAG_MARINE_SOM
-		cas_mini.marker_flags = MINIMAP_FLAG_MARINE_SOM
-
-/obj/docking_port/mobile/marine_dropship/casplane/som/begin_cas_mission(mob/living/user)
-	. = ..()
-	if(eyeobj)
-		eyeobj.faction = FACTION_SOM
-
 /obj/docking_port/mobile/marine_dropship/casplane/som/process()
 	#ifndef TESTING
 	fuel_left--
@@ -68,3 +57,14 @@
 		fuel_left = 0
 		turn_off_engines()
 	#endif
+
+/mob/camera/aiEye/remote/hud/som
+	faction = FACTION_SOM
+	hud_possible = list(SQUAD_HUD_SOM)
+
+//desperateness
+/mob/camera/aiEye/remote/hud/som/Initialize(mapload, cameranet, new_faction)
+	parent_cameranet = GLOB.som_cameranet
+	cameranet = GLOB.som_cameranet
+	new_faction = FACTION_SOM
+	. = ..()
