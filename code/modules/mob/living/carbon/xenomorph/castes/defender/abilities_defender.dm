@@ -25,7 +25,7 @@
 	/// The multiplier of the damage to be applied.
 	var/damage_multiplier = 1
 
-/datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(xeno_owner.crest_defense && xeno_owner.plasma_stored < (ability_cost * 2))
 		to_chat(xeno_owner, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - xeno_owner.plasma_stored] more plasma!"))
@@ -484,7 +484,7 @@
 	///timer hash for the timer we use when spinning
 	var/spin_loop_timer
 
-/datum/action/ability/xeno_action/centrifugal_force/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/centrifugal_force/can_use_action(silent, override_flags, selecting)
 	if(spin_loop_timer)
 		return TRUE
 	. = ..()

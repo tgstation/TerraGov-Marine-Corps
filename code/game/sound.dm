@@ -120,7 +120,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			continue
 
 		if(listener.stat == DEAD)
-			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(listener.client, R_ADMIN)) // no getting to know what you shouldn't
+			if((!SSticker.mode || CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS)) && !check_rights_for(listener.client, R_ADMIN)) // no getting to know what you shouldn't
 				continue
 		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
@@ -229,7 +229,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			continue
 
 		if(M.stat == DEAD)
-			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(M.client, R_ADMIN)) // no getting to know what you shouldn't
+			if((!SSticker.mode || CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS)) && !check_rights_for(M.client, R_ADMIN)) // no getting to know what you shouldn't
 				continue
 
 		if (M.z == z)
@@ -243,7 +243,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			continue
 
 		if(H.stat == DEAD)
-			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(H.client, R_ADMIN)) // no getting to know what you shouldn't
+			if((!SSticker.mode || CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS)) && !check_rights_for(H.client, R_ADMIN)) // no getting to know what you shouldn't
 				continue
 
 		SEND_SOUND(H, soundin)
@@ -259,7 +259,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			continue
 
 		if(X.stat == DEAD)
-			if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS) && !check_rights_for(X.client, R_ADMIN)) // no getting to know what you shouldn't
+			if((!SSticker.mode || CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS)) && !check_rights_for(X.client, R_ADMIN)) // no getting to know what you shouldn't
 				continue
 
 		SEND_SOUND(X, soundin)

@@ -6648,6 +6648,7 @@
 /area/riptide/inside/syndicatestarboard)
 "eDg" = (
 /obj/machinery/power/terminal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/engineering/cave)
 "eDH" = (
@@ -9975,6 +9976,11 @@
 	dir = 1
 	},
 /area/riptide/inside/medical)
+"gUW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/riptide/inside/engineering/cave)
 "gVk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/coast{
@@ -20399,6 +20405,10 @@
 	},
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
+"ogD" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/riptide/inside/engineering/cave)
 "ogN" = (
 /obj/structure/table/wood,
 /obj/item/paper,
@@ -26695,6 +26705,11 @@
 	},
 /turf/open/floor/plating/ground/drought,
 /area/riptide/outside/northbeach)
+"sfX" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/riptide/inside/engineering/cave)
 "sfY" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/ai_node,
@@ -32214,6 +32229,7 @@
 /obj/machinery/colony_floodlight_switch{
 	pixel_y = 30
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/riptide/inside/engineering/cave)
 "vVT" = (
@@ -33655,6 +33671,7 @@
 /area/riptide/inside/medical/surgery)
 "wWe" = (
 /obj/machinery/power/smes/buildable/empty/dist,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/engineering/cave)
 "wWh" = (
@@ -60755,7 +60772,7 @@ sTP
 xKn
 eDg
 wWe
-doH
+ogD
 xKn
 ffm
 aqb
@@ -60934,7 +60951,7 @@ sTP
 xKn
 eDg
 wWe
-doH
+ogD
 gdz
 mkX
 lZS
@@ -61649,8 +61666,8 @@ sTP
 sTP
 xKn
 vVR
-aCy
-lZS
+sfX
+gUW
 doH
 dZV
 lZS
@@ -61829,7 +61846,7 @@ sTP
 xKn
 eDg
 wWe
-doH
+ogD
 xKn
 ndT
 aCy
@@ -62008,7 +62025,7 @@ sTP
 xKn
 eDg
 wWe
-doH
+ogD
 gdz
 oSo
 rJj

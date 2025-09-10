@@ -225,6 +225,7 @@
 	desc = "A Nanotrasen brand protein shake"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "shaker_n"
+	amount_per_transfer_from_this = 120
 	list_reagents = list(
 		/datum/reagent/consumable/nutriment = 60,
 		/datum/reagent/consumable/nutriment/protein = 60

@@ -1,4 +1,4 @@
-/datum/action/observer_action/can_use_action()
+/datum/action/observer_action/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE

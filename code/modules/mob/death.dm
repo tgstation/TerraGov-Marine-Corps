@@ -91,7 +91,7 @@
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)
 
-	//if(CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS))
+	//if((!SSticker.mode || CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS)))
 	switch(faction)
 		if(FACTION_TERRAGOV)
 			overlay_fullscreen("death", /atom/movable/screen/fullscreen/dead/terra)

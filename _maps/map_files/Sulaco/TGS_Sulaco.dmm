@@ -1488,7 +1488,7 @@
 /obj/machinery/light/mainship,
 /obj/structure/table/mainship/nometal,
 /obj/item/book/manual/marine_law,
-/obj/item/storage/box/ntc_mre,
+/obj/item/storage/box/tgmc_mre,
 /obj/structure/sign/prop2,
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -12754,11 +12754,11 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "fDf" = (
-/obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/door_control/mainship/mech{
 	dir = 8;
 	id = "mech_shutters_2"
 	},
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "fDl" = (
@@ -14242,6 +14242,7 @@
 /turf/closed/wall/mainship/outer,
 /area/space)
 "hxN" = (
+/obj/structure/dropship_equipment/electronics/spotlights,
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -25472,6 +25473,10 @@
 "vgl" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hallway/lower_foreship)
+"vgK" = (
+/obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "vgO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -68504,7 +68509,7 @@ rTP
 pWS
 aUL
 pWS
-hxN
+vgK
 oLM
 oLM
 yjO

@@ -92,11 +92,11 @@
 		/datum/mutation_upgrade/shell/shared_cure,
 		/datum/mutation_upgrade/shell/resistant_cure,
 		/datum/mutation_upgrade/spur/smashing_fling,
-		/datum/mutation_upgrade/spur/psychic_choke,
+		/datum/mutation_upgrade/spur/body_fling,
 		/datum/mutation_upgrade/spur/gravity_tide,
 		/datum/mutation_upgrade/veil/delayed_condition,
 		/datum/mutation_upgrade/veil/deflective_force,
-		/datum/mutation_upgrade/veil/utility_fling
+		/datum/mutation_upgrade/veil/psychic_choke
 	)
 
 /datum/xeno_caste/shrike/normal

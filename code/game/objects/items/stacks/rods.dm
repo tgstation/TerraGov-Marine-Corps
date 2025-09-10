@@ -78,7 +78,7 @@
 		use(4)
 
 /obj/item/stack/rods/attack_turf(turf/T, mob/living/user)
-	if(istype(T, /turf/open/liquid))
+	if(isgroundlessturf(T))
 		place_catwalk(T, user)
 	else if(isfloorturf(T))
 		reinforce_floor(T, user)

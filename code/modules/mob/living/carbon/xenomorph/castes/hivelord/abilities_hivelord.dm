@@ -99,12 +99,14 @@
 	var/datum/armor/attached_armor
 	/// Has the speed bonus been given yet?
 	var/speed_bonus_active = FALSE
+	/// Should weeds be created as they move? If so, how much plasma to consume?
+	var/weeding_cost = 0
 
 /datum/action/ability/xeno_action/toggle_speed/remove_action()
 	resinwalk_off(TRUE) // Ensure we remove the movespeed
 	return ..()
 
-/datum/action/ability/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/toggle_speed/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(speed_activated)
 		return TRUE
@@ -152,6 +154,11 @@
 		owner.balloon_alert(owner, "Resin walk ended, no plasma")
 		resinwalk_off(TRUE)
 		return
+	if(!xeno_owner.loc_weeds_type && weeding_cost > 0 && xeno_owner.plasma_stored >= weeding_cost)
+		var/obj/alien/weeds/created_weeds = new(xeno_owner.loc)
+		SSweeds_decay.decaying_list += created_weeds // Check if it should go away (no nearby node) or stick around (nearby node).
+		xeno_owner.handle_weeds_on_movement() // loc_weeds_type is changed here.
+		xeno_owner.use_plasma(weeding_cost)
 	if(xeno_owner.loc_weeds_type)
 		if(!speed_bonus_active)
 			speed_bonus_active = TRUE
@@ -205,7 +212,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL,
 	)
 
-/datum/action/ability/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/build_tunnel/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -291,7 +298,7 @@
 	)
 	use_state_flags = ABILITY_USE_LYING
 
-/datum/action/ability/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_jelly_pod/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
@@ -332,7 +339,7 @@
 	)
 	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 
-/datum/action/ability/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/create_jelly/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -367,6 +374,10 @@
 	var/heal_range = HIVELORD_HEAL_RANGE
 	/// The length of deciseconds that the Resin Jelly Coating status effect will be applied.
 	var/resin_jelly_duration = 0 SECONDS
+	/// Should the Healing Infusion status effect also give the TRAIT_INNATE_HEALING trait?
+	var/innate_healing = FALSE
+	/// The amount to multiply the duration, including the amount of healing ticks, of Healing Infusion status effect by. Intervals of 0.1 only to keep duration as a whole number.
+	var/status_multiplier = 1
 
 /datum/action/ability/activable/xeno/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -425,7 +436,7 @@
 
 	var/mob/living/carbon/xenomorph/patient = target
 
-	patient.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION, HIVELORD_HEALING_INFUSION_TICKS) //per debuffs.dm
+	patient.apply_status_effect(STATUS_EFFECT_HEALING_INFUSION, HIVELORD_HEALING_INFUSION_DURATION * status_multiplier, HIVELORD_HEALING_INFUSION_TICKS * status_multiplier, innate_healing) //per debuffs.dm
 	if(resin_jelly_duration)
 		patient.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING, resin_jelly_duration)
 	succeed_activate()
@@ -453,7 +464,7 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT,
 	)
 
-/datum/action/ability/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/sow/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
@@ -505,8 +516,12 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_RECOVERY_PYLON,
 	)
 	use_state_flags = ABILITY_USE_LYING
+	/// How far as a radius will the Recovery Pylon cover? 0 = 1x1, 1 = 3x3, 2 = 5x5, 3 = 7x7, etc.
+	var/radius = 1
+	/// Should the Recovery Pylon apply a damage modifier instead? If so, how much?
+	var/damage_modifier = 0
 
-/datum/action/ability/xeno_action/place_recovery_pylon/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_recovery_pylon/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/current_turf = get_turf(owner)
 	if(!current_turf || !current_turf.is_weedable() || current_turf.density)
@@ -521,9 +536,9 @@
 		return FALSE
 	if(!current_turf.check_alien_construction(owner, silent, /obj/structure/xeno/recovery_pylon))
 		return FALSE
-	var/list/turf/affected_turfs = RANGE_TURFS(3, xeno_owner)
+	var/list/turf/affected_turfs = RANGE_TURFS(1 + radius, xeno_owner) // This prevents overlapping & allows one free space between.
 	for(var/turf/affected_turf AS in affected_turfs)
-		if(!(locate(/obj/structure/xeno/recovery_pylon) in affected_turf))
+		if(!HAS_TRAIT(affected_turf, TRAIT_RECOVERY_PYLON_TURF))
 			continue
 		if(!silent)
 			current_turf.balloon_alert(owner, "Nearby recovery pylon already.")
@@ -534,7 +549,7 @@
 		return FALSE
 
 /datum/action/ability/xeno_action/place_recovery_pylon/action_activate()
-	var/obj/structure/xeno/recovery_pylon/recovery_pylon = new(get_turf(xeno_owner), xeno_owner.get_xeno_hivenumber())
+	var/obj/structure/xeno/recovery_pylon/recovery_pylon = new(get_turf(xeno_owner), xeno_owner.get_xeno_hivenumber(), radius, damage_modifier)
 	to_chat(xeno_owner, span_xenonotice("We shape some resin into \a [recovery_pylon]."))
 	playsound(xeno_owner, SFX_ALIEN_RESIN_BUILD, 25)
 	succeed_activate()

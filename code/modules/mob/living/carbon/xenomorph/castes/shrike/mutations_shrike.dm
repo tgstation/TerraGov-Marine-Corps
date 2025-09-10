@@ -122,9 +122,9 @@
 //*********************//
 /datum/mutation_upgrade/spur/smashing_fling
 	name = "Smashing Fling"
-	desc = "Psychic Fling deals 100/125/150% damage equal to your melee damage, enables collusions, but no longer immediately stuns. If the target collides with a human, object, or wall: both are briefly paralyzed and dealt damage again."
+	desc = "Psychic Fling deals 150/175/200% damage equal to your melee damage, enables collusions, but no longer immediately stuns. If the target collides with a human, object, or wall: both are briefly paralyzed and dealt damage again."
 	/// For the first structure, the multiplier of the owner's melee damage to deal as both immediate and collusion damage.
-	var/multiplier_initial = 0.75
+	var/multiplier_initial = 1.25
 	/// For each structure, the multiplier of the owner's melee damage to deal as both immediate and collusion damage.
 	var/multiplier_per_structure = 0.25
 
@@ -206,51 +206,52 @@
 /datum/mutation_upgrade/spur/gravity_tide/proc/get_distance(structure_count, include_initial = TRUE)
 	return (include_initial ? distance_initial : 0) + (distance_per_structure * structure_count)
 
-/datum/mutation_upgrade/spur/psychic_choke
-	name = "Psychic Choke"
-	desc = "You lose the ability Psychic Fling in exchange for the ability Psychic Choke. Psychic Choke lets you paralyze a marine as long you channel it. The damage threshold to disrupt Psychic Choke is 20/35/50."
+/datum/mutation_upgrade/spur/body_fling
+	name = "Body Fling"
+	desc = "Psychic Fling can be used on yourself and allied xenomorphs. Humans who are hit by a flung xenomorph are paralyzed for 2 seconds and dealt 150/175/200% of your slash damage."
 	conflicting_mutation_types = list(
-		/datum/mutation_upgrade/veil/utility_fling
+		/datum/mutation_upgrade/veil/psychic_choke
 	)
-	/// For each structure, the amount to increase Psychic Choke's damage threshold.
-	var/threshold_per_structure = 15
+	/// For the first structure, the multiplier of the owner's slash damage dealt when a xenomorph flung by Psychic Fling collides with a human.
+	var/multiplier_initial = 1.25
+	/// For each structure, the additional multiplier of the owner's slash damage dealt when a xenomorph flung by Psychic Fling collides with a human.
+	var/multiplier_per_structure = 0.25
 
-/datum/mutation_upgrade/spur/psychic_choke/get_desc_for_alert(new_amount)
+/datum/mutation_upgrade/spur/body_fling/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "You lose the ability Psychic Fling in exchange for the ability Psychic Choke. Psychic Choke lets you paralyze a marine as long you channel it. The damage threshold to disrupt Psychic Choke is [get_threshold(new_amount)]."
+	return "Psychic Fling can be used on yourself and allied xenomorphs. Humans who are hit by a flung xenomorph are paralyzed for 2 seconds and dealt [PERCENT(get_multiplier(new_amount))]% of your slash damage."
 
-/datum/mutation_upgrade/spur/psychic_choke/on_mutation_enabled()
-	var/datum/action/ability/activable/xeno/psychic_fling/fling_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_fling]
-	if(fling_ability)
-		fling_ability.remove_action(xenomorph_owner)
-	var/datum/action/ability/activable/xeno/psychic_choke/choke_ability = new()
-	choke_ability.give_action(xenomorph_owner)
-	return ..()
-
-/datum/mutation_upgrade/spur/psychic_choke/on_mutation_disabled()
-	var/datum/action/ability/activable/xeno/psychic_choke/choke_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_choke]
-	if(choke_ability)
-		choke_ability.remove_action(xenomorph_owner)
-	var/datum/action/ability/activable/xeno/psychic_fling/fling_ability = new()
-	fling_ability.give_action(xenomorph_owner)
-	return ..()
-
-/datum/mutation_upgrade/spur/psychic_choke/on_structure_update(previous_amount, new_amount)
+/datum/mutation_upgrade/spur/body_fling/on_mutation_enabled()
 	. = ..()
-	var/datum/action/ability/activable/xeno/psychic_choke/choke_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_choke]
-	if(!choke_ability)
-		return
-	choke_ability.damage_threshold += get_threshold(new_amount - previous_amount, FALSE)
-
-/datum/mutation_upgrade/spur/psychic_choke/on_xenomorph_upgrade()
 	var/datum/action/ability/activable/xeno/psychic_fling/fling_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_fling]
-	if(fling_ability)
-		fling_ability.remove_action(xenomorph_owner) // Since upgrading give abilities that are missing, we have to remove it again.
+	if(!fling_ability)
+		return
+	fling_ability.use_state_flags |= ABILITY_TARGET_SELF
+	fling_ability.collusion_damage_multiplier += get_multiplier(0)
+	fling_ability.collusion_paralyze_duration += 2 SECONDS
+	fling_ability.collusion_xenos_only = TRUE
 
-/// Returns the amount to increase Psychic Choke's damage threshold.
-/datum/mutation_upgrade/spur/psychic_choke/proc/get_threshold(structure_count, include_initial = TRUE)
-	return (include_initial ? PSYCHIC_CHOKE_DAMAGE_THRESHOLD : 0) + (threshold_per_structure * structure_count)
+/datum/mutation_upgrade/spur/body_fling/on_mutation_disabled()
+	. = ..()
+	var/datum/action/ability/activable/xeno/psychic_fling/fling_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_fling]
+	if(!fling_ability)
+		return
+	fling_ability.use_state_flags &= ~ABILITY_TARGET_SELF
+	fling_ability.collusion_damage_multiplier -= get_multiplier(0)
+	fling_ability.collusion_paralyze_duration -= 2 SECONDS
+	fling_ability.collusion_xenos_only = initial(fling_ability.collusion_xenos_only)
+
+/datum/mutation_upgrade/spur/body_fling/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	var/datum/action/ability/activable/xeno/psychic_fling/fling_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_fling]
+	if(!fling_ability)
+		return
+	fling_ability.collusion_damage_multiplier += get_multiplier(new_amount - previous_amount, FALSE)
+
+/// Returns multiplier of the owner's slash damage dealt when a xenomorph flung by Psychic Fling collides with a human.
+/datum/mutation_upgrade/spur/body_fling/proc/get_multiplier(structure_count, include_initial = TRUE)
+	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)
 
 //*********************//
 //         Veil        //
@@ -331,45 +332,48 @@
 /datum/mutation_upgrade/veil/deflective_force/proc/get_multiplier(structure_count, include_initial = TRUE)
 	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)
 
-/datum/mutation_upgrade/veil/utility_fling
-	name = "Utility Fling"
-	desc = "Psychic Fling can be used on yourself and allied xenomorphs. Psychic Fling's cooldown is set to 40/30/20% of its original value if it was used on an item or xenomorph."
+/datum/mutation_upgrade/veil/psychic_choke
+	name = "Psychic Choke"
+	desc = "You lose the ability Psychic Fling in exchange for the ability Psychic Choke. Psychic Choke lets you paralyze a marine as long you channel it. The damage threshold to disrupt Psychic Choke is 20/35/50."
 	conflicting_mutation_types = list(
-		/datum/mutation_upgrade/spur/psychic_choke
+		/datum/mutation_upgrade/spur/body_fling
 	)
-	/// For the first structure, the amount to multiply Psychic Fling's cooldown by if it was used on an xenomorph or item.
-	var/multiplier_initial = 0.5
-	/// For each structure, the additional amount to multiply Psychic Fling's cooldown by if it was used on an xenomorph or item.
-	var/multiplier_per_structure = -0.1
+	/// For each structure, the amount to increase Psychic Choke's damage threshold.
+	var/threshold_per_structure = 15
 
-/datum/mutation_upgrade/veil/utility_fling/get_desc_for_alert(new_amount)
+/datum/mutation_upgrade/veil/psychic_choke/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Psychic Fling can be used on yourself and allied xenomorphs. Psychic Fling's cooldown is set to [PERCENT(get_multiplier(new_amount))]% of its original value if it was used on an item or xenomorph."
+	return "You lose the ability Psychic Fling in exchange for the ability Psychic Choke. Psychic Choke lets you paralyze a marine as long you channel it. The damage threshold to disrupt Psychic Choke is [get_threshold(new_amount)]."
 
-/datum/mutation_upgrade/veil/utility_fling/on_mutation_enabled()
-	. = ..()
+/datum/mutation_upgrade/veil/psychic_choke/on_mutation_enabled()
 	var/datum/action/ability/activable/xeno/psychic_fling/fling_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_fling]
-	if(!fling_ability)
-		return
-	fling_ability.use_state_flags |= ABILITY_TARGET_SELF
-	fling_ability.friendly_cooldown_multiplier += get_multiplier(0)
+	if(fling_ability)
+		fling_ability.remove_action(xenomorph_owner)
+	var/datum/action/ability/activable/xeno/psychic_choke/choke_ability = new()
+	choke_ability.give_action(xenomorph_owner)
+	return ..()
 
-/datum/mutation_upgrade/veil/utility_fling/on_mutation_disabled()
+/datum/mutation_upgrade/veil/psychic_choke/on_mutation_disabled()
+	var/datum/action/ability/activable/xeno/psychic_choke/choke_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_choke]
+	if(choke_ability)
+		choke_ability.remove_action(xenomorph_owner)
+	var/datum/action/ability/activable/xeno/psychic_fling/fling_ability = new()
+	fling_ability.give_action(xenomorph_owner)
+	return ..()
+
+/datum/mutation_upgrade/veil/psychic_choke/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	var/datum/action/ability/activable/xeno/psychic_fling/fling_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_fling]
-	if(!fling_ability)
+	var/datum/action/ability/activable/xeno/psychic_choke/choke_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_choke]
+	if(!choke_ability)
 		return
-	fling_ability.use_state_flags &= ~ABILITY_TARGET_SELF
-	fling_ability.friendly_cooldown_multiplier -= get_multiplier(0)
+	choke_ability.damage_threshold += get_threshold(new_amount - previous_amount, FALSE)
 
-/datum/mutation_upgrade/veil/utility_fling/on_structure_update(previous_amount, new_amount)
-	. = ..()
+/datum/mutation_upgrade/veil/psychic_choke/on_xenomorph_upgrade()
 	var/datum/action/ability/activable/xeno/psychic_fling/fling_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/psychic_fling]
-	if(!fling_ability)
-		return
-	fling_ability.friendly_cooldown_multiplier += get_multiplier(new_amount - previous_amount, FALSE)
+	if(fling_ability)
+		fling_ability.remove_action(xenomorph_owner) // Since upgrading give abilities that are missing, we have to remove it again.
 
-/// Returns the amount to multiply Psychic Fling's cooldown by if it was used on an xenomorph or item.
-/datum/mutation_upgrade/veil/utility_fling/proc/get_multiplier(structure_count, include_initial = TRUE)
-	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)
+/// Returns the amount to increase Psychic Choke's damage threshold.
+/datum/mutation_upgrade/veil/psychic_choke/proc/get_threshold(structure_count, include_initial = TRUE)
+	return (include_initial ? PSYCHIC_CHOKE_DAMAGE_THRESHOLD : 0) + (threshold_per_structure * structure_count)

@@ -119,8 +119,8 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 */
 
 GLOBAL_LIST_INIT(plasteel_radial_images, list(
-	"folding" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
-	"normal" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
+	"folding" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "folding_plasteel_0"),
+	"normal" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
 	))
 
 /obj/item/stack/sheet/plasteel

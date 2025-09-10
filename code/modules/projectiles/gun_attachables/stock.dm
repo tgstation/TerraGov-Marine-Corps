@@ -189,6 +189,10 @@
 	name = "PR-11 stock"
 	icon_state = "m41a"
 
+/obj/item/attachable/stock/m41a_custom
+	name = "PR-11 custom stock"
+	icon_state = "m41a_custom"
+
 /obj/item/attachable/stock/tx11
 	name = "AR-11 stock"
 	icon_state = "tx11"

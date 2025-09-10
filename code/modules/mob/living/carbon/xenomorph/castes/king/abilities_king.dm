@@ -381,7 +381,7 @@
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
 
-/datum/action/ability/xeno_action/zero_form_beam/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/zero_form_beam/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -540,7 +540,7 @@
 	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))
 	return ..()
 
-/datum/action/ability/xeno_action/psychic_summon/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/psychic_summon/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

@@ -1052,6 +1052,7 @@
 #include "code\game\objects\items\explosives\grenades\spawnergrenade.dm"
 #include "code\game\objects\items\explosives\grenades\sticky_grenades.dm"
 #include "code\game\objects\items\explosives\grenades\training_grenade.dm"
+#include "code\game\objects\items\explosives\grenades\xeno_grenade.dm"
 #include "code\game\objects\items\frames\alarms.dm"
 #include "code\game\objects\items\frames\frame.dm"
 #include "code\game\objects\items\frames\light_fixtures.dm"

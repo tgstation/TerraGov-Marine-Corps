@@ -1,15 +1,75 @@
 2025-09-01:
   TheRealMrN:
   - balance: Moved the nuke closer to the center of the map on Blue Moon
+2025-09-02:
+  Runian:
+  - rscadd: Statistics involving Drone's Acidic Salve and Essence Link.
 2025-09-03:
   EaglePhntm:
   - rscadd: Added Behemoth sieger strain
+  Lumipharon:
+  - bugfix: fixed a runtime with mech weapons
+  - bugfix: Mech weapon windups work on the move like man portable weapons.
+  - rscadd: 'Campaign: TGMC tank gets incendiary canister rounds'
+  - balance: 'Campaign: TGMC tank is faster, slightly tougher from the front, and
+      notably tougher on the sides'
+  - balance: 'Campaign: SOM engineers can get detpacks again'
+  - balance: Mech laser sword always hits chest
   Nokia2Student:
   - rscadd: Xenos are now capable of reinforcing their grabs
   - rscadd: Added an ability to bumpslash friendlies
   - qol: Added a separate toggle for structure destroying
   - balance: Now you're capable of stealing jelly from stew pods
+  Runian:
+  - qol: Round type flags are now easily editable bit fields for those with VV access.
+  - bugfix: It is no longer possible to infinitely hijack as an xenomorph.
+  - code_imp: MODE_DEAD_GRAB_FORBIDDEN, a round type flag, has been renamed to MODE_XENO_GRAB_DEAD_ALLOWED.
+      By default, xenos are not allowed to grab dead humans (no change) unless the
+      gamemode says otherwise.
+  - code_imp: MODE_HIJACK_POSSIBLE, a round type flag, is now used to allow xenomorphs
+      to hijack.
+  Scav:
+  - qol: Set the transfer amount of protein shakes to 120 units.
+  TiviPlus:
+  - bugfix: Tac binocs can now laze OB when looking up and down
 2025-09-04:
+  Lumipharon:
+  - bugfix: Removed a stray pixel on female monkeys
+  - code_imp: Fixed some funky barricade code
+  - qol: Plasteel upgrades are slightly more distinct from their metal counterparts
+  - imageadd: Improved barricade sprites, mainly fixing their positions and perspective
   Nokia2Student:
   - rscadd: XMOOC
   - rscadd: Purchasable mutations for xenos
+2025-09-06:
+  Runian:
+  - rscadd: 6 more mutations for Hivelord.
+  - qol: Recovery Pylons now outline xenomorphs inside of it to make it obvious that
+      they're affected by it.
+  - balance: 'Mutations: Rejuvenating Build, one of Hivelord''s mutations, have been
+      moved to Shell from Spur.'
+  - code_imp: Innate healing is no longer a caste_flag and has been replaced by a
+      trait.
+  - bugfix: 'Mutations: Recurring Rage no longer spams you with balloon alerts when
+      you''re resting with Rage off cooldown.'
+  - balance: 'Mutations: Smashing Fling now scales at 150/175/200% damage from 100/125/150%
+      damage.'
+  - balance: 'Mutations: Psychic Choke is now a veil mutation.'
+  - balance: 'Mutations: Utility Fling has renamed to Body Fling, is now a spur mutation,
+      and no longer gives cooldown reduction. It now deals 150/175/200% damage and
+      paralyzes humans for 2 seconds if they are hit by flung xenomorphs.'
+2025-09-07:
+  Rug-Dealer:
+  - balance: Double barrel mortar now spawns roundstart, like the HSG nest.
+  - balance: 'Double barrel mortar spread: 2 -> 1'
+  - spellcheck: Makes it more obvious that the double barrel mortar exists.
+  Vany3045:
+  - rscadd: New specialist role for freelancers.
+  - balance: Many tweaks for freelancers and their stuff. Details are here [#18157](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18157#issue-3258258047).
+  - imageadd: new sprites for the freelancers equipment.
+2025-09-09:
+  Lumipharon:
+  - imageadd: added inhand sprites for the rebota
+  - admin: Unsetting custom info actually works
+  - bugfix: fixed some barricade sprite issues
+  - bugfix: fixed comms not working on the 1st mission of campaign

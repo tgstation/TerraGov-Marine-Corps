@@ -69,6 +69,8 @@
 	var/charge_cost = PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD
 	if(!plasmacutter.start_cut(user, name, src, charge_cost, no_string = TRUE))
 		return FALSE
+	if(!do_after(user, plasmacutter.calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, src, BUSY_ICON_HOSTILE))
+		return FALSE
 
 	user.changeNext_move(plasmacutter.attack_speed)
 	user.do_attack_animation(src, used_item = plasmacutter)

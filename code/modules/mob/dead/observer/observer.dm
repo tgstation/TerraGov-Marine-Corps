@@ -243,7 +243,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return FALSE
 	SEND_SIGNAL(SSdcs, COMSIG_MOB_GHOSTIZE, src, can_reenter_corpse)
 
-	if(force_lobby || (SSticker.mode.round_type_flags & MODE_NO_GHOSTS && !(client && check_rights_for(client, R_ADMIN))))
+	if(force_lobby || ((!SSticker.mode || CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS)) && !(client && check_rights_for(client, R_ADMIN))))
 		if(client)
 			client?.screen?.Cut()
 		var/mob/new_player/new_player = new /mob/new_player()
