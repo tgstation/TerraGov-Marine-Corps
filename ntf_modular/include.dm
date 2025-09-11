@@ -94,6 +94,7 @@
 #include "code\modules\language\language_holder.dm"
 #include "code\modules\language\telepathy.dm"
 #include "code\modules\mob\living\carbon\abstract_handcuffs.dm"
+#include "code\modules\mob\living\carbon\human\fallback_icon_verb.dm"
 #include "code\modules\mob\living\carbon\human\genital_selection.dm"
 #include "code\modules\mob\living\carbon\human\human_defines.dm"
 #include "code\modules\mob\living\carbon\human\update_icons.dm"
