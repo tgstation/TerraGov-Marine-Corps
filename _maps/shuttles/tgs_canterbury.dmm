@@ -547,10 +547,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
-"cf" = (
-/obj/structure/window/framed/mainship/white/canterbury,
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury)
 "cg" = (
 /obj/machinery/vending/MarineMed/Blood,
 /obj/machinery/firealarm{
@@ -830,7 +826,7 @@ aa
 an
 an
 an
-cf
+an
 bo
 bo
 bo
