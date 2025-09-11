@@ -490,10 +490,6 @@
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
-"bS" = (
-/obj/structure/bed/chair/dropship/passenger,
-/turf/open/floor/mainship/sterile/dark,
-/area/shuttle/canterbury/medical)
 "bT" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile,
@@ -888,7 +884,7 @@ bo
 aC
 bI
 bH
-bS
+cJ
 ca
 ce
 bo
