@@ -53,7 +53,10 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 /obj/machinery/power/geothermal/Destroy() //just in case
 	if(is_ground_level(z))
 		GLOB.generators_on_ground -= 1
-	return ..()
+	. = ..()
+	SSminimaps.remove_marker(src)
+	SSminimaps.remove_marker(owner_marker)
+	QDEL_NULL(owner_marker)
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
