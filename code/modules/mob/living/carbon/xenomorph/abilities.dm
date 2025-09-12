@@ -1331,7 +1331,7 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	//var/obj/alien/egg/hugger/egg = new(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null, hand_attach_time_multiplier)
+	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null, hand_attach_time_multiplier)
 
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
