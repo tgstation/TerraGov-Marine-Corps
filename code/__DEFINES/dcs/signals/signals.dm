@@ -653,7 +653,7 @@
 #define COMSIG_MOB_SHOCK_STAGE_CHANGED "mob_shock_stage_changed"
 /// from mob/get_status_tab_items(): (list/items)
 #define COMSIG_MOB_GET_STATUS_TAB_ITEMS "mob_get_status_tab_items"
-/// from mob/proc/dropItemToGround()
+/// from mob/proc/dropItemToGround(): (obj/item/dropped_item)
 #define COMSIG_MOB_DROPPING_ITEM "mob_dropping_item"
 ///From mob/do_after_coefficent()
 #define MOB_GET_DO_AFTER_COEFFICIENT "mob_get_do_after_coefficient"

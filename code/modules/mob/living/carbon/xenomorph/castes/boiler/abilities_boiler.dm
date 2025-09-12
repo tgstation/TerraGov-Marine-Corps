@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	. = ..()
 	reset_selectable_glob_typepath_list()
 
-/datum/action/ability/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/toggle_bomb/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	corrosiveglob_maptext.pixel_y = 8
 	corrosiveglob_maptext.maptext = MAPTEXT("<font color=green>[xeno_owner.corrosive_ammo]")
 
-/datum/action/ability/xeno_action/create_boiler_bomb/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/create_boiler_bomb/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE

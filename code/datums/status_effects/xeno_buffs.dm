@@ -136,9 +136,10 @@
 		link_target.balloon_alert(link_target, "No plasma for link")
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
-	link_target.adjustFireLoss(-max(0, heal_amount - link_target.getBruteLoss()), passive = TRUE)
-	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(link_target, leftover_healing, TRUE)
 	link_owner.use_plasma(ability_cost)
+	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
 
 /// Shares the Resin Jelly buff with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
@@ -179,9 +180,12 @@
 
 	new /obj/effect/temp_visual/healing(get_turf(heal_target))
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
-	heal_target.adjustFireLoss(-max(0, heal_amount - heal_target.getBruteLoss()), passive = TRUE)
-	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	heal_target.adjust_sunder(-heal_amount/10)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(heal_target, leftover_healing, TRUE)
+	var/sunder_change = heal_target.adjust_sunder(-heal_amount / 10)
+
+	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
+	GLOB.round_statistics.drone_essence_link_sunder += -sunder_change
 	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
 
 /// Toggles the link signals on or off.
@@ -243,6 +247,7 @@
 		return
 	var/damage_to_heal = damage_dealt * lifesteal_percentage
 	HEAL_XENO_DAMAGE(link_owner, damage_to_heal, FALSE)
+	GLOB.round_statistics.drone_essence_link += (damage_dealt * lifesteal_percentage) - damage_to_heal // Amount actually healed.
 
 // ***************************************
 // *********** Salve Regeneration
@@ -270,9 +275,11 @@
 /datum/status_effect/salve_regen/tick(delta_time)
 	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
 	var/heal_amount = buff_owner.maxHealth * 0.01
-	buff_owner.adjustFireLoss(-max(0, heal_amount - buff_owner.getBruteLoss()), passive = TRUE)
-	buff_owner.adjustBruteLoss(-heal_amount, passive = TRUE)
-	buff_owner.adjust_sunder(-1)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(buff_owner, leftover_healing, TRUE)
+	var/sunder_change = buff_owner.adjust_sunder(-1)
+	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing) // While it is true that this comes from Acidic Salve, it is only applied to Essence Link users.
+	GLOB.round_statistics.drone_essence_link_sunder += -sunder_change
 	return ..()
 
 // ***************************************
@@ -676,8 +683,10 @@
 	var/health_ticks_remaining
 	///Sunder recovery ticks
 	var/sunder_ticks_remaining
+	/// Should the TRAIT_INNATE_HEALING trait be given?
+	var/innate_healing = FALSE
 
-/datum/status_effect/healing_infusion/on_creation(mob/living/new_owner, set_duration = HIVELORD_HEALING_INFUSION_DURATION, stacks_to_apply = HIVELORD_HEALING_INFUSION_TICKS)
+/datum/status_effect/healing_infusion/on_creation(mob/living/new_owner, set_duration = HIVELORD_HEALING_INFUSION_DURATION, stacks_to_apply = HIVELORD_HEALING_INFUSION_TICKS, new_innate_healing)
 	if(!isxeno(new_owner))
 		CRASH("something applied [id] on a nonxeno, dont do that")
 
@@ -685,6 +694,8 @@
 	owner = new_owner
 	health_ticks_remaining = stacks_to_apply //Apply stacks
 	sunder_ticks_remaining = stacks_to_apply
+	if(new_innate_healing)
+		innate_healing = new_innate_healing
 	return ..()
 
 
@@ -693,12 +704,16 @@
 	if(!.)
 		return
 	ADD_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
+	if(innate_healing)
+		ADD_TRAIT(owner, TRAIT_INNATE_HEALING, TRAIT_STATUS_EFFECT(id))
 	owner.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 	RegisterSignal(owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(healing_infusion_regeneration)) //Register so we apply the effect whenever the target heals
 	RegisterSignal(owner, COMSIG_XENOMORPH_SUNDER_REGEN, PROC_REF(healing_infusion_sunder_regeneration)) //Register so we apply the effect whenever the target heals
 
 /datum/status_effect/healing_infusion/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
+	if(innate_healing)
+		REMOVE_TRAIT(owner, TRAIT_INNATE_HEALING, TRAIT_STATUS_EFFECT(id))
 	owner.remove_filter("hivelord_healing_infusion_outline")
 	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN))
 

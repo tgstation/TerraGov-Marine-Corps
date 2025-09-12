@@ -21,6 +21,7 @@
 		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
 		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
 		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary,
 		/obj/item/ammo_magazine/tank/volkite_carronade,
 		/obj/item/ammo_magazine/tank/particle_lance,
 		/obj/item/ammo_magazine/tank/coilgun,

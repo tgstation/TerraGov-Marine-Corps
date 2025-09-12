@@ -142,9 +142,11 @@
 	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
-	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
-	target.adjustBruteLoss(-heal_amount)
-	target.adjust_sunder(-heal_amount/10)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(target, leftover_healing, FALSE)
+	var/sunder_change = target.adjust_sunder(-heal_amount / 10)
+	GLOB.round_statistics.drone_acidic_salve += (heal_amount - leftover_healing)
+	GLOB.round_statistics.drone_acidic_salve_sunder += -sunder_change
 	if(heal_multiplier > 1) // A signal depends on the above heals, so this has to be done here.
 		playsound(target,'sound/effects/magic.ogg', 75, 1)
 		essence_link_action.existing_link.add_stacks(-1)
@@ -176,7 +178,7 @@
 	. = ..()
 	INVOKE_NEXT_TICK(src, PROC_REF(link_essence_action))
 
-/datum/action/ability/xeno_action/enhancement/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/enhancement/can_use_action(silent, override_flags, selecting)
 	if(existing_enhancement)
 		return TRUE
 	if(!HAS_TRAIT(owner, TRAIT_ESSENCE_LINKED))
