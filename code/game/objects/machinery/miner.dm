@@ -101,7 +101,7 @@
 		var/owner_flag = GLOB.faction_to_minimap_flag[faction]
 		if(owner_flag)
 			var/owner_marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_owned"
-			SSminimaps.add_marker(owner_marker, owner_flag, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, owner_marker_icon, MINIMAP_BLIPS_LAYER))
+			SSminimaps.add_marker(owner_marker, owner_flag, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, owner_marker_icon, MINIMAP_BLIPS_LAYER+0.1))
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
 
 /obj/machinery/miner/update_icon_state()
@@ -407,6 +407,7 @@
 
 /obj/machinery/miner/proc/set_miner_status()
 	var/health_percent = round((miner_integrity / max_miner_integrity) * 100)
+	SSminimaps.remove_marker(owner_marker)
 	switch(health_percent)
 		if(-INFINITY to 0)
 			miner_status = MINER_DESTROYED
@@ -423,11 +424,10 @@
 			var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
 			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
 			miner_status = MINER_RUNNING
-			SSminimaps.remove_marker(owner_marker)
 			var/owner_flag = GLOB.faction_to_minimap_flag[faction]
 			if(owner_flag)
 				var/owner_marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_owned"
-				SSminimaps.add_marker(owner_marker, owner_flag, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, owner_marker_icon, MINIMAP_BLIPS_LAYER))
+				SSminimaps.add_marker(owner_marker, owner_flag, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, owner_marker_icon, MINIMAP_BLIPS_LAYER+0.1))
 	update_icon()
 
 ///Called via global signal to prevent perpetual mining
