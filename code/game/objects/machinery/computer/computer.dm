@@ -128,7 +128,7 @@
 
 /obj/machinery/computer/proc/repair()
 	machine_stat &= ~BROKEN
-	density = TRUE
+	density = initial(density)
 	durability = initial(durability)
 	update_icon()
 
@@ -172,6 +172,7 @@
 	span_notice("You repair [src]."))
 	machine_stat &= ~DISABLED //Remove the disabled flag
 	durability = initial(durability) //Reset its durability to its initial value
+	density = initial(density)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 

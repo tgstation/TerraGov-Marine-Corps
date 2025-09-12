@@ -56,6 +56,8 @@
 
 	///The flavor message that shows up in the UI upon segment completion
 	var/message = "error"
+	obj_integrity = 1500
+	integrity_failure = 1000
 
 /obj/machinery/computer/nuke_disk_generator/Initialize(mapload)
 	. = ..()
@@ -70,8 +72,8 @@
 
 /obj/machinery/computer/nuke_disk_generator/Destroy()
 	GLOB.nuke_disk_generators -= src
-	return ..()
-
+	. = ..()
+	stack_trace("Nuke disk generator destroyed!")
 
 /obj/machinery/computer/nuke_disk_generator/process()
 	. = ..()
@@ -217,6 +219,37 @@
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[disk_color]_disk[current_timer ? "_on" : "_off"]", MINIMAP_LABELS_LAYER))
+
+/obj/machinery/computer/nuke_disk_generator/set_broken()
+	set_disabled()
+
+/obj/machinery/computer/nuke_disk_generator/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			set_disabled()
+			return
+		if(EXPLODE_HEAVY)
+			if (prob(50))
+				set_disabled()
+				return
+		if(EXPLODE_LIGHT)
+			if (prob(25))
+				set_disabled()
+				return
+		if(EXPLODE_WEAK)
+			if (prob(15))
+				set_disabled()
+				return
+
+/obj/machinery/computer/nuke_disk_generator/obj_break(damage_flag)
+	obj_integrity = max_integrity
+	. = ..()
+	set_disabled()
+
+/obj/machinery/computer/nuke_disk_generator/do_acid_melt()
+	visible_message(span_xenodanger("[src] is disabled by the acid!"))
+	playsound(src, SFX_ACID_HIT, 25)
+	set_disabled()
 
 /obj/machinery/computer/nuke_disk_generator/red
 	name = "red nuke disk generator"
