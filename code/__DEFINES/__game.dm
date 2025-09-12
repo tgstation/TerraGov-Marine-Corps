@@ -35,6 +35,7 @@
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
 #define MAP_NTF "NTC Nine Tailed Fox"
 #define MAP_EAGLE "Eagle"
+#define MAP_EAGLE_CLASSIC "Eagle - Classic Mode"
 
 #define MAP_FORT_PHOBOS "Fort Phobos"
 #define MAP_ITERON "Iteron"

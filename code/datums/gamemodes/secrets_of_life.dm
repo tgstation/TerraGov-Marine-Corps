@@ -174,7 +174,7 @@
 	config_tag = "Secret of Life - Classic"
 	factions = list(FACTION_TERRAGOV, FACTION_SOM,FACTION_XENO, FACTION_CLF)
 	human_factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_CLF)
-	whitelist_ship_maps = list(MAP_EAGLE)
+	whitelist_ship_maps = list(MAP_EAGLE_CLASSIC)
 	whitelist_ground_maps = list(MAP_LV_624BASES)
 	whitelist_antag_maps = list(MAP_ANTAGMAP_NOSPAWN)
 	valid_job_types = list(

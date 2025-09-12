@@ -12865,6 +12865,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
+"oTc" = (
+/obj/effect/landmark/start,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/living/chapel)
 "oTl" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/chiefshipengineer,
@@ -14404,6 +14408,7 @@
 	})
 "qBH" = (
 /obj/effect/ai_node,
+/obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/chapel)
 "qDb" = (
@@ -31896,7 +31901,7 @@ tJt
 mGA
 maY
 qBH
-akp
+oTc
 gmg
 bCT
 rdt

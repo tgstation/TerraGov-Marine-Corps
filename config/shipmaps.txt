@@ -33,6 +33,10 @@ map eagle
         minplayers 0
 endmap
 
+map eagleclassic
+        minplayers 0
+endmap
+
 map pillar_of_spring
 	minplayers 600
 endmap
