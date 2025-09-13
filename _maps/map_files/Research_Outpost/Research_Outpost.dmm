@@ -1130,7 +1130,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "fF" = (
@@ -5134,7 +5133,6 @@
 	},
 /area/outpost/medbay)
 "xY" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
@@ -8614,6 +8612,14 @@
 	dir = 4
 	},
 /area/outpost/engineering)
+"Ox" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating,
+/area/outpost/engineering/engine)
 "Oy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -9096,8 +9102,8 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_west)
 "QK" = (
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/obj/machinery/power/smes,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "QN" = (
@@ -24562,8 +24568,8 @@ Ek
 Cy
 Cy
 DX
-MG
-MG
+QK
+wz
 MG
 MG
 ih
@@ -24826,9 +24832,9 @@ Sz
 Db
 DX
 DX
-MG
-MG
+QK
 wz
+MG
 MG
 AC
 MU
@@ -24958,9 +24964,9 @@ sf
 TB
 wR
 DX
-RA
+Ox
 MG
-wz
+MG
 FJ
 MG
 MU
