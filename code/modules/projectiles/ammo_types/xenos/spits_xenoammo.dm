@@ -42,7 +42,7 @@
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 40
+	damage = 10
 	stagger_duration = 1.1 SECONDS
 	slowdown_stacks = 1.5
 	smoke_strength = 0.5
@@ -125,12 +125,12 @@
 	name = "neurotoxic splash"
 	spit_cost = 100
 	added_spit_delay = 0 SECONDS
-	damage = 40
+	damage = 10
 	smoke_strength = 1
 	reagent_transfer_amount = 10
 
 /datum/ammo/xeno/toxin/auto
-	damage = 12
+	damage = 3
 	damage_falloff = 0.2
 	spit_cost = 20
 	added_spit_delay = 0 SECONDS
