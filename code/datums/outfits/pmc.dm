@@ -336,11 +336,6 @@
 		/obj/item/ammo_magazine/pistol/mk100_gyrojet = 2,
 	)
 
-	head_contents = list(
-		/obj/item/reagent_containers/food/snacks/enrg_bar = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
-	)
-
 //RA-SHA-416M protag mode
 /datum/outfit/job/pmc/leader/m416
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
@@ -349,6 +344,11 @@
 
 	suit_contents = list(
 		/obj/item/ammo_magazine/rifle/m416 = 2,
+	)
+
+	head_contents = list(
+		/obj/item/reagent_containers/food/snacks/enrg_bar = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
 	)
 
 	belt_contents = list(
@@ -369,6 +369,11 @@
 
 	suit_contents = list(
 		/obj/item/ammo_magazine/rifle/standard_smartrifle = 2,
+	)
+
+	head_contents = list(
+		/obj/item/reagent_containers/food/snacks/enrg_bar = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
 	)
 
 	belt_contents = list(
