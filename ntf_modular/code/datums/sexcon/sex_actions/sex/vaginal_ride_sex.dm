@@ -46,7 +46,14 @@
 			X.impregify(user, "pussy")
 		if(isxeno(user) && ishuman(target))
 			var/mob/living/carbon/xenomorph/X = user
-			X.xenoimpregify()
+			var/hivenumber = X.get_xeno_hivenumber()
+			if(X.xenoimpregify() && HAS_TRAIT(target, TRAIT_HIVE_TARGET))
+				var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
+				psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, X, target)
+				psy_points_reward = psy_points_reward * 3
+				SSpoints.add_strategic_psy_points(hivenumber, psy_points_reward)
+				SSpoints.add_tactical_psy_points(hivenumber, psy_points_reward*0.25)
 
 
 
