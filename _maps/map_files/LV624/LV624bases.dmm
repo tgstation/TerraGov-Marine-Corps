@@ -62,8 +62,10 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
 "adg" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/hyper,
+/obj/machinery/vending/weapon/clf,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/brig/gear_room{
 	name = "CLF armoury"
@@ -1823,6 +1825,16 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"aVf" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/hyper,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
+	})
 "aVj" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/fence,
@@ -3710,8 +3722,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "cna" = (
-/obj/item/armor_module/storage/uniform/brown_vest,
-/obj/structure/cable,
+/obj/machinery/loadout_vendor/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/brig/gear_room{
 	name = "CLF armoury"
@@ -6715,7 +6726,7 @@
 /obj/item/stack/sheet/mineral/phoron{
 	amount = 50
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "fnB" = (
 /obj/structure/lazarus_sign,
@@ -6991,7 +7002,7 @@
 "fAE" = (
 /obj/structure/cable,
 /obj/machinery/power/geothermal,
-/turf/open/space/basic,
+/turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "fAT" = (
 /obj/item/trash/cigbutt/cigarbutt,
@@ -7924,7 +7935,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "gCb" = (
 /obj/structure/bedsheetbin,
@@ -9495,6 +9506,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
+"icB" = (
+/obj/machinery/vending/armor_supply/icc/clf,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
+	})
 "icV" = (
 /obj/structure/prop/mainship/research/mechafab,
 /turf/open/floor/plating/platebot,
@@ -14672,7 +14689,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/garbledradio)
 "ndS" = (
-/turf/open/space/basic,
+/turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "neu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -15458,6 +15475,7 @@
 /area/lv624/ground/river3)
 "nZX" = (
 /obj/structure/largecrate/guns/russian,
+/obj/item/armor_module/storage/uniform/brown_vest,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/brig/gear_room{
 	name = "CLF armoury"
@@ -19338,8 +19356,9 @@
 	},
 /area/lv624/lazarus/fitness)
 "rXw" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 16
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/brig/gear_room{
@@ -20721,7 +20740,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "ttF" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -21697,6 +21716,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"upE" = (
+/obj/machinery/vending/uniform_supply/icc/clf,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
+	})
 "upO" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -24307,7 +24332,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "wKQ" = (
 /turf/open/floor/marking/warning{
@@ -87905,8 +87930,8 @@ oFu
 tbO
 tbO
 tbO
-aah
-aah
+tbO
+tbO
 dUK
 aah
 aah
@@ -88230,10 +88255,10 @@ xSG
 gtV
 oFu
 tbO
+aVf
+uRQ
+kBu
 tbO
-tbO
-tbO
-mcN
 aah
 aah
 mcN
@@ -88557,10 +88582,10 @@ xSG
 shO
 vSx
 iEz
-rXw
+ein
+sJJ
 nZX
 tbO
-aah
 aah
 aah
 aah
@@ -88885,9 +88910,9 @@ leU
 gtV
 rnL
 kDm
+sJJ
 hkZ
 tbO
-aah
 aah
 aah
 aah
@@ -89211,10 +89236,10 @@ xSG
 iDM
 gtV
 tbO
-ein
+fMs
+sJJ
 eNk
 tbO
-aah
 aah
 aah
 aah
@@ -89539,8 +89564,8 @@ iDM
 tpd
 tbO
 cna
+sJJ
 tLM
-tbO
 tbO
 aah
 mcN
@@ -90192,7 +90217,7 @@ xSG
 iDM
 gtV
 tbO
-fMs
+upE
 xFG
 uNq
 tbO
@@ -90519,7 +90544,7 @@ xSG
 iDM
 gtV
 tbO
-kBu
+icB
 sJJ
 bss
 tbO
@@ -90846,7 +90871,7 @@ xSG
 alp
 gtV
 tbO
-uRQ
+rXw
 oAL
 xJx
 tbO
