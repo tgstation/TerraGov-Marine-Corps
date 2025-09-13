@@ -336,20 +336,11 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/sniper
 	name = "\improper M4-L Sagittarii pattern PMC helmet"
-	desc = "A custom model of M4 helmet for snipers with integrated motion detector. None will escape corporate justice."
+	desc = "A custom model of M4 helmet for snipers with additional enviromental protection."
 	icon_state = "pmc_sniper_hat"
 	soft_armor = list(MELEE = 60, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 75, ACID = 75)
 	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
-	attachments_by_slot = list(
-		ATTACHMENT_SLOT_STORAGE,
-		ATTACHMENT_SLOT_HEAD_MODULE,
-	)
-	attachments_allowed = list(
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/module/tactical_sensor,
-		)
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tactical_sensor)
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
 	name = "\improper M7-H Cathaphract pattern PMC helmet"
