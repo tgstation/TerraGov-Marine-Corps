@@ -148,21 +148,9 @@
 			if(!do_after(user, 1 SECONDS, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
 				return
 
+			larba.ghostize(FALSE, FALSE, TRUE)
 			larba.burrow()
 			shake(4 SECONDS)
-			if(!larba.client)
-				return
-			larba.client.screen.Cut()
-			if(!larba.client)
-				return
-
-			var/mob/new_player/nerd = new /mob/new_player()
-
-			nerd.key = larba.key
-			nerd.name = larba.key
-			if(!nerd.client)
-				qdel(nerd)
-				return
 
 /// Make the silo shake
 /obj/structure/xeno/silo/proc/shake(duration)
@@ -225,22 +213,9 @@
 				if(!do_after(user, 1 SECONDS, FALSE, user, BUSY_ICON_DANGER) || QDELETED(src))
 					return
 
-				larba.ghostize(FALSE, FALSE)
+				larba.ghostize(FALSE, FALSE, TRUE)
 				larba.burrow()
 				shake(4 SECONDS)
-				if(!larba.client)
-					return
-				larba.client.screen.Cut()
-				if(!larba.client)
-					return
-
-				var/mob/new_player/nerd = new /mob/new_player()
-
-				nerd.key = larba.key
-				nerd.name = larba.key
-				if(!nerd.client)
-					qdel(nerd)
-					return
 
 			else
 				to_chat(user, span_xenonotice("We need to be a larva to fit there."))

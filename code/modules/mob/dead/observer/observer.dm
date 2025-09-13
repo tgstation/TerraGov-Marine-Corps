@@ -309,7 +309,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		H.set_undefibbable()
 	mind = null
 
-/mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
+/mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE, force_lobby = FALSE)
 	if(aghosting)
 		set_afk_status(MOB_AGHOSTED)
 	reset_perspective()
@@ -321,7 +321,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_role_death[ghost.key] = world.time
 
-/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
+/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE, force_lobby = FALSE)
 	. = ..()
 	if(!. || can_reenter_corpse || aghosting)
 		return
