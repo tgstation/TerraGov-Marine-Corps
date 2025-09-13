@@ -549,12 +549,6 @@
 			if(assigned_squad == H.assigned_squad) //same squad
 				msg += "<a href='byond://?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
-	if(HAS_TRAIT(src, TRAIT_HOLLOW))
-		if(isxeno(user))
-			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] hollow. Useless.</span>\n"
-		else
-			msg += "[span_deadsay("<b>[t_He] [t_is] hollowed out!</b>")]\n"
-
 	if(isxeno(user))
 		msg += separator_hr("Xeno Info")
 		if(species.species_flags & IS_SYNTHETIC)
