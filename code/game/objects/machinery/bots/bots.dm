@@ -78,8 +78,9 @@
 
 /obj/machinery/bot/Bump(atom/A)
 	. = ..()
-	if(++stuck_counter <= 3)
-		step_to(src, get_step(src, turn(dir, pick(90, -90))))
+	var/turnamount = prob(50) ? 90 : -90
+	if(++stuck_counter <= 4)
+		step_to(src, get_step(src, turn(dir, turnamount)))
 		return
 	visible_message(span_warning("\The [src] beeps angrily as it gets stuck!"))
 	stop_processing()
