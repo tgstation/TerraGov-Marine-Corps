@@ -783,6 +783,7 @@
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/paper,
 		/obj/item/clipboard,
+		/obj/item/paper_map,
 	))
 
 /obj/item/storage/pouch/field_pouch
@@ -816,6 +817,7 @@
 		/obj/item/toy/deck,
 		/obj/item/paper,
 		/obj/item/clipboard,
+		/obj/item/paper_map,
 	))
 
 /obj/item/storage/pouch/field_pouch/full/PopulateContents()
