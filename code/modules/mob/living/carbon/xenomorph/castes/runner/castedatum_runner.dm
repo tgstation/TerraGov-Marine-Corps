@@ -31,7 +31,7 @@
 	upgrade_threshold = TIER_ONE_THRESHOLD
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
@@ -100,7 +100,7 @@
 
 	// Gain acid blood for less speed (0.2).
 	speed = -1.2
-	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 
 	// +50 health
 	max_health = 350

@@ -159,9 +159,6 @@
 
 	. += "Health: [health]/[maxHealth][overheal ? " + [overheal]": ""]" //Changes with balance scalar, can't just use the caste
 
-	if((xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
-		. += "Biomass: [!isnull(SSpoints.xeno_biomass_points_by_hive[hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[hivenumber] : 0]/[MUTATION_BIOMASS_MAXIMUM]"
-
 	if(xeno_caste.plasma_max > 0)
 		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
 
@@ -328,7 +325,7 @@
 	if(isliving(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		if(SEND_SIGNAL(src, COMSIG_XENO_LIVING_THROW_HIT, hit_atom) & COMPONENT_KEEP_THROWING)
 			return FALSE
-		stop_throw() //Resert throwing since something was hit.
+		set_throwing(FALSE) //Resert throwing since something was hit.
 		return TRUE
 
 	return ..() //Do the parent otherwise, for turfs.
@@ -547,6 +544,8 @@
 	var/old_sunder = sunder
 	sunder = clamp(sunder + (adjustment > 0 ? adjustment * xeno_caste.sunder_multiplier : adjustment), 0, xeno_caste.sunder_max)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_CHANGE, old_sunder, sunder)
+	return sunder - old_sunder // The real difference in sunder. Negative: real loss in sunder. Positive: real gain in sunder.
+
 //Applying sunder is an adjustment value above 0, healing sunder is an adjustment value below 0. Use multiplier when taking sunder, not when healing.
 
 /mob/living/carbon/xenomorph/set_sunder(new_sunder)

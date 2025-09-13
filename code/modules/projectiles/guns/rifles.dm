@@ -268,7 +268,8 @@
 /obj/item/weapon/gun/rifle/standard_dmr/beginner
 	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
-
+/obj/item/weapon/gun/rifle/standard_dmr/freelancer
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/heavy_barrel)
 //-------------------------------------------------------
 //BR-64 BR
 
@@ -411,7 +412,8 @@
 	aim_slowdown = 0.4
 	damage_mult = 1.05 //Has smaller magazines
 
-
+/obj/item/weapon/gun/rifle/m412/freelancer
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/extended_barrel)
 
 //-------------------------------------------------------
 //PR-412 PMC VARIANT
@@ -564,6 +566,7 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/m41a,
 		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
+		/obj/item/attachable/stock/m41a_custom,
 	)
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -591,6 +594,28 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 	)
 
+/obj/item/weapon/gun/rifle/m41a/freelancer_custom
+	name = "\improper PR-11 pulse rifle MAGNUM custom"
+	desc = "A strange failed electronically fired rifle, a rather unknown weapon of its time. It caused a surge in the use of electronic firing in the modern era though. Uses 10x24mm caseless ammunition. Has a irremoveable grenade launcher. This specific model was customized and tuned by MAGNUM freelancers with lightweight materials. Also includes new burst model of 5 quick shots in the row."
+	icon_state = "m41a_custom"
+	worn_icon_state = "m41a_custom"
+	starting_attachment_types = list(/obj/item/attachable/stock/m41a_custom, /obj/item/weapon/gun/grenade_launcher/underslung/invisible)
+	aim_slowdown = 0.4
+	wield_delay = 1.2 SECONDS
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	burst_amount = 5
+	burst_delay = 0.1 SECONDS
+	fire_delay = 0.15 SECONDS
+	extra_delay = 0.2 SECONDS
+
+/obj/item/weapon/gun/rifle/m41a/freelancer_custom/leader
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/m41a_custom,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
+	)
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle/mpi_km
@@ -873,9 +898,6 @@
 	wield_delay = 0.7 SECONDS
 	damage_mult = 1.2
 
-/obj/item/weapon/gun/rifle/m16/freelancer
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted, /obj/item/weapon/gun/shotgun/combat/masterkey)
-
 /obj/item/weapon/gun/rifle/m16/ugl
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted, /obj/item/weapon/gun/grenade_launcher/underslung)
 
@@ -934,10 +956,6 @@
 	damage_mult = 1.2
 	scatter = 1
 	movement_acc_penalty_mult = 4
-
-/obj/item/weapon/gun/rifle/famas/freelancermedic
-	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
-
 
 //-------------------------------------------------------
 //MG-42 Light Machine Gun
@@ -1106,8 +1124,8 @@
 	)
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 200 //codex
-	aim_slowdown = 0.8
-	wield_delay = 2.2 SECONDS
+	aim_slowdown = 1.1
+	wield_delay = 2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/hmg.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -1149,8 +1167,9 @@
 	accuracy_mult = 1.05
 	scatter = 5
 	scatter_unwielded = 25
-	recoil_unwielded = 5
-	force = 20
+	recoil_unwielded = 4
+	force = 30
+	damage_mult = 1.05
 
 	placed_overlay_iconstate = "lmg"
 
@@ -1158,7 +1177,7 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/verticalgrip,
 	)
 //-------------------------------------------------------
 //USL TYPE 71 RIFLE
@@ -1831,6 +1850,21 @@
 /obj/item/weapon/gun/rifle/tx11/standard
 	starting_attachment_types = list(/obj/item/attachable/stock/tx11, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
+/obj/item/weapon/gun/rifle/tx11/freelancer_custom
+	name = "\improper AR-11 combat rifle MAGNUM custom"
+	desc = "The Keckler and Hoch AR-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition. This specific model was customized and tuned by MAGNUM freelancers, to make it more accurate and lighter."
+	icon_state = "tx11_custom"
+	worn_icon_state = "tx11_custom"
+
+	wield_delay = 0.6 SECONDS
+	scatter = -0.5
+	scatter_unwielded = 10
+	aim_slowdown = 0.3
+	movement_acc_penalty_mult = 3
+	starting_attachment_types = list(/obj/item/attachable/stock/tx11)
+
+/obj/item/weapon/gun/rifle/tx11/freelancer_custom/leader
+	starting_attachment_types = list(/obj/item/attachable/stock/tx11, /obj/item/attachable/motiondetector, /obj/item/attachable/bayonet/converted, /obj/item/attachable/lasersight)
 //-------------------------------------------------------
 //AR-21 Assault Rifle
 
@@ -1956,12 +1990,6 @@
 	damage_falloff_mult = 3
 
 	movement_acc_penalty_mult = 4
-
-/obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
-	starting_attachment_types = list(
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/bayonet/converted,
-	)
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine/assault
 	starting_attachment_types = list(
@@ -2153,19 +2181,46 @@
 	aim_slowdown = 1
 	movement_acc_penalty_mult = 6
 
-/obj/item/weapon/gun/rifle/tx55/freelancer
-	starting_attachment_types = list(
-		/obj/item/weapon/gun/rifle/tx54/mini,
-		/obj/item/attachable/scope/optical,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/gyro,
-	)
-
 /obj/item/weapon/gun/rifle/tx55/combat_patrol //no scope for HvH
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/rifle/tx54/mini,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/verticalgrip,
+	)
+
+/obj/item/weapon/gun/rifle/tx55/freelancer_custom
+	name = "\improper AR-55 assault rifle MAGNUM custom"
+	desc = "Officially designated an Objective Individual Combat Weapon, the AR-55 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight. Requires a T49 scope for precision aiming. This specific model was customized and tuned by MAGNUM freelancers, which made it ligher and allowed to use bigger mags of AR-12"
+	icon_state = "tx55_custom"
+	worn_icon_state = "tx55_custom"
+	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap)
+	max_shells = 50 //codex
+	aim_slowdown = 0.7
+	movement_acc_penalty_mult = 5
+
+/obj/item/weapon/gun/rifle/tx55/freelancer_custom/grenadier
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/gyro,
+	)
+
+/obj/item/weapon/gun/rifle/tx55/freelancer_custom/leader
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/scope/optical,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/verticalgrip,
+	)
+
+/obj/item/weapon/gun/rifle/tx55/freelancer_custom/combat_patrol
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/verticalgrip,
 	)
 
@@ -2867,7 +2922,6 @@
 	icon_state = "l88_export"
 	worn_icon_state = "l88_export"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_assaultcarbine/export
-
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
 

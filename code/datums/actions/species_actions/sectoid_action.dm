@@ -30,7 +30,7 @@
 	end_ability()
 	return ..()
 
-/datum/action/ability/activable/sectoid/mindmeld/can_use_action()
+/datum/action/ability/activable/sectoid/mindmeld/can_use_action(silent, override_flags, selecting)
 	var/mob/living/carbon/carbon_owner = owner
 	if(melded_mob)
 		return FALSE

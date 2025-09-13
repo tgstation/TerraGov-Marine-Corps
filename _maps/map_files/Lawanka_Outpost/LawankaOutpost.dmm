@@ -3124,11 +3124,6 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/operations_hall)
-"cDA" = (
-/obj/effect/ai_node,
-/obj/machinery/floor_warn_light/toggleable,
-/turf/open/floor/podhatch/floor,
-/area/lawankaoutpost/colony/engineering)
 "cDB" = (
 /obj/structure/closet/secure_closet/hos,
 /obj/machinery/light{
@@ -7986,12 +7981,6 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/engineering)
-"gxf" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/obj/machinery/floor_warn_light/toggleable,
-/turf/open/floor/podhatch/floor,
-/area/lawankaoutpost/colony/engineering)
 "gxn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -10464,13 +10453,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
-"iKJ" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
-/turf/open/floor/podhatch/floor,
-/area/lawankaoutpost/colony/engineering)
 "iKW" = (
 /obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirt,
@@ -13407,6 +13389,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/biologics)
+"lji" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/west)
 "ljw" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
@@ -13835,10 +13821,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"lzo" = (
-/obj/machinery/floor_warn_light/toggleable,
-/turf/closed/wall,
-/area/lawankaoutpost/colony/engineering)
 "lzG" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/blue/taupeblue{
@@ -15733,11 +15715,6 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/lawankaoutpost/colony/hydroponics)
-"ncG" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg,
-/turf/open/floor/podhatch/floor,
-/area/lawankaoutpost/colony/engineering)
 "ndk" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/greentaupe{
@@ -23492,6 +23469,10 @@
 	},
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
+"tiQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "tiW" = (
 /obj/machinery/hydroponics/slashable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24411,6 +24392,11 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/east)
+"tTz" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "tTN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -24890,11 +24876,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
-"usc" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/floor_warn_light/toggleable,
-/turf/open/floor/tile/dark/yellow2,
-/area/lawankaoutpost/colony/engineering)
 "usf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/security,
@@ -26521,6 +26502,11 @@
 	dir = 5
 	},
 /area/lawankaoutpost/colony/cargo)
+"vIJ" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "vIY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -28925,11 +28911,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/colony/operations_storage)
-"xDp" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold,
-/turf/open/floor/podhatch/floor,
-/area/lawankaoutpost/colony/engineering)
 "xDD" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2{
@@ -31894,7 +31875,7 @@ rRZ
 rRZ
 rRZ
 rRZ
-rRZ
+lji
 xqw
 rRZ
 roN
@@ -46021,7 +46002,7 @@ lKO
 oCi
 dnE
 sVp
-lzo
+tRS
 oqq
 xGW
 xGW
@@ -46664,7 +46645,7 @@ nva
 fBL
 hHa
 oDN
-lzo
+tRS
 eoN
 rps
 lCE
@@ -46878,7 +46859,7 @@ tRS
 tRS
 tRS
 tRS
-lzo
+tRS
 tRS
 tRS
 tRS
@@ -47104,7 +47085,7 @@ nva
 fPR
 tRS
 tRS
-lzo
+tRS
 tRS
 tRS
 lIK
@@ -47316,7 +47297,7 @@ xRG
 pIJ
 rkl
 tRS
-lzo
+tRS
 nva
 lCE
 tbA
@@ -47541,11 +47522,11 @@ tRS
 phK
 whJ
 nva
-gxf
+tTz
 faQ
 thw
 thw
-cDA
+tiQ
 fRE
 tRS
 oqq
@@ -47754,14 +47735,14 @@ nva
 skU
 rYj
 vtK
-lzo
+tRS
 hHa
 whJ
 cbn
 thw
-mzy
-mzy
-mzy
+vIJ
+vIJ
+vIJ
 thw
 fRE
 tRS
@@ -48193,12 +48174,12 @@ nva
 nOE
 mOn
 wbv
-xDp
-ncG
-iKJ
+vIJ
+vIJ
+vIJ
 thw
 pWn
-lzo
+tRS
 oqq
 oqq
 oqq
@@ -48616,20 +48597,20 @@ hSp
 nXF
 gfb
 tUI
-lzo
+tRS
 cJk
 cWH
 skU
 nva
 tIu
-lzo
+tRS
 wXM
 whJ
 agY
 thw
-mzy
-mzy
-mzy
+vIJ
+vIJ
+vIJ
 tBt
 aOy
 tRS
@@ -48843,11 +48824,11 @@ tRS
 wXM
 whJ
 nva
-gxf
+tTz
 thw
 thw
 thw
-cDA
+tiQ
 aOy
 tRS
 oqq
@@ -49265,13 +49246,13 @@ tRS
 tRS
 tRS
 tRS
-lzo
+tRS
 tRS
 tRS
 lCE
 qYa
 jLV
-lzo
+tRS
 tRS
 tRS
 nva
@@ -50139,12 +50120,12 @@ rsN
 tQf
 sVp
 tZF
-lzo
+tRS
 knq
 ruy
 lIK
 bkB
-lzo
+tRS
 oqq
 xGW
 xGW
@@ -50569,7 +50550,7 @@ tAI
 cfk
 fkw
 sbB
-usc
+fig
 mBa
 mEt
 tUI

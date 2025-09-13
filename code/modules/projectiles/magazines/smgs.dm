@@ -55,6 +55,12 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_t90"
 
+/obj/item/ammo_magazine/smg/standard_smg/ap
+	name = "\improper SMG-90 submachine gun AP magazine (10x20mm)"
+	desc = "A 10x20mm AP caseless submachine gun magazine."
+	icon_state = "t90_ap"
+	default_ammo = /datum/ammo/bullet/smg/ap
+
 //-------------------------------------------------------
 //SMG-45 SMG ammo
 

@@ -30,7 +30,7 @@
 	deevolves_to = /datum/xeno_caste/drone
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 	can_flags = parent_type::can_flags|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
 
@@ -68,9 +68,14 @@
 
 	mutations = list(
 		/datum/mutation_upgrade/shell/shared_jelly,
+		/datum/mutation_upgrade/shell/hugger_overflow,
+		/datum/mutation_upgrade/shell/recurring_panic,
 		/datum/mutation_upgrade/spur/leapfrog,
+		/datum/mutation_upgrade/spur/claw_delivered,
+		/datum/mutation_upgrade/spur/fake_huggers,
 		/datum/mutation_upgrade/veil/oviposition,
-		/datum/mutation_upgrade/veil/life_for_life
+		/datum/mutation_upgrade/veil/life_for_life,
+		/datum/mutation_upgrade/veil/swarm_trap
 	)
 
 /datum/xeno_caste/carrier/normal

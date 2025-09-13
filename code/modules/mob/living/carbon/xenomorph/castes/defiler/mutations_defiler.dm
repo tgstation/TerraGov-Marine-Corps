@@ -43,7 +43,7 @@
 	var/datum/effect_system/smoke_spread/emitted_gas
 	switch(xenomorph_owner.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
-			emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/light(xenomorph_owner)
+			emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing(xenomorph_owner)
 		if(/datum/reagent/toxin/xeno_hemodile)
 			emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile/light(xenomorph_owner)
 		if(/datum/reagent/toxin/xeno_transvitox)
@@ -125,10 +125,11 @@
 /// Injects a percentage of DEFILER_REAGENT_SLASH_INJECT_AMOUNT into the attacked living being.
 /datum/mutation_upgrade/spur/envenomed/proc/on_attack_living(datum/source, mob/living/attacked_mob, damage, damage_mod, armor_mod)
 	SIGNAL_HANDLER
-	if(!isliving(attacked_mob) || !attacked_mob.can_sting())
+	if(!isliving(attacked_mob) || !attacked_mob.can_sting() || xenomorph_owner.plasma_stored < plasma_per_slash)
 		return
 	var/mob/living/attacked_living = attacked_mob
 	attacked_living.reagents.add_reagent(xenomorph_owner.selected_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT * get_percentage(get_total_structures()))
+	xenomorph_owner.use_plasma(plasma_per_slash)
 	playsound(attacked_living, 'sound/effects/spray3.ogg', 8, TRUE, 2)
 	xenomorph_owner.visible_message(attacked_living, span_danger("[attacked_living] is pricked by [xenomorph_owner]'s spines!"), null, 3)
 

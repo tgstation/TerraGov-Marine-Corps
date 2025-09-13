@@ -369,14 +369,17 @@
 
 /obj/item/clothing/under/marine/veteran/freelancer
 	name = "freelancer fatigues"
-	desc = "A set of loose fitting fatigues, perfect for an informal mercenary. Smells like gunpowder, apple pie, and covered in grease and sake stains."
+	desc = "A set of loose fitting fatigues, perfect for an informal mercenary. Smells like gunpowder, corn syrup, and covered in grease and sake stains."
 	icon_state = "freelancer_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/freelancer)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
-/obj/item/clothing/under/marine/veteran/freelancer/veteran
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/vp)
+/obj/item/clothing/under/marine/veteran/freelancer/medic
+	name = "freelancer corpsman fatigues"
+	desc = "A set of loose fitting fatigues, perfect for an informal mercenary. Has much better state than regular fatigues, and don't smell that bad."
+	icon_state = "freelancer_uniform_medic"
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /*===========================HELGHAST - MERCENARY================================*/
 

@@ -12754,11 +12754,11 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "fDf" = (
-/obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/door_control/mainship/mech{
 	dir = 8;
 	id = "mech_shutters_2"
 	},
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "fDl" = (
@@ -14242,6 +14242,7 @@
 /turf/closed/wall/mainship/outer,
 /area/space)
 "hxN" = (
+/obj/structure/dropship_equipment/electronics/spotlights,
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -17112,7 +17113,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "kNy" = (
@@ -25473,6 +25474,10 @@
 "vgl" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hallway/lower_foreship)
+"vgK" = (
+/obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "vgO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -44339,7 +44344,7 @@ aPg
 aUt
 aPg
 aLf
-uux
+sQd
 xEi
 uux
 aLf
@@ -45888,7 +45893,7 @@ aLf
 kOs
 gXD
 wAF
-htm
+sQd
 aLf
 knr
 xJd
@@ -48193,7 +48198,7 @@ pjA
 fEv
 uwG
 aJy
-rOy
+sQd
 aMp
 xJd
 rOy
@@ -68505,7 +68510,7 @@ rTP
 pWS
 aUL
 pWS
-hxN
+vgK
 oLM
 oLM
 yjO

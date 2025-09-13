@@ -151,11 +151,7 @@
 /// Ends the target's throw.
 /datum/action/ability/activable/xeno/warrior/proc/throw_ended(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
-	/* So the reason why we do not flat out unregister this is because, when an atom makes impact with something, it calls throw_impact(). Calling it this way causes
-	stop_throw() to be called in most cases, because impacts can cause a bounce effect and ending the throw makes it happen. Given the way we have signals setup, unregistering
-	it at that point would cause thrown_into() to never get called, and that is exactly the reason why the line of code below exists. */
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 1)
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT))
 	var/mob/living/living_target = source
 	living_target.Knockdown(0.5 SECONDS)
 	living_target.remove_pass_flags(PASS_XENO, THROW_TRAIT)
@@ -262,7 +258,7 @@
 	UnregisterSignal(lunge_target, COMSIG_QDELETING)
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_POST_THROW))
 	lunge_target = null
-	owner.stop_throw()
+	owner.set_throwing(FALSE)
 	owner.remove_filter("warrior_lunge")
 
 /// Do the grab on the target, and clean all previous vars
@@ -737,7 +733,7 @@
 		return
 	return ..()
 
-/datum/action/ability/activable/xeno/warrior/punch/flurry/can_use_action(silent, override_flags)
+/datum/action/ability/activable/xeno/warrior/punch/flurry/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(cooldown_timer && current_charges > 0)
 		return TRUE
