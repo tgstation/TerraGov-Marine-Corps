@@ -162,7 +162,7 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
-	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc_gpmg/gunner
+	suit_store = /obj/item/weapon/gun/rifle/pmc_gpmg/gunner
 	r_pocket = /obj/item/storage/pouch/magazine/pistol/large
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/pmc

@@ -1793,7 +1793,7 @@
 			/obj/item/weapon/gun/rifle/m416 = -1,
 			/obj/item/weapon/gun/rifle/m416/elite = -1,
 			/obj/item/ammo_magazine/rifle/m416 = -1,
-			/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc_gpmg = -1,
+			/obj/item/weapon/gun/rifle/pmc_gpmg = -1,
 			/obj/item/ammo_magazine/smart_gpmg = -1,
 			/obj/item/weapon/gun/pistol/mk90 = -1,
 			/obj/item/ammo_magazine/pistol/mk90 = -1,

@@ -76,7 +76,7 @@
 	icon_state = "pmc_knife"
 	worn_icon_state = "pmc_knife"
 	desc = "A experemental short blade, utilizing high-frequency techology. A small but dangerous weapon, which can cut through even the heaviest of armors. Many mercenaries keep it close, for desperate situations."
-	penetration = 15
+	penetration = 25
 
 /obj/item/weapon/karambit
 	name = "karambit"

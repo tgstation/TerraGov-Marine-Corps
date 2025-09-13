@@ -340,18 +340,6 @@
 	name = "\improper M7-H Cathaphract pattern PMC officer exo-armor"
 	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. This particular set looks like it belongs to a high-ranking officer, with integrated energy shield system."
 	icon_state = "pmc_heavyarmor_officer"
-	attachments_by_slot = list(
-		ATTACHMENT_SLOT_STORAGE,
-		ATTACHMENT_SLOT_MODULE,
-	)
-	attachments_allowed = list(
-		/obj/item/armor_module/storage/pocket,
-		/obj/item/armor_module/module/eshield/overclocked/pmc,
-		)
-	starting_attachments = list(
-		/obj/item/armor_module/storage/pocket,
-		/obj/item/armor_module/module/eshield/overclocked/pmc,
-		)
 
 /*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
