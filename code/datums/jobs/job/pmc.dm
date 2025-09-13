@@ -11,19 +11,19 @@
 /datum/job/pmc/standard
 	title = "PMC Standard"
 	paygrade = "PMC1"
-	outfit = /datum/outfit/job/pmc/standard
+	outfit = /datum/outfit/job/pmc/standard/val
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/pmc/standard,
-		/datum/outfit/job/pmc/standard/sarge,
-		/datum/outfit/job/pmc/standard/sargetwo,
-		/datum/outfit/job/pmc/standard/sargethree,
-		/datum/outfit/job/pmc/standard/sargefour,
-		/datum/outfit/job/pmc/standard/joker,
-		/datum/outfit/job/pmc/standard/jokertwo,
-		/datum/outfit/job/pmc/standard/stripes,
-		/datum/outfit/job/pmc/standard/stripestwo,
-		/datum/outfit/job/pmc/standard/stripesthree,
+		/datum/outfit/job/pmc/standard/val,
+		/datum/outfit/job/pmc/standard/val/sarge,
+		/datum/outfit/job/pmc/standard/val/sargetwo,
+		/datum/outfit/job/pmc/standard/val/sargethree,
+		/datum/outfit/job/pmc/standard/val/sargefour,
+		/datum/outfit/job/pmc/standard/val/joker,
+		/datum/outfit/job/pmc/standard/val/jokertwo,
+		/datum/outfit/job/pmc/standard/val/stripes,
+		/datum/outfit/job/pmc/standard/val/stripestwo,
+		/datum/outfit/job/pmc/standard/val/stripesthree,
 		/datum/outfit/job/pmc/standard/m416,
 		/datum/outfit/job/pmc/standard/m416/sarge,
 		/datum/outfit/job/pmc/standard/m416/sargetwo,
@@ -71,9 +71,9 @@
 	title = "PMC Leader"
 	paygrade = "PMC4"
 	skills_type = /datum/skills/sl/pmc
-	outfit = /datum/outfit/job/pmc/leader
+	outfit = /datum/outfit/job/pmc/leader/m416
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/pmc/leader,
+		/datum/outfit/job/pmc/leader/m416,
 		/datum/outfit/job/pmc/leader/gunner,
 	)

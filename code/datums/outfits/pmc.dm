@@ -1,6 +1,5 @@
 /*=============================STANDARD==================================*/
 
-// SMG RA-VAL
 /datum/outfit/job/pmc/standard
 	name = "PMC Standard"
 	jobtype = /datum/job/pmc/standard
@@ -14,7 +13,6 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc_elite
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/standard
 	mask = /obj/item/clothing/mask/gas/pmc
-	suit_store = /obj/item/weapon/gun/smg/val/pmc_standard
 	r_pocket = /obj/item/storage/pouch/grenade
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/satchel/pmc
@@ -30,17 +28,9 @@
 		/obj/item/ammo_magazine/pistol/mk90 = 1
 	)
 
-	suit_contents = list(
-		/obj/item/ammo_magazine/smg/val = 2,
-	)
-
 	head_contents = list(
 		/obj/item/reagent_containers/food/snacks/enrg_bar = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
-	)
-
-	belt_contents = list(
-		/obj/item/ammo_magazine/smg/val = 6,
 	)
 
 	webbing_contents = list(
@@ -48,12 +38,23 @@
 		/obj/item/weapon/gun/pistol/mk90/pmc_standard = 1,
 	)
 
+// SMG RA-VAL
+/datum/outfit/job/pmc/standard/val
+	suit_store = /obj/item/weapon/gun/smg/val/pmc_standard
+
+	suit_contents = list(
+		/obj/item/ammo_magazine/smg/val = 2,
+	)
+
+	belt_contents = list(
+		/obj/item/ammo_magazine/smg/val = 6,
+	)
+
 	r_pocket_contents = list(
 		/obj/item/explosive/grenade/pmc = 4,
 		/obj/item/explosive/grenade/smokebomb/drain = 1,
 		/obj/item/explosive/grenade/smokebomb/cloak = 1,
 	)
-
 // AR RA-SH-416
 
 /datum/outfit/job/pmc/standard/m416
@@ -75,37 +76,37 @@
 
 // COSMETIC LOADOUTS
 // SMG RA-VAL
-/datum/outfit/job/pmc/standard/sarge
+/datum/outfit/job/pmc/standard/val/sarge
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge
 
-/datum/outfit/job/pmc/standard/sargetwo
+/datum/outfit/job/pmc/standard/val/sargetwo
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/stripes
 
-/datum/outfit/job/pmc/standard/sargethree
+/datum/outfit/job/pmc/standard/val/sargethree
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/mantis
 
-/datum/outfit/job/pmc/standard/sargefour
+/datum/outfit/job/pmc/standard/val/sargefour
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/twoface
 
-/datum/outfit/job/pmc/standard/joker
+/datum/outfit/job/pmc/standard/val/joker
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/joker
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/twoface
 
-/datum/outfit/job/pmc/standard/jokertwo
+/datum/outfit/job/pmc/standard/val/jokertwo
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/joker
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/mantis
 
-/datum/outfit/job/pmc/standard/stripes
+/datum/outfit/job/pmc/standard/val/stripes
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/stripes
 
-/datum/outfit/job/pmc/standard/stripestwo
+/datum/outfit/job/pmc/standard/val/stripestwo
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/stripes
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/stripes
 
-/datum/outfit/job/pmc/standard/stripesthree
+/datum/outfit/job/pmc/standard/val/stripesthree
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/stripes
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/mantis
 
@@ -243,6 +244,8 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/joker
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/hunter
 
+/*=============================SNIPER==================================*/
+
 /datum/outfit/job/pmc/sniper
 	name = "PMC Sniper"
 	jobtype = /datum/job/pmc/sniper
@@ -297,6 +300,8 @@
 		/obj/item/ammo_magazine/railgun/pmc = 3,
 	)
 
+/*=============================LEADER==================================*/
+
 /datum/outfit/job/pmc/leader
 	name = "PMC Leader"
 	jobtype = /datum/job/pmc/leader
@@ -306,11 +311,8 @@
 	ears = /obj/item/radio/headset/distress/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/leader/holster
 	shoes = /obj/item/clothing/shoes/marine/pmc/elite_full
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc_elite
-	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/leader
 	mask = /obj/item/clothing/mask/gas/pmc/leader
-	suit_store = /obj/item/weapon/gun/rifle/m416/elite/pmc_officer
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	r_pocket = /obj/item/storage/pouch/grenade
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
@@ -339,6 +341,12 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
 	)
 
+//RA-SHA-416M protag mode
+/datum/outfit/job/pmc/leader/m416
+	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
+	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/leader
+	suit_store = /obj/item/weapon/gun/rifle/m416/elite/pmc_officer
+
 	suit_contents = list(
 		/obj/item/ammo_magazine/rifle/m416 = 2,
 	)
@@ -353,8 +361,8 @@
 		/obj/item/explosive/grenade/smokebomb/cloak = 1,
 	)
 
+// SG-25
 /datum/outfit/job/pmc/leader/gunner
-// Loadout of leader focused more into support, equipped with SG-25
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/leader
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/leader
 	suit_store = /obj/item/weapon/gun/rifle/pmc_smartrifle/leader

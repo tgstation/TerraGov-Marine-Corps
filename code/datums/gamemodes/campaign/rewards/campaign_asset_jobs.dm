@@ -106,16 +106,16 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/pmc/standard/campaign,
-		/datum/outfit/job/pmc/standard/sarge/campaign,
-		/datum/outfit/job/pmc/standard/sargetwo/campaign,
-		/datum/outfit/job/pmc/standard/sargethree/campaign,
-		/datum/outfit/job/pmc/standard/sargefour/campaign,
-		/datum/outfit/job/pmc/standard/joker/campaign,
-		/datum/outfit/job/pmc/standard/jokertwo/campaign,
-		/datum/outfit/job/pmc/standard/stripes/campaign,
-		/datum/outfit/job/pmc/standard/stripestwo/campaign,
-		/datum/outfit/job/pmc/standard/stripesthree/campaign,
+		/datum/outfit/job/pmc/standard/val/campaign,
+		/datum/outfit/job/pmc/standard/val/sarge/campaign,
+		/datum/outfit/job/pmc/standard/val/sargetwo/campaign,
+		/datum/outfit/job/pmc/standard/val/sargethree/campaign,
+		/datum/outfit/job/pmc/standard/val/sargefour/campaign,
+		/datum/outfit/job/pmc/standard/val/joker/campaign,
+		/datum/outfit/job/pmc/standard/val/jokertwo/campaign,
+		/datum/outfit/job/pmc/standard/val/stripes/campaign,
+		/datum/outfit/job/pmc/standard/val/stripestwo/campaign,
+		/datum/outfit/job/pmc/standard/val/stripesthree/campaign,
 		/datum/outfit/job/pmc/standard/m416/campaign,
 		/datum/outfit/job/pmc/standard/m416/sarge/campaign,
 		/datum/outfit/job/pmc/standard/m416/sargetwo/campaign,
@@ -156,7 +156,7 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/pmc/leader/campaign,
+		/datum/outfit/job/pmc/leader/m416/campaign,
 		/datum/outfit/job/pmc/leader/gunner/campaign,
 	)
 
