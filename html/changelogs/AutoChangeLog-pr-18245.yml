@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed chat windows not regaining focus if you pressed the hotkey with the chat window already open"
