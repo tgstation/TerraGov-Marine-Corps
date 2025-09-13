@@ -329,7 +329,7 @@
 
 /obj/item/clothing/under/marine/veteran/pmc
 	name = "\improper PMC fatigues"
-	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
+	desc = "A white set of fatigues, designed for private security contractors. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
@@ -340,7 +340,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 /obj/item/clothing/under/marine/veteran/pmc/leader
 	name = "\improper PMC command fatigues"
-	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
+	desc = "A white set of fatigues, designed for private security contractors. The symbol of the Nanotrasen corporation is emblazed on the suit with golden inclusions all over the uniform."
 	icon_state = "officer_jumpsuit"
 
 /obj/item/clothing/under/marine/veteran/pmc/leader/holster
