@@ -353,16 +353,16 @@ GLOBAL_VAR(restart_counter)
 	Round time: 0:0					|	Round time: 4:54
 	*/
 	var/discord_url = CONFIG_GET(string/discordurl)
-	var/webmap_host = CONFIG_GET(string/webmap_host)
+	//var/webmap_host = CONFIG_GET(string/webmap_host)
 	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
 	var/map_name = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
-	var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
+	//var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
 
 	var/new_status = ""
-	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] - Now [MIN_COMPILER_VERSION] compatible! - [shipname]</a></b>"
-	new_status += "<br>Map: <b>[webmap_host ? "<a href='[webmap_host][ground_map_file]'>[map_name]</a>" : map_name]</b>"
-	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
-	new_status += "<br>Round time: <b>[gameTimestamp("hh:mm")]</b>"
+	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] - [shipname]</a></b>"
+	new_status += "<br>Map: [map_name]"
+	new_status += "<br>Mode: [SSticker.mode ? SSticker.mode.name : "Lobby"]"
+	new_status += "<br>Round time: [gameTimestamp("hh:mm")]"
 
 	// Finally set the new status
 	status = new_status
