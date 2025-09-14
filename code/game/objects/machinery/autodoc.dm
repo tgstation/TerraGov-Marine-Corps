@@ -299,22 +299,12 @@
 		span_notice("You fumble around figuring out how to use [src]."))
 	var/fumbling_time = max(0 , SKILL_TASK_TOUGH - (SKILL_TASK_EASY * ejector.skills.getRating(SKILL_SURGERY))) // 8 seconds. Each skill level decreases it by 3 seconds.
 	if(!do_after(ejector, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
+
 		return
 	if(!active_surgery)
 		do_eject()
 		return
-	// Untrained people will fail to terminate the surgery properly.
-	visible_message("\The [src] malfunctions as [ejector] aborts the surgery in progress.")
-	occupant.take_limb_damage(rand(30, 50), rand(30, 50))
-	log_game("[key_name(ejector)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
-	message_admins("[ADMIN_TPMONTY(ejector)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc during surgery causing damage.")
-	do_eject(AUTODOC_NOTICE_IDIOT_EJECT)
 
-/// Ejects the occupant and ends all surgery if applicable.
-/obj/machinery/autodoc/proc/do_eject(notice_code)
-	for(var/atom/movable/movable_thing AS in contents)
-		movable_thing.forceMove(loc)
-	if(connected?.release_notice && occupant) // If auto-release notices are on as they should be, let the doctors know what's up.
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
 			if(AUTODOC_NOTICE_SUCCESS)
@@ -395,7 +385,7 @@
 	future_occupant.forceMove(src)
 	occupant = future_occupant
 	update_icon()
-	med_scan(occupant, null, list(/obj/item/implant/neurostim), TRUE)
+  autodoc_scan(occupant)
 	if(automatic_mode)
 		say("Automatic mode engaged, initialising procedures.")
 		addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
@@ -427,9 +417,17 @@
 	do_eject() // This sets occupant to null and thus the reason why we need to get the occupant beforehand.
 	occupant_to_gib.gib()
 
+/// Populates `patient`'s medical record `autodoc_data` field with applicable surgeries.
+/obj/machinery/autodoc/proc/autodoc_scan(mob/living/carbon/human/patient)
+	var/datum/data/record/final_record = find_medical_record(patient, TRUE)
+	final_record.fields["autodoc_data"] = generate_autodoc_surgery_list(patient)
+	use_power(active_power_usage)
+	visible_message(span_notice("\The [src] pings as it stores the scan report of [patient.real_name]."))
+	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
+  
 /// Verb to move yourself into the autodoc.
 /obj/machinery/autodoc/verb/move_inside()
-	set name = "Enter Autodoc"
+	set name = "Enter Autodoc Pod"
 	set category = "IC.Object"
 	set src in oview(1)
 
@@ -1385,38 +1383,28 @@
 		return
 	var/active = ""
 	if(active_surgery)
-		active += " Surgical procedures are in progress."
+		active += " <b><u>Surgical procedures are in progress.</u></b>"
 	if(!hasHUD(user,"medical"))
 		. += span_notice("It contains: [occupant].[active]")
 		if(timer_id)
 			. += span_notice("Next surgery step in [timeleft(timer_id) / 10] seconds.")
 		return
-	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(!(R.fields["last_scan_time"]))
-			. += span_deptradio("No scan report on record")
-		else
-			. += span_deptradio("<a href='byond://?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[active]</a>")
-		break
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	if(!isnull(medical_record?.fields["historic_scan"]))
+		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [medical_record.fields["historic_scan_time"]]...</a>"
+	else
+		. += "[span_deptradio("No body scan report on record for occupant")]"
 
 /obj/machinery/autodoc/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if (!href_list["scanreport"])
+	if(!href_list["scanreport"])
 		return
 	if(!hasHUD(usr,"medical"))
 		return
 	if(!ishuman(occupant))
 		return
-	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-			popup.set_content(R.fields["last_scan_result"])
-			popup.open(FALSE)
-		break
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+	scan.ui_interact(usr)
