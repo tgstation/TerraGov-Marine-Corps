@@ -37,6 +37,10 @@
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
+/obj/item/paper/Initialize()
+	. = INITIALIZE_HINT_LATELOAD
+	..()
+
 /obj/item/paper/LateInitialize()
 	. = ..()
 	pixel_y = rand(-8, 8)
