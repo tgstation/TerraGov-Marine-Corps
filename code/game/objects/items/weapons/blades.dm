@@ -224,3 +224,19 @@
 	if(current_target)
 		UnregisterSignal(current_target, COMSIG_QDELETING)
 	current_target = object
+
+/obj/item/weapon/tomahawk
+	name ="\improper Tomahawk"
+	icon='icons/obj/items/weapons/throwing.dmi'
+	icon_state = "tomahawk"
+	desc="A small, one-handed axe designed to be thrown at a target from range."
+	atom_flags = CONDUCT
+	sharp = IS_SHARP_ITEM_ACCURATE
+	force = 20
+	w_class = WEIGHT_CLASS_SMALL
+	throwforce = 70
+	throw_speed = 5
+	throw_range = 8
+	hitsound = 'sound/weapons/slash.ogg'
+	attack_verb = list("slashes", "slices", "tears", "rips", "cuts")
+	equip_slot_flags = ITEM_SLOT_POCKET
