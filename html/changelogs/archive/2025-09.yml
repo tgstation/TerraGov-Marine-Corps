@@ -73,3 +73,22 @@
   - admin: Unsetting custom info actually works
   - bugfix: fixed some barricade sprite issues
   - bugfix: fixed comms not working on the 1st mission of campaign
+2025-09-14:
+  Lumipharon:
+  - bugfix: fixed NPC's incorrectly interacting with doors in some cases
+  - bugfix: fixed chat windows not regaining focus if you pressed the hotkey with
+      the chat window already open
+  - qol: NPC's won't try resist off operating tables
+  - bugfix: fixed disk computers in crash sometimes bugging out
+  - bugfix: fixed a pixel offset bug when mounted weapons were deconstructed by someone
+      other than the operator
+  - qol: 'Campaign: A new faction leader is found after a short delay, after the old
+      leader is gibbed or goes DNR'
+  - bugfix: fixed a runtime with acid when snowtiles are replaced
+  Neocloudy:
+  - refactor: Bodyscanners and the feature for medical HUD users viewing old scans
+      now use TGUI.
+  - bugfix: This means viewing old scans is actually functional again. If you can
+      find a use case for it.
+  - bugfix: Fixed parts of the health scan themes which were broken in TGUI v6 and
+      changed certain colors.

@@ -1,6 +1,13 @@
 /datum/keybinding/client/communication
 	category = CATEGORY_COMMUNICATION
 
+/datum/keybinding/client/communication/down(client/user)
+	. = ..()
+	if(.)
+		return
+	winset(user, null, "command=[user.tgui_say_create_open_command(name)]")
+	winset(user, "tgui_say.browser", "focus=true")
+
 /datum/keybinding/client/communication/say
 	hotkey_keys = list("T")
 	name = SAY_CHANNEL

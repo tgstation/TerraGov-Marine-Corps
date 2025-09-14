@@ -185,12 +185,13 @@
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
 
-	// If the gamemode is crash, Add 5 Vendor points to all marines.
 	if(iscrashgamemode(SSticker.mode))
-		for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
-			if(!H.job)
+		for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
+			if(!human.job)
 				continue
-			var/obj/item/card/id/user_id =  H.get_idcard()
+			var/obj/item/card/id/user_id =  human.get_idcard()
+			if(!user_id)
+				continue
 			for(var/i in user_id.marine_points)
 				user_id.marine_points[i] += 2
 
