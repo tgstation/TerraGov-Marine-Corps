@@ -229,12 +229,12 @@
 	name ="\improper Tomahawk"
 	icon='icons/obj/items/weapons/throwing.dmi'
 	icon_state = "tomahawk"
-	desc="A small, one-handed axe designed to be thrown at a target from range."
+	desc="A one-handed axe designed to be thrown at a target from range."
 	atom_flags = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 120
+	throwforce = 105
 	throw_speed = 5
 	throw_range = 8
 	hitsound = 'sound/weapons/slash.ogg'
