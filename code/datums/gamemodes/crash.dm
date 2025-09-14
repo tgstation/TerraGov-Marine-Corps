@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	round_type_flags = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DISALLOW_RAILGUN
+	round_type_flags = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DISALLOW_RAILGUN|MODE_XENO_GRAB_DEAD_ALLOWED|MODE_MUTATIONS_OBTAINABLE|MODE_BIOMASS_POINTS
 	xeno_abilities_flags = ABILITY_CRASH
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -21,7 +21,8 @@
 		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
 	)
 	respawn_time = 15 MINUTES
-	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
+	xenorespawn_time = 3 MINUTES
+	blacklist_ground_maps = list(MAP_COLONY1, MAP_BIG_RED, MAP_DELTA_STATION, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
 	tier_three_penalty = 1
 	tier_three_inclusion = TRUE
 	caste_swap_cooldown = 5 MINUTES
@@ -44,6 +45,7 @@
 	bioscan_interval = 0
 
 	evo_requirements = list(
+		/datum/xeno_caste/dragon = 18,
 		/datum/xeno_caste/king = 14,
 		/datum/xeno_caste/queen = 10,
 		/datum/xeno_caste/hivelord = 5,

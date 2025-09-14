@@ -4,22 +4,37 @@
 	if(!points)
 		return FALSE
 
-	SSpoints.supply_points[faction_selling] += points[1]
-	SSpoints.dropship_points += points[2]
-	return new /datum/export_report(points[1], name, faction_selling)
+	SSpoints.add_supply_points(faction_selling, points[1])
+	SSpoints.add_dropship_points(faction_selling, points[2])
+	return list(new /datum/export_report(points[1], name, faction_selling, points[2]))
 
 /mob/living/carbon/human/supply_export(faction_selling)
 	if(!can_sell_human_body(src, faction_selling))
-		return new /datum/export_report(0, name, faction_selling)
+		return list(new /datum/export_report(0, name, faction_selling, 0))
 	return ..()
 
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	if(faction_selling in hive.allied_factions)
+		return list(new /datum/export_report(0, name, faction_selling, 0))
 	. = ..()
 	if(!.)
 		return FALSE
 
 	var/list/points = get_export_value()
 	GLOB.round_statistics.points_from_xenos += points[1]
+
+/obj/structure/closet/supply_export(faction_selling)
+	. = ..()
+	for(var/atom/movable/AM in contents)
+		. += AM.supply_export(faction_selling)
+		qdel(AM)
+
+/obj/item/resin_jelly/req_jelly/supply_export(faction_selling)
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	if(faction_selling in hive.allied_factions)
+		return list(new /datum/export_report(0, name, faction_selling, 0))
+	. = ..()
 
 /**
  * Getter proc for the point value of this object
@@ -32,30 +47,30 @@
 
 /mob/living/carbon/human/get_export_value()
 	switch(job.job_category)
-		if(JOB_CAT_ENGINEERING, JOB_CAT_MEDICAL, JOB_CAT_REQUISITIONS)
+		if(JOB_CAT_ENGINEERING, JOB_CAT_MEDICAL, JOB_CAT_REQUISITIONS, JOB_CAT_ENGINEERINGSOM, JOB_CAT_MEDICALSOM, JOB_CAT_REQUISITIONSSOM)
 			. = list(200, 20)
-		if(JOB_CAT_MARINE)
+		if(JOB_CAT_MARINE, JOB_CAT_MARINESOM)
 			. = list(300, 30)
 		if(JOB_CAT_SILICON)
 			. = list(800, 80)
-		if(JOB_CAT_COMMAND)
+		if(JOB_CAT_COMMAND, JOB_CAT_COMMANDSOM)
 			. = list(1000, 100)
 	return
 
 /mob/living/carbon/xenomorph/get_export_value()
 	switch(tier)
 		if(XENO_TIER_MINION)
-			. = list(10, 1)
+			. = list(15, 5)
 		if(XENO_TIER_ZERO)
-			. = list(35, 4)
+			. = list(50, 5)
 		if(XENO_TIER_ONE)
-			. = list(75, 8)
+			. = list(75, 10)
 		if(XENO_TIER_TWO)
-			. = list(175, 18)
+			. = list(150, 15)
 		if(XENO_TIER_THREE)
-			. = list(300, 30)
+			. = list(250, 25)
 		if(XENO_TIER_FOUR)
-			. = list(550, 55)
+			. = list(500, 50)
 	return
 
 //I hate it but it's how it was so I'm not touching it further than this
@@ -79,3 +94,6 @@
 			if(GLOB.faction_to_alignement[seller_faction] == ALIGNEMENT_FRIENDLY)
 				return FALSE
 			return TRUE
+
+/obj/item/resin_jelly/reqjelly/get_export_value()
+	return list(100, 25)

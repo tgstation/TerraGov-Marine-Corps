@@ -687,6 +687,7 @@
 /area/corsat/sigma/biodome)
 "nw" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
 "nJ" = (
@@ -1721,6 +1722,7 @@
 /area/corsat/sigma/biodome)
 "GT" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/corsat/sigma/biodome/scrapyard)
 "Hg" = (

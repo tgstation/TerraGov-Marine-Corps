@@ -70,11 +70,14 @@
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
 /// Should xenomorphs be allowed to buy mutations (including its structures)?
 #define MODE_MUTATIONS_OBTAINABLE (1<<17)
+#define MODE_BIOMASS_POINTS (1<<18)
+#define MODE_SURVIVAL (1<<19)
+#define MODE_NO_GHOSTS (1<<20)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
-#define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
+#define MODE_INFESTATION_M_MAJOR "Ninetails Major Victory"
 #define MODE_INFESTATION_X_MINOR "Xenomorph Minor Victory"
-#define MODE_INFESTATION_M_MINOR "Marine Minor Victory"
+#define MODE_INFESTATION_M_MINOR "Ninetails Minor Victory"
 #define MODE_INFESTATION_DRAW_DEATH "DRAW: Mutual Annihilation"
 
 #define MODE_GENERIC_DRAW_NUKE "DRAW: Nuclear Explosion"
@@ -122,13 +125,16 @@
 #define COOLDOWN_COMM_MESSAGE 1 MINUTES
 #define COOLDOWN_COMM_CENTRAL 30 SECONDS
 
-#define SUPPLY_POINT_MARINE_SPAWN 25
+#define SUPPLY_POINT_MARINE_SPAWN 50
 
 #define AFK_TIMER 5 MINUTES
-#define TIME_BEFORE_TAKING_BODY 1 MINUTES
+#define TIME_BEFORE_TAKING_BODY 2 MINUTES
 
-#define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
+#define DEATHTIME_CHECK(M) ((M.key in GLOB.key_to_time_of_role_death)  && ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time))
 #define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
+
+#define XENODEATHTIME_CHECK(M) ((M.key in GLOB.key_to_time_of_xeno_death)  && ((world.time - (GLOB.key_to_time_of_xeno_death[M.key] ? GLOB.key_to_time_of_xeno_death[M.key] : -INFINITY) < SSticker.mode?.xenorespawn_time)))
+#define XENODEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_xeno_death[M.key]) * 0.1] second\s.</span><br><span class ='warning'>You must wait [SSticker.mode?.xenorespawn_time * 0.1] seconds before rejoining the game as a Xenomorph! You can take a SSD minion without resetting your timer."))
 
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
@@ -165,7 +171,8 @@
 #define NUCLEAR_WAR_LARVA_POINTS_NEEDED 10
 #define CRASH_LARVA_POINTS_NEEDED 8
 
-#define FREE_XENO_AT_START 2
+#define FREE_XENO_AT_START 8
+#define FREE_XENO_AT_START_CORRUPT 3
 
 #define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.1
 

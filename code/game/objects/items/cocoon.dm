@@ -6,10 +6,10 @@
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
 	hit_sound = 'sound/effects/alien/resin_break2.ogg'
-	max_integrity = 400
+	max_integrity = 100
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	///Which hive it belongs too
 	var/hivenumber
 	///What is inside the cocoon
@@ -27,6 +27,9 @@
 	if(!_hivenumber)
 		return
 	hivenumber = _hivenumber
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[hive.prefix][name]"
+	color = hive.color
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
@@ -46,6 +49,8 @@
 	SSpoints.add_tactical_psy_points(hivenumber, psych_points_output*0.25)
 	//Gives marine cloneloss for a total of 30.
 	victim.adjustCloneLoss(0.5)
+	if(GLOB.hive_datums[hivenumber].has_any_mutation_structures())
+		SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_COCOON_TICK)
 
 /obj/structure/cocoon/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
@@ -71,6 +76,8 @@
 		var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
 		hive_status.update_tier_limits()
 		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
+		if(GLOB.hive_datums[hivenumber].has_any_mutation_structures())
+			SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_COCOON_COMPLETION)
 		release_victim()
 	update_icon()
 
@@ -105,7 +112,7 @@
 		busy = TRUE
 		var/channel = SSsounds.random_available_channel()
 		playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
-		if(!do_after(user, 8 SECONDS, NONE, src))
+		if(!do_after(user, 8 SECONDS, TRUE, src))
 			busy = FALSE
 			user.stop_sound_channel(channel)
 			return

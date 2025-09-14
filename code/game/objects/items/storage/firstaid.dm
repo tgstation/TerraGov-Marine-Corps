@@ -499,6 +499,15 @@
 	greyscale_colors = "#AC6D32#ffffff"
 	description_overlay = "Hy"
 
+/obj/item/storage/pill_bottle/aphrotoxin
+	name = "Aphrotoxin pill bottle"
+	desc = "An Aphrodisiac produced from xenomorphs. Causes weakness on the legs and intense lust."
+	icon_state = "pill_canister"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/aphrotoxin
+	greyscale_config = /datum/greyscale_config/pillbottlebubble
+	greyscale_colors = "#be0270#ffffff"
+	description_overlay = "Apr"
+
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills capable of minorly healing all main types of damages."
@@ -547,7 +556,7 @@
 	bottle_color = input(user, "Pick a color", "Pick color") as null|color
 	label_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!bottle_color || !label_color || !do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!bottle_color || !label_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
 

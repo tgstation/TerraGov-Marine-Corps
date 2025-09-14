@@ -78,6 +78,8 @@
 				return LoadConfig("_maps/vapor_processing.json", error_if_missing, maptype)
 			if(SHIP_MAP)
 				return LoadConfig("_maps/debugdalus.json", error_if_missing, maptype)
+			if(ANTAG_MAP)
+				return LoadConfig("_maps/antagmap.json", error_if_missing, maptype)
 
 	var/json = file(filename)
 	if(!json)
@@ -216,3 +218,5 @@
 		return config_filename == "data/next_map.json" || fcopy(config_filename, "data/next_map.json")
 	else if(maptype == SHIP_MAP)
 		return config_filename == "data/next_ship.json" || fcopy(config_filename, "data/next_ship.json")
+	else if(maptype == ANTAG_MAP)
+		return config_filename == "data/next_antag.json" || fcopy(config_filename, "data/next_antag.json")

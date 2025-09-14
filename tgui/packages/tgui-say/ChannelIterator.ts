@@ -6,6 +6,7 @@ export type Channel =
   | 'LOOC'
   | 'XOOC'
   | 'MOOC'
+  | 'XMOOC'
   | 'Admin'
   | 'Mentor';
 
@@ -25,6 +26,7 @@ export class ChannelIterator {
     'LOOC',
     'XOOC',
     'MOOC',
+    'XMOOC',
     'Admin',
     'Mentor',
   ];
@@ -34,6 +36,7 @@ export class ChannelIterator {
     'LOOC',
     'XOOC',
     'MOOC',
+    'XMOOC',
     'Admin',
     'Mentor',
   ];
