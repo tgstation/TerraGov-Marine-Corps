@@ -234,7 +234,7 @@
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 70
+	throwforce = 120
 	throw_speed = 5
 	throw_range = 8
 	hitsound = 'sound/weapons/slash.ogg'
