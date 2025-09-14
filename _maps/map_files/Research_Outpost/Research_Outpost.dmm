@@ -2255,6 +2255,14 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science)
+"kM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating,
+/area/outpost/engineering/engine)
 "kN" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/south)
@@ -8612,14 +8620,6 @@
 	dir = 4
 	},
 /area/outpost/engineering)
-"Ox" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/drained,
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "Oy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -10885,6 +10885,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/east)
+"Zb" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/outpost/engineering/engine)
 "Zd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24569,7 +24576,7 @@ Cy
 Cy
 DX
 QK
-wz
+Zb
 MG
 MG
 ih
@@ -24701,7 +24708,7 @@ Cy
 Cy
 DX
 QK
-wz
+Zb
 wz
 wz
 yj
@@ -24833,7 +24840,7 @@ Db
 DX
 DX
 QK
-wz
+Zb
 MG
 MG
 AC
@@ -24964,7 +24971,7 @@ sf
 TB
 wR
 DX
-Ox
+kM
 MG
 MG
 FJ
