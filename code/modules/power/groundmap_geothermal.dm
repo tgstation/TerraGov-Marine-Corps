@@ -35,7 +35,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	owner_marker = new(loc)
 	update_icon()
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, "generator", MINIMAP_BLIPS_LAYER))
-	if(is_ground_level(z))
+	if(is_ground_level(z) && is_corruptible)
 		GLOB.generators_on_ground += 1
 	if(!is_corruptible)
 		corrupted = 0
@@ -51,7 +51,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 
 /obj/machinery/power/geothermal/Destroy() //just in case
-	if(is_ground_level(z))
+	if(is_ground_level(z) && is_corruptible)
 		GLOB.generators_on_ground -= 1
 	. = ..()
 	SSminimaps.remove_marker(src)
@@ -370,6 +370,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"
+	is_corruptible = FALSE
 
 
 #undef GEOTHERMAL_NO_DAMAGE
