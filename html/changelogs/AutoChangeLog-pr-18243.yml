@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed a pixel offset bug when mounted weapons were deconstructed by someone other than the operator"

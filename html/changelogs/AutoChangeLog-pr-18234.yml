@@ -1,6 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - refactor: "Bodyscanners and the feature for medical HUD users viewing old scans now use TGUI."
-  - bugfix: "This means viewing old scans is actually functional again. If you can find a use case for it."
-  - bugfix: "Fixed parts of the health scan themes which were broken in TGUI v6 and changed certain colors."
