@@ -141,6 +141,8 @@
 	dir = 8;
 	on = 1
 	},
+/obj/structure/table/mainship,
+/obj/machinery/faxmachine/som,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -1833,6 +1835,10 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
+"aVm" = (
+/obj/machinery/cryopod,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
 "aVn" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/river2)
@@ -8892,10 +8898,10 @@
 	},
 /area/lv624/ground/jungle9)
 "hzX" = (
-/obj/structure/bed/roller,
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 8
 	},
+/obj/machinery/vending/MarineMed/icc/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/ice_colony/underground/medical/treatment{
 	name = "CLF clinic"
@@ -11217,6 +11223,10 @@
 	pixel_y = 9
 	},
 /obj/structure/cable,
+/obj/item/reagent_containers/food/snacks/soup/bisque{
+	pixel_x = -2;
+	pixel_y = 5
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
@@ -13378,7 +13388,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/flora/pottedplant/thirteen,
+/obj/structure/table/mainship,
+/obj/machinery/computer/voucher/som,
+/obj/item/card/id/captains_spare/som,
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -14856,6 +14868,16 @@
 "noU" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4/garbledradio)
+"npY" = (
+/obj/structure/cable,
+/obj/structure/table/mainship,
+/obj/machinery/computer/voucher/clf,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/deltastation/commons/fitness{
+	name = "CLF training";
+	outside = 0;
+	ceiling = 6
+	})
 "nqm" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -15300,11 +15322,8 @@
 /obj/structure/table/reinforced/prison,
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/dark_blue/line,
-/obj/item/reagent_containers/food/snacks/soup/bisque{
-	pixel_x = -2;
-	pixel_y = 5
-	},
 /obj/structure/cable,
+/obj/machinery/faxmachine/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
@@ -15745,6 +15764,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "oqC" = (
+/obj/machinery/cryopod,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
 	},
@@ -15911,10 +15931,10 @@
 /area/lv624/lazarus/security)
 "ozd" = (
 /obj/effect/spawner/random/decal/blood,
-/obj/structure/bed/roller,
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted{
 	dir = 8
 	},
+/obj/machinery/vending/medical/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/ice_colony/underground/medical/treatment{
 	name = "CLF clinic"
@@ -57312,7 +57332,7 @@ lXD
 mJO
 uzX
 fiu
-mJO
+aVm
 mJO
 qVS
 qlc
@@ -85637,7 +85657,7 @@ plr
 peG
 hdw
 hdw
-mBJ
+npY
 egB
 sDq
 mcN

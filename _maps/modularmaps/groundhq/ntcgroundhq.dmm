@@ -1612,6 +1612,18 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/hallways/ntf/dorm1)
+"bOW" = (
+/obj/item/card/id/captains_spare,
+/obj/structure/table/mainship,
+/obj/machinery/door/window/secure/bridge{
+	dir = 1
+	},
+/obj/structure/window/reinforced/east,
+/obj/structure/window/reinforced/west,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/hallways/aft_hallway{
+	name = "HQ Northwest Hallways"
+	})
 "bPD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12622,6 +12634,13 @@
 	outside = 0;
 	base_lighting_alpha = 0;
 	static_lighting = 1
+	})
+"oBu" = (
+/obj/machinery/computer/voucher,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/hallways/aft_hallway{
+	name = "HQ Northwest Hallways"
 	})
 "oCx" = (
 /obj/structure/table/reinforced,
@@ -24366,7 +24385,7 @@ hKj
 gfR
 adO
 sih
-adO
+bOW
 fUf
 cOy
 qIm
@@ -25225,7 +25244,7 @@ hKj
 hKj
 hKj
 gfR
-adO
+oBu
 hGy
 adO
 vFN
