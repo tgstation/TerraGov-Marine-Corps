@@ -299,12 +299,22 @@
 		span_notice("You fumble around figuring out how to use [src]."))
 	var/fumbling_time = max(0 , SKILL_TASK_TOUGH - (SKILL_TASK_EASY * ejector.skills.getRating(SKILL_SURGERY))) // 8 seconds. Each skill level decreases it by 3 seconds.
 	if(!do_after(ejector, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
-
 		return
 	if(!active_surgery)
 		do_eject()
 		return
+	// Untrained people will fail to terminate the surgery properly.
+	visible_message("\The [src] malfunctions as [ejector] aborts the surgery in progress.")
+	occupant.take_limb_damage(rand(30, 50), rand(30, 50))
+	log_game("[key_name(ejector)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
+	message_admins("[ADMIN_TPMONTY(ejector)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc during surgery causing damage.")
+	do_eject(AUTODOC_NOTICE_IDIOT_EJECT)
 
+/// Ejects the occupant and ends all surgery if applicable.
+/obj/machinery/autodoc/proc/do_eject(notice_code)
+	for(var/atom/movable/movable_thing AS in contents)
+		movable_thing.forceMove(loc)
+	if(connected?.release_notice && occupant) // If auto-release notices are on as they should be, let the doctors know what's up.
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
 			if(AUTODOC_NOTICE_SUCCESS)
@@ -385,7 +395,7 @@
 	future_occupant.forceMove(src)
 	occupant = future_occupant
 	update_icon()
-  autodoc_scan(occupant)
+	autodoc_scan(occupant)
 	if(automatic_mode)
 		say("Automatic mode engaged, initialising procedures.")
 		addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
@@ -424,7 +434,7 @@
 	use_power(active_power_usage)
 	visible_message(span_notice("\The [src] pings as it stores the scan report of [patient.real_name]."))
 	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
-  
+
 /// Verb to move yourself into the autodoc.
 /obj/machinery/autodoc/verb/move_inside()
 	set name = "Enter Autodoc Pod"
