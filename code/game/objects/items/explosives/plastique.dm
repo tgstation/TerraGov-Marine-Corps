@@ -43,6 +43,12 @@
 	timer = newtime
 	to_chat(user, "Timer set for [timer] seconds.")
 
+/obj/item/explosive/plastique/ex_act(severity)
+	if(QDELETED(src))
+		return
+	if(severity == EXPLODE_DEVASTATE)
+		take_damage(INFINITY, BRUTE, BOMB, 0)
+
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
 
@@ -59,6 +65,12 @@
 
 	plant_plastique(target, user)
 
+/obj/item/explosive/plastique/attack_hand(mob/living/user)
+	if(armed)
+		remove_plastique(user)
+	return ..()
+
+///Plants the c4 on something
 /obj/item/explosive/plastique/proc/plant_plastique(atom/target, mob/living/user)
 	RegisterSignal(target, COMSIG_ATOM_TRY_PLASTIQUE, PROC_REF(on_target_attempt_plastique))
 	//reg sig for target deletion?
@@ -109,11 +121,6 @@
 	detonation_pending = addtimer(CALLBACK(src, PROC_REF(warning_sound), target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
 	update_icon()
 
-/obj/item/explosive/plastique/attack_hand(mob/living/user)
-	if(armed)
-		remove_plastique(user)
-	return ..()
-
 ///Removes from a target
 /obj/item/explosive/plastique/proc/remove_plastique(mob/living/user)
 	if(!do_after(user, 2 SECONDS, NONE, plant_target, BUSY_ICON_HOSTILE))
@@ -146,16 +153,18 @@
 	last_user = null
 	update_icon()
 
-/obj/item/explosive/plastique/ex_act(severity)
-	if(QDELETED(src))
-		return
-	if(severity == EXPLODE_DEVASTATE)
-		take_damage(INFINITY, BRUTE, BOMB, 0)
-
 ///Lets other c4 know that something is already on a target
 /obj/item/explosive/plastique/proc/on_target_attempt_plastique(source)
 	SIGNAL_HANDLER
 	return TRUE
+
+///Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer
+/obj/item/explosive/plastique/proc/warning_sound()
+	if(armed)
+		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
+		detonation_pending = addtimer(CALLBACK(src, PROC_REF(detonate)), 27, TIMER_STOPPABLE)
+		alarm_sounded = TRUE
+		update_icon()
 
 ///Handles the actual explosion effects
 /obj/item/explosive/plastique/proc/detonate()
@@ -172,74 +181,9 @@
 	plant_target.plastique_act(last_user)
 	qdel(src)
 
-///Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer
-/obj/item/explosive/plastique/proc/warning_sound()
-	if(armed)
-		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
-		detonation_pending = addtimer(CALLBACK(src, PROC_REF(detonate)), 27, TIMER_STOPPABLE)
-		alarm_sounded = TRUE
-		update_icon()
-
 ///Handles the effect of c4 on the atom - overridden as needed
 /atom/proc/plastique_act(mob/living/plastique_user)
 	ex_act(EXPLODE_DEVASTATE)
-
-/obj/item/explosive/plastique/genghis_charge
-	name = "EX-62 Genghis incendiary charge"
-	desc = "A specialized device for incineration of bulk organic matter, patented Thermal Memory ensuring that all ignition proceeds safely away from the user. Will not attach to plants due to environmental concerns."
-	icon_state = "genghis-charge"
-
-/obj/item/explosive/plastique/genghis_charge/afterattack(atom/target, mob/user, flag)
-	if(target.allow_pass_flags & PASS_FIRE)
-		return ..()
-	if(istype(target, /obj/structure/mineral_door/resin))
-		return ..()
-	balloon_alert(user, "Insufficient organic matter!")
-
-/obj/item/explosive/plastique/genghis_charge/detonate()
-	var/turf/flame_target = get_turf(plant_target)
-	if(QDELETED(plant_target))
-		playsound(plant_target, 'sound/weapons/ring.ogg', 100, FALSE, 25)
-		flame_target.ignite(10, 5)
-		qdel(src)
-		return
-	new /obj/fire/flamer/autospread(flame_target, 9, 62)
-	playsound(plant_target, SFX_EXPLOSION_SMALL, 100, FALSE, 25)
-	qdel(src)
-
-/obj/fire/flamer/autospread
-	///Which directions this patch is capable of spreading to, as bitflags
-	var/possible_directions = NONE
-
-/obj/fire/flamer/autospread/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, inherited_directions = NONE)
-	. = ..()
-
-	for(var/direction in GLOB.cardinals)
-		if(inherited_directions && !(inherited_directions & direction))
-			continue
-		var/turf/turf_to_check = get_step(src, direction)
-		if(turf_contains_valid_burnable(turf_to_check))
-			possible_directions |= direction
-			addtimer(CALLBACK(src, PROC_REF(spread_flames), direction, turf_to_check), rand(2, 7))
-
-///Returns TRUE if the supplied turf has something we can ignite on, either a resin wall or door
-/obj/fire/flamer/autospread/proc/turf_contains_valid_burnable(turf/turf_to_check)
-	if(turf_to_check.allow_pass_flags & PASS_FIRE)
-		return TRUE
-	if(locate(/obj/structure/mineral_door/resin) in turf_to_check)
-		return TRUE
-	return FALSE
-
-///Ignites an adjacent turf or adds our possible directions to an existing flame
-/obj/fire/flamer/autospread/proc/spread_flames(direction, turf/turf_to_burn)
-	var/spread_directions = possible_directions & ~REVERSE_DIR(direction) //Make sure we can't go backwards
-	var/old_flame = locate(/obj/fire/flamer) in turf_to_burn
-	if(istype(old_flame, /obj/fire/flamer/autospread))
-		var/obj/fire/flamer/autospread/old_spreader = old_flame
-		spread_directions |= old_spreader.possible_directions
-	if(old_flame)
-		qdel(old_flame)
-	new /obj/fire/flamer/autospread(turf_to_burn, 9, 62, flame_color, 0, 0, spread_directions)
 
 ///Allows the c4 timer to be tweaked on certain atoms as required
 /atom/proc/plastique_time_mod(time)
