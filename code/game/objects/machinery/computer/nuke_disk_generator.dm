@@ -196,6 +196,8 @@
 		return
 
 	say("Program run has concluded! Standing by...")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_PROGRESS, src)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, src)
 
 	// Requisitions points bonus per cycle.
 	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
