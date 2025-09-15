@@ -507,11 +507,15 @@
 	*/
 	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 
-	var/excess_volume = max(0,volume-20)
-	if(excess_volume && (L.incapacitated(TRUE) || HAS_TRAIT(L, TRAIT_FLOORED))) //includes paralyzed, nested, resting
-		custom_metabolism = initial(custom_metabolism) * (1 + (excess_volume/20)) //normal speed below 20 units, double speed at 40 units, triple at 60, etc
+	if(L.incapacitated(TRUE) || HAS_TRAIT(L, TRAIT_FLOORED)) //includes paralyzed, nested, resting
+		custom_metabolism = initial(custom_metabolism) * (1 + (volume/20)) //double speed at 20 units, triple at 40 units, quadruple at 60, etc
 	else
 		custom_metabolism = initial(custom_metabolism)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/dylovene) > 1)
+		custom_metabolism += 5
+	if(L.reagents.get_reagent_amount(/datum/reagent/hypervene) > 1)
+		custom_metabolism += 5
 
 	if(current_cycle < 21) //Additional effects at higher cycles
 		return ..()
