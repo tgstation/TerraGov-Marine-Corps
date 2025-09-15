@@ -136,7 +136,7 @@
 		// traits you want to customize which level is cross-linked
 		// we only set ground if not mainship
 		for (var/level in traits)
-			if (!(ZTRAIT_GROUND in level) && !(ZTRAIT_MARINE_MAIN_SHIP in level))
+			if (!(ZTRAIT_GROUND in level) && !(ZTRAIT_MARINE_MAIN_SHIP in level) && !(ZTRAIT_ANTAG_MAIN_SHIP in level))
 				level[ZTRAIT_GROUND] = TRUE
 	// "traits": null or absent -> default
 	else if (!isnull(traits))
