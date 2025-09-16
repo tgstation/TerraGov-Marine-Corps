@@ -118,7 +118,8 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
-	kill_hugger()
+	if(stat != DEAD)
+		GLOB.alive_hugger_list -= src
 	remove_danger_overlay() //Remove the danger overlay
 	if(source)
 		clear_hugger_source()
