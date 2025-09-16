@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - balance: "Mutations: Smashing Fling now scales at 150/175/200% damage from 100/125/150% damage."
-  - balance: "Mutations: Psychic Choke is now a veil mutation."
-  - balance: "Mutations: Utility Fling has renamed to Body Fling, is now a spur mutation, and no longer gives cooldown reduction. It now deals 150/175/200% damage and paralyzes humans for 2 seconds if they are hit by flung xenomorphs."
