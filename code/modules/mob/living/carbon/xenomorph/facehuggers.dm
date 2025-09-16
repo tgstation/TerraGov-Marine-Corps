@@ -86,6 +86,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		set_fire_immunity(new_fire_immunity)
 
 	GLOB.alive_hugger_list += src
+	notify_ai_hazard()
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
