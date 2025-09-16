@@ -467,8 +467,10 @@
 	var/accumulated_overflow = 0
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
-	var/power
-	switch(current_cycle)
+	var/power = 0
+	var/crit_threshold = L.get_crit_threshold()
+	var/healthfactor = (L.health - crit_threshold)/(L.getMaxHealth() - crit_threshold)
+	switch(current_cycle * healthfactor)
 		if(1 to 20)
 			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
@@ -481,10 +483,11 @@
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
 
+	power *= healthfactor
 	var/stamina_loss_limit = L.maxHealth * 2
 	var/applied_damage = clamp(power, 0, (stamina_loss_limit - L.getStaminaLoss()))
 	var/damage_overflow = power - applied_damage
-	if(damage_overflow && COOLDOWN_FINISHED(src, neuro_stun_cd))
+	if((damage_overflow > 0) && COOLDOWN_FINISHED(src, neuro_stun_cd))
 		accumulated_overflow += damage_overflow
 		if(accumulated_overflow > stamina_loss_limit)
 			accumulated_overflow = 0
