@@ -85,8 +85,9 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	if(new_fire_immunity)
 		set_fire_immunity(new_fire_immunity)
 
-	GLOB.alive_hugger_list += src
-	notify_ai_hazard()
+	if((stat != DEAD) && (!sterile || combat_hugger))
+		GLOB.alive_hugger_list += src
+		notify_ai_hazard()
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
