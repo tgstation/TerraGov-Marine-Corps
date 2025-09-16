@@ -2135,7 +2135,6 @@
 #include "code\modules\mob\new_player\sprite_accessories.dm"
 #include "code\modules\orbits\spaceship.dm"
 #include "code\modules\organs\limb_objects.dm"
-#include "code\modules\organs\limb_types.dm"
 #include "code\modules\organs\limbs.dm"
 #include "code\modules\organs\organ_alien.dm"
 #include "code\modules\organs\organ_internal.dm"

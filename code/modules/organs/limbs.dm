@@ -777,7 +777,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/owner_pre_death()
 	return
 
-/datum/limb/hand/l_hand/drop_limb(amputation, delete_limb = FALSE, silent = FALSE)
+/datum/limb/hand/l_hand/droplimb(amputation, delete_limb = FALSE, silent = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -1153,3 +1153,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	if(!(owner.species.species_flags & DETACHABLE_HEAD) && vital)
 		owner.set_undefibbable()
+
+/datum/limb/head/owner_pre_death()
+	if((owner.species.species_flags & DETACHABLE_HEAD) || !vital)
+		return
+	owner.remove_organ_slot(ORGAN_SLOT_BRAIN)
+	owner.remove_organ_slot(ORGAN_SLOT_EYES)

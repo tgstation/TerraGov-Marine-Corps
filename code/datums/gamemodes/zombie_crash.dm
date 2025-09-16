@@ -61,10 +61,10 @@
 	var/num_zombies = living_player_list[2]
 	if(num_zombies * 0.1 <= num_humans) // if there's too much zombies, don't spawn even more
 		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-			spawner.max_amount = 0
+			spawner.maxamount = 0
 		return
 	for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-		spawner.max_amount = clamp(num_humans, 5, 20)
+		spawner.maxamount = clamp(num_humans, 5, 20)
 
 /datum/game_mode/infestation/crash/zombie/get_adjusted_jobworth_list(list/jobworth_list)
 	return jobworth_list
@@ -114,4 +114,8 @@
 
 /datum/game_mode/infestation/crash/zombie/announce()
 	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
-	priority_announce("Высадка запланирована через 10 минут. Приготовьтесь к посадке. Предварительное сканирование показывает наличие агрессивных форм биологической жизни. Ваша следующая миссия - заполучить коды доступа и активировать ядерную боеголовку. Альтернативная миссия - уничтожить все места появления агрессивных существ.", title = "Доброе утро, товарищи!", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/crash_start.ogg', color_override = "red")
+	priority_announce("Высадка запланирована через 10 минут. Приготовьтесь к посадке. Предварительное сканирование показывает наличие агрессивных форм биологической жизни. Ваша следующая миссия - заполучить коды доступа и активировать ядерную боеголовку. Альтернативная миссия - уничтожить все места появления агрессивных существ.",
+	title = "Good morning , marines!",
+	type = ANNOUNCEMENT_PRIORITY,
+	sound = 'sound/AI/crash_start.ogg',
+	color_override = "red")

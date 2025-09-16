@@ -10,7 +10,7 @@
 	///Max amount of
 	var/maxamount = 5
 	///Whether we want to use the post_spawn proc on the mobs created by the Spawner
-	var/use_post_spawn = FALSE
+	var/use_postspawn = FALSE
 	///List of signals on which we remove mob from spawned_mobs
 	var/mob_decrement_signals = list(COMSIG_QDELETING, COMSIG_MOB_DEATH)
 
@@ -23,7 +23,7 @@
 		stack_trace("spawn_delay too low, deleting AI spawner node")
 		return INITIALIZE_HINT_QDEL
 	. = ..()
-	SSspawning.registerspawner(src, spawndelay, spawntypes, maxamount, spawnamount, use_post_spawn ? CALLBACK(src, PROC_REF(post_spawn)) : null, mob_decrement_signals)
+	SSspawning.registerspawner(src, spawndelay, spawntypes, maxamount, spawnamount, use_postspawn ? CALLBACK(src, PROC_REF(post_spawn)) : null, mob_decrement_signals)
 
 ///This proc runs on the created mobs if use_post_spawn is enabled, use this to equip humans and such
 /obj/effect/ai_node/spawner/proc/post_spawn(list/squad)
