@@ -330,6 +330,8 @@
 /obj/item/clothing/mask/facehugger/get_ai_hazard_radius(mob/living/victim)
 	if(stat == DEAD)
 		return null
+	if(!isturf(loc))
+		return null
 	if(!victim.can_be_facehugged())
 		return null
 	return leap_range
