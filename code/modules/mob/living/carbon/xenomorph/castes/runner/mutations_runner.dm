@@ -199,7 +199,7 @@
 		return COMPONENT_PROJECTILE_DODGE
 	return FALSE
 
-/// Checks if they can dodge a thrown item. If they can, they do so.
+/// Checks if they can dodge a thrown object. If they can, they do so.
 /datum/mutation_upgrade/shell/ingrained_evasion/proc/dodge_thrown_item(datum/source, atom/movable/thrown_atom)
 	SIGNAL_HANDLER
 	if(!isobj(thrown_atom) || !can_dodge())

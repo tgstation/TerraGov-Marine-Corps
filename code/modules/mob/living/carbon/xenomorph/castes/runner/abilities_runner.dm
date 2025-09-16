@@ -317,7 +317,7 @@
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
 	hud_set_evasion(evasion_duration)
 
-/// Determines whether or not a thrown projectile is dodged while the Evasion ability is active
+/// Determines whether or not a thrown object is dodged while the Evasion ability is active.
 /datum/action/ability/xeno_action/evasion/proc/evasion_throw_dodge(datum/source, atom/movable/thrown_atom)
 	SIGNAL_HANDLER
 	if(!isobj(thrown_atom))
