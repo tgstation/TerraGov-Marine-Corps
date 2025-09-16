@@ -60,6 +60,9 @@
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM, speed = 5)
 	. = TRUE
+	if(SEND_SIGNAL(src, COMSIG_LIVING_PRE_THROW_IMPACT, AM) & COMPONENT_PRE_THROW_IMPACT_DODGED)
+		return FALSE
+
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
 		if(thrown_mob.mob_size >= mob_size)

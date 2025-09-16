@@ -318,17 +318,19 @@
 	hud_set_evasion(evasion_duration)
 
 /// Determines whether or not a thrown projectile is dodged while the Evasion ability is active
-/datum/action/ability/xeno_action/evasion/proc/evasion_throw_dodge(datum/source, atom/movable/proj)
+/datum/action/ability/xeno_action/evasion/proc/evasion_throw_dodge(datum/source, atom/movable/thrown_atom)
 	SIGNAL_HANDLER
+	if(!isobj(thrown_atom))
+		return NONE
 	if(!evade_active) //If evasion is not active we don't dodge
 		return NONE
 	if((xeno_owner.last_move_time < (world.time - RUNNER_EVASION_RUN_DELAY))) //Gotta keep moving to benefit from evasion!
 		return NONE
-	if(isitem(proj))
-		var/obj/item/I = proj
-		evasion_stacks += I.throwforce //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes equal to the thrown force
-	evasion_dodge_fx(proj)
-	return COMPONENT_PRE_THROW_IMPACT_HIT
+	if(isitem(thrown_atom))
+		var/obj/item/thrown_item = thrown_atom
+		evasion_stacks += thrown_item.throwforce //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes equal to the thrown force
+	evasion_dodge_fx(thrown_atom)
+	return COMPONENT_PRE_THROW_IMPACT_DODGED
 
 /// This is where the dodgy magic happens
 /datum/action/ability/xeno_action/evasion/proc/evasion_dodge(datum/source, atom/movable/projectile/proj, cardinal_move, uncrossing)

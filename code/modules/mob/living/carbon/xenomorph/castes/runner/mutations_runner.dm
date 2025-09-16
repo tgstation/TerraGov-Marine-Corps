@@ -200,13 +200,13 @@
 	return FALSE
 
 /// Checks if they can dodge a thrown item. If they can, they do so.
-/datum/mutation_upgrade/shell/ingrained_evasion/proc/dodge_thrown_item(datum/source, atom/movable/proj)
+/datum/mutation_upgrade/shell/ingrained_evasion/proc/dodge_thrown_item(datum/source, atom/movable/thrown_atom)
 	SIGNAL_HANDLER
-	if(!can_dodge())
+	if(!isobj(thrown_atom) || !can_dodge())
 		return FALSE
 	if(prob(get_chance(get_total_structures())))
-		dodge_fx(proj)
-		return COMPONENT_PRE_THROW_IMPACT_HIT
+		dodge_fx(thrown_atom)
+		return COMPONENT_PRE_THROW_IMPACT_DODGED
 	return FALSE
 
 /// Handles dodge effects and visuals.
