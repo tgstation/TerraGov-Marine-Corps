@@ -227,7 +227,7 @@
 		COMSIG_LIVING_IGNITED), PROC_REF(evasion_debuff_check))
 	RegisterSignal(owner, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(evasion_dodge))
 	RegisterSignal(owner, COMSIG_ATOM_BULLET_ACT, PROC_REF(evasion_flamer_hit))
-	RegisterSignal(owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge))
+	RegisterSignal(owner, COMSIG_PRE_MOVABLE_IMPACT, PROC_REF(evasion_throw_dodge))
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
 	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 0.3 SECONDS)
@@ -301,7 +301,7 @@
 		COMSIG_LIVING_STATUS_STAGGER,
 		COMSIG_LIVING_IGNITED,
 		COMSIG_XENO_PROJECTILE_HIT,
-		COMSIG_LIVING_PRE_THROW_IMPACT,
+		COMSIG_PRE_MOVABLE_IMPACT,
 		COMSIG_ATOM_BULLET_ACT
 		))
 	evade_active = FALSE

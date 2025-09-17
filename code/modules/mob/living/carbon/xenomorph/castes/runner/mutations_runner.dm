@@ -149,13 +149,13 @@
 	if(ability)
 		ability.remove_action(xenomorph_owner)
 	RegisterSignal(xenomorph_owner, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(dodge_projectile))
-	RegisterSignal(xenomorph_owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(dodge_thrown_item))
+	RegisterSignal(xenomorph_owner, COMSIG_PRE_MOVABLE_IMPACT, PROC_REF(dodge_thrown_item))
 	return ..()
 
 /datum/mutation_upgrade/shell/ingrained_evasion/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/evasion/ability = new()
 	ability.give_action(xenomorph_owner)
-	UnregisterSignal(xenomorph_owner, list(COMSIG_XENO_PROJECTILE_HIT, COMSIG_LIVING_PRE_THROW_IMPACT))
+	UnregisterSignal(xenomorph_owner, list(COMSIG_XENO_PROJECTILE_HIT, COMSIG_PRE_MOVABLE_IMPACT))
 	return ..()
 
 /datum/mutation_upgrade/shell/ingrained_evasion/on_xenomorph_upgrade()
