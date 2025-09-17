@@ -68,7 +68,7 @@
 		if(!human_user.wear_id?.iff_signal || human_user.wear_id?.iff_signal != sentry_iff_signal)
 			balloon_alert_to_viewers("Unauthorized user, self destruct engaged!")
 			explosion(loc, light_impact_range = 3, explosion_cause=human_user)
-			Destroy()
+			qdel(src)
 			return
 
 	if(!user.dextrous)
