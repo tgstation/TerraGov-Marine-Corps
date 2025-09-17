@@ -250,7 +250,7 @@
 /mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
-		if((S.smoke_traits && SMOKE_CAMO) && !(S.smoke_traits && SMOKE_XENO))
+		if((S.smoke_traits & SMOKE_CAMO) && !(S.smoke_traits & SMOKE_XENO))
 			smokecloak_off()
 		return
 	if(status_flags & GODMODE)
