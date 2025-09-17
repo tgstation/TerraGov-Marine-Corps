@@ -25,14 +25,14 @@
 
 /obj/structure/xeno/trap/Initialize(mapload, _hivenumber, _hugger_limit)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_PRE_SHUTTLE_CRUSH, PROC_REF(pre_shuttle_crush))
+	RegisterSignal(loc, COMSIG_TURF_PRE_SHUTTLE_CRUSH, PROC_REF(pre_shuttle_crush))
 	AddElement(/datum/element/connect_loc, listen_connections)
 	if(_hugger_limit)
 		hugger_limit = _hugger_limit
 
 /obj/structure/xeno/trap/Destroy()
 	. = ..()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_PRE_SHUTTLE_CRUSH)
+	UnregisterSignal(loc, COMSIG_TURF_PRE_SHUTTLE_CRUSH)
 
 /obj/structure/xeno/trap/ex_act(severity)
 	switch(severity)
@@ -75,10 +75,8 @@
 	update_icon()
 
 /// Empties out the trap so that nothing is activated when it is shuttle crushed very soon.
-/obj/structure/xeno/trap/proc/pre_shuttle_crush(datum/source, turf/turf_getting_crushed)
+/obj/structure/xeno/trap/proc/pre_shuttle_crush(datum/source)
 	SIGNAL_HANDLER
-	if(get_turf(loc) != turf_getting_crushed)
-		return
 	for(var/obj/item/clothing/mask/facehugger/hugger AS in huggers)
 		qdel(hugger)
 	huggers.Cut()
