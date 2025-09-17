@@ -368,7 +368,7 @@
 /// Sent before a thrown /atom impacts an /atom.  From [/atom/movable/proc/throw_impact]: (/atom/movable)
 #define COMSIG_PRE_MOVABLE_IMPACT "movable_pre_movable_impact"
 	/// Causes the thrown /atom to fail to impact the /mob/living, thus continuing the throw.
-	#define COMPONENT_PRE_THROW_IMPACT_DODGED (1<<0)
+	#define COMPONENT_PRE_MOVABLE_IMPACT_DODGED (1<<0)
 #define COMSIG_MOVABLE_IMPACT "movable_impact"					//from base of atom/movable/throw_impact(): (/atom/hit_atom)
 ///from /atom/movable/proc/buckle_mob(): (mob/living/M, force, check_loc, buckle_mob_flags)
 #define COMSIG_MOVABLE_PREBUCKLE "prebuckle" // this is the last chance to interrupt and block a buckle before it finishes

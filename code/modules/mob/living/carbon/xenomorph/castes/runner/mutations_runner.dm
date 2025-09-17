@@ -206,7 +206,7 @@
 		return FALSE
 	if(prob(get_chance(get_total_structures())))
 		dodge_fx(thrown_atom)
-		return COMPONENT_PRE_THROW_IMPACT_DODGED
+		return COMPONENT_PRE_MOVABLE_IMPACT_DODGED
 	return FALSE
 
 /// Handles dodge effects and visuals.

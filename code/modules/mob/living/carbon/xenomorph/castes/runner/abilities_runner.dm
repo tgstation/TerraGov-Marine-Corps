@@ -330,7 +330,7 @@
 		var/obj/item/thrown_item = thrown_atom
 		evasion_stacks += thrown_item.throwforce //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes equal to the thrown force
 	evasion_dodge_fx(thrown_atom)
-	return COMPONENT_PRE_THROW_IMPACT_DODGED
+	return COMPONENT_PRE_MOVABLE_IMPACT_DODGED
 
 /// This is where the dodgy magic happens
 /datum/action/ability/xeno_action/evasion/proc/evasion_dodge(datum/source, atom/movable/projectile/proj, cardinal_move, uncrossing)
