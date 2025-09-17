@@ -546,12 +546,12 @@
 	if(H.species.hud?.equip_slots)
 		mob_equip = H.species.hud.equip_slots
 
-	if(!H.has_limb_for_slot(slot))
-		return FALSE
-
 	if(bitslot)
 		var/old_slot = slot
 		slot = slotbit2slotdefine(old_slot)
+
+	if(!H.has_limb_for_slot(slot))
+		return FALSE
 
 	if(H.species && !(slot in mob_equip))
 		return FALSE
