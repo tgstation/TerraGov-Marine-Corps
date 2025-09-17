@@ -813,10 +813,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
-"ei" = (
-/obj/machinery/power/geothermal,
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "ek" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark/yellow2,
@@ -25244,7 +25240,7 @@ MU
 MG
 CU
 MG
-ei
+oh
 xx
 Ij
 MG
