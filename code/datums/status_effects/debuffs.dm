@@ -636,8 +636,10 @@
 	debuff_owner.take_overall_damage(PYROGEN_DAMAGE_PER_STACK * stacks, BURN, FIRE, updating_health = TRUE)
 	if(stacks > 4)
 		visual_fire.icon_state = "melting_high_stacks"
-	else
+	else if (stacks > 0)
 		visual_fire.icon_state = "melting_low_stacks"
+	else
+		return
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
 
 	if(QDELETED(debuff_creator) || debuff_creator.stat == DEAD)
