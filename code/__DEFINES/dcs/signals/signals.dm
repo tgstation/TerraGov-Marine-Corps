@@ -990,3 +990,6 @@
 /// From [/datum/controller/subsystem/security_level/proc/set_level]
 /// `/datum/security_level/next_level`, `/datum/security_level/previous_level`
 #define COMSIG_SECURITY_LEVEL_CHANGED "security_level_changed"
+
+/// From [/datum/health_scan/proc/ui_data]: `mob/living/carbon/human/patient`, `list/data`
+#define COMSIG_HEALTH_SCAN_DATA "health_scan_data"
