@@ -9103,7 +9103,7 @@
 /area/outpost/hallway/south_west)
 "QK" = (
 /obj/structure/cable,
-/obj/machinery/power/smes,
+/obj/machinery/power/smes/buildable,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "QN" = (
@@ -24972,7 +24972,7 @@ TB
 wR
 DX
 kM
-MG
+wz
 MG
 FJ
 MG

@@ -11045,6 +11045,7 @@
 /area/slumbridge/inside/medical/southern)
 "iky" = (
 /obj/machinery/power/smes/buildable/empty/dist,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/slumbridge/inside/engi/central)
 "ikN" = (

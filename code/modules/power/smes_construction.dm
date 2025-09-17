@@ -12,6 +12,10 @@
 	var/safeties_enabled = TRUE	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
 	var/failing = FALSE			// If 1 critical failure has occured and SMES explosion is imminent.
 	resistance_flags = UNACIDABLE|CRUSHER_IMMUNE
+	input_level = 150000
+	input_level_max = 250000
+	output_level = 250000
+	output_level_max = 250000
 
 /obj/machinery/power/smes/buildable/empty
 	charge = 0

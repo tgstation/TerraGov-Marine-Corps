@@ -5176,6 +5176,7 @@
 	},
 /obj/structure/closet/wardrobe/engineering_yellow,
 /obj/item/clothing/shoes/magboots,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -13132,6 +13133,15 @@
 	dir = 4
 	},
 /area/metnal/caves/southwest/garbledradio)
+"iWa" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/metnal/inside/substation)
 "iWd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -19571,6 +19581,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
+"nhs" = (
+/obj/structure/cable,
+/turf/open/floor/tile/brown/full,
+/area/metnal/inside/substation)
 "nhu" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -30655,7 +30669,6 @@
 /obj/effect/turf_decal/caution{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "unV" = (
@@ -42050,7 +42063,7 @@ cxI
 qDi
 hNj
 oFj
-cRl
+iWa
 dwl
 dwl
 dwl
@@ -42253,7 +42266,7 @@ sML
 nSQ
 sML
 oMa
-xfY
+xzK
 unU
 oMa
 duU
@@ -42453,10 +42466,10 @@ jMx
 rkg
 nSo
 uWw
-nSo
+nhs
 eai
-nSo
-nSo
+nhs
+nhs
 eai
 mPI
 jMx

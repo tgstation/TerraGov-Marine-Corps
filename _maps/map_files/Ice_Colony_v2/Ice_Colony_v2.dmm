@@ -720,7 +720,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "agN" = (
-/obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/ice_colony/surface/engineering/generator)
 "agO" = (
@@ -1062,7 +1061,7 @@
 /obj/machinery/power/smes/buildable/empty/backup,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
-	dir = 10
+	dir = 8
 	},
 /area/ice_colony/surface/engineering)
 "ajw" = (
@@ -1070,9 +1069,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/tile/dark/yellow2/corner{
-	dir = 8
-	},
+/turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "ajx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -1161,15 +1158,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
-"ajX" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 50
-	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 10
-	},
-/area/ice_colony/surface/engineering)
 "ajY" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/phoron{
@@ -4629,6 +4617,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -19374,6 +19363,12 @@
 "ePo" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"ePP" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/ice_colony/underground/requesition/sec_storage)
 "eRo" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor,
@@ -21490,6 +21485,9 @@
 "hNm" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/underground/caves/ice_w)
+"hNz" = (
+/turf/closed/wall/r_wall,
+/area/ice_colony/exterior/surface/clearing/north)
 "hOn" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -25551,6 +25549,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/field_gear)
+"noQ" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/ice_colony/underground/requesition/sec_storage)
 "nph" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -26387,6 +26391,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -27046,6 +27051,16 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
+"ppl" = (
+/obj/structure/cable,
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 50
+	},
+/turf/open/floor/tile/dark/yellow2{
+	dir = 10
+	},
+/area/ice_colony/surface/engineering)
 "ppt" = (
 /obj/effect/spawner/random/misc/structure/closet/welding,
 /turf/open/floor/tile/dark/yellow2{
@@ -38760,7 +38775,7 @@ mpQ
 hTA
 hFR
 lET
-lET
+ePP
 dme
 dme
 dme
@@ -39608,7 +39623,7 @@ mpQ
 bUm
 mRp
 mRp
-mRp
+noQ
 gOL
 gOL
 gOL
@@ -64086,7 +64101,7 @@ aiz
 aiz
 aiz
 aeI
-jRj
+hNz
 wkf
 nsF
 nsF
@@ -64297,7 +64312,7 @@ agf
 agi
 aiV
 ajv
-aeI
+ppl
 aeI
 wkf
 wkf
@@ -64509,7 +64524,7 @@ qdg
 aiA
 jIb
 ajw
-ajX
+ahW
 aeI
 anw
 nsF
@@ -65352,7 +65367,7 @@ afS
 afi
 meE
 lNk
-aeM
+aeP
 aeP
 ahp
 jDU

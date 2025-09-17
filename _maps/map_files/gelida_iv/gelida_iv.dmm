@@ -2579,6 +2579,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
+"bMb" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/gelida/powergen)
 "bMh" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -4691,6 +4699,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
+"djv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/gelida/powergen)
 "djy" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/paperbin{
@@ -7720,6 +7735,11 @@
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/garden_bridge)
+"fgm" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable/empty/dist,
+/turf/open/floor/mainship/black/full,
+/area/gelida/powergen)
 "fgn" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -10933,6 +10953,13 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/hallway)
+"huL" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/gelida/powergen)
 "hvo" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkbrown/full,
@@ -13432,6 +13459,7 @@
 	},
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "jcI" = (
@@ -15362,6 +15390,13 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/south_east_street)
+"ksq" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/powergen)
 "ksC" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -15729,6 +15764,15 @@
 	dir = 5
 	},
 /area/gelida/indoors/a_block/hallway)
+"kHs" = (
+/obj/machinery/power/smes/buildable/empty/dist{
+	output_level = 250000;
+	output_level_max = 250000;
+	input_level_max = 250000;
+	input_level = 150000
+	},
+/turf/open/floor/mainship/black/full,
+/area/gelida/powergen)
 "kHy" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -16875,6 +16919,13 @@
 "ltL" = (
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/c_block/bridge)
+"ltV" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/mainship/black/full,
+/area/gelida/powergen)
 "luE" = (
 /obj/structure/filingcabinet/chestdrawer{
 	pixel_x = 8;
@@ -17720,6 +17771,9 @@
 "lXy" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/ai_node,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/gelida/powergen)
 "lXR" = (
@@ -18844,6 +18898,11 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
+"mKP" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/gelida/powergen)
 "mKS" = (
 /obj/structure/window/framed/colony,
 /obj/structure/platform/nondense{
@@ -19424,7 +19483,6 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
-/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "ngu" = (
@@ -20003,9 +20061,9 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/bridges)
 "nBG" = (
-/obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "nBP" = (
@@ -20567,6 +20625,14 @@
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_street)
+"nTM" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/gelida/powergen)
 "nTN" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/paperbin{
@@ -22165,6 +22231,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/powergen)
 "oXh" = (
@@ -22390,7 +22457,6 @@
 /area/gelida/caves/central_caves/garbledradio)
 "pdD" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/gelida/powergen)
 "pdJ" = (
@@ -30648,6 +30714,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable/empty/dist,
 /turf/open/floor/plating,
 /area/gelida/powergen)
 "uJf" = (
@@ -51409,7 +51477,7 @@ vMo
 oIs
 oTT
 etT
-hNx
+ksq
 cqM
 eqE
 cqM
@@ -52053,7 +52121,7 @@ uGF
 qzH
 uGF
 uGF
-cqM
+kHs
 elo
 cqM
 gAr
@@ -53836,19 +53904,19 @@ eQn
 eQn
 iqm
 cqM
-iJR
-eqT
-vQe
-eqT
-vQe
-gVM
-gVM
+siX
+ogl
+djv
+ogl
+djv
 lID
-gVM
+lID
+lID
+lID
 oXa
-eqT
-vQe
-eqT
+ogl
+nTM
+ogl
 oTT
 fPM
 iqm
@@ -54279,16 +54347,16 @@ eQn
 eQn
 lBr
 iqm
-cqM
-fPM
-fPM
-cqM
-rCQ
-lBr
-fPM
-cqM
+ltV
+bMb
+huL
 kjv
-peR
+rCQ
+mKP
+fPM
+cqM
+cqM
+ivx
 hXS
 hXS
 hXS
@@ -54501,12 +54569,12 @@ eQn
 fPM
 gZd
 iqm
-cqM
-dwS
+fgm
+fgm
 uIz
-fPM
-cqM
-eqE
+oBU
+kjv
+oBU
 rCQ
 whv
 fPM
@@ -54728,7 +54796,7 @@ iqm
 iqm
 iqm
 hNx
-hNx
+vRt
 iqm
 iqm
 iqm
@@ -54950,7 +55018,7 @@ fPM
 vih
 cqM
 lcg
-etT
+hNw
 cqM
 mgH
 lBr
@@ -55172,7 +55240,7 @@ elo
 lBr
 fPM
 cqM
-elo
+jkr
 rCQ
 cqM
 elo

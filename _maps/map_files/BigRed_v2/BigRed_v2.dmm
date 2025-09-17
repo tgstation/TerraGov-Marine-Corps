@@ -8499,6 +8499,7 @@
 /area/bigredv2/outside/marshal_office)
 "ebM" = (
 /obj/machinery/power/smes/buildable/empty/dist,
+/obj/structure/cable,
 /turf/open/shuttle/escapepod/plain,
 /area/bigredv2/outside/engineering)
 "ech" = (
@@ -12355,6 +12356,7 @@
 "mzf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/smes/buildable/empty/dist,
+/obj/structure/cable,
 /turf/open/shuttle/escapepod/plain,
 /area/bigredv2/outside/engineering)
 "mAi" = (

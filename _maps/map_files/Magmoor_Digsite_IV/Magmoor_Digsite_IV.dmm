@@ -2548,6 +2548,13 @@
 	},
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research)
+"bKi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/power)
 "bKq" = (
 /obj/machinery/air_alarm,
 /turf/open/floor/mainship/blue{
@@ -4249,6 +4256,7 @@
 /area/magmoor/civilian/jani)
 "cVC" = (
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -22097,6 +22105,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
+"pvO" = (
+/obj/structure/cable,
+/turf/open/floor/plating/warning{
+	dir = 5
+	},
+/area/magmoor/engi/power)
 "pvQ" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/security/lobby)
@@ -27702,6 +27716,13 @@
 /obj/structure/rock/basalt/alt2,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/east)
+"tyv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/power)
 "tyz" = (
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
@@ -32235,6 +32256,12 @@
 	dir = 1
 	},
 /area/magmoor/civilian/jani)
+"wHB" = (
+/obj/structure/cable,
+/turf/open/floor/plating/warning{
+	dir = 9
+	},
+/area/magmoor/engi/power)
 "wHI" = (
 /turf/open/floor/mainship/black/corner{
 	dir = 4
@@ -55158,7 +55185,7 @@ xmI
 fcs
 ajM
 fwF
-jYO
+tyv
 cVC
 qzH
 ivX
@@ -55392,7 +55419,7 @@ lNo
 fDR
 sEl
 jYO
-aWS
+pvO
 ldU
 fwA
 wwg
@@ -55858,7 +55885,7 @@ fCG
 cqX
 mZY
 uRD
-lNt
+wHB
 hmK
 lMq
 wwg
@@ -56090,7 +56117,7 @@ xmI
 jDH
 eVT
 oPF
-uRD
+bKi
 cVC
 qzH
 ivX
