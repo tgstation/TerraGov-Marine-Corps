@@ -76,6 +76,8 @@
 	for(var/obj/docking_port/stationary/crashmode/potential_crash_site in SSshuttle.stationary)
 		if(!shuttle.check_dock(potential_crash_site, silent = TRUE))
 			continue
+		if(!SSmapping.level_trait(potential_crash_site.z, ZTRAIT_GROUND))
+			continue
 		valid_docks += potential_crash_site
 
 	if(!length(valid_docks))
