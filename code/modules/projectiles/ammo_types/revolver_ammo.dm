@@ -59,12 +59,18 @@
 	hud_state = "revolver_heavy"
 	damage = 50
 	penetration = 5
-	accuracy = -10
+	accuracy = -8
 
 /datum/ammo/bullet/revolver/heavy/incen
 	name = "incendiary heavy revolver bullet"
 	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_BALLISTIC
+	damage_type = BURN
+	penetration = 15
 
+/datum/ammo/bullet/revolver/heavy/ap
+	name = "armor-piercing heavy revolver bullet"
+	sundering = 5
+	penetration = 15
 
 /datum/ammo/bullet/revolver/t76
 	name = "magnum bullet"
@@ -74,7 +80,10 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/revolver/t76/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	staggerstun(target_mob, proj, paralyze = 2 SECONDS, knockback = 1)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, knockback = 1)
+    else
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, knockback = 1)
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
@@ -85,7 +94,10 @@
 	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+    else
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
@@ -104,7 +116,10 @@
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/three
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	staggerstun(target_mob, proj, slowdown = 0.5)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, paralyze = 0, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+    else
+        staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	reflect(target_turf, proj, 10)

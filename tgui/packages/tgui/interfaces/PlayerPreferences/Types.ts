@@ -30,6 +30,20 @@ type BackgroundInformationData = {
   gen_record: string;
   sec_record: string;
   exploit_record: string;
+  xeno_desc: string;
+  profile_pic: string;
+  nsfwprofile_pic: string;
+  xenoprofile_pic: string;
+};
+
+type FlavorCustomizationData = {
+  slot: number;
+  xeno_edible_jelly_name: string;
+  r_jelly: number;
+  g_jelly: number;
+  b_jelly: number;
+  xeno_edible_jelly_desc: string;
+  xeno_edible_jelly_flavors: string;
 };
 
 type GameSettingData = {

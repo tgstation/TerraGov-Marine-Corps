@@ -382,6 +382,7 @@
 	name = "bedroll"
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "anL" = (
@@ -2126,6 +2127,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "bva" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 4
 	},
@@ -2577,6 +2579,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
+"bMb" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/gelida/powergen)
 "bMh" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -3655,6 +3665,7 @@
 	name = "bedroll"
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/admin)
 "cBr" = (
@@ -4366,6 +4377,7 @@
 /area/gelida/indoors/a_block/dorm_north)
 "cYy" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 6
 	},
@@ -4687,6 +4699,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
+"djv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/gelida/powergen)
 "djy" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/paperbin{
@@ -5040,6 +5059,7 @@
 "dxx" = (
 /obj/structure/bed/chair/comfy,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "dxy" = (
@@ -5933,6 +5953,7 @@
 /area/gelida/indoors/c_block/mining)
 "ebg" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/admin)
 "ebr" = (
@@ -7714,6 +7735,11 @@
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/garden_bridge)
+"fgm" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable/empty/dist,
+/turf/open/floor/mainship/black/full,
+/area/gelida/powergen)
 "fgn" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -8272,6 +8298,7 @@
 /area/gelida/outdoors/colony_streets/north_street)
 "fGk" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "fGo" = (
@@ -10227,7 +10254,7 @@
 "gUs" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "\improper Corporate Liason"
+	name = "\improper Operations Officer"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -10581,7 +10608,7 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "hju" = (
@@ -10926,6 +10953,13 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/hallway)
+"huL" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/gelida/powergen)
 "hvo" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkbrown/full,
@@ -12826,6 +12860,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/prison,
@@ -12938,6 +12973,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "iLM" = (
@@ -13423,6 +13459,7 @@
 	},
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "jcI" = (
@@ -15234,6 +15271,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "kom" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
@@ -15352,6 +15390,13 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/south_east_street)
+"ksq" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/powergen)
 "ksC" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -15719,6 +15764,15 @@
 	dir = 5
 	},
 /area/gelida/indoors/a_block/hallway)
+"kHs" = (
+/obj/machinery/power/smes/buildable/empty/dist{
+	output_level = 250000;
+	output_level_max = 250000;
+	input_level_max = 250000;
+	input_level = 150000
+	},
+/turf/open/floor/mainship/black/full,
+/area/gelida/powergen)
 "kHy" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -16316,6 +16370,7 @@
 "lcm" = (
 /obj/item/reagent_containers/food/drinks/flask/marine,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -16864,6 +16919,13 @@
 "ltL" = (
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/c_block/bridge)
+"ltV" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/mainship/black/full,
+/area/gelida/powergen)
 "luE" = (
 /obj/structure/filingcabinet/chestdrawer{
 	pixel_x = 8;
@@ -16875,6 +16937,7 @@
 	},
 /obj/item/shard,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -16915,6 +16978,7 @@
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "lwd" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "lwk" = (
@@ -17548,6 +17612,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "lSo" = (
@@ -17706,6 +17771,9 @@
 "lXy" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/ai_node,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/gelida/powergen)
 "lXR" = (
@@ -18830,6 +18898,11 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
+"mKP" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/gelida/powergen)
 "mKS" = (
 /obj/structure/window/framed/colony,
 /obj/structure/platform/nondense{
@@ -19410,7 +19483,6 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
-/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "ngu" = (
@@ -19989,9 +20061,9 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/bridges)
 "nBG" = (
-/obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "nBP" = (
@@ -20391,6 +20463,7 @@
 "nNU" = (
 /obj/item/shard,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
@@ -20401,7 +20474,7 @@
 /area/gelida/indoors/b_block/hydro)
 "nOF" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Corporate Liason"
+	name = "\improper Operations Officer"
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
@@ -20552,6 +20625,14 @@
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_street)
+"nTM" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/gelida/powergen)
 "nTN" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/paperbin{
@@ -20707,6 +20788,7 @@
 /area/gelida/indoors/a_block/fitness)
 "nZi" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -20885,6 +20967,7 @@
 	name = "bedroll"
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -21726,6 +21809,7 @@
 /area/gelida/indoors/a_block/fitness)
 "oIO" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
@@ -22001,6 +22085,7 @@
 /area/gelida/indoors/c_block/mining)
 "oSL" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 9
 	},
@@ -22146,6 +22231,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/powergen)
 "oXh" = (
@@ -22299,6 +22385,7 @@
 	name = "bedroll"
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 4
 	},
@@ -22370,7 +22457,6 @@
 /area/gelida/caves/central_caves/garbledradio)
 "pdD" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/gelida/powergen)
 "pdJ" = (
@@ -24573,6 +24659,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "qBz" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -25854,9 +25941,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "roD" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell{
-	dir = 1
-	},
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/tile/dark2{
 	dir = 4
 	},
@@ -26794,6 +26879,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -26876,7 +26962,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "saH" = (
 /obj/structure/showcase{
-	desc = "The display model for a NanoTrasen generation one synthetic. It almost feels like the eyes on this one follow you.";
+	desc = "The display model for a Ninetails generation one synthetic. It almost feels like the eyes on this one follow you.";
 	name = "Display synthetic"
 	},
 /obj/structure/window/reinforced,
@@ -30628,6 +30714,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable/empty/dist,
 /turf/open/floor/plating,
 /area/gelida/powergen)
 "uJf" = (
@@ -30960,6 +31048,7 @@
 /area/gelida/indoors/b_block/bar)
 "uVl" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue,
 /area/gelida/indoors/a_block/admin)
 "uVp" = (
@@ -31674,7 +31763,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "vuv" = (
 /obj/structure/table/mainship,
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "vuB" = (
@@ -33370,6 +33459,7 @@
 "wHJ" = (
 /obj/structure/bed/roller,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -51387,7 +51477,7 @@ vMo
 oIs
 oTT
 etT
-hNx
+ksq
 cqM
 eqE
 cqM
@@ -52031,7 +52121,7 @@ uGF
 qzH
 uGF
 uGF
-cqM
+kHs
 elo
 cqM
 gAr
@@ -53814,19 +53904,19 @@ eQn
 eQn
 iqm
 cqM
-iJR
-eqT
-vQe
-eqT
-vQe
-gVM
-gVM
+siX
+ogl
+djv
+ogl
+djv
 lID
-gVM
+lID
+lID
+lID
 oXa
-eqT
-vQe
-eqT
+ogl
+nTM
+ogl
 oTT
 fPM
 iqm
@@ -54257,16 +54347,16 @@ eQn
 eQn
 lBr
 iqm
-cqM
-fPM
-fPM
-cqM
-rCQ
-lBr
-fPM
-cqM
+ltV
+bMb
+huL
 kjv
-peR
+rCQ
+mKP
+fPM
+cqM
+cqM
+ivx
 hXS
 hXS
 hXS
@@ -54479,12 +54569,12 @@ eQn
 fPM
 gZd
 iqm
-cqM
-dwS
+fgm
+fgm
 uIz
-fPM
-cqM
-eqE
+oBU
+kjv
+oBU
 rCQ
 whv
 fPM
@@ -54706,7 +54796,7 @@ iqm
 iqm
 iqm
 hNx
-hNx
+vRt
 iqm
 iqm
 iqm
@@ -54928,7 +55018,7 @@ fPM
 vih
 cqM
 lcg
-etT
+hNw
 cqM
 mgH
 lBr
@@ -55150,7 +55240,7 @@ elo
 lBr
 fPM
 cqM
-elo
+jkr
 rCQ
 cqM
 elo

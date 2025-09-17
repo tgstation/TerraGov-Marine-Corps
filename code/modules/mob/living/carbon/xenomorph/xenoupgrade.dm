@@ -256,6 +256,13 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
+/mob/living/carbon/xenomorph/hunter/assassin
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/hunter/assassin/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_TWO_THRESHOLD
+
 //----HUNTER END----//
 //================//
 //HUNTER ERT START
@@ -307,6 +314,7 @@
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //----DRAGON END----//
+
 
 //============//
 //---CRUSHER START---//
@@ -425,6 +433,15 @@
 
 //----WARLOCK END----//
 //============//
+//----BANELING START----//
+/mob/living/carbon/xenomorph/baneling
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/baneling/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+
+//----BANELING END----//
+//============//
 //----PUPPETEER START----//
 /mob/living/carbon/xenomorph/puppeteer
 	upgrade = XENO_UPGRADE_NORMAL
@@ -441,6 +458,12 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/behemoth/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+
+/mob/living/carbon/xenomorph/behemoth/sieger
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/behemoth/sieger/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 
 //----BEHEMOTH END----//

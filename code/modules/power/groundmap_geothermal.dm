@@ -27,22 +27,36 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	var/is_corruptible = TRUE
 	///whether they should generate corruption if corrupted
 	var/corruption_on = FALSE
-
+	var/obj/effect/miner_owner_marker/owner_marker
 
 /obj/machinery/power/geothermal/Initialize(mapload)
 	. = ..()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ), PROC_REF(activate_corruption))
+	owner_marker = new(loc)
 	update_icon()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator", MINIMAP_BLIPS_LAYER))
-	if(is_ground_level(z))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, "generator", MINIMAP_BLIPS_LAYER))
+	if(is_ground_level(z) && is_corruptible)
 		GLOB.generators_on_ground += 1
+	if(!is_corruptible)
+		corrupted = 0
 	if(corrupted)
 		corrupt(corrupted)
 
+/obj/machinery/power/geothermal/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	if(loc)
+		owner_marker?.forceMove(loc)
+	else
+		owner_marker?.moveToNullspace()
+
+
 /obj/machinery/power/geothermal/Destroy() //just in case
-	if(is_ground_level(z))
+	if(is_ground_level(z) && is_corruptible)
 		GLOB.generators_on_ground -= 1
-	return ..()
+	. = ..()
+	SSminimaps.remove_marker(src)
+	SSminimaps.remove_marker(owner_marker)
+	QDEL_NULL(owner_marker)
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -86,8 +100,11 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/update_overlays()
 	. = ..()
+	SSminimaps.remove_marker(owner_marker)
 	if(corrupted)
 		. += image(icon, src, "overlay_corrupted", layer)
+	else
+		SSminimaps.add_marker(owner_marker, MINIMAP_FLAG_XENO, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, "generator_on", MINIMAP_BLIPS_LAYER+0.1))
 
 /obj/machinery/power/geothermal/power_change()
 	return
@@ -174,7 +191,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
-	if(corrupted) //you have no reason to interact with it if its already corrupted
+	if(corrupted == xeno_attacker.hivenumber) //you have no reason to interact with it if its already corrupted
 		return
 
 	if(CHECK_BITFIELD(xeno_attacker.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
@@ -183,6 +200,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			return
 		corrupt(xeno_attacker.hivenumber)
 		to_chat(xeno_attacker, span_notice("You have corrupted [src]"))
+		log_combat(xeno_attacker, src, "corrupted", addition = "for hive [xeno_attacker.hivenumber]")
 		record_generator_sabotages(xeno_attacker)
 		return
 
@@ -254,9 +272,16 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		user.visible_message(span_notice("[user] carefully starts burning [src]'s resin off."),
 		span_notice("You start carefully burning the resin off."))
 		user.balloon_alert(user, "You start carefully burning the resin off.")
+		var/datum/hive_status/hive = GLOB.hive_datums[corrupted]
+		if(istype(hive))
+			hive.xeno_message("Our [name] is being attacked by [user] at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE, loc, 'sound/voice/alien/help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
 
 		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
+
+		log_combat(user, src, "decorrupted", addition = "from hive [corrupted]")
+		if(istype(hive))
+			hive.xeno_message("Our [name] has been stolen by [user] at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE, loc, 'sound/voice/alien/help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
 
 		corrupted = 0
 		stop_processing()
@@ -345,6 +370,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"
+	is_corruptible = FALSE
 
 
 #undef GEOTHERMAL_NO_DAMAGE

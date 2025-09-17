@@ -209,6 +209,10 @@
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
 	. = PLASMACUTTER_CUT_DELAY
+	if(isxeno(user))
+		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
+		span_notice("You fumble around figuring out how to use [src]."))
+		return . *= 4.5
 	var/skill = user.skills.getRating(SKILL_ENGINEER)
 	if(skill < SKILL_ENGINEER_ENGI) //We don't have proper skills; time to fumble and bumble.
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
@@ -241,6 +245,9 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack(mob/living/M, mob/living/user)
+	if(isxeno(user))
+		to_chat(user, span_warning("We stare at \the [src] cluelessly."))
+		return FALSE
 	if(!powered)
 		fizzle_message(user)
 	else
@@ -277,7 +284,7 @@
 		if(!start_cut(user, target.name, target, 0, span_notice("You start melting the [target.name] with [src].")))
 			return
 		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, T, BUSY_ICON_BUILD))
+		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
 			return
 		if(!powered)
 			fizzle_message(user)
