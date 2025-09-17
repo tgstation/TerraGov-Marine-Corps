@@ -20,6 +20,7 @@ All ShuttleMove procs go here
 	if(!(. & (MOVE_TURF|MOVE_CONTENTS)))
 		return
 
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PRE_SHUTTLE_CRUSH, src)
 //	var/shuttle_dir = shuttle.dir
 	for(var/atom/thing AS in contents)
 		SEND_SIGNAL(thing, COMSIG_MOVABLE_SHUTTLE_CRUSH, shuttle)

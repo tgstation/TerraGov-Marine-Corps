@@ -25,6 +25,7 @@
 	. = ..()
 	creator = _creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))
+	RegisterSignal(SSdcs, COMSIG_GLOB_PRE_SHUTTLE_CRUSH, PROC_REF(pre_shuttle_crush))
 	update_icon()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -33,6 +34,7 @@
 
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
+	UnregisterSignal(SSdcs, COMSIG_GLOB_PRE_SHUTTLE_CRUSH)
 	return ..()
 
 ///Signal handler for creator destruction to clear reference
@@ -40,11 +42,12 @@
 	SIGNAL_HANDLER
 	creator = null
 
-///Ensures that no acid gas will be released when the well is crushed by a shuttle
-/obj/structure/xeno/acidwell/proc/shuttle_crush()
+///Ensures that no acid gas will be released when the well is later crushed by a shuttle.
+/obj/structure/xeno/acidwell/proc/pre_shuttle_crush(datum/source, turf/turf_getting_crushed)
 	SIGNAL_HANDLER
-	qdel(src)
-
+	if(get_turf(loc) != turf_getting_crushed)
+		return
+	charges = 0
 
 /obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
