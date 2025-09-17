@@ -31,7 +31,7 @@
 	var/key_color
 	///The flavor message that shows up in the UI upon segment completion
 	var/message = "error"
-
+	///UI style used by this computer
 	var/ui_style = "NukeDiskGenerator"
 
 /obj/machinery/computer/code_generator/Initialize(mapload)
@@ -110,11 +110,8 @@
 /obj/machinery/computer/code_generator/ui_state(mob/user)
 	return GLOB.human_adjacent_state
 
-/obj/machinery/computer/code_generator/proc/complete_segment()
-	return
-
 ///What the computer does when completed
-/obj/machinery/computer/code_generator/proc/start_segment(mob/user) //generic
+/obj/machinery/computer/code_generator/proc/start_segment(mob/user)
 	busy = TRUE
 
 	user.visible_message(span_notice("[user] begins typing away at the [src]'s keyboard..."),
@@ -129,8 +126,12 @@
 	update_minimap_icon()
 	return TRUE
 
-///What the computer does when completed
-/obj/machinery/computer/code_generator/proc/start_final(mob/user) //not generic
+///What happens when a segment finishes running
+/obj/machinery/computer/code_generator/proc/complete_segment()
+	return
+
+///What the computer does when run after completion
+/obj/machinery/computer/code_generator/proc/start_final(mob/user)
 	return
 
 ///Change minimap icon if its on or off
