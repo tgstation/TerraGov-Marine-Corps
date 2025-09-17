@@ -165,12 +165,12 @@ ADMIN_VERB(custom_info, R_FUN, "Change Custom Info", "Set a custom info to show 
 	if(isnull(new_info) || GLOB.custom_info == new_info)
 		return
 
+	GLOB.custom_info = new_info
+
 	if(!new_info)
 		log_admin("[key_name(user)] has cleared the custom info.")
 		message_admins("[ADMIN_TPMONTY(user.mob)] has cleared the custom info.")
 		return
-
-	GLOB.custom_info = new_info
 
 	to_chat(world, assemble_alert(
 		title = "Custom Information",
