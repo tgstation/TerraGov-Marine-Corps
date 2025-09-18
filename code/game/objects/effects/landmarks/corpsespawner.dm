@@ -93,6 +93,7 @@
 		/mob/living/carbon/human/species/zombie/ai/strong/stay = 4,
 	))
 	var/mob/living/carbon/human/victim = new spawntype(loc)
+	SSspawning.totalspawned++
 	victim.real_name = name
 	victim.med_hud_set_status()
 	equip_items_to_mob(victim)

@@ -14,8 +14,6 @@ SUBSYSTEM_DEF(spawning)
 	var/list/datum/spawnerdata/spawnerdata = list()
 	///Assoc list [mob] = removalcb
 	var/list/datum/callback/death_callbacks_by_mob = list()
-	///total number of spawned mobs
-	var/total_spawned = 0
 
 /datum/controller/subsystem/spawning/Recover()
 	spawnerdata = SSspawning.spawnerdata
@@ -25,20 +23,18 @@ SUBSYSTEM_DEF(spawning)
 /datum/controller/subsystem/spawning/proc/reset_ai()
 	for(var/obj/effect/ai_node/spawner/spawner AS in spawnerdata)
 		unregisterspawner(spawner)
-		registerspawner(spawner, spawner.spawndelay, spawner.spawntypes, spawner.maxamount, spawner.spawnamount, spawner.use_postspawn ? CALLBACK(spawner, TYPE_PROC_REF(/obj/effect/ai_node/spawner, post_spawn)) : null)
+		registerspawner(spawner, spawner.spawndelay, spawner.spawntypes, spawner.maxamount, spawner.spawnamount, spawner.use_postspawn ? CALLBACK(spawner, TYPE_PROC_REF(/obj/effect/ai_node/spawner, postspawn)) : null)
 
 /**
  * Registers an atom with the subsystem
  * Arguments:
  * * spawner: atom to be registered
- * * spawndelay: time in byond ticks between respawns dont make this lower than SS wait or perish
+ * * delaytime: time in byond ticks between respawns dont make this lower than SS wait or perish
  * * spawntypes: can be both a list as well as a specific type for the spawner to spawn
- * * maxamount: the maximum amount of mobs this spawner can spawn
- * * spawnamount: the amount of mobs which we spawn for one respawn tick
- * * post_spawn: Callback to be invoked on the spawned squad, use for equipping and such
+ * * postspawn: Callback to be invoked on the spawned squad, use for equipping and such
  */
-/datum/controller/subsystem/spawning/proc/registerspawner(atom/spawner, spawndelay = 30 SECONDS, spawntypes, maxamount = 10, spawnamount = 1, datum/callback/post_spawn, list/mob_decrement_signals)
-	spawnerdata[spawner] = new /datum/spawnerdata(spawndelay/wait, spawntypes, maxamount, spawnamount, post_spawn, mob_decrement_signals)
+/datum/controller/subsystem/spawning/proc/registerspawner(atom/spawner, delaytime = 30 SECONDS, spawntypes, maxamount = 10, spawnamount = 1, datum/callback/postspawn)
+	spawnerdata[spawner] = new /datum/spawnerdata(delaytime/wait, spawntypes, maxamount, spawnamount, postspawn)
 	RegisterSignal(spawner, COMSIG_QDELETING, PROC_REF(unregisterspawner))
 
 /**
@@ -52,11 +48,13 @@ SUBSYSTEM_DEF(spawning)
 	spawnerdata -= spawner
 	UnregisterSignal(spawner, COMSIG_QDELETING)
 
+
 ///Essentially a wrapper for accessing a dying/delting mobs callback to remove it
 /datum/controller/subsystem/spawning/proc/remove_mob(mob/source)
 	SIGNAL_HANDLER
 	if(source in death_callbacks_by_mob) //due to signals being async we might've been removed from the list already in unregisterspawner()
 		death_callbacks_by_mob[source].Invoke()
+	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOB_DEATH))
 
 /**
  * Removes a mob from a spawners mobs spawned list
@@ -64,14 +62,13 @@ SUBSYSTEM_DEF(spawning)
  * * remover: The mob that died/whatever to decrement the amount
  * * spawner: atom that spawned the mob that died
  */
-/datum/controller/subsystem/spawning/proc/decrement_spawned_mobs(mob/remover, atom/spawner)
+/datum/controller/subsystem/spawning/proc/decrement_spawnedmobs(mob/remover, atom/spawner)
 	spawnerdata[spawner].spawnedmobs -= remover
 	death_callbacks_by_mob -= remover
-	total_spawned--
-	UnregisterSignal(remover, spawnerdata[spawner].mob_decrement_signals)
+	totalspawned--
 
 /datum/controller/subsystem/spawning/fire(resumed)
-	if(total_spawned >= mobcap)
+	if(totalspawned >= mobcap)
 		return
 
 	for(var/spawner in spawnerdata)
@@ -79,20 +76,20 @@ SUBSYSTEM_DEF(spawning)
 			continue
 		spawnerdata[spawner].fire_increment = 0
 		var/turf/spawnpoint = get_turf(spawner)
-		var/list/new_mob_list = list()
-		for(var/b = 1 to spawnerdata[spawner].spawnamount)
+		var/list/squad = list()
+		for(var/b = 0 to spawnerdata[spawner].spawnamount)
 			if(length(spawnerdata[spawner].spawnedmobs) >= spawnerdata[spawner].max_allowed_mobs)
 				break
-			var/spawntype = pickweight(spawnerdata[spawner].spawntypes)
-			var/mob/new_mob = new spawntype(spawnpoint)
+			var/spawntype = pick(spawnerdata[spawner].spawntypes)
+			var/mob/newmob = new spawntype(spawnpoint)
 
-			var/datum/callback/on_death_cb = CALLBACK(src, PROC_REF(decrement_spawned_mobs), new_mob, spawner)
-			death_callbacks_by_mob[new_mob] = on_death_cb
-			RegisterSignals(new_mob, spawnerdata[spawner].mob_decrement_signals, PROC_REF(remove_mob))
-			spawnerdata[spawner].spawnedmobs += new_mob
-			new_mob_list += new_mob
-			total_spawned++
-		spawnerdata[spawner].post_spawn_cb?.Invoke(new_mob_list)
+			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)
+			death_callbacks_by_mob[newmob] = deathcb
+			RegisterSignals(newmob, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_mob))
+			spawnerdata[spawner].spawnedmobs += newmob
+			squad += newmob
+			totalspawned++
+		spawnerdata[spawner].post_spawn_cb?.Invoke(squad)
 		if(TICK_CHECK)
 			return
 
@@ -112,15 +109,10 @@ SUBSYSTEM_DEF(spawning)
 	var/list/spawnedmobs = list()
 	///Post spawn callback
 	var/datum/callback/post_spawn_cb
-	///List of signals on which we remove mob from spawned_mobs
-	var/list/mob_decrement_signals = list()
 
-/datum/spawnerdata/New(required_increment, spawntypes, max_allowed_mobs, spawnamount, datum/callback/post_spawn_cb, list/mob_decrement_signals)
-	src.required_increment = required_increment
-	src.spawntypes = spawntypes
-	src.max_allowed_mobs = max_allowed_mobs
-	src.spawnamount = spawnamount
-	src.post_spawn_cb = post_spawn_cb
-	src.mob_decrement_signals = mob_decrement_signals
-
-#undef MAXIMUM_DEFAULT_SPAWN
+/datum/spawnerdata/New(increment, spawntypesarg, max, squadamount, datum/callback/postcb)
+	required_increment = increment
+	spawntypes = spawntypesarg
+	max_allowed_mobs = max
+	spawnamount = squadamount
+	post_spawn_cb = postcb

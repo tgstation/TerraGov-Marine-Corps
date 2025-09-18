@@ -3,7 +3,7 @@
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT|TRAIT_SEE_IN_DARK
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
 	blood_color = "#110a0a"
 	hair_color = "#000000"
 	slowdown = 0.5
@@ -37,6 +37,7 @@
 	H.setCloneLoss(0)
 	H.dropItemToGround(H.r_hand, TRUE)
 	H.dropItemToGround(H.l_hand, TRUE)
+	H.dextrous = FALSE//Prevents from opening cades
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/id = H.wear_id
 		id.access = list() // A bit gamey, but let's say ids have a security against zombies
@@ -182,50 +183,6 @@
 	spin = generator(GEN_NUM, 10, 20)
 
 /datum/species/zombie/smoker/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-/datum/action/rally_zombie
-	name = "Rally Zombies"
-	action_icon_state = "rally_minions"
-	action_icon = 'icons/Xeno/actions/general.dmi'
-
-/datum/action/rally_zombie/action_activate()
-	owner.balloon_alert(owner, "Zombies Rallied!")
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
-	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
-	if(set_agressivity)
-		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
-
-/datum/action/set_agressivity
-	name = "Set other zombie behavior"
-	action_icon_state = "minion_agressive"
-	action_icon = 'icons/Xeno/actions/general.dmi'
-	///If zombies should be agressive
-	var/zombies_agressive = TRUE
-
-/datum/action/set_agressivity/action_activate()
-	zombies_agressive = !zombies_agressive
-	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, zombies_agressive)
-	update_button_icon()
-
-/datum/action/set_agressivity/update_button_icon()
-	action_icon_state = zombies_agressive ? "minion_agressive" : "minion_passive"
-	return ..()
-
-/obj/item/weapon/zombie_claw
-	name = "claws"
-	hitsound = 'sound/weapons/slice.ogg'
-	icon_state = "zombie_claw_left"
-	base_icon_state = "zombie_claw"
-	force = 20
-	sharp = IS_SHARP_ITEM_BIG
-	edge = TRUE
-	attack_verb = list("claws", "slashes", "tears", "rips", "dices", "cuts", "bites")
-	item_flags = CAN_BUMP_ATTACK|DELONDROP
-	attack_speed = 8 //Same as unarmed delay
-	pry_capable = IS_PRY_CAPABLE_FORCE
-	///How much zombium are transferred per hit. Set to zero to remove transmission
-	var/zombium_per_hit = 5
-
-/obj/item/weapon/zombie_claw/Initialize(mapload)
 	. = ..()
 	var/datum/action/ability/emit_gas/emit_gas = new
 	emit_gas.give_action(H)

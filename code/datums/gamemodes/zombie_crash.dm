@@ -1,16 +1,16 @@
 /datum/game_mode/infestation/crash/zombie
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
+	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_HUMAN_ONLY
+	xeno_abilities_flags = ABILITY_CRASH
 	required_players = 1
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/terragov/squad/robot = -1,
 		/datum/job/terragov/squad/engineer = 1,
 		/datum/job/terragov/squad/corpsman = 1,
 		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/medical/professor = 1,
-		/datum/job/terragov/medical/medicalofficer = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
 	)
@@ -19,9 +19,22 @@
 		/datum/job/terragov/squad/corpsman = 5,
 		/datum/job/terragov/squad/engineer = 5,
 	)
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
+	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
 
-	round_type_flags = NONE
+/datum/game_mode/infestation/crash/zombie/can_start(bypass_checks = FALSE)
+	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
+		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
+		// start a gamemode vote, in theory this should never happen.
+		addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), "gamemode", "SERVER"), 10 SECONDS)
+		return FALSE
+	if(length(GLOB.ready_players) < required_players && !bypass_checks)
+		to_chat(world, "<b>Unable to start [name].</b> Not enough players, [required_players] players needed.")
+		return FALSE
+	if(!set_valid_job_types() && !bypass_checks)
+		return FALSE
+	if(!set_valid_squads() && !bypass_checks)
+		return FALSE
+	return TRUE
 
 /datum/game_mode/infestation/crash/zombie/post_setup()
 	. = ..()
@@ -36,7 +49,7 @@
 
 /datum/game_mode/infestation/crash/zombie/proc/count_humans_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	var/num_humans = 0
-	var/num_zombies
+	var/num_zombies = 0
 
 	for(var/z in z_levels)
 		for(var/i in GLOB.humans_by_zlevel["[z]"])
@@ -56,15 +69,18 @@
 	return list(num_humans, num_zombies)
 
 /datum/game_mode/infestation/crash/zombie/balance_scales()
+	message_admins("AUTOBAL FIRE")
 	var/list/living_player_list = count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	var/num_zombies = living_player_list[2]
-	if(num_zombies * 0.1 <= num_humans) // if there's too much zombies, don't spawn even more
-		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-			spawner.maxamount = 0
+	message_admins("AUTOBALANCE [num_humans], [num_zombies], [SSspawning.spawnerdata.len]")
+	if(num_zombies * 0.1 >= num_humans) // if there's too much zombies, don't spawn even more
+		for(var/i = 0, i < SSspawning.spawnerdata.len, i++)
+			message_admins(i)
+			SSspawning.spawnerdata[i].max_allowed_mobs = 0
 		return
-	for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-		spawner.maxamount = clamp(num_humans, 5, 20)
+	for(var/i = 0, i < SSspawning.spawnerdata.len, i++)
+		SSspawning.spawnerdata[i].max_allowed_mobs = clamp(num_humans, 5, 20)
 
 /datum/game_mode/infestation/crash/zombie/get_adjusted_jobworth_list(list/jobworth_list)
 	return jobworth_list
@@ -114,8 +130,9 @@
 
 /datum/game_mode/infestation/crash/zombie/announce()
 	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
-	priority_announce("Высадка запланирована через 10 минут. Приготовьтесь к посадке. Предварительное сканирование показывает наличие агрессивных форм биологической жизни. Ваша следующая миссия - заполучить коды доступа и активировать ядерную боеголовку. Альтернативная миссия - уничтожить все места появления агрессивных существ.",
+	priority_announce("Disembarkation is scheduled in 10 minutes. Get ready to plant. Preliminary scans show the presence of aggressive forms of biological life. Your next mission is to get hold of the access codes and activate the nuclear warhead. An alternative mission is to destroy all spawn locations of aggressive creatures.",
 	title = "Good morning , marines!",
 	type = ANNOUNCEMENT_PRIORITY,
-	sound = 'sound/AI/crash_start.ogg',
 	color_override = "red")
+	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
+	balance_scales()
