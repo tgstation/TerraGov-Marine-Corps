@@ -120,7 +120,7 @@
 	/// The amount of armor penetration that all slash attacks caused by Ravage to have.
 	var/armor_penetration = 0
 	/// The amount of deciseconds that the owner must wait to successfully use this ability.
-	var/cast_time = 0
+	var/cast_time = 0 SECONDS
 	/// Does the ability affect all directions? If not, it will affect the direction the owner is facing.
 	var/aoe = FALSE
 
