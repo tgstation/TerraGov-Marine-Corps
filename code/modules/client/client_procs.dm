@@ -411,12 +411,15 @@
 
 /client/Destroy()
 	SEND_SIGNAL(src, COMSIG_CLIENT_DISCONNECTED)
-	log_access("Logout: [key_name(src)]")
+	log_access("Logout: [key_name(src)]. ([length(GLOB.clients) - 1] players left)")
+	if(!(length(GLOB.clients) - 1))
+		log_game_world("Last player just logged out.  Connection issues or just deadpop?")
 	if(obj_window)
 		QDEL_NULL(obj_window)
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
-			message_admins("Admin logout: [key_name(src)].")
+			message_admins("Admin logout: [key_name(src)]. ([length(GLOB.admins) - 1] admins left)")
+			log_access("Admin logout: [key_name(src)]. ([length(GLOB.admins) - 1] admins left)")
 		else if(check_rights(R_MENTOR, FALSE))
 			message_staff("Mentor logout: [key_name(src)].")
 		holder.owner = null
