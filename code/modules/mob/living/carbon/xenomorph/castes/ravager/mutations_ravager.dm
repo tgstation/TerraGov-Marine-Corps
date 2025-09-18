@@ -3,11 +3,11 @@
 //*********************//
 /datum/mutation_upgrade/shell/little_more
 	name = "Little More"
-	desc = "Endure further decreases your critical and death threshold by 20/35/50."
+	desc = "Endure further decreases your critical and death threshold by 30/40/50."
 	/// For the first structure, the amount to increase the death/critical threshold given by Endure while it is active.
-	var/threshold_initial = -5
+	var/threshold_initial = -20
 	/// For each structure, the amount to increase the death/critical threshold given by Endure while it is active.
-	var/threshold_per_structure = -15
+	var/threshold_per_structure = -10
 
 /datum/mutation_upgrade/shell/little_more/get_desc_for_alert(new_amount)
 	if(!new_amount)
@@ -38,6 +38,60 @@
 /// Returns the amount to increase the death/critical threshold given by Endure while it is active.
 /datum/mutation_upgrade/shell/little_more/proc/get_threshold(structure_count, include_initial = TRUE)
 	return (include_initial ? threshold_initial : 0) + (threshold_per_structure * structure_count)
+
+
+
+
+
+
+
+
+/datum/mutation_upgrade/shell/keep_going
+	name = "Keep Going"
+	desc = "Endure lasts 70/80/90% as long, but duration-increasing slashes is now available during normal Rage."
+	/// For the first structure, the multiplier to add to Endure's duration.
+	var/multiplier_initial = -0.4
+	/// For each structure, the additional multiplier to add to Endure's duration.
+	var/multiplier_per_structure = 0.1
+
+/datum/mutation_upgrade/shell/keep_going/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Endure lasts [PERCENT(1 + get_multiplier(new_amount))]% as long, but duration-increasing slashes is now available during normal Rage."
+
+/datum/mutation_upgrade/shell/keep_going/on_mutation_enabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	if(!endure_ability)
+		return
+	var/datum/action/ability/xeno_action/rage/rage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/rage]
+	if(!rage_ability)
+		return
+	endure_ability.endure_duration_length += initial(endure_ability.endure_duration_length) * get_multiplier(0)
+	rage_ability.extends_via_normal_rage = FALSE
+
+/datum/mutation_upgrade/shell/keep_going/on_mutation_disabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	if(!endure_ability)
+		return
+	var/datum/action/ability/xeno_action/rage/rage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/rage]
+	if(!rage_ability)
+		return
+	endure_ability.endure_threshold -= initial(endure_ability.endure_duration_length) * get_multiplier(0)
+	rage_ability.extends_via_normal_rage = FALSE
+
+/datum/mutation_upgrade/shell/keep_going/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	if(!endure_ability)
+		return
+	endure_ability.endure_threshold += initial(endure_ability.endure_duration_length) * get_multiplier(new_amount - previous_amount, FALSE)
+
+/// Returns the multiplier to add to Endure's duration.
+/datum/mutation_upgrade/shell/keep_going/proc/get_multiplier(structure_count, include_initial = TRUE)
+	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)
+
 
 //*********************//
 //         Spur        //

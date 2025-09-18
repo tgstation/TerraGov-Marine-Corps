@@ -249,6 +249,8 @@
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
 	/// While this ability is active, what amount should be added to the number returned by `get_crit_threshold` and `get_death_threshold`? This is reset to zero when the ability ends.
 	var/bonus_endure_threshold = 0
+	/// The amount of deciseconds Endure should last.
+	var/endure_duration_length = RAVAGER_ENDURE_DURATION
 	/// Timer for Endure's duration.
 	var/endure_duration
 	/// Timer for Endure's warning.
@@ -270,8 +272,8 @@
 
 	xeno_owner.add_filter("ravager_endure_outline", 4, outline_filter(1, COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
-	endure_duration = addtimer(CALLBACK(src, PROC_REF(endure_warning)), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
-	endure_warning_duration = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), RAVAGER_ENDURE_DURATION, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+	endure_duration = addtimer(CALLBACK(src, PROC_REF(endure_warning)), endure_duration_length * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
+	endure_warning_duration = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), endure_duration_length, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
 	xeno_owner.set_stagger(0) //Remove stagger
 	xeno_owner.set_slowdown(0) //Remove slowdown
@@ -379,6 +381,8 @@
 	var/rage_sunder
 	/// Determines the Plasma to remove when Rage ends.
 	var/rage_plasma
+	/// Should the power to extend Endure's duration be granted to normal Rage?
+	var/extends_via_normal_rage = FALSE
 
 /datum/action/ability/xeno_action/rage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to enter our rage once again."))
@@ -419,6 +423,8 @@
 			charge.clear_cooldown() //Reset charge cooldown
 		if(ravage)
 			ravage.clear_cooldown() //Reset ravage cooldown
+		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
+	else if(extends_via_normal_rage)
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
 
 	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius / 2, xeno_owner.loc))
@@ -481,29 +487,31 @@
 ///Warns the user when his rage is about to end.
 /datum/action/ability/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-	var/mob/living/xeno_owner = owner
-	var/brute_damage = xeno_owner.getBruteLoss()
-	var/burn_damage = xeno_owner.getFireLoss()
-	if(!brute_damage && !burn_damage) //If we have no healable damage, don't bother proceeding
-		return
-	var/health_recovery = rage_power * damage //Amount of health we leech per slash
-	var/health_modifier
-	if(brute_damage) //First heal Brute damage, then heal Burn damage with remainder
-		health_modifier = min(brute_damage, health_recovery)*-1 //Get the lower of our Brute Loss or the health we're leeching
-		xeno_owner.adjustBruteLoss(health_modifier)
-		health_recovery += health_modifier //Decrement the amount healed from our total healing pool
-	if(burn_damage)
-		health_modifier = min(burn_damage, health_recovery)*-1
-		xeno_owner.adjustFireLoss(health_modifier)
+	if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD)
+		var/mob/living/xeno_owner = owner
+		var/brute_damage = xeno_owner.getBruteLoss()
+		var/burn_damage = xeno_owner.getFireLoss()
+		if(!brute_damage && !burn_damage) //If we have no healable damage, don't bother proceeding
+			return
+		var/health_recovery = rage_power * damage //Amount of health we leech per slash
+		var/health_modifier
+		if(brute_damage) //First heal Brute damage, then heal Burn damage with remainder
+			health_modifier = min(brute_damage, health_recovery)*-1 //Get the lower of our Brute Loss or the health we're leeching
+			xeno_owner.adjustBruteLoss(health_modifier)
+			health_recovery += health_modifier //Decrement the amount healed from our total healing pool
+		if(burn_damage)
+			health_modifier = min(burn_damage, health_recovery)*-1
+			xeno_owner.adjustFireLoss(health_modifier)
 
-	var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
-	if(endure_ability.endure_duration) //Check if Endure is active
-		var/new_duration = min(RAVAGER_ENDURE_DURATION, (timeleft(endure_ability.endure_duration) + RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH)) //Increment Endure duration by 2 seconds per slash
-		deltimer(endure_ability.endure_duration) //Reset timers
-		deltimer(endure_ability.endure_warning_duration)
-		endure_ability.endure_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_deactivate)), new_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
-		if(new_duration > 3 SECONDS) //Check timing
-			endure_ability.endure_warning_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_warning)), new_duration - 3 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+	if(extends_via_normal_rage || rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
+		var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+		if(endure_ability.endure_duration) //Check if Endure is active
+			var/new_duration = min(endure_ability.endure_duration_length, (timeleft(endure_ability.endure_duration) + RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH)) //Increment Endure duration by 2 seconds per slash
+			deltimer(endure_ability.endure_duration) //Reset timers
+			deltimer(endure_ability.endure_warning_duration)
+			endure_ability.endure_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_deactivate)), new_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+			if(new_duration > 3 SECONDS) //Check timing
+				endure_ability.endure_warning_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_warning)), new_duration - 3 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
 
 ///Called when we want to end the Rage effect
 /datum/action/ability/xeno_action/rage/proc/rage_deactivate()
