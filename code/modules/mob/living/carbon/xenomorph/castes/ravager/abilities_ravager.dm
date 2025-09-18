@@ -175,6 +175,7 @@
 
 	var/list/atom/movable/atoms_to_ravage = list()
 	for(var/turf/ravaged_turf AS in ravaged_turfs)
+		ravaged_turf.Shake(duration = 0.2 SECONDS) // To visually indicate what turfs are hit. Mainly for Bloodthirster as they could be hitting more than 3 tiles.
 		atoms_to_ravage += ravaged_turf.contents
 
 	if(armor_penetration) // Since everything references the caste for armor peneration, this is how to individually give armor peneration without changing everything.
