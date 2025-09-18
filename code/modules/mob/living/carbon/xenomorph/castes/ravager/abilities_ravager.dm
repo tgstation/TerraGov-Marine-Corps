@@ -151,7 +151,7 @@
 		if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST)
 			range = 3
 		else if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
-			range = 4 // 3 maximum
+			range = 4
 
 	var/turf/current_turf = get_turf(xeno_owner)
 	var/facing = xeno_owner.dir
