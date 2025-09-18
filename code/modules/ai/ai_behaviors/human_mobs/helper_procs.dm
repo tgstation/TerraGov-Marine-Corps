@@ -366,14 +366,16 @@
 	toggle_open(null, user)
 	return AI_OBSTACLE_RESOLVED
 
-/obj/machinery/door/airlock/ai_handle_obstacle(mob/living/user, move_dir)
-	. = ..()
-	if(!.)
-		return
-	if(operating) //Airlock already doing something
+/obj/machinery/door/ai_handle_obstacle(mob/living/user, move_dir)
+	if(operating) //Airlock already doing something, probably opening
 		return null
-	if(welded || locked) //It's welded or locked, can't force that open
-		return
+	if(welded || locked)
+		return ..()
+	if(isxeno(user))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attack_alien), user)
+		return AI_OBSTACLE_RESOLVED
+	if(hasPower() && ishuman(user) && requiresID() && !(allowed(user) || emergency || unrestricted_side(user)))
+		return ..()
 	open(TRUE)
 	return AI_OBSTACLE_RESOLVED
 
