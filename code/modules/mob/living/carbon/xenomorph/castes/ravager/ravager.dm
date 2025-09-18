@@ -13,7 +13,7 @@
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16
 	bubble_icon = "alienroyal"
-	/// The amount of plasma to be gained when they are acted upon by fire.
+	/// The amount of plasma to be gained for being on fire.
 	var/plasma_gain_from_fire = 50
 
 /mob/living/carbon/xenomorph/ravager/Initialize(mapload)

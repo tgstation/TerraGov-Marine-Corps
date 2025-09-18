@@ -317,10 +317,10 @@
 
 /datum/mutation_upgrade/veil/fight_in_flames
 	name = "Fight in Flames"
-	desc = "You lose 70 fire armor. For each time that you're affected by fire, you gain an additional 200/250/300 plasma. This can happen every 1 second." // Cooldown comes from [/mob/living/carbon/xenomorph/ravager/fire_act].
-	/// For the first structure, the bonus amount of plasma when they are affected by fire.
+	desc = "You lose 70 fire armor. The plasma gain from stepping into fire is now also given for being on fire. This plasma gain is increased by 200/250/300."
+	/// For the first structure, the bonus amount of plasma when they are damaged from being on fire.
 	var/plasma_initial = 150
-	/// For each structure, the additional bonus amount of plasma when they are affected by fire.
+	/// For each structure, the additional bonus amount of plasma when they are damaged from being on fire.
 	var/plasma_per_structure = 50
 	/// The attached soft armor, if any.
 	var/datum/armor/attached_armor
@@ -328,12 +328,13 @@
 /datum/mutation_upgrade/veil/fight_in_flames/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "You lose 70 fire armor. For each time that you're affected by fire, you gain an additional [PERCENT(1 + get_plasma(new_amount))] plasma. This can happen every 1 second."
+	return "You lose 70 fire armor. The plasma gain from stepping into fire is now also given for being on fire. This plasma gain is increased by [get_plasma(new_amount)]."
 
 /datum/mutation_upgrade/veil/fight_in_flames/on_mutation_enabled()
 	. = ..()
 	if(!isxenoravager(xenomorph_owner))
 		return
+	RegisterSignal(xenomorph_owner, COMSIG_LIVING_HANDLE_FIRE, PROC_REF(on_handle_fire))
 	attached_armor = getArmor(fire = -70)
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.attachArmor(attached_armor)
 	var/mob/living/carbon/xenomorph/ravager/ravager_owner = xenomorph_owner
@@ -343,6 +344,7 @@
 	. = ..()
 	if(!isxenoravager(xenomorph_owner))
 		return
+	UnregisterSignal(xenomorph_owner, COMSIG_LIVING_HANDLE_FIRE)
 	var/mob/living/carbon/xenomorph/ravager/ravager_owner = xenomorph_owner
 	ravager_owner.plasma_gain_from_fire -= get_plasma(0)
 	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.detachArmor(attached_armor)
@@ -355,9 +357,17 @@
 	var/mob/living/carbon/xenomorph/ravager/ravager_owner = xenomorph_owner
 	ravager_owner.plasma_gain_from_fire += get_plasma(new_amount - previous_amount, FALSE)
 
-/// Returns the bonus amount of plasma when they are affected by fire.
+/// Returns the bonus amount of plasma when they are damaged from being on fire.
 /datum/mutation_upgrade/veil/fight_in_flames/proc/get_plasma(structure_count, include_initial = TRUE)
 	return (include_initial ? plasma_initial : 0) + (plasma_per_structure * structure_count)
+
+/// Gives plasma for taking damage from being on fire (different from being stepping into fire).
+/datum/mutation_upgrade/veil/fight_in_flames/proc/on_handle_fire(datum/source)
+	if(!isxenoravager(xenomorph_owner) || TIMER_COOLDOWN_RUNNING(xenomorph_owner, COOLDOWN_RAVAGER_FLAMER_ACT))
+		return FALSE
+	var/mob/living/carbon/xenomorph/ravager/ravager_owner = xenomorph_owner
+	ravager_owner.gain_plasma(ravager_owner.plasma_gain_from_fire)
+	TIMER_COOLDOWN_START(ravager_owner, COOLDOWN_RAVAGER_FLAMER_ACT, 1 SECONDS)
 
 /datum/mutation_upgrade/veil/bloody_endure
 	name = "Bloody Endure"

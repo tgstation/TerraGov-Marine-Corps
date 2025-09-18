@@ -743,6 +743,9 @@
 // From [/mob/living/updatehealth()]
 #define COMSIG_LIVING_UPDATE_HEALTH "living_update_health"
 
+// Sent when a /living is dealing with being on fire & is still on fire. From [/mob/living/proc/handle_fire]: ()
+#define COMSIG_LIVING_HANDLE_FIRE "living_handle_fire"
+
 //mob/living/carbon signals
 #define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)
 
