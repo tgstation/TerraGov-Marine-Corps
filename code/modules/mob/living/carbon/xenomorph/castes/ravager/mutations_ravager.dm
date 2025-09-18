@@ -264,7 +264,7 @@
 //*********************//
 /datum/mutation_upgrade/veil/recurring_rage
 	name = "Recurring Rage"
-	desc = "Rage will automatically attempt to activate when your health reaches the minimum required threshold. Rage's cooldown duration is set to 60/50/40% of its original value. "
+	desc = "Rage will automatically attempt to activate when your health reaches the minimum required threshold. Rage's cooldown duration is set to 60/50/40% of its original value."
 	/// For the first structure, the multiplier of Rage's initial cooldown to add to the ability.
 	var/multiplier_initial = -0.3
 	/// For each structure, the additional multiplier of Rage's initial cooldown to add to the ability.
@@ -273,7 +273,7 @@
 /datum/mutation_upgrade/veil/recurring_rage/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Rage will automatically attempt to activate when your health reaches the minimum required threshold. Rage's cooldown duration is [PERCENT(1 + get_multiplier(new_amount))]% of its original cooldown."
+	return "Rage will automatically attempt to activate when your health reaches the minimum required threshold. Rage's cooldown duration is [PERCENT(1 + get_multiplier(new_amount))]% of its original value."
 
 /datum/mutation_upgrade/veil/recurring_rage/on_mutation_enabled()
 	. = ..()
@@ -314,3 +314,54 @@
 	if(!rage_ability.action_cooldown_finished() || !rage_ability.can_use_action(silent = TRUE))
 		return
 	rage_ability.action_activate()
+
+
+
+
+
+
+
+/datum/mutation_upgrade/veil/fight_in_flames
+	name = "Fight in Flames"
+	desc = "You lose 70 fire armor. For each time that you're affected by fire, you gain an additional 200/250/300 plasma. This can happen every 1 second." // Cooldown comes from [/mob/living/carbon/xenomorph/ravager/fire_act].
+
+	/// For the first structure, the bonus amount of plasma when they are affected by fire.
+	var/plasma_initial = 150
+	/// For each structure, the additional bonus amount of plasma when they are affected by fire.
+	var/plasma_per_structure = 50
+	/// The attached soft armor, if any.
+	var/datum/armor/attached_armor
+
+/datum/mutation_upgrade/veil/fight_in_flames/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "You lose 70 fire armor. For each time that you're affected by fire, you gain an additional [PERCENT(1 + get_plasma(new_amount))] plasma. This can happen every 1 second."
+
+/datum/mutation_upgrade/veil/fight_in_flames/on_mutation_enabled()
+	. = ..()
+	if(!isxenoravager(xenomorph_owner))
+		return
+	attached_armor = getArmor(fire = -70)
+	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.attachArmor(attached_armor)
+	var/mob/living/carbon/xenomorph/ravager/ravager_owner = xenomorph_owner
+	ravager_owner.plasma_gain_from_fire += get_plasma(0)
+
+/datum/mutation_upgrade/veil/fight_in_flames/on_mutation_disabled()
+	. = ..()
+	if(!isxenoravager(xenomorph_owner))
+		return
+	var/mob/living/carbon/xenomorph/ravager/ravager_owner = xenomorph_owner
+	ravager_owner.plasma_gain_from_fire -= get_plasma(0)
+	xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.detachArmor(attached_armor)
+	attached_armor = null
+
+/datum/mutation_upgrade/veil/fight_in_flames/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	if(!isxenoravager(xenomorph_owner))
+		return
+	var/mob/living/carbon/xenomorph/ravager/ravager_owner = xenomorph_owner
+	ravager_owner.plasma_gain_from_fire += get_plasma(new_amount - previous_amount, FALSE)
+
+/// Returns the bonus amount of plasma when they are affected by fire.
+/datum/mutation_upgrade/veil/fight_in_flames/proc/get_plasma(structure_count, include_initial = TRUE)
+	return (include_initial ? plasma_initial : 0) + (plasma_per_structure * structure_count)
