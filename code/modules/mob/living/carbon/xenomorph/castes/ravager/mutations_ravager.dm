@@ -230,7 +230,7 @@
 /datum/mutation_upgrade/spur/onslaught/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "viscerating Charge's cooldown duration is set to [PERCENT(1 + get_multiplier(new_amount))]% of its original value, but it no longer stuns."
+	return "Eviscerating Charge's cooldown duration is set to [PERCENT(1 + get_multiplier(new_amount))]% of its original value, but it no longer stuns."
 
 /datum/mutation_upgrade/spur/onslaught/on_mutation_enabled()
 	. = ..()
