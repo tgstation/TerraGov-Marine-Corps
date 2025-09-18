@@ -39,13 +39,6 @@
 /datum/mutation_upgrade/shell/little_more/proc/get_threshold(structure_count, include_initial = TRUE)
 	return (include_initial ? threshold_initial : 0) + (threshold_per_structure * structure_count)
 
-
-
-
-
-
-
-
 /datum/mutation_upgrade/shell/keep_going
 	name = "Keep Going"
 	desc = "Endure lasts 70/80/90% as long, but duration-increasing slashes is now available during normal Rage."
@@ -67,7 +60,7 @@
 	var/datum/action/ability/xeno_action/rage/rage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/rage]
 	if(!rage_ability)
 		return
-	endure_ability.endure_duration_length += initial(endure_ability.endure_duration_length) * get_multiplier(0)
+	endure_ability.endure_duration += initial(endure_ability.endure_duration) * get_multiplier(0)
 	rage_ability.extends_via_normal_rage = FALSE
 
 /datum/mutation_upgrade/shell/keep_going/on_mutation_disabled()
@@ -78,7 +71,7 @@
 	var/datum/action/ability/xeno_action/rage/rage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/rage]
 	if(!rage_ability)
 		return
-	endure_ability.endure_threshold -= initial(endure_ability.endure_duration_length) * get_multiplier(0)
+	endure_ability.endure_threshold -= initial(endure_ability.endure_duration) * get_multiplier(0)
 	rage_ability.extends_via_normal_rage = FALSE
 
 /datum/mutation_upgrade/shell/keep_going/on_structure_update(previous_amount, new_amount)
@@ -86,12 +79,64 @@
 	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
 	if(!endure_ability)
 		return
-	endure_ability.endure_threshold += initial(endure_ability.endure_duration_length) * get_multiplier(new_amount - previous_amount, FALSE)
+	endure_ability.endure_threshold += initial(endure_ability.endure_duration) * get_multiplier(new_amount - previous_amount, FALSE)
 
 /// Returns the multiplier to add to Endure's duration.
 /datum/mutation_upgrade/shell/keep_going/proc/get_multiplier(structure_count, include_initial = TRUE)
 	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)
 
+/datum/mutation_upgrade/shell/inward_focus
+	name = "Keep Going"
+	desc = "Endure no longer grants stagger immunity nor can be activated while staggered. Endure gains 10/15/20 all soft armor while active."
+	/// For the first structure, the amount of all soft armor that Endure should give while active.
+	var/armor_initial = 5
+	/// For each structure, the additional amount of all soft armor that Endure should give while active.
+	var/armor_per_structure = 5
+
+/datum/mutation_upgrade/shell/inward_focus/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Endure lasts [PERCENT(1 + get_armor(new_amount))]% as long, but duration-increasing slashes is now available during normal Rage."
+
+/datum/mutation_upgrade/shell/inward_focus/on_mutation_enabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	if(!endure_ability)
+		return
+	endure_ability.use_state_flags &= ~ABILITY_USE_STAGGERED
+	endure_ability.endure_stagger_immunity = FALSE
+	endure_ability.endure_armor += get_armor(0)
+	if(endure_ability.endure_timer)
+		REMOVE_TRAIT(xenomorph_owner, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
+
+/datum/mutation_upgrade/shell/inward_focus/on_mutation_disabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	if(!endure_ability)
+		return
+	endure_ability.use_state_flags |= ABILITY_USE_STAGGERED
+	endure_ability.endure_stagger_immunity = TRUE
+	endure_ability.endure_armor -= get_armor(0)
+	if(endure_ability.endure_timer)
+		ADD_TRAIT(xenomorph_owner, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
+
+/datum/mutation_upgrade/shell/inward_focus/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	if(!endure_ability)
+		return
+	endure_ability.endure_armor += initial(endure_ability.endure_duration) * get_armor(new_amount - previous_amount, FALSE)
+	if(endure_ability.attached_armor)
+		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.detachArmor(endure_ability.attached_armor)
+		endure_ability.attached_armor = null
+	if(endure_ability.endure_timer && endure_ability.endure_armor)
+		var/total_armor = endure_ability.endure_armor
+		endure_ability.attached_armor = new(total_armor, total_armor, total_armor, total_armor, total_armor, total_armor, total_armor, total_armor)
+		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.attachArmor(endure_ability.attached_armor)
+
+/// Returns the amount of all soft armor that Endure should give while active.
+/datum/mutation_upgrade/shell/inward_focus/proc/get_armor(structure_count, include_initial = TRUE)
+	return (include_initial ? armor_initial : 0) + (armor_per_structure* structure_count)
 
 //*********************//
 //         Spur        //

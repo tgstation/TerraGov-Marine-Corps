@@ -58,6 +58,8 @@
 
 	mutations = list(
 		/datum/mutation_upgrade/shell/little_more,
+		/datum/mutation_upgrade/shell/keep_going,
+		/datum/mutation_upgrade/shell/inward_focus,
 		/datum/mutation_upgrade/spur/deep_slash,
 		/datum/mutation_upgrade/veil/recurring_rage
 	)
