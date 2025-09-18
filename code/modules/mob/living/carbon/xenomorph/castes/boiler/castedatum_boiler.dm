@@ -109,7 +109,7 @@
 	max_health = 450
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 50, FIRE = 55, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 40, ACID = 40)
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
