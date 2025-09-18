@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Mutations: Vitality Transfer now heals/transfers health as intended."
