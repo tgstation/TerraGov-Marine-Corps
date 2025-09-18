@@ -4,7 +4,7 @@
 	cost = 15
 
 /datum/supply_packs/explosives/mortar_ammo_satrapine
-	name = "T-50S mortar sleep smoke shell (x2)"
+	name = "T-50S mortar satrapine smoke shell (x2)"
 	contains = list(/obj/item/mortal_shell/smoke/satrapine, /obj/item/mortal_shell/smoke/satrapine)
 	cost = 15
 
