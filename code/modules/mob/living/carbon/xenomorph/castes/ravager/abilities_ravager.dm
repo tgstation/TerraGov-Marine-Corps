@@ -353,10 +353,9 @@
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_BRUTE_DAMAGE, PROC_REF(damage_taken)) //Warns us if our health is critically low
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_BURN_DAMAGE, PROC_REF(damage_taken))
 
-	var/plasma_cost = ability_cost
-	if(uses_health_as_necessary)
-		plasma_cost = -min(0, xeno_owner.plasma_stored - ability_cost)
-		xeno_owner.adjustBruteLoss(min((xeno_owner.health - xeno_owner.get_death_threshold() - 1), plasma_cost)) // Worst case, 1 health.
+	var/plasma_cost = min(ability_cost, xeno_owner.plasma_stored)
+	if(uses_health_as_necessary && ability_cost > plasma_cost)
+		xeno_owner.adjustBruteLoss(min((xeno_owner.health - xeno_owner.get_death_threshold() - 1), (ability_cost - plasma_cost))) // Non-lethal. Worst case, one health point from death.
 	xeno_owner.updatehealth() // To get them back up if they happen to activate the ability while in critical.
 	succeed_activate(plasma_cost)
 	add_cooldown()
