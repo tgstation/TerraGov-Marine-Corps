@@ -34,7 +34,6 @@
 
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
-	UnregisterSignal(loc, COMSIG_TURF_PRE_SHUTTLE_CRUSH)
 	return ..()
 
 ///Signal handler for creator destruction to clear reference
