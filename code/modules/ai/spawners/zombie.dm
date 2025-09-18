@@ -26,6 +26,7 @@
 	. = ..()
 	GLOB.zombie_spawners -= src
 	SSminimaps.remove_marker(src)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED)
 
 /obj/effect/ai_node/spawner/zombie/plastique_act()
 	playsound(loc, 'sound/effects/meteorimpact.ogg', 35, 1)

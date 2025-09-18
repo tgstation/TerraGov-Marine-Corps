@@ -82,7 +82,6 @@ SUBSYSTEM_DEF(spawning)
 				break
 			var/spawntype = pick(spawnerdata[spawner].spawntypes)
 			var/mob/newmob = new spawntype(spawnpoint)
-
 			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)
 			death_callbacks_by_mob[newmob] = deathcb
 			RegisterSignals(newmob, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_mob))

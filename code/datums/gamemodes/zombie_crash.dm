@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash/zombie
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
-	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_HUMAN_ONLY
+	round_type_flags = NONE
 	xeno_abilities_flags = ABILITY_CRASH
 	required_players = 1
 	valid_job_types = list(
@@ -43,6 +43,8 @@
 
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/effect/ai_node/spawner/zombie(i)
+	addtimer(CALLBACK(balance_scales()), 1 SECONDS)
+	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(check_finished))
 
 /datum/game_mode/infestation/crash/zombie/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	return
@@ -73,14 +75,16 @@
 	var/list/living_player_list = count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	var/num_zombies = living_player_list[2]
-	message_admins("AUTOBALANCE [num_humans], [num_zombies], [SSspawning.spawnerdata.len]")
+	message_admins("AUTOBALANCE [num_humans], [num_zombies], [length(GLOB.zombie_spawners)]")
+	var/i = 0
 	if(num_zombies * 0.1 >= num_humans) // if there's too much zombies, don't spawn even more
-		for(var/i = 0, i < SSspawning.spawnerdata.len, i++)
+		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
+			i++
 			message_admins(i)
-			SSspawning.spawnerdata[i].max_allowed_mobs = 0
+			SSspawning.spawnerdata[spawner].max_allowed_mobs = 0
 		return
-	for(var/i = 0, i < SSspawning.spawnerdata.len, i++)
-		SSspawning.spawnerdata[i].max_allowed_mobs = clamp(num_humans, 5, 20)
+	for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
+		SSspawning.spawnerdata[spawner].max_allowed_mobs = round(num_humans * 10 / length(GLOB.zombie_spawners))
 
 /datum/game_mode/infestation/crash/zombie/get_adjusted_jobworth_list(list/jobworth_list)
 	return jobworth_list
@@ -130,8 +134,8 @@
 
 /datum/game_mode/infestation/crash/zombie/announce()
 	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
-	priority_announce("Disembarkation is scheduled in 10 minutes. Get ready to plant. Preliminary scans show the presence of aggressive forms of biological life. Your next mission is to get hold of the access codes and activate the nuclear warhead. An alternative mission is to destroy all spawn locations of aggressive creatures.",
-	title = "Good morning , marines!",
+	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Phrenetic reports about an unidentified disease rapidly spreading throughout the site were received before it went silent. Your mission is to contain and destroy the source of the contagion by any means necessary, including use of the on-site nuclear device. Bio-warfare protocols active. Detonation Protocol Active, planet disposable. Marines disposable.",
+	title = "Mission classification: TOP SECRET",
 	type = ANNOUNCEMENT_PRIORITY,
 	color_override = "red")
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
