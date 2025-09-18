@@ -116,9 +116,11 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
 	)
 	/// The amount of armor penetration that all slash attacks caused by Ravage to have.
-	var/armor_penetration
-	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
-	var/obj/effect/abstract/particle_holder/particle_holder
+	var/armor_penetration = 0
+	/// The amount of deciseconds that the owner must wait to successfully use this ability.
+	var/cast_time = 0
+	/// Does the ability affect all directions? If not, it will affect the direction the owner is facing.
+	var/aoe = FALSE
 
 /datum/action/ability/activable/xeno/ravage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
@@ -126,6 +128,9 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/ravage/use_ability(atom/A)
+	if(cast_time && !do_after(xeno_owner, cast_time, NONE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), TRUE, ABILITY_USE_BUSY)))
+		return
+
 	xeno_owner.emote("roar")
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] thrashes about in a murderous frenzy!"), \
 	span_xenowarning("We thrash about in a murderous frenzy!"))
@@ -133,26 +138,34 @@
 	xeno_owner.face_atom(A)
 	activate_particles(xeno_owner.dir)
 
-	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
-	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
-	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
-	///actual target we will check adjacency with
+	// Actual target we will check adjacency with.
 	var/atom/adjacent_relative = xeno_owner
-	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
-		if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
-			var/turf/far = get_step(get_step(owner, owner.dir), owner.dir)
-			if(!far.density)
-				atoms_to_ravage += far.contents
-				atoms_to_ravage += get_step(far, turn(owner.dir, 90)).contents
-				atoms_to_ravage += get_step(far, turn(owner.dir, -90)).contents
-				var/turf/temptstep = get_step(owner, owner.dir)
-				if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST && temptstep.Adjacent(far))
-					adjacent_relative = far
-					var/turf/furthest = get_step(far, owner.dir)
-					if(!furthest.density)
-						atoms_to_ravage += furthest.contents
-						atoms_to_ravage += get_step(furthest, turn(owner.dir, 90)).contents
-						atoms_to_ravage += get_step(furthest, turn(owner.dir, -90)).contents
+	var/list/atom/movable/atoms_to_ravage = list()
+	if(aoe)
+		for(var/dir in GLOB.cardinals)
+			activate_particles(dir)
+		for(var/turf/nearby_turf in RANGE_TURFS(1, get_turf(xeno_owner)))
+			atoms_to_ravage += nearby_turf.contents // Bloodthirster isn't expected to get this. So don't need to worry about adding more range.
+	else
+		activate_particles(xeno_owner.dir)
+		atoms_to_ravage += get_step(owner, owner.dir).contents
+		atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
+		atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
+		if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
+			if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
+				var/turf/far = get_step(get_step(owner, owner.dir), owner.dir)
+				if(!far.density)
+					atoms_to_ravage += far.contents
+					atoms_to_ravage += get_step(far, turn(owner.dir, 90)).contents
+					atoms_to_ravage += get_step(far, turn(owner.dir, -90)).contents
+					var/turf/temptstep = get_step(owner, owner.dir)
+					if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST && temptstep.Adjacent(far))
+						adjacent_relative = far
+						var/turf/furthest = get_step(far, owner.dir)
+						if(!furthest.density)
+							atoms_to_ravage += furthest.contents
+							atoms_to_ravage += get_step(furthest, turn(owner.dir, 90)).contents
+							atoms_to_ravage += get_step(furthest, turn(owner.dir, -90)).contents
 
 	if(armor_penetration) // Since everything references the caste for armor peneration, this is how to individually give armor peneration without causing everything.
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack_living))
@@ -186,8 +199,8 @@
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
 /datum/action/ability/activable/xeno/ravage/proc/activate_particles(direction) // This could've been an animate()!
-	particle_holder = new(get_turf(owner), /particles/ravager_slash)
-	QDEL_NULL_IN(src, particle_holder, 5)
+	var/obj/effect/abstract/particle_holder/particle_holder = new(get_turf(xeno_owner), /particles/ravager_slash)
+	QDEL_IN(particle_holder, 0.5 SECONDS)
 	particle_holder.particles.rotation += dir2angle(direction)
 	switch(direction) // There's no shared logic here because sprites are magical.
 		if(NORTH) // Gotta define stuff for each angle so it looks good.
@@ -289,7 +302,6 @@
 	ADD_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT) //Can now endure slowdown
 
 	if(endure_armor)
-		var/total_armor = endure_armor
 		attached_armor = new(endure_armor, endure_armor, endure_armor, endure_armor, endure_armor, endure_armor, endure_armor, endure_armor)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.attachArmor(attached_armor)
 
