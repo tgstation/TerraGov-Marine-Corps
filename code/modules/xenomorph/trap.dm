@@ -30,10 +30,6 @@
 	if(_hugger_limit)
 		hugger_limit = _hugger_limit
 
-/obj/structure/xeno/trap/Destroy()
-	. = ..()
-	UnregisterSignal(loc, COMSIG_TURF_PRE_SHUTTLE_CRUSH)
-
 /obj/structure/xeno/trap/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
