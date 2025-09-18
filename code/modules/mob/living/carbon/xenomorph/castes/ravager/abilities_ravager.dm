@@ -315,6 +315,8 @@
 	var/endure_timer
 	/// The timer for Endure's warning message.
 	var/endure_warning_timer
+	/// If they do not have enough to pay the ability cost, should they consume health instead?
+	var/uses_health_as_necessary
 	/// When this ability ends and the owner's health is under the reverted `get_death_threshold`, should they die instead?
 	var/death_beyond_threshold = FALSE
 	/// The attached armor that been given, if any.
@@ -351,8 +353,12 @@
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_BRUTE_DAMAGE, PROC_REF(damage_taken)) //Warns us if our health is critically low
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_BURN_DAMAGE, PROC_REF(damage_taken))
 
+	var/plasma_cost = ability_cost
+	if(uses_health_as_necessary)
+		plasma_cost = -min(0, xeno_owner.plasma_stored - ability_cost)
+		xeno_owner.adjustBruteLoss(min((xeno_owner.health - xeno_owner.health_threshold_dead - 1), plasma_cost)) // Worst case, 1 health.
 	xeno_owner.updatehealth() // To get them back up if they happen to activate the ability while in critical.
-	succeed_activate()
+	succeed_activate(plasma_cost)
 	add_cooldown()
 
 	GLOB.round_statistics.ravager_endures++ //Statistics

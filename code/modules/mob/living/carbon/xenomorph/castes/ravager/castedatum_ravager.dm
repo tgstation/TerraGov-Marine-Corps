@@ -64,7 +64,8 @@
 		/datum/mutation_upgrade/spur/super_cut,
 		/datum/mutation_upgrade/spur/onslaught,
 		/datum/mutation_upgrade/veil/recurring_rage,
-		/datum/mutation_upgrade/veil/fight_in_flames
+		/datum/mutation_upgrade/veil/fight_in_flames,
+		/datum/mutation_upgrade/veil/bloody_endure
 	)
 
 /datum/xeno_caste/ravager/on_caste_applied(mob/xenomorph)

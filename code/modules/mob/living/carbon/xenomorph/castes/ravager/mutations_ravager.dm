@@ -315,12 +315,6 @@
 		return
 	rage_ability.action_activate()
 
-
-
-
-
-
-
 /datum/mutation_upgrade/veil/fight_in_flames
 	name = "Fight in Flames"
 	desc = "You lose 70 fire armor. For each time that you're affected by fire, you gain an additional 200/250/300 plasma. This can happen every 1 second." // Cooldown comes from [/mob/living/carbon/xenomorph/ravager/fire_act].
@@ -364,3 +358,45 @@
 /// Returns the bonus amount of plasma when they are affected by fire.
 /datum/mutation_upgrade/veil/fight_in_flames/proc/get_plasma(structure_count, include_initial = TRUE)
 	return (include_initial ? plasma_initial : 0) + (plasma_per_structure * structure_count)
+
+/datum/mutation_upgrade/veil/bloody_endure
+	name = "Bloody Endure"
+	desc = "Endure now costs health to activate, but will consume plasma first. This damage is non-lethal. Endure's cooldown duration is set to 70/60/50% of its original value."
+	/// For the first structure, the multiplier of Endure's initial cooldown to add to the ability.
+	var/multiplier_initial = -0.2
+	/// For each structure, the additional multiplier of Endure's initial cooldown to add to the ability.
+	var/multiplier_per_structure = -0.1
+
+/datum/mutation_upgrade/veil/bloody_endure/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "Endure now costs health to activate, but will consume plasma first. This damage is non-lethal. Endure's cooldown duration is set to [PERCENT(1 + get_multiplier(new_amount))]% of its original value."
+
+/datum/mutation_upgrade/veil/bloody_endure/on_mutation_enabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	if(!endure_ability)
+		return
+	endure_ability.cooldown_duration += initial(endure_ability.cooldown_duration) * get_multiplier(0)
+	endure_ability.use_state_flags |= ABILITY_IGNORE_PLASMA
+	endure_ability.uses_health_as_necessary = TRUE
+
+/datum/mutation_upgrade/veil/bloody_endure/on_mutation_disabled()
+	. = ..()
+	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	if(!endure_ability)
+		return
+	endure_ability.cooldown_duration -= initial(endure_ability.cooldown_duration) * get_multiplier(0)
+	endure_ability.use_state_flags &= ~ABILITY_IGNORE_PLASMA
+	endure_ability.uses_health_as_necessary = initial(endure_ability.uses_health_as_necessary)
+
+/datum/mutation_upgrade/veil/bloody_endure/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+	if(!endure_ability)
+		return
+	endure_ability.cooldown_duration += initial(endure_ability.cooldown_duration) * get_multiplier(new_amount - previous_amount, FALSE)
+
+/// Returns the multiplier of Endure's initial cooldown to add to the ability.
+/datum/mutation_upgrade/veil/bloody_endure/proc/get_multiplier(structure_count, include_initial = TRUE)
+	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)
