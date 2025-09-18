@@ -137,14 +137,14 @@
 #define CONE_PART_MIDDLE_DIAG (1<<5)
 
 /datum/action/ability/activable/xeno/ravage/use_ability(atom/A)
+	xeno_owner.face_atom(A)
+
 	if(cast_time && !do_after(xeno_owner, cast_time, NONE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), TRUE, ABILITY_USE_BUSY)))
 		return
 
 	xeno_owner.emote("roar")
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] thrashes about in a murderous frenzy!"), \
 	span_xenowarning("We thrash about in a murderous frenzy!"))
-
-	xeno_owner.face_atom(A)
 
 	var/range = 2 // 1 = turf underneath only.
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
