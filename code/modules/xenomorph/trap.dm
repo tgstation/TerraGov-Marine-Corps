@@ -19,13 +19,13 @@
 	///connection list for huggers
 	var/static/list/listen_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(trigger_trap),
+		COMSIG_TURF_PRE_SHUTTLE_CRUSH = PROC_REF(pre_shuttle_crush)
 	)
 	/// The amount of huggers that can be stored in this trap.
 	var/hugger_limit = 1
 
 /obj/structure/xeno/trap/Initialize(mapload, _hivenumber, _hugger_limit)
 	. = ..()
-	RegisterSignal(loc, COMSIG_TURF_PRE_SHUTTLE_CRUSH, PROC_REF(pre_shuttle_crush))
 	AddElement(/datum/element/connect_loc, listen_connections)
 	if(_hugger_limit)
 		hugger_limit = _hugger_limit
