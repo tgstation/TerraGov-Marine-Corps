@@ -61,7 +61,7 @@
 	if(!rage_ability)
 		return
 	endure_ability.endure_duration += initial(endure_ability.endure_duration) * get_multiplier(0)
-	rage_ability.extends_via_normal_rage = FALSE
+	rage_ability.extends_via_normal_rage = TRUE
 
 /datum/mutation_upgrade/shell/keep_going/on_mutation_disabled()
 	. = ..()
@@ -71,7 +71,7 @@
 	var/datum/action/ability/xeno_action/rage/rage_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/rage]
 	if(!rage_ability)
 		return
-	endure_ability.endure_threshold -= initial(endure_ability.endure_duration) * get_multiplier(0)
+	endure_ability.endure_duration -= initial(endure_ability.endure_duration) * get_multiplier(0)
 	rage_ability.extends_via_normal_rage = FALSE
 
 /datum/mutation_upgrade/shell/keep_going/on_structure_update(previous_amount, new_amount)
@@ -79,7 +79,7 @@
 	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
 	if(!endure_ability)
 		return
-	endure_ability.endure_threshold += initial(endure_ability.endure_duration) * get_multiplier(new_amount - previous_amount, FALSE)
+	endure_ability.endure_duration += initial(endure_ability.endure_duration) * get_multiplier(new_amount - previous_amount, FALSE)
 
 /// Returns the multiplier to add to Endure's duration.
 /datum/mutation_upgrade/shell/keep_going/proc/get_multiplier(structure_count, include_initial = TRUE)
@@ -218,6 +218,46 @@
 /// Returns the amount of deciseconds to add to Ravage's cast time.
 /datum/mutation_upgrade/spur/super_cut/proc/get_time(structure_count, include_initial = TRUE)
 	return (include_initial ? time_initial : 0) + (time_per_structure * structure_count)
+
+/datum/mutation_upgrade/spur/onslaught
+	name = "Onslaught"
+	desc = "Eviscerating Charge's cooldown duration is set to 20/15/10% of its original value, but it no longer stuns."
+	/// For the first structure, the multiplier to add to Eviscerating Charge's cooldown duration.
+	var/multiplier_initial = -0.75
+	/// For each structure, the additional multiplier to add to Eviscerating Charge's cooldown duration.
+	var/multiplier_per_structure = -0.05
+
+/datum/mutation_upgrade/spur/onslaught/get_desc_for_alert(new_amount)
+	if(!new_amount)
+		return ..()
+	return "viscerating Charge's cooldown duration is set to [PERCENT(1 + get_multiplier(new_amount))]% of its original value, but it no longer stuns."
+
+/datum/mutation_upgrade/spur/onslaught/on_mutation_enabled()
+	. = ..()
+	var/datum/action/ability/activable/xeno/charge/charge_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/charge]
+	if(!charge_ability)
+		return
+	charge_ability.cooldown_duration += initial(charge_ability.cooldown_duration) * get_multiplier(0)
+	charge_ability.paralyze_duration -= initial(charge_ability.paralyze_duration)
+
+/datum/mutation_upgrade/spur/onslaught/on_mutation_disabled()
+	. = ..()
+	var/datum/action/ability/activable/xeno/charge/charge_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/charge]
+	if(!charge_ability)
+		return
+	charge_ability.cooldown_duration -= initial(charge_ability.cooldown_duration) * get_multiplier(0)
+	charge_ability.paralyze_duration += initial(charge_ability.paralyze_duration)
+
+/datum/mutation_upgrade/spur/onslaught/on_structure_update(previous_amount, new_amount)
+	. = ..()
+	var/datum/action/ability/activable/xeno/charge/charge_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/charge]
+	if(!charge_ability)
+		return
+	charge_ability.cooldown_duration += initial(charge_ability.cooldown_duration) * get_multiplier(new_amount - previous_amount, FALSE)
+
+/// Returns the multiplier to add to Eviscerating Charge's cooldown duration.
+/datum/mutation_upgrade/spur/onslaught/proc/get_multiplier(structure_count, include_initial = TRUE)
+	return (include_initial ? multiplier_initial : 0) + (multiplier_per_structure * structure_count)
 
 //*********************//
 //         Veil        //

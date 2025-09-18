@@ -15,7 +15,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
 	)
-	///charge distance
+	/// The amount of deciseconds that carbons will be paralyze if hit.
+	var/paralyze_duration = 2 SECONDS
+	/// The maximum range/distance that can be charged.
 	var/charge_range = RAV_CHARGEDISTANCE
 
 /datum/action/ability/activable/xeno/charge/use_ability(atom/A)
@@ -89,9 +91,9 @@
 	living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.25 * multiplier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 	var/target_turf = get_ranged_target_turf(living_target, get_dir(src, living_target), rand(1, 3)) //we blast our victim behind us
 	target_turf = get_step_rand(target_turf) //Scatter
-	if(iscarbon(living_target))
+	if(iscarbon(living_target) && paralyze_duration)
 		var/mob/living/carbon/carbon_victim = living_target
-		carbon_victim.Paralyze(2 SECONDS)
+		carbon_victim.Paralyze(paralyze_duration)
 	living_target.throw_at(get_turf(target_turf), charge_range, RAV_CHARGESPEED, src)
 
 ///Cleans up after charge is finished
@@ -127,6 +129,13 @@
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	return ..()
 
+#define CONE_PART_MIDDLE (1<<0)
+#define CONE_PART_LEFT (1<<1)
+#define CONE_PART_RIGHT (1<<2)
+#define CONE_PART_DIAG_LEFT (1<<3)
+#define CONE_PART_DIAG_RIGHT (1<<4)
+#define CONE_PART_MIDDLE_DIAG (1<<5)
+
 /datum/action/ability/activable/xeno/ravage/use_ability(atom/A)
 	if(cast_time && !do_after(xeno_owner, cast_time, NONE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), TRUE, ABILITY_USE_BUSY)))
 		return
@@ -136,61 +145,95 @@
 	span_xenowarning("We thrash about in a murderous frenzy!"))
 
 	xeno_owner.face_atom(A)
-	activate_particles(xeno_owner.dir)
 
-	// Actual target we will check adjacency with.
-	var/atom/adjacent_relative = xeno_owner
-	var/list/atom/movable/atoms_to_ravage = list()
-	if(aoe)
-		for(var/dir in GLOB.cardinals)
-			activate_particles(dir)
-		for(var/turf/nearby_turf in RANGE_TURFS(1, get_turf(xeno_owner)))
-			atoms_to_ravage += nearby_turf.contents // Bloodthirster isn't expected to get this. So don't need to worry about adding more range.
+	var/range = 2 // 1 = turf underneath only.
+	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
+		if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST)
+			range = 3
+		else if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
+			range = 4 // 3 maximum
+
+	var/turf/current_turf = get_turf(xeno_owner)
+	var/facing = xeno_owner.dir
+	var/list/turf/ravaged_turfs = list()
+	if(!aoe)
+		activate_particles(facing)
+		switch(facing)
+			if(NORTH, SOUTH, EAST, WEST)
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range, facing, CONE_PART_MIDDLE|CONE_PART_LEFT|CONE_PART_RIGHT)
+			if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range, facing, CONE_PART_MIDDLE_DIAG)
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range + 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT)
 	else
-		activate_particles(xeno_owner.dir)
-		atoms_to_ravage += get_step(owner, owner.dir).contents
-		atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
-		atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
-		if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
-			if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
-				var/turf/far = get_step(get_step(owner, owner.dir), owner.dir)
-				if(!far.density)
-					atoms_to_ravage += far.contents
-					atoms_to_ravage += get_step(far, turn(owner.dir, 90)).contents
-					atoms_to_ravage += get_step(far, turn(owner.dir, -90)).contents
-					var/turf/temptstep = get_step(owner, owner.dir)
-					if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST && temptstep.Adjacent(far))
-						adjacent_relative = far
-						var/turf/furthest = get_step(far, owner.dir)
-						if(!furthest.density)
-							atoms_to_ravage += furthest.contents
-							atoms_to_ravage += get_step(furthest, turn(owner.dir, 90)).contents
-							atoms_to_ravage += get_step(furthest, turn(owner.dir, -90)).contents
+		for(var/direction in GLOB.alldirs)
+			if(direction in GLOB.cardinals)
+				activate_particles(direction)
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range, direction, CONE_PART_MIDDLE)
+			else
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range, direction, CONE_PART_MIDDLE_DIAG)
+	ravaged_turfs -= current_turf // Don't want to hit the turf underneath us.
 
-	if(armor_penetration) // Since everything references the caste for armor peneration, this is how to individually give armor peneration without causing everything.
+	var/list/atom/movable/atoms_to_ravage = list()
+	for(var/turf/ravaged_turf AS in ravaged_turfs)
+		atoms_to_ravage += ravaged_turf.contents
+
+	if(armor_penetration) // Since everything references the caste for armor peneration, this is how to individually give armor peneration without changing everything.
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack_living))
-	for(var/atom/movable/ravaged AS in atoms_to_ravage)
-		if(ishitbox(ravaged) || isvehicle(ravaged))
-			ravaged.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage) //Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
+	for(var/atom/movable/ravaged_atom AS in atoms_to_ravage)
+		if(ishitbox(ravaged_atom) || isvehicle(ravaged_atom))
+			ravaged_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage, armor_penetration = xeno_owner.xeno_caste.melee_ap + armor_penetration) // Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
 			continue
-		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE) || !adjacent_relative.Adjacent(ravaged))
+		if(!(ravaged_atom.resistance_flags & XENO_DAMAGEABLE))
 			continue
-		if(!ishuman(ravaged))
-			ravaged.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage, armor_penetration = armor_penetration)
-			ravaged.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
+		if(!ishuman(ravaged_atom))
+			ravaged_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage, armor_penetration = xeno_owner.xeno_caste.melee_ap + armor_penetration)
+			ravaged_atom.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 			continue
-		var/mob/living/carbon/human/human_victim = ravaged
-		if(human_victim.stat == DEAD)
+		var/mob/living/carbon/human/ravaged_human = ravaged_atom
+		if(ravaged_human.stat == DEAD)
 			continue
-		human_victim.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
-		human_victim.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
-		shake_camera(human_victim, 2, 1)
-		human_victim.Paralyze(1 SECONDS)
+		ravaged_human.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE) // The reason why we have to add armor peneration as a signal.
+		ravaged_human.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
+		shake_camera(ravaged_human, 2, 1)
+		ravaged_human.Paralyze(1 SECONDS)
 	if(armor_penetration)
 		UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 
 	succeed_activate()
 	add_cooldown()
+
+/// Gets all valid turfs to hit with Ravage. Valid turfs are any turfs that have no density.
+/datum/action/ability/activable/xeno/ravage/proc/add_valid_turfs_from_cone(turf/current_turf, list/turf/valid_turfs_so_far = list(), distance_left, facing, direction_flag)
+	if(distance_left <= 0 || current_turf.density)
+		return
+	if(!(current_turf in valid_turfs_so_far))
+		valid_turfs_so_far += current_turf
+
+	keep_getting_valid_turf_in_cone(current_turf, get_step(current_turf, facing), valid_turfs_so_far, distance_left, facing, direction_flag)
+	return valid_turfs_so_far
+
+/// Performs the next step of getting valid turfs.
+/datum/action/ability/activable/xeno/ravage/proc/keep_getting_valid_turf_in_cone(turf/current_turf, turf/next_turf, list/turf/valid_turfs_so_far, distance_left, facing, direction_flag)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE))
+		add_valid_turfs_from_cone(next_turf, valid_turfs_so_far, distance_left - 1 , facing, CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_RIGHT))
+		add_valid_turfs_from_cone(get_step(next_turf, turn(facing, 90)), valid_turfs_so_far, distance_left - 1, facing, CONE_PART_RIGHT|CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_LEFT))
+		add_valid_turfs_from_cone(get_step(next_turf, turn(facing, -90)), valid_turfs_so_far, distance_left - 1, facing, CONE_PART_LEFT|CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_DIAG_LEFT))
+		add_valid_turfs_from_cone(get_step(current_turf, turn(facing, 45)), valid_turfs_so_far, distance_left - 1, turn(facing, 45), CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_DIAG_RIGHT))
+		add_valid_turfs_from_cone(get_step(current_turf, turn(facing, -45)), valid_turfs_so_far, distance_left - 1, turn(facing, -45), CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE_DIAG))
+		add_valid_turfs_from_cone(next_turf, valid_turfs_so_far, distance_left - 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT)
+		add_valid_turfs_from_cone(next_turf, valid_turfs_so_far, distance_left - 2, facing, (distance_left < 5) ? CONE_PART_MIDDLE : CONE_PART_MIDDLE_DIAG)
+
+#undef CONE_PART_MIDDLE
+#undef CONE_PART_LEFT
+#undef CONE_PART_RIGHT
+#undef CONE_PART_DIAG_LEFT
+#undef CONE_PART_DIAG_RIGHT
+#undef CONE_PART_MIDDLE_DIAG
 
 /// Adds armor penetration to attacked living beings.
 /datum/action/ability/activable/xeno/ravage/proc/on_attack_living(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)

@@ -11,6 +11,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRECHARGE,
 	)
+	paralyze_duration = 0 // Although we don't do anything related to paralyze, it is nice to have this zeroed out.
 	// Should they also slash upon hitting a mob?
 	var/should_slash = TRUE
 	/// How much damage is dealt for hitting through a mob?

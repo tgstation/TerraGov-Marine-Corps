@@ -62,6 +62,7 @@
 		/datum/mutation_upgrade/shell/inward_focus,
 		/datum/mutation_upgrade/spur/deep_slash,
 		/datum/mutation_upgrade/spur/super_cut,
+		/datum/mutation_upgrade/spur/onslaught,
 		/datum/mutation_upgrade/veil/recurring_rage
 	)
 
