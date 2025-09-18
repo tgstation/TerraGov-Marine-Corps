@@ -324,7 +324,6 @@
 /datum/mutation_upgrade/veil/fight_in_flames
 	name = "Fight in Flames"
 	desc = "You lose 70 fire armor. For each time that you're affected by fire, you gain an additional 200/250/300 plasma. This can happen every 1 second." // Cooldown comes from [/mob/living/carbon/xenomorph/ravager/fire_act].
-
 	/// For the first structure, the bonus amount of plasma when they are affected by fire.
 	var/plasma_initial = 150
 	/// For each structure, the additional bonus amount of plasma when they are affected by fire.
