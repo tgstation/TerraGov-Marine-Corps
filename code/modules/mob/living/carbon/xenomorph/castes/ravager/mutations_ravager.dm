@@ -125,7 +125,7 @@
 	var/datum/action/ability/xeno_action/endure/endure_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
 	if(!endure_ability)
 		return
-	endure_ability.endure_armor += initial(endure_ability.endure_duration) * get_armor(new_amount - previous_amount, FALSE)
+	endure_ability.endure_armor += get_armor(new_amount - previous_amount, FALSE)
 	if(endure_ability.attached_armor)
 		xenomorph_owner.soft_armor = xenomorph_owner.soft_armor.detachArmor(endure_ability.attached_armor)
 		endure_ability.attached_armor = null
@@ -136,7 +136,7 @@
 
 /// Returns the amount of all soft armor that Endure should give while active.
 /datum/mutation_upgrade/shell/inward_focus/proc/get_armor(structure_count, include_initial = TRUE)
-	return (include_initial ? armor_initial : 0) + (armor_per_structure* structure_count)
+	return (include_initial ? armor_initial : 0) + (armor_per_structure * structure_count)
 
 //*********************//
 //         Spur        //
