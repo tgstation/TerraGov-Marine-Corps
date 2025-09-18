@@ -55,6 +55,7 @@
 #define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
 #define COOLDOWN_TRY_TTS "cooldown_try_tts"
 #define COOLDOWN_EVASION_ACTIVATION "cooldown_evasion_activation"
+#define COOLDOWN_ACID_DASH_ACTIVATION "cooldown_acid_dash_activation"
 #define COOLDOWN_TANK_SWIVEL "tank_turret_swivel"
 #define COOLDOWN_ARMORED_HORN "cooldown_armored_horn"
 #define COOLDOWN_WHISTLE_BLOW "cooldown_whistle_blow"

@@ -3,30 +3,23 @@
 //*********************//
 /datum/mutation_upgrade/shell/gaseous_trail
 	name = "Gaseous Trail"
-	desc = "Steam Rush leaves a trail of opaque gas behind you. The gas lasts for 2/4/6 seconds."
-	/// For each structure, the duration in deciseconds that the gas from Steam Rush will last.
+	desc = "Acid Dash leaves a trail of opaque gas behind you. The gas lasts for 2/4/6 seconds."
+	/// For each structure, the duration in deciseconds that the gas from Acid Dash will last.
 	var/duration_per_structure = 2 SECONDS
 
 /datum/mutation_upgrade/shell/gaseous_trail/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Steam Rush leaves a trail of opaque gas behind you. The gas lasts for [get_duration(new_amount) * 0.1] seconds."
+	return "Acid Dash leaves a trail of opaque gas behind you. The gas lasts for [get_duration(new_amount) * 0.1] seconds."
 
 /datum/mutation_upgrade/shell/gaseous_trail/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	var/datum/action/ability/xeno_action/steam_rush/rush_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/steam_rush]
-	if(!rush_ability)
+	var/datum/action/ability/activable/xeno/charge/acid_dash/dash_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/charge/acid_dash]
+	if(!dash_ability)
 		return
-	var/previous_duration = rush_ability.gas_trail_duration
-	rush_ability.gas_trail_duration += get_duration(new_amount - previous_amount)
-	if(!rush_ability.active)
-		return
-	if(previous_duration && !rush_ability.gas_trail_duration)
-		rush_ability.UnregisterSignal(rush_ability.xeno_owner, COMSIG_MOVABLE_MOVED)
-	if(!previous_duration && rush_ability.gas_trail_duration)
-		rush_ability.RegisterSignal(rush_ability.xeno_owner, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/datum/action/ability/xeno_action/steam_rush, on_movement))
+	dash_ability.gas_trail_duration += get_duration(new_amount - previous_amount)
 
-/// Returns the duration in deciseconds that the gas from Steam Rush will last.
+/// Returns the duration in deciseconds that the gas from Acid Dash will last.
 /datum/mutation_upgrade/shell/gaseous_trail/proc/get_duration(structure_count)
 	return duration_per_structure * structure_count
 
@@ -41,7 +34,7 @@
 	/// For each structure, the multiplier to add to Smokescreen Spit's ability cost.
 	var/cost_multiplier_per_structure = -0.5
 	/// The ammo type used to replace Smokescreen Spit with.
-	var/datum/ammo/xeno/smokescreen_spit_ammotype = /datum/ammo/xeno/acid/airburst/heavy/neurotoxin
+	var/datum/ammo/xeno/smokescreen_spit_ammotype = /datum/ammo/xeno/acid/smokescreen/neurotoxin
 
 /datum/mutation_upgrade/spur/neurotoxin_swap/get_desc_for_alert(new_amount)
 	if(!new_amount)
@@ -49,7 +42,7 @@
 	return "Smokescreen Spit does stamina damage and emits Neurotoxin instead. Smokescreen Spit's plasma cost is [PERCENT(1 + get_cost_multiplier(new_amount))]% of its original cost."
 
 /datum/mutation_upgrade/spur/neurotoxin_swap/on_mutation_enabled()
-	var/datum/action/ability/xeno_action/smokescreen_spit/smokescreen_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/smokescreen_spit]
+	var/datum/action/ability/activable/xeno/smokescreen_spit/smokescreen_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/smokescreen_spit]
 	if(!smokescreen_ability)
 		return
 	smokescreen_ability.ammo_type = smokescreen_spit_ammotype
@@ -57,7 +50,7 @@
 	return ..()
 
 /datum/mutation_upgrade/spur/neurotoxin_swap/on_mutation_disabled()
-	var/datum/action/ability/xeno_action/smokescreen_spit/smokescreen_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/smokescreen_spit]
+	var/datum/action/ability/activable/xeno/smokescreen_spit/smokescreen_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/smokescreen_spit]
 	if(!smokescreen_ability)
 		return
 	smokescreen_ability.ammo_type = initial(smokescreen_ability.ammo_type)
@@ -66,7 +59,7 @@
 
 /datum/mutation_upgrade/spur/neurotoxin_swap/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	var/datum/action/ability/xeno_action/smokescreen_spit/smokescreen_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/smokescreen_spit]
+	var/datum/action/ability/activable/xeno/smokescreen_spit/smokescreen_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/smokescreen_spit]
 	if(!smokescreen_ability)
 		return
 	smokescreen_ability.ability_cost += initial(smokescreen_ability.ability_cost) * get_cost_multiplier(new_amount - previous_amount, FALSE)
