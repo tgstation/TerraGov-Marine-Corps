@@ -356,7 +356,7 @@
 	var/plasma_cost = ability_cost
 	if(uses_health_as_necessary)
 		plasma_cost = -min(0, xeno_owner.plasma_stored - ability_cost)
-		xeno_owner.adjustBruteLoss(min((xeno_owner.health - xeno_owner.health_threshold_dead - 1), plasma_cost)) // Worst case, 1 health.
+		xeno_owner.adjustBruteLoss(min((xeno_owner.health - xeno_owner.get_death_threshold() - 1), plasma_cost)) // Worst case, 1 health.
 	xeno_owner.updatehealth() // To get them back up if they happen to activate the ability while in critical.
 	succeed_activate(plasma_cost)
 	add_cooldown()
