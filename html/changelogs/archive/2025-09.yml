@@ -88,3 +88,8 @@
       ,  :rounypopcorn: , :rounygun:'
   blackdav123:
   - bugfix: Fixed a runtime when pyrogen fire expires.
+2025-09-18:
+  Lumipharon:
+  - bugfix: fixed missing sprites for empty water tanks and space cash
+  - bugfix: NPC's will no longer get stuck on razorwire
+  - bugfix: fixed a layer issue on the SOM hoverbike
