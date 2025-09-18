@@ -14,11 +14,6 @@
 
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	destroy_sound = SFX_ALIEN_RESIN_MOVE
-	/// Connection list.
-	var/static/list/listen_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
-		COMSIG_TURF_PRE_SHUTTLE_CRUSH = PROC_REF(pre_shuttle_crush)
-	)
 	///How many charges of acid this well contains
 	var/charges = 1
 	///If a xeno is charging this well
@@ -31,6 +26,10 @@
 	creator = _creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))
 	update_icon()
+	var/static/list/listen_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_TURF_PRE_SHUTTLE_CRUSH = PROC_REF(pre_shuttle_crush)
+	)
 	AddElement(/datum/element/connect_loc, listen_connections)
 
 /obj/structure/xeno/acidwell/Destroy()
