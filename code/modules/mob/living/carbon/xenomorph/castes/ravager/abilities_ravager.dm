@@ -245,16 +245,16 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
 	)
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_SOLIDOBJECT // Can use this while staggered.
+	/// The amount of deciseconds Endure should last.
+	var/endure_duration = RAVAGER_ENDURE_DURATION
 	/// While this ability is active, what amount should the owner's `get_crit_threshold` and `get_death_threshold` return?
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
 	/// While this ability is active, what amount should be added to the number returned by `get_crit_threshold` and `get_death_threshold`? This is reset to zero when the ability ends.
 	var/bonus_endure_threshold = 0
-	/// The amount of deciseconds Endure should last.
-	var/endure_duration_length = RAVAGER_ENDURE_DURATION
-	/// Timer for Endure's duration.
-	var/endure_duration
-	/// Timer for Endure's warning.
-	var/endure_warning_duration
+	/// The timer for Endure's duration.
+	var/endure_timer
+	/// The timer for Endure's warning message.
+	var/endure_warning_timer
 	/// When this ability ends and the owner's health is under the reverted `get_death_threshold`, should they die instead?
 	var/death_beyond_threshold = FALSE
 
@@ -272,8 +272,8 @@
 
 	xeno_owner.add_filter("ravager_endure_outline", 4, outline_filter(1, COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
-	endure_duration = addtimer(CALLBACK(src, PROC_REF(endure_warning)), endure_duration_length * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
-	endure_warning_duration = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), endure_duration_length, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+	endure_timer = addtimer(CALLBACK(src, PROC_REF(endure_warning)), endure_duration_length * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
+	endure_warning_timer = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), endure_duration_length, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
 	xeno_owner.set_stagger(0) //Remove stagger
 	xeno_owner.set_slowdown(0) //Remove slowdown
@@ -295,7 +295,7 @@
 /datum/action/ability/xeno_action/endure/proc/endure_warning()
 	if(QDELETED(owner))
 		return
-	to_chat(owner,span_userdanger("We feel the plasma draining from our veins... [initial(name)] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
+	to_chat(owner,span_userdanger("We feel the plasma draining from our veins... [initial(name)] will last for only [timeleft(endure_timer) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Turns off the Endure buff
@@ -314,8 +314,8 @@
 	REMOVE_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
 	REMOVE_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT)
 	bonus_endure_threshold = 0 // Reset the endure vars to their initial states.
-	endure_duration = initial(endure_duration)
-	endure_warning_duration = initial(endure_warning_duration)
+	endure_timer = null
+	endure_warning_timer = null
 
 	xeno_owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 	if(xeno_owner.health >= xeno_owner.get_crit_threshold())
@@ -505,13 +505,13 @@
 
 	if(extends_via_normal_rage || rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 		var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
-		if(endure_ability.endure_duration) //Check if Endure is active
-			var/new_duration = min(endure_ability.endure_duration_length, (timeleft(endure_ability.endure_duration) + RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH)) //Increment Endure duration by 2 seconds per slash
-			deltimer(endure_ability.endure_duration) //Reset timers
-			deltimer(endure_ability.endure_warning_duration)
-			endure_ability.endure_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_deactivate)), new_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+		if(endure_ability.endure_timer) //Check if Endure is active
+			var/new_duration = min(endure_ability.endure_duration_length, (timeleft(endure_ability.endure_timer) + RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH)) //Increment Endure duration by 2 seconds per slash
+			deltimer(endure_ability.endure_timer) //Reset timers
+			deltimer(endure_ability.endure_warning_timer)
+			endure_ability.endure_timer = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_deactivate)), new_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
 			if(new_duration > 3 SECONDS) //Check timing
-				endure_ability.endure_warning_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_warning)), new_duration - 3 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+				endure_ability.endure_warning_timer = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_warning)), new_duration - 3 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
 
 ///Called when we want to end the Rage effect
 /datum/action/ability/xeno_action/rage/proc/rage_deactivate()
