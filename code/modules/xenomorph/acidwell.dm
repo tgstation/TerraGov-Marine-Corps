@@ -41,10 +41,10 @@
 	SIGNAL_HANDLER
 	creator = null
 
-/// Ensures that no acid gas will be released when the well is later crushed by a shuttle.
+/// Deletes this first before it can get crushed by a shuttle.
 /obj/structure/xeno/acidwell/proc/pre_shuttle_crush(datum/source)
 	SIGNAL_HANDLER
-	charges = 0
+	qdel(src)
 
 /obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
