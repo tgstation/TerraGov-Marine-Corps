@@ -627,16 +627,6 @@
 "mM" = (
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
-"mQ" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/landmark/start/job/crash/squadcorpsman,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "ny" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -702,16 +692,6 @@
 /obj/item/storage/box/crate/sentry,
 /obj/item/storage/box/crate/sentry,
 /turf/open/floor/mainship/cargo,
-/area/shuttle/canterbury)
-"qE" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/effect/landmark/start/job/crash/squadmarine,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "qM" = (
 /obj/structure/bed/chair/dropship/passenger,
@@ -859,11 +839,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"CA" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/job/crash/squadmarine,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "DF" = (
 /obj/machinery/vending/armor_supply,
 /obj/structure/window/reinforced{
@@ -957,10 +932,6 @@
 "MY" = (
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury/cic)
-"Oj" = (
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "Ot" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -1005,12 +976,8 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Sg" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/effect/landmark/start/job/crash/squadcorpsman,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
+/turf/template_noop,
+/area/space)
 "Si" = (
 /turf/open/floor/mainship/blue{
 	dir = 10
@@ -1096,12 +1063,6 @@
 /obj/effect/turf_decal/warning_stripes/box/threeside{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/effect/turf_decal/warning_stripes,
 /obj/machinery/door_control{
 	id = "Interior_Emergency_umbilical";
@@ -1124,20 +1085,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
-"XO" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/effect/landmark/start/job/crash/squadmarine,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"Yn" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/effect/landmark/start/job/crash/squadengineer,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "YN" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/start/job/crash/squadcorpsman,
@@ -1155,27 +1102,27 @@ ab
 ab
 ab
 ab
-Uo
-Uo
-Uo
-Uo
-ab
-ab
-ab
-ab
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ab
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
 "}
 (2,1,1) = {"
 Uo
@@ -1188,7 +1135,39 @@ al
 Mj
 rb
 ab
-bU
+Uo
+Uo
+Uo
+ab
+ab
+ab
+ab
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ab
+Sg
+"}
+(3,1,1) = {"
+Uo
+Uo
+Uo
+Uo
+Uo
+Uo
+al
+Ui
+ac
+ab
 bU
 bU
 bU
@@ -1209,20 +1188,20 @@ Xf
 aU
 ap
 ag
+Sg
 "}
-(3,1,1) = {"
-Uo
-Uo
-Uo
+(4,1,1) = {"
 Uo
 Uo
 Uo
 al
-Ui
+ad
+ad
+al
+UE
 ac
 ab
 bi
-pY
 pY
 pY
 ab
@@ -1242,22 +1221,22 @@ aA
 bd
 ap
 ah
+Sg
 "}
-(4,1,1) = {"
-Uo
+(5,1,1) = {"
 Uo
 Uo
 al
-ad
-ad
 al
-UE
-ac
+uu
+bL
+al
+Rd
+jq
 ab
-CA
+iy
 an
-ac
-su
+tP
 ab
 bq
 mM
@@ -1275,22 +1254,22 @@ fL
 be
 ap
 ah
+Sg
 "}
-(5,1,1) = {"
+(6,1,1) = {"
 Uo
 Uo
+ad
+Ub
+MY
+bM
 al
-al
-uu
-bL
-al
-Rd
-jq
-ab
-iy
-an
+AS
 ac
-tP
+ab
+YN
+an
+su
 ab
 br
 mM
@@ -1308,22 +1287,22 @@ aA
 aA
 ap
 ah
+Sg
 "}
-(6,1,1) = {"
+(7,1,1) = {"
 Uo
 Uo
 ad
-Ub
-MY
-bM
+am
+uu
+bN
 al
-AS
+FZ
 ac
 ab
-YN
+uZ
 an
-ac
-su
+uT
 ab
 ab
 ar
@@ -1341,22 +1320,22 @@ aY
 JN
 ap
 ai
+Sg
 "}
-(7,1,1) = {"
+(8,1,1) = {"
 Uo
 Uo
 ad
-am
-uu
-bN
+ae
+MY
+bS
 al
-FZ
+qh
 ac
 ab
-uZ
+Wk
 an
 ac
-uT
 sR
 TS
 bw
@@ -1374,39 +1353,7 @@ au
 ap
 ap
 ab
-"}
-(8,1,1) = {"
-Uo
-Uo
-ad
-ae
-MY
-bS
-al
-qh
-ac
-ab
-Wk
-an
-ac
-ac
-ac
-ac
-ac
-as
-Oj
-ac
-ac
-as
-mQ
 Sg
-Yn
-qE
-XO
-ac
-gv
-bW
-Uo
 "}
 (9,1,1) = {"
 Uo
@@ -1425,7 +1372,6 @@ ac
 ac
 ac
 ac
-ac
 as
 ac
 ac
@@ -1440,6 +1386,7 @@ ac
 gv
 bW
 Uo
+Sg
 "}
 (10,1,1) = {"
 Uo
@@ -1452,7 +1399,6 @@ bD
 as
 as
 nM
-as
 as
 as
 as
@@ -1473,6 +1419,7 @@ an
 gv
 bW
 Uo
+Sg
 "}
 (11,1,1) = {"
 Uo
@@ -1487,40 +1434,6 @@ ac
 zy
 ac
 an
-ac
-ac
-ac
-ac
-ac
-an
-ac
-ac
-ac
-ac
-ac
-an
-ac
-ac
-ac
-ac
-gv
-bW
-Uo
-"}
-(12,1,1) = {"
-Uo
-Uo
-ad
-bJ
-MY
-bQ
-al
-ac
-ba
-ab
-Wl
-an
-ac
 FQ
 Fl
 aX
@@ -1539,21 +1452,21 @@ ac
 Xb
 bW
 Uo
+Sg
 "}
-(13,1,1) = {"
+(12,1,1) = {"
 Uo
 Uo
 ad
-Si
-Uw
-bR
+bJ
+MY
+bQ
 al
-JX
 ac
+ba
 ab
-ms
+Wl
 an
-ac
 su
 ab
 oa
@@ -1572,21 +1485,21 @@ ar
 ab
 ab
 ab
+Sg
 "}
-(14,1,1) = {"
+(13,1,1) = {"
 Uo
 Uo
 ad
-jo
-MY
-bO
+Si
+Uw
+bR
 al
-BZ
-bh
-ab
-uZ
-an
+JX
 ac
+ab
+ms
+an
 ww
 ab
 bt
@@ -1605,21 +1518,21 @@ UO
 KD
 ab
 ag
+Sg
 "}
-(15,1,1) = {"
+(14,1,1) = {"
 Uo
 Uo
+ad
+jo
+MY
+bO
 al
-al
-Uw
-bT
-al
-aF
-jq
+BZ
+bh
 ab
-qM
+uZ
 an
-ac
 OL
 ab
 PW
@@ -1638,21 +1551,21 @@ bA
 wz
 ab
 ah
+Sg
 "}
-(16,1,1) = {"
-Uo
+(15,1,1) = {"
 Uo
 Uo
 al
-ad
-ad
 al
-UP
-ac
+Uw
+bT
+al
+aF
+jq
 ab
-CA
+qM
 an
-ac
 su
 ab
 bu
@@ -1671,20 +1584,20 @@ bA
 bg
 ab
 ah
+Sg
 "}
-(17,1,1) = {"
-Uo
-Uo
-Uo
+(16,1,1) = {"
 Uo
 Uo
 Uo
 al
-vW
-cR
+ad
+ad
+al
+UP
+ac
 ab
 bC
-hc
 hc
 hc
 ab
@@ -1704,8 +1617,9 @@ bA
 wz
 ab
 ah
+Sg
 "}
-(18,1,1) = {"
+(17,1,1) = {"
 Uo
 Uo
 Uo
@@ -1713,10 +1627,9 @@ Uo
 Uo
 Uo
 al
-te
-te
+vW
+cR
 ab
-bV
 bV
 bV
 bV
@@ -1737,6 +1650,40 @@ DI
 aQ
 ab
 ai
+Sg
+"}
+(18,1,1) = {"
+Uo
+Uo
+Uo
+Uo
+Uo
+Uo
+al
+te
+te
+ab
+Uo
+Uo
+Uo
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+Sg
 "}
 (19,1,1) = {"
 Uo
@@ -1749,25 +1696,25 @@ ab
 ab
 ab
 ab
-Uo
-Uo
-Uo
-Uo
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
+Sg
 "}
