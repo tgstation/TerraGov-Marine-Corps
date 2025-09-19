@@ -362,7 +362,7 @@ GLOBAL_VAR(restart_counter)
 	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] - [shipname]</a></b>"
 	new_status += "<br>Map: [map_name]"
 	new_status += "<br>Mode: [SSticker.mode ? SSticker.mode.name : "Lobby"]"
-	new_status += "<br>Round time: [gameTimestamp("hh:mm")]"
+	new_status += "<br>Round time: [duration2text(world.time - SSticker.round_start_time)]"
 
 	// Finally set the new status
 	status = new_status
