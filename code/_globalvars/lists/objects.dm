@@ -2,8 +2,6 @@
 GLOBAL_LIST_EMPTY(cable_list)
 ///List of all ammo types. Used by guns to tell the projectile how to act.
 GLOBAL_LIST_INIT(ammo_list, init_ammo_list())
-//For zombie crash
-GLOBAL_LIST_EMPTY(waves_spawner_locs)
 
 /proc/init_ammo_list()
 	. = list()

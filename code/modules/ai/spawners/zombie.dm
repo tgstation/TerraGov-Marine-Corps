@@ -15,7 +15,6 @@
 	spawnamount = 1
 	spawndelay = 8 SECONDS
 	maxamount = 15
-	mob_decrement_signals = list(COMSIG_QDELETING)
 
 /obj/effect/ai_node/spawner/zombie/Initialize(mapload)
 	. = ..()

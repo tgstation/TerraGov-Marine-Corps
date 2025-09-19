@@ -1,7 +1,7 @@
 /datum/action/rally_zombie
 	name = "Rally Zombies"
 	action_icon_state = "rally_minions"
-	action_icon = 'icons/Xeno/actions/general.dmi'
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 
 /datum/action/rally_zombie/action_activate()
 	owner.balloon_alert(owner, "Zombies Rallied!")
@@ -13,7 +13,7 @@
 /datum/action/set_agressivity
 	name = "Set other zombie behavior"
 	action_icon_state = "minion_agressive"
-	action_icon = 'icons/Xeno/actions/general.dmi'
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	///If zombies should be agressive
 	var/zombies_agressive = TRUE
 
