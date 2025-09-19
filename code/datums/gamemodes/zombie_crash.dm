@@ -71,16 +71,11 @@
 	return list(num_humans, num_zombies)
 
 /datum/game_mode/infestation/crash/zombie/balance_scales()
-	message_admins("AUTOBAL FIRE")
 	var/list/living_player_list = count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	var/num_zombies = living_player_list[2]
-	message_admins("AUTOBALANCE [num_humans], [num_zombies], [length(GLOB.zombie_spawners)]")
-	var/i = 0
 	if(num_zombies * 0.1 >= num_humans) // if there's too much zombies, don't spawn even more
 		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-			i++
-			message_admins(i)
 			SSspawning.spawnerdata[spawner].max_allowed_mobs = 0
 		return
 	for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)

@@ -90,10 +90,9 @@
 		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
 		return
 	if(!H.has_working_organs())
-		SSmobs.stop_processing(H) // stopping the processing extinguishes the fire that is already on, so that's a hack around
+		SSmobs.stop_processing(H) // stopping the processing extinguishes the fire that is already on, to stop from doubling up
 		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
 		return
-	SSmobs.stop_processing(H)
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
