@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(jobs_squad_standard, list(SQUAD_MARINE, SOM_SQUAD_MARINE))
 #define LARVA_POINTS_SHIPSIDE_STRONG 1.5
 #define LARVA_POINTS_REGULAR 3.25
 ///How many marines per xeno at optimal ratio
-#define XENO_MARINE_RATIO 3.25
+#define XENO_MARINE_RATIO 3.5
 
 #define SURVIVOR_POINTS_REGULAR 1
 
