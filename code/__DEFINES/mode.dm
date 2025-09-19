@@ -156,7 +156,7 @@
 /// How each alive marine contributes to burrower larva output per minute. So with one pool, 15 marines are giving 0.375 points per minute, so it's a new xeno every 22 minutes
 #define SILO_BASE_OUTPUT_PER_MARINE 0.035
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
-#define SILO_OUTPUT_PONDERATION 1.75
+#define SILO_OUTPUT_PONDERATION 2.25
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1
