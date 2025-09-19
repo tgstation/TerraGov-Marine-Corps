@@ -12933,7 +12933,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/tankerbunks)
 "lol" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
+/obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder,
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/hangar)
 "loE" = (
@@ -16824,6 +16824,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "rtt" = (
+/obj/structure/dropship_equipment/electronics/spotlights,
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship/orange{
 	dir = 6
