@@ -88,8 +88,8 @@
 #define SPAM_TRIGGER_WEIGHT_FORMULA(message) length(message) / 200
 #define SPAM_TRIGGER_WARNING 7	//Number of messages required per the time period before the spam-prevention will warn you
 #define SPAM_TRIGGER_AUTOMUTE 12	//Number of messages required per the time period before the spam-prevention will automute you
-#define SPAM_TRIGGER_WEIGHT_WARNING 2.5 //The weight required per the time period before the spam-prevention will warn you
-#define SPAM_TRIGGER_WEIGHT_AUTOMUTE 4 //The weight required per the time period before the spam-prevention will automute you
+#define SPAM_TRIGGER_WEIGHT_WARNING 7.5 //The weight required per the time period before the spam-prevention will warn you
+#define SPAM_TRIGGER_WEIGHT_AUTOMUTE 12 //The weight required per the time period before the spam-prevention will automute you
 
 #define MESSAGE_FLAG_ADMIN (1<<0) //! Spam filter info that this message is admin-related and shouldn't count towards admin spam limit (not needed currently due to admins bypassing it but eh!)
 #define MESSAGE_FLAG_MENTOR (1<<1) //! Spam filter info that this message is mentor-related and shouldn't count towards a mentor's spam limit.

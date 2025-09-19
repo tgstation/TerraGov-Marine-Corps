@@ -994,7 +994,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 			to_chat(src, span_danger("You have hit the spam filter limit."))
 		return TRUE
 
-	if(warning && GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
+	if(warning)
 		to_chat(src, span_danger("You are nearing the spam filter limit."))
 
 /client/vv_edit_var(var_name, var_value)
