@@ -21,15 +21,19 @@ export const file_labels = {
 	},
 	'Config Update': {
 		filepaths: ['config', 'code/controllers/configuration/entries'],
+		add_only: true,
 	},
 	'Sprites': {
 		filepaths: ['icons'],
+		add_only: true,
 	},
 	'Sound': {
 		filepaths: ['sound'],
+		add_only: true,
 	},
 	'UI': {
 		filepaths: ['tgui'],
+		add_only: true,
 	}
 }
 
