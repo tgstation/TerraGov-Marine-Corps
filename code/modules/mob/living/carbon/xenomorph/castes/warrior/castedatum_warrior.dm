@@ -53,6 +53,8 @@
 		/datum/action/ability/activable/xeno/warrior/punch,
 	)
 
+	doppelganger_color = "#233527"
+
 	mutations = list(
 		/datum/mutation_upgrade/shell/zoomies,
 		/datum/mutation_upgrade/spur/enhanced_strength,

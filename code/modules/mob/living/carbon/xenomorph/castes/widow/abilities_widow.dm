@@ -460,7 +460,7 @@
 	//ref to beam for web hook
 	var/datum/beam/web_beam
 
-/datum/action/ability/activable/xeno/web_hook/can_use_ability(atom/A)
+/datum/action/ability/activable/xeno/web_hook/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return
