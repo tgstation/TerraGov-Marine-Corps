@@ -196,7 +196,7 @@
 		return
 
 	say("Program run has concluded! Standing by...")
-	if(iszombiecrashgamemode())
+	if(iszombiecrashgamemode(SSticker.mode))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, src)
 
 	// Requisitions points bonus per cycle.
