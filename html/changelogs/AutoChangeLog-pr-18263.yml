@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Runner's Evasion now correctly dodges thrown objects."

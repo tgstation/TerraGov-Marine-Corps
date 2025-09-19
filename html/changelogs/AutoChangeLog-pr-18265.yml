@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "See Through no longer causes those who have an modified alpha to become even more invisible (e.g. Hunter)."
