@@ -70,13 +70,10 @@
 	trap_type = new_trap_type
 	update_icon()
 
-/// Empties out the trap so that nothing is activated when it is shuttle crushed very soon.
+/// Deletes this first before it can get crushed by a shuttle.
 /obj/structure/xeno/trap/proc/pre_shuttle_crush(datum/source)
 	SIGNAL_HANDLER
-	for(var/obj/item/clothing/mask/facehugger/hugger AS in huggers)
-		qdel(hugger)
-	huggers.Cut()
-	set_trap_type(null)
+	qdel(src)
 
 /obj/structure/xeno/trap/examine(mob/user)
 	. = ..()
