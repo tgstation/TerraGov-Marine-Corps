@@ -305,10 +305,6 @@
 	to_chat(user, span_notice(message))
 
 /turf/AICtrlShiftClick(mob/living/silicon/ai/user)
-	if(!GLOB.rail_gun)
-		to_chat(user, span_warning("No rail guns found!"))
-		return
-	// TODO: shift all the stuff you see below, to /obj/structure/ship_rail_gun
 	var/obj/effect/overlay/temp/laser_target/laser
 	var/area/A = get_area(loc)
 	if(HAS_TRAIT(user, TRAIT_IS_FIRING_RAILGUN))
