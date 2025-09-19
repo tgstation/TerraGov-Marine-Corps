@@ -512,9 +512,11 @@
 	cooldown_duration = 8 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_QUICKCAST
 	)
 	use_state_flags = ABILITY_USE_LYING
 	target_flags = ABILITY_MOB_TARGET
+	var/mob/living/carbon/xenomorph/last_xenomorph_transferred_to
 
 /datum/action/ability/activable/xeno/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -540,7 +542,6 @@
 			receiver.balloon_alert(owner, "Cannot give plasma, full")
 		return FALSE
 
-
 /datum/action/ability/activable/xeno/queen_give_plasma/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, PROC_REF(try_use_ability))
@@ -549,7 +550,13 @@
 	. = ..()
 	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
 
-/// Signal handler for the queen_give_plasma action that checks can_use
+/datum/action/ability/activable/xeno/queen_give_plasma/alternate_action_activate()
+	if(!last_xenomorph_transferred_to)
+		return
+	try_use_ability(null, last_xenomorph_transferred_to)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler for the queen_give_plasma action that checks can_use.
 /datum/action/ability/activable/xeno/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
 	SIGNAL_HANDLER
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
@@ -557,15 +564,14 @@
 	use_ability(target)
 
 /datum/action/ability/activable/xeno/queen_give_plasma/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/receiver = target
-	add_cooldown()
-	receiver.gain_plasma(300)
-	succeed_activate()
-	receiver.balloon_alert_to_viewers("Queen plasma", ignored_mobs = GLOB.alive_human_list)
-	if (get_dist(owner, receiver) > 7)
+	last_xenomorph_transferred_to = target
+	last_xenomorph_transferred_to.gain_plasma(300)
+	last_xenomorph_transferred_to.balloon_alert_to_viewers("Queen plasma", ignored_mobs = GLOB.alive_human_list)
+	if(get_dist(owner, last_xenomorph_transferred_to) > 7)
 		// Out of screen transfer.
 		owner.balloon_alert(owner, "Transferred plasma")
-
+	add_cooldown()
+	succeed_activate()
 
 #define BULWARK_LOOP_TIME 1 SECONDS
 #define BULWARK_RADIUS 4
