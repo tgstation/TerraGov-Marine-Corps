@@ -1048,7 +1048,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "gy" = (
-/obj/machinery/power/smes,
+/obj/machinery/power/smes/buildable,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
@@ -3659,7 +3659,6 @@
 /turf/open/floor/wood,
 /area/antag_ship/som/office/commander/field)
 "sS" = (
-/obj/structure/cable,
 /obj/structure/table,
 /obj/item/armor_module/module/welding,
 /obj/item/armor_module/module/welding,
@@ -3667,6 +3666,7 @@
 /obj/item/clothing/head/welding,
 /obj/item/clothing/head/welding,
 /obj/machinery/power/apc,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 8
 	},
@@ -3720,6 +3720,7 @@
 /obj/structure/table,
 /obj/item/tool/taperoll/engineering,
 /obj/item/tool/taperoll/engineering,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 4
 	},
@@ -3828,7 +3829,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "tK" = (
-/obj/machinery/power/smes,
+/obj/machinery/power/smes/buildable,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
@@ -4864,7 +4865,7 @@
 /turf/open/floor/mainship/empty,
 /area/antag_ship/som/hangar)
 "yU" = (
-/obj/machinery/power/smes/preset,
+/obj/machinery/power/smes/buildable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
@@ -5245,9 +5246,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/power/smes{
-	output_level = 150000
-	},
+/obj/machinery/power/smes/buildable,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/engi)
 "Bx" = (
@@ -5541,7 +5540,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/antag_ship/clf_base/sleeproom)
 "CE" = (
-/obj/machinery/power/smes,
+/obj/machinery/power/smes/buildable,
 /obj/structure/cable,
 /obj/machinery/light/mainship{
 	dir = 8
@@ -6253,10 +6252,6 @@
 /obj/item/toy/plush/rouny,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/reedroom)
-"Go" = (
-/obj/effect/forcefield/fog,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/rock)
 "Gs" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -7055,10 +7050,6 @@
 /obj/structure/paper_bin,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/east)
-"Kc" = (
-/obj/effect/forcefield/fog,
-/turf/open/floor/plating/ground/dirt,
-/area/antag_ship/clf_base/hallways/outside)
 "Ke" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
@@ -9300,9 +9291,7 @@
 /area/antag_ship/clf_base/hallways/inside)
 "Vd" = (
 /obj/structure/cable,
-/obj/machinery/power/smes{
-	output_level = 150000
-	},
+/obj/machinery/power/smes/buildable,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/engi)
 "Ve" = (
@@ -9796,7 +9785,7 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
 "Xo" = (
-/obj/machinery/power/smes,
+/obj/machinery/power/smes/buildable,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
@@ -17824,7 +17813,7 @@ gW
 gW
 gW
 gW
-Kc
+tT
 "}
 (80,1,1) = {"
 VK
@@ -17919,7 +17908,7 @@ gW
 gW
 ai
 gW
-Kc
+tT
 "}
 (81,1,1) = {"
 VK
@@ -18014,7 +18003,7 @@ gW
 gW
 gW
 gW
-Kc
+tT
 "}
 (82,1,1) = {"
 VK
@@ -18109,7 +18098,7 @@ gW
 gW
 gW
 gW
-Kc
+tT
 "}
 (83,1,1) = {"
 VK
@@ -18204,7 +18193,7 @@ gW
 gW
 gW
 gW
-Kc
+tT
 "}
 (84,1,1) = {"
 VK
@@ -18299,7 +18288,7 @@ ai
 gW
 gW
 gW
-Kc
+tT
 "}
 (85,1,1) = {"
 VK
@@ -19914,7 +19903,7 @@ tT
 fh
 PE
 bQ
-Go
+tT
 "}
 (102,1,1) = {"
 VK
@@ -20009,7 +19998,7 @@ tT
 qB
 gW
 gW
-Go
+tT
 "}
 (103,1,1) = {"
 VK
@@ -20104,7 +20093,7 @@ tT
 gW
 gW
 Vk
-Go
+tT
 "}
 (104,1,1) = {"
 VK
@@ -21505,10 +21494,10 @@ It
 tT
 tT
 tT
-Go
-Go
-Go
-Go
+tT
+tT
+tT
+tT
 tT
 tT
 tT
