@@ -24,7 +24,6 @@
 	var/windowknock_cooldown = 0
 	var/static_frame = FALSE //If true, can't move the window
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
-	var/damageable = TRUE
 	var/deconstructable = TRUE
 
 /obj/structure/window/add_debris_element()
@@ -469,7 +468,6 @@
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 	icon_state = "window-invincible"
@@ -534,7 +532,6 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 	icon_state = "window-invincible"
@@ -543,7 +540,6 @@
 	name = "hull window"
 	icon_state = "window-invincible"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 
@@ -580,7 +576,6 @@
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 	max_integrity = 1000000 //Failsafe, shouldn't matter
@@ -665,7 +660,6 @@
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 

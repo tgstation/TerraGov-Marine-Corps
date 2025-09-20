@@ -1026,6 +1026,7 @@
 #include "code\game\objects\items\devices\tweezers.dm"
 #include "code\game\objects\items\explosives\bombvest.dm"
 #include "code\game\objects\items\explosives\explosive.dm"
+#include "code\game\objects\items\explosives\genghis_charge.dm"
 #include "code\game\objects\items\explosives\mine.dm"
 #include "code\game\objects\items\explosives\plastique.dm"
 #include "code\game\objects\items\explosives\grenades\bullet_grenade.dm"

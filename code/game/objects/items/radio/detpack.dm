@@ -269,7 +269,7 @@
 			return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
-		if(!W.damageable)
+		if(!(W.resistance_flags & INDESTRUCTIBLE))
 			to_chat(user, "[span_warning("[W] is much too tough for you to do anything to it with [src]")].")
 			return FALSE
 	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
