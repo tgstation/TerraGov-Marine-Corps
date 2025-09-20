@@ -24,11 +24,11 @@
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
 		to_chat(vote_initiator, span_notice("It is too early to call for a vote to forfeit."))
 		return
-	if(!COOLDOWN_FINISHED(src, forfeit_vote_cooldown))
-		to_chat(vote_initiator, span_notice("It is too recent to call for an another vote to forfeit."))
-		return
 	if(active)
 		to_chat(vote_initiator, span_notice("A vote to forfeit is already ongoing."))
+		return
+	if(!COOLDOWN_FINISHED(src, forfeit_vote_cooldown))
+		to_chat(vote_initiator, span_notice("It is too recent to call for an another vote to forfeit."))
 		return
 	if(SSticker.mode.round_finished)
 		to_chat(vote_initiator, span_notice("The round has already ended."))
