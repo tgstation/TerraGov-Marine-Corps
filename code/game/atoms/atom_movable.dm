@@ -706,6 +706,8 @@
 	var/old_throw_source = throw_source
 	if(QDELETED(hit_atom))
 		return FALSE
+	if(SEND_SIGNAL(hit_atom, COMSIG_PRE_MOVABLE_IMPACT, src) & COMPONENT_PRE_MOVABLE_IMPACT_DODGED)
+		return FALSE
 	hit_successful = hit_atom.hitby(src, speed)
 	if(hit_successful)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, speed)

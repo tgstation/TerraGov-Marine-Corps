@@ -79,12 +79,12 @@
 /datum/action/ability/activable/xeno/essence_link/proc/end_ability(was_manually_disconnected = FALSE)
 	var/datum/action/ability/xeno_action/enhancement/enhancement_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/enhancement]
 	enhancement_action?.end_ability()
-	xeno_owner.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	if(was_manually_disconnected && existing_link.stacks)
 		var/health_to_heal = linked_target.maxHealth * disconnection_heal_percentage * existing_link.stacks
 		var/leftover_healing = health_to_heal
-		HEAL_XENO_DAMAGE(linked_target, leftover_healing, FALSE)
+		HEAL_XENO_DAMAGE(linked_target, leftover_healing, TRUE)
 		xeno_owner.adjustBruteLoss(health_to_heal - leftover_healing, TRUE)
+	xeno_owner.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	existing_link = null
 	linked_target = null
 	add_cooldown()

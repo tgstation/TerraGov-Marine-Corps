@@ -442,6 +442,9 @@
 	color = "#cff1ee" // Blueish.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_PYROGEN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
+/obj/effect/particle_effect/smoke/xeno/pyrogen_fire/light
+	lifetime = 4 //Lasts for less time
+
 /////////////////////////////////////////////
 // Smoke spreads
 /////////////////////////////////////////////
@@ -539,6 +542,8 @@
 /datum/effect_system/smoke_spread/xeno/pyrogen_fire
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire
 
+/datum/effect_system/smoke_spread/xeno/pyrogen_fire/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire/light
 
 /////////////////////////////////////////////
 // Chem smoke
