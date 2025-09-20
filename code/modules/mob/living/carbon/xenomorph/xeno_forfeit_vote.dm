@@ -18,7 +18,7 @@
 	if(vote_initiator.hivenumber != XENO_HIVE_NORMAL)
 		to_chat(vote_initiator, span_notice("Your hive is not allowed to forfeit."))
 		return
-	if(hive.living_xeno_ruler != vote_initiator)
+	if(vote_initiator.hive.living_xeno_ruler != vote_initiator)
 		to_chat(vote_initiator, span_notice("Only the ruler can start the vote to forfeit."))
 		return
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
