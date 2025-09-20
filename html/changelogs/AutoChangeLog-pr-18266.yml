@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Carrier traps and acid wells no longer activate when crushed by a shuttle."
-  - bugfix: "Carrier traps that are filled with gas now trigger if the weeds underneath are destroyed."
