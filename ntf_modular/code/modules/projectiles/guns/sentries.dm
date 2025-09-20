@@ -144,8 +144,7 @@
 	*/
 	density = FALSE //so it wont block people.
 	atom_flags = BUMP_ATTACKABLE
-	var/next_movement = 0
-	var/movement_delay = 3 SECONDS
+	var/movement_delay = 0.6 SECONDS
 
 /obj/machinery/deployable/mounted/sentry/nut/Initialize(mapload, obj/item/_internal_item, mob/deployer)
 	. = ..()
@@ -210,24 +209,22 @@
 	. = ..()
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
-	if(world.time > next_movement)
-		walk(src,0)
-		next_movement = world.time + movement_delay + movement_delay
-		var/atom/target = get_target()
-		if(target)
-			if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
-				playsound(loc, 'sound/effects/pred_cloakoff.ogg', 25, TRUE)
-				stop_warped_invisible()
-			switch(rand(1,2))
-				if(1)
-					walk_rand(src, 3, 1)
-				if(2)
-					walk_towards(src, get_adjacent_open_turfs(target), 3, 1)
-		else
-			walk_rand(src, 4, 0.3)
-			if(!HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
-				playsound(loc, 'sound/effects/pred_cloakon.ogg', 25, TRUE)
-				become_warped_invisible(100) //100 is most visible.
+	walk(src,0) //stop walking
+	var/atom/target = get_target()
+	if(target)
+		if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+			playsound(loc, 'sound/effects/pred_cloakoff.ogg', 25, TRUE)
+			stop_warped_invisible()
+		switch(rand(1,2))
+			if(1)
+				walk_rand(src, movement_delay) //start walking randomly
+			if(2)
+				walk_towards(src, pick(get_adjacent_open_turfs(target)),  movement_delay)
+	else
+		walk_rand(src,  movement_delay*1.334)
+		if(!HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+			playsound(loc, 'sound/effects/pred_cloakon.ogg', 25, TRUE)
+			become_warped_invisible(100) //100 is most visible.
 
 /obj/machinery/deployable/mounted/sentry/nut/disassemble(mob/user)
 	balloon_alert(user, "Not reusable.")
