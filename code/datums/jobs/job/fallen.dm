@@ -19,6 +19,8 @@
 					return /mob/living/carbon/human/species/robot/bravada
 		if("Vatborn")
 			return /mob/living/carbon/human/species/vatborn
+		if("Prototype Supersoldier")
+			return /mob/living/carbon/human/species/prototype_supersoldier
 		else
 			return /mob/living/carbon/human
 
@@ -72,6 +74,13 @@
 	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
 	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	outfit = /datum/outfit/job/command/mech_pilot/fallen
+
+/datum/job/fallen/marine/assault_crewman
+	title = ROLE_FALLEN(ASSAULT_CREWMAN)
+	skills_type = /datum/skills/assault_crewman
+	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC)
+	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	outfit = /datum/outfit/job/command/assault_crewman/fallen
 
 /datum/job/fallen/marine/fieldcommander
 	title = ROLE_FALLEN(FIELD_COMMANDER)

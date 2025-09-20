@@ -149,7 +149,7 @@
 
 /obj/structure/closet/fireaxecabinet/verb/toggle_openness() //nice name, huh? HUH?! -Erro //YEAH -Agouri
 	set name = "Open/Close"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if (locked || smashed)
 		if(src.locked)
@@ -163,7 +163,7 @@
 
 /obj/structure/closet/fireaxecabinet/verb/remove_fire_axe()
 	set name = "Remove Fire Axe"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if (istype(usr, /mob/living/carbon/xenomorph))
 		return

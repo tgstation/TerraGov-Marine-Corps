@@ -117,10 +117,8 @@
 	///type that gets set as our language_holder on proc/set_species
 	var/default_language_holder = /datum/language_holder
 
-	///Sets mob/var/see_in_dark on [/mob/living/carbon/human/update_sight]
-	var/see_in_dark = 2
 	///Sets our mobs lighting_alpha on [/mob/living/carbon/human/update_sight]
-	var/lighting_alpha
+	var/lighting_cutoff
 
 	///Used for metabolizing reagents
 	var/reagent_tag
@@ -282,11 +280,6 @@
 ///Handles any species-specific death events
 /datum/species/proc/handle_death(mob/living/carbon/human/H)
 	return
-
-//TODO KILL ME
-///Snowflake proc for monkeys so they can call attackpaw
-/datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
-	return FALSE
 
 ///Called on Life(), used for special behavior when the carbon human with this species is alive
 /datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
@@ -562,7 +555,7 @@
 			victim.adjustStaminaLoss(damage)
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life()
-	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage)
+	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage, attacker) //add attacker arg everywhere needed
 
 	if(updating_health)
 		victim.updatehealth()

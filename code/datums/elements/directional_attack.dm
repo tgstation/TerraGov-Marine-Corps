@@ -35,7 +35,7 @@
 		return
 
 	var/mob/living/target_mob = locate() in turf_to_check
-	if(!target_mob || source.faction == target_mob.faction)
+	if(!target_mob || source.faction == target_mob.faction || target_mob.stat == DEAD)
 		return
 
 	//This is here to undo the +1 the click on the distant turf adds so we can click the mob near us

@@ -32,9 +32,9 @@
 	deevolves_to = /datum/xeno_caste/bull
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG|CASTE_STAGGER_RESISTANT
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
-	caste_traits = null
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_STAGGER_RESISTANT|CASTE_MUTATIONS_ALLOWED
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
@@ -52,6 +52,12 @@
 		/datum/action/ability/activable/xeno/landslide,
 		/datum/action/ability/activable/xeno/earth_riser,
 		/datum/action/ability/xeno_action/seismic_fracture,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/rocky_layers,
+		/datum/mutation_upgrade/spur/refined_palate,
+		/datum/mutation_upgrade/veil/avalanche
 	)
 
 /datum/xeno_caste/behemoth/normal

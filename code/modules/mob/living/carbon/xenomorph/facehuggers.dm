@@ -26,6 +26,7 @@
 	throw_range = 1
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
+	strip_delay = 2 SECONDS
 
 	///Whether the hugger is dead, active or inactive
 	var/stat = CONSCIOUS
@@ -61,9 +62,14 @@
 	var/about_to_jump = FALSE
 	///Time to become active after moving into the facehugger's space.
 	var/proximity_time = 0.75 SECONDS
+	/// Should they not die in fire?
+	var/fire_immune = FALSE
+	/// How far can they leap?
+	var/leap_range = 4
+	/// How long in decisecond should it take to manually attach a facehugger to someone?
+	var/hand_attach_time = 1 SECONDS
 
-
-/obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
+/obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source, new_fire_immunity)
 	. = ..()
 	if(stat == CONSCIOUS)
 		lifetimer = addtimer(CALLBACK(src, PROC_REF(check_lifecycle)), FACEHUGGER_DEATH, TIMER_STOPPABLE)
@@ -73,6 +79,9 @@
 
 	if(input_source)
 		facehugger_register_source(input_source)
+
+	if(new_fire_immunity)
+		set_fire_immunity(new_fire_immunity)
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -87,6 +96,14 @@
 
 	source = S //set and register new source
 	RegisterSignal(S, COMSIG_QDELETING, PROC_REF(clear_hugger_source))
+
+/// Sets the fire immunity and adds/removes an outline filter if it gained or lost fire immunity.
+/obj/item/clothing/mask/facehugger/proc/set_fire_immunity(new_fire_immunity)
+	if(!fire_immune && new_fire_immunity)
+		add_filter("facehugger_fire_immunity_outline", 2, outline_filter(1, COLOR_TAN_ORANGE))
+	if(fire_immune && !new_fire_immunity)
+		remove_filter("facehugger_fire_immunity_outline")
+	fire_immune = new_fire_immunity
 
 ///Clears the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
@@ -159,7 +176,7 @@
 	user.visible_message(span_warning("\ [user] attempts to plant [src] on [M]'s face!"), \
 	span_warning("We attempt to plant [src] on [M]'s face!"))
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
-		if(!do_after(user, 1 SECONDS, NONE, M, BUSY_ICON_DANGER))
+		if(!do_after(user, hand_attach_time, NONE, M, BUSY_ICON_DANGER))
 			return
 	if(!try_attach(M))
 		go_idle()
@@ -169,12 +186,6 @@
 	if(isxenocarrier(user))
 		var/mob/living/carbon/xenomorph/carrier/C = user
 		C.store_hugger(src)
-	if(ishuman(user))
-		if(stat == DEAD)
-			return
-		user.visible_message(span_warning("[user] crushes [src] in [user.p_their()] hand!"), \
-		span_warning("You crush [src] in your hand!"))
-		kill_hugger()
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	. = ..()
@@ -272,7 +283,7 @@
 	if(chosen_target)
 		visible_message(span_warning("\The scuttling [src] leaps at [chosen_target]!"), null, null, 4)
 		leaping = TRUE
-		throw_at(chosen_target, 4, 1)
+		throw_at(chosen_target, leap_range, 1)
 		return
 
 	remove_danger_overlay() //Remove the danger overlay
@@ -281,12 +292,9 @@
 
 /obj/item/clothing/mask/facehugger/update_overlays()
 	. = ..()
-	if(overlays)
-		cut_overlays()
-
 	if(!about_to_jump)
 		return
-	add_overlay(image('icons/obj/items/grenade.dmi', "danger"))
+	. += image('icons/obj/items/grenade.dmi', "danger")
 
 ///Applies an alert overlay when the hugger is about to jump
 /obj/item/clothing/mask/facehugger/proc/apply_danger_overlay()
@@ -314,10 +322,10 @@
 		if(E?.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
-		if(T && !T.hugger)
+		if(T && (T.hugger_limit > length(T.huggers)))
 			visible_message(span_xenowarning("[src] crawls into [T]!"))
 			forceMove(T)
-			T.hugger = src
+			T.huggers += src
 			T.set_trap_type(TRAP_HUGGER)
 			go_idle(TRUE)
 			return FALSE
@@ -359,6 +367,9 @@
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(isopenturf(hit_atom))
+		if((locate(/obj/hitbox) in hit_atom) && !leaping) // Kill the hugger if it's thrown on the hitbox of a vehicle
+			kill_hugger()
+			return
 		var/valid_victim = FALSE
 		for(var/mob/living/carbon/M in hit_atom)
 			if(!M.can_be_facehugged(src))
@@ -608,6 +619,8 @@
 	deltimer(lifetimer)
 	deltimer(activetimer)
 	remove_danger_overlay() //Remove the danger overlay
+	if(fire_immune)
+		set_fire_immunity(FALSE)
 
 	update_icon()
 	playsound(loc, 'sound/voice/alien/facehugger_dies.ogg', 25, 1)
@@ -642,7 +655,7 @@
 		return
 	kill_hugger()
 
-/obj/item/clothing/mask/facehugger/bullet_act(obj/projectile/proj)
+/obj/item/clothing/mask/facehugger/bullet_act(atom/movable/projectile/proj)
 	..()
 	if(proj.ammo.ammo_behavior_flags & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
@@ -652,6 +665,8 @@
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/fire_act(burn_level)
+	if(fire_immune)
+		return
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
@@ -749,9 +764,7 @@
 	playsound(loc, 'sound/bullets/acid_impact1.ogg', 50, 1)
 
 	for(var/turf/acid_tile AS in RANGE_TURFS(1, loc))
-		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
-		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
+		xenomorph_spray(acid_tile, 6 SECONDS, 16, null, TRUE)
 
 
 	var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src)) //Spawn acid smoke
@@ -779,7 +792,7 @@
 	playsound(loc, SFX_ALIEN_RESIN_BUILD, 50, 1)
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
-		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
+		if(!locate(/obj/alien/resin/sticky/thin) in sticky_tile.contents)
 			new /obj/alien/resin/sticky/thin(sticky_tile)
 
 	for(var/mob/living/target in range(1, loc))
@@ -789,6 +802,7 @@
 		target.adjust_stagger(3 SECONDS)
 		target.add_slowdown(15)
 		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
+		target.ExtinguishMob()
 
 	kill_hugger(0.5 SECONDS)
 
@@ -831,6 +845,16 @@
 		if(hivenumber == X.hive.hivenumber) //No friendly fire
 			return FALSE
 
+	return TRUE
+
+
+/obj/item/clothing/mask/facehugger/combat/harmless
+	name = "harmless hugger"
+	color = COLOR_BROWN
+
+/obj/item/clothing/mask/facehugger/combat/harmless/try_attach(mob/M, mob/user)
+	if(!combat_hugger_check_target(M))
+		return FALSE
 	return TRUE
 
 #undef FACEHUGGER_DEATH

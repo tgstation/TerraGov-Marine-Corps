@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Button, Input, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Button, Input, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type Stim = {
@@ -64,8 +64,7 @@ export const SupersoldierStims = (_props) => {
                       <Button
                         icon="arrow-left"
                         align="start"
-                        content={index}
-                        enabled={selected_stimset.includes(stim_uid)}
+                        disabled={!selected_stimset.includes(stim_uid)}
                         onClick={() =>
                           act('change_pos', {
                             sequence: activeStimSet,
@@ -73,7 +72,9 @@ export const SupersoldierStims = (_props) => {
                             old_pos: pos,
                           })
                         }
-                      />
+                      >
+                        {index}
+                      </Button>
                     </Stack.Item>
                     <Stack.Item grow>
                       <Button
@@ -91,7 +92,7 @@ export const SupersoldierStims = (_props) => {
                     <Stack.Item>
                       <Button
                         icon="arrow-right"
-                        enabled={selected_stimset.includes(stim_uid)}
+                        disabled={!selected_stimset.includes(stim_uid)}
                         align="end"
                         onClick={() =>
                           act('change_pos', {
@@ -133,7 +134,7 @@ const SequenceSelection = (_props) => {
         <Input
           fluid
           placeholder="New Cocktail"
-          onChange={(e, value) => act('new_sequence', { new_name: value })}
+          onChange={(value) => act('new_sequence', { new_name: value })}
         />
       </Stack.Item>
       {Object.keys(data.active_stimsets || {}).map((entryname) => (

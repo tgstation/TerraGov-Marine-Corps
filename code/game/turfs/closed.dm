@@ -2,6 +2,8 @@
 
 //turfs with density = TRUE
 /turf/closed
+	layer = CLOSED_TURF_LAYER
+	plane = WALL_PLANE
 	density = TRUE
 	opacity = TRUE
 
@@ -17,7 +19,7 @@
 	add_debris_element()
 
 /turf/closed/hitby(atom/movable/AM, speed = 5)
-	AM.stop_throw()
+	AM.set_throwing(FALSE)
 	AM.turf_collision(src, speed)
 	return TRUE
 
@@ -151,6 +153,17 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+/turf/closed/mineral/smooth/strata_wall
+	icon = 'icons/turf/walls/strata_ice_wall.dmi'
+	icon_state = "ice_wall-0"
+	walltype = "darkfrostwall"
+	base_icon_state = "ice_wall"
+
+/turf/closed/mineral/smooth/strata_wall/indestructible
+	name = "tough rock"
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
 	icon_state = "red_wall-0"
@@ -197,11 +210,15 @@
 
 //resin bone wall
 /turf/closed/mineral/smooth/resin_hard
+	name = "hardened resin wall"
+	desc = "This resin has solidified into a solid immovable mass, you can see the faint traces of what look like a dense xenomorph skeleton underneath the surface."
 	icon = 'icons/turf/walls/resin_bone_wall.dmi'
 	icon_state = "resin_bone_wall-0"
 	base_icon_state = "resin_bone_wall"
 
 /turf/closed/mineral/smooth/resin_hard/indestructible
+	name = "ultra-hardened resin wall"
+	desc = "This resin has been soaked in some sort of acidic curing substance and solidified so much you doubt anything can remove it."
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
@@ -440,32 +457,32 @@
 	icon_state = "full_corners"
 
 //Directional walls each have 4 possible sprites and are
-//randomized on New().
+//randomized on Initialize().
 /turf/closed/ice_rock/northWall
 	icon_state = "north_wall"
 
-/turf/closed/ice_rock/northWall/New()
+/turf/closed/ice_rock/northWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/southWall
 	icon_state = "south_wall"
 
-/turf/closed/ice_rock/southWall/New()
+/turf/closed/ice_rock/southWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/westWall
 	icon_state = "west_wall"
 
-/turf/closed/ice_rock/westWall/New()
+/turf/closed/ice_rock/westWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/eastWall
 	icon_state = "east_wall"
 
-/turf/closed/ice_rock/eastWall/New()
+/turf/closed/ice_rock/eastWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
@@ -477,7 +494,6 @@
 	name = "wall"
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
-	plane = FLOOR_PLANE
 	resistance_flags = PLASMACUTTER_IMMUNE
 	explosion_block = 2
 
@@ -521,12 +537,10 @@
 /turf/closed/shuttle/dropship
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rasputin1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/ert
 	icon = 'icons/turf/ert_shuttle.dmi'
 	icon_state = "stan4"
-	plane = GAME_PLANE
 	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/ert/engines/left
@@ -551,7 +565,6 @@
 	name = "\improper Alamo"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 	resistance_flags = RESIST_ALL|PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/dropship1/transparent
@@ -559,6 +572,12 @@
 
 /turf/closed/shuttle/dropship1/edge
 	icon_state = "shuttle_interior_edge"
+
+/turf/closed/shuttle/dropship1/interiormisc/three
+	icon_state = "shuttle_interior_misc_three"
+
+/turf/closed/shuttle/dropship1/edge/misc
+	icon_state = "shuttle_exterior_edge"
 
 /turf/closed/shuttle/dropship1/edge/alt
 	icon_state = "shuttle_interior_edgealt"
@@ -591,6 +610,12 @@
 /turf/closed/shuttle/dropship1/enginethree
 	icon_state = "shuttle_interior_backengine3"
 
+/turf/closed/shuttle/dropship1/corners/alt
+	icon_state = "shuttle_exterior_corners_alt"
+
+/turf/closed/shuttle/dropship1/corners/interior
+	icon_state = "shuttle_interior_corners"
+
 /turf/closed/shuttle/dropship1/enginefour
 	icon_state = "shuttle_interior_backengine4"
 
@@ -619,6 +644,9 @@
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
+
+/turf/closed/shuttle/dropship1/interiormisc/two
+	icon_state = "shuttle_interior_misc"
 
 /turf/closed/shuttle/dropship1/cornersalt
 	icon_state = "shuttle_interior_corneralt"
@@ -740,7 +768,6 @@
 	name = "\improper Triumph"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/dropship3/transparent
 	opacity = FALSE
@@ -749,7 +776,6 @@
 	name = "\improper Normandy"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
@@ -906,7 +932,6 @@
 	name = "\improper Normandy"
 	icon = 'icons/turf/dropship4.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/dropship4/transparent
 	opacity = FALSE
@@ -1093,13 +1118,11 @@
 	name = "\improper Tadpole"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapepod
 	name = "wall"
 	icon = 'icons/turf/escapepods.dmi'
 	icon_state = "wall0"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapepod/wallone
 	icon_state = "wall1"
@@ -1145,12 +1168,3 @@
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
-
-/turf/closed/banish_space //Brazil
-	plane = PLANE_SPACE
-	layer = SPACE_LAYER
-	icon = 'icons/turf/space.dmi'
-	name = "phantom zone"
-	icon_state = "0"
-	can_bloody = FALSE
-	light_power = 0.25

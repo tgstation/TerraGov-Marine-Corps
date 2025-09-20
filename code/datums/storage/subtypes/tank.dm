@@ -21,6 +21,7 @@
 		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
 		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
 		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary,
 		/obj/item/ammo_magazine/tank/volkite_carronade,
 		/obj/item/ammo_magazine/tank/particle_lance,
 		/obj/item/ammo_magazine/tank/coilgun,
@@ -29,6 +30,8 @@
 		/obj/item/ammo_magazine/tank/sarden_clip,
 		/obj/item/ammo_magazine/tank/sarden_clip/high_explosive,
 		/obj/item/ammo_magazine/tank/bfg,
+		/obj/item/ammo_magazine/tank/autocannon,
+		/obj/item/ammo_magazine/tank/autocannon/high_explosive,
 	))
 
 /datum/storage/tank/ammorack_secondary/New(atom/parent)

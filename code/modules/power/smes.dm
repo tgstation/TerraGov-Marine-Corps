@@ -260,7 +260,6 @@
 
 /obj/machinery/power/smes/ui_data()
 	var/list/data = list(
-		"capacity" = capacity,
 		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"charge" = charge,
 		"inputAttempt" = input_attempt,
@@ -371,12 +370,12 @@
 /obj/machinery/power/smes/proc/ion_act()
 	if(is_ground_level(z))
 		if(prob(1)) //explosion
-			visible_message(span_warning("\The [src] is making strange noises!"), null, span_warning(" You hear sizzling electronics."))
+			visible_message(span_warning("\The [src] is making strange noises!"), null, span_warning("You hear sizzling electronics."))
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect_system/smoke_spread/smoke = new(src)
 			smoke.set_up(1, loc)
 			smoke.start()
-			explosion(loc, light_impact_range = 2, flash_range = 3)
+			explosion(loc, light_impact_range = 2, flash_range = 3, explosion_cause=src)
 			qdel(src)
 			return
 		if(prob(15)) //Power drain
@@ -420,7 +419,7 @@
 	..()
 
 /proc/rate_control(S, V, C, Min=1, Max=5, Limit=null)
-	var/href = "<A href='?src=[text_ref(S)];rate control=1;[V]"
+	var/href = "<A href='byond://?src=[text_ref(S)];rate control=1;[V]"
 	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
 	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"
 	return rate

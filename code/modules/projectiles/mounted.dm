@@ -4,7 +4,7 @@
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
-	layer = ABOVE_MOB_PROP_LAYER
+	layer = ABOVE_MOB_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	allow_pass_flags = PASSABLE|PASS_LOW_STRUCTURE
@@ -258,7 +258,7 @@
 	var/left = leftright[1] - 1
 	var/right = leftright[2] + 1
 	if(!(left == (angle-1)) && !(right == (angle+1)))
-		to_chat(operator, span_warning(" [src] cannot be rotated so violently."))
+		to_chat(operator, span_warning("[src] cannot be rotated so violently."))
 		return FALSE
 	var/mob/living/carbon/human/user = operator
 
@@ -292,26 +292,26 @@
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 	var/obj/item/weapon/gun/gun = get_internal_item()
-	if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
-		gun.toggle_aim_mode(operator)
-	gun?.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
+	if(gun)
+		if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
+			gun.toggle_aim_mode(operator)
+		gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
-	for(var/datum/action/action AS in gun.actions)
-		action.remove_action(operator)
+		for(var/datum/action/action AS in gun.actions)
+			action.remove_action(operator)
 
-	for(var/key in gun?.attachments_by_slot)
-		var/obj/item/attachable = gun.attachments_by_slot[key]
-		if(!attachable || !istype(attachable, /obj/item/attachable/scope))
-			continue
-		var/obj/item/attachable/scope/scope = attachable
-		if(!scope.zoom)
-			continue
-		scope.zoom_item_turnoff(operator, operator)
+		for(var/key in gun.attachments_by_slot)
+			var/obj/item/attachable = gun.attachments_by_slot[key]
+			if(!attachable || !istype(attachable, /obj/item/attachable/scope))
+				continue
+			var/obj/item/attachable/scope/scope = attachable
+			if(!scope.zoom)
+				continue
+			scope.zoom_item_turnoff(operator, operator)
+		gun.set_gun_user(null)
 
 	operator.client?.view_size.reset_to_default()
-
 	operator = null
-	gun?.set_gun_user(null)
 	update_pixels(user, FALSE)
 	user_old_x = 0
 	user_old_y = 0

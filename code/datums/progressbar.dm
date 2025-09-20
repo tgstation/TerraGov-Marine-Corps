@@ -32,6 +32,8 @@
 		return
 	bar = new bar_tag
 	bar.loc = target
+	SET_PLANE_EXPLICIT(bar, ABOVE_HUD_PLANE, U)
+	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	LAZYINITLIST(user.progressbars)
 	LAZYINITLIST(user.progressbars[bar.loc])
 	LAZYOR(user.progbar_towers, bar.loc)
@@ -41,7 +43,7 @@
 	if(listindex)
 		var/datum/progressbar/P = bars[listindex]
 		elevation = P.bar.height
-	bar.pixel_y += 32 - elevation + user.progbar_towers[bar.loc]
+	bar.pixel_z += 32 - elevation + user.progbar_towers[bar.loc]
 	user.progbar_towers[bar.loc] += bar.height
 	bars.Add(src)
 	if(frame_tag)
@@ -50,7 +52,7 @@
 	if(bg_tag)
 		bg = new bg_tag
 		bar.underlays += bg_tag
-	animate(bar, pixel_y = bar.pixel_y + elevation, alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	animate(bar, pixel_z = bar.pixel_z + elevation, alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/proc/update(progress)
 	if(!bar)
@@ -73,7 +75,7 @@
 
 /datum/progressbar/proc/shiftDown(height)
 	--listindex
-	animate(bar, pixel_y = bar.pixel_y - height, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	animate(bar, pixel_z = bar.pixel_z - height, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/Destroy()
 	if(bar)
@@ -116,7 +118,6 @@
 
 /image/progress/bar
 	icon_state = "prog_bar_1"
-	layer = HUD_LAYER
 	alpha = 0
 	var/interval = 5
 	var/height = PROGRESSBAR_STANDARD_HEIGHT
@@ -228,11 +229,11 @@
 	icon_state = "busy_generic"
 	appearance_flags = APPEARANCE_UI|KEEP_APART|TILE_BOUND
 	alpha = 255
-	pixel_y = 32
+	pixel_z = 32
 
 /image/progdisplay/medical
 	icon_state = "busy_medical"
-	pixel_y = 0
+	pixel_z = 0
 
 /image/progdisplay/construction
 	icon_state = "busy_build"

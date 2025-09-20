@@ -19,6 +19,9 @@
 /obj/item/explosive/grenade/flare/dissolvability(acid_strength)
 	return 2
 
+/obj/item/explosive/grenade/flare/get_acid_delay()
+	return 0.5 SECONDS
+
 /obj/item/explosive/grenade/flare/Initialize(mapload)
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
@@ -99,6 +102,7 @@
 	damtype = initial(damtype)
 	update_icon()
 	set_light_on(FALSE)
+	GLOB.activated_flares -= src
 	STOP_PROCESSING(SSobj, src)
 
 ///Activates the flare
@@ -112,6 +116,7 @@
 	update_icon()
 	set_light_on(TRUE)
 	playsound(src,'sound/items/flare.ogg', 15, 1)
+	GLOB.activated_flares += src
 	START_PROCESSING(SSobj, src)
 
 //Starts on

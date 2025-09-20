@@ -68,10 +68,10 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
 	icon_state = "flametank_som"
+	icon_state_mini = "tank_red"
 	max_rounds = 75
 	current_rounds = 75
 	reload_delay = 3 SECONDS
-	icon_state_mini = "tank_red"
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
@@ -84,6 +84,7 @@
 /obj/item/ammo_magazine/flamer_tank/large/X/som
 	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
 	icon_state = "flametank_som_x"
+	icon_state_mini = "tank_red_blue"
 
 /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
 	name = "Gargantuan flamethrower X-tank"
@@ -137,4 +138,15 @@
 	max_rounds = 280
 	current_rounds = 280
 	reload_delay = 0 SECONDS
+
+/obj/item/ammo_magazine/flamer_tank/vsd
+	name = "large CC/21 flamerthrower tank (X)"
+	desc = "A large tank for the Vyacheslav CC/21 Flamer, filled with thick napthal X fuel."
+	icon_state = "flametank_vsd"
+	max_rounds = 150
+	current_rounds = 150
+	reload_delay = 4 SECONDS
+	default_ammo = /datum/ammo/flamethrower/blue
+	icon_state_mini = "tank_blue"
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 

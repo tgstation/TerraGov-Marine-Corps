@@ -6,7 +6,9 @@
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "al" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/liquid/water,
 /area/campaign/jungle_outpost/ground/jungle)
 "bt" = (
@@ -162,9 +164,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle)
 "nB" = (
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
 	},
@@ -270,6 +270,10 @@
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
+"xe" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "xI" = (
 /obj/structure/flora/jungle/large_bush,
 /obj/structure/platform_decoration{
@@ -353,6 +357,11 @@
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
+"Gp" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/effect/ai_node,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "GL" = (
 /obj/structure/stairs/seamless/edge_vert{
 	dir = 8
@@ -462,6 +471,11 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"QX" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "RD" = (
 /obj/structure/sink,
 /turf/open/floor/tile/hydro,
@@ -490,6 +504,7 @@
 /obj/structure/sink{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "VD" = (
@@ -602,9 +617,9 @@ cQ
 KR
 sX
 sX
-KH
+xe
 hO
-KH
+xe
 KH
 sX
 sX
@@ -625,10 +640,10 @@ KH
 KH
 Pq
 sX
+xe
 KH
 KH
-KH
-KH
+xe
 KH
 KH
 Pq
@@ -680,7 +695,7 @@ pi
 KR
 AQ
 KH
-KH
+xe
 KH
 Vn
 Fs
@@ -709,26 +724,26 @@ KH
 KH
 tk
 KH
+xe
 KH
 KH
 KH
-KH
-HH
+Gp
 GL
 "}
 (10,1,1) = {"
 KR
 gP
 cy
-KH
+xe
 KH
 KH
 HH
 KH
+QX
 hS
 hS
-hS
-hS
+QX
 hS
 hS
 hS
@@ -782,7 +797,7 @@ KR
 sX
 sX
 sX
-KH
+xe
 Fs
 qp
 hS
@@ -825,7 +840,7 @@ sX
 KH
 Fs
 Wp
-hS
+QX
 KH
 KH
 KH
@@ -846,7 +861,7 @@ tc
 Fs
 ak
 hS
-KH
+xe
 vt
 eH
 Pq

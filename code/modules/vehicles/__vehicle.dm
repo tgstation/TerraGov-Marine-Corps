@@ -10,7 +10,6 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	obj_flags = CAN_BE_HIT
 	atom_flags = CRITICAL_ATOM
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_AIR
 	COOLDOWN_DECLARE(cooldown_vehicle_move)
@@ -21,7 +20,6 @@
 	////Maximum amount of drivers
 	var/max_drivers = 1
 	var/move_delay = 2
-	var/lastmove = 0
 	///multitile hitbox, set to a hitbox type to make this vehicle multitile.
 	var/obj/hitbox/hitbox
 	/**
@@ -69,6 +67,14 @@
 		if(0 to 25)
 			. += span_warning("It's falling apart!")
 
+/obj/vehicle/ai_should_stay_buckled(mob/living/carbon/npc)
+	return !is_driver(npc) //NPC's can't operate vehicles so we generally only want them buckled as a passenger
+
+/obj/vehicle/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
+	if(xeno_attacker.endurance_active)
+		return FALSE
+	return ..()
+
 /obj/vehicle/proc/is_key(obj/item/I)
 	return istype(I, key_type)
 
@@ -110,7 +116,6 @@
 /obj/vehicle/proc/add_occupant(mob/M, control_flags)
 	if(!istype(M) || is_occupant(M))
 		return FALSE
-
 	LAZYSET(occupants, M, NONE)
 	add_control_flags(M, control_flags)
 	after_add_occupant(M)

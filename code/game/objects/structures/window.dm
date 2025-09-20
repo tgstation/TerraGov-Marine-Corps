@@ -6,8 +6,9 @@
 	hit_sound = 'sound/effects/Glasshit.ogg'
 	density = TRUE
 	anchored = TRUE
-	layer = WINDOW_LAYER
-	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR | IGNORE_DENSITY
+	layer = ABOVE_WINDOW_LAYER
+	obj_flags = CAN_BE_HIT|BLOCKS_CONSTRUCTION_DIR|IGNORE_DENSITY|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
+
 	atom_flags = ON_BORDER|DIRLOCK
 	allow_pass_flags = PASS_GLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
@@ -86,7 +87,7 @@
 		throw_damage *= thrown_mob.mob_size * 8
 	take_damage(throw_damage)
 	if(obj_integrity > 0) //we only stop if we don't break the window
-		AM.stop_throw()
+		AM.set_throwing(FALSE)
 		. = TRUE
 	if(thrown_mob)
 		thrown_mob.take_overall_damage(speed * 5, BRUTE, MELEE, !., FALSE, TRUE, 0, 4) //done here for dramatic effect, and to make the damage sharp if we broke the window
@@ -208,7 +209,7 @@
 
 /obj/structure/window/verb/rotate()
 	set name = "Rotate Window Counter-Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(static_frame)
@@ -225,7 +226,7 @@
 
 /obj/structure/window/verb/revrotate()
 	set name = "Rotate Window Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(static_frame)
@@ -326,8 +327,8 @@
 /obj/structure/window/reinforced/Initialize(mapload)
 	. = ..()
 	if(dir == NORTH)
-		add_overlay(image(icon, "rwindow_overlay", layer = WINDOW_LAYER))
-		layer = WINDOW_FRAME_LAYER
+		add_overlay(image(icon, "rwindow_overlay", layer = ABOVE_WINDOW_LAYER))
+		layer = TABLE_LAYER
 	if(dir == WEST || dir == EAST)
 		var/turf/adj = get_step(src, SOUTH)
 		if(isclosedturf(adj))
@@ -655,7 +656,6 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."
 	max_integrity = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	resistance_flags = BANISH_IMMUNE
 	icon_state = "window-invincible"
 
 /obj/structure/window/framed/prison/reinforced/hull/Initialize(mapload)

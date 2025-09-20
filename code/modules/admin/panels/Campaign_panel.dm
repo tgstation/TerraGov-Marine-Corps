@@ -1,22 +1,14 @@
 GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 
-///Opens the campaign specific admin panel
-/datum/admins/proc/open_campaign_panel()
-	set category = "Admin"
-	set name = "Campaign Panel"
-	set desc = "Opens the campaign panel UI."
-
+ADMIN_VERB(open_campaign_panel, R_ADMIN, "Campaign Panel", "Opens the campaign panel UI.", ADMIN_CATEGORY_FUN)
 	if(!iscampaigngamemode(SSticker.mode))
-		return
-	if(!check_rights(R_ADMIN))
+		to_chat(user, span_notice("The campaign panel can only be used during campaign."))
 		return
 
 	if(!GLOB.campaign_admin_panel)
 		GLOB.campaign_admin_panel = new /datum/campaign_admin_panel()
 
 	GLOB.campaign_admin_panel.ui_interact(usr)
-
-
 /datum/campaign_admin_panel
 	interaction_flags = INTERACT_UI_INTERACT
 

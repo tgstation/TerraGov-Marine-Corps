@@ -75,7 +75,7 @@
 	if(chassis.phasing)
 		to_chat(owner, span_warning("You're already airborne!"))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_SKYFALL))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_SKYFALL))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_SKYFALL)
 		to_chat(owner, span_warning("You need to wait [DisplayTimeText(timeleft, 1)] before attempting to Skyfall."))
 		return
@@ -128,7 +128,8 @@
 
 	new /obj/effect/skyfall_landingzone(get_turf(chassis), chassis)
 	chassis.resistance_flags |= INDESTRUCTIBLE //not while jumping at least
-	chassis.mecha_flags |= QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT
+	chassis.mecha_flags |= QUIET_TURNS|CANNOT_INTERACT
+	ADD_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	chassis.phasing = "flying"
 	chassis.move_delay = 1
 	chassis.density = FALSE
@@ -158,17 +159,18 @@
 	chassis.visible_message(span_danger("[chassis] lands from above!"))
 	playsound(chassis, 'sound/effects/explosion/large1.ogg', 50, 1)
 	chassis.resistance_flags &= ~INDESTRUCTIBLE
-	chassis.mecha_flags &= ~(QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT)
+	chassis.mecha_flags &= ~(QUIET_TURNS|CANNOT_INTERACT)
+	REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	chassis.phasing = initial(chassis.phasing)
 	chassis.move_delay = initial(chassis.move_delay)
 	chassis.density = TRUE
 	chassis.layer = initial(chassis.layer)
-	chassis.plane = initial(chassis.plane)
 	skyfall_charge_level = 0
 	chassis.update_icon()
 	for(var/mob/living/shaken in range(7, chassis))
 		shake_camera(shaken, 5, 5)
 	var/turf/landed_on = get_turf(chassis)
+	SET_PLANE(chassis, initial(chassis.plane), landed_on)
 	for(var/thing in range(1, chassis))
 		if(isopenturf(thing))
 			var/turf/open/floor/crushed_tile = thing
@@ -240,7 +242,7 @@
 /datum/action/vehicle/sealed/mecha/ivanov_strike/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_MISSILE_STRIKE))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_MISSILE_STRIKE))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_MISSILE_STRIKE)
 		to_chat(owner, span_warning("You need to wait [DisplayTimeText(timeleft, 1)] before firing another Ivanov Strike."))
 		return

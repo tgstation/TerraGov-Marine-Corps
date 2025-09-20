@@ -148,7 +148,7 @@
 
 	suit_store = /obj/item/weapon/gun/rifle/tx11/standard
 	belt = /obj/item/storage/belt/marine/combat_rifle
-	
+
 	backpack_contents = list(
 		/obj/item/ammo_magazine/packet/p492x34mm = 2,
 		/obj/item/ammo_magazine/pistol/standard_heavypistol = 2,
@@ -239,7 +239,7 @@
 	belt = /obj/item/storage/belt/sparepouch
 	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
 	l_pocket = /obj/item/storage/pouch/construction
-	
+
 	backpack_contents = list(
 		/obj/item/weapon/shield/riot/marine/deployable = 1,
 		/obj/item/ammo_magazine/standard_gpmg = 1,
@@ -294,6 +294,10 @@
 		/obj/item/stack/barbed_wire/half_stack = 1,
 	)
 
+	belt_contents = list(
+		/obj/item/weapon/gun/smg/m25/holstered = 1,
+	)
+
 
 /datum/outfit/quick/tgmc/marine/standard_lasermg
 	name = "Laser Machinegunner"
@@ -329,6 +333,10 @@
 		/obj/item/storage/box/MRE = 1,
 		/obj/item/ammo_magazine/smg/m25/extended = 3,
 		/obj/item/ammo_magazine/packet/p10x20mm = 1,
+	)
+
+	belt_contents = list(
+		/obj/item/weapon/gun/smg/m25 = 1,
 	)
 
 
@@ -1188,6 +1196,11 @@
 		/obj/item/explosive/grenade/som = 1,
 	)
 
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
+	)
+
 
 /datum/outfit/quick/som/marine/breacher
 	name = "V-21 Breacher"
@@ -1238,6 +1251,11 @@
 		/obj/item/explosive/grenade/incendiary/som = 1,
 	)
 
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
+	)
+
 
 /datum/outfit/quick/som/marine/machine_gunner
 	name = "V-41 Machinegunner"
@@ -1264,6 +1282,11 @@
 		/obj/item/stack/sandbags_empty/half = 1,
 		/obj/item/stack/sandbags/large_stack = 1,
 		/obj/item/stack/barbed_wire/half_stack = 1,
+	)
+
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
 	)
 
 
@@ -1517,7 +1540,7 @@
 	desc = "Keeping your buddies alive and in the fight. Equipped with an MPI_KM assault rifle, medium armor and a good selection of grenades. Packs a large amount of medical supplies, the squad medic is vital to maintaining combat viability. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/black/magharness
-	
+
 	backpack_contents = list(
 		/obj/item/ammo_magazine/rifle/mpi_km/black = 4,
 		/obj/item/storage/box/MRE/som = 1,
@@ -1872,6 +1895,12 @@
 		/obj/item/tool/extinguisher/mini = 1,
 		/obj/item/storage/box/MRE/som = 1,
 	)
+
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
+	)
+
 
 //Base SOM leader outfit
 /datum/outfit/quick/som/squad_leader

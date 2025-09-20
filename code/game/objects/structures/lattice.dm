@@ -7,7 +7,7 @@
 	anchored = TRUE
 	layer = LATTICE_LAYER
 	plane = FLOOR_PLANE
-	//	flags = CONDUCT
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 
 /obj/structure/lattice/Initialize(mapload)
 	. = ..()
@@ -80,11 +80,13 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/catwalk
+	desc = "You can walk on this, even if you're not a cat."
 	icon = 'icons/obj/smooth_objects/catwalk.dmi'
 	icon_state = "catwalk-icon"
 	base_icon_state = "catwalk"
 	plane = FLOOR_PLANE
 	layer = CATWALK_LAYER
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	resistance_flags = XENO_DAMAGEABLE|DROPSHIP_IMMUNE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_LATTICE)
@@ -107,7 +109,7 @@
 /obj/structure/catwalk/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(xeno_attacker.a_intent != INTENT_HARM)
+	if(xeno_attacker.a_intent != INTENT_DISARM)
 		return
 	xeno_attacker.balloon_alert(xeno_attacker, "Destroying")
 	if(!do_after(xeno_attacker, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
@@ -127,3 +129,10 @@
 		if(EXPLODE_LIGHT)
 			if(prob(10))
 				qdel(src)
+
+/obj/structure/catwalk/no_smooth
+	name = "catwalk"
+	icon_state = "catwalk-0"
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null

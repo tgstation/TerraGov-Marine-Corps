@@ -8,15 +8,16 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	coverage = 5
-	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE|PASSABLE
-	var/list/entangled_list
-	var/sheet_type = /obj/item/stack/barbed_wire
-	var/sheet_type2 = /obj/item/stack/rods
-	var/table_prefix = "" //used in update_icon()
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	max_integrity = RAZORWIRE_MAX_HEALTH
-	var/soak = 5
+	///List of mobs currently stuck in this razor
+	var/list/entangled_list
+	///First drop item type
+	var/sheet_type = /obj/item/stack/barbed_wire
+	///Second drop item type
+	var/sheet_type2 = /obj/item/stack/rods
 
 /obj/structure/razorwire/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
@@ -83,7 +84,7 @@
 
 /obj/structure/razorwire/resisted_against(datum/source)
 	var/mob/living/entangled = source
-	if(TIMER_COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
+	if(TIMER_COOLDOWN_RUNNING(entangled, COOLDOWN_ENTANGLE))
 		entangled.visible_message(span_danger("[entangled] attempts to disentangle itself from [src] but is unsuccessful!"),
 		span_warning("You fail to disentangle yourself!"))
 		return FALSE

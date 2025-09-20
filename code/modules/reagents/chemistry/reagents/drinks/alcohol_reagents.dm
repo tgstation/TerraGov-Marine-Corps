@@ -149,7 +149,7 @@
 	description = "A potent mixture of caffeine and alcohol."
 	color = "#102000" // rgb: 16, 32, 0
 	boozepwr = 80
-	nutriment_factor = 1 * FOOD_METABOLISM
+	nutriment_factor = 0.5 * FOOD_METABOLISM
 	taste_description = "jitters and death"
 	adj_temp = 5
 	targ_temp = 305
@@ -174,7 +174,7 @@
 	description = "This appears to be beer mixed with milk. Disgusting."
 	color = "#895C4C" // rgb: 137, 92, 76
 	boozepwr = 15
-	nutriment_factor = 2 * FOOD_METABOLISM
+	nutriment_factor = 1 * FOOD_METABOLISM
 	taste_description = "desperation and lactate"
 
 /datum/reagent/consumable/ethanol/threemileisland
@@ -189,7 +189,6 @@
 	name = "Gin"
 	description = "It's gin. In space. I say, good sir."
 	color = "#664300" // rgb: 102, 67, 0
-	taste_description = "pine"
 	boozepwr = 45
 	taste_description = "an alcoholic christmas tree"
 
@@ -658,7 +657,7 @@
 	color = "#e0c058" // rgb: 224,192,88
 	taste_description = "sweet, sweet alcohol"
 	boozepwr = 30
-	nutriment_factor = 1
+	nutriment_factor = 0.5
 
 /datum/reagent/consumable/ethanol/iced_beer
 	name = "Iced Beer"
@@ -749,7 +748,7 @@
 /datum/reagent/consumable/ethanol/driestmartini
 	name = "Driest Martini"
 	description = "Only for the experienced. You think you see sand floating in the glass."
-	nutriment_factor = 1
+	nutriment_factor = 0.5
 	color = "#2E6671" // rgb: 46, 102, 113
 	taste_description = "a beach"
 	boozepwr = 65
@@ -757,7 +756,7 @@
 /datum/reagent/consumable/ethanol/bananahonk
 	name = "Banana Honk"
 	description = "A drink from Clown Heaven."
-	nutriment_factor = 1
+	nutriment_factor = 0.5
 	color = "#FFFF91" // rgb: 255, 255, 140
 	taste_description = "a bad joke"
 	boozepwr = 60
@@ -765,7 +764,7 @@
 /datum/reagent/consumable/ethanol/silencer
 	name = "Silencer"
 	description = "A drink from Mime Heaven."
-	nutriment_factor = 2
+	nutriment_factor = 1
 	color = "#a8a8a8" // rgb: 168,168,168
 	boozepwr = 59 //Proof that clowns are better than mimes right here
 	taste_description = "a pencil eraser"
@@ -805,7 +804,7 @@
 	name = "Hard Cider"
 	description = "Apple juice, for adults."
 	color = "#CD6839"
-	nutriment_factor = 1
+	nutriment_factor = 0.5
 	boozepwr = 25
 	taste_description = "the season that <i>falls</i> between summer and winter"
 
@@ -859,7 +858,6 @@
 	description = "Whoah, this stuff looks volatile!"
 	color = "#9cc8b4" // rgb: 156,200,180
 	boozepwr = 0 //custom drunk effect
-	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
 	adj_dizzy = 6
 	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
 
@@ -958,7 +956,7 @@
 	name = "Eggnog"
 	description = "For enjoying the most wonderful time of the year."
 	color = "#fcfdc6" // rgb: 252, 253, 198
-	nutriment_factor = 2
+	nutriment_factor = 1
 	boozepwr = 1
 	taste_description = "custard and alcohol"
 
@@ -966,7 +964,7 @@
 	name = "Dreadnog"
 	description = "For suffering during a period of joy."
 	color = "#abb862" // rgb: 252, 253, 198
-	nutriment_factor = 3 * REAGENTS_METABOLISM
+	nutriment_factor = 1.5 * REAGENTS_METABOLISM
 	boozepwr = 1
 	taste_description = "custard and alcohol"
 
@@ -1047,7 +1045,7 @@
 	color = COLOR_RED
 	boozepwr = 40
 	taste_description = "stale bread with a staler aftertaste"
-	nutriment_factor = 2
+	nutriment_factor = 1
 
 /datum/reagent/consumable/ethanol/fringe_weaver
 	name = "Fringe Weaver"
@@ -1062,7 +1060,7 @@
 	color = "#FF226C"
 	boozepwr = 10
 	taste_description = "your arteries clogging with sugar"
-	nutriment_factor = 2
+	nutriment_factor = 1
 
 /datum/reagent/consumable/ethanol/crevice_spike
 	name = "Crevice Spike"
@@ -1165,7 +1163,7 @@
 /datum/reagent/consumable/ethanol/blank_paper
 	name = "Blank Paper"
 	description = "A bubbling glass of blank paper. Just looking at it makes you feel fresh."
-	nutriment_factor = 1
+	nutriment_factor = 0.5
 	color = "#DCDCDC" // rgb: 220, 220, 220
 	boozepwr = 20
 	taste_description = "bubbling possibility"
@@ -1446,7 +1444,7 @@
 	boozepwr = 65
 	color = "#FF5B69"
 	taste_description = "regret"
-	nutriment_factor = 3
+	nutriment_factor = 1.5
 
 /datum/reagent/consumable/ethanol/mushi_kombucha
 	name = "Mushi Kombucha"
@@ -1566,7 +1564,7 @@
 	name = "Plum wine"
 	description = "Plums turned into wine."
 	color = "#8a0421"
-	nutriment_factor = 1
+	nutriment_factor = 0.5
 	boozepwr = 20
 	taste_description = "a poet's love and undoing"
 

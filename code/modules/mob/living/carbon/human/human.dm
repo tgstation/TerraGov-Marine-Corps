@@ -29,7 +29,7 @@
 	AddComponent(/datum/component/anti_juggling)
 	set_jump_component()
 
-/mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
+/mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z, same_z_layer)
 	SIGNAL_HANDLER
 	LAZYREMOVE(GLOB.humans_by_zlevel["[old_z]"], src)
 	LAZYADD(GLOB.humans_by_zlevel["[new_z]"], src)
@@ -287,9 +287,6 @@
 	return ..(shock_damage, source, siemens_coeff, def_zone)
 
 /mob/living/carbon/human/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
 	if(href_list["squadfireteam"])
 		if(usr.incapacitated() || get_dist(usr, src) >= 7 || !hasHUD(usr,"squadleader"))
 			return
@@ -297,7 +294,7 @@
 		if(!H.mind)
 			return
 		var/obj/item/card/id/ID = get_idcard()
-		if(!ID || !(ID.rank in GLOB.jobs_marines))//still a marine, with an ID.
+		if(!ID || !(ID.rank in GLOB.jobs_squad_roles))//still a marine, with an ID.
 			return
 		if(!(assigned_squad == H.assigned_squad)) //still same squad
 			return
@@ -305,7 +302,7 @@
 		if(!newfireteam || H.incapacitated() || get_dist(H, src) >= 7) //We might've moved away or gotten incapacitated in the meantime
 			return
 		ID = get_idcard()
-		if(!ID || !(ID.rank in GLOB.jobs_marines))//still a marine with an ID
+		if(!ID || !(ID.rank in GLOB.jobs_squad_roles))//still a marine with an ID
 			return
 		if(!(assigned_squad == H.assigned_squad)) //still same squad
 			return
@@ -381,7 +378,7 @@
 				to_chat(usr, "<b>Major Crimes:</b> [security_record.fields["ma_crim"]]")
 				to_chat(usr, "<b>Details:</b> [security_record.fields["ma_crim_d"]]")
 				to_chat(usr, "<b>Notes:</b> [security_record.fields["notes"]]")
-				to_chat(usr, "<a href='?src=[text_ref(src)];secrecordComment=`'>\[View Comment Log\]</a>")
+				to_chat(usr, "<a href='byond://?src=[text_ref(src)];secrecordComment=`'>\[View Comment Log\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -413,7 +410,7 @@
 					counter++
 				if(counter == 1)
 					to_chat(usr, "No comment found")
-				to_chat(usr, "<a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>")
+				to_chat(usr, "<a href='byond://?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -510,7 +507,7 @@
 				to_chat(usr, "<b>Major Disabilities:</b> [medical_record.fields["ma_dis"]]")
 				to_chat(usr, "<b>Details:</b> [medical_record.fields["ma_dis_d"]]")
 				to_chat(usr, "<b>Notes:</b> [medical_record.fields["notes"]]")
-				to_chat(usr, "<a href='?src=[text_ref(src)];medrecordComment=`'>\[View Comment Log\]</a>")
+				to_chat(usr, "<a href='byond://?src=[text_ref(src)];medrecordComment=`'>\[View Comment Log\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -543,7 +540,7 @@
 					counter++
 				if(counter == 1)
 					to_chat(usr, "No comment found")
-				to_chat(usr, "<a href='?src=[text_ref(src)];medrecordadd=`'>\[Add comment\]</a>")
+				to_chat(usr, "<a href='byond://?src=[text_ref(src)];medrecordadd=`'>\[Add comment\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -608,19 +605,11 @@
 			to_chat(usr, span_warning("[src] is too far away."))
 			return
 
-		for(var/datum/data/record/medical_record in GLOB.datacore.medical)
-			if(!(medical_record.fields["name"] == real_name))
-				continue
-			if(medical_record.fields["last_scan_time"] && medical_record.fields["last_scan_result"])
-				var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-				popup.set_content(medical_record.fields["last_scan_result"])
-				popup.open(FALSE)
-			break
-
-	if(href_list["lookitem"])
-		var/obj/item/I = locate(href_list["lookitem"])
-		if(istype(I))
-			I.examine(usr)
+		var/datum/data/record/medical_record = find_medical_record(src)
+		if(isnull(medical_record))
+			return
+		var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+		scan.ui_interact(usr)
 
 	return ..()
 
@@ -702,7 +691,7 @@
 
 
 /mob/living/carbon/human/proc/play_xylophone()
-	visible_message(span_warning(" [src] begins playing his ribcage like a xylophone. It's quite spooky."),span_notice(" You begin to play a spooky refrain on your ribcage."),span_warning(" You hear a spooky xylophone melody."))
+	visible_message(span_warning("[src] begins playing his ribcage like a xylophone. It's quite spooky."),span_notice("You begin to play a spooky refrain on your ribcage."),span_warning("You hear a spooky xylophone melody."))
 	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 	playsound(loc, song, 25, 1)
 
@@ -720,7 +709,7 @@
 
 
 /mob/living/carbon/human/verb/check_pulse()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Check pulse"
 	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
 	set src in view(1)
@@ -742,7 +731,7 @@
 	if(handle_pulse())
 		to_chat(usr, span_notice("[self ? "You have a" : "[src] has a"] pulse! Counting..."))
 	else
-		to_chat(usr, span_warning(" [src] has no pulse!"))
+		to_chat(usr, span_warning("[src] has no pulse!"))
 		return
 
 	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
@@ -795,6 +784,9 @@
 	var/datum/species/oldspecies = species
 
 	species = GLOB.all_species[new_species]
+
+	if(!species)
+		CRASH("Failed to set species to [new_species]")
 
 	if(oldspecies)
 		//additional things to change when we're no longer that species
@@ -851,7 +843,7 @@
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
 
-/mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/living/carbon/human/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	if((shoes?.inventory_flags & NOSLIPPING) && !override_noslip) //If our shoes are noslip just return immediately unless we don't care about the noslip
 		return FALSE
 	return ..()
@@ -934,6 +926,7 @@
 
 /mob/living/carbon/human/proc/randomize_appearance()
 	gender = pick(MALE, FEMALE)
+	physique = gender
 	name = species.random_name(gender)
 	real_name = name
 	voice = random_tts_voice()
@@ -990,13 +983,13 @@
 				g_facial = 0
 				b_facial = 0
 
-		h_style = random_hair_style(gender)
+		h_style = random_hair_style(physique)
 
 		switch(pick("none", "some"))
 			if("none")
 				f_style = "Shaved"
 			if("some")
-				f_style = random_facial_hair_style(gender)
+				f_style = random_facial_hair_style(physique)
 
 	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
 		if("black")
@@ -1126,3 +1119,13 @@
 	if(!do_after(src, get_up_time, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
 		return
 	return ..()
+
+/mob/living/carbon/human/attack_ghost(mob/dead/observer/user)
+	if(!user.health_scan)
+		return FALSE
+	user.scanner_functionality.analyze_vitals(src, user)
+	return TRUE
+
+///Checks if we have an AI behavior active
+/mob/living/carbon/human/proc/has_ai()
+	return SEND_SIGNAL(src, COMSIG_HUMAN_HAS_AI) & MOB_HAS_AI

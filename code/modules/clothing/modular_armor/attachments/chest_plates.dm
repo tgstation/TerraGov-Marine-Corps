@@ -10,6 +10,7 @@
 
 /obj/item/armor_module/armor/chest/marine
 	name = "\improper Jaeger Pattern Medium Infantry chestplates"
+	gender = PLURAL
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
 	soft_armor = list(MELEE = 25, BULLET = 45, LASER = 45, ENERGY = 35, BOMB = 30, BIO = 30, FIRE = 30, ACID = 35)
 	slowdown = 0.3
@@ -72,7 +73,7 @@
 	)
 	current_variant = "normal"
 	greyscale_colors = ARMOR_PALETTE_BLACK
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest/webbing)
 
@@ -94,3 +95,24 @@
 	soft_armor = list(MELEE = 15, BULLET = 35, LASER = 35, ENERGY = 25, BOMB = 25, BIO = 25, FIRE = 25, ACID = 25)
 	slowdown = 0.1
 	greyscale_config = /datum/greyscale_config/hardsuit_variant
+
+//VSD Hardsuits
+/obj/item/armor_module/armor/chest/marine/vsd_hardsuit
+	name = "\improper Crasher Super-Heavy MT/41 'Phobos' chestplate"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides a very good amount protection, with the cost of encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. Meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Phobos' armor piece."
+	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit
+	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest/visor_color)
+
+/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/clementia
+	name = "\improper Crasher Super-Heavy MT/41 'Clementia' chestplate"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides a very good amount protection, with the cost of encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. Meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Clementia' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt
+	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest)
+
+/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/hephaestus
+	name = "\improper Crasher Super-Heavy MT/41 'Hephaestus' chestplate"
+	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides a very good amount protection, with the cost of encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. Meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Hephaestus' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt_two
+	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest)

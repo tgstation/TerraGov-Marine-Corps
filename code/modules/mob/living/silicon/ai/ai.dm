@@ -48,9 +48,22 @@
 	var/camera_light_on = FALSE
 	var/list/obj/machinery/camera/lit_cameras = list()
 
+	/// List of atoms that the AI's camera can quickly jump to through keys 1-9
+	VAR_FINAL/list/atom/cam_hotkeys = new/list(9)
+	/// The camera's last location before jumping
+	VAR_FINAL/atom/cam_prev
+
 	var/datum/trackable/track
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order
+
+	var/datum/action/innate/order/attack_order/send_attack_order = new
+	var/datum/action/innate/order/defend_order/send_defend_order = new
+	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/innate/order/rally_order/send_rally_order = new
+	var/datum/action/control_vehicle/control = new
+	var/datum/action/innate/squad_message/squad_message = new
+
 	/// If it is currently controlling an object
 	var/controlling = FALSE
 
@@ -116,12 +129,12 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
 	RegisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED, PROC_REF(ping_ai))
 
-	var/datum/action/innate/order/attack_order/send_attack_order = new
-	var/datum/action/innate/order/defend_order/send_defend_order = new
-	var/datum/action/innate/order/retreat_order/send_retreat_order = new
-	var/datum/action/innate/order/rally_order/send_rally_order = new
-	var/datum/action/control_vehicle/control = new
-	var/datum/action/innate/squad_message/squad_message = new
+	send_attack_order = new
+	send_defend_order = new
+	send_retreat_order = new
+	send_rally_order = new
+	control = new
+	squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
@@ -138,6 +151,13 @@
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
 	QDEL_NULL(mini)
+	QDEL_NULL(eyeobj)
+	QDEL_NULL(send_attack_order)
+	QDEL_NULL(send_defend_order)
+	QDEL_NULL(send_retreat_order)
+	QDEL_NULL(send_rally_order)
+	QDEL_NULL(control)
+	QDEL_NULL(squad_message)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -274,6 +294,27 @@
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
 	GLOB.cameranet.visibility(moved_eye, client, all_eyes, moved_eye.use_static)
 
+/mob/living/silicon/ai/key_down(_key, client/user)
+	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
+		_key = _key[7] //strings, lists, same thing really
+	switch(_key)
+		if("`", "0")
+			if(cam_prev)
+				//ai_tracking_tool.reset_tracking()
+				eyeobj.setLoc(cam_prev)
+			return
+		if("1", "2", "3", "4", "5", "6", "7", "8", "9")
+			_key = text2num(_key)
+			if(user.keys_held["Ctrl"]) //do we assign a new hotkey?
+				cam_hotkeys[_key] = eyeobj.loc
+				to_chat(src, "Location saved to Camera Group [_key].")
+				return
+			if(cam_hotkeys[_key]) //if this is false, no hotkey for this slot exists.
+				cam_prev = eyeobj.loc
+				//ai_tracking_tool.reset_tracking()
+				eyeobj.setLoc(cam_hotkeys[_key])
+				return
+	return ..()
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
 	if(!isturf(loc))
@@ -284,7 +325,7 @@
 /mob/living/silicon/ai/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
 	var/start = "Relayed Speech: "
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
-	var/hrefpart = "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
+	var/hrefpart = "<a href='byond://?src=[REF(src)];track=[html_encode(namepart)]'>"
 	var/jobpart
 	var/speech_part = lang_treat(speaker, message_language, raw_message, spans, message_mode)
 
@@ -304,11 +345,11 @@
 
 /mob/living/silicon/ai/reset_perspective(atom/new_eye, has_static = TRUE)
 	if(has_static)
-		sight = initial(sight)
+		set_sight(initial(sight))
 		eyeobj?.use_static = initial(eyeobj?.use_static)
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, initial(eyeobj?.use_static))
 	else
-		sight = NONE
+		set_sight(NONE)
 		eyeobj?.use_static = FALSE
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, FALSE)
 	if(camera_light_on)
@@ -320,19 +361,19 @@
 			if(new_eye != GLOB.ai_camera_room_landmark)
 				end_multicam()
 			client.perspective = EYE_PERSPECTIVE
-			client.eye = new_eye
+			client.set_eye(new_eye)
 		else
 			end_multicam()
 			if(isturf(loc))
 				if(eyeobj)
-					client.eye = eyeobj
+					client.set_eye(eyeobj)
 					client.perspective = EYE_PERSPECTIVE
 				else
-					client.eye = client.mob
+					client.set_eye(client.mob)
 					client.perspective = MOB_PERSPECTIVE
 			else
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
+				client.set_eye(loc)
 		update_sight()
 		if(client.eye != src)
 			var/atom/AT = client.eye
@@ -340,17 +381,18 @@
 		else
 			clear_fullscreen("remote_view", 0)
 
+	// I am so sorry
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
+
 /mob/living/silicon/ai/update_sight()
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
-		see_in_dark = max(see_in_dark, 8)
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		eyeobj.see_in_dark = max(eyeobj.see_in_dark, 8)
-		eyeobj.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		eyeobj.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		eyeobj.sync_lighting_plane_cutoff()
 		return ..()
-	see_in_dark = initial(see_in_dark)
-	lighting_alpha = initial(lighting_alpha)
-	eyeobj.see_in_dark = initial(eyeobj.see_in_dark)
-	eyeobj.lighting_alpha = initial(eyeobj.lighting_alpha)
+	lighting_cutoff = initial(lighting_cutoff)
+	eyeobj.lighting_cutoff = initial(eyeobj.lighting_cutoff)
+	eyeobj.sync_lighting_plane_cutoff()
 	return ..()
 
 /mob/living/silicon/ai/get_status_tab_items()
@@ -365,22 +407,22 @@
 	. += "- Operation information -"
 	. += "Current orbit: [GLOB.current_orbit]"
 
-	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+	if(!GLOB.orbital_cannon?.chambered_tray)
 		. += "Orbital bombardment status: No ammo chambered in the cannon."
 	else
-		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected"
+		. += "Orbital bombardment warhead: [GLOB.orbital_cannon.tray.warhead.name] Detected"
 
 	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
 
 	. += "Current dropship points: [round(SSpoints.dropship_points)]"
 
-	. += "Current alert level: [GLOB.marine_main_ship.get_security_level()]"
+	. += "Current alert level: [SSsecurity_level.get_current_level_as_text()]"
 
 	if(SSticker.mode)
 		. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"
 
-	if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
-		. += "Railgun status: Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."
+	if(GLOB.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
+		. += "Railgun status: Cooling down, next fire in [(GLOB.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."
 	else
 		. += "Railgun status: Railgun is ready to fire."
 
@@ -472,7 +514,7 @@
 	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
 	eyeobj.use_static = FALSE
 	ai.camera_visibility(eyeobj)
-	eyeobj.loc = ai.loc
+	eyeobj.abstract_move(ai.loc)
 
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()
@@ -500,12 +542,12 @@
 		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER,
 	)
 
-/datum/action/innate/squad_message/can_use_action()
+/datum/action/innate/squad_message/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(owner.stat)
 		to_chat(owner, span_warning("You cannot give orders in your current state."))
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
+	if(TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_HUD_ORDER))
 		to_chat(owner, span_warning("Your last order was too recent."))
 		return FALSE
 
@@ -530,7 +572,7 @@
 	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("<u>ORDERS UPDATED:</u>", text, CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 
 
 ///takes an atom A and sends an alert, coordinate and for the atom to eligible marine forces if cooldown is over
@@ -539,7 +581,7 @@
 	var/list/receivers = (GLOB.alive_human_list)
 	if(is_mainship_level(A.z)) //if our target is shipside, we always use the lowest cooldown between pings
 		cooldown = COOLDOWN_AI_PING_EXTRA_LOW
-	if(!COOLDOWN_CHECK(src, last_pinged_marines)) //delay between alerts, both for balance and to prevent chat spam from overeager AIs
+	if(!COOLDOWN_FINISHED(src, last_pinged_marines)) //delay between alerts, both for balance and to prevent chat spam from overeager AIs
 		to_chat(src, span_alert("You must wait before issuing an alert again"))
 		return
 	COOLDOWN_START(src, last_pinged_marines, cooldown)

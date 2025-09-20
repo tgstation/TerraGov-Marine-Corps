@@ -81,6 +81,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "engi-explosive"),
 		/obj/item/minelayer = list(CAT_ENGSUP, "M21 APRDS \"Minelayer\"", 5, "engi-explosive"),
 		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "engi-other"),
+		/obj/item/tesla_turret = list(CAT_ENGSUP, "Tesla Turret", 30, "engi-other"),
 		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 50, "engi-other"),
 		/obj/structure/closet/crate/uvt_crate = list(CAT_ENGSUP, "Skink Unmanned Vehicle", 5, "engi-other"),
 		/obj/item/attachable/buildasentry = list(CAT_ENGSUP, "Build-A-Sentry Attachment", 30, "engi-other"),
@@ -122,7 +123,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Hypospray", 2, "corps-tools"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
-		/obj/item/healthanalyzer/gloves = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
+		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
 		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 16, "corps-tools"),
 	))
 
@@ -131,6 +132,7 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
 		/obj/item/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
 		/obj/item/fulton_extraction_pack = list(CAT_LEDSUP, "Fulton Extraction Pack", 20, "orange"),
+		/obj/structure/closet/crate/uvt_crate = list(CAT_LEDSUP, "Skink Unmanned Vehicle", 10, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
 		/obj/item/megaphone = list(CAT_LEDSUP, "Megaphone", 5, "orange"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_LEDSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "black"),
@@ -156,6 +158,7 @@ GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 		/obj/item/whistle = list(CAT_FCSUP, "Whistle", 5, "black"),
 		/obj/item/supply_beacon = list(CAT_FCSUP, "Supply beacon", 10, "black"),
 		/obj/item/fulton_extraction_pack = list(CAT_FCSUP, "Fulton Extraction Pack", 20, "orange"),
+		/obj/structure/closet/crate/uvt_crate = list(CAT_FCSUP, "Skink Unmanned Vehicle", 10, "orange"),
 		/obj/item/deployable_camera = list(CAT_FCSUP, "Deployable Overwatch Camera", 2, "orange"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_FCSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "black"),
 		/obj/item/explosive/plastique = list(CAT_FCSUP, "Plastique explosive", 2, "black"),
@@ -186,6 +189,7 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/weapon/gun/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle", 25, "sg-targetrifle"), //If a SG buys a SG-62, they'll have 15 points left, should be enough to buy some mags and or extra SR ammo.
 	/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Magazine", 3, "sg-targetrifle"),
 	/obj/item/ammo_magazine/packet/smart_targetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Ammo Bin", 4, "sg-targetrifle"),
+	/obj/item/ammo_magazine/packet/smart_spottingrifle = list(CAT_SGSUP, "SG-153 Spotting Rifle Ammo Bin", 4, "sg-targetrifle"),
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle = list(CAT_SGSUP, "SG-153 Spotting Rifle Magazine", 2, "sg-targetrifle"),
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact = list(CAT_SGSUP, "SG-153 Spotting Rifle High Impact Magazine", 2, "sg-targetrifle"),
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber = list(CAT_SGSUP, "SG-153 Spotting Rifle Heavy Rubber Magazine", 2, "sg-targetrifle"),
@@ -380,7 +384,7 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/grenade = list(CAT_MOD, "Grenade Storage Module", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
-		/obj/item/storage/pouch/construction = list(CAT_POU, "Construction pouch", 0, "orange"),
+		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0, "orange"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tools pouch", 0, "black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
@@ -447,6 +451,7 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 		/obj/item/armor_module/storage/grenade = list(CAT_MOD, "Grenade Storage Module", 0, "black"),
 		/obj/item/storage/pouch/medical_injectors/medic = list(CAT_POU, "Advanced Autoinjector pouch", 0, "orange"),
 		/obj/item/storage/pouch/medkit/medic = list(CAT_POU, "Medkit pouch", 0, "orange"),
+		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0, "orange"),
 		/obj/effect/vendor_bundle/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
 		/obj/item/armor_module/module/ballistic_armor = list(CAT_ARMMOD, "Hod Accident Prevention Plating", 0,"black"),
 		/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
@@ -508,6 +513,7 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 		/obj/item/storage/pouch/medkit/firstaid = list(CAT_POU, "First aid pouch", 0, "orange"),
 		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
+		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0, "orange"),
 		/obj/effect/vendor_bundle/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
 		/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
@@ -541,6 +547,7 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
+		/obj/item/storage/backpack/marine/radiopack = list(CAT_BAK, "Radio Pack", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
@@ -656,7 +663,7 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/clothing/shoes/centcom = list(CAT_SHO, "Dress Shoes", 0, "synth-armor"),
 		/obj/item/clothing/shoes/black = list(CAT_SHO, "Black Shoes", 0, "synth-armor"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch", 0, "black"),
-		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch", 0, "black"),
+		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0, "black"),
 		/obj/item/storage/pouch/medkit/doctor = list(CAT_POU, "Medkit pouch", 0, "black"),
 		/obj/item/storage/pouch/surgery = list(CAT_POU, "White surgical pouch", 0, "black"),
 		/obj/item/storage/pouch/field_pouch/full = list(CAT_POU, "Field pouch", 0, "black"),
@@ -749,6 +756,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/tweezers = 1,
 		/obj/item/cell/high = 1,
 		/obj/item/circuitboard/apc = 1,
+		/obj/item/tool/soap = 1,
 	)
 ))
 
@@ -771,6 +779,6 @@ GLOBAL_LIST_INIT(loadout_instantiate_default_contents, typecacheof(list(
 #define MAXIMUM_LOADOUT 50
 
 /// The current loadout version
-#define CURRENT_LOADOUT_VERSION 15
+#define CURRENT_LOADOUT_VERSION 16
 
-GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11, 13, 14, 15))
+GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16))

@@ -60,7 +60,7 @@
 		return // Let an admin deal with it.
 
 	var/ff_cooldown = CONFIG_GET(number/ff_damage_reset)
-	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_FRIENDLY_FIRE_CAUSED))
+	if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_FRIENDLY_FIRE_CAUSED))
 		TIMER_COOLDOWN_START(src, COOLDOWN_FRIENDLY_FIRE_CAUSED, ff_cooldown)
 		friendly_fire[FF_VICTIM_LIST] = list()
 		friendly_fire[FF_DAMAGE_OUTGOING] = 0
@@ -69,7 +69,7 @@
 	friendly_fire[FF_DAMAGE_OUTGOING] += total_damage
 
 	// Victim stats
-	if(!TIMER_COOLDOWN_CHECK(victim, COOLDOWN_FRIENDLY_FIRE_TAKEN))
+	if(TIMER_COOLDOWN_FINISHED(victim, COOLDOWN_FRIENDLY_FIRE_TAKEN))
 		TIMER_COOLDOWN_START(victim, COOLDOWN_FRIENDLY_FIRE_TAKEN, ff_cooldown)
 		victim.friendly_fire[FF_DAMAGE_INCOMING] = 0
 	victim.friendly_fire[FF_DAMAGE_INCOMING] += total_damage

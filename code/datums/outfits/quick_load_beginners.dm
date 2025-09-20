@@ -377,7 +377,6 @@
 	l_hand = /obj/item/paper/tutorial/builder
 
 	backpack_contents = list(
-		/obj/item/stack/sheet/metal/small_stack = 1,
 		/obj/item/stack/sandbags_empty/full = 1,
 		/obj/item/tool/shovel/etool = 1,
 		/obj/item/storage/box/m94 = 1,
@@ -387,6 +386,8 @@
 
 	suit_contents = list(
 		/obj/item/stack/sheet/metal/large_stack = 3,
+		/obj/item/stack/sheet/metal/small_stack = 2,
+		/obj/item/stack/sheet/plasteel/large_stack = 1,
 	)
 
 
@@ -572,7 +573,7 @@
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/lightmedical
-	gloves = /obj/item/healthanalyzer/gloves
+	gloves = /obj/item/clothing/gloves/healthanalyzer
 	mask = /obj/item/clothing/mask/gas/modular/coofmask
 	head = /obj/item/clothing/head/modular/m10x/antenna
 	r_pocket = /obj/item/storage/pouch/medkit/medic

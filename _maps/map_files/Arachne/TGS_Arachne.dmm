@@ -128,6 +128,11 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical)
+"ahW" = (
+/obj/vehicle/ridden/powerloader,
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "ahX" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -962,7 +967,7 @@
 /area/mainship/medical/morgue)
 "aRa" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/delta,
+/obj/machinery/computer/camera_advanced/overwatch/military/delta,
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
@@ -1565,6 +1570,18 @@
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
+"buw" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light/floor{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/starboard_ert)
 "buM" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -3447,11 +3464,9 @@
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "cWr" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/floor/mainship/black{
-	dir = 4
+/obj/structure/rack,
+/turf/open/floor/mainship/orange{
+	dir = 9
 	},
 /area/mainship/hallways/hangar)
 "cWv" = (
@@ -3850,11 +3865,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "dmG" = (
-/obj/structure/rack,
-/obj/item/tool/weldingtool,
-/obj/item/clothing/head/welding,
-/obj/item/tool/weldpack,
-/obj/item/storage/belt/utility/full,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -4091,7 +4101,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
 "dxQ" = (
 /obj/machinery/camera/autoname/mainship{
@@ -4864,10 +4874,10 @@
 	},
 /area/mainship/squads/req)
 "ehy" = (
-/obj/vehicle/ridden/powerloader,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/machinery/dropship_part_fabricator/tadpole,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "eik" = (
@@ -4884,7 +4894,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/cafeteria_officer)
 "eiy" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -5274,6 +5284,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/medical/upper_medical)
+"exw" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/starboard_ert)
 "exE" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -6481,6 +6497,9 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -6795,17 +6814,14 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "fHx" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
+/obj/structure/rack,
+/obj/item/tool/weldingtool,
+/obj/item/clothing/head/welding,
+/obj/item/tool/weldpack,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/mainship/orange{
+	dir = 5
 	},
-/obj/machinery/landinglight/alamo{
-	dir = 4;
-	pixel_x = -4
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "fIp" = (
 /obj/structure/table/mainship/nometal,
@@ -7068,7 +7084,9 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_hallway)
 "fRR" = (
@@ -7775,12 +7793,6 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
-"gzs" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
-/turf/open/floor/mainship/orange{
-	dir = 10
-	},
-/area/mainship/hallways/hangar)
 "gzP" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 8
@@ -8486,6 +8498,15 @@
 	dir = 1
 	},
 /area/mainship/command/airoom)
+"hbS" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/port_ert)
 "hcy" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -8963,7 +8984,7 @@
 	on = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
 "htX" = (
 /obj/structure/morgue{
@@ -9062,7 +9083,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_ert)
 "hxT" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/machinery/line_nexter{
@@ -9571,7 +9592,6 @@
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hallways/hangar)
 "hST" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
@@ -9586,6 +9606,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "hTi" = (
@@ -10255,7 +10276,7 @@
 	dir = 1
 	},
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
 "iwz" = (
@@ -11634,7 +11655,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "jDI" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/black{
@@ -11945,7 +11966,7 @@
 	},
 /area/mainship/hallways/hangar)
 "jPJ" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
 "jPR" = (
@@ -13213,7 +13234,7 @@
 /obj/machinery/door/firedoor{
 	dir = 1
 	},
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters{
+/obj/machinery/door/airlock/mainship/generic/pilot/bunk{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -13366,6 +13387,15 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"kUo" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/starboard_ert)
 "kUs" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -14360,6 +14390,7 @@
 /area/mainship/squads/general)
 "lJZ" = (
 /obj/structure/bed/chair/sofa/left,
+/obj/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/corporateliaison)
 "lKr" = (
@@ -14781,7 +14812,7 @@
 	},
 /area/mainship/hallways/hangar)
 "lZj" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -15480,6 +15511,12 @@
 "mzA" = (
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/upper_medical)
+"mzH" = (
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "mzU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15766,6 +15803,12 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
+"mMT" = (
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
+/turf/open/floor/mainship/orange{
+	dir = 6
+	},
+/area/mainship/hallways/hangar)
 "mMU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -16288,6 +16331,7 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "nmG" = (
@@ -16836,14 +16880,14 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/port_hallway)
 "nJj" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters{
-	dir = 1
-	},
 /obj/machinery/door/firedoor{
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
 	dir = 2
+	},
+/obj/machinery/door/airlock/mainship/generic/pilot/bunk{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/pilotbunks)
@@ -18088,7 +18132,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "oGs" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
@@ -19738,7 +19782,7 @@
 /area/mainship/engineering/upper_engine_monitoring)
 "qbL" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
@@ -20533,6 +20577,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
+"qKD" = (
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
+/turf/open/floor/mainship/orange{
+	dir = 10
+	},
+/area/mainship/hallways/hangar)
 "qKH" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/black{
@@ -21157,7 +21207,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/cmo_office)
 "riU" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -21849,6 +21899,12 @@
 	},
 /turf/open/floor/mainship/black,
 /area/mainship/hallways/port_hallway)
+"rLk" = (
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "rLo" = (
 /obj/structure/window/reinforced/toughened,
 /obj/machinery/vending/nanomed{
@@ -23560,11 +23616,23 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/firing_range)
 "tpi" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
+"tpB" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light/floor{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/port_ert)
 "tqL" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions,
 /obj/structure/cable,
@@ -23689,12 +23757,6 @@
 	},
 /turf/open/floor/mainship/black,
 /area/mainship/hallways/repair_bay)
-"tuT" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
-/turf/open/floor/mainship/orange{
-	dir = 6
-	},
-/area/mainship/hallways/hangar)
 "tvc" = (
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
@@ -24336,7 +24398,7 @@
 /area/mainship/hallways/hangar)
 "tYv" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/military/alpha,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -24630,7 +24692,7 @@
 /area/mainship/shipboard/firing_range)
 "umC" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/charlie,
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -24826,6 +24888,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
+"uum" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/port_ert)
 "uvb" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -25021,7 +25093,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "uCH" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/black,
@@ -25245,6 +25317,9 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -26813,13 +26888,13 @@
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
 "vXt" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "vXI" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -27303,6 +27378,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"wrl" = (
+/obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "wrs" = (
 /obj/machinery/door_control/mainship{
 	id = "AiCoreShutter";
@@ -27787,6 +27866,7 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "wKW" = (
+/obj/structure/dropship_equipment/electronics/spotlights,
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
@@ -31711,11 +31791,11 @@ wDf
 ugu
 pqH
 eaj
+hbS
 pqH
 pqH
 pqH
-pqH
-eaj
+tpB
 pqH
 pqH
 pqH
@@ -32629,11 +32709,11 @@ ajW
 pGQ
 xQY
 lUz
+uum
 kqo
 kqo
 kqo
-kqo
-kqo
+uum
 kqo
 jwb
 eaZ
@@ -36170,7 +36250,7 @@ sfI
 tys
 tys
 ftJ
-cWr
+kBf
 kBf
 kBf
 lTg
@@ -36271,15 +36351,15 @@ szE
 szE
 szE
 ssO
-hYD
-hjH
+bMK
+cWr
 hIO
 dSy
 fcW
 mtB
 uLq
-uLq
-gzs
+mzH
+qKD
 cSI
 mPK
 mFV
@@ -36374,12 +36454,12 @@ qAQ
 rto
 iyA
 nlT
-hjH
+ahW
 hIO
 ehy
 dxv
+wrl
 ikw
-wKW
 wKW
 qIG
 cSI
@@ -36475,15 +36555,15 @@ vlB
 vlB
 mwK
 hIO
-hYD
-hjH
+bMK
+fHx
 hIO
 dmG
 htw
 fsO
 wQY
-wQY
-tuT
+rLk
+mMT
 cSI
 mPK
 mFV
@@ -36578,7 +36658,7 @@ vlB
 wGG
 hIO
 uKE
-fHx
+pCj
 bwD
 pCj
 rPw
@@ -41911,11 +41991,11 @@ aKU
 eac
 eBT
 pVp
+kUo
 eBT
 eBT
 eBT
-eBT
-pVp
+buw
 eBT
 eBT
 eBT
@@ -42727,7 +42807,7 @@ wvW
 cVA
 oFs
 dmT
-oFs
+iME
 oFs
 oFs
 oFs
@@ -42833,7 +42913,7 @@ xfT
 xfT
 xfT
 iYz
-xfT
+exw
 xfT
 xfT
 cpN

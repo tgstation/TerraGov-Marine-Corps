@@ -23,7 +23,7 @@
 
 	body_temperature = 350
 
-	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB, TRAIT_CRIT_IS_DEATH)
+	inherent_traits = list(TRAIT_IMMEDIATE_DEFIB, TRAIT_CRIT_IS_DEATH)
 	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
@@ -85,7 +85,7 @@
 		KEYBINDING_NORMAL = COMSIG_KB_ROBOT_AUTOREPAIR,
 	)
 
-/datum/action/repair_self/can_use_action()
+/datum/action/repair_self/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -96,6 +96,8 @@
 	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/howner = owner
+	if(!howner.getBruteLoss() && !howner.getFireLoss())
+		return
 	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 10 SECONDS)
 	howner.balloon_alert_to_viewers("Repairing")
 

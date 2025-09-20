@@ -30,7 +30,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
@@ -44,9 +44,6 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/blink,
-		/datum/action/ability/activable/xeno/banish,
-		/datum/action/ability/xeno_action/recall,
 		/datum/action/ability/activable/xeno/rewind,
 		/datum/action/ability/xeno_action/portal,
 	)
@@ -64,9 +61,6 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/blink,
-		/datum/action/ability/activable/xeno/banish,
-		/datum/action/ability/xeno_action/recall,
 		/datum/action/ability/xeno_action/portal,
 		/datum/action/ability/activable/xeno/rewind,
 		/datum/action/ability/xeno_action/timestop,

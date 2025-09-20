@@ -56,7 +56,7 @@
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
 "ak" = (
 /obj/structure/table,
-/obj/item/attachable/bayonetknife,
+/obj/item/attachable/bayonet,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "al" = (
@@ -188,6 +188,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/colony/indoor/station)
+"aN" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/showroom,
+/area/campaign/tgmc_raiding/underground/maintenance/north)
 "aO" = (
 /obj/structure/computer3frame,
 /turf/open/floor/mainship/floor,
@@ -198,6 +202,18 @@
 	},
 /turf/open/floor/prison/plate,
 /area/campaign/tgmc_raiding/colony/indoor/security)
+"aQ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/general/hallway/east)
+"aR" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/command/east)
 "aS" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/black{
@@ -252,6 +268,7 @@
 /area/campaign/tgmc_raiding/underground/general/hallway)
 "bb" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/prison/darkred{
 	dir = 9
 	},
@@ -302,6 +319,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/boxing)
+"bk" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/east)
 "bl" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
@@ -471,6 +495,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/prep)
+"bR" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/colony/indoor/station)
 "bS" = (
 /obj/machinery/door/airlock/mainship/security/glass,
 /turf/open/floor/prison/darkred/full,
@@ -496,6 +528,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/south)
+"bX" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/command)
 "bY" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -553,12 +589,20 @@
 	},
 /turf/open/floor/wood,
 /area/campaign/tgmc_raiding/underground/command/captain)
+"cj" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "ck" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/boxing)
+"cl" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/showroom,
+/area/campaign/tgmc_raiding/underground/living/bathroom)
 "cm" = (
 /obj/structure/monorail,
 /turf/open/floor/plating/plating_catwalk,
@@ -598,6 +642,14 @@
 /obj/structure/prop/brokenvendor/brokenmarinemedvendor,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
+"ct" = (
+/obj/structure/platform,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "cu" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/blue/corner{
@@ -624,7 +676,7 @@
 /turf/open/floor/mainship/orange,
 /area/campaign/tgmc_raiding/underground/engineering)
 "cz" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
@@ -647,6 +699,11 @@
 /obj/effect/spawner/random/food_or_drink/beer,
 /turf/open/floor/prison/marked,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
+"cF" = (
+/obj/effect/turf_decal/riverdecal,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "cG" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1
@@ -702,6 +759,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"cQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/colony/indoor/station)
 "cR" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/prison/darkbrown{
@@ -717,6 +778,11 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"cT" = (
+/obj/structure/flora/drought/tall_cactus,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "cU" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/glasses/hud/health,
@@ -727,6 +793,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/engineering)
+"cW" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/laundry)
 "cX" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -741,6 +811,10 @@
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
+"da" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/south)
 "db" = (
 /turf/open/floor/mainship/orange{
 	dir = 5
@@ -764,6 +838,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/blue,
 /area/campaign/tgmc_raiding/underground/command/east)
+"dg" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/green{
+	dir = 10
+	},
+/area/campaign/tgmc_raiding/colony/indoor/hydroponics)
 "dh" = (
 /obj/structure/table/mainship,
 /obj/item/restraints/handcuffs,
@@ -776,6 +856,12 @@
 "dj" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/east)
+"dk" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/east)
 "dl" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/corner{
@@ -805,6 +891,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/dome)
 "dq" = (
@@ -835,6 +922,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/filtration)
 "dv" = (
@@ -970,6 +1058,11 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/command)
+"dX" = (
+/obj/structure/flora/desert/grass,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "dY" = (
 /obj/machinery/computer3,
 /turf/open/floor/mainship/blue{
@@ -993,6 +1086,20 @@
 /area/campaign/tgmc_raiding/underground/maintenance/north)
 "ec" = (
 /obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/cargo/storage)
+"ed" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/south)
+"ee" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
 "ef" = (
@@ -1038,6 +1145,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -1096,6 +1204,7 @@
 "ew" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/east)
 "ex" = (
@@ -1153,6 +1262,15 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/command)
+"eG" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/command/east)
 "eH" = (
 /turf/open/floor/tile/chapel{
 	dir = 1
@@ -1364,6 +1482,13 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
+"fw" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "fx" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -1383,6 +1508,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
 "fA" = (
@@ -1453,6 +1579,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/east)
 "fL" = (
@@ -1461,6 +1588,10 @@
 	},
 /turf/open/floor/tile/showroom,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
+"fM" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside,
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "fN" = (
 /obj/structure/janitorialcart,
 /turf/open/floor/mainship/floor,
@@ -1526,6 +1657,13 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/offices)
+"fZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/east)
 "ga" = (
 /obj/machinery/light{
 	dir = 4
@@ -1545,9 +1683,7 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/campaign/tgmc_raiding/underground/medbay)
 "gd" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
 "ge" = (
@@ -1617,6 +1753,11 @@
 	},
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/kitchen)
+"gr" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/maintenance/north)
 "gs" = (
 /obj/machinery/light{
 	dir = 8
@@ -1679,6 +1820,7 @@
 "gC" = (
 /obj/structure/monorail,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
 "gD" = (
@@ -1729,6 +1871,11 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
+"gM" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black/corner,
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "gN" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/prison/darkbrown{
@@ -1763,6 +1910,7 @@
 /area/campaign/tgmc_raiding/underground/security)
 "gT" = (
 /obj/machinery/power/apc,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/laundry)
 "gU" = (
@@ -1931,6 +2079,12 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"hz" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/engineering)
 "hA" = (
 /obj/item/weapon/gun/rifle/standard_skirmishrifle,
 /obj/structure/closet/secure_closet/guncabinet,
@@ -2015,6 +2169,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/filtration)
+"hP" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/engineering)
 "hQ" = (
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
@@ -2022,6 +2180,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/darkbrown{
 	dir = 8
 	},
@@ -2056,6 +2215,19 @@
 /obj/structure/largecrate/supply/supplies/tables_racks,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
+"hY" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/central)
+"hZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/general/prep)
 "ia" = (
 /obj/structure/sign/poster,
 /obj/machinery/light,
@@ -2110,6 +2282,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"ik" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "il" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 5
@@ -2127,6 +2306,16 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/dome)
+"io" = (
+/obj/structure/platform_decoration,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/south)
+"ip" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/engineering)
 "iq" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -2242,10 +2431,23 @@
 /obj/item/reagent_containers/food/snacks/mre_pack/meal2,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
+"iN" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/showroom,
+/area/campaign/tgmc_raiding/underground/living/bathroom/south)
+"iO" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/cafeteria)
 "iP" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/cargo)
+"iQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black,
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "iR" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile/side,
@@ -2283,6 +2485,10 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/security)
+"iX" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/security)
 "iY" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/hydroponics)
@@ -2357,6 +2563,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/east)
 "jm" = (
@@ -2445,6 +2652,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
+"jD" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "jE" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/east)
@@ -2461,6 +2672,10 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/security)
+"jI" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/security)
 "jJ" = (
 /obj/structure/rack,
 /obj/item/explosive/grenade/smokebomb,
@@ -2491,6 +2706,7 @@
 /area/campaign/tgmc_raiding/colony/indoor/housing/southwest)
 "jO" = (
 /obj/structure/sign/poster,
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "jP" = (
@@ -2545,6 +2761,12 @@
 "jZ" = (
 /turf/open/floor/mainship/terragov/north,
 /area/campaign/tgmc_raiding/underground/command)
+"ka" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "kb" = (
 /turf/open/floor/mainship/black,
 /area/campaign/tgmc_raiding/underground/general/hallway)
@@ -2564,6 +2786,13 @@
 "ke" = (
 /turf/closed/mineral/smooth,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
+"kf" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/cafeteria)
 "kg" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
@@ -2607,6 +2836,7 @@
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/living/laundry)
 "kq" = (
@@ -2636,6 +2866,11 @@
 /obj/structure/prop/mainship/name_stencil/C,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
+"kx" = (
+/obj/structure/desertdam/decals/road,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "ky" = (
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/mainship/floor,
@@ -2672,6 +2907,7 @@
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
 "kD" = (
 /obj/machinery/light,
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southwest)
 "kE" = (
@@ -2732,6 +2968,10 @@
 	dir = 6
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/east)
+"kR" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/south)
 "kS" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/security)
@@ -2783,6 +3023,7 @@
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
 "lb" = (
@@ -2808,6 +3049,13 @@
 	dir = 9
 	},
 /area/campaign/tgmc_raiding/colony/indoor/security)
+"lg" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "lh" = (
 /obj/structure/bed/chair,
 /turf/open/floor/prison,
@@ -2816,6 +3064,11 @@
 /obj/machinery/computer3/server,
 /turf/open/floor/mainship/blue,
 /area/campaign/tgmc_raiding/underground/command)
+"lj" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/east)
 "lk" = (
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
@@ -2922,6 +3175,11 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/station)
+"lJ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/kitchen)
 "lK" = (
 /obj/structure/monorail,
 /turf/open/floor/plating/ground/concrete,
@@ -2953,6 +3211,7 @@
 	dir = 5
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/tunnel/east)
 "lP" = (
@@ -3004,6 +3263,10 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/living/barracks)
+"lX" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "lY" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
@@ -3054,6 +3317,10 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/colony/indoor/storage)
+"mi" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "mj" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
@@ -3089,6 +3356,13 @@
 /obj/structure/largecrate/supply/supplies/tables_racks,
 /turf/open/floor/mainship/cargo,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
+"mq" = (
+/obj/structure/desertdam/decals/road{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "mr" = (
 /turf/open/floor/mainship/red/corner,
 /area/campaign/tgmc_raiding/underground/security)
@@ -3127,6 +3401,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command/east)
+"mz" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "mA" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable,
@@ -3145,6 +3425,11 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/security)
+"mD" = (
+/obj/structure/bed/chair,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/maintenance/filtration)
 "mE" = (
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/green{
@@ -3167,6 +3452,11 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/tgmc_raiding/underground/medbay)
+"mI" = (
+/obj/machinery/light,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/supermarket)
 "mJ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -3224,6 +3514,10 @@
 /obj/machinery/computer/security,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/offices)
+"mT" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "mU" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/prison,
@@ -3233,6 +3527,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -3286,6 +3581,13 @@
 "ng" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
+"nh" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "ni" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/floor,
@@ -3301,6 +3603,10 @@
 /obj/structure/bookcase,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/offices)
+"nl" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/cargo/storage)
 "nn" = (
 /obj/structure/monorail{
 	dir = 4
@@ -3316,6 +3622,11 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
+"nq" = (
+/obj/structure/platform_decoration,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "nr" = (
 /obj/structure/rack,
 /turf/open/floor/mainship/green,
@@ -3406,6 +3717,10 @@
 /obj/item/book,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
+"nG" = (
+/obj/effect/ai_node,
+/turf/open/floor/carpet/green,
+/area/campaign/tgmc_raiding/colony/indoor/housing/east)
 "nH" = (
 /obj/structure/table,
 /obj/item/tool/hatchet,
@@ -3477,6 +3792,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/black,
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
+"nV" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "nW" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -3563,6 +3882,17 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
+"oo" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
+"op" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/east)
 "oq" = (
 /obj/structure/table/mainship,
 /obj/structure/bedsheetbin,
@@ -3578,6 +3908,11 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/boxing)
+"ou" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/cargo)
 "ov" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/colonist,
@@ -3611,6 +3946,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/south)
+"oB" = (
+/obj/structure/desertdam/decals/road{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "oC" = (
 /mob/living/simple_animal/mouse,
 /obj/structure/platform{
@@ -3642,6 +3984,11 @@
 /obj/structure/desertdam/decals/road,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
+"oI" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/north)
 "oJ" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete,
@@ -3687,6 +4034,10 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/engineering)
+"oS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "oT" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/orange{
@@ -3696,6 +4047,10 @@
 "oU" = (
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/laundry)
+"oV" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/maintenance/filtration)
 "oW" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/structure/platform{
@@ -3715,6 +4070,11 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
+"pa" = (
+/obj/structure/flora/desert/grass,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "pb" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -3727,6 +4087,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
+"pd" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/kitchen)
 "pe" = (
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/prison/darkbrown{
@@ -3760,10 +4124,26 @@
 /obj/item/trash/sosjerky,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
+"pk" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/central)
 "pl" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/mainship/orange,
 /area/campaign/tgmc_raiding/underground/engineering)
+"pn" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/security)
+"po" = (
+/obj/machinery/door/airlock/maintenance{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "pp" = (
 /obj/structure/window/framed/wood/reinforced,
 /turf/open/floor/wood,
@@ -3775,6 +4155,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/cargo)
+"pr" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/cargo)
 "ps" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -3802,7 +4186,7 @@
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
 "px" = (
-/obj/item/attachable/bayonetknife,
+/obj/item/attachable/bayonet,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -3850,6 +4234,7 @@
 /area/campaign/tgmc_raiding/underground/maintenance/cargo)
 "pG" = (
 /obj/structure/largecrate/random/barrel/green,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/laundry)
 "pH" = (
@@ -3930,6 +4315,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
 "pW" = (
@@ -3964,6 +4350,11 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/side,
 /area/campaign/tgmc_raiding/underground/medbay)
+"qc" = (
+/obj/structure/monorail,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "qd" = (
 /obj/structure/flora/drought/barrel_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -4049,6 +4440,10 @@
 /obj/item/reagent_containers/food/drinks/cans/beer,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"qu" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/north)
 "qv" = (
 /obj/structure/largecrate/random/barrel/white,
 /turf/open/floor/prison/darkbrown{
@@ -4082,11 +4477,20 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/campaign/tgmc_raiding/underground/command/captain)
+"qC" = (
+/obj/structure/flora/drought/barrel_cactus,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "qD" = (
 /obj/structure/rock/basalt/pile/alt,
 /obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southeast)
+"qE" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/general/firing_range)
 "qF" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -4193,6 +4597,10 @@
 "qX" = (
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command/east)
+"qY" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/prep)
 "ra" = (
 /turf/open/floor/carpet/blue,
 /area/campaign/tgmc_raiding/underground/command/captain)
@@ -4239,6 +4647,10 @@
 	},
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
+"ri" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "rj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric,
 /turf/open/floor/mainship/green{
@@ -4247,6 +4659,7 @@
 /area/campaign/tgmc_raiding/underground/living/barracks)
 "rk" = (
 /obj/effect/decal/cleanable/cobweb2,
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "rl" = (
@@ -4283,6 +4696,18 @@
 /obj/effect/spawner/random/engineering/radio,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/engineering)
+"rq" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/prep)
+"rr" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/laundry)
 "rs" = (
 /obj/structure/prop/vehicle/van{
 	dir = 8
@@ -4444,6 +4869,12 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/cargo)
+"rU" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/blue/corner{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/command)
 "rV" = (
 /obj/structure/largecrate/supply/powerloader,
 /turf/open/floor/prison/darkbrown{
@@ -4538,6 +4969,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/east)
+"sn" = (
+/obj/structure/monorail,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "so" = (
 /obj/structure/sink{
 	dir = 1
@@ -4574,6 +5010,7 @@
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
 "su" = (
@@ -4590,6 +5027,7 @@
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
 "sx" = (
+/obj/effect/ai_node,
 /turf/open/floor/mainship/blue/corner{
 	dir = 8
 	},
@@ -4620,8 +5058,14 @@
 "sD" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/kitchen)
+"sE" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/colony/indoor/southwest_shed)
 "sF" = (
 /obj/structure/sign/cold{
 	dir = 1
@@ -4652,6 +5096,13 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
+"sL" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "sM" = (
 /obj/structure/table/mainship,
 /turf/open/floor/prison/darkred{
@@ -4682,6 +5133,10 @@
 	dir = 5
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"sS" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/southwest_shed)
 "sT" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 8
@@ -4705,6 +5160,11 @@
 /obj/structure/stairs/railstairs_vert,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/south)
+"sX" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/north)
 "sY" = (
 /obj/structure/largecrate/supply/medicine/blood,
 /turf/open/floor/plating,
@@ -4718,6 +5178,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southwest)
 "tb" = (
@@ -4739,9 +5200,17 @@
 /obj/effect/spawner/random/medical/medbelt,
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/tgmc_raiding/underground/medbay)
+"tf" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/laundry)
 "tg" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
+"th" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/central)
 "ti" = (
 /obj/structure/rack,
 /obj/item/toy/katana,
@@ -4806,6 +5275,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/kitchen)
 "tu" = (
@@ -4894,6 +5364,10 @@
 	dir = 5
 	},
 /area/campaign/tgmc_raiding/colony/indoor/storage)
+"tK" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "tL" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/blue{
@@ -4932,6 +5406,10 @@
 /obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/prison/marked,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
+"tS" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/housing/southwest)
 "tT" = (
 /obj/structure/bed/chair{
 	desc = "This tiny folding chair looks like a torture device in comparison to the chair next to it.";
@@ -4977,6 +5455,10 @@
 /obj/item/attachable/motiondetector,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
+"ub" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/storage)
 "uc" = (
 /obj/machinery/griddle,
 /turf/open/floor/prison,
@@ -5021,6 +5503,10 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/engineering)
+"ui" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/supermarket)
 "uj" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/pizzapasta/pastatomato,
@@ -5050,11 +5536,23 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/orange,
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
+"up" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/engineering)
 "uq" = (
 /obj/structure/table/wood,
 /obj/item/weapon/gun/revolver/standard_revolver,
 /turf/open/floor/cult/clock,
 /area/campaign/tgmc_raiding/colony/indoor/bar)
+"ur" = (
+/obj/effect/ai_node,
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "us" = (
 /obj/structure/rock/basalt/pile/alt,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -5327,6 +5825,10 @@
 /obj/item/toy/gun,
 /turf/open/floor/prison/marked,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
+"vr" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "vs" = (
 /obj/structure/ship_ammo/cas/bomb/fourhundred,
 /turf/open/floor/mainship/cargo,
@@ -5336,6 +5838,13 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/east)
+"vu" = (
+/obj/structure/desertdam/decals/road{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "vv" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access,
 /turf/open/floor/plating,
@@ -5375,6 +5884,7 @@
 /area/campaign/tgmc_raiding/underground/command)
 "vC" = (
 /obj/structure/stairs/corner_seamless,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
 "vD" = (
@@ -5418,6 +5928,7 @@
 /area/campaign/tgmc_raiding/underground/cargo)
 "vL" = (
 /obj/machinery/light/small,
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/east)
 "vM" = (
@@ -5431,7 +5942,7 @@
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
 "vO" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/boxing)
 "vP" = (
@@ -5523,6 +6034,7 @@
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
 "wg" = (
 /obj/machinery/light,
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/dome)
 "wh" = (
@@ -5530,6 +6042,12 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/colony/indoor/storage)
+"wi" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "wj" = (
 /turf/closed/wall/r_wall,
 /area/campaign/tgmc_raiding/colony/indoor/security)
@@ -5605,6 +6123,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/firing_range)
+"wy" = (
+/obj/effect/spawner/random/misc/plant,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "wz" = (
 /obj/structure/window/framed/chigusa,
 /turf/open/floor/mainship/floor,
@@ -5647,6 +6172,7 @@
 /obj/machinery/door/airlock/mainship/generic/glass{
 	dir = 2
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "wI" = (
@@ -5668,6 +6194,10 @@
 /obj/machinery/computer/security,
 /turf/open/floor/mainship/red,
 /area/campaign/tgmc_raiding/underground/security)
+"wM" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/blue/corner,
+/area/campaign/tgmc_raiding/underground/command/east)
 "wN" = (
 /obj/structure/table/mainship,
 /obj/machinery/microwave,
@@ -5751,6 +6281,15 @@
 /obj/item/phone,
 /turf/open/floor/mainship/red/full,
 /area/campaign/tgmc_raiding/underground/security/central_outpost)
+"xb" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/central)
+"xc" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/station)
 "xd" = (
 /obj/structure/rack,
 /obj/item/toy/prize/odysseus,
@@ -5815,6 +6354,10 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/security)
+"xr" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "xs" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -5842,8 +6385,14 @@
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "xw" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command)
+"xx" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/laundry)
 "xy" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
@@ -5870,6 +6419,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/south)
+"xD" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "xE" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -5992,6 +6545,15 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"xZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/station)
+"ya" = (
+/obj/structure/bed/chair,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/general/prep)
 "yb" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/tgmc_raiding/underground/maintenance/security)
@@ -6063,6 +6625,7 @@
 /obj/structure/stairs{
 	dir = null
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
 "yq" = (
@@ -6104,8 +6667,13 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
+"yy" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/campaign/tgmc_raiding/underground/medbay)
 "yz" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -6211,6 +6779,11 @@
 	dir = 9
 	},
 /area/campaign/tgmc_raiding/colony/indoor/storage)
+"yQ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "yR" = (
 /obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -6314,6 +6887,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/firing_range)
+"zl" = (
+/obj/effect/ai_node,
+/turf/open/floor/freezer,
+/area/campaign/tgmc_raiding/underground/living/cafeteria)
 "zm" = (
 /obj/machinery/door/airlock/mainship/engineering/glass{
 	dir = 1
@@ -6355,9 +6932,20 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/cargo)
+"zu" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/general/firing_range)
 "zw" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
+"zx" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "zy" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/south)
@@ -6412,6 +7000,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"zI" = (
+/obj/structure/rock/basalt/pile,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "zJ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -6423,6 +7016,11 @@
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command)
+"zL" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/station)
 "zM" = (
 /obj/structure/platform{
 	dir = 1
@@ -6457,6 +7055,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/orange,
 /area/campaign/tgmc_raiding/underground/engineering)
 "zT" = (
@@ -6480,6 +7079,12 @@
 "zW" = (
 /turf/closed/wall,
 /area/campaign/tgmc_raiding/colony/indoor/garage)
+"zX" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "zZ" = (
 /turf/closed/mineral/smooth,
 /area/campaign/tgmc_raiding/underground/living/bathroom/south)
@@ -6538,6 +7143,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
+"Am" = (
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/dome)
 "An" = (
 /obj/machinery/door/window/secure,
 /turf/open/floor/mainship/floor,
@@ -6625,6 +7235,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/security/central_outpost)
+"AB" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/blue,
+/area/campaign/tgmc_raiding/underground/command/east)
 "AC" = (
 /obj/structure/desertdam/decals/road/edge{
 	dir = 1
@@ -6665,6 +7279,7 @@
 /obj/structure/sign/poster{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -6697,7 +7312,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
 "AP" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -6705,6 +7320,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/boxing)
+"AQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/freezer,
+/area/campaign/tgmc_raiding/colony/indoor/freezer)
 "AR" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/blue{
@@ -6743,6 +7362,19 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"AY" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/red/corner{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/security)
+"AZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "Ba" = (
 /turf/open/floor/mainship/orange{
 	dir = 10
@@ -6777,6 +7409,13 @@
 	dir = 10
 	},
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
+"Bh" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black/corner{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "Bi" = (
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/turf_decal/stripes/line{
@@ -6785,6 +7424,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/cargo)
 "Bj" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
@@ -6803,12 +7443,22 @@
 /obj/item/alienjar,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
+"Bn" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/south)
 "Bo" = (
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
 /obj/machinery/light,
 /turf/open/floor/mainship/orange,
 /area/campaign/tgmc_raiding/underground/engineering)
+"Bp" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "Bq" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/bread,
@@ -6850,6 +7500,11 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/offices)
+"Bx" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/storage)
 "By" = (
 /obj/structure/prop/brokenvendor/brokencorpsmanvendor,
 /turf/open/floor/mainship/floor,
@@ -6885,12 +7540,22 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/command)
+"BI" = (
+/obj/structure/flora/desert/grass,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "BJ" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/maintenance/filtration)
+"BK" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/command/east)
 "BL" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -6944,12 +7609,20 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/freezer,
 /area/campaign/tgmc_raiding/colony/indoor/freezer)
 "BU" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
+"BV" = (
+/obj/structure/sign/poster{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "BW" = (
 /obj/item/storage/bag/trash,
 /obj/structure/rack,
@@ -6988,10 +7661,17 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway)
+"Cc" = (
+/obj/structure/monorail,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/central)
 "Cd" = (
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -7060,6 +7740,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/filtration)
+"Co" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/colony/outdoor/south)
 "Cp" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/plating/ground/concrete,
@@ -7116,6 +7802,16 @@
 /obj/item/clothing/glasses/hud/health,
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/tgmc_raiding/underground/medbay)
+"CA" = (
+/obj/structure/desertdam/decals/road,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
+"CB" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/campaign/tgmc_raiding/underground/medbay)
 "CC" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/blue{
@@ -7127,6 +7823,10 @@
 /obj/item/trash/cigbutt,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
+"CE" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black/corner,
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "CF" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 1
@@ -7147,6 +7847,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
+"CJ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/supermarket)
 "CK" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/prison,
@@ -7168,6 +7873,13 @@
 "CO" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
+"CP" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black/corner{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "CQ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -7178,6 +7890,15 @@
 /obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/carpet/blue,
 /area/campaign/tgmc_raiding/underground/command/captain)
+"CS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
+"CU" = (
+/obj/structure/flora/desert/grass,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/south)
 "CV" = (
 /obj/structure/prop/mainship/mission_planning_system{
 	desc = "This gathers all information about the Self-Destruct and pools it into one repository.";
@@ -7273,6 +7994,10 @@
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
+"Do" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/colony/indoor/station)
 "Dp" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/tgmc_raiding/underground/general/hallway/east)
@@ -7353,6 +8078,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/security/central_outpost)
+"DD" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/filtration)
 "DE" = (
 /obj/structure/bed/stool,
 /turf/open/floor/wood,
@@ -7413,6 +8142,14 @@
 	},
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/filtration)
+"DP" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/south)
 "DQ" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/mainship/blue{
@@ -7423,6 +8160,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/green{
 	dir = 8
 	},
@@ -7479,6 +8217,17 @@
 "Ea" = (
 /obj/structure/bed/chair/sofa/corsat/verticaltop,
 /turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/station)
+"Eb" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/housing/southwest)
+"Ec" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
 /area/campaign/tgmc_raiding/underground/tunnel/station)
 "Ed" = (
 /obj/structure/cargo_container/hd,
@@ -7565,6 +8314,7 @@
 /area/campaign/tgmc_raiding/underground/cargo/storage)
 "Eu" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/side,
 /area/campaign/tgmc_raiding/underground/medbay)
 "Ev" = (
@@ -7624,6 +8374,11 @@
 "EF" = (
 /turf/open/liquid/water/river,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
+"EG" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/offices)
 "EH" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -7662,6 +8417,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/library)
+"EN" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/bright_clean,
+/area/campaign/tgmc_raiding/colony/indoor/chapel)
 "EO" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/mainship/blue{
@@ -7690,6 +8449,10 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/security)
+"EU" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/general/prep)
 "EV" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
@@ -7738,6 +8501,13 @@
 /obj/effect/spawner/random/food_or_drink,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/east)
+"Ff" = (
+/obj/structure/desertdam/decals/road{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/south)
 "Fg" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating/ground/concrete,
@@ -7780,6 +8550,7 @@
 "Fo" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
@@ -7808,6 +8579,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/kitchen)
 "Fu" = (
@@ -7816,6 +8588,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
+"Fv" = (
+/obj/structure/bed/stool,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/campaign/tgmc_raiding/colony/indoor/bar)
 "Fw" = (
 /obj/structure/prop/brokenvendor/surplusarmor,
 /turf/open/floor/mainship/floor,
@@ -7848,6 +8625,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
 "FC" = (
@@ -7871,6 +8649,13 @@
 	dir = 10
 	},
 /area/campaign/tgmc_raiding/colony/indoor/storage)
+"FG" = (
+/obj/structure/desertdam/decals/road{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "FH" = (
 /obj/machinery/door_control{
 	dir = 8;
@@ -7916,6 +8701,12 @@
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
+"FQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "FR" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/light{
@@ -7980,6 +8771,11 @@
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/prison/marked,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
+"Gd" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "Ge" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/plating_catwalk,
@@ -7993,6 +8789,10 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
+"Gg" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/cafeteria)
 "Gh" = (
 /obj/item/reagent_containers/food/drinks/cans/beer,
 /obj/structure/platform_decoration{
@@ -8042,6 +8842,7 @@
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/filtration)
 "Gq" = (
+/obj/effect/ai_node,
 /turf/open/floor/mainship/terragov/north{
 	dir = 1
 	},
@@ -8084,6 +8885,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/colony/indoor/station)
+"Gx" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/general/firing_range)
 "Gy" = (
 /turf/closed/wall/r_wall/chigusa,
 /area/campaign/tgmc_raiding/colony/indoor/station)
@@ -8133,6 +8938,11 @@
 /obj/structure/platform,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
+"GJ" = (
+/obj/structure/flora/drought/barrel_cactus,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "GK" = (
 /obj/structure/sign/electricshock{
 	dir = 8
@@ -8152,6 +8962,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/campaign/tgmc_raiding/colony/indoor/security)
 "GN" = (
@@ -8176,11 +8987,17 @@
 "GR" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/effect/turf_decal/riverdecal,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "GS" = (
 /turf/open/floor/carpet/red,
 /area/campaign/tgmc_raiding/colony/indoor/housing/east)
+"GT" = (
+/obj/structure/monorail,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "GU" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 1
@@ -8206,6 +9023,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"GZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/living/chapel)
 "Ha" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -8399,6 +9223,18 @@
 /obj/structure/cable,
 /turf/open/floor/freezer,
 /area/campaign/tgmc_raiding/colony/indoor/freezer)
+"HK" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/platform,
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "HL" = (
 /obj/structure/table/wood/fancy,
 /obj/item/storage/bible/booze,
@@ -8422,6 +9258,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/security/south_outpost)
+"HS" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/dome)
 "HT" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/light,
@@ -8452,6 +9292,13 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/command)
+"HY" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/engineering)
 "HZ" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship/blue{
@@ -8460,6 +9307,13 @@
 /area/campaign/tgmc_raiding/underground/command)
 "Ia" = (
 /turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
+"Ib" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
 "Ic" = (
 /obj/structure/table/mainship,
@@ -8488,6 +9342,10 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/command)
+"Ih" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "Ii" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -8534,6 +9392,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/colony/indoor/station)
+"Ir" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/security)
 "Is" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light{
@@ -8550,10 +9412,24 @@
 /obj/effect/spawner/random/misc/cigar,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command/east)
+"Iv" = (
+/obj/structure/desertdam/decals/road{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "Iw" = (
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/prison/marked,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
+"Ix" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/campaign/tgmc_raiding/underground/general/firing_range)
 "Iy" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/blue{
@@ -8573,6 +9449,7 @@
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/garage)
 "IB" = (
+/obj/effect/ai_node,
 /turf/open/floor/mainship/terragov/north{
 	dir = 4
 	},
@@ -8615,6 +9492,11 @@
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/engineering)
+"IJ" = (
+/obj/structure/platform,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "IK" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/mainship/red{
@@ -8717,6 +9599,12 @@
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/filtration)
+"Jg" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "Jh" = (
 /obj/structure/monorail{
 	dir = 4
@@ -8759,6 +9647,10 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/security)
+"Jm" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "Jn" = (
 /obj/structure/toilet{
 	dir = 1
@@ -8768,6 +9660,13 @@
 	},
 /turf/open/floor/tile/showroom,
 /area/campaign/tgmc_raiding/underground/living/bathroom/south)
+"Jo" = (
+/obj/structure/bed/chair/office/dark/east,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/blue/corner{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/command)
 "Jp" = (
 /obj/machinery/light{
 	dir = 1
@@ -8783,6 +9682,10 @@
 	dir = 5
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"Js" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/offices)
 "Jt" = (
 /obj/structure/platform_decoration{
 	dir = 5
@@ -8795,6 +9698,7 @@
 /area/campaign/tgmc_raiding/underground/cargo/storage)
 "Jv" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "Jw" = (
@@ -8819,6 +9723,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
+"JA" = (
+/obj/structure/monorail,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/south)
 "JB" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
@@ -8911,6 +9820,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/black,
 /area/campaign/tgmc_raiding/underground/general/hallway)
+"JS" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black/corner,
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "JT" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -9234,6 +10148,13 @@
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/dome)
+"KU" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/showroom,
+/area/campaign/tgmc_raiding/underground/living/bathroom/south)
 "KV" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -9275,6 +10196,18 @@
 	dir = 9
 	},
 /area/campaign/tgmc_raiding/colony/indoor/storage)
+"Lc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/offices)
+"Ld" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/security/south_outpost)
 "Le" = (
 /obj/structure/table/mainship,
 /obj/item/paper{
@@ -9410,6 +10343,12 @@
 	dir = 10
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway)
+"LA" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black/corner{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "LB" = (
 /obj/structure/platform{
 	dir = 1
@@ -9422,6 +10361,12 @@
 "LD" = (
 /turf/open/floor/mainship/red/full,
 /area/campaign/tgmc_raiding/underground/living/boxing)
+"LF" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "LG" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/southwest_shed)
@@ -9432,6 +10377,11 @@
 	dir = 9
 	},
 /area/campaign/tgmc_raiding/underground/security)
+"LI" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "LJ" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/prison/darkbrown,
@@ -9458,6 +10408,13 @@
 /obj/structure/barricade/guardrail,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/south)
+"LO" = (
+/obj/structure/sink{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/green,
+/area/campaign/tgmc_raiding/colony/indoor/hydroponics)
 "LP" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -9529,6 +10486,10 @@
 /obj/machinery/door/airlock/mainship/command/free_access,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command/captain)
+"Md" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/colony/indoor/dome)
 "Me" = (
 /obj/structure/table/mainship,
 /obj/item/phone,
@@ -9569,11 +10530,22 @@
 /obj/machinery/door/poddoor,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"Mm" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "Mn" = (
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"Mo" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/engineering)
 "Mp" = (
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/floor,
@@ -9593,6 +10565,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -9622,6 +10595,12 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/orange,
 /area/campaign/tgmc_raiding/underground/engineering)
+"Mx" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 0
+	},
+/area/campaign/tgmc_raiding/underground/tunnel/station)
 "My" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -9829,6 +10808,10 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
+"Ni" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/showroom,
+/area/campaign/tgmc_raiding/underground/living/laundry)
 "Nj" = (
 /obj/item/paper/crumpled,
 /obj/item/paper/crumpled{
@@ -9840,6 +10823,11 @@
 	pixel_x = -6;
 	pixel_y = 3
 	},
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
+"Nk" = (
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "Nl" = (
@@ -9874,6 +10862,14 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/security)
+"Nr" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/east)
 "Ns" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/prison/darkbrown/corner,
@@ -9942,6 +10938,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/southwest_shed)
+"NI" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/general/firing_range)
 "NJ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -9998,6 +10999,13 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
+"NS" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "NT" = (
 /turf/open/floor/mainship/black/corner,
 /area/campaign/tgmc_raiding/underground/general/hallway)
@@ -10009,6 +11017,10 @@
 /obj/structure/table,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
+"NW" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "NX" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
@@ -10085,7 +11097,7 @@
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/offices)
 "Op" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
@@ -10108,6 +11120,7 @@
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "Ou" = (
 /obj/effect/spawner/random/misc/trash,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/security)
 "Ov" = (
@@ -10160,6 +11173,13 @@
 /obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
+"OF" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "OG" = (
 /obj/machinery/power/apc{
 	dir = 8
@@ -10183,6 +11203,11 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/campaign/tgmc_raiding/underground/command)
+"OK" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/filtration)
 "OL" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/mono,
@@ -10214,6 +11239,10 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/colony/indoor/station)
+"OR" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "OS" = (
 /obj/effect/spawner/random/engineering/tool,
 /obj/structure/rack,
@@ -10223,6 +11252,10 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/laundry)
+"OU" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/engineering/storage)
 "OV" = (
 /obj/structure/table,
 /obj/machinery/computer/security/wooden_tv,
@@ -10232,6 +11265,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/kitchen)
+"OX" = (
+/obj/structure/flora/drought/tall_cactus,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "OY" = (
 /obj/machinery/power/smes/buildable/empty,
 /obj/structure/cable,
@@ -10261,6 +11299,13 @@
 /obj/effect/spawner/random/food_or_drink/sugary_snack,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
+"Pd" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/laundry)
 "Pe" = (
 /obj/structure/platform{
 	dir = 8
@@ -10291,6 +11336,12 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command/captain)
+"Pk" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 5
+	},
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "Pl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -10315,6 +11366,18 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/cargo)
+"Pq" = (
+/obj/structure/desertdam/decals/road/edge/long,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
+"Pr" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/central)
 "Ps" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/engineering/storage)
@@ -10363,6 +11426,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -10375,6 +11439,7 @@
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/living/offices)
 "PB" = (
@@ -10403,6 +11468,10 @@
 /obj/structure/table,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
+"PF" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "PG" = (
 /turf/closed/shuttle/escapeshuttle,
 /area/campaign/tgmc_raiding/colony/indoor/station)
@@ -10420,6 +11489,11 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/colony/indoor/hydroponics)
+"PK" = (
+/obj/structure/stairs,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/central)
 "PL" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -10468,6 +11542,7 @@
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/general/hallway)
 "PX" = (
@@ -10497,6 +11572,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/east)
+"Qd" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 5
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/east)
 "Qe" = (
@@ -10627,6 +11708,11 @@
 /obj/item/trash/chips,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
+"QJ" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/filtration)
 "QK" = (
 /turf/open/floor/mainship/cargo,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
@@ -10746,6 +11832,11 @@
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/chapel,
 /area/campaign/tgmc_raiding/underground/living/chapel)
+"Rg" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "Rh" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
@@ -10834,6 +11925,12 @@
 "RA" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/tgmc_raiding/underground/command/east)
+"RC" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "RD" = (
 /obj/structure/bed/chair/office/dark/east,
 /turf/open/floor/mainship/floor,
@@ -10845,6 +11942,23 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/engineering)
+"RF" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/command/captain)
+"RG" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/cargo/storage)
 "RH" = (
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/tunnel/south)
@@ -10855,6 +11969,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/chapel,
 /area/campaign/tgmc_raiding/underground/living/chapel)
+"RK" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "RL" = (
 /obj/structure/bed/chair/wood/normal,
 /turf/open/floor/cult/clock,
@@ -10886,6 +12007,12 @@
 "RQ" = (
 /turf/closed/mineral/smooth,
 /area/campaign/tgmc_raiding/underground/general/hallway/east)
+"RR" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "RS" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
@@ -10940,6 +12067,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
+"Sc" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/command/east)
 "Sd" = (
 /obj/structure/table/mainship,
 /obj/item/phone,
@@ -10951,6 +12082,11 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/station)
+"Sf" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black,
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "Sg" = (
 /obj/structure/cable,
 /turf/open/floor/prison/kitchen,
@@ -10979,6 +12115,10 @@
 "Sm" = (
 /turf/open/floor/prison/darkyellow/full,
 /area/campaign/tgmc_raiding/colony/indoor/engineering)
+"So" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/darkred,
+/area/campaign/tgmc_raiding/colony/indoor/security)
 "Sp" = (
 /obj/structure/monorail,
 /turf/open/floor/plating/ground/concrete,
@@ -11214,6 +12354,22 @@
 	dir = 10
 	},
 /area/campaign/tgmc_raiding/colony/indoor/security)
+"Ta" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/platform,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
+"Tb" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/south)
+"Tc" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/housing/east)
 "Td" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/tgmc_raiding/underground/living/laundry)
@@ -11269,12 +12425,20 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
 "Tm" = (
 /obj/structure/cable,
 /turf/open/floor/prison/darkbrown/corner,
 /area/campaign/tgmc_raiding/colony/indoor/storage)
+"Tn" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/security)
 "To" = (
 /obj/structure/rack,
 /obj/machinery/light{
@@ -11328,6 +12492,11 @@
 /obj/structure/desertdam/decals/road,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
+"Tx" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/central)
 "Ty" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/corner{
@@ -11343,6 +12512,13 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
+"TA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/station)
 "TB" = (
 /obj/structure/rack,
 /turf/open/floor/prison,
@@ -11435,6 +12611,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
+"TS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "TT" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/prison,
@@ -11552,6 +12732,12 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/campaign/tgmc_raiding/underground/command)
+"Uo" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/command/east)
 "Up" = (
 /obj/structure/rack,
 /obj/item/toy/prize/durand,
@@ -11567,6 +12753,20 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/campaign/tgmc_raiding/underground/command/east)
+"Us" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black/corner{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
+"Ut" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "Uu" = (
 /obj/structure/monorail{
 	dir = 5
@@ -11601,6 +12801,13 @@
 	dir = 5
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"UC" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/east)
 "UD" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/light,
@@ -11643,12 +12850,23 @@
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
 "UM" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
+"UN" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "UO" = (
 /obj/structure/closet/bodybag,
 /turf/open/floor/freezer,
@@ -11725,6 +12943,10 @@
 	dir = 6
 	},
 /area/campaign/tgmc_raiding/underground/security/south_outpost)
+"Vb" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/yellow_cargo,
+/area/campaign/tgmc_raiding/underground/general/prep)
 "Vc" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/corner{
@@ -11876,6 +13098,12 @@
 	},
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/laundry)
+"VG" = (
+/obj/structure/monorail,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/south)
 "VH" = (
 /obj/machinery/shower{
 	dir = 8
@@ -11928,6 +13156,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/station)
+"VQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "VR" = (
 /turf/closed/mineral/smooth,
 /area/campaign/tgmc_raiding/underground/living/boxing)
@@ -11952,6 +13184,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
+"VW" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/green,
+/area/campaign/tgmc_raiding/colony/indoor/hydroponics)
 "VX" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
@@ -11967,6 +13203,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/showroom,
 /area/campaign/tgmc_raiding/underground/living/bathroom/south)
 "Wa" = (
@@ -12075,6 +13312,10 @@
 /obj/item/target/syndicate,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_raiding/underground/general/firing_range)
+"Ww" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/orange,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "Wx" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/corner{
@@ -12189,6 +13430,10 @@
 "WV" = (
 /turf/open/floor/mainship/black,
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
+"WW" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/campaign/tgmc_raiding/colony/indoor/chapel)
 "WX" = (
 /obj/structure/desertdam/decals/road/edge{
 	dir = 1
@@ -12226,6 +13471,13 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/offices)
+"Xe" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "Xf" = (
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
@@ -12243,6 +13495,11 @@
 	dir = 9
 	},
 /area/campaign/tgmc_raiding/underground/engineering)
+"Xi" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/campaign/tgmc_raiding/underground/maintenance/laundry)
 "Xj" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/green,
@@ -12287,6 +13544,11 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
+"Xt" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "Xu" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/mainship/mono,
@@ -12339,6 +13601,12 @@
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
+"XD" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/general/hallway)
 "XE" = (
 /obj/structure/cargo_container/hd{
 	dir = 4
@@ -12506,6 +13774,12 @@
 /obj/item/trash/candle,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"Yk" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/campaign/tgmc_raiding/underground/medbay)
 "Yl" = (
 /turf/closed/shuttle/escapeshuttle,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
@@ -12532,6 +13806,10 @@
 /obj/structure/ship_ammo/cas/bomb,
 /turf/open/floor/mainship/cargo,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
+"Yr" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "Ys" = (
 /obj/structure/monorail{
 	dir = 5
@@ -12615,6 +13893,12 @@
 /obj/structure/bedsheetbin,
 /turf/open/floor/prison/kitchen,
 /area/campaign/tgmc_raiding/colony/indoor/laundry)
+"YJ" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/command/east)
 "YK" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light{
@@ -12664,6 +13948,13 @@
 "YU" = (
 /turf/closed/mineral/smooth,
 /area/campaign/tgmc_raiding/underground/command/captain)
+"YV" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "YW" = (
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison,
@@ -12724,6 +14015,11 @@
 "Zg" = (
 /turf/open/floor/freezer,
 /area/campaign/tgmc_raiding/colony/indoor/freezer)
+"Zh" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black,
+/area/campaign/tgmc_raiding/underground/general/hallway/west)
 "Zi" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/tgmc_raiding/underground/tunnel/east)
@@ -12793,6 +14089,11 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/cargo)
+"Zv" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/colony/indoor/station)
 "Zw" = (
 /obj/structure/cable,
 /turf/open/floor/prison/darkyellow/full,
@@ -12803,6 +14104,13 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/east)
+"Zy" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/command)
 "Zz" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -12843,6 +14151,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/cargo)
+"ZI" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow/corner,
+/area/campaign/tgmc_raiding/colony/indoor/supermarket)
 "ZJ" = (
 /obj/structure/bed/chair{
 	desc = "This tiny folding chair looks like a torture device in comparison to the chair next to it.";
@@ -12930,11 +14242,20 @@
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
+"ZX" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/tgmc_raiding/underground/tunnel/station)
 "ZY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/engineering)
+"ZZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/black,
+/area/campaign/tgmc_raiding/underground/general/hallway/east)
 
 (1,1,1) = {"
 Qv
@@ -14007,13 +15328,28 @@ Om
 Om
 Om
 Om
+OR
+Om
+Om
+bJ
+Vo
+lC
+mi
+mR
+IN
+Om
+Om
+Om
+Om
+OR
+Om
 Om
 Om
 Om
 bJ
 Vo
 lC
-lC
+mi
 mR
 IN
 Om
@@ -14022,43 +15358,28 @@ Om
 Om
 Om
 Om
-Om
+OR
 Om
 Om
 bJ
 Vo
-lC
+mi
 lC
 mR
 IN
 Om
 Om
+OR
 Om
 Om
 Om
 Om
-Om
-Om
-Om
-bJ
-Vo
-lC
-lC
-mR
-IN
-Om
-Om
-Om
-Om
-Om
-Om
-Om
-Om
+OR
 Om
 Om
 bJ
 Vo
-lC
+mi
 lC
 mR
 IN
@@ -14141,14 +15462,14 @@ MU
 ED
 tg
 tg
+CS
 tg
 tg
 tg
 tg
 tg
 tg
-tg
-tg
+CS
 tg
 tc
 "}
@@ -14221,10 +15542,10 @@ Da
 Da
 Da
 Da
-Om
+OR
 Om
 AX
-Om
+OR
 iw
 MU
 MU
@@ -14292,7 +15613,7 @@ MU
 MU
 tg
 tg
-tg
+CS
 tg
 tg
 vl
@@ -14433,7 +15754,7 @@ MU
 MU
 MU
 tg
-tg
+CS
 tg
 wl
 tg
@@ -14443,7 +15764,7 @@ tg
 tg
 tg
 tg
-tg
+CS
 tY
 tg
 tg
@@ -14584,7 +15905,7 @@ Yp
 MU
 MU
 tg
-tg
+CS
 tg
 tg
 Es
@@ -14615,20 +15936,20 @@ Om
 Om
 Da
 cP
-Da
+VQ
 Om
 Om
 cr
 Wj
 lC
-lC
+mi
 xY
 ah
 Om
 Om
 Om
 Om
-Om
+OR
 Om
 Om
 Om
@@ -14636,7 +15957,7 @@ Om
 cr
 Wj
 lC
-lC
+mi
 xY
 ah
 Om
@@ -14645,39 +15966,39 @@ Om
 Om
 Om
 BO
-Om
+OR
 BO
 Om
 cr
 Wj
-lC
+mi
 lC
 xY
 ah
 Om
 Om
-BO
+lg
 Om
 Lq
 Om
 BO
-Om
+OR
 Om
 Om
 cr
 Wj
-lC
+mi
 lC
 xY
 ah
 Om
 Om
 cr
-ah
+nh
 Da
 FO
 Da
-cr
+nq
 Gh
 Nw
 Nw
@@ -14735,7 +16056,7 @@ Yh
 Yp
 MU
 tg
-tg
+CS
 tg
 tg
 Es
@@ -14809,7 +16130,7 @@ iw
 iw
 iw
 iw
-Hc
+Jm
 Jd
 Hc
 iw
@@ -14882,11 +16203,11 @@ MU
 MU
 Yp
 My
-zF
+sE
 zF
 NH
 tg
-tg
+CS
 vl
 vl
 tg
@@ -14945,15 +16266,15 @@ MU
 MU
 MU
 It
+pd
 JW
 JW
 JW
-JW
-JW
+pd
 gq
 jM
 JW
-JW
+pd
 JW
 fC
 It
@@ -15106,7 +16427,7 @@ Bb
 Bb
 Bb
 JW
-JW
+pd
 JW
 JW
 hW
@@ -15145,16 +16466,16 @@ LC
 LC
 XR
 lD
-lD
+EU
 lD
 pX
 Wv
 Rr
-nn
+Ix
 Rr
 nn
 Rr
-nn
+Ix
 Rr
 SP
 Ue
@@ -15223,9 +16544,9 @@ oM
 ax
 Hi
 vM
-Hi
+xZ
 ax
-QZ
+TA
 Ea
 OL
 BG
@@ -15246,14 +16567,14 @@ MU
 Sz
 Sz
 TY
+pd
 JW
 JW
-JW
-JW
+pd
 JW
 Bb
 wf
-Mj
+zl
 Mj
 wf
 Bb
@@ -15265,7 +16586,7 @@ JW
 jM
 JW
 JW
-OW
+lJ
 Si
 Si
 Si
@@ -15313,13 +16634,13 @@ Ue
 MU
 MU
 og
-wP
+LI
 eg
 eg
 lw
 eg
 eg
-JU
+cj
 og
 MU
 MU
@@ -15406,7 +16727,7 @@ CW
 Bb
 wf
 Mj
-Mj
+zl
 Mj
 Bb
 It
@@ -15444,7 +16765,7 @@ LC
 LC
 LC
 rS
-RI
+Vb
 RI
 LC
 Bq
@@ -15490,11 +16811,11 @@ MU
 MU
 MU
 tg
+CS
 tg
 tg
 tg
-tg
-wl
+GJ
 tg
 tg
 tg
@@ -15574,7 +16895,7 @@ Si
 mE
 Of
 YZ
-Of
+xr
 YZ
 Of
 zN
@@ -15585,7 +16906,7 @@ eD
 eD
 Tj
 Si
-Om
+OR
 Da
 FO
 Da
@@ -15641,47 +16962,47 @@ MU
 MU
 MU
 MU
-ws
+zI
 tg
 tg
 Es
 tg
 ED
-vl
+BI
 tg
 tg
 vl
 tg
 tg
-tg
+CS
 Es
 Es
 Es
 Es
+CS
 tg
-tg
-tg
+CS
 tg
 tg
 tg
 tg
 vl
-vl
+BI
 tg
-tg
+CS
 Es
 tc
 "}
 (19,1,1) = {"
 YG
 Rk
-Cj
+Mx
 lE
 BG
 Mf
 BG
 lE
-Yv
+Ec
 BG
 BG
 BG
@@ -15753,7 +17074,7 @@ lD
 lD
 lD
 lD
-lD
+EU
 EE
 Ue
 TZ
@@ -15769,7 +17090,7 @@ Ue
 Ue
 Ue
 og
-oN
+ct
 Ot
 og
 og
@@ -15792,7 +17113,7 @@ MU
 MU
 MU
 MU
-tg
+CS
 tg
 tg
 Es
@@ -15852,7 +17173,7 @@ ZQ
 ZQ
 Ri
 JF
-aS
+wy
 Fy
 MU
 MU
@@ -15862,14 +17183,14 @@ MU
 Bb
 Ol
 wN
-xJ
+Gg
 Sb
 KS
 xJ
 Sb
 xJ
 xJ
-xJ
+Gg
 sj
 Bb
 JW
@@ -15920,21 +17241,21 @@ Pg
 Ue
 zj
 ii
-SC
+po
 Ob
 Ot
 Ot
 og
 Ot
 Ot
-LB
+ik
 nI
 vV
 nI
 nI
-nI
+OF
 qF
-JU
+cj
 og
 MU
 MU
@@ -15992,18 +17313,18 @@ HW
 HW
 HW
 HW
-HW
+xc
 HW
 wO
 zP
 SG
 SG
-SG
+oo
 SG
 SG
 SG
 dl
-WV
+iQ
 ng
 Fy
 MU
@@ -16030,7 +17351,7 @@ gy
 Kz
 Of
 Of
-Of
+xr
 Of
 Of
 Qm
@@ -16066,12 +17387,12 @@ kJ
 kJ
 kJ
 kJ
-kJ
+qE
 kJ
 kJ
 Oi
 ii
-ii
+Gx
 og
 Ob
 Oz
@@ -16173,20 +17494,20 @@ Dn
 uk
 oh
 DZ
-oh
+kf
 QE
 QE
 DT
-uM
+Zh
 ms
 vi
 oc
 oc
 oc
-Of
+xr
 Of
 Yy
-qR
+Jg
 Ez
 Of
 Of
@@ -16201,15 +17522,15 @@ Om
 XF
 lD
 uT
+hZ
 uT
 uT
-uT
-Bd
+ya
 eo
 YR
 Yd
 YR
-uT
+hZ
 uT
 wx
 wx
@@ -16217,7 +17538,7 @@ wx
 wx
 wx
 kJ
-wx
+NI
 wx
 wx
 wx
@@ -16231,7 +17552,7 @@ nI
 Go
 ha
 ha
-JU
+cj
 og
 MU
 MU
@@ -16261,12 +17582,12 @@ tg
 Es
 Es
 Es
-wl
+GJ
 tg
 tg
 tg
 tg
-tg
+CS
 Es
 Es
 Es
@@ -16318,13 +17639,13 @@ MU
 uJ
 xJ
 xJ
-xJ
+Gg
 xJ
 yx
 QE
 QE
 QE
-QE
+iO
 QE
 XZ
 Bb
@@ -16339,20 +17660,20 @@ YZ
 Of
 zN
 Si
-Kz
+Mm
 KP
 KP
-Of
+xr
 mW
 PV
-km
+pk
 nZ
 Em
 iu
-al
+Tx
 pC
 uT
-uT
+hZ
 lD
 LC
 LC
@@ -16400,7 +17721,7 @@ MU
 MU
 vl
 vl
-wl
+GJ
 tg
 tg
 tg
@@ -16587,13 +17908,13 @@ tc
 (25,1,1) = {"
 bx
 Il
-oM
+zL
 ax
 Hi
 vM
 Hi
 ax
-QZ
+TA
 BG
 BG
 HW
@@ -16611,13 +17932,13 @@ MU
 MU
 Fy
 DT
-ZQ
+tK
 ON
 wu
 wu
 wu
 wu
-wu
+FQ
 ki
 Bb
 Dn
@@ -16730,7 +18051,7 @@ EF
 ic
 ic
 ic
-ic
+TS
 Rh
 Rh
 Rh
@@ -16738,7 +18059,7 @@ tc
 "}
 (26,1,1) = {"
 YG
-BG
+ZX
 Na
 ax
 Hi
@@ -16826,7 +18147,7 @@ Bz
 lR
 mV
 Rn
-Rn
+Ld
 BN
 Yn
 ii
@@ -16844,19 +18165,19 @@ fI
 zZ
 MU
 og
-Ob
+IJ
 Ot
-LB
+ik
 eg
 Av
 Av
 eg
 eg
-eg
+NS
 Kv
 ic
 XH
-ic
+TS
 ic
 ic
 ic
@@ -16969,10 +18290,10 @@ LC
 LC
 LC
 LC
-lD
+EU
 uT
 RU
-bQ
+rq
 jA
 Bz
 lR
@@ -17112,7 +18433,7 @@ nZ
 PP
 LC
 CI
-uT
+hZ
 kO
 lD
 lD
@@ -17120,7 +18441,7 @@ yI
 lD
 lD
 GA
-lD
+EU
 lD
 kw
 gI
@@ -17133,16 +18454,16 @@ Pa
 Py
 Va
 HO
-ii
+Gx
 NO
-NO
+zu
 aD
 gt
 gt
 FA
 DA
 DA
-PH
+iN
 PH
 Jn
 YS
@@ -17150,7 +18471,7 @@ MU
 og
 Ob
 Ot
-LB
+ik
 nI
 Pe
 Pe
@@ -17223,16 +18544,16 @@ JF
 yn
 oK
 ng
-QG
+zX
 kG
+oo
 SG
 SG
 SG
+oo
 SG
 SG
-SG
-SG
-SG
+oo
 SG
 SG
 SG
@@ -17241,15 +18562,15 @@ SG
 SG
 dl
 Ri
+Gd
 Ri
 Ri
-Ri
-Ri
+Gd
 uM
 Xy
 eS
 MC
-MY
+cl
 MY
 WC
 Ny
@@ -17276,9 +18597,9 @@ lD
 lD
 lD
 gI
-bQ
+rq
 SJ
-jA
+qY
 lR
 lR
 lR
@@ -17312,25 +18633,25 @@ og
 og
 Rh
 Rh
+NW
 Rh
 Rh
 Rh
 Rh
 Rh
-Rh
-Rh
+NW
 Rh
 tg
 tg
 tg
+CS
+tg
+vl
+vl
 tg
 tg
 vl
-vl
-tg
-tg
-vl
-tg
+CS
 wl
 tg
 tg
@@ -17338,7 +18659,7 @@ tg
 Rh
 Rh
 Rh
-Rh
+NW
 Rh
 Rh
 Rh
@@ -17360,10 +18681,10 @@ ap
 lt
 lt
 ap
-fY
+Lc
 YB
 Uw
-YB
+Js
 DW
 ap
 ng
@@ -17413,7 +18734,7 @@ Ac
 LZ
 Ar
 LZ
-Ac
+xb
 LC
 RI
 sC
@@ -17437,7 +18758,7 @@ MU
 MU
 MU
 Ue
-ii
+Gx
 ii
 ii
 VZ
@@ -17471,7 +18792,7 @@ tg
 tg
 tg
 tg
-tg
+CS
 ZW
 Es
 Es
@@ -17561,7 +18882,7 @@ WJ
 WJ
 Ny
 RZ
-Ac
+xb
 nf
 tV
 nf
@@ -17593,12 +18914,12 @@ na
 Ue
 Ue
 YS
-kY
+KU
 PH
 PH
 PH
 PH
-PH
+iN
 rg
 YS
 MU
@@ -17650,7 +18971,7 @@ tc
 "}
 (32,1,1) = {"
 eb
-EW
+qu
 rL
 ap
 ap
@@ -17667,28 +18988,28 @@ ap
 ap
 ap
 ap
-YB
+Js
 YB
 YB
 DT
-kG
+JS
 SG
 SG
 SG
-SG
+oo
 SG
 gL
 at
-SG
+oo
 Ex
 kr
 jv
 pY
 dW
 pY
-NN
+rU
 pY
-dW
+Jo
 pY
 NN
 pY
@@ -17734,14 +19055,14 @@ cs
 gI
 Bz
 jA
+qY
 jA
 jA
-jA
-jA
+qY
 jA
 jT
 jA
-jA
+qY
 Bz
 MU
 YS
@@ -17803,7 +19124,7 @@ tc
 (33,1,1) = {"
 eb
 EW
-EW
+qu
 ap
 YO
 YO
@@ -17814,11 +19135,11 @@ YO
 ap
 YB
 YB
-YB
+Js
 Uw
 YB
 ML
-YB
+Js
 YB
 Oo
 ap
@@ -17852,17 +19173,17 @@ Nb
 Yi
 KH
 fA
-QG
+zX
 uM
 eX
 tQ
 SB
-MY
+cl
 MY
 Xf
 WJ
 WJ
-WJ
+cW
 Ny
 RZ
 dz
@@ -17908,7 +19229,7 @@ YS
 MU
 MU
 og
-Ob
+IJ
 Ot
 LB
 og
@@ -17933,7 +19254,7 @@ Es
 Es
 es
 UU
-Vt
+Eb
 ju
 Je
 tg
@@ -17946,9 +19267,9 @@ vl
 tg
 tg
 tg
-tg
+CS
 vl
-tg
+CS
 Es
 tc
 "}
@@ -17960,7 +19281,7 @@ PA
 YB
 YB
 YB
-YB
+Js
 YB
 YB
 ap
@@ -18062,9 +19383,9 @@ MU
 og
 GG
 Ot
-LB
+ik
 FI
-KX
+cF
 og
 MU
 MU
@@ -18079,9 +19400,9 @@ vl
 vl
 tg
 ys
+CS
 tg
-tg
-tg
+CS
 Es
 es
 ov
@@ -18118,7 +19439,7 @@ si
 ap
 nk
 ML
-YB
+Js
 ap
 ap
 ml
@@ -18269,17 +19590,17 @@ HA
 Le
 ap
 nk
-YB
+Js
 YB
 ap
 ZT
+Xe
 NJ
 NJ
 NJ
-NJ
-NJ
+Xe
 lM
-WV
+iQ
 kr
 WO
 pY
@@ -18460,11 +19781,11 @@ uR
 JD
 KH
 fA
-QG
+zX
 Ri
 WV
 NL
-YD
+Ni
 YD
 YD
 YD
@@ -18563,14 +19884,14 @@ tc
 (38,1,1) = {"
 eb
 rX
-EW
+qu
 ap
 cx
 cx
 YB
-YB
+Js
 ML
-YB
+Js
 ap
 ZT
 NJ
@@ -18613,7 +19934,7 @@ KH
 KH
 fA
 rJ
-dl
+CP
 uM
 Xv
 Xv
@@ -18622,10 +19943,10 @@ YD
 JC
 YD
 Td
-WJ
+cW
 vv
 km
-km
+pk
 nZ
 Jh
 XA
@@ -18635,12 +19956,12 @@ BE
 BE
 BE
 BE
+VG
 BE
 BE
 BE
 BE
-BE
-BE
+VG
 BE
 Rx
 Uh
@@ -18698,14 +20019,14 @@ Vt
 wQ
 tg
 FJ
-nu
+mq
 yj
 PX
-FJ
+RC
 tg
 HJ
 Lg
-Zg
+AQ
 mv
 gP
 tg
@@ -18714,7 +20035,7 @@ tc
 "}
 (39,1,1) = {"
 sA
-EW
+qu
 ap
 ap
 wG
@@ -18723,17 +20044,17 @@ YB
 mS
 Aw
 YB
-ut
+EG
 DT
-JF
+CE
 yn
 yn
 yn
-aS
+wy
 ma
 ek
 BP
-BP
+Yk
 jQ
 be
 kr
@@ -18801,7 +20122,7 @@ rQ
 rQ
 rQ
 rQ
-Zp
+DP
 rQ
 rQ
 rQ
@@ -18820,9 +20141,9 @@ MU
 MU
 MU
 og
-Ob
+IJ
 Ot
-LB
+ik
 jj
 GR
 og
@@ -18841,9 +20162,9 @@ MU
 MU
 MU
 MU
-tg
+CS
 wl
-tg
+CS
 es
 Qi
 LT
@@ -18886,7 +20207,7 @@ ma
 QH
 Hw
 Hw
-Hw
+yy
 Mu
 kr
 jp
@@ -18944,17 +20265,17 @@ zy
 Bt
 Hj
 zy
-cq
+io
 Di
 fm
 fm
 ga
 xC
-zy
+da
 zy
 rQ
 Zp
-rQ
+Tb
 zy
 zy
 zy
@@ -18962,7 +20283,7 @@ zy
 zy
 zy
 zy
-zy
+da
 rQ
 jL
 rQ
@@ -19012,7 +20333,7 @@ Eq
 BT
 Zg
 MD
-tg
+CS
 tg
 tc
 "}
@@ -19054,7 +20375,7 @@ hh
 kr
 kr
 Ig
-pY
+bX
 Px
 vH
 bA
@@ -19184,7 +20505,7 @@ DT
 WV
 ma
 Lw
-Hw
+yy
 KO
 ma
 JV
@@ -19205,7 +20526,7 @@ jr
 CZ
 CC
 fq
-vy
+Zy
 NN
 Jj
 bI
@@ -19233,7 +20554,7 @@ Td
 WJ
 Ny
 RZ
-km
+pk
 nZ
 Em
 nZ
@@ -19331,9 +20652,9 @@ ke
 ke
 Fy
 wA
-NJ
+Xe
 lM
-WV
+iQ
 ma
 Cs
 gB
@@ -19389,7 +20710,7 @@ km
 nZ
 Em
 nZ
-km
+pk
 RZ
 MU
 MU
@@ -19418,7 +20739,7 @@ MU
 MU
 MU
 YE
-fm
+ed
 Tt
 Tt
 Tt
@@ -19451,30 +20772,30 @@ MU
 MU
 MU
 MU
-vl
+BI
 tg
 tg
 wl
-vl
+BI
 tg
 FJ
 nu
 yj
 PX
-FJ
+RC
 tg
 tg
 vl
 tg
 tg
 tg
-wl
+GJ
 tg
 tc
 "}
 (44,1,1) = {"
 sA
-EW
+qu
 EW
 Af
 BU
@@ -19521,11 +20842,11 @@ MA
 hh
 pi
 Tk
-xk
+GZ
 ZE
 xk
 HV
-ZL
+AZ
 kb
 xN
 Sj
@@ -19592,7 +20913,7 @@ MU
 MU
 MU
 MU
-Rh
+NW
 Rh
 Rh
 vl
@@ -19627,11 +20948,11 @@ tc
 (45,1,1) = {"
 sA
 ke
+qu
 EW
 EW
 EW
-EW
-EW
+qu
 ke
 wq
 Gz
@@ -19658,7 +20979,7 @@ cu
 Ug
 NN
 VA
-NN
+rU
 cO
 hh
 vy
@@ -19780,7 +21101,7 @@ tc
 sA
 CO
 QD
-EW
+qu
 CO
 CO
 sO
@@ -19809,7 +21130,7 @@ zK
 xn
 Ug
 pY
-pY
+bX
 wF
 nS
 kr
@@ -19834,18 +21155,18 @@ kb
 Td
 oU
 hp
-hp
+Pd
 kq
 Td
 gT
 WJ
 Ny
 RZ
-Ac
+xb
 LZ
 Ar
 LZ
-Ac
+xb
 RZ
 MU
 MU
@@ -19884,7 +21205,7 @@ YE
 YE
 YE
 og
-JU
+cj
 qF
 JU
 tB
@@ -19944,16 +21265,16 @@ ma
 FV
 Hw
 Hw
-Hw
+yy
 Cr
 Hw
-UG
+CB
 UG
 UG
 Eu
 UG
 ZL
-Lm
+Sf
 hh
 su
 NN
@@ -19989,7 +21310,7 @@ Td
 Fp
 Td
 Td
-tM
+rr
 pG
 Ny
 RZ
@@ -20087,15 +21408,15 @@ Vj
 EW
 CO
 Df
-ww
+aN
 ww
 Ey
 Gz
-Lm
+Sf
 LL
 ea
 Hw
-Hw
+yy
 hK
 ma
 rl
@@ -20108,17 +21429,17 @@ Gz
 Lm
 kr
 Pu
+bX
 pY
 pY
 pY
 pY
-pY
-pY
+bX
 sl
 kr
 Ws
 Nm
-Nm
+sL
 Nm
 Nm
 Nm
@@ -20126,22 +21447,22 @@ kL
 Nm
 Nm
 Nm
-Nm
+sL
 IF
 bz
 Ud
 Ud
 Ud
 Ud
-Ud
-fT
+RK
+ka
 PW
-WJ
-WJ
-WJ
-Dv
-WJ
-WJ
+tf
+tf
+xx
+Xi
+tf
+xx
 Ny
 Ny
 RZ
@@ -20200,35 +21521,35 @@ Ua
 Ua
 Ua
 lu
-lu
-lu
-ic
+oS
 lu
 ic
+lu
 ic
+TS
+Rh
+Rh
+Rh
+Rh
+NW
 Rh
 Rh
 Rh
 Rh
 Rh
 Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-FJ
+RC
 nu
 yj
 PX
-FJ
+RC
 Rh
 Rh
 Rh
 Rh
 Rh
 Rh
-Rh
+NW
 Rh
 tc
 "}
@@ -20314,7 +21635,7 @@ Ll
 Ll
 XE
 Ll
-Ll
+pr
 Ll
 Ll
 Ll
@@ -20322,7 +21643,7 @@ fo
 Bu
 Ll
 Kj
-Ll
+pr
 Bu
 pb
 Ll
@@ -20330,28 +21651,28 @@ AL
 Wa
 MU
 YE
-zy
+da
 rQ
 RY
-yl
+JA
 yl
 yl
 yl
 yl
 yl
 lZ
+GT
 cm
 cm
-cm
+lZ
+lZ
+qc
 lZ
 lZ
 lZ
 lZ
 lZ
-lZ
-lZ
-lZ
-lK
+sn
 lK
 Fi
 lK
@@ -20463,9 +21784,9 @@ MU
 MU
 Wa
 Ll
+pr
 Ll
-Ll
-Ll
+pr
 zi
 Ll
 Zu
@@ -20540,7 +21861,7 @@ tc
 sA
 ke
 EW
-EW
+qu
 CO
 ke
 ke
@@ -20551,11 +21872,11 @@ Lm
 ma
 he
 Hw
-Hw
+yy
 Hw
 rf
 Hw
-Hw
+yy
 Mh
 Hw
 iR
@@ -20678,13 +21999,13 @@ nu
 yj
 PX
 FJ
-vl
+BI
 tg
 tg
 tg
 tg
 vl
-tg
+CS
 tg
 tc
 "}
@@ -20699,7 +22020,7 @@ MU
 MU
 wq
 Gz
-Lm
+Sf
 ma
 xS
 wV
@@ -20796,7 +22117,7 @@ YE
 YE
 YE
 og
-JU
+cj
 JT
 JU
 Oq
@@ -20809,27 +22130,27 @@ og
 og
 ic
 oi
-ic
+TS
 ic
 oi
 ic
 Rh
 tg
+CS
 tg
 tg
-tg
-tg
+CS
 tg
 wl
 tg
 vl
 tg
 ys
-FJ
+RC
 nu
 yj
 PX
-FJ
+RC
 Es
 Es
 Es
@@ -20850,7 +22171,7 @@ MU
 MU
 MU
 wq
-Gz
+mz
 Lm
 ma
 gc
@@ -20865,19 +22186,19 @@ gB
 Rv
 ma
 Gz
-bz
+gM
 Ud
 Ud
-Ud
+RK
 Ud
 Ud
 Ud
 zU
+Rg
 Vs
 Vs
 Vs
-Vs
-Cb
+Bh
 ba
 ba
 zb
@@ -21054,14 +22375,14 @@ XA
 XA
 XA
 XA
+Cc
 XA
 XA
-XA
-XA
+Cc
 XA
 KZ
 nZ
-km
+pk
 hQ
 hQ
 Uq
@@ -21071,18 +22392,18 @@ MU
 MU
 QC
 dS
+pr
 Ll
 Ll
 Ll
 Ll
 Ll
-Ll
-Ll
+pr
 fo
 Bu
 Ll
 Kj
-Ll
+pr
 Bu
 pb
 Ll
@@ -21148,10 +22469,10 @@ tc
 sA
 ke
 EW
+qu
 EW
 EW
-EW
-EW
+qu
 EW
 st
 Gz
@@ -21306,22 +22627,22 @@ EW
 EW
 FP
 CO
-WY
+wi
 Ud
 co
 Ud
+RK
 Ud
 Ud
 Ud
 Ud
-Ud
-zU
+Us
 Vs
 Vs
 Vs
 Vs
 Vs
-Lm
+Sf
 iC
 fy
 aH
@@ -21642,21 +22963,21 @@ kb
 RZ
 bm
 Ac
+xb
+Ac
+Ac
+Ac
+xb
 Ac
 Ac
 Ac
 Ac
 Ac
-Ac
-Ac
-Ac
-Ac
-Ac
-km
+pk
 nZ
 Em
 nZ
-km
+pk
 LS
 Ju
 ln
@@ -21756,13 +23077,13 @@ zw
 sA
 rC
 EW
-EW
+qu
 PN
 Sv
 fh
 qX
 qX
-gm
+AB
 RA
 kP
 qX
@@ -21778,22 +23099,22 @@ RA
 RA
 WY
 zU
-gD
+LA
 ba
 ba
 ba
 zb
 NT
 Dl
-Dl
+XD
 Dl
 Dl
 MI
 Dl
-fT
+Bp
 Er
 dw
-xE
+Pr
 xE
 xE
 xE
@@ -21831,7 +23152,7 @@ MU
 MU
 Wa
 Wp
-Wp
+ou
 Wp
 Wp
 Wp
@@ -21907,13 +23228,13 @@ zw
 (60,1,1) = {"
 sA
 EW
-EW
+qu
 cJ
 PN
 sR
+YJ
 rt
-rt
-rt
+YJ
 KL
 RA
 DQ
@@ -21929,7 +23250,7 @@ LR
 fk
 RA
 RA
-ZL
+AZ
 NT
 MI
 Dl
@@ -21982,7 +23303,7 @@ MU
 MU
 MU
 QC
-Wp
+ou
 Ll
 Pp
 Ll
@@ -22058,7 +23379,7 @@ zw
 "}
 (61,1,1) = {"
 sA
-EW
+qu
 EW
 RA
 RA
@@ -22070,10 +23391,10 @@ RA
 RA
 dT
 qX
+Sc
 qX
 qX
-qX
-qX
+Sc
 qX
 qX
 qX
@@ -22153,7 +23474,7 @@ Ll
 Ll
 og
 wP
-lw
+UN
 JU
 eg
 oW
@@ -22161,12 +23482,12 @@ eg
 eg
 eg
 eg
+NS
 eg
 eg
-eg
-eg
+NS
 qF
-JU
+cj
 og
 MU
 MU
@@ -22188,12 +23509,12 @@ oQ
 pO
 wW
 Hp
-Ps
+OU
 Ps
 Vv
 Kp
 oQ
-Gl
+Co
 nw
 HB
 oH
@@ -22215,9 +23536,9 @@ EW
 RA
 eV
 LQ
+Uo
 LQ
-LQ
-lU
+eG
 dv
 od
 cS
@@ -22273,11 +23594,11 @@ ux
 Xw
 FB
 Ul
-Ac
+xb
 LZ
 Ar
 LZ
-Ac
+xb
 RZ
 MU
 MU
@@ -22304,9 +23625,9 @@ Ll
 zi
 Ll
 SC
-Ob
+IJ
 Ov
-JO
+HK
 Ot
 Ot
 Ot
@@ -22349,7 +23670,7 @@ Gl
 nw
 HB
 oH
-Gl
+Co
 oQ
 wD
 wD
@@ -22389,11 +23710,11 @@ ZL
 kb
 rc
 fH
-RE
+up
 cV
 Sa
 zm
-nA
+HY
 cV
 eN
 eN
@@ -22463,14 +23784,14 @@ nI
 nI
 nI
 nI
-nI
+OF
 Pe
 Pe
 nI
 nI
 lP
 vV
-JU
+cj
 og
 MU
 MU
@@ -22519,9 +23840,9 @@ Af
 RA
 ag
 rt
+YJ
 rt
-rt
-rt
+YJ
 Jc
 od
 Uj
@@ -22533,11 +23854,11 @@ hy
 Mt
 Wg
 eA
-my
+BK
 my
 df
 my
-ZL
+AZ
 kb
 rc
 fH
@@ -22568,7 +23889,7 @@ km
 nZ
 Em
 nZ
-km
+pk
 LS
 LS
 tx
@@ -22590,18 +23911,18 @@ Bg
 nN
 aF
 wT
+fw
 AN
 AN
-AN
-aF
-AN
-wT
-AN
-aF
-AN
+xD
 AN
 wT
-aF
+AN
+xD
+AN
+AN
+wT
+xD
 nN
 MU
 MU
@@ -22697,11 +24018,11 @@ cV
 eN
 Bo
 rc
-Qe
+hz
 cV
 eN
 eN
-eN
+hP
 tl
 dK
 eR
@@ -22721,13 +24042,13 @@ nZ
 Em
 nZ
 km
-km
+pk
 yk
 ue
 pP
-fJ
+RG
 ux
-Xw
+ee
 LS
 dz
 nZ
@@ -22767,7 +24088,7 @@ og
 MU
 MU
 og
-KX
+cF
 TU
 rh
 og
@@ -22858,11 +24179,11 @@ pl
 rc
 bm
 Ac
+xb
 Ac
 Ac
 Ac
-Ac
-Ac
+xb
 Ac
 Ac
 fx
@@ -22889,7 +24210,7 @@ km
 UL
 yM
 Az
-Az
+PF
 GN
 zh
 Nx
@@ -22944,7 +24265,7 @@ oQ
 oQ
 gY
 oQ
-oQ
+kR
 qo
 oQ
 oQ
@@ -22953,7 +24274,7 @@ oQ
 oQ
 oQ
 oQ
-Gl
+Co
 nw
 HB
 oH
@@ -22975,21 +24296,21 @@ RA
 QO
 Qj
 Wk
-gm
+AB
 Ds
 UW
 qS
-Id
+dk
 PQ
 RA
 RA
 RA
 hN
-lv
+wM
 of
 jt
 Dz
-qX
+Sc
 gw
 Vi
 RA
@@ -23033,11 +24354,11 @@ RT
 to
 Yq
 LS
-km
+pk
 nZ
 Em
 nZ
-km
+pk
 RZ
 yY
 Az
@@ -23085,17 +24406,17 @@ MU
 MU
 oQ
 oQ
-oQ
+kR
 oQ
 oQ
 qo
 oQ
 gY
+kR
 oQ
 oQ
 oQ
-oQ
-oQ
+kR
 LV
 LV
 LV
@@ -23328,7 +24649,7 @@ nZ
 nZ
 Em
 nZ
-km
+pk
 RZ
 Vp
 hm
@@ -23404,12 +24725,12 @@ LV
 gb
 Mg
 Lt
-Mg
+Mo
 Zw
 Mg
 AV
 gY
-Gl
+Co
 nw
 HB
 oH
@@ -23417,9 +24738,9 @@ Gl
 oQ
 oQ
 oQ
+kR
 oQ
-oQ
-oQ
+kR
 qo
 wD
 zw
@@ -23509,7 +24830,7 @@ Pf
 XQ
 yu
 XQ
-Pf
+Ta
 XQ
 yu
 XQ
@@ -23565,10 +24886,10 @@ Gl
 nw
 HB
 oH
-Gl
+Co
 oQ
 oQ
-oQ
+kR
 Vx
 oQ
 oQ
@@ -23578,35 +24899,35 @@ zw
 "}
 (71,1,1) = {"
 eb
+qu
 EW
-EW
-EW
+qu
 sY
 CO
 RV
-fu
+gr
 fu
 dc
-Qc
+fZ
 sv
 RA
 Kh
 qX
 Dz
-Dz
+aR
 Dz
 Dz
 qX
-qX
+Sc
 Ur
 RA
 UW
 vZ
-TK
+ZZ
 ZY
 nA
 cV
-eN
+hP
 kM
 mc
 JJ
@@ -23657,7 +24978,7 @@ GI
 XQ
 XQ
 XQ
-Pf
+Ta
 XQ
 XQ
 XQ
@@ -23665,16 +24986,16 @@ Pf
 XQ
 XQ
 XQ
-VE
+Ib
 AN
 eg
 eg
 eg
 eg
 eg
-eg
+NS
 qF
-JU
+cj
 og
 MU
 MU
@@ -23753,11 +25074,11 @@ qX
 mo
 RA
 UW
-vZ
+aQ
 sv
 eN
 Qe
-eN
+hP
 eN
 mc
 rp
@@ -23765,12 +25086,12 @@ mc
 rc
 II
 cV
-eN
+hP
 tl
 eN
 UM
 km
-km
+pk
 km
 Yl
 Yl
@@ -23910,13 +25231,13 @@ yg
 rc
 rn
 eN
-eN
+hP
 rB
 rB
 rB
 tH
 eN
-cV
+ip
 eN
 HU
 rc
@@ -23997,7 +25318,7 @@ MU
 MU
 MU
 oQ
-oQ
+kR
 oQ
 oQ
 qo
@@ -24047,17 +25368,17 @@ Qc
 sv
 od
 Ro
-qX
+Sc
 MX
 MX
 MX
 MX
 qX
-qX
+Sc
 gm
 qX
 UW
-vZ
+aQ
 sv
 rc
 Fr
@@ -24084,7 +25405,7 @@ Ac
 fx
 RZ
 tk
-gd
+PK
 hD
 cp
 hD
@@ -24097,11 +25418,11 @@ pw
 Oe
 Xq
 LS
-km
+pk
 nZ
 Em
 nZ
-km
+pk
 RZ
 no
 nN
@@ -24150,26 +25471,26 @@ MU
 MU
 MU
 oQ
+kR
 oQ
 oQ
 oQ
 oQ
-oQ
-oQ
+kR
 oQ
 oQ
 qo
 oQ
 PY
 oQ
-oQ
+kR
 gY
 oQ
 oQ
 oQ
 oQ
 oQ
-Gl
+Co
 nw
 HB
 oH
@@ -24188,11 +25509,11 @@ zw
 Qv
 MU
 ke
-Af
+oI
 EW
 EW
 EW
-Kq
+sX
 Wq
 CO
 Qc
@@ -24226,22 +25547,22 @@ rc
 rc
 eB
 xE
+Pr
+xE
+xE
+xE
+Pr
 xE
 xE
 xE
 xE
-xE
-xE
-xE
-xE
-xE
-xE
+Pr
 km
 nZ
 Em
 nZ
 km
-km
+pk
 yk
 pU
 QT
@@ -24361,7 +25682,7 @@ RA
 RA
 RA
 UW
-vZ
+aQ
 qS
 un
 RQ
@@ -24409,7 +25730,7 @@ PP
 RZ
 aY
 QU
-QU
+zx
 fX
 nN
 Nx
@@ -24480,10 +25801,10 @@ oH
 Gl
 qo
 es
-LT
+tS
 zB
 LT
-LT
+tS
 LT
 es
 zw
@@ -24499,7 +25820,7 @@ CO
 EW
 EW
 CO
-Qc
+fZ
 qS
 PQ
 RA
@@ -24514,7 +25835,7 @@ Wn
 KV
 Wx
 vZ
-vZ
+aQ
 qS
 Id
 Id
@@ -24562,7 +25883,7 @@ RZ
 SY
 Az
 Wr
-GN
+Ww
 zh
 Nx
 XQ
@@ -24603,10 +25924,10 @@ MU
 oQ
 oQ
 nY
-oQ
+kR
 qo
 oQ
-oQ
+kR
 gY
 oQ
 TJ
@@ -24652,13 +25973,13 @@ Af
 EW
 CO
 Qc
-vZ
+aQ
 Vc
 KV
 KV
 KV
 KV
-KV
+bk
 KV
 KV
 KV
@@ -24667,16 +25988,16 @@ qG
 vt
 vt
 Zx
-Zx
+UC
 Zx
 Zx
 is
-TK
+ZZ
 rc
 vk
 eN
 eN
-eN
+hP
 eN
 WG
 dK
@@ -24705,11 +26026,11 @@ Kk
 WF
 eQ
 Ul
-Ac
+xb
 LZ
 Ar
 LZ
-Ac
+xb
 RZ
 To
 Az
@@ -24781,7 +26102,7 @@ Gl
 nw
 HB
 oH
-Gl
+Co
 oQ
 zB
 kD
@@ -24844,9 +26165,9 @@ nZ
 nZ
 nZ
 nZ
+th
 nZ
-nZ
-Em
+hY
 nZ
 km
 RZ
@@ -24856,7 +26177,7 @@ dB
 tN
 WF
 eQ
-eQ
+nl
 Ac
 nf
 tV
@@ -24877,7 +26198,7 @@ Pf
 LY
 XQ
 TW
-Pf
+Ta
 LY
 XQ
 TW
@@ -25025,10 +26346,10 @@ Ji
 lc
 lc
 lc
-aF
+xD
 Ji
 lc
-lc
+Ut
 Al
 lc
 lc
@@ -25088,10 +26409,10 @@ oH
 Gl
 oQ
 es
-LT
+tS
 zB
 LT
-LT
+tS
 LT
 es
 zw
@@ -25104,26 +26425,26 @@ MU
 MU
 MU
 ke
-EW
+qu
 Zo
 IH
 kz
-UI
-ci
+ri
+BV
 lL
 ci
 ty
 ty
-ty
+Xt
 UI
-UI
+ri
 IH
 as
 QF
 AP
 Op
 QF
-IQ
+Ih
 ot
 SV
 UW
@@ -25257,9 +26578,9 @@ MU
 MU
 ke
 EW
-EW
+qu
 jb
-UI
+ri
 ra
 Tg
 NG
@@ -25290,11 +26611,11 @@ bN
 rc
 Ac
 Ac
+xb
 Ac
 Ac
 Ac
-Ac
-Ac
+xb
 Ac
 Ac
 Ac
@@ -25363,12 +26684,12 @@ oQ
 qo
 oQ
 qo
-oQ
+kR
 Pb
+ui
 qL
 qL
-qL
-qL
+ui
 TJ
 qL
 HI
@@ -25447,7 +26768,7 @@ Ac
 xj
 Ac
 Ac
-Ac
+xb
 Ac
 Ac
 xj
@@ -25474,7 +26795,7 @@ Zi
 Zi
 YM
 sH
-sH
+DD
 YM
 XN
 XN
@@ -25526,7 +26847,7 @@ Dc
 qL
 bd
 qL
-bd
+ZI
 Up
 bt
 oQ
@@ -25583,7 +26904,7 @@ cz
 WM
 Hg
 UW
-TK
+ZZ
 RQ
 RQ
 FZ
@@ -25621,7 +26942,7 @@ dj
 Zt
 aL
 fp
-di
+lj
 di
 di
 YM
@@ -25722,9 +27043,9 @@ IH
 IH
 aa
 Dx
+ri
 UI
-UI
-UI
+ri
 IH
 vO
 Oc
@@ -25736,7 +27057,7 @@ br
 SV
 UW
 Vc
-Id
+dk
 un
 Tp
 ET
@@ -25758,7 +27079,7 @@ MU
 RZ
 km
 nZ
-Em
+hY
 nZ
 nZ
 nZ
@@ -25785,10 +27106,10 @@ Mp
 sa
 AS
 hC
+DD
 sH
 sH
-sH
-sH
+DD
 XN
 MU
 MU
@@ -25878,12 +27199,12 @@ Mc
 IH
 IH
 IH
-IQ
+Ih
 xB
 ck
 ck
 xB
-IQ
+Ih
 PM
 Hg
 Bv
@@ -25911,12 +27232,12 @@ RZ
 km
 nZ
 ad
+Cc
 XA
 XA
 XA
 XA
-XA
-XA
+Cc
 XA
 XA
 XA
@@ -25930,13 +27251,13 @@ Zi
 ew
 Cn
 hO
-hO
+OK
 YM
 At
 Im
 wZ
 YM
-sH
+DD
 sH
 sH
 uZ
@@ -25997,7 +27318,7 @@ Gl
 nw
 HB
 oH
-Gl
+Co
 wD
 wD
 wD
@@ -26017,16 +27338,16 @@ MU
 MU
 CO
 IS
-EW
+qu
 EW
 EW
 jb
-MB
+RF
 MB
 eT
 ra
 Mv
-ra
+ur
 ra
 bp
 IH
@@ -26045,7 +27366,7 @@ TK
 Tp
 ET
 iB
-QQ
+Ir
 ld
 FZ
 Cu
@@ -26118,12 +27439,12 @@ MU
 MU
 MU
 MU
+kR
 oQ
 oQ
 oQ
 oQ
-oQ
-oQ
+kR
 TJ
 qL
 cE
@@ -26200,7 +27521,7 @@ dG
 dG
 WZ
 FZ
-cb
+pn
 cb
 ft
 Br
@@ -26227,11 +27548,11 @@ km
 dj
 dj
 Zt
-aL
+Nr
 Zt
 dj
 dj
-dj
+op
 YM
 ls
 hO
@@ -26286,7 +27607,7 @@ TJ
 TJ
 QS
 qL
-qL
+ui
 ZC
 TJ
 oQ
@@ -26386,13 +27707,13 @@ Zi
 Zi
 YM
 oe
+OK
 hO
 hO
 hO
-hO
-hO
+OK
 sH
-sH
+DD
 uU
 XN
 MU
@@ -26429,19 +27750,19 @@ oQ
 oQ
 qo
 TJ
-qL
+ui
 bd
 qL
-bd
+ZI
 Jz
 bd
 TJ
 UR
-qL
+ui
 bd
 qL
 Wi
-qo
+CU
 Gl
 nw
 HB
@@ -26539,7 +27860,7 @@ XN
 YM
 YM
 YM
-Gp
+QJ
 YM
 YM
 bh
@@ -26569,12 +27890,12 @@ MU
 MU
 jC
 jq
+mT
 jq
 jq
 jq
 jq
-jq
-oQ
+kR
 wD
 wD
 oQ
@@ -26586,7 +27907,7 @@ cH
 jU
 bL
 ce
-ZC
+mI
 TJ
 UR
 qL
@@ -26598,21 +27919,21 @@ Gl
 nw
 HB
 HB
-HB
+Bn
 HB
 yU
 pc
 JM
 HB
 oH
-Gl
+Co
 oQ
 oQ
 Ef
 oQ
 oQ
 oQ
-oQ
+kR
 oQ
 zw
 "}
@@ -26648,15 +27969,15 @@ MU
 MU
 MU
 Dp
-Bv
+Qd
 Zx
 Zx
 Ks
 Zx
-Zx
+UC
 is
 vZ
-TK
+ZZ
 FZ
 Pv
 Cf
@@ -26737,11 +28058,11 @@ qL
 jU
 Gc
 jU
-ce
+CJ
 XX
 hG
 XX
-ce
+CJ
 XX
 ia
 TJ
@@ -26843,7 +28164,7 @@ XN
 YM
 FR
 Im
-Mp
+mD
 qn
 YM
 sH
@@ -26994,7 +28315,7 @@ YM
 XN
 YM
 Im
-Im
+oV
 Qp
 WE
 YM
@@ -27025,7 +28346,7 @@ jq
 jq
 jq
 qd
-jq
+mT
 jq
 BD
 BD
@@ -27112,10 +28433,10 @@ MU
 MU
 Dp
 UW
-TK
+ZZ
 mk
 SA
-QQ
+Ir
 dh
 Hv
 QQ
@@ -27145,7 +28466,7 @@ Ad
 YM
 XN
 YM
-Gp
+QJ
 YM
 YM
 YM
@@ -27189,11 +28510,11 @@ oQ
 oQ
 oQ
 TJ
+ui
 qL
 qL
 qL
-qL
-qL
+ui
 qL
 TJ
 qL
@@ -27268,20 +28589,20 @@ kQ
 QQ
 ET
 QQ
-Cf
+Tn
 Cf
 QQ
 mr
 dG
 bY
-QQ
+Ir
 QQ
 QQ
 jH
 dL
 ES
 QQ
-QQ
+Ir
 QQ
 ao
 FZ
@@ -27302,7 +28623,7 @@ du
 sH
 sH
 sH
-sH
+DD
 Vk
 YM
 MU
@@ -27372,7 +28693,7 @@ ns
 tG
 iY
 iY
-so
+LO
 ns
 zw
 "}
@@ -27427,17 +28748,17 @@ WZ
 FZ
 Hb
 Vf
-bY
+AY
 mr
 dG
 dG
 bY
 QQ
 QQ
-QQ
+Ir
 ld
 oX
-Gi
+iX
 Gi
 Re
 Zi
@@ -27768,51 +29089,51 @@ MU
 MU
 MU
 jq
+mT
+jz
+jq
+jq
+jq
+mT
 jq
 jz
 jq
 jq
 jq
-jq
-jq
-jz
-jq
-jq
-jq
-jq
+mT
 jq
 jq
 jq
 jq
 Bs
-xu
+Pq
+zr
+FG
 zr
 zr
-zr
-zr
 Ak
 Ak
 Ak
 Ak
 Ak
 Ak
+Ff
+Ak
+Ak
+Ak
+Ak
+Ak
+Ff
 Ak
 Ak
 Ak
 Ak
 Ak
 Ak
+Ff
 Ak
 Ak
-Ak
-Ak
-Ak
-Ak
-Ak
-Ak
-Ak
-Ak
-Ak
+Ff
 Ak
 Ak
 Ak
@@ -27821,7 +29142,7 @@ Ak
 UY
 HB
 oH
-Gl
+Co
 oQ
 lN
 el
@@ -27878,12 +29199,12 @@ MU
 MU
 Ie
 ET
-Cf
+Tn
 QQ
 QQ
 QQ
 QQ
-QQ
+Ir
 mr
 tz
 Vh
@@ -27899,13 +29220,13 @@ wL
 BB
 dj
 Zt
-aL
+Nr
 Zt
 dj
 kd
 Im
 Im
-Im
+oV
 YM
 MU
 MU
@@ -27977,7 +29298,7 @@ pE
 iU
 gK
 IC
-kZ
+dg
 ns
 Gb
 eO
@@ -28132,7 +29453,7 @@ yS
 We
 DR
 zQ
-eO
+VW
 ns
 wb
 "}
@@ -28683,22 +30004,22 @@ jq
 jz
 yo
 fG
-tD
+EN
 TL
 Nz
 Nz
 Nz
 Nz
+EN
 tD
-tD
-jq
+mT
 Bs
 re
 AM
 AM
 AM
 AM
-AM
+nV
 Tw
 Bs
 jz
@@ -28824,15 +30145,15 @@ MU
 MU
 MU
 MU
-jq
+mT
 jz
 KK
 jq
 jq
+mT
 jq
 jq
-jq
-jq
+mT
 yo
 fG
 fG
@@ -28851,17 +30172,17 @@ US
 uw
 wo
 AM
-Tw
+CA
 Bs
 jq
 eu
 LG
-LG
+sS
 LG
 eu
 iU
 iU
-iU
+vr
 iU
 xX
 eZ
@@ -28963,7 +30284,7 @@ MU
 jd
 dj
 Zt
-aL
+Nr
 Zt
 dj
 jd
@@ -29291,7 +30612,7 @@ wj
 jq
 yo
 yo
-fG
+WW
 ge
 yo
 yo
@@ -29432,19 +30753,19 @@ MU
 MU
 MU
 jz
-jq
+mT
 jq
 wj
 qi
 dC
 xl
-FL
+So
 wj
-qd
+qC
 jq
 jq
 jq
-jq
+mT
 jq
 jz
 jq
@@ -29473,7 +30794,7 @@ iU
 iU
 xX
 yw
-Cw
+Nk
 yt
 Cw
 Jv
@@ -29583,7 +30904,7 @@ MU
 MU
 MU
 jq
-qd
+qC
 jq
 Jq
 wj
@@ -29645,11 +30966,11 @@ pE
 Fc
 qf
 VU
-pE
+RR
 yR
 IO
 iU
-yR
+dX
 rw
 rw
 rw
@@ -29875,7 +31196,7 @@ jd
 jd
 dj
 Zt
-aL
+Nr
 Zt
 dj
 jd
@@ -29905,10 +31226,10 @@ Bs
 jq
 QA
 jE
-jE
+Tc
 Dw
 jE
-Fa
+nG
 CF
 QA
 jq
@@ -30046,14 +31367,14 @@ GM
 xl
 xl
 xl
-FL
+So
 pH
 jq
 Bs
 re
 AM
 Tw
-Bs
+LF
 jq
 El
 jE
@@ -30077,10 +31398,10 @@ Cw
 DB
 xX
 iU
+vr
 iU
 iU
-iU
-iU
+vr
 yR
 iU
 iU
@@ -30212,14 +31533,14 @@ mx
 MV
 QA
 jE
-jE
+Tc
 jE
 wB
 jq
 Bs
 re
 AM
-Tw
+CA
 Bs
 jz
 iJ
@@ -30233,7 +31554,7 @@ xX
 xX
 iU
 iU
-iU
+vr
 iU
 iU
 iU
@@ -30309,14 +31630,14 @@ MU
 MU
 MU
 jq
-jq
+mT
 qd
 jq
 jq
 jq
 jq
 jq
-jq
+mT
 jz
 MU
 MU
@@ -30396,20 +31717,20 @@ XY
 XY
 DE
 DE
-DE
+Fv
 DE
 PL
 Sl
 iU
 pE
-Fc
+vu
 qf
 VU
 pE
 iU
 iU
 iU
-iU
+vr
 yR
 rw
 rw
@@ -30495,12 +31816,12 @@ MU
 MU
 jq
 jz
-jq
+mT
 KK
 jq
 jq
 jq
-jq
+mT
 jq
 jq
 qd
@@ -30509,7 +31830,7 @@ Bs
 re
 AM
 Tw
-Bs
+LF
 jz
 QA
 bc
@@ -30783,16 +32104,16 @@ MU
 Gy
 UE
 GC
-GC
+cQ
 qj
 id
 Kg
-QV
+bR
 Kg
 id
 SF
 GC
-GC
+cQ
 UE
 Gy
 MU
@@ -30820,7 +32141,7 @@ QA
 QA
 jE
 jE
-jE
+Tc
 jE
 QA
 jq
@@ -31076,7 +32397,7 @@ BD
 BD
 Jq
 jq
-jz
+pa
 jq
 jq
 jq
@@ -31108,7 +32429,7 @@ EA
 Gy
 EA
 Gy
-EA
+Do
 EA
 EA
 uH
@@ -31255,11 +32576,11 @@ EA
 EA
 EA
 EA
+Do
 EA
 EA
 EA
-EA
-EA
+Do
 EA
 Gy
 EA
@@ -31269,13 +32590,13 @@ Bs
 re
 AM
 Tw
-Lo
+Pk
 aq
 aq
 aq
 aq
 aq
-aq
+lX
 aq
 aq
 aq
@@ -31283,13 +32604,21 @@ aq
 HM
 re
 AM
-Tw
+CA
 Lo
 aq
 pA
 pA
 pA
 pA
+fM
+pA
+fM
+pA
+pA
+pA
+pA
+fM
 pA
 pA
 pA
@@ -31298,15 +32627,7 @@ pA
 pA
 pA
 pA
-pA
-pA
-pA
-pA
-pA
-pA
-pA
-pA
-pA
+fM
 pA
 pA
 pA
@@ -31314,14 +32635,14 @@ pA
 pA
 pA
 uK
-Fc
+vu
 qf
 VU
 il
 pA
 pA
 pA
-pA
+fM
 pA
 pA
 pA
@@ -31373,7 +32694,7 @@ MU
 KK
 jq
 jq
-jq
+mT
 qd
 jq
 jq
@@ -31474,7 +32795,7 @@ XU
 XU
 XU
 XU
-XU
+Iv
 XU
 XU
 XU
@@ -31524,7 +32845,7 @@ MU
 MU
 qd
 jq
-jq
+mT
 dJ
 jq
 jq
@@ -31814,28 +33135,28 @@ MU
 MU
 MU
 jq
-jq
+mT
 us
 jq
 jq
 jq
+pa
+jq
+jq
+jq
+jq
+jq
+jq
+mT
+jq
+mT
 jz
 jq
 jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jz
-jq
-jq
-jq
-jq
-jq
-jq
+mT
 jq
 jq
 Gy
@@ -31845,25 +33166,25 @@ Gy
 Gy
 Gy
 Gy
-GC
+cQ
 Vq
-GC
+cQ
 ox
 Te
-EA
+Do
 OQ
 EA
 Te
 NX
 GC
+cQ
 GC
 GC
 GC
 GC
 GC
 GC
-GC
-GC
+cQ
 GC
 GC
 Gy
@@ -32167,11 +33488,11 @@ Gy
 GC
 fj
 Cm
-GC
+cQ
 GC
 GC
 vI
-EA
+Do
 EA
 EA
 EA
@@ -32291,11 +33612,11 @@ BD
 BD
 jq
 qd
-jq
+mT
 uE
 lH
 GC
-GC
+cQ
 GC
 GC
 GC
@@ -32337,7 +33658,7 @@ Bs
 jq
 wj
 Ly
-kS
+jI
 Wz
 bb
 jV
@@ -32508,7 +33829,7 @@ pE
 zT
 bH
 dy
-pE
+RR
 iU
 mP
 KD
@@ -32516,7 +33837,7 @@ KD
 wX
 KD
 KD
-KD
+jD
 KD
 lA
 iU
@@ -32574,7 +33895,7 @@ MU
 MU
 jz
 jz
-jq
+mT
 jz
 jq
 jz
@@ -32605,17 +33926,17 @@ Gy
 Gy
 Gy
 Gy
-GC
+cQ
 Vq
-GC
+cQ
 ox
 Te
-EA
+Do
 lF
 EA
 Te
 NX
-GC
+cQ
 GC
 GC
 GC
@@ -32751,12 +34072,12 @@ jq
 jq
 jz
 Gy
+cQ
 GC
 GC
 GC
 GC
-GC
-GC
+cQ
 GC
 Vq
 GC
@@ -32768,28 +34089,28 @@ EA
 PG
 SF
 GC
+cQ
 GC
 GC
 GC
 GC
 GC
 GC
-GC
-GC
+cQ
 GC
 GC
 Gy
+Do
 EA
 EA
-EA
-EA
+Do
 uH
 jq
 Bs
 re
 AM
 Tw
-Bs
+LF
 jq
 wj
 ZJ
@@ -32887,10 +34208,10 @@ jz
 FE
 FE
 YW
-uF
+HS
 uF
 sz
-uF
+HS
 hB
 uF
 uF
@@ -32960,17 +34281,17 @@ jq
 jq
 iU
 IO
-yR
+dX
 iU
 iU
 iU
-yR
+dX
 iU
 iU
 IO
 iU
 iU
-yR
+dX
 xX
 KD
 Yz
@@ -32994,7 +34315,7 @@ rw
 rw
 rw
 iU
-iU
+vr
 rw
 rw
 rw
@@ -33030,7 +34351,7 @@ MU
 MU
 jq
 KK
-jq
+mT
 jq
 jq
 jq
@@ -33105,13 +34426,13 @@ aP
 FL
 Ce
 jq
-jq
+mT
 KK
 jq
 jq
 jq
 iU
-iU
+vr
 nT
 mU
 XJ
@@ -33276,19 +34597,19 @@ yR
 iU
 iU
 xX
-KD
+jD
 KD
 mP
-yR
+dX
 iU
 xX
 bg
 jR
 NV
-hs
+YV
 Cw
 PU
-iU
+vr
 pE
 Fc
 qf
@@ -33486,7 +34807,7 @@ jq
 jq
 jz
 jq
-jq
+mT
 jq
 jq
 jz
@@ -33502,24 +34823,24 @@ FE
 FE
 FE
 mL
-hB
+Md
 Kx
 Qa
 Mq
 jq
 jq
+pa
 jz
-jz
 jq
 jq
 jq
-jq
+mT
 jz
 BD
 Gy
 GC
 Vq
-Vq
+Zv
 qj
 id
 id
@@ -33528,21 +34849,21 @@ id
 id
 SF
 GC
-GC
+cQ
 GC
 Gy
 EA
 EA
 EA
 EA
+Do
 EA
 EA
 EA
 EA
 EA
 EA
-EA
-EA
+Do
 uH
 jq
 Bs
@@ -33672,14 +34993,14 @@ Gy
 GC
 Gy
 Jw
-GC
+cQ
 nP
 nP
 nP
 nP
 nP
 GC
-GC
+cQ
 Gy
 GC
 Gy
@@ -33719,23 +35040,23 @@ jz
 nT
 cg
 Xo
-gF
+Bx
 gF
 Tm
 nC
 rH
 gF
-gF
+Bx
 Qo
 cR
 nT
 iU
-yR
-yR
-iU
-iU
+dX
 yR
 iU
+iU
+yR
+vr
 iU
 xX
 xX
@@ -33878,7 +35199,7 @@ nT
 gN
 uA
 gF
-uA
+ub
 au
 nT
 nT
@@ -33886,7 +35207,7 @@ iU
 iU
 iU
 Be
-iU
+vr
 iU
 yR
 iU
@@ -33896,17 +35217,17 @@ yR
 iU
 IO
 iU
-sP
+cT
 pE
 Fc
 qf
-VU
+kx
 pE
 yR
 yR
 iU
 iU
-iU
+vr
 iU
 iU
 yR
@@ -33951,14 +35272,14 @@ BD
 FE
 Uf
 uF
-YW
+Am
 uF
 hB
 dp
 uF
 uF
 uF
-hB
+Md
 hB
 FE
 jz
@@ -34059,7 +35380,7 @@ iU
 rw
 rw
 iU
-iU
+vr
 iU
 iU
 wb
@@ -34089,12 +35410,12 @@ MU
 MU
 MU
 jz
+mT
 jq
 jq
 jq
 jq
-jq
-qd
+qC
 jq
 BD
 BD
@@ -34116,12 +35437,12 @@ FE
 jq
 jq
 jz
-qd
+qC
 jq
 jq
 jq
 jq
-jz
+pa
 jq
 jq
 jq
@@ -34169,7 +35490,7 @@ jE
 jE
 cv
 QA
-jq
+mT
 jq
 gf
 Os
@@ -34182,7 +35503,7 @@ nT
 nT
 nT
 cC
-uA
+ub
 uA
 IL
 Jk
@@ -34190,7 +35511,7 @@ yR
 iU
 iU
 iU
-iU
+vr
 xX
 xX
 xX
@@ -34274,33 +35595,33 @@ jz
 BD
 BD
 jq
-jq
-jq
-qd
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-KK
-jq
-jq
-jz
+mT
 jq
 qd
 jq
 jq
+mT
+jq
+jq
+jq
+jq
+OX
+jq
+jq
+jz
+mT
+qd
+jq
+jq
 jz
 jq
 jz
-jq
+mT
 jq
 jq
 jz
 jq
-jq
+mT
 BD
 BD
 BD
@@ -34309,7 +35630,7 @@ Bs
 re
 AM
 Tw
-Bs
+LF
 jq
 El
 BA
@@ -34462,11 +35783,11 @@ re
 AM
 Tw
 Bs
-jq
+mT
 KQ
 BA
 jE
-jE
+Tc
 QA
 QA
 QA
@@ -34486,7 +35807,7 @@ nT
 hM
 uA
 uA
-uA
+ub
 hk
 nT
 nT
@@ -34494,13 +35815,13 @@ iU
 iU
 iU
 iU
-iU
+vr
 yt
 Cw
 Cw
 Cw
 Ct
-jP
+yQ
 jP
 jP
 xX
@@ -34631,13 +35952,13 @@ jz
 nT
 qv
 ih
-uA
+ub
 uA
 Rb
 hR
 wh
 uA
-uA
+ub
 ae
 Mb
 nT
@@ -34719,12 +36040,12 @@ jz
 jq
 jq
 jq
-jz
+pa
 dD
 jq
 qd
 jq
-jq
+mT
 BD
 BD
 BD
@@ -34777,7 +36098,7 @@ GS
 GS
 jE
 Dw
-jq
+mT
 jq
 jz
 nT
@@ -34804,14 +36125,14 @@ Sk
 tO
 Cw
 xX
-Cw
+Nk
 qQ
 Cw
 Cw
 IO
 pE
 Fc
-qf
+Yr
 VU
 pE
 iU
@@ -34849,49 +36170,49 @@ MU
 MU
 MU
 MU
-jq
+mT
 jq
 jq
 jz
 jq
+qC
+jq
+jz
+jq
+mT
+jq
+jq
+jq
+jq
+pa
+jq
+jq
+mT
 qd
 jq
-jz
 jq
-jq
-jq
-jq
-jq
-jq
-jz
-jq
-jq
-jq
-qd
-jq
-jq
-jq
+mT
 jq
 jq
 jq
 jq
 jz
 jq
-jq
+mT
 BD
 BD
 jq
 BD
 BD
-jz
+pa
 jq
 jq
 jq
+mT
 jq
 jq
 jq
-jq
-jq
+mT
 jq
 jq
 jq
@@ -34908,16 +36229,16 @@ jq
 jq
 BD
 BD
-jq
+mT
 jz
 jq
 jz
 jq
 Bs
-re
+oB
 AM
 Tw
-Bs
+LF
 jq
 QA
 jE
@@ -34952,7 +36273,7 @@ rw
 yR
 iU
 xX
-Cw
+Nk
 Cw
 Cw
 wH
@@ -34964,14 +36285,14 @@ iU
 pE
 Fc
 KR
-VU
+kx
 pE
 iU
 iU
 iU
 iU
 iU
-iU
+vr
 iU
 iU
 wb
@@ -35044,13 +36365,13 @@ jz
 jq
 jq
 KK
-jz
+pa
 jq
 us
 jq
 jq
 jq
-jq
+mT
 jz
 jq
 jq
@@ -35059,7 +36380,7 @@ qd
 jz
 jq
 jq
-jq
+mT
 jq
 jq
 jq
@@ -35333,13 +36654,13 @@ BD
 BD
 jz
 jq
-jq
+mT
 jq
 jq
 qd
 jq
 jq
-jz
+pa
 jq
 jq
 BD
@@ -35546,19 +36867,19 @@ iU
 iU
 iU
 JK
-iU
-iU
-yR
-iU
+vr
 iU
 yR
 iU
+iU
+yR
+vr
 iU
 iU
 iU
 iU
 sP
-iU
+vr
 yR
 iU
 iU

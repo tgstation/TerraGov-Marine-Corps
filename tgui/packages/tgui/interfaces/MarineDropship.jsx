@@ -1,4 +1,3 @@
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -6,7 +5,9 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export const MarineDropship = (props) => {
@@ -160,7 +161,7 @@ const CorruptedOperation = (props) => {
           Status: {data.ship_status}
         </Box>
         <Box mt={1}>
-          <Button onClick={() => act('hijack')}>
+          <Button onClick={() => act('hijack')} disabled={data.hijack_disabled}>
             Launch to {data.current_map}
           </Button>
         </Box>

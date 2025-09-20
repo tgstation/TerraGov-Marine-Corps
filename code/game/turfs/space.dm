@@ -39,6 +39,19 @@
 	ENABLE_BITFIELD(atom_flags, INITIALIZED)
 	icon_state = SPACE_ICON_STATE(x, y, z)
 
+	// We make the assumption that the space plane will never be blacklisted, as an optimization
+	if(SSmapping.max_plane_offset)
+		plane = PLANE_SPACE - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
+
+	if (!mapload)
+		if(SSmapping.max_plane_offset)
+			var/turf/T = GET_TURF_ABOVE(src)
+			if(T)
+				T.multiz_turf_new(src, DOWN)
+			T = GET_TURF_BELOW(src)
+			if(T)
+				T.multiz_turf_new(src, UP)
+
 	return INITIALIZE_HINT_NORMAL
 
 /area/space/Entered(atom/movable/arrived, atom/old_loc)

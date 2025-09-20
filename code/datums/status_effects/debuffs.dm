@@ -350,11 +350,8 @@
 
 /datum/status_effect/plasmadrain/tick(delta_time)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(xenoowner.plasma_stored >= 0)
-		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 10
-		xenoowner.plasma_stored -= remove_plasma_amount
-		if(xenoowner.plasma_stored <= 0)
-			xenoowner.plasma_stored = 0
+	// This proc can handle everything and hud updating, use it.
+	xenoowner.use_plasma(xenoowner.xeno_caste.plasma_max / 10)
 
 /datum/status_effect/noplasmaregen
 	id = "noplasmaregen"
@@ -500,6 +497,10 @@
 	consumed_on_threshold = FALSE
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
+	/// The xenomorph who will receive healing.
+	var/mob/living/carbon/xenomorph/xenomorph_to_heal
+	/// The amount of health to restore for each stack.
+	var/healing_per_stack = 0
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
@@ -508,12 +509,19 @@
 		return FALSE
 	return ..()
 
-/datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply)
+/datum/status_effect/stacking/intoxicated/on_apply()
+	if(HAS_TRAIT(owner, TRAIT_INTOXICATION_IMMUNE))
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/xenomorph/expected_xenomorph_to_heal, expected_healing_per_stack = 0)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
 		qdel(src)
 		return
 	. = ..()
 	debuff_owner = new_owner
+	xenomorph_to_heal = expected_xenomorph_to_heal
+	healing_per_stack = expected_healing_per_stack
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
 	debuff_owner.balloon_alert(debuff_owner, "Intoxicated")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
@@ -527,6 +535,7 @@
 /datum/status_effect/stacking/intoxicated/on_remove()
 	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
 	debuff_owner = null
+	xenomorph_to_heal = null
 	QDEL_NULL(particle_holder)
 	return ..()
 
@@ -543,6 +552,9 @@
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
 		debuff_owner.adjust_stagger(1 SECONDS)
+	if(healing_per_stack && xenomorph_to_heal?.Adjacent(debuff_owner))
+		var/amount_to_heal = stacks * healing_per_stack
+		HEAL_XENO_DAMAGE(xenomorph_to_heal, amount_to_heal, FALSE)
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/intoxicated/proc/call_resist_debuff()
@@ -557,6 +569,8 @@
 		return
 	if(!do_after(debuff_owner, 5 SECONDS, NONE, debuff_owner, BUSY_ICON_GENERIC))
 		debuff_owner?.balloon_alert(debuff_owner, "Interrupted")
+		return
+	if(QDELETED(src))
 		return
 	playsound(debuff_owner, 'sound/effects/slosh.ogg', 30)
 	debuff_owner.balloon_alert(debuff_owner, "Succeeded")
@@ -577,10 +591,12 @@
 	consumed_on_threshold = FALSE
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
+	/// Pyrogen creator of the debuff.
+	var/mob/living/carbon/xenomorph/pyrogen/debuff_creator
 	/// Used for the fire effect.
 	var/obj/vis_melt_fire/visual_fire
-	/// Xenomorph which created the debuff.
-	var/mob/living/carbon/xenomorph/debuff_creator
+	// The percentage of brute/burn healing that should be negated.
+	var/healing_debuff = 0
 
 /obj/vis_melt_fire
 	name = "ouch ouch ouch"
@@ -588,7 +604,7 @@
 	layer = ABOVE_MOB_LAYER
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 
-/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply)
+/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply, atom/new_creator)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || new_owner.soft_armor?.getRating(FIRE) >= 100)
 		qdel(src)
 		return
@@ -600,11 +616,12 @@
 	debuff_owner.balloon_alert(debuff_owner, "Melting fire")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
+	set_creator(new_creator)
 
 /// on remove has owner set to null
 /datum/status_effect/stacking/melting_fire/on_remove()
 	owner.vis_contents -= visual_fire
-	debuff_owner = null
+	set_creator(null)
 	QDEL_NULL(visual_fire)
 	return ..()
 
@@ -619,13 +636,37 @@
 	debuff_owner.take_overall_damage(PYROGEN_DAMAGE_PER_STACK * stacks, BURN, FIRE, updating_health = TRUE)
 	if(stacks > 4)
 		visual_fire.icon_state = "melting_high_stacks"
-	else
+	else if (stacks > 0)
 		visual_fire.icon_state = "melting_low_stacks"
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	if(QDELETED(debuff_creator))
+	else
 		return
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+
+	if(QDELETED(debuff_creator) || debuff_creator.stat == DEAD)
+		return
+	var/amount_to_heal = 2 // HEAL_XENO_DAMAGE requires it as a variable.
+	HEAL_XENO_DAMAGE(debuff_creator, amount_to_heal, FALSE)
 	debuff_creator.gain_plasma(5, TRUE)
 
+/datum/status_effect/stacking/melting_fire/add_stacks(stacks_added, atom/xeno_creator)
+	. = ..()
+	set_creator(xeno_creator)
+
+/// Sets the debuff creator of this status effect. Sets and (un)registers signals regarding healing reduction accordingly.
+/datum/status_effect/stacking/melting_fire/proc/set_creator(atom/xeno_creator)
+	if(!xeno_creator || !isxenopyrogen(xeno_creator))
+		if(healing_debuff)
+			UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
+			healing_debuff = 0
+		debuff_creator = null
+		return
+	var/mob/living/carbon/xenomorph/pyrogen/new_creator = xeno_creator
+	if(healing_debuff && !new_creator.melting_fire_healing_reduction)
+		UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
+	if(!healing_debuff && new_creator.melting_fire_healing_reduction)
+		RegisterSignals(debuff_owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE), PROC_REF(on_heal))
+	debuff_creator = new_creator
+	healing_debuff = new_creator.melting_fire_healing_reduction
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/melting_fire/proc/call_resist_debuff()
@@ -640,17 +681,21 @@
 	if(length(debuff_owner.do_actions))
 		return
 	debuff_owner.spin(30, 1.5)
-	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST)
 	debuff_owner.Paralyze(3 SECONDS)
-	if(stacks > 0)
+	if((stacks - PYROGEN_MELTING_FIRE_STACKS_PER_RESIST) > 0)
 		debuff_owner.visible_message(span_danger("[debuff_owner] rolls on the floor, trying to put themselves out!"), \
 		span_notice("You stop, drop, and roll!"), null, 5)
+	else
+		debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
+		span_notice("You extinguish yourself."), null, 5)
+	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST) // If their stacks hit zero, it is qdel'd right here.
+
+// If the owner of this status effect were to heal, a percentage of that healing will be negated.
+/datum/status_effect/stacking/melting_fire/proc/on_heal(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	if(amount >= 0 || !healing_debuff)
 		return
-	debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
-	span_notice("You extinguish yourself."), null, 5)
-	qdel(src)
-
-
+	amount_mod += floor(amount) * healing_debuff
 
 // ***************************************
 // *********** dread
@@ -664,11 +709,11 @@
 	id = "dread"
 	status_type = STATUS_EFFECT_REPLACE
 	tick_interval = 2 SECONDS
+	duration = 6 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/dread
 
-/datum/status_effect/dread/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/dread/on_creation(mob/living/new_owner)
 	owner = new_owner
-	duration = set_duration
 	return ..()
 
 /datum/status_effect/dread/tick(delta_time)
@@ -685,6 +730,29 @@
 /datum/status_effect/dread/on_remove()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_XENO_DREAD)
 	return ..()
+
+/atom/movable/screen/alert/status_effect/draining_dread
+	name = "Draining Dread"
+	desc = "A dreadful presence. You take constant stamina damage until this expires."
+	icon_state = "dread"
+
+/datum/status_effect/draining_dread
+	id = "draining_dread"
+	status_type = STATUS_EFFECT_REPLACE
+	duration = 6 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/draining_dread
+	var/stamina_damage = 4
+
+/datum/status_effect/draining_dread/on_creation(mob/living/new_owner, set_stamina_damage)
+	owner = new_owner
+	if(set_stamina_damage)
+		stamina_damage = set_stamina_damage
+	return ..()
+
+/datum/status_effect/draining_dread/tick(delta_time)
+	. = ..()
+	owner.do_jitter_animation(250)
+	owner.adjustStaminaLoss(stamina_damage)
 
 // ***************************************
 // *********** Melting
@@ -816,7 +884,7 @@
 
 /datum/status_effect/stacking/microwave/tick(delta_time)
 	. = ..()
-	if(COOLDOWN_CHECK(src, cooldown_microwave_status))
+	if(COOLDOWN_FINISHED(src, cooldown_microwave_status))
 		return qdel(src)
 
 	if(!debuff_owner)
@@ -922,3 +990,116 @@
 // ***************************************
 /datum/status_effect/incapacitating/dancer_tagged
 	id = "dancer_tagged"
+	duration = 15 SECONDS
+
+// ***************************************
+// *********** Acid Melting
+// ***************************************
+/datum/status_effect/stacking/melting_acid
+	id = "melting_acid"
+	tick_interval = 1 SECONDS
+	max_stacks = 30
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/melting_acid
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/stacking/melting_acid/can_gain_stacks()
+	if(owner.status_flags & GODMODE || owner.stat == DEAD)
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/melting_acid/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
+		qdel(src)
+		return
+	. = ..()
+	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 30)
+	particle_holder = new(owner, /particles/melting_acid_status)
+	particle_holder.particles.spawning = 1 + round(stacks / 4)
+
+/datum/status_effect/stacking/melting_acid/on_remove()
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/datum/status_effect/stacking/melting_acid/tick(delta_time)
+	. = ..()
+	if(!owner)
+		return
+	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	particle_holder.particles.spawning = 1 + round(stacks / 4)
+	particle_holder.pixel_x = -2
+	particle_holder.pixel_y = 0
+	owner.apply_damage(5, BURN, null, ACID)
+
+/atom/movable/screen/alert/status_effect/melting_acid
+	name = "Melting (Acid)"
+	desc = "You are melting away!"
+	icon_state = "melting"
+
+/particles/melting_acid_status
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "drip"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 10
+	fade = 8
+	velocity = list(0, 0)
+	position = generator(GEN_SPHERE, 16, 16, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(-0.1, 0), list(0.1, 0))
+	gravity = list(0, -0.4)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1, 1), NORMAL_RAND)
+	friction = -0.05
+	color = "#59ff4a"
+
+// Recently sniped status effect, applied when hit by a sniper round
+/datum/status_effect/incapacitating/recently_sniped
+	id = "sniped"
+	/// Used for the sniped effect
+	var/obj/vis_sniped/visual_sniped
+	/// Weakref to the gun that applied this effect
+	var/datum/weakref/shooter
+
+/obj/vis_sniped
+	name = "sniped"
+	icon = 'icons/mob/actions.dmi'
+	pixel_x = 16
+	pixel_y = 10
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
+
+/datum/status_effect/incapacitating/recently_sniped/on_creation(mob/living/new_owner, set_duration, datum/weakref/_shooter)
+	. = ..()
+
+	if(!. || new_owner.stat != CONSCIOUS)
+		return
+
+	if(!_shooter)
+		CRASH("_shooter not passed into sniped status effect.")
+
+	shooter = _shooter
+
+	visual_sniped = new
+	visual_sniped.icon_state = "sniper_zoom"
+
+	new_owner.vis_contents += visual_sniped
+
+/datum/status_effect/incapacitating/recently_sniped/on_remove()
+	owner.vis_contents -= visual_sniped
+	QDEL_NULL(visual_sniped)
+
+// ***************************************
+// *********** Lifedrain
+// ***************************************
+/datum/status_effect/incapacitating/lifedrain
+	id = "life_drain"
+	duration = 10 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/lifedrain
+
+/atom/movable/screen/alert/status_effect/lifedrain
+	name = "Lifedrain"
+	desc = "Your life force transfers to xenos when they slash you!"
+	icon_state = "skullemoji"

@@ -3,7 +3,7 @@
 #define DISPLAY_IN_TRANSIT 2
 
 /obj/machinery/computer/crew
-	name = "Crew monitoring computer"
+	name = "crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
 	icon_state = "computer"
 	screen_overlay = "crew"
@@ -12,6 +12,7 @@
 	active_power_usage = 500
 //	circuit = /obj/item/circuitboard/computer/crew
 	interaction_flags = INTERACT_MACHINE_TGUI
+	faction = FACTION_TERRAGOV
 	///List of tracked jumpsuits
 	var/list/tracked = list()
 	///Crewmembers groundside
@@ -26,8 +27,6 @@
 	var/cmp_proc = /proc/cmp_list_asc
 	///How the list will be sorted
 	var/sortkey = "name"
-	///The faction of humans we can see
-	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/computer/crew/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

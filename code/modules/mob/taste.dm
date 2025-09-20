@@ -7,7 +7,7 @@
 
 // non destructively tastes a reagent container
 /mob/living/proc/taste(datum/reagents/from)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TASTE))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TASTE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_TASTE, 15 SECONDS)
 

@@ -22,8 +22,8 @@
 	if((movement_dir & EAST) && (movement_dir & WEST))
 		movement_dir &= ~(EAST|WEST)
 
-	//turn without moving while using the movement lock key.
-	if(user.movement_locked)
+	//turn without moving while using the movement lock key, unless something wants to ignore it and move anyway
+	if(user.movement_locked && !(SEND_SIGNAL(src, COMSIG_MOVABLE_KEYBIND_FACE_DIR, movement_dir) & COMSIG_IGNORE_MOVEMENT_LOCK))
 		keybind_face_direction(movement_dir)
 	// Null check cause of the signal above
 	else if(user)

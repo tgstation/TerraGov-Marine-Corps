@@ -7,15 +7,15 @@
 	///used to determine the probability that a car will detonate upon being destroyed
 	var/explosion_probability = 1
 
-/obj/structure/prop/urban/vehicles/Destroy()
-	explode()
+/obj/structure/prop/urban/vehicles/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	explode(blame_mob)
 	return ..()
 
 ///spawns a bunch of debris and plays a sound when a vehicle is wrecked
-/obj/structure/prop/urban/vehicles/proc/explode()
+/obj/structure/prop/urban/vehicles/proc/explode(mob/blame_mob)
 	src.visible_message(span_danger("<B>[src] blows apart!</B>"), null, null, 1)
 	if(prob(explosion_probability))
-		explosion(loc, light_impact_range = 3, flame_range = 2)
+		explosion(loc, light_impact_range = 3, flame_range = 2, explosion_cause=blame_mob)
 	playsound(loc, 'sound/effects/car_crush.ogg', 25)
 	var/turf/Tsec = get_turf(src)
 	new /obj/item/stack/rods(Tsec)

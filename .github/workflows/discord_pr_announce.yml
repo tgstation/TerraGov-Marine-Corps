@@ -1,0 +1,32 @@
+name: 'New PR Notification'
+on:
+  pull_request_target:
+    types: [opened, reopened, closed]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check for DISCORD_WEBHOOK"
+        id: secrets_set
+        env:
+          ENABLER_SECRET: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          unset SECRET_EXISTS
+          if [ -n "$ENABLER_SECRET" ]; then SECRET_EXISTS=true ; fi
+          echo "SECRETS_ENABLED=$SECRET_EXISTS" >> $GITHUB_OUTPUT
+      - name: Send Discord notification
+        uses: tgstation/discord-notify@v3
+        if: >
+          steps.secrets_set.outputs.SECRETS_ENABLED &&
+          github.event.pull_request.author_association != 'FIRST_TIMER' &&
+          github.event.pull_request.author_association != 'FIRST_TIME_CONTRIBUTOR'
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: ${{ github.event.pull_request.user.login }} - ${{ github.event.pull_request.title }}
+          message: "GET_ACTION"
+          include_image: false
+          show_author: false
+          avatar_url: https://raw.githubusercontent.com/tgstation/TerraGov-Marine-Corps/refs/heads/master/icons/tgmc_64.png
+          username: GitHub
+          title_url: "${{ github.event.pull_request.html_url }}"

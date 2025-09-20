@@ -3,6 +3,7 @@
 	desc = "A hefty wooden crate."
 	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "densecrate"
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	density = TRUE
 	anchored = FALSE
 	var/dropmetal = TRUE

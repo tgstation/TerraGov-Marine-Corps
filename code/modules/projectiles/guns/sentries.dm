@@ -272,7 +272,7 @@
 // Sniper Sentry
 
 /obj/item/weapon/gun/sentry/sniper_sentry
-	name = "\improper SRT-574 sentry gun"
+	name = "\improper SST-574 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
 	icon_state = "sniper_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/sniper.dmi'
@@ -443,7 +443,7 @@
 	icon = 'icons/obj/machines/deployable/sentry/laser.dmi'
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 
-	turret_range = 10
+	turret_range = 7
 	deploy_time = 5 SECONDS
 	max_shells = 500
 	fire_delay = 0.2 SECONDS

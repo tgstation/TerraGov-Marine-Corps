@@ -69,13 +69,13 @@
 			dat += "[health_ratio > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\tHealth %: [health_ratio] ([t1])</FONT><BR>"
 			if(ishuman(occupant))
 				if(connected.filtering)
-					dat += "<A href='?src=[text_ref(src)];togglefilter=1'>Stop Dialysis</A><BR>"
+					dat += "<A href='byond://?src=[text_ref(src)];togglefilter=1'>Stop Dialysis</A><BR>"
 				else
-					dat += "<HR><A href='?src=[text_ref(src)];togglefilter=1'>Start Dialysis</A><BR>"
+					dat += "<HR><A href='byond://?src=[text_ref(src)];togglefilter=1'>Start Dialysis</A><BR>"
 				if(connected.stasis)
-					dat += "<HR><A href='?src=[text_ref(src)];togglestasis=1'>Deactivate Cryostasis</A><BR><HR>"
+					dat += "<HR><A href='byond://?src=[text_ref(src)];togglestasis=1'>Deactivate Cryostasis</A><BR><HR>"
 				else
-					dat += "<HR><A href='?src=[text_ref(src)];togglestasis=1'>Activate Cryostasis</A><BR><HR>"
+					dat += "<HR><A href='byond://?src=[text_ref(src)];togglestasis=1'>Activate Cryostasis</A><BR><HR>"
 			else
 				dat += "<HR>Dialysis Disabled - Non-human present.<BR><HR>"
 				var/mob/living/carbon/human/patient = occupant
@@ -91,8 +91,8 @@
 				for(var/amount in connected.amounts)
 					dat += " <a href ='?src=[text_ref(src)];chemical=[chemical];amount=[amount]'>[amount] units</a>"
 				dat += "<br>"
-			dat += "<A href='?src=[text_ref(src)];refresh=1'>Refresh Meter Readings</A><BR>"
-			dat += "<HR><A href='?src=[text_ref(src)];ejectify=1'>Eject Patient</A>"
+			dat += "<A href='byond://?src=[text_ref(src)];refresh=1'>Refresh Meter Readings</A><BR>"
+			dat += "<HR><A href='byond://?src=[text_ref(src)];ejectify=1'>Eject Patient</A>"
 		else
 			dat += "The sleeper is empty."
 	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 670)
@@ -201,15 +201,11 @@
 	if(!hasHUD(user,"medical"))
 		. += span_notice("It contains: [occupant].[feedback]")
 		return
-	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(!(R.fields["last_scan_time"]))
-			. += span_deptradio("No scan report on record")
-		else
-			. += span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[feedback]</a>")
-		break
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	if(!isnull(medical_record?.fields["historic_scan"]))
+		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [medical_record.fields["historic_scan_time"]]...</a>"
+	else
+		. += "[span_deptradio("No body scan report on record for occupant")]"
 
 /obj/machinery/sleeper/Topic(href, href_list)
 	. = ..()
@@ -224,15 +220,9 @@
 		return
 	if(!ishuman(occupant))
 		return
-	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-			popup.set_content(R.fields["last_scan_result"])
-			popup.open(FALSE)
-		break
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+	scan.ui_interact(usr)
 
 /obj/machinery/sleeper/process()
 	if (machine_stat & (NOPOWER|BROKEN))
@@ -273,7 +263,7 @@
 		return
 	if(!occupant)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 	. += mutable_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
@@ -434,7 +424,7 @@
 
 /obj/machinery/sleeper/verb/eject()
 	set name = "Eject Sleeper"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(usr.stat != CONSCIOUS)
@@ -479,7 +469,7 @@
 
 /obj/machinery/sleeper/verb/move_inside()
 	set name = "Enter Sleeper"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	move_inside_wrapper(usr, usr)

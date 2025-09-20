@@ -1,17 +1,18 @@
-import { round } from 'common/math';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Collapsible,
   Divider,
   Flex,
+  Image,
   ProgressBar,
   Section,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
+import { round } from 'tgui-core/math';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type InputPack = {
@@ -32,7 +33,7 @@ type InputPack = {
   hive_minion_count: number;
   hive_primos: PrimoUpgrades[];
   hive_death_timers: DeathTimer[];
-  hive_queen_max: number;
+  hive_ruler_max: number;
   hive_structures: StructureData[];
   // ----- Per xeno info ------
   xeno_info: XenoData[];
@@ -41,13 +42,14 @@ type InputPack = {
   user_ref: string;
   user_xeno: boolean;
   user_index: number;
-  user_queen: boolean;
+  user_ruler: boolean;
   user_watched_xeno: string;
   user_evolution: number;
-  user_purchase_perms: boolean;
+  user_purchase_perms?: boolean;
   user_maturity: number;
   user_next_mat_level: number;
   user_tracked: string;
+  user_can_mutate: boolean;
   user_show_compact: boolean;
   user_show_empty: boolean;
   user_show_general: boolean;
@@ -69,7 +71,7 @@ type XenoData = {
 
 type StaticData = {
   name: string;
-  is_queen: number; // boolean but is used in bitwise ops.
+  is_ruler: number; // boolean but is used in bitwise ops.
   minimap: string; // Full minimap icon as string. Not icon_state!
   sort_mod: number;
   tier: number;
@@ -156,7 +158,7 @@ export const HiveStatus = (_props: any) => {
 const CachedCollapsible = (props: {
   title: string;
   open: boolean;
-  children?: JSX.Element;
+  children?: React.JSX.Element;
   onClickXeno: any;
 }) => {
   const { data } = useBackend<InputPack>();
@@ -192,17 +194,31 @@ const BlessingsButton = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const { user_purchase_perms, user_ref } = data;
 
-  if (!user_purchase_perms) {
-    return <Box />;
-  }
-
   return (
     <Box className="Section__buttons">
       <Button
         onClick={() => act('Blessings', { xeno: user_ref })}
         icon={'store'}
+        disabled={!user_purchase_perms}
       >
         Blessings
+      </Button>
+    </Box>
+  );
+};
+
+const MutationsButton = (_props: any) => {
+  const { act, data } = useBackend<InputPack>();
+  const { user_ref, user_can_mutate } = data;
+
+  return (
+    <Box className="Section__buttons" mr="90px">
+      <Button
+        onClick={() => act('Mutations', { xeno: user_ref })}
+        icon={'store'}
+        disabled={!user_can_mutate}
+      >
+        Mutations
       </Button>
     </Box>
   );
@@ -257,7 +273,10 @@ const GeneralInfo = (_props: any) => {
             {' ' + hive_larva_burrowed}
           </Box>
         </Box>
-        <BlessingsButton />
+        <Box as="span">
+          <MutationsButton />
+          <BlessingsButton />
+        </Box>
       </Box>
       <Flex direction="column" className="Section__content">
         <Flex.Item>
@@ -579,6 +598,7 @@ const PopulationPyramid = (_props: any) => {
                   })
                   .filter((ti) => ti !== null)
                   .join(' | ')}
+                {primordial}
               </Box>
             );
           }
@@ -604,8 +624,7 @@ const PopulationPyramid = (_props: any) => {
                       bold
                       key={static_entry.name}
                     >
-                      <Box
-                        as="img"
+                      <Image
                         src={`data:image/jpeg;base64,${static_entry.minimap}`}
                         style={{
                           transform: 'scale(3) translateX(-3.5px)',
@@ -670,7 +689,7 @@ const XenoList = (_props: any) => {
     xeno_info,
     static_info,
     user_ref,
-    user_queen,
+    user_ruler,
     user_watched_xeno,
     user_tracked,
   } = data;
@@ -681,7 +700,7 @@ const XenoList = (_props: any) => {
     return (
       <Button
         ml={-1}
-        backgroundColor="transparent"
+        backgroundColor="rgba(0, 0, 0, 0)"
         tooltip={props.tip}
         icon={
           sortingBy.category !== props.text
@@ -715,7 +734,7 @@ const XenoList = (_props: any) => {
   // Remaining bits 28 split 14 tiers, 14 sort mods.
   // For a total of 16,384 tiers and 16,384 castes per tier.
   // I think that's plenty for everyone.
-  const queen = 30;
+  const ruler = 30;
   const leader = 29;
   const tier = 14;
 
@@ -782,7 +801,7 @@ const XenoList = (_props: any) => {
                 static_entry.sort_mod |
                 (static_entry.tier << tier) |
                 (entry.is_leader << leader) |
-                (static_entry.is_queen << queen);
+                (static_entry.is_ruler << ruler);
               break;
             case health:
               order = entry.health;
@@ -811,7 +830,7 @@ const XenoList = (_props: any) => {
                   {user_ref !== entry.ref && (
                     <ActionButtons
                       target_ref={entry.ref}
-                      is_queen={user_queen}
+                      is_ruler={user_ruler}
                       watched_xeno={user_watched_xeno}
                       can_transfer_plasma={static_entry.can_transfer_plasma}
                     />
@@ -824,16 +843,16 @@ const XenoList = (_props: any) => {
                     height="16px"
                     fontSize={0.75}
                     tooltip={
-                      user_queen && !static_entry.is_queen
+                      user_ruler && !static_entry.is_ruler
                         ? 'Toggle leadership'
                         : ''
                     }
                     verticalAlignContent="middle"
                     icon="star"
-                    disabled={static_entry.is_queen}
+                    disabled={static_entry.is_ruler}
                     selected={entry.is_leader}
                     opacity={
-                      entry.is_leader || user_queen || static_entry.is_queen
+                      entry.is_leader || user_ruler || static_entry.is_ruler
                         ? 1
                         : 0.5
                     }
@@ -842,8 +861,7 @@ const XenoList = (_props: any) => {
                 </Flex.Item>
                 {/* Minimap icons */}
                 <Flex.Item width={minimap_width} mr={minimap_mr}>
-                  <Box
-                    as="img"
+                  <Image
                     src={`data:image/jpeg;base64,${static_entry.minimap}`}
                     style={{
                       transform: 'scale(2) translateX(2px)', // Upscaled from 7x7 to 14x14.
@@ -868,7 +886,7 @@ const XenoList = (_props: any) => {
                       overflow: 'hidden', // hiding overflow prevents the button being slightly scrollable
                       marginTop: '-3px', // magic number, lines up button text with other cols
                     }}
-                    backgroundColor="transparent"
+                    backgroundColor="rgba(0, 0, 0, 0)"
                     tooltip={
                       user_ref !== entry.ref
                         ? user_tracked === entry.ref
@@ -931,7 +949,7 @@ const XenoList = (_props: any) => {
 
 type ActionButtonProps = {
   target_ref: string;
-  is_queen: boolean;
+  is_ruler: boolean;
   watched_xeno: string;
   can_transfer_plasma: boolean;
 };
@@ -956,7 +974,7 @@ const ActionButtons = (props: ActionButtonProps) => {
     />
   );
 
-  if (props.is_queen) {
+  if (props.is_ruler) {
     return (
       <Flex direction="row" justify="space-evenly">
         {/* Overwatch */}

@@ -69,6 +69,11 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"q" = (
+/obj/effect/spawner/random/misc/plant,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/gray,
+/area/campaign/jungle_outpost/outpost/req/depot)
 "r" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 4
@@ -110,6 +115,7 @@
 /obj/effect/turf_decal/grassdecal/corner2{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/ground/jungle/south)
 "B" = (
@@ -156,6 +162,11 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/ground/jungle/south)
+"K" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/gray,
+/area/campaign/jungle_outpost/outpost/req/depot)
 "L" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -206,6 +217,10 @@
 "X" = (
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"Y" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/gray,
+/area/campaign/jungle_outpost/outpost/req/depot)
 "Z" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/tile/dark/gray,
@@ -230,17 +245,17 @@ X
 (2,1,1) = {"
 a
 T
-C
+Y
 C
 H
-c
+K
 c
 c
 c
 C
+Y
 C
-C
-W
+q
 X
 "}
 (3,1,1) = {"
@@ -297,14 +312,14 @@ v
 C
 c
 c
-c
+K
 C
 X
 s
-C
+Y
 l
 C
-C
+Y
 X
 "}
 (7,1,1) = {"
@@ -312,7 +327,7 @@ X
 E
 C
 c
-C
+Y
 p
 W
 X
@@ -364,11 +379,11 @@ S
 X
 f
 z
-C
+Y
 H
 C
 C
-W
+q
 X
 "}
 (11,1,1) = {"

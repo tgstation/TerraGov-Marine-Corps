@@ -25,7 +25,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION|CASTE_IS_BUILDER
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	can_flags = CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 10, FIRE = 10, ACID = 10)
@@ -36,4 +36,5 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)

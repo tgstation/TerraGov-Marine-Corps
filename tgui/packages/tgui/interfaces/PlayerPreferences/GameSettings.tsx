@@ -1,17 +1,39 @@
-import { useBackend } from '../../backend';
 import {
   Button,
   ColorBox,
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import {
   LoopingSelectionPreference,
   SelectFieldPreference,
   TextFieldPreference,
   ToggleFieldPreference,
 } from './FieldPreferences';
+
+const MultiZPerfToString = (integer) => {
+  let returnval = '';
+  switch (integer) {
+    case -1:
+      returnval = 'No Culling';
+      break;
+    case 0:
+      returnval = 'Low';
+      break;
+    case 1:
+      returnval = 'Medium';
+      break;
+    case 2:
+      returnval = 'High';
+      break;
+    default:
+      returnval = 'Error!';
+  }
+  return returnval;
+};
 
 const ParallaxNumToString = (integer) => {
   let returnval = '';
@@ -39,8 +61,14 @@ const ParallaxNumToString = (integer) => {
 
 export const GameSettings = (props) => {
   const { act, data } = useBackend<GameSettingData>();
-  const { ui_style_color, scaling_method, pixel_size, parallax, is_admin } =
-    data;
+  const {
+    ui_style_color,
+    scaling_method,
+    pixel_size,
+    parallax,
+    multiz_performance,
+    is_admin,
+  } = data;
 
   // Remember to update this alongside defines
   // todo: unfuck. Bruh why is this being handled in the tsx?
@@ -120,7 +148,15 @@ export const GameSettings = (props) => {
                 action="accessible_tgui_themes"
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
-                tooltip="Try to use more accessible or default TGUI themes/layouts wherever possible."
+                tooltip="Prefer more accessible/default TGUI themes wherever implemented and possible."
+              />
+              <ToggleFieldPreference
+                label="Allow health scan sharing"
+                value="allow_being_shown_health_scan"
+                action="allow_being_shown_health_scan"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Governs if others can show you your health scan."
               />
               <ToggleFieldPreference
                 label="Fullscreen mode"
@@ -128,6 +164,37 @@ export const GameSettings = (props) => {
                 action="fullscreen_mode"
                 leftLabel={'Fullscreen'}
                 rightLabel={'Windowed'}
+                tooltip="Toggles Windowed Borderless mode"
+              />
+              <ToggleFieldPreference
+                label="Status Bar"
+                value="show_status_bar"
+                action="show_status_bar"
+                leftLabel={'Show'}
+                rightLabel={'Hide'}
+                tooltip="Whether to show or hide the status bar in the bottom left of the screen"
+              />
+              <ToggleFieldPreference
+                label="Ambient Occlusion"
+                value="ambient_occlusion"
+                action="ambient_occlusion"
+                leftLabel={'On'}
+                rightLabel={'Off'}
+                tooltip="Whether to render ambient occlusion, which adds a shadow-like effect to floors. Increases performance when off."
+              />
+              <ToggleFieldPreference
+                label="Multi-Z (3D) parallax"
+                value="multiz_parallax"
+                action="multiz_parallax"
+                leftLabel={'On'}
+                rightLabel={'Off'}
+                tooltip="Toggles parallax applying through multiple Zs. Increases performance when off."
+              />
+              <LoopingSelectionPreference
+                label="Multi-Z Detail"
+                value={MultiZPerfToString(multiz_performance)}
+                action="multiz_performance"
+                tooltip="How many Multi-Z levels are rendered before they start getting culled. Decrease this to improve performance in case of lag on multi-z maps."
               />
               <ToggleFieldPreference
                 label="TGUI Window Mode"
@@ -142,6 +209,14 @@ export const GameSettings = (props) => {
                 action="tgui_lock"
                 leftLabel={'Free (default)'}
                 rightLabel={'Primary monitor'}
+              />
+              <ToggleFieldPreference
+                label="UI scaling"
+                value="ui_scale"
+                action="ui_scale"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Whether UIs should scale up to match your monitor scaling"
               />
               <ToggleFieldPreference
                 label="TGUI Input boxes"
@@ -195,6 +270,21 @@ export const GameSettings = (props) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Toggle Click-dragging"
+                value="toggle_clickdrag"
+                action="toggle_clickdrag"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle Xeno Move Intent Keybind"
+                value="toggle_xeno_move_intent_keybind"
+                action="toggle_xeno_move_intent_keybind"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Toggles whether the Toggle Move Intent keybind works when you are a xeno."
+              />
             </LabeledList>
           </Section>
         </Stack.Item>
@@ -236,6 +326,15 @@ export const GameSettings = (props) => {
                 label="Show typing indicator"
                 value="show_typing"
                 action="show_typing"
+                leftValue={1}
+                leftLabel={'Enabled'}
+                rightValue={0}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle bump attacking"
+                value="toggle_bump_attacking"
+                action="toggle_bump_attacking"
                 leftValue={1}
                 leftLabel={'Enabled'}
                 rightValue={0}
@@ -420,12 +519,12 @@ export const GameSettings = (props) => {
                   rightLabel={'Disabled'}
                 />
                 <ToggleFieldPreference
-                  label="Hear LOOC from anywhere"
-                  value="hear_looc_anywhere_as_staff"
-                  action="hear_looc_anywhere_as_staff"
+                  label="Hear OOC from anywhere"
+                  value="hear_ooc_anywhere_as_staff"
+                  action="hear_ooc_anywhere_as_staff"
                   leftLabel={'Enabled'}
                   rightLabel={'Disabled'}
-                  tooltip="Enables hearing LOOC from anywhere in any situation. For Mentors, this setting is only relevant when observing."
+                  tooltip="Enables hearing OOC channels from anywhere in any situation."
                 />
               </LabeledList>
             </Section>

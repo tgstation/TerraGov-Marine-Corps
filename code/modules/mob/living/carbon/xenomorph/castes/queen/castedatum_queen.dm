@@ -34,10 +34,10 @@
 	death_evolution_delay = 5 MINUTES
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_MUTATIONS_ALLOWED
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
-	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA
-	caste_traits = null
+	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
+	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, FIRE = 60, ACID = 60)
@@ -60,7 +60,6 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/xeno_action/lay_egg,
@@ -82,8 +81,15 @@
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/activable/xeno/command_minions,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/healthy_bulwark,
+		/datum/mutation_upgrade/shell/bulwark_zone,
+		/datum/mutation_upgrade/spur/alternative_sting,
+		/datum/mutation_upgrade/veil/rallying_cry
+	)
 
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_NORMAL
@@ -100,7 +106,6 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/xeno_action/lay_egg,
@@ -124,4 +129,5 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/activable/xeno/command_minions,
 		/datum/action/ability/xeno_action/ready_charge/queen_charge,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)

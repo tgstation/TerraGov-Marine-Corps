@@ -9,10 +9,10 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	obj_flags = CAN_BE_HIT | IGNORE_DENSITY
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	smoothing_flags = SMOOTH_BITMASK
@@ -191,7 +191,7 @@
 /obj/structure/table/verb/do_flip()
 	set name = "Flip table"
 	set desc = "Flips a non-reinforced table"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(!can_interact(usr))
@@ -236,7 +236,7 @@
 /obj/structure/table/proc/do_put()
 	set name = "Put table back"
 	set desc = "Puts flipped table back"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(!can_interact(usr))
@@ -274,6 +274,7 @@
 	if(dir != NORTH)
 		layer = FLY_LAYER
 	flipped = TRUE
+	obj_flags ^= BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	coverage = 60
 	atom_flags |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
@@ -296,6 +297,7 @@
 	coverage = 10
 	climbable = initial(climbable)
 	atom_flags &= ~ON_BORDER
+	obj_flags ^= BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
 		var/obj/structure/table/T = locate() in get_step(src.loc,D)
 		if(T?.flipped && T.dir == src.dir)
@@ -458,29 +460,21 @@
 	if(table_status == TABLE_STATUS_FIRM)
 		user.visible_message(span_notice("[user] starts weakening [src]."),
 		span_notice("You start weakening [src]"))
-		add_overlay(GLOB.welding_sparks)
-		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
-		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || !WT.remove_fuel(1, user))
-			cut_overlay(GLOB.welding_sparks)
-			return TRUE
+		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+			return
 
 		user.visible_message(span_notice("[user] weakens [src]."),
 			span_notice("You weaken [src]"))
-		cut_overlay(GLOB.welding_sparks)
 		table_status = TABLE_STATUS_WEAKENED
 		return TRUE
 
 	user.visible_message(span_notice("[user] starts welding [src] back together."),
 		span_notice("You start welding [src] back together."))
-	add_overlay(GLOB.welding_sparks)
-	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || !WT.remove_fuel(1, user))
-		cut_overlay(GLOB.welding_sparks)
-		return TRUE
+	if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+		return
 
 	user.visible_message(span_notice("[user] welds [src] back together."),
 		span_notice("You weld [src] back together."))
-	cut_overlay(GLOB.welding_sparks)
 	table_status = TABLE_STATUS_FIRM
 	return TRUE
 

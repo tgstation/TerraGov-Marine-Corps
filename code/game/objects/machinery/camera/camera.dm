@@ -85,6 +85,12 @@
 			. += span_info("It can reactivated with a <b>screwdriver</b>.")
 
 
+/obj/machinery/camera/proc/camera_ui_data()
+	return list(
+		"name" = c_tag ? c_tag : "unnamed camera",
+		"ref" = ref(src)
+	)
+
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	view_range = num
 
@@ -110,13 +116,13 @@
 				if(AI.control_disabled || (AI.stat == DEAD))
 					return
 				if(U.name == "Unknown")
-					to_chat(AI, "<b>[U]</b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
+					to_chat(AI, "<b>[U]</b> holds <a href='byond://?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
 				else
-					to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(U.name)]'>[U]</a></b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
+					to_chat(AI, "<b><a href='byond://?src=[REF(AI)];track=[html_encode(U.name)]'>[U]</a></b> holds <a href='byond://?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
 				AI.last_paper_seen = "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 			else if(O.client && O.client.eye == src)
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
-				O << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
+				O << browse(HTML_SKELETON_TITLE(itemname, info), "window=[itemname]")
 
 
 /obj/machinery/camera/screwdriver_act(mob/living/user, obj/item/I)
@@ -201,7 +207,8 @@
 	parent_cameranet.removeCamera(src)
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
-	parent_cameranet.updateChunk(x, y, z)
+	var/turf/camnet_turf = get_turf(src)
+	parent_cameranet.updateChunk(camnet_turf.x, camnet_turf.y, camnet_turf.z)
 	update_icon()
 
 	for(var/i in GLOB.player_list)
@@ -236,12 +243,13 @@
 			set_light(initial(light_range), initial(light_power))
 		else
 			myarea = null
+		var/turf/our_turf = get_turf(src)
+		parent_cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
 	else
 		parent_cameranet.removeCamera(src)
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
 		deactivate()
-	parent_cameranet.updateChunk(x, y, z)
 
 	var/change_msg = "deactivates"
 	if(status)
@@ -274,7 +282,31 @@
 
 
 /obj/machinery/camera/proc/can_see()
-	return get_hear(view_range, get_turf(src))
+	var/turf/pos = get_turf(src)
+	var/turf/directly_above = GET_TURF_ABOVE(pos)
+	var/check_lower = pos != get_lowest_turf(pos)
+	var/check_higher = directly_above && istransparentturf(directly_above) && (pos != get_highest_turf(pos))
+
+	var/list/see = get_hear(view_range, pos)
+	if(check_lower || check_higher)
+		// Haha datum var access KILL ME
+		for(var/turf/seen in see)
+			if(check_lower)
+				var/turf/visible = seen
+				while(visible && istransparentturf(visible))
+					var/turf/below = GET_TURF_BELOW(visible)
+					for(var/turf/adjacent in range(1, below))
+						see += adjacent
+						see += adjacent.contents
+					visible = below
+			if(check_higher)
+				var/turf/above = GET_TURF_ABOVE(seen)
+				while(above && istransparentturf(above))
+					for(var/turf/adjacent in range(1, above))
+						see += adjacent
+						see += adjacent.contents
+					above = GET_TURF_ABOVE(above)
+	return see
 
 
 //Return a working camera that can see a given mob
@@ -308,9 +340,8 @@
 
 
 /obj/machinery/camera/update_remote_sight(mob/living/user)
-	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
-	user.sight = NONE
-	user.see_in_dark = 2
+	user.set_invis_see(SEE_INVISIBLE_LIVING) //can't see ghosts through cameras
+	user.set_sight(NONE)
 	return TRUE
 
 /obj/machinery/camera/autoname
@@ -322,7 +353,7 @@
 	. = ..()
 	if(obj_integrity <= 0)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname/Initialize(mapload)
@@ -350,6 +381,12 @@
 	name = "headset camera"
 	network = list("marine")
 	resistance_flags = RESIST_ALL //If the containing headset is not destroyed, neither should this be.
+	// role of the wearer, set on the headset itself
+	var/role_name
+
+/obj/machinery/camera/headset/camera_ui_data()
+	. = ..()
+	.["role"] = role_name
 
 /obj/machinery/camera/headset/som
 	network = list(SOM_CAMERA_NETWORK)
@@ -413,7 +450,8 @@
 
 //Special invisible cameras, to get even better angles without looking ugly
 /obj/machinery/camera/autoname/thunderdome/hidden
-
-/obj/machinery/camera/autoname/thunderdome/hidden/update_icon_state()
-	. = ..()
 	icon_state = "nothing"
+
+/obj/machinery/camera/autoname/thunderdome/hidden/update_appearance(updates)
+	SHOULD_CALL_PARENT(FALSE)
+	return

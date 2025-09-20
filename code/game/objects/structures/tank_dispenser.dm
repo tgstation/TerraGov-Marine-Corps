@@ -6,6 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	coverage = 45
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	var/oxygentanks = 10
 	var/phorontanks = 10
 	var/list/oxytanks = list()	//sorry for the similar var names
@@ -43,8 +44,8 @@
 		return
 
 	var/dat
-	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=[text_ref(src)];oxygen=1'>Dispense</A>" : "empty"]<br>"
-	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='?src=[text_ref(src)];phoron=1'>Dispense</A>" : "empty"]"
+	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='byond://?src=[text_ref(src)];oxygen=1'>Dispense</A>" : "empty"]<br>"
+	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='byond://?src=[text_ref(src)];phoron=1'>Dispense</A>" : "empty"]"
 
 	var/datum/browser/popup = new(user, "dispense", "<div align='center'>[src]</div>")
 	popup.set_content(dat)

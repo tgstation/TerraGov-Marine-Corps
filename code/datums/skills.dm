@@ -456,7 +456,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_METAL
 	construction = SKILL_CONSTRUCTION_METAL
 	powerloader = SKILL_POWERLOADER_PRO
-	mech = SKILL_MECH_DEFAULT
+	mech = SKILL_MECH_TRAINED
 
 /datum/skills/assault_crewman
 	name = ASSAULT_CREWMAN
@@ -507,6 +507,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Craftier Private"
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_ENGI
+
+/datum/skills/freelancer_veteran
+	name = "freelancer veteran"
+	construction = SKILL_CONSTRUCTION_METAL
+	engineer = SKILL_ENGINEER_METAL
+	medical = SKILL_MEDICAL_NOVICE
 
 /datum/skills/special_forces_standard
 	name = "Special Response Force Standard"

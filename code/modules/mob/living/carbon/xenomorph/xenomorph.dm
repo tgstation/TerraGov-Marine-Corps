@@ -30,13 +30,9 @@
 		if(CONSCIOUS)
 			GLOB.alive_xeno_list += src
 			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
-			see_in_dark = xeno_caste.conscious_see_in_dark
 		if(UNCONSCIOUS)
 			GLOB.alive_xeno_list += src
 			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
-			see_in_dark = xeno_caste.unconscious_see_in_dark
-		if(DEAD)
-			see_in_dark = xeno_caste.unconscious_see_in_dark
 
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
@@ -74,7 +70,7 @@
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
-		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
 	handle_weeds_on_movement()
 
 	AddElement(/datum/element/footstep, footstep_type, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
@@ -299,7 +295,7 @@
 	return ..()
 
 
-/mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, force = move_force, suppress_message = TRUE, bypass_crit_delay = FALSE)
@@ -317,7 +313,7 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == DEAD) //Can't drag dead human bodies.
+		if(L.stat == DEAD && !(SSticker.mode.round_type_flags & MODE_XENO_GRAB_DEAD_ALLOWED)) // Can't drag dead human bodies.
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
 		if(pulling != L)
@@ -436,19 +432,7 @@
 		return TRUE
 	return ..()
 
-/mob/living/carbon/xenomorph/set_stat(new_stat)
-	. = ..()
-	if(isnull(.))
-		return
-	switch(stat)
-		if(UNCONSCIOUS)
-			see_in_dark = xeno_caste.unconscious_see_in_dark
-		if(DEAD, CONSCIOUS)
-			if(. == UNCONSCIOUS)
-				see_in_dark = xeno_caste.conscious_see_in_dark
-
-///Kick the player from this mob, replace it by a more competent ai
-/mob/living/carbon/xenomorph/proc/replace_by_ai()
+/mob/living/carbon/xenomorph/replace_by_ai()
 	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))
 	ghostize(TRUE)//Can take back its body
 	GLOB.offered_mob_list -= src
@@ -498,11 +482,11 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	if(!resting_action || !resting_action.can_use_action())
 		return
 	if(resting)
-		if(!COOLDOWN_CHECK(src, xeno_resting_cooldown))
+		if(!COOLDOWN_FINISHED(src, xeno_resting_cooldown))
 			balloon_alert(src, "Cannot get up so soon after resting!")
 			return
 
-	if(!COOLDOWN_CHECK(src, xeno_unresting_cooldown))
+	if(!COOLDOWN_FINISHED(src, xeno_unresting_cooldown))
 		balloon_alert(src, "Cannot rest so soon after getting up!")
 		return
 	return ..()
@@ -603,18 +587,23 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		return
 	INVOKE_ASYNC(src, PROC_REF(carry_target), user, TRUE)
 
-///updates the xenos glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
+/// Updates the xenomorph's light based on their stored corrosive and neurotoxin ammo. The range, power, and color scales accordingly. More corrosive ammo = more green color; more neurotoxin ammo = more yellow color.
 /mob/living/carbon/xenomorph/proc/update_ammo_glow()
-	var/current_ammo = corrosive_ammo + neuro_ammo
+	var/current_ammo = corrosive_ammo + neurotoxin_ammo
 	var/ammo_glow = BOILER_LUMINOSITY_AMMO * current_ammo
 	var/glow = CEILING(BOILER_LUMINOSITY_BASE + ammo_glow, 1)
 	var/color = BOILER_LUMINOSITY_BASE_COLOR
 	if(current_ammo)
-		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neuro_ammo/current_ammo)
-		color = BlendRGB(color, ammo_color, (ammo_glow*2)/glow)
-	if(!light_on && glow >= BOILER_LUMINOSITY_THRESHOLD)
+		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neurotoxin_ammo / current_ammo)
+		color = BlendRGB(color, ammo_color, (ammo_glow * 2) / glow)
+	if(!glob_luminosity_slowing && current_ammo > glob_luminosity_threshold)
 		set_light_on(TRUE)
-	else if(glow < BOILER_LUMINOSITY_THRESHOLD && !fire_luminosity)
-		set_light_range_power_color(0, 0)
-		set_light_on(FALSE)
-	set_light_range_power_color(glow, 4, color)
+		set_light_range_power_color(glow, 4, color) //
+		return
+	remove_movespeed_modifier(MOVESPEED_ID_BOILER_GLOB_GLOW)
+	var/excess_globs = current_ammo - glob_luminosity_threshold
+	if(glob_luminosity_slowing && excess_globs > 0)
+		add_movespeed_modifier(MOVESPEED_ID_BOILER_GLOB_GLOW, TRUE, 0, NONE, TRUE, excess_globs * glob_luminosity_slowing)
+	// Light from being on fire is not from us, but from an overlay attached to us. Therefore, we don't need to worry about it.
+	set_light_range_power_color(0, 0)
+	set_light_on(FALSE)

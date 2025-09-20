@@ -4,6 +4,7 @@
 	playsound(src, 'sound/effects/gib.ogg', 90, TRUE, 8)
 	gib_animation()
 	spawn_gibs()
+	log_attack("[key_name(src)] has been gibbed.")
 	death(TRUE)
 
 

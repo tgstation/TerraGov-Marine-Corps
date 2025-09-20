@@ -181,6 +181,8 @@
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
+	if(A.density && (!istype(A, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO)))
+		return TRUE
 	if(B.density && (!istype(B, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO))) //TODO: Unsnowflake this check here and in DirBlocked()
 		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
@@ -408,6 +410,23 @@
 
 	return L
 
+///Returns the closest atom of a specific type in a list from a source
+/proc/get_closest_atom(type, list/atom_list, source)
+	var/closest_atom
+	var/closest_distance
+	for(var/atom in atom_list)
+		if(!istype(atom, type))
+			continue
+		var/distance = get_dist(source, atom)
+		if(!closest_atom)
+			closest_distance = distance
+			closest_atom = atom
+		else
+			if(closest_distance > distance)
+				closest_distance = distance
+				closest_atom = atom
+	return closest_atom
+
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
 /proc/get_edge_target_turf(atom/A, direction)
@@ -533,66 +552,37 @@
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
-/proc/get_area_turfs(areatype)
-	if(!areatype)
-		return
-
+/proc/get_area_turfs(areatype, target_z = 0, subtypes=FALSE)
 	if(istext(areatype))
 		areatype = text2path(areatype)
-
-	if(isarea(areatype))
+	else if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
+	else if(!ispath(areatype))
+		return null
+	// Pull out the areas
+	var/list/areas_to_pull = list()
+	if(subtypes)
+		var/list/cache = typecacheof(areatype)
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(!cache[area_to_check.type])
+				continue
+			areas_to_pull += area_to_check
+	else
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(area_to_check.type != areatype)
+				continue
+			areas_to_pull += area_to_check
 
+	// Now their turfs
 	var/list/turfs = list()
-	for(var/i in GLOB.sorted_areas)
-		var/area/A = i
-		if(!istype(A, areatype))
-			continue
-		for(var/turf/T in A)
-			turfs += T
-
-	return turfs
-
-
-/proc/DuplicateObject(atom/original, atom/newloc)
-	RETURN_TYPE(original.type)
-	if(!original || !newloc)
-		return
-
-	var/atom/O = new original.type(newloc)
-	if(!O)
-		return
-
-	O.contents.Cut()
-
-	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-		if(istype(original.vars[V], /datum) || ismob(original.vars[V]))
-			continue // this would reference the original's object, that will break when it is used or deleted.
-		else if(islist(original.vars[V]))
-			var/list/L = original.vars[V]
-			O.vars[V] = L.Copy()
+	for(var/area/pull_from as anything in areas_to_pull)
+		if (target_z == 0)
+			for (var/list/zlevel_turfs as anything in pull_from.get_zlevel_turf_lists())
+				turfs += zlevel_turfs
 		else
-			O.vars[V] = original.vars[V]
-
-	for(var/atom/A in original.contents)
-		O.contents += new A.type
-
-	if(isobj(O))
-		var/obj/N = O
-
-		N.update_icon()
-		if(ismachinery(O))
-			var/obj/machinery/M = O
-			M.power_change()
-
-	if(ismob(O)) //Overlays are carried over despite disallowing them, if a fix is found remove this.
-		var/mob/M = O
-		M.cut_overlays()
-		M.regenerate_icons()
-
-	return O
-
+			turfs += pull_from.get_turfs_by_zlevel(target_z)
+	return turfs
 
 /proc/get_cardinal_dir(atom/A, atom/B)
 	return angle_to_cardinal_dir(Get_Angle(get_turf(A), get_turf(B)))
@@ -799,8 +789,10 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			. = "huge"
 		if(WEIGHT_CLASS_GIGANTIC)
 			. = "gigantic"
+		if(WEIGHT_CLASS_GIGANTIC + 1 to INFINITY)
+			. = "titanic"
 		else
-			. = "?????"
+			. = "unknown size"
 
 ///Returns an assoc list of WEIGHT CLASS TEXT = DESCRIPTION based on the arg you provide.
 ///Used by examine tags for giving each weight class a special description.
@@ -814,10 +806,10 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			.[WEIGHT_CLASS_TOOLTIP] = "Fits in some standard containers and backpacks/satchels. Takes up some space."
 		if(WEIGHT_CLASS_BULKY)
 			.[WEIGHT_CLASS_TOOLTIP] = "Does not fit in standard containers."
-		if(WEIGHT_CLASS_HUGE, WEIGHT_CLASS_GIGANTIC)
+		if(WEIGHT_CLASS_HUGE to INFINITY)
 			.[WEIGHT_CLASS_TOOLTIP] = "Often can't be stored at all, except in uncommon specialized containers, like holsters for weapons."
 		else
-			.[WEIGHT_CLASS_TOOLTIP] = "Yell at coders, this isn't supposed to happen."
+			.[WEIGHT_CLASS_TOOLTIP] = "Yell at a coder, this item is a weight class that doesn't exist."
 
 /// Converts a semver string into a list of numbers
 /proc/semver_to_list(semver_string)
@@ -830,62 +822,6 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		text2num(semver_regex.group[2]),
 		text2num(semver_regex.group[3]),
 	)
-
-//Reasonably Optimized Bresenham's Line Drawing
-/proc/getline(atom/start, atom/end)
-	var/x = start.x
-	var/y = start.y
-	var/z = start.z
-
-	//horizontal and vertical lines special case
-	if(y == end.y)
-		return x <= end.x ? block(locate(x,y,z), locate(end.x,y,z)) : reverseRange(block(locate(end.x,y,z), locate(x,y,z)))
-	if(x == end.x)
-		return y <= end.y ? block(locate(x,y,z), locate(x,end.y,z)) : reverseRange(block(locate(x,end.y,z), locate(x,y,z)))
-
-	//let's compute these only once
-	var/abs_dx = abs(end.x - x)
-	var/abs_dy = abs(end.y - y)
-	var/sign_dx = SIGN(end.x - x)
-	var/sign_dy = SIGN(end.y - y)
-
-	var/list/turfs = list(locate(x,y,z))
-
-	//diagonal special case
-	if(abs_dx == abs_dy)
-		for(var/j = 1 to abs_dx)
-			x += sign_dx
-			y += sign_dy
-			turfs += locate(x,y,z)
-		return turfs
-
-	/*x_error and y_error represents how far we are from the ideal line.
-	Initialized so that we will check these errors against 0, instead of 0.5 * abs_(dx/dy)*/
-
-	//We multiply every check by the line slope denominator so that we only handles integers
-	if(abs_dx > abs_dy)
-		var/y_error = -(abs_dx >> 1)
-		var/steps = abs_dx
-		while(steps--)
-			y_error += abs_dy
-			if(y_error > 0)
-				y_error -= abs_dx
-				y += sign_dy
-			x += sign_dx
-			turfs += locate(x,y,z)
-	else
-		var/x_error = -(abs_dy >> 1)
-		var/steps = abs_dy
-		while(steps--)
-			x_error += abs_dx
-			if(x_error > 0)
-				x_error -= abs_dy
-				x += sign_dx
-			y += sign_dy
-			turfs += locate(x,y,z)
-
-	. = turfs
-
 
 // Makes a call in the context of a different usr
 // Use sparingly
@@ -947,14 +883,15 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			break
 	return turf_to_check
 
-//Repopulates sortedAreas list
-/proc/repopulate_sorted_areas()
-	GLOB.sorted_areas = list()
 
-	for(var/area/A in world)
-		GLOB.sorted_areas.Add(A)
+/proc/require_area_resort()
+	GLOB.sorted_areas = null
 
-	sortTim(GLOB.sorted_areas, GLOBAL_PROC_REF(cmp_name_asc))
+/// Returns a sorted version of GLOB.areas, by name
+/proc/get_sorted_areas()
+	if(!GLOB.sorted_areas)
+		GLOB.sorted_areas = sortTim(GLOB.areas.Copy(), /proc/cmp_name_asc)
+	return GLOB.sorted_areas
 
 
 // Format a power value in W, kW, MW, or GW.
@@ -1017,7 +954,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 	GLOB.dview_mob.loc = center
 
-	GLOB.dview_mob.see_invisible = invis_flags
+	GLOB.dview_mob.set_invis_see(invis_flags)
 
 	. = view(range, GLOB.dview_mob)
 	GLOB.dview_mob.loc = null
@@ -1026,7 +963,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	name = "INTERNAL DVIEW MOB"
 	invisibility = 101
 	density = FALSE
-	see_in_dark = 1e6
 	move_resist = INFINITY
 	var/ready_to_die = FALSE
 
@@ -1051,57 +987,68 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 #define FOR_DVIEW(type, range, center, invis_flags) \
 	GLOB.dview_mob.loc = center;           \
-	GLOB.dview_mob.see_invisible = invis_flags; \
+	GLOB.dview_mob.set_invis_see(invis_flags); \
 	for(type in view(range, GLOB.dview_mob))
 
 #define FOR_DVIEW_END GLOB.dview_mob.loc = null
 
-/*
+/**
+ * Lets the turf this atom's *ICON* appears to inhabit
+ * it takes into account:
+ * Pixel_x/y
+ * Matrix x/y
+ * NOTE: if your atom has non-standard bounds then this proc
+ * will handle it, but:
+ * if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
+ * this may seem bad, but you're at least as close to the center of the atom as possible, better than byond's default loc being all the way off)
+ * if the bounds are odd, the true middle turf of the atom is returned
+**/
+/proc/get_turf_pixel(atom/checked_atom)
+	var/turf/atom_turf = get_turf(checked_atom) //use checked_atom's turfs, as its coords are the same as checked_atom's AND checked_atom's coords are lost if it is inside another atom
+	if(!atom_turf)
+		return null
 
-Gets the turf this atom's *ICON* appears to inhabit
-It takes into account:
-* Pixel_x/y
-* Matrix x/y
+	var/list/offsets = get_visual_offset(checked_atom)
+	return pixel_offset_turf(atom_turf, offsets)
 
-NOTE: if your atom has non-standard bounds then this proc
-will handle it, but:
-* if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
-(this may seem bad, but you're atleast as close to the center of the atom as possible, better than byond's default loc being all the way off)
-* if the bounds are odd, the true middle turf of the atom is returned
+/**
+ * Returns how visually "off" the atom is from its source turf as a list of x, y (in pixel steps)
+ * it takes into account:
+ * Pixel_x/y
+ * Matrix x/y
+ * Icon width/height
+**/
+/proc/get_visual_offset(atom/checked_atom)
+	//Find checked_atom's matrix so we can use its X/Y pixel shifts
+	var/matrix/atom_matrix = matrix(checked_atom.transform)
 
-*/
-
-/proc/get_turf_pixel(atom/AM)
-	if(!istype(AM))
-		return
-
-	//Find AM's matrix so we can use it's X/Y pixel shifts
-	var/matrix/M = matrix(AM.transform)
-
-	var/pixel_x_offset = AM.pixel_x + M.get_x_shift()
-	var/pixel_y_offset = AM.pixel_y + M.get_y_shift()
+	var/pixel_x_offset = checked_atom.pixel_x + checked_atom.pixel_w + atom_matrix.get_x_shift()
+	var/pixel_y_offset = checked_atom.pixel_y + checked_atom.pixel_z + atom_matrix.get_y_shift()
 
 	//Irregular objects
-	var/icon/AMicon = icon(AM.icon, AM.icon_state)
-	var/AMiconheight = AMicon.Height()
-	var/AMiconwidth = AMicon.Width()
-	if(AMiconheight != world.icon_size || AMiconwidth != world.icon_size)
-		pixel_x_offset += ((AMiconwidth/world.icon_size)-1)*(world.icon_size*0.5)
-		pixel_y_offset += ((AMiconheight/world.icon_size)-1)*(world.icon_size*0.5)
+	var/list/icon_dimensions = get_icon_dimensions(checked_atom.icon)
+	var/checked_atom_icon_height = icon_dimensions["height"]
+	var/checked_atom_icon_width = icon_dimensions["width"]
+	if(checked_atom_icon_height != ICON_SIZE_Y || checked_atom_icon_width != ICON_SIZE_X)
+		pixel_x_offset += ((checked_atom_icon_width / ICON_SIZE_X) - 1) * (ICON_SIZE_X * 0.5)
+		pixel_y_offset += ((checked_atom_icon_height / ICON_SIZE_Y) - 1) * (ICON_SIZE_Y * 0.5)
 
+	return list(pixel_x_offset, pixel_y_offset)
+
+/**
+ * Takes a turf, and a list of x and y pixel offsets and returns the turf that the offset position best lands in
+**/
+/proc/pixel_offset_turf(turf/offset_from, list/offsets)
 	//DY and DX
-	var/rough_x = round(round(pixel_x_offset,world.icon_size)/world.icon_size)
-	var/rough_y = round(round(pixel_y_offset,world.icon_size)/world.icon_size)
+	var/rough_x = round(round(offsets[1], ICON_SIZE_X) / ICON_SIZE_X)
+	var/rough_y = round(round(offsets[2], ICON_SIZE_Y) / ICON_SIZE_Y)
 
-	//Find coordinates
-	var/turf/T = get_turf(AM) //use AM's turfs, as it's coords are the same as AM's AND AM's coords are lost if it is inside another atom
-	if(!T)
-		return null
-	var/final_x = T.x + rough_x
-	var/final_y = T.y + rough_y
+	var/final_x = clamp(offset_from.x + rough_x, 1, world.maxx)
+	var/final_y = clamp(offset_from.y + rough_y, 1, world.maxy)
 
 	if(final_x || final_y)
-		return locate(final_x, final_y, T.z)
+		return locate(final_x, final_y, offset_from.z)
+	return offset_from
 
 /proc/animate_speech_bubble(image/I, list/show_to, duration)
 	var/matrix/M = matrix()
@@ -1163,9 +1110,6 @@ will handle it, but:
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
-
-#define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
-
 
 ///Takes: Area type as text string or as typepath OR an instance of the area. Returns: A list of all areas of that type in the world.
 /proc/get_areas(areatype, subtypes=TRUE)
@@ -1257,10 +1201,77 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  * Returns the last turf in the list it can successfully path to
 */
 /proc/check_path(atom/start, atom/end, pass_flags_checked = NONE)
-	var/list/path_to_target = getline(start, end)
+	var/list/path_to_target = get_line(start, end) //we don't use traversal because link blocked checks both diags as needed
 	var/line_count = 1
 	while(line_count < length(path_to_target))
 		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], pass_flags_checked))
 			break
 		line_count ++
 	return path_to_target[line_count]
+
+///Return TRUE if we have a block, return FALSE otherwise
+/proc/turf_block_check(atom/subject, atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE, ignore_mobs = FALSE, ignore_space = FALSE)
+	var/turf/T = get_turf(target)
+	if(isspaceturf(T) && !ignore_space)
+		return TRUE
+	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
+		return TRUE
+	for(var/atom/blocker AS in T)
+		if((blocker.atom_flags & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
+			continue
+		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
+			return TRUE
+		if(!blocker.density) //Check if we're dense
+			continue
+		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
+			return TRUE
+		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
+			return TRUE
+		if(isobj(blocker) && !ignore_objects) //If we care about dense objects
+			var/obj/obj_blocker = blocker
+			if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
+				return TRUE
+			var/obj/structure/blocker_structure = obj_blocker
+			if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
+				return TRUE
+		if(ismob(blocker) && !ignore_mobs) //If we care about mobs
+			return TRUE
+
+	return FALSE
+
+/**
+ * Returns a rectangle of turfs in front of the center.
+ *
+ * To find what exact width and height to enter, width is based on west-east and height is north-south as if center is facing north.
+ *
+ * Increments in width increases both sizes by said increment while height is only increased once by the increment.
+*/
+/proc/get_forward_square(atom/center, width, height, requires_openturf = TRUE, requires_lineofsight = TRUE)
+	if(width < 0 || height <= 0) // This is forward square, not backwards square.
+		return list()
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(center.dir)
+		if(NORTH)
+			lower_left = locate(center.x - width, center.y + 1, center.z)
+			upper_right = locate(center.x + width, center.y + height, center.z)
+		if(SOUTH)
+			lower_left = locate(center.x - width, center.y - height, center.z)
+			upper_right = locate(center.x + width, center.y - 1, center.z)
+		if(WEST)
+			lower_left = locate(center.x - height, center.y - width, center.z)
+			upper_right = locate(center.x - 1, center.y + width, center.z)
+		if(EAST)
+			lower_left = locate(center.x + height, center.y - width, center.z)
+			upper_right = locate(center.x + 1, center.y + width, center.z)
+
+	var/list/turf/acceptable_turfs = list()
+	var/list/turf/possible_turfs = block(lower_left, upper_right)
+	for(var/turf/possible_turf AS in possible_turfs)
+		if(requires_openturf && isclosedturf(possible_turf))
+			continue
+		if(requires_lineofsight && !line_of_sight(center, possible_turf, max(width, height)))
+			continue
+		acceptable_turfs += possible_turf
+	return acceptable_turfs

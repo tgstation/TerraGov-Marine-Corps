@@ -1,10 +1,3 @@
-//supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
-#define RANGE_TURFS(RADIUS, CENTER) \
-	block( \
-		locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-	)
-
 /proc/get_area_name(atom/X, format_text = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
@@ -14,9 +7,11 @@
 
 /// Checks all conditions if a spot is valid for construction , will return TRUE
 /proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, planned_building)
-
 	if(!target || !istype(target))
 		return ERROR_JUST_NO
+	if(ispath(planned_building, /turf/closed/wall/resin) && istype(target, /turf/closed/wall/resin))
+		if(planned_building != target.type)
+			return NO_ERROR
 	var/obj/alien/weeds/alien_weeds = locate() in target
 	if(!target.check_disallow_alien_fortification(null, TRUE))
 		return ERROR_NOT_ALLOWED
@@ -60,7 +55,7 @@
 			continue
 
 		//Aghosted admins don't get picked
-		if(O.mind?.current && isclientedaghost(O.mind.current))
+		if(isaghost(O))
 			continue
 
 		if(!picked)

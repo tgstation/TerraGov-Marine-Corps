@@ -1,7 +1,7 @@
-import { BooleanLike, classes } from 'common/react';
+import { Button, Stack, Table } from 'tgui-core/components';
+import { BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Button, Flex, Table } from '../components';
 import { Window } from '../layouts';
 
 type AlternateAction = {
@@ -22,6 +22,7 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
 };
 
 enum ObscuringLevel {
+  NotHidden = 0,
   Completely = 1,
   Hidden = 2,
 }
@@ -183,7 +184,9 @@ const StripMenuRow = (props: StripMenuRowProps) => {
     ? 'Obscured'
     : props.empty
       ? 'Empty'
-      : props.itemName;
+      : props.itemName
+        ? props.itemName
+        : 'Unknown';
 
   return (
     <Table.Row
@@ -196,33 +199,33 @@ const StripMenuRow = (props: StripMenuRowProps) => {
       ])}
     >
       <Table.Cell pl={1.5}>{props.slotName}:</Table.Cell>
-      <Table.Cell pr={1.5} position="relative">
-        <Flex direction="column">
+      <Table.Cell position="relative">
+        <Stack direction="column">
           {!props.unavailable && (
-            <Flex.Item>
+            <Stack.Item>
               <Button
-                compact
-                content={name}
                 disabled={props.obscured === ObscuringLevel.Completely}
                 color={props.empty ? 'transparent' : null}
                 ellipsis
                 maxWidth="100%"
-                icon={props.interacting && 'spinner'}
+                icon={props.interacting ? 'spinner' : false}
                 iconSpin
                 onClick={() => act('use', { key: props.slotID })}
-              />
-            </Flex.Item>
+              >
+                {name}
+              </Button>
+            </Stack.Item>
           )}
           {props.alternates?.map((alternate) => (
-            <Flex.Item key={alternate.text}>
+            <Stack.Item key={alternate.text}>
               <Button
                 compact
                 content={alternate.text}
                 onClick={() => act('alt', { key: props.slotID })}
               />
-            </Flex.Item>
+            </Stack.Item>
           ))}
-        </Flex>
+        </Stack>
       </Table.Cell>
     </Table.Row>
   );

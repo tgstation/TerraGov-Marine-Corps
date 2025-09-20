@@ -8,6 +8,7 @@
 	icon_state = "smoke"
 	opacity = TRUE
 	anchored = TRUE
+	plane = ABOVE_GAME_PLANE
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pass_flags = PASS_AIR
@@ -102,7 +103,7 @@
 	if(isliving(O))
 		O.effect_smoke(src)
 		return
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/projectile))
+	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /atom/movable/projectile))
 		O.effect_smoke(src)
 
 /obj/effect/particle_effect/smoke/proc/on_exited(datum/source, mob/living/M, direction)
@@ -364,6 +365,9 @@
 /obj/effect/particle_effect/smoke/xeno/burn/light
 	lifetime = 4 //Lasts for less time
 
+/obj/effect/particle_effect/smoke/xeno/burn/fast
+	lifetime = 1
+
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
 	alpha = 255
@@ -373,13 +377,23 @@
 
 ///Xeno neurotox smoke for Defilers; doesn't extinguish
 /obj/effect/particle_effect/smoke/xeno/neuro/medium
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
 ///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light
 	alpha = 120
 	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
+
+/// With much less alpha, but can extinguish fire.
+/obj/effect/particle_effect/smoke/xeno/neuro/light/extinguishing
+	alpha = 60
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
+
+/// Can extinguish fire, but has significantly less lifetime.
+/obj/effect/particle_effect/smoke/xeno/neuro/light/fast
+	lifetime = 1
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
@@ -392,9 +406,17 @@
 	color = "#0287A1"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP|SMOKE_HUGGER_PACIFY
 
+/obj/effect/particle_effect/smoke/xeno/hemodile/light
+	alpha = 60
+	opacity = FALSE
+
 /obj/effect/particle_effect/smoke/xeno/transvitox
 	color = "#abf775"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+
+/obj/effect/particle_effect/smoke/xeno/transvitox/light
+	alpha = 60
+	opacity = FALSE
 
 //Toxic smoke when the Defiler successfully uses Defile
 /obj/effect/particle_effect/smoke/xeno/sanguinal
@@ -406,6 +428,9 @@
 	color = "#f1ddcf" //A pinkish for now.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
+/obj/effect/particle_effect/smoke/xeno/ozelomelyn/light
+	alpha = 60
+	opacity = FALSE
 
 /// Smoke that constantly makes pyrogen fire.
 /obj/effect/particle_effect/smoke/xeno/pyrogen_fire
@@ -413,6 +438,9 @@
 	opacity = FALSE
 	color = "#cff1ee" // Blueish.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_PYROGEN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+
+/obj/effect/particle_effect/smoke/xeno/pyrogen_fire/light
+	lifetime = 4 //Lasts for less time
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -466,6 +494,9 @@
 /datum/effect_system/smoke_spread/xeno/acid/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/light
 
+/datum/effect_system/smoke_spread/xeno/acid/fast
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/fast
+
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
 
@@ -475,14 +506,26 @@
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
 
+/datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light/extinguishing
+
+/datum/effect_system/smoke_spread/xeno/neuro/light/fast
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light/fast
+
 /datum/effect_system/smoke_spread/xeno/toxic
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/toxic
 
 /datum/effect_system/smoke_spread/xeno/hemodile
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
 
+/datum/effect_system/smoke_spread/xeno/hemodile/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile/light
+
 /datum/effect_system/smoke_spread/xeno/transvitox
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
+
+/datum/effect_system/smoke_spread/xeno/transvitox/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox/light
 
 /datum/effect_system/smoke_spread/xeno/sanguinal
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/sanguinal
@@ -490,10 +533,14 @@
 /datum/effect_system/smoke_spread/xeno/ozelomelyn
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn
 
+/datum/effect_system/smoke_spread/xeno/ozelomelyn/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn/light
 
 /datum/effect_system/smoke_spread/xeno/pyrogen_fire
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire
 
+/datum/effect_system/smoke_spread/xeno/pyrogen_fire/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire/light
 
 /////////////////////////////////////////////
 // Chem smoke

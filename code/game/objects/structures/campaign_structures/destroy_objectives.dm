@@ -3,10 +3,17 @@
 /obj/structure/campaign_objective/destruction_objective
 	name = "GENERIC CAMPAIGN DESTRUCTION OBJECTIVE"
 	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
+	faction = FACTION_TERRAGOV
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
 	///explosion smoke particle holder
 	var/obj/effect/abstract/particle_holder/explosion_smoke
-	///The faction this belongs to
-	var/faction = FACTION_TERRAGOV
+
+/obj/structure/campaign_objective/destruction_objective/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/campaign_objective/destruction_objective/Destroy()
 	QDEL_NULL(explosion_smoke)
@@ -51,6 +58,7 @@
 	desc = "A massive multi launch rocket system on a tracked chassis. Can unleash a tremendous amount of firepower in a short amount of time."
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
 	icon_state = "mlrs"
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	bound_height = 64
 	bound_width = 128
 	pixel_y = -15
@@ -60,21 +68,12 @@
 	///destroyed vehicle smoke effect
 	var/smoke_type = /particles/tank_wreck_smoke
 
-/obj/structure/campaign_objective/destruction_objective/mlrs/Initialize(mapload)
-	. = ..()
-	update_icon()
-
 /obj/structure/campaign_objective/destruction_objective/mlrs/update_icon_state()
 	. = ..()
 	if(destroyed_state)
 		icon_state = "[initial(icon_state)]_broken"
 	else
 		icon_state = initial(icon_state)
-
-/obj/structure/campaign_objective/destruction_objective/mlrs/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/plastique_act(mob/living/plastique_user)
 	if(plastique_user && plastique_user.ckey)
@@ -133,6 +132,7 @@
 	icon_state = "apc"
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
 	pixel_y = -15
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/mlrs/apc
 
@@ -156,6 +156,7 @@
 	name = "locomotive objective"
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid, /datum/campaign_mission/destroy_mission/supply_raid/som)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/supply_objective/train
 
@@ -164,17 +165,9 @@
 	desc = "A heavy duty maglev locomotive. Designed for moving large quantities of goods from point A to point B."
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	bound_width = 128
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/Initialize(mapload)
-	. = ..()
-	update_icon()
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
 
 /obj/effect/landmark/campaign_structure/train/carriage
 	name = "carriage objective"
@@ -203,20 +196,11 @@
 	bound_width = 64
 	faction = FACTION_SOM
 
-/obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack/Initialize(mapload)
-	. = ..()
-	update_icon()
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
-
 //NT base
 /obj/effect/landmark/campaign_structure/nt_pod
 	name = "Mysterious pod"
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
-	icon_state = "alien_pod_mapper"
+	icon_state = "alien_pod"
 	mission_types = list(/datum/campaign_mission/destroy_mission/base_rescue)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/nt_pod
 
@@ -228,14 +212,6 @@
 	bound_height = 64
 	bound_width = 64
 	pixel_y = 10
-
-/obj/structure/campaign_objective/destruction_objective/nt_pod/Initialize(mapload)
-	. = ..()
-	update_appearance(UPDATE_OVERLAYS)
-
-/obj/structure/campaign_objective/destruction_objective/nt_pod/update_overlays()
-	. = ..()
-	. += image(icon, icon_state = "alien_pod_overlay", layer = ABOVE_MOB_LAYER)
 
 /obj/structure/campaign_objective/destruction_objective/nt_pod/Destroy()
 	playsound(loc, 'sound/voice/predalien/death.ogg', 75, 0)
@@ -283,10 +259,10 @@
 	switch(status)
 		if(BLUESPACE_CORE_OK)
 			. += image(icon, icon_state = "top_overlay", layer = ABOVE_MOB_LAYER)
-			. += image(icon, icon_state = "bsd_c_s", layer = ABOVE_MOB_PROP_LAYER)
+			. += image(icon, icon_state = "bsd_c_s", layer = ABOVE_MOB_LAYER)
 		if(BLUESPACE_CORE_UNSTABLE)
 			. += image(icon, icon_state = "top_overlay", layer = ABOVE_MOB_LAYER)
-			. += image(icon, icon_state = "bsd_c_u", layer = ABOVE_MOB_PROP_LAYER)
+			. += image(icon, icon_state = "bsd_c_u", layer = ABOVE_MOB_LAYER)
 		if(BLUESPACE_CORE_BROKEN)
 			. += image(icon, icon_state = "top_overlay_broken", layer = ABOVE_MOB_LAYER)
 
@@ -317,6 +293,7 @@
 	pixel_x = -33
 	pixel_y = -10
 	density = TRUE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	allow_pass_flags = PASS_AIR
 
 /obj/effect/landmark/campaign_structure/harbinger
@@ -325,6 +302,7 @@
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	mission_types = list(/datum/campaign_mission/destroy_mission/airbase)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/harbinger
 

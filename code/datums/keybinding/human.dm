@@ -35,6 +35,23 @@
 	full_name = "Quick equip 5"
 	quick_equip_slot = 5
 
+/datum/keybinding/human/interact_other_hand
+	hotkey_keys = list("Unbound")
+	name = "interact_other_hand"
+	full_name = "Interact with other hand"
+	keybind_signal = COMSIG_KB_HUMAN_INTERACT_OTHER_HAND
+
+/datum/keybinding/human/interact_other_hand/down(client/user)
+	. = ..()
+	if(.)
+		return
+
+	if(!ishuman(user.mob))
+		return
+	var/mob/living/carbon/human/human_user = user.mob
+
+	human_user.interact_other_hand()
+
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")
 	name = "unique_action"
@@ -200,3 +217,17 @@
 	full_name = "Honk Horn"
 	description = "Tell marines to move so that they don't get run over"
 	keybind_signal = COMSIG_KB_VEHICLEHONK
+
+/datum/keybinding/human/place_hologram
+	name = "place_hologram"
+	full_name = "Place Hologram"
+	description = "Place a holographic template of a structure"
+	keybind_signal = COMSIG_ABILITY_PLACE_HOLOGRAM
+	hotkey_keys = list("E")
+
+/datum/keybinding/human/select_buildtype
+	name = "select_buildtype"
+	full_name = "Select Buildtype"
+	description = "Select the structure to use when using Place Hologram"
+	keybind_signal = COMSIG_ABILITY_SELECT_BUILDTYPE
+	hotkey_keys = list("Q")

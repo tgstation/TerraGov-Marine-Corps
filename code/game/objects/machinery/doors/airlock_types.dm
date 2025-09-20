@@ -589,17 +589,10 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/mainship/marine/handle_weldingtool_overlay(removing = FALSE)
-	if(!removing)
-		if(dir & NORTH|SOUTH)
-			add_overlay(GLOB.welding_sparks_prepdoor)
-		else
-			add_overlay(GLOB.welding_sparks)
-	else
-		if(dir & NORTH|SOUTH)
-			cut_overlay(GLOB.welding_sparks_prepdoor)
-		else
-			cut_overlay(GLOB.welding_sparks)
+/obj/machinery/door/airlock/mainship/marine/get_weld_spark_icon_and_state()
+	if(dir & NORTH|SOUTH)
+		return list('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_marinedoor")
+	return ..()
 
 /obj/machinery/door/airlock/mainship/marine/canterbury //For wallsmoothing
 

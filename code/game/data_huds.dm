@@ -187,6 +187,8 @@
 	var/static/image/intoxicated_amount_image = image('icons/mob/hud/intoxicated.dmi', icon_state = "intoxicated_amount0")
 	var/static/image/intoxicated_high_image = image('icons/mob/hud/intoxicated.dmi', icon_state = "intoxicated_high")
 	var/static/image/hunter_silence_image = image('icons/mob/hud/human.dmi', icon_state = "silence_debuff")
+	var/static/image/dancer_marked_image = image('icons/mob/hud/human.dmi', icon_state = "marked_debuff")
+	var/static/image/lifedrain = image('icons/mob/hud/human.dmi', icon_state = "lifedrain")
 	var/static/image/hive_target_image = image('icons/mob/hud/human.dmi', icon_state = "hive_target")
 
 	xeno_reagent.overlays.Cut()
@@ -229,6 +231,12 @@
 	if(stat != DEAD)
 		if(IsMute())
 			xeno_debuff.overlays += hunter_silence_image
+
+	if(has_status_effect(STATUS_EFFECT_DANCER_TAGGED))
+		xeno_debuff.overlays += dancer_marked_image
+
+	if(has_status_effect(STATUS_EFFECT_LIFEDRAIN))
+		xeno_debuff.overlays += lifedrain
 
 	if(HAS_TRAIT(src, TRAIT_HIVE_TARGET))
 		xeno_debuff.overlays += hive_target_image
@@ -298,6 +306,7 @@
 		simple_status_hud.icon_state = ""
 		infection_hud.icon_state = "robot"
 
+	var/is_bot = has_ai()
 	switch(stat)
 		if(DEAD)
 			simple_status_hud.icon_state = ""
@@ -308,7 +317,7 @@
 				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "dead"
 				return TRUE
-			if(!mind)
+			if(!mind && !is_bot)
 				var/mob/dead/observer/ghost = get_ghost(TRUE)
 				if(!ghost) // No ghost detected. DNR player or NPC
 					status_hud.icon_state = "dead_dnr"
@@ -329,8 +338,12 @@
 			return TRUE
 		if(UNCONSCIOUS)
 			if(!client) //Nobody home.
-				simple_status_hud.icon_state = "afk"
-				status_hud.icon_state = "afk"
+				if(is_bot)
+					simple_status_hud.icon_state = "ai_mob"
+					status_hud.icon_state = "ai_mob"
+				else
+					simple_status_hud.icon_state = "afk"
+					status_hud.icon_state = "afk"
 				return TRUE
 			if(IsUnconscious()) //Should hopefully get out of it soon.
 				simple_status_hud.icon_state = "knockout"
@@ -341,8 +354,12 @@
 			return TRUE
 		if(CONSCIOUS)
 			if(!key) //Nobody home. Shouldn't affect aghosting.
-				simple_status_hud.icon_state = "afk"
-				status_hud.icon_state = "afk"
+				if(is_bot)
+					simple_status_hud.icon_state = "ai_mob"
+					status_hud.icon_state = "ai_mob"
+				else
+					simple_status_hud.icon_state = "afk"
+					status_hud.icon_state = "afk"
 				return TRUE
 			if(IsParalyzed()) //I've fallen and I can't get up.
 				simple_status_hud.icon_state = "knockdown"
@@ -532,13 +549,17 @@
 	holder.overlays.Cut()
 	holder.icon_state = ""
 	if(stat != DEAD)
-		if(hive?.living_xeno_queen)
-			if(hive.living_xeno_queen.observed_xeno == src)
+		if(hive?.living_xeno_ruler)
+			if(hive.living_xeno_ruler.observed_xeno == src)
 				holder.icon = 'icons/mob/hud/xeno.dmi'
 				holder.icon_state = "queen_overwatch"
 			if(xeno_flags & XENO_LEADER)
 				var/image/I = image('icons/mob/hud/xeno.dmi',src, "leader")
 				holder.overlays += I
+			if(hive.living_xeno_ruler == src)
+				var/image/I = image('icons/mob/hud/xeno.dmi',src, "ruler")
+				holder.overlays += I
+
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
 /mob/living/carbon/xenomorph/proc/hud_update_rank()
@@ -743,8 +764,22 @@
 	var/image/holder = hud_list[ORDER_HUD]
 	if(!holder)
 		return
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = get_cached_height() - world.icon_size
 	if(internal_damage)
 		holder.icon_state = "hudwarn"
 	holder.icon_state = null
+
+/obj/machinery/deployable/tesla_turret/proc/hud_set_tesla_battery()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!battery)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(battery.charge * 100 / battery.maxcharge, 10)
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
+	holder.icon_state = "plasma[amount]"

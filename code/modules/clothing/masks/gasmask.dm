@@ -24,7 +24,7 @@
 	. = ..()
 	if(!breathy)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_GAS_BREATH))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_GAS_BREATH))
 		return
 	if(slot != SLOT_WEAR_MASK)
 		return
@@ -86,6 +86,13 @@
 	desc = "Old balaclava's handed down to V.S.D."
 	inv_hide_flags = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	icon_state = "upp_mask"
+
+/obj/item/clothing/mask/gas/tactical/freelancer
+	name = "MAG-3L coifed gas mask"
+	desc = "An old model of police issue transparent gas mask combined with protective balaclava. Property of MAGNUM freelancers."
+	inv_hide_flags = HIDEEARS|HIDEFACE|HIDEALLHAIR
+	icon_state = "merc"
+	worn_icon_state = "merc"
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor

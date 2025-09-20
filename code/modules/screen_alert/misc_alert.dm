@@ -9,7 +9,7 @@
 	style_open = "<span class='maptext' style=font-size:20pt;text-align:left valign='top'>"
 	style_close = "</span>"
 	layer = INTRO_LAYER
-	plane = INTRO_PLANE
+	plane = ABOVE_HUD_PLANE
 	///image that will display on the left of the screen alert
 	var/image_to_play = "lrprr"
 	///y offset of image
@@ -125,7 +125,7 @@
 	mugshot.pixel_x = image_to_play_offset_x + 17
 	mugshot.pixel_y = image_to_play_offset_y - 1 //scale shittery meant this didn't line up exactly without the -1
 	mugshot.layer = layer+0.1
-	mugshot.plane = plane
+	SET_PLANE(mugshot, plane, src)
 	mugshot.transform = matrix().Scale(3) //only need to scale once, although this can actually be after as well alpha filter stuff, makes no diff. we use a NEW matrix to also fix things like people lying down
 	mugshot.dir = SOUTH
 
@@ -136,13 +136,13 @@
 	mugshot.overlays += alphafilter
 	mugshot.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*mugshots")))
 
-	holding_movable.overlays += mugshot
+	holding_movable.overlays += strip_appearance_underlays(mugshot)
 
 	var/image/static_overlay = image('icons/UI_Icons/screen_alert_images.dmi', icon_state = image_to_play+"_static", pixel_y = image_to_play_offset_y, pixel_x = image_to_play_offset_x)
 	static_overlay.appearance_flags = APPEARANCE_UI
 	static_overlay.alpha = 75
 	static_overlay.layer = layer+0.2
-	static_overlay.plane = plane
+	SET_PLANE(static_overlay, plane, src)
 	holding_movable.overlays += static_overlay
 
 	var/mutable_appearance/mugshot_name = mutable_appearance()
@@ -150,7 +150,7 @@
 	mugshot_name.maptext_width = 66 // 64 (the icon) + 1 buffer each side
 	mugshot_name.maptext_x = -1
 	mugshot_name.maptext_y = -1
-	mugshot_name.plane = plane
+	SET_PLANE(mugshot_name, plane, src)
 	mugshot_name.layer = layer+0.3
 
 	var/cleaned_realname = mugshottee.real_name
@@ -176,3 +176,9 @@
 	vis_contents += holding_movable
 
 #undef MAX_NON_COMMTITLE_LEN
+
+/atom/movable/screen/text/screen_text/rightaligned
+	screen_loc = "RIGHT,TOP-3"
+	maptext_width = 480
+	//equal to the width-32
+	maptext_x = -448

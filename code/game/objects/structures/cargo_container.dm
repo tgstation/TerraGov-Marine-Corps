@@ -9,6 +9,7 @@
 	max_integrity = 200
 	opacity = TRUE
 	anchored = TRUE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	allow_pass_flags = NONE
 
 /obj/structure/cargo_container/attack_hand(mob/living/user)

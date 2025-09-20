@@ -14,9 +14,6 @@
 #define faction_alert_default_span(string) ("<div class='faction_alert_default'>" + string + "</div>")
 #define faction_alert_colored_span(color, string) ("<div class='faction_alert_" + color + "'>" + string + "</div>")
 
-// colors for faction alert overrides, used for admin menus
-#define faction_alert_colors list("default", "green", "blue", "pink", "yellow", "orange", "red", "purple", "grey")
-
 /**
  * Design a faction alert. Returns a string.
  *
@@ -132,6 +129,34 @@
 		P.name = papertitle
 		P.info = papermessage
 		P.update_icon()
+
+/// Sends an announcement about the level changing to players. Uses the passed in datum and the subsystem's previous security level to generate the message.
+/proc/level_announce(datum/security_level/selected_level, previous_level_number)
+	var/current_level_number = selected_level.number_level
+	var/current_level_name = selected_level.name
+	var/current_level_color = selected_level.announcement_color
+
+	var/active_subtitle
+	var/active_message
+	var/active_sound
+
+	if(current_level_number > previous_level_number)
+		active_subtitle = "Security level elevated to [uppertext(current_level_name)]:"
+		active_message = selected_level.elevating_body
+		active_sound = selected_level.elevating_sound
+	else
+		active_subtitle = "Security level lowered to [uppertext(current_level_name)]:"
+		active_message = selected_level.lowering_body
+		active_sound = selected_level.lowering_sound
+
+	priority_announce(
+		type = ANNOUNCEMENT_REGULAR,
+		title = "Attention!",
+		subtitle = active_subtitle,
+		message = active_message,
+		sound = active_sound,
+		color_override = current_level_color
+	)
 
 /**
  * Make a minor announcement to a target

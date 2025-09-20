@@ -1,5 +1,3 @@
-#define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
-
 /****************************************************
 				EXTERNAL ORGANS
 ****************************************************/
@@ -454,7 +452,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
-				if (COOLDOWN_CHECK(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_TWO) && !(limb_status & LIMB_NECROTIZED))
+				if (COOLDOWN_FINISHED(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_TWO) && !(limb_status & LIMB_NECROTIZED))
 					to_chat(owner, span_notice("Your [display_name] itches and feels warm..."))
 					COOLDOWN_START(src, next_infection_message, rand(60 SECONDS, 90 SECONDS))
 
@@ -466,7 +464,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
-				if (COOLDOWN_CHECK(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_THREE) && !(limb_status & LIMB_NECROTIZED))
+				if (COOLDOWN_FINISHED(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_THREE) && !(limb_status & LIMB_NECROTIZED))
 					to_chat(owner, span_warning("Your infected [display_name] is turning off-color and stings like hell!"))
 					COOLDOWN_START(src, next_infection_message, rand(25 SECONDS, 40 SECONDS))
 
@@ -712,10 +710,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 				organ = new /obj/item/limb/head/robotic(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)
-			owner.dropItemToGround(owner.glasses, force = TRUE)
-			owner.dropItemToGround(owner.head, force = TRUE)
-			owner.dropItemToGround(owner.wear_ear, force = TRUE)
-			owner.dropItemToGround(owner.wear_mask, force = TRUE)
+			owner.dropItemToGround(owner?.glasses, force = TRUE)
+			owner.dropItemToGround(owner?.head, force = TRUE)
+			owner.dropItemToGround(owner?.wear_ear, force = TRUE)
+			owner.dropItemToGround(owner?.wear_mask, force = TRUE)
 			owner.update_hair()
 		if(ARM_RIGHT)
 			if(limb_status & LIMB_ROBOT)
@@ -898,7 +896,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		e_icon = E.icon_name
 
-	return icon(race_icon, "[get_limb_icon_name(owner.species, owner.gender, icon_name, e_icon)]")
+	return icon(race_icon, "[get_limb_icon_name(owner.species, owner.physique, icon_name, e_icon)]")
 
 
 /datum/limb/proc/is_usable()
@@ -1140,13 +1138,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (disfigured)
 		return
 	if(type == BRUTE)
-		owner.visible_message(span_warning(" You hear a sickening cracking sound coming from \the [owner]'s face."),	\
+		owner.visible_message(span_warning("You hear a sickening cracking sound coming from \the [owner]'s face."),	\
 		span_danger("Your face becomes an unrecognizible mangled mess!"),	\
-		span_warning(" You hear a sickening crack."))
+		span_warning("You hear a sickening crack."))
 	else
-		owner.visible_message(span_warning(" [owner]'s face melts away, turning into a mangled mess!"),	\
+		owner.visible_message(span_warning("[owner]'s face melts away, turning into a mangled mess!"),	\
 		span_danger("Your face melts off!"),	\
-		span_warning(" You hear a sickening sizzle."))
+		span_warning("You hear a sickening sizzle."))
 	disfigured = 1
 	owner.name = owner.get_visible_name()
 

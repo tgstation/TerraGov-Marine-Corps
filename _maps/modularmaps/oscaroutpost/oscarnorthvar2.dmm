@@ -325,14 +325,14 @@
 /area/oscar_outpost)
 "cX" = (
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid,
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/ground/coast{
@@ -343,7 +343,7 @@
 /turf/closed/wall,
 /area/oscar_outpost/outside/east)
 "da" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/engine/cult{
@@ -510,7 +510,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "ec" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -1166,7 +1166,9 @@
 /turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "mk" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "mu" = (
@@ -1231,7 +1233,9 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "mO" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "mP" = (
@@ -2412,7 +2416,7 @@
 	},
 /area/oscar_outpost)
 "xh" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/item/weapon/gun/hsg_102/hsg_nest{
@@ -2468,7 +2472,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "xL" = (
@@ -3157,7 +3163,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "Ei" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -3252,7 +3258,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "FD" = (
@@ -3362,14 +3370,14 @@
 /area/oscar_outpost/outside/northeast)
 "GQ" = (
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid,
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/liquid/water/river,
@@ -3912,14 +3920,14 @@
 /area/oscar_outpost)
 "Nh" = (
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid,
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -4539,16 +4547,16 @@
 /area/oscar_outpost)
 "QW" = (
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/north)
 "QX" = (
@@ -4777,7 +4785,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "SD" = (
@@ -4827,7 +4837,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "Tx" = (

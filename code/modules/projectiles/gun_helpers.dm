@@ -16,7 +16,8 @@
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)
 	. = ..()
 	if(!active_attachable)
-		return toggle_gun_safety()
+		balloon_alert(user, "no attachment to unload")
+		return
 
 	var/mob/living/living_user = user
 	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
@@ -61,7 +62,7 @@
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
-	unwield(user)
+	//unwield(user) //shouldnt need this, just causes unequips when you fail to even unequip
 	return ..()
 
 
@@ -362,7 +363,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 // todo destroy all verbs
 /mob/living/carbon/human/verb/empty_mag()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
@@ -381,7 +382,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/use_unique_action()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
@@ -400,7 +401,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/toggle_gun_safety()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
 
@@ -424,7 +425,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/activate_attachment_verb()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 
@@ -470,7 +471,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/toggle_rail_attachment()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
 
@@ -503,12 +504,37 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	set name = "Toggle Automatic Magazine Ejection (Weapon)"
 	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
 
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+	var/acceptable_guns = list()
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+		acceptable_guns += src
+
+	for(slot in attachments_by_slot)
+		if(!isgun(attachments_by_slot[slot]))
+			continue
+		var/obj/item/weapon/gun/attached_gun = attachments_by_slot[slot]
+		if(CHECK_BITFIELD(attached_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+			continue
+		acceptable_guns += attached_gun
+
+	if(!length(acceptable_guns))
 		balloon_alert(usr, "Cannot toggle ejection")
 		return
 
-	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
-	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
+	if(length(acceptable_guns) == 1)
+		var/obj/item/weapon/gun/chosen_gun = acceptable_guns[1]
+		TOGGLE_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
+		balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
+		return
+
+	INVOKE_ASYNC(src, PROC_REF(handle_auto_eject_async), usr, acceptable_guns)
+
+/// Offers a list to choose from. The selected weapon will have their auto ejection toggled.
+/obj/item/weapon/gun/proc/handle_auto_eject_async(user, list/obj/item/weapon/gun/acceptable_guns)
+	var/obj/item/weapon/gun/chosen_gun = tgui_input_list(user, "Choose an weapon", "Choose weapon", acceptable_guns)
+	if(!chosen_gun)
+		return
+	TOGGLE_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
+	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(item_flags, IS_DEPLOYED))

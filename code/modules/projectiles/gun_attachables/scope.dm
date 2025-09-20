@@ -60,9 +60,8 @@
 	RegisterSignals(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 	master_gun.accuracy_mult += scoped_accuracy_mod
 	if(has_nightvision)
-		update_remote_sight(user)
-		user.reset_perspective(src)
 		active_nightvision = TRUE
+		user.reset_perspective(src)
 
 /obj/item/attachable/scope/onunzoom(mob/living/user)
 	if(zoom_allow_movement)
@@ -73,15 +72,13 @@
 	UnregisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED))
 	master_gun.accuracy_mult -= scoped_accuracy_mod
 	if(has_nightvision)
-		user.update_sight()
-		user.reset_perspective(user)
 		active_nightvision = FALSE
+		user.reset_perspective(user)
 
 /obj/item/attachable/scope/update_remote_sight(mob/living/user)
 	. = ..()
-	user.see_in_dark = 32
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	user.sync_lighting_plane_alpha()
+	user.lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+	user.sync_lighting_plane_cutoff()
 	return TRUE
 
 /obj/item/attachable/scope/zoom(mob/living/user, tileoffset, viewsize)
@@ -114,11 +111,6 @@
 	zoom_viewsize = 2
 	add_aim_mode = TRUE
 
-/obj/item/attachable/scope/optical/update_remote_sight(mob/living/user)
-	. = ..()
-	user.see_in_dark = 2
-	return TRUE
-
 /obj/item/attachable/scope/mosin
 	name = "Mosin nagant rail scope"
 	icon_state = "mosin"
@@ -129,6 +121,11 @@
 	desc = "A custom rail mounted zoom sight scope designed specifically for the R-76 Magnum. Allows zoom by activating the attachment."
 	icon = 'icons/obj/items/guns/attachments/scope_64.dmi'
 	icon_state = "t76scope"
+
+/obj/item/attachable/scope/laser_sniper_scope
+	name = "Terra Experimental laser sniper rifle rail scope"
+	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment."
+	icon_state = "tes"
 
 /obj/item/attachable/scope/unremovable
 	attach_features_flags = ATTACH_ACTIVATION
@@ -189,11 +186,6 @@
 	zoom_tile_offset = 7
 	zoom_viewsize = 2
 	deployed_scope_rezoom = FALSE
-
-/obj/item/attachable/scope/unremovable/laser_sniper_scope
-	name = "Terra Experimental laser sniper rifle rail scope"
-	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment."
-	icon_state = "tes"
 
 /obj/item/attachable/scope/unremovable/plasma_sniper_scope
 	name = "PL-02 sniper rifle rail scope"

@@ -1,0 +1,153 @@
+2025-06-02:
+  Atropos:
+  - balance: credits earned from research sell for less points (50/100/200/400)
+2025-06-03:
+  Lumipharon:
+  - bugfix: fixed NPC's sometimes getting stuck climbing things forever
+  - bugfix: 'Campaign: Fixed some loadout ammo issues with SG-62 and SH-34'
+  - rscadd: Added the interaction designation mode to the build designation action
+  - rscadd: Engie NPC's can fix APC's, vehicles, and other suitable objects
+2025-06-04:
+  Looking4bros:
+  - balance: Campaign axemen get items inside general belt
+2025-06-06:
+  Apple-107:
+  - bugfix: tadpole parts fabricator was not added to all maps, this corrects that
+  Looking4bros:
+  - bugfix: Cigarettes/Cigars burn to their last tick.
+  Lumipharon:
+  - bugfix: fixed NPC's some times not eating when they should
+  - bugfix: Attempts to fix NPC's getting stuck when trying to path to goal nodes
+      in some situations
+  - rscadd: Engineer NPC's can repair miners
+  - bugfix: fixed ravager, king and conqueror having some incorrect flags
+  - bugfix: NPC engineers can reliably repair APC's
+  Lumipharon, Atropos:
+  - bugfix: fixed some ai nodes on big red
+  SomrNetwork:
+  - rscadd: remastered the Vyacheslav Security Detail
+  - balance: rebalanced VSD a tad bit
+  - imageadd: new sprites for the VSD, spanning from weapons to armor
+  Zar000:
+  - bugfix: Fixed issues with the ruler PR
+  - imageadd: Added ruler icon overlay
+  blackdav123:
+  - rscadd: Added a preference to disable the toggle move intent keybind as xeno.
+2025-06-09:
+  Runian:
+  - balance: Surplus Clothing Vendor now vends empty flare pouches.
+2025-06-11:
+  Lumipharon:
+  - bugfix: fixed an item runtime
+  - bugfix: fixed NPC's being told to follow someone, not actually doing so
+2025-06-13:
+  BurgerBB, Atropos:
+  - balance: Druggy overlay from taking too many meds/drugs is more colorful now
+  Isy232:
+  - balance: Pyrogen HP 400 => 380.
+  - balance: Pyrogen damage per fire tick per fire stack 2.5 => 2.0.
+  uomo91, Atropos:
+  - admin: show all logs in PP now shows logs by time instead of categories
+2025-06-15:
+  Apple-107:
+  - rscadd: You can now spawn as Prototype Supersoldier in Valhalla
+  Atropos:
+  - bugfix: removed extra rack from icy caves
+  - bugfix: fixed unintended 90 melee armor on new super heavy armors
+  - rscdel: removed superheavy armor from HVX
+  Barnet2:
+  - bugfix: Kutjevo Refinery cave nuke is now actually caves
+  Holoo-1:
+  - rscadd: AI multicamera popup windows
+  - bugfix: AI multicamera  room being too small for widescreen
+  - bugfix: camera static not rendering in some cases
+  Lumipharon:
+  - rscadd: Various minor improvements to xeno AI
+  - bugfix: fixed various spiderling and puppet bugs
+  - refactor: refactored xeno AI code somewhat
+  Penwin0:
+  - bugfix: Basic secure crates are no longer an ERROR sprite
+  RipGrayson:
+  - rscadd: Ported Fiorina from CM.
+2025-06-16:
+  Atropos:
+  - bugfix: Fixed vent crawling (finally!!!)
+2025-06-17:
+  Atropos:
+  - bugfix: fixed few pipes on prison station
+  - balance: Defiler can now see common medicine like bic. kelo. and other like oxy.
+      or nanites
+  - balance: Xenos can now see amount of reagents present inside humans
+  TheRealMrN:
+  - bugfix: Added missing wire connecting BSG to everything on Icy Caves
+2025-06-19:
+  Atropos:
+  - admin: Spawning ai squads now gives exact location instead of just z level
+  - bugfix: fixed BYOND member ghost orbit not working properly after restart
+  - bugfix: fixed non-radial plasteel build menu being empty
+  Lumipharon:
+  - qol: Clones are available via the take SSD mob ghost action
+  Penwin0:
+  - bugfix: fixes the fuel cell recycler lagging out the game
+  TiviPlus:
+  - rscadd: Added personal statistic for FF recieved
+  mudzbe:
+  - bugfix: Fixed campaign extreme constitution perk typo
+2025-06-23:
+  Runian:
+  - balance: Fireproof resin walls now prevent flamers from penetrating them, making
+      them immediately stop upon reaching the fireproof wall.
+  revelation-8468:
+  - balance: Flare crates are now available to buy in requsitions for 75 points per
+      10 flare boxes (or 140 flares).
+2025-06-25:
+  Atropos:
+  - balance: Mateba ammo packets are now small sized (previously medium)
+  - admin: you can now search by ckey in orbit menu
+  - admin: Added new button to kick people from lobby in player panel
+  - bugfix: kamas now correctly layer under capes
+  Naaanii:
+  - balance: Xenos can rest/unrest while staggered
+  Runian:
+  - bugfix: Powerfist correctly no longer knockbacks mobs who are anchored or have
+      significant move resistance.
+  ViperSnake01:
+  - rscadd: Updated plasma-drain tip
+  - rscdel: Removed old plasma-drain tip
+  mudzbe:
+  - bugfix: Update SOM medium shield armor name and description
+  - bugfix: Fixes attachment activation sound
+  tomboy:
+  - rscadd: 'Conq rouny sprite: He learned how to raging demon lol'
+2025-06-26:
+  Atropos:
+  - balance: Added new cave system east of south lava lake on magmoor
+  Isy232:
+  - balance: Prison Station platinum miner by crashed ship (not underground and trivial
+      to defend) removed.
+2025-06-27:
+  Isy232:
+  - balance: Free Roundstart AntiGas Grenades 20 => 10.
+  ViperSnake01:
+  - balance: Increased minion maw cooldown to 10 minutes.
+  blackdav123:
+  - balance: SL and FC can now vend Skink scouting drones for 10 points.
+2025-06-29:
+  Arturlang:
+  - rscadd: new bike sounds, now has idling noises too
+  - rscadd: you can now rev the motorbike's engine on alt click
+  Lumipharon:
+  - bugfix: fixed a few turfs with missing damaged icons
+  - balance: Medium neurotoxin gas extinguishes fire like boiler neurotoxin
+  - bugfix: fixed a couple of NPC bugs
+  Rug-Dealer:
+  - bugfix: You can no longer equip items if you don't actually have the limbs for
+      them.
+  - qol: Radiopack beacon now moves with you
+  - bugfix: Using a jetpack during a do_after no longer consumes the cooldown.
+  - rscadd: Hand labelers and cards can now be found in the crash and valhalla marine
+      vendors, under the utility tab.
+  Runian:
+  - rscdel: CC/67 assault rifle can no longer be purchased from req as the export
+      version no longer exists.
+  - bugfix: You no longer can do *trick with grab item in hand.
