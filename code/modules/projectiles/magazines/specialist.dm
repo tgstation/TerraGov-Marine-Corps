@@ -27,16 +27,6 @@
 	icon_state_mini = "mag_sniper_blue"
 	bonus_overlay = "t26_flak"
 
-//SR-42 magazine
-
-/obj/item/ammo_magazine/sniper/elite
-	name = "\improper SR-42 marksman magazine (10x99mm)"
-	default_ammo = /datum/ammo/bullet/sniper/elite
-	caliber = CALIBER_10X99
-	icon_state = "m42c"
-	icon_state_mini = "mag_rifle_big_white"
-	max_rounds = 6
-
 //SVD //Based on the actual Dragunov sniper rifle.
 
 /obj/item/ammo_magazine/sniper/svd
@@ -401,6 +391,33 @@
 	icon_state = "railgun_smart"
 	icon_state_mini = "mag_railgun_green"
 	default_ammo = /datum/ammo/bullet/railgun/smart
+
+// SRX-42 PMC sniper railgun
+
+/obj/item/ammo_magazine/railgun/pmc
+	name = "SRX-42 magazine (Armor Piercing Discarding Sabot)"
+	desc = "A magazine holding a tungsten projectiles to be used inside a SRX-42 railgun. APDS is written across the magazine. This round will penetrate through most armor, but will not leave much of a hole."
+	icon = 'icons/obj/items/ammo/sniper.dmi'
+	icon_state = "m42r"
+	icon_state_mini = "mag_rifle_big"
+	max_rounds = 4
+
+/obj/item/ammo_magazine/railgun/pmc/smart
+	name = "SRX-42 magazine (Smart Armor Piericing)"
+	desc = "A magazine holding a tungsten projectiles to be used inside a SRX-42 railgun. SAP is written across the magazine. This round has poor punching power due to low velocity for the smart ammunition, but will leave a target significantly staggered and stunned due to the impact."
+	icon_state = "m42r_smart"
+	icon_state_mini = "mag_rifle_big_green"
+	default_ammo = /datum/ammo/bullet/railgun/smart
+	bonus_overlay = "m42r_smart"
+
+/obj/item/ammo_magazine/railgun/pmc/hvap
+	name = "SRX-42 magazine (High Velocity Armor Piericing)"
+	desc = "A magazine holding a tungsten projectiles to be used inside a SRX-42 railgun. HVAP is written across the magazine. This round has less punching power than other railgun canister types, but will leave a sizeable hole in the targets armor."
+	icon_state = "m42r_hvap"
+	icon_state_mini = "mag_rifle_big_blue"
+	default_ammo = /datum/ammo/bullet/railgun/hvap
+	bonus_overlay = "m42r_hvap"
+
 
 // pepperball
 
