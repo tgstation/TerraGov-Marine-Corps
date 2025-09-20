@@ -959,8 +959,11 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	orphan_hud_timer = new(null, null, get_all_xenos(), D.orphan_hive_timer, "Orphan Hivemind Collapse: ${timer}", 150, -80)
 
+/// Sets up the siloless collapse hud timer for all xenos in the hive
 /datum/hive_status/normal/proc/setup_siloless_hud_timer()
 	SIGNAL_HANDLER
+	if(!istype(SSticker.mode, /datum/game_mode/infestation/nuclear_war))
+		return
 	var/datum/game_mode/infestation/nuclear_war/D = SSticker.mode
 	siloless_hud_timer = new(null, null, get_all_xenos() , D.siloless_hive_timer, "Siloless Collapse: ${timer}")
 

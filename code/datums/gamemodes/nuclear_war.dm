@@ -77,6 +77,7 @@
 	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
 	return !isnull(eta) ? round(eta) : 0
 
+/// Checks if the conditions for silo collapse have been met and starts/stops the countdown timer accordingly
 /datum/game_mode/infestation/nuclear_war/update_silo_death_timer(datum/hive_status/silo_owner)
 	if(!(silo_owner.hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
 		return
@@ -115,6 +116,7 @@
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
 
+/// Returns the time left before the hive collapses due to lack of silos or corrupted generators
 /datum/game_mode/infestation/nuclear_war/get_siloless_collapse_countdown()
 	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
 	return !isnull(eta) ? round(eta) : 0
