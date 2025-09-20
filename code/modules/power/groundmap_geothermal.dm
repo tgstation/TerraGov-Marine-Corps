@@ -46,9 +46,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		GLOB.generators_on_ground -= 1
 	if(corrupted && is_ground_level(z))
 		GLOB.corrupted_generators -= 1
-	if(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN)
-		var/datum/game_mode/infestation/nuclear_war/mode = SSticker.mode
-		mode.update_silo_death_timer(GLOB.hive_datums[corrupted])
+		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[corrupted])
 	return ..()
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
@@ -266,9 +264,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		cut_overlay(GLOB.welding_sparks)
 		if(is_ground_level(z))
 			GLOB.corrupted_generators -= 1
-		if(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN)
-			var/datum/game_mode/infestation/nuclear_war/mode = SSticker.mode
-			mode.update_silo_death_timer(GLOB.hive_datums[corrupted])
+			SSticker.mode.update_silo_death_timer(GLOB.hive_datums[corrupted])
 		corrupted = 0
 		stop_processing()
 		update_icon()
@@ -356,9 +352,8 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	is_on = FALSE
 	if(is_ground_level(z))
 		GLOB.corrupted_generators += 1
-	if(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN)
-		var/datum/game_mode/infestation/nuclear_war/mode = SSticker.mode
-		mode.update_silo_death_timer(GLOB.hive_datums[corrupted])
+	if(SSticker.mode)
+		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
 	power_gen_percent = 0
 	cur_tick = 0
 	icon_state = "off"
