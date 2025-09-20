@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(spawning)
 		for(var/b = 0 to spawnerdata[spawner].spawnamount)
 			if(length(spawnerdata[spawner].spawnedmobs) >= spawnerdata[spawner].max_allowed_mobs)
 				break
-			var/spawntype = pick(spawnerdata[spawner].spawntypes)
+			var/spawntype = pickweight(spawnerdata[spawner].spawntypes)
 
 			var/mob/newmob = new spawntype(spawnpoint)
 			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)
@@ -117,3 +117,5 @@ SUBSYSTEM_DEF(spawning)
 	max_allowed_mobs = max
 	spawnamount = squadamount
 	post_spawn_cb = postcb
+
+#undef MAXIMUM_DEFAULT_SPAWN
