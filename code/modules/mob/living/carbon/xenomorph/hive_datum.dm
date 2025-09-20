@@ -42,6 +42,8 @@
 	var/datum/hive_purchases/purchases = new
 	/// The nuke HUD timer datum, shown on each xeno's screen
 	var/atom/movable/screen/text/screen_timer/nuke_hud_timer
+	/// Handles all votes to forfeit the round.
+	var/datum/xeno_forfeit_vote/xeno_forfeit_vote = new
 
 // ***************************************
 // *********** Init
