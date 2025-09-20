@@ -43,9 +43,7 @@
 		if(possible_voter.hivenumber != XENO_HIVE_NORMAL || (possible_voter.xeno_caste.caste_flags & CASTE_IS_A_MINION))
 			continue
 		voters += possible_voter
-
-	for(var/mob/living/carbon/xenomorph/voter AS in voters)
-		INVOKE_NEXT_TICK(src, PROC_REF(handle_vote_alerts), voter) // Giving everyone the ability to vote at the same time without holding the rest of the proc.
+		INVOKE_NEXT_TICK(src, PROC_REF(handle_vote_alerts), possible_voter) // Giving everyone the ability to vote at the same time without holding the rest of the proc.
 	timer_id = addtimer(CALLBACK(src, PROC_REF(conclude_vote)), 10 SECONDS, TIMER_UNIQUE)
 
 /// Sends a tgui alert to agree or disagree with the forfeit vote.
