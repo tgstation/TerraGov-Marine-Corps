@@ -1955,6 +1955,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\say.dm"
 #include "code\modules\mob\living\carbon\xenomorph\update_icons.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xeno_defines.dm"
+#include "code\modules\mob\living\carbon\xenomorph\xeno_forfeit_vote.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xeno_helpers.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xenoattacks.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xenomorph.dm"
