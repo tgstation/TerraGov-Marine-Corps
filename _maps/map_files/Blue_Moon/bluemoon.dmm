@@ -1146,6 +1146,7 @@
 /obj/item/storage/box/MRE{
 	name = "\improper MRE"
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -16398,6 +16399,10 @@
 /area/bluemoon/outside/building/dorms/bar)
 "tdN" = (
 /obj/structure/rack,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
