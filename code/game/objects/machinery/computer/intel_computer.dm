@@ -167,7 +167,7 @@
 /obj/item/disk/intel_disk/proc/disk_warning()
 	SIGNAL_HANDLER
 	visible_message("[src] beeps as it is now obsolete. The disk will self destruct in a minute.")
-	playsound(src, 'sound/machines/beepalert.ogg')
+	playsound(src, 'sound/machines/beepalert.ogg', 25)
 	addtimer(CALLBACK(src, PROC_REF(disk_cleanup)), 1 MINUTES, TIMER_STOPPABLE)
 
 /obj/item/disk/intel_disk/proc/disk_cleanup()
