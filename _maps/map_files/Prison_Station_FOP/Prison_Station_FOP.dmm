@@ -48100,12 +48100,6 @@
 "vef" = (
 /obj/effect/turf_decal/warning_stripes,
 /obj/structure/cable,
-/obj/structure/prop/mainship/brokengen,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/effect/turf_decal/warning_stripes,
 /obj/structure/cable,
 /obj/machinery/power/port_gen/pacman/super,
