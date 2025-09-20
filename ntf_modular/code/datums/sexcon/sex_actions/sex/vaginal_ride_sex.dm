@@ -53,6 +53,7 @@
 				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, X, target)
 				psy_points_reward = psy_points_reward * 3
 				SSpoints.add_strategic_psy_points(hivenumber, psy_points_reward)
+				SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD)
 				SSpoints.add_tactical_psy_points(hivenumber, psy_points_reward*0.25)
 
 

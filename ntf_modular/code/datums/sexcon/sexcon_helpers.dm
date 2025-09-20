@@ -170,6 +170,7 @@
 		psy_points_reward = psy_points_reward * 3
 		SSpoints.add_strategic_psy_points(hivenumber, psy_points_reward)
 		SSpoints.add_tactical_psy_points(hivenumber, psy_points_reward*0.25)
+		SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.add_job_points(1) //can be made a var if need be.
 		hive.update_tier_limits()
