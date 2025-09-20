@@ -217,6 +217,10 @@
 			var/obj/machinery/machinery_target = target
 			if(machinery_target.machine_stat & BROKEN)
 				return AI_FIRE_TARGET_DEAD
+		if(isfacehugger(target))
+			var/obj/item/clothing/mask/facehugger/hugger = target
+			if(hugger.stat == DEAD || !isturf(hugger.loc))
+				return AI_FIRE_TARGET_DEAD //dead or nothing we can do about it
 
 	var/dist = get_dist(target, mob_parent)
 	if(dist > target_distance)
