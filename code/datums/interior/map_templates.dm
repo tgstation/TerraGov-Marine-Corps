@@ -30,5 +30,5 @@
 	filename = "som_tank"
 
 /datum/map_template/interior/icc_recontank
-	name = "ICC Fallow Recon Vehicle Tracked interior template"
+	name = "CM Fallow Recon Vehicle Tracked interior template"
 	filename = "icc_recontank"

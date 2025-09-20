@@ -19,6 +19,11 @@ Basics, the most important.
 
 /datum/config_entry/string/wikiurl
 
+/datum/config_entry/flag/log_job_debug
+
+/datum/config_entry/flag/log_as_human_readable
+	config_entry_value = TRUE
+
 /datum/config_entry/string/forumurl
 
 /datum/config_entry/string/rulesurl
@@ -80,6 +85,8 @@ Administrative related.
 /datum/config_entry/flag/log_xooc
 
 /datum/config_entry/flag/log_mooc
+
+/datum/config_entry/flag/log_xmooc
 
 /datum/config_entry/flag/log_looc
 
@@ -246,6 +253,8 @@ Administrative related.
 Voting
 */
 /datum/config_entry/flag/allow_vote_restart
+
+/datum/config_entry/flag/allow_vote_endround
 
 /datum/config_entry/flag/allow_vote_mode
 

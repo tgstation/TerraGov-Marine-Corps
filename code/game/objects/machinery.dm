@@ -252,6 +252,7 @@
 
 /obj/machinery/can_interact(mob/user)
 	. = ..()
+
 	if(!.)
 		return FALSE
 

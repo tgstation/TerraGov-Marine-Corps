@@ -2341,6 +2341,7 @@
 /area/riptide/inside/abandonedsec)
 "bHm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
 "bHr" = (
@@ -6305,6 +6306,7 @@
 	pixel_y = -3
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood/alt_three,
 /area/riptide/inside/beachmotel)
 "erK" = (
@@ -6646,6 +6648,7 @@
 /area/riptide/inside/syndicatestarboard)
 "eDg" = (
 /obj/machinery/power/terminal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/engineering/cave)
 "eDH" = (
@@ -9973,6 +9976,11 @@
 	dir = 1
 	},
 /area/riptide/inside/medical)
+"gUW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/riptide/inside/engineering/cave)
 "gVk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/coast{
@@ -13759,6 +13767,7 @@
 /area/riptide/outside/southislands)
 "jJc" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/freezer,
 /area/riptide/inside/medical/offices)
 "jJg" = (
@@ -14681,6 +14690,7 @@
 /obj/item/storage/bag/trash,
 /obj/item/trash/cigbutt,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grimy,
 /area/riptide/inside/syndicatestarboard)
 "kog" = (
@@ -20395,6 +20405,10 @@
 	},
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
+"ogD" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/riptide/inside/engineering/cave)
 "ogN" = (
 /obj/structure/table/wood,
 /obj/item/paper,
@@ -20544,6 +20558,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/riptide/inside/tikihut)
 "ooc" = (
@@ -21599,6 +21614,7 @@
 /area/riptide/inside/warehouse)
 "oVL" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/warehouse)
 "oWL" = (
@@ -26689,6 +26705,11 @@
 	},
 /turf/open/floor/plating/ground/drought,
 /area/riptide/outside/northbeach)
+"sfX" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/riptide/inside/engineering/cave)
 "sfY" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/ai_node,
@@ -29344,6 +29365,7 @@
 "tSX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -32207,6 +32229,7 @@
 /obj/machinery/colony_floodlight_switch{
 	pixel_y = 30
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/riptide/inside/engineering/cave)
 "vVT" = (
@@ -33216,6 +33239,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/ground,
 /area/riptide/outside/northislands)
 "wHe" = (
@@ -33647,6 +33671,7 @@
 /area/riptide/inside/medical/surgery)
 "wWe" = (
 /obj/machinery/power/smes/buildable/empty/dist,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/engineering/cave)
 "wWh" = (
@@ -60747,7 +60772,7 @@ sTP
 xKn
 eDg
 wWe
-doH
+ogD
 xKn
 ffm
 aqb
@@ -60926,7 +60951,7 @@ sTP
 xKn
 eDg
 wWe
-doH
+ogD
 gdz
 mkX
 lZS
@@ -61641,8 +61666,8 @@ sTP
 sTP
 xKn
 vVR
-aCy
-lZS
+sfX
+gUW
 doH
 dZV
 lZS
@@ -61821,7 +61846,7 @@ sTP
 xKn
 eDg
 wWe
-doH
+ogD
 xKn
 ndT
 aCy
@@ -62000,7 +62025,7 @@ sTP
 xKn
 eDg
 wWe
-doH
+ogD
 gdz
 oSo
 rJj

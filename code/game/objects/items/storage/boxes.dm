@@ -111,6 +111,14 @@
 	spawn_number = 7
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/storage/box/stuns
+	name = "box of stun grenades (WARNING)"
+	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
+	icon_state = "flashbang"
+	spawn_type = /obj/item/explosive/grenade/flashbang/stun
+	spawn_number = 7
+	w_class = WEIGHT_CLASS_NORMAL
+
 /obj/item/storage/box/emps
 	name = "box of emp grenades"
 	desc = "A box with 5 emp grenades."
@@ -382,7 +390,7 @@
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
-	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC marines to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
+	desc = "A packet of seven M40 FLDP Flares. Carried by NTC marines to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m40"
 	w_class = WEIGHT_CLASS_SMALL
 	spawn_type = /obj/item/explosive/grenade/flare
@@ -419,7 +427,7 @@
 	spawn_number = 7
 
 /obj/item/storage/box/MRE
-	name = "\improper TGMC MRE"
+	name = "\improper NTC MRE"
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
 	w_class = WEIGHT_CLASS_SMALL
@@ -629,7 +637,7 @@
 			//Getting the mini icon_state to display
 			var/obj/item/relateditem = obj_typepath
 
-			var/mutable_appearance/new_overlay = mutable_appearance('icons/obj/items/items_mini.dmi', initial(relateditem.icon_state_mini))
+			var/mutable_appearance/new_overlay = mutable_appearance(initial(relateditem.icon_mini), initial(relateditem.icon_state_mini))
 			new_overlay.pixel_w = imagepixel_w
 			new_overlay.pixel_z = imagepixel_z
 			. += new_overlay
@@ -1321,6 +1329,30 @@
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/training
 	closed_overlay = "grenade_box_overlay_training"
+
+/obj/item/storage/box/visual/grenade/neurotoxin
+	name = "\improper M40-N Neurotoxin smoke grenade box"
+	desc = "A secure box holding 25 M40-N Neurotoxin smoke grenades. Classed as a less lethal riot control tool by the NTC."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb/neuro
+
+/obj/item/storage/box/visual/grenade/acid
+	name = "\improper M40-A Acid smoke grenade box"
+	desc = "A secure box holding 25 M40-A Acid smoke grenades. Their use is considered a warcrime under several treaties, none of which NTF is a signatory to."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb/acid
+
+/obj/item/storage/box/visual/grenade/sleep
+	name = "\improper NT-1 Knock-out smoke grenade box"
+	desc = "A secure box holding 25 NT-1 Knock-out smoke grenades."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb/sleep
+
+/obj/item/storage/box/visual/grenade/aphrotoxin
+	name = "\improper NT-2 Aphrotoxin gas grenade box"
+	desc = "A secure box holding 25 NT-2 Aphrotoxin gas grenade."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb/aphrotoxin
 
 #undef BOX_OVERLAY_SHIFT_X
 #undef BOX_OVERLAY_SHIFT_Y

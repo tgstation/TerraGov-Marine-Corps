@@ -285,8 +285,8 @@
 	base_icon = "portgen1"
 	circuit = /obj/item/circuitboard/machine/pacman/super
 	sheet_path = /obj/item/stack/sheet/mineral/uranium
-	power_gen = 15000
-	time_per_sheet = 85
+	power_gen = 30000
+	time_per_sheet = 600
 
 /obj/machinery/power/port_gen/pacman/super/overheat()
 	explosion(loc, 4, explosion_cause=src)

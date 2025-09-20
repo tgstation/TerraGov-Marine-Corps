@@ -1,15 +1,16 @@
-
-
 /obj/item/mortar_kit/mlrs
 	name = "\improper TA-40L multiple rocket launcher system"
-	desc = "A manual, crew-operated and towable multiple rocket launcher system piece used by the TerraGov Marine Corps, it is meant to saturate an area with munitions to total up to large amounts of firepower, it thus has high scatter when firing to accomplish such a task. Fires in only bursts of up to 16 rockets, it can hold 32 rockets in total. Uses 60mm Rockets."
+	desc = "A manual, crew-operated and towable multiple rocket launcher system piece used by the Nine Tailed Fox, it is meant to saturate an area with munitions to total up to large amounts of firepower, it thus has high scatter when firing to accomplish such a task. Fires in only bursts of up to 16 rockets, it can hold 32 rockets in total. Uses 60mm Rockets."
 	icon_state = "mlrs"
 	max_integrity = 400
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	w_class = WEIGHT_CLASS_HUGE
 	deployable_item = /obj/machinery/deployable/mortar/mlrs
 
-/obj/machinery/deployable/mortar/mlrs //TODO why in the seven hells is this a howitzer child??????
+/obj/machinery/deployable/mortar/mlrs/perform_firing_visuals()
+	return
+
+/obj/machinery/deployable/mortar/mlrs
 	pixel_x = 0
 	anchored = FALSE // You can move this.
 	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
@@ -73,7 +74,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 

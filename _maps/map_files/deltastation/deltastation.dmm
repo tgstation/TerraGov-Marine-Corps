@@ -5933,6 +5933,7 @@
 /area/deltastation/asteroidcaves/westerncaves)
 "bkZ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "bla" = (
@@ -14412,6 +14413,7 @@
 "cZM" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/iron,
 /area/deltastation/cargo/lobby)
 "cZO" = (
@@ -16656,6 +16658,7 @@
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/iron,
 /area/deltastation/science/research)
 "dxx" = (
@@ -45737,6 +45740,7 @@
 	dir = 10
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/iron,
 /area/deltastation/engineering/storage/tech)
 "jnf" = (
@@ -48696,6 +48700,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/deltastation/service/library/abandoned)
 "jUA" = (
@@ -59759,6 +59764,7 @@
 /obj/effect/turf_decal/tile/transparent/yellow,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "mgW" = (
@@ -60506,6 +60512,7 @@
 /area/deltastation/commons/storage/primary)
 "mpK" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/library)
 "mpL" = (
@@ -61041,6 +61048,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/iron,
 /area/deltastation/security/brig)
 "mwe" = (
@@ -83302,6 +83310,7 @@
 /area/deltastation/command/bridge)
 "qUT" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/fore)
 "qVu" = (
