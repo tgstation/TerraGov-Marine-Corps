@@ -262,14 +262,10 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		user.visible_message(span_notice("[user] burns [src]'s resin off."),
-		span_notice("You burn [src]'s resin off."))
-		cut_overlay(GLOB.welding_sparks)
+		corrupted = 0
 		if(is_ground_level(z))
 			GLOB.corrupted_generators -= 1
-			SSticker.mode.update_silo_death_timer(GLOB.hive_datums[corrupted])
-		corrupted = 0
+			SSticker.mode?.update_silo_death_timer(GLOB.hive_datums[corrupted])
 		stop_processing()
 		update_icon()
 	if(buildstate != GEOTHERMAL_HEAVY_DAMAGE) //Already repaired!

@@ -107,7 +107,7 @@
 	if(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN)
 		var/datum/game_mode/infestation/nuclear_war/mode = SSticker.mode
 		siloless_countdown = mode.get_siloless_collapse_countdown()
-	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
+	siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
 	// Show all the death timers in milliseconds
 	.["hive_death_timers"] = list()
