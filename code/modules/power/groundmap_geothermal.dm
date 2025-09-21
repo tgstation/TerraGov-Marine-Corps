@@ -144,6 +144,8 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
 			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground
 			SSpoints.add_strategic_psy_points(corrupted, points_generated)
+			GLOB.round_statistics.strategic_psypoints_from_generators += points_generated
+			GLOB.round_statistics.generator_seconds += 2
 			SSpoints.add_tactical_psy_points(corrupted, points_generated*0.25)
 		return
 

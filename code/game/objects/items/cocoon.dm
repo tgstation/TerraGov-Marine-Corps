@@ -33,6 +33,8 @@
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
+	if(SSticker.IsRoundInProgress())
+		GLOB.round_statistics.cocoons++
 	addtimer(CALLBACK(src, PROC_REF(life_draining_over), null, TRUE), cocoon_life_time)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(life_draining_over))
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(on_shuttle_crush))
@@ -45,11 +47,13 @@
 /obj/structure/cocoon/process()
 	var/psych_points_output = COCOON_PSY_POINTS_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (COCOON_PSY_POINTS_REWARD_MAX - COCOON_PSY_POINTS_REWARD_MIN))
 	psych_points_output = clamp(psych_points_output, COCOON_PSY_POINTS_REWARD_MIN, COCOON_PSY_POINTS_REWARD_MAX)
+	GLOB.round_statistics.strategic_psypoints_from_cocoons += psych_points_output
 	SSpoints.add_strategic_psy_points(hivenumber, psych_points_output)
 	SSpoints.add_tactical_psy_points(hivenumber, psych_points_output*0.25)
 	//Gives marine cloneloss for a total of 30.
 	victim.adjustCloneLoss(0.5)
 	SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_COCOON_TICK)
+	GLOB.round_statistics.biomass_from_cocoons += MUTATION_BIOMASS_PER_COCOON_TICK
 
 /obj/structure/cocoon/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
@@ -76,6 +80,7 @@
 		hive_status.update_tier_limits()
 		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
 		SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_COCOON_COMPLETION)
+		GLOB.round_statistics.biomass_from_cocoons += MUTATION_BIOMASS_PER_COCOON_COMPLETION
 		release_victim()
 	update_icon()
 

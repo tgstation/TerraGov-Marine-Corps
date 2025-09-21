@@ -11,6 +11,7 @@
 #include "code\datums\jobs\job\survivor.dm"
 #include "code\datums\outfits\shipside.dm"
 #include "code\datums\outfits\survivor.dm"
+#include "code\datums\round_statistics.dm"
 #include "code\datums\sexcon\item_helpers.dm"
 #include "code\datums\sexcon\sex_action.dm"
 #include "code\datums\sexcon\sex_actions\candle\candle_body.dm"
