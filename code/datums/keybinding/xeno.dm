@@ -1136,13 +1136,6 @@
 	keybind_signal = COMSIG_XENOABILITY_DRAW_DEFENSE
 	hotkey_keys = list("N")
 
-/datum/keybinding/xeno/patron_of_the_stars
-	name = "patron_stars"
-	full_name = "Jester: Patron of the Stars"
-	description = "Remotely draw a sigil on the ground. When it detonates, it shoots out a circle of projectiles from its center, dealing damage to nearby marines."
-	keybind_signal = COMSIG_XENOABILITY_PATRON_OF_THE_STARS
-	hotkey_keys = list("H")
-
 /datum/keybinding/xeno/doppelganger
 	name = "doppelganger"
 	full_name = "Jester: Doppelgänger"

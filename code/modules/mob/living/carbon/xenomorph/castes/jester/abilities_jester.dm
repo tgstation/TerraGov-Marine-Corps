@@ -1,4 +1,4 @@
-// :ets go GAMBLING
+// Lets go GAMBLING
 // ***************************************
 // *********** Gamble / Chips mechanic (passive)
 // ***************************************
@@ -76,18 +76,21 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DECK_OF_DISASTER,
 	)
 	cooldown_duration = JESTER_DECK_OF_DISASTER_COOLDOWN
-	///List of debuffs that this ability picks from, to apply
+	/// List of debuffs that this ability picks from, to apply
 	var/list/debuffs = list(
 		STATUS_EFFECT_STAGGER,
-		STATUS_EFFECT_STUN,
 		STATUS_EFFECT_CONFUSED,
 		STATUS_EFFECT_INTOXICATED,
 	)
+	/// Wether or not this ability is usable
+	var/active = TRUE
 
 
 /datum/action/ability/activable/xeno/deck_of_disaster/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
+		return
+	if(!active)
 		return
 	var/distance = get_dist(xeno_owner, A)
 	if(distance > JESTER_DECK_OF_DISASTER_RANGE)
@@ -117,11 +120,6 @@
 		if(STATUS_EFFECT_STAGGER)
 			owner.balloon_alert(owner, "Staggered!")
 			target.Stagger(2 SECONDS) // Stagger for 2 Seconds
-
-		if(STATUS_EFFECT_STUN)
-			owner.balloon_alert(owner, "Knocked!")
-			target.Knockdown(XENO_POUNCE_STUN_DURATION) //Knockdown for 2 seconds
-			target.balloon_alert(target, "You are tripped by a unseen force!")
 
 		if(STATUS_EFFECT_CONFUSED)
 			owner.balloon_alert(owner, "Confused!")
@@ -155,6 +153,8 @@
 	var/tarot_override
 	///Container for the mimiced ability
 	var/datum/action/ability/activable/xeno/draw_deck_container/ability_container = new
+	///Amount of options to pick from when using tarot deck. Uses a pick wheek if greater than 1
+	var/tarot_options = 1
 	///List of all abilties that cannot be picked. Includes noncombat abilties and or certain buggy / irrelevant abilties
 	///Is a blacklist to cover the case of new caste gets added -> not added here, new abilties are then never added
 	///Players are much more vocal about broken or unbalanced abilties than they are about abilities they may or may not know exist.
@@ -311,10 +311,22 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 
 /datum/action/ability/xeno_action/tarot_deck/action_activate()
 	var/picked_ability
-	if(!tarot_override)
-		picked_ability = pick(GLOB.tarot_deck_actions)
+	if(tarot_options > 1)
+		var/list/ability_candidates = list()
+		var/list/ability_icons = list()
+		for(var/i in 1 to tarot_options)
+			var/chosen = pick(GLOB.tarot_deck_actions)
+			ability_candidates += chosen
+			var/datum/action/ability/ability_copy = GLOB.xeno_ability_datums[chosen]
+			ability_icons[chosen] = image(ability_copy.action_icon, icon_state = ability_copy.action_icon_state)
+		picked_ability = show_radial_menu(owner, owner, ability_icons, radius = 48)
+		if(!picked_ability)
+			picked_ability = pick(ability_candidates)
 	else
-		picked_ability = tarot_override
+		if(!tarot_override)
+			picked_ability = pick(GLOB.tarot_deck_actions)
+		else
+			picked_ability = tarot_override
 	ability_container.mimic(picked_ability, TRUE)
 	hidden = TRUE
 	active = FALSE
@@ -584,43 +596,6 @@ GLOBAL_LIST_INIT(tarot_deck_actions, list())
 		aimdir = get_dir(xeno_owner, A)
 	charge.remove_action(xeno_owner)
 	qdel(charge)
-	succeed_activate()
-	add_cooldown()
-
-// ***************************************
-// *********** Patron of the Stars
-// ***************************************
-/datum/action/ability/activable/xeno/patron_of_the_stars
-	name = "Patron of the Stars"
-	action_icon_state = "patron"
-	action_icon = 'icons/Xeno/actions/jester.dmi'
-	desc = "Mark a location you can see. After a short channel, detonate the mark, sending out projectiles in a 360."
-	ability_cost = 75
-	cooldown_duration = JESTER_PATRON_OF_THE_STARS_COOLDOWN
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PATRON_OF_THE_STARS,
-	)
-
-/datum/action/ability/activable/xeno/patron_of_the_stars/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-	if(!line_of_sight(owner, A, 9))
-		if(!silent)
-			owner.balloon_alert(owner, "Out of sight!")
-		return FALSE
-	if((A.z != owner.z) || get_dist(owner, A) > JESTER_PATRON_RANGE)
-		if(!silent)
-			A.balloon_alert(owner, "Too far!")
-		return FALSE
-
-/datum/action/ability/activable/xeno/patron_of_the_stars/use_ability(atom/A)
-	new /obj/effect/temp_visual/patron_sigil_stars(get_turf(A))
-	if(!do_after(xeno_owner, 0.6 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
-		return fail_activate()
-	var/datum/ammo/xeno/star_shrapnel/shell = GLOB.ammo_list[/datum/ammo/xeno/star_shrapnel]
-	for(var/i=0, i <= 360, i += 15)
-		var/atom/movable/projectile/newshell = new(get_turf(A))
-		newshell.generate_bullet(shell)
-		newshell.fire_at(shooter = xeno_owner,  source = A, range = newshell.ammo.max_range, angle = i)
 	succeed_activate()
 	add_cooldown()
 

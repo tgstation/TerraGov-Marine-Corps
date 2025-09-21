@@ -19,6 +19,76 @@
 	var/atom/movable/vis_obj/xeno_wounds/doppelganger_overlay/doppelganger_overlay
 	///  What type of caste this jester's doppelganger is, if it has one
 	var/datum/xeno_caste/doppelganger_caste
+	///Mutation vars
+	/// The percentage increase or reduction to chips gain
+	var/chip_multipler = 1
+	/// The Percentage chance to double slash, hitting a additional, random limb, when slashing
+	var/double_slash_chance = 0
+	/// The percentage chance to apply a random debuff, when slashing
+	var/debuff_slash_chance = 0
+	/// The amount of Riposte charms this xeno has, for mutations
+	var/riposte_charms = 0
+	/// The multipler on damage healed by a succesfull riposte
+	var/riposte_multipler = 1
+	/// The max amount of riposte charms this mob can have
+	var/riposte_charms_max = 0
+	/// The multipler on damage recieved whenever a attack crits against this mob. Note that this added in addition to the attacks damage, so a mult of 1 would double damage
+	var/recieved_crit_damage_mult = 0
+	// /An overlay of the riposte charms,
+	var/atom/movable/vis_obj/xeno_wounds/riposte_charms_overlay/riposte_charms_overlay
+
+// ***************************************
+// *********** Mutations
+// ***************************************
+/mob/living/carbon/xenomorph/jester/proc/handle_riposte(target, damage)
+	SIGNAL_HANDLER
+	if(riposte_charms > 0)
+		if(prob(35))
+			playsound(get_turf(src), 'sound/effects/riposte.ogg', 60, 1)
+			HEAL_XENO_DAMAGE(src, damage, FALSE) //Heal the initial damage, so the net is 0
+			var/healamount = (damage * riposte_multipler)
+			HEAL_XENO_DAMAGE(src, healamount, FALSE) // Then heal at the actual ratio
+			riposte_charms -= 1
+			addtimer(CALLBACK(src, PROC_REF(recharge_riposte)), 1 MINUTES)
+			return
+	if(prob(10))
+		adjustBrainLoss(damage * recieved_crit_damage_mult)
+		playsound(get_turf(src), 'sound/effects/jester_crit.ogg', 60, 1)
+		new /obj/effect/temp_visual/heal(get_turf(src))
+
+/mob/living/carbon/xenomorph/jester/proc/recharge_riposte()
+	if(riposte_charms <  riposte_charms_max)
+		riposte_charms += 1
+	handle_riposte_overlay()
+
+/mob/living/carbon/xenomorph/jester/proc/handle_riposte_overlay()
+	if(!riposte_charms_overlay)
+		return
+	if(stat == DEAD)
+		riposte_charms_overlay.icon_state = ""
+		return
+	switch(riposte_charms)
+		if(0)
+			riposte_charms_overlay.icon_state = ""
+		if(1)
+			riposte_charms_overlay.icon_state = "riposte_charms_1"
+		if(2)
+			riposte_charms_overlay.icon_state = "riposte_charms_2"
+		else
+			riposte_charms_overlay.icon_state = "riposte_charms_3"
+
+/atom/movable/vis_obj/xeno_wounds/riposte_charms_overlay
+	layer = BELOW_MOB_LAYER
+	alpha = 180
+	icon_state = ""
+	icon = 'icons/effects/64x64.dmi'
+	///The xeno this overlay belongs to
+	var/mob/living/carbon/xenomorph/owner
+	pixel_y = -8
+
+/atom/movable/vis_obj/xeno_wounds/riposte_charms_overlay/Initialize(mapload, ...)
+	. = ..()
+	SpinAnimation(30)
 
 // ***************************************
 // *********** Doppelganger Overlays
@@ -73,6 +143,8 @@
 /mob/living/carbon/xenomorph/jester/update_icons(state_change = TRUE)
 	. = ..()
 	update_doppelganger_overlay()
+	if(stat == DEAD)
+		riposte_charms_overlay.icon_state = ""
 
 /mob/living/carbon/xenomorph/jester/Initialize(mapload, do_not_set_as_ruler)
 	. = ..()
@@ -86,18 +158,41 @@
 	. = ..()
 	var/datum/action/ability/xeno_action/chips/chipcontainer = actions_by_path[/datum/action/ability/xeno_action/chips]
 	if(chipcontainer.chips < chipcontainer.maxchips)
-		chipcontainer.chips += JESTER_CHIPS_RATIO * damage // ~75 Damage for 1 chip
+		chipcontainer.chips += JESTER_CHIPS_RATIO * (damage * chip_multipler) // ~75 Damage for 1 chip
 		hud_set_chips() //Update the chips display
 	if(chipcontainer.damagemult != 0)
 		INVOKE_ASYNC(src, PROC_REF(handle_bonus_damage), attacker, target, damage)
 	if(prob(JESTER_CRIT_CHANCE) && ishuman(target)) // 15% chance for a crit
 		INVOKE_ASYNC(src, PROC_REF(crit_effect), attacker, target, damage)
+	if(prob(debuff_slash_chance) && ishuman(target))
+		var/datum/action/ability/activable/xeno/deck_of_disaster/dod =  actions_by_path[/datum/action/ability/activable/xeno/deck_of_disaster]
+		var/mob/living/carbon/human/victim = target
+		switch(pick(dod.debuffs))
+
+			if(STATUS_EFFECT_STAGGER)
+				victim.Stagger(1 SECONDS) // Stagger for 1 second
+
+			if(STATUS_EFFECT_CONFUSED)
+				victim.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 50)
+				victim.apply_status_effect(STATUS_EFFECT_CONFUSED, 20) // Half of what king applies
+
+			if(STATUS_EFFECT_INTOXICATED)
+				if(victim.has_status_effect(STATUS_EFFECT_INTOXICATED))
+					var/datum/status_effect/stacking/intoxicated/debuff = victim.has_status_effect(STATUS_EFFECT_INTOXICATED)
+					debuff.add_stacks(2)
+				victim.apply_status_effect(STATUS_EFFECT_INTOXICATED, 2) // Same as sentinel spit
+
+		victim.updatehealth() // So the other xenos can see the effect applied instead of waiting for next tick (could expire before then lole)
+	if(prob(double_slash_chance) && ishuman(target))
+		var/mob/living/carbon/human/victim = target
+		victim.attack_alien_harm(src, random_location = TRUE)
 
 ///Takes the damagemult from the chips ability and applies its bonus damage, equally to all limbs
 /mob/living/carbon/xenomorph/jester/proc/handle_bonus_damage(attacker, target, damage)
 	var/datum/action/ability/xeno_action/chips/chipcontainer = actions_by_path[/datum/action/ability/xeno_action/chips]
 	var/mob/living/carbon/human/victim = target
 	victim.take_overall_damage(damage * chipcontainer.damagemult, BRUTE, sharp = TRUE)
+
 ///Whatever happens to the victim when the jester rolls a crit hit
 /mob/living/carbon/xenomorph/jester/proc/crit_effect(attacker, target, damage)
 	var/mob/living/carbon/human/victim = target

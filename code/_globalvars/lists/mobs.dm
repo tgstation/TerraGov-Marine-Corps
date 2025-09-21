@@ -46,6 +46,7 @@ GLOBAL_LIST_EMPTY(all_species)
 GLOBAL_LIST_EMPTY(roundstart_species)
 
 GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_caste_list())
+GLOBAL_LIST_INIT_TYPED(xeno_ability_datums, /list/datum/action/ability, init_xeno_ability_list())
 
 /proc/init_xeno_caste_list()
 	. = list()
@@ -59,6 +60,12 @@ GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_cast
 	for(var/typepath in typelist)
 		var/datum/xeno_caste/caste = new typepath
 		.[get_base_caste_type(caste)][caste.upgrade] = caste
+
+/proc/init_xeno_ability_list()
+	. = list()
+	var/list/typelist = subtypesof(/datum/action/ability/xeno_action) + subtypesof(/datum/action/ability/activable/xeno)
+	for(var/datum/action/ability/typepath AS in typelist)
+		.[typepath] += new typepath
 
 GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/runner,

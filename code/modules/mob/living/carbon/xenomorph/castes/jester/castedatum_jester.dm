@@ -48,7 +48,7 @@
 
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_flags = CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
@@ -57,10 +57,16 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/xeno_action/chips,
 		/datum/action/ability/activable/xeno/psydrain,
-		// /datum/action/ability/activable/xeno/patron_of_the_stars,
 		/datum/action/ability/activable/xeno/deck_of_disaster,
 		/datum/action/ability/xeno_action/draw,
 		/datum/action/ability/xeno_action/tarot_deck,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/veil/controled_chance,
+		/datum/mutation_upgrade/spur/specalized_claws,
+		/datum/mutation_upgrade/spur/split_claws,
+		/datum/mutation_upgrade/shell/rejuvenating_riposte,
 	)
 
 /datum/xeno_caste/jester/on_caste_applied(mob/xenomorph)
