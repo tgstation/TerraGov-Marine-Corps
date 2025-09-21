@@ -422,6 +422,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.biomass_from_cocoons] biomass was obtained from [GLOB.round_statistics.cocoons] cocoons, for an average of [GLOB.round_statistics.biomass_from_cocoons/GLOB.round_statistics.cocoons] points per cocoon."
 	if(GLOB.round_statistics.biomass_from_psydrains)
 		parts += "[GLOB.round_statistics.biomass_from_psydrains] biomass was obtained from [GLOB.round_statistics.psydrains] psydrains, for an average of [GLOB.round_statistics.biomass_from_psydrains/GLOB.round_statistics.psydrains] points per psydrain."
+	if(GLOB.round_statistics.human_orgasms)
+		parts += "[GLOB.round_statistics.human_orgasms] orgasms were experienced by humans"
+	if(GLOB.round_statistics.xeno_orgasms)
+		parts += "[GLOB.round_statistics.xeno_orgasms] orgasms were experienced by xenos"
 
 	if(GLOB.round_statistics.grenades_thrown)
 		parts += "[GLOB.round_statistics.grenades_thrown] total grenades exploded."
@@ -564,6 +568,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)
 		parts += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
+	if(GLOB.round_statistics.points_from_ambrosia)
+		parts += "[GLOB.round_statistics.points_from_ambrosia] requisitions points gained from ambrosia."
+	if(GLOB.round_statistics.points_from_intel)
+		parts += "[GLOB.round_statistics.points_from_intel] requisitions points gained from intel."
 	if(GLOB.round_statistics.points_from_objectives)
 		parts += "[GLOB.round_statistics.points_from_objectives] requisitions points gained from objectives."
 	if(GLOB.round_statistics.points_from_mining)

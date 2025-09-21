@@ -35,6 +35,8 @@
 	if(faction_selling in hive.allied_factions)
 		return list(new /datum/export_report(0, name, faction_selling, 0))
 	. = ..()
+	var/datum/export_report/export_report = .[1]
+	GLOB.round_statistics.points_from_ambrosia += export_report.points
 
 /**
  * Getter proc for the point value of this object

@@ -11,3 +11,7 @@
 	var/psydrains = 0
 	var/hive_target_rewards = 0
 	var/round_length = 0
+	var/points_from_intel = 0
+	var/points_from_ambrosia = 0
+	var/human_orgasms = 0
+	var/xeno_orgasms = 0

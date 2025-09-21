@@ -188,3 +188,4 @@
 		return FALSE
 
 	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")
+	GLOB.round_statistics.points_from_intel += supply_reward

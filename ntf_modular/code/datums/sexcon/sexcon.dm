@@ -183,6 +183,10 @@
 	user.emote("sexmoanhvy")
 	user.playsound_local(user, 'ntf_modular/sound/misc/mat/end.ogg', 100)
 	last_ejaculation_time = world.time
+	if(isxeno(user))
+		GLOB.round_statistics.xeno_orgasms++
+	if(ishuman(user))
+		GLOB.round_statistics.human_orgasms++
 
 /datum/sex_controller/proc/after_intimate_climax()
 	if(user == target)
