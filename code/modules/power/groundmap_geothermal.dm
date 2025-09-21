@@ -33,7 +33,6 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	. = ..()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ), PROC_REF(activate_corruption))
 	owner_marker = new(loc)
-	update_icon()
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, "generator", MINIMAP_BLIPS_LAYER))
 	if(is_ground_level(z) && is_corruptible)
 		GLOB.generators_on_ground += 1
@@ -41,6 +40,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		corrupted = 0
 	if(corrupted)
 		corrupt(corrupted)
+	update_icon()
 
 /obj/machinery/power/geothermal/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
@@ -62,7 +62,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	. = ..()
 	if(corrupted)
 		. += "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""]."
-	if(!isxeno(user) && !is_corruptible)
+	if(isxeno(user) && !is_corruptible)
 		. += "It is reinforced, making us not able to corrupt it."
 
 /obj/machinery/power/geothermal/should_have_node()
