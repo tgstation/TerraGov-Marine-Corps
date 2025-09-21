@@ -405,6 +405,24 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		<br>[GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] : "No"] projectiles managed to hit marines. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% friendly fire rate!"})
 	if(GLOB.round_statistics.total_projectile_hits[FACTION_XENO])
 		parts += "[GLOB.round_statistics.total_projectile_hits[FACTION_XENO]] projectiles managed to hit xenomorphs. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_XENO] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% accuracy total!"
+
+	if(GLOB.round_statistics.strategic_psypoints_from_generators)
+		parts += "[GLOB.round_statistics.strategic_psypoints_from_generators] strategic psy points were obtained from generators, at an average rate of [GLOB.round_statistics.strategic_psypoints_from_generators / GLOB.round_statistics.generator_seconds] points per generator per second."
+		var/avg_gen_time = GLOB.round_statistics.generator_seconds * 1 SECONDS / GLOB.generators_on_ground
+		parts += "The average generator was held by xenos for [DisplayTimeText(avg_gen_time)], or [100 * avg_gen_time / GLOB.round_statistics.round_length]% of the round."
+	if(GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards)
+		parts += "[GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards] strategic psy points were obtained from [GLOB.round_statistics.hive_target_rewards] hive target rewards, for an average of [GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards/GLOB.round_statistics.hive_target_rewards] points per hive target reward claimed."
+	if(GLOB.round_statistics.strategic_psypoints_from_cocoons)
+		parts += "[GLOB.round_statistics.strategic_psypoints_from_cocoons] strategic psy points were obtained from [GLOB.round_statistics.cocoons] cocoons, for an average of [GLOB.round_statistics.strategic_psypoints_from_cocoons/GLOB.round_statistics.cocoons] points per cocoon."
+	if(GLOB.round_statistics.strategic_psypoints_from_psydrains)
+		parts += "[GLOB.round_statistics.strategic_psypoints_from_psydrains] strategic psy points were obtained from [GLOB.round_statistics.psydrains] psydrains, for an average of [GLOB.round_statistics.strategic_psypoints_from_psydrains/GLOB.round_statistics.psydrains] points per psydrain."
+	if(GLOB.round_statistics.biomass_from_hive_target_rewards)
+		parts += "[GLOB.round_statistics.biomass_from_hive_target_rewards] biomass was obtained from [GLOB.round_statistics.hive_target_rewards] hive target rewards, for an average of [GLOB.round_statistics.biomass_from_hive_target_rewards/GLOB.round_statistics.hive_target_rewards] points per hive target reward claimed."
+	if(GLOB.round_statistics.biomass_from_cocoons)
+		parts += "[GLOB.round_statistics.biomass_from_cocoons] biomass was obtained from [GLOB.round_statistics.cocoons] cocoons, for an average of [GLOB.round_statistics.biomass_from_cocoons/GLOB.round_statistics.cocoons] points per cocoon."
+	if(GLOB.round_statistics.biomass_from_psydrains)
+		parts += "[GLOB.round_statistics.biomass_from_psydrains] biomass was obtained from [GLOB.round_statistics.psydrains] psydrains, for an average of [GLOB.round_statistics.biomass_from_psydrains/GLOB.round_statistics.psydrains] points per psydrain."
+
 	if(GLOB.round_statistics.grenades_thrown)
 		parts += "[GLOB.round_statistics.grenades_thrown] total grenades exploded."
 	else

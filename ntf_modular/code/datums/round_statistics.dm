@@ -10,3 +10,4 @@
 	var/cocoons = 0
 	var/psydrains = 0
 	var/hive_target_rewards = 0
+	var/round_length = 0

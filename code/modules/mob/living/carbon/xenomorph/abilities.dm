@@ -1531,6 +1531,7 @@
 		GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards += 2*psy_points_reward
 		psy_points_reward = psy_points_reward * 3
 		GLOB.round_statistics.hive_target_rewards++
+		GLOB.round_statistics.biomass_from_hive_target_rewards += MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD
 		SSpoints.add_biomass_points(X.hivenumber, MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD)
 	SSpoints.add_strategic_psy_points(X.hivenumber, psy_points_reward)
 	SSpoints.add_tactical_psy_points(X.hivenumber, psy_points_reward*0.25)
