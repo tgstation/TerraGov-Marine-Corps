@@ -676,6 +676,7 @@
 #include "code\datums\greyscale\config_types\new_mech.dm"
 #include "code\datums\health_scan\_advice.dm"
 #include "code\datums\health_scan\health_scan.dm"
+#include "code\datums\health_scan\historic_scans.dm"
 #include "code\datums\health_scan\advice\chem_mix_warnings.dm"
 #include "code\datums\health_scan\advice\crit_condition.dm"
 #include "code\datums\health_scan\advice\damage_types.dm"
