@@ -407,7 +407,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.total_projectile_hits[FACTION_XENO]] projectiles managed to hit xenomorphs. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_XENO] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% accuracy total!"
 
 	if(GLOB.round_statistics.strategic_psypoints_from_generators)
-		parts += "[GLOB.round_statistics.strategic_psypoints_from_generators] strategic psy points were obtained from generators, at an average rate of [GLOB.round_statistics.strategic_psypoints_from_generators / GLOB.round_statistics.generator_seconds] points per generator per second."
+		parts += "[GLOB.round_statistics.strategic_psypoints_from_generators] strategic psy points were obtained from generators, at an average rate of [GLOB.round_statistics.strategic_psypoints_from_generators * ((1 HOURS) /(1 SECONDS)) / GLOB.round_statistics.generator_seconds] points per generator per hour."
 		var/avg_gen_time = GLOB.round_statistics.generator_seconds * 1 SECONDS / GLOB.generators_on_ground
 		parts += "The average generator was held by xenos for [DisplayTimeText(avg_gen_time)], or [100 * avg_gen_time / GLOB.round_statistics.round_length]% of the round."
 	if(GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards)
