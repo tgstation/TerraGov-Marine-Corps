@@ -518,6 +518,10 @@
 	target_flags = ABILITY_MOB_TARGET
 	var/mob/living/carbon/xenomorph/last_xenomorph_transferred_to
 
+/datum/action/ability/activable/xeno/queen_give_plasma/Destroy()
+	last_xenomorph_transferred_to = null
+	return ..()
+
 /datum/action/ability/activable/xeno/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -564,7 +568,14 @@
 	use_ability(target)
 
 /datum/action/ability/activable/xeno/queen_give_plasma/use_ability(atom/target)
-	last_xenomorph_transferred_to = target
+	if(!last_xenomorph_transferred_to)
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_target_qdeleted))
+		last_xenomorph_transferred_to = target
+	else if(last_xenomorph_transferred_to != target)
+		UnregisterSignal(last_xenomorph_transferred_to, COMSIG_QDELETING)
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_target_qdeleted))
+		last_xenomorph_transferred_to = target
+
 	last_xenomorph_transferred_to.gain_plasma(300)
 	last_xenomorph_transferred_to.balloon_alert_to_viewers("Queen plasma", ignored_mobs = GLOB.alive_human_list)
 	if(get_dist(owner, last_xenomorph_transferred_to) > 7)
@@ -572,6 +583,11 @@
 		owner.balloon_alert(owner, "Transferred plasma")
 	add_cooldown()
 	succeed_activate()
+
+/// Should the last xenomorph get deleted, removes them from the ability as the last target.
+/datum/action/ability/activable/xeno/queen_give_plasma/proc/on_target_qdeleted(datum/source, force)
+	SIGNAL_HANDLER
+	last_xenomorph_transferred_to = null
 
 #define BULWARK_LOOP_TIME 1 SECONDS
 #define BULWARK_RADIUS 4
