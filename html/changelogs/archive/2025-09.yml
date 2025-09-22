@@ -106,3 +106,11 @@
   - bugfix: Carrier traps and acid wells no longer activate when crushed by a shuttle.
   - bugfix: Carrier traps that are filled with gas now trigger if the weeds underneath
       are destroyed.
+2025-09-22:
+  Helg2:
+  - bugfix: Fixed the layer of pipes.
+  Runian:
+  - bugfix: 'Mutations: Rapid Fire''s fast cooldown duration now correctly scales
+      at 50/40/30% instead of 50/30/10%.'
+  blackdav123:
+  - bugfix: Quickbuild mode now properly turns off on crash when the ship lands.

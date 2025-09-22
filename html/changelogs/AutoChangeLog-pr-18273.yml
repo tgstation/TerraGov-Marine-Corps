@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Mutations: Rapid Fire's fast cooldown duration now correctly scales at 50/40/30% instead of 50/30/10%."
