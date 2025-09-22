@@ -3902,9 +3902,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
-"ud" = (
-/turf/open/floor/mainship/sterile/plain,
-/area/antag_ship/pmc_ntf/aft/engiroom/starboard)
 "uf" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -4866,6 +4863,7 @@
 /area/antag_ship/som/hangar)
 "yU" = (
 /obj/machinery/power/smes/buildable,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
@@ -10223,6 +10221,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
 "Zt" = (
@@ -11855,7 +11854,7 @@ SL
 CV
 qY
 OA
-ud
+qY
 Gf
 Gf
 Cc
