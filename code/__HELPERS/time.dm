@@ -1,5 +1,5 @@
 /proc/worldtime2text(time = world.time) // Shows current time starting at noon 12:00 (station time)
-	return "[round(time / 36000) + 12]:[(time / 600 % 60) < 10 ? add_leading(num2text(time / 600 % 60), 1, "0") : time / 600 % 60]"
+	return "[round(time / 36000) + 12]:[add_leading(num2text(time / 600 % 60), 2, "0")]"
 
 
 /proc/time_stamp(format = "hh:mm:ss") // Shows current GMT time
@@ -7,7 +7,7 @@
 
 
 /proc/duration2text(time = world.time) // Shows current time starting at 0:00
-	return "[round(time / 36000)]:[(time / 600 % 60) < 10 ? add_leading(num2text(time / 600 % 60), 1, "0") : time / 600 % 60]"
+	return "[round(time / 36000)]:[add_leading(num2text(time / 600 % 60), 2, "0")]"
 
 
 GLOBAL_VAR_INIT(midnight_rollovers, 0)
