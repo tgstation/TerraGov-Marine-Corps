@@ -1,0 +1,5 @@
+author: "Scav"
+delete-after: True
+changes:
+  - balance: "Added chemistry equipment to canterbury, rearranged mebay layout"
+  - rscdel: "Deleted the body scanner in canterbury medical"
