@@ -71,8 +71,8 @@
 
 /obj/structure/xeno/plant/heal_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled && mature)
-		var/datum/effect_system/smoke_spread/xeno/acid/opaque/plant_explosion = new(get_turf(src))
-		plant_explosion.set_up(3,src)
+		var/datum/effect_system/smoke_spread/xeno/acid/light/plant_explosion = new(get_turf(src))
+		plant_explosion.set_up(1,src)
 		plant_explosion.start()
 		visible_message(span_danger("[src] bursts, releasing toxic gas!"))
 	return ..()
@@ -112,10 +112,10 @@
 					break
 				far_away_lands = next_turf
 
-			nearby_human.throw_at(far_away_lands, 20, spin = TRUE)
+			nearby_human.throw_at(far_away_lands, 7, spin = TRUE)
 			to_chat(nearby_human, span_warning("[src] bursts, releasing a strong gust of pressurised gas!"))
-			nearby_human.adjust_stagger(3 SECONDS)
-			nearby_human.apply_damage(30, BRUTE, "chest", BOMB)
+			nearby_human.adjust_stagger(1.5 SECONDS)
+			nearby_human.apply_damage(15, BRUTE, "chest", BOMB)
 	return ..()
 
 /obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
@@ -145,8 +145,8 @@
 
 /obj/structure/xeno/plant/plasma_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled && mature)
-		var/datum/effect_system/smoke_spread/xeno/pyrogen_fire/plant_explosion = new(get_turf(src))
-		plant_explosion.set_up(4, src)
+		var/datum/effect_system/smoke_spread/xeno/pyrogen_fire/light/plant_explosion = new(get_turf(src))
+		plant_explosion.set_up(1, src)
 		plant_explosion.start()
 		visible_message(span_warning("[src] bursts, releasing blue hot gas!"))
 	return ..()
