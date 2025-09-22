@@ -6,7 +6,7 @@
 	action_icon = 'ntf_modular/icons/xeno/construction.dmi'
 	desc = "Place down a dispenser that allows you to retrieve expensive jelly that may sold to humans. Each xeno can only own two pots at once."
 	ability_cost = 50
-	cooldown_duration = 30 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_STEW_POD,
 	)
