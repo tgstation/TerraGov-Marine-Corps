@@ -24,6 +24,33 @@
 	available_icon_state_amounts = 8
 	plane = FLOOR_PLANE
 
+/turf/open/space/transit/atmos/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	if(ismob(arrived))
+		dump_in_world(arrived)
+
+///Dump a movable in a random eligible tile in the main map
+/proc/dump_in_world(atom/movable/dumpee)
+	var/static/list/area/possible_dump_lzs
+	// yes this doesnt update when new areas are added but imo not worth wasting the CPU time
+	// since it doesnt change often. update if you feel different
+	if(!possible_dump_lzs)
+		possible_dump_lzs = list()
+		for(var/area/zone AS in GLOB.areas)
+			if((zone.area_flags &= ~MARINE_BASE) && (zone.area_flags &= ~NEAR_FOB) && (zone.area_flags &= NO_DROPPOD)) //open ass common area hopefully.
+				possible_dump_lzs += zone
+	var/area/garbage_dump = pick(possible_dump_lzs)
+	var/turf/open/dumpturf = pick(garbage_dump.get_turfs_from_all_zlevels())
+	dumpee.forceMove(dumpturf)
+	var/dumpee_pix_z = dumpee.pixel_z
+	dumpee.pixel_z += 400
+	animate(dumpee, 1 SECONDS, pixel_z=dumpee_pix_z)
+	if(isliving(dumpee))
+		var/mob/living/skydiver = dumpee
+		skydiver.take_overall_damage(300, BRUTE) // you fell from space!! YOU ARE A PANCAKE
+		skydiver.take_overall_damage(300, BURN) // A BURNING PANCAKE
+
+
 //Overwrite because we dont want people building rods in space.
 /turf/open/space/transit/attackby(obj/item/I, mob/user, params)
 	return

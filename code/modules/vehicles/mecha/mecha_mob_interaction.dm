@@ -121,7 +121,7 @@
 /obj/vehicle/sealed/mecha/resisted_against(mob/living/user)
 	to_chat(user, span_notice("You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting."))
 	is_currently_ejecting = TRUE
-	if(do_after(user, exit_delay, NONE, src))
+	if(do_after(user, exit_delay, target = src))
 		to_chat(user, span_notice("You exit the mech."))
 		mob_exit(user, TRUE)
 	else

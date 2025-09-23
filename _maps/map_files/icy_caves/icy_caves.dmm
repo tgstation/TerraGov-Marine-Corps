@@ -420,7 +420,8 @@
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "bL" = (
-/obj/machinery/computer/intel_computer,
+/obj/structure/cable,
+/obj/machinery/power/terminal,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "bN" = (
@@ -702,6 +703,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail)
+"dj" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/yellow2,
+/area/icy_caves/outpost/engineering)
 "dk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -2981,6 +2986,7 @@
 "pJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "pK" = (
@@ -4357,6 +4363,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "vI" = (
@@ -7687,7 +7694,8 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "LG" = (
-/obj/effect/spawner/random/misc/structure/closet/welding,
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "LH" = (
@@ -8900,6 +8908,8 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
+/obj/structure/cable,
+/obj/machinery/power/terminal,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "Rx" = (
@@ -9468,6 +9478,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "UB" = (
@@ -25755,13 +25766,13 @@ si
 sj
 si
 ce
-ol
+dj
 yx
 BI
 xU
 YG
 ro
-si
+bL
 LG
 ZI
 ZI
@@ -25917,8 +25928,8 @@ TA
 Dp
 ou
 ro
-si
 bL
+LG
 ZI
 ZI
 XO

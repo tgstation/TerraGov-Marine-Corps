@@ -38,26 +38,26 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/som/ert/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a member of the Sons of Mars assigned to lead this fireteam to the TGMC distress signal sent out nearby. Lead your fireteam to top-working conidition!")]</p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a member of the Sons of Mars assigned to lead this fireteam to the NTC distress signal sent out nearby. Lead your fireteam to top-working conidition!")]</p>")
 		return
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/som/ert/medic)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a Sons of Mars medic assigned to this fireteam to respond to the TGMC distress signal sent out nearby. Keep your squad alive in this fight!")]</p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a Sons of Mars medic assigned to this fireteam to respond to the NTC distress signal sent out nearby. Keep your squad alive in this fight!")]</p>")
 		medics++
 		return
 	if(max_specialists > 0)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/som/ert/specialist)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a veteran of the Sons of Mars trusted with specialised weaponry. You are assigned to this fireteam to respond to the TGMC distress signal sent out nearby. Do them proud and kill all who stand in your teams way!")]</p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a veteran of the Sons of Mars trusted with specialised weaponry. You are assigned to this fireteam to respond to the NTC distress signal sent out nearby. Do them proud and kill all who stand in your teams way!")]</p>")
 		max_specialists --
 		return
 	if(prob(65))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/som/ert/veteran)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a veteran of the Sons of Mars and are assigned to this fireteam to respond to the TGMC distress signal sent out nearby. Do them proud and kill all who stand in your teams way!")]</p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a veteran of the Sons of Mars and are assigned to this fireteam to respond to the NTC distress signal sent out nearby. Do them proud and kill all who stand in your teams way!")]</p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/som/ert/standard)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, span_notice("You are a member of the Sons of Mars assigned to compose this fireteam to the TGMC distress signal sent out nearby. Protect yourself and your other teammembers, kill all who stand in your team's way!"))
+	to_chat(H, span_notice("You are a member of the Sons of Mars assigned to compose this fireteam to the NTC distress signal sent out nearby. Protect yourself and your other teammembers, kill all who stand in your team's way!"))

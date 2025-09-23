@@ -212,7 +212,7 @@
 	to_chat(src, span_notice("Accessing internal radio settings."))
 	radio.interact(src)
 
-
+/*
 /mob/living/silicon/ai/verb/view_manifest()
 	set category = "Silicon"
 	set name = "View Crew Manifest"
@@ -220,11 +220,11 @@
 	if(incapacitated())
 		return
 
-	var/dat = GLOB.datacore.get_manifest()
+	var/dat = GLOB.datacore.get_manifest(ooc = FALSE, viewfaction = job?.faction)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
-	popup.open(FALSE)
+	popup.open(FALSE)*/
 
 /mob/living/silicon/ai/verb/toggle_anchor()
 	set category = "Silicon"

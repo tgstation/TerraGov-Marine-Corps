@@ -180,7 +180,7 @@ SUBSYSTEM_DEF(automatedfire)
 	SIGNAL_HANDLER
 	var/atom/movable/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
-	newshot.fire_at(target, null, src, ammo.max_range, ammo.shell_speed)
+	newshot.fire_at(target, usr, src, ammo.max_range, ammo.shell_speed)
 
 /datum/component/automatedfire/xeno_turret_autofire
 	///Delay between two shots
