@@ -61,9 +61,10 @@
 	span_warning("You are trying to plant [name] on [target]!"))
 
 	if(!do_after(user, 2 SECONDS, NONE, target, BUSY_ICON_HOSTILE) || !target.can_plastique(user, src))
-		return //to check: does the return value matter?
+		return FALSE
 
 	plant_plastique(target, user)
+	return TRUE
 
 /obj/item/explosive/plastique/attack_hand(mob/living/user)
 	if(armed)
@@ -119,7 +120,7 @@
 		mover.vis_contents += src
 		layer = ABOVE_ALL_MOB_LAYER
 	detonation_pending = addtimer(CALLBACK(src, PROC_REF(warning_sound), target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 ///Removes from a target
 /obj/item/explosive/plastique/proc/remove_plastique(mob/living/user)
@@ -151,12 +152,12 @@
 	alarm_sounded = FALSE
 	plant_target = null
 	last_user = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 ///Lets other c4 know that something is already on a target
 /obj/item/explosive/plastique/proc/on_target_attempt_plastique(source)
 	SIGNAL_HANDLER
-	return TRUE
+	return COMSIG_ATOM_CANCEL_PLASTIQUE
 
 ///Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer
 /obj/item/explosive/plastique/proc/warning_sound()
@@ -164,7 +165,7 @@
 		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(detonate)), 27, TIMER_STOPPABLE)
 		alarm_sounded = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 ///Handles the actual explosion effects
 /obj/item/explosive/plastique/proc/detonate()
@@ -191,7 +192,7 @@
 
 ///Whether this atom can have c4 or similar attached to it
 /atom/proc/can_plastique(mob/user, obj/plastique)
-	if(SEND_SIGNAL(src, COMSIG_ATOM_TRY_PLASTIQUE) & COMSIG_ATOM_EXISTING_PLASTIQUE)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_TRY_PLASTIQUE) & COMSIG_ATOM_CANCEL_PLASTIQUE)
 		to_chat(user, "[span_warning("There is already a device attached to [src]")].")
 		return FALSE
 	if(resistance_flags & INDESTRUCTIBLE)
