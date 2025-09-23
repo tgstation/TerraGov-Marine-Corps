@@ -114,3 +114,16 @@
       at 50/40/30% instead of 50/30/10%.'
   blackdav123:
   - bugfix: Quickbuild mode now properly turns off on crash when the ship lands.
+2025-09-23:
+  Atropos:
+  - rscadd: Added loadout vendors in req on sulaco
+  - bugfix: fixed incorrectly wired button on sulaco
+  Scav:
+  - balance: Added chemistry equipment to canterbury, rearranged mebay layout
+  - rscdel: Deleted the body scanner in canterbury medical
+  TheRealMrN:
+  - balance: Moved a Canterbury LZ on Blue Moon
+  - balance: Moved a silo on Blue Moon
+  blackdav123:
+  - balance: Moved crash landing sites on Orion Outpost to have better shutter positions
+      to exit and siege.

@@ -1,5 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - rscadd: "Added loadout vendors in req on sulaco"
-  - bugfix: "fixed incorrectly wired button on sulaco"
