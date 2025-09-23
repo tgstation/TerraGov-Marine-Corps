@@ -76,7 +76,7 @@
 	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
 		span_notice("You fumble around figuring out how to use the [src]."))
-		if(!do_after(user, SKILL_TASK_EASY, NONE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
+		if(!do_after(user, SKILL_TASK_EASY, TRUE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
 	if(ismob(A))
 		var/mob/M = A
@@ -276,7 +276,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced
 	name = "Advanced hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. NovaMed medical technology at it's finest."
 	core_name = "hypospray"
 	icon_state = "hypo"
 	reagent_flags = REFILLABLE|DRAINABLE
@@ -480,6 +480,14 @@
 	)
 	description_overlay = "Hy"
 
+/obj/item/reagent_containers/hypospray/advanced/aphrotoxin
+	name = "Aphrotoxin hypospray"
+	desc = "A hypospray loaded with Aphrotoxin. produced from xenomorphs. Causes weakness on the legs and intense lust."
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/toxin/xeno_aphrotoxin = 60,
+	)
+	description_overlay = "Apr"
 /obj/item/reagent_containers/hypospray/advanced/nanoblood
 	name = "nanoblood hypospray"
 	desc = "A hypospray loaded with nanoblood. A chemical which rapidly restores blood at the cost of minor toxic damage."
@@ -539,7 +547,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
-	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy. This one is a 120 unit version."
+	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. NovaMed medical technologies at their prime. This one is a 120 unit version."
 	worn_icon_state = "hypomed"
 	icon_state = "hypomed"
 	core_name = "hypospray"

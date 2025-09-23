@@ -4,7 +4,7 @@
 	alignement_factor = -1
 
 /datum/emergency_call/retired/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>You are an old, retired member of the TerraGov marine corps.</b>")
+	to_chat(H, "<B>You are an old, retired member of the Nine-Tailed Fox.</b>")
 	to_chat(H, "<B>Althought you may be past your prime, high command has deemed you capable enough to be sent to the [SSmapping.configs[SHIP_MAP].map_name], which has recently sent out a distress signal.</b>")
 	to_chat(H, "<B>Investigate why the distress signal was sent and show the younger generation how it's done!</b>")
 

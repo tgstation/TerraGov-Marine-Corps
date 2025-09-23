@@ -1569,6 +1569,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/power_plant/telecomms)
 "aoz" = (
@@ -6205,6 +6206,7 @@
 /obj/machinery/power/smes/buildable{
 	name = "colony distribution SMES"
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/power_plant/telecomms)
 "bgm" = (
@@ -57327,6 +57329,7 @@
 /area/lv759/indoors/hospital/medical_storage)
 "knZ" = (
 /obj/machinery/light/spot,
+/obj/structure/cable,
 /turf/open/shuttle/escapepod{
 	dir = 8
 	},
@@ -64169,6 +64172,7 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "lBk" = (
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "lBo" = (
@@ -70271,6 +70275,14 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"mDp" = (
+/obj/machinery/power/smes/buildable{
+	capacity = 1e+006;
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/urban_plating,
+/area/lv759/indoors/electical_systems/substation2)
 "mDv" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -108529,6 +108541,14 @@
 	dir = 6
 	},
 /area/lv759/indoors/spaceport/cuppajoes)
+"tux" = (
+/obj/structure/prop/urban/misc/fake/heavydutywire/heavy2{
+	dir = 4
+	},
+/obj/structure/prop/urban/misc/floorprops/grate,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lv759/indoors/power_plant/power_storage)
 "tuy" = (
 /turf/open/floor/prison/plate,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -134017,6 +134037,8 @@
 	capacity = 1e+006;
 	dir = 1
 	},
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "xMZ" = (
@@ -167522,7 +167544,7 @@ tgA
 eDE
 sna
 aiU
-que
+tux
 dGy
 dGy
 dGy
@@ -180205,7 +180227,7 @@ cGj
 ePr
 fmS
 wke
-xMV
+mDp
 ejQ
 rtv
 aWQ

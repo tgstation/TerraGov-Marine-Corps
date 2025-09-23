@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/warrior
 	name = "Warrior"
 	desc = "A beefy, alien with an armored carapace."
-	icon = 'icons/Xeno/castes/warrior.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/warrior.dmi'
 	icon_state = "Warrior Walking"
 	bubble_icon = "alienroyal"
 	health = 200
@@ -18,7 +18,7 @@
 /mob/living/carbon/xenomorph/warrior/handle_special_state()
 	var/datum/action/ability/xeno_action/toggle_agility/agility_action = actions_by_path[/datum/action/ability/xeno_action/toggle_agility]
 	if(agility_action?.toggled)
-		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Agility"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Agility"
 		return TRUE
 	return FALSE
 

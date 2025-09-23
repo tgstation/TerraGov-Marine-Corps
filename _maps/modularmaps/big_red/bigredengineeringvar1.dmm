@@ -240,6 +240,7 @@
 /area/bigredv2/outside/engineering)
 "lE" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
 "mo" = (

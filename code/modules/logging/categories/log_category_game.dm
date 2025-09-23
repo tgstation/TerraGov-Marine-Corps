@@ -27,6 +27,11 @@
 	config_flag = /datum/config_entry/flag/log_say
 	master_category = /datum/log_category/game
 
+/datum/log_category/game_roleplay
+	category = LOG_CATEGORY_GAME_ROLEPLAY
+	config_flag = /datum/config_entry/flag/log_say
+	master_category = /datum/log_category/game
+
 /datum/log_category/game_whisper
 	category = LOG_CATEGORY_GAME_WHISPER
 	config_flag = /datum/config_entry/flag/log_whisper
@@ -50,6 +55,11 @@
 /datum/log_category/game_mooc
 	category = LOG_CATEGORY_GAME_MOOC
 	config_flag = /datum/config_entry/flag/log_mooc
+	master_category = /datum/log_category/game
+
+/datum/log_category/game_xmooc
+	category = LOG_CATEGORY_GAME_XMOOC
+	config_flag = /datum/config_entry/flag/log_xmooc
 	master_category = /datum/log_category/game
 
 /datum/log_category/game_prayer

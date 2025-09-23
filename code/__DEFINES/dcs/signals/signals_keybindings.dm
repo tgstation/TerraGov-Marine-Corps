@@ -24,6 +24,7 @@
 #define COMSIG_KB_CLIENT_OOC_DOWN "keybinding_client_ooc_down"
 #define COMSIG_KB_CLIENT_XOOC_DOWN "keybinding_client_xooc_down"
 #define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
+#define COSMIG_KB_CLIENT_XMOOC_DOWN "keybinding_client_xmooc_down"
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
 
 //living
@@ -252,12 +253,15 @@
 #define COMSIG_XENOABILITY_RESIN_WALKER "xenoability_resin_walker"
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
 #define COMSIG_XENOABILITY_PLACE_JELLY_POD "xenoability_place_jelly_pod"
+#define COMSIG_XENOABILITY_PLACE_STEW_POD "xenoability_place_stew_pod"
 #define COMSIG_XENOABILITY_PLACE_RECOVERY_PYLON "xenoability_place_recovery_pylon"
 #define COMSIG_XENOABILITY_CREATE_JELLY "xenoability_create_jelly"
+#define COMSIG_XENOABILITY_CREATE_EDIBLE_JELLY "xenoability_create_edible_jelly"
 #define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
 #define COMSIG_XENOABILITY_RECYCLE "xenoability_recycle"
 
 #define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
+#define COMSIG_XENOABILITY_TOGGLE_PHASEOUT "xenoability_toggle_phaseout"
 #define COMSIG_XENOABILITY_TOGGLE_DISGUISE "xenoability_toggle_disguise"
 #define COMSIG_XENOABILITY_MIRAGE "xenoability_mirage"
 #define COMSIG_XENOABILITY_MIRAGE_SWAP "xenoability_mirage_swap"
@@ -266,6 +270,7 @@
 #define COMSIG_XENOABILITY_SCREECH_SWITCH "xenoability_screech_switch"
 
 #define COMSIG_XENOABILITY_PSYCHIC_WHISPER "xenoability_psychic_whisper"
+#define COMSIG_XENOABILITY_PSYCHIC_RADIANCE "xenoability_psychic_radiance"
 #define COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM "xenoability_toggle_queen_zoom"
 #define COMSIG_XENOABILITY_XENO_LEADERS "xenoability_xeno_leaders"
 #define COMSIG_XENOABILITY_QUEEN_HEAL "xenoability_queen_heal"
@@ -294,6 +299,7 @@
 
 #define COMSIG_XENOABILITY_RUNNER_POUNCE "xenoability_runner_pounce"
 #define COMSIG_XENOABILITY_HUNTER_POUNCE "xenoability_hunter_pounce"
+#define COMSIG_XENOABILITY_HUNTER_LUNGE "xenoability_hunter_lunge"
 #define COMSIG_XENOABILITY_TOGGLE_SAVAGE "xenoability_toggle_savage"
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
 #define COMSIG_XENOABILITY_AUTO_EVASION "xenoability_auto_evasion"
@@ -310,6 +316,9 @@
 
 #define COMSIG_XENOABILITY_PORTAL "xenoablity_portal"
 #define COMSIG_XENOABILITY_PORTAL_ALTERNATE "xenoability_portal_alternate"
+#define COMSIG_XENOABILITY_BLINK "xenoability_blink"
+#define COMSIG_XENOABILITY_BANISH "xenoability_banish"
+#define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 #define COMSIG_XENOABILITY_TIMESTOP "xenoability_timestop"
 #define COMSIG_XENOABILITY_REWIND "xenoability_rewind"
 
@@ -380,6 +389,7 @@
 #define COMSIG_XENOABILITY_EARTH_PILLAR_THROW "xenoability_earth_pillar_throw"
 #define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
 #define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
+#define COMSIG_XENOABILITY_SPRAY_SHARD "xenoability_spray_shard"
 
 #define COMSIG_XENOABILITY_ABDUCT "xenoability_abduct"
 #define COMSIG_XENOABILITY_DISLOCATE "xenoability_dislocate"
@@ -387,6 +397,13 @@
 #define COMSIG_XENOABILITY_TAIL_LASH "xenoability_tail_lash"
 #define COMSIG_XENOABILITY_TAIL_LASH_SELECT "xenoability_tail_lash_select"
 #define COMSIG_XENOABILITY_ADVANCE_OPPRESSOR "xenoability_advance_oppressor"
+#define COMSIG_XENOABILITY_LARVAL_GROWTH_STING "xenoability_larval_growth_sting"
+#define COMSIG_XENOABILITY_TAIL_STAB "xenoability_tail_stab"
+#define COMSIG_XENOABILITY_IMPREGNATE "xenoability_impregnate"
+#define COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION "xenoability_baneling_dash_explosion"
+#define COMSIG_XENOABILITY_BANELING_SPAWN_POD "xenoability_baneling_spawn_pod"
+#define COMSIG_XENOABILITY_RESIN_SALVE "xenoability_resin_salve"
+#define COMSIG_XENOABILITY_PSYCHIC_INFLUENCE "xenoability_psychic_influence"
 
 #define COMSIG_XENOABILITY_BACKHAND "xenoability_backhand"
 #define COMSIG_XENOABILITY_FLY "xenoability_fly"

@@ -69,7 +69,7 @@ a.popt {text-decoration: none;}
 
 .bold, .name, .prefix, .ooc, .looc, .adminooc, .admin, .medal, .yell {font-weight: bold;}
 
-.italic, .italics,  .emote {font-style: italic;}
+.italic, .italics {font-style: italic;}
 
 .highlight {background: yellow;}
 
@@ -129,6 +129,8 @@ a.popt {text-decoration: none;}
 .medradio				{color: #008160;}
 .sciradio				{color: #993399;}
 .supradio				{color: #5F4519;}
+.secradio				{color: #a30000;}
+.civradio				{color: #78b21a;}
 
 .alpharadio				{color: #EA0000;}
 .bravoradio				{color: #C68610;}
@@ -147,7 +149,7 @@ a.popt {text-decoration: none;}
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
 
-.emote					{					font-style: italic;}
+.emote					{}
 .selecteddna			{color: #FFFFFF; 	background-color: #001B1B}
 
 .singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;}
@@ -165,7 +167,7 @@ h1.alert, h2.alert		{color: #000000;}
 .info					{color: #0000CC;}
 .debuginfo				{color: #493D26;	font-style: italic;}
 .notice					{color: #000099;}
-.xenonotice				{color: #2a623d;}
+.xenonotice, .psychicout	{color: #2a623d;}
 .boldnotice				{color: #000099;	font-weight: bold;}
 .warning				{color: #ff0000;	font-style: italic;}
 .xenowarning			{color: #2a623d;	font-style: italic;}
@@ -176,7 +178,7 @@ h1.alert, h2.alert		{color: #000000;}
 .xenouserdanger			{color: #2a623d; 	font-weight: bold; font-size: 1.5em;}
 .xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
 
-.alien					{color: #543354;}
+.alien, .psychicin		{color: #543354;}
 .newscaster				{color: #800000;}
 
 .role_header			{color: #db0000;	display: block; text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 1.5em;}
@@ -207,6 +209,25 @@ h1.alert, h2.alert		{color: #000000;}
 .hierophant_warning		{color: #660099; font-style: italic;}
 .purple					{color: #5e2d79;}
 .holoparasite			{color: #35333a;}
+
+/* Colors */
+.white					{color: #FFFFFF;}
+.black					{color: #000000;}
+.darkgray				{color: #808080;}
+.gray					{color: #A9A9A9;}
+.grey					{color: #A9A9A9;}
+.red					{color: #FF0000;}
+.orange					{color: #FF8C00;}
+.blue					{color: #0000FF;}
+.darkgreen				{color: #008000;}
+.yellow					{color: #ffcc00;}
+.pink					{color: #ffc0cb;}
+.cyan					{color: #00ffff;}
+.maroon					{color: #800000;}
+.crimson				{color: #DC143C;}
+.brown					{color: #8D4925;}
+.lightpurple				{color: #AD5AAD;}
+.darkpink				{color: #E3209B;}
 
 .revennotice			{color: #1d2953;}
 .revenboldnotice		{color: #1d2953;	font-weight: bold;}
