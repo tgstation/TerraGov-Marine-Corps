@@ -141,6 +141,20 @@
 				nearest_target = nearby_human
 				shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
 	if(target_flags & TARGET_XENO)
+		for(var/obj/item/clothing/mask/facehugger/hugger AS in GLOB.alive_hugger_list)
+			if(hugger.z != source.z)
+				continue
+			if(!isturf(hugger.loc))
+				continue
+			if(attacker_hive == hugger.get_xeno_hivenumber())
+				continue
+			if(get_dist(source, hugger) >= shorter_distance)
+				continue
+			if(need_los && !line_of_sight(source, hugger))
+				continue
+			nearest_target = hugger
+			shorter_distance = get_dist(source, hugger)
+
 		nearby_xeno_list = cheap_get_xenos_near(source, shorter_distance - 1)
 		for(var/mob/nearby_xeno AS in nearby_xeno_list)
 			if(attacker_hive == nearby_xeno.get_xeno_hivenumber())

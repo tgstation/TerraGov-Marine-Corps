@@ -316,6 +316,8 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 #define isresinjelly(A) (istype(A, /obj/item/resin_jelly))
 
+#define isfacehugger(A) (istype(A, /obj/item/clothing/mask/facehugger))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

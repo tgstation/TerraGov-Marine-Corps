@@ -327,6 +327,15 @@
 		return null
 	return 0
 
+/obj/item/clothing/mask/facehugger/get_ai_hazard_radius(mob/living/victim)
+	if(stat == DEAD)
+		return null
+	if(!isturf(loc))
+		return null
+	if(!victim.can_be_facehugged())
+		return null
+	return leap_range
+
 //Obstacle handling
 ///Handles the obstacle or tells AI behavior how to interact with it
 /obj/proc/ai_handle_obstacle(mob/living/user, move_dir) //do we need to/can we just check can_pass???

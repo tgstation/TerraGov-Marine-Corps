@@ -574,7 +574,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	weak_escort = new_escort_is_weak
 	if(!weak_escort)
 		base_action = ESCORTING_ATOM
-	RegisterSignals(escorted_atom, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
+	RegisterSignals(escorted_atom, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	RegisterSignal(escorted_atom, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, PROC_REF(set_agressivity))
 	change_action(ESCORTING_ATOM, escorted_atom)
 	return TRUE
@@ -599,7 +599,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(atom_to_walk_to)
 		do_unset_target(atom_to_walk_to, FALSE)
 	atom_to_walk_to = new_target
-	RegisterSignals(atom_to_walk_to, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
+	RegisterSignals(atom_to_walk_to, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	if(!registered_for_move)
 		INVOKE_ASYNC(src, PROC_REF(scheduled_move))
 	return TRUE
@@ -611,7 +611,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(combat_target)
 		do_unset_target(combat_target, FALSE)
 	combat_target = new_target
-	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
+	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	return TRUE
 
 ///Sets an interaction target
@@ -621,7 +621,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(interact_target)
 		do_unset_target(interact_target, FALSE)
 	interact_target = new_target
-	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
+	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	change_action(MOVING_TO_ATOM, interact_target, list(0, 1))
 	return TRUE
 
@@ -632,7 +632,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 ///Unsets a target from any target vars its in
 /datum/ai_behavior/proc/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
-	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_Z_CHANGED))
+	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH))
 	if(goal_node == old_target)
 		goal_node = null
 		goal_nodes = null
