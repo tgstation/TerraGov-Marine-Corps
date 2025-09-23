@@ -16038,7 +16038,7 @@
 	},
 /area/sulaco/marine)
 "jzZ" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "jAp" = (
@@ -19395,10 +19395,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "nJV" = (
-/obj/machinery/vending/armor_supply,
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/machinery/vending/MarineMed,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "nKb" = (
@@ -21458,7 +21458,7 @@
 /area/sulaco/bridge)
 "qpD" = (
 /obj/machinery/door_control/mainship/mech{
-	id = "mech_shutters_3"
+	id = "mech_shutters_2"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -22344,9 +22344,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"rrU" = (
-/turf/closed/wall/mainship,
-/area/space)
 "rso" = (
 /obj/vehicle/ridden/wheelchair{
 	dir = 4
@@ -25055,24 +25052,7 @@
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering)
 "uDh" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/stack/sheet/cardboard{
-	amount = 50
-	},
-/obj/item/stack/sheet/wood/large_stack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 50
-	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "uEO" = (
@@ -25572,7 +25552,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "vlG" = (
@@ -26390,7 +26370,24 @@
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
 "whV" = (
-/obj/effect/spawner/random/machinery/machine_frame,
+/obj/structure/table/mainship/nometal,
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 50
+	},
+/obj/item/stack/sheet/wood/large_stack,
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "wie" = (
@@ -61998,7 +61995,7 @@ aaa
 aaa
 aaa
 aaa
-rrU
+aaa
 aaa
 aaa
 aaa
@@ -76990,7 +76987,7 @@ uzL
 uzL
 kbV
 aaa
-aaa
+cyv
 aaa
 aaa
 aaa
@@ -77502,7 +77499,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+cyv
 aaa
 aaa
 aaa

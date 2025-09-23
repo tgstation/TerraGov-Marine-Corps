@@ -1068,6 +1068,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/breakroom)
+"fq" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/prep)
 "fr" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -6873,6 +6877,10 @@
 	},
 /turf/open/floor/plating/dmg1,
 /area/orion_outpost/ground/underground/caveS)
+"Ho" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall/mainship/gray,
+/area/orion_outpost/surface/building/canteen)
 "Hr" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/orange{
@@ -9765,10 +9773,6 @@
 	dir = 5
 	},
 /area/orion_outpost/surface/landing_pad)
-"Vl" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/outposts)
 "Vm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10254,10 +10258,6 @@
 	},
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostnw)
-"XA" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/outpostcent)
 "XB" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -18295,7 +18295,7 @@ tS
 wJ
 Fk
 OI
-kK
+fq
 kK
 Lq
 kK
@@ -18950,7 +18950,7 @@ DU
 DU
 NP
 DU
-Vl
+DU
 tS
 hX
 Sw
@@ -19972,7 +19972,7 @@ ac
 EW
 EI
 Fm
-XA
+rt
 rt
 rt
 rt
@@ -20362,7 +20362,7 @@ bn
 kp
 AO
 Fm
-Fm
+Ho
 nM
 nM
 nM
