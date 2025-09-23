@@ -76,7 +76,7 @@ ENGINEERING
 /datum/supply_packs/engineering/uranium
 	name = "30 uranium sheets"
 	contains = list(/obj/item/stack/sheet/mineral/uranium/medium_stack)
-	cost = 1000
+	cost = 775
 
 /datum/supply_packs/engineering/electrical
 	name = "Electrical maintenance supplies"
