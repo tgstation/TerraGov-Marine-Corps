@@ -470,6 +470,9 @@
 			var/mob/living/L = src
 			L.language_menu()
 
+	if(href_list["refreshwho"])
+		client?.who()
+
 /mob/living/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || status_flags & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE

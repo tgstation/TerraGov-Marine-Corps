@@ -36,6 +36,7 @@
 
 
 	var/msg = "<b>Current Players:</b><br>"
+	msg = "<a href='byond://?_src_=usr;refreshwho=1'>Refresh</a><br>[msg]"
 
 	var/list/Lines = list()
 
