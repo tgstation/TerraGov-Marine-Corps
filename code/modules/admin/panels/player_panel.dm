@@ -297,6 +297,7 @@ ADMIN_VERB(player_panel, R_ADMIN, "Player Panel", "View the player panel", ADMIN
 ADMIN_VERB(player_panel_extended, R_ADMIN, "Player Panel Extended", "View the extended player panel", ADMIN_CATEGORY_MAIN)
 	var/ref = "[REF(user.holder)];[HrefToken()]"
 	var/dat = "<table border=0 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
+	dat = "<a href='byond://?src=[ref];playerpanelextended=1'>Refresh</a><br>[dat]"
 
 	for(var/mob/M in sortmobs())
 		if(!M.ckey)

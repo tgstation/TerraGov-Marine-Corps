@@ -2256,3 +2256,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		web_sound(usr, link_url)
+
+	else if(href_list["playerpanelextended"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/player_panel_extended)
