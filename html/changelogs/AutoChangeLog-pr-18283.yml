@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Guns vended by the automated weapons rack now have their gun-attachments start empty."
