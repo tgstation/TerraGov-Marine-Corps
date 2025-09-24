@@ -27,3 +27,5 @@
 	sight |= SEE_TURFS
 
 	client?.play_title_music()
+
+	name = "[key](In Lobby)"

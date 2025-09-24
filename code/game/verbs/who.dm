@@ -56,6 +56,8 @@
 							entry += " - Observing"
 						else
 							entry += " - <b>DEAD</b>"
+					else if(isnewplayer(C.mob))
+						entry += " - <b>In lobby</b>"
 					else
 						entry += " - <b>DEAD</b>"
 			entry += " (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"

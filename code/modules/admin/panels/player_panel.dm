@@ -236,7 +236,7 @@ ADMIN_VERB(player_panel, R_ADMIN, "Player Panel", "View the player panel", ADMIN
 				M_job = "Living"
 
 		else if(istype(M,/mob/new_player))
-			M_job = "New player"
+			M_job = "In Lobby"
 
 		else if(isobserver(M))
 			M_job = "Ghost"
@@ -309,7 +309,7 @@ ADMIN_VERB(player_panel_extended, R_ADMIN, "Player Panel Extended", "View the ex
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/new_player))
-			dat += "<td>New Player</td>"
+			dat += "<td>In Lobby</td>"
 		else if(isobserver(M))
 			dat += "<td>Ghost</td>"
 		else if(ismonkey(M))

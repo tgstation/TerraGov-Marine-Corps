@@ -750,7 +750,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/new_player/NP = new()
 		M.client?.screen.Cut()
-		NP.name = M.key
 		NP.key = M.key
 		if(isobserver(M))
 			qdel(M)
