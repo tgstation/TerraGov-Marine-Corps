@@ -1,6 +1,7 @@
 /obj/machinery/atmospherics/pipe
 	level = 1
 	plane = FLOOR_PLANE
+	layer = BELOW_CATWALK_LAYER
 	use_power = NO_POWER_USE
 	can_unwrench = FALSE
 	atom_flags = SHUTTLE_IMMUNE

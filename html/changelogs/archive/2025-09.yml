@@ -93,3 +93,47 @@
   - bugfix: fixed missing sprites for empty water tanks and space cash
   - bugfix: NPC's will no longer get stuck on razorwire
   - bugfix: fixed a layer issue on the SOM hoverbike
+2025-09-19:
+  Runian:
+  - bugfix: 'Mutations: Vitality Transfer now heals/transfers health as intended.'
+  - bugfix: Runner's Evasion now correctly dodges thrown objects.
+  - bugfix: See Through no longer causes those who have an modified alpha to become
+      even more invisible (e.g. Hunter).
+  blackdav123:
+  - balance: Xeno fruit death effects are now weaker.
+2025-09-20:
+  Runian:
+  - bugfix: Carrier traps and acid wells no longer activate when crushed by a shuttle.
+  - bugfix: Carrier traps that are filled with gas now trigger if the weeds underneath
+      are destroyed.
+2025-09-22:
+  Helg2:
+  - bugfix: Fixed the layer of pipes.
+  Runian:
+  - bugfix: 'Mutations: Rapid Fire''s fast cooldown duration now correctly scales
+      at 50/40/30% instead of 50/30/10%.'
+  blackdav123:
+  - bugfix: Quickbuild mode now properly turns off on crash when the ship lands.
+2025-09-23:
+  Atropos:
+  - rscadd: Added loadout vendors in req on sulaco
+  - bugfix: fixed incorrectly wired button on sulaco
+  Scav:
+  - balance: Added chemistry equipment to canterbury, rearranged mebay layout
+  - rscdel: Deleted the body scanner in canterbury medical
+  TheRealMrN:
+  - balance: Moved a Canterbury LZ on Blue Moon
+  - balance: Moved a silo on Blue Moon
+  blackdav123:
+  - balance: Moved crash landing sites on Orion Outpost to have better shutter positions
+      to exit and siege.
+2025-09-24:
+  Lumipharon:
+  - qol: 0 stamina HUD icon should be clearer
+  - balance: NPC's are now aware to the threat of facehuggers
+  Runian:
+  - bugfix: Guns vended by the automated weapons rack now have their gun-attachments
+      start empty.
+  blackdav123:
+  - rscadd: Added paper maps to the Utility tab of the marine vendor, these show groundside
+      like a map table would.
