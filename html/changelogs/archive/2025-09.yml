@@ -137,3 +137,13 @@
   blackdav123:
   - balance: Moved crash landing sites on Orion Outpost to have better shutter positions
       to exit and siege.
+2025-09-24:
+  Lumipharon:
+  - qol: 0 stamina HUD icon should be clearer
+  - balance: NPC's are now aware to the threat of facehuggers
+  Runian:
+  - bugfix: Guns vended by the automated weapons rack now have their gun-attachments
+      start empty.
+  blackdav123:
+  - rscadd: Added paper maps to the Utility tab of the marine vendor, these show groundside
+      like a map table would.
