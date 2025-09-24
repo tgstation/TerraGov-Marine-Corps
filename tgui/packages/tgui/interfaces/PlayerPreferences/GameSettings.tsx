@@ -13,6 +13,7 @@ import {
   TextFieldPreference,
   ToggleFieldPreference,
 } from './FieldPreferences';
+import { GameSettingData } from './Types';
 
 const MultiZPerfToString = (integer) => {
   let returnval = '';
@@ -284,6 +285,34 @@ export const GameSettings = (props) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
                 tooltip="Toggles whether the Toggle Move Intent keybind works when you are a xeno."
+              />
+              <LoopingSelectionPreference
+                label="Enable Screentips"
+                value={data.screentips_enabled}
+                action="screentips_enabled"
+                tooltip="Show helpful screentips for new players."
+              />
+              <ToggleFieldPreference
+                label="Show Screentip Images"
+                value="screentip_images"
+                action="screentip_images"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Display small images in screentips where available."
+              />
+              <TextFieldPreference
+                label="Screentip Color"
+                value="screentip_color"
+                noAction
+                extra={
+                  <>
+                    <ColorBox color={data.screentip_color} mr={1} />
+                    <Button
+                      icon="edit"
+                      onClick={() => act('screentip_color')}
+                    />
+                  </>
+                }
               />
             </LabeledList>
           </Section>
