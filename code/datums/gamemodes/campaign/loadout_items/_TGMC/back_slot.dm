@@ -89,7 +89,7 @@
 	Uses 12 gauge shells."
 	ui_icon = "t35"
 	purchase_cost = 25
-	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
+	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/back_slot
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 	loadout_item_flags = NONE
 
