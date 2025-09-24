@@ -152,7 +152,7 @@
 /datum/mutation_upgrade/spur/deep_slash/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Ravage now has an additional 10/15/20 [get_ap(new_amount)] armor penetration."
+	return "Ravage now has an additional [get_ap(new_amount)] armor penetration."
 
 /datum/mutation_upgrade/spur/deep_slash/on_mutation_enabled()
 	. = ..()
