@@ -606,6 +606,12 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
 
+/obj/item/ammo_magazine/rifle/som/rubber
+	name = "\improper V-31 rubber magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the V-31, loaded with rubber rounds"
+	default_ammo = /datum/ammo/bullet/rifle/rubber
+	color = list(0,1,0,0, 0.5,0.5,0,0, 0,0,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
+
 /obj/item/ammo_magazine/rifle/som/ap
 	name = "\improper V-31 AP magazine (10x24mm)"
 	desc = "A 10mm rifle magazine designed for the V-31, loaded with armor piercing rounds."

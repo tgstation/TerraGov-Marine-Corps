@@ -2073,6 +2073,7 @@
 		"Sons of Mars" = list(
 			/obj/item/weapon/gun/rifle/som = -1,
 			/obj/item/ammo_magazine/rifle/som = -1,
+			/obj/item/ammo_magazine/rifle/som/rubber = -1,
 			/obj/item/ammo_magazine/handful/micro_grenade = -1,
 			/obj/item/ammo_magazine/handful/micro_grenade/cluster = -1,
 			/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst = -1,

@@ -2160,7 +2160,7 @@
 	caliber = CALIBER_10X24_CASELESS
 	max_shells = 50
 	default_ammo_type = /obj/item/ammo_magazine/rifle/som
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/som, /obj/item/ammo_magazine/rifle/som/ap, /obj/item/ammo_magazine/rifle/som/incendiary)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/som, /obj/item/ammo_magazine/rifle/som/rubber, /obj/item/ammo_magazine/rifle/som/ap, /obj/item/ammo_magazine/rifle/som/incendiary)
 	attachable_allowed = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 		/obj/item/attachable/reddot,
