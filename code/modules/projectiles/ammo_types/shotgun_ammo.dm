@@ -85,6 +85,19 @@
 	damage = 40
 	sundering = 5
 
+/datum/ammo/bullet/shotgun/flechette/rubber
+	name = "shotgun rubber pellet shell"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette/flechette_spread/rubber
+	damage = 55
+	damage_type = STAMINA
+	shrapnel_chance = 0
+
+/datum/ammo/bullet/shotgun/flechette/flechette_spread/rubber
+	name = "additional rubber pellet"
+	damage = 44
+	damage_type = STAMINA
+	shrapnel_chance = 0
+
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	handful_icon_state = "shotgun_buckshot"

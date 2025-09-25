@@ -2697,6 +2697,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_autoshotgun
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/icc_autoshotgun,
+		/obj/item/ammo_magazine/rifle/icc_autoshotgun/rubber,
 		/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag,
 	)
 	attachable_allowed = list(

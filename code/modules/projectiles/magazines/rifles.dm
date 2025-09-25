@@ -725,6 +725,12 @@
 	max_rounds = 16
 	icon_state_mini = "mag_rifle"
 
+/obj/item/ammo_magazine/rifle/icc_autoshotgun/rubber
+	name = "\improper ML-41 Autoshotgun rubber pellet drum magazine (12G)"
+	desc = "A magazine filled with 12G rubber pellet shells for the ML-41."
+	default_ammo = /datum/ammo/bullet/shotgun/flechette/rubber
+	color = list(1,0,0,0, 0,1,0,0, 0,1.5,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
+
 /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag
 	name = "\improper ML-41 Autoshotgun frag drum magazine (12G)"
 	desc = "A magazine filled with 12G fragmentation shells for the ML-41."

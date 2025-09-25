@@ -2119,6 +2119,7 @@
 			/obj/item/ammo_magazine/rifle/icc_coilgun = -1,
 			/obj/item/weapon/gun/rifle/icc_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/icc_autoshotgun/rubber = -1,
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = -1,
 			/obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun = -1,
 			/obj/item/ammo_magazine/shotgun/heavy_buckshot = -1,
