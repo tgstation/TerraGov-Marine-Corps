@@ -63,7 +63,7 @@
 	if(iscarbon(M))
 		var/mob/living/carbon/carbon_mob = M
 		var/datum/reagent/consumable/nutriment/nutriment = reagents.get_reagent(/datum/reagent/consumable/nutriment)
-		var/bite_nutrition = nutriment.get_nutrition_gain((reagents.total_volume < bitesize) ? nutriment.volume : nutriment.volume / reagents.total_volume * bitesize)
+		var/bite_nutrition = 0 || nutriment?.get_nutrition_gain((reagents.total_volume < bitesize) ? nutriment.volume : nutriment.volume / reagents.total_volume * bitesize)
 		nutriment = carbon_mob.reagents.get_reagent(/datum/reagent/consumable/nutriment)
 		var/fullness = carbon_mob.nutrition + nutriment?.get_nutrition_gain() + bite_nutrition //adds our next bite to our total nutrition in body and stomach
 
