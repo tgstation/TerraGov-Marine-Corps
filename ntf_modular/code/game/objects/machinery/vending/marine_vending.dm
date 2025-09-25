@@ -597,6 +597,7 @@
 			/obj/item/ammo_magazine/rifle/vsd_carbine/ap = 20,
 			/obj/item/weapon/gun/rifle/mpi_km/black = -1,
 			/obj/item/ammo_magazine/rifle/mpi_km/black = -1,
+			/obj/item/ammo_magazine/rifle/mpi_km/rubber = -1,
 			/obj/item/weapon/gun/rifle/type71 = -1,
 			/obj/item/ammo_magazine/rifle/type71 = -1,
 		),

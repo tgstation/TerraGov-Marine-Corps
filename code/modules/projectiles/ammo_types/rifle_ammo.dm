@@ -191,6 +191,12 @@
 	penetration = 15
 	sundering = 1.75
 
+/datum/ammo/bullet/rifle/mpi_km/rubber
+	name = "crude heavy rubber rifle bullet"
+	damage = 33
+	damage_type = STAMINA
+	shrapnel_chance = 0
+
 /datum/ammo/bullet/rifle/standard_dmr
 	name = "marksman bullet"
 	hud_state = "hivelo"

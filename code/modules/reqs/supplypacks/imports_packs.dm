@@ -145,6 +145,11 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/mpi_km/plum)
 	cost = 3
 
+/datum/supply_packs/imports/mpi_km/ammo/rubber
+	name = "MPi-KM Assault Rifle Rubber Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/mpi_km/rubber)
+	cost = 3
+
 /datum/supply_packs/imports/mpi_km/ammo_packet
 	name = "7.62x39mm Ammo Box"
 	contains = list(/obj/item/ammo_magazine/packet/pwarsaw)

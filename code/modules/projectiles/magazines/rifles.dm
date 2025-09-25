@@ -157,6 +157,12 @@
 	icon_state_mini = "mag_rifle"
 	bonus_overlay = "ak_40_black"
 
+/obj/item/ammo_magazine/rifle/mpi_km/rubber
+
+	name = "\improper MPi-KM rubber magazine (7.62x39mm)"
+	default_ammo = /datum/ammo/bullet/rifle/mpi_km/rubber
+	color = list(0,1.5,0,0, 1,0,0,0, 0,0,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
+
 /obj/item/ammo_magazine/rifle/mpi_km/carbine
 	name = "\improper V-34 magazine (7.62x39mm)"
 	desc = "A 30 round 7.62x39mm magazine for the Kalashnikov series of firearms."

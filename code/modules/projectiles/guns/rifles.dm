@@ -577,6 +577,7 @@
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/mpi_km,
 		/obj/item/ammo_magazine/rifle/mpi_km/plum,
+		/obj/item/ammo_magazine/rifle/mpi_km/rubber,
 		/obj/item/ammo_magazine/rifle/mpi_km/black,
 		/obj/item/ammo_magazine/rifle/mpi_km/carbine,
 		/obj/item/ammo_magazine/rifle/mpi_km/carbine/plum,
@@ -2269,6 +2270,7 @@
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/mpi_km,
 		/obj/item/ammo_magazine/rifle/mpi_km/plum,
+		/obj/item/ammo_magazine/rifle/mpi_km/rubber,
 		/obj/item/ammo_magazine/rifle/mpi_km/black,
 		/obj/item/ammo_magazine/rifle/mpi_km/carbine,
 		/obj/item/ammo_magazine/rifle/mpi_km/carbine/plum,
