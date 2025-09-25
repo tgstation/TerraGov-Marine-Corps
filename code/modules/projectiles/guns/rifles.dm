@@ -2660,7 +2660,7 @@
 	aim_speed_modifier = 2.5
 
 	burst_amount = 1
-	fire_delay = 0.45 SECONDS
+	fire_delay = 0.43 SECONDS
 	aim_slowdown = 0.55
 	wield_delay = 0.85 SECONDS
 	damage_falloff_mult = 2
