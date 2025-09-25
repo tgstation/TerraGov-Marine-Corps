@@ -18,6 +18,7 @@
 
 /datum/ammo/bullet/rifle/rubber
 	name = "rifle rubber bullet"
+	damage = 27
 	damage_type = STAMINA
 	shrapnel_chance = 0
 
@@ -37,6 +38,7 @@
 
 /datum/ammo/bullet/rifle/hv/rubber
 	name = "high-velocity rifle rubber bullet"
+	damage = 22
 	damage_type = STAMINA
 	shrapnel_chance = 0
 
@@ -56,6 +58,7 @@
 
 /datum/ammo/bullet/rifle/heavy/rubber
 	name = "heavy rifle rubber bullet"
+	damage = 33
 	damage_type = STAMINA
 	shrapnel_chance = 0
 
