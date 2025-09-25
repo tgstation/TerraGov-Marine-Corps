@@ -6,18 +6,20 @@
 	var/ooc_notes_maybes = null
 	var/ooc_notes_style = FALSE
 
-/mob/examine()
-	.=..()
+/mob/examine(mob/user)
+	. = ..()
 	if(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes)
-		.+= span_notice("OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>")
+		. += span_notice("OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>")
+	else if(user == src)
+		. += "You have not set your OOC Notes yet! <a href='?src=\ref[src];ooc_notes=1'>\[Edit\]</a>"
 
 /mob/verb/Examine_OOC()
 	set name = "Examine Meta-Info (OOC)"
 	set category = "OOC.Game"
-	set src in view() 
+	set src in view()
 	ooc_notes_window(usr)
 	return
-	
+
 /client/verb/Set_OOC()
 	set name = "Set Meta-Info (OOC)"
 	set category = "OOC.Game"
@@ -51,7 +53,7 @@
 			log_admin("[key_name(user)] updated their OOC note favs mid-round.")
 		if(reopen)
 			ooc_notes_window(user)
-			
+
 /mob/proc/set_metainfo_likes(var/mob/user, var/reopen = TRUE)
 	if(user != src)
 		return
@@ -91,7 +93,7 @@
 			new_metadata = ""
 		ooc_notes_dislikes = new_metadata
 		client.prefs.metadata_dislikes = new_metadata
-		to_chat(user, span_infoplain("OOC note dislikes have been updated. Don't forget to save!"))	
+		to_chat(user, span_infoplain("OOC note dislikes have been updated. Don't forget to save!"))
 		if(!isnewplayer(src))
 			log_admin("[key_name(user)] updated their OOC note dislikes mid-round.")
 		if(reopen)
@@ -354,9 +356,8 @@
 			set_metainfo_favs(usr)
 	if(href_list["edit_ooc_note_maybes"])
 		if(usr == src)
-			set_metainfo_maybes(usr) 
+			set_metainfo_maybes(usr)
 	if(href_list["set_metainfo_ooc_style"])
 		if(usr == src)
 			set_metainfo_ooc_style(usr)
 	return ..()
-	
