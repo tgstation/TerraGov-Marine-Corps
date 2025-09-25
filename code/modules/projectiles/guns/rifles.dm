@@ -2631,7 +2631,10 @@
 	max_shells = 25 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_confrontationrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/icc_confrontationrifle)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/icc_confrontationrifle,
+		/obj/item/ammo_magazine/rifle/icc_confrontationrifle/rubber,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet/converted,

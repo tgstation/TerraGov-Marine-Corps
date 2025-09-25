@@ -700,13 +700,19 @@
 //-------------------------------------------------------
 //ML-12 Confrontation Rifle
 /obj/item/ammo_magazine/rifle/icc_confrontationrifle
-	name = "\improper ML-12 battlecarbine rifle magazine (10x28mm)"
+	name = "\improper ML-12 confrontation rifle magazine (10x28mm)"
 	desc = "A magazine filled with 10x28mm armor-piercing rifle rounds for the ML-12."
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "ml12"
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle
 	max_rounds = 25
+
+/obj/item/ammo_magazine/rifle/icc_confrontationrifle/rubber
+	name = "\improper ML-12 confrontation rifle rubber magazine (10x28mm)"
+	desc = "A magazine filled with 10x28mm rubber rifle rounds for the ML-12."
+	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle/rubber
+	color = list(1,0,0,0, 0,1,0,0, 0,1.5,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
 
 //-------------------------------------------------------
 //ML-41 Autoshotgun

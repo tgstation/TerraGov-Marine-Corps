@@ -2105,6 +2105,7 @@
 			/obj/item/ammo_magazine/rifle/icc_battlecarbine = -1,
 			/obj/item/weapon/gun/rifle/icc_confrontationrifle = -1,
 			/obj/item/ammo_magazine/rifle/icc_confrontationrifle = -1,
+			/obj/item/ammo_magazine/rifle/icc_confrontationrifle/rubber = -1,
 			/obj/item/weapon/gun/rifle/icc_sharpshooter = -1,
 			/obj/item/ammo_magazine/rifle/icc_sharpshooter = -1,
 			/obj/item/weapon/gun/smg/icc_pdw = -1,

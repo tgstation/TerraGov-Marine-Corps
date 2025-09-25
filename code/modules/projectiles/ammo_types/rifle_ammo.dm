@@ -236,6 +236,12 @@
 	penetration = 40
 	sundering = 3.5
 
+/datum/ammo/bullet/rifle/icc_confrontationrifle/rubber
+	name = "rubber heavy rifle bullet"
+	damage = 55
+	damage_type = STAMINA
+	shrapnel_chance = 0
+
 /datum/ammo/bullet/rifle/vsd_rifle
 	name = "heavy battle rifle bullet"
 	hud_state = "rifle_heavy"
