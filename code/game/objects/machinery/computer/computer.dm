@@ -56,6 +56,8 @@
 
 /obj/machinery/computer/emp_act(severity)
 	. = ..()
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return FALSE
 	if(prob(20/severity))
 		set_broken()
 
