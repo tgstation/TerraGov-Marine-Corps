@@ -2166,6 +2166,7 @@
 			/obj/item/ammo_magazine/rifle/vsd_mg_main = -1,
 			/obj/item/weapon/gun/rifle/vsd_carbine = -1,
 			/obj/item/ammo_magazine/rifle/vsd_carbine = -1,
+			/obj/item/ammo_magazine/rifle/vsd_carbine/rubber = -1,
 			/obj/item/ammo_magazine/rifle/vsd_carbine/extended = -1,
 			/obj/item/ammo_magazine/rifle/vsd_carbine/ap = -1,
 			/obj/item/weapon/gun/rifle/vsd_breaching = -1,

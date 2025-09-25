@@ -593,6 +593,7 @@
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/vsd_carbine = -1,
 			/obj/item/ammo_magazine/rifle/vsd_carbine = -1,
+			/obj/item/ammo_magazine/rifle/vsd_carbine/rubber = -1,
 			/obj/item/ammo_magazine/rifle/vsd_carbine/extended = 20,
 			/obj/item/ammo_magazine/rifle/vsd_carbine/ap = 20,
 			/obj/item/weapon/gun/rifle/mpi_km/black = -1,
