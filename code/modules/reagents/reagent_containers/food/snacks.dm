@@ -44,7 +44,7 @@
 		reagent_to_update.change_taste(tastes.Copy())
 
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
-	return
+	return attack(user, user)
 
 /obj/item/reagant_containers/food/snacks/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	attack_hand(xeno_attacker)

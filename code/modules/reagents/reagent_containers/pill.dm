@@ -21,7 +21,7 @@
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
 
 /obj/item/reagent_containers/pill/attack_self(mob/user as mob)
-	return
+	return attack(user, user)
 
 /obj/item/reagent_containers/pill/attack(mob/M, mob/user, def_zone)
 
