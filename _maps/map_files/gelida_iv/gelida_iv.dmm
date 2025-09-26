@@ -2205,6 +2205,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "bxz" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "bxF" = (
@@ -6289,6 +6290,14 @@
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
 /area/gelida/powergen)
+"eoL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison/darkpurple{
+	dir = 4
+	},
+/area/gelida/indoors/a_block/dorms)
 "eoN" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -7464,7 +7473,6 @@
 	dir = 1;
 	name = "\improper Mining Control"
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/mining)
 "eXW" = (
@@ -25024,9 +25032,11 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "qRh" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
-/turf/closed/mineral/smooth/snowrock,
-/area/gelida/outdoors/rock)
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/mining)
 "qRn" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -39744,7 +39754,7 @@ ndb
 ndb
 ndb
 ndb
-qRh
+ndb
 ndb
 ndb
 sQn
@@ -46573,7 +46583,7 @@ aOd
 gSz
 mur
 hDD
-bML
+eoL
 kMO
 bML
 cNS
@@ -55140,7 +55150,7 @@ nsK
 cgS
 eQn
 eQn
-asP
+gfl
 gfl
 qzH
 fPM
@@ -60668,7 +60678,7 @@ cqo
 xEZ
 ezR
 eZd
-siO
+qRh
 kpl
 kpl
 iWw
@@ -60676,7 +60686,7 @@ kpl
 kpl
 kpl
 eXT
-kpl
+pQC
 taY
 xZs
 pxY
