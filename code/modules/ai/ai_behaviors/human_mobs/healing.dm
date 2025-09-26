@@ -126,8 +126,7 @@
 	var/mob/living/living_parent = mob_parent
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_NEED_HEAL, mob_parent)
 
-	var/turf/owner_turf = get_turf(mob_parent)
-	if((living_parent.is_on_fire() || living_parent.has_status_effect(STATUS_EFFECT_INTOXICATED)) && can_cross_lava_turf(owner_turf) && check_hazards())
+	if((living_parent.is_on_fire() || living_parent.has_status_effect(STATUS_EFFECT_INTOXICATED)) && can_cross_lava_turf(get_turf(mob_parent)) && check_hazards())
 		living_parent.do_resist()
 		return
 
@@ -139,15 +138,13 @@
 
 	human_ai_state_flags |= HUMAN_AI_SELF_HEALING
 
-	heal_damage(mob_parent)
-	heal_secondaries(mob_parent)
-	heal_organs(mob_parent)
+	heal_loop(mob_parent)
 
 	human_ai_state_flags &= ~HUMAN_AI_SELF_HEALING
 	late_initialize()
 
 ///Tries to heal another mob
-/datum/ai_behavior/human/proc/try_heal_other(mob/living/carbon/human/patient, ignore_defib = FALSE)
+/datum/ai_behavior/human/proc/try_heal_other(mob/living/carbon/human/patient)
 	if(patient.InCritical()) //crit heal is always priority
 		heal_by_type(patient, OXY)
 
@@ -160,31 +157,23 @@
 		try_speak(pick(unrevivable_chat))
 		return
 
+	if(!mob_parent.CanReach(patient))
+		return
+
 	try_speak(pick(healing_chat))
 	human_ai_state_flags |= HUMAN_AI_HEALING
 
-	var/did_revive = FALSE
-	if(!ignore_defib && patient.stat == DEAD) //we specifically don't want the sig sent out if we fail to defib
-		if(!do_defib(patient))
+	if(patient.stat == DEAD) //we specifically don't want the sig sent out if we fail to defib
+		if(!attempt_revive(patient))
 			on_heal_end(mob_parent)
 			return
-		did_revive = TRUE
 
 	SEND_SIGNAL(patient, COMSIG_AI_HEALING_MOB, mob_parent)
 	RegisterSignal(patient, COMSIG_MOVABLE_MOVED, PROC_REF(do_unset_target))
 
-	var/did_heal = FALSE
+	var/did_heal = heal_loop(patient)
 
-	if(heal_damage(patient))
-		did_heal = TRUE
-
-	if(heal_secondaries(patient))
-		did_heal = TRUE
-
-	if(heal_organs(patient))
-		did_heal = TRUE
-
-	if(!did_revive && (!did_heal || prob(30))) //heal interupted or nothing left to heal, or to stop overload
+	if(!did_heal || prob(30)) //heal interupted or nothing left to heal, or to stop overload
 		do_unset_target(patient)
 	UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
 	on_heal_end(mob_parent)
