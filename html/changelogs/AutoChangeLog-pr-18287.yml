@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Campaign: Fixed shotgun belts not being valid with shotgun primaries"
