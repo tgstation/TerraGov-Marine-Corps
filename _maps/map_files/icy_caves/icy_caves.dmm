@@ -1755,6 +1755,10 @@
 "jd" = (
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
+"je" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/LZ1)
 "jf" = (
 /obj/item/stool,
 /obj/effect/decal/cleanable/vomit,
@@ -11309,14 +11313,14 @@ Uu
 Uu
 Uu
 Uu
+fq
 Uu
 Uu
 Uu
 Uu
 Uu
 Uu
-Uu
-Uu
+fq
 ZP
 Ww
 ZP
@@ -11465,7 +11469,7 @@ WT
 WT
 WT
 WT
-Xq
+WT
 WT
 WT
 WT
@@ -12408,7 +12412,7 @@ Yn
 Yn
 Yn
 pH
-uw
+dW
 uw
 Ww
 ZP
@@ -13469,17 +13473,17 @@ pR
 pR
 pR
 pR
-pR
+AW
 XO
 XO
 XO
 cQ
-UE
+je
 XW
 uw
 uw
 uw
-uw
+dW
 uw
 uw
 dW
@@ -13493,7 +13497,7 @@ uw
 uw
 uw
 uw
-dW
+uw
 uw
 uw
 uw
@@ -13812,7 +13816,7 @@ HB
 uw
 uw
 uw
-uw
+dW
 uw
 Ww
 ZP
