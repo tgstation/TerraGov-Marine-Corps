@@ -1468,11 +1468,6 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/command/office)
-"aZC" = (
-/obj/effect/ai_node,
-/obj/structure/cable,
-/turf/closed/mineral/smooth/lavawall,
-/area/magmoor/cave/rock)
 "aZZ" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/landmark/weed_node,
@@ -12131,10 +12126,6 @@
 "ivX" = (
 /turf/closed/wall,
 /area/magmoor/engi/power)
-"iwd" = (
-/obj/effect/ai_node,
-/turf/closed/mineral/smooth/lavawall,
-/area/magmoor/cave/rock)
 "iwt" = (
 /turf/open/floor/mainship/purple,
 /area/magmoor/research/containment)
@@ -14870,7 +14861,6 @@
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "knz" = (
-/obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/north)
@@ -36458,7 +36448,7 @@ rxl
 rxl
 rxl
 efw
-efw
+qDf
 efw
 lfn
 efw
@@ -36468,7 +36458,7 @@ efw
 efw
 efw
 efw
-efw
+qDf
 efw
 efw
 rxl
@@ -36692,7 +36682,7 @@ efw
 rxl
 efw
 efw
-iwd
+rxl
 rxl
 rxl
 rxl
@@ -36934,11 +36924,11 @@ efw
 efw
 efw
 efw
-efw
+qDf
 efw
 efw
 tmo
-efw
+qDf
 efw
 efw
 efw
@@ -37158,7 +37148,7 @@ efw
 efw
 efw
 efw
-qDf
+efw
 rxl
 rxl
 rxl
@@ -69909,7 +69899,7 @@ mTX
 mTX
 hgM
 nfy
-aZC
+nfy
 nfy
 mTX
 mTX
