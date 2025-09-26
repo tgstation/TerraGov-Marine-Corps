@@ -499,7 +499,7 @@
 	if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 		balloon_alert_to_viewers("fumbles")
 		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-		if(!do_after(user, fumbling_time, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
 	balloon_alert_to_viewers("attaching [choice]")
