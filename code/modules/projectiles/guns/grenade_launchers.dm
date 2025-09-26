@@ -195,6 +195,8 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/smokebomb/drain,
 		/obj/item/explosive/grenade/smokebomb/antigas,
 		/obj/item/explosive/grenade/smokebomb/neuro,
+		/obj/item/explosive/grenade/smokebomb/aphrotoxin,
+		/obj/item/explosive/grenade/smokebomb/sleep,
 		/obj/item/explosive/grenade/smokebomb/acid,
 		/obj/item/explosive/grenade/smokebomb/satrapine,
 		/obj/item/explosive/grenade/phosphorus,
