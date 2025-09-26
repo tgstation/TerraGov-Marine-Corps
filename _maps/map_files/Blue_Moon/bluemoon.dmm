@@ -8999,6 +8999,7 @@
 /area/bluemoon/caves/facility/lambda/n)
 "kgk" = (
 /obj/structure/bed/chair/comfy/black,
+/obj/effect/ai_node,
 /turf/open/floor/carpet,
 /area/bluemoon/outside/building/admin)
 "kgv" = (
@@ -9051,6 +9052,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -10097,6 +10099,13 @@
 	dir = 8
 	},
 /area/bluemoon/outside/building/cargo/shop)
+"lrT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bluemoon/outside/building/admin)
 "lsD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/blue{
@@ -11579,6 +11588,14 @@
 	dir = 4
 	},
 /area/bluemoon/caves/facility/lambda/n)
+"nat" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bluemoon/outside/building/admin)
 "naI" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/light,
@@ -12854,6 +12871,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
 	},
@@ -13637,11 +13655,6 @@
 /obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/bluemoon/caves/ne)
-"pJV" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/white,
-/area/bluemoon/outside/building/med/icu)
 "pKg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14816,6 +14829,7 @@
 "rgv" = (
 /obj/item/alien_embryo,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bluemoon/outside/building/med/icu)
 "rgz" = (
@@ -16081,7 +16095,6 @@
 "sHm" = (
 /obj/structure/table,
 /obj/machinery/computer3/laptop/secure_data,
-/obj/effect/ai_node,
 /turf/open/floor/carpet,
 /area/bluemoon/outside/building/admin)
 "sHP" = (
@@ -16733,6 +16746,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -28656,7 +28670,7 @@ ayD
 tbx
 htr
 tvf
-pJV
+gQg
 gQg
 cpS
 rgv
@@ -29926,7 +29940,7 @@ hbV
 arH
 rmn
 grS
-owX
+exb
 owX
 uJX
 uJX
@@ -30015,7 +30029,7 @@ vwv
 dTN
 vwv
 laf
-cNK
+nat
 cUe
 sCS
 iCb
@@ -30890,7 +30904,7 @@ laf
 fXX
 mog
 qWT
-qWT
+lrT
 taU
 khO
 qWT
