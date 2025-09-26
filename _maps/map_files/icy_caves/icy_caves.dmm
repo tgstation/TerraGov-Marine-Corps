@@ -660,6 +660,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
+"cY" = (
+/obj/machinery/landinglight/lz1,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
 "da" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -3846,6 +3851,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
+"tt" = (
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
 "tu" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -10105,13 +10117,6 @@
 	dir = 8
 	},
 /area/icy_caves/caves/weapon_vault)
-"Xq" = (
-/obj/effect/ai_node,
-/obj/machinery/landinglight/lz1{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "Xr" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg3,
@@ -11453,7 +11458,11 @@ Ww
 ZP
 ZP
 wL
-uw
+dW
+WT
+WT
+WT
+tt
 WT
 WT
 WT
@@ -11470,10 +11479,6 @@ WT
 WT
 WT
 WT
-WT
-WT
-WT
-Xq
 Yj
 uw
 uw
@@ -12545,7 +12550,7 @@ Aq
 TM
 bU
 uw
-zM
+cY
 Yn
 Yn
 Yn
@@ -13481,12 +13486,12 @@ cQ
 je
 XW
 uw
+dW
+uw
 uw
 uw
 dW
 uw
-uw
-dW
 uw
 uw
 uw
@@ -13638,7 +13643,7 @@ WD
 XW
 uw
 uw
-uw
+dW
 uw
 uw
 uw
