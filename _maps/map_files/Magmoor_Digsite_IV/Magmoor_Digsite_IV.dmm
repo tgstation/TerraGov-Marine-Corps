@@ -5768,6 +5768,12 @@
 "dTv" = (
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing)
+"dTT" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/liquid/lava/autosmoothing/catwalk,
+/area/magmoor/compound/southeast)
 "dUz" = (
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/mainship/red{
@@ -17745,6 +17751,12 @@
 	dir = 10
 	},
 /area/magmoor/civilian/arrival/east)
+"mqd" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/liquid/lava/autosmoothing/catwalk,
+/area/magmoor/compound/southeast)
 "mqg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -21406,6 +21418,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
+"oZP" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/southeast)
 "oZS" = (
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -66440,15 +66457,15 @@ xUd
 xUd
 xUd
 jRL
-jRL
+dkb
 jRL
 xUd
-xwh
+dTT
 xUd
 jRL
 jRL
 jRL
-jRL
+dkb
 jRL
 jRL
 rxl
@@ -66676,7 +66693,7 @@ jRL
 jRL
 jRL
 xUd
-xwh
+mqd
 xUd
 xUd
 jRL
@@ -67125,13 +67142,13 @@ xUd
 xUd
 xUd
 jRL
-uwv
+fhN
 eFL
 jRL
 jRL
 jRL
 jRL
-kua
+oZP
 jRL
 jRL
 jRL
@@ -67139,7 +67156,7 @@ jRL
 jRL
 jRL
 jRL
-jRL
+dkb
 jRL
 skV
 xUd
