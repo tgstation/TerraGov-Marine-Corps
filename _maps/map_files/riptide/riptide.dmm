@@ -641,6 +641,11 @@
 	dir = 1
 	},
 /area/riptide/outside/southjungle)
+"ayW" = (
+/obj/structure/flora/ausbushes/reedbush,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/riptide/outside/eastbeach)
 "azh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/ground,
@@ -2558,13 +2563,6 @@
 	dir = 4
 	},
 /area/riptide/inside/hydroponics)
-"bOA" = (
-/obj/structure/desertdam/decals/road{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/riptide/inside/landingzoneone)
 "bOC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -9764,6 +9762,13 @@
 	},
 /turf/open/ground,
 /area/riptide/outside/westislands)
+"gLl" = (
+/obj/structure/desertdam/decals/road{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "gMg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -10476,12 +10481,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/beachsushi)
-"hom" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 4
-	},
-/area/riptide/inside/landingzoneone)
 "hoq" = (
 /obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/white/warningstripe{
@@ -12350,6 +12349,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/shuttle/dropship/floor/alt,
 /area/riptide/caves/tram)
+"iKB" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 4
+	},
+/area/riptide/inside/landingzoneone)
 "iLa" = (
 /obj/structure/table,
 /obj/item/trash/popcorn,
@@ -13552,10 +13557,6 @@
 	dir = 5
 	},
 /area/riptide/caves/north2)
-"jCZ" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/riptide/inside/landingzoneone)
 "jDf" = (
 /obj/structure/flora/desert/grass,
 /turf/open/ground,
@@ -19768,11 +19769,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow,
 /area/riptide/caves/syndicatemining)
-"nJq" = (
-/obj/structure/flora/ausbushes/reedbush,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/drought/alt,
-/area/riptide/outside/eastbeach)
 "nJD" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/ground/grass/weedable,
@@ -22257,10 +22253,6 @@
 /obj/structure/foamedmetal,
 /turf/open/floor/mainship,
 /area/riptide/inside/breachedfob)
-"pun" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/riptide/inside/landingzoneone)
 "pus" = (
 /obj/structure/table/wood/gambling,
 /obj/item/toy/dice/d20,
@@ -29419,6 +29411,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/riptide/caves/syndicatemining)
+"tTS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/riptide/inside/landingzoneone)
 "tTZ" = (
 /turf/open/floor/plating/ground/dirt_alt/random,
 /area/riptide/caves/north)
@@ -30281,6 +30277,10 @@
 "uBd" = (
 /turf/open/floor,
 /area/riptide/caves/pmc/prison)
+"uBe" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "uBp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -36282,7 +36282,7 @@ haH
 haH
 uVx
 vwF
-jCZ
+tTS
 sXP
 vwF
 vwF
@@ -36294,7 +36294,7 @@ sXP
 sXP
 vwF
 vwF
-jCZ
+tTS
 vwF
 vwF
 vwF
@@ -36626,12 +36626,12 @@ uyR
 haH
 haH
 haH
-pun
+uBe
 mRt
 uoX
 uoX
 uoX
-bOA
+gLl
 uoX
 uoX
 uoX
@@ -36640,7 +36640,7 @@ uoX
 uoX
 psL
 ovc
-hom
+iKB
 jhH
 jhH
 ipB
@@ -38416,7 +38416,7 @@ fsz
 sXP
 avX
 wha
-jCZ
+tTS
 sXP
 vuR
 pPG
@@ -38442,7 +38442,7 @@ vTm
 wXG
 iRy
 sXP
-jCZ
+tTS
 avX
 eDc
 sXP
@@ -57434,7 +57434,7 @@ qjz
 knr
 nwL
 evU
-nJq
+ayW
 htE
 htE
 htE
