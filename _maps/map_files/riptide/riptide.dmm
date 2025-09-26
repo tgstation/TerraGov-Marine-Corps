@@ -2558,6 +2558,13 @@
 	dir = 4
 	},
 /area/riptide/inside/hydroponics)
+"bOA" = (
+/obj/structure/desertdam/decals/road{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "bOC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -10469,6 +10476,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/beachsushi)
+"hom" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 4
+	},
+/area/riptide/inside/landingzoneone)
 "hoq" = (
 /obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/white/warningstripe{
@@ -13539,6 +13552,10 @@
 	dir = 5
 	},
 /area/riptide/caves/north2)
+"jCZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/riptide/inside/landingzoneone)
 "jDf" = (
 /obj/structure/flora/desert/grass,
 /turf/open/ground,
@@ -19751,6 +19768,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow,
 /area/riptide/caves/syndicatemining)
+"nJq" = (
+/obj/structure/flora/ausbushes/reedbush,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/riptide/outside/eastbeach)
 "nJD" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/ground/grass/weedable,
@@ -22235,6 +22257,10 @@
 /obj/structure/foamedmetal,
 /turf/open/floor/mainship,
 /area/riptide/inside/breachedfob)
+"pun" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "pus" = (
 /obj/structure/table/wood/gambling,
 /obj/item/toy/dice/d20,
@@ -27944,6 +27970,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/inside/arena)
 "sWp" = (
@@ -31378,6 +31405,7 @@
 /area/riptide/outside/northbeach)
 "vqM" = (
 /obj/effect/landmark/xeno_resin_door,
+/obj/effect/ai_node,
 /turf/open/shuttle/dropship/floor,
 /area/riptide/caves/tram)
 "vqT" = (
@@ -36254,11 +36282,7 @@ haH
 haH
 uVx
 vwF
-sXP
-sXP
-vwF
-vwF
-sXP
+jCZ
 sXP
 vwF
 vwF
@@ -36267,6 +36291,10 @@ sXP
 vwF
 vwF
 sXP
+sXP
+vwF
+vwF
+jCZ
 vwF
 vwF
 vwF
@@ -36598,12 +36626,12 @@ uyR
 haH
 haH
 haH
-haH
+pun
 mRt
 uoX
 uoX
 uoX
-uoX
+bOA
 uoX
 uoX
 uoX
@@ -36612,7 +36640,7 @@ uoX
 uoX
 psL
 ovc
-jhH
+hom
 jhH
 jhH
 ipB
@@ -38388,7 +38416,7 @@ fsz
 sXP
 avX
 wha
-sXP
+jCZ
 sXP
 vuR
 pPG
@@ -38414,7 +38442,7 @@ vTm
 wXG
 iRy
 sXP
-sXP
+jCZ
 avX
 eDc
 sXP
@@ -38566,7 +38594,7 @@ aDN
 wsj
 dbF
 rhS
-wha
+eDc
 sXP
 sXP
 vuR
@@ -52366,7 +52394,7 @@ lSn
 bAh
 ptB
 aZZ
-uQM
+hVU
 gVY
 vgU
 vgU
@@ -57406,7 +57434,7 @@ qjz
 knr
 nwL
 evU
-sWT
+nJq
 htE
 htE
 htE
