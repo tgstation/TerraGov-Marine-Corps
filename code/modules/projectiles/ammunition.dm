@@ -274,6 +274,20 @@
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
 	caliber = CALIBER_12G
 
+/obj/item/ammo_magazine/handful/tracker
+	name = "handful of shotgun tracker shells (12g)"
+	icon_state = "shotgun_flechette"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/tracker
+	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/beanbag
+	name = "handful of beanbag slugs (12g)"
+	icon_state = "beanbag_slug"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/beanbag
+	caliber = CALIBER_12G
+
 /obj/item/ammo_magazine/handful/incendiary
 	name = "handful of shotgun incendiary shells (12g)"
 	icon_state = "incendiary_slug"
