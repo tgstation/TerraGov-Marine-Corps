@@ -2,8 +2,8 @@
 	name = "Zombie"
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
 	blood_color = "#110a0a"
 	hair_color = "#000000"
 	slowdown = 0.5
@@ -17,6 +17,7 @@
 		"appendix" = /datum/internal_organ/appendix,
 		"eyes" = /datum/internal_organ/eyes
 	)
+	death_message = "seizes up and falls limp..."
 	///Sounds made randomly by the zombie
 	var/list/sounds = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
 	///Time before resurrecting if dead
@@ -36,6 +37,7 @@
 	H.setCloneLoss(0)
 	H.dropItemToGround(H.r_hand, TRUE)
 	H.dropItemToGround(H.l_hand, TRUE)
+	H.dextrous = FALSE//Prevents from opening cades
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/id = H.wear_id
 		id.access = list() // A bit gamey, but let's say ids have a security against zombies
@@ -84,9 +86,14 @@
 	H.updatehealth()
 
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
-	SSmobs.stop_processing(H)
-	if(!H.on_fire && H.has_working_organs())
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
+	if(H.on_fire)
+		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
+		return
+	if(!H.has_working_organs())
+		SSmobs.stop_processing(H) // stopping the processing extinguishes the fire that is already on, to stop from doubling up
+		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
+		return
+	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
 	. = ..()
@@ -95,6 +102,10 @@
 			continue
 		limb.vital = FALSE
 		return
+/// We start fading out the human and qdel them in set time
+/datum/species/zombie/proc/fade_out_and_qdel_in(mob/living/carbon/human/H, time = 5 SECONDS)
+	fade_out(H)
+	QDEL_IN(H, time)
 
 /datum/species/zombie/fast
 	name = "Fast zombie"
@@ -130,7 +141,11 @@
 
 /datum/species/zombie/strong/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.color = COLOR_MAROON
+	H.color = COLOR_DARK_BROWN
+
+/datum/species/zombie/strong/post_species_loss(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.color = null
 
 /datum/species/zombie/psi_zombie
 	name = "Psi zombie" //reanimated by psionic ability
@@ -142,6 +157,11 @@
 
 /datum/species/zombie/smoker
 	name = "Smoker zombie"
+
+/datum/species/zombie/smoker/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	var/datum/action/ability/emit_gas/emit_gas = new
+	emit_gas.give_action(H)
 
 /particles/smoker_zombie
 	icon = 'icons/effects/particles/smoke.dmi'

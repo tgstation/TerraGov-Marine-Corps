@@ -337,3 +337,5 @@ GLOBAL_LIST_INIT(ai_squad_presets, list(
 		"Special Force Breacher",
 	),
 ))
+
+GLOBAL_LIST_EMPTY(zombie_spawners)
