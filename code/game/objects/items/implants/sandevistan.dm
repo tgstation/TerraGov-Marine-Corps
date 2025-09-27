@@ -42,11 +42,11 @@
 /obj/item/implant/sandevistan/get_data()
 	return {"
 	<b>Implant Specifications:</b><BR>
-	<b>Name:</b> Ninetails CDPR Sandevistan Implant<BR>
+	<b>Name:</b> Ninetails CDPR ChronOS Implant<BR>
 	<HR>
 	<b>Implant Details:</b><BR>
 	<b>Function:</b> Upon activation, this implant increases neural impulse speed, allowing the user's brain to process information, and react quicker than would be normally possible.<BR>
-	The practical result in an increase in mobility and dexterity. <b> WARNING </b> Usage of the sandevistan is extremely taxing on the body, and prolonged use can lead to catastrophic injury or heart damage."}
+	The practical result in an increase in mobility and dexterity. <b> WARNING </b> Usage of the ChronOS Implant is extremely taxing on the body, and prolonged use can lead to catastrophic injury or heart damage."}
 
 /obj/item/implant/sandevistan/process()
 	if(!active)

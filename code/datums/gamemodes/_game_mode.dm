@@ -585,7 +585,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.acid_jaw_fires)
 		parts += "[GLOB.round_statistics.acid_jaw_fires] Acid Jaw uses."
 	if(GLOB.round_statistics.sandevistan_uses)
-		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a sandevistan"
+		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a ChronOS implant"
 		if(GLOB.round_statistics.sandevistan_gibs)
 			sandevistan_text += ", of which [GLOB.round_statistics.sandevistan_gibs] resulted in a gib!"
 		else
