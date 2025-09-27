@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - balance: "Pyrogen fireball now detonates on the tile it hit an object, rather than the object's tile."
