@@ -611,27 +611,6 @@
 	radial_icon_state = "laser_heat"
 	description = "Fires an incendiary laser pulse that ignites living targets."
 
-/// energy efficient laspistol for campaign. 30 shots instead of 20.
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/efficient
-	name = "\improper Terra Experimental Advanced laser pistol"
-	desc = "An experimental TerraGov laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. This one efficiently uses its power cell, and can get more shots out of each cell on standard mode."
-	max_shots = 30 //codex stuff
-	rounds_per_shot = 20
-
-	mode_list = list(
-		"Standard" = /datum/lasrifle/energy_pistol_mode/standard/efficient,
-		"Heat" = /datum/lasrifle/energy_pistol_mode/heat,
-		"Disabler" = /datum/lasrifle/energy_pistol_mode/disabler,
-	)
-
-// probably should have made this a subtype of energy_pistol_mode/standard but that didnt work
-/datum/lasrifle/energy_pistol_mode/standard/efficient
-	rounds_per_shot = 20
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/efficient/tactical
-	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
-
 //TE Standard Laser Carbine
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
