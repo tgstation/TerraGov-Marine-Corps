@@ -100,6 +100,14 @@
 	item_flags = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 15)
 
+/obj/item/clothing/gloves/marine/veteran/pmc_elite
+	name = "PMC elite gloves"
+	desc = "A pair of black gloves armored with pure white plates, used by Nanotrasen PMC contractors."
+	icon_state = "armored_pmc"
+	siemens_coefficient = 0
+	item_flags = SYNTH_RESTRICTED
+	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 20)
+
 /obj/item/clothing/gloves/marine/veteran/pmc/commando
 	name = "\improper PMC commando gloves"
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."

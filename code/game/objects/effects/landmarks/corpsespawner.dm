@@ -385,10 +385,11 @@
 /obj/effect/landmark/corpsespawner/pmc
 	name = "Unknown PMC"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/jackboots
-	corpseback = /obj/item/storage/backpack/satchel
+	corpseshoes = /obj/item/clothing/shoes/marine/pmc
+	corpseback = /obj/item/storage/backpack/satchel/pmc
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/big
 	corpsebelt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc_elite
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	corpsemask = /obj/item/clothing/mask/gas/pmc/damaged
 	corpseradio = /obj/item/radio/headset/survivor
@@ -470,11 +471,12 @@
 	name = "Private Security Officer"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
-	corpseglasses = /obj/item/clothing/glasses/sunglasses
+	corpseback = /obj/item/storage/backpack/satchel/pmc
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/big
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/marine/pmc
+	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
