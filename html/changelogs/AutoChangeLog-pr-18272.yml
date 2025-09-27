@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "The gamestate is now correctly changed to groundside if the Tadpole is used to start the operation; this prevented AI from using their railgun."
