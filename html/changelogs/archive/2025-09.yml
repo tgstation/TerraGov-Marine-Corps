@@ -143,3 +143,6 @@
   Lumipharon:
   - code_imp: Updated typecacheof() to current TG code
   - bugfix: 'Campaign: Fixed shotgun belts not being valid with shotgun primaries'
+2025-09-27:
+  RIPGrayson, TheRealMrN:
+  - bugfix: fixed NPC node issues across almost all maps
