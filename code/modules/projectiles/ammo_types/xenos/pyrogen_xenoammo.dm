@@ -17,11 +17,11 @@
 
 /datum/ammo/xeno/fireball/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	. = ..()
-	drop_flame((target_turf.density ? get_step_towards(target_turf, proj) : get_turf(target_turf)), proj)
+	drop_flame((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
 
 /datum/ammo/xeno/fireball/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	. = ..()
-	drop_flame((target_turf.density ? get_step_towards(target_turf, proj) : get_turf(target_turf)), proj)
+	drop_flame((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
 
 /datum/ammo/xeno/fireball/drop_flame(atom/target_atom, atom/movable/projectile/proj)
 	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(target_atom))
