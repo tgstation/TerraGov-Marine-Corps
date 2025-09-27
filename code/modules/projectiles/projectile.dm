@@ -175,7 +175,7 @@
 	penetration = ammo.penetration
 	sundering = ammo.sundering
 	accuracy   += ammo.accuracy
-	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
+	accuracy   *= rand(95 - ammo.accuracy_variation, 105 + ammo.accuracy_variation) * 0.01 //Rand only works with integers.
 	damage_falloff = ammo.damage_falloff
 	armor_type = ammo.armor_type
 	proj_max_range = ammo.max_range
