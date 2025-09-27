@@ -120,6 +120,15 @@
 			return has_limb(CHEST)
 		if(SLOT_IN_R_POUCH)
 			return has_limb(CHEST)
+		// NTF EDIT START
+		if(SLOT_UNDERWEAR)
+			return has_limb(CHEST)
+		if(SLOT_SOCKS)
+			return has_limb(FOOT_RIGHT) && has_limb(FOOT_LEFT)
+		if(SLOT_SHIRT)
+			return has_limb(CHEST)
+		if(SLOT_BRA)
+			return has_limb(CHEST)
 
 /mob/living/carbon/human/put_in_l_hand(obj/item/W)
 	var/datum/limb/O = get_limb("l_hand")
@@ -235,7 +244,28 @@
 		I.unequipped(src, SLOT_S_STORE)
 		update_inv_s_store()
 		. = ITEM_UNEQUIP_UNEQUIPPED
-
+	// NTF EDIT START
+	else if(I == w_underwear)
+		w_underwear = null
+		I.unequipped(src, ITEM_SLOT_UNDERWEAR)
+		update_inv_underwear()
+		. = ITEM_UNEQUIP_UNEQUIPPED
+	else if(I == w_socks)
+		w_socks = null
+		I.unequipped(src, ITEM_SLOT_SOCKS)
+		update_inv_socks()
+		. = ITEM_UNEQUIP_UNEQUIPPED
+	else if(I == w_undershirt)
+		w_undershirt = null
+		I.unequipped(src, ITEM_SLOT_SHIRT)
+		update_inv_undershirt()
+		. = ITEM_UNEQUIP_UNEQUIPPED
+	else if(I == bra)
+		bra = null
+		I.unequipped(src, ITEM_SLOT_BRA)
+		update_inv_bra()
+		. = ITEM_UNEQUIP_UNEQUIPPED
+	// NTF EDIT END
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
 	name = get_visible_name() // doing this without a check, still cheaper than doing it every Life() tick -spookydonut
@@ -371,6 +401,23 @@
 			selected_slot = r_store
 		if(SLOT_IN_ACCESSORY)
 			selected_slot = w_uniform
+		// NTF EDIT START
+		if(SLOT_UNDERWEAR)
+			w_underwear = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_underwear()
+		if(SLOT_SOCKS)
+			w_socks = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_socks()
+		if(SLOT_SHIRT)
+			w_undershirt = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_undershirt()
+		if(SLOT_BRA)
+			bra = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_bra()
 		else
 			CRASH("[src] tried to equip [item_to_equip] to [slot] in equip_to_slot().")
 
@@ -452,6 +499,16 @@
 			return r_store
 		if(SLOT_IN_HEAD)
 			return head
+		/// NTF EDIT START
+		if(ITEM_SLOT_UNDERWEAR)
+			return w_underwear
+		if(ITEM_SLOT_SOCKS)
+			return w_socks
+		if(ITEM_SLOT_SHIRT)
+			return w_undershirt
+		if(ITEM_SLOT_BRA)
+			return bra
+		/// NTF EDIT END
 
 /mob/living/carbon/human/get_item_by_slot_bit(slot_bit)
 	switch(slot_bit)
@@ -489,6 +546,16 @@
 			return l_hand
 		if(ITEM_SLOT_R_HAND)
 			return r_hand
+		/// NTF EDIT START
+		if(ITEM_SLOT_UNDERWEAR)
+			return w_underwear
+		if(ITEM_SLOT_SOCKS)
+			return w_socks
+		if(ITEM_SLOT_SHIRT)
+			return w_undershirt
+		if(ITEM_SLOT_BRA)
+			return bra
+		/// NTF EDIT END
 
 /mob/living/carbon/human/get_equipped_slot(obj/equipped_item)
 	if(..())

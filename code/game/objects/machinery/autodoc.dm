@@ -45,6 +45,10 @@
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
 	dir = EAST
+	var/surgery = FALSE
+	var/forceeject = FALSE
+
+	//It uses power
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 15
 	active_power_usage = 120000 // It rebuilds you from nothing...

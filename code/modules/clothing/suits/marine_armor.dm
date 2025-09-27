@@ -2,8 +2,8 @@
 
 
 /obj/item/clothing/suit/storage/marine
-	name = "\improper M3 pattern marine armor"
-	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper M3 pattern operative armor"
+	desc = "A standard Ninetails M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
 	icon_state = ""
 	worn_icon_state = "armor"
@@ -134,7 +134,7 @@
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines and their guns. Slows you down a lot."
 	icon_state = "marine_riot"
 	slowdown = 1.3
-	soft_armor = list(MELEE = 65, BULLET = 110, LASER = 110, ENERGY = 10, BOMB = 60, BIO = 50, FIRE = 50, ACID = 30)
+	soft_armor = list(MELEE = 65, BULLET = 90, LASER = 110, ENERGY = 10, BOMB = 60, BIO = 50, FIRE = 50, ACID = 30)
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/storage/belt/sparepouch,
@@ -246,7 +246,7 @@
 
 /obj/item/clothing/suit/storage/marine/officer/req
 	name = "\improper PAS-N2 pattern MA armor"
-	desc = "A standard TerraGov Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	desc = "A standard Ninetails Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
 
 /*=============================PMCS==================================*/
@@ -343,10 +343,10 @@
 
 /*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
-	name = "\improper PMC commando armor"
+	name = "\improper NTC commando armor"
 	desc = "A heavily armored suit built by who-knows-what for elite operations. It is a fully self-contained system and is heavily corrosion resistant."
 	icon_state = "commando_armor"
-	soft_armor = list(MELEE = 90, BULLET = 120, LASER = 200, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 90, BOMB = 90, BIO = 100, FIRE = 90, ACID = 90)
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
 	starting_attachments = list(/obj/item/armor_module/storage/grenade)
@@ -569,7 +569,7 @@
 
 /obj/item/clothing/suit/storage/faction/UPP
 	name = "\improper UM5 personal armor"
-	desc = "Standard body armor of the USL pirates, the UM5 (United Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the TGMC."
+	desc = "Standard body armor of the USL pirates, the UM5 (United Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the NTC."
 	icon_state = "upp_armor"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -611,6 +611,80 @@
 /// Modified version of the armor for HvH combat. Stats are based on heavy armor, with tyr mark 2.
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP/hvh
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 65, BOMB = 60, BIO = 60, FIRE = 60, ACID = 70)
+
+//===========================FREELANCER================================
+
+/obj/item/clothing/suit/storage/faction/freelancer
+	name = "\improper freelancer cuirass"
+	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the UPP and the NTC."
+	icon_state = "freelancer_armor"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	heat_protection_flags =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 40, BIO = 10, FIRE = 60, ACID = 50)
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/storage/faction/freelancer/leader
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer,
+	)
+
+/obj/item/clothing/suit/storage/faction/freelancer/leader/two
+	attachments_allowed = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer_two,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer_two,
+	)
+
+/obj/item/clothing/suit/storage/faction/freelancer/leader/three
+	attachments_allowed = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer_three,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer_three,
+	)
+
+/obj/item/clothing/suit/storage/faction/freelancer/medic
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical/freelancer,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical/freelancer,
+	)
+
+
 
 //this one is for CLF
 /obj/item/clothing/suit/storage/faction/militia
@@ -655,7 +729,7 @@
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
-	desc = "A green jacket worn by TGMC personnel. The back has the flag of the TerraGov on it."
+	desc = "A green jacket worn by NTC personnel. The back has the emblem of the Ninetails on it."
 	icon_state = "RO_jacket"
 	blood_overlay_type = "coat"
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -826,7 +900,7 @@
 
 /obj/item/clothing/suit/storage/marine/vsd
 	name = "\improper Crasher MT-L/43 ballistic armor"
-	desc = "The Vyacheslav Security Detail's main body armor. Protects the user from most bullet calibers."
+	desc = "The Kaizoku Corporation's main body armor. Protects the user from most bullet calibers."
 	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	worn_icon_list = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
@@ -834,58 +908,87 @@
 	icon_state = "vsd_armor"
 	worn_icon_state = "vsd_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = MARINE_ARMOR_LIGHT
 	item_map_variant_flags = NONE
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/vsd/alt
+	name = "\improper Crasher MT-L/43/A ballistic armor"
 	icon_state = "vsd_armor_alt"
 	worn_icon_state = "vsd_armor_alt"
+/obj/item/clothing/suit/storage/marine/vsd/desert
+	name = "Crasher multi-threat light ballistic armor"
+	icon_state = "vsd_main_larmor_d"
+	worn_icon_state = "vsd_main_larmor_d"
+
+/obj/item/clothing/suit/storage/marine/vsd/secondary
+	name = "Crasher multi-threat light ballistic armor"
+	icon_state = "vsd_secondary_larmor"
+	worn_icon_state = "vsd_secondary_larmor"
+
 
 /obj/item/clothing/suit/storage/marine/vsd/marmor
 	name = "\improper Crasher MT-M/43 ballistic armor"
-	desc = "The Vyacheslav Security Detail's uncommon use body armor, used usually by engineers. Protects the user from most bullet calibers."
+	desc = "The Kaizoku Corporation's uncommon use body armor, used usually by engineers. Protects the user from most bullet calibers."
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	icon_state = "vsd_armor_medium"
 	worn_icon_state = "vsd_armor_medium"
-	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = MARINE_ARMOR_MEDIUM
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor/desert
+	name = "Crasher multi-threat medium-set ballistic armor"
+	icon_state = "vsd_marmor_d"
+	worn_icon_state = "vsd_marmor_d"
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor/upp
+	name = "Crasher multi-threat medium-set ballistic armor"
+	icon_state = "vsd_marmor_upp"
+	worn_icon_state = "vsd_marmor_upp"
 
 /obj/item/clothing/suit/storage/marine/vsd/harmor
 	name = "\improper Crasher MT-H/43 powered ballistic armor"
-	desc = "The Vyacheslav Security Detail's heavy armor, rarely given to the grunts. Protects the user from most bullet calibers."
+	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
+	desc = "The Kaizoku Corporation's heavy armor, rarely given to the grunts. Protects the user from most bullet calibers."
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	icon_state = "vsd_armor_heavy"
 	worn_icon_state = "vsd_armor_heavy"
-	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 75, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = MARINE_ARMOR_HEAVY
+
+/obj/item/clothing/suit/storage/marine/vsd/harmor/upp
+	name = "Crasher multi-threat heavy-set ballistic armor"
+	icon_state = "vsd_harmor_upp"
+	worn_icon_state = "vsd_harmor_upp"
 
 /obj/item/clothing/suit/storage/marine/vsd/juggernaut
 	name = "\improper Crasher MT-H/43 'Ares' powered ballistic armor"
-	desc = "The Vyacheslav Security Detail's juggernaut set, given to the best and trusted veterans. Protects the user from almost all bullet calibers."
+	desc = "The Kaizoku Corporation's juggernaut set, given to the best and trusted veterans. Protects the user from almost all bullet calibers."
 	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	icon_state = "vsd_juggernaut_ballistic"
 	worn_icon_state = "vsd_juggernaut_ballistic"
-	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 85, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 75)
+	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 75, ENERGY = 65, BOMB = 60, BIO = 60, FIRE = 60, ACID = 75)
 
 /obj/item/clothing/suit/storage/marine/vsd/juggernaut/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
+	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+	AddElement(/datum/element/limb_support)
 
 /obj/item/clothing/suit/storage/marine/vsd/eod
 	name = "\improper Crasher MT-H/43 'Zeus' powered explosive-defensive armor"
-	desc = "The Vyacheslav Security Detail's EOD-based armor, protects the user from most threats and heavily protects them against explosives."
+	desc = "The Kaizoku Corporation's EOD-based armor, protects the user from most threats and heavily protects them against explosives."
 	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	icon_state = "vsd_juggernaut_explosive"
 	worn_icon_state = "vsd_juggernaut_explosive"
-	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 80, ENERGY = 60, BOMB = 90, BIO = 60, FIRE = 60, ACID = 75)
+	soft_armor = list(MELEE = 70, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 90, BIO = 60, FIRE = 60, ACID = 75)
 
 /obj/item/clothing/suit/storage/marine/vsd/flamer
 	name = "\improper Crasher MT-H/43 'Apollo' powered fire-protected armor"
-	desc = "The Vyacheslav Security Detail's flamer armor, protects the user from most threats and suits them against fire and heat."
+	desc = "The Kaizoku Corporation's flamer armor, protects the user from most threats and suits them against fire and heat."
 	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	icon_state = "vsd_juggernaut_flamer"
 	worn_icon_state = "vsd_juggernaut_flamer"
-	soft_armor = list(MELEE = 70, BULLET = 80, LASER = 80, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 90, ACID = 85)
+	soft_armor = list(MELEE = 70, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 60, BIO = 60, FIRE = 90, ACID = 75)
 	armor_features_flags = ARMOR_FIRE_RESISTANT

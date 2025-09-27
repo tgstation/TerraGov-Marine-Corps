@@ -73,6 +73,24 @@
 	icon_state = "mod_mag_bag"
 	storage_type = /datum/storage/internal/ammo_mag
 
+/obj/item/armor_module/storage/ammo_mag/freelancer/PopulateContents()
+	new /obj/item/ammo_magazine/rifle/m16(src)
+	new /obj/item/ammo_magazine/rifle/m16(src)
+	new /obj/item/ammo_magazine/rifle/m16(src)
+	new /obj/item/ammo_magazine/rifle/m16(src)
+
+/obj/item/armor_module/storage/ammo_mag/freelancer_two/PopulateContents()
+	new /obj/item/ammo_magazine/rifle/tx11(src)
+	new /obj/item/ammo_magazine/rifle/tx11(src)
+	new /obj/item/ammo_magazine/rifle/tx11(src)
+	new /obj/item/ammo_magazine/rifle/tx11(src)
+
+/obj/item/armor_module/storage/ammo_mag/freelancer_three/PopulateContents()
+	new /obj/item/ammo_magazine/rifle/tx54(src)
+	new /obj/item/ammo_magazine/rifle/tx54(src)
+	new /obj/item/ammo_magazine/rifle/tx54/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx54/incendiary(src)
+
 /obj/item/armor_module/storage/satchel
 	name = "IS Pattern Storage module"
 	desc = "Designed for mounting on the MAGNUM mercenaries modular armor. Impedes movement somewhat, but holds about as much as a satchel could."
@@ -97,6 +115,13 @@
 	desc = "Designed for mounting on the TGMC's modular armor systems. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
 	storage_type = /datum/storage/internal/medical
+
+/obj/item/armor_module/storage/medical/freelancer/PopulateContents()
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
 
 /obj/item/armor_module/storage/medical/som
 	name = "medical storage module"

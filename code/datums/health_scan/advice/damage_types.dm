@@ -15,7 +15,7 @@
 			ADVICE_ICON = FA_ICON_KIT_MEDICAL,
 			ADVICE_ICON_COLOR = "#5EBB9E"
 		))
-		if(patient.getBruteLoss() > 30 && !patient.reagents.has_reagent(/datum/reagent/medicalnanites) && !patient.reagents.has_reagent(/datum/reagent/medicine/bicaridine, 3))
+		if(patient.getBruteLoss() > 30 && !patient.reagents.has_reagent(/datum/reagent/medicine/bicaridine, 3))
 			. += list(list(
 				ADVICE_TEXT = "Administer a single dose of Bicaridine to reduce physical trauma.",
 				ADVICE_TOOLTIP = "Significant physical trauma detected. Bicaridine reduces brute damage.",
@@ -42,7 +42,7 @@
 			ADVICE_ICON = FA_ICON_KIT_MEDICAL,
 			ADVICE_ICON_COLOR = "#D38956"
 		))
-		if(patient.getFireLoss() > 30 && !patient.reagents.has_reagent(/datum/reagent/medicalnanites) && !patient.reagents.has_reagent(/datum/reagent/medicine/kelotane, 3))
+		if(patient.getFireLoss() > 30 && !patient.reagents.has_reagent(/datum/reagent/medicine/kelotane, 3))
 			. += list(list(
 				ADVICE_TEXT = "Administer a single dose of Kelotane to reduce burns.",
 				ADVICE_TOOLTIP = "Significant tissue burns detected. Kelotane reduces burn damage.",

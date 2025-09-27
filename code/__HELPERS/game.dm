@@ -6,7 +6,7 @@
 
 
 /// Checks all conditions if a spot is valid for construction , will return TRUE
-/proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, planned_building)
+/proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, planned_building, hivenumber)
 	if(!target || !istype(target))
 		return ERROR_JUST_NO
 	if(ispath(planned_building, /turf/closed/wall/resin) && istype(target, /turf/closed/wall/resin))
@@ -17,6 +17,8 @@
 		return ERROR_NOT_ALLOWED
 	if(!alien_weeds)
 		return ERROR_NO_WEED
+	if(alien_weeds.hivenumber != hivenumber)
+		return ERROR_ENEMY_WEED
 	if(!target.is_weedable())
 		return ERROR_CANT_WEED
 	for(var/obj/effect/forcefield/fog/F in range(1, target))

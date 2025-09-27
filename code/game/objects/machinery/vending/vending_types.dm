@@ -100,7 +100,7 @@
 /obj/machinery/vending/snack
 	name = "\improper Hot Foods machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
-	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Nanotrasen brand packaged hamburger.;Eat a Nanotrasen brand packaged hot dog.;Eat a Nanotrasen brand packaged burrito.;"
+	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Ninetails brand packaged hamburger.;Eat a Ninetails brand packaged hot dog.;Eat a Ninetails brand packaged burrito.;"
 	icon_state = "snack"
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
@@ -126,7 +126,7 @@
 	name = "\improper Souto Softdrinks"
 	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
 	icon_state = "Cola_Machine"
-	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
+	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Ninetails Fruit Beer. Nothing came from that lawsuit!;Ninetails Spring Water. It came from a spring!"
 	icon_deny = "Cola_Machine-deny"
 	icon_vend = "Cola_Machine-vend"
 	products = list(
@@ -147,8 +147,8 @@
 		wrenchable = FALSE
 
 /obj/machinery/vending/medical
-	name = "\improper NanotrasenMed Plus"
-	desc = "Medical Pharmaceutical dispenser.  Provided by Nanotrasen Pharmaceuticals Division(TM)."
+	name = "\improper NovaMed Plus"
+	desc = "Medical Pharmaceutical dispenser.  Provided by Novamed Pharmaceuticals."
 	icon_state = "med"
 	icon_deny = "med-deny"
 	icon_vend = "med-vend"
@@ -170,11 +170,18 @@
 			/obj/item/storage/pill_bottle/imidazoline = 6,
 			/obj/item/storage/pill_bottle/quickclot = 6,
 			/obj/item/storage/pill_bottle/hypervene = 6,
+			/obj/item/storage/pill_bottle/aphrotoxin = 6,
 		),
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
 			/obj/item/reagent_containers/hypospray/advanced = 30,
+			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 5,
+			/obj/item/reagent_containers/hypospray/advanced/kelotane = 5,
+			/obj/item/reagent_containers/hypospray/advanced/tramadol = 5,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 5,
+			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
+			/obj/item/reagent_containers/hypospray/advanced/aphrotoxin = 5,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
@@ -191,6 +198,7 @@
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 6,
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 6,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 6,
+			/obj/item/reagent_containers/glass/bottle/aphrotoxin = 6,
 		),
 		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
@@ -208,6 +216,7 @@
 		),
 		"Misc" = list(
 			/obj/item/tool/research/xeno_analyzer = 2,
+//			/obj/item/tool/research/xeno_probe = -1,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
@@ -215,6 +224,7 @@
 			/obj/item/tool/soap = 3,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
+			/obj/item/stack/nanopaste = 15,
 		),
 	)
 	idle_power_usage = 211
@@ -483,6 +493,7 @@
 			/obj/item/ammo_magazine/revolver/judge/buckshot = 0,
 			/obj/item/ammo_magazine/revolver/upp = 0,
 			/obj/item/ammo_magazine/rifle/mpi_km/plum = 0,
+			/obj/item/ammo_magazine/rifle/mpi_km/rubber = 0,
 			/obj/item/ammo_magazine/rifle/m16 = 0,
 			/obj/item/ammo_magazine/rifle/mkh = 0,
 			/obj/item/ammo_magazine/smg/ppsh = 0,
@@ -541,6 +552,7 @@
 		/obj/item/ammo_magazine/revolver/standard_magnum = 80,
 		/obj/item/ammo_magazine/revolver/upp = 80,
 		/obj/item/ammo_magazine/rifle/mpi_km/plum = 60,
+		/obj/item/ammo_magazine/rifle/mpi_km/rubber = 60,
 		/obj/item/ammo_magazine/rifle/m16 = 60,
 		/obj/item/ammo_magazine/rifle/mkh = 60,
 		/obj/item/ammo_magazine/smg/ppsh = 80,
@@ -628,6 +640,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 		/obj/item/radio/headset = 6,
 		/obj/item/clothing/glasses/sunglasses = 2,
 		/obj/item/storage/donut_box = 2,
+		/obj/item/clothing/under/lewd/stripper/slutcurity = -1,
+		/obj/item/storage/belt/security = -1,
+		/obj/item/explosive/grenade/smokebomb/sleep = 4,
+		/obj/item/roller/bedroll/sec = -1,
 	)
 
 /obj/machinery/vending/hydronutrients

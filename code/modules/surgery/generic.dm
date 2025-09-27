@@ -315,7 +315,11 @@
 	user.visible_message(span_notice("[user] sews some of the wounds on [target]'s [affected.display_name] shut.") , \
 	span_notice("You finish suturing some of the wounds on [target]'s [affected.display_name].") )
 	target.balloon_alert_to_viewers("Success")
-	var/skilled_healing = base_healing * max(user.skills.getPercent(SKILL_SURGERY, SKILL_SURGERY_MASTER), 0.1)
+	var/user_skill = user.skills.getPercent(SKILL_SURGERY, SKILL_SURGERY_MASTER)
+	var/skilled_healing = base_healing * max(user_skill,0.1)
+	var/excess_damage = ((target.get_crit_threshold() + target.get_death_threshold()) * 0.5) - (target.health + skilled_healing)
+	if(excess_damage > 0)
+		skilled_healing += excess_damage * (0.5 + user_skill*0.45)
 	var/burn_heal = min(skilled_healing, affected.burn_dam)
 	var/brute_heal = max(skilled_healing - burn_heal, 0)
 	affected.heal_limb_damage(brute_heal, burn_heal, updating_health = TRUE) //Corpses need their health updated manually since they don't do it themselves

@@ -58,6 +58,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/weak_escort = FALSE
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
+	///Will not look for targets to attack
+	var/non_aggressive = FALSE
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -400,6 +402,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Returns true if a combat target is no longer valid
 /datum/ai_behavior/proc/need_new_combat_target()
+	if(non_aggressive)
+		return FALSE
 	if(!combat_target)
 		return TRUE
 
