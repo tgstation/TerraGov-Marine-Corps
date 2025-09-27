@@ -1252,7 +1252,9 @@
 
 	ability_cost = 150
 	cooldown_duration = 30 SECONDS
-	keybinding_signals = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LARVAL_GROWTH_STING,
+	)
 	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/larval_growth_sting/on_cooldown_finish()
