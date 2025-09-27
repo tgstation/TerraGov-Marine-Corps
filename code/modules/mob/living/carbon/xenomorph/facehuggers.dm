@@ -95,13 +95,17 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 
 	if((stat != DEAD) && (!sterile || combat_hugger))
 		GLOB.alive_hugger_list += src
-		notify_ai_hazard()
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+
+/obj/item/clothing/mask/facehugger/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	if(isturf(loc) && !isturf(old_loc) && (stat != DEAD) && (!sterile || combat_hugger))
+		notify_ai_hazard()
 
 ///Registers the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
