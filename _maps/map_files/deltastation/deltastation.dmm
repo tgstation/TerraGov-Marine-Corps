@@ -3877,6 +3877,11 @@
 "aPa" = (
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/deltastation/maintenance/starboard/aft)
+"aPu" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "aPz" = (
 /obj/structure/table,
 /obj/item/transfer_valve{
@@ -9019,9 +9024,10 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/chemistry)
 "bSc" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
-/turf/open/space,
-/area/space)
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "bSd" = (
 /obj/structure/closet/fireaxecabinet,
 /turf/closed/wall,
@@ -10895,6 +10901,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
+"clW" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/deltastation/external/landingzone)
 "clY" = (
 /obj/structure/cargo_container/ch_green{
 	dir = 8
@@ -13792,8 +13802,8 @@
 /area/deltastation/hallway/secondary/service)
 "cTy" = (
 /obj/effect/ai_node,
-/turf/closed/mineral/smooth/indestructible,
-/area/deltastation/asteroidcaves/rock)
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "cTC" = (
 /obj/effect/turf_decal/tile/transparent/blue/half/contrasted{
 	dir = 4
@@ -15558,6 +15568,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/iron,
 /area/deltastation/science/research)
+"dlt" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/southlz)
 "dlx" = (
 /obj/effect/turf_decal/tile/transparent/neutral,
 /obj/structure/disposalpipe/segment/corner{
@@ -59119,6 +59134,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/iron,
 /area/deltastation/security/courtroom)
+"maF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/plating/icefloor/warnplate,
+/area/deltastation/external/landingzone)
 "maQ" = (
 /obj/effect/spawner/random/misc/structure/stool,
 /obj/effect/turf_decal/tile/transparent/red/diagonal_centre,
@@ -91522,7 +91542,6 @@
 	name = "ai camera"
 	},
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/ai_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/exteriorasteroids)
 "sFI" = (
@@ -95198,6 +95217,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/science/genetics)
+"tsl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/deltastation/external/landingzone)
 "tss" = (
 /obj/effect/turf_decal/tile/transparent/red/anticorner/contrasted{
 	dir = 4
@@ -123819,7 +123843,7 @@ agF
 lxH
 lxH
 lxH
-bSc
+lxH
 agF
 agF
 agF
@@ -154662,7 +154686,7 @@ hSn
 hSn
 hSn
 hSn
-hSn
+beI
 hSn
 hSn
 hSn
@@ -158268,7 +158292,7 @@ vNR
 vNR
 vNR
 vNR
-cTy
+vNR
 vNR
 vNR
 hSn
@@ -160581,7 +160605,7 @@ vNR
 vNR
 vNR
 vNR
-cTy
+vNR
 vNR
 vNR
 vNR
@@ -162625,14 +162649,14 @@ iQD
 cSK
 sKR
 gYv
-toH
+clW
 wsN
 bPd
 toH
 xuo
 toH
 toH
-toH
+clW
 toH
 mJC
 kZL
@@ -164174,7 +164198,7 @@ toH
 rUC
 ofR
 oUx
-xuo
+tsl
 toH
 xuo
 kZL
@@ -164184,7 +164208,7 @@ xuY
 dfm
 xuY
 dfm
-xuY
+cTy
 xuY
 toH
 kZL
@@ -166730,7 +166754,7 @@ vbE
 vbE
 vbE
 vbE
-vbE
+dlt
 vbE
 vbE
 tCn
@@ -166740,11 +166764,11 @@ bYh
 bYh
 bYh
 bYh
-bYh
+aPu
 bYh
 dfm
 xuY
-dfm
+bSc
 xuY
 xuY
 xuY
@@ -169053,7 +169077,7 @@ vNR
 vNR
 npA
 toH
-sYK
+maF
 fyi
 hao
 qgB
@@ -170595,9 +170619,9 @@ cSK
 ktj
 uJP
 xuY
-dfm
+bSc
 bYh
-dfm
+bSc
 xuY
 dfm
 kvP
@@ -170605,7 +170629,7 @@ xqM
 bmx
 xqM
 xqM
-xuY
+cTy
 dfm
 dfm
 dfm

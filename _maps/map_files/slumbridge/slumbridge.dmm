@@ -4017,6 +4017,7 @@
 /area/slumbridge/outside/southeast)
 "cXe" = (
 /obj/structure/sink,
+/obj/effect/ai_node,
 /turf/open/floor/tile/barber,
 /area/slumbridge/inside/houses/surgery)
 "cXj" = (
@@ -4389,6 +4390,10 @@
 	dir = 8
 	},
 /area/slumbridge/inside/medical/foyer)
+"dmf" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/barber,
+/area/slumbridge/inside/houses/surgery/garbledradio)
 "dmk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -12320,7 +12325,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/slumbridge/inside/houses/surgery)
 "jhF" = (
@@ -18530,6 +18534,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue,
 /area/slumbridge/inside/houses/surgery/garbledradio)
 "nDL" = (
@@ -23065,6 +23070,7 @@
 	on = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor/tile/barber,
 /area/slumbridge/inside/houses/surgery)
 "qTi" = (
@@ -59851,12 +59857,12 @@ aka
 xxD
 xxD
 xxD
-xqm
+hrr
 cNL
 cNL
 xxD
 xxD
-xxD
+lwr
 gbp
 imO
 dAd
@@ -59864,7 +59870,7 @@ imO
 vFl
 hLH
 vMN
-imO
+dmf
 kxD
 lCG
 oHY
@@ -60218,7 +60224,7 @@ fnD
 cNL
 cNL
 cNL
-cNL
+ntc
 tqK
 tqK
 clP

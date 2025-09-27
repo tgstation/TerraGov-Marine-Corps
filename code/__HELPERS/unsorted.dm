@@ -1113,7 +1113,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	return call(source, proctype)(arglist(arguments))
 
 ///Takes: Area type as text string or as typepath OR an instance of the area. Returns: A list of all areas of that type in the world.
-/proc/get_areas(areatype, subtypes=TRUE)
+/proc/get_areas(areatype, subtypes = TRUE)
 	if(istext(areatype))
 		areatype = text2path(areatype)
 	else if(isarea(areatype))
@@ -1125,15 +1125,13 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/areas = list()
 	if(subtypes)
 		var/list/cache = typecacheof(areatype)
-		for(var/V in GLOB.sorted_areas)
-			var/area/A = V
-			if(cache[A.type])
-				areas += V
+		for(var/area/area_to_check AS in GLOB.areas)
+			if(cache[area_to_check.type])
+				areas += area_to_check
 	else
-		for(var/V in GLOB.sorted_areas)
-			var/area/A = V
-			if(A.type == areatype)
-				areas += V
+		for(var/area/area_to_check AS in GLOB.areas)
+			if(area_to_check.type == areatype)
+				areas += area_to_check
 	return areas
 
 ///Returns a list of all locations (except the area) the movable is within.

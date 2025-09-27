@@ -38569,6 +38569,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/effect/ai_node,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/east_wing_hallway)
 "kjO" = (
@@ -114002,7 +114003,7 @@ vTh
 wtW
 wPQ
 yhL
-uop
+ulI
 xLK
 hgC
 rCV

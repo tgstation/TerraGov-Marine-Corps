@@ -16701,6 +16701,22 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
+"rfN" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/surgery_hallway)
 "rfQ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/crowbar,
@@ -20789,6 +20805,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "yfa" = (
@@ -55492,7 +55509,7 @@ bjV
 biu
 blP
 bog
-sZN
+rfN
 bKB
 gUG
 pTh

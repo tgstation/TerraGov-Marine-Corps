@@ -4458,6 +4458,7 @@
 /area/corsat/gamma/hangar/flightcontrol)
 "cbm" = (
 /obj/effect/decal/cleanable/blood/oil,
+/obj/effect/ai_node,
 /turf/open/floor/dark2,
 /area/corsat/emergency_access)
 "cbC" = (
@@ -12181,6 +12182,13 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/control)
+"fvR" = (
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/north/id)
 "fwd" = (
 /obj/structure/table,
 /turf/open/floor/tile/bar,
@@ -13307,6 +13315,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/residential/researcher)
+"fWR" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/airlock/north/id)
 "fXq" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /obj/effect/turf_decal/tile/corsatsemi/brown{
@@ -22537,6 +22549,7 @@
 /obj/effect/turf_decal/tile/corsatstraight/red{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/north/id)
 "keu" = (
@@ -37863,6 +37876,10 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/monorail)
+"qFw" = (
+/obj/effect/ai_node,
+/turf/open/floor/dark2,
+/area/corsat/gamma/airlock/north/id)
 "qFL" = (
 /obj/structure/filingcabinet/filingcabinet,
 /obj/effect/turf_decal/tile/corsatstraight/cyan{
@@ -74294,7 +74311,7 @@ oOR
 dwd
 nUv
 qOl
-wnk
+fWR
 rLy
 kep
 sWp
@@ -76092,10 +76109,10 @@ oXR
 nUN
 wjj
 adq
-wnk
+fWR
 hXG
 wnk
-pol
+qFw
 tYC
 pol
 mKA
@@ -76857,13 +76874,13 @@ mQe
 xno
 nnz
 nBK
-nnz
+nzU
 xno
 xlc
 xJz
 jMZ
 iPk
-cgs
+fvR
 hRe
 jLC
 oAz
@@ -77894,7 +77911,7 @@ pRB
 cgs
 csT
 jHq
-pol
+qFw
 iPk
 mKA
 wAy
@@ -79683,7 +79700,7 @@ mHY
 mRv
 mZT
 dhJ
-uPx
+nFD
 nVY
 xTp
 lLs

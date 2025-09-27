@@ -1470,11 +1470,6 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/command/office)
-"aZC" = (
-/obj/effect/ai_node,
-/obj/structure/cable,
-/turf/closed/mineral/smooth/lavawall,
-/area/magmoor/cave/rock)
 "aZZ" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/landmark/weed_node,
@@ -5784,6 +5779,12 @@
 "dTv" = (
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing)
+"dTT" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/liquid/lava/autosmoothing/catwalk,
+/area/magmoor/compound/southeast)
 "dUz" = (
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/mainship/red{
@@ -12147,10 +12148,6 @@
 "ivX" = (
 /turf/closed/wall,
 /area/magmoor/engi/power)
-"iwd" = (
-/obj/effect/ai_node,
-/turf/closed/mineral/smooth/lavawall,
-/area/magmoor/cave/rock)
 "iwt" = (
 /turf/open/floor/mainship/purple,
 /area/magmoor/research/containment)
@@ -14886,7 +14883,6 @@
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "knz" = (
-/obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/north)
@@ -17773,6 +17769,12 @@
 	dir = 10
 	},
 /area/magmoor/civilian/arrival/east)
+"mqd" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/liquid/lava/autosmoothing/catwalk,
+/area/magmoor/compound/southeast)
 "mqg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -21435,6 +21437,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
+"oZP" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/southeast)
 "oZS" = (
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -36501,7 +36508,7 @@ rxl
 rxl
 rxl
 efw
-efw
+qDf
 efw
 lfn
 efw
@@ -36511,7 +36518,7 @@ efw
 efw
 efw
 efw
-efw
+qDf
 efw
 efw
 rxl
@@ -36735,7 +36742,7 @@ efw
 rxl
 efw
 efw
-iwd
+rxl
 rxl
 rxl
 rxl
@@ -36977,11 +36984,11 @@ efw
 efw
 efw
 efw
-efw
+qDf
 efw
 efw
 tmo
-efw
+qDf
 efw
 efw
 efw
@@ -37201,7 +37208,7 @@ efw
 efw
 efw
 efw
-qDf
+efw
 rxl
 rxl
 rxl
@@ -66493,15 +66500,15 @@ xUd
 xUd
 xUd
 jRL
-jRL
+dkb
 jRL
 xUd
-xwh
+dTT
 xUd
 jRL
 jRL
 jRL
-jRL
+dkb
 jRL
 jRL
 rxl
@@ -66729,7 +66736,7 @@ jRL
 jRL
 jRL
 xUd
-xwh
+mqd
 xUd
 xUd
 jRL
@@ -67178,13 +67185,13 @@ xUd
 xUd
 xUd
 jRL
-uwv
+fhN
 eFL
 jRL
 jRL
 jRL
 jRL
-kua
+oZP
 jRL
 jRL
 jRL
@@ -67192,7 +67199,7 @@ jRL
 jRL
 jRL
 jRL
-jRL
+dkb
 jRL
 skV
 xUd
@@ -69952,7 +69959,7 @@ mTX
 mTX
 hgM
 nfy
-aZC
+nfy
 nfy
 mTX
 mTX

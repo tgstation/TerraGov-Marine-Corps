@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Mech heavy cannon is slightly less accurate, and always aims chest"

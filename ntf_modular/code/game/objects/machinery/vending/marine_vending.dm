@@ -46,7 +46,7 @@
 			/obj/item/weapon/gun/rifle/chambered = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/weapon/gun/rifle/sniper/elite = 3,
-			/obj/item/ammo_magazine/sniper/elite = -1,
+			/obj/item/ammo_magazine/railgun/pmc = -1,
 		),
 		"Shotgun" = list(
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,

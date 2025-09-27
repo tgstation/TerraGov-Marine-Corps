@@ -3992,6 +3992,7 @@
 	dir = 4;
 	on = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/kitchen)
 "cNZ" = (
@@ -17611,6 +17612,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 4
 	},
@@ -20624,6 +20626,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/auxstorage)
 "nRK" = (
@@ -22796,11 +22799,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
-"pmR" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
-/turf/open/floor/prison/kitchen,
-/area/metnal/inside/kitchen)
 "pmW" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -51560,7 +51558,7 @@ kez
 dxJ
 kFW
 kCT
-kCT
+nMI
 kCT
 kCT
 oRN
@@ -52772,8 +52770,8 @@ diM
 jAs
 gWn
 gWn
-kez
 moo
+kez
 kCT
 kCT
 kCT
@@ -53580,12 +53578,12 @@ diM
 jAs
 jAs
 jAs
-jAs
 lDc
 jAs
-lDc
+jAs
+jAs
 tJI
-kez
+moo
 kez
 kCT
 kCT
@@ -54188,7 +54186,7 @@ rOt
 fiP
 pYg
 cNV
-pmR
+pdd
 kac
 jAs
 moo
@@ -58790,8 +58788,8 @@ xVR
 xVR
 xVR
 kez
-kez
-mDU
+moo
+dxJ
 qSu
 oRN
 oRN
@@ -67883,7 +67881,7 @@ ukO
 ukO
 ukO
 ukO
-ukO
+ufS
 lIS
 ukO
 ukO
