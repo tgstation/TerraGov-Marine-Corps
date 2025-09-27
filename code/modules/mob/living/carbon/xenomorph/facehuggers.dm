@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	if(stat == CONSCIOUS)
 		stat = UNCONSCIOUS
 		update_icon()
-	if(hybernate) //If we're hybernating we're going into stasis; we no longer have a death timer
+	if(hybernate || QDELETED(src)) //If we're hybernating we're going into stasis; we no longer have a death timer
 		stasis = TRUE
 		deltimer(lifetimer)
 	else if(!attached && !(stasis || no_activate))
