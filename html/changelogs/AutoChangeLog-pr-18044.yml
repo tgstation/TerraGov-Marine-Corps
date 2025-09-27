@@ -1,0 +1,6 @@
+author: "Vany3045"
+delete-after: True
+changes:
+  - rscadd: "remastered the Nanotrasen PMC"
+  - balance: "A lot of tweaks for the PMC ERT. Details are here [#18044](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18044#issue-3196882371)"
+  - imageadd: "new sprites for the PMC equipment"
