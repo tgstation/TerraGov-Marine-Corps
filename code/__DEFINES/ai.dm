@@ -55,6 +55,8 @@
 
 #define MAX_NODE_RANGE 15
 #define PATHFINDER_MAX_TRIES 200
+///NPC's will try this many times to path to a goal before ignoring it
+#define AI_MAX_GOAL_PATH_FAILS 10
 
 ///The AI will maintain a combat target within this range, even without LOS
 #define AI_COMBAT_TARGET_BLIND_DISTANCE 4 //required since byond LOS is not the same as true LOS, but also since either can be easily broken by stepping behind a corner etc
