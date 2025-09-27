@@ -102,7 +102,7 @@
 
 /obj/item/clothing/gloves/marine/veteran/pmc_elite
 	name = "PMC elite gloves"
-	desc = "A pair of black gloves armored with pure white plates, used by Nanotrasen PMC contractors."
+	desc = "A pair of black gloves armored with pure white plates, used by Ninetails PMC contractors."
 	icon_state = "armored_pmc"
 	siemens_coefficient = 0
 	item_flags = SYNTH_RESTRICTED

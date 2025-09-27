@@ -1,7 +1,7 @@
 //Robot armour
 /obj/item/clothing/suit/modular/robot
 	name = "\improper XR-1 armor plating"
-	desc = "Medium armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	desc = "Medium armor plating designed for self mounting on Ninetails combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 
 	worn_icon_list = list(slot_wear_suit_str = 'icons/mob/modular/robot_armor.dmi')
 	icon_state = "chest"
@@ -82,7 +82,7 @@
 
 /obj/item/clothing/suit/modular/robot/light
 	name = "\improper XR-1-L armor plating"
-	desc = "Light armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	desc = "Light armor plating designed for self mounting on Ninetails combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	soft_armor = MARINE_ARMOR_LIGHT
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	greyscale_config = /datum/greyscale_config/robot/light
@@ -97,7 +97,7 @@
 
 /obj/item/clothing/suit/modular/robot/heavy
 	name = "\improper XR-1-H armor plating"
-	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	desc = "Heavy armor plating designed for self mounting on Ninetails combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	soft_armor = MARINE_ARMOR_HEAVY
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	greyscale_config = /datum/greyscale_config/robot/heavy
@@ -130,7 +130,7 @@
 //robot hats
 /obj/item/clothing/head/modular/robot
 	name = "\improper XN-1 upper armor plating"
-	desc = "Medium armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	desc = "Medium armor plating designed for self mounting on the upper half of Ninetails combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -179,13 +179,13 @@
 
 /obj/item/clothing/head/modular/robot/light
 	name = "\improper XN-1-L upper armor plating"
-	desc = "Light armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	desc = "Light armor plating designed for self mounting on the upper half of Ninetails combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/visor/marine/robot/light)
 	greyscale_config = /datum/greyscale_config/robot/light
 
 /obj/item/clothing/head/modular/robot/heavy
 	name = "\improper XN-1-H upper armor plating"
-	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	desc = "Heavy armor plating designed for self mounting on the upper half of Ninetails combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/visor/marine/robot/heavy)
 	greyscale_config = /datum/greyscale_config/robot/heavy
 

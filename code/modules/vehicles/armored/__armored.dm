@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/armored
 	name = "\improper MT - Shortstreet MK4"
-	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that Nanotrasen wants it to. This model contains advanced Bluespace technology which allows a TARDIS-like amount of room on the inside."
+	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that Ninetails wants it to. This model contains advanced Bluespace technology which allows a TARDIS-like amount of room on the inside."
 	icon = 'icons/obj/armored/1x1/tinytank.dmi'
 	icon_state = "tank"
 	pixel_x = -16

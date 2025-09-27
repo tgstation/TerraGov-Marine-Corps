@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define isyiren(H) (is_species(H, /datum/species/monkey/yiren))
 
 //Job/role helpers
-#define ismarinefaction(H) (H.faction == "TerraGov")
+#define ismarinefaction(H) (H.faction == FACTION_TERRAGOV)
 #define isterragovjob(J) (istype(J, /datum/job/terragov))
 #define isspatialagentjob(J) (istype(J, /datum/job/spatial_agent))
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))

@@ -11,8 +11,8 @@
 	to_chat(H, "<B>Due to your [pick("marked distinction in combat", "ruthless record fighting against NTC", "family's connections", "previous failures in combat")] you have been assigned to the 5th Special Assault Force of the SOM.</b>")
 	to_chat(H, "<B>Membership in the 5th SAF is considered a great honour, typically sent into some of the most dangerous operations imaginable, with a special focus on ship combat. Casualty rates are often extremely high, although success in the 5th can often fast track a soldier's career.</b>")
 	to_chat(H, "")
-	to_chat(H, "<B>Today, a TerraGov vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. This is our chance to attack without being intercepted!</b>")
-	to_chat(H, "<B>Eliminate the TerraGov personnel onboard, capture the ship. If there are fellow ICC contingents such as the ICCAF, then work with them in this goal. Take no prisoners. Take back what was once lost.</B>")
+	to_chat(H, "<B>Today, a Ninetails vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. This is our chance to attack without being intercepted!</b>")
+	to_chat(H, "<B>Eliminate the Ninetails personnel onboard, capture the ship. If there are fellow ICC contingents such as the ICCAF, then work with them in this goal. Take no prisoners. Take back what was once lost.</B>")
 
 /datum/emergency_call/som_breachers/do_activate(announce = TRUE)
 	max_specialists = floor(mob_max * 0.2)

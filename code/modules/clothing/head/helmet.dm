@@ -313,22 +313,22 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard
 	name = "\improper M4 Legionary pattern PMC helmet"
-	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets."
+	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets."
 	icon_state = "pmc_helmet_standard"
 	soft_armor = list(MELEE = 65, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 50, FIRE = 65, ACID = 55)
 	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/stripes
-	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets. You like stripes, don't you?"
+	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets. You like stripes, don't you?"
 	icon_state = "pmc_helmet_standard_stripes"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/twoface
-	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets. You could say we're of two minds on the subject."
+	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets. You could say we're of two minds on the subject."
 	icon_state = "pmc_helmet_standard_twoface"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/mantis
-	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets. You feel quite hungry."
+	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets. You feel quite hungry."
 	icon_state = "pmc_helmet_standard_mantis"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/leader
@@ -349,31 +349,31 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
 	name = "\improper M7-H Cathaphract pattern PMC helmet"
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat."
 	icon_state = "pmc_heavyhelmet"
 	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 50, FIRE = 65, ACID = 65)
 	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/skull
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. It's rattling time."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. It's rattling time."
 	icon_state = "pmc_heavyhelmet_skull"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/hunter
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. I've got you in my sights."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. I've got you in my sights."
 	icon_state = "pmc_heavyhelmet_hunter"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/joker
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You love seeing people smile."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You love seeing people smile."
 	icon_state = "pmc_heavyhelmet_joker"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/stripes
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You like stripes, don't you?"
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You like stripes, don't you?"
 	icon_state = "pmc_heavyhelmet_stripes"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/leader
 	name = "\improper M7-H Cathaphract pattern PMC officer helmet"
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. This particular helmet looks like it belongs to a high-ranking officer."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. This particular helmet looks like it belongs to a high-ranking officer."
 	icon_state = "pmc_heavyhelmet_officer"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
@@ -421,7 +421,7 @@
 
 /obj/item/clothing/head/helmet/marine/freelancer/beret
 	name = "\improper Freelancer beret"
-	desc = "A white beret, with worned out TerraGov emblem. Not many people you can see wear such things, especially when they're not part of the TerraGov military. Additionally issued with armored platemask."
+	desc = "A white beret, with worn out Ninetails emblem. Not many people you can see wear such things, especially when they're not part of the Ninetails military. Additionally issued with armored platemask."
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "freelancer_beret"
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 70, BOMB = 60, BIO = 55, FIRE = 60, ACID = 65)
@@ -435,7 +435,7 @@
 
 /obj/item/clothing/head/helmet/marine/freelancer/medic
 	name = "\improper M3 pattern CBRN Freelancer helmet"
-	desc = "A sturdy freelancer's blue helmet with white stripe ontop and integrated mimir filtration system. Many years ago on the Terra, the sign of that helmet was inspiring hope, but now - only apathy."
+	desc = "A sturdy freelancer's blue helmet with white stripe on top and integrated mimir filtration system. Many years ago on the Terra, the sign of that helmet was inspiring hope, but now - only apathy."
 	icon_state = "freelancer_helmet_medic"
 	soft_armor = list(MELEE = 55, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 60, BIO = 70, FIRE = 65, ACID = 75)
 	attachments_by_slot = list(

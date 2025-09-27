@@ -1,5 +1,5 @@
 /datum/outfit/job/npc/tgmc/squad_leader
-	name = "NPC TGMC squad leader"
+	name = "NPC NTF squad leader"
 	jobtype = /datum/job/terragov/squad/leader
 
 	id = /obj/item/card/id/dogtag
@@ -42,7 +42,7 @@
 	)
 
 /datum/outfit/job/npc/tgmc/smartgunner
-	name = "NPC TGMC smartgunner"
+	name = "NPC NTF smartgunner"
 	jobtype = /datum/job/terragov/squad/smartgunner
 
 	id = /obj/item/card/id/dogtag
@@ -91,7 +91,7 @@
 	)
 
 /datum/outfit/job/npc/tgmc/corpsman
-	name = "NPC TGMC Corpsman"
+	name = "NPC NTF Corpsman"
 	jobtype = /datum/job/terragov/squad/corpsman
 
 	id = /obj/item/card/id/dogtag
@@ -153,7 +153,7 @@
 	)
 
 /datum/outfit/job/npc/tgmc/standard
-	name = "NPC TGMC standard"
+	name = "NPC NTF standard"
 	jobtype = /datum/job/terragov/squad/standard
 
 	id = /obj/item/card/id/dogtag
@@ -199,7 +199,7 @@
 	)
 
 /datum/outfit/job/npc/tgmc/standard/shotgunner
-	name = "NPC TGMC standard shotgunner"
+	name = "NPC NTF standard shotgunner"
 	jobtype = /datum/job/terragov/squad/standard
 
 	id = /obj/item/card/id/dogtag
@@ -251,7 +251,7 @@
 
 //
 /datum/outfit/job/npc/tgmc/squad_engineer
-	name = "NPC TGMC squad engineer"
+	name = "NPC NTF squad engineer"
 	jobtype = /datum/job/terragov/squad/engineer
 
 	id = /obj/item/card/id/dogtag

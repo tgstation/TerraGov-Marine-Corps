@@ -1433,7 +1433,7 @@
 
 /obj/item/weapon/gun/rifle/standard_spottingrifle
 	name = "SG-153 spotting rifle"
-	desc = "An underslung spotting rifle, generally found ontop of another gun."
+	desc = "An underslung spotting rifle, generally found on top of another gun."
 	icon_state = "sg153"
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	fire_sound =  'sound/weapons/guns/fire/spottingrifle.ogg'
@@ -1466,7 +1466,7 @@
 
 /obj/item/weapon/gun/rifle/pmc_smartrifle
 	name = "\improper SG-25 smart rifle"
-	desc = "The SG-25 is a Nanotrasen's experimental model of smart gun system, mounted on the rifle frame of TGMC standard issue AR-12. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The SG-25 is a Ninetails's experimental model of smart gun system, mounted on the rifle frame of TGMC standard issue AR-12. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "sg25"
 	worn_icon_state = "sg25"
@@ -3302,7 +3302,7 @@
 
 /obj/item/weapon/gun/rifle/pmc_gpmg
 	name = "\improper SG-60 Raummetall-KT smart machine gun"
-	desc = "The Raummetall-KT SG-60 is the Nanotrasen's newest model of smartgun, mounted on general purpose MG-60. In comparison to the known SG-29, this weapon has much higher rate of fire, however, paying for it with accuracy. mostly seen in hands of Nanotrasen Contractors in heavy exo-armor. Has unbuilt barrel charger. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The Raummetall-KT SG-60 is the Ninetails's newest model of smartgun, mounted on general purpose MG-60. In comparison to the known SG-29, this weapon has much higher rate of fire, however, paying for it with accuracy. mostly seen in hands of Ninetails Contractors in heavy exo-armor. Has unbuilt barrel charger. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "sg60"
 	worn_icon_state = "sg60"
@@ -3355,7 +3355,7 @@
 
 /obj/item/weapon/gun/rifle/m416
 	name = "\improper RA-SH-416 skirmish rifle"
-	desc = "The RA-SH-416 RivArms is a standart issue rifle for Nanotrasen Contractors. Comes with inbuilt underbarrel grenade launcher. Uses 10x25mm ammunition."
+	desc = "The RA-SH-416 RivArms is a standart issue rifle for Ninetails Contractors. Comes with inbuilt underbarrel grenade launcher. Uses 10x25mm ammunition."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "m416"
 	worn_icon_state = "m416"
@@ -3405,7 +3405,7 @@
 
 /obj/item/weapon/gun/rifle/m416/elite
 	name = "\improper RA-SH-416E skirmish rifle"
-	desc = "The RA-SH-416E RivArms is a modified model of standard issue rifle for high ranked Nanotrasen Contractors. Comes with inbuilt barrel charger and underbarrel grenade launcher. Uses 10x25mm ammunition."
+	desc = "The RA-SH-416E RivArms is a modified model of standard issue rifle for high ranked Ninetails Contractors. Comes with inbuilt barrel charger and underbarrel grenade launcher. Uses 10x25mm ammunition."
 	icon_state = "m416e"
 	worn_icon_state = "m416e"
 

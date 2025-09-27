@@ -435,7 +435,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/command/assault_crewman/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += "You are an Assault Crewman. You operate the TGMC's armored assault vehicles along with your partner, and in some cases a \"willing\" loader. Make sure that you work as a team to advance the front!"
+	. += "You are an Assault Crewman. You operate the NTF's armored assault vehicles along with your partner, and in some cases a \"willing\" loader. Make sure that you work as a team to advance the front!"
 
 /datum/job/terragov/command/assault_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -490,7 +490,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/command/transport_crewman/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += "You are a Transport Crewman. You operate the TGMC's transport vehciles to ensure that marines and equipment gets to the front in a timely and safe manner."
+	. += "You are a Transport Crewman. You operate the NTF's transport vehciles to ensure that marines and equipment gets to the front in a timely and safe manner."
 
 /datum/job/terragov/command/transport_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -871,7 +871,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		<b>You answer to the</b> Ninetails Corporate Office<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Ninetails/TerraGov, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
+		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Ninetails/NTF, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
 	"}
 	minimap_icon = "researcher"
 

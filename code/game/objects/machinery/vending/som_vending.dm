@@ -519,7 +519,7 @@
 /obj/machinery/vending/som/armor_supply
 	name = "\improper High Quality Mining Equipment"
 	faction = FACTION_SOM
-	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
+	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
 	icon_vend = "surplus_armor_vend"
 	icon_deny = "surplus_armor_deny"
@@ -622,7 +622,7 @@
 /obj/machinery/vending/som/uniform_supply
 	name = "\improper SOMdrobe"
 	faction = FACTION_SOM
-	desc = "An automated equipment rack hooked up to a colossal storage of clothing and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
+	desc = "An automated equipment rack hooked up to a colossal storage of clothing and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
 	icon_vend = "surplus_clothes_vend"
 	icon_deny = "surplus_clothes_deny"

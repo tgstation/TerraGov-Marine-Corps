@@ -316,7 +316,7 @@
 
 /datum/codex_entry/standard_tx11
 	associated_paths = list(/obj/item/weapon/gun/rifle/tx11)
-	lore_text = "The Keckler and Hoch 'M-11' was created out of a infamous bid called the 'Rifle of the future' project, created out of a need to replace aging weapon stocks in the TerraGov arsenal. \
+	lore_text = "The Keckler and Hoch 'M-11' was created out of a infamous bid called the 'Rifle of the future' project, created out of a need to replace aging weapon stocks in the Ninetails arsenal. \
 	The M-11 was created to be the ultimate weapon, being able to lay down fire like an MG with a high capacity, amazing burst fire capability, specialized scope for long range damage, it was tested and destroyed the competition.\
 	It did amazing in field tests, and was effectively the best rifle overall. Most concerns were ergonomical, however it was pushed aside for a need of a new rifle, and money was already spent in making the entire thing, so getting a new competition would be too bothersome.\
 	Eventually however, these ergonomic failures lead to constant troop complaints due to the unergonomic nature of the rifle, troops who swore by it loved it, troops who hated it called it a useless brick.\

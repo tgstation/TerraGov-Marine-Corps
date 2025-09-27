@@ -8,7 +8,7 @@
 /datum/job/usl_squad/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"You're a part of an old PMC group which calls themselves the 'Vyacheslav Security Detail'. Your tasking is to follow SoM command, no excuse. Some circumstances may change this. Good luck."}
+	. += {"You're a part of an old PMC group which calls themselves the '"+FACTION_VSD+"'. Your tasking is to follow SoM command, no excuse. Some circumstances may change this. Good luck."}
 
 //USL Standard
 /datum/job/usl_squad/standard

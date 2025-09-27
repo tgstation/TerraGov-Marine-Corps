@@ -51,7 +51,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		TerraGov’s Squad Operatives make up the bread and butter of Terra's fighting forces. They are fitted with the standard arsenal that the NTC offers, and they can take up a variety of roles, being a sniper, a pyrotechnician, a machinegunner, rifleman and more. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against Terra.
+		Ninetails' Squad Operatives make up the bread and butter of Ninetails' fighting forces. They are fitted with the standard arsenal that the NTC offers, and they can take up a variety of roles, being a sniper, a pyrotechnician, a machinegunner, rifleman and more. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against Terra.
 		<br /><br />
 		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the NTC.
 	"}
@@ -109,7 +109,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		TerraGov’s Squad Operatives make up the bread and butter of Terra's fighting forces. They are fitted with the standard arsenal that the NTC offers, and they can take up a variety of roles, being a sniper, a pyrotechnician, a machinegunner, rifleman and more. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against Terra.
+		Ninetails' Squad Operatives make up the bread and butter of Ninetails' fighting forces. They are fitted with the standard arsenal that the NTC offers, and they can take up a variety of roles, being a sniper, a pyrotechnician, a machinegunner, rifleman and more. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against Terra.
 		<br /><br />
 		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the NTC.
 	"}

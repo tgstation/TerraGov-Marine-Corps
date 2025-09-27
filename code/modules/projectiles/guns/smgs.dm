@@ -779,7 +779,7 @@
 
 /obj/item/weapon/gun/smg/val
 	name = "\improper RA-VAL submachine gun"
-	desc = "The RA-VAL is a heavier than usual subgun used by the Nanotrasen Contractors. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch. However, it suffers at long range due to heavy bullet of 9x39mm caliber."
+	desc = "The RA-VAL is a heavier than usual subgun used by the Ninetails Contractors. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch. However, it suffers at long range due to heavy bullet of 9x39mm caliber."
 	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "val"
 	worn_icon_state = "val"

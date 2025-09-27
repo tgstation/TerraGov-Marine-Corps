@@ -217,7 +217,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/sniper/pmc_railgun
 	name = "\improper SRX-42 anti-tank rail rifle"
-	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available. Trigger discipline is highly recommended."
+	desc = "A high end mag-rail heavy sniper rifle from Ninetails chambered in the heaviest ammo available. Trigger discipline is highly recommended."
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "m42r"
 	worn_icon_state = "m42r"

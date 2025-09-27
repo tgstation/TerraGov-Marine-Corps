@@ -8,7 +8,7 @@
 
 /obj/item/explosive/grenade/m15
 	name = "\improper M15 fragmentation grenade"
-	desc = "An outdated TGMC fragmentation grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
+	desc = "An outdated NTF fragmentation grenade. With decades of service in the NTF, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
 	worn_icon_state = "grenade_ex"
 	hud_state = "grenade_frag"

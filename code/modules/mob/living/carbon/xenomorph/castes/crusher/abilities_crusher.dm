@@ -26,7 +26,7 @@
 	var/stomp_range = CRUSHER_STOMP_RANGE
 	/// At what point does damage begin to fall off?
 	var/stomp_falloff = CRUSHER_STOMP_FALLOFF
-	/// Should this ability deal additional effects / have more potent effects for victims that the owner is standing ontop of?
+	/// Should this ability deal additional effects / have more potent effects for victims that the owner is standing on top of?
 	var/distance_bonus_allowed = TRUE
 
 /datum/action/ability/activable/xeno/stomp/use_ability(atom/A)

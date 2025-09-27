@@ -177,7 +177,7 @@
 
 /obj/item/clothing/glasses/mgoggles
 	name = "marine ballistic goggles"
-	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
+	desc = "Standard issue NTF goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	worn_icon_state = "mgoggles"
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, FIRE = 30, ACID = 30)
@@ -188,7 +188,7 @@
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
-	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
+	desc = "Standard issue NTF goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	prescription = TRUE
 
 /obj/item/clothing/glasses/mgoggles/attackby(obj/item/I, mob/user, params)

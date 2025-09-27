@@ -1,5 +1,5 @@
 /datum/emergency_call/retired
-	name = "Retired TGMC Veteran Squad"
+	name = "Retired NTF Veteran Squad"
 	base_probability = 5
 	alignement_factor = -1
 
@@ -40,9 +40,9 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/retired/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the TGMC retired veteran expedition leader! Lead your fellow veterans to one last hurrah!</notice></p>")
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the NTF retired veteran expedition leader! Lead your fellow veterans to one last hurrah!</notice></p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/retired)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are an augmented TGMC veteran, you may have had a few limbs replaced with synthetic versions, but at least you can walk! Follow the expedition leader and relive your glory days!</notice></p>")
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are an augmented NTF veteran, you may have had a few limbs replaced with synthetic versions, but at least you can walk! Follow the expedition leader and relive your glory days!</notice></p>")

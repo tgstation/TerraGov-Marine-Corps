@@ -601,12 +601,12 @@
 
 /obj/structure/sign/ROsign
 	name = "\improper NTC requisitions office guidelines"
-	desc = " 1. You are not entitled to service or equipment. Attachments are a privilege, not a right.\n 2. You must be fully dressed to obtain service. Cryosleep underwear is non-permissible.\n 3. The Requsitions Officer has the final say and the right to decline service. Only the Acting Captain may override his decisions.\n 4. Please treat your Requsitions staff with respect. They work hard."
+	desc = " 1. You are not entitled to service or equipment. Attachments are a privilege, not a right.\n 2. The Requsitions Officer has the final say and the right to decline service. Only the Acting Captain may override his decisions.\n 3. Please treat your Requsitions staff with respect. They work hard."
 	icon_state = "roplaque"
 
 /obj/structure/sign/prop1
-	name = "\improper TerraGov poster"
-	desc = "The symbol of the Terran Goverment."
+	name = "\improper Ninetails poster"
+	desc = "The symbol of the Ninetails Corporation."
 	icon_state = "prop1"
 
 /obj/structure/sign/prop2
@@ -620,6 +620,6 @@
 	icon_state = "prop3"
 
 /obj/structure/sign/prop4
-	name = "TerraGov: United for Humanity"
-	desc = "A poster depicting TerraGov's logo and motto, reminding marines of who's looking out for humankind against the Xenomorph menace."
+	name = "Ninetails: United for Humanity"
+	desc = "A poster depicting Ninetails's logo and motto, reminding marines of who's looking out for humankind against the Xenomorph menace."
 	icon_state = "prop4"

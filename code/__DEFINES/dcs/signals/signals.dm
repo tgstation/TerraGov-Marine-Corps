@@ -629,10 +629,10 @@
 #define COMSIG_MOB_ITEM_ATTACK_ALTERNATE "mob_item_attack_alt"	//from base of /obj/item/attack_alternate(): (mob/target, /obj/item/attacking_item)
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)						//return this if you dont want attacka and altattacks to run
 
-///Called when an object is grilled ontop of a griddle
+///Called when an object is grilled on top of a griddle
 #define COMSIG_ITEM_GRILLED "item_griddled"
 	#define COMPONENT_HANDLED_GRILLING (1<<0)
-///Called when an object is turned into another item through grilling ontop of a griddle
+///Called when an object is turned into another item through grilling on top of a griddle
 #define COMSIG_GRILL_COMPLETED "item_grill_completed"
 
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, has_proximity, click_parameters)

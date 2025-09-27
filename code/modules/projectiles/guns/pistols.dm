@@ -637,7 +637,7 @@
 
 /obj/item/weapon/gun/pistol/mk90
 	name = "\improper MK90 Mod 4 combat pistol"
-	desc = "Standard issue pistol for Nanotrasen Contractors, based on MK88. Has inbuilt barrel charger. Lost it's inbuilt burst fire mode, but in exchange got much heavier punch. Fires 9mm armor piercing rounds."
+	desc = "Standard issue pistol for Ninetails Contractors, based on MK88. Has inbuilt barrel charger. Lost it's inbuilt burst fire mode, but in exchange got much heavier punch. Fires 9mm armor piercing rounds."
 	icon_state = "90m4"
 	worn_icon_state = "90m4"
 	caliber = CALIBER_9X19 //codex
@@ -688,7 +688,7 @@
 
 /obj/item/weapon/gun/pistol/mk100_gyrojet
 	name = "\improper MK100 mod 5 'Suppresor' gyrojet pistol"
-	desc = "A massive, formidable automatic handgun chambered with 15x50mm rocket propelled rounds. Commonly seen in the hands of wealthy Nanotrasen members, not because this weapon is expensive, but because you better have a power armor on, to not break your arm while firing this thing. Due to shell's rupture in target's body, high chance of causing shrapnel."
+	desc = "A massive, formidable automatic handgun chambered with 15x50mm rocket propelled rounds. Commonly seen in the hands of wealthy Ninetails members, not because this weapon is expensive, but because you better have a power armor on, to not break your arm while firing this thing. Due to shell's rupture in target's body, high chance of causing shrapnel."
 	icon_state = "100m5"
 	worn_icon_state = "100m5"
 	caliber = CALIBER_15X50 //codex

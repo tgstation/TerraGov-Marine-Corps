@@ -200,7 +200,7 @@
 
 /obj/item/storage/backpack/satchel/pmc
 	name = "PMC chestrig"
-	desc = "A heavy-duty chestrig used by Nanotrasen PMC contractors."
+	desc = "A heavy-duty chestrig used by Ninetails PMC contractors."
 	icon_state = "pmc_chestrig"
 
 //ERT backpacks.
@@ -335,7 +335,7 @@
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper NTC technician backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
+	desc = "The standard-issue backpack worn by NTF technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
 	icon_state = "marinepackt"
 	worn_icon_state = "marinepackt"
 	storage_type = /datum/storage/backpack/tech
@@ -379,7 +379,7 @@
 	storage_type = /datum/storage/backpack/satchel
 
 /obj/item/storage/backpack/marine/duffelbag
-	name = "\improper TGMC Duffelbag"
+	name = "\improper NTF Duffelbag"
 	desc = "A hard to reach backpack with no draw delay but is hard to access. \
 	Any squadmates can easily access the storage with right-click."
 	icon = 'icons/obj/items/storage/duffelbag.dmi'
@@ -870,7 +870,7 @@
 
 /obj/item/storage/backpack/lightpack/pmc
 	name = "PMC bag"
-	desc = "A heavy-duty bag used by Nanotrasen PMC contractors."
+	desc = "A heavy-duty bag used by Ninetails PMC contractors."
 	icon_state = "pmc_bag"
 
 /obj/item/storage/backpack/lightpack/som

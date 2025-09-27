@@ -533,7 +533,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol
 	name = "\improper Terra Experimental laser pistol"
-	desc = "A TerraGov standard issue laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
+	desc = "A Ninetails standard issue laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_pistol_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	icon_state = "tep"
@@ -617,7 +617,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
 	name = "\improper Terra Experimental laser carbine"
-	desc = "A TerraGov standard issue laser carbine, otherwise known as TE-C for short. Has multiple firemodes for tactical flexibility. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
+	desc = "A Ninetails standard issue laser carbine, otherwise known as TE-C for short. Has multiple firemodes for tactical flexibility. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	icon_state = "tec"

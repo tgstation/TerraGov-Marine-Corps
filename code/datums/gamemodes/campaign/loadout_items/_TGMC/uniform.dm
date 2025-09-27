@@ -68,7 +68,7 @@
 //FC
 /datum/loadout_item/uniform/field_commander
 	name = "FC uniform"
-	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a field-grade officer of the TGMC. You suspect it's not as robust-proof as advertised."
+	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a field-grade officer of the NTF. You suspect it's not as robust-proof as advertised."
 	item_typepath = /obj/item/clothing/under/tdf/black_vest
 	jobs_supported = list(FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -84,7 +84,7 @@
 //Captain
 /datum/loadout_item/uniform/captain_officer
 	name = "Captain uniform"
-	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a TerraGov Naval Captain. Even looking at it the wrong way could result in being court-martialed."
+	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a Ninetails Naval Captain. Even looking at it the wrong way could result in being court-martialed."
 	item_typepath = /obj/item/clothing/under/marine/officer/command
 	jobs_supported = list(CAPTAIN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE

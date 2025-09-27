@@ -175,14 +175,14 @@
 	icon_state = "som_mealpackempty"
 
 /obj/item/trash/nt_chips
-	name = "\improper Nanotrasen Pepper Chips"
+	name = "\improper Ninetails Pepper Chips"
 	icon_state = "nt_chips_pepper"
-	desc = "An oily empty bag that once held Nanotrasen Chips."
+	desc = "An oily empty bag that once held Ninetails Chips."
 
 /obj/item/trash/nt_chips/pepper
-	name = "\improper Nanotrasen Pepper Chips"
+	name = "\improper Ninetails Pepper Chips"
 	icon_state = "nt_chips_pepper"
-	desc = "An oily empty bag that once held Nanotrasen Pepper Chips."
+	desc = "An oily empty bag that once held Ninetails Pepper Chips."
 
 /obj/item/trash/crushed_cup
 	name = "crushed cup"
@@ -201,7 +201,7 @@
 
 /obj/item/trash/crushed_wbottle
 	name = "crushed waterbottle"
-	desc = "Overpriced 'Spring' water. Bottled by the Nanotrasen Corporation."
+	desc = "Overpriced 'Spring' water. Bottled by the Ninetails Corporation."
 	icon_state = "waterbottle_crushed"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 1

@@ -8,7 +8,7 @@ We salute you.
 */
 /obj/structure/prop/mainship/toolboxforacause2020
 	name = "\improper \"Toolboxing For A Cause 2020\" third place trophy"
-	desc = "A worn, but still shining gold toolbox dedicated to those who \"may be stupid\", who lead the way to victory for TerraGov, placing third in the tournament.\nA worn inscription says: <i>\"Manley Jyllian, Nick Johnson, and Clark Ulton\"</i>. You feel robust just looking at it."
+	desc = "A worn, but still shining gold toolbox dedicated to those who \"may be stupid\", who lead the way to victory for Ninetails, placing third in the tournament.\nA worn inscription says: <i>\"Manley Jyllian, Nick Johnson, and Clark Ulton\"</i>. You feel robust just looking at it."
 	icon = 'icons/obj/structures/toolboxtrophy.dmi'
 	icon_state = "toolboxtrophy"
 	density = TRUE

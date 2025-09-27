@@ -261,7 +261,7 @@
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc
 	name = "\improper M4 pattern PMC armor"
-	desc = "A modification of outdated army vest. Even tho it doesn't have an advanced armor layering and protection against unwelcome enviroment, that armor is still produced by Nanotrasen Armory Divison for low ranking members of Nanotrasen PMC and security firms of Outer Rim."
+	desc = "A modification of outdated army vest. Even tho it doesn't have an advanced armor layering and protection against unwelcome enviroment, that armor is still produced by Ninetails Armory Divison for low ranking members of Ninetails PMC and security firms of Outer Rim."
 	icon_state = "pmc_armor"
 	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 15, FIRE = 35, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -284,21 +284,21 @@
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/standard
 	name = "\improper M4 Legionary pattern PMC armor"
-	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets."
+	desc = "Standard issue suit, designed for quick movement. produced by Ninetails Armory Division. It's a preffered choice among mercenaries and security assets."
 	icon_state = "pmc_armor_standard"
 	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 20, FIRE = 45, ACID = 45)
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge
-	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets. You're no longer a shiny, aren't you?"
+	desc = "Standard issue suit, designed for quick movement. produced by Ninetails Armory Division. It's a preffered choice among mercenaries and security assets. You're no longer a shiny, aren't you?"
 	icon_state = "pmc_armor_standard_sarge"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/joker
-	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets. You're either one of the funniest, or most annoying man in your squad."
+	desc = "Standard issue suit, designed for quick movement. produced by Ninetails Armory Division. It's a preffered choice among mercenaries and security assets. You're either one of the funniest, or most annoying man in your squad."
 	icon_state = "pmc_armor_standard_joker"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/stripes
-	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets. You like stripes, don't you?"
+	desc = "Standard issue suit, designed for quick movement. produced by Ninetails Armory Division. It's a preffered choice among mercenaries and security assets. You like stripes, don't you?"
 	icon_state = "pmc_armor_standard_stripes"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
@@ -318,27 +318,27 @@
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
 	name = "\improper M7-H Cathaphract pattern PMC exo-armor"
-	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome."
+	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome."
 	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 30, FIRE = 65, ACID = 65)
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/sarge
-	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're no longer a shiny, aren't you?"
+	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're no longer a shiny, aren't you?"
 	icon_state = "pmc_heavyarmor_sarge"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/joker
-	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're either one of the funniest, or most annoying man in your squad."
+	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're either one of the funniest, or most annoying man in your squad."
 	icon_state = "pmc_heavyarmor_joker"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/stripes
-	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You like stripes, don't you?"
+	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You like stripes, don't you?"
 	icon_state = "pmc_heavyarmor_stripes"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/leader
 	name = "\improper M7-H Cathaphract pattern PMC officer exo-armor"
-	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. This particular set looks like it belongs to a high-ranking officer, with integrated energy shield system."
+	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. This particular set looks like it belongs to a high-ranking officer, with integrated energy shield system."
 	icon_state = "pmc_heavyarmor_officer"
 
 /*===========================Death Commando============================*/
@@ -412,7 +412,7 @@
 
 /obj/item/clothing/suit/storage/marine/veteran/freelancer
 	name = "\improper M3 pattern freelancer cuirass"
-	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the ICC and the TerraGov."
+	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the ICC and Ninetails."
 	icon_state = "freelancer_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 60, BIO = 55, FIRE = 55, ACID = 55)

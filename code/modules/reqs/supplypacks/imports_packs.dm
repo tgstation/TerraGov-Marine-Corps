@@ -301,7 +301,7 @@ Imports
 	cost = 10
 
 /datum/supply_packs/imports/loot_pack
-	name = "TGMC loot pack"
+	name = "NTF loot pack"
 	notes = "Contains a random, but curated set of items, these packs are valued around 150 to 200 points. Some items can only be acquired from these. Spend responsibly."
 	contains = list(/obj/item/loot_box/tgmclootbox)
 	cost = 1000

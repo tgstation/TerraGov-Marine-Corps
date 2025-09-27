@@ -759,7 +759,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_BULWARK,
 	)
-	/// The multiplier of the soft armor from the affected's base caste. This amount will be added ontop of the affected's current soft armor.
+	/// The multiplier of the soft armor from the affected's base caste. This amount will be added on top of the affected's current soft armor.
 	var/armor_multiplier = BULWARK_ARMOR_MULTIPLIER
 	/// Associative list: [xeno] == armor_difference
 	var/list/armor_keys = list()

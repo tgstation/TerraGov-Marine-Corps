@@ -409,7 +409,7 @@
 		xeno_owner.stop_pulling()
 		grabbed_human.emote("scream")
 		grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
-		xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right ontop of [grabbed_human]!"))
+		xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right on top of [grabbed_human]!"))
 		playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50, 1)
 		var/obj/effect/temp_visual/dragon/grab_fire/visual_grab_fire = new(get_turf(grabbed_human))
 		var/obj/effect/temp_visual/xeno_fireball_explosion/visual_fireball_explosion = new(get_turf(grabbed_human))

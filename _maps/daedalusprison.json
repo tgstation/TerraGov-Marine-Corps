@@ -14,7 +14,7 @@
 	},
 	"armor": "prison",
 	"quickbuilds": 2300,
-	"announce_text": "Coming from an icy planet within our jump drive range, a penal colony has sent out an emergency frequency that our comms array received. TGMC, prepare to deploy!",
+	"announce_text": "Coming from an icy planet within our jump drive range, a penal colony has sent out an emergency frequency that our comms array received. NTF, prepare to deploy!",
 	"traits":[{
 		"weather_snowstorm": true,
 		"No Parallax": true,

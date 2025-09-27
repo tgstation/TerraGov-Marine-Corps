@@ -42,7 +42,7 @@
 /obj/item/implant/sandevistan/get_data()
 	return {"
 	<b>Implant Specifications:</b><BR>
-	<b>Name:</b> Nanotrasen CDPR Sandevistan Implant<BR>
+	<b>Name:</b> Ninetails CDPR Sandevistan Implant<BR>
 	<HR>
 	<b>Implant Details:</b><BR>
 	<b>Function:</b> Upon activation, this implant increases neural impulse speed, allowing the user's brain to process information, and react quicker than would be normally possible.<BR>

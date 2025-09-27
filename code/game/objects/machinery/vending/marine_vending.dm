@@ -1780,7 +1780,7 @@
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/dress_supply
-	name = "\improper TerraGovTech dress uniform vendor"
+	name = "\improper NinetailsTech dress uniform vendor"
 	desc = "An automated rack hooked up to a colossal storage of dress uniforms."
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform_vend"
@@ -1808,7 +1808,7 @@
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/valhalla_req
-	name = "\improper TerraGovTech requisition vendor"
+	name = "\improper NinetailsTech requisition vendor"
 	desc = "An automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
@@ -2015,7 +2015,7 @@
 	)
 
 /obj/machinery/vending/valhalla_seasonal_req
-	name = "\improper TerraGovTech seasonal vendor"
+	name = "\improper NinetailsTech seasonal vendor"
 	desc = "An automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
@@ -2224,7 +2224,7 @@
 	)
 
 /obj/machinery/vending/valhalla_reqtorio
-	name = "\improper TerraGovTech reqtorio vendor"
+	name = "\improper NinetailsTech reqtorio vendor"
 	desc = "An automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE

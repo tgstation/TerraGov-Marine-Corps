@@ -9,7 +9,7 @@
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You grew up [pick("on the NTC prison station","in the LV-624 jungle","on a desert planet","on an icy colony")] to a[pick(50;" poor", 15;" well-off", 35;"n average")] family.</B>")
-	to_chat(H, "<B>You joined the CLF because [pick(20;"you harbor a strong hatred for the oppressive TerraGov",5;"you are good at killing, and in times like these this is the place to be", 10;"your militia was absorbed into the CLF")] and you are considered a terrorist by the NTC.</B>")
+	to_chat(H, "<B>You joined the CLF because [pick(20;"you harbor a strong hatred for the oppressive NTF",5;"you are good at killing, and in times like these this is the place to be", 10;"your militia was absorbed into the CLF")] and you are considered a terrorist by the NTC.</B>")
 	to_chat(H, "<B>Assault the NTC, and sabotage as much as you can. Ensure any survivors escape in your custody.</b>")
 
 

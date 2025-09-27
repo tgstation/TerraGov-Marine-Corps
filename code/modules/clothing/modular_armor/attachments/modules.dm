@@ -549,7 +549,7 @@
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som
 	name = "\improper Aegis energy dispersion system"
-	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Svalinn' shield system which was developed around the same time."
+	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the NTF's 'Svalinn' shield system which was developed around the same time."
 
 /obj/item/armor_module/module/eshield/som/overclocked
 	max_shield_health = 75
