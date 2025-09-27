@@ -644,6 +644,18 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HUNTER_SILENCE_COOLDOWN 30 SECONDS //Silence's cooldown
 #define HUNTER_VENT_CRAWL_TIME 2 SECONDS //Hunters can enter vents fast
 
+//Jester defines:
+#define JESTER_DECK_OF_DISASTER_RANGE 3
+#define JESTER_DECK_OF_DISASTER_AOE 3
+#define JESTER_DECK_OF_DISASTER_COOLDOWN 10 SECONDS
+#define JESTER_TAROT_DECK_COOLDOWN 15 SECONDS
+#define JESTER_DOPPELGANGER_COOLDOWN 1.5 MINUTES
+#define JESTER_DRAW_COOLDOWN 15 SECONDS
+#define JESTER_REPULSE_RANGE 4 //The number of tiles a mob is flung away when the jester uses Repulse, obtained from Draw
+#define JESTER_CHIPS_RATIO 0.015
+#define JESTER_CRIT_CHANCE 15
+#define JESTER_PATRON_RANGE 4 //Max range on Patron of the stars
+
 //Ravager defines:
 #define RAV_CHARGESPEED 2
 #define RAV_CHARGEDISTANCE 4

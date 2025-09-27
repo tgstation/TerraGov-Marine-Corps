@@ -202,6 +202,8 @@
 /datum/action/ability/xeno_action/enhancement/proc/link_essence_action()
 	if(essence_link_action)
 		return
+	if(!xeno_owner)
+		return
 	essence_link_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
 	if(!essence_link_action)
 		CRASH("[type] loaded with a drone_enhancement to link to")

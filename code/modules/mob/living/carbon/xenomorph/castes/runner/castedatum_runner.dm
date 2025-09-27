@@ -51,6 +51,8 @@
 		/datum/action/ability/activable/xeno/pounce/runner,
 	)
 
+	doppelganger_color = "#e06b0b"
+
 	mutations = list(
 		/datum/mutation_upgrade/shell/upfront_evasion,
 		/datum/mutation_upgrade/shell/borrowed_time,
