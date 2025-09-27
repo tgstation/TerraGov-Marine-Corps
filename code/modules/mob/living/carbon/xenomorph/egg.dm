@@ -60,7 +60,7 @@
 	burst()
 
 /obj/alien/egg/proc/should_proc_burst(mob/living/carbon/carbon_mover)
-	if(issamexenohive(carbon_mover) || carbon_mover.faction == FACTION_CLF)
+	if(issamexenohive(carbon_mover))
 		return FALSE
 	if(carbon_mover.stat == DEAD)
 		return FALSE
@@ -142,7 +142,7 @@
 			qdel(src)
 
 /obj/alien/egg/hugger/attack_hand(mob/living/user)
-	if(!issamexenohive(user) && !user.faction == FACTION_CLF)
+	if(!issamexenohive(user))
 		return ..()
 	switch(maturity_stage)
 		if(1)
