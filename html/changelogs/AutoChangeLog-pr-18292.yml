@@ -1,0 +1,4 @@
+author: "RIPGrayson, TheRealMrN"
+delete-after: True
+changes:
+  - bugfix: "fixed NPC node issues across almost all maps"
