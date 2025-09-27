@@ -47,7 +47,7 @@
 
 /datum/mutation_upgrade/shell/borrowed_time
 	name = "Borrowed Time"
-	desc = "Your critical threshold is decreased by 100. While you have negative health, you are staggered and cannot slash attack. If you have negative health for more than 2/3/4s, your critical threshold is increased back until you reach full health."
+	desc = "Your critical threshold is decreased by 100. While you have negative health, you are slowed, staggered and cannot slash attack. If you have negative health for more than 2/3/4s, your critical threshold is increased back until you reach full health."
 	/// For the first structure, the amount of deciseconds that they can keep the critical threshold once they get negative health.
 	var/duration_initial = 1 SECONDS
 	/// For each structure, the amount of deciseconds that they can keep the critical threshold once they get negative health.
@@ -58,11 +58,13 @@
 	var/critical_threshold_amount = 100
 	/// The timer that will reverse the critical threshold.
 	var/critical_threshold_timer
+	/// The movement speed modifier to apply while they have negative health.
+	var/movement_speed_modifier = 0.9
 
 /datum/mutation_upgrade/shell/borrowed_time/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Your critical threshold is decreased by [critical_threshold_amount]. While you have negative health, you are staggered and cannot slash attack. If you have negative health for more than [get_duration(new_amount) * 0.1] seconds, your critical threshold is increased back until you reach full health."
+	return "Your critical threshold is decreased by [critical_threshold_amount]. While you have negative health, you are slowed, staggered and cannot slash attack. If you have negative health for more than [get_duration(new_amount) * 0.1] seconds, your critical threshold is increased back until you reach full health."
 
 /datum/mutation_upgrade/shell/borrowed_time/on_mutation_enabled()
 	RegisterSignal(xenomorph_owner, COMSIG_LIVING_UPDATE_HEALTH, PROC_REF(on_health_update))
@@ -101,6 +103,7 @@
 	if(critical_threshold_timer || health > xenomorph_owner.get_crit_threshold() + critical_threshold_amount)
 		return
 	ADD_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
+	xenomorph_owner.add_movespeed_modifier(MOVESPEED_ID_RUNNER_BORROWED_TIME, TRUE, 0, NONE, TRUE, movement_speed_modifier)
 	var/borrowed_time_length = get_duration(get_total_structures())
 	xenomorph_owner.Stagger(borrowed_time_length)
 	critical_threshold_timer = addtimer(CALLBACK(src, PROC_REF(reverse_critical_threshold)), borrowed_time_length, TIMER_UNIQUE|TIMER_STOPPABLE)
@@ -111,6 +114,7 @@
 /datum/mutation_upgrade/shell/borrowed_time/proc/reverse_critical_threshold()
 	toggle()
 	REMOVE_TRAIT(xenomorph_owner, TRAIT_HANDS_BLOCKED, MUTATION_TRAIT)
+	xenomorph_owner.remove_movespeed_modifier(MOVESPEED_ID_RUNNER_BORROWED_TIME)
 	deltimer(critical_threshold_timer)
 	critical_threshold_timer = null
 	xenomorph_owner.updatehealth()
@@ -133,7 +137,7 @@
 	/// For each structure, the chance of dodging a projectile or thrown object.
 	var/chance_per_structure = 10
 	/// If a projectile's accuracy is above this value, then the dodge chance is decreased by each point above it.
-	var/accuracy_reduction_threshold = 100
+	var/accuracy_reduction_threshold = 75
 
 /datum/mutation_upgrade/shell/ingrained_evasion/get_desc_for_alert(new_amount)
 	if(!new_amount)
@@ -145,13 +149,13 @@
 	if(ability)
 		ability.remove_action(xenomorph_owner)
 	RegisterSignal(xenomorph_owner, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(dodge_projectile))
-	RegisterSignal(xenomorph_owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(dodge_thrown_item))
+	RegisterSignal(xenomorph_owner, COMSIG_PRE_MOVABLE_IMPACT, PROC_REF(dodge_thrown_item))
 	return ..()
 
 /datum/mutation_upgrade/shell/ingrained_evasion/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/evasion/ability = new()
 	ability.give_action(xenomorph_owner)
-	UnregisterSignal(xenomorph_owner, list(COMSIG_XENO_PROJECTILE_HIT, COMSIG_LIVING_PRE_THROW_IMPACT))
+	UnregisterSignal(xenomorph_owner, list(COMSIG_XENO_PROJECTILE_HIT, COMSIG_PRE_MOVABLE_IMPACT))
 	return ..()
 
 /datum/mutation_upgrade/shell/ingrained_evasion/on_xenomorph_upgrade()
@@ -195,14 +199,14 @@
 		return COMPONENT_PROJECTILE_DODGE
 	return FALSE
 
-/// Checks if they can dodge a thrown item. If they can, they do so.
-/datum/mutation_upgrade/shell/ingrained_evasion/proc/dodge_thrown_item(datum/source, atom/movable/proj)
+/// Checks if they can dodge a thrown object. If they can, they do so.
+/datum/mutation_upgrade/shell/ingrained_evasion/proc/dodge_thrown_item(datum/source, atom/movable/thrown_atom)
 	SIGNAL_HANDLER
-	if(!can_dodge())
+	if(!isobj(thrown_atom) || !can_dodge())
 		return FALSE
 	if(prob(get_chance(get_total_structures())))
-		dodge_fx(proj)
-		return COMPONENT_PRE_THROW_IMPACT_HIT
+		dodge_fx(thrown_atom)
+		return COMPONENT_PRE_MOVABLE_IMPACT_DODGED
 	return FALSE
 
 /// Handles dodge effects and visuals.

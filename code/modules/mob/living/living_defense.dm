@@ -65,11 +65,11 @@
 		if(thrown_mob.mob_size >= mob_size)
 			apply_damage((thrown_mob.mob_size + 1 - mob_size) * speed, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 		if(thrown_mob.mob_size <= mob_size)
-			thrown_mob.stop_throw()
+			thrown_mob.set_throwing(FALSE)
 			thrown_mob.apply_damage(speed, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 	else if(isobj(AM))
 		var/obj/O = AM
-		O.stop_throw()
+		O.set_throwing(FALSE)
 		apply_damage(O.throwforce*(speed * 0.2), O.damtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
 
 	visible_message(span_warning("[src] has been hit by [AM]."), null, null, 5)

@@ -99,9 +99,6 @@
 ///called when an AI is requested by a holopad
 #define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
-///called whenever a groundside thermal bluespace generator turns on/off
-#define COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED "!bluespace_gen_activated"
-#define COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED "!all_bluespace_gen_deactivated"
 
 ///Sent when mob is deployed via a patrol point
 #define COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED "!hvh_deploy_point_activated"
@@ -368,6 +365,10 @@
 #define COMSIG_MOVABLE_LOCATION_CHANGE "location_changed"
 #define COMSIG_MOVABLE_BUMP "movable_bump"						//from base of atom/movable/Bump(): (/atom)
 	#define COMPONENT_BUMP_RESOLVED (1<<0)
+/// Sent before a thrown /atom impacts an /atom.  From [/atom/movable/proc/throw_impact]: (/atom/movable)
+#define COMSIG_PRE_MOVABLE_IMPACT "movable_pre_movable_impact"
+	/// Causes the thrown /atom to fail to impact the /mob/living, thus continuing the throw.
+	#define COMPONENT_PRE_MOVABLE_IMPACT_DODGED (1<<0)
 #define COMSIG_MOVABLE_IMPACT "movable_impact"					//from base of atom/movable/throw_impact(): (/atom/hit_atom)
 ///from /atom/movable/proc/buckle_mob(): (mob/living/M, force, check_loc, buckle_mob_flags)
 #define COMSIG_MOVABLE_PREBUCKLE "prebuckle" // this is the last chance to interrupt and block a buckle before it finishes
@@ -388,8 +389,6 @@
 	#define COMPONENT_DRIVER_BLOCK_MOVE (1<<0)
 #define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"			//from base of atom/movable/throw_at()
 	#define COMPONENT_MOVABLE_BLOCK_PRE_THROW (1<<0)
-#define COMSIG_LIVING_PRE_THROW_IMPACT "movable_living_throw_impact_check" //sent before an item impacts a living mob
-	#define COMPONENT_PRE_THROW_IMPACT_HIT (1<<0)
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//called on tail of atom/movable/throw_at()
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"			//called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_HEAR "movable_hear"						//from base of atom/movable/Hear(): (message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
@@ -433,6 +432,8 @@
 #define COMSIG_TURF_MULTIZ_NEW "turf_multiz_new"
 ///called when an elevator enters this turf
 #define COMSIG_TURF_INDUSTRIAL_LIFT_ENTER "turf_industrial_life_enter"
+/// Sent by the turf before its contents, if any, are crushed by a shuttle. [/turf/proc/toShuttleMove]: ()
+#define COMSIG_TURF_PRE_SHUTTLE_CRUSH "turf_pre_shuttle_crush"
 
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
@@ -656,7 +657,7 @@
 #define COMSIG_MOB_SHOCK_STAGE_CHANGED "mob_shock_stage_changed"
 /// from mob/get_status_tab_items(): (list/items)
 #define COMSIG_MOB_GET_STATUS_TAB_ITEMS "mob_get_status_tab_items"
-/// from mob/proc/dropItemToGround()
+/// from mob/proc/dropItemToGround(): (obj/item/dropped_item)
 #define COMSIG_MOB_DROPPING_ITEM "mob_dropping_item"
 ///From mob/do_after_coefficent()
 #define MOB_GET_DO_AFTER_COEFFICIENT "mob_get_do_after_coefficient"
@@ -855,6 +856,8 @@
 #define COMSIG_XENO_DRAIN_HIT "xeno_drain_hit"
 #define COMSIG_XENO_CARNAGE_HIT "xeno_carnage_hit"
 
+#define COMSIG_FACE_HUGGER_DEATH "face_hugger_death"
+
 // Mutations:
 #define COMSIG_GLOB_MUTATION_CHAMBER_SHELL "!mutation_chamber_shell" // From: [/obj/structure/xeno/mutation_chamber/shell] (previous_amount, new_amount)
 #define COMSIG_GLOB_MUTATION_CHAMBER_SPUR "!mutation_chamber_spur" // From: [/obj/structure/xeno/mutation_chamber/shell] (previous_amount, new_amount)
@@ -991,3 +994,6 @@
 /// From [/datum/controller/subsystem/security_level/proc/set_level]
 /// `/datum/security_level/next_level`, `/datum/security_level/previous_level`
 #define COMSIG_SECURITY_LEVEL_CHANGED "security_level_changed"
+
+/// From [/datum/health_scan/proc/ui_data]: `mob/living/carbon/human/patient`, `list/data`
+#define COMSIG_HEALTH_SCAN_DATA "health_scan_data"

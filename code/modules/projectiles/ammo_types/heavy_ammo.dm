@@ -168,6 +168,7 @@
 	damage = 150
 	penetration = 100
 	sundering = 0
+	accuracy = -10
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 

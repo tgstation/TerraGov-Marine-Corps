@@ -270,6 +270,7 @@
 	user.forceMove(T)
 	user.visible_message(span_warning("[user] climbs out of [src].</span>"), \
 	span_notice("You climb out of [src].</span>"))
+	log_game("[user] Crawled out of the [src] at [AREACOORD(src)]")
 	if(!silent_crawl)
 		playsound(src, SFX_ALIEN_VENTPASS, 35, TRUE)
 

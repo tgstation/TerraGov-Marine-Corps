@@ -84,14 +84,14 @@
 				B.acid_spray_act(owner)
 
 		xenomorph_spray(TF, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, TRUE, TRUE)
-		var/current_globs = xeno_owner.corrosive_ammo + xeno_owner.neuro_ammo
+		var/current_globs = xeno_owner.corrosive_ammo + xeno_owner.neurotoxin_ammo
 		if(xeno_owner.ammo && gaseous_spray_threshold && current_globs >= gaseous_spray_threshold)
 			var/datum/effect_system/smoke_spread/xeno/smoke
 			switch(xeno_owner.ammo.type)
-				if(/datum/ammo/xeno/boiler_gas/corrosive)
+				if(/datum/ammo/xeno/boiler_gas/corrosive, /datum/ammo/xeno/boiler_gas/corrosive/lance)
 					smoke = new /datum/effect_system/smoke_spread/xeno/acid()
-				if(/datum/ammo/xeno/boiler_gas)
-					smoke = new /obj/effect/particle_effect/smoke/xeno/neuro/light()
+				if(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/lance)
+					smoke = new /datum/effect_system/smoke_spread/xeno/neuro/light()
 			if(smoke)
 				smoke.set_up(0, TF)
 				smoke.start()
@@ -489,7 +489,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(current_charges < max_charges) //If we still have less than the total amount of mines, call the timer again to add another mine after the regen time
 		timer = addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE|TIMER_STOPPABLE)
 
-/datum/action/ability/xeno_action/acid_mine/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/acid_mine/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)

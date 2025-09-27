@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Getting directly hit by Praetorian's Spray Acid Cone now ignores the cooldown for taking acid damage - meaning that humans no longer can stop or ignore its effects because just they were hit too recently by acid."

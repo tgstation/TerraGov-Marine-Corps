@@ -370,7 +370,7 @@
 
 /datum/keybinding/xeno/drop_all_hugger
 	name = "drop_all_hugger"
-	full_name = "Carrier: Drop All Facehuggers"
+	full_name = "Carrier: Carrier Panic"
 	description = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
 	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
 	hotkey_keys = list("Space")
@@ -905,6 +905,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 	hotkey_keys = list("N")
+
+/datum/keybinding/xeno/queen_give_plasma_quickcast
+	name = "queen_give_plasma_quickcast"
+	full_name = "Queen: Give Plasma (Quickcast)"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_QUICKCAST
 
 /datum/keybinding/xeno/queen_hive_message
 	name = "queen_hive_message"

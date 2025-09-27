@@ -28,6 +28,7 @@
 	deevolves_to = /datum/xeno_caste/spitter
 
 	// *** Flags *** //
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
 	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
@@ -132,7 +133,11 @@
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
 
-	mutations = list()
+	mutations = list(
+		/datum/mutation_upgrade/shell/flame_dance,
+		/datum/mutation_upgrade/spur/bob_and_weave,
+		/datum/mutation_upgrade/veil/eb_and_flow
+	)
 
 /datum/xeno_caste/praetorian/dancer/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -188,7 +193,11 @@
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
 
-	mutations = list()
+	mutations = list(
+		/datum/mutation_upgrade/shell/advance_away,
+		/datum/mutation_upgrade/spur/wall_bang,
+		/datum/mutation_upgrade/veil/low_charge
+	)
 
 /datum/xeno_caste/praetorian/oppressor/normal
 	upgrade = XENO_UPGRADE_NORMAL

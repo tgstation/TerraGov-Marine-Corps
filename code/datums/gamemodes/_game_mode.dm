@@ -28,8 +28,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/deploy_time_lock = 15 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
-	//The respawn time for Xenomorphs
-	var/xenorespawn_time = 5 MINUTES
 	///How many points do you need to win in a point gamemode
 	var/win_points_needed = 0
 	///The points per faction, assoc list
@@ -439,6 +437,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.all_acid_applied] objects vomitted on with corrosive acid."
 	if(GLOB.round_statistics.trap_holes)
 		parts += "[GLOB.round_statistics.trap_holes] holes for acid and huggers were made."
+	if(GLOB.round_statistics.drone_acidic_salve)
+		parts += "[GLOB.round_statistics.drone_acidic_salve] health points restored through Drone's Acidic Salve."
+	if(GLOB.round_statistics.drone_acidic_salve_sunder)
+		parts += "[GLOB.round_statistics.drone_acidic_salve_sunder] sunder removed through Drone's Acidic Salve."
+	if(GLOB.round_statistics.drone_essence_link)
+		parts += "[GLOB.round_statistics.drone_essence_link] health points restored through Drone's Essence Link."
+	if(GLOB.round_statistics.drone_essence_link_sunder)
+		parts += "[GLOB.round_statistics.drone_essence_link_sunder] sunder removed through Drone's Essence Link."
 	if(GLOB.round_statistics.sentinel_drain_stings)
 		parts += "[GLOB.round_statistics.sentinel_drain_stings] number of times Sentinel drain sting was used."
 	if(GLOB.round_statistics.defender_charge_victims)
@@ -1025,7 +1031,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	if (source.can_wait_in_larva_queue())
 		handle_larva_timer(dcs, source, items)
-		handle_xeno_respawn_timer(dcs, source, items)
 
 /// Displays the orphan hivemind collapse timer, if applicable
 /datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
@@ -1049,15 +1054,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(stored_larva)
 		items += "Burrowed larva: [stored_larva]"
-
-/// Displays your xeno respawn timer, if applicable
-/datum/game_mode/proc/handle_xeno_respawn_timer(datum/dcs, mob/source, list/items)
-	if(GLOB.respawn_allowed)
-		var/status_value = ((GLOB.key_to_time_of_xeno_death[source.key] ? GLOB.key_to_time_of_xeno_death[source.key] : -INFINITY)  + SSticker.mode?.xenorespawn_time - world.time) * 0.1 //If xeno_death is null, use -INFINITY
-		if(status_value <= 0)
-			items += "Xeno respawn timer: READY"
-		else
-			items += "Xeno respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
 
 ///Returns a list of verbs to give ghosts in this gamemode
 /datum/game_mode/proc/ghost_verbs(mob/dead/observer/observer)

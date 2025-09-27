@@ -27,7 +27,7 @@
 		cancel_stealth()
 	return ..()
 
-/datum/action/ability/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/stealth/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -476,7 +476,7 @@
 	)
 	cooldown_duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
 
-/datum/action/ability/xeno_action/psychic_trace/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/psychic_trace/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/datum/action/ability/activable/xeno/hunter_mark/mark = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 
@@ -551,13 +551,13 @@
 	/// Has the ability been used to swap to the current set of illusion yet?
 	var/swap_used = FALSE
 	/// The illusion that will take priority when mirage swapping.
-	var/mob/illusion/prioritized_illusion
+	var/mob/illusion/xeno/prioritized_illusion
 
 /datum/action/ability/xeno_action/mirage/remove_action()
 	illusions = list() // No need to manually delete the illusions as the illusions will delete themselves once their life time expires.
 	return ..()
 
-/datum/action/ability/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/mirage/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(swap_used)
 		if(!silent)

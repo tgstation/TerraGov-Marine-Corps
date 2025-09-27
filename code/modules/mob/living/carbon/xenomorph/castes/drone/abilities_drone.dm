@@ -79,12 +79,12 @@
 /datum/action/ability/activable/xeno/essence_link/proc/end_ability(was_manually_disconnected = FALSE)
 	var/datum/action/ability/xeno_action/enhancement/enhancement_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/enhancement]
 	enhancement_action?.end_ability()
-	xeno_owner.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	if(was_manually_disconnected && existing_link.stacks)
 		var/health_to_heal = linked_target.maxHealth * disconnection_heal_percentage * existing_link.stacks
 		var/leftover_healing = health_to_heal
-		HEAL_XENO_DAMAGE(linked_target, leftover_healing, FALSE)
+		HEAL_XENO_DAMAGE(linked_target, leftover_healing, TRUE)
 		xeno_owner.adjustBruteLoss(health_to_heal - leftover_healing, TRUE)
+	xeno_owner.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	existing_link = null
 	linked_target = null
 	add_cooldown()
@@ -142,9 +142,11 @@
 	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
-	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
-	target.adjustBruteLoss(-heal_amount)
-	target.adjust_sunder(-heal_amount/10)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(target, leftover_healing, FALSE)
+	var/sunder_change = target.adjust_sunder(-heal_amount / 10)
+	GLOB.round_statistics.drone_acidic_salve += (heal_amount - leftover_healing)
+	GLOB.round_statistics.drone_acidic_salve_sunder += -sunder_change
 	if(heal_multiplier > 1) // A signal depends on the above heals, so this has to be done here.
 		playsound(target,'sound/effects/magic.ogg', 75, 1)
 		essence_link_action.existing_link.add_stacks(-1)
@@ -176,7 +178,7 @@
 	. = ..()
 	INVOKE_NEXT_TICK(src, PROC_REF(link_essence_action))
 
-/datum/action/ability/xeno_action/enhancement/can_use_action()
+/datum/action/ability/xeno_action/enhancement/can_use_action(silent, override_flags, selecting)
 	if(existing_enhancement)
 		return TRUE
 	if(!HAS_TRAIT(owner, TRAIT_ESSENCE_LINKED))

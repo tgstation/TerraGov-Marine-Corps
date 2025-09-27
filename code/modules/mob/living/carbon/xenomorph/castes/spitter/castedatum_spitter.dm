@@ -29,7 +29,7 @@
 	deevolves_to = /datum/xeno_caste/sentinel
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
@@ -73,7 +73,7 @@
 	caste_desc = "Master of ranged combat, this xeno knows no equal."
 	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "Our suppression is unmatched! Let nothing show its head!"
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD|CASTE_MUTATIONS_ALLOWED
 
 	spit_delay = 0.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)

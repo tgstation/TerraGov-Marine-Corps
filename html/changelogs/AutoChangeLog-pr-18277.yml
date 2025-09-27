@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - qol: "Queen's Plasma Transfer ability can be reactivated via right-click/keybind to use it again on the previous target."
