@@ -80,7 +80,7 @@
 	Uses standard Terra Experimental (abbreviated as TE) power cells. \
 	As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	ui_icon = "default"
-	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/efficient/tactical
 	loadout_item_flags = NONE
 
 /datum/loadout_item/secondary/gun/marine/standard_machinepistol
