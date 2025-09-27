@@ -542,7 +542,7 @@
 	max_shots = 20 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_level_icon = null
-	rounds_per_shot = 20
+	rounds_per_shot = 30
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
@@ -616,6 +616,8 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/efficient
 	name = "\improper Terra Experimental Advanced laser pistol"
 	desc = "An experimental TerraGov laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. This one efficiently uses its power cell, and can get more shots out of each cell on standard mode."
+	max_shots = 30 //codex stuff
+	rounds_per_shot = 20
 
 	mode_list = list(
 		"Standard" = /datum/lasrifle/energy_pistol_mode/standard/efficient,
@@ -623,6 +625,7 @@
 		"Disabler" = /datum/lasrifle/energy_pistol_mode/disabler,
 	)
 
+// probably should have made this a subtype of energy_pistol_mode/standard but that didnt work
 /datum/lasrifle/energy_pistol_mode/standard/efficient
 	rounds_per_shot = 20
 
