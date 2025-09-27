@@ -9,6 +9,8 @@
 #include "code\datums\jobs\job\mothellian.dm"
 #include "code\datums\jobs\job\shipside.dm"
 #include "code\datums\jobs\job\survivor.dm"
+#include "code\datums\keybinding\communication.dm"
+#include "code\datums\keybinding\xeno.dm"
 #include "code\datums\outfits\shipside.dm"
 #include "code\datums\outfits\survivor.dm"
 #include "code\datums\round_statistics.dm"
