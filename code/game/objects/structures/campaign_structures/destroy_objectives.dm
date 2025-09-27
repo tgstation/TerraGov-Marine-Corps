@@ -19,6 +19,12 @@
 	QDEL_NULL(explosion_smoke)
 	return ..()
 
+/obj/structure/campaign_objective/destruction_objective/can_plastique(mob/user, obj/plastique)
+	if(user.faction == faction)
+		to_chat(user, "[span_warning("You're meant to protect this!")]")
+		return FALSE
+	return ..()
+
 /obj/structure/campaign_objective/destruction_objective/plastique_act(mob/living/plastique_user)
 	if(plastique_user && plastique_user.ckey)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
