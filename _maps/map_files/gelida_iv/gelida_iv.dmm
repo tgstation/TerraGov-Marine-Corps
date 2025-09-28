@@ -15398,13 +15398,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/south_east_street)
-"ksq" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/machinery/power/terminal{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/powergen)
 "ksC" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -17763,9 +17756,6 @@
 "lXy" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/ai_node,
-/obj/machinery/power/terminal{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/gelida/powergen)
 "lXR" = (
@@ -51476,7 +51466,7 @@ vMo
 oIs
 oTT
 etT
-ksq
+hNx
 cqM
 eqE
 cqM
