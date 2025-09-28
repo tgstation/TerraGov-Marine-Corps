@@ -1409,11 +1409,11 @@
 	var/active = ""
 	if(active_surgery)
 		active += " <b><u>Surgical procedures are in progress.</u></b>"
-	if(hasHUD(user,"medical"))
-		. += span_notice("It contains: [occupant].[active]")
-		if(surgery_timer_id)
-			. += span_notice("Next surgery step in [timeleft(surgery_timer_id) / 10] seconds.")
+	if(!hasHUD(user,"medical"))
 		return
+	. += span_notice("It contains: [occupant].[active]")
+	if(surgery_timer_id)
+		. += span_notice("Next surgery step in [timeleft(surgery_timer_id) / 10] seconds.")
 	var/datum/data/record/medical_record = find_medical_record(occupant)
 	if(!isnull(medical_record?.fields["historic_scan"]))
 		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [medical_record.fields["historic_scan_time"]]...</a>"
