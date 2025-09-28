@@ -1409,7 +1409,7 @@
 	var/active = ""
 	if(active_surgery)
 		active += " <b><u>Surgical procedures are in progress.</u></b>"
-	if(!hasHUD(user,"medical"))
+	if(hasHUD(user,"medical"))
 		. += span_notice("It contains: [occupant].[active]")
 		if(surgery_timer_id)
 			. += span_notice("Next surgery step in [timeleft(surgery_timer_id) / 10] seconds.")
