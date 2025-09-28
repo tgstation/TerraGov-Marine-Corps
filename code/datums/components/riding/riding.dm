@@ -150,9 +150,9 @@
 			for(var/offsetdir in offsets)
 				if(offsetdir == AM_dir)
 					var/list/diroffsets = offsets[offsetdir]
-					buckled_mob.pixel_x = diroffsets[1]
+					buckled_mob.pixel_w = diroffsets[1]
 					if(length(diroffsets) >= 2)
-						buckled_mob.pixel_y = diroffsets[2]
+						buckled_mob.pixel_z = diroffsets[2]
 					if(length(diroffsets) == 3)
 						buckled_mob.layer = diroffsets[3]
 					break dir_loop
@@ -191,8 +191,8 @@
 //BUCKLE HOOKS
 /datum/component/riding/proc/restore_position(mob/living/buckled_mob)
 	if(buckled_mob)
-		buckled_mob.pixel_x = initial(buckled_mob.pixel_x)//buckled_mob.base_pixel_x
-		buckled_mob.pixel_y = initial(buckled_mob.pixel_y)//buckled_mob.base_pixel_y
+		buckled_mob.pixel_w = initial(buckled_mob.pixel_w)//buckled_mob.base_pixel_w
+		buckled_mob.pixel_z = initial(buckled_mob.pixel_z)//buckled_mob.base_pixel_z
 		if(buckled_mob.client)
 			buckled_mob.client.view_size.reset_to_default()
 
