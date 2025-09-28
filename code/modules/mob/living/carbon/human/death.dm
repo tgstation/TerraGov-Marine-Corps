@@ -46,8 +46,8 @@
 
 
 /mob/living/carbon/human/on_death()
-	if(pulledby)
-		pulledby.stop_pulling()
+	if(!ishuman(pulledby))
+		pulledby?.stop_pulling()
 
 	//Handle species-specific deaths.
 	species.handle_death(src)
