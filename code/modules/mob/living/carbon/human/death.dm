@@ -1,4 +1,9 @@
 /mob/living/carbon/human/gib()
+	visible_message(
+		span_boldwarning("[src] is blown apart!"),
+		span_userdanger("You're blown apart!"),
+		span_boldwarning("You hear terrible cracking and squelching."),
+	)
 	for(var/datum/limb/E in limbs)
 		if(istype(E, /datum/limb/chest))
 			continue
