@@ -24,7 +24,7 @@
 	/// The multiplier of the damage to be applied.
 	var/damage_multiplier = 1
 
-/datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(xeno_owner.crest_defense && xeno_owner.plasma_stored < (ability_cost * 2))
 		to_chat(xeno_owner, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - xeno_owner.plasma_stored] more plasma!"))
@@ -186,6 +186,7 @@
 	last_crest_bonus = xeno_owner.xeno_caste.crest_defense_armor
 
 /datum/action/ability/xeno_action/toggle_crest_defense/on_xeno_upgrade()
+	. = ..()
 	if(xeno_owner.crest_defense)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-last_crest_bonus)
 		last_crest_bonus = xeno_owner.xeno_caste.crest_defense_armor
@@ -266,6 +267,7 @@
 	last_fortify_bonus = xeno_owner.xeno_caste.fortify_armor
 
 /datum/action/ability/xeno_action/fortify/on_xeno_upgrade()
+	. = ..()
 	if(xeno_owner.fortify)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-last_fortify_bonus)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
@@ -478,7 +480,7 @@
 	///timer hash for the timer we use when spinning
 	var/spin_loop_timer
 
-/datum/action/ability/xeno_action/centrifugal_force/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/centrifugal_force/can_use_action(silent, override_flags, selecting)
 	if(spin_loop_timer)
 		return TRUE
 	. = ..()

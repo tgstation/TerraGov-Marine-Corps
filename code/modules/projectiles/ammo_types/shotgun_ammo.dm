@@ -63,8 +63,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette/flechette_spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 3
-	accuracy_var_low = 8
-	accuracy_var_high = 8
+	accuracy_variation = 8
 	max_range = 15
 	damage = 50
 	damage_falloff = 0.5
@@ -84,8 +83,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 4
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	damage = 40
@@ -99,8 +97,7 @@
 	handful_icon_state = "shotgun_buckshot"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	shrapnel_chance = 15
@@ -113,8 +110,7 @@
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	damage = 40
@@ -128,8 +124,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/frag/frag_spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 6
-	accuracy_var_low = 8
-	accuracy_var_high = 8
+	accuracy_variation = 8
 	max_range = 15
 	damage = 10
 	damage_falloff = 0.5
@@ -162,8 +157,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_buckshot/spread
 	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 10
-	accuracy_var_low = 10
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 10
 	damage = 25
 	damage_falloff = 4
@@ -179,8 +173,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/heavy_spread
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 4
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	damage = 50
@@ -206,8 +199,7 @@
 /datum/ammo/bullet/shotgun/heavy_spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	damage = 50
@@ -221,8 +213,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_flechette/spread
 	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 8
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	accuracy_variation = 7
 	max_range = 15
 	damage = 15
 	damage_falloff = 0.5
@@ -283,8 +274,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 10
-	accuracy_var_low = 10
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 10
 	damage = 50
 	damage_falloff = 1
@@ -311,12 +301,12 @@
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_tracker"
 	shell_speed = 4
-	max_range = 30
-	damage = 5
-	penetration = 100
+	max_range = 15
+	damage = 40
+	penetration = 30
 
 /datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 60 SECONDS, 3 SECONDS)
 
 /datum/ammo/bullet/shotgun/tracker
 	name = "shotgun tracker shell"
@@ -324,12 +314,12 @@
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_tracker"
 	shell_speed = 4
-	max_range = 30
-	damage = 5
-	penetration = 100
+	max_range = 15
+	damage = 90
+	penetration = 10
 
 /datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 60 SECONDS, 3 SECONDS)
 
 //I INSERT THE SHELLS IN AN UNKNOWN ORDER
 /datum/ammo/bullet/shotgun/blank
@@ -369,3 +359,97 @@
 
 /datum/ammo/bullet/shotgun/breaching/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
+
+/// Bring me that server box
+
+/datum/ammo/bullet/shotgun/sh410_ricochet
+	name = "light autoshotgun ricochet shell" /// Single shots. Ricochets are like horrible spaghetti so this is preferrable to buckshots i guess
+	handful_icon_state = "light_shotgun_ricochet"
+	icon_state = "shotgun_ricochet"
+	hud_state = "shotgun_ricochet"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 2
+	max_range = 15
+	damage = 50
+	penetration = 0
+	sundering = 0.5
+
+/datum/ammo/bullet/shotgun/sh410_ricochet
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_ricochet/one
+	bonus_projectiles_scatter = 0
+
+/datum/ammo/bullet/shotgun/sh410_ricochet/one
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_ricochet/two
+
+/datum/ammo/bullet/shotgun/sh410_ricochet/two /// for now maybe
+
+/datum/ammo/bullet/shotgun/sh410_ricochet/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+	reflect(target_turf, proj, 20)
+
+/**
+ * Trailing gas rounds
+ * Might just do like tangle* and tacsmoke (for chamber tech like in BR8 incendiary) since there isn't really much I can think of (atleast in HvX)
+ * Will have to make rounds that drop gas on turf
+**/
+
+
+/datum/ammo/bullet/shotgun/sh410_gas
+	name = "light autoshotgun gas shell"
+	handful_icon_state = "light_shotgun_gas"
+	icon_state = "shotgun_gas"
+	hud_state = "shotgun_flechette"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_LEAVE_TURF
+	shell_speed = 2.5
+	max_range = 8
+	damage = 40
+	penetration = 0
+	sundering = 0
+	shrapnel_chance = 0
+	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/bad
+	var/datum/effect_system/smoke_spread/bad/trail_spread_system
+
+/datum/ammo/bullet/shotgun/sh410_gas/New()
+	. = ..()
+	if((ammo_behavior_flags & AMMO_LEAVE_TURF) && passed_turf_smoke_type)
+		trail_spread_system = new passed_turf_smoke_type(only_once = FALSE)
+
+/datum/ammo/bullet/shotgun/sh410_gas/Destroy()
+	if(trail_spread_system)
+		QDEL_NULL(trail_spread_system)
+	return ..()
+
+/datum/ammo/bullet/shotgun/sh410_gas/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
+	trail_spread_system.set_up(0, target_turf, 3)
+	trail_spread_system.start()
+
+// The MBX has the fucking most dogshit shotgun shell rounds ever so I'm just gonna make my own .410 gauge
+
+/datum/ammo/bullet/shotgun/sh410_buckshot
+	name = "light autoshotgun magnum buckshot shell" //What a fucking mouthful
+	handful_icon_state = "light_shotgun_buckshot"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_buckshot/spread
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 5
+	accuracy_variation = 10
+	max_range = 10
+	damage = 20
+	damage_falloff = 0.5
+///Yes, it does do more damage than the 35 (on burst) but you'll have to facetank one and a half (ish) seconds of being PB'd and there's no stagger/etc so
+
+/datum/ammo/bullet/shotgun/sh410_buckshot/spread
+	name = "additional buckshot"
+	damage = 20
+
+/datum/ammo/bullet/shotgun/sh410_sabot
+	name = "light autoshotgun sabot shell"
+	handful_icon_state = "light_shotgun_sabot"
+	icon_state = "shotgun_slug"
+	hud_state = "shotgun_sabot"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 5
+	max_range = 30
+	damage = 50
+	penetration = 40
+	sundering = 3

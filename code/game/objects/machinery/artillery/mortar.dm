@@ -242,6 +242,14 @@
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		ai_targeter = I
 
+	if(istype(I, /obj/item/compass))
+		var/obj/item/compass/compass = I
+		coords["targ_x"] = compass.target_turf.x
+		coords["targ_y"] = compass.target_turf.y
+		say("Targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		return TRUE
+
 	if(!istype(I, /obj/item/binoculars/tactical))
 		return
 	var/obj/item/binoculars/tactical/binocs = I
@@ -450,7 +458,7 @@
 
 /obj/item/mortar_kit/double
 	name = "\improper TA-55DB mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. This one is a double barreled mortar that can hold 4 rounds usually fitted in TAV's."
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. This one is a double barreled mortar that can hold 2 rounds, and is usually fitted in TAVs."
 	icon_state = "mortar_db"
 	max_integrity = 400
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
@@ -464,4 +472,3 @@
 	max_rounds = 2
 	fire_delay = 0.5 SECONDS
 	cool_off_time = 6 SECONDS
-	spread = 2

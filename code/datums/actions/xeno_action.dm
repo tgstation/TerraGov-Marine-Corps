@@ -21,7 +21,7 @@
 	xeno_owner = null
 	return ..()
 
-/datum/action/ability/xeno_action/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -67,7 +67,7 @@
 	xeno_owner = null
 	return ..()
 
-/datum/action/ability/activable/xeno/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

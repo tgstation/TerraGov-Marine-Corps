@@ -706,6 +706,8 @@
 	var/old_throw_source = throw_source
 	if(QDELETED(hit_atom))
 		return FALSE
+	if(SEND_SIGNAL(hit_atom, COMSIG_PRE_MOVABLE_IMPACT, src) & COMPONENT_PRE_MOVABLE_IMPACT_DODGED)
+		return FALSE
 	hit_successful = hit_atom.hitby(src, speed)
 	if(hit_successful)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, speed)
@@ -825,7 +827,7 @@
 					sleep(0.1 SECONDS)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && (!failed_to_move && throwing) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)

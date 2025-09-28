@@ -349,7 +349,7 @@ directive is properly returned.
 
 /atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)
-		AM.stop_throw()
+		AM.set_throwing(FALSE)
 		return TRUE
 
 ///Psionic interaction with this atom

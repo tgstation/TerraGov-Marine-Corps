@@ -12,10 +12,20 @@
 	dam_list = sortTim(dam_list, /proc/cmp_numeric_dsc, TRUE)
 	for(var/dam_type in dam_list)
 		if(dam_list[dam_type] <= 10)
+			if(dam_type == TOX)
+				address_toxins(patient)
 			continue
 		if(heal_by_type(patient, dam_type))
 			. = TRUE
 			continue
+
+///Deals with toxins in the patient if required
+/datum/ai_behavior/human/proc/address_toxins(mob/living/carbon/human/patient)
+	for(var/datum/reagent/toxin/tox in patient.reagents.reagent_list)
+		if(tox.volume < 10) //arbitrary magic number, but there's no simple way to determine an appropriate threshold
+			continue
+		heal_by_type(patient, TOX)
+		return
 
 ///Heal other ailments
 /datum/ai_behavior/human/proc/heal_secondaries(mob/living/carbon/human/patient)

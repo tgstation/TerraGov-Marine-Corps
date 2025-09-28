@@ -34,7 +34,7 @@
 	death_evolution_delay = 5 MINUTES
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_MUTATIONS_ALLOWED
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
 	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
@@ -84,6 +84,12 @@
 		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/healthy_bulwark,
+		/datum/mutation_upgrade/shell/bulwark_zone,
+		/datum/mutation_upgrade/spur/alternative_sting,
+		/datum/mutation_upgrade/veil/rallying_cry
+	)
 
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_NORMAL

@@ -85,7 +85,7 @@
 		KEYBINDING_NORMAL = COMSIG_KB_ROBOT_AUTOREPAIR,
 	)
 
-/datum/action/repair_self/can_use_action()
+/datum/action/repair_self/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
