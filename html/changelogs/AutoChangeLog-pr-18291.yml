@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "NPC medics will now treat toxins in your system, not just toxin damage"

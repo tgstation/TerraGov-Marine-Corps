@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Ungas can no longer remotely upgrade barricades with their megamind powers"
