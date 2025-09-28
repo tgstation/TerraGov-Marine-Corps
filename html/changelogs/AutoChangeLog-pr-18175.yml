@@ -1,0 +1,5 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - rscadd: "Added Skink and Seraphim's Eye drones to campaign as options for engineer secondaries."
+  - balance: "Skink drone can now be shot when clicked on."
