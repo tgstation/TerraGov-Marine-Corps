@@ -89,6 +89,16 @@
 /datum/ammo/bullet/auto_cannon/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
 
+/datum/ammo/bullet/bike_autocannon
+	name = "autocannon high-velocity bullet"
+	hud_state = "minigun"
+	hud_state_empty = "smartgun_empty"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	damage = 30
+	penetration = 25
+	sundering = 1
+	max_range = 15
+
 /datum/ammo/bullet/auto_cannon/flak
 	name = "autocannon smart-detonating bullet"
 	hud_state = "sniper_flak"
