@@ -1372,9 +1372,13 @@
 			to_chat(usr, span_warning("Access denied."))
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 
-	if(href_list["automatictoggle"])
+	if(href_list["automatictoggle"] && !connected.is_active())
 		connected.automatic_mode = !connected.automatic_mode
-		if(connected.occupant && connected.automatic_mode)
+		if(!connected.automatic_mode && connected.autostart_timer_id)
+			deltimer(connected.autostart_timer_id)
+			connected.autostart_timer_id = null
+			say("Automatic mode disengaged, awaiting manual inputs.")
+		if(connected.automatic_mode && !connected.autostart_timer_id)
 			connected.say("Automatic mode engaged, initialising procedures.")
 			connected.autostart_timer_id = addtimer(CALLBACK(connected, TYPE_PROC_REF(/obj/machinery/autodoc, auto_start)), 5 SECONDS)
 
