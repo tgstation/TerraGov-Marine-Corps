@@ -122,8 +122,8 @@
 		ride_check(buckled_mob)
 	if(QDELETED(src))
 		return // runtimed with piggy's without this, look into this more
-	handle_vehicle_offsets(dir)
 	handle_vehicle_layer(dir)
+	handle_vehicle_offsets(dir)
 
 /// Turning is like moving
 /datum/component/riding/proc/vehicle_turned(datum/source, _old_dir, new_dir)
