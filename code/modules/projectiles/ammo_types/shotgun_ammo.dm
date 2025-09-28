@@ -63,8 +63,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette/flechette_spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 3
-	accuracy_var_low = 8
-	accuracy_var_high = 8
+	accuracy_variation = 8
 	max_range = 15
 	damage = 50
 	damage_falloff = 0.5
@@ -84,8 +83,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 4
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	damage = 40
@@ -99,8 +97,7 @@
 	handful_icon_state = "shotgun_buckshot"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	shrapnel_chance = 15
@@ -113,8 +110,7 @@
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	damage = 40
@@ -128,8 +124,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/frag/frag_spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 6
-	accuracy_var_low = 8
-	accuracy_var_high = 8
+	accuracy_variation = 8
 	max_range = 15
 	damage = 10
 	damage_falloff = 0.5
@@ -162,8 +157,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_buckshot/spread
 	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 10
-	accuracy_var_low = 10
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 10
 	damage = 25
 	damage_falloff = 4
@@ -179,8 +173,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/heavy_spread
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 4
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	damage = 50
@@ -206,8 +199,7 @@
 /datum/ammo/bullet/shotgun/heavy_spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
-	accuracy_var_low = 9
-	accuracy_var_high = 9
+	accuracy_variation = 9
 	accurate_range = 3
 	max_range = 10
 	damage = 50
@@ -221,8 +213,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_flechette/spread
 	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 8
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	accuracy_variation = 7
 	max_range = 15
 	damage = 15
 	damage_falloff = 0.5
@@ -283,8 +274,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 10
-	accuracy_var_low = 10
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 10
 	damage = 50
 	damage_falloff = 1
@@ -442,8 +432,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_buckshot/spread
 	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 5
-	accuracy_var_low = 10
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 10
 	damage = 20
 	damage_falloff = 0.5
