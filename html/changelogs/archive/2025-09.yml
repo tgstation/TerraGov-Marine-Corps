@@ -146,3 +146,35 @@
 2025-09-27:
   RIPGrayson, TheRealMrN:
   - bugfix: fixed NPC node issues across almost all maps
+2025-09-28:
+  Lumipharon:
+  - bugfix: Ungas can no longer remotely upgrade barricades with their megamind powers
+  - balance: NPC medics will now treat toxins in your system, not just toxin damage
+  - balance: Mech heavy cannon is slightly less accurate, and always aims chest
+  Runian:
+  - qol: Queen's Plasma Transfer ability can be reactivated via right-click/keybind
+      to use it again on the previous target.
+  - qol: If you have a medical hud, you can now examine the autodoc to see how many
+      seconds until the next surgery step happens.
+  - balance: Autodoc now accounts and can handle surgeries that are already started.
+  - balance: Autodoc's internal bleeding surgery now repairs all internal bleeding
+      at once just like its non-autodoc variant.
+  - balance: Autodoc now does the surgery step first and then waits rather than the
+      other way around.
+  - bugfix: Dragging or forcibly putting someone else into an autodoc now displays
+      correct chat message saying so.
+  - bugfix: Autodoc now only consumes as much metal required to fill it rather than
+      all of it.
+  - bugfix: Autodoc is now consistent in preventing people with abiotic items from
+      entering it.
+  - spellcheck: Corrects autodoc's many "avaliable" to "available".
+  - code_imp: Autodoc no longer uses sleep(). It now uses a timer.
+  - bugfix: The gamestate is now correctly changed to groundside if the Tadpole is
+      used to start the operation; this prevented AI from using their railgun.
+  Vany3045:
+  - rscadd: remastered the Nanotrasen PMC
+  - balance: A lot of tweaks for the PMC ERT. Details are here [#18044](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18044#issue-3196882371)
+  - imageadd: new sprites for the PMC equipment
+  blackdav123:
+  - balance: Pyrogen fireball now detonates on the tile it hit an object, rather than
+      the object's tile.
