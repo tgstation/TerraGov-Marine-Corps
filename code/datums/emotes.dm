@@ -8,7 +8,7 @@
 	var/message_monkey = "" //Message displayed if the user is a monkey
 	var/message_simple = "" //Message to display if the user is a simple_animal
 	var/message_param = "" //Message to display if a param was given
-	var/emote_type = EMOTE_VISIBLE //Whether the emote is visible or audible
+	var/emote_type = EMOTE_TYPE_VISIBLE //Whether the emote is visible or audible
 	var/list/mob_type_allowed_typecache = /mob //Types that are allowed to use that emote
 	var/list/mob_type_blacklist_typecache //Types that are NOT allowed to use that emote
 	var/list/mob_type_ignore_stat_typecache
@@ -53,7 +53,7 @@
 	if(!msg)
 		return
 
-	var/end = copytext(msg, length(message))
+	var/end = copytext(msg, length(msg))
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
 		msg += "."
 
@@ -65,7 +65,7 @@
 	if(tmp_sound && (!(emote_flags & EMOTE_FORCED_AUDIO) || !intentional))
 		playsound(user, tmp_sound, 50, emote_flags & EMOTE_VARY)
 
-	if(user.client)
+	if(user.mind)
 		for(var/mob/M AS in GLOB.dead_mob_list)
 			if(!ismob(M) || isnewplayer(M) || !M.client)
 				continue
@@ -74,10 +74,20 @@
 				continue
 			M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
 
-	if(emote_type == EMOTE_AUDIBLE)
-		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
-	else
+	var/effective_type = (type_override || emote_type)
+	if(effective_type == EMOTE_TYPE_AUDIBLE)
+		user.audible_message(msg, "You see how <b>[user]</b> [msg]", audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
+	else if(effective_type == EMOTE_TYPE_VISIBLE)
 		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
+	else // important emote—will always be visible to viewers!
+		for(var/mob/viewer AS in viewers(user))
+			to_chat(viewer, "<b>[user]</b> [msg]")
+			if(user.rc_vc_msg_prefs_check(viewer, EMOTE_MESSAGE))
+				viewer.create_chat_message(
+					speaker = user,
+					raw_message = msg,
+					runechat_flags = EMOTE_MESSAGE,
+				)
 
 /// For handling emote cooldown, return true to allow the emote to happen
 /datum/emote/proc/check_cooldown(mob/user, intentional)
@@ -104,7 +114,7 @@
 
 /datum/emote/proc/select_message_type(mob/user)
 	. = message
-	if(!(emote_flags & EMOTE_MUZZLE_IGNORE) && user.is_muzzled() && emote_type == EMOTE_AUDIBLE)
+	if(!(emote_flags & EMOTE_MUZZLE_IGNORE) && user.is_muzzled() && emote_type == EMOTE_TYPE_AUDIBLE)
 		return "makes a [pick("strong ", "weak ", "")]noise."
 	if(isxeno(user) && message_alien)
 		. = message_alien
@@ -133,6 +143,7 @@
 
 	if(intentional)
 		if(emote_flags & EMOTE_FORCED_AUDIO)
+			to_chat(user, span_notice("You can't intentionally [key]."))
 			return FALSE
 
 		if(sound || get_sound(user))
