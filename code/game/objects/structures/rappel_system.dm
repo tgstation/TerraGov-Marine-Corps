@@ -198,7 +198,7 @@
 	if(disabled_smoke)
 		QDEL_NULL(disabled_smoke)
 	update_icon_state()
-	balloon_alert_to_viewers("pings happily—self repair complete!")
+	balloon_alert_to_viewers("pings happily—self repair complete")
 	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 
 ///Human animation for dropping down
@@ -268,7 +268,7 @@
 	update_icon_state()
 	var/turf/target = get_turf(rope)
 	target.balloon_alert_to_viewers("retracted!")
-	balloon_alert_to_viewers("clicks locked as the ropes reel back!")//"The rappel ropes reel back into [src], locking the system with a click!")
+	balloon_alert_to_viewers("clicks locked as the ropes reel back!")
 	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
 	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
@@ -307,6 +307,7 @@
 	balloon_alert_to_viewers("the system is visibly buckling!")
 	playsound(rope, 'sound/effects/grillehit.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE)
+	Shake(duration = 2.5 SECONDS)
 	if(!do_after(attacker, 5 SECONDS, NONE, rope, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		rappel_condition = RAPPEL_CONDITION_GOOD
 		rappel_state = RAPPEL_STATE_USABLE
@@ -316,7 +317,7 @@
 			pre_retract()
 		return
 
-	attacker.balloon_alert_to_viewers("the rappel cord is ripped out!","sky-rope disabled")
+	attacker.balloon_alert_to_viewers("rappel cord ripped out!", "sky-rope disabled")
 	visible_message(span_boldwarning("You hear a horrible screeching sound as something under \the [src] breaks!"))
 	break_rappel()
 

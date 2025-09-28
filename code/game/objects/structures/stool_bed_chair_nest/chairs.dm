@@ -469,7 +469,7 @@
 		balloon_alert_to_viewers("it's too damaged!")
 		return FALSE
 	if(leader_chair && buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
-		balloon_alert(buckling_mob, "you can't sit there!")
+		balloon_alert(buckling_mob, "you're not a leader!")
 		return FALSE
 	if(buckling_x)
 		src.pixel_x = buckling_x

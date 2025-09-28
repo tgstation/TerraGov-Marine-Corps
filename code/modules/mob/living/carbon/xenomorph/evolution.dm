@@ -320,7 +320,7 @@
 		balloon_alert(src, "[min_xenos] xenos needed to become this caste!")
 		return FALSE
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_CANNOT_EVOLVE_IN_CAPTIVITY) && isxenoresearcharea(get_area(src)))
-		to_chat(src, "this area is too oppressive!")
+		to_chat(src, "Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!")
 		return FALSE
 	// Check if there is a death timer for this caste
 	if(new_caste.death_evolution_delay)
@@ -342,10 +342,10 @@
 
 	if(!regression)
 		if(new_caste.tier == XENO_TIER_TWO && no_room_tier_two)
-			balloon_alert(src, "no room for a T2—wait for more births or a T2 to die")
+			to_chat(src, span_warning("The hive has no room for a T2—wait for more births or a T2 to die."))
 			return FALSE
 		if(new_caste.tier == XENO_TIER_THREE && no_room_tier_three)
-			balloon_alert(src, "no room for a T2—wait for more births or a T3 to die")
+			to_chat(src, span_warning("The hive has no room for a T3—wait for more births or a T3 to die."))
 			return FALSE
 		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold && !SSresinshaping.active)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))

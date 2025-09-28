@@ -191,7 +191,7 @@
 		if((emote_flags & EMOTE_RESTRAINT_CHECK) && user.restrained())
 			if(!intentional)
 				return FALSE
-			to_chat(user, span_notice("You cannot [key] while restrained"))
+			to_chat(user, span_notice("You cannot [key] while restrained."))
 			return FALSE
 
 		if(emote_flags & EMOTE_ACTIVE_ITEM)

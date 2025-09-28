@@ -374,7 +374,7 @@
 	if(istype(T, /turf/closed/wall/resin))
 		costs_points = FALSE
 	if(costs_points && CHECK_BITFIELD(weed_flags, WEED_COSTS_QB_POINTS) && SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()] <= 0)
-		owner.balloon_alert(owner, "The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!")
+		to_chat(owner, span_xenouserdanger("The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!"))
 		return fail_activate()
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
 		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
@@ -411,22 +411,22 @@
 		if(NO_ERROR)
 			return TRUE
 		if(ERROR_CANT_WEED)
-			owner.balloon_alert(owner, span_notice("this spot can't hold weeds!"))
+			owner.balloon_alert(owner, "this spot can't hold weeds!")
 			return FALSE
 		if(ERROR_NO_WEED)
-			owner.balloon_alert(owner, span_notice("this spot doesn't have weeds!"))
+			owner.balloon_alert(owner, "this spot doesn't have weeds!")
 			return FALSE
 		if(ERROR_NO_SUPPORT)
-			owner.balloon_alert(owner, span_notice("no adjacent structure for support!"))
+			owner.balloon_alert(owner, "no adjacent structure for support!")
 			return FALSE
 		if(ERROR_NOT_ALLOWED)
-			owner.balloon_alert(owner, span_notice("the queen mother prohibits building here!"))
+			owner.balloon_alert(owner, "the queen mother prohibits building here!")
 			return FALSE
 		if(ERROR_BLOCKER)
-			owner.balloon_alert(owner, span_notice("a sister is blocking this spot!"))
+			owner.balloon_alert(owner, "a xeno is blocking this spot!")
 			return FALSE
 		if(ERROR_FOG)
-			owner.balloon_alert(owner, span_notice("the fog won't let the resin grow!"))
+			owner.balloon_alert(owner, "the fog won't let the resin grow!")
 			return FALSE
 		// it fails a lot here when dragging , so its to prevent spam
 		if(ERROR_CONSTRUCT)
