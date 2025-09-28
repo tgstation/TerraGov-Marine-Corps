@@ -1366,6 +1366,8 @@
 
 	if(href_list["automatictoggle"])
 		connected.automatic_mode = !connected.automatic_mode
+		if(connected.occupant && connected.automatic_mode)
+			connected.begin_surgery_operation()
 
 	if(href_list["surgery"])
 		if(connected.occupant)
