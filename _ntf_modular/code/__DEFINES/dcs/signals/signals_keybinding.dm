@@ -1,6 +1,7 @@
 #define COSMIG_KB_CLIENT_XMOOC_DOWN "keybinding_client_xmooc_down"
 #define COSMIG_KB_CLIENT_WHISPER_DOWN "keybinding_client_whisper_down"
 #define COSMIG_KB_CLIENT_SUBTLE_DOWN "keybinding_client_subtle_down"
+#define COSMIG_KB_CLIENT_SUBTLER_DOWN "keybinding_client_subtler_down"
 #define COMSIG_XENOABILITY_PLACE_STEW_POD "xenoability_place_stew_pod"
 #define COMSIG_XENOABILITY_CREATE_EDIBLE_JELLY "xenoability_create_edible_jelly"
 #define COMSIG_XENOABILITY_TOGGLE_PHASEOUT "xenoability_toggle_phaseout"
