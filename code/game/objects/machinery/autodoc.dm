@@ -81,7 +81,9 @@
 	/// The maximum amount of metal that can be stored.
 	var/stored_metal_max = LIMB_METAL_AMOUNT * 16
 	/// The timer ID to callback the surgery operation loop.
-	var/timer_id
+	var/surgery_timer_id
+	/// The timer ID to callback the autostart.
+	var/autostart_timer_id
 
 /obj/machinery/autodoc/Initialize(mapload)
 	. = ..()
@@ -346,9 +348,12 @@
 	heal_brute = 0
 	heal_burn = 0
 	heal_toxin = 0
-	if(timer_id)
-		deltimer(timer_id)
-		timer_id = null
+	if(surgery_timer_id)
+		deltimer(surgery_timer_id)
+		surgery_timer_id = null
+	if(autostart_timer_id)
+		deltimer(autostart_timer_id)
+		autostart_timer_id = null
 	if(datum_flags & DF_ISPROCESSING)
 		stop_processing()
 	update_icon()
@@ -398,10 +403,13 @@
 	autodoc_scan(occupant)
 	if(automatic_mode)
 		say("Automatic mode engaged, initialising procedures.")
-		addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
+		autostart_timer_id = addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
 
 /// Callback to start the surgery operation for automatic mode.
 /obj/machinery/autodoc/proc/auto_start()
+	if(autostart_timer_id)
+		deltimer(autostart_timer_id)
+		autostart_timer_id = null
 	if(active_surgery)
 		return
 	if(!occupant)
@@ -414,7 +422,7 @@
 
 /// Returns if the surgery is active.
 /obj/machinery/autodoc/proc/is_active()
-	if(active_surgery || timer_id || filtering || blood_transfer || heal_brute || heal_burn || heal_toxin)
+	if(active_surgery || surgery_timer_id || filtering || blood_transfer || heal_brute || heal_burn || heal_toxin)
 		return TRUE
 	return FALSE
 
@@ -584,9 +592,9 @@
 
 /// Continues a surgery operation based on available information at the time.
 /obj/machinery/autodoc/proc/loop_surgery_operation()
-	if(timer_id)
-		deltimer(timer_id)
-		timer_id = null
+	if(surgery_timer_id)
+		deltimer(surgery_timer_id)
+		surgery_timer_id = null
 	if(!length(surgery_list)) // Process determines if everything is completed / to eject the occupant.
 		return
 	if(!active_surgery)
@@ -922,7 +930,7 @@
 /obj/machinery/autodoc/proc/loop_in_time(time_to_loop)
 	if(!time_to_loop)
 		CRASH("No amount to loop with for autodoc surgery step.")
-	timer_id = addtimer(CALLBACK(src, PROC_REF(loop_surgery_operation)), time_to_loop * (automatic_mode ? 1.5 : 1) * surgery_time_multiplier, TIMER_UNIQUE|TIMER_STOPPABLE)
+	surgery_timer_id = addtimer(CALLBACK(src, PROC_REF(loop_surgery_operation)), time_to_loop * (automatic_mode ? 1.5 : 1) * surgery_time_multiplier, TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /// Opens the incision on a limb.
 /obj/machinery/autodoc/proc/open_incision(mob/living/carbon/human/updating_human, datum/limb/operated_limb)
@@ -1367,7 +1375,8 @@
 	if(href_list["automatictoggle"])
 		connected.automatic_mode = !connected.automatic_mode
 		if(connected.occupant && connected.automatic_mode)
-			connected.begin_surgery_operation()
+			connected.say("Automatic mode engaged, initialising procedures.")
+			connected.autostart_timer_id = addtimer(CALLBACK(connected, TYPE_PROC_REF(/obj/machinery/autodoc, auto_start)), 5 SECONDS)
 
 	if(href_list["surgery"])
 		if(connected.occupant)
@@ -1398,8 +1407,8 @@
 		active += " <b><u>Surgical procedures are in progress.</u></b>"
 	if(!hasHUD(user,"medical"))
 		. += span_notice("It contains: [occupant].[active]")
-		if(timer_id)
-			. += span_notice("Next surgery step in [timeleft(timer_id) / 10] seconds.")
+		if(surgery_timer_id)
+			. += span_notice("Next surgery step in [timeleft(surgery_timer_id) / 10] seconds.")
 		return
 	var/datum/data/record/medical_record = find_medical_record(occupant)
 	if(!isnull(medical_record?.fields["historic_scan"]))
