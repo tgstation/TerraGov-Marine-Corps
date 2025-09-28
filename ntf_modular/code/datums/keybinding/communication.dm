@@ -7,3 +7,9 @@
 	name = WHISPER_CHANNEL
 	full_name = "Whisper"
 	keybind_signal = COSMIG_KB_CLIENT_WHISPER_DOWN
+
+/datum/keybinding/client/communication/subtle
+	name = SUBTLE_CHANNEL
+	full_name = "Subtle"
+	keybind_signal = COSMIG_KB_CLIENT_SUBTLE_DOWN
+

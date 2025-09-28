@@ -59,6 +59,9 @@
 		if(WHISPER_CHANNEL)
 			client.mob.whisper_verb(entry)
 			return TRUE
+		if(SUBTLE_CHANNEL)
+			client.mob.subtle(entry)
+			return TRUE
 		if(ADMIN_CHANNEL)
 			SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/asay, entry)
 			return TRUE
