@@ -178,3 +178,11 @@
   blackdav123:
   - balance: Pyrogen fireball now detonates on the tile it hit an object, rather than
       the object's tile.
+2025-09-29:
+  Lumipharon:
+  - code_imp: Ammo accuracy variation consolidated into a single var instead of two
+  - bugfix: fixed NPC's occasionally having their usable abilities set incorrectly
+  blackdav123:
+  - rscadd: Added Skink and Seraphim's Eye drones to campaign as options for engineer
+      secondaries.
+  - balance: Skink drone can now be shot when clicked on.
