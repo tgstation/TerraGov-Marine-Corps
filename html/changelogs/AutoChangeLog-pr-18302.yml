@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Setting Autodoc to automatic mode while someone is already inside now begins the automatic surgery process."
+  - bugfix: "Autodoc no longer can switch between manual/automatic modes while it is active; prevents automatic mode from benefiting from manual mode speed."
+  - bugfix: "Information from examining Autodoc is correctly given to those with medihuds instead of the other way around."
