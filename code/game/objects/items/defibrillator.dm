@@ -140,7 +140,7 @@
 		balloon_alert(user, "take the paddles out!")
 		return FALSE
 	if(!ishuman(patient))
-		to_chat(user, span_warning("The instructions on [src] don't mention how to resuscitate that..."))
+		balloon_alert(user, "that's not a human!")
 		return FALSE
 	if(patient.stat != DEAD)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))

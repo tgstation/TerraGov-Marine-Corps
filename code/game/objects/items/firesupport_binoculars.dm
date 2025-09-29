@@ -111,13 +111,13 @@
 /obj/item/binoculars/fire_support/proc/acquire_target(atom/target, mob/living/carbon/human/user)
 	set waitfor = 0
 	if(user.do_actions)
-		balloon_alert_to_viewers("Busy")
+		balloon_alert_to_viewers("busy!")
 		return
 	if(is_mainship_level(user.z))
-		user.balloon_alert(user, "Can't use here")
+		user.balloon_alert(user, "can't use these here!")
 		return
 	if(faction && user.faction != faction)
-		balloon_alert_to_viewers("Security locks engaged")
+		balloon_alert_to_viewers("security locks engaged")
 		return
 	if(laser_overlay)
 		to_chat(user, span_warning("You're already targeting something."))
@@ -125,7 +125,7 @@
 	if(!bino_checks(target, user))
 		return
 	if(!can_see_target(target, user))
-		balloon_alert_to_viewers("No clear view")
+		balloon_alert_to_viewers("no clear view!")
 		return
 
 	playsound(src, 'sound/effects/nightvision.ogg', 35)

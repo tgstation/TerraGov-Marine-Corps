@@ -41,11 +41,11 @@
 		return
 
 	if(!user.dextrous)
-		balloon_alert(user, "not enough dexterity")
+		balloon_alert(user, "not enough dexterity!")
 		return
 
 	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		balloon_alert(user, "can't, against your programming")
+		balloon_alert(user, "against your programming!")
 		return
 
 	activate(user)

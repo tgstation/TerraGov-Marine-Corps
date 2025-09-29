@@ -292,7 +292,7 @@
 		return ..()
 
 	if(!bodybag_occupant)
-		balloon_alert(user, "empty")
+		balloon_alert(user, "empty!")
 		return TRUE
 
 	var/obj/item/healthanalyzer/J = I

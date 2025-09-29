@@ -87,7 +87,7 @@
 		var/obj/item/assembly/signaler/signaler = I
 		code = signaler.code
 		set_frequency(signaler.frequency)
-		balloon_alert(user, "Frequency copied over")
+		balloon_alert(user, "frequency copied")
 
 /obj/item/detpack/unique_action(mob/user, special_treatment)
 	. = ..()
@@ -96,7 +96,7 @@
 
 /obj/item/detpack/attack_hand(mob/living/user)
 	if(armed)
-		balloon_alert(user, "Disarm it first!")
+		balloon_alert(user, "disarm it first!")
 		return
 	if(plant_target)
 		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
@@ -301,8 +301,7 @@
 
 		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = user, action = NOTIFY_ORBIT)
 
-		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
-		balloon_alert(user, "Timer set for [timer] seconds")
+		target.balloon_alert_to_viewers("[timer] seconds", vision_distance = COMBAT_MESSAGE_RANGE)
 
 		plant_target = target
 		if(ismovableatom(plant_target))

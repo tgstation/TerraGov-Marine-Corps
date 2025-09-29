@@ -119,7 +119,7 @@
 ///Turns the remote control on
 /datum/component/remote_control/proc/remote_control_on(mob/living/newuser)
 	if(QDELETED(controlled))
-		newuser.balloon_alert(newuser, "The linked device is destroyed!")
+		newuser.balloon_alert(newuser, "linked device is gone!")
 		controlled = null
 		return
 	controlled.become_hearing_sensitive()

@@ -40,26 +40,26 @@
 
 	var/turf/mystery_turf = user.loc
 	if(!isopenturf(mystery_turf))
-		balloon_alert(user, "Can't build here")
+		balloon_alert(user, "unsuitable area!")
 		return FALSE
 
 	var/turf/open/placement_loc = mystery_turf
 	var/area/area = get_area(mystery_turf)
 	if(placement_loc.density || !placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be building here.
-		balloon_alert(user, "Can't build here")
+		balloon_alert(user, "unsuitable area!")
 		return FALSE
 
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.atom_flags & ON_BORDER)) //dense and non-directional, end
-			balloon_alert(user, "No space")
+			balloon_alert(user, "no space!")
 			return FALSE
 		if(thing.dir != user.dir)
 			continue
-		balloon_alert(user, "No space")
+		balloon_alert(user, "no space!")
 		return FALSE
-	balloon_alert_to_viewers("Places barricade")
+	balloon_alert_to_viewers("barricade placed")
 	return TRUE
 
 /obj/item/quikdeploy/cade/plasteel

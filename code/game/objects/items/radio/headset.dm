@@ -73,14 +73,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 					keyslot2 = null
 
 			recalculateChannels()
-			balloon_alert_to_viewers("pops out keys")
+			balloon_alert(user, "keys removed")
 
 		else
-			balloon_alert(user, "No keys to remove")
+			balloon_alert(user, "no keys to remove!")
 
 	else if(istype(I, /obj/item/encryptionkey))
 		if(keyslot && keyslot2)
-			balloon_alert(user, "Can't, headset is full")
+			balloon_alert(user, "headset is full!")
 			return
 
 		if(!keyslot)
@@ -148,13 +148,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(command)
 		use_command = !use_command
-		balloon_alert(user, "toggles loud mode")
+		to_chat(user, span_notice("You toggle high-volume mode [use_command ? "on" : "off"]."))
 
 /obj/item/radio/headset/attack_self(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
 		return
 	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
-	balloon_alert(user, "toggles supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"].")
+	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
 
 /obj/item/radio/headset/vendor_equip(mob/user)
 	..()
@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
 	add_minimap()
-	balloon_alert(wearer, "toggles squad HUD on")
+	to_chat(wearer, span_notice("You toggle the Squad HUD on."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(sl_direction)
 		disable_sl_direction()
 	remove_minimap()
-	balloon_alert(wearer, "toggles squad HUD off")
+	to_chat(wearer, span_notice("You toggle the Squad HUD off."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/radio/headset/mainship/proc/add_minimap()
@@ -315,7 +315,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)
-		balloon_alert(wearer, "turn it on first")
+		balloon_alert(wearer, "turn it on first!")
 		return
 
 	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = TRUE
-	balloon_alert(wearer, "toggles SL finder on")
+	to_chat(wearer, span_notice("You toggle the SL directional display on."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
@@ -345,7 +345,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = FALSE
-	balloon_alert(wearer, "toggles SL finder off")
+	to_chat(wearer, span_notice("You toggle the SL directional display off."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, TRUE)
 
 
