@@ -28,7 +28,7 @@
 
 /datum/loadout_item/eyes/ballistic_goggles
 	name = "Ballistic goggles"
-	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
+	desc = "Standard issue NTF goggles. Mostly used to decorate one's helmet."
 	item_typepath = /obj/item/clothing/glasses/mgoggles
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 

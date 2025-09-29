@@ -36,6 +36,7 @@
 
 
 	var/msg = "<b>Current Players:</b><br>"
+	msg = "<a href='byond://?_src_=usr;refreshwho=1'>Refresh</a><br>[msg]"
 
 	var/list/Lines = list()
 
@@ -56,6 +57,8 @@
 							entry += " - Observing"
 						else
 							entry += " - <b>DEAD</b>"
+					else if(isnewplayer(C.mob))
+						entry += " - <b>In lobby</b>"
 					else
 						entry += " - <b>DEAD</b>"
 			entry += " (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
