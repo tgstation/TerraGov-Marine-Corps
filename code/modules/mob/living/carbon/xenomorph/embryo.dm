@@ -18,6 +18,7 @@
 	var/admin = FALSE
 	var/emerge_target = 1
 	var/emerge_target_flavor = null
+	var/mob/living/carbon/xenomorph/larva/new_xeno = null
 
 
 /obj/item/alien_embryo/Initialize(mapload)
@@ -147,13 +148,9 @@
 		if(6)
 			larva_autoburst_countdown--
 			if(larva_autoburst_countdown < 1)
-				var/anyleft = FALSE
-				for(var/mob/living/carbon/xenomorph/larva/L in affected_mob.contents)
-					if(!QDELETED(L))
-						if(!timeleft(L.burst_timer))
-							L.initiate_burst(affected_mob, src)
-						anyleft = TRUE
-				if(!anyleft)
+				if(istype(new_xeno) && (!QDELING(new_xeno)) && (new_xeno.loc == affected_mob))
+					new_xeno.initiate_burst(affected_mob, src)
+				else
 					qdel(src)
 
 
@@ -174,7 +171,6 @@
 		picked = get_alien_candidate()
 
 	//Spawn the larva.
-	var/mob/living/carbon/xenomorph/larva/new_xeno
 
 	new_xeno = new(affected_mob)
 
