@@ -139,7 +139,7 @@
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
-	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
+	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans [src]!")]",
 		span_notice("You man the gun!"))
 
 	return ..()
