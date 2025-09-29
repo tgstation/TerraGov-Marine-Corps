@@ -519,7 +519,7 @@
 	wearer = new_wearer
 	if(show_energy)
 		wearer.hud_used?.add_ammo_hud(src, list("taser", "battery_empty"), camo_energy)
-		maptext = "[camo_energy]%"
+		maptext = add_leading("[camo_energy]%",3,"0")
 	return TRUE
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/Destroy()
@@ -702,6 +702,8 @@
 	playsound(loc,'sound/effects/EMPulse.ogg', 25, 0, 1)
 	if(wearer)
 		to_chat(wearer, span_danger("Your CyberGhost has recalibrated and is ready to cloak again."))
+		wearer.hud_used?.update_ammo_hud(src, list("taser", "battery_empty"), camo_energy)
+		maptext = add_leading("[camo_energy]%",3,"0")
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
 	. = ..()
@@ -709,7 +711,7 @@
 		return
 	var/list/details = list()
 	if(show_energy)
-		details +=("It has [camo_energy]/[initial(camo_energy)] charge. </br>")
+		details +=("It has [add_leading("[camo_energy]",1,"0")]/[initial(camo_energy)] charge. </br>")
 
 	if(camo_cooldown_timer)
 		details +=("It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds. </br>")
@@ -730,7 +732,7 @@
 	camo_energy = clamp(camo_energy - drain,0,initial(camo_energy))
 	if(show_energy && wearer)
 		wearer.hud_used?.update_ammo_hud(src, list("taser", "battery_empty"), camo_energy)
-		maptext = "[camo_energy]%"
+		maptext = add_leading("[camo_energy]%",3,"0")
 
 	if(!camo_energy) //Turn off the camo if we run out of energy.
 		to_chat(user, span_danger("Your CyberGhost lacks sufficient energy to remain active."))
