@@ -512,12 +512,14 @@
 			return TRUE
 		if(show_energy)
 			wearer.hud_used?.remove_ammo_hud(src)
+			maptext = ""
 	if(!(isliving(new_wearer)))
 		wearer = null
 		return FALSE
 	wearer = new_wearer
 	if(show_energy)
 		wearer.hud_used?.add_ammo_hud(src, list("taser", "battery_empty"), camo_energy)
+		maptext = "[camo_energy]%"
 	return TRUE
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/Destroy()
@@ -726,8 +728,9 @@
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_adjust_energy(mob/user, drain = SCOUT_CLOAK_WALK_DRAIN)
 	camo_energy = clamp(camo_energy - drain,0,initial(camo_energy))
-	if(show_energy)
-		wearer?.hud_used?.update_ammo_hud(src, list("taser", "battery_empty"), camo_energy)
+	if(show_energy && wearer)
+		wearer.hud_used?.update_ammo_hud(src, list("taser", "battery_empty"), camo_energy)
+		maptext = "[camo_energy]%"
 
 	if(!camo_energy) //Turn off the camo if we run out of energy.
 		to_chat(user, span_danger("Your CyberGhost lacks sufficient energy to remain active."))
