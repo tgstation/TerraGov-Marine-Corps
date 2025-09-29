@@ -32,8 +32,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///This is added to the bullet's base accuracy
 	var/accuracy = 0
 	///How much the accuracy varies when fired
-	var/accuracy_var_low = 1
-	var/accuracy_var_high = 1
+	var/accuracy_variation = 1
 	///For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though
 	var/accurate_range = 5
 	///Snipers use this to simulate poor accuracy at close ranges

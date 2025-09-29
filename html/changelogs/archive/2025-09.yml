@@ -179,7 +179,20 @@
       entering it.
   - spellcheck: Corrects autodoc's many "avaliable" to "available".
   - code_imp: Autodoc no longer uses sleep(). It now uses a timer.
+  - bugfix: The gamestate is now correctly changed to groundside if the Tadpole is
+      used to start the operation; this prevented AI from using their railgun.
   Vany3045:
   - rscadd: remastered the Nanotrasen PMC
   - balance: A lot of tweaks for the PMC ERT. Details are here [#18044](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18044#issue-3196882371)
   - imageadd: new sprites for the PMC equipment
+  blackdav123:
+  - balance: Pyrogen fireball now detonates on the tile it hit an object, rather than
+      the object's tile.
+2025-09-29:
+  Lumipharon:
+  - code_imp: Ammo accuracy variation consolidated into a single var instead of two
+  - bugfix: fixed NPC's occasionally having their usable abilities set incorrectly
+  blackdav123:
+  - rscadd: Added Skink and Seraphim's Eye drones to campaign as options for engineer
+      secondaries.
+  - balance: Skink drone can now be shot when clicked on.

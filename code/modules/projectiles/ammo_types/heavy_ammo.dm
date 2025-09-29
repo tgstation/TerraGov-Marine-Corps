@@ -23,8 +23,7 @@
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	accurate_range = 5
 	damage = 25
 	penetration = 15
@@ -65,8 +64,7 @@
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	damage = 50
 	penetration = 50
 	sundering = 12.5

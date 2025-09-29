@@ -69,7 +69,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	mob_parent = parent_to_assign
 	set_escorted_atom(null, escorted_atom)
-	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	if(is_offered_on_creation)
@@ -96,6 +95,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Set behaviour to base behavior
 /datum/ai_behavior/proc/late_initialize()
+	refresh_abilities()
 	switch(base_action)
 		if(MOVING_TO_NODE)
 			look_for_next_node()

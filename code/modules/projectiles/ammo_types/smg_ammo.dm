@@ -9,8 +9,7 @@
 	hud_state = "smg"
 	hud_state_empty = "smg_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	accuracy_variation = 7
 	shell_speed = 3.5
 	damage = 20
 	accurate_range = 4

@@ -237,8 +237,7 @@
 	name = "rock shrapnel"
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 5
-	accuracy_var_high = 5
+	accuracy_variation = 5
 	damage = 25
 	penetration = 20
 	sundering = 3

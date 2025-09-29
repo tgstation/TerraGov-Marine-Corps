@@ -15,8 +15,7 @@
 	max_range = 14
 	accurate_range = 5 //for charger
 	shell_speed = 4.5
-	accuracy_var_low = 5
-	accuracy_var_high = 5
+	accuracy_variation = 5
 	accuracy = 5
 	point_blank_range = 2
 	damage = 20
@@ -39,8 +38,7 @@
 	max_range = 25
 	accurate_range = 12
 	damage = 30
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	fire_burst_damage = 20
 	deflagrate_multiplier = 0.9
 
@@ -57,8 +55,7 @@
 /datum/ammo/energy/volkite/light
 	max_range = 25
 	accurate_range = 12
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	penetration = 5
 	deflagrate_multiplier = 0.9
 
