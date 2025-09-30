@@ -89,7 +89,10 @@
 
 ///debuffs the hive when the blessing expires
 /datum/round_event/hive_threat/proc/remove_blessing(var/datum/hive_status/hive)
-	xeno_message("We feel the Queen Mother's blessing fade", force = TRUE)
+	var/message = "We feel the hive target blessing fade"
+	if(hive.hivenumber == XENO_HIVE_NORMAL)
+		message = "We feel the Queen Mother's blessing fade"
+	hive.xeno_message(message, force = TRUE)
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list_hive[hive.hivenumber])
 		receiving_xeno.remove_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE)
 	qdel(src)
