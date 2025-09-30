@@ -410,9 +410,15 @@
 
 //===========================FREELANCER(MAGNUM)================================
 
-/obj/item/clothing/suit/storage/marine/veteran/freelancer
+/obj/item/clothing/suit/storage/marine/freelancer
 	name = "\improper M3 pattern freelancer cuirass"
-	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the ICC and Ninetails."
+	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the CM and Ninetails."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	worn_icon_list = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
 	icon_state = "freelancer_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 60, BIO = 55, FIRE = 55, ACID = 55)
@@ -447,13 +453,13 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
-/obj/item/clothing/suit/storage/marine/veteran/freelancer/medic
+/obj/item/clothing/suit/storage/marine/freelancer/medic
 	starting_attachments = list(
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
 		/obj/item/armor_module/storage/general,
 	)
 
-/obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy
+/obj/item/clothing/suit/storage/marine/freelancer/heavy
 	name = "\improper B12 pattern freelancer cuirass"
 	desc = "A chunk of metal plates scrapped together on the M3 armor for maximum survivability. Not many mercenaries like to wear this, but it showed itself as suprisingly effective instrument in defenses and close quarters fights."
 	icon_state = "freelancer_armor_heavy"
@@ -464,23 +470,23 @@
 		/obj/item/armor_module/storage/ammo_mag,
 	)
 
-/obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy/general
+/obj/item/clothing/suit/storage/marine/freelancer/heavy/general
 	starting_attachments = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/storage/general,
 	)
-/obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy/valk
+/obj/item/clothing/suit/storage/marine/freelancer/heavy/valk
 	starting_attachments = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/storage/ammo_mag,
 	)
 
-/obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy/spec
+/obj/item/clothing/suit/storage/marine/freelancer/heavy/spec
 	starting_attachments = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/storage/satchel,
 	)
-/obj/item/clothing/suit/storage/marine/veteran/freelancer/pyro
+/obj/item/clothing/suit/storage/marine/freelancer/pyro
 	name = "\improper B08 pattern freelancer pyro suit"
 	desc = "A repurposed firefighter suit combined with hazmat filters and reinforced with metal plates. All of this allows it's user to safely walk through fire. Though, only a complete psycho would wear this longer than a hour, sometimes desperate situations require desperate measures."
 	icon_state = "freelancer_armor_pyro"

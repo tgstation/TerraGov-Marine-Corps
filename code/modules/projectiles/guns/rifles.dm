@@ -3306,6 +3306,10 @@
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "sg60"
 	worn_icon_state = "sg60"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
 	fire_sound = SFX_GUN_SMARTGPMG
 	force = 30
 	aim_slowdown = 0.8
