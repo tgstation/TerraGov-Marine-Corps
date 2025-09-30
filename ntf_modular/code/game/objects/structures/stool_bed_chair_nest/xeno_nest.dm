@@ -116,7 +116,7 @@
 				ASYNC
 					//can't use do_after because we're not a mob and the corpse would fail due to being dead
 					var/ok = TRUE
-					var/datum/progressicon/busyicon = new(corpse, BUSY_ICON_HOSTILE)
+					var/datum/progressicon/busyicon = new(corpse, BUSY_ICON_DANGER)
 					while(!COOLDOWN_FINISHED(src, tentacle_cooldown))
 						stoplag(1)
 						if(QDELETED(corpse))
