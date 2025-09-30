@@ -412,12 +412,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "The average generator was held by xenos for [DisplayTimeText(avg_gen_time)], or [100 * avg_gen_time / GLOB.round_statistics.round_length]% of the round."
 	if(GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards)
 		parts += "[GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards] strategic psy points were obtained from [GLOB.round_statistics.hive_target_rewards] hive target rewards, for an average of [GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards/GLOB.round_statistics.hive_target_rewards] points per hive target reward claimed."
+	if(GLOB.round_statistics.strategic_psypoints_from_embryos)
+		parts += "[GLOB.round_statistics.strategic_psypoints_from_embryos] strategic psy points were obtained from [GLOB.round_statistics.total_larva_burst] embryos, for an average of [GLOB.round_statistics.strategic_psypoints_from_embryos/GLOB.round_statistics.total_larva_burst] points per larva born."
 	if(GLOB.round_statistics.strategic_psypoints_from_cocoons)
 		parts += "[GLOB.round_statistics.strategic_psypoints_from_cocoons] strategic psy points were obtained from [GLOB.round_statistics.cocoons] cocoons, for an average of [GLOB.round_statistics.strategic_psypoints_from_cocoons/GLOB.round_statistics.cocoons] points per cocoon."
 	if(GLOB.round_statistics.strategic_psypoints_from_psydrains)
 		parts += "[GLOB.round_statistics.strategic_psypoints_from_psydrains] strategic psy points were obtained from [GLOB.round_statistics.psydrains] psydrains, for an average of [GLOB.round_statistics.strategic_psypoints_from_psydrains/GLOB.round_statistics.psydrains] points per psydrain."
 	if(GLOB.round_statistics.biomass_from_hive_target_rewards)
 		parts += "[GLOB.round_statistics.biomass_from_hive_target_rewards] biomass was obtained from [GLOB.round_statistics.hive_target_rewards] hive target rewards, for an average of [GLOB.round_statistics.biomass_from_hive_target_rewards/GLOB.round_statistics.hive_target_rewards] points per hive target reward claimed."
+	if(GLOB.round_statistics.biomass_from_embryos)
+		parts += "[GLOB.round_statistics.biomass_from_embryos] biomass was obtained from [GLOB.round_statistics.total_larva_burst] embryos, for an average of [GLOB.round_statistics.biomass_from_embryos/GLOB.round_statistics.total_larva_burst] points per larva born."
 	if(GLOB.round_statistics.biomass_from_cocoons)
 		parts += "[GLOB.round_statistics.biomass_from_cocoons] biomass was obtained from [GLOB.round_statistics.cocoons] cocoons, for an average of [GLOB.round_statistics.biomass_from_cocoons/GLOB.round_statistics.cocoons] points per cocoon."
 	if(GLOB.round_statistics.biomass_from_psydrains)

@@ -19,6 +19,9 @@
 	var/emerge_target = 1
 	var/emerge_target_flavor = null
 	var/mob/living/carbon/xenomorph/larva/new_xeno = null
+	var/psypoint_reward = 0
+	var/biomass_reward = 0
+	var/hive_target_bonus = FALSE
 
 
 /obj/item/alien_embryo/Initialize(mapload)
@@ -104,6 +107,18 @@
 /obj/item/alien_embryo/proc/process_growth()
 	if(affected_mob.stat == DEAD) //No more corpsefucking for infinite larva, thanks
 		return FALSE
+
+	hive_target_bonus = hive_target_bonus || HAS_TRAIT(affected_mob, TRAIT_HIVE_TARGET)
+
+	var/psych_points_output = EMBRYO_PSY_POINTS_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (EMBRYO_PSY_POINTS_REWARD_MAX - EMBRYO_PSY_POINTS_REWARD_MIN))
+	psych_points_output = clamp(psych_points_output, EMBRYO_PSY_POINTS_REWARD_MIN, EMBRYO_PSY_POINTS_REWARD_MAX)
+
+	if(affected_mob.client && (affected_mob.client.inactivity < 10 MINUTES))
+		psypoint_reward += psych_points_output * 5
+		biomass_reward += MUTATION_BIOMASS_PER_EMBRYO_TICK * 5
+	else
+		psypoint_reward += psych_points_output
+		biomass_reward += MUTATION_BIOMASS_PER_EMBRYO_TICK
 
 	if(stage <= 4)
 		counter += 2.5 //Free burst time in ~7/8 min.
@@ -223,9 +238,20 @@
 	victim.visible_message("<span class='danger'>The Larva forces its way out of [victim]'s [embryo?.emerge_target_flavor]!</span>")
 	GLOB.round_statistics.total_larva_burst++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")
-
-	if(!QDELETED(embryo))
-		QDEL_NULL(embryo)
+	if(istype(embryo))
+		GLOB.round_statistics.strategic_psypoints_from_embryos += embryo.psypoint_reward
+		GLOB.round_statistics.biomass_from_embryos += embryo.biomass_reward
+		if(embryo.hive_target_bonus)
+			GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards += embryo.psypoint_reward
+			GLOB.round_statistics.biomass_from_hive_target_rewards += embryo.biomass_reward
+			SSpoints.add_strategic_psy_points(embryo.hivenumber, embryo.psypoint_reward*2)
+			SSpoints.add_tactical_psy_points(embryo.hivenumber, embryo.psypoint_reward*0.5)
+			SSpoints.add_biomass_points(embryo.hivenumber, embryo.biomass_reward*2)
+		else
+			SSpoints.add_strategic_psy_points(embryo.hivenumber, embryo.psypoint_reward)
+			SSpoints.add_tactical_psy_points(embryo.hivenumber, embryo.psypoint_reward*0.25)
+			SSpoints.add_biomass_points(embryo.hivenumber, embryo.biomass_reward)
+	QDEL_NULL(embryo)
 
 	var/anyleft = FALSE
 	for(var/obj/item/alien_embryo/remainingembryo in victim)

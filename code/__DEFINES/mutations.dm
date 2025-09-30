@@ -15,6 +15,7 @@ GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
 #define MUTATION_BIOMASS_PER_PSYDRAIN 15
 #define MUTATION_BIOMASS_PER_COCOON_COMPLETION 15
 #define MUTATION_BIOMASS_PER_COCOON_TICK 0.25 // Biomass gained every five seconds (SSslowprocess).
+#define MUTATION_BIOMASS_PER_EMBRYO_TICK 0.025 // Biomass gained every two seconds (SSobj).
 #define MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD 270 // equivalent to 9 cocooned monkeys or 18 psydrained ones
 
 // The amount of strategic points needed to purchase a mutation building.
