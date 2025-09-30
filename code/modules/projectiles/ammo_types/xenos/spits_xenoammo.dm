@@ -37,6 +37,7 @@
 	spit_cost = 55
 	added_spit_delay = 0 SECONDS
 	damage_type = STAMINA
+	plasma_drain = 3
 	accurate_range = 5
 	max_range = 10
 	accuracy_variation = 3
@@ -141,6 +142,7 @@
 	spit_cost = 65
 	added_spit_delay = 0.1 SECONDS
 	damage_type = STAMINA
+	plasma_drain = 7
 	accurate_range = 5
 	max_range = 10
 	accuracy_variation = 3
@@ -188,6 +190,7 @@
 	ping = null
 	ammo_behavior_flags = AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF|AMMO_XENO
 	damage_type = STAMINA
+	plasma_drain = 5
 	armor_type = BIO
 	spit_cost = 50
 	sound_hit = "alien_resin_build2"
@@ -444,6 +447,7 @@
 
 /datum/ammo/xeno/acid/airburst/heavy/neurotoxin
 	damage_type = STAMINA
+	plasma_drain = 9
 	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet/smokescreen/neurotoxin
 
 /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
@@ -455,6 +459,7 @@
 
 /datum/ammo/xeno/acid/airburst_bomblet/smokescreen/neurotoxin
 	damage_type = STAMINA
+	plasma_drain = 2
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/light
 
 ///For the Sizzler Boiler's primo

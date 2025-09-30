@@ -91,6 +91,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/fire_burst_damage = 10
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
+	///Plasma drained from xenos on hit
+	var/plasma_drain = 0
 
 /datum/ammo/proc/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return

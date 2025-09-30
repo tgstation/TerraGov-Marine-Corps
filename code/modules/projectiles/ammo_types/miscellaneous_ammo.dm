@@ -57,15 +57,13 @@
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
 	var/drain_multiplier = 0.025
-	///Flat plasma to drain, unaffected by caste plasma amount.
-	var/plasma_drain = 20
+	plasma_drain = 20
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(isxeno(target_mob))
 		var/mob/living/carbon/xenomorph/X = target_mob
 		if(!(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE))
 			X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
-			X.use_plasma(plasma_drain)
 
 /datum/ammo/bullet/pepperball/pepperball_mini
 	damage = 40

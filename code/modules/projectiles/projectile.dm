@@ -1001,6 +1001,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(issamexenohive(proj.shot_from)) //Aliens won't be harming allied aliens.
 		return
 
+	if(proj.ammo.plasma_drain && !CHECK_BITFIELD(xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
+		use_plasma(proj.ammo.plasma_drain)
+
 	return ..()
 
 /atom/movable/projectile/hitscan

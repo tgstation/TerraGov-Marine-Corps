@@ -91,6 +91,7 @@
 	name = "high caliber tranq rifle bullet"
 	hud_state = "sniper_heavy"
 	damage_type = STAMINA
+	plasma_drain = 30
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 120
 	penetration = 30

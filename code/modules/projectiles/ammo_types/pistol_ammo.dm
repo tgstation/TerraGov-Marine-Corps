@@ -40,6 +40,7 @@
 	damage_type = STAMINA
 	shell_speed = 3.3
 	shrapnel_chance = 0.2
+	plasma_drain = 20
 
 /datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(iscarbon(target_mob))
