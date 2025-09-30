@@ -535,14 +535,14 @@
 		stun = crush_stun_amount
 		paralyze = crush_paralyze_amount
 		knockback = 0
-		balloon_alert(user, "CRUSH")
+		balloon_alert(user, "mode: CRUSH")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		return
 
 	stun = knockback_stun_amount
 	paralyze = knockback_paralyze_amount
 	knockback = 1
-	balloon_alert(user, "KNOCKBACK")
+	balloon_alert(user, "mode: KNOCKBACK")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
 
 /obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M, mob/living/carbon/user as mob)

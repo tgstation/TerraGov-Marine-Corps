@@ -418,7 +418,7 @@
 		return FALSE
 	if(internal_item.item_flags & DEPLOYED_NO_PICKUP)
 		if(user)
-			balloon_alert(user, "cannot disassemble!")
+			balloon_alert(user, "can't disassemble!")
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 	return TRUE

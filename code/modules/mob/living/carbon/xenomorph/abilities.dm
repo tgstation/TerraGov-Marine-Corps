@@ -304,7 +304,7 @@
 	var/i = GLOB.resin_images_list.Find(resin_choice)
 	X.selected_resin = buildable_structures[i]
 	var/atom/A = X.selected_resin
-	X.balloon_alert(X, initial(A.name))
+	X.balloon_alert(X, lowertext(A::name))
 	update_button_icon()
 
 /datum/action/ability/activable/xeno/secrete_resin/alternate_action_activate()
@@ -318,7 +318,7 @@
 	else
 		X.selected_resin = buildable_structures[i+1]
 	var/atom/A = X.selected_resin
-	X.balloon_alert(X, initial(A.name))
+	X.balloon_alert(X, lowertext(A::name))
 	update_button_icon()
 
 /datum/action/ability/activable/xeno/secrete_resin/use_ability(atom/A)

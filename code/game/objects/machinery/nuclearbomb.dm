@@ -258,14 +258,14 @@
 	if(exploded)
 		return
 	if(safety)
-		balloon_alert(user, "safety is still on")
+		balloon_alert(user, "safety is still on!")
 		return
 	if(!anchored)
-		balloon_alert(user, "anchors not set")
+		balloon_alert(user, "anchors not set!")
 		return
 	var/area/area = get_area(src)
 	if(get_area_name(area) in GLOB.nuke_ineligible_site)
-		balloon_alert(user, "ineligible detonation site")
+		balloon_alert(user, "ineligible detonation site!")
 		return
 	if(!timer_enabled)
 		enable(key_name(user))
@@ -298,7 +298,7 @@
 		visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		return
 	if(istype(get_area(loc), /area/shuttle))
-		balloon_alert(user, "unsuitable location")
+		balloon_alert(user, "unsuitable location!")
 		return
 
 	anchored = !anchored

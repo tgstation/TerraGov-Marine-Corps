@@ -94,7 +94,7 @@
 	new /obj/effect/decal/cleanable/crayon(target, colour, shadeColour, drawtype)
 	uses--
 	if(uses <= 0)
-		balloon_alert_to_viewers("used up the crayon")
+		to_chat(user, span_notice("\The [src] breaks apart in your hand."))
 		qdel(src)
 
 /obj/item/toy/crayon/attack(mob/living/M, mob/living/user)

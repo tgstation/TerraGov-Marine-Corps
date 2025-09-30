@@ -443,7 +443,7 @@
 
 /obj/structure/bed/chair/dropship/doublewide/welder_act(mob/living/user, obj/item/I)
 	if(LAZYLEN(buckled_mobs))
-		balloon_alert_to_viewers("someone's sitting in it!")
+		balloon_alert(user, "someone's sitting in it!")
 		return
 	welder_repair_act(user, I, 130, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
 	chair_state = DROPSHIP_CHAIR_UNBUCKLED
