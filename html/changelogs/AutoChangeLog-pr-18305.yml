@@ -1,4 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - qol: "Gibbing no longer sends a chat message for each limb dropped."
