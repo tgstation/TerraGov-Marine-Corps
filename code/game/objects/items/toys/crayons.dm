@@ -101,10 +101,10 @@
 	if(M != user)
 		return ..()
 
-	balloon_alert_to_viewers("takes a bite of \the [src] and swallows it")
+	user.visible_message("[user] takes a bite of \the [src] and swallows it.")
+	playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
 	uses -= 5
 	if(uses <= 0)
-		balloon_alert(user, "eats the whole crayon")
 		qdel(src)
 
 	M.adjustToxLoss(1) // add a little bit of toxic damage
