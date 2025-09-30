@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed SH-410 projectiles being invisible"
+  - bugfix: "fixed SH-410 bouncy ammo bouncing without any limit"
