@@ -274,6 +274,13 @@
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
 	caliber = CALIBER_12G
 
+/obj/item/ammo_magazine/handful/rubber_pellet
+	name = "handful of shotgun rubber pellet shells (12g)"
+	icon_state = "shotgun_flechette"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/flechette/rubber
+	caliber = CALIBER_12G
+
 /obj/item/ammo_magazine/handful/tracker
 	name = "handful of shotgun tracker shells (12g)"
 	icon_state = "shotgun_flechette"

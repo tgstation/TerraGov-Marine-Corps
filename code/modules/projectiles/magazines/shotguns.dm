@@ -39,6 +39,13 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
 	icon_state_mini = "flechette"
 
+/obj/item/ammo_magazine/shotgun/rubber_pellet
+	name = "box of 12 gauge rubber pellet shells"
+	desc = "A box filled with rubber pellet shotgun shells. 12 Gauge."
+	icon_state = "flechette"
+	default_ammo = /datum/ammo/bullet/shotgun/flechette/rubber
+	icon_state_mini = "flechette"
+
 /obj/item/ammo_magazine/shotgun/beanbag
 	name = "box of 12 gauge beanbag slugs"
 	desc = "A box filled with beanbag shotgun shells used for non-lethal crowd control. 12 Gauge."
