@@ -11,7 +11,7 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|BANISH_IMMUNE|XENO_DAMAGEABLE
 	layer = BELOW_TABLE_LAYER
 
 	max_integrity = 140
@@ -29,7 +29,10 @@ TUNNEL
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", MINIMAP_LABELS_LAYER))
+	if(hivenumber != XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", MINIMAP_LABELS_LAYER))
+	if(hivenumber == XENO_HIVE_CORRUPTED)
+		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", MINIMAP_LABELS_LAYER))
 	var/area/tunnel_area = get_area(src)
 	if(tunnel_area.area_flavor == AREA_FLAVOR_URBAN && !SSticker.HasRoundStarted())
 		icon_state = "manhole_open[rand(1,3)]"
@@ -79,6 +82,9 @@ TUNNEL
 /obj/structure/xeno/tunnel/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!istype(xeno_attacker) || xeno_attacker.stat || xeno_attacker.lying_angle || xeno_attacker.status_flags & INCORPOREAL)
 		return
+
+	if(!(issamexenohive(xeno_attacker)))
+		return ..()
 
 	if(xeno_attacker.a_intent == INTENT_HARM && xeno_attacker == creator)
 		balloon_alert(xeno_attacker, "Filling in tunnel...")
@@ -130,7 +136,10 @@ TUNNEL
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
 	to_chat(M, span_notice("Select a tunnel to go to."))
 
-	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
+	var/flag = MINIMAP_FLAG_XENO
+	if(hivenumber == XENO_HIVE_CORRUPTED)
+		flag = MINIMAP_FLAG_MARINE
+	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, flag)
 	M.client.screen += map
 	var/list/polled_coords = map.get_coords_from_click(M)
 	M?.client?.screen -= map

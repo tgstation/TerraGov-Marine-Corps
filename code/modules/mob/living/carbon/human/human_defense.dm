@@ -210,7 +210,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		hit_report += "(delimbed [affecting.display_name])"
 
 	record_melee_damage(user, applied_damage, affecting.limb_status & LIMB_DESTROYED)
-	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) [hit_report.Join(" ")]")
+	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(I.damtype)]) [hit_report.Join(" ")]")
 	if(damage && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
 		user.ff_check(damage, src)
@@ -403,7 +403,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
 	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
-	if(!do_after(user, 2 SECONDS, NONE, src))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return
 	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("The heart is no longer here!"))

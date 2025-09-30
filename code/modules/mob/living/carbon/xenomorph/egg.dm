@@ -10,14 +10,11 @@
 	var/maturity_time = 0
 	///Number of the last maturity stage before bursting
 	var/stage_ready_to_burst = 0
-	///Which hive it belongs to
-	var/hivenumber = XENO_HIVE_NORMAL
 	///How far will targets trigger the burst
 	var/trigger_size = 0
 
-/obj/alien/egg/Initialize(mapload, hivenumber)
+/obj/alien/egg/Initialize(mapload, _hivenumber)
 	. = ..()
-	src.hivenumber = hivenumber
 	advance_maturity(maturity_stage)
 
 /obj/alien/egg/update_icon_state()
@@ -102,11 +99,6 @@
 	overlays.Cut()
 	if(on_fire)
 		overlays += "alienegg_fire"
-	if(hivenumber != XENO_HIVE_NORMAL && GLOB.hive_datums[hivenumber])
-		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-		color = hive.color
-		return
-	color = null
 
 /obj/alien/egg/hugger/burst(via_damage)
 	. = ..()
@@ -119,7 +111,7 @@
 		return
 	playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25)
 	flick("egg opening", src)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(src), hivenumber)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(null, hivenumber)
 	hugger.hand_attach_time = initial(hugger.hand_attach_time) * hand_attach_time_multiplier
 	hugger_type = null
 	addtimer(CALLBACK(hugger, TYPE_PROC_REF(/atom/movable, forceMove), loc), 1 SECONDS)
@@ -149,6 +141,19 @@
 			span_xenonotice("We clear the hatched egg."))
 			playsound(loc, SFX_ALIEN_RESIN_BREAK, 25)
 			qdel(src)
+
+/obj/alien/egg/hugger/attack_hand(mob/living/user)
+	if(!issamexenohive(user))
+		return ..()
+	switch(maturity_stage)
+		if(1)
+			to_chat(user, span_xenowarning("The child is not developed yet."))
+			return
+		if(2)
+			to_chat(user, span_xenonotice("We retrieve the child."))
+			burst()
+			return
+	return ..()
 
 /obj/alien/egg/hugger/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/clothing/mask/facehugger))
@@ -225,4 +230,9 @@
 		return
 
 	to_chat(xeno_attacker, span_warning("That egg is filled with gas and has no child to retrieve."))
+
+/obj/alien/egg/gas/attack_hand(mob/living/user)
+	if(!issamexenohive(user) || (maturity_stage > stage_ready_to_burst))
+		return ..()
+	to_chat(user, span_warning("That egg is filled with gas and has no child to retrieve."))
 

@@ -45,7 +45,7 @@ ADMIN_VERB(generate_powernets, R_DEBUG, "Generate Powernets", "Regenerate all po
 
 
 ADMIN_VERB(debug_mob_lists, R_DEBUG, "Debug Mob Lists", "Debug mob globals", ADMIN_CATEGORY_DEBUG)
-	var/list/options = list("Players", "Observers", "New Players", "Admins", "Clients", "Mobs", "Living Mobs", "Alive Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
+	var/list/options = list("Players", "Observers", "Players in lobby", "Admins", "Clients", "Mobs", "Living Mobs", "Alive Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
 	var/choice = tgui_input_list(user, "Which list?", "Global Mob List debugging", options)
 	if(!choice)
 		return
@@ -60,7 +60,7 @@ ADMIN_VERB(debug_mob_lists, R_DEBUG, "Debug Mob Lists", "Debug mob globals", ADM
 			for(var/i in GLOB.observer_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
-		if("New Players")
+		if("Players in lobby")
 			for(var/i in GLOB.new_player_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"

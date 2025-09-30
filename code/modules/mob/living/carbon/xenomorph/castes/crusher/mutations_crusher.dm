@@ -74,7 +74,7 @@
 //*********************//
 /datum/mutation_upgrade/spur/earthquake
 	name = "Earthquake"
-	desc = "Stomp's range is increased by 1 and loses damage 1 tile further. However, it deals 50/60/70% of its original damage and no longer has extra stun duration for stomping ontop of targets."
+	desc = "Stomp's range is increased by 1 and loses damage 1 tile further. However, it deals 50/60/70% of its original damage and no longer has extra stun duration for stomping on top of targets."
 	/// For the first structure, the multiplier to add as Stomp's damage.
 	var/modifier_initial = -0.6
 	/// For each structure, the multiplier to add as Stomp's damage.
@@ -87,7 +87,7 @@
 /datum/mutation_upgrade/spur/earthquake/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Stomp's range is increased by [range_initial] and the distance before damage begins to falloff is increased by [-falloff_initial]. However, Stomp deals [PERCENT(1 + get_multiplier(new_amount))]% of its original damage and no longer has extra stun duration for stomping ontop of targets."
+	return "Stomp's range is increased by [range_initial] and the distance before damage begins to falloff is increased by [-falloff_initial]. However, Stomp deals [PERCENT(1 + get_multiplier(new_amount))]% of its original damage and no longer has extra stun duration for stomping on top of targets."
 
 /datum/mutation_upgrade/spur/earthquake/on_mutation_enabled()
 	. = ..()

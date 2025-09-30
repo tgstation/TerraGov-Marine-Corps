@@ -12,6 +12,7 @@
 	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
 	upgrade = XENO_UPGRADE_INVALID
+	density = FALSE
 	gib_chance = 25
 	hud_type = /datum/hud/larva
 	inherent_verbs = list(
@@ -23,6 +24,9 @@
 /mob/living/carbon/xenomorph/larva/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+	if(!mind)
+		LAZYOR(GLOB.ssd_living_mobs, src)
+
 
 // ***************************************
 // *********** Mob overrides

@@ -155,7 +155,3 @@
 	else if(isliving(A)) //Hacked it up so it just deletes it
 		to_chat(A, span_danger("You get lost into the depths of space, never to be seen again."))
 		qdel(A)
-
-/obj/effect/step_trigger/teleporter/random/Initialize(mapload)
-	. = ..()
-	icon_state = ""

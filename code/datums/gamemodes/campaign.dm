@@ -34,8 +34,8 @@
 
 /datum/game_mode/hvh/campaign/announce()
 	to_chat(world, "<b>The current game mode is - Campaign!</b>")
-	to_chat(world, "<b>The fringe world of Palmaria is undergoing significant upheaval, with large portions of the population threatening to succeed from TerraGov. With the population on the brink of civil war, \
-	both TerraGov Marine Corp and the Sons of Mars forces are looking to intervene.")
+	to_chat(world, "<b>The fringe world of Palmaria is undergoing significant upheaval, with large portions of the population threatening to secede from NTC. With the population on the brink of civil war, \
+	both NTF and the Sons of Mars forces are looking to intervene.")
 	to_chat(world, "<b>Fight for your faction across the planet, the campaign for Palmaria starts now!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
@@ -81,9 +81,9 @@
 	var/op_name_faction_two = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == factions[1])
-			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(op_name_faction_one, "Fight to restore peace and order across the planet, and check the SOM threat.<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "TGMC Rapid Reaction Battalion<br>" + "[human.job.title], [human]<br>", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/rapid_response)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(op_name_faction_one, "Fight to restore peace and order across the planet, and check the SOM threat.<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "NTF Rapid Reaction Battalion<br>" + "[human.job.title], [human]<br>", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/rapid_response)
 		else if(human.faction == factions[2])
-			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(op_name_faction_two, "Fight to liberate the people of Palmaria from the yoke of TerraGov oppression!<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "SOM 4th Special Assault Force<br>" + "[human.job.title], [human]<br>", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/saf_four)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(op_name_faction_two, "Fight to liberate the people of Palmaria from the yoke of Ninetails oppression!<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "SOM 4th Special Assault Force<br>" + "[human.job.title], [human]<br>", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/saf_four)
 
 /datum/game_mode/hvh/campaign/process()
 	if(round_finished)
@@ -113,17 +113,17 @@
 
 /datum/game_mode/hvh/campaign/declare_completion()
 	. = ..()
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal NTF spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 
 /datum/game_mode/hvh/campaign/end_round_fluff()
 	var/announcement_body = ""
 	switch(round_finished)
 		if(MODE_COMBAT_PATROL_SOM_MINOR)
-			announcement_body = "Brave SOM forces are reporting decisive victories against the imperialist TerraGov forces across the planet, forcing their disorganised and chaotic retreat. \
+			announcement_body = "Brave SOM forces are reporting decisive victories against the imperialist Ninetails forces across the planet, forcing their disorganised and chaotic retreat. \
 			With the planet now liberated, the Sons of Mars welcome the people of Palmaria into the light of a new day, ready to help them into a better future as brothers."
 		if(MODE_COMBAT_PATROL_MARINE_MINOR)
-			announcement_body = "TGMC forces have routed the terrorist SOM forces across the planet, destroying their strongholds and returning possession of stolen property to their legitimate corporate owners. \
-			With the SOM threat removed, TerraGov peacekeeping forces begin to move in to ensure a rapid return to law and order, restoring stability, safety, and a guarantee of Palmaria's economic development to the benefit of all citizens."
+			announcement_body = "NTF forces have routed the terrorist SOM forces across the planet, destroying their strongholds and returning possession of stolen property to their legitimate corporate owners. \
+			With the SOM threat removed, Ninetails peacekeeping forces begin to move in to ensure a rapid return to law and order, restoring stability, safety, and a guarantee of Palmaria's economic development to the benefit of all citizens."
 
 	send_ooc_announcement(
 		sender_override = "Round Concluded",

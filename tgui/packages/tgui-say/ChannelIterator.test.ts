@@ -17,6 +17,10 @@ describe('ChannelIterator', () => {
     expect(channelIterator.next()).toBe('LOOC');
     expect(channelIterator.next()).toBe('XOOC');
     expect(channelIterator.next()).toBe('MOOC');
+    expect(channelIterator.next()).toBe('XMOOC');
+    expect(channelIterator.next()).toBe('Whisper');
+    expect(channelIterator.next()).toBe('Subtle');
+    expect(channelIterator.next()).toBe('Subtler');
     expect(channelIterator.next()).toBe('Say'); // Admin is blacklisted so it should be skipped
   });
 

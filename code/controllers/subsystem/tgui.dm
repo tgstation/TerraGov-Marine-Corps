@@ -36,8 +36,7 @@ SUBSYSTEM_DEF(tgui)
 	var/ntos_error = file2text('tgui/public/ntos-error.min.css')
 	ntos_error = "<style type='text/css'>\n[ntos_error]\n</style>"
 	basehtml = replacetextEx(basehtml, "<!-- tgui:ntos-error -->", ntos_error)
-
-	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) [GAME_YEAR]")
+	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Ninetails (c) [GAME_YEAR]")
 
 /datum/controller/subsystem/tgui/Shutdown()
 	close_all_uis()

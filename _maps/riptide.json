@@ -10,7 +10,7 @@
 	},
     "armor": "black",
 	"quickbuilds": 2500,
-	"announce_text": "We have received a faint distress signal originating from a sandy island with a dense jungle. The ship has jumped within range of what looks like a beach resort. TGMC, gear up, don't forget your sunscreen and get ready to respond!",
+	"announce_text": "We have received a faint distress signal originating from a sandy island with a dense jungle. The ship has jumped within range of what looks like a beach resort. NTF, gear up, don't forget your sunscreen and get ready to respond!",
 	"traits":[{
 		"No Parallax": true,
 		"Baseturf": "/turf/open/floor/plating"

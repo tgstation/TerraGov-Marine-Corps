@@ -11,7 +11,7 @@
 
 	interaction_flags = INTERACT_MACHINE_TGUI
 
-	var/list/network = list("marinemainship", "dropship1", "dropship2")
+	var/list/network = list("marinemainship", "dropship1", "dropship2", "landing zones")
 	var/obj/machinery/camera/active_camera
 	var/list/concurrent_users = list()
 

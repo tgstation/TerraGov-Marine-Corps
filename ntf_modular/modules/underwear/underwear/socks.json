@@ -1,0 +1,92 @@
+{
+	"white_norm":[
+		{
+		"type": "hyperscale",
+		"icon_state": "white_norm"
+		}
+	],
+	"white_short":[
+		{
+		"type": "hyperscale",
+		"icon_state": "white_short"
+		}
+	],
+	"white_knee":[
+		{
+		"type": "hyperscale",
+		"icon_state": "white_knee"
+		}
+	],
+	"white_thigh":[
+		{
+		"type": "hyperscale",
+		"icon_state": "white_thigh"
+		}
+	],
+	"socks_norm-stir":[
+		{
+		"type": "hyperscale",
+		"icon_state": "socks_norm-stir"
+		}
+	],
+	"fishnet_alt":[
+		{
+		"type": "hyperscale",
+		"icon_state": "fishnet_alt"
+		}
+	],
+	"socks_knee_m":[
+		{
+		"type": "hyperscale",
+		"icon_state": "socks_knee_m"
+		}
+	],
+	"socks_knee-stir":[
+		{
+		"type": "hyperscale",
+		"icon_state": "socks_knee-stir"
+		}
+	],
+	"socks_thigh_m":[
+		{
+		"type": "hyperscale",
+		"icon_state": "socks_thigh_m"
+		}
+	],
+	"socks_thigh-stir":[
+		{
+		"type": "hyperscale",
+		"icon_state": "socks_thigh-stir"
+		}
+	],
+	"pantyhose_ripped-stir":[
+		{
+		"type": "hyperscale",
+		"icon_state": "pantyhose_ripped-stir"
+		}
+	],
+	"pantyhose_ripped":[
+		{
+		"type": "hyperscale",
+		"icon_state": "pantyhose_ripped"
+		}
+	],
+	"leggings-stir":[
+		{
+		"type": "hyperscale",
+		"icon_state": "leggings-stir"
+		}
+	],
+	"leggings":[
+		{
+		"type": "hyperscale",
+		"icon_state": "leggings"
+		}
+	],
+	"stockings_ripped":[
+		{
+		"type": "hyperscale",
+		"icon_state": "stockings_ripped"
+		}
+	]
+}
