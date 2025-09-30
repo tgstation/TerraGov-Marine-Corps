@@ -1,10 +1,10 @@
 /datum/emergency_call/retired
-	name = "Retired TGMC Veteran Squad"
+	name = "Retired NTF Veteran Squad"
 	base_probability = 5
 	alignement_factor = -1
 
 /datum/emergency_call/retired/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>You are an old, retired member of the TerraGov marine corps.</b>")
+	to_chat(H, "<B>You are an old, retired member of the Nine-Tailed Fox.</b>")
 	to_chat(H, "<B>Althought you may be past your prime, high command has deemed you capable enough to be sent to the [SSmapping.configs[SHIP_MAP].map_name], which has recently sent out a distress signal.</b>")
 	to_chat(H, "<B>Investigate why the distress signal was sent and show the younger generation how it's done!</b>")
 
@@ -40,9 +40,9 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/retired/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the TGMC retired veteran expedition leader! Lead your fellow veterans to one last hurrah!</notice></p>")
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the NTF retired veteran expedition leader! Lead your fellow veterans to one last hurrah!</notice></p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/retired)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are an augmented TGMC veteran, you may have had a few limbs replaced with synthetic versions, but at least you can walk! Follow the expedition leader and relive your glory days!</notice></p>")
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are an augmented NTF veteran, you may have had a few limbs replaced with synthetic versions, but at least you can walk! Follow the expedition leader and relive your glory days!</notice></p>")

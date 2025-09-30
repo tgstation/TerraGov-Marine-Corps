@@ -287,7 +287,7 @@
 		box.update_icon()
 		update_icon()
 
-		to_chat(user, span_warning("You put the [box] ontop of the [src]!"))
+		to_chat(user, span_warning("You put the [box] on top of the [src]!"))
 
 	else if(istype(I, /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta))
 		if(!open)

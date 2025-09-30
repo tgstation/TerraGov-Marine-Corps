@@ -111,7 +111,7 @@
 
 	if(isscrewdriver(I) && circuit)
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		var/obj/structure/computerframe/A = new(loc)

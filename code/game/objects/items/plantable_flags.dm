@@ -10,8 +10,8 @@
 #define LOST_FLAG_AURA_STRENGTH -2
 
 /obj/item/plantable_flag
-	name = "\improper TerraGov flag"
-	desc = "A flag bearing the symbol of TerraGov. It flutters in the breeze heroically. This one looks ready to be planted into the ground."
+	name = "\improper Ninetails flag"
+	desc = "A flag bearing the symbol of Ninetails. It flutters in the breeze heroically. This one looks ready to be planted into the ground."
 	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
 	icon_state = "flag_tgmc"
 	inhand_x_dimension = 64

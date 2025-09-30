@@ -76,7 +76,7 @@
 	///Used to stop the icon from updating too much
 	var/icon_update_needed = FALSE
 	///Probability of APC being broken by a shuttle crash on the same z-level
-	var/crash_break_probability = 85
+	var/crash_break_probability = 5
 
 /obj/machinery/power/apc/connect_to_network()
 	//Override because the APC does not directly connect to the network; it goes through a terminal.

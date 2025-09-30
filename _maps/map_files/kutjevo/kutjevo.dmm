@@ -125,6 +125,7 @@
 /area/kutjevo/exterior/Northwest_Colony)
 "aiw" = (
 /obj/machinery/power/smes/buildable/empty,
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "aiH" = (
@@ -818,6 +819,10 @@
 /obj/machinery/colony_floodlight_switch,
 /turf/closed/wall/r_wall/kutjevo,
 /area/kutjevo/interior/power/comms)
+"aXX" = (
+/obj/structure/cable,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power_pt2_electric_boogaloo)
 "aYi" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/kutjevo/colors/orange,
@@ -9106,6 +9111,7 @@
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power_pt2_electric_boogaloo)
 "jSQ" = (
@@ -12891,6 +12897,11 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med/cells)
+"nII" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power_pt2_electric_boogaloo)
 "nJa" = (
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction)
@@ -13235,10 +13246,10 @@
 	},
 /area/kutjevo/interior/complex/med/locks)
 "nXX" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "nYb" = (
@@ -15905,6 +15916,12 @@
 /obj/structure/platform/metalplatform,
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/power)
+"qOm" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/power/smes/buildable/empty,
+/obj/structure/cable,
+/turf/open/floor/kutjevo/multi_tiles,
+/area/kutjevo/interior/power)
 "qOq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -17743,6 +17760,7 @@
 /area/kutjevo/exterior/colony_S_East)
 "sNp" = (
 /obj/machinery/power/smes/buildable/empty,
+/obj/structure/cable,
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "sNZ" = (
@@ -22567,10 +22585,10 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/colony_South/power2)
 "xGI" = (
-/obj/machinery/power/terminal{
-	dir = 4
-	},
 /obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "xGT" = (
@@ -30131,7 +30149,7 @@ ceG
 ceG
 pyp
 pyp
-sNp
+wIG
 pyp
 hGH
 upQ
@@ -30465,7 +30483,7 @@ xpk
 xpk
 vin
 pBV
-wIG
+sNp
 vOD
 aQP
 twv
@@ -30966,7 +30984,7 @@ use
 xpk
 vin
 pBV
-tez
+qOm
 xzB
 qvP
 kdY
@@ -31300,7 +31318,7 @@ awv
 dyU
 pyp
 pyp
-sNp
+wIG
 pyp
 wEn
 xjY
@@ -42772,7 +42790,7 @@ kHm
 kHm
 xDY
 per
-kHm
+aXX
 jSi
 jSi
 oQc
@@ -42939,7 +42957,7 @@ lah
 npr
 kHm
 xeS
-npr
+nII
 rkX
 xlD
 oQc
