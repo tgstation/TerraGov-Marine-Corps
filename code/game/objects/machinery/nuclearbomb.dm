@@ -134,11 +134,11 @@
 		to_chat(xeno_attacker, span_warning("\The [src] is soundly asleep. We better not disturb it."))
 		return
 
-	xeno_attacker.visible_message("[xeno_attacker] begins to slash delicately at the nuke",
+	xeno_attacker.visible_message(span_boldwarning("[xeno_attacker] begins to slash delicately at the nuke."),
 	"You start slashing delicately at the nuke.")
 	if(!do_after(xeno_attacker, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
-	xeno_attacker.visible_message("[xeno_attacker] disabled the nuke",
+	xeno_attacker.visible_message(span_boldwarning("[xeno_attacker] disabled the nuke"),
 	"You disabled the nuke.")
 
 	disable(key_name(xeno_attacker))

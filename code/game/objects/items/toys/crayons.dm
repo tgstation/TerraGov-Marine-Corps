@@ -87,7 +87,7 @@
 	if(drawtype == "letter")
 		drawtype = tgui_input_list(user, "Choose the letter.", "Crayon scribbles", list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"))
 
-	user.visible_message("[user] starts drawing something on \the [target.name]")
+	user.visible_message(span_notice("[user] starts drawing something on \the [target.name]."))
 	if(!instant && !do_after(user, 5 SECONDS, NONE, target, BUSY_ICON_GENERIC))
 		return
 
@@ -101,7 +101,7 @@
 	if(M != user)
 		return ..()
 
-	user.visible_message("[user] takes a bite of \the [src] and swallows it.")
+	user.visible_message(span_notice("[user] takes a bite of \the [src] and swallows it."))
 	playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
 	uses -= 5
 	if(uses <= 0)
