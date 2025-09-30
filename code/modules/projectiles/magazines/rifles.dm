@@ -874,7 +874,7 @@
 	caliber = CALIBER_410_AUTOSHOTGUN
 	icon_state = "sh410_ricochet"
 	icon_state_mini = "mag_sh410_ricochet"
-	default_ammo = /datum/ammo/bullet/shotgun/sh410_ricochet
+	default_ammo = /datum/ammo/bullet/shotgun/sh410_ricochet/two
 	max_rounds = 15
 	bonus_overlay = "sh410_ricochet"
 
