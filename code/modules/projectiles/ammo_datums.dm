@@ -1,6 +1,6 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest, /obj/structure/bed/nest/wall, /turf/closed/wall/resin/membrane))) //For sticky/acid spit
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest, /obj/structure/bed/nest/wall, /turf/closed/wall/resin/membrane, /obj/structure/bed/nest/advanced))) //For sticky/acid spit
 
 /**
  * # The base ammo datum

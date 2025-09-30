@@ -1700,6 +1700,12 @@ to_chat will check for valid clients itself already so no need to double check f
 /obj/alien/get_xeno_hivenumber()
 	return hivenumber
 
+/obj/structure/bed/nest/advanced/get_xeno_hivenumber()
+	return hivenumber
+
+/obj/structure/cocoon/get_xeno_hivenumber()
+	return hivenumber
+
 /obj/item/alien_embryo/get_xeno_hivenumber()
 	return hivenumber
 

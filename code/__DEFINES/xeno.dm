@@ -32,6 +32,7 @@
 #define RESIN_MEMBRANE "resin membrane"
 #define WALL_RESIN_NEST "wall resin nest"
 #define LIGHT_TOWER "light tower"
+#define ADVANCED_RESIN_NEST "tentacle breeding nest"
 
 //Special resin defines
 #define BULLETPROOF_WALL "bulletproof resin wall"
@@ -152,6 +153,7 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 		BULLETPROOF_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = BULLETPROOF_WALL),
 		FIREPROOF_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = FIREPROOF_WALL),
 		HARDY_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = HARDY_WALL),
+		ADVANCED_RESIN_NEST = image('ntf_modular/icons/Xeno/construction.dmi', icon_state = RESIN_NEST),
 		))
 
 /*List of special resin structure images

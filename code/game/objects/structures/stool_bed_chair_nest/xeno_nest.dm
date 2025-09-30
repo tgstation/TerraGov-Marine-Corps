@@ -38,12 +38,16 @@
 		return attack_hand(xeno_attacker)
 	return ..()
 
-/obj/structure/bed/nest/user_buckle_mob(mob/living/buckling_mob, mob/living/user, check_loc = TRUE, silent)
+/obj/structure/bed/nest/user_buckle_mob(mob/living/buckling_mob, mob/living/user, check_loc = TRUE, silent, skip)
+	if(skip)
+		return ..()
 	if(user.incapacitated() || !in_range(user, src) || buckling_mob.buckled)
 		return FALSE
+/*
 	if(!isxeno(user))
 		to_chat(user, span_warning("Gross! You're not touching that stuff."))
 		return FALSE
+*/
 	if(LAZYLEN(buckled_mobs))
 		to_chat(user, span_warning("There's already someone in [src]."))
 		return FALSE
@@ -67,7 +71,8 @@
 		to_chat(user, span_warning("[buckling_mob] is not something we can capture."))
 		return FALSE
 
-	buckling_mob.visible_message(span_xenonotice("[user] secretes a thick, vile resin, securing [buckling_mob] into [src]!"),
+	log_combat(user, buckling_mob, "nested", src)
+	buckling_mob.visible_message(span_xenonotice("[user] applies a thick, vile resin, securing [buckling_mob] into [src]!"),
 		span_xenonotice("[user] drenches you in a foul-smelling resin, trapping you in [src]!"),
 		span_notice("You hear squelching."))
 	playsound(loc, SFX_ALIEN_RESIN_MOVE, 50)
