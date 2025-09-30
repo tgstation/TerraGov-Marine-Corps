@@ -148,16 +148,16 @@
 ///Internal bino checks, mainly around firemode
 /obj/item/binoculars/fire_support/proc/bino_checks(atom/target, mob/living/user)
 	if(!mode)
-		balloon_alert_to_viewers("Select a mode!")
+		balloon_alert_to_viewers("select a mode!")
 		return FALSE
 	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
-		balloon_alert_to_viewers("[mode.name] unavailable")
+		balloon_alert_to_viewers("[lowertext(mode.name)] unavailable!")
 		return FALSE
 	if(!mode.uses)
-		balloon_alert_to_viewers("[mode.name] expended")
+		balloon_alert_to_viewers("[lowertext(mode.name)] expended!")
 		return FALSE
 	if(mode.cooldown_timer)
-		balloon_alert_to_viewers("On cooldown")
+		balloon_alert_to_viewers("on cooldown!")
 		return FALSE
 	var/area/targ_area = get_area(target)
 	if(isspacearea(targ_area))

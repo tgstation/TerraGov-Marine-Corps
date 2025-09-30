@@ -44,7 +44,7 @@
 	if(!ishuman(user))
 		return
 	if(user.do_actions)
-		user.balloon_alert(user, "You are already doing something!")
+		user.balloon_alert(user, "busy!")
 		return
 	if(user.faction == faction)
 		defender_interaction(user)
@@ -76,12 +76,12 @@
 /obj/structure/sensor_tower/proc/attacker_interaction(mob/living/user)
 	if(!attacker_state_check(user))
 		return
-	balloon_alert_to_viewers("Activating sensor tower...")
+	balloon_alert_to_viewers("activating sensor tower...")
 	if(!do_after(user, activate_time, NONE, src))
 		return
 	if(!attacker_state_check(user))
 		return
-	balloon_alert_to_viewers("Sensor tower activated!")
+	balloon_alert_to_viewers("sensor tower activated")
 	begin_activation()
 
 ///Checks whether an attack can currently activate this tower

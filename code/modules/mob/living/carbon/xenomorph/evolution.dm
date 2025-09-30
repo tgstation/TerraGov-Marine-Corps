@@ -235,7 +235,7 @@
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()
 	if(do_actions)
-		balloon_alert(src, "We're busy!")
+		balloon_alert(src, "busy!")
 		return FALSE
 
 	if(is_ventcrawling)
@@ -249,7 +249,7 @@
 	if(is_banned_from(ckey, ROLE_XENOMORPH))
 		log_admin_private("[key_name(src)] has tried to evolve as a xenomorph while being banned from the role.")
 		message_admins("[ADMIN_TPMONTY(src)] has tried to evolve as a xenomorph while being banned. They shouldn't be playing the role.")
-		balloon_alert(src, "You are jobbanned from aliens and cannot evolve. How did you even become an alien?")
+		to_chat(src, span_userdanger("You are jobbanned from aliens and cannot evolve. How did you even become an alien?"))
 		return FALSE
 
 	if(incapacitated(TRUE))

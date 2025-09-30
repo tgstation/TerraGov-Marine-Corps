@@ -150,7 +150,7 @@
 	else if(!powered)
 		balloon_alert(user, "turned off!")
 	else
-		balloon_alert(user, "Insufficient charge")
+		balloon_alert(user, "insufficient charge!")
 		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Give the internal battery time to recharge, or attack a living creature! <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string, no_string, SFX = TRUE)

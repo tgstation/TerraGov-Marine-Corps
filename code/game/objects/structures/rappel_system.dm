@@ -100,38 +100,38 @@
 //Human interaction with the rappel system; this is how people rappel down
 /obj/structure/dropship_equipment/shuttle/rappel_system/attack_hand(mob/living/carbon/human/user)
 	if(!rope)
-		balloon_alert(user, "You shouldn't be seeing this; ask admins for help!")
+		to_chat(user, span_userdanger("\The [src]'s rope does not exist. Adminhelp this."))
 		attack_rappel() //If rope can't be found, default to a visibly broken state
 
 	switch(rappel_condition)
 		if(RAPPEL_CONDITION_DAMAGED)
-			balloon_alert(user, "The cord needs replacing!")
+			balloon_alert(user, "the cord needs replacing!")
 			return
 		if(RAPPEL_CONDITION_DISABLED)
-			balloon_alert(user, "The system is disabled!")
+			balloon_alert(user, "the system is disabled!")
 			return
 
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/linked_dropship = linked_shuttle?.shuttle_computer
 	if(linked_dropship?.fly_state != SHUTTLE_IN_ATMOSPHERE)
-		balloon_alert(user, "You are not in-flight!")
+		balloon_alert(user, "not in-flight!")
 		return
 
 	switch(rappel_state)
 		if(RAPPEL_STATE_LOCKED)
-			balloon_alert(user, "No rappel deployed!")
+			balloon_alert(user, "no rappel deployed!")
 			return
 		if(RAPPEL_STATE_RETRACTING)
-			balloon_alert(user, "The rappel is currently retracting!")
+			balloon_alert(user, "rappel retracting!")
 			return
 
 	var/turf/target_turf = get_turf(rope)
 	if(target_turf.density)
-		balloon_alert(user, "You can't rappel into a wall!")
+		balloon_alert(user, "that's a wall!")
 		return
 
 	var/area/target_area = get_area(target_turf)
 	if(target_area.ceiling > CEILING_GLASS)
-		balloon_alert(user, "The rappel is too deep underground!")
+		balloon_alert(user, "too deep underground!")
 		return
 
 	rappel_state = RAPPEL_STATE_IN_USE
@@ -143,7 +143,7 @@
 
 	var/passed_skillcheck = TRUE
 	if(user.skills.getRating(SKILL_COMBAT) < SKILL_COMBAT_DEFAULT)
-		rope.balloon_alert(user, "You fumble around figuring out how to use the rappel system...")
+		rope.balloon_alert(user, "you fumble around figuring out how to use the rappel system...")
 		if(!do_after(user, 3 SECONDS, NONE, rope, BUSY_ICON_UNSKILLED) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
 			passed_skillcheck = FALSE
 
@@ -170,9 +170,9 @@
 
 	if(istype(I, /obj/item/spare_cord))
 		if(rappel_condition != RAPPEL_CONDITION_DAMAGED)
-			balloon_alert(user, "The cord isn't damaged.")
+			balloon_alert(user, "the cord isn't damaged!")
 			return
-		balloon_alert(user, "You start replacing the rappel cord...")
+		balloon_alert(user, "replacing the rappel cord...")
 		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 			return
 		if(!rope) //If the rappel is bugged, fix it
@@ -180,7 +180,7 @@
 		rappel_condition = RAPPEL_CONDITION_DISABLED
 		update_icon_state()
 		addtimer(CALLBACK(src, PROC_REF(self_repair)), RAPPEL_REPAIR_TIME)
-		balloon_alert(user, "You replace the rappel cord.")
+		balloon_alert(user, "replaced")
 		QDEL_NULL(I)
 		return
 

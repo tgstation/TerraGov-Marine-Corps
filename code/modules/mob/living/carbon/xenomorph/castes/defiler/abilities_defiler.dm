@@ -97,7 +97,7 @@
 /datum/action/ability/activable/xeno/defile/use_ability(atom/A)
 	var/mob/living/carbon/living_target = A
 	if(living_target.status_flags & GODMODE)
-		owner.balloon_alert(owner, "Cannot defile")
+		owner.balloon_alert(owner, "cannot defile!")
 		return fail_activate()
 	xeno_owner.face_atom(living_target)
 	if(!do_after(xeno_owner, DEFILER_DEFILE_CHANNEL_TIME, NONE, living_target, BUSY_ICON_HOSTILE))
@@ -190,7 +190,7 @@
 	//give them fair warning
 	xeno_owner.visible_message(span_danger("Tufts of smoke begin to billow from [xeno_owner]!"), \
 	span_xenodanger("Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!"))
-	xeno_owner.balloon_alert(xeno_owner, "Keep still...")
+	xeno_owner.balloon_alert(xeno_owner, "keep still...")
 
 	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Power Up"
 
@@ -319,11 +319,11 @@
 		alien_egg.balloon_alert(xeno_owner, "egg not mature!")
 		return fail_activate()
 
-	alien_egg.balloon_alert_to_viewers("Injecting...")
+	alien_egg.balloon_alert_to_viewers("injecting...")
 	xeno_owner.visible_message(span_danger("[xeno_owner] starts injecting the egg with neurogas, killing the little one inside!"), \
 		span_xenodanger("We extend our stinger into the egg, filling it with gas, killing the little one inside!"))
 	if(!do_after(xeno_owner, 2 SECONDS, NONE, alien_egg, BUSY_ICON_HOSTILE))
-		alien_egg.balloon_alert_to_viewers("Canceled injection")
+		alien_egg.balloon_alert_to_viewers("canceled injection")
 		xeno_owner.visible_message(span_danger("The stinger retracts from [xeno_owner], leaving the egg and little one alive."), \
 			span_xenodanger("Our stinger retracts, leaving the egg and little one alive."))
 		return fail_activate()
@@ -332,7 +332,7 @@
 		alien_egg.balloon_alert(xeno_owner, "egg not mature!")
 		return fail_activate()
 
-	alien_egg.balloon_alert_to_viewers("Injected")
+	alien_egg.balloon_alert_to_viewers("injected")
 	succeed_activate()
 	add_cooldown()
 
@@ -589,7 +589,7 @@
 	tentacle = owner.beam(target, "curse0",'icons/effects/beam.dmi')
 	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)
 	to_chat(owner, span_warning("We grab [target] with a tentacle!"))
-	target.balloon_alert_to_viewers("Grabbed!")
+	target.balloon_alert_to_viewers("grabbed!")
 	RegisterSignal(target, COMSIG_MOVABLE_POST_THROW, PROC_REF(delete_beam))
 	target.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
 	if(isliving(target))

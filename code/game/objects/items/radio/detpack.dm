@@ -110,7 +110,7 @@
 
 /obj/item/detpack/multitool_act(mob/living/user, obj/item/I)
 	if(!armed && !on)
-		balloon_alert(user, "Inactive")
+		balloon_alert(user, "inactive!")
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
@@ -129,7 +129,7 @@
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 
-	balloon_alert_to_viewers("Disarmed")
+	balloon_alert_to_viewers("disarmed")
 	disarm()
 
 /obj/item/detpack/proc/nullvars()

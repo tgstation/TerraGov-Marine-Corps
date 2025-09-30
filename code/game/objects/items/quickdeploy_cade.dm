@@ -12,9 +12,9 @@
 	. += "This QuikDeploy system seems to deploy a [thing_to_deploy.name]."
 
 /obj/item/quikdeploy/attack_self(mob/user)
-	balloon_alert_to_viewers("Starts to deploy barricade")
-	if(!do_after(usr, delay, NONE, src, BUSY_ICON_BUILD))
-		to_chat(user, "<span class='warning'>You decide against deploying something here.")
+	balloon_alert_to_viewers("deploying barricade...")
+	if(!do_after(user, delay, NONE, src, BUSY_ICON_BUILD))
+		balloon_alert(user, "stopped deploying")
 		return
 	if(can_place(user)) //can_place() handles sending the error and success messages to the user
 		var/obj/O = new thing_to_deploy(get_turf(user))

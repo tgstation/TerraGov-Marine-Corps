@@ -448,7 +448,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
-		X.balloon_alert(X, "Stop emitting")
+		X.balloon_alert(X, "no longer emitting")
 		QDEL_NULL(X.current_aura)
 		if(X.hive?.living_xeno_ruler == X)
 			X.hive?.update_leader_pheromones()
@@ -456,7 +456,7 @@
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
 	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + (X.xeno_caste.aura_strength * 2) + bonus_flat_range, X.xeno_caste.aura_strength + bonus_flat_strength, -1, X.faction, X.hivenumber)
-	X.balloon_alert(X, "[phero_choice]")
+	X.balloon_alert(X, "[lowertext(phero_choice)]")
 	playsound(X.loc, SFX_ALIEN_DROOL, 25)
 
 	if(X.hive?.living_xeno_ruler == X)
