@@ -113,12 +113,16 @@
 	var/psych_points_output = EMBRYO_PSY_POINTS_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (EMBRYO_PSY_POINTS_REWARD_MAX - EMBRYO_PSY_POINTS_REWARD_MIN))
 	psych_points_output = clamp(psych_points_output, EMBRYO_PSY_POINTS_REWARD_MIN, EMBRYO_PSY_POINTS_REWARD_MAX)
 
+	var/embryos_in_host = 0
+	for(var/obj/item/alien_embryo/embryo in affected_mob.contents)
+		if(embryo.affected_mob == affected_mob)
+			embryos_in_host++
 	if(affected_mob.client && (affected_mob.client.inactivity < 10 MINUTES))
-		psypoint_reward += psych_points_output * 5
-		biomass_reward += MUTATION_BIOMASS_PER_EMBRYO_TICK * 5
+		psypoint_reward += psych_points_output * 5 / embryos_in_host
+		biomass_reward += MUTATION_BIOMASS_PER_EMBRYO_TICK * 5 / embryos_in_host
 	else
-		psypoint_reward += psych_points_output
-		biomass_reward += MUTATION_BIOMASS_PER_EMBRYO_TICK
+		psypoint_reward += psych_points_output / embryos_in_host
+		biomass_reward += MUTATION_BIOMASS_PER_EMBRYO_TICK / embryos_in_host
 
 	if(stage <= 4)
 		counter += 2.5 //Free burst time in ~7/8 min.
