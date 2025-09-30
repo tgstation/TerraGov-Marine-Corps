@@ -62,7 +62,9 @@
 
 ///Allow the cocoon to be opened and dragged
 /obj/structure/cocoon/proc/unanchor_from_nest()
-	new /obj/structure/bed/nest(loc)
+	var/obj/structure/bed/nest/our_nest = locate() in loc
+	if(!our_nest)
+		our_nest = new
 	anchored = FALSE
 	update_icon()
 	playsound(loc, SFX_ALIEN_RESIN_MOVE, 35)
