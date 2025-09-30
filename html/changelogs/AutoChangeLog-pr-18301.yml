@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "NPC's are less likely to get stuck on obstacles in certain circumstances"

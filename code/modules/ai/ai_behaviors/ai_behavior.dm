@@ -509,7 +509,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		if(prob(atom_to_walk_to == escorted_atom ? 80 : 50)) //If we're holding around an escort target, we don't move too much
 			return
 		if(prob(sidestep_prob)) //shuffle about
-			dir_options += LeftAndRightOfDir(dir_to_target)
+			dir_options += LeftAndRightOfDir(dir_to_target, TRUE)
 	if(dist_to_target > min_range) //above min range, its valid to come closer
 		dir_options += dir_to_target
 	if(dist_to_target < max_range) //less than max range, its valid to walk away
@@ -521,13 +521,13 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /datum/ai_behavior/proc/ai_complete_move(move_dir, try_sidestep = TRUE)
 	var/turf/new_loc = get_step(mob_parent, move_dir)
 	if(new_loc?.atom_flags & AI_BLOCKED)
-		move_dir = pick(LeftAndRightOfDir(move_dir))
+		move_dir = pick(LeftAndRightOfDir(move_dir, always_diag = TRUE))
 		new_loc = get_step(mob_parent, move_dir)
 		if(new_loc?.atom_flags & AI_BLOCKED || !can_cross_lava_turf(new_loc))
 			return
 	if(!mob_parent.Move(new_loc, move_dir))
 		if(!(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, move_dir) & COMSIG_OBSTACLE_DEALT_WITH) && try_sidestep)
-			ai_complete_move(pick(LeftAndRightOfDir(move_dir)), FALSE)
+			ai_complete_move(pick(LeftAndRightOfDir(move_dir, always_diag = TRUE)), FALSE)
 		return
 	if(ISDIAGONALDIR(move_dir))
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown

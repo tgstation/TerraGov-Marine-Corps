@@ -210,7 +210,7 @@
 	if(is_open)
 		. += image(icon, icon_state = "[barricade_type]_open_wire")
 	else
-		. += image(icon, icon_state = "[barricade_type]_wire")
+		. += image(icon, icon_state = "[barricade_type]_wire", layer = dir == NORTH ? layer : ABOVE_MOB_LAYER) //it will layer under certain upgrades in some cases otherwise
 
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)

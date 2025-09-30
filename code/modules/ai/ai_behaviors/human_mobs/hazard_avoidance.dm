@@ -45,6 +45,7 @@
 			//todo: Need to have NPC path around lava entirely (or jump over it), if their direct path is into lava
 
 	//hazards
+	exclude_dirs.Cut()
 	for(var/atom/movable/thing AS in hazard_list)
 		var/dist = get_dist(mob_parent, thing)
 		if(dist > hazard_list[thing] + 1)
