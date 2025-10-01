@@ -5,6 +5,7 @@
 	var/targethole = 1
 	var/settings_locked = FALSE
 	COOLDOWN_DECLARE(tentacle_cooldown)
+	resist_time = 30 SECONDS
 
 /obj/structure/bed/nest/advanced/Initialize(mapload, _hivenumber)
 	. = ..()

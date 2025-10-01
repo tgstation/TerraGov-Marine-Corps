@@ -16,6 +16,7 @@
 	layer = BELOW_OPEN_DOOR_LAYER
 	var/buckleoverlaydir = SOUTH
 	var/unbuckletime = 6 SECONDS
+	var/resist_time = NEST_RESIST_TIME
 
 /obj/structure/bed/nest/ai_should_stay_buckled(mob/living/carbon/npc)
 	return TRUE
@@ -104,7 +105,7 @@
 		to_chat(buckled_mob, span_warning("You're currently unable to try that."))
 		return FALSE
 	buckled_mob.visible_message(span_warning("\The [buckled_mob] struggles to break free of \the [src]."), span_warning("You struggle to break free from \the [src]."), span_notice("You hear squelching."))
-	if(!do_after(buckled_mob, NEST_RESIST_TIME, FALSE, buckled_mob, BUSY_ICON_DANGER))
+	if(!do_after(buckled_mob, resist_time, FALSE, buckled_mob, BUSY_ICON_DANGER))
 		return FALSE
 	buckled_mob.visible_message(span_danger("\The [buckled_mob] breaks free from \the [src]!"),
 		span_danger("You pull yourself free from \the [src]!"),
