@@ -163,7 +163,9 @@
 			if(prob(2))
 				to_chat(affected_mob, span_warning("[pick("You feel something squirming inside you!.", "It becomes a bit difficult to breathe.")]."))
 		if(5)
-			become_larva()
+			var/mob/living/carbon/xenomorph/larva/waiting_larva = locate() in src
+			if(!waiting_larva)
+				become_larva()
 		if(6)
 			larva_autoburst_countdown--
 			if(larva_autoburst_countdown < 1)
