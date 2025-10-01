@@ -12,6 +12,10 @@
 	if(icon_variants)
 		icon_state = "[initial(icon_state)]_[rand(1, icon_variants)]"
 
+/obj/structure/flora/footstep_override(atom/movable/source, list/footstep_overrides)
+	//set at the flora level, but the connection is only set where desired
+	footstep_overrides[FOOTSTEP_VEGETATION] = layer
+
 /obj/structure/flora/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -525,6 +529,11 @@
 /obj/structure/flora/jungle/large_bush/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/largetransparency, 0, 0, 0, 1)
+
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/flora/jungle/vines
 	name = "vines"
