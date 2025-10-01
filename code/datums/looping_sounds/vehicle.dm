@@ -11,3 +11,6 @@
 	start_sound = 'sound/vehicles/bikestart.ogg'
 	start_length = 1 SECONDS
 	volume = 25
+
+/datum/looping_sound/som_tank_drive/hover_bike
+	volume = 40
