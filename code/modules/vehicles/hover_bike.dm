@@ -37,7 +37,7 @@
 
 /obj/vehicle/ridden/hover_bike/update_overlays()
 	. = ..()
-	. += mutable_appearance(icon, "hover_bike_toplayer", MOB_UPPER_LAYER)
+	. += mutable_appearance(icon, "hover_bike_toplayer", TANK_DECORATION_LAYER)
 	. += mutable_appearance(icon, "hover_bike_midlayer", MOB_ABOVE_PIGGYBACK_LAYER)
 
 /obj/vehicle/ridden/hover_bike/post_unbuckle_mob(mob/living/M)

@@ -105,21 +105,60 @@
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
-	outfit = /datum/outfit/job/pmc/standard/campaign
+	outfits = list(
+		/datum/outfit/job/pmc/standard/val/campaign,
+		/datum/outfit/job/pmc/standard/val/sarge/campaign,
+		/datum/outfit/job/pmc/standard/val/sargetwo/campaign,
+		/datum/outfit/job/pmc/standard/val/sargethree/campaign,
+		/datum/outfit/job/pmc/standard/val/sargefour/campaign,
+		/datum/outfit/job/pmc/standard/val/joker/campaign,
+		/datum/outfit/job/pmc/standard/val/jokertwo/campaign,
+		/datum/outfit/job/pmc/standard/val/stripes/campaign,
+		/datum/outfit/job/pmc/standard/val/stripestwo/campaign,
+		/datum/outfit/job/pmc/standard/val/stripesthree/campaign,
+		/datum/outfit/job/pmc/standard/m416/campaign,
+		/datum/outfit/job/pmc/standard/m416/sarge/campaign,
+		/datum/outfit/job/pmc/standard/m416/sargetwo/campaign,
+		/datum/outfit/job/pmc/standard/m416/sargethree/campaign,
+		/datum/outfit/job/pmc/standard/m416/sargefour/campaign,
+		/datum/outfit/job/pmc/standard/m416/joker/campaign,
+		/datum/outfit/job/pmc/standard/m416/jokertwo/campaign,
+		/datum/outfit/job/pmc/standard/m416/stripes/campaign,
+		/datum/outfit/job/pmc/standard/m416/stripestwo/campaign,
+		/datum/outfit/job/pmc/standard/m416/stripesthree/campaign,
+	)
+
 
 /datum/job/pmc/gunner/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
-	outfit = /datum/outfit/job/pmc/gunner/campaign
+	outfits = list(
+		/datum/outfit/job/pmc/gunner/campaign,
+		/datum/outfit/job/pmc/gunner/sarge/campaign,
+		/datum/outfit/job/pmc/gunner/sargetwo/campaign,
+		/datum/outfit/job/pmc/gunner/sargethree/campaign,
+		/datum/outfit/job/pmc/gunner/sargefour/campaign,
+		/datum/outfit/job/pmc/gunner/joker/campaign,
+		/datum/outfit/job/pmc/gunner/jokertwo/campaign,
+		/datum/outfit/job/pmc/gunner/jokerthree/campaign,
+		/datum/outfit/job/pmc/gunner/jokerfour/campaign,
+		/datum/outfit/job/pmc/gunner/stripes/campaign,
+		/datum/outfit/job/pmc/gunner/stripestwo/campaign,
+		/datum/outfit/job/pmc/gunner/stripesthree/campaign,
+		/datum/outfit/job/pmc/gunner/stripes/four/campaign,
+	)
 
 /datum/job/pmc/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
-	outfit = /datum/outfit/job/pmc/leader/campaign
+	outfits = list(
+		/datum/outfit/job/pmc/leader/m416/campaign,
+		/datum/outfit/job/pmc/leader/gunner/campaign,
+	)
 
 //ICC
 /datum/job/icc/standard/campaign_bonus

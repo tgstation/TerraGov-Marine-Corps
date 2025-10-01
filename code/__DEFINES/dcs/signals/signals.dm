@@ -10,7 +10,6 @@
 #define COMSIG_GLOB_NEW_Z "!new_z"
 #define COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED "!deploy_timelock_ended"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
-#define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
 #define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 ///Marine ship in Crash gamemode has landed
@@ -367,6 +366,10 @@
 #define COMSIG_MOVABLE_LOCATION_CHANGE "location_changed"
 #define COMSIG_MOVABLE_BUMP "movable_bump"						//from base of atom/movable/Bump(): (/atom)
 	#define COMPONENT_BUMP_RESOLVED (1<<0)
+/// Sent before a thrown /atom impacts an /atom.  From [/atom/movable/proc/throw_impact]: (/atom/movable)
+#define COMSIG_PRE_MOVABLE_IMPACT "movable_pre_movable_impact"
+	/// Causes the thrown /atom to fail to impact the /mob/living, thus continuing the throw.
+	#define COMPONENT_PRE_MOVABLE_IMPACT_DODGED (1<<0)
 #define COMSIG_MOVABLE_IMPACT "movable_impact"					//from base of atom/movable/throw_impact(): (/atom/hit_atom)
 ///from /atom/movable/proc/buckle_mob(): (mob/living/M, force, check_loc, buckle_mob_flags)
 #define COMSIG_MOVABLE_PREBUCKLE "prebuckle" // this is the last chance to interrupt and block a buckle before it finishes
@@ -387,8 +390,6 @@
 	#define COMPONENT_DRIVER_BLOCK_MOVE (1<<0)
 #define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"			//from base of atom/movable/throw_at()
 	#define COMPONENT_MOVABLE_BLOCK_PRE_THROW (1<<0)
-#define COMSIG_LIVING_PRE_THROW_IMPACT "movable_living_throw_impact_check" //sent before an item impacts a living mob
-	#define COMPONENT_PRE_THROW_IMPACT_HIT (1<<0)
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//called on tail of atom/movable/throw_at()
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"			//called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_HEAR "movable_hear"						//from base of atom/movable/Hear(): (message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
@@ -432,6 +433,8 @@
 #define COMSIG_TURF_MULTIZ_NEW "turf_multiz_new"
 ///called when an elevator enters this turf
 #define COMSIG_TURF_INDUSTRIAL_LIFT_ENTER "turf_industrial_life_enter"
+/// Sent by the turf before its contents, if any, are crushed by a shuttle. [/turf/proc/toShuttleMove]: ()
+#define COMSIG_TURF_PRE_SHUTTLE_CRUSH "turf_pre_shuttle_crush"
 
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
@@ -853,6 +856,8 @@
 
 #define COMSIG_XENO_DRAIN_HIT "xeno_drain_hit"
 #define COMSIG_XENO_CARNAGE_HIT "xeno_carnage_hit"
+
+#define COMSIG_FACE_HUGGER_DEATH "face_hugger_death"
 
 // Mutations:
 #define COMSIG_GLOB_MUTATION_CHAMBER_SHELL "!mutation_chamber_shell" // From: [/obj/structure/xeno/mutation_chamber/shell] (previous_amount, new_amount)

@@ -7180,10 +7180,10 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "gxf" = (
-/obj/structure/catwalk,
+/obj/effect/spawner/random/engineering/shovel,
 /obj/effect/ai_node,
-/turf/open/liquid/water/river/deep,
-/area/lv624/ground/river1)
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand7)
 "gxL" = (
 /obj/structure/table,
 /obj/item/clothing/suit/storage/apron,
@@ -28383,14 +28383,14 @@ cAu
 cAu
 cAu
 cAu
+xrX
+cAu
 cAu
 cAu
 cAu
 cAu
 cAu
 xrX
-cAu
-cAu
 cAu
 cAu
 gsZ
@@ -28598,7 +28598,7 @@ xLz
 xLz
 xLz
 dFf
-xLz
+wWk
 xLz
 xLz
 xLz
@@ -28745,7 +28745,7 @@ cAu
 fRf
 cAu
 cAu
-kwk
+gxf
 cAu
 xrX
 cAu
@@ -28960,7 +28960,7 @@ xLz
 xLz
 xLz
 xLz
-xLz
+wWk
 xLz
 xLz
 xLz
@@ -29136,7 +29136,7 @@ wWk
 xoT
 ykS
 xLz
-xLz
+wWk
 xLz
 kSi
 ykS
@@ -29286,7 +29286,7 @@ gKr
 evp
 aWb
 cAu
-xrX
+cAu
 cAu
 kwk
 cAu
@@ -29656,7 +29656,7 @@ cAu
 cAu
 cAu
 cAu
-xrX
+cAu
 cAu
 cAu
 cAu
@@ -30196,7 +30196,7 @@ evp
 evp
 lSR
 cAu
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -30377,7 +30377,7 @@ gKr
 evp
 evp
 lSR
-xrX
+cAu
 cAu
 syU
 frw
@@ -30392,8 +30392,8 @@ frw
 frw
 frw
 eBw
-cAu
 xrX
+cAu
 gsZ
 cAu
 mFi
@@ -30945,7 +30945,7 @@ cAu
 ldV
 kCI
 odE
-odE
+psp
 odE
 wFb
 fxm
@@ -31313,7 +31313,7 @@ kth
 aoJ
 aLd
 odE
-gxf
+aoJ
 aoJ
 kth
 odE
@@ -31850,7 +31850,7 @@ hRy
 wdN
 blH
 cAu
-cAu
+xrX
 cAu
 aVq
 tZS
@@ -32732,7 +32732,7 @@ alB
 gKr
 gKr
 aIm
-aIm
+vAA
 kfX
 ylh
 ylh
@@ -32744,7 +32744,7 @@ cAu
 cAu
 cAu
 aWb
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -32913,7 +32913,7 @@ aym
 alB
 gKr
 aIm
-aIm
+vAA
 aIm
 aIm
 kfX
@@ -32926,7 +32926,7 @@ cAu
 cAu
 cAu
 aWy
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -32942,7 +32942,7 @@ cAu
 cAu
 cAu
 cAu
-cAu
+xrX
 gsZ
 cAu
 tZS
@@ -33109,7 +33109,7 @@ gsZ
 cAu
 cAu
 gsZ
-xrX
+cAu
 cAu
 cAu
 cAu
@@ -33302,7 +33302,7 @@ cAu
 cAu
 gsZ
 cAu
-xrX
+cAu
 cAu
 cAu
 cAu
@@ -33488,7 +33488,7 @@ cAu
 cAu
 gsZ
 cAu
-cAu
+xrX
 cAu
 cAu
 tZS
@@ -35126,7 +35126,7 @@ gKr
 gKr
 gKr
 gKr
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -35193,7 +35193,7 @@ xFE
 fjU
 xFL
 pyH
-bch
+mQx
 bch
 bch
 bch
@@ -45097,7 +45097,7 @@ agv
 agv
 agv
 agv
-agv
+qMX
 agv
 agv
 agv
@@ -45266,7 +45266,7 @@ pBV
 pBV
 pBV
 iLn
-pBV
+mvS
 aen
 aen
 aen
@@ -48183,10 +48183,10 @@ nwU
 aen
 aen
 aen
-aen
+pOk
 aen
 dsm
-agv
+qMX
 iVO
 jNQ
 yiA
@@ -48915,15 +48915,15 @@ xFy
 aen
 aen
 agv
+qMX
 agv
 agv
 agv
+qMX
 agv
 agv
 agv
-agv
-agv
-agv
+qMX
 agv
 agv
 ajG

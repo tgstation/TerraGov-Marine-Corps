@@ -655,7 +655,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	limb_to_drop?.droplimb(TRUE, TRUE)
 
 //Handles dismemberment
-/datum/limb/proc/droplimb(amputation, delete_limb = FALSE)
+/datum/limb/proc/droplimb(amputation, delete_limb = FALSE, silent = FALSE)
 	if(limb_status & LIMB_DESTROYED)
 		return FALSE
 
@@ -682,7 +682,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// If any organs are attached to this, destroy them
 	for(var/c in children)
 		var/datum/limb/appendage = c
-		appendage.droplimb(amputation, delete_limb)
+		appendage.droplimb(amputation, delete_limb, TRUE)
 
 	//Clear out any internal and external wounds, damage the parent limb
 	QDEL_LIST(wounds)
@@ -753,7 +753,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(delete_limb)
 		QDEL_NULL(organ)
-	else
+	else if(!silent)
 		owner.visible_message(span_warning("[owner.name]'s [display_name] flies off in an arc!"),
 		span_userdanger("<b>Your [display_name] goes flying off!</b>"),
 		span_warning("You hear a terrible sound of ripping tendons and flesh!"), 3)
@@ -773,7 +773,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.death()
 	return TRUE
 
-/// This is required for head, so it deletes brain for zombies before they start to reviving
+/// This is required for head, so it deletes brain for zombies before they start to revive
 /datum/limb/proc/owner_pre_death()
 	return
 
@@ -1147,7 +1147,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	face_surgery_stage = 0
 
 
-/datum/limb/head/droplimb(amputation, delete_limb = FALSE)
+/datum/limb/head/droplimb(amputation, delete_limb = FALSE, silent = FALSE)
 	. = ..()
 	if(!.)
 		return
