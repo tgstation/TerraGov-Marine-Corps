@@ -418,8 +418,8 @@
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"
 	icon_opened = "jungletarp_open"
-	open_sound = 'sound/effects/vegetation_walk_1.ogg'
-	close_sound = 'sound/effects/vegetation_walk_2.ogg'
+	open_sound = 'sound/effects/natural/vegetation_walk_1.ogg'
+	close_sound = 'sound/effects/natural/vegetation_walk_2.ogg'
 	foldedbag_path = /obj/item/bodybag/tarp
 	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
 	display_name = FALSE

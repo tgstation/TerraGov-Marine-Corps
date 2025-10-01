@@ -2,6 +2,7 @@
 	anchored = TRUE
 	max_integrity = 25
 	coverage = 30
+	hit_sound = 'sound/effects/natural/vegetation_hit.ogg'
 	var/on_fire = FALSE
 	///number of icon variants this object has
 	var/icon_variants = NONE
@@ -38,8 +39,10 @@
 	max_integrity = 500
 	layer = ABOVE_TREE_LAYER
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
-	var/log_amount = 10
 	resistance_flags = XENO_DAMAGEABLE
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
+	///How many logs you get from felling this tree
+	var/log_amount = 10
 
 /obj/structure/flora/tree/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
@@ -541,7 +544,7 @@
 
 	to_chat(L, span_warning("You cut \the [src] away with \the [I]."))
 	L.do_attack_animation(src, used_item = I)
-	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
+	playsound(src, 'sound/effects/natural/vegetation_hit.ogg', 25, 1)
 	qdel(src)
 
 /obj/structure/flora/jungle/vines/Initialize(mapload)

@@ -127,7 +127,7 @@
 
 /obj/structure/bed/chair/wood
 	buildstacktype = /obj/item/stack/sheet/wood
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 
 /obj/structure/bed/chair/wood/normal
 	icon_state = "wooden_chair"
