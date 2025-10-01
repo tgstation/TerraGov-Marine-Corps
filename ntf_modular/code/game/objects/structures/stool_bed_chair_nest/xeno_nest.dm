@@ -3,6 +3,7 @@
 	desc = "It's a gruesome pile of thick, sticky resin-covered tentacles shaped like a nest."
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/targethole = 1
+	var/settings_locked = FALSE
 	COOLDOWN_DECLARE(tentacle_cooldown)
 
 /obj/structure/bed/nest/advanced/Initialize(mapload, _hivenumber)
@@ -25,8 +26,17 @@
 		if(3)
 			targetholename = "pussy"
 	. += span_notice("It is currently set to use its victim's [targetholename].")
-	. += span_notice("Set to: <a href=byond://?src=[REF(src)];sethole=1>\[mouth\]</a> <a href=byond://?src=[REF(src)];sethole=2>\[ass\]</a> <a href=byond://?src=[REF(src)];sethole=3>\[pussy\]</a>")
+	if(settings_locked)
+		if(user.buckled == src)
+			. += span_notice("Set to: <a href=byond://?src=[REF(src)];sethole=1>\[mouth\]</a> <a href=byond://?src=[REF(src)];sethole=2>\[ass\]</a> <a href=byond://?src=[REF(src)];sethole=3>\[pussy\]</a> <a href=byond://?src=[REF(src)];lock=2>\[unlock settings\]</a>")
+		else
+			. += span_notice("The settings are locked. Only the person buckled to it can unlock them.")
+	else
+		. += span_notice("Set to: <a href=byond://?src=[REF(src)];sethole=1>\[mouth\]</a> <a href=byond://?src=[REF(src)];sethole=2>\[ass\]</a> <a href=byond://?src=[REF(src)];sethole=3>\[pussy\]</a> <a href=byond://?src=[REF(src)];lock=1>\[lock settings\]</a>")
 
+/obj/structure/bed/nest/advanced/post_unbuckle_mob(mob/living/buckled_mob)
+	. = ..()
+	settings_locked = FALSE
 
 /obj/structure/bed/nest/advanced/can_interact(mob/user)
 	if(isliving(user))
@@ -42,6 +52,9 @@
 		if(!(src in view(3, usr)))
 			to_chat(usr, span_warning("You aren't close enough to [src] to change the setting!"))
 			return
+		if(settings_locked && (usr.buckled != src))
+			to_chat(usr, span_warning("The settings of [src] are locked! Only the person buckled to it can change them currently."))
+			return
 		switch(href_list["sethole"])
 			if("1")
 				targethole = 1
@@ -54,6 +67,19 @@
 				to_chat(usr, span_notice("You set [src] to use its victim's pussy."))
 			else
 				to_chat(usr, span_warning("Attempted to set [src]'s target hole to an invalid value."))
+	if(href_list["lock"])
+		if(usr.buckled != src)
+			to_chat(usr, span_warning("Only the person buckled to [src] can lock or unlock its settings."))
+			return
+		switch(href_list["lock"])
+			if("1")
+				settings_locked = TRUE
+				to_chat(usr, span_notice("You lock the settings of [src]."))
+			if("2")
+				settings_locked = FALSE
+				to_chat(usr, span_notice("You unlock the settings of [src]."))
+			else
+				to_chat(usr, span_notice("Something went wrong with you attempting to lock or unlock the settings of [src]!"))
 
 /obj/structure/bed/nest/advanced/user_buckle_mob(mob/living/buckling_mob, mob/living/user, check_loc = TRUE, silent, skip)
 	if(skip)
