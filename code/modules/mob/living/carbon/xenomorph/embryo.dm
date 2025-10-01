@@ -274,8 +274,7 @@
 	log_combat(src, null, "was born as a larva.")
 	log_game("[key_name(src)] was born as a larva at [AREACOORD(src)].")
 	if(ismonkey(victim))
-		victim.apply_damage(25, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
-		victim.adjustCloneLoss(25)
+		victim.adjustCloneLoss(50)
 	if(((locate(/obj/structure/bed/nest) in loc) || loc_weeds_type) && !mind)
 		var/suitablesilo = FALSE
 		for(var/obj/silo in GLOB.xeno_resin_silos_by_hive[hivenumber])
