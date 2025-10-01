@@ -51,7 +51,7 @@
 				var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
 				psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
 				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, X, target)
-				psy_points_reward = psy_points_reward * 3
+				psy_points_reward = psy_points_reward * 5
 				SSpoints.add_strategic_psy_points(hivenumber, psy_points_reward)
 				GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards += psy_points_reward
 				GLOB.round_statistics.hive_target_rewards++

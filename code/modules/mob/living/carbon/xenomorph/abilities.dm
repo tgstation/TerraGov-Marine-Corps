@@ -1531,8 +1531,8 @@
 	GLOB.round_statistics.psydrains++
 	if(HAS_TRAIT(victim, TRAIT_HIVE_TARGET))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, X, victim)
-		GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards += 2*psy_points_reward
-		psy_points_reward = psy_points_reward * 3
+		GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards += 4*psy_points_reward
+		psy_points_reward = psy_points_reward * 5
 		GLOB.round_statistics.hive_target_rewards++
 		GLOB.round_statistics.biomass_from_hive_target_rewards += MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD
 		SSpoints.add_biomass_points(X.hivenumber, MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD)
