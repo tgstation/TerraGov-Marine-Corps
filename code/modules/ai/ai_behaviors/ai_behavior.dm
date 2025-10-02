@@ -559,6 +559,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			continue
 		if(candidate.z != mob_parent.z)
 			continue
+		if(candidate == mob_parent)
+			continue
 		return candidate
 
 ///Set the escorted atom.
