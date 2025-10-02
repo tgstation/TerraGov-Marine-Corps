@@ -15,6 +15,8 @@
 
 /datum/action/ability/xeno_action/place_stew_pod/can_use_action(silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)

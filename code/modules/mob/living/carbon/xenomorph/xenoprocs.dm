@@ -675,7 +675,7 @@
 
 /mob/living/carbon/xenomorph/proc/update_xeno_gender(mob/living/carbon/xenomorph/user = src, swapping = FALSE)
 	remove_overlay(GENITAL_LAYER)
-	if(!user)
+	if(QDELETED(user)||QDELETED(src))
 		return
 	var/xgen = user?.client?.prefs?.xenogender
 	if(swapping) //flips to next in selection

@@ -509,6 +509,8 @@
 
 /datum/action/ability/xeno_action/place_acidwell/can_use_action(silent, override_flags, selecting)
 	. = ..()
+	if(!.)
+		return
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
