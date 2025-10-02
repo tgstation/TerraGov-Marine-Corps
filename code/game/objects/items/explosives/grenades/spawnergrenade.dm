@@ -38,6 +38,7 @@
 	name = "delivery grenade"
 	icon_state = "delivery"
 	worn_icon_state = "flashbang"
+	///List of jobs that are spawned by this item
 	var/list/job_list
 
 /obj/item/explosive/grenade/human_spawner/prime()
