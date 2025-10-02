@@ -17,7 +17,7 @@
 
 
 /datum/action/ability/xeno_action/call_of_the_burrowed/action_activate()
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[owner.get_xeno_hivenumber()])
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(!stored_larva)
 		to_chat(xeno_owner, span_warning("Our hive currently has no burrowed to call forth!"))

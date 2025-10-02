@@ -20,14 +20,15 @@
 	 * This is the amount of "free" xeno jobs opened at the start, even before marines job contributes to the total.
 	 * This is a counter to prevent adding more jobs that necessary
 	 */
+	var/hivenumber = XENO_HIVE_NORMAL
 	var/free_xeno_at_start = FREE_XENO_AT_START
 
 /datum/job/xenomorph/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/xenomorph/larva
 
 /datum/job/xenomorph/return_spawn_turf()
-	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
-		return pick(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
+	if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]))
+		return pick(GLOB.xeno_resin_silos_by_hive[hivenumber])
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
 
 /datum/job/xenomorph/get_spawn_message_information(mob/M)
@@ -43,12 +44,15 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 /datum/job/xenomorph/add_job_positions(amount)
 	if(!(SSticker.mode.round_type_flags & MODE_XENO_SPAWN_PROTECT))
 		if(free_xeno_at_start > 0)
-			free_xeno_at_start--
-			return
+			var/amount_to_cancel = max(0,min(free_xeno_at_start, amount))
+			free_xeno_at_start -= amount_to_cancel
+			amount -= amount_to_cancel
+			if(!amount)
+				return
 	. = ..()
 	if(!.)
 		return
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	HS.give_larva_to_next_in_queue()
 
 /datum/job/xenomorph/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
@@ -93,11 +97,62 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>:a</s
 	title = "Corrupted Xenomorph"
 	minimal_access = ALL_MARINE_ACCESS
 	access = ALL_MARINE_ACCESS
+	faction = FACTION_TERRAGOV
+	hivenumber = XENO_HIVE_CORRUPTED
+	free_xeno_at_start = FREE_XENO_AT_START_CORRUPT
 
 /datum/job/xenomorph/green/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/xenomorph/larva/Corrupted
 
 /datum/job/xenomorph/green/return_spawn_turf()
-	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_CORRUPTED]))
-		return pick(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_CORRUPTED])
+	if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]))
+		return pick(GLOB.xeno_resin_silos_by_hive[hivenumber])
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph/green])
+
+/datum/job/xenomorph/alpha
+	title = "Alpha Hive Xenomorph"
+	hivenumber = XENO_HIVE_ALPHA
+	free_xeno_at_start = 0
+
+/datum/job/xenomorph/alpha/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/xenomorph/larva/Alpha
+
+/datum/job/xenomorph/beta
+	title = "Beta Hive Xenomorph"
+	hivenumber = XENO_HIVE_BETA
+	free_xeno_at_start = 0
+
+/datum/job/xenomorph/beta/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/xenomorph/larva/Beta
+
+/datum/job/xenomorph/zeta
+	title = "Zeta Hive Xenomorph"
+	hivenumber = XENO_HIVE_ZETA
+	free_xeno_at_start = 0
+
+/datum/job/xenomorph/zeta/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/xenomorph/larva/Zeta
+
+/datum/job/xenomorph/admeme
+	title = "Admeme Hive Xenomorph"
+	hivenumber = XENO_HIVE_ADMEME
+	free_xeno_at_start = 0
+
+/datum/job/xenomorph/admeme/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/xenomorph/larva/admeme
+
+/datum/job/xenomorph/fallen
+	title = "Fallen Xenomorph"
+	hivenumber = XENO_HIVE_FALLEN
+	free_xeno_at_start = 0
+
+/datum/job/xenomorph/fallen/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/xenomorph/larva/Corrupted/fallen
+
+/datum/job/xenomorph/forsaken
+	title = "Forsaken Xenomorph"
+	hivenumber = XENO_HIVE_FORSAKEN
+	free_xeno_at_start = 0
+
+/datum/job/xenomorph/fallen/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/xenomorph/larva/Forsaken

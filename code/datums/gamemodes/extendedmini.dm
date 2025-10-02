@@ -37,7 +37,7 @@
 		/datum/job/moraleofficer = -1,
 		/datum/job/worker = -1,
 		/datum/job/other/prisoner = 4,
-		/datum/job/xenomorph = 8,
+		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1,
 	)
 	enable_fun_tads = TRUE

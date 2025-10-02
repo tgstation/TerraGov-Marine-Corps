@@ -1053,3 +1053,14 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 #define DRAGON_BREATH_MELTING "Melting"
 #define DRAGON_BREATH_SHATTERING "Shattering"
 #define DRAGON_BREATH_MELTING_ACID "Melting Acid"
+
+GLOBAL_LIST_INIT(hivenumber_to_job_type, list(
+	XENO_HIVE_NORMAL = /datum/job/xenomorph,
+	XENO_HIVE_CORRUPTED = /datum/job/xenomorph/green,
+	XENO_HIVE_ALPHA = /datum/job/xenomorph/alpha,
+	XENO_HIVE_BETA = /datum/job/xenomorph/beta,
+	XENO_HIVE_ZETA = /datum/job/xenomorph/zeta,
+	XENO_HIVE_FORSAKEN = /datum/job/xenomorph/forsaken,
+	XENO_HIVE_FALLEN = /datum/job/xenomorph/fallen,
+	XENO_HIVE_ADMEME = /datum/job/xenomorph/admeme,
+))

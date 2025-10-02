@@ -174,7 +174,7 @@
 		GLOB.round_statistics.hive_target_rewards++
 		GLOB.round_statistics.biomass_from_hive_target_rewards += MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD
 		SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD)
-		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 		xeno_job.add_job_points(1) //can be made a var if need be.
 		hive.update_tier_limits()
 
@@ -191,6 +191,6 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")
 	playsound(src, pick('sound/voice/alien/chestburst.ogg','sound/voice/alien/chestburst2.ogg'), 10)
 	visible_message(span_warning("a larva drops out of [usr]'s cunt and burrows away!"), span_warning("a larva drops out of our cunt and burrows away."), span_warning("You hear a splatter."), 5)
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 	xeno_job.add_job_points(1) //can be made a var if need be.
 	hive.update_tier_limits()

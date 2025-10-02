@@ -1534,7 +1534,7 @@
 	SSpoints.add_tactical_psy_points(X.hivenumber, psy_points_reward*0.25)
 	if(X.hivenumber != XENO_HIVE_NORMAL)
 		return
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[owner.get_xeno_hivenumber()])
 	xeno_job.add_job_points(larva_point_reward)
 	X.hive.update_tier_limits()
 	GLOB.round_statistics.larva_from_psydrain += larva_point_reward / xeno_job.job_points_needed

@@ -7,7 +7,7 @@
 		/datum/job/terragov/squad/corpsman = 1,
 		/datum/job/terragov/squad/standard = 1,
 		/datum/job/other/prisoner = 2,
-		/datum/job/xenomorph = 8,
+		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1,
 		/datum/job/clf/medic = 2,
 		/datum/job/clf/tech = 2,
