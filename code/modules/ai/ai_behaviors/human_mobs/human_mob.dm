@@ -140,6 +140,8 @@
 		return TRUE
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_CLIMBING))
 		return TRUE
+	if(HAS_TRAIT(mob_parent, TRAIT_IS_SHRAP_REMOVING))
+		return TRUE
 	if(mob_parent.pulledby?.faction == mob_parent.faction)
 		return TRUE //lets players wrangle NPC's
 	return FALSE

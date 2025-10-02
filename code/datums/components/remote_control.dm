@@ -15,7 +15,7 @@
 
 /datum/component/remote_control/Initialize(atom/movable/controlled, type, allow_interaction = FALSE)
 	. = ..()
-	if(!ismovableatom(controlled))
+	if(!ismovable(controlled))
 		return COMPONENT_INCOMPATIBLE
 	src.controlled = controlled
 	if(allow_interaction)

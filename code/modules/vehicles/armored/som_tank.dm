@@ -73,8 +73,8 @@
 		if(stop_hover)
 			animate(atom)
 			continue
-		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_y = 3)
-		animate(time = 1.2 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_y = -3)
+		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_z = 3)
+		animate(time = 1.2 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_z = -3)
 
 /obj/vehicle/sealed/armored/multitile/som_tank/add_desant(mob/living/new_desant)
 	. = ..()

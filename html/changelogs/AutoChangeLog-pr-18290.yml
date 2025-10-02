@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed NPC medics sometimes remotely healing or moving mid heal"
+  - code_imp: "Improved NPC medic code"
