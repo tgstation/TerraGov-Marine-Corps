@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "Ammo accuracy variation consolidated into a single var instead of two"

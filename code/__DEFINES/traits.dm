@@ -302,6 +302,8 @@
 #define TRAIT_IS_CLIMBING "is_climbing"
 ///reloading a gun
 #define TRAIT_IS_RELOADING "is_reloading"
+///is removing shrapnel
+#define TRAIT_IS_SHRAP_REMOVING "is_shrap_removing"
 
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"

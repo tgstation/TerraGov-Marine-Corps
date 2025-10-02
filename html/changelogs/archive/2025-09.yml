@@ -178,3 +178,28 @@
   blackdav123:
   - balance: Pyrogen fireball now detonates on the tile it hit an object, rather than
       the object's tile.
+2025-09-29:
+  Lumipharon:
+  - code_imp: Ammo accuracy variation consolidated into a single var instead of two
+  - bugfix: fixed NPC's occasionally having their usable abilities set incorrectly
+  blackdav123:
+  - rscadd: Added Skink and Seraphim's Eye drones to campaign as options for engineer
+      secondaries.
+  - balance: Skink drone can now be shot when clicked on.
+2025-09-30:
+  Neocloudy:
+  - qol: Gibbing no longer sends a chat message for each limb dropped.
+  - qol: Humans won't stop pulling other humans when the pulled human dies.
+  Runian:
+  - rscadd: Setting Autodoc to automatic mode while someone is already inside now
+      begins the automatic surgery process.
+  - bugfix: Autodoc no longer can switch between manual/automatic modes while it is
+      active; prevents automatic mode from benefiting from manual mode speed.
+  - bugfix: Information from examining Autodoc is correctly given to those with medihuds
+      instead of the other way around.
+  Vany3045:
+  - bugfix: fixes SG-60 inhand sprites.
+  - bugfix: fixes typepaths for freelancer armor.
+  - bugfix: PMC SG-25 is now available in valhalla vendor.
+  - bugfix: Fixes replicating MK90M4 pistol magazine in valhalla vendor.
+  - bugfix: fixes missing items for freelancer loadouts.

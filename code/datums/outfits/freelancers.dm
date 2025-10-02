@@ -18,7 +18,7 @@
 //===========================STANDARD================================
 
 /datum/outfit/job/freelancer/standard
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/freelancer
+	wear_suit = /obj/item/clothing/suit/storage/marine/freelancer
 	back = /obj/item/storage/backpack/lightpack/freelancer
 	mask = /obj/item/clothing/mask/bandanna
 	r_pocket = /obj/item/storage/pouch/grenade
@@ -119,7 +119,7 @@
 	mask = /obj/item/clothing/mask/gas/tactical/freelancer
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer/medic
 	belt = /obj/item/storage/belt/lifesaver/quick
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/medic
+	wear_suit = /obj/item/clothing/suit/storage/marine/freelancer/medic
 	glasses = /obj/item/clothing/glasses/hud/health
 	back = /obj/item/storage/backpack/marine/corpsman/freelancer
 	r_pocket = /obj/item/storage/pouch/grenade
@@ -207,7 +207,7 @@
 // ALF-51B CQB-er with disposable rockets
 /datum/outfit/job/freelancer/grenadier/alf
 	belt = /obj/item/storage/belt/marine
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy
+	wear_suit = /obj/item/clothing/suit/storage/marine/freelancer/heavy
 	suit_store = /obj/item/weapon/gun/rifle/alf_machinecarbine/assault
 	r_pocket = /obj/item/storage/pouch/grenade
 
@@ -238,7 +238,7 @@
 // HPR gunner
 /datum/outfit/job/freelancer/grenadier/hpr
 	belt = /obj/item/storage/belt/sparepouch
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy/general
+	wear_suit = /obj/item/clothing/suit/storage/marine/freelancer/heavy/general
 	suit_store = /obj/item/weapon/gun/rifle/m412l1_hpr/freelancer
 	r_pocket = /obj/item/storage/pouch/grenade
 
@@ -270,7 +270,7 @@
 // AR-55 grenadier
 /datum/outfit/job/freelancer/grenadier/tx55
 	belt = /obj/item/storage/belt/marine
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy
+	wear_suit = /obj/item/clothing/suit/storage/marine/freelancer/heavy
 	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer_custom/grenadier
 	r_pocket = /obj/item/storage/pouch/magazine/large
 
@@ -319,7 +319,7 @@
 // RL-160 recoilless rifle
 /datum/outfit/job/freelancer/specialist/rocketeer
 	head = /obj/item/clothing/head/helmet/marine/freelancer/specialist
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy/spec
+	wear_suit = /obj/item/clothing/suit/storage/marine/freelancer/heavy/spec
 	belt = /obj/item/storage/belt/marine
 	suit_store = /obj/item/weapon/gun/smg/standard_smg/freelancer
 	back = /obj/item/storage/holster/backholster/rpg/freelancer/full
@@ -347,8 +347,9 @@
 // flamer with wide nozzle
 /datum/outfit/job/freelancer/specialist/flamer
 	head = /obj/item/clothing/head/helmet/marine/freelancer/specialist/pyro
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/pyro
+	wear_suit = /obj/item/clothing/suit/storage/marine/freelancer/pyro
 	belt = /obj/item/storage/belt/sparepouch
+	suit_store = /obj/item/weapon/gun/smg/standard_smg/freelancer
 	back = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	r_pocket = /obj/item/storage/pouch/magazine/large
 
@@ -376,8 +377,9 @@
 	jobtype = /datum/job/freelancer/leader
 
 	head = /obj/item/clothing/head/helmet/marine/freelancer/beret
+	mask = /obj/item/clothing/mask/bandanna
 	glasses = /obj/item/clothing/glasses/hud/health
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy/valk
+	wear_suit = /obj/item/clothing/suit/storage/marine/freelancer/heavy/valk
 	back = /obj/item/storage/backpack/lightpack/freelancer
 	l_pocket = /obj/item/storage/pouch/medkit/freelancer/leader
 	r_pocket = /obj/item/storage/pouch/magazine/pistol/large
