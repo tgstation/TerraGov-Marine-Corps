@@ -45,23 +45,7 @@
 	if(!spawn_loc)
 		qdel(src)
 		return
-	var/list/mob_list = list()
-	for(var/i = 1 to length(job_list))
-		var/mob/living/carbon/human/new_human = new()
-		mob_list += new_human
-		var/datum/job/new_job = SSjob.GetJobType(job_list[i])
-		var/squad_to_insert_into
-		if(ismarinejob(new_job) || issommarinejob(new_job))
-			squad_to_insert_into = pick(SSjob.active_squads[new_job.faction])
-		new_human.apply_assigned_role_to_spawn(new_job, new_human.client, squad_to_insert_into, TRUE)
-		stoplag()
-	for(var/mob/living/carbon/human/dude AS in mob_list)
-		dude.forceMove(spawn_loc)
-		dude.AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
-		if(istype(dude.wear_ear, /obj/item/radio/headset/mainship)) //due to the lagginess of spawning in mobs, this won't proc at the right time normally
-			var/obj/item/radio/headset/mainship/worn_headset = dude.wear_ear
-			worn_headset.update_minimap_icon()
-
+	spawn_npc_squad(spawn_loc, job_list)
 	qdel(src)
 
 /obj/item/explosive/grenade/human_spawner/marine
