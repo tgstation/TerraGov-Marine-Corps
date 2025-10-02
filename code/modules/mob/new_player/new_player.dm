@@ -564,6 +564,7 @@
 		return
 
 	if(new_mob in GLOB.offered_mob_list)
+		close_spawn_windows()
 		new_mob.take_over(src)
 		return
 
@@ -577,6 +578,7 @@
 		return
 	message_admins(span_adminnotice("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
 	log_admin("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
+	close_spawn_windows()
 	new_mob.transfer_mob(src)
 	var/mob/living/carbon/human/H = new_mob
 	var/datum/job/j = H.job
