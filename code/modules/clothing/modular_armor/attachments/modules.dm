@@ -32,7 +32,7 @@
 	slowdown = 0
 	light_mod = 4 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn", /obj/item/clothing/suit/modular/tdf = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /**
  * Mini autodoc module
@@ -45,7 +45,7 @@
 	worn_icon_state = "mod_autodoc_a"
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/tdf = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -77,10 +77,10 @@
 	desc = "Designed for mounting on modular armor. It shields you from the effects of fire, and prevents you from being set alight by any means. Wearing this in combination with the corresponding helmet module will render you completely impervious to fire. Will definitely impact mobility."
 	icon_state = "mod_fire"
 	worn_icon_state = "mod_fire_a"
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 40, ACID = 0)
+	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 40, ACID = -10)
 	slowdown = 0.4
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn", /obj/item/clothing/suit/modular/tdf/heavy = "mod_fire_tdf")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn", /obj/item/clothing/suit/modular/tdf/heavy = "mod_fire_tdf", /obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /obj/item/armor_module/module/fire_proof/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -98,7 +98,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_fire_head"
 	worn_icon_state = "mod_fire_head_a"
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 40, ACID = 0)
+	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 40, ACID = -10)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mod_fire_head_xn", /obj/item/clothing/head/modular/tdf = "")
 
@@ -107,7 +107,7 @@
 	desc = "Designed for mounting on modular SOM armor. It provides near-immunity to the effects of fire, and prevents you from being set alight by any means. Wearing this in combination with the corresponding helmet module will render you completely impervious to fire. Will not actually provide any resistance against volkite weaponry. Will impact mobility."
 	icon_state = "mod_fire_som"
 	worn_icon_state = "mod_fire_som_a"
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 35, ACID = 0)
+	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 35, ACID = -10)
 
 /**
  * Extra armor module
@@ -195,7 +195,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/tdf = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
 	///siemens coefficient mod for gas protection.
 	var/siemens_coefficient_mod = -0.9
 	///permeability coefficient mod for gas protection.
@@ -259,6 +259,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 40, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
+	variants_by_parent_type = list(/obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /*
 	chemical enhancement module
@@ -902,3 +903,4 @@
 /obj/item/armor_module/module/night_vision/Destroy()
 	QDEL_NULL(attached_goggles)
 	return ..()
+

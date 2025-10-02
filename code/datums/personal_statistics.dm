@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/flags_captured = 0
 	//We are watching
 	var/friendly_fire_damage = 0
+	var/friendly_fire_recieved = 0
 
 	var/projectiles_caught = 0
 	var/projectiles_reflected = 0
@@ -84,6 +85,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/generator_repairs_performed = 0
 	var/miner_repairs_performed = 0
 	var/apcs_repaired = 0
+	var/acid_applied = 0
 
 	var/generator_sabotages_performed = 0
 	var/miner_sabotages_performed = 0
@@ -166,6 +168,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		stats += melee_damage ? "[melee_damage] melee damage dealt!" : "You dealt no melee damage."
 		stats += ""
 	stats += friendly_fire_damage ? "You caused [friendly_fire_damage] damage to allies...<br>" : "You avoided committing acts of friendly fire!<br>"
+	stats += friendly_fire_recieved ? "You recieved [friendly_fire_recieved] damage from allies...<br>" : "You avoided receiving friendly fire!<br>"
 
 	if(projectiles_caught)
 		stats += "[projectiles_caught] projectile\s caught by psychic shield."
@@ -270,6 +273,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Gave birth to [huggers_created] hugger\s."
 	if(impregnations)
 		support_stats += "Impregnated [impregnations] host\s."
+	if(acid_applied)
+		support_stats += "Applied acid to [acid_applied] object\s."
 
 	if(LAZYLEN(support_stats))
 		stats += "<hr>"
@@ -359,7 +364,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_traps_created * 4
 	credit_bonus += mission_grenades_primed * 2
 	credit_bonus += mission_heals * 1
-	credit_bonus += integrity_repaired * 0.1
+	credit_bonus += mission_integrity_repaired * 0.1
 
 	return max(floor(credit_bonus), 0)
 
@@ -418,8 +423,11 @@ The alternative is scattering them everywhere under their respective objects whi
 	personal_statistics.projectile_damage += damage
 	personal_statistics.mission_projectile_damage += damage
 
+	var/datum/personal_statistics/victim_personal_statistics = GLOB.personal_statistics_list[victim.ckey]
+
 	if(faction == victim.faction) //See if any friendly fire was made
 		personal_statistics.friendly_fire_damage += damage	//FF multiplier already included by the way
+		victim_personal_statistics?.friendly_fire_recieved += damage
 		personal_statistics.mission_friendly_fire_damage += damage
 	return TRUE
 

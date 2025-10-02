@@ -29,7 +29,7 @@
 	deevolves_to = /datum/xeno_caste/carrier
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
@@ -66,6 +66,12 @@
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_ozelomelyn,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/panic_gas,
+		/datum/mutation_upgrade/spur/envenomed,
+		/datum/mutation_upgrade/veil/wide_gas
 	)
 
 	// *** Pheromones *** //

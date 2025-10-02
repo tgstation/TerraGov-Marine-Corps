@@ -20,6 +20,7 @@
 		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
 		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
 		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary,
 	)
 	///current tracked target for fire(), updated when user drags
 	var/atom/current_target

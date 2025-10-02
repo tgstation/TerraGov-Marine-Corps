@@ -7,9 +7,9 @@
 GLOBAL_LIST_INIT(designator_images_list, list(
 	INTERACT_DESIGNATOR_MODE = image('icons/mob/actions.dmi', icon_state = "interact_designator"),
 	/obj/structure/barricade/solid = image('icons/obj/structures/barricades/metal.dmi', icon_state = "metal_0"),
-	/obj/structure/barricade/solid/plasteel = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
+	/obj/structure/barricade/solid/plasteel = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
 	/obj/structure/barricade/folding/metal = image('icons/obj/structures/barricades/metal.dmi', icon_state = "folding_metal_0"),
-	/obj/structure/barricade/folding = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
+	/obj/structure/barricade/folding = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "folding_plasteel_0"),
 ))
 
 /datum/action/ability/activable/build_designator
@@ -83,6 +83,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 	new_hologram.glide_size = 32
 	animate(new_hologram, 1 SECONDS, alpha = initial(new_hologram.alpha))
 	new_hologram.setDir(owner.dir)
+
+	RegisterSignal(hologram, COMSIG_QDELETING, PROC_REF(cleanup_hologram))
 	hologram = new_hologram
 
 ///Updates the hologram position and validity
@@ -121,7 +123,8 @@ GLOBAL_LIST_INIT(designator_types, list (
 	return TRUE
 
 ///Removes the hologram
-/datum/action/ability/activable/build_designator/proc/cleanup_hologram()
+/datum/action/ability/activable/build_designator/proc/cleanup_hologram(datum/source)
+	SIGNAL_HANDLER
 	QDEL_NULL(hologram)
 
 //The actual building hologram

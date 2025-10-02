@@ -97,13 +97,18 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DREADFULPRESENCE,
 	)
+	/// Should it give a status effect that deals stamina damage instead? If so, how much stamina damage per second?
+	var/stamina_draining
 
 /datum/action/ability/xeno_action/dreadful_presence/action_activate()
 	var/obj/effect/overlay/dread/effect = new
 	owner.vis_contents += effect
 	for(var/mob/living/carbon/human/human in view(DREAD_RANGE, owner.loc))
 		to_chat(human, span_userdanger("An overwhelming sense of dread washes over you... You are temporarily slowed down!"))
-		human.set_timed_status_effect(6 SECONDS, /datum/status_effect/dread)
+		if(stamina_draining)
+			human.apply_status_effect(STATUS_EFFECT_DRAINING_DREAD, stamina_draining)
+		else
+			human.apply_status_effect(STATUS_EFFECT_DREAD)
 		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream"), rand(1,2))
 	addtimer(CALLBACK(src, PROC_REF(clear_effect), effect), 3 SECONDS)
 	add_cooldown()
@@ -300,9 +305,7 @@
 	for(var/turf/acid_tile AS in RANGE_TURFS(2, our_turf))
 		if(!line_of_sight(our_turf,acid_tile) || isclosedturf(acid_tile))
 			continue
-		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
-		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			new /obj/effect/xenomorph/spray(acid_tile, 12 SECONDS, 18)
+		xenomorph_spray(acid_tile, 12 SECONDS, 18, null, TRUE)
 // ***************************************
 // *********** Articulate
 // ***************************************

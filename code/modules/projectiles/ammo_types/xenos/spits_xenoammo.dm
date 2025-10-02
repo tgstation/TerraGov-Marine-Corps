@@ -16,8 +16,7 @@
 	accuracy = 40
 	accurate_range = 15
 	max_range = 15
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	bullet_color = COLOR_LIME
 	///List of reagents transferred upon spit impact if any
 	var/list/datum/reagent/spit_reagents
@@ -42,8 +41,7 @@
 	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	damage = 40
 	stagger_duration = 1.1 SECONDS
 	slowdown_stacks = 1.5
@@ -240,7 +238,7 @@
 /datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
 	if(T.density)
 		return
-	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
+	xenomorph_spray(T, puddle_duration, puddle_acid_damage)
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
@@ -386,12 +384,20 @@
 		target_carbon.adjust_stagger(stagger_duration)
 		target_carbon.add_slowdown(slowdown_stacks)
 
+/datum/ammo/xeno/acid/airburst/heavy/neurotoxin
+	damage_type = STAMINA
+	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet/smokescreen/neurotoxin
+
 /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
 	max_range = 5
 	damage = 6
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
 	smoke_radius = 1
 	smoke_duration = 4
+
+/datum/ammo/xeno/acid/airburst_bomblet/smokescreen/neurotoxin
+	damage_type = STAMINA
+	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/light
 
 ///For the Sizzler Boiler's primo
 /datum/ammo/xeno/acid/heavy/high_pressure_spit
@@ -453,5 +459,4 @@
 			continue
 		human_victim.throw_at(throwlocation, 6, 1.5, src, TRUE)
 	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", pass_flags_checked = PASS_AIR|PASS_PROJECTILE))
-		new /obj/effect/temp_visual/acid_splatter(acid_tile)
-		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
+		xenomorph_spray(acid_tile, 5 SECONDS, 40, null, TRUE)

@@ -12933,7 +12933,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/tankerbunks)
 "lol" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
+/obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder,
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/hangar)
 "loE" = (
@@ -16701,6 +16701,22 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
+"rfN" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/surgery_hallway)
 "rfQ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/crowbar,
@@ -16824,6 +16840,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "rtt" = (
+/obj/structure/dropship_equipment/electronics/spotlights,
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship/orange{
 	dir = 6
@@ -20788,6 +20805,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "yfa" = (
@@ -55491,7 +55509,7 @@ bjV
 biu
 blP
 bog
-sZN
+rfN
 bKB
 gUG
 pTh

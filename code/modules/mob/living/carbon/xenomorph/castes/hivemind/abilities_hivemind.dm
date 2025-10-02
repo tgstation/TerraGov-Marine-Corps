@@ -9,7 +9,7 @@
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
 	return ..()
 
-/datum/action/ability/activable/xeno/secrete_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/xeno/secrete_resin/hivemind/can_use_action(silent, override_flags, selecting)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
@@ -63,7 +63,7 @@
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind
 	hivemind_heal = TRUE
 
-/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/can_use_action(silent, override_flags, selecting)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
@@ -71,17 +71,17 @@
 /datum/action/ability/activable/xeno/transfer_plasma/hivemind
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
 
-/datum/action/ability/activable/xeno/transfer_plasma/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/xeno/transfer_plasma/hivemind/can_use_action(silent, override_flags, selecting)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
 
-/datum/action/ability/xeno_action/pheromones/hivemind/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/pheromones/hivemind/can_use_action(silent, override_flags, selecting)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
 
-/datum/action/ability/xeno_action/watch_xeno/hivemind/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/watch_xeno/hivemind/can_use_action(silent, override_flags, selecting)
 	if(TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return FALSE
 	return ..()
@@ -144,7 +144,7 @@
 	/// If we're waiting on player input. Used to prevent switching artillery mid-input.
 	var/waiting_on_player_input = FALSE
 
-/datum/action/ability/activable/xeno/shoot_xeno_artillery/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/shoot_xeno_artillery/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

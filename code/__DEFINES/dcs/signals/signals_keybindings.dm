@@ -106,6 +106,7 @@
 //Item toggle keybinds
 #define COMSIG_ITEM_TOGGLE_JETPACK "item_toggle_jetpack"
 #define COMSIG_ITEM_TOGGLE_BLINKDRIVE "item_toggle_blinkdrive"
+#define COMSIG_ITEM_TOGGLE_STRAP "item_toggle_strap"
 
 //Weapon related ability keybinds
 #define COMSIG_WEAPONABILITY_AXESWEEP "weaponability_axesweep"
@@ -140,6 +141,7 @@
 #define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
 #define COMSIG_MECHABILITY_CLOAK "mechability_cloak"
 #define COMSIG_MECHABILITY_OVERBOOST "mechability_overboost"
+#define COMSIG_MECHABILITY_PULSE_ARMOR "mechability_pulse_armor"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
 
@@ -268,6 +270,7 @@
 #define COMSIG_XENOABILITY_XENO_LEADERS "xenoability_xeno_leaders"
 #define COMSIG_XENOABILITY_QUEEN_HEAL "xenoability_queen_heal"
 #define COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA "xenoability_queen_give_plasma"
+#define COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_QUICKCAST  "xenoability_queen_give_plasma_quickcast"
 #define COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE "xenoability_queen_hive_message"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 #define COMSIG_XENOABILITY_QUEEN_BULWARK "xenoability_queen_bulwark"

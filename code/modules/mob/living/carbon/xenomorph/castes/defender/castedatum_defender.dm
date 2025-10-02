@@ -28,7 +28,7 @@
 	upgrade_threshold = TIER_ONE_THRESHOLD
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
@@ -51,6 +51,18 @@
 		/datum/action/ability/activable/xeno/charge/forward_charge,
 		/datum/action/ability/xeno_action/tail_sweep,
 		/datum/action/ability/xeno_action/regenerate_skin,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/brittle_upclose,
+		/datum/mutation_upgrade/shell/carapace_waxing,
+		/datum/mutation_upgrade/shell/carapace_regrowth,
+		/datum/mutation_upgrade/spur/breathtaking_spin,
+		/datum/mutation_upgrade/spur/sharpening_claws,
+		/datum/mutation_upgrade/spur/power_spin,
+		/datum/mutation_upgrade/veil/carapace_sweat,
+		/datum/mutation_upgrade/veil/carapace_sharing,
+		/datum/mutation_upgrade/veil/slow_and_steady
 	)
 
 /datum/xeno_caste/defender/ancient

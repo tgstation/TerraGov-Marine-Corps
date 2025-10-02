@@ -106,7 +106,7 @@
 /datum/maw_ammo/smoke/acid_small/on_impact(turf/target)
 	. = ..()
 	for(var/turf/newspray in view(smokeradius*0.5, target))
-		new /obj/effect/xenomorph/spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+		xenomorph_spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 
 /datum/maw_ammo/hugger
 	name = "ball of huggers"
@@ -167,7 +167,7 @@
 /datum/maw_ammo/minion
 	name = "ball of minions"
 	radial_icon_state = "minion"
-	cooldown_time = 5 MINUTES
+	cooldown_time = 10 MINUTES
 	impact_time = 12 SECONDS
 	/// range_turfs that minions will be dropped around the target
 	var/drop_range = 7

@@ -326,7 +326,6 @@
 	travelling_time = 1 SECONDS
 	ammo_count = 100
 	max_ammo_count = 100
-	ammo_used_per_firing = 40
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/laser_beam_gun
 	ammo_name = "charge"
 	transferable_ammo = TRUE
@@ -620,7 +619,7 @@
 	name = "Tanglefoot mini rocket stack"
 	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas. Moving this will require some sort of lifter."
 	icon_state = "minirocket_tfoot"
-	point_cost = 200
+	point_cost = 400
 	devastating_explosion_range = 0
 	travelling_time = 4 SECONDS
 	heavy_explosion_range = 0

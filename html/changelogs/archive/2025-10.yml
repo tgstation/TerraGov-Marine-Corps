@@ -1,0 +1,7 @@
+2025-10-01:
+  Lumipharon:
+  - bugfix: fixedsome minor visual issues with barricades
+  - bugfix: fixed offsets and layering when first buckling to vehicles
+  - qol: NPC's are less likely to get stuck on obstacles in certain circumstances
+  - bugfix: fixed SH-410 projectiles being invisible
+  - bugfix: fixed SH-410 bouncy ammo bouncing without any limit
