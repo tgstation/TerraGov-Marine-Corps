@@ -166,8 +166,8 @@ GLOBAL_VAR(restart_counter)
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
 		var/realtime = world.realtime
-		if(world.byond_build > 1667)
-			realtime = world.timeofday // byond bug puts world.realtime in 2051. world.timeofday seems to be a good enough alternative
+		if(world.byond_build > 1667  && world.byond_build < 1670)
+			realtime = world.timeofday // workaround for byond bug ID:2981407
 		var/texttime = time2text(realtime, "YYYY/MM/DD", TIMEZONE_UTC)
 		GLOB.log_directory = "data/logs/[texttime]/round-"
 		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD", TIMEZONE_UTC)]_"
