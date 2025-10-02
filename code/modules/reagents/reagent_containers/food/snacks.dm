@@ -84,6 +84,7 @@
 				balloon_alert(user, "you can't eat food!")
 				return
 			if(fullness <= NUTRITION_OVERFED)
+				user.balloon_alert_to_viewers("trying to feed [carbon_mob]...")
 				to_chat(carbon_mob, span_userdanger("[user] tries to feed you \the [src]."))
 			else
 				carbon_mob.balloon_alert(user, "[carbon_mob.p_theyre()] full!")
@@ -96,6 +97,7 @@
 
 			log_combat(user, carbon_mob, "fed", src, "Reagents: [rgt_list_text]")
 
+			user.balloon_alert_to_viewers("forces [carbon_mob] to eat")
 			to_chat(carbon_mob, span_userdanger("[user] forces you to eat \the [src]."))
 
 
