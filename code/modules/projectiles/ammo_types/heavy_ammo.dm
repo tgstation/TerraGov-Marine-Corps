@@ -23,8 +23,7 @@
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	accurate_range = 5
 	damage = 25
 	penetration = 15
@@ -66,8 +65,7 @@
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	accurate_range_min = 6
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	damage = 30
 	penetration = 50
 	sundering = 1
@@ -168,6 +166,7 @@
 	damage = 150
 	penetration = 100
 	sundering = 0
+	accuracy = -10
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 

@@ -32,7 +32,7 @@
 	deevolves_to = /datum/xeno_caste/defender
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
@@ -51,6 +51,12 @@
 		/datum/action/ability/activable/xeno/warrior/fling,
 		/datum/action/ability/activable/xeno/warrior/grapple_toss,
 		/datum/action/ability/activable/xeno/warrior/punch,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/zoomies,
+		/datum/mutation_upgrade/spur/enhanced_strength,
+		/datum/mutation_upgrade/veil/friendly_toss
 	)
 
 /datum/xeno_caste/warrior/normal

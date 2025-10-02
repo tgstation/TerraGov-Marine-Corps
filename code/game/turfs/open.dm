@@ -11,7 +11,7 @@
 	var/barefootstep = FOOTSTEP_HARD
 	var/mediumxenofootstep = FOOTSTEP_HARD
 	var/heavyxenofootstep = FOOTSTEP_GENERIC_HEAVY
-	smoothing_groups = list(SMOOTH_GROUP_OPEN_FLOOR)
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN)
 
 /turf/open/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs) //todo refactor this entire proc is garbage
 	if(iscarbon(arrived))

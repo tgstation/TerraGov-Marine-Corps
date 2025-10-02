@@ -81,7 +81,7 @@
 
 /obj/item/tool/pickaxe/plasmacutter
 	name = "plasma cutter"
-	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
+	desc = "A self-charging tool that uses superheated plasma to cut through anything with ease. You could use it to slice off limbs! Or, you know, cut apart walls or mine through stone. Eye protection is strongly recommended."
 	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "plasma_cutter_off"
 	worn_icon_state = "plasmacutter"

@@ -271,7 +271,7 @@
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 
-	if(do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER)) //Channeled heal on help intent
+	if(do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, target, BUSY_ICON_DANGER)) //Channeled heal on help intent
 		var/skill_heal_amt = user.skills.getRating(SKILL_MEDICAL) * 5
 		target.heal_overall_damage(10 + skill_heal_amt, 0, updating_health = TRUE) //5u of Bica will normally heal 25 damage. Medics get this full amount
 	else

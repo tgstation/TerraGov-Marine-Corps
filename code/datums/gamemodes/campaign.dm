@@ -406,8 +406,8 @@
 				qdel(candidate)
 			else if(ishuman(candidate))
 				human_current = candidate
-
-			human_current?.set_undefibbable(TRUE)
+			if(human_current)
+				human_current.set_undefibbable(TRUE)
 
 
 ///Actually respawns the player, if still able

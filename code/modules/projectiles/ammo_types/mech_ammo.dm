@@ -34,7 +34,7 @@
 	max_range = 30
 	sundering = 15
 
-/datum/ammo/rocket/mech/light/drop_nade(turf/T)
+/datum/ammo/rocket/mech/drop_nade(turf/T)
 	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
 
 /datum/ammo/rocket/mech/heavy
@@ -109,8 +109,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mech/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 5
-	accuracy_var_low = 10
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 10
 	sundering = 5
 	penetration = 15

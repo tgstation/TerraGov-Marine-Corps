@@ -1,6 +1,0 @@
-author: "SomrNetwork"
-delete-after: True
-changes:
-  - rscadd: "remastered the Vyacheslav Security Detail"
-  - balance: "rebalanced VSD a tad bit"
-  - imageadd: "new sprites for the VSD, spanning from weapons to armor"

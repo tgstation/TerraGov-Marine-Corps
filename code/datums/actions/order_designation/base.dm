@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 	var/designator_mode = INTERACT_DESIGNATOR_MODE
 
 /datum/action/ability/activable/build_designator/Destroy()
-	QDEL_NULL(hologram)
+	cleanup_hologram()
 	selected_mob = null
 	return ..()
 
@@ -32,7 +32,7 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 		return
 	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
 
-/datum/action/ability/activable/build_designator/can_use_action()
+/datum/action/ability/activable/build_designator/can_use_action(silent, override_flags, selecting)
 	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
 
 /datum/action/ability/activable/build_designator/on_selection()

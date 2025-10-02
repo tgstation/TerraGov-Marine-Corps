@@ -69,6 +69,7 @@
 /datum/component/riding/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(vehicle_turned))
+	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, PROC_REF(vehicle_mob_buckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
 	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, PROC_REF(vehicle_bump))
@@ -83,6 +84,12 @@
  */
 /datum/component/riding/proc/handle_specials()
 	return
+
+/// This proc is called when a rider buckles
+/datum/component/riding/proc/vehicle_mob_buckle(datum/source, mob/living/rider)
+	SIGNAL_HANDLER
+	var/atom/movable/movable_parent = parent
+	handle_vehicle_offsets(movable_parent.dir)
 
 /// This proc is called when a rider unbuckles, whether they chose to or not. If there's no more riders, this will be the riding component's death knell.
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/rider, force = FALSE)

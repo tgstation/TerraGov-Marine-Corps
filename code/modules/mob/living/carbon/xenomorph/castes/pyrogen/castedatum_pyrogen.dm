@@ -24,7 +24,7 @@
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 380
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_THRESHOLD
@@ -32,7 +32,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_FIRE_IMMUNE
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_FIRE_IMMUNE|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
@@ -51,6 +51,12 @@
 		/datum/action/ability/activable/xeno/fireball,
 		/datum/action/ability/activable/xeno/firestorm,
 		/datum/action/ability/activable/xeno/inferno,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/flame_cloak,
+		/datum/mutation_upgrade/spur/only_fire,
+		/datum/mutation_upgrade/veil/burnt_wounds
 	)
 
 /datum/xeno_caste/pyrogen/normal

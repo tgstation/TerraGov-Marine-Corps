@@ -7,7 +7,7 @@
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
-	max_game_time = 10 MINUTES
+	max_game_time = 9 MINUTES
 	game_timer_delay = 90 SECONDS
 	objectives_total = 9
 	min_destruction_amount = 7

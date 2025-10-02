@@ -77,7 +77,7 @@
 /area/shuttle/minidropship)
 "u" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/obj/machinery/door_control{
+/obj/machinery/door_control/minidropship{
 	dir = 2;
 	id = "minidropship_podlock";
 	name = "inner door-control"

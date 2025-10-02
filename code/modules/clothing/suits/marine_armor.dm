@@ -258,14 +258,14 @@
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
-	armor_features_flags = ARMOR_LAMP_OVERLAY
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc
 	name = "\improper M4 pattern PMC armor"
-	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
+	desc = "A modification of outdated army vest. Even tho it doesn't have an advanced armor layering and protection against unwelcome enviroment, that armor is still produced by Nanotrasen Armory Divison for low ranking members of Nanotrasen PMC and security firms of Outer Rim."
 	icon_state = "pmc_armor"
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 15, FIRE = 35, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
+	armor_features_flags = ARMOR_LAMP_OVERLAY
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -282,27 +282,64 @@
 	)
 	item_map_variant_flags = NONE
 
-/obj/item/clothing/suit/storage/marine/veteran/pmc/leader
-	name = "\improper M4 pattern PMC leader armor"
-	desc = "A modification of the M4 body armor, it is designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
-	icon_state = "officer_armor"
-	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 50, FIRE = 50, ACID = 45)
+/obj/item/clothing/suit/storage/marine/veteran/pmc/standard
+	name = "\improper M4 Legionary pattern PMC armor"
+	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets."
+	icon_state = "pmc_armor_standard"
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 20, FIRE = 45, ACID = 45)
+	armor_features_flags = NONE
 
+/obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge
+	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets. You're no longer a shiny, aren't you?"
+	icon_state = "pmc_armor_standard_sarge"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/standard/joker
+	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets. You're either one of the funniest, or most annoying man in your squad."
+	icon_state = "pmc_armor_standard_joker"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/standard/stripes
+	desc = "Standard issue suit, designed for quick movement. produced by Nanotrasen Armory Division. It's a preffered choice among mercenaries and security assets. You like stripes, don't you?"
+	icon_state = "pmc_armor_standard_stripes"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/leader
+	name = "\improper M6 Princeps pattern PMC armor"
+	desc = "A hardened modification of the M4 armor suit. The pinacle of protection and mobility. This particular set looks like it belongs to a high-ranking officer."
+	icon_state = "officer_armor"
+	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
+	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
-	name = "\improper M4 pattern PMC sniper armor"
+	name = "\improper M4-L Sagittarii pattern PMC armor"
+	desc = "A lightweight modification of M4 armor suit, designed for prolonged sitting in dangerous enviroments, paying for that with reduced combat protection."
 	icon_state = "pmc_sniper"
-	soft_armor = list(MELEE = 55, BULLET = 65, LASER = 55, ENERGY = 60, BOMB = 75, BIO = 10, FIRE = 60, ACID = 60)
+	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 40, BIO = 75, FIRE = 75, ACID = 75)
 	inventory_flags = BLOCKSHARPOBJ
-	inv_hide_flags = HIDELOWHAIR
+	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
-	name = "\improper PMC gunner armor"
-	desc = "A modification of the standard M4 body armor. Hooked up with harnesses and straps allowing the user to carry a smartgun."
+	name = "\improper M7-H Cathaphract pattern PMC exo-armor"
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome."
 	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 80, BIO = 30, FIRE = 65, ACID = 65)
-	item_map_variant_flags = NONE
+	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 30, FIRE = 65, ACID = 65)
+	armor_features_flags = NONE
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/sarge
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're no longer a shiny, aren't you?"
+	icon_state = "pmc_heavyarmor_sarge"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/joker
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're either one of the funniest, or most annoying man in your squad."
+	icon_state = "pmc_heavyarmor_joker"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/stripes
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You like stripes, don't you?"
+	icon_state = "pmc_heavyarmor_stripes"
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/leader
+	name = "\improper M7-H Cathaphract pattern PMC officer exo-armor"
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. This particular set looks like it belongs to a high-ranking officer, with integrated energy shield system."
+	icon_state = "pmc_heavyarmor_officer"
 
 /*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
@@ -314,6 +351,7 @@
 	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
 	starting_attachments = list(/obj/item/armor_module/storage/grenade)
 	resistance_flags = UNACIDABLE
+	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando/Initialize(mapload, ...)
 	. = ..()
@@ -369,6 +407,99 @@
 	icon_state = "commissar_coat"
 	worn_icon_state = "commissar_coat"
 	soft_armor = list(MELEE = 75, BULLET = 60, LASER = 55, ENERGY = 40, BOMB = 45, BIO = 15, FIRE = 40, ACID = 40)
+
+//===========================FREELANCER(MAGNUM)================================
+
+/obj/item/clothing/suit/storage/marine/freelancer
+	name = "\improper M3 pattern freelancer cuirass"
+	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the ICC and the TerraGov."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	worn_icon_list = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
+	icon_state = "freelancer_armor"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 60, BIO = 55, FIRE = 55, ACID = 55)
+	armor_features_flags = ARMOR_LAMP_OVERLAY
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/satchel,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
+		/obj/item/armor_module/armor/badge,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/storage/marine/freelancer/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/storage/marine/freelancer/heavy
+	name = "\improper B12 pattern freelancer cuirass"
+	desc = "A chunk of metal plates scrapped together on the M3 armor for maximum survivability. Not many mercenaries like to wear this, but it showed itself as suprisingly effective instrument in defenses and close quarters fights."
+	icon_state = "freelancer_armor_heavy"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 70, BIO = 65, FIRE = 65, ACID = 65)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/ammo_mag,
+	)
+
+/obj/item/clothing/suit/storage/marine/freelancer/heavy/general
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
+	)
+/obj/item/clothing/suit/storage/marine/freelancer/heavy/valk
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag,
+	)
+
+/obj/item/clothing/suit/storage/marine/freelancer/heavy/spec
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/satchel,
+	)
+/obj/item/clothing/suit/storage/marine/freelancer/pyro
+	name = "\improper B08 pattern freelancer pyro suit"
+	desc = "A repurposed firefighter suit combined with hazmat filters and reinforced with metal plates. All of this allows it's user to safely walk through fire. Though, only a complete psycho would wear this longer than a hour, sometimes desperate situations require desperate measures."
+	icon_state = "freelancer_armor_pyro"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 60, FIRE = 90, ACID = 60)
+	armor_features_flags = list(
+		ARMOR_LAMP_OVERLAY,
+		ARMOR_FIRE_RESISTANT,
+		)
+	starting_attachments = list(
+		/obj/item/armor_module/storage/satchel,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+	)
 
 /*===========================U.S.L================================*/
 
@@ -486,80 +617,6 @@
 /// Modified version of the armor for HvH combat. Stats are based on heavy armor, with tyr mark 2.
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP/hvh
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 65, BOMB = 60, BIO = 60, FIRE = 60, ACID = 70)
-
-//===========================FREELANCER================================
-
-/obj/item/clothing/suit/storage/faction/freelancer
-	name = "\improper freelancer cuirass"
-	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the UPP and the TGMC."
-	icon_state = "freelancer_armor"
-	slowdown = SLOWDOWN_ARMOR_LIGHT
-	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	heat_protection_flags =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 40, BIO = 10, FIRE = 60, ACID = 50)
-	attachments_by_slot = list(
-		ATTACHMENT_SLOT_STORAGE,
-		ATTACHMENT_SLOT_MODULE,
-	)
-	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/storage/general,
-	)
-	starting_attachments = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/storage/general,
-	)
-
-/obj/item/clothing/suit/storage/faction/freelancer/leader
-	attachments_by_slot = list(
-		ATTACHMENT_SLOT_STORAGE,
-		ATTACHMENT_SLOT_MODULE,
-	)
-	attachments_allowed = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/ammo_mag/freelancer,
-	)
-	starting_attachments = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/ammo_mag/freelancer,
-	)
-
-/obj/item/clothing/suit/storage/faction/freelancer/leader/two
-	attachments_allowed = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/ammo_mag/freelancer_two,
-	)
-	starting_attachments = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/ammo_mag/freelancer_two,
-	)
-
-/obj/item/clothing/suit/storage/faction/freelancer/leader/three
-	attachments_allowed = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/ammo_mag/freelancer_three,
-	)
-	starting_attachments = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/ammo_mag/freelancer_three,
-	)
-
-/obj/item/clothing/suit/storage/faction/freelancer/medic
-	attachments_by_slot = list(
-		ATTACHMENT_SLOT_STORAGE,
-		ATTACHMENT_SLOT_MODULE,
-	)
-	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/storage/medical/freelancer,
-	)
-	starting_attachments = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/storage/medical/freelancer,
-	)
-
-
 
 //this one is for CLF
 /obj/item/clothing/suit/storage/faction/militia

@@ -1,5 +1,0 @@
-author: "Zar000"
-delete-after: True
-changes:
-  - bugfix: "Fixed issues with the ruler PR"
-  - imageadd: "Added ruler icon overlay"

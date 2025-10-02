@@ -17,9 +17,9 @@
 	set category = "Alien"
 
 	var/time_since = world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)
-	var/caste_swap_timer = SSticker.mode.caste_swap_timer
-	if(time_since < (caste_swap_timer))
-		to_chat(src, span_warning("Your caste swap timer has [(5 MINUTES - time_since)/10] seconds remaining."))
+	var/caste_swap_duration = SSticker.mode.caste_swap_cooldown
+	if(time_since < (caste_swap_duration))
+		to_chat(src, span_warning("Your caste swap timer has [(caste_swap_duration - time_since)/10] seconds remaining."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)
@@ -32,8 +32,8 @@
 	set category = "Alien"
 
 	var/time_since = world.time - (GLOB.key_to_time_of_strain_swap[key] ? GLOB.key_to_time_of_strain_swap[key] : -INFINITY)
-	if(time_since < (5 MINUTES))
-		to_chat(src, span_warning("Your strain swap timer has [(5 MINUTES - time_since)/10] seconds remaining."))
+	if(time_since < (XENO_STRAIN_SWAP_COOLDOWN))
+		to_chat(src, span_warning("Your strain swap timer has [(XENO_STRAIN_SWAP_COOLDOWN - time_since)/10] seconds remaining."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)
@@ -91,7 +91,7 @@
 			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
 			if(istype(xeno_caste, /datum/xeno_caste/shrike))
-				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king, /datum/xeno_caste/dragon)
+				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king)
 
 
 ///Handles the evolution or devolution of the xenomorph
@@ -309,6 +309,11 @@
 		if(xenojob.required_playtime_remaining(client))
 			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play queen like roles."))
 			return FALSE
+
+	var/population_lock = new_caste.evolve_population_lock
+	if(population_lock > SSticker.mode.roundstart_players)
+		balloon_alert(src, "[population_lock] Initial Players are required to evolve [initial(new_caste.display_name)]")
+		return FALSE
 
 	var/min_xenos = new_caste.evolve_min_xenos
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))

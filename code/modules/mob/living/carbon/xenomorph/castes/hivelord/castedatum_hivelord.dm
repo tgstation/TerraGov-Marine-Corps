@@ -32,7 +32,7 @@
 	deevolves_to = /datum/xeno_caste/drone
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER|CASTE_MUTATIONS_ALLOWED
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 	can_flags = parent_type::can_flags|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
@@ -78,6 +78,18 @@
 		/datum/action/ability/xeno_action/place_recovery_pylon,
 		/datum/action/ability/activable/xeno/recycle,
 		/datum/action/ability/activable/xeno/place_pattern,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/hardened_travel,
+		/datum/mutation_upgrade/shell/costly_travel,
+		/datum/mutation_upgrade/shell/rejuvenating_build,
+		/datum/mutation_upgrade/spur/combustive_jelly,
+		/datum/mutation_upgrade/spur/resin_splash,
+		/datum/mutation_upgrade/spur/hostile_pylon,
+		/datum/mutation_upgrade/veil/protective_light,
+		/datum/mutation_upgrade/veil/forward_light,
+		/datum/mutation_upgrade/veil/weed_specialist
 	)
 
 /datum/xeno_caste/hivelord/normal
