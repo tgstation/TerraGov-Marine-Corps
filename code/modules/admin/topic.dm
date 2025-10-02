@@ -748,14 +748,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the lobby.")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent [key_name_admin(M)] back to the lobby.")
 
-		var/mob/new_player/NP = new()
-		M.client?.screen.Cut()
-		NP.key = M.key
-		if(isobserver(M))
-			qdel(M)
-		else
-			M.ghostize()
-
+		M.ghostize(FALSE, FALSE, TRUE)
 
 	else if(href_list["cryo"])
 		if(!check_rights(R_ADMIN))
@@ -763,6 +756,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/living/L = locate(href_list["cryo"])
 		if(!istype(L))
+			if(isobserver(L))
+				L.ghostize(FALSE, FALSE, TRUE)
 			return
 
 		if(alert("Cryo [key_name(L)]?", "Cryosleep", "Yes", "No") != "Yes")
@@ -771,6 +766,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/client/C = L.client
 		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
 			return
+		else
+			L.ghostize(FALSE, FALSE, TRUE)
 
 		var/old_name = L.real_name
 		L.despawn()
@@ -778,13 +775,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/lobby
 		if(C?.mob?.mind && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")
 			lobby = TRUE
-			var/mob/new_player/NP = new()
-			var/mob/N = C.mob
-			NP.name = C.mob.name
-			C.screen.Cut()
-			C.mob.mind.transfer_to(NP, TRUE)
-			if(isobserver(N))
-				qdel(N)
+			C.mob.ghostize(FALSE, FALSE, TRUE)
 
 		log_admin("[key_name(usr)] has cryo'd [C ? key_name(C) : old_name][lobby ? " sending them to the lobby" : ""].")
 		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [C ? key_name_admin(C) : old_name] [lobby ? " sending them to the lobby" : ""].")

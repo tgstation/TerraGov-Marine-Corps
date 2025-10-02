@@ -239,7 +239,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				break
 
 /mob/proc/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE, force_lobby = FALSE)
-	if(!key || isaghost(src))
+	if(!key)
+		return FALSE
+	if(isobserver(src) && !force_lobby)
 		return FALSE
 	SEND_SIGNAL(SSdcs, COMSIG_MOB_GHOSTIZE, src, can_reenter_corpse)
 
@@ -248,7 +250,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			client?.screen?.Cut()
 		var/mob/new_player/new_player = new /mob/new_player()
 		new_player.key = key
-		if(client)
+		new_player.name = "[key](In Lobby)"
+		if(isobserver(src))
+			qdel(src)
+		if(new_player.client)
 			new_player.client?.init_verbs()
 
 		. = new_player
