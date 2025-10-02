@@ -5,3 +5,6 @@
   - qol: NPC's are less likely to get stuck on obstacles in certain circumstances
   - bugfix: fixed SH-410 projectiles being invisible
   - bugfix: fixed SH-410 bouncy ammo bouncing without any limit
+2025-10-02:
+  00ze-cyclone:
+  - bugfix: fixed laser carbine inhand sprite
