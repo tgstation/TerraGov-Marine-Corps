@@ -148,13 +148,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(command)
 		use_command = !use_command
-		to_chat(user, span_notice("You toggle high-volume mode [use_command ? "on" : "off"]."))
+		balloon_alert(user, "high-volume mode [use_command ? "active" : "inactive"]")
 
 /obj/item/radio/headset/attack_self(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
 		return
 	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
-	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
+	balloon_alert(user, "supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "active" : "inactive"]")
 
 /obj/item/radio/headset/vendor_equip(mob/user)
 	..()
@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
 	add_minimap()
-	to_chat(wearer, span_notice("You toggle the Squad HUD on."))
+	balloon_alert(wearer, "squad HUD active")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(sl_direction)
 		disable_sl_direction()
 	remove_minimap()
-	to_chat(wearer, span_notice("You toggle the Squad HUD off."))
+	balloon_alert(wearer, "squad HUD inactive")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/radio/headset/mainship/proc/add_minimap()
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = TRUE
-	to_chat(wearer, span_notice("You toggle the SL directional display on."))
+	balloon_alert(wearer, "SL finder active")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
@@ -345,7 +345,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = FALSE
-	to_chat(wearer, span_notice("You toggle the SL directional display off."))
+	balloon_alert(wearer, "SL finder inactive")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, TRUE)
 
 

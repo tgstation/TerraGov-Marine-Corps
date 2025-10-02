@@ -137,24 +137,24 @@
 
 		if(sound || get_sound(user))
 			if(HAS_TRAIT(user, TRAIT_MUTE))
-				to_chat(user, span_warning("You find yourself unable to make noise!"))
+				user.balloon_alert(user, "you can't make noise!")
 				return FALSE
 			if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_EMOTE))
-				to_chat(user, span_notice("You just did an audible emote."))
+				user.balloon_alert(user, "used an audible emote too recently!")
 				return FALSE
 			else
 				TIMER_COOLDOWN_START(user, COOLDOWN_EMOTE, 8 SECONDS)
 
 		if(user.client)
 			if(user.client.prefs.muted & MUTE_IC)
-				to_chat(user, span_boldwarning("You cannot send emotes (muted)."))
+				to_chat(user, span_warning("You cannot send emotes (muted)."))
 				return FALSE
 
 			if(user.client.handle_spam_prevention(message, MUTE_IC))
 				return FALSE
 
 			if(is_banned_from(user.ckey, "Emote"))
-				to_chat(user, span_boldwarning("You cannot send emotes (banned)."))
+				to_chat(user, span_warning("You cannot send emotes (banned)."))
 				return FALSE
 
 	if(status_check && !is_type_in_typecache(user, mob_type_ignore_stat_typecache))
@@ -176,7 +176,7 @@
 				if(L.incapacitated())
 					if(!intentional)
 						return FALSE
-					to_chat(user, span_notice("You cannot [key] while stunned."))
+					user.balloon_alert(user, "not while stunned!")
 					return FALSE
 
 		if(emote_flags & EMOTE_ARMS_CHECK)
@@ -185,17 +185,17 @@
 			var/datum/limb/left_hand = snapper.get_limb("l_hand")
 			var/datum/limb/right_hand = snapper.get_limb("r_hand")
 			if((!left_hand.is_usable()) && (!right_hand.is_usable()))
-				to_chat(user, span_notice("You cannot [key] without a working hand."))
+				user.balloon_alert(user, "need a working hand!")
 				return FALSE
 
 		if((emote_flags & EMOTE_RESTRAINT_CHECK) && user.restrained())
 			if(!intentional)
 				return FALSE
-			to_chat(user, span_notice("You cannot [key] while restrained."))
+			user.balloon_alert(user, "not while restrained!")
 			return FALSE
 
 		if(emote_flags & EMOTE_ACTIVE_ITEM)
 			if(!isnull(user.get_active_held_item()))
 				return TRUE
-			to_chat(user, span_notice("You need to hold an item to [key] it."))
+			user.balloon_alert(user, "need to be holding an item!")
 			return FALSE

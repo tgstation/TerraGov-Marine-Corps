@@ -209,7 +209,7 @@
 		to_chat(wearer, span_bold("WARNING: You have [(200 - (vali_necro_timer))/10] seconds before necrotic tissue forms on your limbs."))
 	if(vali_necro_timer > 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /atom/movable/screen/fullscreen/animated/infection, 1)
-		to_chat(wearer, span_userdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
+		to_chat(wearer, span_userdanger("The process of necrosis begins to set in! Turn it off before it's too late!"))
 
 /**
  *	Opens the radial menu with everything
@@ -337,7 +337,7 @@
 		return
 
 	if(wearer.do_actions)
-		wearer.balloon_alert(wearer, "too busy")
+		wearer.balloon_alert(wearer, "busy!")
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()

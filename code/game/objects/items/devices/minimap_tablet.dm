@@ -47,7 +47,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 		user.balloon_alert(user, "can't use that!")
 		return
 	if(is_banned_from(user.client.ckey, GLOB.roles_allowed_minimap_draw))
-		to_chat(user, span_boldwarning("You have been banned from a command role. You may not use [src] until the ban has been lifted."))
+		to_chat(user, span_warning("You have been banned from a command role. You may not use [src] until the ban has been lifted."))
 		return
 	var/atom/movable/screen/minimap/mini = SSminimaps.fetch_minimap_object(editing_z, minimap_flag)
 	if(locate(mini) in user.client.screen)

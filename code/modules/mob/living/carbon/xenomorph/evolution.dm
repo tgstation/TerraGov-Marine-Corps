@@ -303,7 +303,7 @@
 	var/new_caste_flags = new_caste.caste_flags
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
-			balloon_alert(src, "jobbanned!")
+			to_chat(src, span_warning("You are jobbanned from Tier 4 castes."))
 			return FALSE
 		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
 		if(xenojob.required_playtime_remaining(client))

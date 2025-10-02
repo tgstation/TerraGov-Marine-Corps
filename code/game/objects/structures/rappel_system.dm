@@ -235,6 +235,7 @@
 	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
 	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
+	target.balloon_alert_to_viewers("!!!")
 	target.visible_message(span_userdanger("You see a dropship fly overhead and begin dropping ropes!"))
 	balloon_alert_to_viewers("hisses and unlocks!")
 
@@ -267,8 +268,8 @@
 	rappel_state = RAPPEL_STATE_LOCKED
 	update_icon_state()
 	var/turf/target = get_turf(rope)
-	target.balloon_alert_to_viewers("retracted!")
-	balloon_alert_to_viewers("clicks locked as the ropes reel back!")
+	target.balloon_alert_to_viewers("retracted")
+	balloon_alert_to_viewers("clicks locked as the ropes reel back")
 	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
 	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
@@ -286,7 +287,7 @@
 	if(rappel_condition == RAPPEL_CONDITION_HOOKED) //Tadpole is moving with ropes hooked, so the ropes will snap
 		var/turf/target_floor = get_turf(rope)
 		target_floor.balloon_alert_to_viewers("the rope is ripped out from above!")
-		visible_message(span_boldwarning("The rope of \the [src] is ripped out from under the dropship, making a horrible screeching sound!"))
+		balloon_alert_to_viewers("the rope is ripped out from under!")
 		break_rappel()
 		return
 
