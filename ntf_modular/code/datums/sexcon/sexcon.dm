@@ -156,13 +156,13 @@
 	user.heal_overall_damage(rand(15, 30), rand(15, 30), TRUE, TRUE)
 
 	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
-	if(!isrobot(usr))
-		if(usr.gender == MALE)
-			new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
+	if(!isrobot(user))
+		if(user.gender == MALE)
+			new /obj/effect/decal/cleanable/blood/splatter/cum(user.loc)
 		else
-			new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
+			new /obj/effect/decal/cleanable/blood/splatter/girlcum(user.loc)
 	else
-		new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
+		new /obj/effect/decal/cleanable/blood/splatter/robotcum(user.loc)
 	after_ejaculation()
 
 /datum/sex_controller/proc/ejaculate_container(obj/item/reagent_containers/glass/C)
