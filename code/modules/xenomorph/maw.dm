@@ -298,10 +298,7 @@
 
 /obj/structure/xeno/acid_maw/Initialize(mapload, _hivenumber)
 	. = ..()
-	if(hivenumber != XENO_HIVE_CORRUPTED)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, minimap_icon, MINIMAP_LABELS_LAYER))
-	if(hivenumber == XENO_HIVE_CORRUPTED)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, minimap_icon, MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, GLOB.hivenumber_to_minimap_flag[hivenumber], image('icons/UI_icons/map_blips.dmi', null, minimap_icon, MINIMAP_LABELS_LAYER))
 	var/list/parsed_maw_options = list()
 	for(var/datum/maw_ammo/path AS in maw_options)
 		parsed_maw_options[path] = image(icon='icons/mob/radial.dmi', icon_state=path::radial_icon_state)
@@ -352,7 +349,7 @@
 			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")
 		return FALSE
 
-	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
+	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, GLOB.hivenumber_to_minimap_flag[hivenumber])
 	xeno_shooter.client.screen += map
 	var/list/polled_coords = map.get_coords_from_click(xeno_shooter)
 	xeno_shooter?.client?.screen -= map

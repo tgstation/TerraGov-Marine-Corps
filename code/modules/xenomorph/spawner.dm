@@ -45,10 +45,7 @@
 ///Change minimap icon if spawner is under attack or not
 /obj/structure/xeno/spawner/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	if(hivenumber != XENO_HIVE_CORRUPTED)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "spawner[threat_warning ? "_warn" : "_passive"]", MINIMAP_LABELS_LAYER))
-	if(hivenumber == XENO_HIVE_CORRUPTED)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "spawner[threat_warning ? "_warn" : "_passive"]", MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, GLOB.hivenumber_to_minimap_flag[hivenumber], image('icons/UI_icons/map_blips.dmi', null, "spawner[threat_warning ? "_warn" : "_passive"]", MINIMAP_LABELS_LAYER))
 
 /// Transfers the spawned minion to the silo's hivenumber.
 /obj/structure/xeno/spawner/proc/on_spawn(list/newly_spawned_things)

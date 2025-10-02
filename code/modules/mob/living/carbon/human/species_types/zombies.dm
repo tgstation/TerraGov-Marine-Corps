@@ -58,6 +58,9 @@
 	rally_zombie.give_action(H)
 	var/datum/action/set_agressivity/set_zombie_behaviour = new
 	set_zombie_behaviour.give_action(H)
+	var/datum/action/minimap/zombie/mini = new
+	mini.give_action(H)
+	SSminimaps.add_marker(H, MINIMAP_FLAG_ZOMBIE, image('icons/UI_icons/map_blips.dmi', null, "pmc2", MINIMAP_BLIPS_LAYER))
 	H.hivenumber = FACTION_ZOMBIE
 
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/H)

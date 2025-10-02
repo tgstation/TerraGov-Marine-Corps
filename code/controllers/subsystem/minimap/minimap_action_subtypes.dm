@@ -44,6 +44,10 @@
 	minimap_flags = MINIMAP_FLAG_MARINE_CLF|MINIMAP_FLAG_XENO|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = MINIMAP_FLAG_MARINE_CLF
 
+/datum/action/minimap/zombie
+	minimap_flags = MINIMAP_FLAG_ZOMBIE
+	marker_flags = MINIMAP_FLAG_ZOMBIE
+
 /datum/action/minimap/observer
 	minimap_flags = MINIMAP_FLAG_ALL
 	marker_flags = NONE

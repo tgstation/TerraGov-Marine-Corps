@@ -29,10 +29,7 @@ TUNNEL
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
-	if(hivenumber != XENO_HIVE_CORRUPTED)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", MINIMAP_LABELS_LAYER))
-	if(hivenumber == XENO_HIVE_CORRUPTED)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, GLOB.hivenumber_to_minimap_flag[hivenumber], image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", MINIMAP_LABELS_LAYER))
 	var/area/tunnel_area = get_area(src)
 	if(tunnel_area.area_flavor == AREA_FLAVOR_URBAN && !SSticker.HasRoundStarted())
 		icon_state = "manhole_open[rand(1,3)]"
@@ -136,9 +133,7 @@ TUNNEL
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
 	to_chat(M, span_notice("Select a tunnel to go to."))
 
-	var/flag = MINIMAP_FLAG_XENO
-	if(hivenumber == XENO_HIVE_CORRUPTED)
-		flag = MINIMAP_FLAG_MARINE
+	var/flag = GLOB.hivenumber_to_minimap_flag[hivenumber]
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, flag)
 	M.client.screen += map
 	var/list/polled_coords = map.get_coords_from_click(M)

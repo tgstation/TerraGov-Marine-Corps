@@ -105,7 +105,7 @@
 	var/showing_map = FALSE
 
 /datum/action/ability/xeno_action/teleport/action_activate()
-	var/atom/movable/screen/minimap/shown_map = SSminimaps.fetch_minimap_object(owner.z, MINIMAP_FLAG_XENO)
+	var/atom/movable/screen/minimap/shown_map = SSminimaps.fetch_minimap_object(owner.z, GLOB.hivenumber_to_minimap_flag[owner.get_xeno_hivenumber()])
 
 	if(showing_map) // The map is open on their screen, close it
 		owner.client?.screen -= shown_map
