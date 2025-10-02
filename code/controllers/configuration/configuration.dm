@@ -88,6 +88,7 @@
 		LoadEntries("ezdb.txt")
 	loadmaplist(CONFIG_GROUND_MAPS_FILE, GROUND_MAP)
 	loadmaplist(CONFIG_SHIP_MAPS_FILE, SHIP_MAP)
+	loadmaplist(CONFIG_ANTAG_MAPS_FILE, ANTAG_MAP)
 	LoadMOTD()
 	LoadPolicy()
 	LoadChatFilter()

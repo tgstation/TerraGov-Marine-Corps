@@ -239,12 +239,13 @@
 // Ensure the frequency is within bounds of what it should be sending/receiving at
 /proc/sanitize_frequency(frequency, free = FALSE)
 	. = round(frequency)
+	if(!(. % 2)) // Ensure the last digit is an odd number
+		. += 1
 	if(free)
 		. = clamp(frequency, MIN_FREE_FREQ, MAX_FREE_FREQ)
 	else
 		. = clamp(frequency, MIN_FREQ, MAX_FREQ)
-	if(!(. % 2)) // Ensure the last digit is an odd number
-		. += 1
+
 
 
 // Format frequency by moving the decimal.
@@ -1087,7 +1088,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		if(M.client?.holder)
 			if(M.client.holder.fakekey || M.client.holder.invisimined) //stealthmins
 				continue
-		var/name = avoid_assoc_duplicate_keys(M.name, namecounts)
+		var/name = avoid_assoc_duplicate_keys("[M.name || "??SOMETHING??"]", namecounts)
 
 		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"

@@ -173,6 +173,7 @@
 	terminal.setDir(get_dir(T,src))
 	terminal.master = src
 	machine_stat &= ~BROKEN
+	start_processing()
 
 /obj/machinery/power/smes/disconnect_terminal()
 	if(terminal)
@@ -230,7 +231,7 @@
 		to_chat(user, span_notice("You start building the power terminal..."))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 
-		if(!do_after(user, 50, NONE, src, BUSY_ICON_BUILD) || C.get_amount() < 10)
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || C.get_amount() < 10)
 			return
 
 		var/obj/structure/cable/N = T.get_cable_node() //get the connecting node cable, if there's one

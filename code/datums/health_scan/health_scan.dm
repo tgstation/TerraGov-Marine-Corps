@@ -121,7 +121,7 @@
  */
 /datum/health_scan/proc/analyze_vitals(mob/living/carbon/human/patient_candidate, mob/user, show_patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
-		user.balloon_alert("fumbling...")
+		user.balloon_alert(user, "fumbling...")
 		if(!do_after(user, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), NONE, patient_candidate, BUSY_ICON_UNSKILLED))
 			return
 	if(!ishuman(patient_candidate))

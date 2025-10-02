@@ -12,6 +12,10 @@
 	var/safeties_enabled = TRUE	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
 	var/failing = FALSE			// If 1 critical failure has occured and SMES explosion is imminent.
 	resistance_flags = UNACIDABLE|CRUSHER_IMMUNE
+	input_level = 150000
+	input_level_max = 250000
+	output_level = 250000
+	output_level_max = 250000
 
 /obj/machinery/power/smes/buildable/empty
 	charge = 0
@@ -211,7 +215,7 @@
 		playsound(get_turf(src), 'sound/items/crowbar.ogg', 25, 1)
 		to_chat(user, span_warning("You begin to disassemble the [src]!"))
 
-		if(!do_after(user, 10 SECONDS * cur_coils, NONE, src, BUSY_ICON_BUILD)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
+		if(!do_after(user, 10 SECONDS * cur_coils, TRUE, src, BUSY_ICON_BUILD)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
 			return
 
 		if(failure_probability && prob(failure_probability))

@@ -1,3 +1,4 @@
+
 /*
 //================================================
 					Rifle Ammo
@@ -10,15 +11,23 @@
 	hud_state_empty = "rifle_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accurate_range = 12
+	shell_speed = 3.5
 	damage = 25
 	penetration = 5
 	sundering = 0.5
 
+/datum/ammo/bullet/rifle/rubber
+	name = "rifle rubber bullet"
+	damage = 27
+	damage_type = STAMINA
+	shrapnel_chance = 0
+	plasma_drain = 7
+
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
 	hud_state = "rifle_ap"
-	damage = 20
-	penetration = 25
+	damage = 25
+	penetration = 15
 	sundering = 3
 
 /datum/ammo/bullet/rifle/hv
@@ -27,6 +36,13 @@
 	damage = 20
 	penetration = 20
 	sundering = 0.5
+
+/datum/ammo/bullet/rifle/hv/rubber
+	name = "high-velocity rifle rubber bullet"
+	damage = 22
+	damage_type = STAMINA
+	shrapnel_chance = 0
+	plasma_drain = 6
 
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
@@ -41,6 +57,20 @@
 	damage = 25
 	penetration = 30
 	sundering = 4.5
+
+/datum/ammo/bullet/rifle/vsd_mg_main
+	name = "heavy rifle bullet"
+	hud_state = "rifle_heavy"
+	damage = 15
+	penetration = 35
+	sundering = 0.85
+
+/datum/ammo/bullet/rifle/heavy/rubber
+	name = "heavy rifle rubber bullet"
+	damage = 33
+	damage_type = STAMINA
+	shrapnel_chance = 0
+	plasma_drain = 9
 
 /datum/ammo/bullet/rifle/repeater
 	name = "heavy impact rifle bullet"
@@ -76,6 +106,13 @@
 
 /datum/ammo/bullet/rifle/som_machinegun/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 20, slowdown = 0.5)
+
+/datum/ammo/bullet/rifle/vsd_mg
+	name = "machinegun bullet"
+	hud_state = "rifle_heavy"
+	damage = 20
+	penetration = 10
+	sundering = 2.5
 
 /datum/ammo/bullet/rifle/som_big
 	name = "heavy rifle bullet"
@@ -164,6 +201,13 @@
 	penetration = 15
 	sundering = 1.75
 
+/datum/ammo/bullet/rifle/mpi_km/rubber
+	name = "crude heavy rubber rifle bullet"
+	damage = 33
+	damage_type = STAMINA
+	shrapnel_chance = 0
+	plasma_drain = 9
+
 /datum/ammo/bullet/rifle/standard_dmr
 	name = "marksman bullet"
 	hud_state = "hivelo"
@@ -171,6 +215,7 @@
 	damage_falloff = 0.5
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	accurate_range = 25
+	shell_speed = 4
 	max_range = 40
 	damage = 65
 	penetration = 17.5
@@ -190,6 +235,7 @@
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	penetration = 15
+	shell_speed = 4
 	damage = 32.5
 	sundering = 1.25
 
@@ -200,3 +246,21 @@
 	damage = 50
 	penetration = 40
 	sundering = 3.5
+
+/datum/ammo/bullet/rifle/icc_confrontationrifle/rubber
+	name = "rubber heavy rifle bullet"
+	damage = 55
+	damage_type = STAMINA
+	shrapnel_chance = 0
+	plasma_drain = 14
+
+/datum/ammo/bullet/rifle/vsd_rifle
+	name = "heavy battle rifle bullet"
+	hud_state = "rifle_heavy"
+	//unholy offspring between dmr and AR
+	damage_falloff = 0.7
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
+	accurate_range = 20
+	damage = 50
+	penetration = 15
+	sundering = 3

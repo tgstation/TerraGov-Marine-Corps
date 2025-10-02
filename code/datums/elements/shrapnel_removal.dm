@@ -42,7 +42,7 @@
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around with the [removaltool]."),
 		span_notice("You fumble around figuring out how to use [removaltool]."))
-		if(!do_after(user, fumble_duration * (SKILL_MEDICAL_PRACTICED - skill), NONE, target, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumble_duration * (SKILL_MEDICAL_PRACTICED - skill), TRUE, target, BUSY_ICON_UNSKILLED))
 			REMOVE_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(removaltool))
 			return
 	user.visible_message(span_green("[user] starts searching for shrapnel in [target] with the [removaltool]."), span_green("You start searching for shrapnel in [target] with the [removaltool]."))
@@ -80,8 +80,8 @@
 			personal_statistics.mission_shrapnel_removed ++
 		if(skill < SKILL_MEDICAL_PRACTICED)
 			user.visible_message(span_notice("[user] violently rips out [embedded] from [target]!"), span_notice("You violently rip out [embedded] from [target]!"))
-			targetlimb.take_damage_limb(30 * (SKILL_MEDICAL_PRACTICED - skill), 0, FALSE, FALSE)
+			targetlimb.take_damage_limb(15 * (SKILL_MEDICAL_PRACTICED - skill), 0, FALSE, FALSE)
 		else
 			user.visible_message(span_notice("[user] pulls out [embedded] from [target]!"), span_notice("You pull out [embedded] from [target]!"))
-			targetlimb.take_damage_limb(15, 0, FALSE, FALSE)
+			targetlimb.take_damage_limb(8, 0, FALSE, FALSE)
 		break

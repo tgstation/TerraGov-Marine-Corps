@@ -87,7 +87,7 @@
 		to_chat(user, span_notice("Not with a missile inside!"))
 		return
 	to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
-	if(!do_after(user, 10, NONE, src))
+	if(!do_after(user, 10, TRUE, src))
 		return
 	user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
 	var/obj/item/stack/sheet/metal/metal = new(get_turf(user))
@@ -174,7 +174,7 @@
 	reload_delay = 10
 
 /obj/item/ammo_magazine/rocket/recoilless/low_impact
-	name = "\improper 67mm light-explosive shell"
+	name = "\improper 67mm low-impact shell"
 	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area but low impact damage. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
 	icon_state = "shell_le"
 	default_ammo = /datum/ammo/rocket/recoilless/low_impact
@@ -262,6 +262,7 @@
 	desc = "A high explosive warhead for the V-71 rocket launcher. Causes a strong explosion over a respectable area."
 	icon_state = "rpg_he"
 	default_ammo = /datum/ammo/rocket/som
+	max_rounds = 1
 	reload_delay = 2 SECONDS
 	bonus_overlay = "rpg_he"
 
@@ -422,19 +423,20 @@
 // pepperball
 
 /obj/item/ammo_magazine/rifle/pepperball
-	name = "pepperball canister (SAN balls)"
-	desc = "A canister holding a projectile to be used inside a pepperball gun."
+	name = "pepperball magazine (SAN balls)"
+	desc = "A magazine holding a projectile to be used inside a pepperball gun."
 	caliber = CALIBER_PEPPERBALL
 	icon_state = "pepperball"
-	icon = 'icons/obj/items/ammo/misc.dmi'
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
 	default_ammo = /datum/ammo/bullet/pepperball
-	max_rounds = 100
+	max_rounds = 70
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_pepperball"
 
 /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
 	name = "small pepperball canister (SAN balls)"
 	desc = "A small canister for use with the miniature pepperball gun."
+	icon = 'icons/obj/items/ammo/misc.dmi'
 	icon_state = "pepperball_mini"
 	default_ammo = /datum/ammo/bullet/pepperball/pepperball_mini
 	max_rounds = 20
@@ -521,8 +523,8 @@
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state = "at32"
 	default_ammo = /datum/ammo/bullet/auto_cannon
-	max_rounds = 100
-	reload_delay = 10
+	max_rounds = 30
+	reload_delay = 25
 	icon_state_mini = "mag_dmr"
 
 /obj/item/ammo_magazine/rifle/vsd_autocannon/explosive
@@ -531,8 +533,8 @@
 	caliber = CALIBER_20
 	icon_state = "at32_he"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak
-	max_rounds = 100
-	reload_delay = 10
+	max_rounds = 30
+	reload_delay = 25
 	icon_state_mini = "mag_dmr"
 
 /obj/item/ammo_magazine/rifle/vsd_autocannon/at
@@ -542,5 +544,5 @@
 	icon_state = "at32_at"
 	default_ammo = /datum/ammo/bullet/auto_cannon/anti_tank
 	max_rounds = 30
-	reload_delay = 10
+	reload_delay = 25
 	icon_state_mini = "mag_dmr"

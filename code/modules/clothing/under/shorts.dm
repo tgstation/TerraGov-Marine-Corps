@@ -3,6 +3,7 @@
 	desc = "95% Polyester, 5% Spandex!"
 	gender = PLURAL
 	armor_protection_flags = GROIN
+	shows_top_genital = TRUE
 
 /obj/item/clothing/under/shorts/red
 	name = "red athletic shorts"

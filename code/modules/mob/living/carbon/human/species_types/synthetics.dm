@@ -4,9 +4,9 @@
 	unarmed_type = /datum/unarmed_attack/punch
 	limb_type = SPECIES_LIMB_HUMAN
 
-	total_health = 125 //more health than regular humans
+	total_health = 150 //more health than regular humans
 
-	brute_mod = 0.7
+	//brute_mod = 0.7
 	burn_mod = 0.8 // A slight amount of burn resistance. Changed from 0.7 due to their critical condition phase
 
 	cold_level_1 = -1
@@ -19,7 +19,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
+	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD|HAS_LIPS|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 
@@ -75,8 +75,8 @@
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	slowdown = 1.15 //Slower than Late Synths
-	total_health = 200 //Tough boys, very tough boys
-	brute_mod = 0.6
+	total_health = 225 //Tough boys, very tough boys
+	//brute_mod = 0.6
 	burn_mod = 0.6
 
 	cold_level_1 = -1
@@ -89,7 +89,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
+	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
@@ -116,7 +116,6 @@
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
 	H.health_threshold_crit = -100 // They overheat below SYNTHETIC_CRIT_THRESHOLD
-
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
 	. = ..()

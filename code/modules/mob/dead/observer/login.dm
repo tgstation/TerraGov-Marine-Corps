@@ -17,10 +17,11 @@
 		H = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		H.add_hud_to(src)
 	if(ghost_squadhud)
-		H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
-		H.add_hud_to(src)
-		H = GLOB.huds[DATA_HUD_SQUAD_SOM]
-		H.add_hud_to(src)
+		for(var/faction in GLOB.faction_to_data_hud)
+			H = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+			H.add_hud_to(src)
+		H = GLOB.huds[MACHINE_HEALTH_HUD]
+		H?.add_hud_to(src)
 	if(ghost_xenohud)
 		H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(src)

@@ -1,0 +1,10 @@
+{
+	"": [
+		{
+			"type": "icon_state",
+			"icon_state": "edible_biomass_mono",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	]
+}

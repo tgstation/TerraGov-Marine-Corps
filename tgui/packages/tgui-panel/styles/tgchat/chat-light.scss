@@ -437,7 +437,12 @@ h2.alert {
 .supradio {
   color: hsl(34.6, 59.2%, 41.4%);
 }
-
+.secradio {
+  color: hsl(0, 100%, 32%);
+}
+.civradio {
+  color: hsl(74, 73.9%, 30%);
+}
 .alpharadio {
   color: hsl(0, 100%, 45.9%);
 }
@@ -530,6 +535,8 @@ h2.alert {
   color: hsl(240, 100%, 30%);
   font-size: 85%;
 }
+
+.psychicout,
 .xenonotice {
   color: hsl(140.4, 40%, 27.5%);
 }
@@ -567,6 +574,7 @@ h2.alert {
   color: purple;
 }
 
+.psychicin,
 .alien {
   color: hsl(300, 24.4%, 26.5%);
 }
@@ -1062,4 +1070,34 @@ $alert-subheader-header-colors: (
       $space: hsl
     );
   }
+  /// NTF EDIT START
+
+  .hypnophrase {
+    color: #0d0d0d;
+    font-weight: bold;
+    animation: hypnocolor 1500ms infinite;
+    animation-direction: alternate;
+  }
+  @keyframes hypnocolor {
+    0% {
+      color: #0d0d0d;
+    }
+
+    25% {
+      color: #410194;
+    }
+
+    50% {
+      color: #7f17d8;
+    }
+
+    75% {
+      color: #410194;
+    }
+
+    100% {
+      color: #3bb5d3;
+    }
+  }
+  /// NTF EDIT END
 }
