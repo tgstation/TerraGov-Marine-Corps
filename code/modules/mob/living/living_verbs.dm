@@ -83,7 +83,9 @@
 		return
 	// Gamemode disallowed handler - END
 
-	if(stat == DEAD || isxenohivemind(src))
+	if(stat == DEAD || isxenohivemind(src) || iszombie(src))
+		log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 		ghostize(TRUE)
 	else
 		to_chat(usr, "Not dead yet.")
