@@ -105,7 +105,7 @@
 		span_warning("You plant [name] on [target]! Timer counting down from [timer]."))
 
 		plant_target = target
-		if(ismovableatom(plant_target))
+		if(ismovable(plant_target))
 			var/atom/movable/mover = plant_target
 			mover.vis_contents += src
 			layer = ABOVE_ALL_MOB_LAYER
@@ -120,7 +120,7 @@
 		if(!do_after(user, 2 SECONDS, NONE, plant_target, BUSY_ICON_HOSTILE))
 			return
 
-		if(ismovableatom(plant_target))
+		if(ismovable(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents -= src
 			layer = initial(layer)

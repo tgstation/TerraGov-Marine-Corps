@@ -240,7 +240,7 @@ SUBSYSTEM_DEF(minimaps)
 		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
 			if(target_turf.z == updator.ztarget)
 				updator.raw_blips += blip
-	if(ismovableatom(target))
+	if(ismovable(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
@@ -597,7 +597,7 @@ SUBSYSTEM_DEF(minimaps)
 		force_state = !minimap_displayed
 	if(force_state == minimap_displayed)
 		return FALSE
-	if(!locator_override && ismovableatom(owner.loc))
+	if(!locator_override && ismovable(owner.loc))
 		override_locator(owner.loc)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
 	if(force_state)

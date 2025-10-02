@@ -133,7 +133,7 @@
 	disarm()
 
 /obj/item/detpack/proc/nullvars()
-	if(ismovableatom(plant_target) && plant_target.loc)
+	if(ismovable(plant_target) && plant_target.loc)
 		var/atom/movable/T = plant_target
 		if(T.drag_delay == 3)
 			T.drag_delay = target_drag_delay //reset the drag delay of whatever we attached the detpack to
@@ -305,7 +305,7 @@
 		balloon_alert(user, "Timer set for [timer] seconds")
 
 		plant_target = target
-		if(ismovableatom(plant_target))
+		if(ismovable(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
 			if(T.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics

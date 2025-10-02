@@ -20,7 +20,7 @@
 	if(_anchor && !_anchor_time || !_anchor && _anchor_time)
 		stack_trace("The beacon component has been added to [parent.type] and is missing either the anchor var or the time to anchor")
 		return COMPONENT_INCOMPATIBLE
-	if(!ismovableatom(parent)) //if some goober admin tries to add it to a turf or something
+	if(!ismovable(parent)) //if some goober admin tries to add it to a turf or something
 		return COMPONENT_INCOMPATIBLE
 	anchor = _anchor
 	anchor_time = _anchor_time
