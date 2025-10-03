@@ -73,7 +73,7 @@
 /obj/item/weapon/powerfist/examine(user)
 	. = ..()
 	var/powerused = setting * 20
-	. += "It's power setting is set to [setting]."
+	. += "Its power setting is set to [setting]."
 	if(cell)
 		. += "It has [round(cell.charge/powerused, 1)] level [setting] punches remaining."
 	else
@@ -85,7 +85,7 @@
 		setting = 1
 	else
 		setting += 1
-	balloon_alert(user, "Power level [setting].")
+	balloon_alert(user, "level [setting]")
 
 /obj/item/weapon/powerfist/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!cell)
@@ -138,24 +138,24 @@
 	user.transferItemToLoc(I,src)
 	cell = I
 	update_icon()
-	user.balloon_alert(user, "Cell inserted")
+	user.balloon_alert(user, "cell inserted")
 
 /obj/item/weapon/powerfist/attack_hand(mob/living/user)
 	if(!(user.get_inactive_held_item() == src))
 		return ..()
 	if(!cell)
-		user.balloon_alert(user, "No cell")
+		user.balloon_alert(user, "no cell!")
 		return
 	unload(user)
-	user.balloon_alert(user, "Cell removed")
+	user.balloon_alert(user, "cell removed")
 	return
 
 /obj/item/weapon/powerfist/attack_hand_alternate(mob/living/user)
 	if(!cell)
-		user.balloon_alert(user, "No cell")
+		user.balloon_alert(user, "no cell!")
 		return
 	unload(user)
-	user.balloon_alert(user, "Cell removed")
+	user.balloon_alert(user, "cell removed")
 	return
 
 /// Remove the cell from the powerfist

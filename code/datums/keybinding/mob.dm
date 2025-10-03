@@ -250,7 +250,7 @@
 	if (.)
 		return
 	user.mob.do_self_harm = !user.mob.do_self_harm
-	user.mob.balloon_alert(user.mob, "You can [user.mob.do_self_harm ? "now" : "no longer"] hit yourself")
+	user.mob.balloon_alert(user.mob, "self-harm [user.mob.do_self_harm ? "active" : "inactive"]")
 
 /datum/keybinding/mob/interactive_emote
 	name = "interactive_emote"
@@ -312,4 +312,4 @@
 	if(.)
 		return
 	user.prefs.toggles_gameplay ^= TOGGLE_CLICKDRAG
-	user.mob.balloon_alert(user.mob, "You can [user.prefs.toggles_gameplay & TOGGLE_CLICKDRAG ? "no longer" : "now"] click-drag")
+	user.mob.balloon_alert(user.mob, "click-drag [user.prefs.toggles_gameplay & TOGGLE_CLICKDRAG ? "inactive" : "active"]")

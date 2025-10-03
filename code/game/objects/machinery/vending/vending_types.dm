@@ -573,7 +573,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 		var/obj/item/storage/box/visual/magazine/ammo_box = I
 		for(var/mag in ammo_box.contents)
 			stock(mag, user, FALSE)
-		user?.balloon_alert(user, "The NanoAmmo organizes the contents of the [ammo_box.name].");
+		user?.balloon_alert(user, "contents organized")
 		return
 
 	else if(istype(I, /obj/item/shotgunbox))
@@ -585,7 +585,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 					if(!stock(shotgun_shell_box, user, show_feedback = FALSE))
 						break
 					big_shotgun_box.current_rounds -= shotgun_shell_box.max_rounds
-				user?.balloon_alert(user, "The NanoAmmo organizes the [big_shotgun_box.ammo_type.name]s.");
+				user?.balloon_alert(user, "shells organized")
 				return
 
 	return ..()

@@ -209,6 +209,7 @@
 	max_rounds = 20
 
 /obj/item/ammo_magazine/pistol/mk90/extended
+	name = "\improper MK90M4 extended AP magazine (9mm)"
 	icon_state = "90m4_extended"
 	max_rounds = 35
 //-------------------------------------------------------

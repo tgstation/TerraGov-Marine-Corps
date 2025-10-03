@@ -1,0 +1,17 @@
+2025-10-01:
+  Lumipharon:
+  - bugfix: fixedsome minor visual issues with barricades
+  - bugfix: fixed offsets and layering when first buckling to vehicles
+  - qol: NPC's are less likely to get stuck on obstacles in certain circumstances
+  - bugfix: fixed SH-410 projectiles being invisible
+  - bugfix: fixed SH-410 bouncy ammo bouncing without any limit
+2025-10-02:
+  00ze-cyclone:
+  - bugfix: fixed laser carbine inhand sprite
+2025-10-03:
+  Lumipharon:
+  - bugfix: fixed a minor visual issue with hover vehicle hover animations
+  - bugfix: fixed NPC medics sometimes remotely healing or moving mid heal
+  - code_imp: Improved NPC medic code
+  Xander3359:
+  - code_imp: remove ismovableatom
