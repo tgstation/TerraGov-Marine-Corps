@@ -13,6 +13,8 @@
 	ghostize()
 	clear_fullscreens()
 	if(mind)
+		if(src == mind.current)
+			mind.current = null
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
