@@ -414,24 +414,24 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!ishuman(A))
 		if(!silent)
-			A.balloon_alert(owner, "Not human")
+			A.balloon_alert(owner, "not human!")
 		return FALSE
 
 	var/mob/living/carbon/human/target = A
 
 	if(!(locate(/obj/item/alien_embryo) in target))
 		if(!silent)
-			target.balloon_alert(owner, "Not infected")
+			target.balloon_alert(owner, "not infected!")
 		return FALSE
 
 	if(target.stat == DEAD)
 		if(!silent)
-			target.balloon_alert(owner, "Dead")
+			target.balloon_alert(owner, "you're dead!")
 		return FALSE
 
 	if(!line_of_sight(owner, target, 9))
 		if(!silent)
-			target.balloon_alert(owner, "Need line of sight")
+			target.balloon_alert(owner, "need line of sight!")
 		return FALSE
 	return TRUE
 

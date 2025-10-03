@@ -45,7 +45,7 @@
 
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
-		balloon_alert(user, "Dumps the [dirt_name]")
+		balloon_alert(user, "dumping [dirt_name]")
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/turf/T = get_turf(user.loc)
 			var/obj/item/stack/snow/S = locate() in T
@@ -70,7 +70,7 @@
 	var/turf/target_turf = target
 
 	if(dirt_amt)
-		balloon_alert(user, "Dumps the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]")
+		balloon_alert(user, "dumping [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]")
 		playsound(user.loc, SFX_RUSTLE, 30, 1, 6)
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/obj/item/stack/snow/S = locate() in target_turf
@@ -89,7 +89,7 @@
 		var/turf/open/floor/plating/ground/snow/ST = target_turf
 		if(!ST.slayer)
 			return
-	balloon_alert(user, "Starts digging")
+	balloon_alert(user, "digging...")
 	playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 	if(!do_after(user, shovelspeed, NONE, target_turf, BUSY_ICON_BUILD))
 		return
@@ -101,9 +101,9 @@
 		ST.slayer -= 1
 		ST.update_appearance()
 		ST.update_sides()
-		balloon_alert(user, "Digs up snow")
+		balloon_alert(user, "dug up snow")
 	else
-		balloon_alert(user, "Digs up dirt")
+		balloon_alert(user, "dug up dirt")
 	dirt_amt = transf_amt
 	dirt_type = turfdirt
 	update_appearance(UPDATE_ICON)
@@ -157,7 +157,7 @@
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
 	if(sharp)
-		balloon_alert(user, "Sharpened, can't fold")
+		balloon_alert(user, "sharpened, can't fold!")
 		return
 	folded = !folded
 	if(!folded)
@@ -172,15 +172,15 @@
 	if(!I.sharp && !folded)
 		return ..()
 	if(sharp)
-		balloon_alert(user, "Already sharpened")
+		balloon_alert(user, "already sharpened!")
 		return
 	if(folded)
-		balloon_alert(user, "Cannot sharp, it's folded")
+		balloon_alert(user, "it's folded!")
 		return
 	if(user.do_actions)
-		balloon_alert(user, "Cannot, too busy")
+		balloon_alert(user, "busy!")
 		return
-	user.balloon_alert_to_viewers("Begins to sharpen [src]")
+	user.balloon_alert_to_viewers("sharpening...")
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		return
 	sharp = IS_SHARP_ITEM_SIMPLE

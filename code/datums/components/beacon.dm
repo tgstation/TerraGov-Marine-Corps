@@ -64,7 +64,7 @@
 		return
 
 	if(length(user.do_actions))
-		user.balloon_alert(user, "Busy!")
+		user.balloon_alert(user, "busy!")
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(toggle_activation), source, user)
@@ -75,7 +75,7 @@
 		return
 
 	if(length(user.do_actions))
-		user.balloon_alert(user, "Busy!")
+		user.balloon_alert(user, "busy!")
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(deactivate), source, user)
@@ -95,7 +95,7 @@
 		return FALSE
 
 	if(length(user.do_actions))
-		user.balloon_alert(user, "Busy!")
+		user.balloon_alert(user, "busy!")
 		active = FALSE
 		return
 
@@ -104,7 +104,7 @@
 		user.visible_message(span_notice("[user] starts setting up [source] on the ground."),
 		span_notice("You start setting up [source] on the ground and inputting all the data it needs."))
 		if(!do_after(user, delay, NONE, source))
-			user.balloon_alert(user, "Keep still!")
+			user.balloon_alert(user, "keep still!")
 			active = FALSE
 			return
 
@@ -124,7 +124,7 @@
 
 	message_admins("[ADMIN_TPMONTY(user)] set up a supply beacon.") //do something with this
 	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
-	user.visible_message("[user] activates [source]'s signal.")
+	user.visible_message(span_notice("[user] activates [source]'s signal."))
 	user.show_message(span_notice("The [source] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(source)]\""), EMOTE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
 	beacon_datum = new /datum/supply_beacon("[user.name] + [A]", source, user.faction)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
@@ -134,7 +134,7 @@
 ///Deactivates the beacon
 /datum/component/beacon/proc/deactivate(atom/movable/source, mob/user)
 	if(length(user?.do_actions))
-		user.balloon_alert(user, "Busy!")
+		user.balloon_alert(user, "busy!")
 		active = TRUE
 		return
 	if(source.anchored)
@@ -143,7 +143,7 @@
 			user.visible_message(span_notice("[user] starts removing [source] from the ground."),
 			span_notice("You start removing [source] from the ground, deactivating it."))
 			if(!do_after(user, delay, NONE, source, BUSY_ICON_GENERIC))
-				user.balloon_alert(user, "Keep still!")
+				user.balloon_alert(user, "keep still!")
 				active = TRUE
 				return
 			user.put_in_active_hand(source)

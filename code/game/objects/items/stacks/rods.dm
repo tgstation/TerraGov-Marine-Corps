@@ -86,19 +86,19 @@
 ///Builds a catwalk
 /obj/item/stack/rods/proc/place_catwalk(turf/target_turf, mob/living/user)
 	if(target_turf.is_covered())
-		user.balloon_alert(user, "Already covered!")
+		user.balloon_alert(user, "already covered!")
 		return
 	if(amount < CATWALK_ROD_REQ)
-		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed")
+		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed!")
 		return
-	user.balloon_alert(user, "Building")
+	user.balloon_alert(user, "building...")
 	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 	if(target_turf.is_covered())
-		user.balloon_alert(user, "Already covered!")
+		user.balloon_alert(user, "already covered!")
 		return
 	if(!use(CATWALK_ROD_REQ))
-		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed")
+		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed!")
 		return
 	playsound(target_turf, 'sound/weapons/genhit.ogg', 50, TRUE)
 	new /obj/structure/catwalk(target_turf)
@@ -106,19 +106,19 @@
 ///Reinforces a bare floor
 /obj/item/stack/rods/proc/reinforce_floor(turf/target_turf, mob/living/user)
 	if(!istype(target_turf, /turf/open/floor/plating))
-		user.balloon_alert(user, "Remove plating")
+		user.balloon_alert(user, "remove the plating!")
 		return
 	if(amount < REINFORCED_FLOOR_ROD_REQ)
-		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed")
+		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed!")
 		return
-	user.balloon_alert(user, "Reinforcing floor")
+	user.balloon_alert(user, "reinforcing floor...")
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 	if(!istype(target_turf, /turf/open/floor/plating))
-		user.balloon_alert(user, "Remove plating")
+		user.balloon_alert(user, "remove the plating!")
 		return
 	if(!use(REINFORCED_FLOOR_ROD_REQ))
-		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed")
+		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed!")
 		return
 	target_turf.ChangeTurf(/turf/open/floor/engine)
 	playsound(target_turf, 'sound/items/deconstruct.ogg', 25, TRUE)

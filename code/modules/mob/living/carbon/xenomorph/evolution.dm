@@ -129,7 +129,7 @@
 	do_jitter_animation(1000)
 
 	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
-		balloon_alert(src, span_warning("We must hold still while evolving."))
+		balloon_alert(src, span_warning("keep still!"))
 		return
 
 	if(!generic_evolution_checks() || !caste_evolution_checks(caste_type, regression))
@@ -234,53 +234,53 @@
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()
 	if(do_actions)
-		balloon_alert(src, "We're busy!")
+		balloon_alert(src, "busy!")
 		return FALSE
 
 	if(is_ventcrawling)
-		balloon_alert(src, "This place is too constraining to evolve")
+		balloon_alert(src, "not in a vent!")
 		return FALSE
 
 	if(!isturf(loc))
-		balloon_alert(src, "We can't evolve here")
+		balloon_alert(src, "not on the ground!")
 		return FALSE
 
 	if(is_banned_from(ckey, ROLE_XENOMORPH))
 		log_admin_private("[key_name(src)] has tried to evolve as a xenomorph while being banned from the role.")
 		message_admins("[ADMIN_TPMONTY(src)] has tried to evolve as a xenomorph while being banned. They shouldn't be playing the role.")
-		balloon_alert(src, "You are jobbanned from aliens and cannot evolve. How did you even become an alien?")
+		to_chat(src, span_userdanger("You are jobbanned from aliens and cannot evolve. How did you even become an alien?"))
 		return FALSE
 
 	if(incapacitated(TRUE))
-		balloon_alert(src, "We can't evolve in our current state")
+		balloon_alert(src, "not conscious enough!")
 		return FALSE
 
 	if(handcuffed)
-		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
+		balloon_alert(src, "restrained!")
 		return FALSE
 
 	if(length(get_evolution_options()) < 1 || (!HAS_TRAIT(src, TRAIT_STRAIN_SWAP) && !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED)) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO)) // todo: why does this flag still exist?
-		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive!")
+		to_chat(src, span_xenouserdanger("We are already the apex of form and function. Let's go forth and spread the hive!"))
 		return FALSE
 
 	if(health < maxHealth)
-		balloon_alert(src, "We must be at full health to evolve")
+		balloon_alert(src, "not at full health!")
 		return FALSE
 
 	if(plasma_stored < (xeno_caste.plasma_max * xeno_caste.plasma_regen_limit))
-		balloon_alert(src, "We must be at full plasma to evolve")
+		balloon_alert(src, "not at full plasma!")
 		return FALSE
 
-	if (fortify || crest_defense || status_flags & INCORPOREAL)
-		balloon_alert(src, "We cannot evolve while in this stance")
+	if(fortify || crest_defense || status_flags & INCORPOREAL)
+		balloon_alert(src, "not in this stance!")
 		return FALSE
 
 	if(eaten_mob)
-		balloon_alert(src, "We cannot evolve with a belly full")
+		balloon_alert(src, "too full!")
 		return FALSE
 
 	if(HAS_TRAIT_FROM(src, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		balloon_alert(src, "We cannot evolve while rooted to the ground")
+		balloon_alert(src, "rooted!")
 		return FALSE
 
 	if(HAS_TRAIT(src,TRAIT_NEEDS_SILO_TO_EVOLVE_FROM))
@@ -298,11 +298,11 @@
 ///Check if the xeno can currently evolve into a specific caste
 /mob/living/carbon/xenomorph/proc/caste_evolution_checks(new_caste_type, regression = FALSE)
 	if(!regression && !(new_caste_type in get_evolution_options()))
-		balloon_alert(src, "We can't evolve to that caste from our current one")
+		balloon_alert(src, "incompatible caste!")
 		return FALSE
 
 	if(new_caste_type in SSticker.mode.restricted_castes)
-		balloon_alert(src, "Our weak hive can't support that caste!")
+		balloon_alert(src, "hive too weak!")
 		return FALSE
 
 	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
@@ -313,7 +313,7 @@
 	var/new_caste_traits = new_caste.caste_traits
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
-			balloon_alert(src, "You are jobbanned from xenomorph leader roles")
+			to_chat(src, span_warning("You are jobbanned from Tier 4 castes."))
 			return FALSE
 		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
 		if(xenojob.required_playtime_remaining(client))
@@ -322,12 +322,12 @@
 
 	var/population_lock = new_caste.evolve_population_lock
 	if(population_lock > SSticker.mode.roundstart_players)
-		balloon_alert(src, "[population_lock] Initial Players are required to evolve [initial(new_caste.display_name)]")
+		balloon_alert(src, "[population_lock] initial players required for this caste!")
 		return FALSE
 
 	var/min_xenos = new_caste.evolve_min_xenos
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
-		balloon_alert(src, "[min_xenos] xenos needed to become a [initial(new_caste.display_name)]")
+		balloon_alert(src, "[min_xenos] xenos needed to become this caste!")
 		return FALSE
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_CANNOT_EVOLVE_IN_CAPTIVITY) && isxenoresearcharea(get_area(src)))
 		to_chat(src, "Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!")
@@ -347,7 +347,7 @@
 		return FALSE
 	var/turf/T = get_turf(src)
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_REQUIRES_FREE_TILE) && T.check_alien_construction(src))
-		balloon_alert(src, "We need a empty tile to evolve")
+		balloon_alert(src, "empty tile needed!")
 		return FALSE
 
 	if(TRAIT_NEEDS_SILO_TO_EVOLVE_TO in new_caste_traits)
@@ -362,10 +362,10 @@
 
 	if(!regression)
 		if(new_caste.tier == XENO_TIER_TWO && no_room_tier_two)
-			balloon_alert(src, "The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die")
+			to_chat(src, span_warning("The hive has no room for a T2—wait for more births or a T2 to die."))
 			return FALSE
 		if(new_caste.tier == XENO_TIER_THREE && no_room_tier_three)
-			balloon_alert(src, "The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die")
+			to_chat(src, span_warning("The hive has no room for a T3—wait for more births or a T3 to die."))
 			return FALSE
 		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold && !SSresinshaping.active)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))

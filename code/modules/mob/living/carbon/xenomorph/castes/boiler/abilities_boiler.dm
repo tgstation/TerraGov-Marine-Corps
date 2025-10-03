@@ -225,16 +225,16 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return FALSE
 	if(xeno_owner.xeno_flags & XENO_ZOOMED)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Can't while zoomed in!")
+			xeno_owner.balloon_alert(xeno_owner, "can't while zoomed in!")
 		return FALSE
 	if(!xeno_owner.ammo)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Globule not selected!")
+			xeno_owner.balloon_alert(xeno_owner, "globule not selected!")
 		return FALSE
 	var/current_ammo = xeno_owner.corrosive_ammo + xeno_owner.neurotoxin_ammo
 	if(current_ammo >= xeno_owner.xeno_caste.max_ammo)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Globule storage full!")
+			xeno_owner.balloon_alert(xeno_owner, "globule storage full!")
 		return FALSE
 
 /datum/action/ability/xeno_action/create_boiler_bomb/action_activate()
@@ -243,19 +243,18 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		if(/datum/ammo/xeno/boiler_gas/corrosive, /datum/ammo/xeno/boiler_gas/corrosive/lance, /datum/ammo/xeno/boiler_gas/corrosive/fast)
 			unique_glob = FALSE
 			xeno_owner.corrosive_ammo++
-			xeno_owner.balloon_alert(xeno_owner, "Corrosive globule prepared.")
+			xeno_owner.balloon_alert(xeno_owner, "corrosive globule prepared")
 		if(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/lance, /datum/ammo/xeno/boiler_gas/fast)
 			unique_glob = FALSE
 			xeno_owner.neurotoxin_ammo++
-			xeno_owner.balloon_alert(xeno_owner, "Neurotoxin globule prepared.")
-
+			xeno_owner.balloon_alert(xeno_owner, "neurotoxin globule prepared")
 	if(unique_glob)
 		if(xeno_owner.corrosive_ammo > xeno_owner.neurotoxin_ammo)
 			xeno_owner.neurotoxin_ammo++
-			xeno_owner.balloon_alert(xeno_owner, "Neurotoxin globule prepared.")
+			xeno_owner.balloon_alert(xeno_owner, "neurotoxin globule prepared")
 		else
 			xeno_owner.corrosive_ammo++
-			xeno_owner.balloon_alert(xeno_owner, "Corrosive globule prepared.")
+			xeno_owner.balloon_alert(xeno_owner, "corrosive globule prepared")
 	xeno_owner.update_ammo_glow()
 	update_button_icon()
 	succeed_activate()
@@ -342,7 +341,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return FALSE
 	if(!xeno_owner.ammo)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Globule not selected!")
+			xeno_owner.balloon_alert(xeno_owner, "globule not selected!")
 		return FALSE
 	var/unique_glob = TRUE
 	switch(xeno_owner.ammo.type)
@@ -350,25 +349,25 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 			unique_glob = FALSE
 			if(xeno_owner.corrosive_ammo <= 0)
 				if(!silent)
-					xeno_owner.balloon_alert(xeno_owner, "No corrosive globules.")
+					xeno_owner.balloon_alert(xeno_owner, "no corrosive globules!")
 				return FALSE
 		if(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/lance, /datum/ammo/xeno/boiler_gas/fast)
 			unique_glob = FALSE
 			if(xeno_owner.neurotoxin_ammo <= 0)
 				if(!silent)
-					xeno_owner.balloon_alert(xeno_owner, "No neurotoxin globules.")
+					xeno_owner.balloon_alert(xeno_owner, "no neurotoxin globules!")
 				return FALSE
 	var/total_globs = xeno_owner.corrosive_ammo + xeno_owner.neurotoxin_ammo
 	if(unique_glob && special_glob_required > total_globs)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Not enough globules.")
+			xeno_owner.balloon_alert(xeno_owner, "not enough globules!")
 		return FALSE
 
 	var/turf/T = get_turf(A)
 	var/turf/S = get_turf(owner)
 	if(!isturf(T) || !(T.z in SSmapping.get_connected_levels(S.z)))
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Invalid target.")
+			xeno_owner.balloon_alert(xeno_owner, "invalid target!")
 		return FALSE
 
 /datum/action/ability/activable/xeno/bombard/use_ability(atom/A)
@@ -587,7 +586,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	smoke.start()
 
 /datum/action/ability/xeno_action/steam_rush/on_cooldown_finish()
-	owner.balloon_alert(owner, "Steam rush ready.")
+	owner.balloon_alert(owner, "steam rush ready")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
@@ -634,7 +633,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	X.ammo = ammo_type
 	X.update_spits(TRUE)
-	X.balloon_alert(owner, "We prepare to fire a smokescreen!")
+	X.balloon_alert(owner, "smokescreen prepared")
 
 	smokescreen_spit_window = addtimer(CALLBACK(src, PROC_REF(smokescreen_spit_deactivate)), window_duration, TIMER_UNIQUE)
 
@@ -649,7 +648,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	X.ammo = null // update_spits() will reselect their ammo.
 	X.update_spits(TRUE)
-	X.balloon_alert(owner, "Our spit returns to normal.")
+	X.balloon_alert(owner, "spit back to normal")
 
 // ***************************************
 // *********** High-Pressure Spit
@@ -687,6 +686,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/high_pressure_spit/on_cooldown_finish()
-	owner.balloon_alert(owner, "High-pressure spit ready.")
+	owner.balloon_alert(owner, "high-pressure spit ready")
 	owner.playsound_local(owner, 'sound/voice/alien/hiss2.ogg', 25, 0, 1)
 	return ..()

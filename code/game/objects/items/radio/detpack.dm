@@ -87,7 +87,7 @@
 		var/obj/item/assembly/signaler/signaler = I
 		code = signaler.code
 		set_frequency(signaler.frequency)
-		balloon_alert(user, "Frequency copied over")
+		balloon_alert(user, "frequency copied")
 
 /obj/item/detpack/unique_action(mob/user, special_treatment)
 	. = ..()
@@ -96,7 +96,7 @@
 
 /obj/item/detpack/attack_hand(mob/living/user)
 	if(armed)
-		balloon_alert(user, "Disarm it first!")
+		balloon_alert(user, "disarm it first!")
 		return
 	if(plant_target)
 		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
@@ -110,7 +110,7 @@
 
 /obj/item/detpack/multitool_act(mob/living/user, obj/item/I)
 	if(!armed && !on)
-		balloon_alert(user, "Inactive")
+		balloon_alert(user, "inactive!")
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
@@ -120,7 +120,7 @@
 			return
 
 		if(prob((SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER)) * 20))
-			to_chat(user, span_userdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this."))
+			to_chat(user, span_userdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <i>very</i> bad feeling about this."))
 			timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
 	user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
@@ -129,7 +129,7 @@
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 
-	balloon_alert_to_viewers("Disarmed")
+	balloon_alert_to_viewers("disarmed")
 	disarm()
 
 /obj/item/detpack/proc/nullvars()
@@ -301,8 +301,7 @@
 
 		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = user, action = NOTIFY_ORBIT)
 
-		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
-		balloon_alert(user, "Timer set for [timer] seconds")
+		target.balloon_alert_to_viewers("[timer] seconds", vision_distance = COMBAT_MESSAGE_RANGE)
 
 		plant_target = target
 		if(ismovable(plant_target))

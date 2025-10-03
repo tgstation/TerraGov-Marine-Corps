@@ -109,7 +109,7 @@
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
 		if(user)
-			balloon_alert(user, "Won't budge")
+			balloon_alert(user, "won't budge!")
 		return FALSE
 	return TRUE
 
@@ -118,12 +118,12 @@
 	for(var/obj/structure/closet/blocking_closet in loc)
 		if(blocking_closet != src && !blocking_closet.wall_mounted && !blocking_closet.opened)
 			if(user)
-				balloon_alert(user, "Can't close, too cramped")
+				balloon_alert(user, "too cramped!")
 			return FALSE
 	for(var/mob/living/mob_to_stuff in loc)
 		if(mob_to_stuff.anchored || mob_to_stuff.mob_size > max_mob_size)
 			if(user)
-				balloon_alert(user, "Can't close, [mob_to_stuff] in the way")
+				balloon_alert(user, "something huge is in the way!")
 			return FALSE
 	return TRUE
 
@@ -250,7 +250,7 @@
 		return
 
 	if(!attached_clamp.loaded && mob_size_counter)
-		balloon_alert(user, "Can't, creature is inside")
+		balloon_alert(user, "something's inside!")
 		return
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
@@ -259,7 +259,7 @@
 
 	if(opened)
 		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
-			balloon_alert(user, "Need more welding fuel")
+			balloon_alert(user, "not enough fuel!")
 			return TRUE
 		if(drop_material)
 			new drop_material(drop_location())
@@ -268,7 +268,7 @@
 		return TRUE
 
 	if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
-		balloon_alert(user, "Need more welding fuel")
+		balloon_alert(user, "not enough fuel!")
 		return TRUE
 	welded = !welded
 	update_icon()
@@ -280,7 +280,7 @@
 	if(opened)
 		return FALSE
 	if(isspaceturf(loc) && !anchored)
-		balloon_alert(user, "Need firmer floor")
+		balloon_alert(user, "need a firmer floor!")
 		return TRUE
 	setAnchored(!anchored)
 	wrenchy_tool.play_tool_sound(src, 75)
@@ -301,7 +301,7 @@
 	if(open())
 		return
 
-	balloon_alert(user, "Won't budge")
+	balloon_alert(user, "won't budge!")
 	if(!lastbang)
 		lastbang = TRUE
 		for(var/mob/M in hearers(src, null))
@@ -327,7 +327,7 @@
 	if(ishuman(usr))
 		src.toggle(usr)
 	else
-		balloon_alert(usr, "Can't do this")
+		balloon_alert(usr, "can't do this!")
 
 /obj/structure/closet/update_icon_state()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	. = ..()
@@ -358,15 +358,14 @@
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	TIMER_COOLDOWN_START(user, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
-	balloon_alert_to_viewers("Begins to shake violently", ignored_mobs = user)
-	balloon_alert(user, "You push on the door... [DisplayTimeText(breakout_time)] until escape")
+	balloon_alert_to_viewers("shaking violently!", ignored_mobs = user)
+	to_chat(user, span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"))
 	if(!do_after(user, breakout_time, target = src))
 		if(!opened) //Didn't get opened in the meatime.
-			balloon_alert(user, "You fail to break out of [src]")
+			balloon_alert(user, "failed!")
 		return FALSE
 	if(opened || (!locked && !welded) ) //Did get opened in the meatime.
 		return TRUE
-	balloon_alert_to_viewers("breaks out")
 	return bust_open()
 
 
@@ -397,20 +396,20 @@
 		return FALSE
 	if(!user.dextrous)
 		if(!silent)
-			balloon_alert(user, "Not enough dexterity")
+			balloon_alert(user, "not enough dexterity!")
 		return
 	if(opened)
 		if(!silent)
-			balloon_alert(user, "Close \the [src] first.")
+			balloon_alert(user, "close it first!")
 		return
 	if(broken)
 		if(!silent)
-			balloon_alert(user, "Cannot, [src] is broken")
+			balloon_alert(user, "it's broken!")
 		return FALSE
 
 	if(!allowed(user))
 		if(!silent)
-			balloon_alert(user, "Access Denied")
+			balloon_alert(user, "access denied!")
 		return FALSE
 
 	locked = !locked
@@ -484,8 +483,8 @@
 /mob/living/proc/on_closet_dump(obj/structure/closet/origin)
 	SetStun(origin.closet_stun_delay)
 	if(!lying_angle && IsStun())
-		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = src)
-		balloon_alert(src, "You struggle to get your bearings")
+		balloon_alert_to_viewers("gets out", ignored_mobs = src)
+		balloon_alert(src, "you struggle to get your bearings")
 
 #undef CLOSET_INSERT_END
 #undef CLOSET_INSERT_FAIL

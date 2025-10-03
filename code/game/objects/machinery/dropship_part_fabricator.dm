@@ -87,11 +87,11 @@
 		return
 
 	if(SSpoints.dropship_points[faction] < cost) //We'll check for points again here in case queue has taken too many points
-		balloon_alert_to_viewers("Not enough points")
+		balloon_alert_to_viewers("not enough points!")
 		next_queue()
 		return
 
-	balloon_alert_to_viewers("Printing...")
+	balloon_alert_to_viewers("printing...")
 	playsound(src, 'sound/machines/dropship_fabricator.ogg', 55)
 	printing = part_type
 	SSpoints.dropship_points[faction] -= cost
@@ -143,7 +143,7 @@
 		return TRUE
 
 	//There's nothing left, finish up queue
-	balloon_alert_to_viewers("Printing complete!")
+	balloon_alert_to_viewers("printing finished")
 	playsound(src,'sound/machines/ping.ogg', 40, FALSE)
 	printing = null
 	busy = FALSE
@@ -157,7 +157,7 @@
 	if(href_list["choice"])
 		if(href_list["choice"] == "clear")
 			queue = list()
-			balloon_alert_to_viewers("Entire queue cleared")
+			to_chat(usr, span_notice("Queue cleared entirely."))
 			return
 
 		var/build_type = text2path(href_list["choice"])
@@ -165,11 +165,11 @@
 			return
 
 		if(SSpoints.dropship_points[faction] < get_cost(build_type))
-			balloon_alert_to_viewers("Not enough points")
+			to_chat(usr, span_notice("There aren't enough points for that!"))
 			return
 
 		if(busy)
-			balloon_alert_to_viewers("Part added to queue")
+			to_chat(usr, span_notice("Part added to queue."))
 			queue.Add(list(list(build_type, usr)))
 			return
 

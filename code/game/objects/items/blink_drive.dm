@@ -83,7 +83,7 @@
 ///Handles the actual teleportation
 /obj/item/blink_drive/proc/teleport(atom/A, mob/living/carbon/human/user)
 	if(charges <= 0)
-		user.balloon_alert(user, "no charge")
+		user.balloon_alert(user, "no charge!")
 		playsound(src, 'sound/items/blink_empty.ogg', 25, 1)
 		return
 	var/turf/target_turf = get_turf(A)
@@ -94,7 +94,7 @@
 	var/target_distance = get_dist(user, target_turf)
 
 	if(target_distance > BLINK_DRIVE_RANGE)
-		user.balloon_alert(user, "too far")
+		user.balloon_alert(user, "too far!")
 		return
 
 	user.face_atom(target_turf)
@@ -224,7 +224,7 @@
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE
 	if(is_mainship_level(carbon_owner.z))
-		carbon_owner.balloon_alert(carbon_owner, "can't use here")
+		carbon_owner.balloon_alert(carbon_owner, "can't use that here!")
 		return FALSE
 	return ..()
 

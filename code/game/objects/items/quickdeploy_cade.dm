@@ -12,9 +12,9 @@
 	. += "This QuikDeploy system seems to deploy a [thing_to_deploy.name]."
 
 /obj/item/quikdeploy/attack_self(mob/user)
-	balloon_alert_to_viewers("Starts to deploy barricade")
-	if(!do_after(usr, delay, TRUE, src, BUSY_ICON_BUILD))
-		to_chat(user, "<span class='warning'>You decide against deploying something here.")
+	balloon_alert_to_viewers("deploying barricade...")
+	if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
+		balloon_alert(user, "stopped deploying")
 		return
 	if(can_place(user)) //can_place() handles sending the error and success messages to the user
 		var/obj/O = new thing_to_deploy(get_turf(user))
@@ -40,26 +40,26 @@
 
 	var/turf/mystery_turf = user.loc
 	if(!isopenturf(mystery_turf))
-		balloon_alert(user, "Can't build here")
+		balloon_alert(user, "unsuitable area!")
 		return FALSE
 
 	var/turf/open/placement_loc = mystery_turf
 	var/area/area = get_area(mystery_turf)
 	if(placement_loc.density || !placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be building here.
-		balloon_alert(user, "Can't build here")
+		balloon_alert(user, "unsuitable area!")
 		return FALSE
 
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.atom_flags & ON_BORDER)) //dense and non-directional, end
-			balloon_alert(user, "No space")
+			balloon_alert(user, "no space!")
 			return FALSE
 		if(thing.dir != user.dir)
 			continue
-		balloon_alert(user, "No space")
+		balloon_alert(user, "no space!")
 		return FALSE
-	balloon_alert_to_viewers("Places barricade")
+	balloon_alert_to_viewers("barricade placed")
 	return TRUE
 
 /obj/item/quikdeploy/cade/plasteel

@@ -35,7 +35,7 @@
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/decal/cleanable/rune))
 		if(reagents.total_volume < 1)
-			balloon_alert(user, "Mop is dry")
+			balloon_alert(user, "mop is dry!")
 			return
 
 		var/turf/T = get_turf(A)
@@ -43,7 +43,7 @@
 
 		if(do_after(user, 40, TRUE, T, BUSY_ICON_GENERIC))
 			T.clean(src)
-			balloon_alert(user, "Finished mopping")
+			balloon_alert(user, "finished")
 
 
 /obj/item/tool/wet_sign
@@ -98,16 +98,16 @@
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
-		balloon_alert(user, "Remove the [target.name] first")
+		balloon_alert(user, "take that off first!")
 	else if(isturf(target))
-		balloon_alert(user, "Scrubs \the [target.name]")
+		balloon_alert(user, "scrubbed")
 		var/turf/target_turf = target
 		target_turf.wash()
 	else if(istype(target,/obj/effect/decal/cleanable))
-		balloon_alert(user, "Scrubs \the [target.name] out")
+		balloon_alert(user, "scrubbed")
 		qdel(target)
 	else
-		balloon_alert(user, "Cleans \the [target.name]")
+		balloon_alert(user, "cleaned")
 		target.wash()
 
 /obj/item/tool/soap/attack(mob/target, mob/user)

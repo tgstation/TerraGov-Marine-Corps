@@ -20,7 +20,7 @@
 
 /mob/living/carbon/proc/resist_restraints(obj/item/restraints/cuffs)
 	if(do_actions)
-		balloon_alert(src, "busy")
+		balloon_alert(src, "busy!")
 		return
 
 	visible_message(span_warning("[src] attempts to remove [cuffs]!"),

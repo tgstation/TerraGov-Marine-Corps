@@ -130,7 +130,7 @@
 			name = "body bag"
 
 	else if(iswirecutter(I))
-		balloon_alert(user, "cuts the tag off")
+		balloon_alert(user, "tag cut off")
 		name = "body bag"
 		overlays.Cut()
 
@@ -225,18 +225,18 @@
 
 	if(!opened && bodybag_occupant)
 		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-		balloon_alert(bodybag_occupant, "[proj] jolts you out of the bag")
+		to_chat(bodybag_occupant, span_userdanger("[proj] hits you through \the [src] and exposes you!"))
 		open()
 
 /obj/structure/closet/bodybag/fire_act(burn_level)
 	if(!opened && bodybag_occupant)
-		balloon_alert(bodybag_occupant, "The fire forces you out")
+		to_chat(bodybag_occupant, span_userdanger("The fire burns you through \the [src] and exposes you!"))
 		bodybag_occupant.fire_act(burn_level)
 		open()
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
-		balloon_alert(bodybag_occupant, "The explosion blows you out")
+		to_chat(bodybag_occupant, span_userdanger("The shockwave passes into you through \the [src] and exposes you!"))
 		bodybag_occupant.ex_act(severity)
 		open()
 	switch(severity)
@@ -251,7 +251,7 @@
 			var/mob/living/carbon/human/H = bodybag_occupant
 			SEND_SIGNAL(H, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_puddle.acid_damage, acid_puddle.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
-		balloon_alert(bodybag_occupant, "acid forces you out")
+		to_chat(bodybag_occupant, span_userdanger("The acid burns you through \the [src] and exposes you!"))
 		open() //Get out
 
 /obj/structure/closet/bodybag/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -261,7 +261,7 @@
 
 	if((CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID)) && !opened && bodybag_occupant)
 		bodybag_occupant.effect_smoke(S) //tarp *definitely* isn't acid/phosphorous smoke proof, lol.
-		balloon_alert(bodybag_occupant, "smoke forces you out")
+		to_chat(bodybag_occupant, span_userdanger("The smoke burns you through \the [src] and exposes you!"))
 		open() //Get out
 
 /obj/item/storage/box/bodybags
@@ -292,7 +292,7 @@
 		return ..()
 
 	if(!bodybag_occupant)
-		balloon_alert(user, "empty")
+		balloon_alert(user, "empty!")
 		return TRUE
 
 	var/obj/item/healthanalyzer/J = I
@@ -418,8 +418,8 @@
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"
 	icon_opened = "jungletarp_open"
-	open_sound = 'sound/effects/vegetation_walk_1.ogg'
-	close_sound = 'sound/effects/vegetation_walk_2.ogg'
+	open_sound = 'sound/effects/natural/vegetation_walk_1.ogg'
+	close_sound = 'sound/effects/natural/vegetation_walk_2.ogg'
 	foldedbag_path = /obj/item/bodybag/tarp
 	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
 	display_name = FALSE

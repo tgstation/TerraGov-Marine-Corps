@@ -5,6 +5,7 @@
 #define FOOTSTEP_SAND "sand"
 #define FOOTSTEP_DIRT "dirt"
 #define FOOTSTEP_GRASS "grass"
+#define FOOTSTEP_VEGETATION "vegetation"
 #define FOOTSTEP_WET "wet"
 #define FOOTSTEP_WATER "water"
 #define FOOTSTEP_SWIM "swim"
@@ -65,6 +66,11 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/asteroid4.ogg',
 		'sound/effects/footstep/asteroid5.ogg'), 75, 0),
 	FOOTSTEP_GRASS = list(list(
+		'sound/effects/footstep/grass1.ogg',
+		'sound/effects/footstep/grass2.ogg',
+		'sound/effects/footstep/grass3.ogg',
+		'sound/effects/footstep/grass4.ogg'), 75, 0),
+	FOOTSTEP_VEGETATION = list(list(
 		'sound/effects/footstep/grass1.ogg',
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',

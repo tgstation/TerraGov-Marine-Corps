@@ -204,7 +204,7 @@
 		if(carry_obj.is_rider(user))
 			return
 		if(victim)
-			balloon_alert(user, "already has patient!")
+			balloon_alert(user, "already has a patient!")
 			return
 		if(!take_victim(carry_obj.rider, user))
 			return

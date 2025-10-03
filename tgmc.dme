@@ -2451,6 +2451,7 @@
 #include "code\modules\vehicles\_hitbox.dm"
 #include "code\modules\vehicles\atv.dm"
 #include "code\modules\vehicles\bicycle.dm"
+#include "code\modules\vehicles\big_bike.dm"
 #include "code\modules\vehicles\cargo_train.dm"
 #include "code\modules\vehicles\hover_bike.dm"
 #include "code\modules\vehicles\motorbike.dm"
