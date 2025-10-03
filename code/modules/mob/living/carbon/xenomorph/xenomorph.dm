@@ -31,11 +31,9 @@
 
 	switch(stat)
 		if(CONSCIOUS)
-			GLOB.alive_xeno_list += src
-			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
+			GLOB.alive_xeno_list |= src
 		if(UNCONSCIOUS)
-			GLOB.alive_xeno_list += src
-			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
+			GLOB.alive_xeno_list |= src
 
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++

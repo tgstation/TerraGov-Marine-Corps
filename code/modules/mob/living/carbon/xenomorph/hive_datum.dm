@@ -467,7 +467,8 @@
 
 	hive = HS
 	hivenumber = HS.hivenumber // just to be sure
-	LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
+	if(stat != DEAD)
+		LAZYOR(GLOB.alive_xeno_list_hive[hivenumber], src)
 	generate_name()
 
 	SSdirection.start_tracking(HS.hivenumber, src)
