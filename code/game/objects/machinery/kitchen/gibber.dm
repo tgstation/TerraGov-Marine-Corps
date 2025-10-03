@@ -218,7 +218,7 @@
 	if(internal_beaker)
 		return
 	if(!istype(I, /obj/item/reagent_containers/glass/beaker))
-		balloon_alert(user, "cannot insert!")
+		balloon_alert(user, "not a beaker!")
 		return
 	user.transferItemToLoc(I, src)
 	internal_beaker = I
