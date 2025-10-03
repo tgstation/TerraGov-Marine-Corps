@@ -163,12 +163,14 @@
 	name = "\improper [who_printed] Intelligence diskette ([stationTimestamp("hh:mm", printed_at + duration)])"
 	desc += " According to the label, this disk was printed by [who_printed] in \the [where_printed]. The time stamp suggests that it was printed at [stationTimestamp("hh:mm", printed_at)]. The tactical information within it will cease to have value and soon after self destruct at [stationTimestamp("hh:mm", printed_at + duration)]."
 	addtimer(CALLBACK(src, PROC_REF(disk_warning)), duration, TIMER_STOPPABLE)
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, "intel_carried", MINIMAP_BLIPS_LAYER))
 
 /obj/item/disk/intel_disk/proc/disk_warning()
 	SIGNAL_HANDLER
 	visible_message("[src] beeps as it is now obsolete. The disk will self destruct in a minute.")
 	playsound(src, 'sound/machines/beepalert.ogg', 25)
 	addtimer(CALLBACK(src, PROC_REF(disk_cleanup)), 1 MINUTES, TIMER_STOPPABLE)
+	SSminimaps.remove_marker(src)
 
 /obj/item/disk/intel_disk/proc/disk_cleanup()
 	SIGNAL_HANDLER
@@ -189,3 +191,7 @@
 
 	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")
 	GLOB.round_statistics.points_from_intel += supply_reward
+
+/obj/item/disk/intel_disk/Destroy()
+	SSminimaps.remove_marker(src)
+	. = ..()
