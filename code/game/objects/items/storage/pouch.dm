@@ -385,10 +385,6 @@
 	fill_type = /obj/item/ammo_magazine/standard_lmg
 	fill_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_sniper
-	fill_type = /obj/item/ammo_magazine/sniper/elite
-	fill_number = 3
-
 /obj/item/storage/pouch/magazine/large/pmc_rifle
 	fill_type = /obj/item/ammo_magazine/rifle/ap
 	fill_number = 3
@@ -783,6 +779,7 @@
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/paper,
 		/obj/item/clipboard,
+		/obj/item/paper_map,
 	))
 
 /obj/item/storage/pouch/field_pouch
@@ -816,6 +813,7 @@
 		/obj/item/toy/deck,
 		/obj/item/paper,
 		/obj/item/clipboard,
+		/obj/item/paper_map,
 	))
 
 /obj/item/storage/pouch/field_pouch/full/PopulateContents()

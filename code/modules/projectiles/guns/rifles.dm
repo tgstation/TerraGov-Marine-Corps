@@ -462,7 +462,6 @@
 	scatter = -2
 	force = 20
 
-
 //-------------------------------------------------------
 //PR-11
 
@@ -1439,6 +1438,71 @@
 	accuracy_mult = 1.25
 	pixel_shift_x = 18
 	pixel_shift_y = 16
+
+//-------------------------------------------------------
+//SG-25 Smart Rifle (Added back spefically for NT PMC ert, do not expect it to return in marine roster)
+
+/obj/item/weapon/gun/rifle/pmc_smartrifle
+	name = "\improper SG-25 smart rifle"
+	desc = "The SG-25 is a Nanotrasen's experimental model of smart gun system, mounted on the rifle frame of TGMC standard issue AR-12. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	icon = 'icons/obj/items/guns/rifles64.dmi'
+	icon_state = "sg25"
+	worn_icon_state = "sg25"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_1.dmi',
+	)
+	caliber = CALIBER_10x26_CASELESS //codex
+	max_shells = 100 //codex
+	force = 25
+	aim_slowdown = 0.6
+	wield_delay = 0.75 SECONDS
+	fire_sound = SFX_GUN_SMARTGUN
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_smartrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/angledgrip,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
+	)
+
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 52, "muzzle_y" = 17,"rail_x" = 30, "rail_y" = 26, "under_x" = 33, "under_y" = 13, "stock_x" = 12, "stock_y" = 13)
+	fire_delay = 0.2 SECONDS
+	burst_amount = 0
+	accuracy_mult = 1.1
+	scatter = 0
+	accuracy_mult_unwielded = 0.5
+	scatter_unwielded = 15
+	damage_mult = 1.25
+	damage_falloff_mult = 0.3
+	shell_speed_mod = 2
+
+/obj/item/weapon/gun/rifle/pmc_smartrifle/leader
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted, /obj/item/attachable/verticalgrip)
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -3124,3 +3188,127 @@
 	scatter = 2
 	burst_scatter_mult = 2
 	damage_falloff_mult = 1
+
+//-------------------------------------------------------
+//SG-60 PMC Smart Machine Gun
+
+/obj/item/weapon/gun/rifle/pmc_gpmg
+	name = "\improper SG-60 Raummetall-KT smart machine gun"
+	desc = "The Raummetall-KT SG-60 is the Nanotrasen's newest model of smartgun, mounted on general purpose MG-60. In comparison to the known SG-29, this weapon has much higher rate of fire, however, paying for it with accuracy. mostly seen in hands of Nanotrasen Contractors in heavy exo-armor. Has unbuilt barrel charger. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	icon = 'icons/obj/items/guns/machineguns64.dmi'
+	icon_state = "sg60"
+	worn_icon_state = "sg60"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+	)
+	fire_sound = SFX_GUN_SMARTGPMG
+	force = 30
+	aim_slowdown = 0.8
+	wield_delay = 1.5 SECONDS
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/smart_gpmg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smart_gpmg)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
+	)
+
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 23, "under_x" = 31, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
+
+	fire_delay = 0.15 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.1
+	scatter = 4
+	scatter_unwielded = 40
+	movement_acc_penalty_mult = 4
+	damage_falloff_mult = 0.3
+	shell_speed_mod = 2
+
+/obj/item/weapon/gun/rifle/pmc_gpmg/gunner
+
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight,)
+
+//-------------------------------------------------------
+//PR-416 PMC rifle
+
+/obj/item/weapon/gun/rifle/m416
+	name = "\improper RA-SH-416 skirmish rifle"
+	desc = "The RA-SH-416 RivArms is a standart issue rifle for Nanotrasen Contractors. Comes with inbuilt underbarrel grenade launcher. Uses 10x25mm ammunition."
+	icon = 'icons/obj/items/guns/rifles64.dmi'
+	icon_state = "m416"
+	worn_icon_state = "m416"
+	fire_sound = 'sound/weapons/guns/fire/t40.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/type71_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
+	caliber = CALIBER_127X55 //codex
+	max_shells = 40 //codex
+	force = 20
+	wield_delay = 0.6 SECONDS
+	aim_slowdown = 0.4
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/m416
+	)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/m416
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
+	)
+
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible)
+	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 20,"rail_x" = 23, "rail_y" = 26, "under_x" = 25, "under_y" = 17, "stock_x" = 18, "stock_y" = 15)
+
+	fire_delay = 0.25 SECONDS
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.15 SECONDS
+	accuracy_mult = 1
+	scatter = -1
+	recoil_unwielded = 7
+	burst_amount = 2
+	shell_speed_mod = 1
+	damage_falloff_mult = 0.3
+
+/obj/item/weapon/gun/rifle/m416/pmc_standard
+	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible, /obj/item/attachable/magnetic_harness,)
+
+/obj/item/weapon/gun/rifle/m416/elite
+	name = "\improper RA-SH-416E skirmish rifle"
+	desc = "The RA-SH-416E RivArms is a modified model of standard issue rifle for high ranked Nanotrasen Contractors. Comes with inbuilt barrel charger and underbarrel grenade launcher. Uses 10x25mm ammunition."
+	icon_state = "m416e"
+	worn_icon_state = "m416e"
+
+	damage_mult = 1.25
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	burst_amount = 0
+	shell_speed_mod = 2
+
+/obj/item/weapon/gun/rifle/m416/elite/pmc_officer
+	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted,)

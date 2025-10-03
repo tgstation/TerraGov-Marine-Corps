@@ -81,12 +81,12 @@
 /obj/vehicle/unmanned/deployable/tiny
 	name = "UV-T Skink"
 	icon_state = "tiny_uv"
-	density = FALSE
+	layer = BELOW_TABLE_LAYER
 	move_delay = 1.5
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	atom_flags = NONE
 	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 100, FIRE = 25, ACID = 25)
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER|PASS_MOB
 	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
 	turret_pattern = NO_PATTERN
 	unmanned_flags = GIVE_NIGHT_VISION
@@ -111,3 +111,61 @@
 		playsound(src, 'sound/machines/chime.ogg', 30)
 	else
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30)
+
+/obj/item/deployable_vehicle/tiny/martian
+	name = "Seraphim's Eye Probe"
+	desc = "A ready to deploy probe, with the antennae folded in."
+	icon_state = "martian_uv_folded"
+	max_integrity = 100
+	deployable_item = /obj/vehicle/unmanned/deployable/tiny/martian
+
+/obj/vehicle/unmanned/deployable/tiny/martian
+	name = "Seraphim's Eye"
+	desc = "A fast martian probe, unarmed but perfect for scouting. Capable of cloaking when not in motion."
+	icon_state = "martian_uv"
+	layer = VEHICLE_LAYER
+	allow_pass_flags = HOVERING|PASSABLE|PASS_WALKOVER
+	pass_flags = HOVERING|PASS_GRILLE
+	faction = FACTION_SOM
+	iff_signal = SOM_IFF
+	///Whether the probe is cloaked or not
+	var/cloaked = FALSE
+	///Time it takes to activate cloak
+	var/cloak_time = 2 SECONDS
+	///Last world.time the probe moved and tried to uncloak.
+	var/last_uncloak_move = 0
+	///Time since the last uncloak move, used to determine when to cloak.
+	var/cloak_wait_elapsed = 0
+
+/obj/vehicle/unmanned/deployable/tiny/martian/Initialize(mapload, _internal_item, mob/deployer)
+	. = ..()
+	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+
+///Cloaks the probe and stops processing until it moves again.
+/obj/vehicle/unmanned/deployable/tiny/martian/proc/begin_cloaking()
+	cloaked = TRUE
+	playsound(src, 'sound/effects/pred_cloakon.ogg', 10, TRUE)
+	become_warped_invisible(30)
+	STOP_PROCESSING(SSobj, src)
+
+/obj/vehicle/unmanned/deployable/tiny/martian/process()
+	cloak_wait_elapsed = world.time - last_uncloak_move
+	if(cloak_wait_elapsed < cloak_time)
+		return
+	begin_cloaking()
+
+///Moving will disable the cloak and reset the cloak timer.
+/obj/vehicle/unmanned/deployable/tiny/martian/proc/on_move()
+	SIGNAL_HANDLER
+	if(cloaked)
+		cloaked = FALSE
+		stop_warped_invisible()
+		playsound(src, 'sound/effects/pred_cloakoff.ogg', 30, TRUE)
+	last_uncloak_move = world.time
+	cloak_wait_elapsed = 0
+	START_PROCESSING(SSobj, src)
+
+/obj/vehicle/unmanned/deployable/tiny/martian/disassemble(mob/user)
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	return ..()

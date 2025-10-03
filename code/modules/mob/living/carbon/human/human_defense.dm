@@ -328,6 +328,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		return
 	if(stat || (species.species_flags & NO_PAIN))
 		return
+	if(soft_armor.getRating(FIRE) > 80) //Lets not spam screams if you are barely taking any damage
+		return
 	if(prob(75))
 		return
 	emote("scream")

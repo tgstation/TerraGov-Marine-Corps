@@ -136,6 +136,7 @@
 #define MOVEMENT_SWAP_TRAIT "movement_swap_trait"
 #define MANIFESTED_TRAIT "manifested_trait"
 #define HOVERBIKE_TRAIT "hoverbike_trait"
+#define BIGBIKE_TRAIT "bigbike_trait"
 #define MUTATION_TRAIT "mutation_trait"
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
@@ -265,7 +266,7 @@
 ///massively decreases human MANUAL get up time
 #define TRAIT_QUICK_GETUP "quick_getup"
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
-#define TRAIT_MUTED "muted" //target is mute and can't speak
+#define TRAIT_MUTE "mute" //target is mute and can't speak, not to be confused with being muted by an admin
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 ///The target xenomorph's wound overlays won't be visible
 #define TRAIT_XENOMORPH_INVISIBLE_BLOOD "invisible_blood"
@@ -302,6 +303,8 @@
 #define TRAIT_IS_CLIMBING "is_climbing"
 ///reloading a gun
 #define TRAIT_IS_RELOADING "is_reloading"
+///is removing shrapnel
+#define TRAIT_IS_SHRAP_REMOVING "is_shrap_removing"
 
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"

@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed some NPC related runtimes"
+  - bugfix: "fixed old job/outfit related bugs"
+  - admin: "Spawned NPC squads will be assigned to their correct factions"

@@ -641,6 +641,11 @@
 	dir = 1
 	},
 /area/riptide/outside/southjungle)
+"ayW" = (
+/obj/structure/flora/ausbushes/reedbush,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/riptide/outside/eastbeach)
 "azh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/ground,
@@ -9757,6 +9762,13 @@
 	},
 /turf/open/ground,
 /area/riptide/outside/westislands)
+"gLl" = (
+/obj/structure/desertdam/decals/road{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "gMg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -12337,6 +12349,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/shuttle/dropship/floor/alt,
 /area/riptide/caves/tram)
+"iKB" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 4
+	},
+/area/riptide/inside/landingzoneone)
 "iLa" = (
 /obj/structure/table,
 /obj/item/trash/popcorn,
@@ -27944,6 +27962,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/inside/arena)
 "sWp" = (
@@ -29392,6 +29411,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/riptide/caves/syndicatemining)
+"tTS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/riptide/inside/landingzoneone)
 "tTZ" = (
 /turf/open/floor/plating/ground/dirt_alt/random,
 /area/riptide/caves/north)
@@ -30254,6 +30277,10 @@
 "uBd" = (
 /turf/open/floor,
 /area/riptide/caves/pmc/prison)
+"uBe" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "uBp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -31378,6 +31405,7 @@
 /area/riptide/outside/northbeach)
 "vqM" = (
 /obj/effect/landmark/xeno_resin_door,
+/obj/effect/ai_node,
 /turf/open/shuttle/dropship/floor,
 /area/riptide/caves/tram)
 "vqT" = (
@@ -36254,11 +36282,7 @@ haH
 haH
 uVx
 vwF
-sXP
-sXP
-vwF
-vwF
-sXP
+tTS
 sXP
 vwF
 vwF
@@ -36267,6 +36291,10 @@ sXP
 vwF
 vwF
 sXP
+sXP
+vwF
+vwF
+tTS
 vwF
 vwF
 vwF
@@ -36598,12 +36626,12 @@ uyR
 haH
 haH
 haH
-haH
+uBe
 mRt
 uoX
 uoX
 uoX
-uoX
+gLl
 uoX
 uoX
 uoX
@@ -36612,7 +36640,7 @@ uoX
 uoX
 psL
 ovc
-jhH
+iKB
 jhH
 jhH
 ipB
@@ -38388,7 +38416,7 @@ fsz
 sXP
 avX
 wha
-sXP
+tTS
 sXP
 vuR
 pPG
@@ -38414,7 +38442,7 @@ vTm
 wXG
 iRy
 sXP
-sXP
+tTS
 avX
 eDc
 sXP
@@ -38566,7 +38594,7 @@ aDN
 wsj
 dbF
 rhS
-wha
+eDc
 sXP
 sXP
 vuR
@@ -52366,7 +52394,7 @@ lSn
 bAh
 ptB
 aZZ
-uQM
+hVU
 gVY
 vgU
 vgU
@@ -57406,7 +57434,7 @@ qjz
 knr
 nwL
 evU
-sWT
+ayW
 htE
 htE
 htE

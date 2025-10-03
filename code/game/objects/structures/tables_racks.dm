@@ -338,7 +338,7 @@
 	parts = /obj/item/frame/table/wood
 	base_icon_state = "wood_table_reinforced"
 	table_prefix = "wood"
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 	max_integrity = 20
 
 /obj/structure/table/wood/add_debris_element()
@@ -374,7 +374,7 @@
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/gambling
 	table_prefix = "gamble"
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 	max_integrity = 20
 
 /obj/structure/table/wood/gambling/urban
@@ -585,7 +585,7 @@
 	icon = 'icons/obj/metnal_objects.dmi'
 	icon_state = "lectern"
 	dropmetal = FALSE
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 
 /obj/structure/rack/wood
 	color = "#8B7B5B"

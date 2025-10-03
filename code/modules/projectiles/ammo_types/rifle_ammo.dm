@@ -35,6 +35,13 @@
 	penetration = 10
 	sundering = 1.25
 
+/datum/ammo/bullet/rifle/heavy/ap
+	name = "heavy armor-piercing rifle bullet"
+	hud_state = "rifle_ap"
+	damage = 25
+	penetration = 30
+	sundering = 4.5
+
 /datum/ammo/bullet/rifle/repeater
 	name = "heavy impact rifle bullet"
 	hud_state = "sniper"

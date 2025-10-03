@@ -125,23 +125,23 @@
 		if(!do_after(user, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), NONE, patient_candidate, BUSY_ICON_UNSKILLED))
 			return
 	if(!ishuman(patient_candidate))
-		user.balloon_alert(user, "cannot scan")
+		user.balloon_alert(user, "cannot scan!")
 		return
 	if(isxeno(patient_candidate) || patient_candidate.species.species_flags & NO_SCAN)
-		user.balloon_alert(user, "unknown error")
+		user.balloon_alert(user, "unknown error!")
 		return
 	if(patient)
 		UnregisterSignal(patient, COMSIG_QDELETING)
 	patient = patient_candidate
 	if(show_patient)
 		if(!COOLDOWN_FINISHED(src, show_scan_cooldown))
-			user.balloon_alert(user, "wait [DisplayTimeText(COOLDOWN_TIMELEFT(src, show_scan_cooldown))]")
+			user.balloon_alert(user, "wait [DisplayTimeText(COOLDOWN_TIMELEFT(src, show_scan_cooldown))]!")
 			return
 		if(patient_candidate.faction != user.faction)
-			user.balloon_alert(user, "incompatible factions")
+			user.balloon_alert(user, "incompatible factions!")
 			return
 		if(!patient_candidate.client?.prefs?.allow_being_shown_health_scan)
-			user.balloon_alert(user, "can't show healthscan")
+			user.balloon_alert(user, "can't show healthscan!")
 			return
 		user.balloon_alert_to_viewers("showed healthscan", vision_distance = 4)
 		ui_interact(patient_candidate)

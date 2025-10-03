@@ -210,7 +210,7 @@
 	if(is_open)
 		. += image(icon, icon_state = "[barricade_type]_open_wire")
 	else
-		. += image(icon, icon_state = "[barricade_type]_wire")
+		. += image(icon, icon_state = "[barricade_type]_wire", layer = dir == NORTH ? layer : ABOVE_MOB_LAYER) //it will layer under certain upgrades in some cases otherwise
 
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -329,7 +329,7 @@
 	stack_type = /obj/item/stack/sheet/wood
 	stack_amount = 5
 	destroyed_stack_amount = 3
-	hit_sound = "sound/effects/woodhit.ogg"
+	hit_sound = "sound/effects/natural/woodhit.ogg"
 	can_change_dmg_state = FALSE
 	barricade_type = "wooden"
 	can_wire = FALSE
@@ -499,7 +499,7 @@
 	if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 		balloon_alert_to_viewers("fumbles")
 		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
 	balloon_alert_to_viewers("attaching [choice]")

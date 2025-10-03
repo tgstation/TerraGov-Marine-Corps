@@ -422,7 +422,7 @@
 			E.take_damage(1.5*effect_str, TRUE)
 
 /datum/reagent/medicine/dylovene/ai_should_use(mob/living/target, inject_vol)
-	if(target.reagents.get_reagent_amount(type)) //it has downsides so lets not spam it
+	if(target.reagents.get_reagent_amount(type) > 5) //it has downsides so lets not spam it
 		return FALSE
 	return ..()
 
