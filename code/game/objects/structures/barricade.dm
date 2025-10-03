@@ -329,7 +329,7 @@
 	stack_type = /obj/item/stack/sheet/wood
 	stack_amount = 5
 	destroyed_stack_amount = 3
-	hit_sound = "sound/effects/woodhit.ogg"
+	hit_sound = "sound/effects/natural/woodhit.ogg"
 	can_change_dmg_state = FALSE
 	barricade_type = "wooden"
 	can_wire = FALSE
