@@ -44,7 +44,7 @@
 	if(!density)
 		for(var/atom/thing_to_check AS in loc)
 			if(thing_to_check.density)
-				balloon_alert(user, "Blocked by [thing_to_check]")
+				balloon_alert(user, "Blocked by [thing_to_check]!")
 				return
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	if(!do_after(user, 7 SECONDS, IGNORE_HELD_ITEM, src))
@@ -326,10 +326,10 @@
 
 /obj/structure/dropship_equipment/shuttle/nade_launcher/equipment_interact(mob/user)
 	if(!COOLDOWN_FINISHED(src, deploy_cooldown)) //prevents spamming deployment
-		user.balloon_alert(user, "Busy")
+		user.balloon_alert(user, "Busy!")
 		return
 	if(length(loaded_grenades) <= 0) //check for inserted flares
-		user.balloon_alert(user, "No grenades left")
+		user.balloon_alert(user, "No grenades left!")
 		return
 	var/turf/target = get_ranged_target_turf(src, dir, 10)
 	var/obj/item/explosive/grenade/nade_to_launch = loaded_grenades[1]
@@ -459,7 +459,7 @@
 	addtimer(CALLBACK(src, PROC_REF(on_cooldown_end)), cooldown_length + 1 SECONDS)
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
 	console.say("Emitter system deployed successfully.")
-	landing_spot.balloon_alert_to_viewers("A small pellet falls out of the sky!")
+	landing_spot.balloon_alert_to_viewers("small pellet falls out of the sky!")
 
 /// Special effects for when system cooldown finishes
 /obj/structure/dropship_equipment/shuttle/tangle_emitter/proc/on_cooldown_end()

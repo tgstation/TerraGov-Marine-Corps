@@ -10,9 +10,9 @@
 
 /obj/item/inflatable/attack_self(mob/user)
 	. = ..()
-	balloon_alert(user, "Inflating...")
+	balloon_alert(user, "inflating...")
 	if(!do_after(user, 3 SECONDS, NONE, src))
-		balloon_alert(user, "Interrupted!")
+		balloon_alert(user, "interrupted!")
 		return
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
 	to_chat(user, span_notice("You inflate [src]."))
@@ -116,10 +116,10 @@
 		return
 
 	if(!deflated)
-		balloon_alert(usr, "Deflating...")
+		balloon_alert(usr, "deflating...")
 		deflate(FALSE)
 	else
-		balloon_alert(usr, "Already deflated.")
+		balloon_alert(usr, "already deflated!")
 
 
 /obj/structure/inflatable/wall
