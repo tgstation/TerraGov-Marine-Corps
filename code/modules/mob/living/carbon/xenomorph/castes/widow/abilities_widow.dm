@@ -5,11 +5,16 @@
 	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
+		/turf/closed/wall/resin/membrane,
+		/obj/alien/resin/sticky,
+		/obj/structure/mineral_door/resin/thick,
+		/obj/structure/bed/nest,
+		/obj/structure/bed/nest/wall,
+		/obj/structure/xeno/lighttower,
 		/turf/closed/wall/resin/regenerating/special/bulletproof,
 		/turf/closed/wall/resin/regenerating/special/fireproof,
 		/turf/closed/wall/resin/regenerating/special/hardy,
-		/obj/alien/resin/sticky,
-		/obj/structure/mineral_door/resin/thick,
+		/obj/structure/bed/nest/advanced,
 	)
 
 // ***************************************
@@ -59,7 +64,6 @@
 	if(!do_after(xeno_owner, 1 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 		return fail_activate()
 	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
-	leash_ball.hivenumber = xeno_owner.hivenumber
 	var/atom/movable/projectile/newspit = new (get_turf(xeno_owner))
 
 	newspit.generate_bullet(leash_ball)
@@ -178,7 +182,7 @@
 
 /datum/action/ability/xeno_action/create_spiderling/give_action(mob/living/L)
 	. = ..()
-	var/max_spiderlings = xeno_owner?.xeno_caste.max_spiderlings ? xeno_owner.xeno_caste.max_spiderlings : 5
+	var/max_spiderlings = xeno_owner?.xeno_caste.max_spiderlings ? xeno_owner.xeno_caste.max_spiderlings : 8
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy [max_spiderlings] spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 
 /datum/action/ability/xeno_action/create_spiderling/can_use_action(silent, override_flags, selecting)
@@ -366,7 +370,7 @@
 	///the attached spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/attached_spiderlings = list()
 	///how many times we attempt to attach adjacent spiderligns
-	var/attach_attempts = 5
+	var/attach_attempts = 8
 
 /datum/action/ability/xeno_action/attach_spiderlings/action_activate()
 	. = ..()

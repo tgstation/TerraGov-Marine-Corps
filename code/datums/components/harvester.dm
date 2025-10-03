@@ -157,8 +157,8 @@
 		return
 
 	to_chat(user, span_rose("You start filling up the small chambers along the blade's edge."))
-	if(!do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, source, BUSY_ICON_BAR))
-		to_chat(user, span_rose("Due to the sudden movement, the safety mechanism siphons the substance back."))
+	if(!do_mob(user, source, 2 SECONDS, BUSY_ICON_BAR, null, PROGRESS_BRASS, ignore_flags = IGNORE_USER_LOC_CHANGE))
+		to_chat(user, span_rose("As you put [source] away, the safety mechanism siphons the substance back."))
 		return
 
 	loaded_reagent = selected_reagent

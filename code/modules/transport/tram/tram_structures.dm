@@ -369,7 +369,7 @@
 /obj/structure/tram/spoiler
 	name = "tram spoiler"
 	icon = 'icons/obj/tram/tram_structure.dmi'
-	desc = "Nanotrasen bought the luxury package under the impression titanium spoilers make the tram go faster. They're just for looks, or potentially stabbing anybody who gets in the way."
+	desc = "Ninetails bought the luxury package under the impression titanium spoilers make the tram go faster. They're just for looks, or potentially stabbing anybody who gets in the way."
 	icon_state = "tram-spoiler-retracted"
 	max_integrity = 400
 	obj_flags = CAN_BE_HIT

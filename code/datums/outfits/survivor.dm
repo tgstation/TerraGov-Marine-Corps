@@ -6,7 +6,7 @@
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 	wear_suit = /obj/item/clothing/suit/armor/vest
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	mask = /obj/item/clothing/mask/gas/tactical/coif
 	head = /obj/item/clothing/head/welding/flipped
 	belt = /obj/item/storage/belt/utility/full
@@ -25,7 +25,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/toxins
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	l_hand = /obj/item/storage/firstaid/adv
 	l_pocket = /obj/item/storage/pouch/surgery
 	r_pocket = /obj/item/flashlight/combat
@@ -55,7 +55,7 @@
 	r_pocket = /obj/item/storage/pouch/surgery
 	belt = /obj/item/storage/belt/rig
 	mask = /obj/item/clothing/mask/surgical
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 	backpack_contents = list(
 		/obj/item/flashlight = 1,
@@ -90,7 +90,7 @@
 	w_uniform = /obj/item/clothing/under/liaison_suit
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp78
 	l_hand = /obj/item/flashlight/combat
 	l_pocket = /obj/item/tool/crowbar
@@ -107,7 +107,7 @@
 	belt = /obj/item/storage/belt/security
 	gloves = /obj/item/clothing/gloves/black
 	suit_store = /obj/item/weapon/gun/pistol/g22
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 	backpack_contents = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
@@ -130,7 +130,7 @@
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 	backpack_contents = list(
 		/obj/item/tool/crowbar = 1,
@@ -149,7 +149,7 @@
 	head = /obj/item/clothing/head/chefhat
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 	backpack_contents = list(
 		/obj/item/flashlight = 1,
@@ -175,7 +175,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/apron/overalls
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/hydroponics
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	suit_store = /obj/item/weapon/combat_knife
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/tool/crowbar
@@ -201,7 +201,7 @@
 	glasses = /obj/item/clothing/glasses/welding
 	r_pocket = /obj/item/storage/pouch/electronics/full
 	l_pocket = /obj/item/storage/pouch/construction
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 	backpack_contents = list(
 		/obj/item/lightreplacer = 1,
@@ -234,7 +234,7 @@
 	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 	l_hand = /obj/item/weapon/gun/shotgun/double
 	r_hand = /obj/item/ammo_magazine/handful/buckshot
@@ -259,7 +259,7 @@
 	l_hand = /obj/item/weapon/twohanded/sledgehammer
 	r_pocket = /obj/item/reagent_containers/cup/glass/flask
 	r_hand = /obj/item/clothing/suit/space/rig/mining
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 	backpack_contents = list(
 		/obj/item/storage/fancy/cigarettes = 1,
@@ -280,7 +280,7 @@
 	back = /obj/item/storage/backpack/satchel
 	mask = /obj/item/clothing/mask/cigarette/pipe/bonepipe
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 	backpack_contents = list(
 		/obj/item/weapon/gun/pistol/holdout = 1,
@@ -303,7 +303,7 @@
 	belt = /obj/item/storage/belt/sparepouch
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	l_pocket = /obj/item/flashlight/combat
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	head = /obj/item/clothing/head/slouch
 
 	belt_contents = list(
@@ -323,7 +323,7 @@
 	belt = /obj/item/ammo_magazine/shotgun/buckshot
 	shoes = /obj/item/clothing/shoes/laceup
 	head = /obj/item/clothing/head/collectable/tophat
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/tool/crowbar
@@ -350,7 +350,7 @@
 	belt = /obj/item/storage/belt/hypospraybelt
 	gloves = /obj/item/clothing/gloves/latex
 	shoes = /obj/item/clothing/shoes/white
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	glasses = /obj/item/clothing/glasses/science
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/tool/crowbar
@@ -396,7 +396,7 @@
 	belt = /obj/item/storage/belt/utility/full
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/tox
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	l_pocket = /obj/item/storage/pouch/electronics/full
 	r_pocket = /obj/item/flashlight/combat
@@ -424,4 +424,4 @@
 	r_pocket = /obj/item/flashlight/combat
 	glasses = /obj/item/clothing/glasses/m42_goggles
 	head = /obj/item/clothing/head/headband
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor

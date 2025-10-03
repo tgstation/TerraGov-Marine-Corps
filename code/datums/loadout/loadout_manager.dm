@@ -2,15 +2,46 @@
  * This datum in charge with selecting wich loadout is currently being edited
  * It also contains a tgui to navigate beetween loadouts
  */
+
+GLOBAL_LIST_INIT(loadout_renamed_jobs, list(
+	"Squad Marine" = "Squad Operative",
+	))
+
 /datum/loadout_manager
 	/**
 	 * List of all loadouts. Format is list(list(loadout_job, loadout_name))
 	 */
 	var/list/loadouts_data = list()
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
-	var/loadout_vendor
+	var/obj/machinery/loadout_vendor/loadout_vendor
 	/// The version of the loadout manager
 	var/version = CURRENT_LOADOUT_VERSION
+
+/datum/loadout_manager/proc/handle_renamed_jobs(datum/tgui/ui)
+	for(var/loadout_data in loadouts_data)
+		var/name = loadout_data[2]
+		var/job = loadout_data[1]
+		var/new_job_name = GLOB.loadout_renamed_jobs[job]
+		if(new_job_name)
+			var/datum/loadout/loadout = ui.user.client.prefs.load_loadout(loadout_name = name, loadout_job = job)
+			if(!loadout)
+				continue
+			var/datum/loadout/would_overwrite = ui.user.client.prefs.load_loadout(loadout_name = name, loadout_job = new_job_name)
+			var/id = 2
+			var/new_name = name
+			while(would_overwrite)
+				new_name = "[name]_[id]"
+				would_overwrite = ui.user.client.prefs.load_loadout(loadout_name = new_name, loadout_job = new_job_name)
+				id++
+			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				legacy_version_fix(loadout, name, job, ui)
+			loadout.name = new_name
+			loadout.job = new_job_name
+			ui.user.client.prefs.save_loadout(loadout)
+			add_loadout(loadout)
+			loadout.loadout_vendor = loadout_vendor
+			update_static_data(ui.user, ui)
+			delete_loadout(user = ui.user, loadout_name = name, loadout_job = job)
 
 ///Remove the data of a loadout from the loadouts list
 /datum/loadout_manager/proc/delete_loadout(mob/user, loadout_name, loadout_job)
@@ -30,6 +61,7 @@
 	if(!ui)
 		ui = new(user, src, "LoadoutManager")
 		ui.open()
+		handle_renamed_jobs(ui)
 
 /datum/loadout_manager/ui_state(mob/user)
 	return GLOB.human_adjacent_state
@@ -56,6 +88,18 @@
 			"job" = loadout_data[1],
 			"name" = loadout_data[2],
 		))
+	var/ui_theme
+	switch(loadout_vendor.faction)
+		if(VENDOR_FACTION_SOM)
+			ui_theme = "som"
+		if(VENDOR_FACTION_VSD)
+			ui_theme = "syndicate"
+		if(VENDOR_FACTION_CLF)
+			ui_theme = "xeno"
+		else
+			ui_theme = "ntos"
+	data["ui_theme"] = ui_theme
+	data["vendor_categories"] = loadout_vendor.categories
 	return data
 
 /datum/loadout_manager/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -264,11 +308,11 @@
 			var/datum/item_representation/old_hat = loadout.item_list[slot_head_str]
 			var/datum/item_representation/hat/modular_helmet/new_hat = new
 			if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot")
-				new_hat.item_type = /obj/item/clothing/head/modular/robot
+				new_hat.item_type = /obj/item/clothing/head/modular/m10x
 			if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot/light")
-				new_hat.item_type = /obj/item/clothing/head/modular/robot/light
+				new_hat.item_type = /obj/item/clothing/head/modular/m10x
 			if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot/heavy")
-				new_hat.item_type = /obj/item/clothing/head/modular/robot/heavy
+				new_hat.item_type = /obj/item/clothing/head/modular/m10x
 			new_hat.bypass_vendor_check = old_hat.bypass_vendor_check
 			new_hat.current_variant = "black"
 			loadout.item_list[slot_head_str] = new_hat
@@ -303,11 +347,11 @@
 			var/datum/item_representation/suit_with_storage/old_armor = loadout.item_list[slot_wear_suit_str]
 			var/datum/item_representation/armor_suit/modular_armor/new_armor = new
 			if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot")
-				new_armor.item_type = /obj/item/clothing/suit/modular/robot
+				new_armor.item_type = /obj/item/clothing/suit/modular/xenonauten
 			if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot/light")
-				new_armor.item_type = /obj/item/clothing/suit/modular/robot/light
+				new_armor.item_type = /obj/item/clothing/suit/modular/xenonauten/light
 			if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot/heavy")
-				new_armor.item_type = /obj/item/clothing/suit/modular/robot/heavy
+				new_armor.item_type = /obj/item/clothing/suit/modular/xenonauten/heavy
 			new_armor.bypass_vendor_check = old_armor.bypass_vendor_check
 			new_armor.current_variant = "black"
 			loadout.item_list[slot_wear_suit_str] = new_armor

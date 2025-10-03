@@ -1,9 +1,8 @@
-/**
- * Delays the mob's next click/action by num deciseconds
- * eg: 10 - 3 = 7 deciseconds of delay
- * eg: 10 * 0.5 = 5 deciseconds of delay
- * DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
- */
+//Delays the mob's next click/action by num deciseconds
+// eg: 10 - 3 = 7 deciseconds of delay
+// eg: 10 * 0.5 = 5 deciseconds of delay
+// DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
+
 /mob/proc/changeNext_move(num)
 	next_move = world.time + ((num + next_move_adjust) * next_move_modifier)
 
@@ -330,6 +329,8 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 /mob/living/carbon/proc/ability_target(atom/A)
 	TARGET_FLAGS_MACRO(ABILITY_MOB_TARGET, /mob/living)
+	TARGET_FLAGS_MACRO(ABILITY_XENO_TARGET, /mob/living/carbon/xenomorph)
+	TARGET_FLAGS_MACRO(ABILITY_HUMAN_TARGET, /mob/living/carbon/human)
 	if(selected_ability.target_flags & ABILITY_TURF_TARGET)
 		return get_turf(A)
 	return A
@@ -516,7 +517,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 
 /atom/proc/CtrlShiftClick(mob/user)
-	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT, user)
+	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)
 
 
 /*

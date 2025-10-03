@@ -743,4 +743,3 @@ SUBSYSTEM_DEF(minimaps)
 			owner.client.screen += map
 		else
 			minimap_displayed = FALSE
-

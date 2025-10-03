@@ -81,7 +81,7 @@
 		return FALSE
 	if(!plasmacutter.start_cut(user, name, src))
 		return FALSE
-	if(!do_after(user, PLASMACUTTER_CUT_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, plasmacutter.calc_delay(user), NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 
 	plasmacutter.cut_apart(user, name, src)
@@ -1168,3 +1168,12 @@
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
+
+/turf/closed/banish_space //Brazil
+	plane = PLANE_SPACE
+	layer = SPACE_LAYER
+	icon = 'icons/turf/space.dmi'
+	name = "phantom zone"
+	icon_state = "0"
+	can_bloody = FALSE
+	light_power = 0.25

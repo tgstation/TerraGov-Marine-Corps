@@ -234,12 +234,12 @@
 
 /obj/machinery/computer/security/dropship/one
 	name = "\improper 'Alamo' camera controls"
-	network = list("dropship1")
+	network = list("dropship1", "landing zones")
 	opacity = FALSE
 
 /obj/machinery/computer/security/dropship/two
 	name = "\improper 'Normandy' camera controls"
-	network = list("dropship2")
+	network = list("dropship2", "landing zones")
 
 /obj/machinery/computer/security/dropship/three
 	name = "\improper 'Triump' camera controls"

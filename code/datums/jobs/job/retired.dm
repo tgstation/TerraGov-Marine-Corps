@@ -1,5 +1,5 @@
 /datum/job/retired
-	title = "TGMC retired veteran"
+	title = "NTF retired veteran"
 	job_category = JOB_CAT_MARINE
 	paygrade = "MSGT"
 	access = ALL_ANTAGONIST_ACCESS
@@ -11,7 +11,7 @@
 
 
 /datum/job/retired/leader
-	title = "TGMC retired veteran expedition leader"
+	title = "NTF retired veteran expedition leader"
 	paygrade = "LtCol"
 	skills_type = /datum/skills/veteran_captain //The leader gets even more skills
 	outfit = /datum/outfit/job/retired/leader

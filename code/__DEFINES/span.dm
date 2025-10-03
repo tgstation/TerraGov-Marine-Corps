@@ -7,6 +7,9 @@
 #define span_alert(str) ("<span class='alert'>" + str + "</span>")
 #define span_alertalien(str) ("<span class='alertalien'>" + str + "</span>")
 #define span_alien(str) ("<span class='alien'>" + str + "</span>")
+#define span_psychicin(str) ("<span class='psychicin'>" + str + "</span>")
+#define span_announce_body(str) ("<span class='announce_body'>" + str + "</span>")
+#define span_announce_header(str) ("<span class='announce_header'>" + str + "</span>")
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
 #define span_avoidharm(str) ("<span class='avoidharms'>" + str + "</span>")
 #define span_bad(str) ("<span class='bad'>" + str + "</span>")
@@ -22,6 +25,7 @@
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_deadsay(str) ("<span class='deadsay'>" + str + "</span>")
 #define span_disarm(str) ("<span class='disarm'>" + str + "</span>")
+#define span_emote(str) ("<span class ='emote'>" + str + "</span>")
 #define span_debuginfo(str) ("<span class='debuginfo'>" + str + "</span>")
 #define span_event_announcement(str) ("<span class='event_announcement'>" + str + "</span>")
 #define span_game(str) ("<span class='game'>" + str + "</span>")
@@ -81,10 +85,13 @@
 #define span_xenodanger(str) ("<span class='xenodanger'>" + str + "</span>")
 #define span_xenonotice(str) ("<span class='xenonotice'>" + str + "</span>")
 #define span_xenouserdanger(str) ("<span class='xenouserdanger'>" + str + "</span>")
+#define span_psychicout(str) ("<span class='psychicout'>" + str + "</span>")
 #define span_xenowarning(str) ("<span class='xenowarning'>" + str + "</span>")
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
 #define span_deptradio(str) ("<span class='deptradio'>" + str + "</span>")
+#define span_hypnophrase(str) ("<span class='hypnophrase'>" + str + "</span>")
 
 // Spans that use embedded tgui components:
 // Sorted alphabetically
+#define span_collapsible(title, main_text) ("<span data-component=\"Collapsible\" data-content=\"" + title + "\" class=\"collapsible\">"+ boxed_message(main_text) + "</span>")
 #define span_tooltip(tip, main_text) ("<span data-component=\"Tooltip\" data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>")
