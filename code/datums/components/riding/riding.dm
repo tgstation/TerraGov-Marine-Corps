@@ -129,8 +129,8 @@
 		ride_check(buckled_mob)
 	if(QDELETED(src))
 		return // runtimed with piggy's without this, look into this more
-	handle_vehicle_offsets(dir)
 	handle_vehicle_layer(dir)
+	handle_vehicle_offsets(dir)
 
 /// Turning is like moving
 /datum/component/riding/proc/vehicle_turned(datum/source, _old_dir, new_dir)
@@ -157,9 +157,9 @@
 			for(var/offsetdir in offsets)
 				if(offsetdir == AM_dir)
 					var/list/diroffsets = offsets[offsetdir]
-					buckled_mob.pixel_x = diroffsets[1]
+					buckled_mob.pixel_w = diroffsets[1]
 					if(length(diroffsets) >= 2)
-						buckled_mob.pixel_y = diroffsets[2]
+						buckled_mob.pixel_z = diroffsets[2]
 					if(length(diroffsets) == 3)
 						buckled_mob.layer = diroffsets[3]
 					break dir_loop
@@ -198,8 +198,8 @@
 //BUCKLE HOOKS
 /datum/component/riding/proc/restore_position(mob/living/buckled_mob)
 	if(buckled_mob)
-		buckled_mob.pixel_x = initial(buckled_mob.pixel_x)//buckled_mob.base_pixel_x
-		buckled_mob.pixel_y = initial(buckled_mob.pixel_y)//buckled_mob.base_pixel_y
+		buckled_mob.pixel_w = initial(buckled_mob.pixel_w)//buckled_mob.base_pixel_w
+		buckled_mob.pixel_z = initial(buckled_mob.pixel_z)//buckled_mob.base_pixel_z
 		if(buckled_mob.client)
 			buckled_mob.client.view_size.reset_to_default()
 
