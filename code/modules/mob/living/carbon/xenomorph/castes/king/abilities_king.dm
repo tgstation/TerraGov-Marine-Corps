@@ -294,11 +294,10 @@
 			if(ishitbox(victim))
 				hitbox_penalty = 20
 			obj_victim.take_damage((SHATTERING_ROAR_DAMAGE - hitbox_penalty) * 5 * severity, BRUTE, MELEE)
-		continue
+			continue
 		if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
-			if(window_victim.damageable)
-				window_victim.ex_act(EXPLODE_DEVASTATE)
+			window_victim.ex_act(EXPLODE_DEVASTATE)
 			continue
 		if(isfire(victim))
 			var/obj/fire/fire = victim
