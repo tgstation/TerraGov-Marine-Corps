@@ -18,6 +18,8 @@
 	if(current_mission.type in mission_types)
 		var/obj/objective = new spawn_object(loc)
 		objective.dir = dir
+		if(isdestroobjective(objective))
+			objective.faction = current_mission.defending_faction
 	qdel(src)
 
 

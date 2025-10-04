@@ -56,7 +56,8 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING, PROC_REF(computer_running))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING, PROC_REF(computer_stop_running))
 
-/datum/campaign_mission/destroy_mission/base_rescue/set_factions()
+/datum/campaign_mission/destroy_mission/base_rescue/set_factions(initiating_faction)
+	. = ..()
 	attacking_faction = hostile_faction
 	defending_faction = starting_faction
 
