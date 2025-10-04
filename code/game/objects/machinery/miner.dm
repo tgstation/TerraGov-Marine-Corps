@@ -342,7 +342,7 @@
 				return
 			playsound(loc,'sound/machines/buzz-two.ogg', 35, FALSE)
 			add_tick = 0
-			miner_integrity -= 25
+			miner_integrity = 0.66 * max_miner_integrity
 			src.log_message("was disabled due to lack of empty space", LOG_ATTACK)
 			set_miner_status()
 			return
