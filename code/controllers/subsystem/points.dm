@@ -205,7 +205,10 @@ SUBSYSTEM_DEF(points)
 		requestlist["[orders[i].id]"] = orders[i]
 	ckey_shopping_cart.Cut()
 
-/datum/controller/subsystem/points/proc/add_supply_points(faction, amount)
+/datum/controller/subsystem/points/proc/add_supply_points(faction, amount, new_faction = FALSE)
+	if(!new_faction && !(faction in supply_points))
+		stack_trace("adding [faction] to supply_points via add_supply_points without new_faction set")
+		message_admins("added new faction \"[faction]\" to supply points list.  This is okay if you meant to do that but might be a bug.  This faction will now be eligible to recive points from supply point increase events.")
 	var/startingsupplypoints = supply_points[faction]
 	if(startingsupplypoints > HUMAN_FACTION_ABSOLUTE_MAX_POINTS)
 		return
@@ -227,7 +230,10 @@ SUBSYSTEM_DEF(points)
 	else
 		supply_points[faction] = simplenewamount1
 
-/datum/controller/subsystem/points/proc/add_dropship_points(faction, amount)
+/datum/controller/subsystem/points/proc/add_dropship_points(faction, amount, new_faction = FALSE)
+	if(!new_faction && !(faction in dropship_points))
+		stack_trace("adding [faction] to dropship_points via add_dropship_points without new_faction set")
+		message_admins("added new faction \"[faction]\" to dropship points list.  This is okay if you meant to do that but might be a bug.")
 	var/startingdropshippoints = dropship_points[faction]
 	if(startingdropshippoints > HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS)
 		return
