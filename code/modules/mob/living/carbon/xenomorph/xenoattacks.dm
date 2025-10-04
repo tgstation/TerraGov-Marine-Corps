@@ -8,7 +8,7 @@
 		var/mob/living/simple_animal/S = M
 		if(!S.melee_damage)
 			M.do_attack_animation(src)
-			S.emote("me", EMOTE_VISIBLE, "[S.friendly] [src]")
+			S.emote("me", EMOTE_TYPE_VISIBLE, "[S.friendly] [src]")
 		else
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message(span_danger("[S] [S.attacktext] [src]!"), null, null, 5)
