@@ -778,7 +778,7 @@
 			var/obj/item/reagent_containers/reagent_container = item_to_stock
 			if(!(reagent_container.item_flags & CAN_REFILL) && !reagent_container.has_initial_reagents())
 				if(show_feedback)
-					user?.balloon_alert(user, "\the container is missing some of its reagents!")
+					user?.balloon_alert(user, "container is missing some of its reagents!")
 				return FALSE
 
 	//Actually restocks the item after our checks
