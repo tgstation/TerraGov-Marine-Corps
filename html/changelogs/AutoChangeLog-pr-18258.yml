@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Campaign: You can no longer place C4 onto friendly objectives"
+  - code_imp: "Cleaned up some C4 code"
