@@ -13,6 +13,8 @@
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16
 	bubble_icon = "alienroyal"
+	/// The amount of plasma to be gained for being on fire.
+	var/plasma_gain_from_fire = 50
 
 /mob/living/carbon/xenomorph/ravager/Initialize(mapload)
 	. = ..()
@@ -27,7 +29,7 @@
 		return
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_RAVAGER_FLAMER_ACT))
 		return FALSE
-	gain_plasma(50)
+	gain_plasma(plasma_gain_from_fire)
 	TIMER_COOLDOWN_START(src, COOLDOWN_RAVAGER_FLAMER_ACT, 1 SECONDS)
 	if(prob(30))
 		emote("roar")
