@@ -1,0 +1,4 @@
+author: "Scav"
+delete-after: True
+changes:
+  - rscdel: "Deleted LZ1 landing on Bluemoon Crash"

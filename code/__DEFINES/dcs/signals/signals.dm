@@ -357,6 +357,10 @@
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
 ///From base of atom/get_self_acid
 #define COMSIG_ATOM_GET_SELF_ACID "atom_get_self_acid"
+///From base of atom/can_plastique()
+#define COMSIG_ATOM_TRY_PLASTIQUE "atom_try_plastique"
+	///Do not allow planting
+	#define COMSIG_ATOM_CANCEL_PLASTIQUE	(1<<0)
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"				//from base of atom/movable/Move(): (/atom, new_loc, direction)
