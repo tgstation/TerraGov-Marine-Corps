@@ -111,6 +111,8 @@
 	. = ..()
 	if(.)
 		return
+	if(!(user.client))
+		return
 	var/dat
 	if(mybag)
 		dat += "<a href='byond://?src=[text_ref(src)];garbage=1'>[mybag.name]</a><br>"
