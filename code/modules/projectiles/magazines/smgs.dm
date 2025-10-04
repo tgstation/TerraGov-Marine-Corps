@@ -40,7 +40,7 @@
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t19"
 	icon_state_mini = "mag_smg"
-	max_rounds = 45
+	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
 
 //-------------------------------------------------------
