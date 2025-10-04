@@ -23,7 +23,7 @@
 		loc.balloon_alert(user, "bad spot!")
 		return
 
-	user.balloon_alert_to_viewers("attaching!")
+	user.balloon_alert_to_viewers("attaching...")
 	playsound(loc, 'sound/machines/click.ogg', 15, 1)
 	var/constrdir = REVERSE_DIR(user.dir)
 	var/constrloc = user.loc

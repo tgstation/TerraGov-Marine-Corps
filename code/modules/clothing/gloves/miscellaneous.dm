@@ -164,7 +164,8 @@
 		return
 
 	playsound(loc, 'sound/effects/knockout.ogg', 25, FALSE)
-	target.balloon_alert_to_viewers("[target] collapses to the ground in exhaustion! K.O!", "You give up and collapse! K.O!")
+	target.balloon_alert_to_viewers("K.O!!!", ignored_mobs = target)
+	to_chat(target, span_userdanger("You give up and collapse! K.O!"))
 	target.Sleeping(10 SECONDS)
 
 /obj/item/weapon/heldglove/boxing/hook

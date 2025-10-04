@@ -190,7 +190,7 @@
 			coverlocked = FALSE
 			crowbar_act(interactor, crowbar)
 		if(cell)
-			balloon_alert_to_viewers("Removes [cell] from [src]")
+			balloon_alert_to_viewers("removes [cell]")
 			interactor.put_in_hands(cell)
 			cell.update_appearance()
 			set_cell(null)

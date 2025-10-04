@@ -60,7 +60,7 @@
 	if(user.do_actions)
 		return
 
-	target.balloon_alert_to_viewers("[user] starts to open [target]", "You start to pry open [target]")
+	target.balloon_alert_to_viewers("prying open [target]...")
 	if(!do_after(user, 4 SECONDS, IGNORE_HELD_ITEM, target))
 		return
 	var/obj/machinery/door/airlock/door = target
