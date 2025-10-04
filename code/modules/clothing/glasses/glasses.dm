@@ -70,6 +70,7 @@
 
 ///Toggle the functions of the glasses
 /obj/item/clothing/glasses/proc/activate(mob/user)
+	SIGNAL_HANDLER
 	if(!toggleable)
 		return
 	active = !active
