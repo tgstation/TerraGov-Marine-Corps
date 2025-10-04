@@ -53,7 +53,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"
-	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Optimimized for energy storage."
+	desc = "An advanced Ninetails phoron engine core prototype designed for NTF advanced mech exosuits. Optimimized for energy storage."
 	icon_state = "phoron_engine"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	rechargerate = 0

@@ -33,7 +33,7 @@ export const NtAccessTerminal = (props) => {
     color,
   } = data;
   return (
-    <Window title="NanoTrasen security override" width={450} height={250}>
+    <Window title="Ninetails security override" width={450} height={250}>
       <Window.Content>
         <Section title="Run Program">
           <Stack fill vertical>

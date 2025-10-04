@@ -24,13 +24,20 @@
 	minimap_icon = "warlock"
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/xeno_action/psychic_radiance,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/psy_crush,
 		/datum/action/ability/activable/xeno/psy_blast,
 		/datum/action/ability/activable/xeno/psychic_shield,
 		/datum/action/ability/activable/xeno/transfer_plasma/drone,
-		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/activable/psionic_interact,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 	mutations = list(

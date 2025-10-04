@@ -88,7 +88,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
 	name = "Gargantuan flamethrower X-tank"
-	desc = "Using Bluespace technology, Nanotrasen has managed to fit in way more x-fuel than you would ever hope to need in a single lifetime into this specialized tank."
+	desc = "Using Bluespace technology, Ninetails has managed to fit in way more x-fuel than you would ever hope to need in a single lifetime into this specialized tank."
 	max_rounds = 225
 	current_rounds = 225
 	reload_delay = 2 SECONDS
@@ -140,8 +140,20 @@
 	reload_delay = 0 SECONDS
 
 /obj/item/ammo_magazine/flamer_tank/vsd
+	name = "large CC/21 flamerthrower tank"
+	desc = "A large tank for the Kaizoku CC/21 Flamer, filled with thick napthal fuel."
+	icon_state = "flametank_vsd_orange"
+	max_rounds = 150
+	current_rounds = 150
+	reload_delay = 4 SECONDS
+	default_ammo = /datum/ammo/flamethrower
+	icon_state_mini = "tank_orange"
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank
+
+
+/obj/item/ammo_magazine/flamer_tank/vsd/blue
 	name = "large CC/21 flamerthrower tank (X)"
-	desc = "A large tank for the Vyacheslav CC/21 Flamer, filled with thick napthal X fuel."
+	desc = "A large tank for the Kaizoku CC/21 Flamer, filled with thick napthal X fuel."
 	icon_state = "flametank_vsd"
 	max_rounds = 150
 	current_rounds = 150

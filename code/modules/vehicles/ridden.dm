@@ -17,6 +17,11 @@
 /obj/vehicle/ridden/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null)
+	GLOB.ridden_vehicles_list += src
+
+/obj/vehicle/ridden/Destroy()
+	. = ..()
+	GLOB.ridden_vehicles_list -= src
 
 /obj/vehicle/ridden/examine(mob/user)
 	. = ..()

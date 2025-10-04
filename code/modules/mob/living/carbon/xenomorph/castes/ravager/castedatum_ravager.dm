@@ -44,12 +44,19 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/charge,
 		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 	///multiplier on plasma amount vs damage that is recieved on attack
 	var/plasma_damage_dealt_mult = 1.5
@@ -84,13 +91,20 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/charge,
 		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage,
 		/datum/action/ability/xeno_action/vampirism,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 
@@ -112,13 +126,19 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/charge,
 		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage,
 		/datum/action/ability/xeno_action/bloodthirst,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 	plasma_damage_dealt_mult = 2
 	plasma_damage_recieved_mult = 0.75
@@ -141,12 +161,18 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/charge,
 		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage,
 		/datum/action/ability/xeno_action/bloodthirst,
 		/datum/action/ability/xeno_action/deathmark,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)

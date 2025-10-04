@@ -81,12 +81,22 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	AddElement(/datum/element/strippable, GLOB.strippable_parrot_items)
 
+/mob/living/simple_animal/parrot/Destroy()
+	. = ..()
+	parrot_interest = null
+	parrot_perch = null
+	ears = null
+	held_item = null
+
 /mob/living/simple_animal/parrot/death(gibbing, deathmessage, silent)
 	if(stat == DEAD)
 		return ..()
 	if(held_item)
 		held_item.forceMove(drop_location())
 		held_item = null
+	if(ears)
+		ears.forceMove(drop_location())
+		ears = null
 	walk(src, 0)
 
 	pixel_x = initial(pixel_x)
@@ -588,6 +598,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 				parrot_source.available_channels.Add(RADIO_TOKEN_COMMAND)
 			if(RADIO_CHANNEL_CAS)
 				parrot_source.available_channels.Add(RADIO_TOKEN_CAS)
+			if(RADIO_CHANNEL_SEC)
+				parrot_source.available_channels.Add(RADIO_TOKEN_SEC)
 			if(RADIO_CHANNEL_MEDICAL)
 				parrot_source.available_channels.Add(RADIO_TOKEN_MEDICAL)
 			if(RADIO_CHANNEL_REQUISITIONS)

@@ -30,7 +30,7 @@
 // Meridian Cars - Damage States
 /obj/structure/prop/urban/vehicles/meridian
 	name = "\improper Mono-Spectra"
-	desc = "The 'Mono-Spectra', a mass-produced civilian vehicle for extraterrestrial markets, in and outside of Terra controlled space. Produced by 'Meridian' a car marque and associated operating division of the Nanotrasen Corporation."
+	desc = "The 'Mono-Spectra', a mass-produced civilian vehicle for extraterrestrial markets, in and outside of Terra controlled space. Produced by 'Meridian' a car marque and associated operating division of the Ninetails Corporation."
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
 	bound_height = 32

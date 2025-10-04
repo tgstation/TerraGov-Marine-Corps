@@ -48,6 +48,142 @@
   - balance: Pyrogen damage per fire tick per fire stack 2.5 => 2.0.
   uomo91, Atropos:
   - admin: show all logs in PP now shows logs by time instead of categories
+2025-06-14:
+  Colfer1:
+  - rscadd: Added Ambrosia, a variant of resin jelly worth 100 req points and 25 dropship
+      points
+  - rscadd: Added Ambrosia pots, a new structure which produces 1 Ambrosia each 550
+      seconds (1100 for corrupted)
+  - rscadd: All xenos that can produce edible jelly can now also produce ambrosia
+      pots.  Each xeno can own two pots.  Only the owner can take ambrosia from a
+      pot except by destroying it.  Destroying a pot has a 95% chance of dropping
+      each ambrosia globule inside it (the other 5% are destroyed). Ambrosia pots
+      cannot be places within 10 steps of another pod or 15 steps of a silo of the
+      same hive.  Ambrosia pots slowly decay if their owner is dead, disconnected,
+      or inactive.
+  DerFlammenwerfer:
+  - balance: Cyberghosted people are now 50% less visible.
+  FriedrichRatzel:
+  - config: Zombie crash was disabled.
+  - balance: Intel computers no longer award points instantly. Instead, they produce
+      a data disk - players have to redeem their points in req. Beware, data loses
+      its value after twenty minutes.
+  Lumipharon:
+  - bugfix: fixed an item runtime
+  - bugfix: fixed NPC's being told to follow someone, not actually doing so
+  Nokia2Student:
+  - rscadd: You can destroy weeds with grab intent
+  - balance: Weed NODES now can be taken down in 2 xeno hits, not 3
+  - balance: Increased weed NODE removal click delay
+  - rscadd: Adds Stolen Medicament Vendor, Marine F&D Vendor, Engi-Vend to KZ Loadout
+      Vendor Selection
+  - rscdel: Comments out TRAIT_HAS_SPAWNED_MECH
+  - rscadd: Added headsets to kz quick outfits
+  - rscadd: Added missing armor items to kz vendor
+  - bugfix: VSD -> KZ
+  - bugfix: Corrupted now properly share their map with marines and not xenos
+  - rscadd: New som tank fabricator
+  - rscadd: SOM Assault Crewman
+  - balance: Som can vend a hover tank now
+  - qol: More free space for som base
+  - balance: CC/77 Extended magazine now inherits default magazine ammotype
+  - balance: AT32 Fire delay lowered
+  - balance: Buffed kz weapon sunder values
+  - balance: Buffed AT32 damage but nerfed firerate and movement speed while wielding
+      it
+  - balance: Made AT32 canisters a little bit more unique, adding special properties
+  - balance: AT32 canisters take more time to load
+  - balance: Buffed CC/67 firerate to make it more distinct from AT32
+  - rscadd: Added ap and ext mags for CC/77
+  - rscadd: Added ap cylinder for X104
+  - bugfix: Breaching shotgun no longer can be fired one-handed
+  - bugfix: Fixes Take SSD Xeno Font Size
+  - rscadd: Edible jelly can be absorbed back if activated in hand
+  - rscadd: Minimap fix
+  - rscdel: Annihilation of compile error from existence
+  - balance: Increased penetration of incend and ap
+  - bugfix: Incendinary cylinder now uses proper burn damage type instead of brute
+  - rscadd: Expands kz vendor clothes selection
+  - bugfix: Ronin is no more piss-colored
+  - rscadd: Added more attachments to CC/Weaponry
+  - rscadd: Added shrap nade to kz weapon vendor
+  - rscadd: C96 can be put inside sidearm belts
+  - bugfix: Moved wp nades from ship to kz weapon vendor
+  - bugfix: Syndicate weapons rack got proper category order
+  - bugfix: XM104 Cylinder -> CC/104 Cylinder
+  - bugfix: C77, C74 Back Sprites Offset Fixed
+  - bugfix: Fixed C96 holster sprite
+  - rscadd: New vsd quick loadouts
+  - rscadd: New vsd armor
+  - rscadd: New vsd guns
+  - rscadd: New class of armor, super heavy
+  - balance: I tried my best to rebalance the weaponry since original pr had some
+      balancing issues
+  - bugfix: Fixed a few typos that pr owner left in the code
+  - imageadd: A batch of images for new armor and weapons
+  - bugfix: Removes outfit copies
+  - balance: Adds more attachments to CC/21
+  - balance: KZ Pyro Outfit now has a xfuel backpack
+  - rscadd: Adds new fast mechs
+  - rscadd: Reworks mech nade launcher, mech rocket launcher
+  - rscadd: Adds a mech sword
+  - rscdel: Movement block
+  - qol: Readded ctrl lock
+  - balance: Adjusts warlock/warrior damage to mechs
+  - bugfix: Fixes assault armor usage costing power even when activation failed
+  - imageadd: Adds new sprites for the sword and launcher
+  - rscadd: Extinguish fire proc which wind current uses
+  - bugfix: Fixes dragon breath going after entering crit state
+  - bugfix: Flying dragons and hiveminds can no longer be zapped
+  - bugfix: Backhand properly damages vehicles
+  - bugfix: Proper grab cooldown
+  - bugfix: Fixes dragon grab being broken if you try to grab with an item in hand
+  - balance: Buffed CC/AT32 Autocannon
+  - rscadd: Added KZ Headwear
+  - rscadd: Added armor modules to KZ Armor Vendor
+  - rscadd: Added modular KZ armor to KZ Armor Vendor
+  - bugfix: Changed KZ armor values to previous values (Port reverted them)
+  - bugfix: Fixed juggernaut sprite
+  - bugfix: Fixed rocket launcher inhand sprite
+  - bugfix: Fixed ammo rifle sprite
+  - bugfix: VSD Mentions -> KZ Mentions
+  - bugfix: VSD Airlocks -> KZ Airlocks
+  - bugfix: No more spinning breaching shotgun
+  - bugfix: Quick equip KZ Medic Loadout readded
+  - bugfix: A bunch of fixes
+  - rscadd: Added TRAIT_NOHEALTHREGEN
+  - rscadd: Added nonstackable /datum/status_effect/nohealthregen that applies TRAIT_NOHEALTHREGEN
+      for the duration of status effect
+  - balance: Xeno melee attack applies /datum/status_effect/nohealthregen for 10 SECONDS
+      if melee attack target is a xeno and of different hive
+  - balance: If xeno has /datum/status_effect/nohealthregen it will receive no passive
+      or active healing
+  SandPoot:
+  - rscadd: Returning to the lobby without cryo will apply respawn timers.
+  Valen417:
+  - rscadd: KZ PDW to KZ Vendor
+  - rscadd: KZ PDW Magazine to KZ Vendor
+  W0LF-101:
+  - balance: Overhauls bullet speed across the board, most bullets now have 0.5 higher
+      shell_speed
+  - balance: Increases SOM Veteran slots from 2 to 4 maximum
+  - bugfix: Adds the L-88 Assault Carbine mags to SOM vendor
+  - rscadd: Adds the large variant of the general pouch to SOM vendor
+  - balance: Reworked Vanguard vendor items
+  - balance: Reworked Specialist vendor items
+  - balance: Reworked Vanguard skills
+  - balance: Reworked Specialist skills
+  - balance: Removes "weakness" hardstun on humans from Mateba, R-76 Revolver, Buckshot
+      and Shotgun Slugs
+  chizzy376:
+  - rscadd: Adds more stuff to Larvae Pits
+  - qol: made desparity better
+  ddotmint:
+  - bugfix: fixed zipcuffs not having a sprite when cuffed
+  dottymint:
+  - bugfix: chaplain hoodie no longer an animation of the new and old sprite
+  - rscadd: added an occupational choice opt-in preference for being a potential xenomorph
+      hive target, i.e. breeding target
 2025-06-15:
   Apple-107:
   - rscadd: You can now spawn as Prototype Supersoldier in Valhalla
@@ -93,6 +229,10 @@
   - rscadd: Added personal statistic for FF recieved
   mudzbe:
   - bugfix: Fixed campaign extreme constitution perk typo
+2025-06-21:
+  Nokia2Student:
+  - balance: Queens got hivelord's resin construction
+  - balance: Kings are now able to build resin structures
 2025-06-23:
   Runian:
   - balance: Fireproof resin walls now prevent flamers from penetrating them, making

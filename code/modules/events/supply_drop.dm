@@ -2,10 +2,9 @@
 /datum/round_event_control/supply_drop
 	name = "Supply drop"
 	typepath = /datum/round_event/supply_drop
-	weight = 10
+	weight = 5
+	min_players = 5
 	earliest_start = 5 MINUTES
-
-	gamemode_whitelist = list("Combat Patrol", "Sensor Capture")
 
 /datum/round_event/supply_drop
 	///How long between the event firing and the supply drop actually landing
@@ -35,7 +34,7 @@
 
 ///Alerts the hostile faction(s)
 /datum/round_event/supply_drop/proc/alert_hostiles(turf/target_turf, supplying_faction)
-	var/list/humans_to_alert = GLOB.alive_human_list
+	var/list/humans_to_alert = GLOB.alive_human_list.Copy()
 	for(var/mob/living/carbon/human/alerted_human AS in humans_to_alert)
 		if(alerted_human.faction == supplying_faction)
 			humans_to_alert -= alerted_human
@@ -52,7 +51,9 @@
 			new /obj/item/loot_box/supply_drop/som(target_turf)
 		if(FACTION_ALIEN)
 			new /obj/effect/supply_drop/xenomorph(target_turf)
+		if(FACTION_XENO)
+			new /obj/effect/supply_drop/xenomorph(target_turf)
 		else
 			new /obj/item/loot_box/supply_drop(target_turf) //Marine box is the default
 	playsound(target_turf,'sound/effects/phasein.ogg', 80, FALSE)
-
+	qdel(src)

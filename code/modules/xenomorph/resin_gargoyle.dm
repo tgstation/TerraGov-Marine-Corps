@@ -21,4 +21,4 @@
 
 /obj/structure/xeno/resin_gargoyle/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[threat_warning ? "_warn" : "_passive"]", MINIMAP_LOCATOR_LAYER))
+	SSminimaps.add_marker(src, GLOB.hivenumber_to_minimap_flag[hivenumber], image('icons/UI_icons/map_blips.dmi', null, "gargoyle[threat_warning ? "_warn" : "_passive"]", MINIMAP_LOCATOR_LAYER))
