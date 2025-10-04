@@ -30,6 +30,10 @@
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	update_icon()
 	animate_hover()
+	var/static/list/tool_behaviors = list(
+		TOOL_WELDER = list(SCREENTIP_CONTEXT_LMB = "Repair"),
+	)
+	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
 
 /obj/vehicle/ridden/hover_bike/examine(mob/user)
 	. = ..()
