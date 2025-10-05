@@ -42,13 +42,12 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 	return TRUE
 
 /datum/job/xenomorph/add_job_positions(amount)
-	if(!(SSticker.mode.round_type_flags & MODE_XENO_SPAWN_PROTECT))
-		if(free_xeno_at_start > 0)
-			var/amount_to_cancel = max(0,min(free_xeno_at_start, amount))
-			free_xeno_at_start -= amount_to_cancel
-			amount -= amount_to_cancel
-			if(!amount)
-				return
+	if(free_xeno_at_start > 0)
+		var/amount_to_cancel = max(0,min(free_xeno_at_start, amount))
+		free_xeno_at_start -= amount_to_cancel
+		amount -= amount_to_cancel
+		if(!amount)
+			return
 	. = ..()
 	if(!.)
 		return
@@ -58,6 +57,16 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 /datum/job/xenomorph/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
 	. = ..()
 	SSminimaps.add_marker(xeno, GLOB.hivenumber_to_minimap_flag[xeno.hivenumber], image('icons/UI_icons/map_blips.dmi', null, xeno.xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
+
+/datum/job/xenomorph/remove_job_positions(amount)
+	if(src == SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber]))
+		var/new_burrowed = total_positions - current_positions - amount
+		if(new_burrowed < 0)
+			amount += new_burrowed
+			free_xeno_at_start -= new_burrowed
+			var/msg = "Increased [GLOB.hive_datums[hivenumber].name] larva debt by [-new_burrowed] to avoid negative burrowed"
+			log_game(msg)
+			message_admins(msg)
 
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN

@@ -163,6 +163,9 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = :roundid", list("roundid" = GLOB.round_id))
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
+	if(round_type_flags & MODE_XENO_SPAWN_PROTECT)
+		var/datum/job/xenomorph/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[XENO_HIVE_NORMAL])
+		xeno_job.free_xeno_at_start = 0
 
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
 	return FALSE
