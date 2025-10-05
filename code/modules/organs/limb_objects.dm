@@ -136,9 +136,3 @@
 /obj/item/limb/head/robotic
 	brain_item_type = null
 	braindeath_on_decap = 0
-
-/obj/item/limb/head/zombie
-	braindeath_on_decap = FALSE
-
-/obj/item/limb/head/zombie/transfer_identity(mob/living/carbon/human/H)
-	return
