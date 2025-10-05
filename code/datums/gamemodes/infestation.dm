@@ -25,7 +25,7 @@
 	. = ..()
 	if(bioscan_interval)
 		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
-	if(!(round_type_flags & MODE_INFESTATION))//Check its not zombie crash
+	if(!(round_type_flags & MODE_INFESTATION))//Check if it's zombie crash
 		return
 
 	var/weed_type

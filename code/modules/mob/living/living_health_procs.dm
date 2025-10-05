@@ -383,8 +383,9 @@
 
 ///Revive the huamn up to X health points
 /mob/living/carbon/human/proc/revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
-	if(on_fire || !has_working_organs())
-		species.handle_death(src)
+	if(ispath(species, /datum/species/zombie) && (on_fire || !has_working_organs()) )
+		var/datum/species/zombie/z = species
+		z.stop_reanimation(src)
 		return
 	if(health > 0)
 		return
@@ -401,8 +402,9 @@
 
 ///Check if we have a mind, and finish the revive if we do
 /mob/living/carbon/human/proc/finish_revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
-	if(on_fire || !has_working_organs())
-		species.handle_death(src)
+	if(ispath(species, /datum/species/zombie) && (on_fire || !has_working_organs()) )
+		var/datum/species/zombie/z = species
+		z.stop_reanimation(src)
 		return
 	do_jitter_animation(1000)
 	if(!client)

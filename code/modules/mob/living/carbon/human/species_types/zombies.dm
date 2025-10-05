@@ -2,8 +2,8 @@
 	name = "Zombie"
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
-	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	blood_color = "#110a0a"
 	hair_color = "#000000"
 	slowdown = 0.5
@@ -86,6 +86,16 @@
 	H.updatehealth()
 
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
+	if(H.on_fire)
+		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
+		return
+	if(!H.has_working_organs())
+		SSmobs.stop_processing(H) // stopping the processing extinguishes the fire that is already on, to stop from doubling up
+		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
+		return
+	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
+
+/datum/species/zombie/proc/stop_reanimation(mob/living/carbon/human/H)
 	if(H.on_fire)
 		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
 		return

@@ -435,6 +435,9 @@
 /obj/effect/landmark/corpsespawner/colonist/regular
 	death_type = REGULAR_DEATH
 
+/obj/effect/landmark/corpsespawner/colonist/valhalla
+	can_be_zombie = FALSE
+
 /obj/effect/landmark/corpsespawner/roboticist
 	name = "Roboticist"
 	corpseuniform = /obj/item/clothing/under/rank/roboticist
@@ -510,6 +513,9 @@
 
 /obj/effect/landmark/corpsespawner/PMC/regular
 	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/PMC/valhalla
+	can_be_zombie = FALSE
 
 /////////////////Marine//////////////////////
 

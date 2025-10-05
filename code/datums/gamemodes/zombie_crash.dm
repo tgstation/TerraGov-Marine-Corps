@@ -23,7 +23,7 @@
 
 /datum/game_mode/infestation/crash/zombie/can_start(bypass_checks = FALSE)
 	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
-		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
+		log_world("attempted to start [name] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
@@ -71,6 +71,9 @@
 	return list(num_humans, num_zombies)
 
 /datum/game_mode/infestation/crash/zombie/balance_scales()
+	if(GLOB.zombie_spawners == 0)
+		return
+
 	var/list/living_player_list = count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	var/num_zombies = living_player_list[2]
@@ -104,7 +107,7 @@
 	switch(planet_nuked)
 		if(INFESTATION_NUKE_NONE)
 			if(!num_humans)
-				message_admins("Round finished: [MODE_ZOMBIE_Z_MAJOR]") //xenos wiped out ALL the marines
+				message_admins("Round finished: [MODE_ZOMBIE_Z_MAJOR]") //zombies wiped out ALL the marines
 				round_finished = MODE_ZOMBIE_Z_MAJOR
 				return TRUE
 			if(marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE))
