@@ -131,10 +131,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 /datum/game_mode/proc/setup()
 	SHOULD_CALL_PARENT(TRUE)
-	SSjob.DivideOccupations()
-	create_characters()
-	spawn_characters()
-	transfer_characters()
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY))
 	for(var/faction in human_factions)
 		SSpoints.dropship_points[faction] = 0
@@ -142,6 +138,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	for(var/hivenum in GLOB.hive_datums)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
 		hive.purchases.setup_upgrades()
+	SSjob.DivideOccupations()
+	create_characters()
+	spawn_characters()
+	transfer_characters()
 	return TRUE
 
 ///Gamemode setup run after the game has started
