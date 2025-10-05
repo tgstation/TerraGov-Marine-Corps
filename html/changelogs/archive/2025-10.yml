@@ -31,3 +31,9 @@
   - spellcheck: 'Checked over many, many balloon alerts in the codebase to improve
       their quality or replace them with other forms of feedback. Please see PR #18304
       for details.'
+2025-10-05:
+  Lumipharon:
+  - qol: 'Campaign: You can no longer place C4 onto friendly objectives'
+  - code_imp: Cleaned up some C4 code
+  Scav:
+  - rscdel: Deleted LZ1 landing on Bluemoon Crash
