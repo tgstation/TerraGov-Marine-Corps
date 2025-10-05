@@ -1433,3 +1433,7 @@
 	var/datum/data/record/medical_record = find_medical_record(occupant)
 	var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
 	scan.ui_interact(usr)
+
+//Autodoc but faster
+/obj/machinery/autodoc/crash
+	surgery_time_multiplier = 2
