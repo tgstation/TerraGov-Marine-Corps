@@ -739,7 +739,7 @@
 /// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
 	if(HAS_TRAIT(src, TRAIT_NODROP))
-		stripper.balloon_alert(stripper, "[src] is stuck!")
+		stripper.balloon_alert(stripper, "it's stuck!")
 		return FALSE
 	return TRUE
 
@@ -1446,7 +1446,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/color_item(obj/item/facepaint/paint, mob/user)
 
 	if(paint.uses < 1)
-		balloon_alert(user, "\the [paint] is out of color!")
+		balloon_alert(user, "it's dry!")
 		return
 
 	var/list/selection_list = list()
@@ -1539,9 +1539,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/refill(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!(item_flags & CAN_REFILL))
-		user.balloon_alert(user, "Can't refill this")
+		user.balloon_alert(user, "can't be refilled!")
 		return FALSE
-	user.balloon_alert(user, "Refilled") //If all checks passed, it's safe to throw the balloon alert
+	user.balloon_alert(user, "refilled") //If all checks passed, it's safe to throw the balloon alert
 	return TRUE
 
 /// Returns the strip delay of the item.

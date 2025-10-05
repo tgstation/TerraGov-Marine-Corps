@@ -87,11 +87,11 @@
 			var/area/area = get_area(location)
 			var/turf/open/placement_loc = location
 			if(!placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) // long ass series of checks to prevent things like deployable shields on alamo
-				user.balloon_alert(user, "Can't deploy here")
+				user.balloon_alert(user, "unsuitable area!")
 				return
 
 		if(LinkBlocked(get_turf(user), location))
-			location.balloon_alert(user, "No room to deploy")
+			location.balloon_alert(user, "no room here!")
 			return
 		var/newdir = get_dir(user, location)
 		if(deploy_type.atom_flags & ON_BORDER)
@@ -102,17 +102,17 @@
 					continue
 				if(object.dir != newdir)
 					continue
-				location.balloon_alert(user, "No room to deploy")
+				location.balloon_alert(user, "no room here!")
 				return
 		if(user.do_actions)
-			user.balloon_alert(user, "You are already doing something!")
+			user.balloon_alert(user, "busy!")
 			return
-		user.balloon_alert(user, "You start deploying...")
+		user.balloon_alert(user, "deploying...")
 		user.setDir(newdir) //Face towards deploy location for ease of deploy.
 		if(!do_after(user, deploy_time, NONE, item_to_deploy, BUSY_ICON_BUILD))
 			return
 		if(LinkBlocked(get_turf(user), location))
-			location.balloon_alert(user, "No room to deploy")
+			location.balloon_alert(user, "no room here!")
 			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
@@ -136,7 +136,7 @@
 	deployed_machine.update_appearance()
 
 	if(user && item_to_deploy.loc == user)
-		item_to_deploy.balloon_alert(user, "Deployed!")
+		item_to_deploy.balloon_alert(user, "deployed!")
 		user.transferItemToLoc(item_to_deploy, deployed_machine, TRUE)
 		if(user.client.prefs.toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			deployed_machine.interact(user)
@@ -166,7 +166,7 @@
 	var/obj/item/undeployed_item = deployed_machine.get_internal_item() //Item the machine is undeploying
 
 	if(!undeployed_item)
-		CRASH("[src] is missing it's internal item.")
+		CRASH("[src] is missing its internal item.")
 
 	if(!user)
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [undeployed_item] without the arg 'user'")
@@ -176,7 +176,7 @@
 	if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
 		sentry = deployed_machine
 	sentry?.set_on(FALSE)
-	user.balloon_alert(user, "You start disassembling [undeployed_item]")
+	user.balloon_alert(user, "disassembling...")
 	if(!do_after(user, undeploy_time, NONE, deployed_machine, BUSY_ICON_BUILD))
 		sentry?.set_on(TRUE)
 		return

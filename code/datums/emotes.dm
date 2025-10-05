@@ -136,11 +136,11 @@
 			return FALSE
 
 		if(sound || get_sound(user))
-			if(HAS_TRAIT(user, TRAIT_MUTED))
-				user.balloon_alert(user, "You are muted!")
+			if(HAS_TRAIT(user, TRAIT_MUTE))
+				user.balloon_alert(user, "you can't make noise!")
 				return FALSE
 			if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_EMOTE))
-				user.balloon_alert(user, "You just did an audible emote")
+				user.balloon_alert(user, "used an audible emote too recently!")
 				return FALSE
 			else
 				TIMER_COOLDOWN_START(user, COOLDOWN_EMOTE, 8 SECONDS)
@@ -176,7 +176,7 @@
 				if(L.incapacitated())
 					if(!intentional)
 						return FALSE
-					user.balloon_alert(user, "You cannot [key] while stunned")
+					user.balloon_alert(user, "not while stunned!")
 					return FALSE
 
 		if(emote_flags & EMOTE_ARMS_CHECK)
@@ -185,17 +185,17 @@
 			var/datum/limb/left_hand = snapper.get_limb("l_hand")
 			var/datum/limb/right_hand = snapper.get_limb("r_hand")
 			if((!left_hand.is_usable()) && (!right_hand.is_usable()))
-				to_chat(user, span_notice("You cannot [key] without a working hand."))
+				user.balloon_alert(user, "need a working hand!")
 				return FALSE
 
 		if((emote_flags & EMOTE_RESTRAINT_CHECK) && user.restrained())
 			if(!intentional)
 				return FALSE
-			user.balloon_alert(user, "You cannot [key] while restrained")
+			user.balloon_alert(user, "not while restrained!")
 			return FALSE
 
 		if(emote_flags & EMOTE_ACTIVE_ITEM)
 			if(!isnull(user.get_active_held_item()))
 				return TRUE
-			user.balloon_alert(user, "You need to hold an item to [key] it.")
+			user.balloon_alert(user, "need to be holding an item!")
 			return FALSE

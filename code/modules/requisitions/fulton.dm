@@ -194,7 +194,7 @@
 
 
 /obj/item/fulton_extraction_pack/adminbus/preattack(mob/user, atom/target)
-	if(!isturf(target.loc) || !ismovableatom(target))
+	if(!isturf(target.loc) || !ismovable(target))
 		return FALSE
 	if(active)
 		balloon_alert(user, "Fulton not ready")

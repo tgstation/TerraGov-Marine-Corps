@@ -1,4 +1,9 @@
 /mob/living/carbon/human/gib()
+	visible_message(
+		span_boldwarning("[src] is blown apart!"),
+		span_userdanger("You're blown apart!"),
+		span_boldwarning("You hear terrible cracking and squelching."),
+	)
 	for(var/datum/limb/E in limbs)
 		if(istype(E, /datum/limb/chest))
 			continue
@@ -7,7 +12,7 @@
 		// Only make the limb drop if it's not too damaged
 		if(prob(100 - E.get_damage()))
 			// Override the current limb status
-			E.droplimb()
+			E.droplimb(silent = TRUE)
 	return ..()
 
 /mob/living/carbon/human/gib_animation()
@@ -46,8 +51,8 @@
 
 
 /mob/living/carbon/human/on_death()
-	if(pulledby)
-		pulledby.stop_pulling()
+	if(!ishuman(pulledby))
+		pulledby?.stop_pulling()
 
 	//Handle species-specific deaths.
 	species.handle_death(src)

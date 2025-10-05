@@ -32,17 +32,17 @@
 
 	if(!(to_check_flags & ABILITY_USE_FORTIFIED) && xeno_owner.fortify)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Cannot while fortified")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while fortified!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_CRESTED) && xeno_owner.crest_defense)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Cannot while in crest defense")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while in crest defense!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_IGNORE_PLASMA) && xeno_owner.plasma_stored < ability_cost)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Need [ability_cost - xeno_owner.plasma_stored] more plasma")
+			xeno_owner.balloon_alert(xeno_owner, "need [ability_cost - xeno_owner.plasma_stored] more plasma!")
 		return FALSE
 
 	return TRUE
@@ -78,17 +78,17 @@
 
 	if(!(to_check_flags & ABILITY_USE_FORTIFIED) && xeno_owner.fortify)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Cannot while fortified")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while fortified!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_CRESTED) && xeno_owner.crest_defense)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Cannot while in crest defense")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while in crest defense!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_IGNORE_PLASMA) && xeno_owner.plasma_stored < ability_cost)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "Need [ability_cost - xeno_owner.plasma_stored] more plasma")
+			xeno_owner.balloon_alert(xeno_owner, "need [ability_cost - xeno_owner.plasma_stored] more plasma!")
 		return FALSE
 
 	return TRUE

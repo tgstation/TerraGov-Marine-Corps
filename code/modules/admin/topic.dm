@@ -193,7 +193,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/atom/movable/AM = locate(href_list["observefollow"])
 		var/client/C = usr.client
 
-		if(!ismovableatom(AM))
+		if(!ismovable(AM))
 			return
 
 		if(isnewplayer(C.mob) || isnewplayer(AM))
