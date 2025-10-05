@@ -1436,4 +1436,4 @@
 
 //Autodoc but faster
 /obj/machinery/autodoc/crash
-	surgery_time_multiplier = 2
+	surgery_time_multiplier = 0.5
