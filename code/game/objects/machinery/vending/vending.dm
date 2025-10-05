@@ -742,7 +742,7 @@
 		var/obj/item/explosive/grenade/grenade = item_to_stock
 		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
 			if(show_feedback)
-				user?.balloon_alert(user, "can't restock grenades!")
+				user?.balloon_alert(user, "can't restock active grenades!")
 			return FALSE
 
 	else if(!isnull(max_capacity))	// Item has a maximum capacity
