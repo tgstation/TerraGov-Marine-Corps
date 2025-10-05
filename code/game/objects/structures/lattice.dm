@@ -111,7 +111,7 @@
 		return
 	if(xeno_attacker.a_intent != INTENT_DISARM)
 		return
-	xeno_attacker.balloon_alert(xeno_attacker, "Destroying")
+	xeno_attacker.balloon_alert(xeno_attacker, "destroying...")
 	if(!do_after(xeno_attacker, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
