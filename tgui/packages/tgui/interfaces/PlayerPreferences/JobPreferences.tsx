@@ -66,6 +66,7 @@ export const JobPreferences = (props) => {
     'SOM Synthetic',
     'SOM Technician',
     'SOM Medical Doctor',
+    'SOM Mech Pilot',
     'SOM Staff Officer',
     'SOM Pilot Officer',
     'SOM Assault Crewman',
