@@ -56,7 +56,7 @@
 	icon_state = "beacon_undeployed"
 	deployable_type = /obj/structure/npc_controller
 	deploy_time = 2 SECONDS
-	undeploy_time = 2 SECONDS
+	pixel_w = -4
 
 /obj/item/campaign_beacon/npc_controller/tgmc_standard
 	deployable_type = /obj/structure/npc_controller/tgmc_standard
@@ -66,8 +66,10 @@
 	desc = "An ominous red beacon, used to provide precision guidance to powerful orbital weapon systems."
 	icon = 'icons/obj/items/npc_beacon.dmi'
 	icon_state = "beacon_activating"
+	base_icon_state = "beacon"
 	faction = FACTION_TERRAGOV
 	density = FALSE
+	pixel_w = -8
 	///List of jobs that are spawned by this item
 	var/list/job_list
 
@@ -76,13 +78,17 @@
 	addtimer(CALLBACK(src, PROC_REF(spawn_mobs)), 3 SECONDS) //placeholder delay
 	set_job_list()
 	update_appearance()
-	flick("beacon_deploying", src)
+	flick("[base_icon_state]_deploying", src)
 
 /obj/structure/npc_controller/update_icon_state()
 	if(length(job_list))
-		icon_state = "beacon_activating"
+		icon_state = "[base_icon_state]_activating"
 	else
-		icon_state = "beacon_deployed_on"
+		icon_state = "[base_icon_state]_deployed_on"
+
+/obj/structure/npc_controller/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "[base_icon_state]_emissive", src)
 
 /obj/structure/npc_controller/proc/set_job_list()
 	return
