@@ -33,16 +33,19 @@
 
 /datum/component/npc_beacon/UnregisterFromParent()
 
+///Offers the parent as an escort target
 /datum/component/npc_beacon/proc/get_escort_target(mob/living/source, list/goal_list)
 	SIGNAL_HANDLER
 	goal_list[parent] = npc_priority
 
+///Tie an NPC to parent
 /datum/component/npc_beacon/proc/register_slave(mob/living/new_slave)
 	SIGNAL_HANDLER
 	RegisterSignal(new_slave, COMSIG_NPC_FIND_NEW_ESCORT, PROC_REF(get_escort_target))
 	RegisterSignal(new_slave, COMSIG_QDELETING, PROC_REF(unregister_slave))
 	npc_list += new_slave
 
+///Release an NPC from parent
 /datum/component/npc_beacon/proc/unregister_slave(mob/living/old_slave)
 	SIGNAL_HANDLER
 	UnregisterSignal(old_slave, list(COMSIG_NPC_FIND_NEW_ESCORT, COMSIG_QDELETING))
@@ -90,9 +93,11 @@
 	. = ..()
 	. += emissive_appearance(icon, "[base_icon_state]_emissive", src)
 
+///Does any customisation to the spawn list
 /obj/structure/npc_controller/proc/set_job_list()
 	return
 
+///Spawns and slaves the NPCs
 /obj/structure/npc_controller/proc/spawn_mobs()
 	if(QDELETED(src))
 		return
