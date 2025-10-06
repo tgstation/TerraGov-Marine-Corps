@@ -15,6 +15,8 @@
 	. = ..()
 	mounted_gun = new mounted_gun(src)
 	mounted_gun.gun_fire_angle = firing_angle
+	action_icon = mounted_gun.icon
+	action_icon_state = mounted_gun.icon_state
 	//NODROP so that you can't just drop the gun or have someone take it off your hands
 	ADD_TRAIT(mounted_gun, TRAIT_NODROP, MOUNTED_TRAIT)
 	RegisterSignal(mounted_gun, COMSIG_ITEM_DROPPED, PROC_REF(on_weapon_drop))
@@ -51,11 +53,6 @@
 	should_use_obj_appeareance = FALSE
 	mounted_gun = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/demi_culverin
 
-/obj/item/vehicle_module/mounted_gun/volkite/Initialize(mapload)
-	. = ..()
-	action_icon = mounted_gun.icon
-	action_icon_state = mounted_gun.icon_state
-
 ///bike volkite
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/demi_culverin
 	name = "\improper VX-42b Demi-Culverin"
@@ -89,11 +86,6 @@
 	should_use_obj_appeareance = FALSE
 	mounted_gun = /obj/item/weapon/gun/bike_minigun
 
-/obj/item/vehicle_module/mounted_gun/minigun/Initialize(mapload)
-	. = ..()
-	action_icon = mounted_gun.icon
-	action_icon_state = mounted_gun.icon_state
-
 /obj/item/weapon/gun/bike_minigun
 	name = "dual V-44 light gatling guns"
 	desc = "A pair of triple barreled 'light' gatling guns designed to be mounted in light vehicles such as SOM hover bikes. A smaller calibre round is used for optimal internal magazine capacity, but makes up for this with a ferocious rate of fire."
@@ -124,5 +116,42 @@
 
 	recoil_unwielded = -2
 	scatter_unwielded = 10
+	damage_falloff_mult = 0.4
+	movement_acc_penalty_mult = 2
+
+//
+/obj/item/vehicle_module/mounted_gun/autocannon
+	name = "dual V-44 light gatling guns"
+	desc = "A pair of triple barreled 'light' gatling guns designed to be mounted in light vehicles such as the SOM hover bikes. A smaller calibre round is used for optimal internal magazine capacity, but makes up for this with a ferocious rate of fire."
+	icon = 'icons/obj/vehicles/big_bike.dmi'
+	icon_state = "bike_autocannon"
+	should_use_obj_appeareance = FALSE
+	mounted_gun = /obj/item/weapon/gun/bike_autocannon
+
+/obj/item/weapon/gun/bike_autocannon
+	name = "dual AC-32 light autocannons"
+	desc = "A pair of 20mm autocannons, designed to be mounted on light vehicles such as the heavy motorbike. It packs a heavy punch, providing formidable firepower and a large internal magazine."
+	icon = 'icons/obj/vehicles/vehicle_weapons.dmi'
+	icon_state = "bike_autocannon"
+	worn_icon_state = null
+	max_shells = 150
+	caliber = CALIBER_20
+	load_method = MAGAZINE
+	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/bike_autocannon
+	allowed_ammo_types = list(/obj/item/ammo_magazine/bike_autocannon)
+	w_class = WEIGHT_CLASS_HUGE
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+	item_flags = NONE
+	equip_slot_flags = NONE
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	fire_delay = 0.2 SECONDS
+
+	recoil_unwielded = -2
+	scatter_unwielded = 4
 	damage_falloff_mult = 0.4
 	movement_acc_penalty_mult = 2

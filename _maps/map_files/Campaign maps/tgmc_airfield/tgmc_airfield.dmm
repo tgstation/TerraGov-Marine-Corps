@@ -366,10 +366,6 @@
 	dir = 10
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
-"dF" = (
-/turf/open/space/basic,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "dJ" = (
 /obj/structure/barricade/sandbags,
 /obj/effect/turf_decal/sandedge{
@@ -18036,9 +18032,9 @@ IB
 IB
 IB
 Al
-Oj
-dF
-Og
+IB
+IB
+IB
 IB
 IB
 IB

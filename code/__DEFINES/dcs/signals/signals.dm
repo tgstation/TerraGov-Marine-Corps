@@ -352,6 +352,10 @@
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
 ///From base of atom/get_self_acid
 #define COMSIG_ATOM_GET_SELF_ACID "atom_get_self_acid"
+///From base of atom/can_plastique()
+#define COMSIG_ATOM_TRY_PLASTIQUE "atom_try_plastique"
+	///Do not allow planting
+	#define COMSIG_ATOM_CANCEL_PLASTIQUE	(1<<0)
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"				//from base of atom/movable/Move(): (/atom, new_loc, direction)
@@ -745,6 +749,9 @@
 	#define ZIMPACT_NO_SPIN (1<<2)
 // From [/mob/living/updatehealth()]
 #define COMSIG_LIVING_UPDATE_HEALTH "living_update_health"
+
+// Sent when a /living is dealing with being on fire & is still on fire. From [/mob/living/proc/handle_fire]: ()
+#define COMSIG_LIVING_HANDLE_FIRE "living_handle_fire"
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)

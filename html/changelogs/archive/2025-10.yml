@@ -15,3 +15,32 @@
   - code_imp: Improved NPC medic code
   Xander3359:
   - code_imp: remove ismovableatom
+2025-10-04:
+  Lumipharon:
+  - bugfix: fixed some NPC related runtimes
+  - bugfix: fixed old job/outfit related bugs
+  - admin: Spawned NPC squads will be assigned to their correct factions
+  - balance: Added the heavy motorbike for future campaign use
+  - soundadd: Better hit sounds for flora
+  - qol: Hover bike sounds at a higher pitch than the hovertank
+  - bugfix: fixed the hover tank being silent
+  - bugfix: If NPC's cannot path to a goal node after repeated attempts, they will
+      now simply ignore it instead of getting stuck in place
+  - qol: You don't scream on fire tiles if you have very high fire resist
+  Neocloudy:
+  - spellcheck: 'Checked over many, many balloon alerts in the codebase to improve
+      their quality or replace them with other forms of feedback. Please see PR #18304
+      for details.'
+2025-10-05:
+  Lumipharon:
+  - qol: 'Campaign: You can no longer place C4 onto friendly objectives'
+  - code_imp: Cleaned up some C4 code
+  Scav:
+  - rscdel: Deleted LZ1 landing on Bluemoon Crash
+2025-10-06:
+  Neocloudy:
+  - spellcheck: 'Checked over many more balloon alerts to improve their quality. Please
+      see PR #18322 for details.'
+  Runian:
+  - bugfix: Razorwire now only counts as a structure built for statistics if it was
+      successfully built rather than attempted.
