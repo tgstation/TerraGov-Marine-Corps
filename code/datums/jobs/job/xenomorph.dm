@@ -67,6 +67,9 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 			var/msg = "Increased [GLOB.hive_datums[hivenumber].name] larva debt by [-new_burrowed] to avoid negative burrowed"
 			log_game(msg)
 			message_admins(msg)
+			if(!amount)
+				return
+	. = ..()
 
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN
