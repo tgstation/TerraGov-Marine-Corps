@@ -60,6 +60,7 @@
 				return
 			remove_shrapnel(user, target, targetlimb, skill)
 	to_chat(user, span_notice("You remove the last of the shrapnel from [target]."))
+	REMOVE_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(removaltool))
 
 ///returns TRUE if the argument limb has any shrapnel in it
 /datum/element/shrapnel_removal/proc/has_shrapnel(datum/limb/targetlimb)
