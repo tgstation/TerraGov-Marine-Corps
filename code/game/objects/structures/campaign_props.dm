@@ -12,6 +12,24 @@
 	icon_state = "SOM_fighter_empty"
 	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, this one seems to be unarmed currently."
 
+/obj/structure/prop/tgmc_fighter
+    name = "viper"
+    desc = "A viper MK.III fightcraft. Effective in atmosphere and space, the viper has been a reliable and versatile workhorse in the TerraGov navy for decades."
+    icon = 'icons/obj/structures/prop/mainship_96.dmi'
+    icon_state = "fighter_loaded"
+    pixel_x = -33
+    pixel_y = -10
+    bound_height = 2
+    bound_width = 3
+    bound_x = -32
+    density = TRUE
+    allow_pass_flags = PASS_AIR
+    layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/tgmc_fighter/empty
+    icon_state = "fighter"
+    desc = "A viper MK.III fightcraft. Effective in atmosphere and space, the viper has been a reliable and versatile workhorse in the TerraGov navy for decades. This one seems to be unarmed currently."
+
 /obj/structure/prop/train
 	name = "locomotive"
 	desc = "A heavy duty maglev locomotive. Designed for moving large quantities of goods from point A to point B."
