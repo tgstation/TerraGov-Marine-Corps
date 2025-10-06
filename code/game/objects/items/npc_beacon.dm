@@ -82,6 +82,9 @@
 	job_list = null
 	update_appearance()
 
+	playsound(src, 'sound/magic/lightningbolt.ogg', 50, 0)
+	new /obj/effect/temp_visual/blink_drive(get_turf(src))
+
 /obj/structure/npc_beacon/tgmc_standard
 	job_list = list(
 		/datum/job/terragov/squad/standard/npc,
