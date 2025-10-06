@@ -26,7 +26,7 @@
 		return
 	if(swirlie)
 		user.visible_message(span_danger("[user] slams the toilet seat onto [swirlie.name]'s head!"), span_notice("You slam the toilet seat onto [swirlie.name]'s head!"), "You hear reverberating porcelain.")
-		swirlie.apply_damage(8, BRUTE, blocked = MELEE, updating_health = TRUE)
+		swirlie.apply_damage(8, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = user)
 		return
 
 	if(cistern && !open)

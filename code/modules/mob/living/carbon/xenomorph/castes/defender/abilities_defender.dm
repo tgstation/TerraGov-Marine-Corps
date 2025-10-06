@@ -54,7 +54,7 @@
 		if(!affecting) //Still nothing??
 			affecting = H.get_limb("chest") //Gotta have a torso?!
 		if(damage_multiplier > 0)
-			H.apply_damage(damage * damage_multiplier, damage_type, updating_health = TRUE)
+			H.apply_damage(damage * damage_multiplier, damage_type, updating_health = TRUE, attacker = owner)
 		if(knockback_distance >= 1)
 			H.knockback(xeno_owner, knockback_distance, 4)
 		if(stagger_duration)
@@ -521,8 +521,8 @@
 		if(!affecting)
 			affecting = slapped.get_limb("chest")
 		slapped.knockback(xeno_owner, 1, 4)
-		slapped.apply_damage(damage, BRUTE, affecting, MELEE)
-		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
+		slapped.apply_damage(damage, BRUTE, affecting, MELEE, attacker = owner)
+		slapped.apply_damage(damage, STAMINA, updating_health = TRUE, attacker = owner)
 		slapped.Paralyze(0.3 SECONDS)
 		shake_camera(slapped, 2, 1)
 

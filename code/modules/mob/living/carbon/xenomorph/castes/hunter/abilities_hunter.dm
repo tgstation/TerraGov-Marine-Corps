@@ -210,7 +210,7 @@
 	cancel_stealth()
 
 ///Breaks stealth if sufficient damage taken
-/datum/action/ability/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
+/datum/action/ability/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken, mob/living/attacker)
 	SIGNAL_HANDLER
 	total_damage_taken += damage_taken
 	var/mob/living/carbon/xenomorph/xenoowner = owner

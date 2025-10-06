@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		var/marked = human_victim.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 		var/buff_multiplier = min(DANCER_MAX_IMPALE_MULT, determine_buff_mult(human_victim))
 		var/adj_damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * buff_multiplier)
-		human_victim.apply_damage(adj_damage, BRUTE, blocked = MELEE, penetration = (marked ? DANCER_IMPALE_PENETRATION : 0))
+		human_victim.apply_damage(adj_damage, BRUTE, blocked = MELEE, penetration = (marked ? DANCER_IMPALE_PENETRATION : 0), attacker = owner)
 		human_victim.Shake(duration = 0.5 SECONDS)
 		//you got shishkebabbed really bad
 		if(buff_multiplier > 1.70)
@@ -453,7 +453,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			shake_camera(living_target, 2, 1)
 		living_target.AdjustKnockdown(buffed ? 1 SECONDS : 0.5 SECONDS)
 		living_target.adjust_stagger(buffed ? 3 SECONDS : 1.5 SECONDS)
-		living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
+		living_target.apply_damage(damage, STAMINA, updating_health = TRUE, attacker = owner)
 		if(melting_fire_stacks)
 			var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 			if(melting_fire)
@@ -531,7 +531,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			continue
 		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into your flesh and yanks you towards it!"))
 		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
-		living_target.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+		living_target.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 		living_target.Shake(duration = 0.1 SECONDS)
 		living_target.spin(2 SECONDS, 1)
 
@@ -641,7 +641,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!wallbang_multiplier || !isclosedturf(hit_atom))
 		return
 	INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
-	living_source.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * wallbang_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
+	living_source.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * wallbang_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 
 /datum/action/ability/activable/xeno/oppressor/abduct
 	name = "Abduct"
@@ -735,7 +735,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 			ADD_TRAIT(human_mob, TRAIT_IMMOBILE, THROW_TRAIT) // Given that this throw will be slow compared to other abilities, we do not want humans to move DURING it.
 			human_mob.throw_at(turf_line[1], 6, 2, xeno_owner, TRUE)
-			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE)
+			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE, 0, owner)
 		xeno_owner.add_slowdown(0.3 * last_known_multiplier)
 		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
 	succeed_activate()
@@ -821,7 +821,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 	carbon_target.throw_at(get_step(carbon_target, get_dir(xeno_owner, carbon_target)), 2, 2, xeno_owner, TRUE)
-	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
+	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE, attacker = owner)
 
 	succeed_activate()
 	add_cooldown()
@@ -1023,7 +1023,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				continue
 			RegisterSignal(affected_human, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 			RegisterSignal(affected_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
-			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE)
+			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE, attacker = owner)
 			var/throwlocation = affected_human.loc
 			for(var/x in 1 to 2)
 				throwlocation = get_step(throwlocation, owner.dir)
@@ -1115,7 +1115,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(living_hit, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 	RegisterSignal(living_hit, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), FLOOR(throw_range, 1), 5, xeno_owner, TRUE)
-	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE)
+	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE, FALSE, FALSE, TRUE, 0, owner)
 
 /// Cleans up after charge is finished.
 /datum/action/ability/activable/xeno/oppressor/advance/proc/charge_complete()
