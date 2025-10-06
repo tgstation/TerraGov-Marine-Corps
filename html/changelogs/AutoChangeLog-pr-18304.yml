@@ -1,4 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - spellcheck: "Checked over many, many balloon alerts in the codebase to improve their quality or replace them with other forms of feedback. Please see PR #18304 for details."

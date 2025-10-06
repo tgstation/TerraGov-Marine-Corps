@@ -1,7 +1,7 @@
 /datum/emote/dead/observer
 	mob_type_allowed_typecache = /mob/dead/observer
 	cooldown = 60 SECONDS
-	emote_type = EMOTE_VISIBLE
+	emote_type = EMOTE_TYPE_VISIBLE
 	stat_allowed = DEAD
 	///icon file for the image to be displayed
 	var/emote_icon = 'icons/misc/observer_emotes.dmi'
