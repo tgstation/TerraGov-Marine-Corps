@@ -37,3 +37,10 @@
   - code_imp: Cleaned up some C4 code
   Scav:
   - rscdel: Deleted LZ1 landing on Bluemoon Crash
+2025-10-06:
+  Neocloudy:
+  - spellcheck: 'Checked over many more balloon alerts to improve their quality. Please
+      see PR #18322 for details.'
+  Runian:
+  - bugfix: Razorwire now only counts as a structure built for statistics if it was
+      successfully built rather than attempted.

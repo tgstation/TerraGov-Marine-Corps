@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Razorwire now only counts as a structure built for statistics if it was successfully built rather than attempted."
