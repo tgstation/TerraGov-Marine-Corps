@@ -17,15 +17,15 @@
 		return
 	var/obj/item/card/voucher/voucher = I
 	if(istype(voucher))
-		if(voucher.faction == faction)
+		if(voucher.faction == user.faction)
 			to_chat(user, span_warning("[src] buzzes: Cannot redeem voucher - can only be redeemed by other factions."))
 			return
 		else
-			I.supply_export(faction)
+			I.supply_export(user.faction)
 			qdel(I)
 			return TRUE
 	if(istype(I, /obj/item/disk/intel_disk))
-		I.supply_export(faction)
+		I.supply_export(user.faction)
 		qdel(I)
 		return TRUE
 
