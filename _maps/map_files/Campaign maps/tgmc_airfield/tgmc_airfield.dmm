@@ -364,10 +364,6 @@
 	dir = 10
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
-"dF" = (
-/turf/open/space/basic,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "dJ" = (
 /obj/structure/barricade/sandbags,
 /obj/effect/turf_decal/sandedge{
@@ -4428,21 +4424,12 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert)
-"Og" = (
-/turf/open/space/basic,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "Oi" = (
 /obj/structure/fence/dark,
 /obj/structure/fence/dark,
 /obj/effect/decal/cleanable/dirt/grime2,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/desert)
-"Oj" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "Oo" = (
 /obj/structure/prop/vehicle/big_truck/enclosed{
 	pixel_x = -10;
@@ -17876,9 +17863,9 @@ IB
 IB
 IB
 Al
-Oj
-dF
-Og
+IB
+IB
+IB
 IB
 IB
 IB
