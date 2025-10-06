@@ -1,3 +1,7 @@
+///Notifies the npc_controller component of a new NPC to slave to the atom
+/atom/proc/add_slaved_npc(mob/living/new_slave)
+	SEND_SIGNAL(src, COMSIG_COMPONENT_ADD_NEW_SLAVE_NPC, new_slave)
+
 ///Allows an atom to rally NPC's to it
 /datum/component/npc_controller
 	var/faction

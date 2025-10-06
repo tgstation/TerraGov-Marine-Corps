@@ -1,3 +1,4 @@
+
 //the holdable item
 /obj/item/campaign_beacon/npc_beacon
 	name = "\improper N.P.C. beacon"
