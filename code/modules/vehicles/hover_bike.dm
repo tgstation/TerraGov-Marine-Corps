@@ -15,15 +15,17 @@
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
 	max_buckled_mobs = 2
 	max_occupants = 2
-	pixel_x = -22
-	pixel_y = -22
+	pixel_w = -22
+	pixel_z = -22
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE, ATTACHMENT_SLOT_WEAPON)
 	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike, /obj/item/vehicle_module/mounted_gun/volkite, /obj/item/vehicle_module/mounted_gun/minigun)
 	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike, /obj/item/vehicle_module/mounted_gun/volkite)
-	COOLDOWN_DECLARE(enginesound_cooldown)
+	/// The looping sound that plays when the bike is operating
+	var/datum/looping_sound/som_tank_drive/hover_bike/engine_sound
 
 /obj/vehicle/ridden/hover_bike/Initialize(mapload)
 	. = ..()
+	engine_sound = new()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/hover_bike)
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	update_icon()
@@ -43,6 +45,8 @@
 /obj/vehicle/ridden/hover_bike/post_unbuckle_mob(mob/living/M)
 	remove_occupant(M)
 	M.remove_pass_flags(pass_flags, HOVERBIKE_TRAIT)
+	if(!length(occupants))
+		engine_sound.stop(src)
 	. = ..()
 	animate_hover()
 	animate(M)
@@ -50,6 +54,8 @@
 /obj/vehicle/ridden/hover_bike/post_buckle_mob(mob/living/M)
 	add_occupant(M)
 	M.add_pass_flags(pass_flags, HOVERBIKE_TRAIT)
+	if(is_driver(M))
+		engine_sound.start(src)
 	. = ..()
 	animate_hover()
 
@@ -58,15 +64,6 @@
 	if(!is_driver(M))
 		return
 	add_control_flags(M, VEHICLE_CONTROL_EQUIPMENT)
-
-/obj/vehicle/ridden/hover_bike/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
-	. = ..()
-	if(!LAZYLEN(buckled_mobs))
-		return
-
-	if(COOLDOWN_FINISHED(src, enginesound_cooldown))
-		COOLDOWN_START(src, enginesound_cooldown, 1.1 SECONDS)
-		playsound(get_turf(src), SFX_HOVER_TANK, 60, FALSE, 20)
 
 /obj/vehicle/ridden/hover_bike/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 15, 3 SECONDS, fuel_req = 1)

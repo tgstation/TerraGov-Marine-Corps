@@ -1,0 +1,9 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "6 more mutations for Ravager."
+  - rscadd: "Ravage now causes the turfs it hits to shake to help better visualize what was affected by it."
+  - balance: "Ravage now hits in a cone rather than rectangle. Only impacts Bloodthirster who may have super long Ravages."
+  - balance: "Mutations: Little More's critical/death threshold now scales at 30/40/50 from 20/35/50."
+  - balance: "Mutations: Recurring Rage's cooldown duration scales at 60/50/40% from 90/80/70%."
+  - bugfix: "Mutations: Deep Slash's armor penetration now correctly affects things that aren't humans."
