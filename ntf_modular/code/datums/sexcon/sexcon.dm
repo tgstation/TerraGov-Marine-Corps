@@ -566,13 +566,14 @@
 /datum/sex_controller/proc/get_speed_multiplier()
 	switch(speed)
 		if(SEX_SPEED_LOW)
-			return 2
+			. = 2
 		if(SEX_SPEED_MID)
-			return 3
+			. = 3
 		if(SEX_SPEED_HIGH)
-			return 4
+			. = 4
 		if(SEX_SPEED_EXTREME)
-			return 5
+			. = 5
+	. /= user.do_after_coefficent()
 
 /datum/sex_controller/proc/get_stamina_cost_multiplier()
 	switch(force)
