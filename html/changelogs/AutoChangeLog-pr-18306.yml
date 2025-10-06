@@ -1,0 +1,5 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - rscadd: "Death messages are now emotes. In addition to appearing in chat, they will appear in runechat if you have runechat emotes on. Emote death messages are visible to everyone with line of sight to the person dying—even if a potential viewer is also dying."
+  - qol: "Custom emotes will not have their pronouns replaced anymore, so you can emote with others and not have their pronouns replaced with yours."
