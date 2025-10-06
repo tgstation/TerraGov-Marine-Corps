@@ -49,10 +49,11 @@
 /obj/structure/npc_beacon/Initialize(mapload, obj/item/_internal_item, mob/deployer)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(spawn_mobs)), 3 SECONDS)
-	name = _internal_item.name
-	desc = _internal_item.desc
-	icon = _internal_item.icon
-	base_icon_state = _internal_item.base_icon_state
+	if(_internal_item)
+		name = _internal_item.name
+		desc = _internal_item.desc
+		icon = _internal_item.icon
+		base_icon_state = _internal_item.base_icon_state
 	if(deployer)
 		faction = deployer.faction
 	set_job_list()
