@@ -14,7 +14,8 @@
 "ag" = (
 /obj/machinery/door/airlock/urban/generic_solid{
 	pixel_y = 2;
-	dir = 1
+	dir = 1;
+	name = "\improper Showers"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
@@ -60,7 +61,8 @@
 /area/campaign/tgmc_airfield/outside/dry_river)
 "aM" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	dir = 2
+	dir = 2;
+	name = "\improper Dry Food Storage"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
@@ -556,6 +558,15 @@
 /obj/structure/cable,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/sidewalk)
+"fB" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/sink/bathroom{
+	dir = 1
+	},
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks)
 "fD" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -753,6 +764,12 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
+"hA" = (
+/obj/effect/urban/decal/road/lines1{
+	pixel_x = 13
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/road)
 "hB" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/dry_river)
@@ -921,7 +938,9 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/east)
 "iM" = (
-/obj/machinery/door/airlock/multi_tile/urban/generic_solid,
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
+	name = "\improper Warehouse"
+	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
 "iN" = (
@@ -945,7 +964,7 @@
 /area/campaign/tgmc_airfield/outside/desert)
 "iS" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	pixel_y = 2
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
@@ -965,7 +984,8 @@
 /area/campaign/tgmc_airfield/outside/desert/west)
 "iX" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
-	dir = 8
+	dir = 8;
+	name = "\improper Security Checkpoint"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -1055,7 +1075,7 @@
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "js" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	pixel_y = 2
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/campaign/tgmc_airfield/base/barracks)
@@ -1108,7 +1128,9 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "jK" = (
-/obj/machinery/door/airlock/multi_tile/urban/generic_solid,
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
+	name = "\improper Hangar"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
 	},
@@ -1418,6 +1440,11 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
+"mE" = (
+/obj/effect/urban/decal/dirt_2,
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/storage)
 "mQ" = (
 /obj/effect/turf_decal/sandedge/corner2,
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
@@ -1581,7 +1608,9 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "oj" = (
-/obj/machinery/door/airlock/urban/generic_solid,
+/obj/machinery/door/airlock/urban/generic_solid{
+	name = "\improper Hangar"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
@@ -1605,6 +1634,12 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/outside/desert/east)
+"ov" = (
+/obj/effect/urban/decal/road/lines3{
+	pixel_y = -5
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/road)
 "ox" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/campaign/tgmc_airfield/outside/desert)
@@ -1768,6 +1803,14 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert/east)
+"qm" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/urban/generic_solid{
+	dir = 2;
+	name = "\improper Armory Workshop"
+	},
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/armory_workshop)
 "qn" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/turf_decal/siding/dark/corner{
@@ -1790,7 +1833,9 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/east)
 "qy" = (
-/obj/machinery/door/airlock/urban/medical,
+/obj/machinery/door/airlock/urban/medical{
+	name = "\improper Surgery"
+	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
 "qB" = (
@@ -1818,7 +1863,8 @@
 /area/campaign/tgmc_airfield/outside/desert/west)
 "qI" = (
 /obj/machinery/door/airlock/multi_tile/secure{
-	dir = 2
+	dir = 2;
+	name = "Armory"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory)
@@ -1920,12 +1966,6 @@
 "rI" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/campaign/tgmc_airfield/outside/dry_river)
-"rL" = (
-/obj/effect/turf_decal/sandedge/corner2{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave,
-/area/campaign/tgmc_airfield/outside/cave)
 "rR" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 1
@@ -2288,6 +2328,12 @@
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert/east)
+"uQ" = (
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
+	name = "\improper Engineer Barracks"
+	},
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks)
 "uW" = (
 /obj/structure/table/urban/shiny_black,
 /obj/machinery/prop/computer{
@@ -2540,7 +2586,8 @@
 /area/campaign/tgmc_airfield/outside/desert/east)
 "wz" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
-	dir = 8
+	dir = 8;
+	name = "\improper Command"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/command_center)
@@ -2785,7 +2832,9 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "yt" = (
-/obj/machinery/door/airlock/urban/generic_solid,
+/obj/machinery/door/airlock/urban/generic_solid{
+	name = "\improper Hangar"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
@@ -2803,6 +2852,12 @@
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert/east)
+"yB" = (
+/obj/effect/urban/decal/road/road_stop{
+	pixel_x = -10
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/road)
 "yF" = (
 /obj/structure/bed/chair{
 	pixel_y = -1
@@ -2911,7 +2966,8 @@
 /area/campaign/tgmc_airfield/outside/dry_river)
 "zy" = (
 /obj/machinery/door/airlock/multi_tile/secure{
-	dir = 8
+	dir = 8;
+	name = "Armory"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory)
@@ -3078,10 +3134,11 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert/east)
 "Bj" = (
-/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
+	dir = 8;
+	name = "\improper Command Barracks"
+	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/officer)
 "Bx" = (
@@ -3147,6 +3204,16 @@
 "Cd" = (
 /turf/closed/wall/urban/colony/ribbed,
 /area/campaign/tgmc_airfield/base/armory_workshop)
+"Cg" = (
+/obj/effect/urban/decal/road/lines1{
+	pixel_x = 13
+	},
+/obj/effect/urban/decal/road/lines3{
+	pixel_y = -5;
+	pixel_x = 15
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/road)
 "Ch" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
@@ -3217,6 +3284,12 @@
 /obj/structure/prop/brokenvendor/brokennanomedvendor,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
+"CO" = (
+/obj/effect/turf_decal/sandedge/corner2{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave,
+/area/campaign/tgmc_airfield/outside/cave)
 "CT" = (
 /obj/structure/prop/urban/supermart/rack/longrack2,
 /turf/open/floor/tile/blue,
@@ -3232,10 +3305,17 @@
 	dir = 1
 	},
 /obj/machinery/light/small{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
+"Db" = (
+/obj/effect/urban/decal/road/lines3{
+	pixel_y = -5;
+	pixel_x = 21
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/road)
 "Di" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -3248,7 +3328,8 @@
 /area/campaign/tgmc_airfield/outside/desert/east)
 "Dk" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	dir = 2
+	dir = 2;
+	name = "\improper Armory Frontroom"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -3328,10 +3409,10 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/officer)
 "DR" = (
-/obj/machinery/door/airlock/urban/generic_solid{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/urban/generic_solid{
+	name = "\improper Kitchen"
+	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "DT" = (
@@ -3348,7 +3429,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "Eb" = (
-/obj/machinery/door/airlock/urban/generic_solid,
+/obj/machinery/door/airlock/urban/generic_solid{
+	name = "\improper Kitchen"
+	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
@@ -3372,6 +3455,21 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"Ei" = (
+/obj/effect/urban/decal/road/corner{
+	dir = 8;
+	pixel_x = -14;
+	pixel_y = -14
+	},
+/obj/effect/urban/decal/road/lines5{
+	pixel_x = 18
+	},
+/obj/effect/urban/decal/road/lines1{
+	pixel_x = 13;
+	pixel_y = 17
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/road)
 "Ep" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -3435,10 +3533,18 @@
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "EX" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	dir = 2
+	dir = 2;
+	name = "\improper Fridge"
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
+"EZ" = (
+/obj/machinery/door/airlock/urban/generic_solid{
+	dir = 8;
+	name = "\improper Pilot Officer's Room"
+	},
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/officer)
 "Ff" = (
 /obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/tile/blue,
@@ -3625,6 +3731,17 @@
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
+"GC" = (
+/obj/effect/urban/decal/road/road_stop/three{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/effect/urban/decal/road/lines3{
+	pixel_y = -5;
+	pixel_x = 41
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/road)
 "GE" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/engineer,
 /turf/open/floor/tile/blue,
@@ -3636,7 +3753,9 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
 "GN" = (
-/obj/machinery/door/airlock/multi_tile/urban/generic_solid,
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
+	name = "\improper Marine Barracks"
+	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
 "GP" = (
@@ -3695,7 +3814,8 @@
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "Hl" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	dir = 2
+	dir = 2;
+	name = "\improper Ammunition Storage"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/campaign/tgmc_airfield/base/hangar_bay)
@@ -3857,11 +3977,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
-"IF" = (
-/obj/effect/urban/decal/dirt_2,
-/obj/vehicle/ridden/powerloader,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/storage)
 "IG" = (
 /obj/machinery/power/fusion_engine/random{
 	pixel_y = -2
@@ -3927,6 +4042,14 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory)
+"JB" = (
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
+	dir = 8;
+	name = "\improper Command Barracks"
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/officer)
 "JC" = (
 /obj/effect/urban/decal/trash/seventeen,
 /turf/open/urban/street/sidewalkfull,
@@ -3952,6 +4075,13 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/east)
+"JJ" = (
+/obj/machinery/door/airlock/urban/generic_solid{
+	dir = 2;
+	name = "\improper Fuel Storage"
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside,
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "JK" = (
 /obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -4177,12 +4307,12 @@
 /turf/closed/mineral/smooth/desertdamrockwall,
 /area/campaign/tgmc_airfield/outside/cave/enclosed)
 "LJ" = (
-/obj/machinery/light/small,
-/turf/closed/wall/urban,
-/area/campaign/tgmc_airfield/base/barracks)
+/obj/effect/urban/decal/road/lines5,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/road)
 "LO" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	pixel_y = 2;
+	name = "\improper Bathroom";
 	dir = 2
 	},
 /turf/open/floor/tile/blue,
@@ -4364,6 +4494,9 @@
 /obj/structure/sink/bathroom{
 	pixel_y = 20
 	},
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
 "Nv" = (
@@ -4429,18 +4562,14 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert)
 "Og" = (
-/turf/open/space/basic,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "Oi" = (
-/obj/structure/fence/dark,
 /obj/structure/fence/dark,
 /obj/effect/decal/cleanable/dirt/grime2,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/desert)
 "Oj" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "Oo" = (
@@ -4524,6 +4653,17 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory_workshop)
+"Po" = (
+/obj/machinery/power/smes/buildable/empty{
+	dir = 1
+	},
+/obj/structure/prop/urban/signs/high_voltage/small{
+	pixel_x = 26
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 4
+	},
+/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "Pr" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -4543,6 +4683,14 @@
 /obj/structure/cable,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/sidewalk)
+"PE" = (
+/obj/machinery/door/airlock/urban/generic_solid{
+	dir = 2;
+	name = "\improper Armory Workshop"
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/armory_workshop)
 "PJ" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 8
@@ -4561,7 +4709,8 @@
 /area/campaign/tgmc_airfield/outside/desert/east)
 "PR" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
-	dir = 1
+	dir = 1;
+	name = "\improper Canteen"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
@@ -4570,7 +4719,8 @@
 /area/campaign/tgmc_airfield/base/medical)
 "PX" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	dir = 8
+	dir = 8;
+	name = "\improper Staff Officers Room"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/officer)
@@ -4597,7 +4747,9 @@
 	},
 /area/campaign/tgmc_airfield/outside/desert/west)
 "Qf" = (
-/obj/machinery/door/airlock/multi_tile/secure,
+/obj/machinery/door/airlock/multi_tile/secure{
+	name = "Armory"
+	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory)
 "Qh" = (
@@ -4676,7 +4828,8 @@
 /area/campaign/tgmc_airfield/outside/desert/east)
 "QW" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
-	dir = 8
+	dir = 8;
+	name = "\improper Armory Frontroom"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory_workshop)
@@ -4796,6 +4949,9 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/structure/sign/fire{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "RY" = (
@@ -4912,7 +5068,7 @@
 /area/campaign/tgmc_airfield/base/armory_workshop)
 "Th" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	dir = 8
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
@@ -4989,10 +5145,11 @@
 /obj/effect/turf_decal/stripes/white/corner{
 	dir = 8
 	},
+/obj/structure/cable,
 /obj/machinery/door/airlock/urban/generic_solid{
+	name = "\improper Hangar";
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
@@ -5188,7 +5345,8 @@
 /area/campaign/tgmc_airfield/base/armory_workshop)
 "Vi" = (
 /obj/machinery/door/airlock/urban/generic_solid{
-	dir = 8
+	dir = 8;
+	name = "\improper Medical"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -5252,7 +5410,8 @@
 /area/campaign/tgmc_airfield/outside/dry_river)
 "VX" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
-	dir = 8
+	dir = 8;
+	name = "\improper Command"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -5294,6 +5453,9 @@
 /area/campaign/tgmc_airfield/outside/dry_river)
 "Wh" = (
 /obj/structure/cable,
+/obj/structure/prop/urban/signs/high_voltage{
+	pixel_y = -25
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "Wi" = (
@@ -5441,10 +5603,11 @@
 	},
 /area/campaign/tgmc_airfield/outside/desert/west)
 "XP" = (
-/obj/machinery/door/airlock/urban/generic_solid{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/urban/generic_solid{
+	dir = 8;
+	name = "\improper Armory Workshop"
+	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory_workshop)
 "XS" = (
@@ -5502,9 +5665,6 @@
 "YD" = (
 /obj/structure/toilet{
 	pixel_y = 5
-	},
-/obj/machinery/light/small{
-	dir = 8
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
@@ -8421,7 +8581,7 @@ VI
 VI
 ZG
 ZG
-rL
+CO
 cm
 cm
 ZG
@@ -13376,7 +13536,7 @@ Nr
 Nr
 Nr
 Nr
-Nr
+ov
 Nr
 Nr
 Nr
@@ -13493,8 +13653,8 @@ Nr
 Nr
 Nr
 Nr
-Nr
-Nr
+Db
+yB
 Nr
 Nr
 Nr
@@ -13592,83 +13752,83 @@ gs
 "}
 (69,1,1) = {"
 gs
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+Cg
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+Ei
 Nr
 Nr
 Kw
@@ -13727,7 +13887,7 @@ Nr
 Nr
 Nr
 Nr
-Nr
+GC
 Nr
 Nr
 Nr
@@ -13785,7 +13945,7 @@ Nr
 Nr
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 Kw
@@ -13902,7 +14062,7 @@ Nr
 Nr
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 Kw
@@ -14019,7 +14179,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 Ue
@@ -14136,7 +14296,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 eO
@@ -14253,7 +14413,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 eO
@@ -14370,7 +14530,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 gR
@@ -14487,7 +14647,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 Kw
@@ -14604,7 +14764,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 aP
@@ -14716,12 +14876,12 @@ lL
 lL
 lL
 lL
-GN
+uQ
 ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 pb
@@ -14838,7 +14998,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 kM
@@ -14918,7 +15078,7 @@ Hd
 hd
 jG
 sD
-IF
+mE
 sD
 sD
 sD
@@ -14955,7 +15115,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 kM
@@ -15072,7 +15232,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 yH
@@ -15189,7 +15349,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 MX
@@ -15306,7 +15466,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 MX
@@ -15405,7 +15565,7 @@ ix
 Yr
 YD
 LO
-lL
+fB
 Yr
 Ns
 LO
@@ -15423,12 +15583,12 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 MX
 hq
-pN
+Po
 pN
 kc
 xG
@@ -15522,10 +15682,10 @@ ix
 Yr
 Yr
 Yr
-LJ
 Yr
 Yr
-LJ
+Yr
+Yr
 Yr
 Yr
 gT
@@ -15540,7 +15700,7 @@ ix
 ix
 Nr
 Nr
-Nr
+LJ
 Nr
 Nr
 MX
@@ -15726,14 +15886,14 @@ ai
 Ec
 MQ
 LY
-Dk
+PE
 By
 By
 JQ
 By
 Vh
 By
-Dk
+qm
 By
 By
 Dk
@@ -17415,7 +17575,7 @@ IB
 IB
 IB
 Iy
-Hl
+JJ
 xA
 xA
 xA
@@ -17606,11 +17766,11 @@ PX
 UM
 UM
 UM
-PX
+EZ
 UM
 UM
 UM
-PX
+EZ
 UM
 UM
 UM
@@ -17730,7 +17890,7 @@ Uc
 Uc
 Uc
 Uc
-Bj
+JB
 MQ
 ix
 XU
@@ -17957,11 +18117,11 @@ PX
 UM
 UM
 UM
-PX
+EZ
 UM
 UM
 UM
-PX
+EZ
 UM
 UM
 UM
