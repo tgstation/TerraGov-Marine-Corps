@@ -44,3 +44,28 @@
   Runian:
   - bugfix: Razorwire now only counts as a structure built for statistics if it was
       successfully built rather than attempted.
+2025-10-07:
+  Lumipharon:
+  - bugfix: fixed NPC's sometimes getting stuck after removing shrapnel
+  - bugfix: fixed a beam harddel
+  - bugfix: 'Campaign: Fixed TGMC shotgun belt whitelist'
+  - bugfix: fixed NPC's not moving if they are on top of their target
+  Neocloudy:
+  - rscadd: "Death messages are now emotes. In addition to appearing in chat, they\
+      \ will appear in runechat if you have runechat emotes on. Emote death messages\
+      \ are visible to everyone with line of sight to the person dying\u2014even if\
+      \ a potential viewer is also dying."
+  - qol: Custom emotes will not have their pronouns replaced anymore, so you can emote
+      with others and not have their pronouns replaced with yours.
+  Runian:
+  - rscadd: 6 more mutations for Ravager.
+  - rscadd: Ravage now causes the turfs it hits to shake to help better visualize
+      what was affected by it.
+  - balance: Ravage now hits in a cone rather than rectangle. Only impacts Bloodthirster
+      who may have super long Ravages.
+  - balance: 'Mutations: Little More''s critical/death threshold now scales at 30/40/50
+      from 20/35/50.'
+  - balance: 'Mutations: Recurring Rage''s cooldown duration scales at 60/50/40% from
+      90/80/70%.'
+  - bugfix: 'Mutations: Deep Slash''s armor penetration now correctly affects things
+      that aren''t humans.'
