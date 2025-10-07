@@ -548,6 +548,9 @@
 // /obj/item/cell
 #define COMSIG_CELL_SELF_RECHARGE "cell_self_recharge"
 
+///SG goggles toggled on
+#define COMSIG_KTLD_ACTIVATED "ktld_activated"
+
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
 #define COMSIG_MOB_GUN_FIRE "mob_gun_fire"

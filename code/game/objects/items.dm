@@ -991,21 +991,15 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 ///called when zoom is activated.
 /obj/item/proc/onzoom(mob/living/user)
-	if(zoom_allow_movement)
-		RegisterSignal(user, COMSIG_LIVING_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
-	else
-		RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
+	if(!zoom_allow_movement)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(zoom_item_turnoff))
+	RegisterSignals(user, list(COMSIG_LIVING_SWAPPED_HANDS, COMSIG_KTLD_ACTIVATED), PROC_REF(zoom_item_turnoff))
 	RegisterSignal(user, COMSIG_MOB_FACE_DIR, PROC_REF(change_zoom_offset))
 	RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 
-
 ///called when zoom is deactivated.
 /obj/item/proc/onunzoom(mob/living/user)
-	if(zoom_allow_movement)
-		UnregisterSignal(user, list(COMSIG_LIVING_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
-	else
-		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
-
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR, COMSIG_KTLD_ACTIVATED))
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 
