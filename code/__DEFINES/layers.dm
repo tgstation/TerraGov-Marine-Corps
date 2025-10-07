@@ -46,7 +46,7 @@
 
 ///Lighting objects that are "free floating"
 #define O_LIGHTING_VISUAL_PLANE 11
-#define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
+#define O_LIGHTING_VISUAL_RENDER_TARGET "*O_LIGHT_VISUAL_PLANE"
 
 // Render plate used by overlay lighting to mask turf lights
 #define TURF_LIGHTING_PLATE 12
