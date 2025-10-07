@@ -70,6 +70,7 @@
 
 ///Toggle the functions of the glasses
 /obj/item/clothing/glasses/proc/activate(mob/user)
+	SIGNAL_HANDLER
 	if(!toggleable)
 		return
 	active = !active
@@ -500,7 +501,7 @@
 		return
 
 	if(battery && (battery.charge > battery.maxcharge / 2))
-		balloon_alert(user, "Battery already installed")
+		balloon_alert(user, "battery already installed!")
 		return
 	//Hot swap!
 	eject_battery()
@@ -533,7 +534,7 @@
 	else
 		if(!battery || battery.charge < active_energy_cost)
 			if(user)
-				balloon_alert(user, "No power")
+				balloon_alert(user, "no power!")
 			return FALSE	//Don't activate
 		START_PROCESSING(SSobj, src)
 		active_sound.start(src)

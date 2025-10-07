@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - balance: "Pyrogen now has higher plasma costs, but receives plasma when slashing marines or consuming firestacks with Fire Charge."

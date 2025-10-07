@@ -1,0 +1,4 @@
+author: "Scav"
+delete-after: True
+changes:
+  - balance: "Increased vendor AG nade count on crash to 25"

@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - balance: "Crash autodoc is now 2 times faster"

@@ -679,8 +679,8 @@
 	if((target.health < target.maxHealth) || (target.plasma_stored < (target.xeno_caste.plasma_max * target.xeno_caste.plasma_regen_limit)))
 		return
 
-	target.balloon_alert(target, "Forced deevolution")
-	to_chat(target, span_xenowarning("[devolver] deevolved us for the following reason: [reason]."))
+	target.balloon_alert(target, "forced deevolution!")
+	to_chat(target, span_xenouserdanger("[devolver] deevolved us for the following reason: <i>[reason]</i>"))
 
 	target.do_evolve(new_caste.type, TRUE) // This already handles qdel and statistics.
 

@@ -162,12 +162,12 @@
 
 /obj/machinery/grill/wrench_act(mob/living/user, obj/item/I)
 	..()
-	balloon_alert(user, "You begin [anchored ? "un" : ""]securing...")
+	balloon_alert(user, "[anchored ? "un" : ""]securing...")
 	I.play_tool_sound(src, 50)
 	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
 	if(!I.use_tool(src, user, 2 SECONDS))
 		return FALSE
-	balloon_alert(user, "You [anchored ? "un" : ""]secure.")
+	balloon_alert(user, "[anchored ? "un" : ""]secured")
 	anchored = !anchored
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return TRUE

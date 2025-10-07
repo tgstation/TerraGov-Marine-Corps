@@ -59,8 +59,11 @@
 
 /datum/emote/custom/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	message = user.say_emphasis(params)
-	return ..()
+	. = ..()
+	message = null
 
+/datum/emote/custom/replace_pronoun(mob/user, message)
+	return message
 
 /datum/emote/spin
 	key = "spin"

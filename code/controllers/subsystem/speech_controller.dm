@@ -55,4 +55,5 @@ SUBSYSTEM_DEF(speech_controller)
 			mob_to_speak.whisper(message)
 
 		if(SPEECH_CONTROLLER_QUEUE_EMOTE_VERB)
-			mob_to_speak.emote("me", EMOTE_VISIBLE, message, TRUE, range, ghost_visible)
+			mob_to_speak.emote("me", EMOTE_TYPE_VISIBLE, message, TRUE, range, ghost_visible)
+

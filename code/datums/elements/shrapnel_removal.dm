@@ -48,6 +48,7 @@
 	user.visible_message(span_green("[user] starts searching for shrapnel in [target] with the [removaltool]."), span_green("You start searching for shrapnel in [target] with the [removaltool]."))
 	if(!do_after(user, do_after_time, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		to_chat(user, span_notice("You stop searching for shrapnel in [target]."))
+		REMOVE_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(removaltool))
 		return
 	remove_shrapnel(user, target, targetlimb, skill)
 	//iterates over the rest of the patient's limbs, attempting to remove shrapnel
@@ -59,6 +60,7 @@
 				return
 			remove_shrapnel(user, target, targetlimb, skill)
 	to_chat(user, span_notice("You remove the last of the shrapnel from [target]."))
+	REMOVE_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(removaltool))
 
 ///returns TRUE if the argument limb has any shrapnel in it
 /datum/element/shrapnel_removal/proc/has_shrapnel(datum/limb/targetlimb)

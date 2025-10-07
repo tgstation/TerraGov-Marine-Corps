@@ -361,7 +361,7 @@
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
-	owner.balloon_alert(owner, "[src] ready")
+	owner.balloon_alert(owner, "[lowertext("[src]")] ready")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, TRUE)
 	return ..()
 

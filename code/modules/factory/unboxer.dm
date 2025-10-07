@@ -53,7 +53,7 @@
 
 /obj/machinery/unboxer/screwdriver_act(mob/living/user, obj/item/I)
 	setDir(turn(dir, 90))
-	balloon_alert(user, "Facing [dir2text(dir)]")
+	balloon_alert(user, "facing [dir2text(dir)]")
 
 /obj/machinery/unboxer/update_icon_state()
 	. = ..()
@@ -64,7 +64,7 @@
 
 /obj/machinery/unboxer/attack_hand(mob/living/user)
 	if(!anchored)
-		balloon_alert(user, "Must be anchored!")
+		balloon_alert(user, "must be anchored!")
 		return
 	change_state()
 
@@ -95,7 +95,7 @@
 	var/obj/item/factory_refill/refill = I
 	if(refill.refill_type != production_type)
 		if(production_amount_left)
-			balloon_alert(user, "Filler incompatible")
+			balloon_alert(user, "filler incompatible!")
 			return
 		production_type = refill.refill_type
 	var/to_refill = min(max_fill_amount - production_amount_left, refill.refill_amount)

@@ -6,7 +6,7 @@
 	key = "growl"
 	key_third_person = "growls"
 	message = "growls!"
-	emote_type = EMOTE_AUDIBLE
+	emote_type = EMOTE_TYPE_AUDIBLE
 	sound = 'sound/voice/alien/growl1.ogg'
 
 
@@ -29,7 +29,7 @@
 	key = "hiss"
 	key_third_person = "hisses"
 	message = "hisses!"
-	emote_type = EMOTE_AUDIBLE
+	emote_type = EMOTE_TYPE_AUDIBLE
 	sound = 'sound/voice/alien/hiss1.ogg'
 
 
@@ -52,7 +52,7 @@
 	key = "needhelp"
 	key_third_person = "needshelp"
 	message = "needs help!"
-	emote_type = EMOTE_AUDIBLE
+	emote_type = EMOTE_TYPE_AUDIBLE
 	sound = 'sound/voice/alien/help1.ogg'
 
 
@@ -70,7 +70,7 @@
 	key = "roar"
 	key_third_person = "roars"
 	message = "roars!"
-	emote_type = EMOTE_AUDIBLE
+	emote_type = EMOTE_TYPE_AUDIBLE
 	sound = 'sound/voice/alien/roar1.ogg'
 
 
@@ -107,7 +107,7 @@
 	key = "tail"
 	key_third_person = "tailsweeps"
 	message = "swipes its tail."
-	emote_type = EMOTE_AUDIBLE
+	emote_type = EMOTE_TYPE_AUDIBLE
 	sound = 'sound/effects/alien/tail_swipe1.ogg'
 
 

@@ -20,8 +20,8 @@
 	speed = -0.8
 
 	// *** Plasma *** //
-	plasma_max = 325
-	plasma_gain = 25
+	plasma_max = 1000
+	plasma_gain = 30
 
 	// *** Health *** //
 	max_health = 380
@@ -57,12 +57,22 @@
 		/datum/action/ability/activable/xeno/firestorm,
 		/datum/action/ability/activable/xeno/inferno,
 	)
+	///multiplier on plasma amount vs damage that is recieved on attack
+	var/plasma_damage_dealt_mult = 2.5
 
 	mutations = list(
 		/datum/mutation_upgrade/shell/flame_cloak,
 		/datum/mutation_upgrade/spur/only_fire,
 		/datum/mutation_upgrade/veil/burnt_wounds
 	)
+
+/datum/xeno_caste/pyrogen/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.AddElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
+
+/datum/xeno_caste/pyrogen/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.RemoveElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
 
 /datum/xeno_caste/pyrogen/normal
 	upgrade = XENO_UPGRADE_NORMAL

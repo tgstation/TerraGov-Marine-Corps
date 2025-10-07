@@ -181,7 +181,7 @@
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage == 0)
-		M.emote("me", EMOTE_VISIBLE, "[M.friendly] [src]")
+		M.emote("me", EMOTE_TYPE_VISIBLE, "[M.friendly] [src]")
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
