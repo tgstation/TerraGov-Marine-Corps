@@ -257,6 +257,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			new_player.client?.init_verbs()
 
 		. = new_player
+		qdel(mind)
 	else
 		var/mob/dead/observer/ghost = new(src)
 		var/turf/T = get_turf(src)

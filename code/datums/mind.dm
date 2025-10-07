@@ -52,9 +52,8 @@
 
 
 /datum/mind/Destroy(force, ...)
+	SSticker.minds -= src
 	current = null
-	if(initial_account)
-		QDEL_NULL(initial_account)
 	return ..()
 
 /datum/mind/serialize_list(list/options, list/semvers)
