@@ -32,6 +32,7 @@
 	action_icon_state = "minion_agressive"
 	action_icon = 'icons/Xeno/actions/leader.dmi'
 	desc = "Command all minions, ordering them to converge on this location. Rightclick to change minion behaviour."
+
 	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
@@ -104,7 +105,7 @@
 	var/showing_map = FALSE
 
 /datum/action/ability/xeno_action/teleport/action_activate()
-	var/atom/movable/screen/minimap/shown_map = SSminimaps.fetch_minimap_object(owner.z, MINIMAP_FLAG_XENO)
+	var/atom/movable/screen/minimap/shown_map = SSminimaps.fetch_minimap_object(owner.z, GLOB.hivenumber_to_minimap_flag[owner.get_xeno_hivenumber()])
 
 	if(showing_map) // The map is open on their screen, close it
 		owner.client?.screen -= shown_map

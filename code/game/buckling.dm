@@ -170,7 +170,7 @@
 	return unbuckling_living
 
 ///Returns TRUE or FALSE depending on whether src can buckle buckling_mob into something
-/mob/living/proc/user_can_buckle(mob/living/buckling_mob)
+/mob/living/proc/user_can_buckle(mob/living/buckling_mob, mob/user)
 	if(!Adjacent(src, buckling_mob))
 		return FALSE
 	if(!isturf(loc))

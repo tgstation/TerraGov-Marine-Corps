@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/crusher
 	name = "Crusher"
 	desc = "A huge alien with an enormous armored head crest."
-	icon = 'icons/Xeno/castes/crusher.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/crusher.dmi'
 	icon_state = "Crusher Walking"
 	bubble_icon = "alienleft"
 	health = 300
@@ -18,7 +18,7 @@
 
 /mob/living/carbon/xenomorph/crusher/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Charging"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 

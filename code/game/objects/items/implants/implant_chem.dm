@@ -12,7 +12,7 @@
 		chems += "[R.volume] units of [R.name]<BR>"
 	return {"
 	<b>Implant Specifications:</b><BR>
-	<b>Name:</b> Nanotrasen NX-44 ChemBoost Implant<BR>
+	<b>Name:</b> Ninetails NX-44 ChemBoost Implant<BR>
 	<HR>
 	<b>Implant Details:</b><BR>
 	<b>Function:</b> Upon activation injects a custom chemical mix into the user.<BR>

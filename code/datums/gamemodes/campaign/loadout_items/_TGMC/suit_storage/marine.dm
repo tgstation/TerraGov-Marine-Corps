@@ -10,7 +10,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_rifle
 	name = "AR-12"
-	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
+	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the NTF before it was superseded by the AR-18 for general issue. \
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses 10x24mm caseless ammunition."
 	ui_icon = "t12"
@@ -32,7 +32,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_rifle/enhanced
 	name = "AR-12+"
-	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
+	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the NTF before it was superseded by the AR-18 for general issue. \
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses a mix of standard and AP 10x24mm caseless ammunition."
 	loadout_item_flags = NONE
@@ -46,7 +46,7 @@
 	name = "Laser rifle"
 	desc = "Equipped with a red dot sight, bayonet and miniflamer. The Terra Experimental laser rifle, is a powerful and flexible weapon thanks to a variety of firemodes. \
 	Has good mobility and excellent falloff, although lacks the power offered by weapons with an underbarrel grenade launcher.\
-	Uses TE power cells that are shared across all TGMC laser weaponry."
+	Uses TE power cells that are shared across all NTF laser weaponry."
 	ui_icon = "ter"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
 
@@ -72,7 +72,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_carbine
 	name = "AR-18"
-	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the NTF, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. Uses 10x24mm caseless ammunition."
 	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/standard
@@ -92,7 +92,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_carbine/enhanced
 	name = "AR-18+"
-	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the NTF, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. It uses a mix of standard and AP 10x24mm caseless ammunition."
 	loadout_item_flags = NONE
 	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine/ap
@@ -103,7 +103,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/combat_rifle
 	name = "AR-11"
-	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the TGMC, but is now a relatively uncommon sight. \
+	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the NTF, but is now a relatively uncommon sight. \
 	It has a very large magazine capacity, and can inflict incredible damage at long range with its HV ammo, making it particularly effective at well armored targets. \
 	However it suffers from relatively poor handling and mobility, and lacks any underbarrel weapon attachments, making it an effective but less flexible weapon. It uses 4.92×34mm caseless HV ammunition."
 	ui_icon = "tx11"
@@ -152,7 +152,7 @@
 /datum/loadout_item/suit_store/main_gun/marine/skirmish_rifle
 	name = "AR-21"
 	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. \
-	The AR-21 is an less common rifle in the TGMC, attempting to bridge the gap between lighter, lower calibre rifles and heavier rifles like the BR-64. \
+	The AR-21 is an less common rifle in the NTF, attempting to bridge the gap between lighter, lower calibre rifles and heavier rifles like the BR-64. \
 	Its compromises between the two groups means it fails to particularly outshine any of them, but never the less is a respective and flexible rifle."
 	ui_icon = "t21"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
@@ -274,7 +274,7 @@
 	name = "Laser machinegun"
 	desc = "Equipped with a mag harness, bayonet and underbarrel grenade launcher. The Terra Experimental machine laser gun is a more flexible weapon than its ballistic counterparts. \
 	It has better mobility and handling than ballistic machineguns, which combined with its variable firemodes and underbarrel weaponry makes it effective in a variety of situations, \
-	but still ultimately excels at apply sustained supporting fire. Uses TE power cells that are shared across all TGMC laser weaponry."
+	but still ultimately excels at apply sustained supporting fire. Uses TE power cells that are shared across all NTF laser weaponry."
 	ui_icon = "tem"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/patrol
 
@@ -340,7 +340,7 @@
 /datum/loadout_item/suit_store/main_gun/marine/shotgun
 	name = "SH-35"
 	desc = "Equipped with a mag harness, bayonet, angled grip and foldable stock. \
-	The SH-35 is the most commonly used shotgun of the TGMC. With good mobility and handling, it has unparalleled close range power when using buckshot. Able to kill or maim all but the most heavily armored targets with a single well aimmed blast. \
+	The SH-35 is the most commonly used shotgun of the NTF. With good mobility and handling, it has unparalleled close range power when using buckshot. Able to kill or maim all but the most heavily armored targets with a single well aimmed blast. \
 	When using flechette rounds, it can provide surprisingly powerful long range damage with good penetration, although its low rate of fire means its sustained damage is relatively poor. \
 	Uses 12 gauge shells."
 	ui_icon = "t35"
@@ -398,8 +398,8 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/laser_carbine
 	name = "Laser carbine"
-	desc = "Equipped with a red dot sight and underbarrel grenade launcher. The TerraGov laser carbine is the high tech equivilent to the AR-18, with extremely good mobility and handling, and powerful medium range damage. \
-	Variable firemodes gives it additional flexibility over its ballistic counterpart. Uses TE power cells that are shared across all TGMC laser weaponry."
+	desc = "Equipped with a red dot sight and underbarrel grenade launcher. The Ninetails laser carbine is the high tech equivilent to the AR-18, with extremely good mobility and handling, and powerful medium range damage. \
+	Variable firemodes gives it additional flexibility over its ballistic counterpart. Uses TE power cells that are shared across all NTF laser weaponry."
 	req_desc = "Requires a light armour suit."
 	ui_icon = "tec"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
@@ -427,7 +427,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_carbine
 	name = "AR-18-scout"
-	desc = "Equipped with motion detector, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	desc = "Equipped with motion detector, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the NTF, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. \
 	The motion detector on this example makes it excellent for scouting out enemy positions and tracking down hidden enemies. Uses 10x24mm caseless ammunition."
 	req_desc = "Requires a light armour suit."
@@ -454,7 +454,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_carbine/enhanced
 	name = "AR-18-S+"
-	desc = "Equipped with motion detector, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	desc = "Equipped with motion detector, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the NTF, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. \
 	The motion detector on this example makes it excellent for scouting out enemy positions and tracking down hidden enemies. It uses a mix of standard and AP 10x24mm caseless ammunition."
 	loadout_item_flags = NONE
@@ -580,7 +580,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine
 	name = "AR-18-Suppressed"
-	desc = "Equipped with red dot sight, suppressor and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	desc = "Equipped with red dot sight, suppressor and underbarrel grenade launcher. The AR-18 is the main weapon of the NTF, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. \
 	This suppressed variant is typically used for stealth operations, where its quiet firing and lack of tracers can give the user an edge over unsuspecting opponents. Uses 10x24mm caseless ammunition."
 	ui_icon = "t18"
@@ -601,7 +601,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine/enhanced
 	name = "AR-18-Suppressed+"
-	desc = "Equipped with red dot sight, suppressor and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	desc = "Equipped with red dot sight, suppressor and underbarrel grenade launcher. The AR-18 is the main weapon of the NTF, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. \
 	This suppressed variant is typically used for stealth operations, where its quiet firing and lack of tracers can give the user an edge over unsuspecting opponents. It uses a mix of standard and AP 10x24mm caseless ammunition."
 	loadout_item_flags = NONE

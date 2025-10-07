@@ -19,6 +19,7 @@
 	max_range = 16
 	damage = 50
 	damage_type = STAMINA
+	plasma_drain = 13
 	damage_falloff = 0
 	penetration = 50
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR

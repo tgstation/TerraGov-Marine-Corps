@@ -20,7 +20,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!mature && isxeno(user))
+	if(!mature && issamexenohive(user))
 		balloon_alert(user, "Not fully grown")
 		return FALSE
 
@@ -50,7 +50,10 @@
 	if((xeno_attacker.status_flags & INCORPOREAL))
 		return FALSE
 
-	if(xeno_attacker.a_intent == INTENT_HARM && isxenodrone(xeno_attacker))
+	if(!issamexenohive(xeno_attacker))
+		return ..()
+
+	if(xeno_attacker.a_intent == INTENT_HARM && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		balloon_alert(xeno_attacker, "Uprooted the plant")
 		xeno_attacker.do_attack_animation(src)
 		deconstruct(TRUE)
@@ -225,7 +228,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(ishuman(user))
+	if(ishuman(user) && !issamexenohive(user))
 		balloon_alert(user, "Nothing happens")
 		to_chat(user, span_notice("You caress [src]'s petals, nothing happens."))
 		return FALSE

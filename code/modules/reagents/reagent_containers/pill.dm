@@ -12,7 +12,6 @@
 	reagent_flags = AMOUNT_SKILLCHECK
 	w_class = WEIGHT_CLASS_TINY
 	volume = 60
-	attack_speed = 1 //War against input locking while pill munching
 	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
 	var/pill_id
 
@@ -21,11 +20,11 @@
 	if(icon_state == "pill1")
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
 
-/obj/item/reagent_containers/pill/attack_self(mob/user)
-	. = ..()
-	attack(user, user)
+/obj/item/reagent_containers/pill/attack_self(mob/user as mob)
+	return attack(user, user)
 
 /obj/item/reagent_containers/pill/attack(mob/M, mob/user, def_zone)
+
 	if(M == user)
 
 		if(ishuman(M))
@@ -55,7 +54,7 @@
 
 		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating(SKILL_MEDICAL))
 
-		if(!do_after(user, ingestion_time, NONE, M, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return
 
 		user.dropItemToGround(src) //icon update
@@ -246,3 +245,8 @@
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
 	pill_id = 21
+
+/obj/item/reagent_containers/pill/aphrotoxin
+	pill_desc = "An Aphrotoxin pill. Produced from xenomorphs. Causes weakness on the legs and intense lust."
+	list_reagents = list(/datum/reagent/toxin/xeno_aphrotoxin = 10)
+	pill_id = 8

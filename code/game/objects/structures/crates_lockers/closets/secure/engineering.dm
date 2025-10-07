@@ -33,10 +33,38 @@
 	new /obj/item/clothing/under/marine/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 
+/obj/structure/closet/secure_closet/engineering_chief/som
+	name = "\improper SOM Chief Engineer's locker"
+	req_access = list(ACCESS_SOM_ENGINEERING)
+
+/obj/structure/closet/secure_closet/engineering_chief/som/PopulateContents()
+	new /obj/item/armor_module/storage/uniform/webbing(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
+	new /obj/item/clothing/head/hardhat/white(src)
+	new /obj/item/clothing/head/welding(src)
+	new /obj/item/clothing/gloves/insulated(src)
+	new /obj/item/storage/toolbox/mechanical(src)
+	new /obj/item/clothing/suit/storage/hazardvest(src)
+	new /obj/item/clothing/suit/storage/hazardvest/lime(src)
+	new /obj/item/clothing/suit/storage/hazardvest/blue(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/tool/multitool(src)
+	new /obj/item/flash(src)
+	new /obj/item/tool/taperoll/engineering(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/storage/pouch/electronics(src)
+	new /obj/item/storage/pouch/general/medium(src)
+	new /obj/item/storage/pouch/construction(src)
+	new /obj/item/storage/pouch/tools(src)
+	new /obj/item/clothing/shoes/marine/som(src)
+	new /obj/item/clothing/gloves/marine/som(src)
+	new /obj/item/clothing/under/som(src)
+	new /obj/item/clothing/head/modular/som/engineer(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
-	req_access = list(ACCESS_MARINE_ENGINEERING)
+	req_access = list()
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_SOM_ENGINEERING, ACCESS_CLF_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	icon_state = "secureengelec1"
 	icon_closed = "secureengelec"
 	icon_locked = "secureengelec1"
@@ -62,7 +90,8 @@
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
-	req_access = list(ACCESS_MARINE_ENGINEERING)
+	req_access = list()
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_SOM_ENGINEERING, ACCESS_CLF_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	icon_state = "secureengweld1"
 	icon_closed = "secureengweld"
 	icon_locked = "secureengweld1"
@@ -116,6 +145,66 @@
 	new /obj/item/clothing/head/white_dress(src)
 	new /obj/item/tool/shovel/etool(src)
 	new /obj/item/clothing/head/modular/m10x(src)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+		new /obj/item/clothing/suit/storage/snow_suit(src)
+		new /obj/item/clothing/mask/rebreather/scarf(src)
+		new /obj/item/clothing/mask/rebreather(src)
+
+/obj/structure/closet/secure_closet/engineering_personal/som
+	name = "SOM engineer's locker"
+	req_access = list(ACCESS_SOM_ENGINEERING)
+
+/obj/structure/closet/secure_closet/engineering_personal/som/PopulateContents()
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
+	new /obj/item/storage/toolbox/mechanical(src)
+	new /obj/item/clothing/glasses/meson(src)
+	new /obj/item/tool/taperoll/engineering(src)
+	new /obj/item/clothing/suit/storage/hazardvest(src)
+	new /obj/item/clothing/suit/storage/hazardvest/lime(src)
+	new /obj/item/clothing/suit/storage/hazardvest/blue(src)
+	new /obj/item/storage/pouch/general(src)
+	new /obj/item/storage/pouch/electronics(src)
+	new /obj/item/storage/pouch/construction(src)
+	new /obj/item/storage/pouch/medkit(src)
+	new /obj/item/storage/pouch/tools(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/storage/backpack/industrial(src)
+	new /obj/item/clothing/shoes/marine/som(src)
+	new /obj/item/clothing/gloves/marine/som(src)
+	new /obj/item/clothing/under/som(src)
+	new /obj/item/clothing/head/modular/som/engineer(src)
+	new /obj/item/tool/shovel/etool(src)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+		new /obj/item/clothing/suit/storage/snow_suit(src)
+		new /obj/item/clothing/mask/rebreather/scarf(src)
+		new /obj/item/clothing/mask/rebreather(src)
+
+/obj/structure/closet/secure_closet/engineering_personal/clf
+	name = "CLF engineer's locker"
+	req_access = list(ACCESS_CLF_ENGINEERING)
+
+/obj/structure/closet/secure_closet/engineering_personal/clf/PopulateContents()
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
+	new /obj/item/storage/toolbox/mechanical(src)
+	new /obj/item/clothing/glasses/meson(src)
+	new /obj/item/tool/taperoll/engineering(src)
+	new /obj/item/clothing/suit/storage/hazardvest(src)
+	new /obj/item/clothing/suit/storage/hazardvest/lime(src)
+	new /obj/item/clothing/suit/storage/hazardvest/blue(src)
+	new /obj/item/storage/pouch/general(src)
+	new /obj/item/storage/pouch/electronics(src)
+	new /obj/item/storage/pouch/construction(src)
+	new /obj/item/storage/pouch/medkit(src)
+	new /obj/item/storage/pouch/tools(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/storage/backpack/industrial(src)
+	new /obj/item/clothing/shoes/marine/clf(src)
+	new /obj/item/clothing/gloves/black(src)
+	new /obj/item/clothing/under/colonist(src)
+	new /obj/item/clothing/head/strawhat(src)
+	new /obj/item/tool/shovel/etool(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/suit/storage/snow_suit(src)
 		new /obj/item/clothing/mask/rebreather/scarf(src)

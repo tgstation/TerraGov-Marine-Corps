@@ -25,9 +25,9 @@ export const JobPreferences = (props) => {
   } = data;
   const [shownDescription, setShownDescription] = useState(null);
 
-  const xenoJobs = ['Xeno Queen', 'Xenomorph'];
+  const xenoJobs = ['Xeno Queen', 'Xenomorph', 'Corrupted Xenomorph'];
   const commandRoles = [
-    'Captain',
+    'Commander',
     'Field Commander',
     'Staff Officer',
     'Pilot Officer',
@@ -35,6 +35,7 @@ export const JobPreferences = (props) => {
     'Synthetic',
     'AI',
     'Mech Pilot',
+    'Vanguard Unit',
   ];
   const supportRoles = [
     'Chief Ship Engineer',
@@ -45,12 +46,15 @@ export const JobPreferences = (props) => {
     'Medical Researcher',
     'Assault Crewman',
     'Transport Crewman',
+    'CorpSec Officer',
   ];
   const marineJobs = [
-    'Squad Marine',
+    'Squad Slut',
+    'Squad Operative',
     'Squad Engineer',
     'Squad Corpsman',
     'Squad Smartgunner',
+    'Specialist Operative',
     'Squad Leader',
   ];
   const somJobs = [
@@ -59,11 +63,72 @@ export const JobPreferences = (props) => {
     'SOM Squad Medic',
     'SOM Squad Veteran',
     'SOM Squad Leader',
-    'SOM Field Commander',
+    'SOM Synthetic',
+    'SOM Technician',
+    'SOM Medical Doctor',
+    'SOM Mech Pilot',
     'SOM Staff Officer',
+    'SOM Pilot Officer',
+    'SOM Assault Crewman',
+    'SOM Chief Medical Officer',
+    'SOM Chief Engineer',
+    'SOM Requisitions Officer',
+    'SOM Field Commander',
     'SOM Commander',
   ];
-  const flavourJobs = ['Corporate Liaison'];
+  const flavourJobs = [
+    'Operations Officer',
+    'Worker',
+    'Morale Officer',
+    'Prisoner',
+    'SOM Prisoner',
+    'CLF Prisoner',
+  ];
+  const clfJobs = [
+    'CLF Breeder',
+    'CLF Standard',
+    'CLF Medic',
+    'CLF Specialist',
+    'CLF Synthetic',
+    'CLF Leader',
+    'CLF Base Technician',
+  ];
+  const cmJobs = [
+    'CM Standard',
+    'CM Medic',
+    'CM Guardsman',
+    'CM Squad Leader',
+    'CM Base Technician',
+  ];
+  const kzJobs = [
+    'KZ Standard',
+    'KZ Medic',
+    'KZ Engineer',
+    'KZ Specialist',
+    'KZ Squad Leader',
+  ];
+  const survivorJobs = [
+    'Assistant Survivor',
+    'Scientist Survivor',
+    'Doctor Survivor',
+    'Liaison Survivor',
+    'Security Guard Survivor',
+    'Civilian Survivor',
+    'Chef Survivor',
+    'Botanist Survivor',
+    'Technician Survivor',
+    'Chaplain Survivor',
+    'Miner Survivor',
+    'Salesman Survivor',
+    'Colonial Marshal Survivor',
+    'Bartender Survivor',
+    'Pharmacy Technician Survivor',
+    'Roboticist Survivor',
+    'Non-Deployed Operative Survivor',
+    'Prisoner Survivor',
+    'Stripper Survivor',
+    'Maid Survivor',
+  ];
 
   const JobList = ({ name, jobs }) => (
     <Section title={name}>
@@ -194,6 +259,22 @@ export const JobPreferences = (props) => {
       <Stack>
         <Stack.Item grow>
           <JobList name="SOM Jobs" jobs={somJobs} />
+        </Stack.Item>
+        <Stack.Item grow>
+          <JobList name="CLF Jobs" jobs={clfJobs} />
+        </Stack.Item>
+      </Stack>
+      <Stack>
+        <Stack.Item grow>
+          <JobList name="CM Jobs" jobs={cmJobs} />
+        </Stack.Item>
+        <Stack.Item grow>
+          <JobList name="KZ Jobs" jobs={kzJobs} />
+        </Stack.Item>
+      </Stack>
+      <Stack>
+        <Stack.Item grow>
+          <JobList name="Survivor Jobs" jobs={survivorJobs} />
         </Stack.Item>
       </Stack>
     </Section>

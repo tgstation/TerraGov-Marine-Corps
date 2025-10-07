@@ -513,7 +513,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 	user.visible_message(span_notice("[user] starts to fix some of the wires in [H]'s [affecting.display_name]."),\
 		span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 
-	while(do_after(user, repair_time, NONE, H, BUSY_ICON_BUILD) && use(1))
+	while(do_after(user, repair_time, TRUE, H, BUSY_ICON_BUILD) && use(1))
 		user.visible_message(span_warning("\The [user] fixes some wires in \the [H]'s [affecting.display_name] with [src]."), \
 			span_warning("You patch some wires in \the [H]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(0, 15, robo_repair = TRUE, updating_health = TRUE))

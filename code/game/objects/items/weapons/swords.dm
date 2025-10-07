@@ -60,6 +60,8 @@
 
 /datum/action/ability/activable/weapon_skill/sword_lunge/use_ability(atom/A)
 	var/mob/living/carbon/carbon_owner = owner
+	var/dash_distance = round(6 - owner.cached_multiplicative_slowdown)
+	var/dash_speed = ROUND_UP(4 - owner.cached_multiplicative_slowdown)
 
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_BUMP, PROC_REF(lunge_impact))
@@ -67,7 +69,7 @@
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
 	playsound(owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 0, 4)
-	carbon_owner.throw_at(A, lunge_range, 1, carbon_owner)
+	carbon_owner.throw_at(A, dash_distance, dash_speed, carbon_owner)
 	succeed_activate()
 	add_cooldown()
 
@@ -119,7 +121,7 @@
 
 /obj/item/weapon/sword/machete
 	name = "\improper M2132 machete"
-	desc = "Latest issue of the TGMC Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	desc = "Latest issue of the NTF Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon_state = "machete"
 	worn_icon_state = "machete"
 	force = 75
