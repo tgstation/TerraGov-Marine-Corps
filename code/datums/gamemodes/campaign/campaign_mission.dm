@@ -167,6 +167,7 @@
 
 ///Sets the attacking and defending faction. Can be overridden to make the starting faction defenders
 /datum/campaign_mission/proc/set_factions(initiating_faction)
+	SHOULD_CALL_PARENT(TRUE)
 	starting_faction = initiating_faction
 	for(var/faction in mode.factions) //this is pretty clunky but eh
 		if(faction == starting_faction)
