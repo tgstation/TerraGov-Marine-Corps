@@ -49,6 +49,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Custom emotes list
 	var/list/custom_emotes = list()
 
+	///list of md5 hashes of favourite decals
+	var/list/favourite_decals = list()
+
 	/// Current tab index of the game preferences ui
 	var/tab_index = CHARACTER_CUSTOMIZATION
 

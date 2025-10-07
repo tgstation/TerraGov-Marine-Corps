@@ -26,6 +26,7 @@
 		/obj/structure/largecrate,
 		/obj/structure/closet/crate,
 	)
+	allow_decals = FALSE
 
 /obj/vehicle/sealed/armored/multitile/icc_lvrt/enter_locations(atom/movable/entering_thing)
 	return list(get_step(src, REVERSE_DIR(dir)))
