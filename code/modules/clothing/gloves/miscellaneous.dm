@@ -221,6 +221,11 @@
 	. = ..()
 	flick("[icon_state]-punch", src)
 
+/obj/structure/punching_bag/attack_hand(mob/living/user)
+	. = ..()
+	user.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	playsound(loc, 'sound/weapons/tap.ogg', 40, TRUE)
+
 /obj/item/clothing/gloves/white
 	name = "white gloves"
 	desc = "These look pretty fancy."
