@@ -1,0 +1,4 @@
+author: "Joe13413"
+delete-after: True
+changes:
+  - balance: "Decreased the ammo capacity of the laser pistols standard fire mode to 20, from 30."
