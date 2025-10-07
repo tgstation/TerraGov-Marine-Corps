@@ -339,7 +339,7 @@
 			/obj/item/explosive/grenade/sticky = 75,
 			/obj/item/explosive/grenade/incendiary = 25,
 			/obj/item/explosive/grenade/smokebomb/cloak = 15,
-			/obj/item/explosive/grenade/smokebomb/antigas = 10,
+			/obj/item/explosive/grenade/smokebomb/antigas = 25,
 			/obj/item/explosive/grenade/mirage = 50,
 			/obj/item/explosive/grenade/bullet/laser = 15,
 			/obj/item/storage/box/m94 = 200,
