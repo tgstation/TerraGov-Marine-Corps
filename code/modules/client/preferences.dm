@@ -43,6 +43,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/windowflashing = TRUE
 	var/clientfps = 60
 
+	var/screentip_color = LIGHT_COLOR_FAINT_BLUE
+	var/screentips_enabled = SCREENTIP_PREFERENCE_ENABLED
+	var/screentip_images = TRUE
+
 	// Custom Keybindings
 	var/list/key_bindings = null
 
