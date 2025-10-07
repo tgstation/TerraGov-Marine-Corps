@@ -5,8 +5,11 @@
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
+	bound_height = 64
+	bound_width = 96
 	density = TRUE
-	allow_pass_flags = PASS_AIR
+	allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 
 /obj/structure/prop/som_fighter/empty
 	icon_state = "SOM_fighter_empty"
@@ -19,12 +22,11 @@
     icon_state = "fighter_loaded"
     pixel_x = -33
     pixel_y = -10
-    bound_height = 2
-    bound_width = 3
-    bound_x = -32
+    bound_height = 64
+	bound_width = 96
     density = TRUE
-    allow_pass_flags = PASS_AIR
-    layer = ABOVE_MOB_LAYER
+    allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 
 /obj/structure/prop/tgmc_fighter/empty
     icon_state = "fighter"
