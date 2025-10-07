@@ -226,7 +226,7 @@
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, punching_bag))
 		return
-	COOLDOWN_START(src, punching_bag, 1 SECONDS)
+	COOLDOWN_START(src, punching_bag, 0.8 SECONDS)
 	user.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	playsound(loc, get_sfx(SFX_PUNCH), 40, TRUE)
 	flick("[icon_state]-punch", src)
