@@ -565,11 +565,11 @@
 		return FALSE
 
 /datum/action/ability/xeno_action/mirage/action_activate()
-	succeed_activate()
 	if (!length(illusions))
 		spawn_illusions()
 	else
 		swap()
+	succeed_activate()
 
 /// Spawns a set of illusions around the hunter.
 /datum/action/ability/xeno_action/mirage/proc/spawn_illusions()
