@@ -104,7 +104,7 @@
 			continue
 		leash_victims += victim
 		ADD_TRAIT(victim, TRAIT_LEASHED, src)
-		beams += beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
+		//beams += beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
 		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
 		RegisterSignals(victim, list(COMSIG_QDELETING,COMSIG_MOB_DEATH), PROC_REF(remove_victim))
 	if(!length(leash_victims))
