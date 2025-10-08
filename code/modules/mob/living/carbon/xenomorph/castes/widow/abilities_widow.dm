@@ -88,7 +88,7 @@
 	/// List of victims to unregister aoe_leash is destroyed
 	var/list/mob/living/carbon/human/leash_victims = list()
 
-/// Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human
+//Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human
 /obj/structure/xeno/aoe_leash/Initialize(mapload, _hivenumber)
 	. = ..()
 	for(var/mob/living/carbon/human/victim in GLOB.humans_by_zlevel["[z]"])

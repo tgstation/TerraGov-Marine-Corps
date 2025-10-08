@@ -92,9 +92,7 @@
 	for(N in 0 to length-1 step 32)//-1 as we want < not <=, but we want the speed of X in Y to Z and step X
 		if(QDELETED(src))
 			break
-		var/obj/effect/ebeam/X = new beam_type(origin_turf)
-		X.owner = src
-		elements += X
+		elements += new beam_type(origin_turf)
 
 		//Assign our single visual ebeam to each ebeam's vis_contents
 		//ends are cropped by a transparent box icon of length-N pixel size laid over the visuals obj
@@ -136,12 +134,6 @@
 /obj/effect/ebeam
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
-	var/datum/beam/owner
-
-/obj/effect/ebeam/Destroy()
-	owner = null
-	return ..()
-
 
 /**
  * This is what you use to start a beam. Example: origin.Beam(target, args). **Store the return of this proc if you don't set maxdist or time, you need it to delete the beam.**
