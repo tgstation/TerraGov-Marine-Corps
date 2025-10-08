@@ -13,6 +13,7 @@
 	name = "Caves"
 	icon_state = "alarm_down"
 	ceiling = CEILING_UNDERGROUND
+	outside = FALSE
 
 /area/campaign/tgmc_airfield/outside/cave/enclosed
 	icon_state = "invi"
@@ -31,25 +32,33 @@
 	name = "Eastern Desert"
 	icon_state = "east"
 
+/area/campaign/tgmc_airfield/outside/desert/north
+	name = "Northern Desert"
+	icon_state = "north"
+
+/area/campaign/tgmc_airfield/outside/desert/south
+	name = "Southern Desert"
+	icon_state = "south"
+
 /area/campaign/tgmc_airfield/outside/dry_river
 	name = "Dry River"
 	icon_state = "blueold"
 
-/area/campaign/tgmc_airfield/outside/road
-	name = "Road"
-	icon_state = "dark128"
+/area/campaign/tgmc_airfield/outside/west_base
+	name = "Western Base Grounds"
+	icon_state = "west2"
 
-/area/campaign/tgmc_airfield/outside/sidewalk
-	name = "sidewalk"
-	icon_state = "dark160"
+/area/campaign/tgmc_airfield/outside/east_base
+	name = "Eastern Base Grounds"
+	icon_state = "east2"
 
 /area/campaign/tgmc_airfield/outside/airstrip_north
 	name = "Northern Airstrip"
-	icon_state = "party"
+	icon_state = "runway"
 
 /area/campaign/tgmc_airfield/outside/airstrip_south
 	name = "Northern Airstrip"
-	icon_state = "alarm_evac"
+	icon_state = "runway2"
 
 /area/campaign/tgmc_airfield/base
 	name = "sidewalk"
@@ -69,9 +78,13 @@
 	icon_state = "substation"
 
 /area/campaign/tgmc_airfield/base/barracks
-	name = "Barracks"
+	name = "Western Barracks"
 	icon_state = "Sleep"
 	minimap_color = MINIMAP_AREA_LIVING
+
+/area/campaign/tgmc_airfield/base/barracks/east
+	name = "Eastern Barracks"
+	icon_state = "crew_quarters"
 
 /area/campaign/tgmc_airfield/base/barracks/officer
 	name = "Officers Barracks"
@@ -97,9 +110,13 @@
 	minimap_color = MINIMAP_AREA_REQ
 
 /area/campaign/tgmc_airfield/base/security_checkpoint
-	name = "Security Checkpoint"
+	name = "Western Security Checkpoint"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC
+
+/area/campaign/tgmc_airfield/base/security_checkpoint/east
+	name = "Eastern Security Checkpoint"
+	icon_state = "checkpoint1"
 
 /area/campaign/tgmc_airfield/base/armory
 	name = "Armory"
@@ -109,4 +126,9 @@
 /area/campaign/tgmc_airfield/base/armory_workshop
 	name = "Armory Workshop"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_ENGI
+
+/area/campaign/tgmc_airfield/base/water_purification
+	name = "Water Purification Center"
+	icon_state = "decontamination"
 	minimap_color = MINIMAP_AREA_ENGI

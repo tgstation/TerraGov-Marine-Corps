@@ -803,6 +803,57 @@
 /obj/structure/prop/mainship/som_scientist/alt
 	icon_state = "SOM_scientist_2"
 
+/obj/structure/prop/tdfcorpse
+	name = "TDF marine"
+	desc = "A Terra Defense Force soldier. They don't seem to be doing very well."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "tdfcorpse"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	anchored = FALSE
+	max_integrity = 100
+	hit_sound = list('sound/effects/bone_break1.ogg','sound/weapons/wristblades_hit.ogg')
+	coverage = 0
+
+/obj/structure/prop/tdfcorpse/headshot
+	desc = "A Terra Defense Force soldier. This one seems to have lost their mind."
+	icon_state = "tdfcorpseheadshot"
+
+/obj/structure/prop/tdfcorpse/decap
+	desc = "Where's your head at? (Where's yo head at?) (Where's yo head at?)"
+	icon_state = "tdfcorpsedecap"
+
+/obj/structure/prop/fueltank
+	name = "\improper jet fuel container"
+	desc = "A container used to store high quantities of fuel."
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
+	icon_state = "fueltank"
+	bound_width = 96
+	bound_height = 32
+	resistance_flags = UNACIDABLE
+	max_integrity = 500
+
+/obj/structure/prop/fueltank/broken
+	name = "\improper broken jet fuel container"
+	desc = "A container that used to store high quantities of fuel."
+	icon_state = "fueltank_broken"
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
+
+/obj/structure/prop/flag
+	name = "\improper Terragov flag"
+	desc = "A flag bearing the symbol of Terragov. It doesn't seem as inspirational as other flags might be."
+	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
+	icon_state = "flag_tgmc_planted"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	max_integrity = 100
+	layer = ABOVE_OBJ_LAYER
+	coverage = 0
+
+/obj/structure/prop/flag/som
+	name = "\improper Sons of Mars flag"
+	desc = "A flag bearing the symbol of the Sons of Mars. It doesn't seem as inspirational as other flags might be."
+	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
+	icon_state = "flag_som_planted"
+
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
 	icon = 'icons/obj/doors/Doorsand.dmi'
@@ -1687,6 +1738,12 @@
 	bound_width = 128
 	resistance_flags = RESIST_ALL
 
+/obj/structure/prop/vehicle/apc/new
+	name = "APC - Athena"
+	desc = "An unarmed APC designed to command and transport troops in the battlefield. For some reason, it bears the same name as its predecessor. Its doors are locked, and you probably don't know how to drive this thing anyways."
+	icon = 'icons/obj/armored/3x3/apc.dmi'
+	icon_state = "apc"
+
 /obj/structure/prop/vehicle/apc/Initialize(mapload)
 	. = ..()
 	if(dir == EAST || dir == WEST)
@@ -2348,6 +2405,19 @@
 	desc = "If you see this object in game you should ahelp, something has broken."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "error"
+
+/obj/structure/prop/trashpile
+	name = "trash pile"
+	desc = "A disgusting pile of trash. Maybe you could use this as cover if you were desperate."
+	icon = 'icons/obj/structures/misc.dmi'
+	icon_state = "trashpile"
+	density = TRUE
+	anchored = TRUE
+	climbable = TRUE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	hit_sound = 'sound/weapons/heavyhit.ogg'
+	coverage = 30
+	max_integrity = 75
 
 /obj/prop/mainship/prop/news_tv
 	name = "TV"

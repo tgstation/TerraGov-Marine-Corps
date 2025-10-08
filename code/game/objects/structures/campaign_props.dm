@@ -163,7 +163,7 @@
 	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /obj/structure/prop/land_rover
-	name = "land_rover"
+	name = "land rover"
 	desc = "A light armored all terrain vehicle. Beats walking."
 	icon = 'icons/obj/vehicles/4x4.dmi'
 	icon_state = "land_rover"
@@ -190,3 +190,7 @@
 			bound_width = 96
 			bound_height = 64
 
+/obj/structure/prop/land_rover/machinegun
+	name = "armored land rover"
+	desc = "An all terrain vehicle with some armor plating and an attached machinegun. Unfortunately, the machinegun has no ammo, and you don't have your drivers license."
+	icon_state = "land_rover_machinegun"
