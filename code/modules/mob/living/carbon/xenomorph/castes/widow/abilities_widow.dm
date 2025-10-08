@@ -101,10 +101,10 @@
 		if(check_path(src, victim, pass_flags_checked = PASS_PROJECTILE) != get_turf(victim))
 			continue
 		leash_victims += victim
-		ADD_TRAIT(leash_victims, TRAIT_LEASHED, src)
-		beams += beam(leash_victims, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
-		RegisterSignal(leash_victims, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
-		RegisterSignals(leash_victims, list(COMSIG_QDELETING,COMSIG_MOB_DEATH), PROC_REF(remove_victim))
+		ADD_TRAIT(victim, TRAIT_LEASHED, src)
+		beams += beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
+		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
+		RegisterSignals(victim, list(COMSIG_QDELETING,COMSIG_MOB_DEATH), PROC_REF(remove_victim))
 	if(!length(leash_victims))
 		return INITIALIZE_HINT_QDEL
 	QDEL_IN(src, leash_life)
