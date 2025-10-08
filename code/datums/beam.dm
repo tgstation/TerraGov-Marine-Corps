@@ -92,7 +92,8 @@
 	for(N in 0 to length-1 step 32)//-1 as we want < not <=, but we want the speed of X in Y to Z and step X
 		if(QDELETED(src))
 			break
-		elements += new beam_type(origin_turf)
+		var/obj/effect/ebeam/X = new beam_type(origin_turf)
+		elements += X
 
 		//Assign our single visual ebeam to each ebeam's vis_contents
 		//ends are cropped by a transparent box icon of length-N pixel size laid over the visuals obj
