@@ -7351,10 +7351,6 @@
 /obj/effect/urban/decal/dirt_2,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
-"Se" = (
-/obj/effect/spawner/random/misc/plant,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks)
 "Sf" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -17370,11 +17366,11 @@ yV
 yV
 Yr
 vM
-Se
+lL
 Rp
 Un
 Na
-Se
+lL
 IY
 Yr
 gi
@@ -17383,12 +17379,12 @@ lU
 cY
 Yr
 te
-Se
+lL
 IJ
 Ps
 Ps
 UA
-Se
+lL
 Ps
 Yr
 yV
