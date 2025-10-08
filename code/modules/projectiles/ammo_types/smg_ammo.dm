@@ -46,6 +46,7 @@
 	armor_type = BOMB
 	sundering = 1
 	damage_falloff = 2
+	accurate_range = 5
 	shrapnel_chance = 0
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 3 SECONDS
