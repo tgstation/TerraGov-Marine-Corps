@@ -1738,7 +1738,7 @@
 	bound_width = 128
 	resistance_flags = RESIST_ALL
 
-/obj/structure/prop/vehicle/apc/new
+/obj/structure/prop/vehicle/apc/newer
 	name = "APC - Athena"
 	desc = "An unarmed APC designed to command and transport troops in the battlefield. For some reason, it bears the same name as its predecessor. Its doors are locked, and you probably don't know how to drive this thing anyways."
 	icon = 'icons/obj/armored/3x3/apc.dmi'

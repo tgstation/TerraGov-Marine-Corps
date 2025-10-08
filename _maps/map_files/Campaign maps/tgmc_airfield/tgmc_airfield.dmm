@@ -551,6 +551,11 @@
 	},
 /turf/open/floor/plating/rivergrate,
 /area/campaign/tgmc_airfield/base/water_purification)
+"dI" = (
+/obj/effect/urban/decal/trash,
+/obj/effect/urban/decal/trash/two,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "dJ" = (
 /obj/structure/barricade/sandbags,
 /obj/effect/turf_decal/sandedge{
@@ -665,6 +670,7 @@
 /obj/effect/spawner/random/misc/trash,
 /obj/effect/spawner/random/misc/trash,
 /obj/effect/spawner/random/misc/trash,
+/obj/effect/urban/decal/trash/fifteen,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
 "ey" = (
@@ -774,6 +780,9 @@
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "fb" = (
 /obj/effect/decal/cleanable/dirt/grime4,
+/obj/structure/sign/nosmoking_2{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -1116,6 +1125,10 @@
 "hv" = (
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast,
 /area/campaign/tgmc_airfield/outside/dry_river)
+"hw" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "hx" = (
 /obj/structure/barricade/sandbags{
 	dir = 1
@@ -1259,6 +1272,13 @@
 /obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert)
+"ik" = (
+/obj/structure/prop/trashpile{
+	dir = 1
+	},
+/obj/effect/urban/decal/trash/two,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "il" = (
 /obj/effect/urban/decal/road/lines3,
 /obj/structure/prop/land_rover{
@@ -1633,6 +1653,12 @@
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
+"ka" = (
+/obj/structure/sign/nosmoking_1{
+	dir = 1
+	},
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/desert/south)
 "kc" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay/generator)
@@ -1705,7 +1731,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "kC" = (
-/obj/structure/prop/vehicle/apc/new{
+/obj/structure/prop/vehicle/apc/newer{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -1746,6 +1772,10 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/west)
+"kU" = (
+/obj/effect/urban/decal/trash/ten,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "kX" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerempty2,
 /turf/open/floor/tile/blue,
@@ -2006,6 +2036,10 @@
 	dir = 4
 	},
 /area/campaign/tgmc_airfield/base/barracks/east)
+"mI" = (
+/obj/effect/urban/decal/trash/two,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "mN" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 8
@@ -2171,6 +2205,13 @@
 	dir = 8
 	},
 /obj/effect/landmark/campaign_structure/sentry,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
+"nG" = (
+/obj/structure/barricade/concrete{
+	dir = 1
+	},
+/obj/effect/urban/decal/trash/sixteen,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
 "nL" = (
@@ -2457,6 +2498,10 @@
 /obj/effect/urban/decal/road/road_stop/one,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/east_base)
+"pJ" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "pL" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -2549,6 +2594,10 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/base/barracks/east)
+"qk" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "qm" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/urban/generic_solid{
@@ -2659,6 +2708,14 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/north)
+"qS" = (
+/obj/structure/sign/nosmoking_2{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 1
+	},
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "qW" = (
 /obj/structure/prop/flag,
 /turf/open/urban/street/sidewalkfull,
@@ -2751,6 +2808,11 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
+"rF" = (
+/obj/effect/urban/decal/dirt,
+/obj/effect/urban/decal/trash/thirteen,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "rG" = (
 /obj/effect/spawner/random/misc/structure/crate,
 /turf/open/floor/tile/blue,
@@ -3440,7 +3502,8 @@
 	},
 /obj/structure/sign/nosmoking_1{
 	pixel_y = 4;
-	pixel_x = 1
+	pixel_x = 1;
+	dir = 1
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
@@ -3932,6 +3995,13 @@
 /obj/structure/table/reinforced/flipped,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
+"yo" = (
+/obj/structure/cable,
+/obj/structure/sign/nosmoking_1{
+	dir = 4
+	},
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "yp" = (
 /obj/structure/ship_ammo/cas/heavygun{
 	pixel_y = -1
@@ -4145,6 +4215,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/east)
+"zR" = (
+/obj/structure/sign/nosmoking_1,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "zS" = (
 /obj/structure/window/framed/urban/colony/engineering,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -4250,7 +4324,7 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "AC" = (
-/obj/structure/prop/vehicle/apc/new{
+/obj/structure/prop/vehicle/apc/newer{
 	dir = 8
 	},
 /turf/open/urban/street/sidewalkfull,
@@ -4275,6 +4349,14 @@
 	dir = 5
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
+"AK" = (
+/obj/structure/prop/trashpile{
+	dir = 1;
+	pixel_x = -8
+	},
+/obj/effect/urban/decal/trash/twelve,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "AN" = (
 /obj/effect/decal/cleanable/dirt/grime3,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -5332,6 +5414,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory_workshop)
+"Hy" = (
+/obj/effect/urban/decal/trash/seven,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "Hz" = (
 /obj/structure/platform/urban/metalplatform2{
 	dir = 5
@@ -5776,6 +5862,10 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/outside/desert/north)
+"Kz" = (
+/obj/effect/spawner/random/medical/structure/crate/medsupplies,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/medical)
 "KC" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
@@ -6114,6 +6204,12 @@
 "ML" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"MN" = (
+/obj/structure/prop/trashpile{
+	dir = 4
+	},
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "MQ" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -6132,6 +6228,9 @@
 /area/campaign/tgmc_airfield/base/barracks)
 "MV" = (
 /obj/effect/decal/cleanable/dirt/grime4,
+/obj/structure/sign/nosmoking_1{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
 	},
@@ -6586,6 +6685,14 @@
 "PV" = (
 /turf/closed/wall/urban,
 /area/campaign/tgmc_airfield/base/medical)
+"PW" = (
+/obj/structure/sign/nosmoking_1{
+	pixel_y = 4;
+	pixel_x = 1;
+	dir = 4
+	},
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "PX" = (
 /obj/structure/barricade/sandbags{
 	dir = 1
@@ -6696,6 +6803,14 @@
 /obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/south)
+"Qz" = (
+/obj/structure/sign/nosmoking_1{
+	pixel_y = 4;
+	pixel_x = 1;
+	dir = 1
+	},
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "QB" = (
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
 	dir = 8
@@ -6735,12 +6850,23 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
+"QT" = (
+/obj/structure/prop/trashpile{
+	dir = 1
+	},
+/obj/effect/urban/decal/trash/six,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "QW" = (
 /obj/effect/urban/decal/road/lines3{
 	pixel_y = -2
 	},
 /obj/effect/urban/decal/road/road_stop/one,
 /turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/west_base)
+"QX" = (
+/obj/effect/urban/decal/trash,
+/turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
 "QY" = (
 /obj/effect/urban/decal/bloodtrail{
@@ -7794,6 +7920,10 @@
 /obj/effect/decal/cleanable/dirt/grime4,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"Xl" = (
+/obj/effect/urban/decal/trash/twelve,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "Xm" = (
 /obj/item/spacecash/c1,
 /turf/open/urban/street/sidewalkfull,
@@ -7843,6 +7973,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
+"XC" = (
+/obj/structure/prop/trashpile,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "XD" = (
 /obj/structure/flora/drought/tall_cactus,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -16629,7 +16763,7 @@ OL
 OL
 OL
 uX
-yP
+nG
 uF
 IV
 yV
@@ -17912,7 +18046,7 @@ OL
 yV
 IV
 PV
-rz
+Kz
 aY
 wh
 ht
@@ -17961,9 +18095,9 @@ CW
 Yr
 Wv
 Hs
-yV
-yV
-yV
+kU
+XC
+Xl
 IV
 yV
 yV
@@ -18079,7 +18213,7 @@ Yr
 gT
 yV
 IV
-yV
+mI
 yV
 yV
 yV
@@ -18203,7 +18337,7 @@ Hs
 Hs
 Hs
 Lu
-Hs
+yo
 Hs
 Hs
 Hs
@@ -18388,7 +18522,7 @@ MF
 yV
 yV
 yV
-yV
+JC
 Zg
 Hx
 EQ
@@ -18505,7 +18639,7 @@ MF
 yV
 yV
 yV
-yV
+QT
 Zg
 Hx
 EQ
@@ -18894,9 +19028,9 @@ Pu
 Gf
 Gf
 cJ
-yV
+zR
 wA
-oO
+qS
 Oj
 Oj
 Oj
@@ -19003,7 +19137,7 @@ yV
 yV
 yV
 yV
-yV
+ik
 yV
 yV
 Gg
@@ -19119,8 +19253,8 @@ yV
 yV
 yV
 Sm
-yV
-Cm
+Hy
+rF
 yV
 Hs
 Hs
@@ -19228,7 +19362,7 @@ Nr
 sD
 Nr
 Nr
-yV
+XC
 yV
 Uq
 XU
@@ -19580,7 +19714,7 @@ Nr
 Nr
 Nr
 yV
-yV
+QX
 Qt
 XU
 TV
@@ -19679,7 +19813,7 @@ Hs
 yV
 yV
 yV
-yV
+MN
 yV
 yV
 IV
@@ -19697,7 +19831,7 @@ Bd
 Bd
 Bd
 IV
-yV
+Hy
 eu
 XU
 lo
@@ -20083,7 +20217,7 @@ eK
 eK
 RV
 wA
-LY
+ka
 LY
 LY
 LY
@@ -20181,7 +20315,7 @@ XU
 Qk
 yV
 yV
-yV
+zR
 wA
 ie
 eK
@@ -22404,11 +22538,11 @@ Og
 bK
 Og
 Og
+Og
+Og
+Og
+Og
 AC
-Og
-Og
-Og
-Og
 Og
 aD
 aD
@@ -24026,7 +24160,7 @@ aq
 Lv
 Lv
 ix
-ix
+dI
 Xu
 Xp
 ke
@@ -24143,7 +24277,7 @@ aq
 Lv
 Lv
 ix
-ix
+AK
 Xu
 ou
 zU
@@ -25064,7 +25198,7 @@ ix
 ix
 ix
 bx
-ix
+PW
 ix
 ix
 ix
@@ -25188,8 +25322,8 @@ oU
 oU
 oU
 zE
-ix
-ix
+hw
+qk
 ix
 Lv
 aq
@@ -25306,7 +25440,7 @@ vo
 vo
 zE
 ix
-ix
+pJ
 ix
 Lv
 aq
@@ -25890,7 +26024,7 @@ vo
 wi
 vo
 zE
-ix
+Qz
 bx
 ix
 Lv
