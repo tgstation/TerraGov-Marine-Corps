@@ -94,35 +94,44 @@
 	for(var/mob/living/carbon/human/victim in GLOB.humans_by_zlevel["[z]"])
 		if(get_dist(src, victim) > leash_radius)
 			continue
-		if(victim.stat == DEAD) /// Add || CONSCIOUS after testing
+		if(victim.stat == DEAD)
 			continue
 		if(HAS_TRAIT(victim, TRAIT_LEASHED))
 			continue
 		if(check_path(src, victim, pass_flags_checked = PASS_PROJECTILE) != get_turf(victim))
 			continue
 		leash_victims += victim
-	for(var/mob/living/carbon/human/snared_victim AS in leash_victims)
-		ADD_TRAIT(snared_victim, TRAIT_LEASHED, src)
-		beams += beam(snared_victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
-		RegisterSignal(snared_victim, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
-	if(!length(beams))
+		ADD_TRAIT(leash_victims, TRAIT_LEASHED, src)
+		beams += beam(leash_victims, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
+		RegisterSignal(leash_victims, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
+		RegisterSignals(leash_victims, list(COMSIG_QDELETING,COMSIG_MOB_DEATH), PROC_REF(remove_victim))
+	if(!length(leash_victims))
 		return INITIALIZE_HINT_QDEL
 	QDEL_IN(src, leash_life)
 
 /// To remove beams after the leash_ball is destroyed and also unregister all victims
 /obj/structure/xeno/aoe_leash/Destroy()
 	for(var/mob/living/carbon/human/victim AS in leash_victims)
-		UnregisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE)
-		REMOVE_TRAIT(victim, TRAIT_LEASHED, src)
+		remove_victim(victim)
 	leash_victims = null
 	QDEL_LIST(beams)
 	return ..()
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
-/obj/structure/xeno/aoe_leash/proc/check_dist(atom/source, atom/newloc, direction)
+/obj/structure/xeno/aoe_leash/proc/check_dist(mob/living/carbon/human/victim, atom/newloc, direction)
 	SIGNAL_HANDLER
+	if((victim.z != z) || (get_dist(victim, src) > leash_radius)) //if you're being moved off z or otherwise forced out of range/forcemoved etc, we clean up.
+		remove_victim(victim)
+		return
 	if(get_dist(newloc, src) >= leash_radius)
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+
+///Removes the mob from the victim list
+/obj/structure/xeno/aoe_leash/proc/remove_victim(mob/living/carbon/human/victim)
+	SIGNAL_HANDLER
+	UnregisterSignal(victim, list(COMSIG_MOVABLE_PRE_MOVE, COMSIG_QDELETING, COMSIG_MOB_DEATH))
+	leash_victims -= victim
+	REMOVE_TRAIT(victim, TRAIT_LEASHED, src)
 
 /// This is so that xenos can remove leash balls
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
