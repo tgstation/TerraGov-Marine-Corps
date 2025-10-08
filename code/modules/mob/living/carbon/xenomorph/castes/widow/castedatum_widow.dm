@@ -45,7 +45,7 @@
 	queen_leader_limit = 4
 
 	// *** Widow Abilities *** //
-	max_spiderlings = 8
+	max_spiderlings = 5
 
 	// *** Abilities *** ///
 	resin_max_range = 1 // Widow can place resin structures from 1 tile away
