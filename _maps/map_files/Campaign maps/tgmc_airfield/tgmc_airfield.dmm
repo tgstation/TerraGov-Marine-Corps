@@ -300,11 +300,6 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/north)
-"ci" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/misc/shard,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/officer)
 "ck" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
 	dir = 1
@@ -816,9 +811,6 @@
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "fb" = (
 /obj/effect/decal/cleanable/dirt/grime4,
-/obj/structure/sign/nosmoking_2{
-	dir = 1
-	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -2828,9 +2820,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/extinguisher_cabinet{
-	dir = 8
-	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
@@ -3005,12 +2994,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "sq" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/spawner/random/misc/shard,
+/obj/structure/table,
+/obj/effect/spawner/random/misc/book,
 /turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/officer)
+/area/campaign/tgmc_airfield/base/armory_workshop)
 "sr" = (
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_north)
@@ -3626,7 +3613,7 @@
 	pixel_y = 7
 	},
 /obj/structure/sign/nosmoking_1{
-	pixel_y = 4;
+	pixel_y = 33;
 	pixel_x = 1;
 	dir = 1
 	},
@@ -4031,6 +4018,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/structure/sign/nosmoking_1,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "xF" = (
@@ -4521,6 +4509,9 @@
 /area/campaign/tgmc_airfield/outside/east_base)
 "AN" = (
 /obj/effect/decal/cleanable/dirt/grime3,
+/obj/structure/extinguisher_cabinet{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
@@ -5516,13 +5507,6 @@
 /obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave,
 /area/campaign/tgmc_airfield/outside/cave)
-"Hb" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/spawner/random/misc/shard,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/officer)
 "Hd" = (
 /obj/effect/landmark/campaign_structure/barricade/concrete{
 	dir = 4
@@ -7352,9 +7336,12 @@
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "Se" = (
-/obj/effect/spawner/random/misc/plant,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks)
+/obj/structure/prop/flag{
+	pixel_x = -2;
+	pixel_y = 14
+	},
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "Sf" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -17370,11 +17357,11 @@ yV
 yV
 Yr
 vM
-Se
+lL
 Rp
 Un
 Na
-Se
+lL
 IY
 Yr
 gi
@@ -17383,12 +17370,12 @@ lU
 cY
 Yr
 te
-Se
+lL
 IJ
 Ps
 Ps
 UA
-Se
+lL
 Ps
 Yr
 yV
@@ -18537,13 +18524,13 @@ Nr
 Nr
 yV
 yV
-yV
-IV
-yV
-yV
-yV
-yV
-yV
+Hs
+Hs
+lz
+kF
+kF
+lz
+Hs
 Yr
 Yr
 Yr
@@ -18655,12 +18642,12 @@ bR
 Hs
 Hs
 Hs
+yV
+Jv
+yV
+yV
+Jv
 Hs
-Hs
-lz
-kF
-kF
-lz
 Hs
 Hs
 Hs
@@ -18761,8 +18748,8 @@ EQ
 ZK
 Zg
 nC
-JX
-JX
+EQ
+sq
 pn
 yM
 Nr
@@ -18771,13 +18758,13 @@ Nr
 Nr
 yV
 yV
-yV
-yV
-yV
-Jv
-yV
+jz
 yV
 Jv
+yV
+yV
+GD
+yV
 yV
 yV
 IV
@@ -18879,7 +18866,7 @@ EQ
 zk
 EQ
 EQ
-EQ
+JX
 pn
 yM
 Nr
@@ -18888,13 +18875,13 @@ Nr
 Nr
 yV
 yV
+IV
 yV
 jz
+xs
+xs
+jz
 yV
-Jv
-yV
-yV
-GD
 yV
 yV
 yV
@@ -18996,7 +18983,7 @@ EQ
 Hx
 EQ
 EQ
-EQ
+JX
 pn
 yM
 Nr
@@ -19005,13 +18992,13 @@ Nr
 Nr
 yV
 yV
-yV
-IV
+Se
 yV
 jz
-xs
-xs
+Tv
+Tv
 jz
+yV
 xY
 uG
 yV
@@ -19121,14 +19108,14 @@ sD
 Nr
 Nr
 yV
-Ar
-yV
-yV
 yV
 jz
-Tv
-Tv
-jz
+yV
+Jv
+yV
+yV
+Jv
+yV
 LB
 jN
 yV
@@ -19240,12 +19227,12 @@ Nr
 yV
 yV
 yV
-jz
 yV
 Jv
 yV
 yV
 Jv
+yV
 xY
 Ui
 yV
@@ -19358,11 +19345,11 @@ yV
 yV
 yV
 yV
+jz
+PG
+PG
+jz
 yV
-Jv
-yV
-yV
-Jv
 yV
 yV
 IV
@@ -19371,7 +19358,7 @@ Pu
 Gf
 Gf
 cJ
-zR
+yV
 wA
 qS
 Oj
@@ -19476,10 +19463,10 @@ yV
 yV
 yV
 yV
-jz
-PG
-PG
-jz
+yV
+yV
+yV
+yV
 ik
 yV
 yV
@@ -19722,7 +19709,7 @@ XU
 yV
 yV
 yV
-yV
+zR
 wA
 In
 Oj
@@ -20625,9 +20612,9 @@ yV
 yV
 yV
 UM
-SD
-sq
 aA
+qN
+SD
 UM
 SD
 qN
@@ -20862,7 +20849,7 @@ XE
 Bj
 Zy
 OO
-ci
+Uc
 Uc
 Uc
 OO
@@ -21210,9 +21197,9 @@ yV
 yV
 yV
 UM
+Jw
+pm
 SD
-Hb
-WZ
 UM
 px
 pm
@@ -21329,7 +21316,7 @@ yV
 UM
 Pa
 DM
-Jw
+WZ
 UM
 bQ
 DM

@@ -213,7 +213,7 @@ ww
 	icon = 'icons/turf/desertdam_map.dmi'
 	mob_liquid_height = 0
 	mob_liquid_depth = 0
-	slowdown_multiplier = 1
+	slowdown_multiplier = 0.25
 
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow
 	icon_state = "shallow_water_clean"

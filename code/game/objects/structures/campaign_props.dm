@@ -172,6 +172,7 @@
 	bound_width = 64
 	bound_height = 96
 	allow_pass_flags = PASSABLE|PASS_WALKOVER
+	max_integrity = 600
 
 /obj/structure/prop/land_rover/Initialize(mapload)
 	. = ..()
@@ -194,3 +195,4 @@
 	name = "armored land rover"
 	desc = "An all terrain vehicle with some armor plating and an attached machinegun. Unfortunately, the machinegun has no ammo, and you don't have your drivers license."
 	icon_state = "land_rover_machinegun"
+	max_integrity = 850
