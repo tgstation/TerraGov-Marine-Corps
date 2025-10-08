@@ -39,6 +39,13 @@
 	if(time < INFINITY)
 		QDEL_IN(src, time)
 
+/datum/beam/Destroy()
+	target = null
+	origin = null
+	QDEL_LIST(elements)
+	QDEL_NULL(visuals)
+	return ..()
+
 /**
  * Proc called by the atom Beam() proc. Sets up signals, and draws the beam for the first time.
  */
@@ -50,7 +57,13 @@
 	Draw()
 	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
+	RegisterSignal(origin, COMSIG_QDELETING, PROC_REF(on_ref_del))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_ref_del))
 
+///qdels if our reference points are deleted
+/datum/beam/proc/on_ref_del(datum/source)
+	SIGNAL_HANDLER
+	qdel(src)
 /**
  * Triggered by signals set up when the beam is set up. If it's still sane to create a beam, it removes the old beam, creates a new one. Otherwise it kills the beam.
  *
@@ -66,13 +79,6 @@
 		Draw()
 	else
 		qdel(src)
-
-/datum/beam/Destroy()
-	target = null
-	origin = null
-	QDEL_LIST(elements)
-	QDEL_NULL(visuals)
-	return ..()
 
 /**
  * Creates the beam effects and places them in a line from the origin to the target. Sets their rotation to make the beams face the target, too.
