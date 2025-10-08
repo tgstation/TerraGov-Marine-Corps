@@ -32,6 +32,8 @@
 /datum/beam/New(beam_origin,beam_target,beam_icon='icons/effects/beam.dmi',beam_icon_state="b_beam",time=INFINITY,maxdistance=INFINITY,btype = /obj/effect/ebeam)
 	origin = beam_origin
 	target = beam_target
+	RegisterSignal(origin, COMSIG_QDELETING, PROC_REF(on_ref_del))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_ref_del))
 	max_distance = maxdistance
 	icon = beam_icon
 	icon_state = beam_icon_state
@@ -57,8 +59,6 @@
 	Draw()
 	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
-	RegisterSignal(origin, COMSIG_QDELETING, PROC_REF(on_ref_del))
-	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_ref_del))
 
 ///qdels if our reference points are deleted
 /datum/beam/proc/on_ref_del(datum/source)
