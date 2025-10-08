@@ -170,7 +170,7 @@
 
 	recovery_aura = received_auras[AURA_XENO_RECOVERY] || 0
 
-	hud_set_pheromone()
+	update_aura_overlay()
 	..()
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
