@@ -69,3 +69,18 @@
       90/80/70%.'
   - bugfix: 'Mutations: Deep Slash''s armor penetration now correctly affects things
       that aren''t humans.'
+2025-10-08:
+  Atropos:
+  - balance: Crash autodoc is now 2 times faster
+  Joe13413:
+  - balance: Decreased the ammo capacity of the laser pistols standard fire mode to
+      20, from 30.
+  Lumipharon:
+  - balance: KTLD goggles no longer work when scoped
+  - balance: SH-410 removed from normal gameplay
+  - balance: MP-19 has 30 round mags again
+  Scav:
+  - balance: Increased vendor AG nade count on crash to 25
+  blackdav123:
+  - balance: Pyrogen now has higher plasma costs, but receives plasma when slashing
+      marines or consuming firestacks with Fire Charge.
