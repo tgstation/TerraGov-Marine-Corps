@@ -72,12 +72,21 @@
 
 /datum/campaign_mission/destroy_mission/airbase/som
 	mission_flags = MISSION_DISALLOW_TELEPORT
-	map_name = "Orion outpost"
-	map_file = '_maps/map_files/Campaign maps/orion_2/orionoutpost_2.dmm'
-	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
+
+	map_name = "Camp Broadsire Airbase"
+	map_file = '_maps/map_files/Campaign maps/tgmc_airfield/tgmc_airfield.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_SANDSTORM = TRUE)
+	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
 	map_light_levels = list(225, 150, 100, 75)
-	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
-	objectives_total = 8
-	min_destruction_amount = 5
+	map_armor_color = MAP_ARMOR_STYLE_DESERT
+	objectives_total = 4
+	min_destruction_amount = 3
 	hostile_faction_additional_rewards = "Ensure continued access to close air support. B18 power armour available if you successfully protect this depot."
+
+/datum/campaign_mission/destroy_mission/airbase/som/load_mission_brief()
+	starting_faction_mission_brief = "A [hostile_faction] airbase has been located on the fringes of the Western Galloran Desert. Intelligence indicated this installation is a key [hostile_faction] air support base for close air support in this region. \
+		The destruction of this airbase will have a severe impact on ability to use close air support in the near future. \
+		Move quickly under the cover of a sandstorm and destroy all designated targets in the AO before they have time to react."
+	hostile_faction_mission_brief = "[starting_faction] forces have been detected moving against the Camp Broadsire Airbase in the Western Galloran Desert under the cover of a sandstorm. \
+		Repel the enemy and protect the installation until reinforcements can arrive. \
+		The loss of this depot would be a heavy blow against our air power, greatly reducing our ability to field close air support in the near future."
