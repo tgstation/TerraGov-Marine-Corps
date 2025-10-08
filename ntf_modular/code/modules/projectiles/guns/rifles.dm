@@ -309,7 +309,7 @@
 	//slightly less damage than regular bullets but except laser standard sundering, also same bullet speed.
 	name = "halter laser bolt"
 	shell_speed = 3.5
-	damage = 25
+	damage = 23
 	bullet_color = COLOR_RED_LIGHT
 
 //extended mag
