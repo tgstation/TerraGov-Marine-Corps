@@ -59,10 +59,14 @@
 	var/obj/hostile_bike = GLOB.campaign_bike_by_faction[hostile_faction]
 
 	for(var/i = 1 to max(AIRBASE_MIN_START_BIKE_AMOUNT, floor(length(GLOB.clients) * AIRBASE_START_BIKE_MULT)))
-		new start_bike(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
+		var/obj/bike = new start_bike(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
+		GLOB.campaign_structures += bike
+		RegisterSignal(bike, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
 	for(var/i = 1 to max(AIRBASE_MIN_HOSTILE_BIKE_AMOUNT, floor(length(GLOB.clients) * AIRBASE_HOSTILE_BIKE_MULT)))
-		new hostile_bike(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+		var/obj/bike = new hostile_bike(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+		GLOB.campaign_structures += bike
+		RegisterSignal(bike, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
 	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
 	attacking_team.add_asset(GLOB.campaign_cas_disabler_by_faction[starting_faction])
