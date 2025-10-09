@@ -168,7 +168,6 @@
 	icon = 'icons/obj/vehicles/4x4.dmi'
 	icon_state = "land_rover"
 	density = TRUE
-	allow_pass_flags = PASS_AIR
 	bound_width = 64
 	bound_height = 96
 	allow_pass_flags = PASSABLE|PASS_WALKOVER
@@ -180,6 +179,7 @@
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	setDir(dir)
 
 /obj/structure/prop/land_rover/setDir(newdir)
 	. = ..()
