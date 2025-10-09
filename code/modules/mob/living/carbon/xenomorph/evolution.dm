@@ -176,7 +176,8 @@
 	new_xeno.nicknumber = nicknumber
 	new_xeno.transfer_to_hive(hivenumber)
 	new_xeno.generate_name() // This is specifically for numbered xenos who want to keep their previous number instead of a random new one.
-	new_xeno.hive?.update_ruler() // Since ruler wasn't set during initialization, update ruler now.
+	if(new_xeno.hive)
+		INVOKE_NEXT_TICK(new_xeno.hive, TYPE_PROC_REF(/datum/hive_status, update_ruler)) // Since ruler wasn't set during initialization, update ruler now.
 	transfer_observers_to(new_xeno)
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
