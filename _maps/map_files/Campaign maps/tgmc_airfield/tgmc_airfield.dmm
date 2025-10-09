@@ -2096,7 +2096,9 @@
 "mD" = (
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/machinery/power/terminal,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
 /obj/machinery/power/apc,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/west_base)
@@ -4003,7 +4005,7 @@
 /area/campaign/tgmc_airfield/outside/airstrip_north)
 "xq" = (
 /obj/machinery/power/terminal{
-	dir = 4
+	dir = 8
 	},
 /obj/machinery/power/apc{
 	dir = 4
@@ -6752,15 +6754,6 @@
 	dir = 10
 	},
 /area/campaign/tgmc_airfield/outside/desert/west)
-"NT" = (
-/obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 8;
-	id = westhanger
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 8
-	},
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "NU" = (
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/drought/alt,
@@ -7335,6 +7328,10 @@
 /obj/item/clothing/mask/cigarette,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
+"RB" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/airstrip_north)
 "RC" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
 	dir = 8;
@@ -7950,6 +7947,16 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/water_purification)
+"US" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/airstrip_north)
 "UU" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/blood/oil,
@@ -8054,7 +8061,7 @@
 "VA" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
-	dir = 8
+	dir = 4
 	},
 /obj/machinery/power/apc{
 	dir = 8
@@ -19030,7 +19037,7 @@ tW
 wA
 wA
 DF
-NT
+vx
 vx
 vx
 ez
@@ -21087,7 +21094,7 @@ hm
 yV
 yV
 yV
-yV
+Hs
 Ot
 SD
 SD
@@ -21204,7 +21211,7 @@ hm
 yV
 yV
 yV
-yV
+Hs
 UM
 UM
 UM
@@ -21321,7 +21328,7 @@ hm
 yV
 yV
 yV
-yV
+Hs
 UM
 Jw
 pm
@@ -21438,7 +21445,7 @@ hm
 yV
 yV
 IV
-yV
+Hs
 UM
 Pa
 DM
@@ -21555,7 +21562,7 @@ hm
 yV
 HV
 qx
-yV
+Hs
 UM
 Zz
 Zz
@@ -21672,7 +21679,7 @@ yV
 yV
 yV
 yV
-yV
+Hs
 UM
 KT
 KT
@@ -21789,8 +21796,8 @@ wL
 wL
 wL
 wL
-wL
-wL
+RB
+US
 wL
 wL
 wL

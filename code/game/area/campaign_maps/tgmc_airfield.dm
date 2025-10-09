@@ -47,18 +47,22 @@
 /area/campaign/tgmc_airfield/outside/west_base
 	name = "Western Base Grounds"
 	icon_state = "west2"
+	always_unpowered = FALSE
 
 /area/campaign/tgmc_airfield/outside/east_base
 	name = "Eastern Base Grounds"
 	icon_state = "east2"
+	always_unpowered = FALSE
 
 /area/campaign/tgmc_airfield/outside/airstrip_north
 	name = "Northern Airstrip"
 	icon_state = "runway"
+	always_unpowered = FALSE
 
 /area/campaign/tgmc_airfield/outside/airstrip_south
 	name = "Northern Airstrip"
 	icon_state = "runway2"
+	always_unpowered = FALSE
 
 /area/campaign/tgmc_airfield/base
 	name = "sidewalk"
