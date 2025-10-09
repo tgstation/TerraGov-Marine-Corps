@@ -610,13 +610,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
-"dM" = (
-/obj/structure/bed/urban/bunkbed3{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/east)
 "dQ" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_y = 12;
@@ -1039,7 +1032,7 @@
 /obj/machinery/power/apc{
 	dir = 1
 	},
-/obj/machinery/power/terminal,
+/obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/security_checkpoint/east)
 "gs" = (
@@ -2405,6 +2398,7 @@
 /area/campaign/tgmc_airfield/base/water_purification)
 "oo" = (
 /obj/machinery/power/apc,
+/obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
 "oq" = (
@@ -5222,6 +5216,11 @@
 /obj/effect/urban/decal/trash/fourteen,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
+"Er" = (
+/obj/effect/urban/decal/dirt_2,
+/obj/structure/cable,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "Et" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
@@ -6350,6 +6349,10 @@
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
+"Ls" = (
+/obj/structure/cable,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/security_checkpoint/east)
 "Lt" = (
 /obj/effect/turf_decal/stripes/asteroid/box,
 /turf/open/urban/street/sidewalkfull,
@@ -8192,11 +8195,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
-"VL" = (
-/obj/structure/bed/urban/bunkbed3,
-/obj/structure/cable,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/east)
 "VQ" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	pixel_x = -5;
@@ -26846,10 +26844,10 @@ aq
 Lv
 Lv
 ix
-ix
+aa
 mt
-mt
-VL
+bb
+yB
 mt
 yB
 mt
@@ -26963,10 +26961,10 @@ aq
 Lv
 Lv
 ix
-bx
+Er
 UC
 oo
-dM
+jb
 mt
 jb
 mt
@@ -27080,7 +27078,7 @@ aq
 Lv
 Lv
 ix
-ix
+aa
 UC
 mt
 mt
@@ -27197,7 +27195,7 @@ aq
 Lv
 Lv
 ix
-bx
+Er
 UC
 ki
 mt
@@ -27314,7 +27312,7 @@ aq
 Lv
 Lv
 ix
-ix
+aa
 UC
 UC
 UC
@@ -27431,7 +27429,7 @@ aq
 Lv
 Lv
 ix
-ix
+aa
 ix
 ix
 ix
@@ -27548,13 +27546,13 @@ aq
 Lv
 Lv
 ix
-ix
-ix
-ix
-ix
-ix
-ix
-ix
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 ix
 UC
 UC
@@ -27671,7 +27669,7 @@ Bc
 Bc
 Bc
 xR
-ix
+aa
 ix
 ix
 ix
@@ -27788,7 +27786,7 @@ md
 md
 em
 xR
-ix
+aa
 ix
 ix
 ix
@@ -27905,7 +27903,7 @@ md
 TD
 md
 xk
-ix
+aa
 ix
 PQ
 PQ
@@ -28020,9 +28018,9 @@ RM
 JM
 TD
 md
-md
-md
-ix
+Ls
+Ls
+aa
 ix
 PQ
 PQ
