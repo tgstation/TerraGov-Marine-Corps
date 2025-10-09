@@ -8729,10 +8729,6 @@
 "ZG" = (
 /turf/closed/mineral/smooth/desertdamrockwall,
 /area/campaign/tgmc_airfield/outside/desert/east)
-"ZH" = (
-/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
-/area/campaign/tgmc_airfield/outside/desert/south,
-/area/campaign/tgmc_airfield/outside/desert/south)
 "ZK" = (
 /obj/effect/urban/decal/trash/five,
 /turf/open/floor/tile/blue,
@@ -28427,7 +28423,7 @@ Nv
 Nv
 Nv
 EV
-ZH
+EV
 EV
 EV
 Nv
