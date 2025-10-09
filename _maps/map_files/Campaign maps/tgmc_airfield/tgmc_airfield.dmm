@@ -302,7 +302,9 @@
 /area/campaign/tgmc_airfield/outside/desert/north)
 "ck" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 1
+	dir = 1;
+	id = "ammostorage";
+	name = "\improper Ammunition Storage Shutters"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
@@ -621,6 +623,15 @@
 	dir = 5
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
+"dW" = (
+/obj/structure/cable,
+/obj/machinery/door_control{
+	dir = 1;
+	id = "westhangar";
+	name = "West Hangar Shutters"
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "dX" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	pixel_y = 3;
@@ -711,10 +722,11 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert)
 "ez" = (
-/obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/mainship/hangar{
+	dir = 8;
+	id = "westhangar"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
@@ -1802,7 +1814,9 @@
 /area/campaign/tgmc_airfield/outside/east_base)
 "kM" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 1
+	dir = 1;
+	name = "\improper Generator Shutters";
+	id = "generatorshutters"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
@@ -1841,6 +1855,16 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
+"lf" = (
+/obj/machinery/door_control{
+	id = "generatorstorage";
+	name = "Generator Shutters";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 8
+	},
+/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "li" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 8
@@ -1873,6 +1897,10 @@
 /area/campaign/tgmc_airfield/outside/desert)
 "lt" = (
 /obj/effect/turf_decal/stripes/white/line,
+/obj/machinery/door_control{
+	dir = 8;
+	name = "East Hangar Shutters"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
@@ -2144,6 +2172,11 @@
 "mZ" = (
 /obj/machinery/light,
 /obj/structure/cable,
+/obj/machinery/door_control{
+	id = "ammostorage";
+	name = "Ammunition Storage Shutters";
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "nb" = (
@@ -2479,7 +2512,10 @@
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/west)
 "oU" = (
-/obj/machinery/door/poddoor/shutters/mainship,
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "storageshutters";
+	name = "\improper Storage Shutters"
+	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
 "oX" = (
@@ -2502,7 +2538,9 @@
 /area/campaign/tgmc_airfield/base/barracks/officer)
 "pb" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 1
+	dir = 1;
+	name = "\improper Generator Shutters";
+	id = "generatorshutters"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
@@ -3210,6 +3248,14 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
+"tu" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "westhangar";
+	name = "West Hangar Shutters"
+	},
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "tw" = (
 /obj/structure/mine_structure/wooden/plank/alt/horizontal{
 	pixel_y = -15;
@@ -3576,7 +3622,8 @@
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "vx" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 8
+	dir = 8;
+	id = "westhangar"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
@@ -4181,7 +4228,9 @@
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "yH" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 1
+	dir = 1;
+	name = "\improper Generator Shutters";
+	id = "generatorshutters"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 5
@@ -4356,6 +4405,14 @@
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "zE" = (
 /turf/closed/wall/urban,
+/area/campaign/tgmc_airfield/base/storage)
+"zI" = (
+/obj/machinery/door_control{
+	name = "Storage Shutters";
+	id = "storageshutters";
+	dir = 1
+	},
+/turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
 "zP" = (
 /obj/effect/urban/decal/tiretrack{
@@ -4563,6 +4620,13 @@
 /obj/effect/urban/decal/road/lines4,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/west_base)
+"Bi" = (
+/obj/machinery/door_control{
+	dir = 4;
+	name = "East Hangar Shutters"
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/airstrip_south)
 "Bj" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
@@ -4639,6 +4703,15 @@
 	dir = 4
 	},
 /area/campaign/tgmc_airfield/base/water_purification)
+"BM" = (
+/obj/effect/urban/decal/dirt_2,
+/obj/machinery/door_control{
+	name = "Storage Shutters";
+	id = "storageshutters";
+	dir = 8
+	},
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "BP" = (
 /obj/structure/bed/chair{
 	dir = 4;
@@ -4962,7 +5035,8 @@
 /area/campaign/tgmc_airfield/base/water_purification)
 "DF" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 8
+	dir = 8;
+	id = "westhangar"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
@@ -5530,6 +5604,10 @@
 /area/campaign/tgmc_airfield/outside/desert)
 "Hk" = (
 /obj/structure/ship_ammo/cas/laser_battery,
+/obj/machinery/door_control{
+	id = "generatorstorage";
+	name = "Ammunition Storage Shutters"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -6350,6 +6428,8 @@
 	},
 /turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/campaign/tgmc_airfield/base/water_purification)
+"Mj" = (
+)
 "Mm" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 4
@@ -7462,7 +7542,9 @@
 /area/campaign/tgmc_airfield/outside/airstrip_north)
 "SO" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 1
+	dir = 1;
+	id = "ammostorage";
+	name = "\improper Ammunition Storage Shutters"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
@@ -7703,7 +7785,9 @@
 /area/campaign/tgmc_airfield/outside/west_base)
 "Uk" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 1
+	dir = 1;
+	id = "ammostorage";
+	name = "\improper Ammunition Storage Shutters"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
@@ -8764,6 +8848,10 @@ gs
 gs
 gs
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (2,1,1) = {"
 gs
@@ -8881,6 +8969,10 @@ cm
 cm
 cm
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (3,1,1) = {"
 gs
@@ -8998,6 +9090,10 @@ cm
 cm
 cm
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (4,1,1) = {"
 gs
@@ -9115,6 +9211,10 @@ cm
 cm
 cm
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (5,1,1) = {"
 gs
@@ -9232,6 +9332,10 @@ cm
 cm
 cm
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (6,1,1) = {"
 gs
@@ -9349,6 +9453,10 @@ cm
 cm
 cm
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (7,1,1) = {"
 gs
@@ -9466,6 +9574,10 @@ cm
 cm
 cm
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (8,1,1) = {"
 gs
@@ -9583,6 +9695,10 @@ cm
 cm
 cm
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (9,1,1) = {"
 gs
@@ -9700,6 +9816,10 @@ cm
 cm
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (10,1,1) = {"
 gs
@@ -9817,6 +9937,10 @@ cm
 cm
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (11,1,1) = {"
 gs
@@ -9934,6 +10058,10 @@ cm
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (12,1,1) = {"
 gs
@@ -10051,6 +10179,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (13,1,1) = {"
 gs
@@ -10168,6 +10300,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (14,1,1) = {"
 gs
@@ -10285,6 +10421,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (15,1,1) = {"
 gs
@@ -10402,6 +10542,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (16,1,1) = {"
 gs
@@ -10519,6 +10663,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (17,1,1) = {"
 gs
@@ -10636,6 +10784,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (18,1,1) = {"
 gs
@@ -10753,6 +10905,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (19,1,1) = {"
 gs
@@ -10870,6 +11026,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (20,1,1) = {"
 gs
@@ -10987,6 +11147,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (21,1,1) = {"
 gs
@@ -11104,6 +11268,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (22,1,1) = {"
 gs
@@ -11221,6 +11389,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (23,1,1) = {"
 gs
@@ -11338,6 +11510,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (24,1,1) = {"
 gs
@@ -11455,6 +11631,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (25,1,1) = {"
 gs
@@ -11572,6 +11752,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (26,1,1) = {"
 gs
@@ -11689,6 +11873,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (27,1,1) = {"
 gs
@@ -11806,6 +11994,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (28,1,1) = {"
 gs
@@ -11923,6 +12115,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (29,1,1) = {"
 gs
@@ -12040,6 +12236,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (30,1,1) = {"
 gs
@@ -12157,6 +12357,10 @@ AA
 AA
 AA
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (31,1,1) = {"
 gs
@@ -12274,6 +12478,10 @@ VI
 VI
 SG
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (32,1,1) = {"
 gs
@@ -12391,6 +12599,10 @@ VI
 VI
 yd
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (33,1,1) = {"
 gs
@@ -12508,6 +12720,10 @@ xa
 pR
 Ik
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (34,1,1) = {"
 gs
@@ -12625,6 +12841,10 @@ RY
 Ik
 SZ
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (35,1,1) = {"
 gs
@@ -12742,6 +12962,10 @@ SZ
 qf
 SZ
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (36,1,1) = {"
 gs
@@ -12859,6 +13083,10 @@ SZ
 SZ
 SZ
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (37,1,1) = {"
 gs
@@ -12976,6 +13204,10 @@ SZ
 SZ
 SZ
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (38,1,1) = {"
 gs
@@ -13093,6 +13325,10 @@ SZ
 SZ
 SZ
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (39,1,1) = {"
 gs
@@ -13210,6 +13446,10 @@ jJ
 Ab
 Ab
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (40,1,1) = {"
 gs
@@ -13327,6 +13567,10 @@ ui
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (41,1,1) = {"
 gs
@@ -13444,6 +13688,10 @@ iT
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (42,1,1) = {"
 gs
@@ -13561,6 +13809,10 @@ iT
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (43,1,1) = {"
 gs
@@ -13678,6 +13930,10 @@ iT
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (44,1,1) = {"
 gs
@@ -13795,6 +14051,10 @@ iT
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (45,1,1) = {"
 gs
@@ -13912,6 +14172,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (46,1,1) = {"
 gs
@@ -14029,6 +14293,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (47,1,1) = {"
 gs
@@ -14146,6 +14414,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (48,1,1) = {"
 gs
@@ -14263,6 +14535,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (49,1,1) = {"
 gs
@@ -14380,6 +14656,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (50,1,1) = {"
 gs
@@ -14497,6 +14777,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (51,1,1) = {"
 gs
@@ -14614,6 +14898,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (52,1,1) = {"
 gs
@@ -14731,6 +15019,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (53,1,1) = {"
 gs
@@ -14848,6 +15140,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (54,1,1) = {"
 gs
@@ -14965,6 +15261,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (55,1,1) = {"
 gs
@@ -15082,6 +15382,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (56,1,1) = {"
 gs
@@ -15199,6 +15503,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (57,1,1) = {"
 gs
@@ -15316,6 +15624,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (58,1,1) = {"
 gs
@@ -15433,6 +15745,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (59,1,1) = {"
 gs
@@ -15550,6 +15866,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (60,1,1) = {"
 gs
@@ -15667,6 +15987,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (61,1,1) = {"
 gs
@@ -15784,6 +16108,10 @@ iT
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (62,1,1) = {"
 gs
@@ -15901,6 +16229,10 @@ iT
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (63,1,1) = {"
 gs
@@ -16018,6 +16350,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (64,1,1) = {"
 gs
@@ -16135,6 +16471,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (65,1,1) = {"
 gs
@@ -16252,6 +16592,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (66,1,1) = {"
 gs
@@ -16369,6 +16713,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (67,1,1) = {"
 gs
@@ -16486,6 +16834,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (68,1,1) = {"
 gs
@@ -16603,6 +16955,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (69,1,1) = {"
 gs
@@ -16720,6 +17076,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (70,1,1) = {"
 gs
@@ -16837,6 +17197,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (71,1,1) = {"
 gs
@@ -16954,6 +17318,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (72,1,1) = {"
 gs
@@ -17071,6 +17439,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (73,1,1) = {"
 gs
@@ -17188,6 +17560,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (74,1,1) = {"
 gs
@@ -17305,6 +17681,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (75,1,1) = {"
 gs
@@ -17543,6 +17923,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (77,1,1) = {"
 gs
@@ -17660,6 +18044,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (78,1,1) = {"
 gs
@@ -17743,7 +18131,7 @@ LJ
 Nr
 Nr
 pb
-Et
+lf
 Et
 kc
 ua
@@ -17777,6 +18165,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (79,1,1) = {"
 gs
@@ -17894,6 +18286,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (80,1,1) = {"
 gs
@@ -18011,6 +18407,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (81,1,1) = {"
 gs
@@ -18128,6 +18528,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (82,1,1) = {"
 gs
@@ -18245,6 +18649,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (83,1,1) = {"
 gs
@@ -18362,6 +18770,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (84,1,1) = {"
 gs
@@ -18479,6 +18891,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (85,1,1) = {"
 gs
@@ -18596,6 +19012,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (86,1,1) = {"
 gs
@@ -18713,6 +19133,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (87,1,1) = {"
 gs
@@ -18789,7 +19213,7 @@ wb
 WB
 wb
 wb
-yV
+tu
 yV
 yV
 yV
@@ -18830,6 +19254,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (88,1,1) = {"
 gs
@@ -18947,6 +19375,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (89,1,1) = {"
 gs
@@ -19028,7 +19460,7 @@ Oj
 Oj
 Oj
 Oj
-lR
+dW
 Bb
 UF
 xA
@@ -19064,6 +19496,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (90,1,1) = {"
 gs
@@ -19181,6 +19617,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (91,1,1) = {"
 gs
@@ -19298,6 +19738,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (92,1,1) = {"
 gs
@@ -19415,6 +19859,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (93,1,1) = {"
 gs
@@ -19532,6 +19980,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (94,1,1) = {"
 gs
@@ -19649,6 +20101,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (95,1,1) = {"
 gs
@@ -19766,6 +20222,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (96,1,1) = {"
 gs
@@ -19883,6 +20343,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (97,1,1) = {"
 gs
@@ -20000,6 +20464,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (98,1,1) = {"
 gs
@@ -20117,6 +20585,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (99,1,1) = {"
 gs
@@ -20234,6 +20706,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (100,1,1) = {"
 gs
@@ -20351,6 +20827,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (101,1,1) = {"
 gs
@@ -20468,6 +20948,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (102,1,1) = {"
 gs
@@ -20585,6 +21069,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (103,1,1) = {"
 gs
@@ -20702,6 +21190,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (104,1,1) = {"
 gs
@@ -20819,6 +21311,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (105,1,1) = {"
 gs
@@ -20936,6 +21432,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (106,1,1) = {"
 gs
@@ -21053,6 +21553,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (107,1,1) = {"
 gs
@@ -21170,6 +21674,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (108,1,1) = {"
 gs
@@ -21287,6 +21795,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (109,1,1) = {"
 gs
@@ -21404,6 +21916,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (110,1,1) = {"
 gs
@@ -21485,7 +22001,7 @@ aD
 gm
 aD
 aD
-aD
+Bi
 Og
 Og
 LY
@@ -21521,6 +22037,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (111,1,1) = {"
 gs
@@ -21638,6 +22158,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (112,1,1) = {"
 gs
@@ -21755,6 +22279,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (113,1,1) = {"
 gs
@@ -21872,6 +22400,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (114,1,1) = {"
 gs
@@ -21989,6 +22521,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (115,1,1) = {"
 gs
@@ -22106,6 +22642,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (116,1,1) = {"
 gs
@@ -22223,6 +22763,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (117,1,1) = {"
 gs
@@ -22340,6 +22884,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (118,1,1) = {"
 gs
@@ -22457,6 +23005,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (119,1,1) = {"
 gs
@@ -22574,6 +23126,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (120,1,1) = {"
 gs
@@ -22691,6 +23247,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (121,1,1) = {"
 gs
@@ -22808,6 +23368,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (122,1,1) = {"
 gs
@@ -22925,6 +23489,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (123,1,1) = {"
 gs
@@ -23042,6 +23610,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (124,1,1) = {"
 gs
@@ -23159,6 +23731,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (125,1,1) = {"
 gs
@@ -23276,6 +23852,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (126,1,1) = {"
 gs
@@ -23393,6 +23973,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (127,1,1) = {"
 gs
@@ -23510,6 +24094,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (128,1,1) = {"
 gs
@@ -23627,6 +24215,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (129,1,1) = {"
 gs
@@ -23744,6 +24336,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (130,1,1) = {"
 gs
@@ -23861,6 +24457,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (131,1,1) = {"
 gs
@@ -23978,6 +24578,10 @@ iT
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (132,1,1) = {"
 gs
@@ -24095,6 +24699,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (133,1,1) = {"
 gs
@@ -24212,6 +24820,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (134,1,1) = {"
 gs
@@ -24329,6 +24941,10 @@ iT
 Ov
 Mm
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (135,1,1) = {"
 gs
@@ -24446,6 +25062,10 @@ Mm
 qw
 ih
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (136,1,1) = {"
 gs
@@ -24563,6 +25183,10 @@ ih
 ih
 ih
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (137,1,1) = {"
 gs
@@ -24680,6 +25304,10 @@ sO
 dy
 ih
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (138,1,1) = {"
 gs
@@ -24797,6 +25425,10 @@ iT
 wx
 dy
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (139,1,1) = {"
 gs
@@ -24914,6 +25546,10 @@ iT
 iT
 wx
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (140,1,1) = {"
 gs
@@ -25031,6 +25667,10 @@ iT
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (141,1,1) = {"
 gs
@@ -25148,6 +25788,10 @@ iT
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (142,1,1) = {"
 gs
@@ -25265,6 +25909,10 @@ Ct
 iT
 iT
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (143,1,1) = {"
 gs
@@ -25382,6 +26030,10 @@ iT
 iT
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (144,1,1) = {"
 gs
@@ -25499,6 +26151,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (145,1,1) = {"
 gs
@@ -25538,7 +26194,7 @@ ix
 ix
 ix
 ix
-bx
+BM
 ix
 ix
 ix
@@ -25616,6 +26272,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (146,1,1) = {"
 gs
@@ -25733,6 +26393,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (147,1,1) = {"
 gs
@@ -25771,7 +26435,7 @@ vo
 vo
 vo
 vo
-vo
+zI
 zE
 ix
 pJ
@@ -25850,6 +26514,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (148,1,1) = {"
 gs
@@ -25967,6 +26635,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (149,1,1) = {"
 gs
@@ -26084,6 +26756,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (150,1,1) = {"
 gs
@@ -26201,6 +26877,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (151,1,1) = {"
 gs
@@ -26318,6 +26998,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (152,1,1) = {"
 gs
@@ -26435,6 +27119,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (153,1,1) = {"
 gs
@@ -26552,6 +27240,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (154,1,1) = {"
 gs
@@ -26669,6 +27361,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (155,1,1) = {"
 gs
@@ -26786,6 +27482,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (156,1,1) = {"
 gs
@@ -26903,6 +27603,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (157,1,1) = {"
 gs
@@ -27020,6 +27724,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (158,1,1) = {"
 gs
@@ -27137,6 +27845,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (159,1,1) = {"
 gs
@@ -27254,6 +27966,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (160,1,1) = {"
 gs
@@ -27371,6 +28087,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (161,1,1) = {"
 gs
@@ -27488,6 +28208,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (162,1,1) = {"
 gs
@@ -27605,6 +28329,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (163,1,1) = {"
 gs
@@ -27722,6 +28450,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (164,1,1) = {"
 gs
@@ -27839,6 +28571,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (165,1,1) = {"
 gs
@@ -27956,6 +28692,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (166,1,1) = {"
 gs
@@ -28073,6 +28813,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (167,1,1) = {"
 gs
@@ -28190,6 +28934,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (168,1,1) = {"
 gs
@@ -28307,6 +29055,10 @@ Pr
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (169,1,1) = {"
 gs
@@ -28424,6 +29176,10 @@ Pr
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (170,1,1) = {"
 gs
@@ -28541,6 +29297,10 @@ Pr
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (171,1,1) = {"
 gs
@@ -28658,6 +29418,10 @@ Pr
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (172,1,1) = {"
 gs
@@ -28775,6 +29539,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (173,1,1) = {"
 gs
@@ -28892,6 +29660,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (174,1,1) = {"
 gs
@@ -29009,6 +29781,10 @@ Nv
 Nv
 Nv
 gs
+Mj
+Mj
+Mj
+Mj
 "}
 (175,1,1) = {"
 gs
@@ -29126,4 +29902,8 @@ gs
 gs
 gs
 gs
+Mj
+Mj
+Mj
+Mj
 "}
