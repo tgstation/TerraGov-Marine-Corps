@@ -1,3 +1,9 @@
+#define AIRBASE_START_BIKE_MULT 0.15
+#define AIRBASE_HOSTILE_BIKE_MULT 0.1
+
+#define AIRBASE_MIN_START_BIKE_AMOUNT 3
+#define AIRBASE_MIN_HOSTILE_BIKE_AMOUNT 2
+
 //disabling an enemy logistics hub
 /datum/campaign_mission/destroy_mission/airbase
 	name = "Airbase assault"
@@ -28,6 +34,9 @@
 	starting_faction_additional_rewards = "Disrupt enemy air support for a moderate period of time."
 	hostile_faction_additional_rewards = "Ensure continued access to close air support. Recon mech and gorgon armor available if you successfully protect this depot."
 
+	starting_faction_mission_parameters = "Dangerous sandstorms are active in the AO. High speed bikes are available. CAS is unavailable."
+	hostile_faction_mission_parameters = "Dangerous sandstorms are active in the AO. High speed bikes are available."
+
 /datum/campaign_mission/destroy_mission/airbase/play_start_intro()
 	intro_message = list(
 		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy all [objectives_total] enemy aircraft before further [hostile_faction] reinforcements can arrive. Good hunting!",
@@ -45,8 +54,18 @@
 
 /datum/campaign_mission/destroy_mission/airbase/load_pre_mission_bonuses()
 	. = ..()
-	spawn_mech(defending_faction, 0, 1, 2)
-	spawn_mech(attacking_faction, 1, 1)
+
+	var/obj/start_bike = GLOB.campaign_bike_by_faction[starting_faction]
+	var/obj/hostile_bike = GLOB.campaign_bike_by_faction[hostile_faction]
+
+	for(var/i = 1 to max(AIRBASE_MIN_START_BIKE_AMOUNT, floor(length(GLOB.clients) * AIRBASE_START_BIKE_MULT)))
+		new start_bike(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
+
+	for(var/i = 1 to max(AIRBASE_MIN_HOSTILE_BIKE_AMOUNT, floor(length(GLOB.clients) * AIRBASE_HOSTILE_BIKE_MULT)))
+		new hostile_bike(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+
+	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
+	attacking_team.add_asset(GLOB.campaign_cas_disabler_by_faction[starting_faction])
 
 /datum/campaign_mission/destroy_mission/airbase/apply_major_victory()
 	winning_faction = starting_faction
@@ -72,7 +91,6 @@
 
 /datum/campaign_mission/destroy_mission/airbase/som
 	mission_flags = MISSION_DISALLOW_TELEPORT
-
 	map_name = "Camp Broadsire Airbase"
 	map_file = '_maps/map_files/Campaign maps/tgmc_airfield/tgmc_airfield.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_SANDSTORM = TRUE)
@@ -90,3 +108,30 @@
 	hostile_faction_mission_brief = "[starting_faction] forces have been detected moving against the Camp Broadsire Airbase in the Western Galloran Desert under the cover of a sandstorm. \
 		Repel the enemy and protect the installation until reinforcements can arrive. \
 		The loss of this depot would be a heavy blow against our air power, greatly reducing our ability to field close air support in the near future."
+
+/datum/campaign_mission/destroy_mission/airbase/som/apply_major_victory()
+	winning_faction = starting_faction
+	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	hostile_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas)
+
+/datum/campaign_mission/destroy_mission/airbase/som/apply_minor_victory()
+	winning_faction = starting_faction
+	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	hostile_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas)
+
+/datum/campaign_mission/destroy_mission/airbase/som/apply_minor_loss()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+	winning_team.add_asset(/datum/campaign_asset/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
+
+/datum/campaign_mission/destroy_mission/airbase/som/apply_major_loss()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+	winning_team.add_asset(/datum/campaign_asset/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
+
+#undef AIRBASE_START_BIKE_MULT
+#undef AIRBASE_HOSTILE_BIKE_MULT
+#undef AIRBASE_MIN_START_BIKE_AMOUNT
+#undef AIRBASE_MIN_HOSTILE_BIKE_AMOUNT
