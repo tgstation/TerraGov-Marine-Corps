@@ -2607,10 +2607,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/base/water_purification)
-"pG" = (
-/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
-/area/campaign/tgmc_airfield/outside/desert/south,
-/area/campaign/tgmc_airfield/outside/desert/south)
 "pI" = (
 /obj/effect/urban/decal/road/road_stop/one,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -28391,7 +28387,7 @@ Nv
 Nv
 Nv
 EV
-pG
+EV
 EV
 EV
 Nv
