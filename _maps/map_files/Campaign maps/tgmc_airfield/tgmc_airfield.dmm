@@ -2096,6 +2096,8 @@
 "mD" = (
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/machinery/power/terminal,
+/obj/machinery/power/apc,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/west_base)
 "mE" = (
@@ -3408,6 +3410,7 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "uo" = (
@@ -3762,6 +3765,7 @@
 	dir = 8
 	},
 /obj/structure/barricade/sandbags,
+/obj/structure/cable,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "wk" = (
@@ -3777,6 +3781,13 @@
 /obj/structure/flora/drought/short_cactus,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
+"wn" = (
+/obj/structure/barricade/sandbags{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/airstrip_south)
 "wo" = (
 /obj/machinery/light{
 	dir = 4
@@ -3990,6 +4001,16 @@
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_north)
+"xq" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/airstrip_south)
 "xs" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 8
@@ -7435,6 +7456,7 @@
 	dir = 1
 	},
 /obj/effect/urban/decal/dirt_2,
+/obj/structure/cable,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "Si" = (
@@ -7684,6 +7706,7 @@
 	dir = 8
 	},
 /obj/effect/urban/decal/dirt_2,
+/obj/structure/cable,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "TD" = (
@@ -8028,6 +8051,16 @@
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
+"VA" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "VB" = (
 /obj/structure/bed/urban/bunkbed3,
 /obj/effect/urban/decal/dirt_2,
@@ -22834,12 +22867,12 @@ iR
 Sf
 TC
 TC
-UX
-UX
-UX
-UX
+wn
+wn
+wn
+wn
 wj
-Og
+bK
 Og
 Og
 Og
@@ -22956,12 +22989,12 @@ CU
 vh
 Og
 Jf
-Og
-Og
-Og
-Og
-Og
-Og
+bK
+bK
+bK
+bK
+bK
+bK
 bK
 Og
 Og
@@ -23066,7 +23099,7 @@ GE
 aD
 iR
 um
-Og
+xq
 Og
 Og
 zZ
@@ -24366,7 +24399,7 @@ ix
 ix
 ix
 aa
-aa
+VA
 ix
 ix
 ix
