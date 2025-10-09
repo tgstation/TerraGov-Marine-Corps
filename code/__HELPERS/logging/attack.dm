@@ -18,7 +18,9 @@
 /proc/logdetails(var/atom/subject)
 	if(!subject)
 		return "*NULL*"
-	return "[key_name(subject)]([subject.type])[hp(subject)][loc_name(subject)]"
+	if(isdatum(subject))
+		return "[key_name(subject)]([subject.type])[hp(subject)][loc_name(subject)]"
+	return "\"[subject]\""
 
 
 /**
