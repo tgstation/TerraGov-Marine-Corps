@@ -811,7 +811,8 @@
 /area/campaign/tgmc_airfield/outside/dry_river)
 "eZ" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 8
+	dir = 8;
+	id = "easthangar"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 6
@@ -1329,12 +1330,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/east_base)
-"in" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "io" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	pixel_x = -1;
@@ -1853,7 +1848,7 @@
 /area/campaign/tgmc_airfield/outside/dry_river)
 "lf" = (
 /obj/machinery/door_control{
-	id = "generatorstorage";
+	id = "generatorshutters";
 	name = "Generator Shutters";
 	dir = 4
 	},
@@ -1895,7 +1890,8 @@
 /obj/effect/turf_decal/stripes/white/line,
 /obj/machinery/door_control{
 	dir = 8;
-	name = "East Hangar Shutters"
+	name = "East Hangar Shutters";
+	id = "easthangar"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
@@ -1961,6 +1957,7 @@
 /area/campaign/tgmc_airfield/outside/east_base)
 "lR" = (
 /obj/structure/cable,
+/obj/machinery/light,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "lT" = (
@@ -2166,7 +2163,6 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
 "mZ" = (
-/obj/machinery/light,
 /obj/structure/cable,
 /obj/machinery/door_control{
 	id = "ammostorage";
@@ -3726,9 +3722,6 @@
 "vZ" = (
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/campaign/tgmc_airfield/outside/desert/north)
-"wb" = (
-/turf/closed/wall/urban,
-/area/campaign/tgmc_airfield/outside/west_base)
 "wd" = (
 /obj/effect/urban/decal/road/lines3{
 	pixel_y = -2
@@ -4622,7 +4615,8 @@
 "Bi" = (
 /obj/machinery/door_control{
 	dir = 4;
-	name = "East Hangar Shutters"
+	name = "East Hangar Shutters";
+	id = "easthangar"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
@@ -5598,7 +5592,7 @@
 "Hk" = (
 /obj/structure/ship_ammo/cas/laser_battery,
 /obj/machinery/door_control{
-	id = "generatorstorage";
+	id = ammostorage;
 	name = "Ammunition Storage Shutters"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -6737,6 +6731,15 @@
 	dir = 10
 	},
 /area/campaign/tgmc_airfield/outside/desert/west)
+"NT" = (
+/obj/machinery/door/poddoor/shutters/mainship/hangar{
+	dir = 8;
+	id = westhanger
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 8
+	},
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "NU" = (
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/drought/alt,
@@ -7313,7 +7316,8 @@
 /area/campaign/tgmc_airfield/outside/west_base)
 "RC" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 8
+	dir = 8;
+	id = "easthangar"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
@@ -7709,7 +7713,8 @@
 /area/campaign/tgmc_airfield/outside/desert)
 "TR" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
-	dir = 8
+	dir = 8;
+	id = "easthangar"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 5
@@ -8198,7 +8203,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/campaign/tgmc_airfield/outside/west_base)
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "WC" = (
 /obj/structure/prop/vehicle/big_truck/flat{
 	dir = 4;
@@ -8731,6 +8736,9 @@
 "ZU" = (
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
@@ -18869,11 +18877,11 @@ yV
 IV
 yV
 yV
-wb
-wb
+wA
+wA
 WB
-wb
-wb
+wA
+wA
 tu
 yV
 yV
@@ -18993,7 +19001,7 @@ tW
 wA
 wA
 DF
-vx
+NT
 vx
 vx
 ez
@@ -19105,7 +19113,7 @@ cy
 JY
 ZU
 Oj
-in
+Oj
 Oj
 ZU
 zz
