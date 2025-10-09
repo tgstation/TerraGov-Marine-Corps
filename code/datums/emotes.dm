@@ -89,7 +89,7 @@
 	if(effective_type == EMOTE_TYPE_AUDIBLE)
 		user.audible_message(msg, "You see how <b>[user]</b> [msg]", audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix, hearing_distance = range, ghost_visible = FALSE)
 	else if(effective_type == EMOTE_TYPE_VISIBLE)
-		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix, hearing_distance = range, ghost_visible = FALSE)
+		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix, vision_distance = range, ghost_visible = FALSE)
 	else // important emote—will always be visible to viewers!
 		for(var/mob/viewer AS in viewers(user))
 			to_chat(viewer, "<b>[user]</b> [msg]")
