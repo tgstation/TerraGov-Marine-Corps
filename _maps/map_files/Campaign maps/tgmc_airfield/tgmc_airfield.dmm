@@ -325,6 +325,7 @@
 /obj/machinery/power/monitor{
 	name = "Core Power Monitoring"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 6
 	},
@@ -1159,6 +1160,7 @@
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 5
 	},
@@ -2663,6 +2665,7 @@
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
@@ -5421,7 +5424,7 @@
 	dir = 8
 	},
 /obj/structure/barricade/sandbags,
-/turf/open/urban/street/sidewalkfull,
+/turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "Ft" = (
 /obj/structure/flora/ausbushes/fullgrass{
@@ -5478,10 +5481,6 @@
 	dir = 4
 	},
 /area/campaign/tgmc_airfield/outside/desert/west)
-"FR" = (
-/obj/structure/cable,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/east_base)
 "FT" = (
 /obj/structure/table/urban/shiny_brown,
 /turf/open/floor/tile/blue,
@@ -6103,7 +6102,7 @@
 	pixel_y = -2
 	},
 /obj/structure/cable,
-/turf/open/floor/plating/ground/desertdam/asphalt,
+/turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_airfield/outside/east_base)
 "JB" = (
 /obj/machinery/light{
@@ -7076,6 +7075,7 @@
 /obj/structure/prop/urban/signs/high_voltage/small{
 	pixel_x = 26
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
@@ -7108,7 +7108,7 @@
 "Pz" = (
 /obj/effect/urban/decal/dirt_2,
 /obj/structure/cable,
-/turf/open/urban/street/sidewalkfull,
+/turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_airfield/outside/west_base)
 "PC" = (
 /obj/structure/window/framed/urban/colony/engineering,
@@ -8729,6 +8729,10 @@
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_north)
+"YC" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_airfield/outside/east_base)
 "YD" = (
 /obj/structure/toilet{
 	pixel_y = 5
@@ -18692,7 +18696,7 @@ yV
 yV
 Hs
 pw
-Hs
+Zr
 Zr
 OM
 Zr
@@ -21838,7 +21842,7 @@ yV
 yV
 yV
 yV
-Hs
+Zr
 UM
 KT
 KT
@@ -21870,7 +21874,7 @@ yV
 yV
 yV
 yV
-Hs
+Zr
 yV
 yV
 IV
@@ -23157,7 +23161,7 @@ bK
 bK
 bK
 bK
-bK
+RP
 Og
 Og
 Og
@@ -24444,7 +24448,7 @@ ix
 ix
 ix
 ix
-aa
+YC
 ix
 ix
 ix
@@ -26765,12 +26769,12 @@ aB
 HW
 aa
 aa
-aa
-FR
+YC
+YC
 Jz
-FR
-FR
-aa
+YC
+YC
+YC
 aa
 BD
 bb
