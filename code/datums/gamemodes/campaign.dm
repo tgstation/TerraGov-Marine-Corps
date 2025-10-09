@@ -53,7 +53,8 @@
 	INVOKE_ASYNC(src, PROC_REF(scale_loadouts)) //load_new_mission delays other proc calls in this proc both before and after it for whatever reason
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //som 'ship' map is now ground, but this ensures we clean up exit points if this changes in the future
 		qdel(exit_point)
-	load_new_mission(new /datum/campaign_mission/tdm/first_mission(factions[1])) //this is the 'roundstart' mission
+	//load_new_mission(new /datum/campaign_mission/tdm/first_mission(factions[1])) //this is the 'roundstart' mission
+	load_new_mission(new /datum/campaign_mission/destroy_mission/airbase/som(factions[2])) //TESTING ONLY!
 
 	for(var/i in stat_list)
 		var/datum/faction_stats/selected_faction = stat_list[i]
