@@ -4836,11 +4836,6 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/outside/desert/south)
-"CC" = (
-/obj/structure/table/reinforced,
-/obj/structure/table/reinforced,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/water_purification)
 "CF" = (
 /obj/structure/table/reinforced,
 /obj/item/trash/tray,
@@ -8696,6 +8691,10 @@
 "ZG" = (
 /turf/closed/mineral/smooth/desertdamrockwall,
 /area/campaign/tgmc_airfield/outside/desert/east)
+"ZH" = (
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
+/area/campaign/tgmc_airfield/outside/desert/south,
+/area/campaign/tgmc_airfield/outside/desert/south)
 "ZK" = (
 /obj/effect/urban/decal/trash/five,
 /turf/open/floor/tile/blue,
@@ -24936,7 +24935,7 @@ eM
 zU
 zU
 Or
-CC
+RS
 zU
 Xu
 Xu
@@ -25169,7 +25168,7 @@ ix
 Xu
 KU
 zU
-CC
+RS
 RS
 zU
 zU
@@ -28387,7 +28386,7 @@ Nv
 Nv
 Nv
 EV
-EV
+ZH
 EV
 EV
 Nv
