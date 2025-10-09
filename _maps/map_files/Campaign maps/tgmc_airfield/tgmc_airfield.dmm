@@ -380,6 +380,7 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
+/obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
 "cF" = (
@@ -1953,6 +1954,7 @@
 "lE" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/medical/firstaid,
+/obj/effect/spawner/random/medical/medhud,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
 "lF" = (
@@ -4099,6 +4101,8 @@
 "xx" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/medical/heal_pack,
+/obj/effect/spawner/random/medical/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
 "xy" = (
