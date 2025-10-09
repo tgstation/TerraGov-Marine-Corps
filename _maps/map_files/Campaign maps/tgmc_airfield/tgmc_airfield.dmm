@@ -378,9 +378,6 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/medical/firstaid,
 /obj/machinery/power/apc,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
@@ -844,6 +841,11 @@
 /obj/item/tool/soap,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
+"fe" = (
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_airfield/outside/airstrip_north)
 "ff" = (
 /obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1092,9 +1094,6 @@
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "gP" = (
 /obj/machinery/power/apc,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /obj/effect/urban/decal/dirt_2,
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -1217,9 +1216,6 @@
 /area/campaign/tgmc_airfield/outside/desert)
 "hD" = (
 /obj/machinery/power/apc,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
@@ -2391,9 +2387,6 @@
 /area/campaign/tgmc_airfield/outside/desert)
 "of" = (
 /obj/machinery/power/apc,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
@@ -2412,9 +2405,6 @@
 /area/campaign/tgmc_airfield/base/water_purification)
 "oo" = (
 /obj/machinery/power/apc,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
 "oq" = (
@@ -2611,9 +2601,6 @@
 /area/campaign/tgmc_airfield/outside/desert/east)
 "pw" = (
 /obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 4
-	},
 /obj/machinery/power/apc{
 	dir = 8
 	},
@@ -3399,9 +3386,6 @@
 /obj/machinery/power/apc{
 	dir = 8
 	},
-/obj/machinery/power/terminal{
-	dir = 4
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/officer)
@@ -4063,9 +4047,6 @@
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_north)
 "xq" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
 /obj/machinery/power/apc{
 	dir = 4
 	},
@@ -4156,9 +4137,6 @@
 "xG" = (
 /obj/machinery/power/apc{
 	dir = 8
-	},
-/obj/machinery/power/terminal{
-	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -5472,7 +5450,6 @@
 /obj/machinery/power/apc{
 	dir = 1
 	},
-/obj/machinery/power/terminal,
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/security_checkpoint)
@@ -6810,9 +6787,6 @@
 /obj/machinery/power/apc{
 	dir = 8
 	},
-/obj/machinery/power/terminal{
-	dir = 4
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory_workshop)
@@ -7045,9 +7019,6 @@
 "Pk" = (
 /obj/machinery/power/apc{
 	dir = 4
-	},
-/obj/machinery/power/terminal{
-	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -7799,14 +7770,10 @@
 /obj/machinery/power/apc{
 	dir = 1
 	},
-/obj/machinery/power/terminal,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/water_purification)
 "Tz" = (
 /obj/machinery/power/apc,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_airfield/base/command_center)
@@ -8084,16 +8051,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/water_purification)
-"US" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/machinery/power/apc{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/tgmc_airfield/outside/airstrip_north)
 "UU" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/blood/oil,
@@ -8204,9 +8161,6 @@
 /area/campaign/tgmc_airfield/base/command_center)
 "VA" = (
 /obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 4
-	},
 /obj/machinery/power/apc{
 	dir = 8
 	},
@@ -21844,7 +21798,7 @@ yV
 yV
 Zr
 UM
-KT
+fe
 KT
 KT
 UM
@@ -21960,8 +21914,8 @@ wL
 wL
 wL
 RB
-US
-wL
+RB
+RB
 wL
 wL
 wL
