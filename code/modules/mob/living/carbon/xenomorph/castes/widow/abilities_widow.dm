@@ -102,11 +102,11 @@
 			continue
 		if(check_path(src, victim, pass_flags_checked = PASS_PROJECTILE) != get_turf(victim))
 			continue
+		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
+		RegisterSignals(victim, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_victim))
 		leash_victims += victim
 		ADD_TRAIT(victim, TRAIT_LEASHED, src)
-		//beams += beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
-		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
-		RegisterSignals(victim, list(COMSIG_QDELETING,COMSIG_MOB_DEATH), PROC_REF(remove_victim))
+		beams[victim] = beam(victim, "beam_web", 'icons/effects/beam.dmi', leash_life, leash_radius)
 	if(!length(leash_victims))
 		return INITIALIZE_HINT_QDEL
 	QDEL_IN(src, leash_life)
@@ -132,8 +132,10 @@
 /obj/structure/xeno/aoe_leash/proc/remove_victim(mob/living/carbon/human/victim)
 	SIGNAL_HANDLER
 	UnregisterSignal(victim, list(COMSIG_MOVABLE_PRE_MOVE, COMSIG_QDELETING, COMSIG_MOB_DEATH))
-	leash_victims -= victim
 	REMOVE_TRAIT(victim, TRAIT_LEASHED, src)
+	leash_victims -= victim
+	qdel(beams[victim])
+	beams -= victim
 
 /// This is so that xenos can remove leash balls
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
