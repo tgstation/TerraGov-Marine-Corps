@@ -181,6 +181,7 @@
 
 ///Unequips a weapon
 /datum/ai_behavior/human/proc/unequip_weapon(obj/item/weapon/old_weapon)
+	SIGNAL_HANDLER
 	UnregisterSignal(old_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 	human_ai_state_flags |= HUMAN_AI_NEED_WEAPONS
 	//todo: loosen straps?
