@@ -84,7 +84,7 @@
 	/// Radius for how far the leash should affect humans and how far away they may walk
 	var/leash_radius = 5
 	/// List of beams to be removed on obj_destruction
-	var/list/obj/effect/ebeam/beams = list()
+	var/list/beams = list()
 	/// List of victims to unregister aoe_leash is destroyed
 	var/list/mob/living/carbon/human/leash_victims = list()
 
@@ -115,8 +115,6 @@
 /obj/structure/xeno/aoe_leash/Destroy()
 	for(var/mob/living/carbon/human/victim AS in leash_victims)
 		remove_victim(victim)
-	leash_victims = null
-	QDEL_LIST(beams)
 	return ..()
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
