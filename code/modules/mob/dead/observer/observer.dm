@@ -117,7 +117,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	QDEL_NULL(orbit_menu)
 	GLOB.observer_list -= src //"wait isnt this done in logout?" Yes it is but because this is clients thats unreliable so we do it again here
-	SSmobs.dead_players_by_zlevel[z] -= src
+	if(z)
+		var/list/deadlist = SSmobs.dead_players_by_zlevel[z]
+		if(islist(deadlist))
+			deadlist -= src
 
 	QDEL_NULL(scanner_functionality)
 
