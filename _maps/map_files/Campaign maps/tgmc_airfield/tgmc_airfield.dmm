@@ -1448,6 +1448,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/security_checkpoint)
+"iZ" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 5
+	},
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "jb" = (
 /obj/structure/bed/urban/bunkbed3{
 	dir = 1
@@ -1726,6 +1733,13 @@
 	dir = 4
 	},
 /area/campaign/tgmc_airfield/base/command_center)
+"kr" = (
+/obj/vehicle/ridden/powerloader,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 4
+	},
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "ks" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 8
@@ -1942,6 +1956,12 @@
 "lL" = (
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
+"lO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "lP" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 4
@@ -3643,10 +3663,6 @@
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/engineer,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory)
-"vv" = (
-/obj/vehicle/ridden/powerloader,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "vw" = (
 /obj/effect/urban/decal/dirt_2,
 /turf/open/floor/tile/blue,
@@ -4378,7 +4394,7 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
 "zc" = (
-/obj/structure/fence/dark,
+/obj/structure/fence/dark/quality,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/desert/south)
 "zd" = (
@@ -4724,8 +4740,8 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
 "Bx" = (
-/obj/structure/fence/dark,
-/obj/structure/fence/dark,
+/obj/structure/fence/dark/quality,
+/obj/structure/fence/dark/quality,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
 "By" = (
@@ -5134,7 +5150,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
 "DL" = (
-/obj/structure/fence/dark,
+/obj/structure/fence/dark/quality,
 /obj/effect/urban/decal/dirt_2,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/desert/south)
@@ -5145,6 +5161,12 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/officer)
+"DN" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/airstrip_south)
 "DR" = (
 /obj/machinery/door/airlock/urban/generic_solid{
 	name = "\improper Kitchen"
@@ -5421,7 +5443,7 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "Fx" = (
-/obj/structure/fence/dark,
+/obj/structure/fence/dark/quality,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
 "FB" = (
@@ -5905,6 +5927,11 @@
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/south)
+"Ir" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "Is" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 4
@@ -6688,7 +6715,7 @@
 	},
 /area/campaign/tgmc_airfield/outside/desert)
 "Nd" = (
-/obj/structure/fence/dark,
+/obj/structure/fence/dark/quality,
 /obj/effect/urban/decal/dirt,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/desert/south)
@@ -6876,7 +6903,7 @@
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/west)
 "Oi" = (
-/obj/structure/fence/dark,
+/obj/structure/fence/dark/quality,
 /obj/effect/decal/cleanable/dirt/grime2,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/desert/south)
@@ -7067,6 +7094,16 @@
 	dir = 4
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay/generator)
+"Pp" = (
+/obj/effect/urban/decal/road/lines2{
+	pixel_y = 3;
+	pixel_x = -15
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/airstrip_south)
 "Pr" = (
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/campaign/tgmc_airfield/outside/desert/east)
@@ -7746,8 +7783,8 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "Tj" = (
-/obj/structure/fence/dark,
-/obj/structure/fence/dark,
+/obj/structure/fence/dark/quality,
+/obj/structure/fence/dark/quality,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/desert/south)
 "Tq" = (
@@ -19641,9 +19678,9 @@ Oj
 Oj
 Oj
 Oj
-eK
+Ir
 ck
-Oj
+lO
 Oj
 yp
 zf
@@ -19758,9 +19795,9 @@ Oj
 Ex
 Oj
 Oj
-eK
+Ir
 SO
-Oj
+lO
 Oj
 Oj
 Ex
@@ -19875,11 +19912,11 @@ Ex
 Oj
 Oj
 Oj
-eK
+Ir
 SO
+lO
 Oj
 Oj
-vv
 Oj
 Oj
 Oj
@@ -19992,9 +20029,9 @@ Oj
 Oj
 Oj
 Oj
-eK
+Ir
 Uk
-Oj
+lO
 Oj
 Ex
 OQ
@@ -20462,8 +20499,8 @@ Oj
 Oj
 cG
 Bb
-do
-RL
+iZ
+kr
 Kt
 Kt
 Kt
@@ -21741,12 +21778,12 @@ pL
 UG
 GJ
 aD
-aD
-aD
-aD
-gm
-aD
-aD
+DN
+DN
+DN
+Pp
+DN
+DN
 Bi
 Og
 Og
