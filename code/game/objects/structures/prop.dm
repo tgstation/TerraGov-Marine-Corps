@@ -1437,18 +1437,16 @@
 	icon = 'icons/obj/vehicles/4x4.dmi'
 	icon_state = "land_rover"
 	density = TRUE
-	bound_width = 64
-	bound_height = 96
 	allow_pass_flags = PASSABLE|PASS_WALKOVER
 	max_integrity = 600
 
 /obj/structure/prop/vehicle/land_rover/Initialize(mapload)
 	. = ..()
+	setDir(dir)
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-	setDir(dir)
 
 /obj/structure/prop/vehicle/land_rover/setDir(newdir)
 	. = ..()
@@ -1477,11 +1475,11 @@
 
 /obj/structure/prop/vehicle/apc_new/Initialize(mapload)
 	. = ..()
+	setDir(dir)
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-	setDir(dir)
 
 /obj/structure/prop/vehicle/apc_new/setDir(newdir)
 	. = ..()
