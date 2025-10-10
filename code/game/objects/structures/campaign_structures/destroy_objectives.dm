@@ -10,6 +10,7 @@
 
 /obj/structure/campaign_objective/destruction_objective/Initialize(mapload)
 	. = ..()
+	setDir(dir)
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
