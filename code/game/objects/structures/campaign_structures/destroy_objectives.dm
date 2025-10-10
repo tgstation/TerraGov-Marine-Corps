@@ -291,24 +291,12 @@
 		change_status(BLUESPACE_CORE_BROKEN)
 
 //airbase
-/obj/structure/prop/som_fighter
-	name = "harbinger"
-	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
-	icon = 'icons/obj/structures/prop/mainship_96.dmi'
-	icon_state = "SOM_fighter"
-	pixel_x = -33
-	pixel_y = -10
-	density = TRUE
-	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
-	allow_pass_flags = PASS_AIR
-
 /obj/effect/landmark/campaign_structure/harbinger
 	name = "harbinger"
 	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
-	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	mission_types = list(/datum/campaign_mission/destroy_mission/airbase)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/harbinger
 
@@ -319,10 +307,11 @@
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
-	bound_height = 2
-	bound_width = 3
+	bound_height = 64
+	bound_width = 96
 	bound_x = -32
-	layer = ABOVE_MOB_LAYER
+	allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	faction = FACTION_SOM
 
 /obj/effect/landmark/campaign_structure/viper
@@ -341,7 +330,8 @@
 	icon_state = "fighter_loaded"
 	pixel_x = -33
 	pixel_y = -10
-	bound_height = 2
-	bound_width = 3
+	bound_height = 64
+	bound_width = 96
 	bound_x = -32
-	layer = ABOVE_MOB_LAYER
+	allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP

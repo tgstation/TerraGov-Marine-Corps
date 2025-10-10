@@ -803,6 +803,57 @@
 /obj/structure/prop/mainship/som_scientist/alt
 	icon_state = "SOM_scientist_2"
 
+/obj/structure/prop/tdfcorpse
+	name = "TDF marine"
+	desc = "A Terra Defense Force soldier. They don't seem to be doing very well."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "tdfcorpse"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	anchored = FALSE
+	max_integrity = 100
+	hit_sound = list('sound/effects/bone_break1.ogg','sound/weapons/wristblades_hit.ogg')
+	coverage = 0
+
+/obj/structure/prop/tdfcorpse/headshot
+	desc = "A Terra Defense Force soldier. This one seems to have lost their mind."
+	icon_state = "tdfcorpseheadshot"
+
+/obj/structure/prop/tdfcorpse/decap
+	desc = "Where's your head at? (Where's yo head at?) (Where's yo head at?)"
+	icon_state = "tdfcorpsedecap"
+
+/obj/structure/prop/fueltank
+	name = "\improper jet fuel container"
+	desc = "A container used to store high quantities of fuel."
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
+	icon_state = "fueltank"
+	bound_width = 96
+	bound_height = 32
+	resistance_flags = UNACIDABLE
+	max_integrity = 500
+
+/obj/structure/prop/fueltank/broken
+	name = "\improper broken jet fuel container"
+	desc = "A container that used to store high quantities of fuel."
+	icon_state = "fueltank_broken"
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
+
+/obj/structure/prop/flag
+	name = "\improper Terragov flag"
+	desc = "A flag bearing the symbol of Terragov. It doesn't seem as inspirational as other flags might be."
+	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
+	icon_state = "flag_tgmc_planted"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	max_integrity = 100
+	layer = ABOVE_OBJ_LAYER
+	coverage = 0
+
+/obj/structure/prop/flag/som
+	name = "\improper Sons of Mars flag"
+	desc = "A flag bearing the symbol of the Sons of Mars. It doesn't seem as inspirational as other flags might be."
+	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
+	icon_state = "flag_som_planted"
+
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
 	icon = 'icons/obj/doors/Doorsand.dmi'
@@ -1380,6 +1431,65 @@
 /obj/structure/prop/vehicle/big_truck/enclosed_wrecked_tread
 	icon_state = "truck_enclosed_treads_wrecked"
 
+/obj/structure/prop/vehicle/land_rover
+	name = "land rover"
+	desc = "A light armored all terrain vehicle. Beats walking."
+	icon = 'icons/obj/vehicles/4x4.dmi'
+	icon_state = "land_rover"
+	density = TRUE
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
+	max_integrity = 600
+
+/obj/structure/prop/vehicle/land_rover/Initialize(mapload)
+	. = ..()
+	setDir(dir)
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/prop/vehicle/land_rover/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH, SOUTH)
+			bound_width = 64
+			bound_height = 96
+		if(WEST, EAST)
+			bound_width = 96
+			bound_height = 64
+
+/obj/structure/prop/vehicle/land_rover/machinegun
+	name = "armored land rover"
+	desc = "An all terrain vehicle with some armor plating and an attached machinegun. Unfortunately, the machinegun has no ammo, and you don't have your drivers license."
+	icon_state = "land_rover_machinegun"
+	max_integrity = 850
+
+/obj/structure/prop/vehicle/apc_new
+	name = "APC - Athena"
+	desc = "An unarmed APC designed to command and transport troops in the battlefield. For some reason, it bears the same name as its predecessor. Its doors are locked, and you probably don't know how to drive this thing anyways."
+	icon = 'icons/obj/armored/3x3/apc.dmi'
+	icon_state = "apc"
+	density = TRUE
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
+	max_integrity = 850
+
+/obj/structure/prop/vehicle/apc_new/Initialize(mapload)
+	. = ..()
+	setDir(dir)
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/prop/vehicle/apc_new/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH, SOUTH)
+			bound_width = 96
+			bound_height = 128
+		if(WEST, EAST)
+			bound_width = 128
+			bound_height = 96
 
 /obj/structure/prop/vehicle/tank
 	name = "Decommissioned TAV - Rhino"
@@ -2348,6 +2458,19 @@
 	desc = "If you see this object in game you should ahelp, something has broken."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "error"
+
+/obj/structure/prop/trashpile
+	name = "trash pile"
+	desc = "A disgusting pile of trash. Maybe you could use this as cover if you were desperate."
+	icon = 'icons/obj/structures/misc.dmi'
+	icon_state = "trashpile"
+	density = TRUE
+	anchored = TRUE
+	climbable = TRUE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	hit_sound = 'sound/weapons/heavyhit.ogg'
+	coverage = 30
+	max_integrity = 75
 
 /obj/prop/mainship/prop/news_tv
 	name = "TV"
