@@ -7,7 +7,7 @@
 	/// An assoc list of signal -> procpath to register to the loc this object is on.
 	var/list/connections
 
-/datum/element/connect_loc/Attach(atom/movable/listener, list/connections)
+/datum/element/connect_loc/Attach(atom/movable/listener, list/connections, check_rotation = FALSE)
 	. = ..()
 	if (!istype(listener))
 		return ELEMENT_INCOMPATIBLE
@@ -15,6 +15,9 @@
 	src.connections = connections
 
 	RegisterSignals(listener, list(COMSIG_MOVABLE_MOVED, COMSIG_MULTITILE_VEHICLE_ROTATED), PROC_REF(on_moved), override = TRUE)
+	//check_rotation should ONLY be used for multitile props. See on_rotate()
+	if(check_rotation)
+		RegisterSignal(listener, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_rotate))
 	update_signals(listener)
 
 /datum/element/connect_loc/Detach(atom/movable/listener)
@@ -51,3 +54,14 @@
 	SIGNAL_HANDLER
 	unregister_signals(listener, old_loc, old_locs)
 	update_signals(listener)
+
+///Updates our connections on rotate if required
+/datum/element/connect_loc/proc/on_rotate(atom/movable/listener, old_dir, new_dir)
+	SIGNAL_HANDLER
+	if(length(listener.locs) <= 1) //this only matters for multitile
+		return
+	if(old_dir == new_dir)
+		return
+	unregister_signals(listener, listener.loc, listener.locs)
+	//This is kinda stinky  but since locs are handled internally by byond, we can't get the old locs and new locs at the same time, so we hook into the new locs next tick
+	INVOKE_NEXT_TICK(src, PROC_REF(update_signals), listener)
