@@ -4712,11 +4712,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/officer)
-"Bk" = (
-/obj/effect/urban/decal/dirt,
-/obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban,
-/area/campaign/tgmc_airfield/base/storage)
 "Bo" = (
 /obj/effect/urban/decal/road/lines3,
 /obj/structure/prop/vehicle/big_truck{
@@ -4739,11 +4734,6 @@
 /obj/item/tool/soap,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
-"Bx" = (
-/obj/structure/fence/dark/quality,
-/obj/structure/fence/dark/quality,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/west_base)
 "By" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -7782,11 +7772,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
-"Tj" = (
-/obj/structure/fence/dark/quality,
-/obj/structure/fence/dark/quality,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/desert/south)
 "Tq" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall{
 	pixel_y = 22;
@@ -16416,7 +16401,7 @@ Oi
 zc
 zc
 Nd
-Tj
+zc
 iT
 iT
 iT
@@ -16884,7 +16869,7 @@ DL
 zc
 wJ
 zc
-Tj
+zc
 iT
 iT
 iT
@@ -21366,7 +21351,7 @@ Fx
 Fx
 Fx
 Fx
-Bx
+Fx
 IV
 yV
 hm
@@ -21830,11 +21815,11 @@ OL
 OL
 OL
 Nt
-Bx
 Fx
 Fx
 Fx
-Bx
+Fx
+Fx
 yV
 yV
 IV
@@ -26060,7 +26045,7 @@ ix
 bx
 ix
 ix
-Bk
+Wl
 wO
 OI
 wO
