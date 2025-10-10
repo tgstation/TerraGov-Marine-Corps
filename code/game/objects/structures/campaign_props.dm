@@ -161,38 +161,3 @@
 /obj/structure/gauss_cannon/update_overlays()
 	. = ..()
 	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
-
-/obj/structure/prop/land_rover
-	name = "land rover"
-	desc = "A light armored all terrain vehicle. Beats walking."
-	icon = 'icons/obj/vehicles/4x4.dmi'
-	icon_state = "land_rover"
-	density = TRUE
-	bound_width = 64
-	bound_height = 96
-	allow_pass_flags = PASSABLE|PASS_WALKOVER
-	max_integrity = 600
-
-/obj/structure/prop/land_rover/Initialize(mapload)
-	. = ..()
-	var/static/list/connections = list(
-		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
-	)
-	AddElement(/datum/element/connect_loc, connections)
-	setDir(dir)
-
-/obj/structure/prop/land_rover/setDir(newdir)
-	. = ..()
-	switch(dir)
-		if(NORTH, SOUTH)
-			bound_width = 64
-			bound_height = 96
-		if(WEST, EAST)
-			bound_width = 96
-			bound_height = 64
-
-/obj/structure/prop/land_rover/machinegun
-	name = "armored land rover"
-	desc = "An all terrain vehicle with some armor plating and an attached machinegun. Unfortunately, the machinegun has no ammo, and you don't have your drivers license."
-	icon_state = "land_rover_machinegun"
-	max_integrity = 850

@@ -599,7 +599,7 @@
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert)
 "dK" = (
-/obj/structure/prop/land_rover/machinegun{
+/obj/structure/prop/vehicle/land_rover/machinegun{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -1233,7 +1233,7 @@
 /area/campaign/tgmc_airfield/outside/desert/west)
 "hN" = (
 /obj/effect/urban/decal/road/lines1,
-/obj/structure/prop/land_rover{
+/obj/structure/prop/vehicle/land_rover{
 	pixel_x = 6;
 	pixel_y = 5
 	},
@@ -1259,7 +1259,7 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
 "hW" = (
-/obj/structure/prop/land_rover{
+/obj/structure/prop/vehicle/land_rover{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -1329,7 +1329,7 @@
 /area/campaign/tgmc_airfield/outside/west_base)
 "il" = (
 /obj/effect/urban/decal/road/lines3,
-/obj/structure/prop/land_rover{
+/obj/structure/prop/vehicle/land_rover{
 	dir = 4;
 	pixel_x = 3;
 	pixel_y = 3
@@ -1534,7 +1534,7 @@
 /area/campaign/tgmc_airfield/outside/desert/south)
 "jo" = (
 /obj/effect/urban/decal/road/lines1,
-/obj/structure/prop/land_rover{
+/obj/structure/prop/vehicle/land_rover{
 	pixel_x = 1;
 	pixel_y = 5;
 	dir = 1
@@ -1778,7 +1778,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "kC" = (
-/obj/structure/prop/vehicle/apc/newer{
+/obj/structure/prop/vehicle/apc_new{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -3427,7 +3427,7 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
 "ul" = (
-/obj/structure/prop/land_rover{
+/obj/structure/prop/vehicle/land_rover{
 	dir = 1;
 	pixel_x = -4;
 	pixel_y = -4
@@ -3946,7 +3946,7 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
 "wW" = (
-/obj/structure/prop/land_rover{
+/obj/structure/prop/vehicle/land_rover{
 	dir = 8;
 	pixel_x = 18;
 	pixel_y = 6
@@ -4598,7 +4598,7 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "AC" = (
-/obj/structure/prop/vehicle/apc/newer{
+/obj/structure/prop/vehicle/apc_new{
 	dir = 8
 	},
 /turf/open/urban/street/sidewalkfull,
@@ -8029,7 +8029,7 @@
 /obj/effect/urban/decal/road/lines3{
 	pixel_y = -2
 	},
-/obj/structure/prop/land_rover{
+/obj/structure/prop/vehicle/land_rover{
 	pixel_x = -5;
 	pixel_y = 6;
 	dir = 8
@@ -8113,7 +8113,7 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
 "Vk" = (
-/obj/structure/prop/land_rover/machinegun{
+/obj/structure/prop/vehicle/land_rover/machinegun{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/cave,

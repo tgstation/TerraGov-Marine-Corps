@@ -1431,6 +1431,67 @@
 /obj/structure/prop/vehicle/big_truck/enclosed_wrecked_tread
 	icon_state = "truck_enclosed_treads_wrecked"
 
+/obj/structure/prop/vehicle/land_rover
+	name = "land rover"
+	desc = "A light armored all terrain vehicle. Beats walking."
+	icon = 'icons/obj/vehicles/4x4.dmi'
+	icon_state = "land_rover"
+	density = TRUE
+	bound_width = 64
+	bound_height = 96
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
+	max_integrity = 600
+
+/obj/structure/prop/vehicle/land_rover/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	setDir(dir)
+
+/obj/structure/prop/vehicle/land_rover/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH, SOUTH)
+			bound_width = 64
+			bound_height = 96
+		if(WEST, EAST)
+			bound_width = 96
+			bound_height = 64
+
+/obj/structure/prop/vehicle/land_rover/machinegun
+	name = "armored land rover"
+	desc = "An all terrain vehicle with some armor plating and an attached machinegun. Unfortunately, the machinegun has no ammo, and you don't have your drivers license."
+	icon_state = "land_rover_machinegun"
+	max_integrity = 850
+
+/obj/structure/prop/vehicle/apc_new
+	name = "APC - Athena"
+	desc = "An unarmed APC designed to command and transport troops in the battlefield. For some reason, it bears the same name as its predecessor. Its doors are locked, and you probably don't know how to drive this thing anyways."
+	icon = 'icons/obj/armored/3x3/apc.dmi'
+	icon_state = "apc"
+	density = TRUE
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
+	max_integrity = 850
+
+/obj/structure/prop/vehicle/apc_new/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	setDir(dir)
+
+/obj/structure/prop/vehicle/apc_new/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH, SOUTH)
+			bound_width = 96
+			bound_height = 128
+		if(WEST, EAST)
+			bound_width = 128
+			bound_height = 96
 
 /obj/structure/prop/vehicle/tank
 	name = "Decommissioned TAV - Rhino"
@@ -1737,12 +1798,6 @@
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
-
-/obj/structure/prop/vehicle/apc/newer
-	name = "APC - Athena"
-	desc = "An unarmed APC designed to command and transport troops in the battlefield. For some reason, it bears the same name as its predecessor. Its doors are locked, and you probably don't know how to drive this thing anyways."
-	icon = 'icons/obj/armored/3x3/apc.dmi'
-	icon_state = "apc"
 
 /obj/structure/prop/vehicle/apc/Initialize(mapload)
 	. = ..()
