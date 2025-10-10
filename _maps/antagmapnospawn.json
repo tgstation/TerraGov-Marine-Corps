@@ -1,0 +1,6 @@
+{
+    "map_name": "Antag Map - No Spawns",
+    "map_path": "map_files/antagmap",
+    "map_file": "antagmapnospawn.dmm",
+    "traits": [{"Antag Ship": true}]
+}

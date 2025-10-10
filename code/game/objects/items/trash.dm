@@ -80,17 +80,17 @@
 /obj/item/trash/burger
 	name = "Burger wrapper"
 	icon_state = "burger"
-	desc = "A greasy plastic film that once held a Cheeseburger. Packaged by the Nanotrasen Corporation."
+	desc = "A greasy plastic film that once held a Cheeseburger. Packaged by the Ninetails Corporation."
 
 /obj/item/trash/buritto
 	name = "Burrito wrapper"
 	icon_state = "burrito"
-	desc = "A foul smelling plastic film that once held a microwave burrito. Packaged by the Nanotrasen Corporation."
+	desc = "A foul smelling plastic film that once held a microwave burrito. Packaged by the Ninetails Corporation."
 
 /obj/item/trash/hotdog
 	name = "Hotdog wrapper"
 	icon_state = "hotdog"
-	desc = "A musty plastic film that once held a hotdog. Packaged by the Nanotrasen Corporation."
+	desc = "A musty plastic film that once held a hotdog. Packaged by the Ninetails Corporation."
 
 /obj/item/trash/kepler
 	name = "Kepler wrapper"
@@ -139,7 +139,7 @@
 
 
 /obj/item/trash/tgmc_tray
-	name = "\improper TGMC tray"
+	name = "\improper NTC tray"
 	desc = "Finished with its tour of duty"
 	icon_state = "MREtray"
 
@@ -164,8 +164,8 @@
 	icon_state = "berrybar_trash"
 
 /obj/item/trash/mre
-	name = "\improper crumbled TGMC MRE"
-	desc = "It has done its part for the TGMC. Have you?"
+	name = "\improper crumbled NTC MRE"
+	desc = "It has done its part for the NTC. Have you?"
 	icon = 'icons/obj/items/trash.dmi'
 	icon_state = "mealpackempty"
 
@@ -175,14 +175,14 @@
 	icon_state = "som_mealpackempty"
 
 /obj/item/trash/nt_chips
-	name = "\improper Nanotrasen Pepper Chips"
+	name = "\improper Ninetails Pepper Chips"
 	icon_state = "nt_chips_pepper"
-	desc = "An oily empty bag that once held Nanotrasen Chips."
+	desc = "An oily empty bag that once held Ninetails Chips."
 
 /obj/item/trash/nt_chips/pepper
-	name = "\improper Nanotrasen Pepper Chips"
+	name = "\improper Ninetails Pepper Chips"
 	icon_state = "nt_chips_pepper"
-	desc = "An oily empty bag that once held Nanotrasen Pepper Chips."
+	desc = "An oily empty bag that once held Ninetails Pepper Chips."
 
 /obj/item/trash/crushed_cup
 	name = "crushed cup"
@@ -201,7 +201,7 @@
 
 /obj/item/trash/crushed_wbottle
 	name = "crushed waterbottle"
-	desc = "Overpriced 'Spring' water. Bottled by the Nanotrasen Corporation."
+	desc = "Overpriced 'Spring' water. Bottled by the Ninetails Corporation."
 	icon_state = "waterbottle_crushed"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 1

@@ -493,11 +493,11 @@
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
-/datum/keybinding/xeno/acidic_salve
-	name = "acidic_salve"
-	full_name = "Drone: Acidic Salve"
+/datum/keybinding/xeno/resin_salve
+	name = "resin_salve"
+	full_name = "Drone: Resin Salve"
 	description = "Heal a xenomorph with this."
-	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE
+	keybind_signal = COMSIG_XENOABILITY_RESIN_SALVE
 	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/essence_link
@@ -523,10 +523,10 @@
 
 /datum/keybinding/xeno/devour
 	name = "devour"
-	full_name = "Gorger: Devour"
+	full_name = "Devour"
 	description = "Devour your victim to be able to carry it faster."
 	keybind_signal = COMSIG_XENOABILITY_DEVOUR
-	hotkey_keys = list("X")
+	hotkey_keys = null
 
 /datum/keybinding/xeno/drain
 	name = "drain"
@@ -649,6 +649,13 @@
 	full_name = "Hunter: Toggle Stealth"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/toggle_phaseout
+	name = "toggle_phaseout"
+	full_name = "Phase Out"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_PHASEOUT
 	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/toggle_disguise
@@ -1441,3 +1448,9 @@
 	keybind_signal = COMSIG_XENOABILITY_SCORCHED_LAND
 	hotkey_keys = list("G")
 
+/datum/keybinding/xeno/rock_burst
+	name = "rock_burst"
+	full_name = "Shard burst"
+	description = "Sprays rock shards"
+	keybind_signal = COMSIG_XENOABILITY_SPRAY_SHARD
+	hotkey_keys = list("F")

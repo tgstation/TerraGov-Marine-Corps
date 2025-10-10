@@ -17,6 +17,7 @@
 	var/list/mob/living/carbon/xenomorph/buffed_xenos = list()
 	/// Holds the particles.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 
 /obj/structure/xeno/recovery_pylon/Initialize(mapload, _hivenumber, new_radius, new_damage_modifier)
 	. = ..()
@@ -43,10 +44,12 @@
 
 /obj/structure/xeno/recovery_pylon/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "recovery", MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, GLOB.hivenumber_to_minimap_flag[hivenumber], image('icons/UI_icons/map_blips.dmi', null, "recovery", MINIMAP_LABELS_LAYER))
 
 /obj/structure/xeno/recovery_pylon/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.a_intent != INTENT_HARM || !(xeno_attacker.xeno_caste.caste_flags & CASTE_IS_BUILDER))
+	if(!(issamexenohive(xeno_attacker)))
+		return ..()
+	if(xeno_attacker.a_intent != INTENT_HARM || !(xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		return ..()
 	balloon_alert(xeno_attacker, "Removing...")
 	if(!do_after(xeno_attacker, 2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
@@ -61,7 +64,7 @@
 	if(!isxeno(entering_movable))
 		return
 	var/mob/living/carbon/xenomorph/entering_xenomorph = entering_movable
-	if((entering_xenomorph in buffed_xenos) || entering_xenomorph.hivenumber != src.hivenumber)
+	if((entering_xenomorph in buffed_xenos) || !issamexenohive(entering_xenomorph))
 		return
 	buffed_xenos += entering_xenomorph
 	if(!damage_modifier)

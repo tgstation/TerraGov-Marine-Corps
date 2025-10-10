@@ -10,7 +10,7 @@ FLOOR SAFES
 	name = "Secure Safe Combination"
 	var/obj/structure/safe/safe = null
 
-/obj/item/paper/safe_key/Initialize(mapload)
+/obj/item/paper/safe_key/LateInitialize()
 	. = ..()
 	for(var/obj/structure/safe/safe in loc)
 		if(safe)

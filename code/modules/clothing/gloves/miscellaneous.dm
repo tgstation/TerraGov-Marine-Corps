@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/captain
 	desc = "Regal blue gloves, with a nice gold trim. Swanky."
-	name = "captain's gloves"
+	name = "Commander's gloves"
 	icon_state = "captain"
 	cold_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
@@ -213,7 +213,7 @@
 //Punching bag. Both punches and attacking with weapons causes it to
 /obj/structure/punching_bag
 	name = "punching bag"
-	desc = "A Nanotrasen punching bag. A common sight this far from Sol.\nCheap and flimsy, might break if hit by something too heavy."
+	desc = "A Ninetails punching bag. A common sight this far from Sol.\nCheap and flimsy, might break if hit by something too heavy."
 	max_integrity = 750 //This is going to get hit, a lot
 	icon = 'icons/obj/clothing/boxing.dmi'
 	icon_state = "punchingbag"

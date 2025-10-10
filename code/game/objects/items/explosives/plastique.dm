@@ -60,7 +60,7 @@
 	user.visible_message(span_warning("[user] is trying to plant [name] on [target]!"),
 	span_warning("You are trying to plant [name] on [target]!"))
 
-	if(!do_after(user, 2 SECONDS, NONE, target, BUSY_ICON_HOSTILE) || !target.can_plastique(user, src))
+	if(!do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_HOSTILE) || !target.can_plastique(user, src))
 		return FALSE
 
 	plant_plastique(target, user)
@@ -124,7 +124,7 @@
 
 ///Removes from a target
 /obj/item/explosive/plastique/proc/remove_plastique(mob/living/user)
-	if(!do_after(user, 2 SECONDS, NONE, plant_target, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 2 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
 		return
 
 	UnregisterSignal(plant_target, COMSIG_ATOM_TRY_PLASTIQUE)

@@ -17,6 +17,11 @@
 	var/obj/structure/printing
 	/// Whether the fabricator is currently printing something or not
 	var/busy = FALSE
+	faction = FACTION_TERRAGOV
+
+/obj/machinery/dropship_part_fabricator/examine(mob/user)
+	. = ..()
+	. += "It belongs to [faction]"
 
 /obj/machinery/dropship_part_fabricator/update_icon_state()
 	. = ..()
@@ -40,7 +45,7 @@
 
 /obj/machinery/dropship_part_fabricator/proc/generate_content()
 	var/dat
-	dat += "<h4>Points Available: [SSpoints.dropship_points]</h4>"
+	dat += "<h4>Points Available: [SSpoints.dropship_points[faction]]</h4>"
 	dat += "<a href='byond://?src=[text_ref(src)];choice=clear'>CLEAR PRINT QUEUE</a><br>"
 
 	dat += find_equipment()
@@ -81,7 +86,7 @@
 		next_queue()
 		return
 
-	if(SSpoints.dropship_points < cost) //We'll check for points again here in case queue has taken too many points
+	if(SSpoints.dropship_points[faction] < cost) //We'll check for points again here in case queue has taken too many points
 		balloon_alert_to_viewers("not enough points!")
 		next_queue()
 		return
@@ -89,7 +94,7 @@
 	balloon_alert_to_viewers("printing...")
 	playsound(src, 'sound/machines/dropship_fabricator.ogg', 55)
 	printing = part_type
-	SSpoints.dropship_points -= cost
+	SSpoints.dropship_points[faction] -= cost
 	busy = TRUE
 	update_icon()
 
@@ -159,7 +164,7 @@
 		if(!build_type)
 			return
 
-		if(SSpoints.dropship_points < get_cost(build_type))
+		if(SSpoints.dropship_points[faction] < get_cost(build_type))
 			to_chat(usr, span_notice("There aren't enough points for that!"))
 			return
 

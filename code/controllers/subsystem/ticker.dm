@@ -123,6 +123,7 @@ SUBSYSTEM_DEF(ticker)
 				current_state = GAME_STATE_FINISHED
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
+				GLOB.round_statistics.round_length = (world.time - SSticker.round_start_time)
 				mode.declare_completion(force_ending)
 				world.TgsTriggerEvent("tg-Roundend", wait_for_completion = TRUE)
 				addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, automatic_vote)), 2 SECONDS)

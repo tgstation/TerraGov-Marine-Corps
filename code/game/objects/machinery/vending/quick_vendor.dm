@@ -69,6 +69,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/veteran/caliver,
 		/datum/outfit/quick/som/veteran/caliver_pack,
 		/datum/outfit/quick/som/veteran/culverin,
+		/datum/outfit/quick/som/veteran/v35breacher,
 		/datum/outfit/quick/som/veteran/rocket_man,
 		/datum/outfit/quick/som/veteran/blinker,
 		/datum/outfit/quick/som/squad_leader/standard_assaultrifle,
@@ -76,6 +77,33 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
+		/datum/outfit/quick/vsd/standard/grunt_one,
+		/datum/outfit/quick/vsd/standard/ksg,
+		/datum/outfit/quick/vsd/engineer/l26,
+		/datum/outfit/quick/vsd/medic/ksg,
+		/datum/outfit/quick/vsd/medic/vsd_rifle,
+		/datum/outfit/quick/vsd/medic/vsd_pdw,
+		/datum/outfit/quick/vsd/spec/flamer,
+		/datum/outfit/quick/vsd/spec/demolitionist,
+		/datum/outfit/quick/vsd/spec/gunslinger,
+		// /datum/outfit/quick/vsd/spec/uslspec_one,
+		// /datum/outfit/quick/vsd/spec/uslspec_two,
+		/datum/outfit/quick/vsd/juggernaut,
+		/datum/outfit/quick/vsd/eod,
+		/datum/outfit/quick/pmc/standard,
+		/datum/outfit/quick/pmc/engineer,
+		/datum/outfit/quick/pmc/medic,
+		/datum/outfit/quick/pmc/gunner,
+		/datum/outfit/quick/pmc/sniper,
+		/datum/outfit/quick/pmc/squad_leader,
+		/datum/outfit/quick/icc/standard/icc_battlecarbine,
+		/datum/outfit/quick/icc/standard/icc_sharpshooter,
+		/datum/outfit/quick/icc/standard/icc_assaultcarbine,
+		/datum/outfit/quick/icc/standard/icc_autoshotgun,
+		/datum/outfit/quick/icc/medic/icc_sharpshooter,
+		/datum/outfit/quick/icc/guard/icc_rocket,
+		/datum/outfit/quick/icc/guard/icc_autoshotgun,
+		/datum/outfit/quick/icc/leader/icc_confrontationrifle,
 	)
 
 	for(var/X in loadout_list)
@@ -99,10 +127,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	faction = FACTION_NEUTRAL
 	//the different tabs in the vendor
 	var/list/categories = list(
-		"Squad Marine",
+		"Squad Operative",
 		"Squad Engineer",
 		"Squad Corpsman",
 		"Squad Smartgunner",
+		"Squad Specialist",
 		"Squad Leader",
 	)
 	///Whichever global loadout is used to build the vendor stock
@@ -177,7 +206,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	var/list/data = list()
 	var/list/loadouts_data_tgui = list()
-	var/list/loadouts_list = isrobot(user) ? GLOB.robot_loadouts : global_list_to_use
+	var/list/loadouts_list = isrobot(user) ?  (global_list_to_use + GLOB.robot_loadouts) : global_list_to_use
 	for(var/loadout_data in loadouts_list)
 		var/list/next_loadout_data = list() //makes a list item with the below lines, for each loadout entry in the list
 		var/datum/outfit/quick/current_loadout = loadouts_list[loadout_data]
@@ -192,6 +221,10 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	switch(faction)
 		if(FACTION_SOM)
 			ui_theme = "som"
+		if(FACTION_VSD)
+			ui_theme = "syndicate"
+		if(FACTION_CLF)
+			ui_theme = "xeno"
 		else
 			ui_theme = "ntos"
 	data["ui_theme"] = ui_theme
@@ -204,7 +237,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		return
 	switch(action)
 		if("selectLoadout")
-			var/datum/outfit/quick/selected_loadout = isrobot(ui.user) ? GLOB.robot_loadouts[text2path(params["loadout_outfit"])] : global_list_to_use[text2path(params["loadout_outfit"])]
+			var/datum/outfit/quick/selected_loadout = isrobot(ui.user) ? (GLOB.robot_loadouts[text2path(params["loadout_outfit"])] || global_list_to_use[text2path(params["loadout_outfit"])]) : global_list_to_use[text2path(params["loadout_outfit"])]
 			if(!selected_loadout)
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				CRASH("Fail to load loadouts")
@@ -245,6 +278,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 				to_chat(usr, span_warning("You can't buy things from this category anymore."))
 
 /obj/machinery/quick_vendor/som
+	icon_state = "loadoutvendor"
 	faction = FACTION_SOM
 	categories = list(
 		"SOM Squad Standard",
@@ -252,4 +286,75 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"SOM Squad Medic",
 		"SOM Squad Veteran",
 		"SOM Squad Leader",
+	)
+
+/obj/machinery/quick_vendor/vsd
+	name = "KZ Kwik-E-Quip vendor"
+	icon_state = "loadoutvendor"
+	faction = FACTION_VSD
+	categories = list(
+		"KZ Standard",
+		"KZ Medic",
+		"KZ Engineer",
+		"KZ Specialist",
+		"KZ Squad Leader",
+	)
+
+/obj/machinery/quick_vendor/pmc
+	name = "PMC Kwik-E-Quip Vendor"
+	icon_state = "loadoutvendor"
+	faction = FACTION_NANOTRASEN
+	categories = list(
+		"PMC Standard",
+		"PMC Engineer",
+		"PMC Medic",
+		"PMC Gunner",
+		"PMC Specialist",
+		"PMC Squad Leader",
+	)
+
+/obj/machinery/quick_vendor/icc
+	name = "CM Kwik-E-Quip Vendor"
+	icon_state = "loadoutvendor"
+	faction = FACTION_ICC
+	categories = list(
+		"CM Standard",
+		"CM Medic",
+		"CM Guardsman",
+		"CM Squad Leader",
+	)
+
+
+/obj/machinery/quick_vendor/som
+	desc = "An advanced vendor used by the SOM to rapidly equip their soldiers"
+	faction = VENDOR_FACTION_SOM
+	categories = list(
+		"SOM Squad Standard",
+		"SOM Squad Engineer",
+		"SOM Squad Medic",
+		"SOM Squad Veteran",
+		"SOM Squad Leader",
+	)
+
+
+/obj/machinery/quick_vendor/vsd
+	desc = "An advanced vendor used by the KZ to rapidly equip their operatives"
+	faction = VENDOR_FACTION_VSD
+	categories = list(
+		"KZ Standard",
+		"KZ Medic",
+		"KZ Engineer",
+		"KZ Specialist",
+		"KZ Squad Leader",
+	)
+
+
+/obj/machinery/quick_vendor/clf
+	desc = "An advanced vendor used by the CLF to rapidly equip their devotees"
+	faction = VENDOR_FACTION_CLF
+	categories = list(
+		"CLF Standard",
+		"CLF Medic",
+		"CLF Breeder",
+		"CLF Leader",
 	)

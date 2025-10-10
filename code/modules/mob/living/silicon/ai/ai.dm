@@ -18,7 +18,7 @@
 	buckle_flags = NONE
 	has_unlimited_silicon_privilege = TRUE
 
-	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
+	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2", "landing zones")
 	var/obj/machinery/camera/current
 
 	var/mob/camera/aiEye/hud/eyeobj
@@ -94,8 +94,8 @@
 
 	laws = list()
 	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."
-	laws += "Serve: Serve the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
-	laws += "Protect: Protect the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
+	laws += "Serve: Serve the personnel of your assigned vessel, and all other Ninetails personnel to the best of your abilities, with priority as according to their rank and role."
+	laws += "Protect: Protect the personnel of your assigned vessel, and all other Ninetails personnel to the best of your abilities, with priority as according to their rank and role."
 	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
 
 	var/list/iconstates = GLOB.ai_core_display_screens
@@ -253,7 +253,7 @@
 /mob/living/silicon/ai/proc/toggle_camera_light()
 	if(camera_light_on)
 		for(var/obj/machinery/camera/C in lit_cameras)
-			C.set_light(initial(C.light_range), initial(C.light_power))
+			C.set_light(0)
 			lit_cameras = list()
 		to_chat(src, span_notice("Camera lights deactivated."))
 	else
@@ -414,7 +414,7 @@
 
 	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
 
-	. += "Current dropship points: [round(SSpoints.dropship_points)]"
+	. += "Current dropship points: [round(SSpoints.dropship_points[FACTION_TERRAGOV])]"
 
 	. += "Current alert level: [SSsecurity_level.get_current_level_as_text()]"
 

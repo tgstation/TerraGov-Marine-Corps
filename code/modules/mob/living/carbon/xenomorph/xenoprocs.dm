@@ -159,6 +159,9 @@
 
 	. += "Health: [health]/[maxHealth][overheal ? " + [overheal]": ""]" //Changes with balance scalar, can't just use the caste
 
+	if(xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED)
+		. += "Biomass: [!isnull(SSpoints.xeno_biomass_points_by_hive[hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[hivenumber] : 0]/[MUTATION_BIOMASS_MAXIMUM]"
+
 	if(xeno_caste.plasma_max > 0)
 		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
 
@@ -274,7 +277,7 @@
 
 /mob/living/carbon/xenomorph/proc/update_progression(seconds_per_tick)
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	upgrade_stored += (1 + (stored_larva/6) + hive.get_upgrade_boost()) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Do this regardless of whether we can upgrade so age accrues at primo
 	if(!upgrade_possible())
@@ -293,7 +296,7 @@
 		return
 
 	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
 	var/evolution_points_lag = evolution_points * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
@@ -348,6 +351,18 @@
 			new_sight = SEE_MOBS|SEE_OBJS|SEE_TURFS
 		if(LIGHTING_CUTOFF_VISIBLE)
 			new_sight = SEE_MOBS
+	var/datum/game_mode/mode = SSticker.mode
+	switch(new_lighting_cutoff)
+		if(LIGHTING_CUTOFF_FULLBRIGHT, LIGHTING_CUTOFF_HIGH, LIGHTING_CUTOFF_MEDIUM)
+			if(!(mode.round_type_flags & MODE_SURVIVAL))
+				ENABLE_BITFIELD(sight, SEE_MOBS)
+			ENABLE_BITFIELD(sight, SEE_OBJS)
+			ENABLE_BITFIELD(sight, SEE_TURFS)
+		if(LIGHTING_CUTOFF_VISIBLE)
+			if(!(mode.round_type_flags & MODE_SURVIVAL))
+				ENABLE_BITFIELD(sight, SEE_MOBS)
+			DISABLE_BITFIELD(sight, SEE_OBJS)
+			DISABLE_BITFIELD(sight, SEE_TURFS)
 
 	lighting_cutoff = new_lighting_cutoff
 
@@ -501,11 +516,44 @@
 		H.remove_hud_from(src)
 	to_chat(src, span_notice("You have [(xeno_flags & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
 
+/mob/living/carbon/xenomorph/verb/toggle_bump_attack_allies()
+	set name = "Toggle Bump Attack Allies"
+	set desc = "Toggles the ability to bump attack your allies."
+	set category = "Alien"
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4, datum/effect_system/smoke_spread/gas_type, gas_range)
+	xeno_flags ^= XENO_ALLIES_BUMP
+	to_chat(src, span_notice("You have [(xeno_flags & XENO_ALLIES_BUMP) ? "enabled" : "disabled"] the Bump Attack Allies Toggle."))
+
+/mob/living/carbon/xenomorph/verb/toggle_destroy_own_structures()
+	set name = "Toggle Destroy Own Structures"
+	set desc = "Toggles the ability to destroy your own structures."
+	set category = "Alien"
+
+	xeno_flags ^= XENO_DESTROY_OWN_STRUCTURES
+	to_chat(src, span_notice("You have [(xeno_flags & XENO_DESTROY_OWN_STRUCTURES) ? "enabled" : "disabled"] the Destroy Own Structures Toggle."))
+
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, list/toxin = list(/datum/reagent/toxin/xeno_neurotoxin), channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4, datum/effect_system/smoke_spread/gas_type, gas_range, no_overdose = FALSE) //NTF edit - multiple chemicals in one injection
 	if(!C?.can_sting() || !toxin)
 		return FALSE
-	if(!do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+	if(!length(toxin) && islist(toxin))
+		return FALSE
+	if(!islist(toxin))
+		toxin = list(toxin)
+	var/chemical_string = ""
+	// populate the string and fill the assoc list transfer amounts
+	for(var/chem in toxin)
+		var/datum/reagent/chemical = chem
+		toxin[chemical] = transfer_amount
+		var/string_append = ", "
+		// use and if we're before the last chemical
+		var/last_chem = toxin[length(toxin)]
+		var/last_chem_index = toxin.Find(last_chem)
+		if(length(toxin) > 1 && chem == toxin[last_chem_index - 1])
+			string_append = " and "
+		else if(chem == toxin[last_chem_index])
+			string_append = ""
+		chemical_string += "[initial(chemical.name)][string_append]"
+	if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(gas_type && gas_range)
 		var/datum/effect_system/smoke_spread/smoke_system = new gas_type()
@@ -513,7 +561,7 @@
 		smoke_system.start()
 	var/i = 1
 	to_chat(C, span_danger("You feel a tiny prick."))
-	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
+	to_chat(src, span_xenowarning("Our stinger injects our victim with [chemical_string]!"))
 	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 	playsound(C, SFX_ALIEN_DROOL, 15, TRUE)
 	do
@@ -521,8 +569,8 @@
 		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
-		C.reagents.add_reagent(toxin, transfer_amount)
-	while(i++ < count && do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+		C.reagents.add_reagent_list(toxin, transfer_amount, no_overdose = no_overdose)
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 /atom/proc/can_sting()
@@ -605,7 +653,7 @@
 	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER)
 	if(makeleader)
 		blip.overlays += image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, blip)
+	SSminimaps.add_marker(src, GLOB.hivenumber_to_minimap_flag[hivenumber], blip)
 
 ///updates the xeno's glow, based on the ability being used
 /mob/living/carbon/xenomorph/proc/update_glow(range, power, color)
@@ -617,3 +665,51 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+/mob/living/carbon/xenomorph/verb/swapgender()
+	set name = "Swap Gender"
+	set desc = "Swap between xeno genders in an instant, nothing compared to evolving. Some may not have textures, PR it yourself."
+	set category = "Alien"
+
+	update_xeno_gender(src, TRUE)
+
+/mob/living/carbon/xenomorph/proc/update_xeno_gender(mob/living/carbon/xenomorph/user = src, swapping = FALSE)
+	remove_overlay(GENITAL_LAYER)
+	if(QDELETED(user)||QDELETED(src))
+		return
+	var/xgen = user?.client?.prefs?.xenogender
+	if(swapping) //flips to next in selection
+		xgen += 1
+	if(xgen >= 5) //revert to start if over max.
+		xgen = 1
+	//updates the overlays
+	user.client?.prefs?.xenogender = xgen
+	genital_overlay.layer = layer + 0.3
+	genital_overlay.vis_flags |= VIS_HIDE
+	genital_overlay.icon = src.icon
+	genital_overlay.icon_state = "none"
+	switch(xgen)
+		if(1) //blank
+			genital_overlay.icon_state = null
+			gender=NEUTER
+			if(swapping)
+				user.balloon_alert(user, "None")
+		if(2)
+			genital_overlay.icon_state = "[icon_state]_female"
+			gender=FEMALE
+			if(swapping)
+				user.balloon_alert(user, "Female")
+		if(3)
+			genital_overlay.icon_state = "[icon_state]_male"
+			gender=MALE
+			if(swapping)
+				user.balloon_alert(user, "Male")
+		if(4)
+			genital_overlay.icon_state = "[icon_state]_futa"
+			gender=FEMALE
+			if(swapping)
+				user.balloon_alert(user, "Futa")
+
+	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK) //ig if u cant see wounds u shouldnt see tiddies too maybe for things like being ethereal
+		apply_overlay(GENITAL_LAYER)
+	genital_overlay.vis_flags &= ~VIS_HIDE // Show the overla

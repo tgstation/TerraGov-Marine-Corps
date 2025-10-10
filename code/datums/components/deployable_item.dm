@@ -94,16 +94,9 @@
 			location.balloon_alert(user, "no room here!")
 			return
 		var/newdir = get_dir(user, location)
-		if(deploy_type.atom_flags & ON_BORDER)
-			for(var/obj/object in location)
-				if(!object.density)
-					continue
-				if(!(object.atom_flags & ON_BORDER))
-					continue
-				if(object.dir != newdir)
-					continue
-				location.balloon_alert(user, "no room here!")
-				return
+		if(!item_to_deploy.check_space_to_deploy(user, location, newdir, deploy_type))
+			location.balloon_alert(user, "no room here!")
+			return
 		if(user.do_actions)
 			user.balloon_alert(user, "busy!")
 			return
@@ -122,6 +115,9 @@
 
 	else
 		direction_to_deploy = direction || item_to_deploy.dir
+		if(!item_to_deploy.check_space_to_deploy(user, location, direction_to_deploy, deploy_type))
+			item_to_deploy.balloon_alert_to_viewers("No room to deploy")
+			return
 
 	deployed_machine = new deploy_type(location,item_to_deploy, user)//Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
 	deployed_machine.setDir(direction_to_deploy)
@@ -146,6 +142,7 @@
 	item_to_deploy.toggle_deployment_flag(TRUE)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, PROC_REF(undeploy))
 	RegisterSignal(item_to_deploy, COMSIG_MOVABLE_MOVED, PROC_REF(on_item_move))
+	log_combat(user, deployed_machine, "deployed")
 
 ///Qdels the deployed object if the internal item is somehow removed
 /datum/component/deployable_item/proc/on_item_move(obj/item/source, old_loc, movement_dir, forced, old_locs)

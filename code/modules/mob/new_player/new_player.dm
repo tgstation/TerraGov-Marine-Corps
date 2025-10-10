@@ -118,6 +118,8 @@
 		if("observe")
 			try_to_observe()
 
+		if("Take SSD Mob")
+			take_ssd_mob()
 
 		if("late_join")
 			attempt_late_join(href_list["override"])
@@ -144,7 +146,7 @@
 			if(!SSticker)
 				return
 			if(!GLOB.enter_allowed)
-				to_chat(usr, span_warning("Spawning currently disabled, please observe."))
+				to_chat(usr, span_warning("Spawning currently disabled."))
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
 			if(!isxenosjob(job_datum) && (SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state <= XENOS_LOSING)))
@@ -152,6 +154,18 @@
 				if((xeno_job.total_positions-xeno_job.current_positions) > length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * TOO_MUCH_BURROWED_PROPORTION)
 					if(tgui_alert(src, "There is a lack of xeno players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) != "Yes")
 						return
+			if(isxenosjob(job_datum))
+				if(XENODEATHTIME_CHECK(usr))
+					if(check_other_rights(usr.client, R_ADMIN, FALSE))
+						if(tgui_alert(usr, "Your xeno respawn timer is not finished, though as an admin you can bypass it. Do you want to continue?", "Join Game", list("Yes", "No")) != "Yes")
+							XENODEATHTIME_MESSAGE(usr)
+							return
+			else
+				if(DEATHTIME_CHECK(usr))
+					if(check_other_rights(usr.client, R_ADMIN, FALSE))
+						if(tgui_alert(usr, "Your respawn timer is not finished, though as an admin you can bypass it. Do you want to continue?", "Join Game", list("Yes", "No")) != "Yes")
+							DEATHTIME_MESSAGE(usr)
+							return
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
@@ -240,7 +254,7 @@
 /mob/new_player/proc/view_manifest()
 	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
-	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Game Manifest</div>", 400, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
@@ -254,7 +268,7 @@
 
 /mob/new_player/proc/view_lore()
 	var/output = "<div align='center'>"
-	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>TerraGov Marine Corps</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=som'>Sons of Mars</A>"
+	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>Nine Tailed Fox</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=som'>Sons of Mars</A>"
 	output += "</div>"
 
 	var/datum/browser/popup = new(src, "lore", "<div align='center'>Current Year: [GAME_YEAR]</div>", 240, 300)
@@ -263,16 +277,16 @@
 
 /mob/new_player/proc/view_marines()
 	var/output = "<div align='center'>"
-	output += "<p><i>The <b>TerraGov Marine Corps'</b> mission is to enforce space law for the purpose of defending Terra's orbit as well as other solar colonies around the galaxy under the conflict of the Independent Colonial Confederation and the intelligent xenomorph threat. \nThe TGMC is composed by willing men and women from all kinds of social strata, hailing from all across the TerraGov systems. \nAs the vessel approaches to the ordered location on space, the cryostasis pods deactivate and awake you from your long-term stasis. Knowing that it's one of those days again, you hope that you'll make this out alive...</i></p>"
+	output += "<p><i>The <b>Nine Tailed Fox'</b> Ninetails Corporation, private security, data gathering, investigation, rnd, and cybernetics development specialized company first founded by Elizabeth Decker to work as a counterintel for another corp then developed itself to be on its own, it naturally clashed with the Japanese syndicate of the time due sharing their intel with the justice force until the unhinged leader who was soon to be executed, broke out of prison and in the following days planted a nuclear explosive in the sewers in the city centre where almost all that is living there are corporate citizens. The attack went unnoticed as a false intel indicated a bioweapon of sorts stashed away outside the city, most likely fabricated by the same group. The violent destruction of heart of the city caused so many deaths and Ninetails tower to be destroyed along with many other buildings. During the rebuilding times, the surviving space vessels of NTC was all that remains and the bank account, whatever it is worth. Other corps were not much different.</i></p>"
 	output += "</div>"
 
-	var/datum/browser/popup = new(src, "marines", "<div align='center'>TerraGov Marine Corps</div>", 480, 280)
+	var/datum/browser/popup = new(src, "marines", "<div align='center'>Nine Tailed Fox</div>", 480, 280)
 	popup.set_content(output)
 	popup.open(FALSE)
 
 /mob/new_player/proc/view_aliens()
 	var/output = "<div align='center'>"
-	output += "<p><i>Hailing from one of many unknown planets and other unlisted habitats, the <b>xenomorph threat</b> remains at large and still unclear. Extremely dangerous extraterrestrial lifeforms, part of the hive under the Queen Mother, had caught the TGMC and NT colonies off-guard during their discovery in 2414. \nThey are divided into castes, each with their specialized roles equivalent to a traditional squad member in a human force, thanks to the xenomorph's lifecycle. \nAfter days of ravaging the current area, a metal hive was sighted by the Queen Mother and transported you on the ground. With your intent to spread the hive is in motion, you and your fellow sisters get to work...</i></p>"
+	output += "<p><i>Hailing from one of many unknown planets and other unlisted habitats, the <b>xenomorph threat</b> remains at large and still unclear. Extremely dangerous extraterrestrial lifeforms, part of the hive under the Queen Mother, had caught the NTC colonies off-guard during their discovery. \nThey are divided into castes, each with their specialized roles equivalent to a traditional squad member in a human force, thanks to the xenomorph's lifecycle. \nAfter days of ravaging the current area, a metal hive was sighted by the Queen Mother and transported you on the ground. With your intent to spread the hive is in motion, you and your fellow sisters get to work...</i></p>"
 	output += "</div>"
 
 	var/datum/browser/popup = new(src, "aliens", "<div align='center'>Xenomorph Hive</div>", 480, 280)
@@ -281,15 +295,8 @@
 
 /mob/new_player/proc/view_som()
 	var/output = "<div align='left'>"
-	output += "<p><i>The <b>Sons of Mars</b> are a fanatical group that trace their lineage back to the great Martian uprising. \
-	After TerraGov brutally crushed the rebellion, many Martians fled into deep space and most Terrans thought they would die in the great void. \
-	However, more than a century later their descendants emerged as the Sons of Mars, who are determined to reclaim their lost home and crush their hated enemy TerraGov.\
-	</i></p>"
+	output += "<p><i>The <b>Sons of Mars</b> Syndicate-funded, small private military group with experimental weaponry that originate from a mars labor camp of phantom city that rioted and took control of the station, most of their members are either criminals from the prison or this planet's desperate colonists who thought it would be a good idea to join syndicate funded terrorists, most likely by promises of a better life or fooling them they are here to do something greater, while their only goal is fighting the corporate, even if it means earth would be left broken. - Burn it all down even if it means losing everything you got. </i></p>"
 	output += "</div>"
-	output += "<p><i>The men and women that form the SOM are taught from birth of their dream of Mars, and hatred of TerraGov, and are fiercely proud of their history. \
-	As a society they have a single mindeded dedication towards reclaiming a home almost none of them have ever seen. What they lack in sheer manpower or resources compared to TerraGov, they make up for with advanced technology and bloody minded focus. \
-	Across the outer rim of colonised space, the SOM have worked to spread discontent and rebellion across TerraGov's many colonies, many of whom are receptive to the SOM's promises of freedom from TerraGov tyranny. \
-	Now the SOM feel their long promised revenge is almost at hand, and the threat of all out war looms over all human occupied space...</i></p>"
 
 	var/datum/browser/popup = new(src, "som", "<div align='center'>Sons of Mars</div>", 480, 430)
 	popup.set_content(output)
@@ -336,9 +343,16 @@
 
 
 /mob/living/proc/on_spawn(mob/new_player/summoner)
+	ooc_notes = summoner.ooc_notes
+	ooc_notes_likes = summoner.ooc_notes_likes
+	ooc_notes_dislikes = summoner.ooc_notes_dislikes
+	ooc_notes_maybes = summoner.ooc_notes_maybes
+	ooc_notes_favs = summoner.ooc_notes_favs
+	ooc_notes_style = summoner.ooc_notes_style
 	return
 
 /mob/living/carbon/human/on_spawn(mob/new_player/summoner)
+	.=..()
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client)
 		summoner.client.prefs.copy_to(src)
 	update_names_joined_list(real_name)
@@ -346,6 +360,7 @@
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 /mob/living/silicon/ai/on_spawn(mob/new_player/summoner)
+	.=..()
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client?.prefs?.ai_name)
 		fully_replace_character_name(real_name, summoner.client.prefs.ai_name)
 	update_names_joined_list(real_name)
@@ -353,6 +368,7 @@
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 /mob/living/carbon/xenomorph/on_spawn(mob/new_player/summoner)
+	.=..()
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
@@ -386,12 +402,25 @@
 	if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 		to_chat(src, span_warning("The game is still setting up, please try again later."))
 		return
+	if(client?.observe_used)
+		to_chat(src,  span_warning("You seen enough, time to play."))
+		return FALSE
+	if(!check_other_rights(client, R_ADMIN, FALSE))
+		log_game("[key_name(src)] failed to join as a ghost due to the observe disable.")
+		to_chat(src, span_boldannounce("Observing is currently disabled.  Please do not get around this by joining just to ghost."))
+		spawn()
+			tgui_alert(src, "Observing is currently disabled.  Please do not get around this by joining just to ghost.", "Observe disabled", list("Ok"))
+		return FALSE
 	if(tgui_alert(src, "Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", list("Yes", "No")) != "Yes")
 		return
 	if(!client)
 		return TRUE
 	var/mob/dead/observer/observer = new()
-
+/*
+	if(!check_other_rights(client, R_ADMIN, FALSE))
+		observer.unobserve_timer = addtimer(CALLBACK(observer, TYPE_PROC_REF(/mob/dead/observer, observe_time_out)), 3 MINUTES, TIMER_STOPPABLE)
+		to_chat(src, span_alert("You have three minutes to observe before getting sent back to the lobby. You can only do this once a round."))
+*/
 	spawning = TRUE
 	observer.started_as_observer = TRUE
 
@@ -431,7 +460,11 @@
 	observer.name = observer.real_name
 
 	mind.transfer_to(observer, TRUE)
+	message_admins("[key_name_admin(observer)] joined as a ghost.")
 	observer.client?.init_verbs()
+	if(observer.client && check_rights_for(observer.client, R_ADMIN)) // no getting to know what you shouldn't unless you are an admin.
+		observer.set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		observer.set_invis_see(SEE_INVISIBLE_OBSERVER)
 	qdel(src)
 
 ///Toggles the new players ready state
@@ -480,3 +513,75 @@
 			to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [length(SSticker.queued_players)]."))
 		return
 	late_choices()
+
+
+/mob/new_player/proc/take_ssd_mob()
+	if((src.key in GLOB.key_to_time_of_death) && (GLOB.key_to_time_of_death[src.key] + TIME_BEFORE_TAKING_BODY > world.time))
+		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
+		return
+
+
+	var/list/mob/living/free_ssd_mobs = GLOB.offered_mob_list
+	if(GLOB.ssd_posses_allowed)
+		for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
+			if(is_centcom_level(ssd_mob.z) || ishuman(ssd_mob) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+				continue
+			free_ssd_mobs += ssd_mob
+
+	if(!length(free_ssd_mobs))
+		to_chat(src, span_warning("There aren't any available mobs."))
+		return FALSE
+
+	var/mob/living/new_mob = tgui_input_list(src, "Pick a mob", "Available Mobs", free_ssd_mobs)
+	if(!istype(new_mob) || !src.client)
+		return FALSE
+
+	if(new_mob.stat == DEAD)
+		to_chat(src, span_warning("You cannot join if the mob is dead."))
+		return FALSE
+	if(tgui_alert(src, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD/offered mob", list("Yes", "No",)) != "Yes")
+		return
+	if(isxeno(new_mob))
+		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
+		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(src))
+			XENODEATHTIME_MESSAGE(src)
+			return
+
+	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
+		to_chat(src, span_warning("That mob is currently possessing a different mob."))
+		return FALSE
+
+	if(new_mob.client)
+		to_chat(src, span_warning("That mob has been occupied."))
+		return FALSE
+
+	if(new_mob.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
+		to_chat(src, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_mob.afk_timer_id) * 0.1)] second\s longer."))
+		return FALSE
+
+	if(is_banned_from(src.ckey, new_mob?.job?.title))
+		to_chat(src, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
+		return
+
+	if(new_mob in GLOB.offered_mob_list)
+		close_spawn_windows()
+		new_mob.take_over(src)
+		return
+
+	if(!ishuman(new_mob))
+		message_admins(span_adminnotice("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
+		log_admin("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
+		new_mob.transfer_mob(src)
+		return
+	if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(src.client.prefs.real_name))
+		to_chat(usr, span_warning("Someone has already joined the round with this character name. Please pick another."))
+		return
+	message_admins(span_adminnotice("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
+	log_admin("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
+	close_spawn_windows()
+	new_mob.transfer_mob(src)
+	var/mob/living/carbon/human/H = new_mob
+	var/datum/job/j = H.job
+	var/datum/outfit/job/o = j.outfit
+	H.on_transformation()
+	o.handle_id(H)
