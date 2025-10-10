@@ -600,7 +600,7 @@
 /area/campaign/tgmc_airfield/outside/desert)
 "dK" = (
 /obj/structure/prop/vehicle/land_rover/machinegun{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/airstrip_north)
@@ -1233,10 +1233,7 @@
 /area/campaign/tgmc_airfield/outside/desert/west)
 "hN" = (
 /obj/effect/urban/decal/road/lines1,
-/obj/structure/prop/vehicle/land_rover{
-	pixel_x = 6;
-	pixel_y = 5
-	},
+/obj/structure/prop/vehicle/land_rover,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/west_base)
 "hP" = (
@@ -1330,9 +1327,7 @@
 "il" = (
 /obj/effect/urban/decal/road/lines3,
 /obj/structure/prop/vehicle/land_rover{
-	dir = 4;
-	pixel_x = 3;
-	pixel_y = 3
+	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/east_base)
@@ -1535,8 +1530,6 @@
 "jo" = (
 /obj/effect/urban/decal/road/lines1,
 /obj/structure/prop/vehicle/land_rover{
-	pixel_x = 1;
-	pixel_y = 5;
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -1621,13 +1614,6 @@
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
-"jI" = (
-/obj/structure/rack,
-/obj/item/clothing/gloves/insulated,
-/obj/effect/spawner/random/engineering/insulatedgloves,
-/obj/effect/spawner/random/engineering/insulatedgloves,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "jJ" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
@@ -2252,6 +2238,13 @@
 /obj/item/tool/mop,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
+"nu" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/insulatedgloves,
+/obj/effect/spawner/random/engineering/insulatedgloves,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "nv" = (
 /obj/structure/mine_structure/wooden/plank/alt/horizontal{
 	pixel_y = 2;
@@ -2877,6 +2870,12 @@
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
+"rb" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/cigarette,
+/obj/effect/spawner/random/misc/cigarettes,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "rc" = (
 /obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /obj/machinery/light{
@@ -3392,6 +3391,10 @@
 /obj/effect/decal/cleanable/dirt/grime1{
 	dir = 4
 	},
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/misc/cigarettes,
+/obj/effect/spawner/random/food_or_drink/beer,
+/obj/effect/spawner/random/food_or_drink/beer,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "uc" = (
@@ -3428,9 +3431,7 @@
 /area/campaign/tgmc_airfield/outside/desert)
 "ul" = (
 /obj/structure/prop/vehicle/land_rover{
-	dir = 1;
-	pixel_x = -4;
-	pixel_y = -4
+	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/west_base)
@@ -3945,14 +3946,6 @@
 /obj/item/tool/soap,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
-"wW" = (
-/obj/structure/prop/vehicle/land_rover{
-	dir = 8;
-	pixel_x = 18;
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/east_base)
 "wX" = (
 /obj/structure/curtain/shower,
 /obj/effect/turf_decal/siding/dark/end{
@@ -4794,6 +4787,11 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
+"BR" = (
+/obj/effect/spawner/random/misc/structure/stool,
+/obj/item/trash/cigbutt,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "BS" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/grown/carrot,
@@ -4826,6 +4824,15 @@
 "Cb" = (
 /obj/effect/decal/cleanable/dirt/grime2{
 	dir = 4
+	},
+/obj/item/stool,
+/obj/item/trash/cigbutt{
+	pixel_y = 6;
+	pixel_x = 5
+	},
+/obj/item/trash/cigbutt{
+	pixel_y = -6;
+	pixel_x = -12
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay/generator)
@@ -4861,6 +4868,10 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
+"Ck" = (
+/obj/effect/spawner/random/misc/structure/stool,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "Cl" = (
 /obj/machinery/power/fusion_engine/random{
 	pixel_y = -2
@@ -6133,11 +6144,6 @@
 /obj/structure/bed/chair/office/dark/north,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/security_checkpoint/east)
-"JN" = (
-/obj/structure/rack,
-/obj/item/clothing/mask/cigarette,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "JP" = (
 /obj/machinery/light{
 	dir = 4
@@ -6263,6 +6269,13 @@
 /obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/north)
+"KE" = (
+/obj/item/trash/cigbutt{
+	pixel_y = -7;
+	pixel_x = -8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "KK" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/tile/blue,
@@ -7833,6 +7846,13 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
+"TN" = (
+/obj/effect/urban/decal/road/lines3,
+/obj/structure/prop/vehicle/land_rover{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/east_base)
 "TR" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
 	dir = 8;
@@ -8030,8 +8050,6 @@
 	pixel_y = -2
 	},
 /obj/structure/prop/vehicle/land_rover{
-	pixel_x = -5;
-	pixel_y = 6;
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -8114,7 +8132,7 @@
 /area/campaign/tgmc_airfield/base/medical)
 "Vk" = (
 /obj/structure/prop/vehicle/land_rover/machinegun{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/east)
@@ -17989,7 +18007,7 @@ Nr
 pb
 lf
 Et
-kc
+BR
 ua
 Cb
 Et
@@ -18106,8 +18124,8 @@ Nr
 kM
 kc
 kc
-kc
-kc
+KE
+Ck
 vg
 kc
 IG
@@ -18340,9 +18358,9 @@ Nr
 yH
 kc
 vg
-kc
-kc
-kc
+ZN
+rb
+nu
 kc
 vT
 aP
@@ -18457,9 +18475,9 @@ jU
 aP
 Xg
 vg
-ZN
-JN
-jI
+kc
+kc
+kc
 kc
 Wh
 aP
@@ -24729,8 +24747,8 @@ Lv
 Ww
 Lv
 Ww
-wW
-Ww
+Lv
+TN
 Lv
 Lv
 Lv
