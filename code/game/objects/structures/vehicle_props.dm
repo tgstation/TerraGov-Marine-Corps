@@ -48,7 +48,7 @@
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
-	AddElement(/datum/element/connect_loc, connections)
+	AddElement(/datum/element/connect_loc, connections, TRUE)
 
 /obj/structure/prop/urban/vehicles/meridian/update_icon_state()
 	switch(obj_integrity)
