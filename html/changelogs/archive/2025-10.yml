@@ -77,6 +77,8 @@
       20, from 30.
   Lumipharon:
   - balance: KTLD goggles no longer work when scoped
+  - bugfix: Probably fixed sticky movement from TGUI windows
+  - code_imp: Updated TGUI-core
   - balance: SH-410 removed from normal gameplay
   - balance: MP-19 has 30 round mags again
   Scav:
