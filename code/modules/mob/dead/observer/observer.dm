@@ -161,25 +161,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 		else
 			var/atom/movable/AM = locate(href_list["track"])
-			ManualFollow(AM)
-			return
-
-
-	else if(href_list["jump"])
-		var/x = text2num(href_list["x"])
-		var/y = text2num(href_list["y"])
-		var/z = text2num(href_list["z"])
-
-		if(x == 0 && y == 0 && z == 0)
-			return
-
-		var/turf/T = locate(x, y, z)
-		if(!T)
-			return
-
-		var/mob/dead/observer/A = usr
-		A.abstract_move(T)
-		return
+			if(istype(AM))
+				ManualFollow(AM)
+				return
 
 	else if(href_list["claim"])
 		var/mob/living/target = locate(href_list["claim"]) in GLOB.offered_mob_list
@@ -220,26 +204,44 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		stack_trace("This code path is no longer valid, migrate this to new TGUI prefs")
 		return
 
-	else if(href_list["track_xeno_name"])
+	var/track_hivenumber = href_list["track_hive"] || XENO_HIVE_NORMAL
+	if(href_list["track_xeno_name"])
 		var/xeno_name = href_list["track_xeno_name"]
-		for(var/Y in GLOB.hive_datums[XENO_HIVE_NORMAL].get_all_xenos())
+		var/datum/hive_status/track_hive = GLOB.hive_datums[track_hivenumber]
+		if(!istype(track_hive))
+			track_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		for(var/Y in track_hive.get_all_xenos())
 			var/mob/living/carbon/xenomorph/X = Y
-			if(isnum(X.nicknumber))
-				if(num2text(X.nicknumber) != xeno_name)
-					continue
-			else
-				if(X.nicknumber != xeno_name)
-					continue
+			if("[X.nicknumber]" != xeno_name)
+				continue
 			ManualFollow(X)
-			break
+			return
 
-	else if(href_list["track_silo_number"])
+	if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/silo/resin_silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
+		var/list/silo_list = GLOB.xeno_resin_silos_by_hive[track_hivenumber]
+		if(!islist(silo_list) || !length(silo_list))
+			silo_list = GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]
+		for(var/obj/structure/xeno/silo/resin_silo in silo_list)
 			if(num2text(resin_silo.number_silo) == silo_number)
-				var/mob/dead/observer/ghost = usr
-				ghost.abstract_move(resin_silo.loc)
-				break
+				ManualFollow(resin_silo)
+				return
+
+	if(href_list["jump"])
+		var/x = text2num(href_list["x"])
+		var/y = text2num(href_list["y"])
+		var/z = text2num(href_list["z"])
+
+		if(x == 0 && y == 0 && z == 0)
+			return
+
+		var/turf/T = locate(x, y, z)
+		if(!T)
+			return
+
+		var/mob/dead/observer/A = usr
+		A.abstract_move(T)
+		return
 
 /mob/proc/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE, force_lobby = FALSE)
 	if(!key)

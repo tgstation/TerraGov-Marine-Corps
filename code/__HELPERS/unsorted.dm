@@ -79,6 +79,21 @@
 				return "\[[url_encode(thing.tag)]\]"
 	return text_ref(input)
 
+/proc/track_href(input)
+	. = "track=[REF(input)]"
+	if(isxeno(input))
+		var/mob/living/carbon/xenomorph/input_xeno = input
+		. += ";track_xeno_name=[input_xeno.nicknumber]"
+		var/hivenumber = input_xeno.get_xeno_hivenumber()
+		if(hivenumber != XENO_HIVE_NORMAL)
+			. += ";track_hive=[hivenumber]"
+	else
+		var/obj/structure/xeno/silo/input_silo = input
+		if(istype(input_silo))
+			. += ";track_silo_number=[input_silo.number_silo]"
+			var/hivenumber = input_silo.get_xeno_hivenumber()
+			if(hivenumber != XENO_HIVE_NORMAL)
+				. += ";track_hive=[hivenumber]"
 
 //Returns the middle-most value
 /proc/dd_range(low, high, num)
