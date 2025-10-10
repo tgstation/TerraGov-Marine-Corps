@@ -48101,6 +48101,7 @@
 /obj/effect/turf_decal/warning_stripes,
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes,
+/obj/structure/cable,
 /obj/machinery/power/port_gen/pacman/super,
 /turf/open/floor/plating,
 /area/prison/pirate)

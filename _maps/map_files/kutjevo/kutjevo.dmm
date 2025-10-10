@@ -3491,6 +3491,7 @@
 "dQr" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/brokengen,
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "dQs" = (
@@ -21258,6 +21259,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "wnk" = (
