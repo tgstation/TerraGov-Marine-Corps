@@ -21137,8 +21137,8 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hallwaysouth)
 "jBd" = (
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
-/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/maint)
 "jBi" = (
