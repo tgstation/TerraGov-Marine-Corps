@@ -11,8 +11,7 @@
 	var/list/blocked_attack_types = list()
 	var/deflect_projectile = FALSE
 
-	var/overcharge_max_health = 200
-	var/decharge_rate = 5 //danger zone duuu duu dududuu duu
+	var/overcharge_max_health = 150
 
 	//pale ass but black-white absorbing/deflect light and shit like that.
 	shield_color_low = COLOR_DARKER_RED
@@ -21,11 +20,9 @@
 	var/shield_color_overmax_full = COLOR_WHITE
 	var/shield_color_overmax_full_danger = COLOR_VIVID_RED
 	var/last_warning_time
-	///how many times the energy converted damage is halved, making shield more durable.
-	var/mitigation_rate = 2
 	var/explode_on_overload = TRUE
 	///percent chance to go off without exploding.
-	var/auto_release_chance = 85
+	var/auto_release_chance = 60
 
 /obj/item/armor_module/module/eshield/absorbant/energy
 	name = "NT Voidwalker Anti-Energy Shield System"
@@ -48,7 +45,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 				break
 		if(found_type && shield_health < overcharge_max_health) //power...
 			START_PROCESSING(SSobj, src)
-			shield_health += incoming_damage/mitigation_rate
+			shield_health += incoming_damage
 			spark_system.start()
 			if(shield_health > (overcharge_max_health/1.5) && world.time > (last_warning_time + 2 SECONDS))
 				last_warning_time = world.time
@@ -63,22 +60,20 @@ converting the absorbed energy into shield power, warning: overcharging too much
 			var/mob/living/affected = parent.loc
 			affected.remove_filter("eshield")
 			if(shield_health > 0)
-				switch(shield_health / max_shield_health)
-					if(0 to 0.33)
-						affected.add_filter("eshield", 2, outline_filter(1, shield_color_low))
-					if(0.33 to 0.66)
-						affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
-					if(0.66 to 1)
-						affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
-					if(1 to 2.3)
-						affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full))
-					if(2.3 to INFINITY)
-						affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full_danger))
+				var/level
+				if(shield_health > max_shield_health)
+					level = (shield_health - max_shield_health) / (overcharge_max_health - max_shield_health)
+				else
+					level = shield_health / max_shield_health
+				var/color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, 1.5, shield_color_overmax_full, 2, shield_color_overmax_full_danger, space = COLORSPACE_HCY, index = level)
+				affected.add_filter("eshield", 2, outline_filter(1, color))
 			return 0
 		else if(found_type && shield_health > overcharge_max_health)
 			if(explode_on_overload)
 				balloon_alert_to_viewers("shield break!")
-				explosion(src.loc,0,0,0,3,0,1,2, smoke = TRUE)
+				explosion(src.loc,0,0,0,3,0,0,2, smoke = TRUE)
+				var/mob/living/affected = parent.loc
+				affected.adjustStaminaLoss(400)
 			else
 				balloon_alert_to_viewers(src, "overload release!")
 				playsound(src.loc, 'sound/effects/airhiss.ogg', 40)
@@ -89,18 +84,13 @@ converting the absorbed energy into shield power, warning: overcharging too much
 		var/mob/living/affected = parent.loc
 		affected.remove_filter("eshield")
 		if(shield_left > 0)
-			shield_health = shield_left
-			switch(shield_left / max_shield_health)
-				if(0 to 0.33)
-					affected.add_filter("eshield", 2, outline_filter(1, shield_color_low))
-				if(0.33 to 0.66)
-					affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
-				if(0.66 to 1)
-					affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
-				if(1 to 2.3)
-					affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full))
-				if(2.3to INFINITY)
-					affected.add_filter("eshield", 2, outline_filter(1, shield_color_overmax_full_danger))
+			var/level
+			if(shield_left > max_shield_health)
+				level = (shield_left - max_shield_health) / (overcharge_max_health - max_shield_health)
+			else
+				level = shield_left / max_shield_health
+			var/color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, 1.5, shield_color_overmax_full, 2, shield_color_overmax_full_danger, space = COLORSPACE_HCY, index = level)
+			affected.add_filter("eshield", 2, outline_filter(1, color))
 			spark_system.start()
 		else
 			shield_health = 0
@@ -115,24 +105,17 @@ converting the absorbed energy into shield power, warning: overcharging too much
 	if(shield_health < max_shield_health)
 		shield_health = min(shield_health + recharge_rate, max_shield_health)
 	if(shield_health > max_shield_health)
-		shield_health -= decharge_rate
+		shield_health = max(shield_health - recharge_rate, max_shield_health)
 	if(shield_health == max_shield_health) //Once health is full, we don't need to process until the next time we take damage.
 		STOP_PROCESSING(SSobj, src)
 		return
-	var/new_color
-	switch(shield_health/max_shield_health)
-		if(0 to 0.2)
-			playsound(parent.loc, 'sound/items/eshield_down.ogg', 40)
-			new_color = (shield_color_low != current_color) ? shield_color_low : null
-		if(0.2 to 0.6)
-			new_color = (shield_color_mid != current_color) ? shield_color_mid : null
-		if(0.6 to 1)
-			new_color = (shield_color_full != current_color) ? shield_color_full : null
-		if(1 to 2.3)
-			new_color = (shield_color_overmax_full != current_color) ? shield_color_overmax_full : null
-		if(2.3 to INFINITY)
-			new_color = (shield_color_overmax_full != current_color) ? shield_color_overmax_full_danger : null
-	if(!new_color)
+	var/level
+	if(shield_health > max_shield_health)
+		level = (shield_health - max_shield_health) / (overcharge_max_health - max_shield_health)
+	else
+		level = shield_health / max_shield_health
+	var/new_color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, 1.5, shield_color_overmax_full, 2, shield_color_overmax_full_danger, space = COLORSPACE_HCY, index = level)
+	if(new_color == current_color)
 		return
 	var/mob/living/affected = parent.loc
 	affected.remove_filter("eshield")
