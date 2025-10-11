@@ -14,7 +14,7 @@
 	///If you're pushing it to the edge
 	var/exerted = FALSE
 	///modifier to multiplier on move delay and do_after
-	var/action_modifier = 0.2
+	var/action_modifier = 0.5
 	///Movement speed modifier
 	var/speed_modifier = -1.2
 	///Gun scatter modifier
