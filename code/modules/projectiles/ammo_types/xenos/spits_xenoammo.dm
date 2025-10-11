@@ -125,11 +125,13 @@
 	spit_cost = 100
 	added_spit_delay = 0 SECONDS
 	damage = 10
+	plasma_drain = 3
 	smoke_strength = 1
 	reagent_transfer_amount = 10
 
 /datum/ammo/xeno/toxin/auto
 	damage = 3
+	plasma_drain = 1
 	damage_falloff = 0.2
 	spit_cost = 20
 	added_spit_delay = 0 SECONDS
@@ -173,11 +175,13 @@
 	spit_cost = 120
 	added_spit_delay = 0 SECONDS
 	damage = 35
+	plasma_drain = 9
 	smoke_strength = 1
 	reagent_transfer_amount = 8
 
 /datum/ammo/xeno/toxin/aphrotoxin/auto
 	damage = 12
+	plasma_drain = 3
 	damage_falloff = 0.2
 	spit_cost = 25
 	added_spit_delay = 0 SECONDS
