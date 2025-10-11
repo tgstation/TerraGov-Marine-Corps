@@ -836,7 +836,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
 "Is" = (
-/obj/structure/prop/mainship/brokengen,
+/obj/machinery/power/geothermal/bigred,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering/east)
 "Jk" = (

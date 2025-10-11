@@ -1588,11 +1588,11 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
 "rk" = (
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/two)
 "rl" = (
@@ -1738,8 +1738,8 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
 "st" = (
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
-/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/one)
 "sw" = (
@@ -2620,8 +2620,8 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
 "BJ" = (
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
-/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/two)
 "BL" = (
@@ -3345,9 +3345,9 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "Jy" = (
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /obj/machinery/light/small,
-/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/one)
 "JC" = (
@@ -3381,9 +3381,9 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "JT" = (
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /obj/machinery/light/small,
-/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/three)
 "JU" = (
@@ -4439,8 +4439,8 @@
 /turf/open/floor/plating,
 /area/lavaland/medical)
 "Vj" = (
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
-/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/three)
 "Vm" = (
@@ -9824,7 +9824,7 @@ rK
 rK
 bp
 QR
-Xg
+QR
 QR
 QR
 QR
@@ -10080,7 +10080,7 @@ rK
 rK
 rK
 bs
-QR
+Xg
 Uy
 QR
 QR
@@ -10091,7 +10091,7 @@ Uy
 QR
 bp
 Uy
-QR
+Xg
 QR
 QR
 rK
@@ -23833,8 +23833,8 @@ YM
 Pa
 ax
 Yy
-kw
-yd
+ZY
+Yy
 Yy
 Dt
 Dt

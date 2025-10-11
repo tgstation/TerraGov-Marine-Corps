@@ -1744,8 +1744,8 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "apO" = (
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
-/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "aqg" = (
@@ -95492,7 +95492,7 @@
 /turf/open/floor/urban/metal/bluemetalfull,
 /area/lv759/indoors/spaceport/communications_office)
 "rgC" = (
-/obj/structure/prop/mainship/brokengen,
+/obj/machinery/power/geothermal,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "rgJ" = (

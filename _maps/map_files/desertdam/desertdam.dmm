@@ -38522,6 +38522,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/effect/ai_node,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/east_wing_hallway)
 "kjO" = (
@@ -47875,8 +47876,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "qdv" = (
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
-/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "qdx" = (
@@ -113972,7 +113973,7 @@ vTh
 wtW
 wPQ
 yhL
-uop
+ulI
 xLK
 hgC
 rCV
