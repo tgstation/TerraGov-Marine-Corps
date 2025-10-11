@@ -31,8 +31,8 @@
 		hivenumber = _hivenumber
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	name = "[hive.prefix][name]"
-	if(!color)
-		color = hive.color
+	if(hive.color)
+		add_filter("hive_color", 10, outline_filter(2, hive.color))
 	return INITIALIZE_HINT_LATELOAD
 
 /turf/closed/wall/resin/get_mechanics_info()
@@ -268,19 +268,26 @@
 /turf/closed/wall/resin/regenerating/thick
 	max_integrity = 125
 
+/turf/closed/wall/resin/regenerating/special
+	var/filtercolor
+
+/turf/closed/wall/resin/regenerating/special/Initialize(mapload, ...)
+	. = ..()
+	add_filter("base_color", -10, color_matrix_filter(filtercolor))
+
 /turf/closed/wall/resin/regenerating/special/bulletproof
 	name = "bulletproof resin wall"
 	desc = "Weird slime solidified into a wall. Looks shiny."
 	max_upgradable_health = 250
 	soft_armor = list(MELEE = 0, BULLET = 110, LASER = 100, ENERGY = 100, BOMB = 20, BIO = 0, FIRE = 0, ACID = 0) //You aren't damaging this with bullets without alot of AP.
-	color = COLOR_WALL_BULLETPROOF
+	filtercolor = COLOR_WALL_BULLETPROOF
 
 /turf/closed/wall/resin/regenerating/special/fireproof
 	name = "fireproof resin wall"
 	desc = "Weird slime solidified into a wall. Very red."
 	max_upgradable_health = 200
 	soft_armor = list(MELEE = 0, BULLET = 65, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
-	color = COLOR_WALL_FIREPROOF
+	filtercolor = COLOR_WALL_FIREPROOF
 	allow_pass_flags = NONE // To prevent fire from passing beyond it.
 
 /turf/closed/wall/resin/regenerating/special/hardy
@@ -288,4 +295,4 @@
 	desc = "Weird slime soldified into a wall. Looks sturdy."
 	max_upgrade_per_tick = 12 //Upgrades faster, but if damaged at all it will be put on cooldown still to help against walling in combat.
 	soft_armor = list(MELEE = 80, BULLET = 30, LASER = 25, ENERGY = 75, BOMB = 80, BIO = 0, FIRE = 0, ACID = 0)
-	color = COLOR_WALL_HARDY
+	filtercolor = COLOR_WALL_HARDY

@@ -85,7 +85,8 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		hivenumber = input_hivenumber
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	name = "[hive.prefix][name]"
-	color = hive.color
+	if(hive.color)
+		add_filter("hive_color", 10, outline_filter(2, hive.color))
 
 	if(input_source)
 		facehugger_register_source(input_source)
@@ -824,6 +825,11 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	sterile = TRUE
 	combat_hugger = TRUE
 	equip_slot_flags = NONE
+	var/filtercolor
+
+/obj/item/clothing/mask/facehugger/combat/Initialize(mapload, ...)
+	. = ..()
+	add_filter("base_color", -10, color_matrix_filter(filtercolor))
 
 /obj/item/clothing/mask/facehugger/combat/chem_injector
 	desc = "This strange creature has a single prominent sharp proboscis."
@@ -851,7 +857,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 
 /obj/item/clothing/mask/facehugger/combat/chem_injector/neuro
 	name = "neurotoxin hugger"
-	color = COLOR_DARK_ORANGE
+	filtercolor = COLOR_DARK_ORANGE
 	injected_chemical_type = /datum/reagent/toxin/xeno_neurotoxin
 
 /obj/item/clothing/mask/facehugger/combat/chem_injector/neuro/try_attach(mob/living/carbon/M)
@@ -862,17 +868,17 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 /obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn
 	name = "ozelomelyn hugger"
 	injected_chemical_type = /datum/reagent/toxin/xeno_ozelomelyn
-	color = COLOR_MAGENTA
+	filtercolor = COLOR_MAGENTA
 
 /obj/item/clothing/mask/facehugger/combat/chem_injector/aphrotoxin
 	name = "aphrotoxin hugger"
 	injected_chemical_type = /datum/reagent/toxin/xeno_aphrotoxin
-	color = COLOR_PINK
+	filtercolor = COLOR_PINK
 
 /obj/item/clothing/mask/facehugger/combat/acid
 	name = "acid hugger"
 	desc = "This repulsive looking thing is bloated with throbbing, putrescent green sacks of flesh."
-	color = COLOR_GREEN
+	filtercolor = COLOR_GREEN
 	impact_time = 1 SECONDS
 	activate_time = 1.5 SECONDS
 	jump_cooldown = 1.5 SECONDS
@@ -900,7 +906,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 /obj/item/clothing/mask/facehugger/combat/resin
 	name = "resin hugger"
 	desc = "This truly bizzare, bloated creature drips with purple, viscous resin."
-	color = COLOR_STRONG_VIOLET
+	filtercolor = COLOR_STRONG_VIOLET
 	impact_time = 1 SECONDS
 	activate_time = 1.5 SECONDS
 	jump_cooldown = 1.5 SECONDS
@@ -934,7 +940,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 /obj/item/clothing/mask/facehugger/combat/slash
 	name = "clawed hugger"
 	desc = "This nasty little creature is a nightmarish scrabble of muscle and sharp, long claws."
-	color = COLOR_RED
+	filtercolor = COLOR_RED
 	impact_time = 0.5 SECONDS
 	activate_time = 1.2 SECONDS
 	jump_cooldown = 1.2 SECONDS
@@ -972,7 +978,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 
 /obj/item/clothing/mask/facehugger/combat/harmless
 	name = "harmless hugger"
-	color = COLOR_BROWN
+	filtercolor = COLOR_BROWN
 
 /obj/item/clothing/mask/facehugger/combat/harmless/try_attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
