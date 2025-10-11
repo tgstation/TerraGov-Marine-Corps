@@ -464,7 +464,6 @@
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	toxpwr = 0
 	var/neuro_stun_cd = 0
-	var/accumulated_overflow = 0
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power = 0
@@ -488,13 +487,8 @@
 	var/applied_damage = clamp(power, 0, (stamina_loss_limit - L.getStaminaLoss()))
 	var/damage_overflow = power - applied_damage
 	if((damage_overflow > 0) && COOLDOWN_FINISHED(src, neuro_stun_cd))
-		accumulated_overflow += damage_overflow
-		if(accumulated_overflow > stamina_loss_limit)
-			accumulated_overflow = 0
-			L.adjustStaminaLoss(power)
-			COOLDOWN_START(src, neuro_stun_cd, 5 MINUTES) //only do the hard stun once every five minutes, unless the reagent is cleared completely
-		else
-			L.adjustStaminaLoss(applied_damage)
+		L.adjustStaminaLoss(power)
+		COOLDOWN_START(src, neuro_stun_cd, 5 MINUTES) //only do the hard stun once every five minutes, unless the reagent is cleared completely
 	else
 		L.adjustStaminaLoss(applied_damage)
 	/*
