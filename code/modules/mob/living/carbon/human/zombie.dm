@@ -4,7 +4,7 @@
 	action_icon = 'icons/Xeno/actions/leader.dmi'
 
 /datum/action/rally_zombie/action_activate()
-	owner.emote("roar")
+	owner.balloon_alert(owner, "Zombies Rallied!")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
 	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
 	if(set_agressivity)
@@ -13,6 +13,7 @@
 /datum/action/set_agressivity
 	name = "Set other zombie behavior"
 	action_icon_state = "minion_agressive"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	///If zombies should be agressive
 	var/zombies_agressive = TRUE
 
@@ -28,7 +29,8 @@
 /obj/item/weapon/zombie_claw
 	name = "claws"
 	hitsound = 'sound/weapons/slice.ogg'
-	icon_state = ""
+	icon_state = "zombie_claw_left"
+	base_icon_state = "zombie_claw"
 	force = 20
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
@@ -36,7 +38,7 @@
 	item_flags = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
-	///How much zombium are transferred per hit. Set to zero to remove transmission
+	///How much zombium is transferred per hit. Set to zero to remove transmission
 	var/zombium_per_hit = 5
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
