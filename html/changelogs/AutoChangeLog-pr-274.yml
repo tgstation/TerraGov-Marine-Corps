@@ -1,0 +1,4 @@
+author: "DrCrawler"
+delete-after: True
+changes:
+  - balance: "The Chronos implant now HALVES the time it takes to perform do_after actions, instead of reducing them by 20%"
