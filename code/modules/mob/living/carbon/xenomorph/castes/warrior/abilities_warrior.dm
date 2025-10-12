@@ -351,7 +351,7 @@
 	playsound(living_target, 'sound/weapons/alien_claw_block.ogg', 75, 1)
 	shake_camera(living_target, 1, 1)
 	xeno_owner.do_attack_animation(living_target, ATTACK_EFFECT_DISARM2)
-	var/fling_distance = WARRIOR_FLING_DISTANCE
+	var/fling_distance = starting_fling_distance
 	if(living_target.mob_size >= MOB_SIZE_BIG) // Penalize fling distance for big creatures.
 		fling_distance--
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
