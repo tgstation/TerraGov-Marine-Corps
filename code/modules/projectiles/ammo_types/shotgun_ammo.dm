@@ -360,12 +360,11 @@
 /datum/ammo/bullet/shotgun/breaching/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
 
-/// Bring me that server box
 
 /datum/ammo/bullet/shotgun/sh410_ricochet
-	name = "light autoshotgun ricochet shell" /// Single shots. Ricochets are like horrible spaghetti so this is preferrable to buckshots i guess
+	name = "light autoshotgun ricochet shell"
 	handful_icon_state = "light_shotgun_ricochet"
-	icon_state = "shotgun_ricochet"
+	icon_state = "bullet_large_red"
 	hud_state = "shotgun_ricochet"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 2
@@ -373,30 +372,21 @@
 	damage = 50
 	penetration = 0
 	sundering = 0.5
-
-/datum/ammo/bullet/shotgun/sh410_ricochet
-	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_ricochet/one
 	bonus_projectiles_scatter = 0
-
-/datum/ammo/bullet/shotgun/sh410_ricochet/one
-	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_ricochet/two
-
-/datum/ammo/bullet/shotgun/sh410_ricochet/two /// for now maybe
 
 /datum/ammo/bullet/shotgun/sh410_ricochet/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	reflect(target_turf, proj, 20)
 
-/**
- * Trailing gas rounds
- * Might just do like tangle* and tacsmoke (for chamber tech like in BR8 incendiary) since there isn't really much I can think of (atleast in HvX)
- * Will have to make rounds that drop gas on turf
-**/
+/datum/ammo/bullet/shotgun/sh410_ricochet/one
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_ricochet
 
+/datum/ammo/bullet/shotgun/sh410_ricochet/two
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sh410_ricochet/one
 
 /datum/ammo/bullet/shotgun/sh410_gas
 	name = "light autoshotgun gas shell"
 	handful_icon_state = "light_shotgun_gas"
-	icon_state = "shotgun_gas"
+	icon_state = "bullet_large_green"
 	hud_state = "shotgun_flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_LEAVE_TURF
 	shell_speed = 2.5
@@ -422,10 +412,8 @@
 	trail_spread_system.set_up(0, target_turf, 3)
 	trail_spread_system.start()
 
-// The MBX has the fucking most dogshit shotgun shell rounds ever so I'm just gonna make my own .410 gauge
-
 /datum/ammo/bullet/shotgun/sh410_buckshot
-	name = "light autoshotgun magnum buckshot shell" //What a fucking mouthful
+	name = "light autoshotgun magnum buckshot shell"
 	handful_icon_state = "light_shotgun_buckshot"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
@@ -436,7 +424,6 @@
 	max_range = 10
 	damage = 20
 	damage_falloff = 0.5
-///Yes, it does do more damage than the 35 (on burst) but you'll have to facetank one and a half (ish) seconds of being PB'd and there's no stagger/etc so
 
 /datum/ammo/bullet/shotgun/sh410_buckshot/spread
 	name = "additional buckshot"
@@ -445,7 +432,7 @@
 /datum/ammo/bullet/shotgun/sh410_sabot
 	name = "light autoshotgun sabot shell"
 	handful_icon_state = "light_shotgun_sabot"
-	icon_state = "shotgun_slug"
+	icon_state = "bullet_large"
 	hud_state = "shotgun_sabot"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 5

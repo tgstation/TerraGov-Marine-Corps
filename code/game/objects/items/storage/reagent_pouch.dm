@@ -146,10 +146,10 @@
 ///Fills the hypo that gets stored in the pouch from the internal storage tank. Returns FALSE if you fail to refill your injector
 /obj/item/storage/pouch/pressurized_reagent_pouch/proc/fill_autoinjector(obj/item/reagent_containers/hypospray/autoinjector, mob/user)
 	if(!inner)
-		user.balloon_alert(user, "No container")
+		user.balloon_alert(user, "no container!")
 		return FALSE
 	if(!inner.reagents.total_volume)
-		user.balloon_alert(user, "No reagent left")
+		user.balloon_alert(user, "no reagent left!")
 		return FALSE
 	inner.reagents.trans_to(autoinjector, autoinjector.volume)
 	playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)

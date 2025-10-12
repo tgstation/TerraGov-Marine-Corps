@@ -111,11 +111,11 @@
 ///Waves the flag around heroically
 /obj/item/plantable_flag/proc/lift_flag(mob/user)
 	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_WHISTLE_WARCRY))
-		user.balloon_alert(user, "On cooldown")
+		user.balloon_alert(user, "on cooldown!")
 		return
 
 	TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_WARCRY, 1 MINUTES)
-	user.visible_message(span_warning("[user] lifts up [src] triumphantly!"))
+	user.visible_message(span_boldnotice("[user] lifts up [src] triumphantly!"))
 	playsound(get_turf(src), 'sound/items/plantable_flag/flag_raised.ogg', 75)
 	addtimer(CALLBACK(src, PROC_REF(do_warcry), user), 1 SECONDS)
 

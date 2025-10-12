@@ -637,7 +637,7 @@
 /obj/effect/landmark/corpsespawner/freelancer
 	name = "Freelancer mercenary"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/freelancer
+	corpsesuit = /obj/item/clothing/suit/storage/marine/freelancer
 	corpsemask = /obj/item/clothing/mask/gas/tactical/freelancer
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/freelancer
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
@@ -646,7 +646,7 @@
 /obj/effect/landmark/corpsespawner/freelancer_officer
 	name = "Freelancer mercenary"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy
+	corpsesuit = /obj/item/clothing/suit/storage/marine/freelancer/heavy
 	corpsemask = /obj/item/clothing/mask/gas/tactical/freelancer
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/freelancer/beret
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc

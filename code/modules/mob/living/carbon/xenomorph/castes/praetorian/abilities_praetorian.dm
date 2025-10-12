@@ -133,6 +133,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		else
 			do_acid_cone_spray(xeno_owner.loc, range, direction, CONE_PART_MIDDLE_DIAG, xeno_owner, TRUE)
 
+#undef CONE_PART_MIDDLE
+#undef CONE_PART_LEFT
+#undef CONE_PART_RIGHT
+#undef CONE_PART_DIAG_LEFT
+#undef CONE_PART_DIAG_RIGHT
+#undef CONE_PART_MIDDLE_DIAG
+
 // ***************************************
 // *********** Slime Grenade
 // ***************************************
@@ -179,6 +186,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
 	)
+	paralyze_duration = 0 // Although we don't do anything related to paralyze, it is nice to have this zeroed out.
 	charge_range = PRAE_CHARGEDISTANCE
 	///Can we use the ability again
 	var/recast_available = FALSE
