@@ -217,9 +217,19 @@
 	max_integrity = 750 //This is going to get hit, a lot
 	icon = 'icons/obj/clothing/boxing.dmi'
 	icon_state = "punchingbag"
+	COOLDOWN_DECLARE(punching_bag)
 
 /obj/structure/punching_bag/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	flick("[icon_state]-punch", src)
+
+/obj/structure/punching_bag/attack_hand(mob/living/user)
+	. = ..()
+	if(!COOLDOWN_FINISHED(src, punching_bag))
+		return
+	COOLDOWN_START(src, punching_bag, 0.8 SECONDS)
+	user.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	playsound(loc, get_sfx(SFX_PUNCH), 40, TRUE)
 	flick("[icon_state]-punch", src)
 
 /obj/item/clothing/gloves/white
