@@ -167,6 +167,7 @@
 			/obj/item/explosive/grenade/smokebomb/aphrotoxin = 5,
 			/obj/item/explosive/grenade/smokebomb/sleep = 10,
 			/obj/item/storage/box/m94 = 200,
+			/obj/item/storage/box/m94/cas = 30,
 			/obj/item/ammo_magazine/handful/micro_grenade = 30,
 			/obj/item/ammo_magazine/handful/micro_grenade/cluster = 20,
 			/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst = 24,
