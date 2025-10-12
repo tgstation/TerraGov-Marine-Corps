@@ -440,8 +440,7 @@
 	shield_health = 0
 
 	STOP_PROCESSING(SSobj, src)
-	deltimer(recharge_timer)
-	recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown * 3 / severity, TIMER_STOPPABLE)
+	recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown * 3 / severity, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
 
 ///Called to give extra info on parent examine.
 /obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/user, list/examine_list)
@@ -486,25 +485,19 @@
 	if(attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
 		return incoming_damage
 	STOP_PROCESSING(SSobj, src)
-	deltimer(recharge_timer)
 	var/shield_left = shield_health - incoming_damage
 	var/mob/living/affected = parent.loc
 	affected.remove_filter("eshield")
 	if(shield_left > 0)
 		shield_health = shield_left
-		switch(shield_left / max_shield_health)
-			if(0 to 0.33)
-				affected.add_filter("eshield", 2, outline_filter(1, shield_color_low))
-			if(0.33 to 0.66)
-				affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
-			if(0.66 to 1)
-				affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
+		current_color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, space = COLORSPACE_HCY, index = (shield_health/max_shield_health))
+		affected.add_filter("eshield", 2, outline_filter(1, current_color))
 		spark_system.start()
 	else
 		shield_health = 0
-		recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown + 1, TIMER_STOPPABLE) //Gives it a little extra time for the cooldown.
+		recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown + 1, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT) //Gives it a little extra time for the cooldown.
 		return -shield_left
-	recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown, TIMER_STOPPABLE)
+	recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
 	return 0
 
 ///Starts the shield recharging after it has been broken.
@@ -521,23 +514,15 @@
 
 /obj/item/armor_module/module/eshield/process()
 	shield_health = min(shield_health + recharge_rate, max_shield_health)
+	var/new_color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, space = COLORSPACE_HCY, index = (shield_health/max_shield_health))
+	if(shield_health/max_shield_health < 0.2)
+		playsound(parent.loc, 'sound/items/eshield_down.ogg', 40)
+	if(new_color != current_color)
+		current_color = new_color
+		var/mob/living/affected = parent.loc
+		affected.add_filter("eshield", 2, outline_filter(1, current_color))
 	if(shield_health == max_shield_health) //Once health is full, we don't need to process until the next time we take damage.
 		STOP_PROCESSING(SSobj, src)
-		return
-	var/new_color
-	switch(shield_health/max_shield_health)
-		if(0 to 0.2)
-			playsound(parent.loc, 'sound/items/eshield_down.ogg', 40)
-			new_color = (shield_color_low != current_color) ? shield_color_low : null
-		if(0.2 to 0.6)
-			new_color = (shield_color_mid != current_color) ? shield_color_mid : null
-		if(0.6 to 1)
-			new_color = (shield_color_full != current_color) ? shield_color_full : null
-	if(!new_color)
-		return
-	var/mob/living/affected = parent.loc
-	affected.remove_filter("eshield")
-	affected.add_filter("eshield", 2, outline_filter(1, new_color))
 
 /obj/item/armor_module/module/eshield/overclocked
 	max_shield_health = 75
