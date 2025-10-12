@@ -143,6 +143,12 @@ EXPLOSIVES
 	cost = 150
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/explosives/flares_cas
+	name = "M50 CFDP signal flare pack"
+	notes = "Contains 14 flares"
+	contains = list(/obj/item/storage/box/m94/cas)
+	cost = 50
+
 /datum/supply_packs/explosives/detpack
 	name = "detpack explosive"
 	contains = list(/obj/item/detpack)
