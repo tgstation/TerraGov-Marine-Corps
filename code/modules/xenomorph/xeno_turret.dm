@@ -266,3 +266,12 @@
 	light_initial_color = LIGHT_COLOR_BROWN
 	ammo = /datum/ammo/xeno/hugger
 	firerate = 5 SECONDS
+
+/obj/structure/xeno/xeno_turret/hugger_turret/Initialize(mapload, _hivenumber, datum/ammo/xeno/hugger/hugger_ammo)
+	if(istype(hugger_ammo))
+		var/huggername = initial((hugger_ammo.hugger_type).name)
+		name = "[huggername] turret"
+		desc = "A menacing looking construct of resin, it seems to be alive. It fires [huggername]s against intruders."
+	. = ..()
+	if(istype(hugger_ammo, /datum/ammo))
+		ammo = hugger_ammo

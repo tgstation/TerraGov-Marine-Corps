@@ -386,8 +386,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!can_use_action())
 		return FALSE
 
-	var/obj/structure/xeno/xeno_turret/hugger_turret/turret = new (get_turf(owner), xeno_owner.hivenumber)
-	turret.ammo = GLOB.ammo_list[GLOB.hugger_to_ammo[xeno_owner.selected_hugger_type]]
+	new /obj/structure/xeno/xeno_turret/hugger_turret(get_turf(owner), xeno_owner.hivenumber, GLOB.ammo_list[GLOB.hugger_to_ammo[xeno_owner.selected_hugger_type]])
 	succeed_activate()
 	add_cooldown()
 
