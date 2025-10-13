@@ -14,6 +14,8 @@
 	var/medical_rating = AI_MED_DEFAULT
 	///To what level they will handle engineering tasks like repairs
 	var/engineer_rating = AI_ENGIE_DEFAULT
+	///List of things the NPC will try to interact with, such as gear to pick up
+	var/list/atom/atoms_of_interest = list()
 	///Inventory datum so the mob_parent can manage its inventory
 	var/datum/managed_inventory/mob_inventory
 	///Chat lines when moving to a new target
@@ -46,6 +48,7 @@
 	melee_weapon = null
 	hazard_list = null
 	heal_list = null
+	atoms_of_interest = null
 	QDEL_NULL(mob_inventory)
 	return ..()
 
@@ -129,9 +132,11 @@
 			action.action_activate()
 
 	if(human_ai_behavior_flags & HUMAN_AI_USE_WEAPONS)
-		if(grenade_process())
-			return
-		weapon_process()
+		if(!grenade_process())
+			weapon_process()
+
+	if(!combat_target && !interact_target && length(atoms_of_interest) && isturf(atoms_of_interest[1].loc))
+		set_interact_target(atoms_of_interest[1]) //not sure if this should be lower
 
 /datum/ai_behavior/human/should_hold()
 	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION && COOLDOWN_FINISHED(src, ai_heal_after_dam_cooldown)) //Don't just stand there when taking damage
@@ -141,6 +146,8 @@
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_CLIMBING))
 		return TRUE
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_SHRAP_REMOVING))
+		return TRUE
+	if(HAS_TRAIT(mob_parent, TRAIT_IS_EQUIPPING_ITEM))
 		return TRUE
 	if(mob_parent.pulledby?.faction == mob_parent.faction)
 		return TRUE //lets players wrangle NPC's
@@ -184,8 +191,7 @@
 		return
 	if((current_action == MOVING_TO_ATOM) && (atom_to_walk_to == combat_target))
 		return //we generally want to keep fighting
-	var/mob/living/living_parent = mob_parent
-	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && !next_target && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth) && check_hazards())
+	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && !next_target && (mob_parent.health <= minimum_health * 2 * mob_parent.maxHealth) && check_hazards())
 		INVOKE_ASYNC(src, PROC_REF(try_heal))
 
 /datum/ai_behavior/human/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
@@ -217,6 +223,7 @@
 /datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
+	remove_atom_of_interest(old_target)
 
 	if(QDELETED(old_target)) //if they're deleted we need to ensure engineering and medical stuff is cleaned up properly
 		if(human_ai_state_flags & HUMAN_AI_HEALING)
@@ -297,11 +304,29 @@
 	set_interact_target(movable_target)
 	try_speak(pick(receive_order_chat))
 
+///Adds an atom to the interest list
+/datum/ai_behavior/human/proc/add_atom_of_interest(atom/new_atom)
+	if(new_atom in atoms_of_interest)
+		return
+	RegisterSignal(new_atom, COMSIG_QDELETING, PROC_REF(unset_target), TRUE) //it might already be an interaction target
+	atoms_of_interest += new_atom
+
+///Removes an atom from the interest list
+/datum/ai_behavior/human/proc/remove_atom_of_interest(atom/old_atom)
+	UnregisterSignal(old_atom, COMSIG_QDELETING)
+	atoms_of_interest -= old_atom
+
 ///Attempts to pickup an item
 /datum/ai_behavior/human/proc/pick_up_item(obj/item/new_item)
 	store_hands()
-	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item())
-		return
+
+	var/datum/limb/check_hand = mob_parent.get_limb(mob_parent.hand ? "l_hand" : "r_hand")
+	if(mob_parent.get_active_held_item() || !check_hand?.is_usable()) //either occupied or unusable
+		check_hand = mob_parent.get_limb(mob_parent.hand ? "r_hand" : "l_hand")
+		if(mob_parent.get_inactive_held_item() || !check_hand?.is_usable()) //off hand is the same
+			return
+		mob_parent.swap_hand()
+
 	mob_parent.UnarmedAttack(new_item, TRUE)
 
 ///Says an audible message
@@ -311,7 +336,8 @@
 	if(!COOLDOWN_FINISHED(src, ai_chat_cooldown))
 		return
 	//maybe radio arg in the future for some things
-	mob_parent.say(message)
+	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), message)
+	//mob_parent.say(message)
 	COOLDOWN_START(src, ai_chat_cooldown, cooldown)
 
 ///Reacts if the mob is below the min health threshold
@@ -339,8 +365,7 @@
 	if((human_ai_state_flags & HUMAN_AI_BUSY_ACTION))
 		return
 
-	var/mob/living/living_mob = mob_parent
-	if(living_mob.health - damage > minimum_health * living_mob.maxHealth)
+	if(mob_parent.health - damage > minimum_health * mob_parent.maxHealth)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
