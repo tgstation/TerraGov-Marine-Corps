@@ -200,9 +200,11 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
 	if (owner?.status_flags & INCORPOREAL)
 		return FALSE
-	return ..()
 
 // Secrete Resin
 /datum/action/ability/activable/xeno/secrete_resin
@@ -906,11 +908,13 @@
 	return ..()
 
 /datum/action/ability/xeno_action/xenohide/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
 	if(HAS_TRAIT(owner, TRAIT_TANK_DESANT))
 		if(!silent)
 			owner.balloon_alert(owner, "cannot while on vehicle")
 		return FALSE
-	return ..()
 
 /datum/action/ability/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner

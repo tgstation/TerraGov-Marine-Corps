@@ -362,6 +362,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/xeno_action/recall/can_use_action(silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return FALSE
 
 	var/datum/action/ability/activable/xeno/banish/banish_check = owner.actions_by_path[/datum/action/ability/activable/xeno/banish]
 	if(!banish_check) //Mainly for when we transition on upgrading
@@ -457,6 +459,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(clean_portals))
 
 /datum/action/ability/xeno_action/portal/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(locate(/obj/effect/wraith_portal) in get_turf(owner))
 		if(!silent)
 			to_chat(owner, span_xenowarning("There is already a portal here!"))
@@ -466,7 +471,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(!silent)
 			to_chat(owner, span_xenowarning("You cannot portal here!"))
 		return FALSE
-	return ..()
 
 /datum/action/ability/xeno_action/portal/action_activate()
 	. = ..()

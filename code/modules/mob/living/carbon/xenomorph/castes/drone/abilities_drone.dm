@@ -189,6 +189,9 @@
 	INVOKE_NEXT_TICK(src, PROC_REF(link_essence_action))
 
 /datum/action/ability/xeno_action/enhancement/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
 	if(existing_enhancement)
 		return TRUE
 	if(!HAS_TRAIT(owner, TRAIT_ESSENCE_LINKED))
@@ -197,7 +200,6 @@
 		return FALSE
 	if(essence_link_action.existing_link.stacks < essence_link_action.existing_link.max_stacks)
 		return FALSE
-	return ..()
 
 /datum/action/ability/xeno_action/enhancement/action_activate()
 	if(existing_enhancement)

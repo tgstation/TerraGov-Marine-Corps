@@ -10,9 +10,11 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/secrete_resin/hivemind/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
-	return ..()
 
 /datum/action/ability/xeno_action/change_form
 	name = "Change form"
@@ -65,27 +67,35 @@
 	hivemind_heal = TRUE
 
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
-	return ..()
 
 /datum/action/ability/activable/xeno/transfer_plasma/hivemind
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
 
 /datum/action/ability/activable/xeno/transfer_plasma/hivemind/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
-	return ..()
 
 /datum/action/ability/xeno_action/pheromones/hivemind/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
-	return ..()
 
 /datum/action/ability/xeno_action/watch_xeno/hivemind/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
 	if(TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return FALSE
-	return ..()
 
 /datum/action/ability/xeno_action/watch_xeno/hivemind/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
 	if(!can_use_action())

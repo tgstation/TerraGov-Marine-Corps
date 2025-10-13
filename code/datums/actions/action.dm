@@ -110,6 +110,8 @@ KEYBINDINGS
 /datum/action/proc/update_button_icon()
 	if(!button)
 		return
+	if(QDELETED(owner))
+		return FALSE
 	button.name = name
 	button.desc = desc
 	if(action_icon && action_icon_state)

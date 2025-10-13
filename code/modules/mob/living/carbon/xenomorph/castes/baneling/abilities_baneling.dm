@@ -43,6 +43,8 @@
 
 /datum/action/ability/xeno_action/baneling_explode/can_use_action()
 	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/action/ability/xeno_action/spawn_pod/pod_action = X.actions_by_path[/datum/action/ability/xeno_action/spawn_pod]
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && isnull(pod_action.the_pod))

@@ -61,10 +61,10 @@
 	return ..()
 
 /datum/action/ability/xeno_action/stealth/can_use_action(silent, override_flags, selecting)
-	if(owner.status_flags & INCORPOREAL)
-		return FALSE
 	. = ..()
 	if(!.)
+		return FALSE
+	if(owner.status_flags & INCORPOREAL)
 		return FALSE
 	if(xeno_owner.on_fire)
 		to_chat(xeno_owner, "<span class='warning'>We're too busy being on fire to enter Stealth!</span>")
@@ -535,6 +535,8 @@
 
 /datum/action/ability/xeno_action/psychic_trace/can_use_action(silent, override_flags, selecting)
 	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/action/ability/activable/xeno/hunter_mark/mark = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 
 	if(!mark.marked_target)
@@ -616,9 +618,11 @@
 	return ..()
 
 /datum/action/ability/xeno_action/mirage/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(owner.status_flags & INCORPOREAL)
 		return FALSE
-	. = ..()
 	if(swap_used)
 		if(!silent)
 			to_chat(owner, span_xenowarning("We already swapped with an illusion!"))

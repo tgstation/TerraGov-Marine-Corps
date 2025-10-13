@@ -301,6 +301,8 @@
 
 /datum/action/ability/xeno_action/place_jelly_pod/can_use_action(silent, override_flags, selecting)
 	. = ..()
+	if(!.)
+		return
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
@@ -467,6 +469,8 @@
 
 /datum/action/ability/xeno_action/sow/can_use_action(silent, override_flags, selecting)
 	. = ..()
+	if(!.)
+		return
 	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
 			owner.balloon_alert(owner, "no weeds!")
@@ -524,6 +528,8 @@
 
 /datum/action/ability/xeno_action/place_recovery_pylon/can_use_action(silent, override_flags, selecting)
 	. = ..()
+	if(!.)
+		return
 	var/turf/current_turf = get_turf(owner)
 	if(!current_turf || !current_turf.is_weedable() || current_turf.density)
 		if(!silent)
