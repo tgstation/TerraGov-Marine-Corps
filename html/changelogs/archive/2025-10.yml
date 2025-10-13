@@ -90,3 +90,11 @@
   DrCrawler:
   - balance: The Chronos implant now HALVES the time it takes to perform do_after
       actions, instead of reducing them by 20%
+2025-10-13:
+  Lumipharon:
+  - bugfix: fixed overhead do_after icons not appearing in many cases
+  - imageadd: 'Campaign: Palmaria is visible from space'
+  - qol: Buttons now layer over mobs
+  - bugfix: fixed vegetation sounds not working properly
+  breadhunt:
+  - rscadd: You can now punch punching bags
