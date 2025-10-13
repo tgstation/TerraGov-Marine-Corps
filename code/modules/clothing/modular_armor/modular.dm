@@ -150,7 +150,7 @@
 	light_range = 5
 
 	///Uniform type that is allowed to be worn with this.
-	var/allowed_uniform_type = /obj/item/clothing/under/marine
+	var/allowed_uniform_type = /obj/item/clothing/under
 
 	shows_bottom_genital = TRUE
 	shows_top_genital = TRUE
