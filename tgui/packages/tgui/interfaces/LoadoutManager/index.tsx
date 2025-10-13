@@ -87,8 +87,11 @@ const LoadoutList = (props: LoadoutListData) => {
   );
 };
 
-const JobTabs = (props: LoadoutTabData) => {
+export const JobTabs = (props: LoadoutTabData) => {
   const { job, setJob } = props;
+  const { data } = useBackend<any>();
+  const vendor_categories = data.vendor_categories;
+
   return (
     <Section>
       <Flex>
@@ -97,48 +100,15 @@ const JobTabs = (props: LoadoutTabData) => {
         </Flex.Item>
         <Flex.Item>
           <Tabs>
-            <Tabs.Tab
-              selected={job === 'Squad Marine'}
-              onClick={() => setJob('Squad Marine')}
-            >
-              Squad Marine
-            </Tabs.Tab>
-            <Tabs.Tab
-              selected={job === 'Squad Engineer'}
-              onClick={() => setJob('Squad Engineer')}
-            >
-              Squad Engineer
-            </Tabs.Tab>
-            <Tabs.Tab
-              selected={job === 'Squad Corpsman'}
-              onClick={() => setJob('Squad Corpsman')}
-            >
-              Squad Corpsman
-            </Tabs.Tab>
-            <Tabs.Tab
-              selected={job === 'Squad Smartgunner'}
-              onClick={() => setJob('Squad Smartgunner')}
-            >
-              Squad Smartgunner
-            </Tabs.Tab>
-            <Tabs.Tab
-              selected={job === 'Squad Leader'}
-              onClick={() => setJob('Squad Leader')}
-            >
-              Squad Leader
-            </Tabs.Tab>
-            <Tabs.Tab
-              selected={job === 'Field Commander'}
-              onClick={() => setJob('Field Commander')}
-            >
-              Field Commander
-            </Tabs.Tab>
-            <Tabs.Tab
-              selected={job === 'Synthetic'}
-              onClick={() => setJob('Synthetic')}
-            >
-              Synthetic
-            </Tabs.Tab>
+            {vendor_categories.map((jobOption) => (
+              <Tabs.Tab
+                key={jobOption}
+                selected={job === jobOption}
+                onClick={() => setJob(jobOption)}
+              >
+                {jobOption} {}
+              </Tabs.Tab>
+            ))}
           </Tabs>
         </Flex.Item>
         <Flex.Item grow={1}>
@@ -151,14 +121,14 @@ const JobTabs = (props: LoadoutTabData) => {
 
 export const LoadoutManager = (props) => {
   const { act, data } = useBackend<LoadoutManagerData>();
-  const { loadout_list } = data;
+  const { loadout_list, vendor_categories, ui_theme } = data;
 
-  const [job, setJob] = useState('Squad Marine');
+  const [job, setJob] = useState(vendor_categories[0]);
   const [saveNewLoadout, setSaveNewLoadout] = useState(false);
   const [importNewLoadout, setImportNewLoadout] = useState(false);
 
   return (
-    <Window title="Loadout Manager" width={800} height={400}>
+    <Window title="Loadout Manager" width={800} height={400} theme={ui_theme}>
       <Window.Content>
         <Stack vertical>
           <JobTabs job={job} setJob={setJob} />

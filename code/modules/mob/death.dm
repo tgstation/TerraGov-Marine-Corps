@@ -58,7 +58,7 @@
 
 /mob/proc/on_death()
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
-	client?.view_size.reset_to_default()//just so we never get stuck with a large view somehow
+	client?.view_size?.reset_to_default()//just so we never get stuck with a large view somehow
 
 	hide_fullscreens()
 
@@ -88,3 +88,17 @@
 
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)
+
+	//if((!SSticker.mode || CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS)))
+	switch(faction)
+		if(FACTION_TERRAGOV)
+			overlay_fullscreen("death", /atom/movable/screen/fullscreen/dead/terra)
+		if(FACTION_SOM)
+			overlay_fullscreen("death", /atom/movable/screen/fullscreen/dead/som)
+		if(FACTION_VSD)
+			overlay_fullscreen("death", /atom/movable/screen/fullscreen/dead/vsd)
+		if(FACTION_XENO)
+			overlay_fullscreen("death", /atom/movable/screen/fullscreen/dead/xeno)
+		else
+			overlay_fullscreen("death", /atom/movable/screen/fullscreen/dead)
+	client?.stop_sounds()

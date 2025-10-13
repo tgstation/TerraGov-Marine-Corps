@@ -813,10 +813,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
-"ei" = (
-/obj/machinery/power/geothermal,
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "ek" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark/yellow2,
@@ -1130,7 +1126,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "fF" = (
@@ -2256,6 +2251,14 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science)
+"kM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating,
+/area/outpost/engineering/engine)
 "kN" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/south)
@@ -3104,6 +3107,7 @@
 "oC" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -4128,6 +4132,7 @@
 /area/outpost/cargo/security)
 "tk" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
@@ -5022,6 +5027,7 @@
 "xq" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/office)
 "xs" = (
@@ -5131,7 +5137,6 @@
 	},
 /area/outpost/medbay)
 "xY" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
@@ -5158,6 +5163,7 @@
 /area/outpost/lz1)
 "yd" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -5287,6 +5293,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -5894,6 +5901,7 @@
 /area/outpost/yard/central)
 "Bz" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "BB" = (
@@ -6155,6 +6163,7 @@
 "CT" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "CU" = (
@@ -6242,6 +6251,7 @@
 /area/outpost/yard/north_east)
 "Dt" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Du" = (
@@ -8432,6 +8442,7 @@
 "NJ" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/arrivals)
 "NK" = (
@@ -8600,6 +8611,7 @@
 /area/outpost/yard/south)
 "Ov" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -9086,8 +9098,8 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_west)
 "QK" = (
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/obj/machinery/power/smes/buildable,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "QN" = (
@@ -9628,6 +9640,7 @@
 "Tj" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -10071,6 +10084,7 @@
 /area/outpost/engineering/engine)
 "Vm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo)
 "Vo" = (
@@ -10867,6 +10881,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/east)
+"Zb" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/outpost/engineering/engine)
 "Zd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24550,8 +24571,8 @@ Ek
 Cy
 Cy
 DX
-MG
-MG
+QK
+Zb
 MG
 MG
 ih
@@ -24683,7 +24704,7 @@ Cy
 Cy
 DX
 QK
-wz
+Zb
 wz
 wz
 yj
@@ -24814,9 +24835,9 @@ Sz
 Db
 DX
 DX
+QK
+Zb
 MG
-MG
-wz
 MG
 AC
 MU
@@ -24946,9 +24967,9 @@ sf
 TB
 wR
 DX
-RA
-MG
+kM
 wz
+MG
 FJ
 MG
 MU
@@ -25219,7 +25240,7 @@ MU
 MG
 CU
 MG
-ei
+oh
 xx
 Ij
 MG

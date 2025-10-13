@@ -110,7 +110,7 @@ SUBSYSTEM_DEF(job)
 	if(!latejoin)
 		unassigned -= player
 	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
-		SSpoints.supply_points[job.faction] += SUPPLY_POINT_MARINE_SPAWN
+		SSpoints.add_supply_points(job.faction, SUPPLY_POINT_MARINE_SPAWN)
 	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
 	player.mind?.assigned_role = job
 	player.assigned_role = job
@@ -335,10 +335,22 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
+	if(issurvivorjob(assigned_role))
+		if(length(GLOB.latejoinsurvivor))
+			SendToAtom(M, pick(GLOB.latejoinsurvivor))
+			return
 	switch(assigned_role.faction)
 		if(FACTION_SOM)
 			if(length(GLOB.latejoinsom))
 				SendToAtom(M, pick(GLOB.latejoinsom))
+				return
+		if(FACTION_CLF)
+			if(length(GLOB.latejoinclf))
+				SendToAtom(M, pick(GLOB.latejoinclf))
+				return
+		if(FACTION_MOTHELLIAN)
+			if(length(GLOB.latejoinmoff))
+				SendToAtom(M, pick(GLOB.latejoinmoff))
 				return
 		else
 			if(length(GLOB.latejoin))

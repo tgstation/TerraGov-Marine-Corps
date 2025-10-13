@@ -10,6 +10,7 @@
 	hud_state_empty = "smg_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accuracy_variation = 7
+	shell_speed = 3.5
 	damage = 20
 	accurate_range = 4
 	damage_falloff = 1
@@ -19,9 +20,9 @@
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
-	damage = 15
-	penetration = 30
-	sundering = 3
+	damage = 20
+	penetration = 10
+	sundering = 1.5
 
 /datum/ammo/bullet/smg/ap/hv
 	name = "high velocity armor-piercing submachinegun bullet"
@@ -45,6 +46,7 @@
 	armor_type = BOMB
 	sundering = 1
 	damage_falloff = 2
+	accurate_range = 5
 	shrapnel_chance = 0
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 3 SECONDS

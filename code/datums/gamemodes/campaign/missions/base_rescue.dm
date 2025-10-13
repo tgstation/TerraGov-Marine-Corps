@@ -37,7 +37,7 @@
 		),
 	)
 
-	starting_faction_additional_rewards = "NanoTrasen has offered a level of corporate assistance if their facility can be protected."
+	starting_faction_additional_rewards = "Ninetails has offered a level of corporate assistance if their facility can be protected."
 	hostile_faction_additional_rewards = "Improved relations with local militias will allow us to call on their assistance in the future."
 	outro_message = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(
@@ -46,7 +46,7 @@
 		),
 		MISSION_OUTCOME_MAJOR_LOSS = list(
 			MISSION_STARTING_FACTION = "<u>Major loss</u><br> VIP assets destroyed, mission failure. Fallback and regroup marines.",
-			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Outstanding work Martians, Nanotrasen won't be coming back here any time soon!",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Outstanding work Martians, Ninetails won't be coming back here any time soon!",
 		),
 	)
 
@@ -106,10 +106,10 @@
 	spawn_mech(defending_faction, 0, 0, max(0, mechs_to_spawn - 1))
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission_brief()
-	starting_faction_mission_brief = "NanoTrasen has issues an emergency request for assistance at an isolated medical facility located in the Western Ayolan Ranges. \
+	starting_faction_mission_brief = "Ninetails has issues an emergency request for assistance at an isolated medical facility located in the Western Ayolan Ranges. \
 		SOM forces are rapidly approaching the facility, which is currently on emergency lockdown. \
 		Move quickly prevent the SOM from lifting the lockdown and destroying the facility."
-	hostile_faction_mission_brief = "Recon forces have led us to this secure Nanotrasen facility in the Western Ayolan Ranges. Sympathetic native elements suggest NT have been conducting secret research here to the detriment of the local ecosystem and human settlements. \
+	hostile_faction_mission_brief = "Recon forces have led us to this secure Ninetails facility in the Western Ayolan Ranges. Sympathetic native elements suggest NT have been conducting secret research here to the detriment of the local ecosystem and human settlements. \
 		Find the security override terminals to override the facility's emergency lockdown. \
 		Once the lockdown is lifted, destroy what they're working on inside."
 	starting_faction_mission_parameters = "Fire support is unavailable due to the sensitive and costly nature of this NT installation."
@@ -124,7 +124,7 @@
 		if(FACTION_TERRAGOV)
 			message = "The SOM have a headstart on us, move in quickly and defend the installation. Do not let them override the security lockdowns!"
 		if(FACTION_SOM)
-			message = "Nanotrasen is working on abominations here. Override the security lockdown so we can destroy their project. Show the people of this world we're fighting for them!"
+			message = "Ninetails is working on abominations here. Override the security lockdown so we can destroy their project. Show the people of this world we're fighting for them!"
 	return ..()
 
 /datum/campaign_mission/destroy_mission/base_rescue/start_mission()

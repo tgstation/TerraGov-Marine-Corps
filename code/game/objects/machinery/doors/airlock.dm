@@ -435,7 +435,7 @@
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
 
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(width > 1)
@@ -445,7 +445,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 
-		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You removed the airlock electronics!"))

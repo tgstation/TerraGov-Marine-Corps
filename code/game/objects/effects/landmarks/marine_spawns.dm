@@ -10,6 +10,10 @@
 	icon_state = "CAP"
 	job = /datum/job/terragov/command/captain
 
+/obj/effect/landmark/start/job/ceo
+	icon_state = "CAP"
+	job = /datum/job/terragov/command/ceo
+
 /obj/effect/landmark/start/job/captain/campaign
 	icon_state = "CAP"
 	job = /datum/job/terragov/command/captain/campaign
@@ -18,9 +22,17 @@
 	icon_state = "FC"
 	job = /datum/job/terragov/command/fieldcommander
 
+/obj/effect/landmark/start/job/corpseccommander
+	icon_state = "FC"
+	job = /datum/job/terragov/command/corpseccommander
+
 /obj/effect/landmark/start/job/fieldcommander/campaign
 	icon_state = "FC"
 	job = /datum/job/terragov/command/fieldcommander/campaign
+
+/obj/effect/landmark/start/job/security_officer
+	icon_state = "PFC"
+	job = /datum/job/terragov/security/security_officer
 
 /obj/effect/landmark/start/job/staffofficer
 	icon_state = "IO"
@@ -82,9 +94,21 @@
 	icon_state = "Synth"
 	job = /datum/job/terragov/silicon/synthetic
 
+/obj/effect/landmark/start/job/synthetic/som
+	icon_state = "Synth"
+	job = /datum/job/som/silicon/synthetic/som
+
+/obj/effect/landmark/start/job/synthetic/clf
+	icon_state = "Synth"
+	job = /datum/job/clf/silicon/synthetic/clf
+
 /obj/effect/landmark/start/job/squadmarine
 	icon_state = "PFC"
 	job = /datum/job/terragov/squad/standard
+
+/obj/effect/landmark/start/job/squadslut
+	icon_state = "PFC"
+	job = /datum/job/terragov/squad/slut
 
 /obj/effect/landmark/start/job/squadengineer
 	icon_state = "Eng"
@@ -112,7 +136,7 @@
 
 /obj/effect/landmark/start/job/survivor
 	icon_state = "Shaft Miner"
-	job = /datum/job/survivor/rambo
+	job = /datum/job/survivor
 
 /obj/effect/landmark/start/job/fallen
 	job = /datum/job/fallen/marine
@@ -123,6 +147,10 @@
 /obj/effect/landmark/start/job/xenomorph
 	icon_state = "xeno_spawn"
 	job = /datum/job/xenomorph
+
+/obj/effect/landmark/start/job/xenomorph/green
+	icon_state = "xeno_spawn"
+	job = /datum/job/xenomorph/green
 
 //SOM
 /obj/effect/landmark/start/job/som/squadstandard
@@ -156,3 +184,117 @@
 /obj/effect/landmark/start/job/som/staff_officer
 	icon_state = "som_staff_officer"
 	job = /datum/job/som/command/staffofficer
+
+/obj/effect/landmark/start/job/som/icc
+	icon_state = "som_staff_officer"
+	job = /datum/job/icc_squad/standard
+
+/obj/effect/landmark/start/job/som/icc_medic
+	icon_state = "som_staff_officer"
+	job = /datum/job/icc_squad/medic
+
+/obj/effect/landmark/start/job/som/icc_guard
+	icon_state = "som_staff_officer"
+	job = /datum/job/icc_squad/spec
+
+/obj/effect/landmark/start/job/som/icc_leader
+	icon_state = "som_staff_officer"
+	job = /datum/job/icc_squad/leader
+
+/obj/effect/landmark/start/job/som/icc_tech
+	icon_state = "som_staff_officer"
+	job = /datum/job/icc_squad/tech
+
+/obj/effect/landmark/start/job/clf/leader
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/leader
+
+/obj/effect/landmark/start/job/clf/medic
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/medic
+
+/obj/effect/landmark/start/job/clf/specialist
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/specialist
+
+/obj/effect/landmark/start/job/clf/standard
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/standard
+
+/obj/effect/landmark/start/job/clf/breeder
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/breeder
+
+/obj/effect/landmark/start/job/prisoner
+	icon_state = "Shaft Miner"
+	job = /datum/job/other/prisoner
+
+/obj/effect/landmark/start/job/worker
+	icon_state = "Shaft Miner"
+	job = /datum/job/worker
+
+/obj/effect/landmark/start/job/prisonersom
+	icon_state = "Shaft Miner"
+	job = /datum/job/other/prisonersom
+
+/obj/effect/landmark/start/job/prisonerclf
+	icon_state = "Shaft Miner"
+	job = /datum/job/other/prisonerclf
+
+// pmc
+
+/obj/effect/landmark/start/job/pmc
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/standard
+
+/obj/effect/landmark/start/job/pmc_medic
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/medic
+
+/obj/effect/landmark/start/job/pmc_engineer
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/engineer
+
+/obj/effect/landmark/start/job/pmc_gunner
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/gunner
+
+/obj/effect/landmark/start/job/pmc_sniper
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/sniper
+
+/obj/effect/landmark/start/job/pmc_leader
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/leader
+
+/obj/effect/landmark/start/job/vsd
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/standard
+
+/obj/effect/landmark/start/job/vsd_medic
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/medic
+
+/obj/effect/landmark/start/job/vsd_engineer
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/engineer
+
+/obj/effect/landmark/start/job/vsd_spec
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/spec
+
+/obj/effect/landmark/start/job/vsd_leader
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/leader
+
+/obj/effect/landmark/start/job/usl
+	icon_state = "MP"
+	job = /datum/job/usl_squad/standard
+
+/obj/effect/landmark/start/job/usl_spec
+	icon_state = "MP"
+	job = /datum/job/usl_squad/spec
+
+/obj/effect/landmark/start/job/usl_leader
+	icon_state = "MP"
+	job = /datum/job/usl_squad/leader

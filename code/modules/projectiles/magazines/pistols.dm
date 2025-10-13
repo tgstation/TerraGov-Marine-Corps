@@ -74,7 +74,14 @@
 	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 10
 
-
+/obj/item/ammo_magazine/pistol/m1911/ap
+	name = "\improper P-1911 AP magazine (.45)"
+	default_ammo = /datum/ammo/bullet/pistol/heavy/ap
+	caliber = CALIBER_45ACP
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "1911_ap"
+	icon_state_mini = "mag_pistol_green"
+	max_rounds = 10
 
 //-------------------------------------------------------
 //P-23
@@ -100,7 +107,7 @@
 	default_ammo = /datum/ammo/bullet/pistol
 
 /obj/item/ammo_magazine/pistol/g22tranq
-	name = "\improper G22 tranq magazine (9mm)"
+	name = "\improper P-22 Custom tranq magazine (9mm)"
 	caliber = CALIBER_9X19_TRANQUILIZER
 	icon_state = "g22"
 	icon_state_mini = "mag_pistol_normal"
@@ -242,6 +249,7 @@
 
 /obj/item/ammo_magazine/pistol/som/extended
 	name = "\improper V-11 extended magazine (9mm)"
+	default_ammo = /datum/ammo/bullet/pistol
 	max_rounds = 30
 	icon_state = "v11_extended"
 	icon_state_mini = "mag_pistol_yellow"
@@ -303,20 +311,32 @@
 
 //XM104 cylinder placed in pistols
 /obj/item/ammo_magazine/pistol/xmdivider
-	name = "\improper XM104 cylinder (.357)"
-	desc = "XM104 cylinder loaded with custom .357 incendiary rounds."
+	name = "\improper CC/104 incendinary cylinder (.357)"
+	desc = "CC/104 cylinder loaded with custom .357 incendiary rounds."
+	icon = 'ntf_modular/icons/obj/items/ammo/pistol.dmi'
 	default_ammo = /datum/ammo/bullet/revolver/heavy/incen
 	max_rounds = 6
 	caliber = CALIBER_357
 	icon_state = "xm104"
 	icon_state_mini = "xm104"
+	bonus_overlay = "c104_mag"
+
+/obj/item/ammo_magazine/pistol/xmdivider/ap
+	name = "\improper CC/104 AP cylinder (.357)"
+	desc = "CC/104 cylinder loaded with custom .357 armor-piercing rounds."
+	icon = 'ntf_modular/icons/obj/items/ammo/pistol.dmi'
+	default_ammo = /datum/ammo/bullet/revolver/heavy/ap
+	icon_state = "xm104_ap"
+	icon_state_mini = "xm104_ap"
+	icon_mini = 'ntf_modular/icons/obj/items/items_mini.dmi'
+	bonus_overlay = "c104_ap"
 
 //c96
 
 /obj/item/ammo_magazine/pistol/vsd_pistol
 	name = "\improper C96 'riot' magazine"
-	default_ammo = /datum/ammo/bullet/pistol/ap
+	default_ammo = /datum/ammo/bullet/pistol/vsd_ap
 	caliber = CALIBER_9X19
 	icon_state = "c96"
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 15
+	max_rounds = 22

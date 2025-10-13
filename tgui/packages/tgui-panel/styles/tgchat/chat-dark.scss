@@ -465,6 +465,12 @@ em {
 .supradio {
   color: hsl(33.7, 44.9%, 49.8%);
 }
+.secradio {
+  color: hsl(0, 71.2%, 53.7%);
+}
+.civradio {
+  color: hsl(83, 74.4%, 40%);
+}
 .alpharadio {
   color: hsl(0, 62%, 53%);
 }
@@ -557,6 +563,8 @@ h2.alert {
   color: hsl(227, 87.7%, 68%);
   font-size: 85%;
 }
+
+.psychicout,
 .xenonotice {
   color: hsl(154.7, 30.4%, 49%);
 }
@@ -626,6 +634,7 @@ h2.alert {
   font-size: 1.2em;
 }
 
+.psychicin,
 .alien {
   color: hsl(300, 25.1%, 39.8%);
 }
@@ -1113,6 +1122,75 @@ $ooc_alert_text_colors: (
   'game': hsl(0, 100%, 42.9%),
 );
 
+/* Colors */
+
+.white {
+  color: #ffffff;
+}
+
+.black {
+  color: #ffffff;
+}
+
+.darkgray {
+  color: #808080;
+}
+
+.gray {
+  color: #a9a9a9;
+}
+
+.grey {
+  color: #a9a9a9;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.orange {
+  color: #ff8c00;
+}
+
+.blue {
+  color: #6666ff;
+}
+
+.darkgreen {
+  color: #008000;
+}
+
+.yellow {
+  color: #ffcc00;
+}
+
+.pink {
+  color: #ffc0cb;
+}
+
+.cyan {
+  color: #00ffff;
+}
+
+.maroon {
+  color: #800000;
+}
+
+.crimson {
+  color: #dc143c;
+}
+
+.brown {
+  color: #8d4925;
+}
+
+.lightpurple {
+  color: #ad5aad;
+}
+
+.darkpink {
+  color: #e3209b;
+}
 $border-width: 4;
 
 $border-width-px: $border-width * 1px;
@@ -1263,4 +1341,34 @@ $alert-subheader-header-colors: (
       $space: hsl
     );
   }
+  /// NTF EDIT START
+  .hypnophrase {
+    color: #202020;
+    font-weight: bold;
+    animation: hypnocolor 1500ms infinite;
+    animation-direction: alternate;
+  }
+  @keyframes hypnocolor {
+    0% {
+      color: #202020;
+    }
+
+    25% {
+      color: #4b02ac;
+    }
+
+    50% {
+      color: #9f41f1;
+    }
+
+    75% {
+      color: #541c9c;
+    }
+
+    100% {
+      color: #7adbf3;
+    }
+  }
+  /// NTF EDIT END
+
 }

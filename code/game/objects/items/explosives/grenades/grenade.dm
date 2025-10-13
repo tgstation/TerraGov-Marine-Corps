@@ -48,6 +48,10 @@
 		balloon_alert(user, "against your programming!")
 		return
 
+	if(HAS_TRAIT(user, TRAIT_KNIGHT))
+		balloon_alert(user, "can't, armor's too restrictive")
+		return
+
 	activate(user)
 
 	if(initial(dangerous) && ishumanbasic(user))

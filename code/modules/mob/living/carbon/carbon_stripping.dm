@@ -63,7 +63,7 @@
 
 	var/mob/mob_source = source
 
-	if(!do_after(user, equipping.equip_delay_other, NONE, source, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, equipping.equip_delay_other, TRUE, source, BUSY_ICON_FRIENDLY))
 		return FALSE
 
 	if(!mob_source.can_put_in_hand(equipping, hand_index))
@@ -145,7 +145,7 @@
 	var/strapped = HAS_TRAIT_FROM(item, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
 	user.balloon_alert_to_viewers("[strapped ? "loosening" : "tightening"] strap...")
 
-	if(!do_after(user, 3 SECONDS, NONE, source, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 3 SECONDS, TRUE, source, BUSY_ICON_FRIENDLY))
 		return
 
 	if(!strapped)

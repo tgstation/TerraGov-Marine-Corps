@@ -178,7 +178,7 @@
 
 /obj/item/clothing/glasses/mgoggles
 	name = "marine ballistic goggles"
-	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
+	desc = "Standard issue NTF goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	worn_icon_state = "mgoggles"
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, FIRE = 30, ACID = 30)
@@ -189,7 +189,7 @@
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
-	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
+	desc = "Standard issue NTF goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	prescription = TRUE
 
 /obj/item/clothing/glasses/mgoggles/attackby(obj/item/I, mob/user, params)
@@ -444,8 +444,8 @@
 	deactive_state = "night_vision_off"
 	worn_layer = COLLAR_LAYER	//The sprites are designed to render over helmets
 	worn_item_state_slots = list()
-	// Red with a tint of green
-	color_cutoffs = list(40, 15, 10)
+	// green
+	color_cutoffs = list(10, 40, 10)
 	vision_flags = SEE_TURFS
 	toggleable = TRUE
 	goggles = TRUE

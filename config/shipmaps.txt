@@ -13,28 +13,51 @@ Format:
 endmap
 
 map debugdalus
-	default
-	voteweight 0
+	disabled
 endmap
 
 map theseus
+	minplayers 600
+endmap
+
+map Container
+        minplayers 0
+endmap
+
+map ntc_nine_tailed_fox
+	minplayers 0
+	default
+endmap
+
+map eagle
+        minplayers 0
+endmap
+
+map eagleclassic
+        minplayers 0
 endmap
 
 map pillar_of_spring
+	minplayers 600
 endmap
 
 map sulaco
+	minplayers 600
 endmap
 
 map arachne
+	minplayers 600
 endmap
 
 map combat_patrol_base
+	minplayers 600
 endmap
 
 map iteron
+	minplayers 600
 endmap
 
 map multiz_debug
+	disabled
 endmap
 

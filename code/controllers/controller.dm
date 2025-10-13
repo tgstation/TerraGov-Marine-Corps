@@ -17,3 +17,8 @@
 /datum/controller/proc/Recover()
 
 /datum/controller/proc/stat_entry(msg)
+
+/datum/controller/Destroy(force = FALSE, ...)
+	if(type != /datum/controller)
+		stack_trace("[name]\[[tag]\]([type]) - controller destroyed")
+	return ..()

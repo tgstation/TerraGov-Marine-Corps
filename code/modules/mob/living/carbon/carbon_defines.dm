@@ -37,12 +37,6 @@
 	var/hal_screwyhud = SCREWYHUD_NONE
 	var/next_hallucination = 0
 
-	/// % Chance of exploding on death, incremented by total damage taken if not initially zero.
-	var/gib_chance = 0
-	///list of abilities this mob has access to
-	var/list/datum/action/ability/mob_abilities = list()
-	///Currently selected ability
-	var/datum/action/ability/activable/selected_ability
 	///carbon overlay layers
 	var/list/overlays_standing[TOTAL_LAYERS]
 

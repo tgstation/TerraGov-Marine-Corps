@@ -51,12 +51,50 @@
 	set category = "OOC"
 	set name = "Ghost"
 
-	if(stat == DEAD)
+	// Gamemode disallowed handler - START
+	if((!SSticker.mode || CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_NO_GHOSTS)))
+		if(client && check_rights_for(client, R_ADMIN))
+			switch(tgui_input_list(src, "Ghosting in this game mode would normally send you to the lobby, but since you are an admin you can bypass this.  What do you wish to do?", "Ghost", list("Ghost", "AGhost", "Return to lobby"), "AGhost"))
+				if("Ghost")
+					set_resting(TRUE)
+					log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)], using their admin powers to bypass the fact the gamemode does not allow it.")
+					message_admins("[ADMIN_TPMONTY(usr)] has ghosted, using their admin powers to bypass the fact the gamemode does not allow it.")
+					ghostize(FALSE)
+					return
+				if("AGhost")
+					var/mob/dead/observer/ghost = ghostize(TRUE, TRUE)
+					log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
+					if(stat != DEAD)
+						message_admins("[ADMIN_TPMONTY(ghost)] admin ghosted.")
+					return
+				if("Return to lobby")
+					set_resting(TRUE)
+					log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)], sending them to the title screen.")
+					message_admins("[ADMIN_TPMONTY(usr)] has ghosted, sending them to the title screen.")
+					ghostize(FALSE, FALSE, TRUE)
+					return
+			return
+		if(tgui_alert(src, "Ghosting is not allowed in this game mode, so this will return you to the lobby instead. Your respawn timer will still apply. Continue?", "Return to lobby", list("Yes", "No")) != "Yes")
+			return
+		log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)], sending them to the title screen.")
+		message_admins("[ADMIN_TPMONTY(usr)] has ghosted, sending them to the title screen.")
+
+		ghostize(FALSE)
+		return
+	// Gamemode disallowed handler - END
+
+	if(stat == DEAD || isxenohivemind(src) || iszombie(src))
+		log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 		ghostize(TRUE)
+	else
+		to_chat(usr, "Not dead yet.")
+		log_game("[key_name(usr)] tried to ghost while alive at [AREACOORD(usr)].")
+		message_admins("[ADMIN_TPMONTY(usr)] tried to ghost while alive.")
 		return
 
-	if(tgui_alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", list("Yes", "No")) != "Yes")
-		return
+	//if(tgui_alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", list("Yes", "No")) != "Yes")
+	//	return
 
 	set_resting(TRUE)
 	log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)].")

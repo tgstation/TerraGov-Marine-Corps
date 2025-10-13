@@ -73,6 +73,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	///string; typepath for the icon that this job will show on the minimap
 	var/minimap_icon
+	var/list/shadow_languages = list()
 
 /datum/job/New()
 	if(outfit)
@@ -263,11 +264,12 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!SSticker.HasRoundStarted() && !(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START) && previous_amount < total_positions)
 		LAZYADD(SSjob.occupations_reroll, src)
 
-
 // Spawning mobs.
-/mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
+/mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, /datum/language/dt, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
 	set_skills(getSkillsType(job.return_skills_type(player?.prefs)))
+	for(var/shadowlang AS in assigned_role.shadow_languages)
+		language_holder.grant_language(shadowlang, TRUE)
 	if(islist(job.job_traits))
 		add_traits(job.job_traits, INNATE_TRAIT)
 	faction = job.faction
@@ -312,6 +314,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	hud_set_job(faction)
 
 ///finds and equips a valid outfit for a specified job and species
+
 /mob/living/carbon/human/proc/equip_role_outfit(datum/job/assigned_role)
 	if(!assigned_role.multiple_outfits)
 		assigned_role.outfit.equip(src)
@@ -320,12 +323,15 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/list/valid_outfits = list()
 
 	for(var/datum/outfit/variant AS in assigned_role.outfits)
-		if(initial(variant.species) == src.species.species_type)
+		variant = new variant
+		if((src.species.species_type) in variant.species)
 			valid_outfits += variant
-
+	if(!length(valid_outfits))
+		log_runtime("Failed to find valid outfit when applying [assigned_role.title]([assigned_role.type]) to [logdetails(src)](Species: [src.species.name]([src.species.type]))")
+		assigned_role.outfit.equip(src)
 	var/datum/outfit/chosen_variant = pick(valid_outfits)
-	chosen_variant = new chosen_variant
 	chosen_variant.equip(src)
+	QDEL_LIST(valid_outfits)
 
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player, forced = FALSE)
@@ -362,3 +368,30 @@ GLOBAL_PROTECT(exp_specialmap)
 		CRASH("Occupy xenomorph position was call with amount = [amount] and respawn =[respawn ? "TRUE" : "FALSE"] \n \
 		This would have created a negative larva situation")
 	return ..()
+
+/datum/job/return_spawn_type(datum/preferences/prefs)
+	switch(prefs?.species)
+		if("Combat Robot")
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
+				switch(prefs?.robot_type)
+					if("Basic")
+						return /mob/living/carbon/human/species/robot
+					if("Hammerhead")
+						return /mob/living/carbon/human/species/robot/alpharii
+					if("Chilvaris")
+						return /mob/living/carbon/human/species/robot/charlit
+					if("Ratcher")
+						return /mob/living/carbon/human/species/robot/deltad
+					if("Sterling")
+						return /mob/living/carbon/human/species/robot/bravada
+			to_chat(prefs.parent, span_danger("nonhuman joins are currently disabled, your species has been defaulted to Human"))
+			return /mob/living/carbon/human
+		if("Mothellian")
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
+				return /mob/living/carbon/human/species/moth
+		if("Vatborn")
+			return /mob/living/carbon/human/species/vatborn
+		if("Prototype Supersoldier")
+			return /mob/living/carbon/human/species/prototype_supersoldier
+		else
+			return /mob/living/carbon/human
