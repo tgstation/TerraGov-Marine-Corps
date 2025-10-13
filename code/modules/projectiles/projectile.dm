@@ -998,7 +998,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /mob/living/carbon/xenomorph/bullet_act(atom/movable/projectile/proj)
-	if(issamexenohive(proj.shot_from)) //Aliens won't be harming allied aliens.
+	if(issamexenohive(proj.shot_from) && (isxeno(proj.shot_from) || istype(proj.shot_from, /obj/structure/xeno))) //Aliens won't be harming allied aliens.
 		return
 
 	if(proj.ammo.plasma_drain && !CHECK_BITFIELD(xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
