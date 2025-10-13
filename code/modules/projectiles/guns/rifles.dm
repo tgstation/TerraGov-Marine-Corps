@@ -2268,7 +2268,7 @@
 	scatter = -2
 	scatter_unwielded = 15
 
-	burst_amount = 3
+	burst_amount = 4
 	burst_scatter_mult = 4
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
