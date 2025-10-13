@@ -73,7 +73,6 @@ converting the absorbed energy into shield power, warning: overcharging too much
 			else
 				level = shield_health / max_shield_health
 			current_color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, 1.5, shield_color_overmax_full, 2, shield_color_overmax_full_danger, space = COLORSPACE_HCY, index = level)
-			log_world("shieldhealth > 0, level = [level], current_color = [current_color]")
 			affected.add_filter("eshield", 2, outline_filter(1, current_color))
 
 			spark_system.start()
@@ -101,7 +100,6 @@ converting the absorbed energy into shield power, warning: overcharging too much
 	else
 		level = shield_health / max_shield_health
 	var/new_color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, 1.5, shield_color_overmax_full, 2, shield_color_overmax_full_danger, space = COLORSPACE_HCY, index = level)
-	log_world("process, level = [level], current_color = [current_color], new_color = [new_color]")
 	if(level < 0.2 || level > 1.8)
 		playsound(parent.loc, 'sound/items/eshield_down.ogg', 40)
 	if(new_color != current_color)
