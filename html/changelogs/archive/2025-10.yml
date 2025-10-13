@@ -86,3 +86,11 @@
   blackdav123:
   - balance: Pyrogen now has higher plasma costs, but receives plasma when slashing
       marines or consuming firestacks with Fire Charge.
+2025-10-13:
+  Lumipharon:
+  - bugfix: fixed overhead do_after icons not appearing in many cases
+  - imageadd: 'Campaign: Palmaria is visible from space'
+  - qol: Buttons now layer over mobs
+  - bugfix: fixed vegetation sounds not working properly
+  breadhunt:
+  - rscadd: You can now punch punching bags
