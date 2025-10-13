@@ -446,6 +446,7 @@
 			/obj/item/ammo_magazine/smg/standard_machinepistol = 40,
 			/obj/item/ammo_magazine/smg/standard_heavysmg = 40,
 			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 40,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/rubber = 40,
 		),
 		"Marksman" = list(
 			/obj/item/ammo_magazine/rifle/standard_dmr = 30,
@@ -523,6 +524,7 @@
 		/obj/item/ammo_magazine/smg/standard_machinepistol = 80,
 		/obj/item/ammo_magazine/smg/standard_heavysmg = 80,
 		/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 80,
+		/obj/item/ammo_magazine/smg/standard_heavysmg/rubber = 80,
 		/obj/item/ammo_magazine/rifle/standard_dmr = 60,
 		/obj/item/ammo_magazine/rifle/standard_br = 60,
 		/obj/item/ammo_magazine/rifle/chamberedrifle = 60,

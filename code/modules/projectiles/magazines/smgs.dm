@@ -77,11 +77,20 @@
 
 /obj/item/ammo_magazine/smg/standard_heavysmg/squashhead
 	name = "\improper SMG-45 squash-head magazine (.41 AE)"
-	desc = "A .41 AE caseless submachinegun magazine that does a minituare explosion upon contact, will shred the armor off of basically anything."
+	desc = "A .41 AE caseless submachinegun magazine that does a miniature explosion upon contact, will shred the armor off of basically anything."
 	default_ammo = /datum/ammo/bullet/smg/squash
 	icon_state = "t45_sh"
 	icon_state_mini = "mag_heavy_smg_yellow"
 	bonus_overlay = "t45_mag_sh"
+
+/obj/item/ammo_magazine/smg/standard_heavysmg/rubber
+	name = "\improper SMG-45 rubber magazine (.41 AE)"
+	desc = "A .41 AE caseless submachinegun magazine loaded in rubber rounds. Non-lethal"
+	default_ammo = /datum/ammo/bullet/smg/rubber
+	icon_state = "t45_sh"
+	icon_state_mini = "mag_heavy_smg_yellow"
+	bonus_overlay = "t45_mag_sh"
+	color = "#80ffff"
 
 //-------------------------------------------------------
 //RA-VAL, PMC SMG
@@ -172,7 +181,7 @@
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "v21"
 	icon_state_mini = "mag_smg"
-	max_rounds = 50
+	max_rounds = 60
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/smg/som/ap
@@ -181,6 +190,18 @@
 	icon_state = "v21_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 	icon_state_mini = "mag_smg_green"
+
+/obj/item/ammo_magazine/smg/som/squashhead
+	name = "\improper V-21 squash-head submachinegun magazine (10x20mm)"
+	desc = "A 10x20mm caseless submachinegun magazine, loaded in squash-head explosive rounds. Will shred the armor off of basically anything."
+	icon_state = "v21_ap"
+	default_ammo = /datum/ammo/bullet/smg/squash
+	icon_state_mini = "mag_smg_green"
+
+/obj/item/ammo_magazine/smg/som/rubber
+	name = "\improper V-21 rubber submachinegun magazine (10x20mm)"
+	desc = "A 10x20mm caseless submachinegun magazine, loaded in rubber rounds. Non-lethal."
+	default_ammo = /datum/ammo/bullet/smg/rubber
 
 /obj/item/ammo_magazine/smg/som/incendiary
 	name = "\improper V-21 incendiary submachinegun magazine (10x20mm)"
@@ -193,7 +214,7 @@
 	name = "\improper V-21 extended submachinegun magazine (10x20mm)"
 	desc = "An extended 10x20mm caseless submachinegun magazine."
 	icon_state = "v21_extended"
-	max_rounds = 75
+	max_rounds = 90
 	icon_state_mini = "mag_smg_yellow"
 	w_class = WEIGHT_CLASS_NORMAL
 	aim_speed_mod = 0.1

@@ -55,9 +55,11 @@
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/som = -1,
 			/obj/item/ammo_magazine/smg/som = -1,
+			/obj/item/ammo_magazine/smg/som/rubber = -1,
 			/obj/item/ammo_magazine/smg/som/ap = 25,
 			/obj/item/ammo_magazine/smg/som/incendiary = 15,
 			/obj/item/ammo_magazine/smg/som/rad = 5,
+			/obj/item/ammo_magazine/smg/som/squashhead = 5,
 			/obj/item/weapon/gun/smg/uzi = -1,
 			/obj/item/ammo_magazine/smg/uzi = -1,
 			/obj/item/weapon/gun/smg/mp7 = -1,

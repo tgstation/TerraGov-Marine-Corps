@@ -39,6 +39,7 @@
 			/obj/item/weapon/gun/smg/standard_heavysmg = -1,
 			/obj/item/ammo_magazine/smg/standard_heavysmg = -1,
 			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = -1,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/rubber = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -1234,8 +1235,10 @@
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/som = -1,
 			/obj/item/ammo_magazine/smg/som = -1,
+			/obj/item/ammo_magazine/smg/som/rubber = -1,
 			/obj/item/ammo_magazine/smg/som/ap = 20,
 			/obj/item/ammo_magazine/smg/som/incendiary = 10,
+			/obj/item/ammo_magazine/smg/som/squashhead = 3,
 			/obj/item/weapon/gun/smg/icc_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/icc_machinepistol = -1,
 			/obj/item/weapon/gun/smg/icc_pdw = -1,
@@ -1803,8 +1806,10 @@
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/som = -1,
 			/obj/item/ammo_magazine/smg/som = -1,
+			/obj/item/ammo_magazine/smg/som/rubber = -1,
 			/obj/item/ammo_magazine/smg/som/ap = 20,
 			/obj/item/ammo_magazine/smg/som/incendiary = 10,
+			/obj/item/ammo_magazine/smg/som/squashhead = 3,
 			/obj/item/weapon/gun/smg/icc_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/icc_machinepistol = -1,
 			/obj/item/weapon/gun/smg/icc_pdw = -1,
