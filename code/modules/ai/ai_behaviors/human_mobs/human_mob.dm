@@ -137,7 +137,14 @@
 			weapon_process()
 
 	if(!combat_target && !interact_target && length(atoms_of_interest) && isturf(atoms_of_interest[1].loc))
-		set_interact_target(atoms_of_interest[1]) //not sure if this should be lower
+		for(var/atom/atom AS in atoms_of_interest)
+			if(atom.z != mob_parent.z)
+				continue
+			if(!isturf(atoms_of_interest[1].loc))
+				return
+			if(get_dist(mob_parent, atom) > AI_ESCORTING_BREAK_DISTANCE)
+				continue
+			set_interact_target(atom)
 
 /datum/ai_behavior/human/should_hold()
 	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION && COOLDOWN_FINISHED(src, ai_heal_after_dam_cooldown)) //Don't just stand there when taking damage

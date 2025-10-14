@@ -71,8 +71,6 @@
 #define AI_ESCORT_RATING_CLOSE_FRIENDLY 15
 #define AI_ESCORT_RATING_BUDDY 16
 
-#define AI_ESCORT_RATING_INTEREST_ATOM 25
-
 GLOBAL_LIST_EMPTY(all_nodes)
 
 ///A GLOB of all /datum/component/ai_controller that currently exist
