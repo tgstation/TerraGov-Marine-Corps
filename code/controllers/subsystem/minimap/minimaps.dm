@@ -209,6 +209,9 @@ SUBSYSTEM_DEF(minimaps)
 	src.ztarget = ztarget
 	raw_blips = list()
 
+/image/blip
+	var/atom/movable/target
+
 /**
  * Adds an atom we want to track with blips to the subsystem
  * Arguments:
@@ -216,9 +219,13 @@ SUBSYSTEM_DEF(minimaps)
  * * hud_flags: tracked HUDs we want this atom to be displayed on
  * * marker: image or mutable_appearance we want to be using on the map
  */
-/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, hud_flags = NONE, image/blip)
-	if(!isatom(target) || !hud_flags || !blip)
+/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, hud_flags = NONE, image/_blip)
+	if(!isatom(target) || !hud_flags || !_blip)
 		CRASH("Invalid marker added to subsystem")
+
+	var/image/blip/blip = new()
+	blip.appearance = _blip.appearance
+	blip.target = target
 
 	if(!initialized || !(minimaps_by_z["[target.z]"])) //the minimap doesn't exist yet, z level was probably loaded after init
 		for(var/datum/callback/callback AS in earlyadds["[target.z]"])
@@ -242,7 +249,7 @@ SUBSYSTEM_DEF(minimaps)
 				updator.raw_blips += blip
 	if(ismovable(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
-		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
+		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image/blip, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
 	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker), override = TRUE) //override for atoms that were on a late loaded z-level, overrides the remove_earlyadd above
 
@@ -298,32 +305,43 @@ SUBSYSTEM_DEF(minimaps)
 /**
  * Simple proc, updates overlay position on the map when a atom moves
  */
-/image/proc/minimap_on_move(atom/movable/source, oldloc)
+/image/blip/proc/minimap_on_move(atom/movable/source, oldloc)
 	SIGNAL_HANDLER
-	if(isturf(source.loc))
-		pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + SSminimaps.minimaps_by_z["[source.z]"].x_offset
-		pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + SSminimaps.minimaps_by_z["[source.z]"].y_offset
-		return
-
 	var/atom/movable/movable_loc = source.loc
-	source.override_minimap_tracking(source.loc)
+	while(!isturf(movable_loc))
+		if(!movable_loc)
+			return
+		target.override_minimap_tracking(movable_loc)
+		movable_loc = movable_loc.loc
+
 	pixel_x = MINIMAP_PIXEL_FROM_WORLD(movable_loc.x) + SSminimaps.minimaps_by_z["[movable_loc.z]"].x_offset
 	pixel_y = MINIMAP_PIXEL_FROM_WORLD(movable_loc.y) + SSminimaps.minimaps_by_z["[movable_loc.z]"].y_offset
 
 ///Used to handle minimap tracking inside other movables
 /atom/movable/proc/override_minimap_tracking(atom/movable/loc)
-	var/image/blip = SSminimaps.images_by_source[src]
-	blip.RegisterSignal(loc, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
+	var/image/blip/blip = SSminimaps.images_by_source[src]
+	blip.RegisterSignal(loc, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image/blip, minimap_on_move))
 	RegisterSignal(loc, COMSIG_ATOM_EXITED, PROC_REF(cancel_override_minimap_tracking))
 
 ///Stops minimap override tracking
 /atom/movable/proc/cancel_override_minimap_tracking(atom/movable/source, atom/movable/mover)
 	SIGNAL_HANDLER
-	if(mover != src)
-		return
-	var/image/blip = SSminimaps.images_by_source[src]
-	blip?.UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(source, COMSIG_ATOM_EXITED)
+	var/atom/movable/chain_atom = src
+	while(mover != chain_atom)
+	//search through the chain of locations above src for the mover.
+		chain_atom = chain_atom.loc
+		if(!istype(chain_atom))
+		//we've hit the top of the chain and not found the thing that moved, so this signal isn't relevant to us.
+			return
+	var/image/blip/blip = SSminimaps.images_by_source[src]
+	chain_atom = source
+	while(!isturf(chain_atom))
+	//Now we go up the chain from the thing that the mover left.  That and everything above it is no longer relevant to us, so stop listening for signals from them.
+		if(!chain_atom)
+			return
+		blip?.UnregisterSignal(chain_atom, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(chain_atom, COMSIG_ATOM_EXITED)
+		chain_atom = chain_atom.loc
 
 
 /**
