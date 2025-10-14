@@ -888,10 +888,6 @@
 #define COMSIG_ABILITY_TELEKINESIS "ability_telekinesis"
 #define COMSIG_ABILITY_REANIMATE "ability_reanimate"
 
-// throw parry signals
-#define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
-#define COMSIG_PARRY_TRIGGER "parry_trigger"
-
 // xeno iff tag signals
 #define COMSIG_XENO_IFF_CHECK "xeno_iff_check" //! Signal used by certain IFF checking things to see if a xeno carries an IFF tag of the faction.
 
