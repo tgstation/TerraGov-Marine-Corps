@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Mutations: Enhanced Strength now correctly sets/increases your Fling distance as Warrior."
