@@ -167,7 +167,7 @@
 	if(!crowbar)
 		behavior_datum.try_speak("No power!")
 		if(density)
-			set_combat_target(src)
+			behavior_datum.set_combat_target(src)
 		return
 
 	attackby(crowbar, interactor)
