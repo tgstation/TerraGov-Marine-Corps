@@ -437,7 +437,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	xeno_owner.spin(DEFENDER_REFLECT_TIME, 1)
 	xeno_owner.emote("tail")
-	xeno_owner.AddElement(/datum/element/throw_parry, DEFENDER_REFLECT_TIME)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps its tail in a low circle!"))
 
@@ -515,7 +515,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/temp_visual/tail_hook/hook = new
 	xeno_owner.vis_contents += hook
 	xeno_owner.spin(0.8 SECONDS, 1)
-	xeno_owner.AddElement(/datum/element/throw_parry, DEFENDER_REFLECT_TIME)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] swings the hook on its tail through the air!"))

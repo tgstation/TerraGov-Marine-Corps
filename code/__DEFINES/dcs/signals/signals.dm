@@ -170,6 +170,9 @@
 #define COMSIG_ELEMENT_JUMP_STARTED "element_jump_started"
 #define COMSIG_ELEMENT_JUMP_ENDED "element_jump_ended"
 
+///From /datum/component/throw_parry/parry_check() when a parry is successful
+#define COMSIG_ELEMENT_PARRY_TRIGGERED "element_parry_triggered"
+
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
 #define COMSIG_LIMB_UNDESTROYED "limb_undestroyed"

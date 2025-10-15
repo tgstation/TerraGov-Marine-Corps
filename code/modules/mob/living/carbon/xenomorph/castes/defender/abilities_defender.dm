@@ -38,7 +38,7 @@
 
 	xeno_owner.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
 	xeno_owner.spin(4, 1)
-	xeno_owner.AddElement(/datum/element/throw_parry, DEFENDER_REFLECT_TIME)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
@@ -510,7 +510,7 @@
 /datum/action/ability/xeno_action/centrifugal_force/proc/do_spin()
 	spin_loop_timer = null
 	xeno_owner.spin(4, 1)
-	xeno_owner.AddElement(/datum/element/throw_parry, DEFENDER_REFLECT_TIME)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 	playsound(xeno_owner, pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, xeno_owner))
