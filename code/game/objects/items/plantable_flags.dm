@@ -175,6 +175,7 @@
 	icon = new_internal_item.icon
 	soft_armor = new_internal_item.soft_armor
 	hard_armor = new_internal_item.hard_armor
+	color = new_internal_item.color
 	update_appearance(UPDATE_ICON_STATE)
 	if(deployer)
 		new_internal_item.lift_flag(deployer)
@@ -224,3 +225,37 @@
 		return
 	disassemble(user)
 	log_game("[key_name(user)] has undeployed the flag at [AREACOORD(src)].")
+
+/obj/item/plantable_flag/vsd
+	name = "\improper " + FACTION_VSD + " flag"
+	desc = "A flag bearing the symbol of the "+ FACTION_VSD + ". It flutters in the breeze heroically. This one looks ready to be planted into the ground."
+	icon_state = "flag_tgmc"
+	faction = FACTION_VSD
+	color = list(0,  -1, 0, 0,
+				 2, 4.5, 2, 0,
+				-1,  -2,-2, 0,
+				 0,   0, 0, 1,
+				 0,-0.5, 0, 0)
+
+/obj/item/plantable_flag/icc
+	name = "\improper " + FACTION_ICC + " flag"
+	desc = "A flag bearing the symbol of the "+ FACTION_ICC + ". It flutters in the breeze heroically. This one looks ready to be planted into the ground."
+	icon_state = "flag_tgmc"
+	faction = FACTION_ICC
+	color = list( 0,   0, 1, 0,
+				2.2, 1.2, 1, 0,
+				 -1,   0, 1, 0,
+				  0,   0, 0, 1,
+				  0,   0,-2, 0)
+
+/obj/item/plantable_flag/clf
+	name = "\improper " + FACTION_CLF + " flag"
+	desc = "A flag bearing the symbol of the "+ FACTION_CLF + ". It flutters in the breeze heroically. This one looks ready to be planted into the ground."
+	icon_state = "flag_tgmc"
+	faction = FACTION_CLF
+	color = list(0.5, 1,-3, 0,
+				 1.2, 0, 0, 0,
+				 0.8, 0, 3, 0,
+				   0, 0, 0, 1,
+				  -1, 0, 0, 0)
+

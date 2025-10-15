@@ -289,6 +289,7 @@
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = 5,
+			/obj/item/plantable_flag = 10,
 		),
 	)
 
@@ -551,6 +552,7 @@
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = 5,
+			/obj/item/plantable_flag = 10,
 		),
 	)
 
@@ -811,6 +813,7 @@
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = -1,
+			/obj/item/plantable_flag = 10,
 		),
 	)
 

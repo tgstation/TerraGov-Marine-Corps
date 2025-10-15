@@ -770,6 +770,7 @@
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/deployable_floodlight = 5,
+			/obj/item/plantable_flag/vsd = 10,
 		),
 	)
 
@@ -1384,6 +1385,7 @@
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/deployable_floodlight = 5,
+			/obj/item/plantable_flag/icc = 10,
 		),
 	)
 
@@ -1955,5 +1957,6 @@
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/deployable_floodlight = 5,
+			/obj/item/plantable_flag/clf = 10,
 		),
 	)

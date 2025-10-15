@@ -273,6 +273,7 @@
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/deployable_floodlight = 5,
+			/obj/item/plantable_flag/som = 10,
 		),
 	)
 
