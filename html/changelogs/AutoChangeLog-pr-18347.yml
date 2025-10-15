@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed the observer menu showing blank in some cases"
-  - bugfix: "a variety of jobs will now correctly display their icon in the observer menu"

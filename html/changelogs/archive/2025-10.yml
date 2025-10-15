@@ -94,3 +94,11 @@
   - bugfix: fixed vegetation sounds not working properly
   breadhunt:
   - rscadd: You can now punch punching bags
+2025-10-15:
+  Lumipharon:
+  - bugfix: fixed the observer menu showing blank in some cases
+  - bugfix: a variety of jobs will now correctly display their icon in the observer
+      menu
+  Runian:
+  - bugfix: 'Mutations: Enhanced Strength now correctly sets/increases your Fling
+      distance as Warrior.'
