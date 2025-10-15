@@ -473,6 +473,10 @@
 			/obj/item/weapon/gun/flamer/hydro_cannon = -1,
 			/obj/item/ammo_magazine/flamer_tank/water = -1,
 			/obj/item/jetpack_marine = 3,
+			/obj/item/weapon/gun/launcher/rocket/oneuse = 10,
+			/obj/item/storage/box/crate/sentry_sniper = 1,
+			/obj/item/storage/box/crate/sentry_shotgun = 2,
+			/obj/item/storage/holster/backholster/rpg/full = 1,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet/converted = -1,
