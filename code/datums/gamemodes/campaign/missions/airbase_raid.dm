@@ -32,7 +32,7 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 25),
 	)
 	starting_faction_additional_rewards = "Disrupt enemy air support for a moderate period of time."
-	hostile_faction_additional_rewards = "Ensure continued access to close air support. Recon mech and gorgon armor available if you successfully protect this depot."
+	hostile_faction_additional_rewards = "Ensure continued access to close air support. Hoverbike and gorgon armor available if you successfully protect this depot."
 
 	starting_faction_mission_parameters = "Dangerous sandstorms are active in the AO. High speed bikes are available. CAS is unavailable."
 	hostile_faction_mission_parameters = "Dangerous sandstorms are active in the AO. High speed bikes are available."
@@ -73,25 +73,42 @@
 
 /datum/campaign_mission/destroy_mission/airbase/apply_major_victory()
 	winning_faction = starting_faction
+
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
 	hostile_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas)
+
+	var/reward_bike = winning_faction == FACTION_SOM ? /datum/campaign_asset/equipment/som_bike : /datum/campaign_asset/equipment/bike
+	mode.stat_list[winning_faction].add_asset(reward_bike)
+
+	Generate_rewards(2, winning_faction)
 
 /datum/campaign_mission/destroy_mission/airbase/apply_minor_victory()
 	winning_faction = starting_faction
+
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
 	hostile_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas)
 
+	Generate_rewards(1, winning_faction)
+
 /datum/campaign_mission/destroy_mission/airbase/apply_minor_loss()
 	winning_faction = hostile_faction
+
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
-	winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
+	var/reward_bike = winning_faction == FACTION_SOM ? /datum/campaign_asset/equipment/som_bike : /datum/campaign_asset/equipment/bike
+	winning_team.add_asset(reward_bike)
+
+	Generate_rewards(2, winning_faction)
 
 /datum/campaign_mission/destroy_mission/airbase/apply_major_loss()
 	winning_faction = hostile_faction
+
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
-	winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
+	var/reward_armour = winning_faction == FACTION_SOM ? /datum/campaign_asset/equipment/gorgon_armor : /datum/campaign_asset/equipment/power_armor
+	var/reward_bike = winning_faction == FACTION_SOM ? /datum/campaign_asset/equipment/som_bike : /datum/campaign_asset/equipment/bike
+	winning_team.add_asset(reward_armour)
+	winning_team.add_asset(reward_bike)
+
+	Generate_rewards(2, winning_faction)
 
 /datum/campaign_mission/destroy_mission/airbase/som
 	mission_flags = MISSION_DISALLOW_TELEPORT
@@ -112,28 +129,6 @@
 	hostile_faction_mission_brief = "[starting_faction] forces have been detected moving against the Camp Broadsire Airbase in the Western Galloran Desert under the cover of a sandstorm. \
 		Repel the enemy and protect the installation until reinforcements can arrive. \
 		The loss of this depot would be a heavy blow against our air power, greatly reducing our ability to field close air support in the near future."
-
-/datum/campaign_mission/destroy_mission/airbase/som/apply_major_victory()
-	winning_faction = starting_faction
-	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	hostile_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas)
-
-/datum/campaign_mission/destroy_mission/airbase/som/apply_minor_victory()
-	winning_faction = starting_faction
-	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	hostile_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas)
-
-/datum/campaign_mission/destroy_mission/airbase/som/apply_minor_loss()
-	winning_faction = hostile_faction
-	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/light)
-	winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
-
-/datum/campaign_mission/destroy_mission/airbase/som/apply_major_loss()
-	winning_faction = hostile_faction
-	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/light)
-	winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 
 #undef AIRBASE_START_BIKE_MULT
 #undef AIRBASE_HOSTILE_BIKE_MULT
