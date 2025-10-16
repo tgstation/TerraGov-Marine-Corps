@@ -31,11 +31,12 @@
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 15),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 25),
 	)
+
 	starting_faction_additional_rewards = "Disrupt enemy air support for a moderate period of time."
 	hostile_faction_additional_rewards = "Ensure continued access to close air support. Hoverbike and gorgon armor available if you successfully protect this depot."
 
-	starting_faction_mission_parameters = "Dangerous sandstorms are active in the AO. High speed bikes are available. CAS is unavailable."
-	hostile_faction_mission_parameters = "Dangerous sandstorms are active in the AO. High speed bikes are available."
+	starting_faction_mission_parameters = "Heavy snowstorms are active in the AO. High speed bikes are available. CAS is unavailable."
+	hostile_faction_mission_parameters = "Heavy snowstorms are active in the AO. High speed bikes are available."
 
 /datum/campaign_mission/destroy_mission/airbase/play_start_intro()
 	intro_message = list(
@@ -120,7 +121,11 @@
 	map_armor_color = MAP_ARMOR_STYLE_DESERT
 	objectives_total = 4
 	min_destruction_amount = 3
+
 	hostile_faction_additional_rewards = "Ensure continued access to close air support. B18 power armour available if you successfully protect this depot."
+
+	starting_faction_mission_parameters = "Dangerous sandstorms are active in the AO. High speed bikes are available. CAS is unavailable."
+	hostile_faction_mission_parameters = "Dangerous sandstorms are active in the AO. High speed bikes are available."
 
 /datum/campaign_mission/destroy_mission/airbase/som/load_mission_brief()
 	starting_faction_mission_brief = "A [hostile_faction] airbase has been located on the fringes of the Western Galloran Desert. Intelligence indicated this installation is a key [hostile_faction] air support base for close air support in this region. \
