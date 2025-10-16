@@ -120,7 +120,7 @@
 		UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
 
 ///Called each time the ai takes damage; if we are below a certain health threshold, try to retreat
-/datum/ai_behavior/xeno/proc/check_for_critical_health(datum/source, damage)
+/datum/ai_behavior/xeno/proc/check_for_critical_health(datum/source, damage, mob/living/attacker)
 	SIGNAL_HANDLER
 	if(!can_heal || mob_parent.health - damage > minimum_health * mob_parent.maxHealth)
 		return
