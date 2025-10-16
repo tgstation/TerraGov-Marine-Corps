@@ -276,7 +276,12 @@
 	log_combat(src, null, "was born as a larva.")
 	log_game("[key_name(src)] was born as a larva at [AREACOORD(src)].")
 	if(ismonkey(victim))
-		victim.adjustCloneLoss(50)
+		if(rand(1,3) != 1)
+			var/mob/living/carbon/human/monkey = victim
+			monkey.death()
+			monkey.set_undefibbable()
+		victim.take_overall_damage(80, BRUTE, MELEE)
+		victim.take_overall_damage(80, BURN, MELEE)
 	if(((locate(/obj/structure/bed/nest) in loc) || loc_weeds_type) && !mind)
 		var/suitablesilo = FALSE
 		for(var/obj/silo in GLOB.xeno_resin_silos_by_hive[hivenumber])
