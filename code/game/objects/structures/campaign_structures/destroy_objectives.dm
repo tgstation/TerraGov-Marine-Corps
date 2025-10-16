@@ -10,10 +10,11 @@
 
 /obj/structure/campaign_objective/destruction_objective/Initialize(mapload)
 	. = ..()
+	setDir(dir)
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
-	AddElement(/datum/element/connect_loc, connections)
+	AddElement(/datum/element/connect_loc, connections, TRUE)
 
 /obj/structure/campaign_objective/destruction_objective/Destroy()
 	QDEL_NULL(explosion_smoke)
