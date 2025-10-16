@@ -14,7 +14,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_SNOWSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
-	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
+	map_armor_color = MAP_ARMOR_STYLE_ICE
 	objectives_total = 6
 	min_destruction_amount = 4
 	victory_point_rewards = list(
