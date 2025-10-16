@@ -238,7 +238,10 @@
 	hud_set_plasma()
 
 /mob/living/carbon/xenomorph/proc/use_plasma(value, update_plasma = TRUE)
-	plasma_stored = max(plasma_stored - value, 0)
+	plasma_stored = plasma_stored - value
+	if(plasma_stored < 0)
+		plasma_stored = 0
+		Paralyze(15 SECONDS) // 3 seconds after xeno paralyze resistance applied
 	update_action_button_icons()
 	if(!update_plasma)
 		return
