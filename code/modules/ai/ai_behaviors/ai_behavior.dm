@@ -39,7 +39,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///The standard ation of the AI, aka what it should do at the init or when going back to "normal" behavior
 	var/base_action = MOVING_TO_NODE
 	///Ref to the parent associated with this mind
-	var/mob/mob_parent //todo: why god is this mob level
+	var/mob/living/mob_parent
 	///An identifier associated with this behavior, used for accessing specific values of a node's weights
 	var/identifier
 	///How far will we look for targets
