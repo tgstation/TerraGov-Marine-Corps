@@ -253,7 +253,7 @@
 		if((victim.lying_angle))
 			continue
 		hit_something = TRUE
-		victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+		victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration, owner)
 		playsound(victim, 'sound/weapons/heavyhit.ogg', 30, 1)
 		if(victim.mob_size > carbon_owner.mob_size)
 			carbon_owner.do_attack_animation(victim, ATTACK_EFFECT_PUNCH)

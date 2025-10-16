@@ -43,12 +43,3 @@
 	if(. == CONSCIOUS && fortify) //No longer conscious.
 		var/datum/action/ability/xeno_action/fortify/FT = actions_by_path[/datum/action/ability/xeno_action/fortify]
 		FT.set_fortify(FALSE) //Fortify prevents dragging due to the anchor component.
-
-
-// ***************************************
-// *********** Mob overrides
-// ***************************************
-
-/mob/living/carbon/xenomorph/defender/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/throw_parry)

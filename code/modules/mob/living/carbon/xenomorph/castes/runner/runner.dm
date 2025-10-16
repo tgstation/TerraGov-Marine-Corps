@@ -95,7 +95,7 @@
 /// Deals a second instance of melee damage to living beings. Damage type and armor type may vary.
 /mob/living/carbon/xenomorph/runner/melter/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
 	SIGNAL_HANDLER
-	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, second_damage_type, null, second_damage_armor)
+	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, second_damage_type, null, second_damage_armor, attacker = src)
 	var/datum/status_effect/stacking/melting_acid/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_ACID)
 	if(!debuff)
 		target.apply_status_effect(STATUS_EFFECT_MELTING_ACID, applied_acid_stacks)

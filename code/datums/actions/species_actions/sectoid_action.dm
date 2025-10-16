@@ -141,7 +141,7 @@
 	var/mob/living/carbon/carbon_target = target
 	carbon_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 10 SECONDS)
 	carbon_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
-	carbon_target.apply_damage(damage, BURN, updating_health = TRUE)
+	carbon_target.apply_damage(damage, BURN, updating_health = TRUE, attacker = owner)
 	carbon_target.log_message("has been mindfrayed by [owner]", LOG_ATTACK, color="pink")
 	carbon_target.balloon_alert_to_viewers("confused")
 	playsound(carbon_target, 'sound/effects/off_guard_ability.ogg', 50)

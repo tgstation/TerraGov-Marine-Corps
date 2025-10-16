@@ -543,7 +543,7 @@
 	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target)))
 		return
 	var/mob/living/carbon/carbon_victim = living_target
-	carbon_victim.apply_damage(20, BURN, null, ACID)
+	carbon_victim.apply_damage(20, BURN, null, ACID, attacker = owner)
 
 /datum/action/ability/activable/xeno/acidic_missile
 	name = "Acidic Missile"

@@ -499,7 +499,7 @@
 		playsound(living_target, 'sound/effects/alien/behemoth/landslide_hit_mob.ogg', 30, TRUE)
 	living_target.emote("scream")
 	shake_camera(living_target, 1, 0.8)
-	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
+	living_target.apply_damage(damage, BRUTE, blocked = MELEE, attacker = owner)
 
 /**
  * Attempts to deconstruct the object in question if possible.
@@ -1430,7 +1430,7 @@
 				affected_living.emote("scream")
 				shake_camera(affected_living, 1, 0.8)
 				affected_living.Paralyze(paralyze_duration)
-				affected_living.apply_damage(attack_damage, BRUTE, blocked = MELEE)
+				affected_living.apply_damage(attack_damage, BRUTE, blocked = MELEE, attacker = owner)
 				GLOB.round_statistics.behemoth_rock_victims++
 				SSblackbox.record_feedback("tally", "round_statistics", 1, "behemoth_rock_victims")
 			else if(isearthpillar(affected_atom) || isvehicle(affected_atom) || ishitbox(affected_atom) || istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))

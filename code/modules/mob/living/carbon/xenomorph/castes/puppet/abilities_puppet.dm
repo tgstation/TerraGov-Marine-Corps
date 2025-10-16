@@ -13,7 +13,7 @@
 	xeno_owner.visible_message(target_human, span_danger("[xeno_owner] tears into [target_human]!"))
 	playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE)
 	target_human.emote("scream")
-	target_human.apply_damage(damage = 25, damagetype = BRUTE, def_zone = BODY_ZONE_CHEST, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
+	target_human.apply_damage(damage = 25, damagetype = BRUTE, def_zone = BODY_ZONE_CHEST, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE, attacker = owner)
 	var/amount = 15 //heal xeno damage needs a variable not a number
 	HEAL_XENO_DAMAGE(xeno_owner, amount, FALSE)
 	add_cooldown()

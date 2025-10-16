@@ -42,7 +42,7 @@
 	playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE)
 	target_human.emote("scream")
 	xeno_owner.emote("roar")
-	target_human.apply_damage(30, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 15)
+	target_human.apply_damage(30, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 15, attacker = owner)
 	target_human.Paralyze(0.8 SECONDS)
 
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.flay_plasma_gain)

@@ -125,7 +125,7 @@
 			human_target.Stun(stun_duration)
 			human_target.drop_all_held_items()
 		if(damage_multiplier)
-			human_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
+			human_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 		shake_camera(human_target, 2, 1)
 		RegisterSignal(human_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 		if(!collusion_xenos_only && (collusion_paralyze_duration || collusion_damage_multiplier))
@@ -176,7 +176,7 @@
 		if(!xeno_owner.issamexenohive(living_hit))
 			INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob, emote), isxeno(living_hit) ? "hiss1" : "scream")
 			if(damage)
-				living_hit.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+				living_hit.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 			if(collusion_paralyze_duration)
 				living_hit.Paralyze(collusion_paralyze_duration)
 	if(isobj(hit_atom))
@@ -194,7 +194,7 @@
 	if(!xeno_owner.issamexenohive(living_source))
 		INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), isxeno(living_source) ? "hiss1" : "scream")
 		if(damage)
-			living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+			living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 		if(collusion_paralyze_duration)
 			living_source.Paralyze(collusion_paralyze_duration)
 
@@ -743,7 +743,7 @@
 	succeed_activate()
 
 /// Keeps track of how much damage has been taken so far by the owner and the choked human.
-/datum/action/ability/activable/xeno/psychic_choke/proc/on_damage_taken(datum/source, damage_amount)
+/datum/action/ability/activable/xeno/psychic_choke/proc/on_damage_taken(datum/source, damage_amount, mob/living/attacker)
 	damage_taken_so_far += damage_amount
 	if(damage_taken_so_far >= damage_threshold)
 		end_choke()

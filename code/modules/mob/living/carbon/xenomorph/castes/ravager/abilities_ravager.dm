@@ -741,7 +741,7 @@
 	last_fight_time = world.time
 
 ///sig handler to track last attacked for bloodthirst
-/datum/action/ability/xeno_action/bloodthirst/proc/on_take_damage(datum/source, damage)
+/datum/action/ability/xeno_action/bloodthirst/proc/on_take_damage(datum/source, damage, mob/living/attacker)
 	SIGNAL_HANDLER
 	last_fight_time = world.time
 

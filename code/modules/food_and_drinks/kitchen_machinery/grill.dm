@@ -126,7 +126,7 @@
 		return
 
 	user.visible_message(span_danger("[user] slams [grabbed_mob] onto the [src]!"))
-	grabbed_mob.apply_damage(40, BURN, BODY_ZONE_HEAD, FIRE, updating_health = TRUE)
+	grabbed_mob.apply_damage(40, BURN, BODY_ZONE_HEAD, FIRE, updating_health = TRUE, attacker = user)
 	playsound(src, "sound/machines/grill/frying.ogg", 100, null, 9)
 	grabbed_mob.emote("scream")
 	return TRUE

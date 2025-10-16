@@ -509,7 +509,7 @@
 		// NTF EDIT END
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/attacker, mob/living/carbon/human/victim)
 	var/datum/limb/organ = null
 	if(isorgan(def_zone)) //Got sent a limb datum, convert to a zone define
 		organ = def_zone
