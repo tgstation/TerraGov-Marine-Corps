@@ -557,6 +557,8 @@
 			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = 5,
 			/obj/item/plantable_flag = 10,
+			/obj/item/campaign_beacon/npc_beacon/tgmc = 2,
+			/obj/item/campaign_beacon/npc_beacon/tgmc/big = 1,
 		),
 	)
 
