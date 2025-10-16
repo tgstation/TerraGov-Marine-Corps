@@ -161,8 +161,10 @@ SUBSYSTEM_DEF(monitor)
 		return 1
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/xeno_alive_plus_burrowed = HN.total_xenos_for_evolving()
-	var/buff_needed_estimation = min( MAXIMUM_XENO_BUFF_POSSIBLE , 1 + (xeno_job.total_positions-xeno_job.current_positions) / (xeno_alive_plus_burrowed ? xeno_alive_plus_burrowed : 1))
+	var/buff_needed_estimation = min( MAXIMUM_XENO_BUFF_POSSIBLE , max(1, 1 + (xeno_job.total_positions-xeno_job.current_positions) / (xeno_alive_plus_burrowed ? xeno_alive_plus_burrowed * 2 : 2)))
 	// No need to ask admins every time
+	if(buff_needed_estimation == 1)
+		return buff_needed_estimation
 	if(GLOB.xeno_stat_multiplicator_buff != 1)
 		return buff_needed_estimation
 	var/admin_response = admin_approval("<span color='prefix'>AUTO BALANCE SYSTEM:</span> An excessive amount of burrowed was detected, while the balance system consider that marines are winning. [span_boldnotice("Considering the amount of burrowed larvas, a stat buff of [buff_needed_estimation * 100]% will be applied to health, health recovery, and melee damages.")]",
