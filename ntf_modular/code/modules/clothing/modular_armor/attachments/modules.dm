@@ -11,7 +11,7 @@
 	var/list/blocked_attack_types = list()
 	var/deflect_projectile = FALSE
 
-	var/overcharge_max_health = 275
+	var/overcharge_max_health = 325
 
 	//pale ass but black-white absorbing/deflect light and shit like that.
 	shield_color_low = COLOR_DARKER_RED
