@@ -15,6 +15,10 @@ $_channel_map: (
   'LOOC': hsl(44, 62.7%, 59%),
   'XOOC': hsl(315, 100%, 42%),
   'MOOC': hsl(32, 100%, 42%),
+  'XMOOC': hsl(7, 53%, 54%),
+  'Whisper': hsl(0, 0%, 50%),
+  'Subtle': hsl(228, 34%, 60%),
+  'Subtler': hsl(278, 34%, 60%),
   'Admin': hsl(300, 100%, 86.7%),
   'Mentor': hsl(120, 50.7%, 39.8%),
   'AI': hsl(332.2, 59.6%, 60.2%),
@@ -24,11 +28,13 @@ $_channel_map: (
   'Hive': hsl(314.9, 54.1%, 45.3%),
   'Med': hsl(169.9, 68.4%, 45.9%),
   'CAS': hsl(349.9, 67.8%, 50%),
+  'Sec': hsl(0, 71.2%, 53.7%),
   'Req': hsl(33.7, 44.9%, 49.8%),
   'Alpha': hsl(0, 62%, 53%),
   'Bravo': hsl(38, 62%, 55%),
   'Charlie': hsl(300, 51%, 58%),
   'Delta': hsl(228, 79%, 62%),
+  'PMC': hsl(332.2, 59.6%, 60.2%),
 );
 
 $channel_keys: map.keys($_channel_map) !default;

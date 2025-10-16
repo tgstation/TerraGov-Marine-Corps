@@ -8,7 +8,7 @@
 	},
 	"quickbuilds": 1200,
 	"armor": "desert",
-	"announce_text": "We have picked up a trace of a signal from the HMS Bluesummers, a seed ship sent to colonize a new sector that has been missing for some time. Our preliminary scans show that the ship has crashed and splintered across a desert planet. We have been ordered to search for survivors and investigate the cause of this disaster. TGMC, prepare to deploy!",
+	"announce_text": "We have picked up a trace of a signal from the HMS Bluesummers, a seed ship sent to colonize a new sector that has been missing for some time. Our preliminary scans show that the ship has crashed and splintered across a desert planet. We have been ordered to search for survivors and investigate the cause of this disaster. NTF, prepare to deploy!",
 	"traits":[{
 		"weather_sandstorm": true,
 		"No Parallax": true,

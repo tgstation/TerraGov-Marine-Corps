@@ -90,7 +90,7 @@
 
 		visible_message(span_notice("[user] begins to restore the structural integrity of [src]."))
 
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
 
 		if(!metal_sheets.use(1))

@@ -119,6 +119,8 @@
 
 	var/obj/item/tool/pickaxe/plasmacutter/attacking_pc = attacking_item
 	if(attacking_pc.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
+		if(!do_after(user, attacking_pc.calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, src, BUSY_ICON_HOSTILE))
+			return bonus_damage
 		bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER * 0.5
 		attacking_pc.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 
@@ -130,6 +132,8 @@
 
 	var/obj/item/tool/pickaxe/plasmacutter/attacking_pc = attacking_item
 	if(attacking_pc.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
+		if(!do_after(user, attacking_pc.calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, src, BUSY_ICON_HOSTILE))
+			return bonus_damage
 		bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER
 		attacking_pc.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 
@@ -147,6 +151,8 @@
 	if(!plasmacutter.start_cut(user, name, src, charge_cost, no_string = TRUE))
 		return FALSE
 
+	if(!do_after(user, plasmacutter.calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, src, BUSY_ICON_HOSTILE))
+		return FALSE
 	user.changeNext_move(plasmacutter.attack_speed)
 	user.do_attack_animation(src, used_item = plasmacutter)
 	plasmacutter.cut_apart(user, name, src, charge_cost)

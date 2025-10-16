@@ -121,7 +121,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 /datum/controller/master/Destroy()
 	..()
 	// Tell qdel() to Del() this object.
-	return QDEL_HINT_HARDDEL_NOW
+	. = QDEL_HINT_HARDDEL_NOW
 
 /datum/controller/master/Shutdown()
 	processing = FALSE
@@ -299,6 +299,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)
 	else
+		log_world("The Master Controller is having some issues, we will need to re-initialize EVERYTHING")
 		to_chat(world, span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
 		Initialize(20, TRUE)
 
@@ -320,6 +321,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	init_stage_completed = 0
 	var/mc_started = FALSE
 
+	log_world("Initializing subsystems...")
 	to_chat(world, span_boldnotice("Initializing subsystems..."))
 
 

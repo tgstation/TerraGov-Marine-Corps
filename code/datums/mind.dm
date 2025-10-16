@@ -52,9 +52,8 @@
 
 
 /datum/mind/Destroy(force, ...)
+	SSticker.minds -= src
 	current = null
-	if(initial_account)
-		QDEL_NULL(initial_account)
 	return ..()
 
 /datum/mind/serialize_list(list/options, list/semvers)
@@ -89,8 +88,15 @@
 
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
+		GLOB.mobs_by_ckey_list[ckey(key)] = new_character
 
 	new_character.client.init_verbs()
+	new_character.ooc_notes = new_character.client.prefs.metadata
+	new_character.ooc_notes_likes = new_character.client.prefs.metadata_likes
+	new_character.ooc_notes_dislikes = new_character.client.prefs.metadata_dislikes
+	new_character.ooc_notes_maybes = new_character.client.prefs.metadata_maybes
+	new_character.ooc_notes_favs = new_character.client.prefs.metadata_favs
+	new_character.ooc_notes_style = new_character.client.prefs.metadata_ooc_style
 
 /datum/mind/proc/set_death_time()
 	last_death = world.time

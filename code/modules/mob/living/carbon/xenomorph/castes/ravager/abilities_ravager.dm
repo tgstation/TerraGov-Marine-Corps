@@ -10,6 +10,7 @@
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Charge up to 4 tiles and viciously attack your target."
+
 	cooldown_duration = 20 SECONDS
 	ability_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
 	keybinding_signals = list(
@@ -110,6 +111,7 @@
 	action_icon_state = "ravage"
 	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	desc = "Attacks and knockbacks enemies in the direction your facing."
+
 	ability_cost = 200
 	cooldown_duration = 6 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
@@ -296,6 +298,7 @@
 	action_icon_state = "ignore_pain"
 	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	desc = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
+
 	ability_cost = 200
 	cooldown_duration = 60 SECONDS
 	keybinding_signals = list(
@@ -442,6 +445,7 @@
 	action_icon_state = "rage"
 	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	desc = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
+
 	ability_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_duration = 60 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
@@ -637,6 +641,7 @@
 	action_icon_state = "neuroclaws_off"
 	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Toggle on to enable boosting on "
+
 	ability_cost = 0 //We're limited by nothing, rip and tear
 	cooldown_duration = 1 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY

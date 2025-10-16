@@ -2,6 +2,10 @@
 /proc/log_game(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME, text, data)
 
+/proc/log_game_world(text, list/data)
+	SEND_TEXT(world.log, text)
+	logger.Log(LOG_CATEGORY_GAME, text, data)
+
 /// Logging for emotes
 /proc/log_emote(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME_EMOTE, text, data)
@@ -25,6 +29,9 @@
 /// Logging for messages sent in MOOC
 /proc/log_mooc(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME_MOOC, text, data)
+
+/proc/log_xmooc(text, list/data)
+	logger.Log(LOG_CATEGORY_GAME_XMOOC, text, data)
 
 /// Logging for prayed messages
 /proc/log_prayer(text, list/data)

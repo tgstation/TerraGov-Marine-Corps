@@ -520,9 +520,10 @@
 		tank_target.explode()
 		return
 	if(istype(object_target, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/resin_door = object_target
-		resin_door.toggle_state()
-		return
+		if(object_target.issamexenohive(xeno_owner))
+			var/obj/structure/mineral_door/resin/resin_door = object_target
+			resin_door.toggle_state()
+			return
 	if(object_target.obj_integrity <= LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD || istype(object_target, /obj/structure/closet))
 		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
 		new /obj/effect/temp_visual/behemoth/landslide/hit(object_turf)
@@ -589,6 +590,7 @@
 	var/maximum_pillars = 3
 	/// List that contains all Earth Pillars created by this ability.
 	var/list/obj/structure/earth_pillar/active_pillars = list()
+	var/obj/structure/earth_pillar/pillar_type = /obj/structure/earth_pillar
 
 /datum/action/ability/activable/xeno/earth_riser/on_cooldown_finish()
 	owner.balloon_alert(owner, "[lowertext(initial(name))] ready[maximum_pillars > 1 ? " ([length(active_pillars)]/[maximum_pillars])" : ""]")
@@ -659,7 +661,7 @@
 /datum/action/ability/activable/xeno/earth_riser/proc/do_ability(turf/target_turf, enhanced)
 	if(!target_turf)
 		return
-	var/new_pillar = new /obj/structure/earth_pillar(target_turf, xeno_owner, enhanced)
+	var/new_pillar = new pillar_type(target_turf, xeno_owner, enhanced)
 	RegisterSignal(new_pillar, COMSIG_XENOABILITY_EARTH_PILLAR_THROW, PROC_REF(pillar_thrown))
 	RegisterSignal(new_pillar, COMSIG_QDELETING, PROC_REF(pillar_destroyed))
 	active_pillars += new_pillar
@@ -867,9 +869,9 @@
 #define PRIMAL_WRATH_RANGE 12
 #define PRIMAL_WRATH_DAMAGE_MULTIPLIER 1.2
 #define PRIMAL_WRATH_SPEED_BONUS -0.3
-#define PRIMAL_WRATH_DECAY_MULTIPLIER 1.2
+#define PRIMAL_WRATH_DECAY_MULTIPLIER 0.5
 #define PRIMAL_WRATH_ACTIVE_DECAY_DIVISION 40
-#define PRIMAL_WRATH_GAIN_MULTIPLIER 0.3
+#define PRIMAL_WRATH_GAIN_MULTIPLIER 1
 #define PRIMAL_WRATH_LANDSLIDE_CHARGES 3
 
 /particles/primal_wrath
@@ -904,7 +906,7 @@
 			pixel_y += 6
 
 /atom/movable/vis_obj/wrath_block
-	icon = 'icons/Xeno/castes/behemoth.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/behemoth.dmi'
 	icon_state = "Behemoth Flashing"
 
 /datum/action/ability/xeno_action/primal_wrath
@@ -924,7 +926,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// Timer that determines when Wrath will start decaying.
-	var/decay_time = 60 SECONDS
+	var/decay_time = 3 MINUTES
 	/// Base amount of Wrath lost every valid tick.
 	var/decay_amount = 10
 	/// The overlay used when Primal Wrath blocks fatal damage.
@@ -1341,6 +1343,7 @@
 	name = "earth pillar"
 	icon_state = "earth_pillar"
 	ping = null
+	damage = 40
 	bullet_color = COLOR_LIGHT_ORANGE
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
 	shell_speed = 1
@@ -1415,8 +1418,6 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/attack_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * damage_multiplier
 	for(var/turf/affected_turf AS in affected_turfs)
-		if(isclosedturf(affected_turf))
-			continue
 		new /obj/effect/temp_visual/behemoth/crack(affected_turf)
 		playsound(affected_turf, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 15)
 		var/attack_vfx = enhanced? /obj/effect/temp_visual/behemoth/seismic_fracture/enhanced : /obj/effect/temp_visual/behemoth/seismic_fracture

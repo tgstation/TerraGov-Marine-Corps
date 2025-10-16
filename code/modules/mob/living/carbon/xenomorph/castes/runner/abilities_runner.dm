@@ -177,6 +177,8 @@
 
 /datum/action/ability/xeno_action/evasion/can_use_action(silent, override_flags, selecting)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(xeno_owner.on_fire)
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "Can't while on fire!")

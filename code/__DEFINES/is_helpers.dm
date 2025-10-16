@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define isyiren(H) (is_species(H, /datum/species/monkey/yiren))
 
 //Job/role helpers
-#define ismarinefaction(H) (H.faction == "TerraGov")
+#define ismarinefaction(H) (H.faction == FACTION_TERRAGOV)
 #define isterragovjob(J) (istype(J, /datum/job/terragov))
 #define isspatialagentjob(J) (istype(J, /datum/job/spatial_agent))
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
@@ -356,7 +356,7 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 // Xeno hives
 #define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))
-#define isxenohive(A) ((A == XENO_HIVE_NONE) || (A == XENO_HIVE_NORMAL) || (A == XENO_HIVE_CORRUPTED) || (A == XENO_HIVE_ALPHA) || (A == XENO_HIVE_BETA) || (A == XENO_HIVE_ZETA) || (A == XENO_HIVE_ADMEME)) || (A == XENO_HIVE_FALLEN)
+#define isxenohive(A) ((A == XENO_HIVE_NONE) || (A == XENO_HIVE_NORMAL) || (A == XENO_HIVE_CORRUPTED) || (A == XENO_HIVE_ALPHA) || (A == XENO_HIVE_BETA) || (A == XENO_HIVE_ZETA) || (A == XENO_HIVE_ADMEME)) || (A == XENO_HIVE_FALLEN) || (A == XENO_HIVE_FORSAKEN)
 
 // Slot helpers
 #define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))

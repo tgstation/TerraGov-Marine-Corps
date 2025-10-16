@@ -112,6 +112,7 @@
 	damage_type = STAMINA
 	aoe_range = 1
 	aoe_damage = 31.5 // 45 * 0.7 = 31.5
+	plasma_drain = 7
 
 /datum/ammo/energy/xeno/psy_blast/psy_drain/drop_nade(turf/T, atom/movable/projectile/proj)
 	if(!T || !isturf(T))

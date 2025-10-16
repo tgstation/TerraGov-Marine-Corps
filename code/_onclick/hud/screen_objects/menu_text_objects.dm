@@ -126,6 +126,15 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby)
 	var/mob/new_player/player = hud.mymob
 	player.try_to_observe()
 
+/atom/movable/screen/text/lobby/clickable/take_ssd_mob
+	maptext = "<span class='lobbytext'>TAKE SSD/OFFERED MOB</span>"
+	icon_state = "take_ssd_mob"
+
+/atom/movable/screen/text/lobby/clickable/take_ssd_mob/Click()
+	. = ..()
+	var/mob/new_player/player = hud.mymob
+	player.take_ssd_mob()
+
 /atom/movable/screen/text/lobby/clickable/manifest
 	maptext = "<span class='lobbytext'>VIEW MANIFEST</span>"
 	icon_state = "manifest"
@@ -162,7 +171,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby)
 	. = ..()
 	hud.mymob.client?.changes()
 
-
+/*
 /atom/movable/screen/text/lobby/clickable/polls
 	maptext = "<span class='lobbytext'>POLLS</span>"
 	icon_state = "poll"
@@ -184,6 +193,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby)
 	var/mob/new_player/player = hud.mymob
 	player.handle_playeR_POLLSing()
 	fetch_polls()
-
+*/
 #undef COLOR_HOVER_MOUSE
 #undef MAX_CHAR_NAME_DISPLAYED

@@ -124,6 +124,11 @@
 	freq_listening = list(FREQ_CAS)
 	autolinkers = list("firesupport")
 
+/obj/machinery/telecomms/server/presets/sec
+	id = "Security Server"
+	freq_listening = list(FREQ_SEC)
+	autolinkers = list("security")
+
 //SOM
 /obj/machinery/telecomms/server/presets/medical/som
 	id = "Medical Server som"

@@ -402,7 +402,7 @@
 		return null
 	if(!isturf(loc))
 		return null
-	if(!victim.can_be_facehugged())
+	if(!victim.can_be_facehugged(src))
 		return null
 	return leap_range
 

@@ -1,6 +1,6 @@
 /obj/item/armored_weapon
 	name = "\improper LTB main battle tank cannon"
-	desc = "A TGMC vehicle's main turret cannon. It fires 86mm rocket propelled shells"
+	desc = "A NTF vehicle's main turret cannon. It fires 86mm rocket propelled shells"
 	icon = 'icons/obj/armored/hardpoint_modules.dmi'
 	icon_state = "ltb_cannon"
 	///owner this is attached to
@@ -215,7 +215,7 @@
 	var/atom/sound_play_loc = interior_fire_sound && chassis.interior ? chassis : src
 	playsound(sound_play_loc, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
 	if(interior_fire_sound)
-		chassis.play_interior_sound(chassis.interior.breech, islist(interior_fire_sound) ? pick(interior_fire_sound):interior_fire_sound, 40, fire_sound_vary)
+		chassis.play_interior_sound(chassis.interior?.breech, islist(interior_fire_sound) ? pick(interior_fire_sound):interior_fire_sound, 40, fire_sound_vary)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
 	ammo.current_rounds--
@@ -422,7 +422,7 @@
 
 /obj/item/armored_weapon/microrocket_pod
 	name = "microrocket pod"
-	desc = "A TGMC secondary vehicle-mounted multiple launch rocket system with a total of 6 homing microrockets. Capable of unleashing its entire payload in rapid succession."
+	desc = "A NTF secondary vehicle-mounted multiple launch rocket system with a total of 6 homing microrockets. Capable of unleashing its entire payload in rapid succession."
 	icon_state = "secondary_rocket_multiple"
 	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
 	interior_fire_sound = null

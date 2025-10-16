@@ -4,7 +4,7 @@
 /datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle
 	name = "V-31"
 	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. The V-31 is the principal ballistic weapon for the SOM. \
-	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many NTF equivalents. \
 	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
 	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
 	Uses 10x24mm caseless ammunition and 10 gauge micro grenades."
@@ -28,7 +28,7 @@
 /datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle/enhanced
 	name = "V-31+"
 	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. The V-31 is the principal ballistic weapon for the SOM. \
-	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many NTF equivalents. \
 	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
 	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
 	Uses a mix of standard and AP 10x24mm caseless ammunition, and 10 gauge micro grenades."
@@ -116,7 +116,7 @@
 /datum/loadout_item/suit_store/main_gun/som_medic/flechette_shotgun
 	name = "V-51"
 	desc = "Equipped with a mag harness and bayonet, and solely loaded with flechette rounds. The V-51 is the main shotgun utilised by the Sons of Mars. \
-	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the TGMC, but makes up for it with a superior rate of fire. \
+	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the NTF, but makes up for it with a superior rate of fire. \
 	Uses 12 gauge shells."
 	ui_icon = "v51"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/support
