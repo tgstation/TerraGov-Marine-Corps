@@ -316,11 +316,14 @@
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bi" = (
-/obj/machinery/power/smes/preset,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/power/smes/preset{
+	input_level = 200000;
+	output_level = 200000
+	},
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "bj" = (
