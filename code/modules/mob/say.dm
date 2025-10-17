@@ -39,13 +39,14 @@
 /mob/proc/whisper(message, datum/language/language)
 	say(message, language = language)
 
-/mob/verb/subtler(message as text)
+/mob/verb/subtler()
 
 	set name = "Subtler"
 	set category = "IC"
 	set desc = "Send a 1-tile range message that non-admin ghosts can't see."
 
 	set instant = TRUE
+	var/message = tgui_input_text(usr, "Write an emote to display.", "Subtler", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	if(!message)
 		return
