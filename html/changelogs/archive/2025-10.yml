@@ -106,3 +106,6 @@
   Runian:
   - bugfix: 'Mutations: Enhanced Strength now correctly sets/increases your Fling
       distance as Warrior.'
+2025-10-17:
+  DrCrawler:
+  - rscadd: Defiler's mutation, envenomed, now also triggers upon disarming someone.
