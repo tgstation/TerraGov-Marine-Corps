@@ -130,12 +130,12 @@
 	name = "tracking fluid"
 	desc = "Tracking fluid from a tracking round."
 	basecolor = "#00FFFF"
-	layer = BELOW_OBJ_LAYER
+	layer = ABOVE_WEEDS_LAYER
 
 /obj/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
 	name = "dried [name]"
 	desc = "Tracking fluid from a tracking round. It appears to have lost its color."
-	color = adjust_brightness(color, -75)
+	color = "#003434"
 	amount = 0
 
 /obj/effect/decal/cleanable/blood/writing
