@@ -9,6 +9,5 @@
 #define XMOOC_CHANNEL "XMOOC"
 #define WHISPER_CHANNEL "Whisper"
 #define SUBTLE_CHANNEL "Subtle"
-#define SUBTLER_CHANNEL "Subtler"
 #define ADMIN_CHANNEL "Admin"
 #define MENTOR_CHANNEL "Mentor"
