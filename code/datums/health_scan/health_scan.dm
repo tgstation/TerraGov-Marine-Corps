@@ -183,7 +183,7 @@
 	allow_live_autoupdating = !isnull(ui) ? ui.autoupdate : TRUE
 	return UI_INTERACTIVE
 
-/datum/health_scan/ui_data(mob/user, advanced)
+/datum/health_scan/ui_data(mob/user)
 	var/list/data = list(
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
