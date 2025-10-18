@@ -99,3 +99,48 @@
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 	hotkey_keys = list("G")
+
+/datum/keybinding/xeno/toggle_bump_attack_allies
+	name = "Toggle Bump Attack Allies"
+	full_name = "Toggle Bump Attack Allies"
+	description = "Enable or disable the toggle: Toggle Bump Attack Allies."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BUMP_ATTACK_ALLIES
+
+/datum/keybinding/xeno/toggle_bump_attack_allies/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/carbon/xenomorph/xeno_user = user.mob
+	if(isxeno(xeno_user))
+		xeno_user.toggle_bump_attack_allies()
+		return TRUE
+
+/datum/keybinding/xeno/toggle_destroy_own_structures
+	name = "Toggle Destroy Own Structures"
+	full_name = "Toggle Destroy Own Structures"
+	description = "Enable or disable the toggle: Toggle Destroy Own Structures."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DESTROY_OWN_STRUCTURES
+
+/datum/keybinding/xeno/toggle_destroy_own_structures/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/carbon/xenomorph/xeno_user = user.mob
+	if(isxeno(xeno_user))
+		xeno_user.toggle_destroy_own_structures()
+		return TRUE
+
+/datum/keybinding/xeno/toggle_destroy_weeds
+	name = "Toggle Destroy Weeds"
+	full_name = "Toggle Destroy Weeds"
+	description = "Enable or disable the toggle: Toggle Destroy Weeds."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DESTROY_WEEDS
+
+/datum/keybinding/xeno/toggle_destroy_weeds/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/carbon/xenomorph/xeno_user = user.mob
+	if(isxeno(xeno_user))
+		xeno_user.toggle_destroy_weeds()
+		return TRUE

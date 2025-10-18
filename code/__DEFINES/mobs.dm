@@ -542,6 +542,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define XENO_ALLIES_BUMP (1<<5)
 ///ability to destroy your own xeno structures
 #define XENO_DESTROY_OWN_STRUCTURES (1<<6)
+///ability to destroy weeds
+#define XENO_DESTROY_WEEDS (1<<7)
 
 
 #define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.

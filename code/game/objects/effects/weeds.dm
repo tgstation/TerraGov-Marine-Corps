@@ -140,7 +140,7 @@
 /obj/alien/weeds/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(!issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB)
+	if(!issamexenohive(xeno_attacker) && (xeno_attacker.xeno_flags & XENO_DESTROY_WEEDS))
 		SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_OBJ, src)
 		if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker) & COMPONENT_NO_ATTACK_ALIEN)
 			return FALSE
@@ -156,7 +156,7 @@
 		xeno_attacker.changeNext_move(CLICK_CD_MELEE)
 		take_damage(damage_amount, damage_type, armor_type, effects, get_dir(src, xeno_attacker), armor_penetration, xeno_attacker)
 		return TRUE
-	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
+	if(issamexenohive(xeno_attacker) && (xeno_attacker.xeno_flags & XENO_DESTROY_WEEDS) && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts scooping up \the [src]!"), \
 		span_xenonotice("We start to scoop up \the [src]."))
 		if(!do_after(xeno_attacker, 2 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))

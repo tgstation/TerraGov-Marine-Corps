@@ -28,3 +28,6 @@
 #define COMSIG_XENOABILITY_BANELING_SPAWN_POD "xenoability_baneling_spawn_pod"
 #define COMSIG_XENOABILITY_RESIN_SALVE "xenoability_resin_salve"
 #define COMSIG_XENOABILITY_PSYCHIC_INFLUENCE "xenoability_psychic_influence"
+#define COMSIG_XENOABILITY_TOGGLE_BUMP_ATTACK_ALLIES "xenoability_toggle_bump_attack_allies"
+#define COMSIG_XENOABILITY_TOGGLE_DESTROY_OWN_STRUCTURES "xenoability_toggle_destroy_own_structures"
+#define COMSIG_XENOABILITY_TOGGLE_DESTROY_WEEDS "xenoability_toggle_destroy_weeds"
