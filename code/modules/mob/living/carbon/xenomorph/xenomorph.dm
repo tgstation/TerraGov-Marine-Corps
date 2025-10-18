@@ -348,29 +348,18 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
-	if(stat != CONSCIOUS) // If the Xeno is unconscious, don't fight back against a grab/pull
+	if(incapacitated() || HAS_TRAIT(src, TRAIT_FLOORED)) // If the Xeno is incapacitated, don't fight back against a grab/pull
 		return TRUE
 	if(!ishuman(puller))
 		return TRUE
 	var/mob/living/carbon/human/H = puller
-	if(hivenumber == XENO_HIVE_CORRUPTED && !(xeno_flags & XENO_ALLIES_BUMP)) // we can grab friendly benos
+	if((issamexenohive(H) || (H.faction in hive.allied_factions)) && !(xeno_flags & XENO_ALLIES_BUMP)) // we can grab friendly benos
 		return TRUE
 	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 	H.visible_message(span_warning("[H] tried to pull [src] but instead gets a tail swipe to the head!"))
 	H.stop_pulling()
 	return FALSE
-
-/mob/living/carbon/xenomorph/resist_grab()
-	if(pulledby.grab_state)
-		if(!isxeno(pulledby))
-			visible_message(span_danger("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
-		else
-			return ..()
-	pulledby.stop_pulling()
-	. = 1
-
-
 
 /mob/living/carbon/xenomorph/prepare_huds()
 	..()
