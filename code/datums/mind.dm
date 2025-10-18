@@ -70,6 +70,8 @@
 	return .
 
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
+	if(!isnewplayer(new_character))
+		new_character.pose = current.pose
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
 		SStgui.on_transfer(current, new_character)

@@ -113,6 +113,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\hive_datum.dm"
 #include "code\modules\mob\living\emote.dm"
 #include "code\modules\mob\living\living_verbs.dm"
+#include "code\modules\mob\_pose.dm"
 #include "code\modules\mob\ooc_notes.dm"
 #include "code\modules\pixel_shift\code\pixel_shift.dm"
 #include "code\modules\projectiles\guns\pistols.dm"

@@ -295,6 +295,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.client?.init_verbs()
 		ghost.mind?.current = ghost
 		ghost.faction = faction
+		ghost.pose = pose
 		ghost.ooc_notes = ooc_notes
 		ghost.ooc_notes_likes = ooc_notes_likes
 		ghost.ooc_notes_dislikes = ooc_notes_dislikes
