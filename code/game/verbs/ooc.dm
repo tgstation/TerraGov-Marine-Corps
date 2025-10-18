@@ -440,7 +440,7 @@
 /client/verb/looc(msg as null)
 	set name = "LOOC"
 	set category = "OOC.Communication"
-	set desc = "Send an out-of-character message to all character suffiently close to your own. Shows your character's name and not your key (byond username)."
+	set desc = "Send an out-of-character message to all characters suffiently close to your own. Shows your character's name and not your key (byond username)."
 
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
@@ -458,7 +458,7 @@
 		return
 
 	if(!msg)
-		msg = tgui_input_text(usr, "Send an out-of-character message to all character suffiently close to your own. Shows your character's name and not your key (byond username).", "LOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all characters suffiently close to your own. Shows your character's name and not your key (byond username).", "LOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
