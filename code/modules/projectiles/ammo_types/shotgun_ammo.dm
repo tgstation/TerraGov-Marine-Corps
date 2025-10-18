@@ -304,6 +304,7 @@
 	max_range = 15
 	damage = 40
 	penetration = 30
+	bullet_color = LIGHT_COLOR_EMISSIVE_BLUE // The fluid it emits is glowing blue, the bullet should be as well
 
 /datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(isxeno(target_mob))
@@ -319,6 +320,7 @@
 	max_range = 15
 	damage = 90
 	penetration = 10
+	bullet_color = LIGHT_COLOR_EMISSIVE_BLUE // The fluid it emits is glowing blue, the bullet should be as well
 
 /datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(isxeno(target_mob))

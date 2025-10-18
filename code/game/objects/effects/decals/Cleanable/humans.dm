@@ -130,7 +130,12 @@
 	name = "tracking fluid"
 	desc = "Tracking fluid from a tracking round."
 	basecolor = "#00FFFF"
+	amount = 5
 	layer = ABOVE_WEEDS_LAYER
+
+/obj/effect/decal/cleanable/blood/drip/tracking_fluid/update_icon_state()
+	. = ..()
+	animate(src, time = 90 SECONDS, color = "#003434")
 
 /obj/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
 	name = "dried [name]"
