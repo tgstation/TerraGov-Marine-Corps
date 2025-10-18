@@ -783,7 +783,8 @@
 			if(successor == living_xeno_ruler) //prefer not to switch if unnecessary
 				continue
 			if(successor.client && (!potential_successor.client || potential_successor.client.inactivity > successor.client.inactivity))
-				successor = potential_successor //among candidates of same tier, prefer active ones
+				continue
+			successor = potential_successor //among candidates of same tier, prefer active ones
 
 	if(!successor || living_xeno_ruler == successor)
 		return
