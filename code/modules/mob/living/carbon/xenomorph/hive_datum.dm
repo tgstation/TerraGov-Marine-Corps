@@ -766,22 +766,24 @@
 		return
 
 	var/mob/living/carbon/xenomorph/successor
-	var/list/mob/living/carbon/xenomorph/prio_candidates = xenos_by_tier[XENO_TIER_FOUR]
-	var/list/mob/living/carbon/xenomorph/seco_candidates = xenos_by_tier[XENO_TIER_THREE]
 
-	for(var/mob/living/carbon/xenomorph/potential_successor in prio_candidates)
-		if(!(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER))
-			continue
-		successor = potential_successor
+	var/list/mob/living/carbon/xenomorph/candidates = xenos_by_tier[XENO_TIER_FOUR] + xenos_by_tier[XENO_TIER_THREE] + xenos_by_tier[XENO_TIER_TWO] + xenos_by_tier[XENO_TIER_ONE]
+
+	for(var/mob/living/carbon/xenomorph/potential_successor in candidates)
 		if(isxenoqueen(potential_successor))
-			break
-
-	if(!successor)
-		for(var/mob/living/carbon/xenomorph/potential_successor in seco_candidates)
-			if(potential_successor.xeno_caste.can_flags & CASTE_CAN_BE_RULER && !living_xeno_ruler)
-				if(previous_ruler == potential_successor)
-					continue
+			successor = potential_successor
+			break //found a living queen so we're done
+		if(!successor)
+			successor = potential_successor //they're better than nothing, or they wouldn't be in the list
+		else
+			if(GLOB.tier_as_number[successor.tier] > GLOB.tier_as_number[potential_successor.tier])
+				break //if next candidate is a lower tier we're done
+			if(potential_successor == living_xeno_ruler)
 				successor = potential_successor
+			if(successor == living_xeno_ruler) //prefer not to switch if unnecessary
+				continue
+			if(successor.client && (!potential_successor.client || potential_successor.client.inactivity > successor.client.inactivity))
+				successor = potential_successor //among candidates of same tier, prefer active ones
 
 	if(!successor || living_xeno_ruler == successor)
 		return
