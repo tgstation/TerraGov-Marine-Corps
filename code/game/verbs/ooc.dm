@@ -514,11 +514,11 @@
 			to_chat(in_range_mob, message)
 	else
 		message = span_looc("[span_prefix("LOOC:")] [mob.name]: [span_message("[msg]")]")
-		var/turf/mobturf = get_turf(mob)
-		for(var/mob/M in GLOB.player_list)
-			var/turf/Mturf = get_turf(M)
-			if(mobturf.z == Mturf.z && get_dist(Mturf,mobturf) <= world.view)
-				to_chat(M, message)
+		var/turf/speaker_turf = get_turf(mob)
+		for(var/mob/listener in GLOB.player_list)
+			var/turf/listener_turf = get_turf(listener)
+			if((listener in viewers(speaker_turf)) || (speaker_turf in view(listener_turf))) //can't see loocs through walls unless you can see through walls.  But being blind doesn't stop you seeing loocs.
+				to_chat(listener, message)
 
 	for(var/client/recv_staff AS in GLOB.admins)
 		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE))
