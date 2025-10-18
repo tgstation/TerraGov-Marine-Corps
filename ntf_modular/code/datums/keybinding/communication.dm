@@ -12,3 +12,9 @@
 	name = SUBTLE_CHANNEL
 	full_name = "Subtle"
 	keybind_signal = COSMIG_KB_CLIENT_SUBTLE_DOWN
+
+/datum/keybinding/client/communication/subtler
+	name = SUBTLER_CHANNEL
+	full_name = "Subtler"
+	keybind_signal = COSMIG_KB_CLIENT_SUBTLER_DOWN
+
