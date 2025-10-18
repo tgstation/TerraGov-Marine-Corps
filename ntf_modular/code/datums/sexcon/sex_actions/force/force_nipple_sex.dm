@@ -17,7 +17,7 @@
 
 /datum/sex_action/force_nipple_sex/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	target.visible_message(span_warning("[user] grabs [target] and shoves [target.p_their()] cock into [user.p_their()]  own nipple!"))
-	playsound(target, pick(list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg')), 20, TRUE)
+	playsound(target, pick(list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg')), 20, TRUE, 7, ignore_walls = FALSE)
 
 /datum/sex_action/force_nipple_sex/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.do_message_signature("[type]"))
@@ -27,7 +27,7 @@
 	user.sexcon.perform_sex_action(user, 2, 4, TRUE)
 	if(user.sexcon.check_active_ejaculation())
 		user.visible_message(span_love("[target] cums into [user]'s nipple!"))
-		user.sexcon.cum_into()
+		target.sexcon.cum_into(FALSE, user)
 		if(isxeno(target))
 			var/mob/living/carbon/xenomorph/X = target
 			X.impregify(user, "nipple")

@@ -28,12 +28,10 @@
 	user.sexcon.perform_sex_action(target, 2, 0, TRUE)
 	if(!target.sexcon.considered_limp())
 		var/oxyloss = 1.3
-		if(isxeno(user))
-			oxyloss *= 2
-		user.sexcon.perform_deepthroat_oxyloss(target, oxyloss)
+		user.sexcon.perform_deepthroat_oxyloss(user, oxyloss)
 	if(target.sexcon.check_active_ejaculation())
 		target.visible_message(span_lovebold("[target] cums into [user]'s mouth!"))
-		target.sexcon.cum_into()
+		target.sexcon.cum_into(TRUE, user)
 		if(isxeno(target))
 			var/mob/living/carbon/xenomorph/X = target
 			X.impregify(user, "mouth")

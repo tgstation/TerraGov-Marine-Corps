@@ -18,7 +18,7 @@
 
 /datum/sex_action/force_ear_sex/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	user.visible_message(span_warning("[user] forces [user.p_their()] ear against [target]'s cock!"))
-	playsound(target, pick(list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg')), 20, TRUE)
+	playsound(target, pick(list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg')), 20, TRUE, 7, ignore_walls = FALSE)
 
 /datum/sex_action/force_ear_sex/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.do_message_signature("[type]"))
@@ -40,7 +40,7 @@
 
 	if(target.sexcon.check_active_ejaculation())
 		target.visible_message(span_lovebold("[target] cums into [user]'s ear!"))
-		target.sexcon.cum_into()
+		target.sexcon.cum_into(FALSE, user)
 		if(isxeno(target))
 			var/mob/living/carbon/xenomorph/X = target
 			X.impregify(user, "ear")

@@ -129,7 +129,7 @@
 	show_ui()
 
 /datum/sex_controller/proc/cum_onto()
-	playsound(target, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
+	playsound(target, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 	if(!isrobot(usr))
 		if(usr.gender == MALE)
 			new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
@@ -139,12 +139,14 @@
 		new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
 	after_ejaculation()
 
-/datum/sex_controller/proc/cum_into(oral = FALSE)
+/datum/sex_controller/proc/cum_into(oral = FALSE, mob/filled)
+	if(!filled)
+		filled = target
 	if(oral)
-		playsound(target, pick(list('ntf_modular/sound/misc/mat/mouthend (1).ogg','ntf_modular/sound/misc/mat/mouthend (2).ogg')), 100, FALSE)
+		playsound(target, pick(list('ntf_modular/sound/misc/mat/mouthend (1).ogg','ntf_modular/sound/misc/mat/mouthend (2).ogg')), 100, FALSE, 7, ignore_walls = FALSE)
 	else
-		playsound(target, 'ntf_modular/sound/misc/mat/endin.ogg', 50, TRUE)
-	target?.reagents?.add_reagent(/datum/reagent/medicine/saline_glucose, 5)
+		playsound(target, 'ntf_modular/sound/misc/mat/endin.ogg', 50, TRUE, 7, ignore_walls = FALSE)
+	filled?.reagents?.add_reagent(/datum/reagent/medicine/saline_glucose, 5)
 	after_ejaculation()
 	if(!oral)
 		after_intimate_climax()
@@ -155,7 +157,7 @@
 	user.visible_message(span_lovebold("[user] makes a mess!"))
 	user.heal_overall_damage(rand(15, 30), rand(15, 30), TRUE, TRUE)
 
-	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
+	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 	if(!isrobot(user))
 		if(user.gender == MALE)
 			new /obj/effect/decal/cleanable/blood/splatter/cum(user.loc)
@@ -168,20 +170,20 @@
 /datum/sex_controller/proc/ejaculate_container(obj/item/reagent_containers/glass/C)
 	log_combat(user, user, "Ejaculated into a container")
 	user.visible_message(span_lovebold("[user] spills into [C]!"))
-	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
+	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 	after_ejaculation()
 
 /datum/sex_controller/proc/milk_container(obj/item/reagent_containers/glass/C)
 	log_combat(user, user, "Was milked into a container")
 	user.visible_message(span_lovebold("[user] lactates into [C]!"))
-	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
+	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 	after_ejaculation()
 
 /datum/sex_controller/proc/after_ejaculation()
 	set_arousal(40)
 	user.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 25) //rids of aphrotox greatly
 	user.emote("sexmoanhvy")
-	user.playsound_local(user, 'ntf_modular/sound/misc/mat/end.ogg', 100)
+	playsound(user, 'ntf_modular/sound/misc/mat/end.ogg', 100, FALSE, 7, ignore_walls = FALSE)
 	last_ejaculation_time = world.time
 	if(isxeno(user))
 		GLOB.round_statistics.xeno_orgasms++

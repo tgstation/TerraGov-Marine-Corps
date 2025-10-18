@@ -33,7 +33,7 @@
 
 	if(prob(33))
 		to_chat(target, span_warning("It's hot!"))
-		playsound(src, 'sound/items/cig_snuff.ogg', 20)
+		playsound(src, 'sound/items/cig_snuff.ogg', 20, FALSE, 7, ignore_walls = FALSE)
 
 /datum/sex_action/candle_butt/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	user.visible_message(span_warning("[user] stops dropping wax on [target]'s buttocks..."))
