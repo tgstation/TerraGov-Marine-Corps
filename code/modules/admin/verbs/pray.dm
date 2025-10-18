@@ -1,8 +1,12 @@
-/client/verb/pray(msg as text)
+/client/verb/pray(msg as null)
 	set category = "IC"
 	set name = "Pray"
+	set desc = "Send a message to admins without pinging them, for minor requests."
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		msg = tgui_input_text(usr, "Send a message to admins without pinging them, for minor requests.", "Pray", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
