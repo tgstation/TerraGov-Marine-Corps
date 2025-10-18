@@ -1,3 +1,5 @@
+import { TempColor } from './data';
+
 // Sizing
 /** Font size for the limit of counters like chem units and organ health */
 export const COUNTER_MAX_SIZE = '75%';
@@ -29,4 +31,13 @@ export const COLOR_DARKER_ORANGE = 'hsl(24, 89%, 40%)';
 export const LIMB_DAMAGE_HSL = {
   sat: '100%',
   lum: '62%',
+};
+
+// Dictionaries
+/** Temperature colors tied to strings */
+export const TEMP_COLORS_TO_STRINGS = {
+  [TempColor.OK]: 'OK',
+  [TempColor.T1Heat]: 'MODERATE',
+  [TempColor.T2Heat]: 'SEVERE',
+  [TempColor.T3Heat]: 'CRITICAL',
 };
