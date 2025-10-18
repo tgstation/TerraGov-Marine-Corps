@@ -332,11 +332,15 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 	var/msg = input(src, null, "asay \"text\"") as text|null
 	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/asay, msg)
 
-ADMIN_VERB(asay, R_ASAY, "asay", "Speak in the private admin channel", ADMIN_CATEGORY_MAIN, msg as text)
+ADMIN_VERB(asay, R_ASAY, "asay", "Speak in the private admin channel", ADMIN_CATEGORY_MAIN, msg as null)
+
+	if(!msg)
+		msg = tgui_input_text(usr, "Speak in the private admin channel", "asay", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = emoji_parse(copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN))
+
 	if(!msg)
 		return
-
-	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 
 	var/list/pinged_admin_clients = check_admin_pings(msg, TRUE)
 	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
@@ -368,8 +372,12 @@ ADMIN_VERB(asay, R_ASAY, "asay", "Speak in the private admin channel", ADMIN_CAT
 	var/msg = input(src, null, "msay \"text\"") as text|null
 	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/msay, msg)
 
-ADMIN_VERB(msay, R_ADMIN|R_MENTOR, "msay", "Speak in the private mentor channel", ADMIN_CATEGORY_MAIN, msg as text)
-	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
+ADMIN_VERB(msay, R_ADMIN|R_MENTOR, "msay", "Speak in the private mentor channel", ADMIN_CATEGORY_MAIN, msg as null)
+
+	if(!msg)
+		msg = tgui_input_text(usr, "Speak in the private mentor channel", "msay", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = emoji_parse(copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN))
 
 	if(!msg)
 		return
