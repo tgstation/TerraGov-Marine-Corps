@@ -1,12 +1,7 @@
-/client/verb/ooc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "OOC \"text\"") as null|text
-	ooc(message)
-
-
-/client/verb/ooc(msg as text)
+/client/verb/ooc(msg as null)
 	set name = "OOC"
 	set category = "OOC.Communication"
+	set desc = "Send an out-of-character message to all players.  Shows your key(byond username) and not your character's name."
 
 	if(!mob)
 		return
@@ -14,7 +9,10 @@
 		to_chat(src, "Guests may not use OOC.")
 		return
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all players.  Shows your key(byond username) and not your character's name.", "OOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -129,19 +127,10 @@
 		else
 			to_chat(recv_client, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
 
-
-/client/verb/xooc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "XOOC \"text\"") as null|text
-	xooc(message)
-
-
-/client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
+/client/verb/xooc(msg as null) // Same as MOOC, but for xenos.
 	set name = "XOOC"
 	set category = "OOC.Communication"
-
-	if(!msg)
-		return
+	set desc = "Send an out-of-character message to all xenos. Shows your character's name and not your key (byond username)."
 
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
@@ -157,7 +146,10 @@
 		to_chat(src, span_warning("You must be a xeno to use XOOC."))
 		return
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all xenos. Shows your character's name and not your key (byond username).", "XOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -238,16 +230,10 @@
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#a330a7'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-
-/client/verb/mooc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "MOOC \"text\"") as null|text
-	mooc(message)
-
-
-/client/verb/mooc(msg as text) // Same as XOOC, but for humans.
+/client/verb/mooc(msg as null) // Same as XOOC, but for humans.
 	set name = "MOOC"
 	set category = "OOC.Communication"
+	set desc = "Send an out-of-character message to all humans. Shows your character's name and not your key (byond username)."
 
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
@@ -263,7 +249,10 @@
 		to_chat(src, span_warning("You must be a human to use MOOC."))
 		return
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all humans. Shows your character's name and not your key (byond username).", "MOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -345,14 +334,10 @@
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#ca6200'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-/client/verb/xmooc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "XMOOC \"text\"") as null|text
-	xmooc(message)
-
-/client/verb/xmooc(msg as text) // Combined XOOC & MOOC
+/client/verb/xmooc(msg as null) // Combined XOOC & MOOC
 	set name = "XMOOC"
 	set category = "OOC.Communication"
+	set desc = "Send an out-of-character message to all humans and xenos. Shows your character's name and not your key (byond username)."
 
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
@@ -367,8 +352,10 @@
 	if(!((mob in GLOB.human_mob_list) || (mob in GLOB.xeno_mob_list) || (mob in GLOB.ai_list)) && !admin)
 		to_chat(src, span_warning("You must be a human or xeno to use XMOOC."))
 		return
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all humans and xenos. Shows your character's name and not your key (byond username).", "XMOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -450,17 +437,11 @@
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#c7594B'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XMOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-/client/verb/looc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "LOOC \"text\"") as null|text
-	looc(message)
-
-/client/verb/looc(msg as text)
+/client/verb/looc(msg as null)
 	set name = "LOOC"
 	set category = "OOC.Communication"
+	set desc = "Send an out-of-character message to all character suffiently close to your own. Shows your character's name and not your key (byond username)."
 
-	if(!msg)
-		return
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
@@ -476,7 +457,10 @@
 		to_chat(src, "Guests may not use LOOC.")
 		return
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all character suffiently close to your own. Shows your character's name and not your key (byond username).", "LOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return

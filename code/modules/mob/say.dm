@@ -1,8 +1,12 @@
 ///what clients use to speak. when you type a message into the chat bar in say mode, this is the first thing that goes off serverside.
-/mob/verb/say_verb(message as text)
+/mob/verb/say_verb(message as null)
 	set name = "Say"
 	set category = "IC"
+	set desc = "Say something aloud."
 	set instant = TRUE
+
+	if(!message)
+		message = tgui_input_text(usr, "Say something aloud.", "Say", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	if(!message)
 		return
@@ -12,23 +16,31 @@
 	SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_SAY_VERB)
 
 
-/mob/verb/me_verb(message as text)
+/mob/verb/me_verb(message as null)
 	set name = "Me"
 	set category = "IC"
+	set desc = "Emote something."
 	set instant = TRUE
+
+	if(!message)
+		message = tgui_input_text(usr, "Emote something.", "Me", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	if(!message)
 		return
 
-	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+	message = copytext_char(trim(sanitize(message)), 1, MAX_MESSAGE_LEN)
 
 	SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_EMOTE_VERB)
 
 
-/mob/verb/whisper_verb(message as text)
+/mob/verb/whisper_verb(message as null)
 	set name = "Whisper"
 	set category = "IC"
+	set desc = "Say something quietly, so only people nearby will hear it clearly."
 	set instant = TRUE
+
+	if(!message)
+		message = tgui_input_text(usr, "Say something quietly, so only people nearby will hear it clearly.", "Whisper", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	if(!message)
 		return
@@ -43,32 +55,34 @@
 
 	set name = "Subtler"
 	set category = "IC"
-	set desc = "Send a 1-tile range message that non-admin ghosts can't see."
+	set desc = "Send a 1-tile range emote that non-admin ghosts can't see."
 
 	set instant = TRUE
 	if(!message)
-		message = tgui_input_text(usr, desc, name, "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+		message = tgui_input_text(usr, "Send a 1-tile range emote that non-admin ghosts can't see.", "Subtler", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	if(!message)
 		return
 
-	message = trim(copytext_char(say_emphasis(message), 1, MAX_MESSAGE_LEN))
-
+	message = copytext_char(trim(sanitize(message)), 1, MAX_MESSAGE_LEN)
 	// Italicize it
 	message = "<i>[message]</i>"
 
 	SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_EMOTE_VERB, range = 1, ghost_visible = FALSE)
 
 
-/mob/verb/subtle(message as text)
+/mob/verb/subtle(message as null)
 	set name = "Subtle"
 	set category = "IC"
-	set desc = "Send a message with a range of 1 tile."
+	set desc = "Send an emote with a range of 1 tile."
+
+	if(!message)
+		message = tgui_input_text(usr, "Send an emote with a range of 1 tile.", "Subtle", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	if(!message)
 		return
 
-	message = trim(copytext_char(say_emphasis(message), 1, MAX_MESSAGE_LEN))
+	message = copytext_char(trim(sanitize(message)), 1, MAX_MESSAGE_LEN)
 
 	// Italicize it
 	message = "<i>[message]</i>"
