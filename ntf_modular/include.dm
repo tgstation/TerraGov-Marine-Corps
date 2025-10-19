@@ -114,6 +114,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\xenoprocs.dm"
 #include "code\modules\mob\living\emote.dm"
 #include "code\modules\mob\living\living_verbs.dm"
+#include "code\modules\mob\new_player\sprite_accessories.dm"
 #include "code\modules\mob\_pose.dm"
 #include "code\modules\mob\ooc_notes.dm"
 #include "code\modules\pixel_shift\code\pixel_shift.dm"
