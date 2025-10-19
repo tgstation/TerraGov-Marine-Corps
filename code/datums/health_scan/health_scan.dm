@@ -193,9 +193,9 @@
 		"dead_threshold" = patient.get_death_threshold(),
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
-		"toxin" = round(patient.getToxLoss()),
-		"oxy" = round(patient.getOxyLoss()),
-		"clone" = round(patient.getCloneLoss()),
+		"total_tox" = round(patient.getToxLoss()),
+		"total_oxy" = round(patient.getOxyLoss()),
+		"total_clone" = round(patient.getCloneLoss()),
 
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
@@ -257,7 +257,8 @@
 	var/total_flow_rate = 0
 	for(var/datum/limb/limb AS in patient.limbs)
 		if((limb.parent?.limb_status & LIMB_DESTROYED) && !(istype(limb.parent, /datum/limb/groin) && istype(limb.parent, /datum/limb/chest) && istype(limb.parent, /datum/limb/head)))
-			// avoid showing right arm and right hand as missing
+			// don't show children of missing limbs
+			// no showing right arm and right hand as missing—just right arm
 			continue
 		var/infected = FALSE
 		var/necrotized = FALSE
@@ -346,26 +347,28 @@
 
 	if(patient.stat == DEAD)
 		var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
-		var/defibrillation = (organic_patient ? "defibrillation" : "reboot")
-		var/defibrillate = (organic_patient ? "defibrillate" : "reboot")
+		var/status
+		var/reason // in tgui, will be displayed as "Defibrillation: Status (reason)"
 		var/state = patient.check_defib(DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE))
 		if(state & DEFIB_PREVENT_REVIVE_STATES)
-			data["revivable_status"] = "never"
+			status = ((state & DEFIB_FAIL_DECAPITATED) && !organic_patient) ? "not ready" : "impossible"
 		else if((state & DEFIB_REVIVABLE_STATES) && !(state & DEFIB_POSSIBLE))
-			data["revivable_status"] = "blocked"
+			status = "not ready"
 		else
-			data["revivable_status"] = "ready"
+			status = "ready"
 		switch(state)
 			if(DEFIB_FAIL_DECAPITATED)
-				data["revivable_reason"] = "[capitalize(defibrillation)] impossible (decapitated)"
+				reason = organic_patient ? "decapitated" : "reattach head surgically"
 			if(DEFIB_FAIL_BRAINDEAD)
-				data["revivable_reason"] = "[capitalize(defibrillation)] impossible (braindead)"
+				reason = "braindead"
 			if(DEFIB_FAIL_BAD_ORGANS)
-				data["revivable_reason"] = "Not ready to [defibrillate] (heart too damaged)"
+				reason = "repair heart surgically"
 			if(DEFIB_FAIL_TOO_MUCH_DAMAGE)
-				data["revivable_reason"] = "Not ready to [defibrillate] (repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0)]%)"
-			if(DEFIB_POSSIBLE)
-				data["revivable_reason"] = "Ready to [defibrillate]"
+				reason = "repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0)]%"
+			//if(DEFIB_POSSIBLE)
+            //    reason = null // kept to survive future refactors
+		data["revivable_status"] = status
+		data["revivable_reason"] = reason
 
 	var/list/advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))

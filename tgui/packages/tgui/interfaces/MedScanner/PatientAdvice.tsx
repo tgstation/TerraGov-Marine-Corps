@@ -2,7 +2,7 @@ import { Box, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import { SPACING_PIXELS } from './constants';
-import { Advice, MedScannerData } from './data';
+import { MedScannerData } from './data';
 
 /**
  * Guides users on how to treat a patient based on context.
@@ -12,18 +12,19 @@ import { Advice, MedScannerData } from './data';
  */
 export function PatientAdvice() {
   const { data } = useBackend<MedScannerData>();
-  const { advice = {}, species, accessible_theme } = data;
+  const { advice, species, accessible_theme } = data;
+  if (!advice) return;
   return (
     <Section title="Treatment Advice">
       <Stack vertical>
-        {Object.values(advice).map((advice: Advice) => (
+        {advice.map((advice) => (
           <Stack.Item key={advice.advice}>
             <Tooltip
               content={advice.tooltip || 'No tooltip entry for this advice.'}
             >
               <Box inline>
                 <Icon
-                  name={advice.icon}
+                  name={advice.icon || 'triangle-exclamation'}
                   ml={0.2}
                   color={
                     accessible_theme

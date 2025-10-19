@@ -26,9 +26,9 @@ export function PatientBasics() {
     dead_threshold,
     total_brute,
     total_burn,
-    toxin,
-    oxy,
-    clone,
+    total_tox,
+    total_oxy,
+    total_clone,
     hugged,
     revivable_status,
     revivable_reason,
@@ -90,7 +90,8 @@ export function PatientBasics() {
               color={getReviveColor(revivable_status, accessible_theme)}
               bold
             >
-              {revivable_reason}
+              {revivable_status[0].toUpperCase() + revivable_status.slice(1)}
+              {!!revivable_reason && ` (${revivable_reason})`}
             </Box>
           </LabeledList.Item>
         )}
@@ -124,13 +125,13 @@ export function PatientBasics() {
               <MedDamageType
                 name="Tox"
                 color="green"
-                damage={toxin}
+                damage={total_tox}
                 tooltip="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene."
               />
               <MedDamageType
                 name="Oxy"
                 color="blue"
-                damage={oxy}
+                damage={total_oxy}
                 tooltip="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin/Dexalin Plus or decreases on its own if the patient isn't in critical condition."
               />
             </>
@@ -139,7 +140,7 @@ export function PatientBasics() {
             <MedDamageType
               name={species.is_combat_robot ? 'Integrity' : 'Clone'}
               color="teal"
-              damage={clone}
+              damage={total_clone}
               tooltip={
                 species.is_robotic_species
                   ? 'Integrity Damage. Sustained from xenomorph psychic draining. Treated with a robotic cradle.'

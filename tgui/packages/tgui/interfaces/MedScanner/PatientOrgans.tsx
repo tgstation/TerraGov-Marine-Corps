@@ -72,7 +72,7 @@ export function PatientOrgans() {
                             mb={SPACING_PIXELS}
                             color={
                               organ.damage >= organ.bruised_damage &&
-                              colors[MedColorIndexes.Foreground]
+                              colors[MedColorIndexes.Background]
                             }
                             bold={organ.damage >= organ.bruised_damage}
                           >
@@ -81,7 +81,7 @@ export function PatientOrgans() {
                           <Box
                             color={
                               organ.damage >= organ.broken_damage &&
-                              colors[MedColorIndexes.Foreground]
+                              colors[MedColorIndexes.Background]
                             }
                             bold={organ.damage >= organ.broken_damage}
                           >

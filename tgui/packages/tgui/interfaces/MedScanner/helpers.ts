@@ -113,8 +113,8 @@ export function getReviveColor(
   status: RevivableStates,
   accessible: boolean,
 ): string {
-  if (status === RevivableStates.Impossible) return 'red'; // regardless of theme
-  if (status === RevivableStates.ActionNeeded) {
+  if (status === RevivableStates.Never) return 'red'; // regardless of theme
+  if (status === RevivableStates.NotYet) {
     return 'orange'; // also regardless of theme
   }
   if (status === RevivableStates.Ready) {

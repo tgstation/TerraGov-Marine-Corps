@@ -28,8 +28,8 @@ export enum TempColor {
 
 /** Enum of revivability states, tied to DM-side */
 export enum RevivableStates {
-  Impossible = 'never',
-  ActionNeeded = 'blocked',
+  Never = 'impossible',
+  NotYet = 'not ready',
   Ready = 'ready',
 }
 
@@ -44,8 +44,8 @@ export enum LimbTypes {
 export enum LimbStatuses {
   OK = '',
   Fracture = 'Fracture',
-  Splinted = 'Splinted',
-  Stabilized = 'Stabilized',
+  Splinted = 'Splint',
+  Stabilized = 'Stable',
 }
 
 /** Enum of organ statuses, tied to DM-side */
@@ -125,11 +125,11 @@ export type MedScannerData = {
   dead_threshold: number;
   total_brute: number;
   total_burn: number;
-  toxin: number;
-  oxy: number;
-  clone: number;
+  total_tox: number;
+  total_oxy: number;
+  total_clone: number;
   revivable_status: RevivableStates;
-  revivable_reason: string;
+  revivable_reason?: string;
   has_chemicals: boolean;
   has_unknown_chemicals: boolean;
   chemicals_lists?: Record<string, Chemical>;
