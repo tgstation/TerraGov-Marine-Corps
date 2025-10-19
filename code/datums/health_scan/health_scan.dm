@@ -366,7 +366,7 @@
 			if(DEFIB_FAIL_TOO_MUCH_DAMAGE)
 				reason = "repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0)]%"
 			//if(DEFIB_POSSIBLE)
-            //    reason = null // kept to survive future refactors
+            //	reason = null // kept to survive future refactors
 		data["revivable_status"] = status
 		data["revivable_reason"] = reason
 
