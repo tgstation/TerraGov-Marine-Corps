@@ -20,8 +20,9 @@ Contains most of the procs that are called when a xeno is attacked by something
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS) && !CHECK_BITFIELD(xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
 		var/plasma_to_use = 0.2 * xeno_caste.plasma_max * xeno_caste.plasma_regen_limit
 		if(COOLDOWN_FINISHED(src, tanglefoot_stun_cooldown))
-			plasma_to_use = min(plasma_to_use, plasma_stored)
 			COOLDOWN_START(src, tanglefoot_stun_cooldown, 20 SECONDS)
+		else
+			plasma_to_use = min(plasma_to_use, plasma_stored)
 		use_plasma(plasma_to_use)
 		apply_status_effect(/datum/status_effect/noplasmaregen, 5 SECONDS)
 		if(prob(25))
