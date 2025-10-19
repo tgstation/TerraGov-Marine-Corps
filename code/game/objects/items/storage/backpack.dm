@@ -574,6 +574,13 @@
 		source.alpha = SCOUT_CLOAK_RUN_ALPHA
 		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 
+GLOBAL_LIST_INIT(stealth_greyscale_matrix,\
+	list(0.269,0.119,0.119,0,
+		 0.105,0.255,0.105,0,
+		 0.126,0.126,0.276,0,
+		     0,    0,    0,1,
+		  0.25, 0.25, 0.25,0))
+
 ///Activates the cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
 	if (usr.incapacitated(TRUE))
@@ -633,6 +640,8 @@
 	START_PROCESSING(SSprocessing, src)
 	RegisterSignal(wearer, COMSIG_MOVABLE_MOVED, PROC_REF(handle_movement))
 
+	M.add_filter("backpack_cloak_greyscale", 20, color_matrix_filter(GLOB.stealth_greyscale_matrix))
+
 	return TRUE
 
 ///Sig handler for other sources of cloaking
@@ -666,6 +675,7 @@
 	user.visible_message(span_warning("[user.name] shimmers into existence!"), span_danger("Your CyberGhost's camouflage has deactivated!"))
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
+	user.remove_filter("backpack_cloak_greyscale")
 
 	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].add_to_hud(user)
 	GLOB.huds[DATA_HUD_BASIC].add_to_hud(user)
