@@ -1,4 +1,0 @@
-author: "DrCrawler"
-delete-after: True
-changes:
-  - rscadd: "The subtler input window now uses TGUI and allows multiline messages!"

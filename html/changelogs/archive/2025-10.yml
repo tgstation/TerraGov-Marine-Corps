@@ -109,3 +109,6 @@
 2025-10-17:
   DrCrawler:
   - rscadd: Defiler's mutation, envenomed, now also triggers upon disarming someone.
+2025-10-19:
+  DrCrawler:
+  - rscadd: The subtler input window now uses TGUI and allows multiline messages!
