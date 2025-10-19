@@ -257,7 +257,7 @@
 		. += "\n<span class='info'>[span_collapsible("Flavor Text", "[xeno_desc]")]</span>"
 
 	if(pose)
-		. += "\n[span_info(span_collapsible("Pose", "[pose]"))]"
+		. += "\n[span_info(span_collapsible("Temporary Flavor Text", "[pose]"))]"
 
 	if(xenoprofile_pic)
 		. += "<span class='info'><img src=[xenoprofile_pic] width=300 height=350/></span>"
