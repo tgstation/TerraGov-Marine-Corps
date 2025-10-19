@@ -348,7 +348,7 @@
 	if(patient.stat == DEAD)
 		var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 		var/status
-		var/reason // in tgui, will be displayed as "Defibrillation: Status (reason)"
+		var/reason // in tgui, will be displayed as "Revivable: Status (reason)"
 		var/state = patient.check_defib(DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE))
 		if(state & DEFIB_PREVENT_REVIVE_STATES)
 			status = ((state & DEFIB_FAIL_DECAPITATED) && !organic_patient) ? "not ready" : "impossible"
