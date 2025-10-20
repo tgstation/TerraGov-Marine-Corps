@@ -349,15 +349,32 @@ SUBSYSTEM_DEF(minimaps)
  * * zlevel: zlevel to fetch map for
  * * flags: map flags to fetch from
  */
-/datum/controller/subsystem/minimaps/proc/fetch_minimap_object(zlevel, flags)
+/datum/controller/subsystem/minimaps/proc/fetch_minimap_object(zlevel, flags, forced = FALSE)
 	var/hash = "[zlevel]-[flags]"
-	if(hashed_minimaps[hash])
+	if(hashed_minimaps[hash] && !forced)
 		return hashed_minimaps[hash]
 	var/atom/movable/screen/minimap/map = new(null, null, zlevel, flags)
 	if (!map.icon) //Don't wanna save an unusable minimap for a z-level.
 		CRASH("Empty and unusable minimap generated for '[zlevel]-[flags]'") //Can be caused by atoms calling this proc before minimap subsystem initializing.
 	hashed_minimaps[hash] = map
 	return map
+
+///Redraws the minimap for a specified z level
+/datum/controller/subsystem/minimaps/proc/redraw_map(zlevel)
+	SIGNAL_HANDLER
+	var/datum/space_level/updated = SSmapping.z_list[zlevel]
+	if(!updated)
+		return //what the fuck
+	QDEL_NULL(minimaps_by_z["[updated]"])
+	load_new_z(null, SSmapping.z_list[zlevel])
+
+	for(var/hash in hashed_minimaps)
+		var/atom/movable/screen/minimap/existing = hashed_minimaps[hash]
+		if(existing.tracked_z != zlevel)
+			continue
+		hashed_minimaps -= hash
+		qdel(existing)
+
 
 ///fetches the drawing icon for a minimap flag and returns it, creating it if needed. assumes minimap_flag is ONE flag
 /datum/controller/subsystem/minimaps/proc/get_drawing_image(zlevel, minimap_flag)
@@ -409,8 +426,10 @@ SUBSYSTEM_DEF(minimaps)
 	//lord forgive my shitcode
 	var/signal_by_type = isobserver(user) ? COMSIG_OBSERVER_CLICKON : COMSIG_MOB_CLICKON
 	RegisterSignal(user, signal_by_type, PROC_REF(on_click))
-	while(!(choices_by_mob[user] || stop_polling[user]) && user.client && islist(stop_polling))
+	while(!QDELETED(src) && !(choices_by_mob[user] || stop_polling[user]) && user.client && islist(stop_polling))
 		stoplag(1)
+	if(QDELETED(src)) //since we could potentially be qdel'd while waiting for an input
+		return
 	UnregisterSignal(user, signal_by_type)
 	. = choices_by_mob[user]
 	choices_by_mob -= user
@@ -690,16 +709,28 @@ SUBSYSTEM_DEF(minimaps)
 	if(default_overwatch_level)
 		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
 			return
-		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+		set_map(default_overwatch_level)
 		return
 	if(!SSminimaps.minimaps_by_z["[tracking.z]"] || !SSminimaps.minimaps_by_z["[tracking.z]"].hud_image)
 		return
-	map = SSminimaps.fetch_minimap_object(tracking.z, minimap_flags)
+	set_map(tracking.z)
 
 /datum/action/minimap/remove_action(mob/M)
 	toggle_minimap(FALSE)
 	UnregisterSignal(locator_override || M, COMSIG_MOVABLE_Z_CHANGED)
 	return ..()
+
+///Sets our map
+/datum/action/minimap/proc/set_map(z_level)
+	map = SSminimaps.fetch_minimap_object(z_level, minimap_flags)
+	RegisterSignal(map, COMSIG_QDELETING, PROC_REF(on_map_del))
+
+///Cleans up if our map is deleted
+/datum/action/minimap/proc/on_map_del(datum/source)
+	SIGNAL_HANDLER
+	if(minimap_displayed)
+		toggle_minimap()
+	set_map(map.tracked_z)
 
 /**
  * Updates the map when the owner changes zlevel
@@ -714,6 +745,8 @@ SUBSYSTEM_DEF(minimaps)
 	if(minimap_displayed)
 		owner.client?.screen -= map
 	var/old_map_z = map?.tracked_z
+	if(map)
+		UnregisterSignal(map, COMSIG_QDELETING)
 	map = null
 
 	var/new_z_shown = default_overwatch_level ? default_overwatch_level : newz
@@ -737,7 +770,7 @@ SUBSYSTEM_DEF(minimaps)
 			locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 			minimap_displayed = FALSE
 		return
-	map = SSminimaps.fetch_minimap_object(new_z_shown, minimap_flags)
+	set_map(new_z_shown)
 	if(minimap_displayed)
 		if(owner.client)
 			owner.client.screen += map
