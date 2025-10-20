@@ -349,9 +349,9 @@ SUBSYSTEM_DEF(minimaps)
  * * zlevel: zlevel to fetch map for
  * * flags: map flags to fetch from
  */
-/datum/controller/subsystem/minimaps/proc/fetch_minimap_object(zlevel, flags, forced = FALSE)
+/datum/controller/subsystem/minimaps/proc/fetch_minimap_object(zlevel, flags)
 	var/hash = "[zlevel]-[flags]"
-	if(hashed_minimaps[hash] && !forced)
+	if(hashed_minimaps[hash])
 		return hashed_minimaps[hash]
 	var/atom/movable/screen/minimap/map = new(null, null, zlevel, flags)
 	if (!map.icon) //Don't wanna save an unusable minimap for a z-level.
