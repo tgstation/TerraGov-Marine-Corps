@@ -108,8 +108,8 @@ const BiomassBar = (_props: any) => {
     >
       <Flex mb={1}>
         <Flex.Item grow>
-          <ProgressBar color="green" value={biomass / 1800}>
-            {`${biomass} / 1800 `}
+          <ProgressBar color="green" value={biomass / maximum_biomass}>
+            {`${biomass} / ${maximum_biomass} `}
           </ProgressBar>
         </Flex.Item>
       </Flex>

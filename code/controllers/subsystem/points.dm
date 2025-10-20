@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(points)
 /datum/controller/subsystem/points/proc/add_biomass_points(hivenumber, amount)
 	if(!CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_BIOMASS_POINTS))
 		return
-	xeno_biomass_points_by_hive[hivenumber] += amount
+	xeno_biomass_points_by_hive[hivenumber] = min(xeno_biomass_points_by_hive[hivenumber] + amount, MUTATION_BIOMASS_MAXIMUM)
 
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/living/user)
 	var/cost = 0
