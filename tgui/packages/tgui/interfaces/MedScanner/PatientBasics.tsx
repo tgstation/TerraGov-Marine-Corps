@@ -86,10 +86,7 @@ export function PatientBasics() {
         </LabeledList.Item>
         {!!dead && (
           <LabeledList.Item label="Revivable">
-            <Box
-              color={getReviveColor(revivable_status)}
-              bold
-            >
+            <Box color={getReviveColor(revivable_status)} bold>
               {revivable_status[0].toUpperCase() + revivable_status.slice(1)}
               {!!revivable_reason && ` (${revivable_reason})`}
             </Box>
