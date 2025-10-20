@@ -284,7 +284,7 @@
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_WATCHXENO, xeno_target)
 		if("Deevolve")
-			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
+			if(!isxenoqueen(usr) && ((living_xeno_ruler != usr) || GLOB.tier_as_number[living_xeno_ruler.tier] <= GLOB.tier_as_number[xeno_target.tier])) // must be queen or be ruler and be higher tier than target
 				return
 			attempt_deevolve(usr, xeno_target)
 		if("Leader")
