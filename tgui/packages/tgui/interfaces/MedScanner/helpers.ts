@@ -106,19 +106,15 @@ export function getBloodColor(
 /**
  * Helper for getting a color based on revivable status
  * @param status the revivable status enum
- * @param accessible accessible theme status
  * @returns string: a suitable color based on revivability
  */
-export function getReviveColor(
-  status: RevivableStates,
-  accessible: boolean,
-): string {
-  if (status === RevivableStates.Never) return 'red'; // regardless of theme
+export function getReviveColor(status: RevivableStates): string {
+  if (status === RevivableStates.Never) return 'red';
   if (status === RevivableStates.NotYet) {
-    return 'orange'; // also regardless of theme
+    return 'orange';
   }
   if (status === RevivableStates.Ready) {
-    return accessible ? 'yellow' : 'hsl(184, 65%, 85%)';
+    return 'green';
   }
   return 'orange'; // fallback
 }
