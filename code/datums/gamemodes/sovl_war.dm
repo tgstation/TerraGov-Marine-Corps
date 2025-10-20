@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/sovl_war
 	name = "Sovl War"
 	config_tag = "Sovl War"
-	silo_scaling = 2
+	silo_scaling = 2.5
 	round_type_flags = MODE_ALAMO_ONLY|MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD|MODE_FORCE_CUSTOMSQUAD_UI
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	valid_job_types = list(
@@ -36,15 +36,10 @@
 
 	evo_requirements = list(
 		/datum/xeno_caste/queen = 8,
+		/datum/xeno_caste/king = 10,
 	)
 
 /datum/game_mode/infestation/sovl_war/post_setup()
-	var/client_count = length(GLOB.clients)
-	if(client_count >= NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED)
-		evo_requirements[/datum/xeno_caste/queen] -= 2
-	if(client_count >= NUCLEAR_WAR_TANK_MINIMUM_POP_REQUIRED)
-		evo_requirements[/datum/xeno_caste/queen] -= 2
-
 	. = ..()
 
 	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
