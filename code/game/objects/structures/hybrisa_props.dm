@@ -432,7 +432,8 @@
 	icon_state = "fuelline1"
 	bound_height = 64
 	bound_width = 96
-	layer = BELOW_TABLE_LAYER
+	layer = ABOVE_WEEDS_LAYER
+	plane = FLOOR_PLANE
 
 
 /obj/structure/prop/urban/airport/refuelinghose2
@@ -442,7 +443,8 @@
 	icon_state = "fuelline2"
 	bound_height = 64
 	bound_width = 96
-	layer = BELOW_TABLE_LAYER
+	layer = ABOVE_WEEDS_LAYER
+	plane = FLOOR_PLANE
 
 // Pilot body
 
