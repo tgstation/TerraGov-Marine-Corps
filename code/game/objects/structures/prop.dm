@@ -829,6 +829,9 @@
 	icon_state = "fueltank"
 	bound_width = 96
 	bound_height = 32
+	density = TRUE
+	layer = ABOVE_OBJ_LAYER
+	allow_pass_flags = NONE
 	resistance_flags = UNACIDABLE
 	max_integrity = 500
 
@@ -1438,7 +1441,7 @@
 	icon_state = "land_rover"
 	density = TRUE
 	allow_pass_flags = PASSABLE|PASS_WALKOVER
-	max_integrity = 600
+	max_integrity = 500
 
 /obj/structure/prop/vehicle/land_rover/Initialize(mapload)
 	. = ..()
@@ -1462,7 +1465,8 @@
 	name = "armored land rover"
 	desc = "An all terrain vehicle with some armor plating and an attached machinegun. Unfortunately, the machinegun has no ammo, and you don't have your drivers license."
 	icon_state = "land_rover_machinegun"
-	max_integrity = 850
+	max_integrity = 500
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 0, FIRE = 0, ACID = 50)
 
 /obj/structure/prop/vehicle/apc_new
 	name = "APC - Athena"
@@ -1471,7 +1475,8 @@
 	icon_state = "apc"
 	density = TRUE
 	allow_pass_flags = PASSABLE|PASS_WALKOVER
-	max_integrity = 850
+	max_integrity = 500
+	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 25, BIO = 0, FIRE = 0, ACID = 75)
 
 /obj/structure/prop/vehicle/apc_new/Initialize(mapload)
 	. = ..()
