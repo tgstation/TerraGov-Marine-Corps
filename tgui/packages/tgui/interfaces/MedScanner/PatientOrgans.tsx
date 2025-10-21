@@ -10,9 +10,13 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { COLOR_ZEBRA_BG, ROUNDED_BORDER, SPACING_PIXELS } from './constants';
-import { MedColorIndexes, MedScannerData, OrganStatuses } from './data';
-import { getOrganColor } from './helpers';
+import {
+  COLOR_ZEBRA_BG,
+  ORGAN_STATUSES_TO_COLORS,
+  ROUNDED_BORDER,
+  SPACING_PIXELS,
+} from './constants';
+import { MedScannerData, OrganStatuses } from './data';
 import { MedBoxedTag } from './MedBoxedTag';
 import { MedCounter } from './MedCounter';
 
@@ -24,7 +28,7 @@ export function PatientOrgans() {
     <Section title="Organs Damaged">
       <Stack vertical>
         {Object.values(damaged_organs).map((organ) => {
-          const colors = getOrganColor(organ.status);
+          const colors = ORGAN_STATUSES_TO_COLORS[organ.status];
           return (
             <Stack.Item
               key={organ.name}
@@ -38,11 +42,7 @@ export function PatientOrgans() {
                   content={
                     <>
                       <NoticeBox
-                        color={
-                          organ.status
-                            ? colors[MedColorIndexes.Background]
-                            : undefined
-                        }
+                        color={organ.status ? colors.background : undefined}
                         textAlign="center"
                       >
                         <Icon
@@ -66,24 +66,24 @@ export function PatientOrgans() {
                       <LabeledList>
                         <LabeledList.Item
                           label="Thresholds"
-                          labelColor={colors[MedColorIndexes.Background]}
+                          labelColor={colors.background}
                         >
                           <Box
                             mb={SPACING_PIXELS}
                             color={
-                              organ.damage >= organ.bruised_damage &&
-                              colors[MedColorIndexes.Background]
+                              organ.status === OrganStatuses.Bruised &&
+                              colors.background
                             }
-                            bold={organ.damage >= organ.bruised_damage}
+                            bold={organ.status === OrganStatuses.Bruised}
                           >
                             {organ.bruised_damage} (damaged)
                           </Box>
                           <Box
                             color={
-                              organ.damage >= organ.broken_damage &&
-                              colors[MedColorIndexes.Background]
+                              organ.status === OrganStatuses.Broken &&
+                              colors.background
                             }
-                            bold={organ.damage >= organ.broken_damage}
+                            bold={organ.status === OrganStatuses.Broken}
                           >
                             {organ.broken_damage} (failing)
                           </Box>
@@ -102,8 +102,8 @@ export function PatientOrgans() {
                           : 'circle'
                       }
                       mr={SPACING_PIXELS}
-                      currentColor={colors[MedColorIndexes.Background]}
-                      maxColor={colors[MedColorIndexes.Darker]}
+                      currentColor={colors.background}
+                      maxColor={colors.darker}
                     />
                     <Box inline italic mr={SPACING_PIXELS}>
                       {organ.name[0].toUpperCase() + organ.name.slice(1)}
@@ -112,8 +112,8 @@ export function PatientOrgans() {
                 </Tooltip>
                 {!!organ.status && (
                   <MedBoxedTag
-                    textColor={colors[MedColorIndexes.Foreground]}
-                    backgroundColor={colors[MedColorIndexes.Background]}
+                    textColor={colors.foreground}
+                    backgroundColor={colors.background}
                   >
                     {organ.status.toUpperCase()}
                   </MedBoxedTag>

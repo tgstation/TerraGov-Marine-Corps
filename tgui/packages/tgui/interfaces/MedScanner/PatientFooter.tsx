@@ -10,10 +10,10 @@ import { useBackend } from '../../backend';
 import {
   COUNTER_MAX_SIZE,
   SPACING_PIXELS,
-  TEMP_COLORS_TO_STRINGS,
+  TEMP_LEVELS_TO_DATA,
 } from './constants';
-import { BloodColors, MedColorIndexes, MedScannerData } from './data';
-import { getBloodColor, getTempBoxTextColor } from './helpers';
+import { BloodColors, MedScannerData, TempLevels } from './data';
+import { getBloodColor } from './helpers';
 import { MedBoxedTag } from './MedBoxedTag';
 import { MedCounter } from './MedCounter';
 
@@ -31,11 +31,12 @@ export function PatientFooter() {
     infection,
     total_flow_rate,
   } = data;
-  const colors = getBloodColor(
+  const bloodColors = getBloodColor(
     blood_amount,
     regular_blood_amount,
     internal_bleeding,
   );
+  const tempData = TEMP_LEVELS_TO_DATA[body_temperature.level];
   return (
     <Section>
       <LabeledList>
@@ -47,24 +48,20 @@ export function PatientFooter() {
             name={total_flow_rate ? 'arrow-down' : 'arrow-up'}
             mr={SPACING_PIXELS}
             color={
-              colors[MedColorIndexes.Background] === BloodColors.FineBG
+              bloodColors.background === BloodColors.FineBG
                 ? 'white'
-                : colors[MedColorIndexes.Background]
+                : bloodColors.background
             }
           />
           <Box
             mr={SPACING_PIXELS}
             inline
             color={
-              colors[MedColorIndexes.Background] === BloodColors.FineBG
+              bloodColors.background === BloodColors.FineBG
                 ? 'white'
-                : colors[MedColorIndexes.Background]
+                : bloodColors.background
             }
-            bold={
-              colors[MedColorIndexes.Background] !== BloodColors.FineBG
-                ? true
-                : false
-            }
+            bold={bloodColors.background !== BloodColors.FineBG ? true : false}
           >
             {Math.trunc((blood_amount / regular_blood_amount) * 100)}%
           </Box>
@@ -72,15 +69,15 @@ export function PatientFooter() {
             current={Math.trunc(blood_amount)}
             max={Math.trunc(regular_blood_amount)}
             units={`cl${total_flow_rate ? ` (${total_flow_rate}cl/2s)` : ''}`}
-            currentColor={colors[MedColorIndexes.Darker]}
-            maxColor={colors[MedColorIndexes.Darker]}
+            currentColor={bloodColors.darker}
+            maxColor={bloodColors.darker}
             currentSize={COUNTER_MAX_SIZE}
             mr={SPACING_PIXELS}
           />
           <MedBoxedTag
             mr={SPACING_PIXELS}
-            textColor={colors[MedColorIndexes.Foreground]}
-            backgroundColor={colors[MedColorIndexes.Background]}
+            textColor={bloodColors.foreground}
+            backgroundColor={bloodColors.background}
           >
             {blood_type}
           </MedBoxedTag>
@@ -90,20 +87,17 @@ export function PatientFooter() {
             </MedBoxedTag>
           )}
         </LabeledList.Item>
-        <LabeledList.Item
-          label="Body Temperature"
-          color={body_temperature.color}
-        >
-          <Box inline bold={body_temperature.warning}>
+        <LabeledList.Item label="Body Temperature" color={tempData.background}>
+          <Box inline bold={body_temperature.level !== TempLevels.OK}>
             {body_temperature.current}
           </Box>
-          {!!body_temperature.warning && (
+          {!!(body_temperature.level !== TempLevels.OK) && (
             <MedBoxedTag
               ml={SPACING_PIXELS}
-              backgroundColor={body_temperature.color}
-              textColor={getTempBoxTextColor(body_temperature.color)}
+              backgroundColor={tempData.background}
+              textColor={tempData.foreground}
             >
-              {TEMP_COLORS_TO_STRINGS[body_temperature.color]}
+              {tempData.tag}
             </MedBoxedTag>
           )}
         </LabeledList.Item>

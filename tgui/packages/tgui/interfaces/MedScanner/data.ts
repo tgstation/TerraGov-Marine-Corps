@@ -1,11 +1,16 @@
-/** Used by color helpers: `2` is a darker color */
-export type MedColorTuple = [string, string, string];
+/** Used by color helpers */
+export type MedColors = {
+  background: string;
+  foreground: string;
+  darker?: string;
+};
 
-/** Refers to indexes, for use with color helpers */
-export enum MedColorIndexes {
-  Background,
-  Foreground,
-  Darker,
+/** Enum of overheat tiers, tied to DM-side */
+export enum TempLevels {
+  OK,
+  T1Heat,
+  T2Heat,
+  T3Heat,
 }
 
 /** Enum of blood colors, independent of DM-side */
@@ -18,19 +23,11 @@ export enum BloodColors {
   CritFG = 'white',
 }
 
-/** Enum of temperature colors, tied to DM-side */
-export enum TempColor {
-  T1Heat = 'yellow',
-  T2Heat = 'orange',
-  T3Heat = 'red',
-  OK = 'white',
-}
-
 /** Enum of revivability states, tied to DM-side */
 export enum RevivableStates {
-  Never = 'impossible',
-  NotYet = 'not ready',
-  Ready = 'ready',
+  Never = 'Impossible',
+  NotYet = 'Not ready',
+  Ready = 'Ready',
 }
 
 /** Enum of limb types, tied to DM-side */
@@ -57,8 +54,7 @@ export enum OrganStatuses {
 
 type Temperature = {
   current: string;
-  color: TempColor;
-  warning: boolean;
+  level: TempLevels;
 };
 
 type Species = {
@@ -108,7 +104,7 @@ type Organ = {
   effects: string;
 };
 
-export type Advice = {
+type Advice = {
   advice: string;
   icon: string;
   color: string;
@@ -116,8 +112,8 @@ export type Advice = {
 };
 
 export type MedScannerData = {
+  // Basics
   patient: string;
-  species: Species;
   dead: boolean;
   health: number;
   max_health: number;
@@ -128,25 +124,40 @@ export type MedScannerData = {
   total_tox: number;
   total_oxy: number;
   total_clone: number;
-  revivable_status: RevivableStates;
-  revivable_reason?: string;
+  hugged: boolean;
+  species: Species;
+  accessible_theme: boolean;
+
+  // Chemicals
   has_chemicals: boolean;
   has_unknown_chemicals: boolean;
   chemicals_lists?: Record<string, Chemical>;
+
+  // Limbs
   total_flow_rate: number;
+  total_unknown_implants: number;
+  internal_bleeding: boolean;
+  infection: boolean;
   limb_data_lists?: Record<string, Limb>;
   limbs_damaged: number;
+
+  // Organs
   damaged_organs?: Record<string, Organ>;
-  ssd?: string;
+
+  // Revivability
+  revivable_status: RevivableStates;
+  revivable_reason?: string;
+
+  // Advice
+  advice?: Advice[];
+
+  // Footer
   blood_type: string;
   blood_amount: number;
   regular_blood_amount: number;
+
   body_temperature: Temperature;
+
   pulse: string;
-  infection: boolean;
-  internal_bleeding: boolean;
-  total_unknown_implants: number;
-  hugged: boolean;
-  advice?: Advice[];
-  accessible_theme: boolean;
+  ssd?: string;
 };

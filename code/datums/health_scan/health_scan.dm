@@ -199,7 +199,7 @@
 
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
-		"regular_blood_amount" = initial(patient.blood_volume),
+		"regular_blood_amount" = patient::blood_volume,
 
 		"hugged" = !!(patient.status_flags & XENO_HOST),
 
@@ -215,17 +215,16 @@
 		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes,
 	)
 
-	var/temp_color = "white"
+	var/level = 0
 	if(patient.bodytemperature > patient.species?.heat_level_1)
-		temp_color = "yellow"
-	if(patient.bodytemperature > patient.species?.heat_level_2)
-		temp_color = "orange"
-	if(patient.bodytemperature > patient.species?.heat_level_3)
-		temp_color = "red"
+		level = 1
+	else if(patient.bodytemperature > patient.species?.heat_level_2)
+		level = 2
+	else if(patient.bodytemperature > patient.species?.heat_level_3)
+		level = 3
 	data["body_temperature"] = list(
 		"current" = "[round(patient.bodytemperature*1.8-459.67, 0.1)]°F ([round(patient.bodytemperature-T0C, 0.1)]°C)",
-		"color" = temp_color,
-		"warning" = temp_color != "white",
+		"level" = level,
 	)
 
 	data["has_unknown_chemicals"] = FALSE
@@ -286,7 +285,7 @@
 				total_unknown_implants++
 				implants++
 
-		if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !CHECK_BITFIELD(limb.limb_status, LIMB_NECROTIZED) && !implants && !infected)
+		if(!limb.brute_dam && !limb.burn_dam && !(limb.limb_status & LIMB_DESTROYED) && !(limb.limb_status & LIMB_BROKEN) && !(limb.limb_status & LIMB_BLEEDING) && !(limb.limb_status & LIMB_NECROTIZED) && !implants && !infected)
 			continue
 		var/list/current_list = list(
 			"name" = limb.display_name,
@@ -294,10 +293,10 @@
 			"burn" = round(limb.burn_dam),
 			"bandaged" = limb.is_bandaged(),
 			"salved" = limb.is_salved(),
-			"missing" = CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED),
+			"missing" = !!(limb.limb_status & LIMB_DESTROYED),
 			"limb_status" = null,
 			"limb_type" = null,
-			"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
+			"bleeding" = !!(limb.limb_status & LIMB_BLEEDING),
 			"open_incision" = limb.surgery_open_stage,
 			"necrotized" = necrotized,
 			"infected" = infected,
@@ -305,17 +304,17 @@
 			"max_damage" = limb.max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO,
 		)
 		var/limb_type = ""
-		if(CHECK_BITFIELD(limb.limb_status, LIMB_ROBOT))
+		if(limb.limb_status & LIMB_ROBOT)
 			limb_type = "Robotic"
-		else if(CHECK_BITFIELD(limb.limb_status, LIMB_BIOTIC))
+		else if(limb.limb_status & LIMB_BIOTIC)
 			limb_type = "Biotic"
 
 		var/limb_status = ""
-		if(CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED) && !CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
+		if((limb.limb_status & LIMB_BROKEN) && !(limb.limb_status & LIMB_STABILIZED) && !(limb.limb_status & LIMB_SPLINTED))
 			limb_status = "Fracture"
-		else if(CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED))
+		else if(limb.limb_status & LIMB_STABILIZED)
 			limb_status = "Stable"
-		else if(CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
+		else if(limb.limb_status & LIMB_SPLINTED)
 			limb_status = "Splint"
 		current_list["limb_type"] = limb_type
 		current_list["limb_status"] = limb_status
@@ -351,11 +350,11 @@
 		var/reason // in tgui, will be displayed as "Revivable: Status (reason)"
 		var/state = patient.check_defib(DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE))
 		if(state & DEFIB_PREVENT_REVIVE_STATES)
-			status = ((state & DEFIB_FAIL_DECAPITATED) && !organic_patient) ? "not ready" : "impossible"
+			status = ((state & DEFIB_FAIL_DECAPITATED) && !organic_patient) ? "Not ready" : "Impossible"
 		else if((state & DEFIB_REVIVABLE_STATES) && !(state & DEFIB_POSSIBLE))
-			status = "not ready"
+			status = "Not ready"
 		else
-			status = "ready"
+			status = "Ready"
 		switch(state)
 			if(DEFIB_FAIL_DECAPITATED)
 				reason = organic_patient ? "decapitated" : "reattach head surgically"
@@ -371,8 +370,8 @@
 
 	var/list/advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
-		for(var/advice_type AS in GLOB.scanner_advice)
-			var/datum/scanner_advice/advice_datum = GLOB.scanner_advice[advice_type]
+		for(var/index, value in GLOB.scanner_advice)
+			var/datum/scanner_advice/advice_datum = value
 			if(!advice_datum.can_show(patient, user))
 				continue
 			var/list/advice_data = advice_datum.get_data(patient, user)

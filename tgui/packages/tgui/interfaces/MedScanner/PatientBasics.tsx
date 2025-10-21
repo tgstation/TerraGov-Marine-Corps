@@ -8,9 +8,12 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { COLOR_BRUTE, COLOR_BURN } from './constants';
+import {
+  COLOR_BRUTE,
+  COLOR_BURN,
+  REVIVABLE_STATES_TO_COLORS,
+} from './constants';
 import { MedScannerData } from './data';
-import { getReviveColor } from './helpers';
 import { MedDamageType } from './MedDamageType';
 
 /** The most basic info: name, species, health, damage, revivability and hugged state */
@@ -86,8 +89,8 @@ export function PatientBasics() {
         </LabeledList.Item>
         {!!dead && (
           <LabeledList.Item label="Revivable">
-            <Box color={getReviveColor(revivable_status)} bold>
-              {revivable_status[0].toUpperCase() + revivable_status.slice(1)}
+            <Box color={REVIVABLE_STATES_TO_COLORS[revivable_status]} bold>
+              {revivable_status}
               {!!revivable_reason && ` (${revivable_reason})`}
             </Box>
           </LabeledList.Item>

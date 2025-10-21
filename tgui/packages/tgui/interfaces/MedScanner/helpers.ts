@@ -1,18 +1,11 @@
 import {
-  COLOR_DARKER_ORANGE,
   COLOR_DARKER_RED,
   COLOR_DARKER_YELLOW,
   COLOR_MID_GREY,
   COLOR_ROBOTIC_LIMB,
-  LIMB_DAMAGE_HSL,
+  LIMB_DAMAGE_HSL as LIMB_HSL,
 } from './constants';
-import {
-  LimbTypes,
-  MedColorTuple,
-  OrganStatuses,
-  RevivableStates,
-  TempColor,
-} from './data';
+import { LimbTypes, MedColors } from './data';
 
 /**
  * Helper for getting the name color of a limb based on relevant factors
@@ -37,8 +30,7 @@ export function getLimbNameColor(
   if (damage > 1) return 'grey'; // greater than 100% damage can be safely considered a lost cause
 
   // scale hue linearly from 44/yellow (low damage) to 4/red (high damage)
-  const hue = 44 - 40 * damage;
-  return `hsl(${hue}, ${LIMB_DAMAGE_HSL.sat}, ${LIMB_DAMAGE_HSL.lum})`;
+  return `hsl(${LIMB_HSL.hue - 40 * damage}, ${LIMB_HSL.sat}%, ${LIMB_HSL.lum}%)`;
 }
 
 /**
@@ -46,7 +38,7 @@ export function getLimbNameColor(
  * @param limbType string limb type for determining the output color
  * @param roboticToBeginWith if the patient is under the robot umbrella
  * @param accessible accessible theme status
- * @returns
+ * @returns string: a suitable color
  */
 export function getLimbTypeColor(
   limbType: LimbTypes,
@@ -64,75 +56,27 @@ export function getLimbTypeColor(
 }
 
 /**
- * Helper for getting the color of an organ
- * @param status the organ's status
- * @returns tuple: `0` is background color, `1` is foreground color, `2` is a darker color
- */
-export function getOrganColor(status: OrganStatuses): MedColorTuple {
-  if (status === OrganStatuses.OK) {
-    return ['grey', 'white', COLOR_MID_GREY];
-  }
-  if (status === OrganStatuses.Bruised) {
-    return ['orange', 'white', COLOR_DARKER_ORANGE];
-  }
-  if (status === OrganStatuses.Broken) {
-    return ['red', 'white', COLOR_DARKER_RED];
-  }
-  return ['grey', 'white', COLOR_MID_GREY]; // fallback
-}
-
-/**
  * Helper for getting a color based on blood level
  * @param volume current blood level
  * @param initial initial blood level
  * @param internalBleeding internal bleeding status: overrides blood level and always returns red
- * @returns tuple: `0` is background color, `1` is foreground color, `2` is a darker color
+ * @returns MedColorTuple: `0` is background color, `1` is foreground color, `2` is a darker color
  */
 export function getBloodColor(
   volume: number,
   initial: number,
   internalBleeding: boolean,
-): MedColorTuple {
+): MedColors {
   const percent = volume / initial;
   if (percent < 0.6 || internalBleeding) {
-    return ['red', 'white', COLOR_DARKER_RED];
+    return { background: 'red', foreground: 'white', darker: COLOR_DARKER_RED };
   }
   if (percent < 0.9) {
-    return ['yellow', 'black', COLOR_DARKER_YELLOW];
+    return {
+      background: 'yellow',
+      foreground: 'black',
+      darker: COLOR_DARKER_YELLOW,
+    };
   }
-  return ['grey', 'white', COLOR_MID_GREY]; // fallback
-}
-
-/**
- * Helper for getting a color based on revivable status
- * @param status the revivable status enum
- * @returns string: a suitable color based on revivability
- */
-export function getReviveColor(status: RevivableStates): string {
-  if (status === RevivableStates.Never) return 'red';
-  if (status === RevivableStates.NotYet) {
-    return 'orange';
-  }
-  if (status === RevivableStates.Ready) {
-    return 'green';
-  }
-  return 'orange'; // fallback
-}
-
-/**
- * Helper for getting a foreground (text) color based on temp color
- * @param color the TempColor enum
- * @returns string: a suitable color based on temperature
- */
-export function getTempBoxTextColor(color: TempColor): string {
-  if (color === TempColor.T1Heat) {
-    return 'black'; // on yellow
-  }
-  if (color === TempColor.T2Heat) {
-    return 'white'; // on orange
-  }
-  if (color === TempColor.T3Heat) {
-    return 'white'; // on red
-  }
-  return 'black'; // on white (this should never appear in game, though)
+  return { background: 'grey', foreground: 'white', darker: COLOR_MID_GREY }; // fallback
 }

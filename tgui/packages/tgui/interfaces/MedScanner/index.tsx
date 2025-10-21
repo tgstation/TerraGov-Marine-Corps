@@ -1,6 +1,6 @@
 import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
-import { MedScannerData } from './data';
+import { MedScannerData, TempLevels } from './data';
 import { PatientAdvice } from './PatientAdvice';
 import { PatientBasics } from './PatientBasics';
 import { PatientChemicals } from './PatientChemicals';
@@ -44,7 +44,7 @@ export function MedScanner() {
         {!!(
           blood_amount < regular_blood_amount ||
           internal_bleeding ||
-          body_temperature.warning
+          body_temperature.level !== TempLevels.OK
         ) && <PatientFooter />}
         {!!advice && <PatientAdvice />}
       </Window.Content>
