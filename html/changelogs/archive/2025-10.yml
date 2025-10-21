@@ -102,3 +102,8 @@
   Runian:
   - bugfix: 'Mutations: Enhanced Strength now correctly sets/increases your Fling
       distance as Warrior.'
+2025-10-21:
+  Atropos:
+  - qol: Dylovene autoinjectors now inject 3 u by default
+  DaTruRiZZoB:
+  - bugfix: Fixed pointing while dead/incapacitated
