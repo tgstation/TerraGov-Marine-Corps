@@ -1,0 +1,4 @@
+author: "DaTruRiZZoB"
+delete-after: True
+changes:
+  - bugfix: "Fixed pointing while dead/incapacitated"
