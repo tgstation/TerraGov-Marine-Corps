@@ -370,8 +370,8 @@
 
 	var/list/advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
-		for(var/index, value in GLOB.scanner_advice)
-			var/datum/scanner_advice/advice_datum = value
+		for(var/advice_type AS in GLOB.scanner_advice)
+			var/datum/scanner_advice/advice_datum = GLOB.scanner_advice[advice_type]
 			if(!advice_datum.can_show(patient, user))
 				continue
 			var/list/advice_data = advice_datum.get_data(patient, user)
