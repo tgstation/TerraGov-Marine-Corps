@@ -54,7 +54,9 @@
 	return ..()
 
 /obj/item/plantable_flag/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	/* NTF removal
 	SSaura.add_emitter(get_turf(src), AURA_HUMAN_FLAG, INFINITY, LOST_FLAG_AURA_STRENGTH, -1, faction)
+	*/
 
 	if(istype(blame_mob) && blame_mob.ckey)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
@@ -107,6 +109,8 @@
 		current_aura.strength = FLAG_AURA_STRENGTH
 	else
 		current_aura.strength = LOST_FLAG_AURA_STRENGTH //this explicitly lets enemies deploy it for the extended debuff range
+	if(current_aura.strength == LOST_FLAG_AURA_STRENGTH)
+		current_aura.range *= 3
 
 ///Waves the flag around heroically
 /obj/item/plantable_flag/proc/lift_flag(mob/user)
