@@ -4588,10 +4588,6 @@
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
 "zC" = (
-/obj/structure/prop/urban/misc/buildinggreebliessmall3{
-	pixel_y = 30;
-	name = "PLACEHOLDER FUEL THING"
-	},
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
 	},
@@ -6483,6 +6479,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay/generator)
+"KI" = (
+/obj/effect/explosion_holder/campaign_objective/airbase_fuel,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/airstrip_south)
 "KJ" = (
 /obj/structure/barricade/sandbags{
 	pixel_y = -6
@@ -6581,6 +6581,8 @@
 /area/campaign/tgmc_airfield/base/security_checkpoint/east)
 "Lt" = (
 /obj/effect/turf_decal/stripes/asteroid/box,
+/obj/effect/landmark/campaign_structure/underground_fuel_tank,
+/obj/effect/explosion_holder/campaign_objective/airbase_fuel,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "Lu" = (
@@ -22589,7 +22591,7 @@ aD
 aD
 aD
 aD
-aD
+KI
 aD
 aD
 aD
@@ -23997,7 +23999,7 @@ aD
 aD
 aD
 vn
-aD
+KI
 aD
 RP
 aD

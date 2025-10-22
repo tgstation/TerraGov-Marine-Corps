@@ -335,3 +335,60 @@
 	bound_x = -32
 	allow_pass_flags = PASSABLE
 	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
+
+/obj/effect/landmark/campaign_structure/underground_fuel_tank
+	name = "fuel access point"
+	desc = "A fuel access point for the large underground fuel tanks beneath the airstrip. No smoking within 15 meters."
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "manhole"
+	mission_types = list(/datum/campaign_mission/destroy_mission/airbase/som)
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/underground_fuel_tank
+
+/obj/structure/campaign_objective/destruction_objective/underground_fuel_tank
+	name = "fuel access point"
+	desc = "A fuel access point for the large underground fuel tanks beneath the airstrip. No smoking within 15 meters."
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "manhole"
+	density = FALSE
+
+/obj/effect/explosion_holder
+	name = "explosion holder"
+
+///Explodes
+/obj/effect/explosion_holder/proc/detonate()
+	explosion(3, 4, 5)
+
+/obj/effect/explosion_holder/campaign_objective
+	///The trigger object that will cause src to detonate
+	var/linked_objective
+
+/obj/effect/explosion_holder/campaign_objective/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, PROC_REF(on_objective_destruction))
+	GLOB.campaign_structures += src
+
+/obj/effect/explosion_holder/campaign_objective/Destroy()
+	linked_objective = null
+	GLOB.campaign_structures -= src
+	return ..()
+
+///Detonates if our linked objective is destroyed
+/obj/effect/explosion_holder/campaign_objective/proc/on_objective_destruction(datum/source, obj/structure/campaign_objective/destruction_objective/destroyed)
+	SIGNAL_HANDLER
+	if(destroyed != linked_objective)
+		return
+	detonate()
+	qdel(src)
+
+/obj/effect/explosion_holder/campaign_objective/airbase_fuel
+	name = "airbase fueltank explosion holder"
+
+/obj/effect/explosion_holder/campaign_objective/airbase_fuel/LateInitialize()
+	. = ..()
+	for(var/obj/structure/campaign_objective/objective AS in GLOB.campaign_objectives)
+		if(objective.type != /obj/structure/campaign_objective/destruction_objective/underground_fuel_tank)
+			continue
+		linked_objective = objective
+
+/obj/effect/explosion_holder/campaign_objective/airbase_fuel/detonate()
+	explosion(5, 7, 8, flame_range = 10)
