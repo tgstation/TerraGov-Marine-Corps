@@ -2,36 +2,37 @@
 	mid_sounds = list('ntf_modular/sound/vo/female/gen/se/horny1loop (1).ogg')
 	mid_length = 470
 	volume = 20
-
+	range = 7
 
 /datum/looping_sound/femhornylitealt
 	mid_sounds = list('ntf_modular/sound/vo/female/gen/se/horny1loop (2).ogg')
 	mid_length = 360
 	volume = 20
-
+	range = 7
 
 /datum/looping_sound/femhornymed
 	mid_sounds = list('ntf_modular/sound/vo/female/gen/se/horny2loop (1).ogg')
 	mid_length = 420
 	volume = 20
-
+	range = 7
 
 /datum/looping_sound/femhornymedalt
 	mid_sounds = list('ntf_modular/sound/vo/female/gen/se/horny2loop (2).ogg')
 	mid_length = 350
 	volume = 20
-
+	range = 7
 
 /datum/looping_sound/femhornyhvy
 	mid_sounds = list('ntf_modular/sound/vo/female/gen/se/horny3loop (1).ogg')
 	mid_length = 440
 	volume = 20
-
+	range = 7
 
 /datum/looping_sound/femhornyhvyalt
 	mid_sounds = list('ntf_modular/sound/vo/female/gen/se/horny3loop (2).ogg')
 	mid_length = 390
 	volume = 20
+	range = 7
 
 /mob/living/verb/erp_panel()
 	set category = "IC"
