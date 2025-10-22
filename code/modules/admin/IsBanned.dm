@@ -58,9 +58,14 @@
 	if(!real_bans_only && !C && extreme_popcap && !admin)
 		var/popcap_value = length(GLOB.clients)
 		if(popcap_value >= extreme_popcap && !GLOB.joined_player_list.Find(ckey))
+#ifdef OPENDREAM
+			log_access("Failed Login: [key] - Population cap reached")
+			return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+#else
 			if(!CONFIG_GET(flag/byond_member_bypass_popcap) || !world.IsSubscribed(ckey, "BYOND"))
 				log_access("Failed Login: [key] - Population cap reached")
 				return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+#endif
 
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())
