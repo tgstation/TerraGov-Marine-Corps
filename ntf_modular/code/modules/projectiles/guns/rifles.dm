@@ -187,7 +187,9 @@
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 	wield_delay = 0.7 SECONDS
-	aim_slowdown = 0.2
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+	aim_slowdown = 0.3
 	aim_speed_modifier = 2.5
 	scatter = 0
 
