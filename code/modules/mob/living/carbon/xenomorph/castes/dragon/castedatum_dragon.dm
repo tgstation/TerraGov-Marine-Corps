@@ -23,7 +23,7 @@
 	plasma_icon_state = "armor"
 
 	// *** Health *** //
-	max_health = 900
+	max_health = 810
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD

@@ -22,7 +22,7 @@
 	plasma_icon_state = "hivelord_plasma"
 
 	// *** Health *** //
-	max_health = 410
+	max_health = 380
 
 
 	// *** Evolution *** //
