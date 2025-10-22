@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/nsfwprofile_pic = ""
 	var/xenoprofile_pic = ""
 	var/xenogender = 1
-	var/harmful_sex_allowed = TRUE
+	var/harmful_sex_flags = HARMFUL_SEX_ALL
 	var/burst_screams_enabled = TRUE
 
 	var/list/exp = list()

@@ -25,7 +25,7 @@
 	do_thrust_animate(target, user)
 
 	user.sexcon.perform_sex_action(user, 0.5, 0, TRUE)
-	target.sexcon.handle_passive_ejaculation()
+	target.sexcon.handle_passive_ejaculation(user)
 
 /datum/sex_action/force_armpit_nuzzle/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	..()

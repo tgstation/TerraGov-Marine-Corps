@@ -22,7 +22,7 @@
 	playsound(user, 'ntf_modular/sound/misc/mat/fingering.ogg', 30, TRUE, 5, ignore_walls = FALSE)
 
 	user.sexcon.perform_sex_action(user, 2, 6, TRUE)
-	user.sexcon.handle_passive_ejaculation()
+	user.sexcon.handle_passive_ejaculation(user)
 
 /datum/sex_action/masturbate_anus/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	..()

@@ -23,7 +23,7 @@
 	user.make_sucking_noise()
 
 	user.sexcon.perform_sex_action(target, 0.5, 0, TRUE)
-	target.sexcon.handle_passive_ejaculation()
+	target.sexcon.handle_passive_ejaculation(user)
 
 /datum/sex_action/rub_body/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	..()

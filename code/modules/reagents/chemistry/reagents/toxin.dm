@@ -780,7 +780,7 @@
 	playsound(usr.loc, "sound/effects/splat.ogg", 30)
 	debuff_owner.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 10)
 	debuff_owner.reagents.remove_reagent(/datum/reagent/consumable/larvajelly, 3)
-	debuff_owner.sexcon.ejaculate()
+	debuff_owner.sexcon.ejaculate(debuff_owner)
 	if(debuff_owner.getStaminaLoss() > 120)
 		if(prob(5))
 			debuff_owner.visible_message(span_warning("[debuff_owner] manages to black out from cumming too hard..."), 4)

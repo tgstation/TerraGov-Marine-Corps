@@ -25,7 +25,7 @@
 		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] forces [target] to fuck [user.p_their()] ear."))
 	user.make_sucking_noise()
 	user.sexcon.perform_sex_action(user, 2, 4, TRUE)
-	user.sexcon.handle_passive_ejaculation()
+	user.sexcon.handle_passive_ejaculation(target)
 
 	if(target.sexcon.considered_limp())
 		target.sexcon.perform_sex_action(target, 1.2, 3, FALSE)

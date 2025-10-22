@@ -25,7 +25,7 @@
 	user.sexcon.perform_sex_action(user, 2, 4, TRUE)
 	if(user.sexcon.check_active_ejaculation())
 		user.visible_message(span_love("cums on [target]'s head!"))
-		user.sexcon.cum_onto()
+		user.sexcon.cum_onto(target)
 		if(isxeno(user))
 			target.adjustFireLoss(5, TRUE)
 
@@ -35,7 +35,7 @@
 		if(isxeno(user))
 			oxyloss *= 2
 		user.sexcon.perform_deepthroat_oxyloss(target, oxyloss)
-	target.sexcon.handle_passive_ejaculation()
+	target.sexcon.handle_passive_ejaculation(user)
 
 /datum/sex_action/force_suck_balls/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	user.visible_message(span_warning("[user] pulls [user.p_their()] balls out of [target]'s mouth."))

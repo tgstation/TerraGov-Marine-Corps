@@ -11,6 +11,8 @@
 	var/speed = SEX_SPEED_MID
 	/// Enum of desired force
 	var/force = SEX_FORCE_MID
+	/// Enum drain style
+	var/drain_style = SEX_DRAIN_STYLE_HEAL_TARGET
 	/// Enum of manual arousal state
 	var/manual_arousal = SEX_MANUAL_AROUSAL_DEFAULT
 	/// Our arousal
@@ -82,6 +84,9 @@
 /datum/sex_controller/proc/adjust_force(amt)
 	force = clamp(force + amt, SEX_FORCE_MIN, SEX_FORCE_MAX)
 
+/datum/sex_controller/proc/adjust_drain_style(amt)
+	drain_style = clamp(drain_style + amt, SEX_DRAIN_MIN, SEX_DRAIN_MAX)
+
 /datum/sex_controller/proc/adjust_arousal_manual(amt)
 	manual_arousal = clamp(manual_arousal + amt, SEX_MANUAL_AROUSAL_MIN, SEX_MANUAL_AROUSAL_MAX)
 
@@ -128,7 +133,11 @@
 	set_target(new_target)
 	show_ui()
 
-/datum/sex_controller/proc/cum_onto()
+/datum/sex_controller/proc/cum_onto(mob/living/blame_mob)
+	if(istype(blame_mob))
+		log_combat(blame_mob, user, "caused an ejaculation from")
+	else
+		log_combat(user, blame_mob, "was made to ejaculate by")
 	playsound(target, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 	if(!isrobot(usr))
 		if(usr.gender == MALE)
@@ -137,9 +146,38 @@
 			new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
 	else
 		new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
+	handle_ejaculation_drain(blame_mob)
 	after_ejaculation()
 
+/datum/sex_controller/proc/handle_ejaculation_drain(mob/living/blame_mob)
+	if(istype(blame_mob) && blame_mob.sexcon && blame_mob != user)
+		switch(blame_mob.sexcon.drain_style)
+			if(SEX_DRAIN_STYLE_HEAL_TARGET)
+				user.heal_overall_damage(rand(15, 30), rand(15, 30), TRUE, TRUE)
+			if(SEX_DRAIN_STYLE_DRAIN_STAMINA)
+				if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_STAMINA_DRAIN))
+					blame_mob.heal_overall_damage(rand(20, 40), rand(20, 40), TRUE, TRUE)
+					if(isxeno(user))
+						var/mob/living/carbon/xenomorph/xeno_user = user
+						xeno_user.use_plasma(rand(80,160))
+					else
+						user.adjustStaminaLoss(rand(40,80))
+			if(SEX_DRAIN_STYLE_DRAIN_BLOOD)
+				if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_BLOOD_DRAIN))
+					blame_mob.heal_overall_damage(rand(40, 80), rand(40, 80), TRUE, TRUE)
+					blame_mob.adjustCloneLoss(-rand(5,15))
+					blame_mob.adjustStaminaLoss(-rand(10,40))
+					if(isxeno(user))
+						user.adjustBruteLoss(115)
+					else
+						user.adjust_blood_volume(-115)
+					blame_mob.adjust_blood_volume(20)
+
 /datum/sex_controller/proc/cum_into(oral = FALSE, mob/filled)
+	if(istype(filled))
+		log_combat(filled, user, "caused an ejaculation from")
+	else
+		log_combat(user, filled, "was made to ejaculate by")
 	if(!filled)
 		filled = target
 	if(oral)
@@ -147,16 +185,18 @@
 	else
 		playsound(target, 'ntf_modular/sound/misc/mat/endin.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 	filled?.reagents?.add_reagent(/datum/reagent/medicine/saline_glucose, 5)
-	after_ejaculation()
+	handle_ejaculation_drain(filled)
 	if(!oral)
 		after_intimate_climax()
+	after_ejaculation()
 
-/datum/sex_controller/proc/ejaculate()
-	if(iscarbon(user))
-		log_combat(user, user, "Ejaculated")
+/datum/sex_controller/proc/ejaculate(mob/blame_mob)
+	if(istype(blame_mob))
+		log_combat(blame_mob, user, "caused an ejaculation from")
+	else
+		log_combat(user, blame_mob, "was made to ejaculate by")
 	user.visible_message(span_lovebold("[user] makes a mess!"))
-	user.heal_overall_damage(rand(15, 30), rand(15, 30), TRUE, TRUE)
-
+	handle_ejaculation_drain(blame_mob)
 	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 	if(!isrobot(user))
 		if(user.gender == MALE)
@@ -167,15 +207,23 @@
 		new /obj/effect/decal/cleanable/blood/splatter/robotcum(user.loc)
 	after_ejaculation()
 
-/datum/sex_controller/proc/ejaculate_container(obj/item/reagent_containers/glass/C)
-	log_combat(user, user, "Ejaculated into a container")
+/datum/sex_controller/proc/ejaculate_container(obj/item/reagent_containers/glass/C, mob/blame_mob)
+	if(istype(blame_mob))
+		log_combat(blame_mob, user, "caused an ejaculation into a container ([logdetails(C)]) from")
+	else
+		log_combat(user, blame_mob, "was made to ejaculate into a container ([logdetails(C)]) by")
 	user.visible_message(span_lovebold("[user] spills into [C]!"))
+	handle_ejaculation_drain(blame_mob)
 	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 	after_ejaculation()
 
-/datum/sex_controller/proc/milk_container(obj/item/reagent_containers/glass/C)
-	log_combat(user, user, "Was milked into a container")
+/datum/sex_controller/proc/milk_container(obj/item/reagent_containers/glass/C, mob/blame_mob)
+	if(istype(blame_mob))
+		log_combat(blame_mob, user, "milked into a container ([logdetails(C)])")
+	else
+		log_combat(user, blame_mob, "was milked into a container ([logdetails(C)]) by")
 	user.visible_message(span_lovebold("[user] lactates into [C]!"))
+	handle_ejaculation_drain(blame_mob)
 	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 	after_ejaculation()
 
@@ -209,8 +257,8 @@
 	set_arousal(arousal + amount)
 
 /datum/sex_controller/proc/perform_deepthroat_oxyloss(mob/living/action_target, oxyloss_amt)
-	if(isxeno(action_target))
-		return
+	if(action_target.mind && !(action_target.client?.prefs.harmful_sex_flags & HARMFUL_SEX_CHOKING))
+		return FALSE
 	var/oxyloss_multiplier = 0
 	switch(force)
 		if(SEX_FORCE_LOW)
@@ -223,42 +271,69 @@
 			oxyloss_multiplier = 2.0
 	oxyloss_amt *= oxyloss_multiplier
 	if(oxyloss_amt <= 0)
-		return
-	action_target.adjustOxyLoss(oxyloss_amt)
-	// Indicate someone is choking through sex
-	if(action_target.oxyloss >= 50 && prob(33))
-		action_target.emote(pick(list("gag", "choke", "choke")))
-
-//To show that they are choking
+		return FALSE
+	if(isxeno(action_target))
+		var/mob/living/carbon/xenomorph/xeno_target = action_target
+		if(xeno_target.plasma_stored == 0)
+			xeno_target.adjustBruteLoss(oxyloss_amt*2)
+		else
+			xeno_target.use_plasma(oxyloss_amt*2)
+		if(xeno_target.plasma_stored < xeno_target.xeno_caste.plasma_max * 0.33)
+			action_target.emote(pick(list("gag", "choke", "choke")))
+	else
+		action_target.adjustOxyLoss(oxyloss_amt)
+		// Indicate someone is choking through sex
+		if(action_target.oxyloss >= 50 && prob(33))
+			action_target.emote(pick(list("gag", "choke", "choke")))
+	//To show that they are choking
 	var/choke_message = pick("gasps for air!", "chokes!")
 	if(prob(33) && oxyloss_amt >= 1)
 		action_target.visible_message(span_warning("[action_target] [choke_message]"))
 		action_target.emote("gasp")
+	return TRUE
 
 /datum/sex_controller/proc/perform_sex_action(mob/living/action_target, arousal_amt, pain_amt, giving)
 	var/datum/sex_action/action = SEX_ACTION(current_action)
 	var/healing_amount = (action?.heal_sex) ? rand(2, 4) : 0
-	action_target.sexcon.receive_sex_action(arousal_amt, pain_amt, giving, force, speed, healing_amount)
+	action_target.sexcon.receive_sex_action(arousal_amt, pain_amt, giving, force, speed, healing_amount, user)
 
-/datum/sex_controller/proc/receive_sex_action(arousal_amt, pain_amt, giving, applied_force, applied_speed, healing_amount)
+/datum/sex_controller/proc/receive_sex_action(arousal_amt, pain_amt, giving, applied_force, applied_speed, healing_amount, mob/living/blame_mob)
 	arousal_amt *= get_force_pleasure_multiplier(applied_force, giving)
 	pain_amt *= get_force_pain_multiplier(applied_force)
 	pain_amt *= get_speed_pain_multiplier(applied_speed)
 
 	if(healing_amount)
 		//go go gadget sex healing.. magic?
-		if(user.buckled || user.lying_angle) //gooder resting
-			healing_amount *= 4
-		user.heal_overall_damage(healing_amount, healing_amount/2, TRUE, TRUE)
-		if(isxeno(user))
-			var/mob/living/carbon/xenomorph/xeno_user = user
-			xeno_user.gain_plasma(5, TRUE)
+		if(blame_mob != user && istype(blame_mob) && blame_mob.sexcon)
+			switch(blame_mob.sexcon.drain_style)
+				if(SEX_DRAIN_STYLE_HEAL_TARGET)
+					if(user.buckled || user.lying_angle) //gooder resting
+						healing_amount *= 4
+					user.heal_overall_damage(healing_amount, healing_amount*0.5, TRUE, TRUE)
+					if(isxeno(user))
+						var/mob/living/carbon/xenomorph/xeno_user = user
+						xeno_user.gain_plasma(5, TRUE)
+				if(SEX_DRAIN_STYLE_DRAIN_STAMINA)
+					if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_STAMINA_DRAIN))
+						blame_mob.heal_overall_damage(healing_amount*0.5, healing_amount*0.25, TRUE, TRUE)
+						if(isxeno(user))
+							var/mob/living/carbon/xenomorph/xeno_user = user
+							xeno_user.use_plasma(healing_amount*2)
+						else
+							user.adjustStaminaLoss(healing_amount)
+				if(SEX_DRAIN_STYLE_DRAIN_BLOOD)
+					if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_BLOOD_DRAIN))
+						blame_mob.heal_overall_damage(healing_amount, healing_amount*0.5, TRUE, TRUE)
+						if(isxeno(user))
+							user.adjustBruteLoss(healing_amount/10)
+						else
+							user.adjust_blood_volume(-healing_amount/10)
 
 	adjust_arousal(arousal_amt)
-	if(!user.mind || user.client?.prefs.harmful_sex_allowed)
+	if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_ROUGH_SEX))
 		damage_from_pain(pain_amt)
 	try_do_moan(arousal_amt, pain_amt, applied_force, giving)
-	if(!user.mind || user.client?.prefs.harmful_sex_allowed)
+	if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_ROUGH_SEX))
 		try_do_pain_effect(pain_amt, giving)
 
 /datum/sex_controller/proc/damage_from_pain(pain_amt)
@@ -339,36 +414,36 @@
 /datum/sex_controller/proc/can_ejaculate()
 	return TRUE
 
-/datum/sex_controller/proc/handle_passive_ejaculation()
+/datum/sex_controller/proc/handle_passive_ejaculation(mob/blame_mob)
 	if(arousal < PASSIVE_EJAC_THRESHOLD)
 		return
 	if(!can_ejaculate())
 		return FALSE
-	ejaculate()
+	ejaculate(blame_mob)
 
-/datum/sex_controller/proc/handle_container_ejaculation()
+/datum/sex_controller/proc/handle_container_ejaculation(mob/blame_mob)
 	if(arousal < PASSIVE_EJAC_THRESHOLD)
 		return
 	if(!can_ejaculate())
 		return FALSE
-	ejaculate_container(user.get_active_held_item())
+	ejaculate_container(user.get_active_held_item(), blame_mob)
 
-/datum/sex_controller/proc/handle_container_milk()
+/datum/sex_controller/proc/handle_container_milk(mob/blame_mob)
 	if(arousal < PASSIVE_EJAC_THRESHOLD)
 		return
-	milk_container(user.get_active_held_item())
+	milk_container(user.get_active_held_item(), blame_mob)
 
 /datum/sex_controller/proc/handle_cock_milking(mob/living/carbon/human/milker)
 	if(arousal < ACTIVE_EJAC_THRESHOLD)
 		return
 	if(!can_ejaculate())
 		return FALSE
-	ejaculate_container(milker.get_active_held_item())
+	ejaculate_container(milker.get_active_held_item(), milker)
 
 /datum/sex_controller/proc/handle_breast_milking(mob/living/carbon/human/milker)
 	if(arousal < ACTIVE_EJAC_THRESHOLD)
 		return
-	milk_container(milker.get_active_held_item())
+	milk_container(milker.get_active_held_item(), milker)
 
 /datum/sex_controller/proc/can_use_penis()
 	return TRUE
@@ -380,7 +455,7 @@
 
 /datum/sex_controller/proc/process_sexcon(dt)
 	handle_arousal_unhorny(dt)
-	handle_passive_ejaculation()
+	handle_passive_ejaculation(user)
 
 /datum/sex_controller/proc/handle_arousal_unhorny(dt)
 	if(!can_ejaculate())
@@ -401,11 +476,13 @@
 	var/list/dat = list()
 	var/force_name = get_force_string()
 	var/speed_name = get_speed_string()
+	var/drain_style_name = get_drain_style_string()
 	var/manual_arousal_name = get_manual_arousal_string()
 	if(user.gender != MALE)
 		dat += "<center><a href='?src=[REF(src)];task=speed_down'>\<</a> [speed_name] <a href='?src=[REF(src)];task=speed_up'>\></a> ~|~ <a href='?src=[REF(src)];task=force_down'>\<</a> [force_name] <a href='?src=[REF(src)];task=force_up'>\></a></center>"
 	else
 		dat += "<center><a href='?src=[REF(src)];task=speed_down'>\<</a> [speed_name] <a href='?src=[REF(src)];task=speed_up'>\></a> ~|~ <a href='?src=[REF(src)];task=force_down'>\<</a> [force_name] <a href='?src=[REF(src)];task=force_up'>\></a> ~|~ <a href='?src=[REF(src)];task=manual_arousal_down'>\<</a> [manual_arousal_name] <a href='?src=[REF(src)];task=manual_arousal_up'>\></a></center>"
+	dat += "<center><a href='?src=[REF(src)];task=drain_style_down'>\<</a> [drain_style_name] <a href='?src=[REF(src)];task=drain_style_up'>\></a></center>"
 	dat += "<center>| <a href='?src=[REF(src)];task=toggle_finished'>[do_until_finished ? "UNTIL IM FINISHED" : "UNTIL I STOP"]</a> |</center>"
 	if(target == user)
 		dat += "<center>Doing onto yourself</center>"
@@ -460,6 +537,10 @@
 			adjust_force(1)
 		if("force_down")
 			adjust_force(-1)
+		if("drain_style_up")
+			adjust_drain_style(1)
+		if("drain_style_down")
+			adjust_drain_style(-1)
 		if("manual_arousal_up")
 			adjust_arousal_manual(1)
 		if("manual_arousal_down")
@@ -467,6 +548,21 @@
 		if("toggle_finished")
 			do_until_finished = !do_until_finished
 	show_ui()
+
+/mob/living/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+	if(!client)
+		return
+	if(href_list["harmful_sex_toggle_on"])
+		ENABLE_BITFIELD(client.prefs.harmful_sex_flags, text2num(href_list["harmful_sex_toggle_on"]))
+		. = TRUE
+	if(href_list["harmful_sex_toggle_off"])
+		DISABLE_BITFIELD(client.prefs.harmful_sex_flags, text2num(href_list["harmful_sex_toggle_off"]))
+		. = TRUE
+	if(. && usr?.client)
+		toggle_harmful_sex()
 
 /datum/sex_controller/proc/try_stop_current_action()
 	if(!current_action)
@@ -654,6 +750,15 @@
 			return "<font color='#f05ee1'>QUICK</font>"
 		if(SEX_SPEED_EXTREME)
 			return "<font color='#d146f5'>UNRELENTING</font>"
+
+/datum/sex_controller/proc/get_drain_style_string()
+	switch(drain_style)
+		if(SEX_DRAIN_STYLE_HEAL_TARGET)
+			return "<font color='#eac8de'>HEAL TARGET</font>"
+		if(SEX_DRAIN_STYLE_DRAIN_STAMINA)
+			return "<font color='#e9a8d1'>DRAIN STAMINA</font>"
+		if(SEX_DRAIN_STYLE_DRAIN_BLOOD)
+			return "<font color='#d146f5'>DRAIN BLOOD/LIFE</font>"
 
 /datum/sex_controller/proc/get_manual_arousal_string()
 	switch(manual_arousal)

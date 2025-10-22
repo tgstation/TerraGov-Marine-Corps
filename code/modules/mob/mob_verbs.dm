@@ -301,15 +301,34 @@
 	point_to_atom(pointed_atom)
 	return TRUE
 
-/mob/living/carbon/verb/toggle_harmful_sex()
+/mob/living/verb/toggle_harmful_sex()
 	set name = "Toggle Sex Harm"
-	set desc = "Toggle getting harmed by rough sex etc."
+	set desc = "Open a panel that allows toggling different forms of harm from sex"
 	set category = "IC"
+	var/list/dat = list()
+	var/flags = client.prefs.harmful_sex_flags
+	if(flags & HARMFUL_SEX_ROUGH_SEX)
+		dat += "<center>Harm from rough/forceful sex : Enabled|<a href='?_src_=usr;harmful_sex_toggle_off=[HARMFUL_SEX_ROUGH_SEX]'>Disable</a></center>"
+	else
+		dat += "<center>Harm from rough/forceful sex : <a href='?_src_=usr;harmful_sex_toggle_on=[HARMFUL_SEX_ROUGH_SEX]'>Enable</a>|Disabled</center>"
+	if(flags & HARMFUL_SEX_CHOKING)
+		dat += "<center>Oxygen loss from rough oral : Enabled|<a href='?_src_=usr;harmful_sex_toggle_off=[HARMFUL_SEX_CHOKING]'>Disable</a></center>"
+	else
+		dat += "<center>Oxygen loss from rough oral : <a href='?_src_=usr;harmful_sex_toggle_on=[HARMFUL_SEX_CHOKING]'>Enable</a>|Disabled</center>"
+	if(flags & HARMFUL_SEX_STAMINA_DRAIN)
+		dat += "<center>Having stamina drained via sex : Enabled|<a href='?_src_=usr;harmful_sex_toggle_off=[HARMFUL_SEX_STAMINA_DRAIN]'>Disable</a></center>"
+	else
+		dat += "<center>Having stamina drained via sex : <a href='?_src_=usr;harmful_sex_toggle_on=[HARMFUL_SEX_STAMINA_DRAIN]'>Enable</a>|Disabled</center>"
+	if(flags & HARMFUL_SEX_BLOOD_DRAIN)
+		dat += "<center>Having blood/life drained via sex : Enabled|<a href='?_src_=usr;harmful_sex_toggle_off=[HARMFUL_SEX_BLOOD_DRAIN]'>Disable</a></center>"
+	else
+		dat += "<center>Having blood/life drained via sex : <a href='?_src_=usr;harmful_sex_toggle_on=[HARMFUL_SEX_BLOOD_DRAIN]'>Enable</a>|Disabled</center>"
 
-	client.prefs.harmful_sex_allowed = !client.prefs.harmful_sex_allowed
-	to_chat(src, span_notice("Harmful sex is now [client.prefs.harmful_sex_allowed ? "Allowed" : "Disallowed"]"))
+	var/datum/browser/popup = new(usr, "sexharmprefs", "<center>Sex Harm Preferences</center>", 400, 150)
+	popup.set_content(dat.Join())
+	popup.open()
 
-/mob/living/carbon/verb/toggle_burst_scream()
+/mob/living/verb/toggle_burst_scream()
 	set name = "Toggle Burst Screams"
 	set desc = "Toggle screaming from bursts."
 	set category = "IC"

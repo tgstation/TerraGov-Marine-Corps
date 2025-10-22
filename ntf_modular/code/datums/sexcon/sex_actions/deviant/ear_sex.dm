@@ -42,7 +42,7 @@
 			if(prob(15))
 				to_chat(user, span_warning("I feel something squish against my tip..."))
 			target.adjustBrainLoss(0.2)
-	target.sexcon.handle_passive_ejaculation()
+	target.sexcon.handle_passive_ejaculation(user)
 
 /datum/sex_action/ear_sex/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	user.visible_message(span_warning("[user] pulls [user.p_their()] cock out of [target]'s ear."))

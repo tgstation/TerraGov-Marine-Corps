@@ -536,7 +536,7 @@
 	READ_FILE(S["genitalia_ass"], genitalia_ass)
 	READ_FILE(S["genitalia_boobs"], genitalia_boobs)
 	READ_FILE(S["genitalia_cock"], genitalia_cock)
-	READ_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
+	READ_FILE(S["harmful_sex_allowed"], harmful_sex_flags)
 	READ_FILE(S["burst_screams_enabled"], burst_screams_enabled)
 	READ_FILE(S["xeno_edible_jelly_name"], xeno_edible_jelly_name)
 	READ_FILE(S["r_jelly"], r_jelly)
@@ -632,7 +632,7 @@
 	genitalia_ass = sanitize_text(genitalia_ass, initial(genitalia_ass))
 	genitalia_boobs = sanitize_text(genitalia_boobs, initial(genitalia_boobs))
 	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
-	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
+	harmful_sex_flags = sanitize_text(harmful_sex_flags, initial(harmful_sex_flags))
 	burst_screams_enabled = sanitize_text(burst_screams_enabled, initial(burst_screams_enabled))
 
 	metadata = sanitize_text(metadata, initial(metadata))
@@ -756,7 +756,7 @@
 	genitalia_ass = sanitize_text(genitalia_ass, initial(genitalia_ass))
 	genitalia_boobs = sanitize_text(genitalia_boobs, initial(genitalia_boobs))
 	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
-	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
+	harmful_sex_flags = sanitize_text(harmful_sex_flags, initial(harmful_sex_flags))
 	burst_screams_enabled = sanitize_text(burst_screams_enabled, initial(burst_screams_enabled))
 
 	metadata = sanitize_text(metadata, initial(metadata))
@@ -833,7 +833,7 @@
 	WRITE_FILE(S["genitalia_ass"], genitalia_ass)
 	WRITE_FILE(S["genitalia_boobs"], genitalia_boobs)
 	WRITE_FILE(S["genitalia_cock"], genitalia_cock)
-	WRITE_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
+	WRITE_FILE(S["harmful_sex_allowed"], harmful_sex_flags)
 	WRITE_FILE(S["burst_screams_enabled"], burst_screams_enabled)
 
 	WRITE_FILE(S["metadata"], metadata)

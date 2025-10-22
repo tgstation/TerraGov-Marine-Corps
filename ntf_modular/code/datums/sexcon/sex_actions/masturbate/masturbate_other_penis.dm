@@ -25,7 +25,7 @@
 
 	user.sexcon.perform_sex_action(target, 2, 0, TRUE)
 
-	target.sexcon.handle_passive_ejaculation()
+	target.sexcon.handle_passive_ejaculation(user)
 
 /datum/sex_action/masturbate_penis_other/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	..()

@@ -27,7 +27,7 @@
 
 	if(user.sexcon.check_active_ejaculation())
 		user.visible_message(span_lovebold("[user] cums over [target]'s body!"))
-		user.sexcon.cum_onto()
+		user.sexcon.cum_onto(target)
 		if(isxeno(user))
 			target.adjustFireLoss(5, TRUE)
 

@@ -33,17 +33,15 @@
 	mid_length = 390
 	volume = 20
 
-/mob/living/carbon/verb/erp_panel()
+/mob/living/verb/erp_panel()
 	set category = "IC"
 	set name = "ERP Panel"
 	set desc = "Fuck 'em"
 	set src in view(1)
 	erptime(usr, src)
 
-/mob/living/carbon/proc/erptime(mob/living/carbon/user, mob/living/carbon/target)
+/mob/living/proc/erptime(mob/living/user, mob/living/target)
 	if(!istype(target))
-		return
-	if(!iscarbon(target))
 		return
 	var/datum/sex_controller/usersexcon = user.sexcon
 	usersexcon.start(target)
@@ -100,7 +98,9 @@
 	new /obj/effect/decal/cleanable/blood/splatter/cum(turfu)
 
 //adds larva to a host.
-/mob/living/carbon/xenomorph/proc/impregify(mob/living/carbon/human/victim, overrideflavor, maxlarvas = MAX_LARVA_PREGNANCIES, damaging = TRUE, damagemult = 1, damageloc = BODY_ZONE_PRECISE_GROIN)
+/mob/living/carbon/xenomorph/proc/impregify(mob/living/carbon/victim, overrideflavor, maxlarvas = MAX_LARVA_PREGNANCIES, damaging = TRUE, damagemult = 1, damageloc = BODY_ZONE_PRECISE_GROIN)
+	if(!istype(victim))
+		return
 	victim.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 10)
 	if(damaging)
 		new /obj/effect/decal/cleanable/blood/splatter/xenocum(loc)

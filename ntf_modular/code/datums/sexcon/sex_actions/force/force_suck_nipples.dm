@@ -32,7 +32,7 @@
 		if(isxeno(user))
 			oxyloss *= 2
 		user.sexcon.perform_deepthroat_oxyloss(target, oxyloss)
-	target.sexcon.handle_passive_ejaculation()
+	target.sexcon.handle_passive_ejaculation(user)
 
 /datum/sex_action/force_suck_nipples/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	user.visible_message(span_warning("[user] pulls [user.p_their()] nipples out of [target]'s mouth."))

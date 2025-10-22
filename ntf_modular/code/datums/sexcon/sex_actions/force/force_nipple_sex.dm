@@ -25,7 +25,7 @@
 	target.make_sucking_noise()
 
 	user.sexcon.perform_sex_action(user, 2, 4, TRUE)
-	if(user.sexcon.check_active_ejaculation())
+	if(target.sexcon.check_active_ejaculation())
 		user.visible_message(span_love("[target] cums into [user]'s nipple!"))
 		target.sexcon.cum_into(FALSE, user)
 		if(isxeno(target))
@@ -36,7 +36,7 @@
 		user.sexcon.perform_sex_action(target, 1.2, 3, FALSE)
 	else
 		user.sexcon.perform_sex_action(target, 2.4, 7, FALSE)
-	target.sexcon.handle_passive_ejaculation()
+	user.sexcon.handle_passive_ejaculation(target)
 
 /datum/sex_action/force_nipple_sex/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	user.visible_message(span_warning("[user] pulls [target]'s cock out of [user.p_their()]  nipple."))
