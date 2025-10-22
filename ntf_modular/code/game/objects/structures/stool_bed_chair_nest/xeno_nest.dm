@@ -4,6 +4,7 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/targethole = 1
 	var/settings_locked = FALSE
+	var/list/mob/living/carbon/human/grabbing = null
 	COOLDOWN_DECLARE(tentacle_cooldown)
 	resist_time = 30 SECONDS
 
@@ -15,6 +16,10 @@
 	name = "[hive.prefix][name]"
 	color = hive.color
 	START_PROCESSING(SSslowprocess, src)
+	var/static/list/listen_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+	)
+	AddElement(/datum/element/connect_loc, listen_connections)
 
 /obj/structure/bed/nest/advanced/examine(mob/user)
 	. = ..()
@@ -38,6 +43,41 @@
 /obj/structure/bed/nest/advanced/post_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()
 	settings_locked = FALSE
+	COOLDOWN_START(src, tentacle_cooldown, 29.9 SECONDS)
+
+/obj/structure/bed/nest/advanced/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	try_to_grab(A)
+
+/obj/structure/bed/nest/advanced/proc/try_to_grab(mob/living/carbon/human/target)
+	if(!COOLDOWN_FINISHED(src, tentacle_cooldown))
+		return
+	if(LAZYLEN(buckled_mobs))
+		return
+	if(CHECK_MULTIPLE_BITFIELDS(target.allow_pass_flags, HOVERING))
+		return
+	if(!ishuman(target))
+		return
+	if(issamexenohive(target))
+		return
+	if(target.buckled)
+		return
+	if(target in grabbing)
+		return
+	COOLDOWN_START(src, tentacle_cooldown, 29.9 SECONDS)
+	target.visible_message(span_danger("Tentacles start grabbing at [target]'s legs to try to secure [target.p_them()] into [src]!"),
+		span_userdanger("Tentacles suddenly grab your legs to try to secure you into [src]!"),
+		span_notice("You hear squelching."))
+	LAZYADD(grabbing, target)
+	ASYNC
+		if(!do_mob(target, src, 10 SECONDS, null, BUSY_ICON_DANGER, PROGRESS_GENERIC, IGNORE_HAND | IGNORE_HELD_ITEM | IGNORE_DO_AFTER_COEFFICIENT | IGNORE_INCAPACITATION))
+			LAZYREMOVE(grabbing, target)
+			return
+		if(!buckle_mob(target))
+			return
+		target.visible_message(span_danger("Tentacles secure [target] into [src]!"),
+			span_userdanger("Tentacles secure you into [src]!"),
+			span_notice("You hear squelching."))
 
 /obj/structure/bed/nest/advanced/can_interact(mob/user)
 	if(isliving(user))
@@ -129,40 +169,47 @@
 	if(!LAZYLEN(buckled_mobs))
 		if(!COOLDOWN_FINISHED(src, tentacle_cooldown))
 			return
-		for(var/mob/living/carbon/human/corpse in loc)
-			if(corpse.stat != DEAD)
+		for(var/mob/living/carbon/human/target in loc)
+			if(target.buckled)
 				continue
-			if(corpse.buckled)
+			if(target.stat != DEAD)
+				try_to_grab(target)
 				continue
-			if(HAS_TRAIT(corpse, TRAIT_PSY_DRAINED))
+			if(HAS_TRAIT(target, TRAIT_PSY_DRAINED))
 				continue
 				//could maybe make it silo the corpse here instead
 			else
 				COOLDOWN_START(src, tentacle_cooldown, 29.9 SECONDS)
-				src.visible_message(span_xenonotice("[src] starts using its tentacles to spin a cocoon around [corpse]!"))
+				src.visible_message(span_xenonotice("[src] starts using its tentacles to spin a cocoon around [target]!"))
 				ASYNC
+
+					/*
 					//can't use do_after because we're not a mob and the corpse would fail due to being dead
 					var/ok = TRUE
-					var/datum/progressicon/busyicon = new(corpse, BUSY_ICON_DANGER)
+					var/datum/progressicon/busyicon = new(target, BUSY_ICON_DANGER)
 					while(!COOLDOWN_FINISHED(src, tentacle_cooldown))
 						stoplag(1)
-						if(QDELETED(corpse))
+						if(QDELETED(target))
 							ok = FALSE
-						if(corpse.loc != loc)
+						if(target.loc != loc)
 							ok = FALSE
-						if(HAS_TRAIT(corpse, TRAIT_PSY_DRAINED))
+						if(HAS_TRAIT(target, TRAIT_PSY_DRAINED))
 							ok = FALSE
-						if(corpse.stat != DEAD)
+						if(target.stat != DEAD)
 							ok = FALSE
 						if(!ok)
 							src.visible_message(span_xenonotice("[src] stops making a cocoon."))
 							qdel(busyicon)
 							return
-					src.visible_message(span_xenonotice("[src] finishes using its tentacles to spin a cocoon around [corpse]!"))
-					qdel(busyicon)
-					corpse.med_hud_set_status()
-					ADD_TRAIT(corpse, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-					new /obj/structure/cocoon(get_turf(src), hivenumber, corpse)
+					*/
+					if(!do_mob(target, src, 30 SECONDS, null, BUSY_ICON_DANGER, PROGRESS_GENERIC, IGNORE_HAND | IGNORE_HELD_ITEM | IGNORE_DO_AFTER_COEFFICIENT | IGNORE_INCAPACITATION)  || HAS_TRAIT(target, TRAIT_PSY_DRAINED) || (target.stat != DEAD))
+						src.visible_message(span_xenonotice("[src] stops making a cocoon."))
+						return
+					src.visible_message(span_xenonotice("[src] finishes using its tentacles to spin a cocoon around [target]!"))
+					//qdel(busyicon)
+					target.med_hud_set_status()
+					ADD_TRAIT(target, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+					new /obj/structure/cocoon(get_turf(src), hivenumber, target)
 			break
 		return
 	var/mob/living/carbon/human/victim = buckled_mobs[1]

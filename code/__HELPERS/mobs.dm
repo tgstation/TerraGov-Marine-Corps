@@ -56,6 +56,8 @@
 /proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks)
 	if(!user || !target)
 		return FALSE
+	if(!(ignore_flags & IGNORE_DO_AFTER_COEFFICIENT))
+		delay *= user.do_after_coefficent()
 	var/user_loc = user.loc
 
 	var/target_loc = target.loc
@@ -87,7 +89,7 @@
 			. = FALSE
 			break
 
-		if(user.incapacitated())
+		if(!(ignore_flags & IGNORE_INCAPACITATION) && user.incapacitated())
 			. = FALSE
 			break
 
