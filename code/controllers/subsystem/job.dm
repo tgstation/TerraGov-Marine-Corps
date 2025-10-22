@@ -54,12 +54,8 @@ SUBSYSTEM_DEF(job)
 		if(!job.map_check())
 			continue
 		occupations += job
-		if(job.title == "Xenomorph")
-			to_chat(world, span_boldnotice("checking xeno [job.type]"))
 		if(!name_occupations[job.title]) //we have multiple jobs with the same title, such as vatborn
 			name_occupations[job.title] = job
-		else
-			to_chat(world, span_boldnotice("job title already exists"))
 		type_occupations[J] = job
 	sortTim(occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
 
