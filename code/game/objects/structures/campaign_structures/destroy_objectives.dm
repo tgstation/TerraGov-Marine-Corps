@@ -351,12 +351,23 @@
 	icon_state = "manhole"
 	density = FALSE
 
+/obj/structure/campaign_objective/destruction_objective/underground_fuel_tank/Initialize(mapload)
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/campaign_objective/destruction_objective/underground_fuel_tank/LateInitialize()
+	. = ..()
+	for(var/obj/effect/explosion_holder/campaign_objective/det in GLOB.campaign_structures)
+		det.linked_objective = src
+
+
 /obj/effect/explosion_holder
 	name = "explosion holder"
 
 ///Explodes
 /obj/effect/explosion_holder/proc/detonate()
-	explosion(3, 4, 5)
+	explosion(src, 3, 4, 5)
+	qdel(src)
 
 /obj/effect/explosion_holder/campaign_objective
 	///The trigger object that will cause src to detonate
@@ -377,18 +388,12 @@
 	SIGNAL_HANDLER
 	if(destroyed != linked_objective)
 		return
-	detonate()
-	qdel(src)
+	addtimer(CALLBACK(src, PROC_REF(detonate)), rand(0.2 SECONDS, 2.5 SECONDS))
+	linked_objective = null
 
 /obj/effect/explosion_holder/campaign_objective/airbase_fuel
 	name = "airbase fueltank explosion holder"
 
-/obj/effect/explosion_holder/campaign_objective/airbase_fuel/LateInitialize()
-	. = ..()
-	for(var/obj/structure/campaign_objective/objective AS in GLOB.campaign_objectives)
-		if(objective.type != /obj/structure/campaign_objective/destruction_objective/underground_fuel_tank)
-			continue
-		linked_objective = objective
-
 /obj/effect/explosion_holder/campaign_objective/airbase_fuel/detonate()
-	explosion(5, 7, 8, flame_range = 10)
+	explosion(src, 5, 7, 8, flame_range = 10)
+	qdel(src)

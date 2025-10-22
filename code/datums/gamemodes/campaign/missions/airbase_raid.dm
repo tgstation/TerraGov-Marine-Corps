@@ -119,7 +119,7 @@
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
 	map_light_levels = list(225, 150, 100, 75)
 	map_armor_color = MAP_ARMOR_STYLE_DESERT
-	objectives_total = 4
+	objectives_total = 5
 	min_destruction_amount = 3
 
 	hostile_faction_additional_rewards = "Ensure continued access to close air support. B18 power armour available if you successfully protect this depot."
