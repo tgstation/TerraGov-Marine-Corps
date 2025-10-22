@@ -524,15 +524,15 @@
 	storage_datum.max_storage_space = 7
 
 /obj/item/storage/pill_bottle/zoom
-	name = "zoom pill bottle"
-	desc = "Containts highly illegal drugs. Trade heart for speed."
+	name = "stimulon pill bottle"
+	desc = "A shady looking pill bottle which contains stimulon, an advanced self-replicating drug that cannot be purged naturally, but it boosts movement speed immensely. This aftermarket stuff can't be very pure though, can it? \n<b>Side effects may include: jittering, shortness of breath, muscle tearing, intense agony, and exponentially increasing genetic damage.\n "
 
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
-	greyscale_colors = "#ef3ad4#ffffff"
+	greyscale_colors = "#776878#ffffff"
 
 /obj/item/storage/pill_bottle/zoom/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.max_storage_space = 7
+	storage_datum.max_storage_space = 1
 
 /obj/item/storage/pill_bottle/attackby(obj/item/attacking_item, mob/user, params)
 	if(!istype(attacking_item, /obj/item/facepaint) || isnull(greyscale_config))

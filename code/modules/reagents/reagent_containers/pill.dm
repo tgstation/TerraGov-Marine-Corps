@@ -189,7 +189,7 @@
 
 /obj/item/reagent_containers/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyronalin = 5)
+	list_reagents = list(/datum/reagent/medicine/research/stimulon = 0.1, /datum/reagent/toxin/satrapine = 10)
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/russian_red
