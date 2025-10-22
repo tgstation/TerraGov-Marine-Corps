@@ -258,6 +258,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/dmr)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_time = 1 SECONDS
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
@@ -1641,6 +1642,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 33, "under_y" = 16, "stock_x" = 8, "stock_y" = 12)
 	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_time = 1 SECONDS
 	aim_fire_delay = 1 SECONDS
 
 	starting_attachment_types = list(
@@ -2050,6 +2052,7 @@
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_time = 1 SECONDS
 	starting_attachment_types = list()
 
 //-------------------------------------------------------
@@ -2464,6 +2467,7 @@
 	movement_acc_penalty_mult = 7
 
 	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_time = 1 SECONDS
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
@@ -2600,6 +2604,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 14, "rail_x" = 15, "rail_y" = 17, "under_x" = 23, "under_y" = 10, "stock_x" = 17, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_time = 1 SECONDS
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
 
