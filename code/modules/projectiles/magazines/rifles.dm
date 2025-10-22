@@ -732,7 +732,7 @@
 	icon_state = "l15"
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 30
+	max_rounds = 40
 
 //-------------------------------------------------------
 //ML-12 Confrontation Rifle

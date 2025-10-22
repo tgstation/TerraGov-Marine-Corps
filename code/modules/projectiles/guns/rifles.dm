@@ -2640,7 +2640,7 @@
 	unload_sound = 'sound/weapons/guns/interact/mdr_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mdr_reload.ogg'
 	caliber = CALIBER_10X25_CASELESS //codex
-	max_shells = 30 //codex
+	max_shells = 40 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_battlecarbine
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/icc_battlecarbine)
@@ -2672,14 +2672,15 @@
 	)
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 19,"rail_x" = 20, "rail_y" = 23, "under_x" = 33, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.25 SECONDS
 	aim_speed_modifier = 1.65
 
-	burst_amount = 1
+	burst_amount = 2
 	fire_delay = 0.2 SECONDS
+	burst_delay = 0.15 SECONDS
 	scatter = 3
 	aim_slowdown = 0.35
 	wield_delay = 0.55 SECONDS
