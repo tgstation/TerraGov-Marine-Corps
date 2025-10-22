@@ -187,6 +187,7 @@
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 	wield_delay = 0.7 SECONDS
+	damage_mult = 0.92
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_slowdown = 0.3
@@ -311,7 +312,7 @@
 	//slightly less damage than regular bullets but except laser standard sundering, also same bullet speed.
 	name = "halter laser bolt"
 	shell_speed = 3.5
-	damage = 23
+	damage = 25
 	bullet_color = COLOR_RED_LIGHT
 
 //extended mag
