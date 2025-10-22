@@ -822,6 +822,14 @@
 	desc = "Where's your head at? (Where's yo head at?) (Where's yo head at?)"
 	icon_state = "tdfcorpsedecap"
 
+/obj/structure/prop/manhole
+	name = "manhole"
+	desc = "This would be a hole, except it's got a big piece of metal covering it."
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
+	icon_state = "wymanhole"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	resistance_flags = PROJECTILE_IMMUNE
+
 /obj/structure/prop/fueltank
 	name = "\improper jet fuel container"
 	desc = "A container used to store high quantities of fuel."
