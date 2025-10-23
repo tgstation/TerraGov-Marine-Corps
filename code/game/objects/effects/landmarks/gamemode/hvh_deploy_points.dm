@@ -51,28 +51,39 @@
 	if(ismob(mobs_moving))
 		mobs_moving = list(mobs_moving)
 
+	//list of AM's visually deploying
+	var/list/deploy_list = list(movable_to_move)
+	if(length(movable_to_move.buckled_mobs))
+		deploy_list += movable_to_move.buckled_mobs
+
 	if(isliving(movable_to_move))
 		var/mob/living_to_move = movable_to_move
 		new /atom/movable/effect/rappel_rope(target_turf)
 		living_to_move.trainteleport(target_turf)
-		add_spawn_protection(living_to_move)
 	else
 		movable_to_move.forceMove(target_turf)
 		if(isvehicle(movable_to_move))
 			var/obj/vehicle/moved_vehicle = movable_to_move
 			mobs_moving += moved_vehicle.occupants
+			if(moved_vehicle.hitbox)
+				deploy_list += moved_vehicle.hitbox.tank_desants
 
-	movable_to_move.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
-	var/shadow_filter = movable_to_move.get_filter(PATROL_POINT_RAPPEL_EFFECT)
+	var/list/layer_list = list()
+	for(var/atom/movable/AM AS in deploy_list)
+		if(isliving(AM))
+			add_spawn_protection(AM)
 
-	var/current_layer = movable_to_move.layer
-	movable_to_move.pixel_z += RAPPEL_HEIGHT
-	movable_to_move.layer = FLY_LAYER
+		AM.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
+		var/shadow_filter = AM.get_filter(PATROL_POINT_RAPPEL_EFFECT)
 
-	animate(movable_to_move, pixel_z = movable_to_move.pixel_z - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
-	animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
+		layer_list[AM] = AM.layer
+		AM.pixel_z += RAPPEL_HEIGHT
+		AM.layer = FLY_LAYER
 
-	addtimer(CALLBACK(src, PROC_REF(end_rappel), movable_to_move, current_layer, mobs_moving), RAPPEL_DURATION)
+		animate(AM, pixel_z = AM.pixel_z - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
+		animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
+
+	addtimer(CALLBACK(src, PROC_REF(end_rappel), deploy_list, layer_list, mobs_moving), RAPPEL_DURATION)
 
 	for(var/user in mobs_moving)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED, user)
@@ -84,13 +95,14 @@
 	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
 
 ///Ends the rappel effects
-/obj/effect/landmark/patrol_point/proc/end_rappel(atom/movable/movable_to_move, original_layer, list/mobs_moving)
-	movable_to_move.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
-	movable_to_move.layer = original_layer
-	SEND_SIGNAL(movable_to_move, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
-	if(ismecha(movable_to_move) || isarmoredvehicle(movable_to_move))
-		new /obj/effect/temp_visual/rappel_dust(movable_to_move.loc, 3)
-		playsound(movable_to_move.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
+/obj/effect/landmark/patrol_point/proc/end_rappel(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
+	for(var/atom/movable/AM AS in movables_to_move)
+		AM.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
+		AM.layer = layer_list[AM]
+		SEND_SIGNAL(AM, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
+		if(ismecha(AM) || isarmoredvehicle(AM))
+			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
+			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
 	for(var/user in mobs_moving)
 		shake_camera(user, 0.2 SECONDS, 0.5)
 
