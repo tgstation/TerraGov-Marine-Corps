@@ -22,6 +22,10 @@
 /obj/effect/urban/decal/dirt_2,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
+"af" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/armory)
 "ag" = (
 /obj/machinery/door/airlock/urban/generic_solid{
 	pixel_y = 2;
@@ -57,29 +61,12 @@
 	},
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast,
 /area/campaign/tgmc_airfield/outside/dry_river)
-"ao" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/caution{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "aq" = (
 /obj/effect/urban/decal/road/lines3{
 	pixel_y = -2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/east_base)
-"ar" = (
-/obj/effect/turf_decal/sandedge/corner{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/drought/alt,
-/area/campaign/tgmc_airfield/outside/desert/west)
 "as" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 4
@@ -125,8 +112,16 @@
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "aE" = (
 /obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/ai_node,
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast,
 /area/campaign/tgmc_airfield/outside/desert)
+"aF" = (
+/obj/effect/turf_decal/sandedge{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/dry_river)
 "aH" = (
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/campaign/tgmc_airfield/outside/west_base)
@@ -183,11 +178,6 @@
 /obj/effect/spawner/random/medical/organ,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
-"aZ" = (
-/obj/effect/urban/decal/dirt_2,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "ba" = (
 /obj/structure/flora/drought/short_cactus{
 	pixel_x = 4
@@ -252,6 +242,10 @@
 /obj/effect/urban/decal/dirt_2,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/east_base)
+"bA" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/storage)
 "bG" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/urban/street/sidewalkfull,
@@ -292,11 +286,6 @@
 	dir = 4
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
-"bU" = (
-/obj/effect/urban/decal/road/lines4,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/west_base)
 "bW" = (
 /turf/closed/wall/urban/colony/ribbed,
 /area/campaign/tgmc_airfield/base/armory)
@@ -379,6 +368,11 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"ct" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/water_purification)
 "cu" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 10
@@ -420,6 +414,11 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/barracks/east)
+"cA" = (
+/obj/effect/urban/decal/dirt_2,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "cB" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/medical/firstaid,
@@ -427,6 +426,10 @@
 /obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
+"cD" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/campaign/tgmc_airfield/outside/desert/west)
 "cF" = (
 /obj/structure/flora/ausbushes/reedbush{
 	pixel_y = 3;
@@ -549,7 +552,20 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/base/water_purification)
-"dj" = (
+"dk" = (
+/obj/effect/turf_decal/stripes/white/box,
+/obj/effect/ai_node,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
+"dm" = (
+/obj/structure/flora/grass/tallgrass/autosmooth/desert,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/dry_river)
+"dn" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
@@ -638,6 +654,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
+"dH" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/rivergrate,
+/area/campaign/tgmc_airfield/base/water_purification)
 "dI" = (
 /obj/effect/urban/decal/trash,
 /obj/effect/urban/decal/trash/two,
@@ -662,11 +682,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
-"dN" = (
-/obj/effect/turf_decal/stripes/white/box,
-/obj/effect/ai_node,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/west_base)
 "dQ" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_y = 12;
@@ -728,13 +743,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
-"ej" = (
-/obj/structure/flora/drought/short_cactus{
-	pixel_x = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/campaign/tgmc_airfield/outside/desert)
 "el" = (
 /obj/structure/prop/mainship/sensor_computer2/black,
 /turf/open/floor/mainship/floor,
@@ -803,6 +811,11 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast,
 /area/campaign/tgmc_airfield/outside/desert)
+"eD" = (
+/obj/effect/urban/decal/dirt_2,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/east)
 "eF" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/structure/cable,
@@ -891,6 +904,13 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"fa" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "fb" = (
 /obj/effect/decal/cleanable/dirt/grime4,
 /obj/effect/ai_node,
@@ -935,12 +955,6 @@
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
-"fp" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/west_base)
 "fq" = (
 /obj/structure/mine_structure/wooden/plank/alt/horizontal,
 /obj/structure/mine_structure/wooden/plank/alt/horizontal{
@@ -1096,11 +1110,6 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
-"gg" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/officer)
 "gh" = (
 /obj/machinery/griddle,
 /obj/machinery/light{
@@ -1154,11 +1163,11 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
-"gy" = (
-/obj/structure/cable,
+"gx" = (
+/obj/effect/urban/decal/dirt,
 /obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/tgmc_airfield/outside/east_base)
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "gD" = (
 /obj/structure/window/framed/urban/colony/engineering,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -1206,11 +1215,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
-"gQ" = (
-/obj/item/ammo_casing/bullet,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/campaign/tgmc_airfield/outside/desert/west)
 "gR" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 1
@@ -1221,10 +1225,6 @@
 /obj/item/trash/trashbag,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
-"gU" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/campaign/tgmc_airfield/outside/desert/east)
 "gV" = (
 /obj/machinery/smartfridge,
 /turf/closed/wall/urban,
@@ -1355,6 +1355,10 @@
 /obj/item/weapon/gun/rifle/standard_assaultrifle,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/west)
+"hK" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/security_checkpoint)
 "hN" = (
 /obj/effect/urban/decal/road/lines1,
 /obj/structure/prop/vehicle/land_rover,
@@ -1379,6 +1383,10 @@
 /obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
+"hT" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks)
 "hW" = (
 /obj/structure/prop/vehicle/land_rover{
 	dir = 8
@@ -1738,13 +1746,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
-"jD" = (
-/obj/effect/turf_decal/sandedge{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/drought/alt,
-/area/campaign/tgmc_airfield/outside/desert)
 "jF" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/clothing/sunglasses,
@@ -1797,10 +1798,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
-"jS" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/security_checkpoint)
 "jT" = (
 /obj/effect/urban/decal/road/road_stop/one,
 /obj/effect/urban/decal/road/lines3{
@@ -1850,6 +1847,11 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/base/water_purification)
+"kg" = (
+/obj/effect/urban/decal/dirt_2,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks)
 "kh" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 8
@@ -1876,6 +1878,11 @@
 	dir = 4
 	},
 /area/campaign/tgmc_airfield/base/command_center)
+"kq" = (
+/obj/effect/turf_decal/sandedge,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave,
+/area/campaign/tgmc_airfield/outside/desert/west)
 "kr" = (
 /obj/vehicle/ridden/powerloader,
 /obj/effect/turf_decal/stripes/box,
@@ -1927,6 +1934,11 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"kA" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/armory_workshop)
 "kC" = (
 /obj/structure/prop/vehicle/apc_new{
 	dir = 8
@@ -1973,11 +1985,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay/generator)
-"kP" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/west_base)
 "kR" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 1
@@ -1998,6 +2005,10 @@
 /obj/structure/cable,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
+"kW" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/campaign/tgmc_airfield/outside/desert/south)
 "kX" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerempty2,
 /turf/open/floor/tile/blue,
@@ -2059,6 +2070,12 @@
 /obj/structure/prop/urban/supermart/rack/longrack6,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
+"lq" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 6
+	},
+/area/campaign/tgmc_airfield/outside/desert/north)
 "lr" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 1
@@ -2130,6 +2147,15 @@
 /obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory)
+"lH" = (
+/obj/effect/urban/decal/road/lines4,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/west_base)
+"lI" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/east)
 "lL" = (
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
@@ -2286,10 +2312,6 @@
 /obj/structure/closet/secure_closet,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
-"mx" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/airstrip_south)
 "mA" = (
 /obj/item/toy/deck{
 	pixel_x = -4
@@ -2331,16 +2353,22 @@
 /obj/effect/urban/decal/trash/two,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
-"mM" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks)
 "mN" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/north)
+"mO" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 1
+	},
+/area/campaign/tgmc_airfield/base/barracks)
 "mQ" = (
 /obj/effect/turf_decal/sandedge/corner2,
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
@@ -2370,6 +2398,11 @@
 /obj/machinery/smartfridge,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
+"mY" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/officer)
 "mZ" = (
 /obj/structure/cable,
 /obj/machinery/door_control{
@@ -2386,10 +2419,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/security_checkpoint/east)
-"nc" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/storage)
 "nf" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 4
@@ -2483,11 +2512,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_airfield/base/command_center)
-"nx" = (
-/obj/effect/urban/decal/dirt_2,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks)
 "ny" = (
 /obj/structure/bed/chair{
 	pixel_y = 12;
@@ -2525,13 +2549,6 @@
 	dir = 1
 	},
 /obj/effect/urban/decal/trash/sixteen,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/west_base)
-"nI" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
-/obj/effect/ai_node,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
 "nL" = (
@@ -2587,6 +2604,10 @@
 	dir = 5
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
+"nV" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/campaign/tgmc_airfield/outside/desert/east)
 "nY" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -2736,6 +2757,10 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"oQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/airstrip_south)
 "oR" = (
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
 	dir = 9
@@ -2833,10 +2858,6 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/outside/desert/east)
-"pt" = (
-/obj/effect/ai_node,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/desert/south)
 "pw" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -2852,17 +2873,22 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
-"pC" = (
-/obj/structure/flora/desert/grass,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/campaign/tgmc_airfield/outside/desert/west)
 "pD" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/weldpack,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
+/area/campaign/tgmc_airfield/base/hangar_bay)
+"pE" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/caution{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "pF" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
@@ -2931,10 +2957,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
-"pU" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/rivergrate,
-/area/campaign/tgmc_airfield/base/water_purification)
 "pX" = (
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
 	dir = 4
@@ -3014,6 +3036,13 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/barracks)
+"qq" = (
+/obj/effect/turf_decal/sandedge{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/dry_river)
 "qs" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 4
@@ -3079,10 +3108,6 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/west)
-"qH" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/campaign/tgmc_airfield/outside/desert/north)
 "qI" = (
 /obj/machinery/door/airlock/multi_tile/secure{
 	dir = 2;
@@ -3128,6 +3153,12 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"qV" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 6
+	},
+/area/campaign/tgmc_airfield/outside/desert/south)
 "qW" = (
 /obj/structure/prop/flag,
 /turf/open/urban/street/sidewalkfull,
@@ -3169,6 +3200,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
+"ri" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/armory_workshop)
 "rj" = (
 /obj/structure/window/framed/urban/colony/engineering,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -3213,12 +3248,19 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
-"ru" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock{
-	dir = 5
+"rv" = (
+/obj/machinery/light/small{
+	dir = 8
 	},
-/area/campaign/tgmc_airfield/outside/desert/east)
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/officer)
+"rw" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 4
+	},
+/area/campaign/tgmc_airfield/base/water_purification)
 "rx" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/item/weapon/gun/rifle/standard_assaultrifle,
@@ -3279,6 +3321,13 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"rW" = (
+/obj/effect/turf_decal/sandedge{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/desert)
 "rX" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/tile/blue,
@@ -3314,6 +3363,14 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
+"sj" = (
+/obj/effect/turf_decal/sandedge/corner{
+	dir = 4
+	},
+/obj/structure/flora/grass/tallgrass/autosmooth/desert,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/dry_river)
 "sn" = (
 /obj/item/spacecash/c1{
 	pixel_y = 11;
@@ -3360,6 +3417,13 @@
 /obj/effect/urban/decal/dirt_2,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
+"sy" = (
+/obj/effect/turf_decal/sandedge{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/campaign/tgmc_airfield/outside/desert/west)
 "sA" = (
 /obj/structure/platform{
 	dir = 4;
@@ -3461,6 +3525,14 @@
 /obj/structure/table/urban/shiny_black,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/security_checkpoint)
+"sX" = (
+/obj/effect/turf_decal/sandedge/corner2{
+	dir = 1
+	},
+/obj/structure/flora/grass/tallgrass/autosmooth/desert,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/desert)
 "sY" = (
 /obj/machinery/firealarm,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -3498,6 +3570,12 @@
 /obj/structure/closet/secure_closet,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
+"tf" = (
+/obj/structure/cable,
+/obj/effect/urban/decal/dirt_2,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/officer)
 "tg" = (
 /obj/structure/table/urban/shiny_black,
 /obj/machinery/prop/computer{
@@ -3514,11 +3592,6 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
-"tj" = (
-/obj/effect/turf_decal/sandedge,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave,
-/area/campaign/tgmc_airfield/outside/desert/west)
 "tm" = (
 /obj/structure/table/reinforced,
 /obj/item/trash/tgmc_tray{
@@ -3550,6 +3623,13 @@
 	},
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast,
 /area/campaign/tgmc_airfield/outside/desert)
+"tr" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/officer)
 "ts" = (
 /obj/structure/bed/chair{
 	dir = 4;
@@ -3650,11 +3730,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/north)
-"tQ" = (
+"tP" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/armory_workshop)
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "tR" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -5;
@@ -3741,10 +3821,6 @@
 /obj/effect/mapping_helpers/barricade/wired,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
-"un" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/airstrip_north)
 "uo" = (
 /obj/structure/table/urban/shiny_black,
 /obj/machinery/faxmachine,
@@ -3766,6 +3842,11 @@
 /obj/effect/urban/decal/dirt_2,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_airfield/base/command_center)
+"uu" = (
+/obj/item/ammo_casing/bullet,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/campaign/tgmc_airfield/outside/desert/west)
 "uv" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
@@ -3787,13 +3868,6 @@
 	dir = 4
 	},
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
-/area/campaign/tgmc_airfield/outside/dry_river)
-"uE" = (
-/obj/effect/turf_decal/sandedge{
-	dir = 8
-	},
-/obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "uF" = (
@@ -3986,15 +4060,12 @@
 	},
 /turf/open/floor/plating/rivergrate,
 /area/campaign/tgmc_airfield/base/water_purification)
-"vA" = (
-/obj/effect/urban/decal/dirt_2,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/east)
 "vB" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave,
-/area/campaign/tgmc_airfield/outside/cave)
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 5
+	},
+/area/campaign/tgmc_airfield/outside/desert/east)
 "vC" = (
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
@@ -4040,10 +4111,14 @@
 /obj/structure/closet/secure_closet,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
-"vO" = (
+"vN" = (
+/obj/structure/flora/ausbushes/grassybush{
+	pixel_x = -5;
+	pixel_y = 2
+	},
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/campaign/tgmc_airfield/outside/desert/south)
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/desert)
 "vR" = (
 /obj/structure/table/urban/shiny_black,
 /obj/machinery/light/red{
@@ -4176,6 +4251,11 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/outside/desert)
+"wu" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_airfield/outside/east_base)
 "ww" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -4267,14 +4347,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
-"wU" = (
-/obj/effect/turf_decal/sandedge{
-	dir = 4
-	},
-/obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
-/area/campaign/tgmc_airfield/outside/dry_river)
 "wV" = (
 /obj/structure/rack,
 /obj/item/tool/soap,
@@ -4411,10 +4483,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
-"xu" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/drought/alt,
-/area/campaign/tgmc_airfield/outside/desert/south)
 "xw" = (
 /obj/machinery/shower{
 	dir = 4
@@ -4496,9 +4564,15 @@
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
 "xI" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark,
 /obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/armory)
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 1
+	},
+/area/campaign/tgmc_airfield/base/barracks/east)
 "xJ" = (
 /obj/structure/flora/ausbushes{
 	pixel_y = -2
@@ -4545,13 +4619,6 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
-"xV" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/officer)
 "xW" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/tile/blue,
@@ -4572,6 +4639,11 @@
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
+"ye" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "yg" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
@@ -4647,13 +4719,6 @@
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/desert/north)
-"yE" = (
-/obj/effect/turf_decal/sandedge{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
-/area/campaign/tgmc_airfield/outside/dry_river)
 "yF" = (
 /obj/structure/bed/chair{
 	pixel_y = -1
@@ -4700,6 +4765,11 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/south)
+"yR" = (
+/obj/effect/urban/decal/road/lines3,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/airstrip_south)
 "yT" = (
 /obj/structure/flora/ausbushes,
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
@@ -4778,10 +4848,6 @@
 /obj/effect/spawner/random/misc/book,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
-"ze" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/campaign/tgmc_airfield/outside/desert/west)
 "zf" = (
 /obj/structure/ship_ammo/cas/heavygun{
 	pixel_y = 12
@@ -4826,6 +4892,11 @@
 /obj/structure/flora/tree/joshua,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
+"zw" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "zx" = (
 /obj/machinery/vending/nanomed/nopower{
 	dir = 8;
@@ -4849,11 +4920,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
-"zB" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/east_base)
 "zC" = (
 /obj/structure/barricade/sandbags{
 	pixel_y = -6
@@ -4903,6 +4969,11 @@
 "zU" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/water_purification)
+"zV" = (
+/obj/structure/flora/desert/grass,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/campaign/tgmc_airfield/outside/desert/west)
 "zZ" = (
 /obj/effect/urban/decal/dirt_2,
 /turf/open/urban/street/sidewalkfull,
@@ -5014,6 +5085,12 @@
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
+"AD" = (
+/obj/effect/urban/decal/dirt_2,
+/obj/effect/urban/decal/dirt_2,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "AG" = (
 /obj/structure/cable,
 /turf/closed/wall/urban,
@@ -5075,13 +5152,14 @@
 	dir = 10
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
-"AW" = (
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 1
+"AY" = (
+/obj/effect/turf_decal/sandedge{
+	dir = 4
 	},
+/obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /obj/effect/ai_node,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/west_base)
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/dry_river)
 "AZ" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle,
@@ -5104,6 +5182,10 @@
 /obj/effect/urban/decal/road/lines4,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/west_base)
+"Bg" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/airstrip_north)
 "Bi" = (
 /obj/machinery/door_control{
 	dir = 4;
@@ -5144,10 +5226,6 @@
 /obj/item/tool/soap,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
-"Bx" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/east_base)
 "By" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -5185,10 +5263,6 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert)
-"BI" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/west_base)
 "BJ" = (
 /obj/structure/prop/vehicle/land_rover/machinegun{
 	dir = 8
@@ -5255,10 +5329,10 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "BY" = (
-/obj/structure/cable,
+/obj/effect/turf_decal/stripes/white/line,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay/generator)
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "Cb" = (
 /obj/effect/decal/cleanable/dirt/grime2{
 	dir = 4
@@ -5277,6 +5351,11 @@
 "Cd" = (
 /turf/closed/wall/urban/colony/ribbed,
 /area/campaign/tgmc_airfield/base/armory_workshop)
+"Cf" = (
+/obj/effect/urban/decal/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/storage)
 "Cg" = (
 /obj/effect/urban/decal/road/lines1{
 	pixel_x = 13
@@ -5323,6 +5402,11 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
+"Cn" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "Co" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -5333,10 +5417,6 @@
 /obj/effect/mapping_helpers/barricade/wired,
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/south)
-"Cq" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "Cr" = (
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = -7;
@@ -5364,10 +5444,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/water_purification)
-"Cw" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "CA" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 6
@@ -5378,6 +5454,13 @@
 /obj/item/trash/tray,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
+"CH" = (
+/obj/effect/turf_decal/sandedge{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/campaign/tgmc_airfield/outside/desert/south)
 "CI" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
@@ -5622,6 +5705,13 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
+"DQ" = (
+/obj/effect/turf_decal/sandedge/corner2{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/campaign/tgmc_airfield/outside/desert)
 "DR" = (
 /obj/machinery/door/airlock/urban/generic_solid{
 	name = "\improper Kitchen"
@@ -5672,6 +5762,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"Eh" = (
+/obj/effect/urban/decal/dirt_2,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "Ei" = (
 /obj/effect/urban/decal/road/corner{
 	dir = 8;
@@ -5691,12 +5786,6 @@
 /obj/effect/spawner/random/misc/shard,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
-"Ek" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock{
-	dir = 6
-	},
-/area/campaign/tgmc_airfield/outside/desert/south)
 "Ep" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -5748,11 +5837,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
-"EE" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "EF" = (
 /obj/structure/bed/chair{
 	dir = 8;
@@ -5761,13 +5845,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
-"EG" = (
-/obj/effect/turf_decal/sandedge/corner2{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave,
-/area/campaign/tgmc_airfield/outside/desert/west)
 "EH" = (
 /obj/item/toy/card/ace/spades,
 /obj/structure/bed/chair{
@@ -5889,6 +5966,10 @@
 /obj/item/tool/soap,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
+"Fn" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/campaign/tgmc_airfield/outside/desert)
 "Fp" = (
 /obj/structure/bed/chair{
 	pixel_y = 10;
@@ -5926,10 +6007,6 @@
 /obj/structure/fence/dark/quality,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
-"FA" = (
-/obj/effect/ai_node,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/east_base)
 "FB" = (
 /obj/structure/barricade/sandbags{
 	pixel_y = -6
@@ -5948,11 +6025,17 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
-"FF" = (
-/obj/effect/urban/decal/road/lines3,
+"FG" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/airstrip_south)
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/security_checkpoint/east)
+"FI" = (
+/obj/effect/turf_decal/sandedge/corner{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/campaign/tgmc_airfield/outside/desert/south)
 "FK" = (
 /obj/structure/fence/dark/quality,
 /obj/effect/urban/decal/dirt,
@@ -5967,11 +6050,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
-"FN" = (
-/obj/effect/urban/decal/road/road_stop/two,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/west_base)
 "FP" = (
 /obj/machinery/light,
 /obj/structure/closet/secure_closet/guncabinet,
@@ -6022,12 +6100,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_airfield/base/command_center)
-"Ga" = (
-/obj/effect/urban/decal/dirt_2,
-/obj/effect/urban/decal/dirt_2,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "Gb" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -6098,10 +6170,6 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/north)
-"Gv" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/security_checkpoint/east)
 "Gw" = (
 /obj/structure/flora/desert/grass{
 	pixel_x = 7;
@@ -6170,10 +6238,6 @@
 /obj/effect/mapping_helpers/airlock/free_access,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
-"GO" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/campaign/tgmc_airfield/outside/desert)
 "GP" = (
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
 	dir = 9
@@ -6209,18 +6273,16 @@
 /obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave,
 /area/campaign/tgmc_airfield/outside/cave)
+"GZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/east)
 "He" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/electrical,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory_workshop)
-"Hf" = (
-/obj/effect/turf_decal/sandedge/corner2{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/drought/alt,
-/area/campaign/tgmc_airfield/outside/desert)
 "Hh" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 4
@@ -6359,13 +6421,6 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/west)
-"HH" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "HI" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
@@ -6626,10 +6681,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/base/command_center)
-"Jc" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/east)
 "Je" = (
 /obj/structure/flora/drought/short_cactus{
 	pixel_x = 4
@@ -6651,14 +6702,19 @@
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert)
-"Jn" = (
+"Jl" = (
 /obj/effect/turf_decal/sandedge/corner{
-	dir = 4
+	dir = 8
 	},
-/obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
-/area/campaign/tgmc_airfield/outside/dry_river)
+/turf/open/floor/plating/ground/drought/alt,
+/area/campaign/tgmc_airfield/outside/desert/west)
+"Jt" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 8
+	},
+/area/campaign/tgmc_airfield/base/water_purification)
 "Jv" = (
 /obj/effect/turf_decal/stripes/white/line,
 /obj/effect/turf_decal/stripes/white/line{
@@ -6702,6 +6758,10 @@
 /obj/structure/table/urban/shiny_black,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_airfield/base/command_center)
+"JF" = (
+/obj/effect/ai_node,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/desert/south)
 "JG" = (
 /obj/structure/bed/chair{
 	pixel_y = -1;
@@ -6739,17 +6799,6 @@
 /obj/structure/bed/chair/office/dark/north,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/security_checkpoint/east)
-"JN" = (
-/obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
-/area/campaign/tgmc_airfield/outside/dry_river)
-"JO" = (
-/obj/structure/cable,
-/obj/effect/urban/decal/dirt_2,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/officer)
 "JP" = (
 /obj/machinery/light{
 	dir = 4
@@ -6761,11 +6810,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory_workshop)
-"JR" = (
-/obj/effect/urban/decal/dirt_2,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "JT" = (
 /obj/effect/turf_decal/sandedge/corner2,
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
@@ -6831,6 +6875,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
+"Ke" = (
+/obj/effect/ai_node,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "Kf" = (
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
@@ -6956,10 +7004,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
-"Ld" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/officer)
 "Lh" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 4
@@ -7094,6 +7138,10 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
+"LP" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/campaign/tgmc_airfield/outside/desert/north)
 "LR" = (
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble11/dense,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -7287,11 +7335,13 @@
 /obj/structure/cable,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
-"MR" = (
-/obj/effect/turf_decal/stripes/white/line,
+"MT" = (
+/obj/effect/turf_decal/sandedge/corner2{
+	dir = 1
+	},
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave,
+/area/campaign/tgmc_airfield/outside/desert/west)
 "MU" = (
 /obj/structure/table/urban,
 /obj/item/ashtray/plastic{
@@ -7312,6 +7362,11 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"MY" = (
+/obj/effect/urban/decal/road/lines5,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/west_base)
 "Na" = (
 /obj/item/clothing/shoes/marine/full,
 /obj/item/clothing/gloves/marine/tdf,
@@ -7326,6 +7381,10 @@
 	dir = 4
 	},
 /area/campaign/tgmc_airfield/outside/desert)
+"Nc" = (
+/obj/effect/ai_node,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/east_base)
 "Nd" = (
 /obj/structure/fence/dark/quality,
 /obj/effect/decal/cleanable/dirt/grime2,
@@ -7434,16 +7493,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
-"NC" = (
-/obj/machinery/shower{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue/taupeblue{
-	dir = 1
-	},
-/area/campaign/tgmc_airfield/base/barracks/east)
 "NG" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	pixel_y = -1;
@@ -7475,16 +7524,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
-"NN" = (
-/obj/effect/urban/decal/dirt,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/storage)
-"NO" = (
-/obj/effect/urban/decal/dirt,
-/obj/effect/ai_node,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/west_base)
 "NQ" = (
 /obj/structure/flora/ausbushes/yellowbush,
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
@@ -7519,12 +7558,27 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
+"NZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave,
+/area/campaign/tgmc_airfield/outside/cave)
 "Oa" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
+"Oc" = (
+/obj/effect/turf_decal/sandedge{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/drought/alt,
+/area/campaign/tgmc_airfield/outside/desert)
+"Od" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/officer)
 "Of" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -7570,6 +7624,13 @@
 /obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
+"Op" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "Or" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -7588,6 +7649,10 @@
 	dir = 10
 	},
 /area/campaign/tgmc_airfield/outside/desert)
+"Ox" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/medical)
 "Oz" = (
 /obj/structure/stairs/seamless/platform/water,
 /turf/open/liquid/water/river/desertdam/clean/shallow,
@@ -7621,6 +7686,13 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
+"OK" = (
+/obj/effect/turf_decal/sandedge{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/desert)
 "OL" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/north)
@@ -7780,13 +7852,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_airfield/outside/west_base)
-"PB" = (
-/obj/effect/turf_decal/sandedge/corner{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/drought/alt,
-/area/campaign/tgmc_airfield/outside/desert/south)
 "PC" = (
 /obj/structure/window/framed/urban/colony/engineering,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
@@ -7956,6 +8021,11 @@
 /obj/effect/mapping_helpers/barricade/wired,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/airstrip_north)
+"Qw" = (
+/obj/effect/urban/decal/road/road_stop/two,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/west_base)
 "Qx" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -5;
@@ -8018,10 +8088,10 @@
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
-"QQ" = (
+"QP" = (
 /obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/medical)
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/east_base)
 "QS" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
@@ -8054,11 +8124,6 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/west)
-"Ra" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/east)
 "Rb" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 10
@@ -8179,10 +8244,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
-"RJ" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/armory_workshop)
 "RK" = (
 /obj/structure/flora/desert/grass{
 	pixel_y = 3;
@@ -8312,6 +8373,10 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/east)
+"Sr" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "St" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
@@ -8426,6 +8491,10 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/south)
+"SS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/campaign/tgmc_airfield/outside/desert/west)
 "ST" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 1
@@ -8470,6 +8539,16 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
+"Ti" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/campaign/tgmc_airfield/outside/desert/south)
+"Tn" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 6
+	},
+/area/campaign/tgmc_airfield/outside/desert)
 "Tq" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall{
 	pixel_y = 22;
@@ -8491,6 +8570,10 @@
 /obj/item/reagent_containers/food/snacks/cheesewedge,
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
+"Tr" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_airfield/outside/west_base)
 "Ts" = (
 /obj/effect/urban/decal/dirt_2,
 /obj/structure/cable,
@@ -8552,6 +8635,13 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
+"TH" = (
+/obj/structure/flora/drought/short_cactus{
+	pixel_x = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/campaign/tgmc_airfield/outside/desert)
 "TJ" = (
 /obj/machinery/light,
 /obj/effect/urban/decal/dirt_2,
@@ -8587,6 +8677,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/east_base)
+"TQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
+/area/campaign/tgmc_airfield/outside/desert)
 "TR" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
 	dir = 8;
@@ -8606,12 +8700,6 @@
 /obj/item/tool/soap,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks)
-"TU" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 8
-	},
-/area/campaign/tgmc_airfield/base/water_purification)
 "TV" = (
 /obj/structure/prop/urban/supermart/rack/longrack5,
 /turf/open/floor/tile/blue,
@@ -8650,6 +8738,12 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert)
+"Ub" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/urban/street/sidewalkfull,
+/area/campaign/tgmc_airfield/outside/west_base)
 "Uc" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -8742,13 +8836,6 @@
 	},
 /turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/campaign/tgmc_airfield/base/water_purification)
-"Uy" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/barracks/officer)
 "UA" = (
 /obj/item/clothing/shoes/marine,
 /obj/structure/closet/secure_closet,
@@ -8824,12 +8911,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/water_purification)
-"UR" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock{
-	dir = 6
-	},
-/area/campaign/tgmc_airfield/outside/desert/north)
 "UU" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/blood/oil,
@@ -8940,10 +9021,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_airfield/base/command_center)
-"Vy" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/drought/alt,
-/area/campaign/tgmc_airfield/outside/desert/west)
 "VA" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -8960,6 +9037,11 @@
 /obj/structure/closet/secure_closet/pilot_officer,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/officer)
+"VE" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue,
+/area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "VG" = (
 /obj/effect/turf_decal/stripes/asteroid/corner{
 	dir = 8
@@ -8989,13 +9071,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/medical)
-"VL" = (
-/obj/effect/turf_decal/sandedge/corner2{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/drought/alt,
-/area/campaign/tgmc_airfield/outside/desert/east)
 "VQ" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	pixel_x = -5;
@@ -9005,21 +9080,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
-"VT" = (
-/obj/machinery/shower{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark,
-/obj/effect/ai_node,
-/turf/open/floor/tile/blue/taupeblue{
-	dir = 1
-	},
-/area/campaign/tgmc_airfield/base/barracks)
-"VU" = (
-/obj/effect/urban/decal/road/lines5,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_airfield/outside/west_base)
 "VV" = (
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
 	dir = 1
@@ -9058,12 +9118,6 @@
 	dir = 6
 	},
 /area/campaign/tgmc_airfield/base/command_center)
-"Wf" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 4
-	},
-/area/campaign/tgmc_airfield/base/water_purification)
 "Wg" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/alt{
 	dir = 9
@@ -9426,11 +9480,6 @@
 	},
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/armory_workshop)
-"XR" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/water_purification)
 "XS" = (
 /obj/item/clothing/shoes/marine/full,
 /obj/item/clothing/gloves/marine/tdf,
@@ -9579,11 +9628,6 @@
 /obj/machinery/light,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/security_checkpoint)
-"YS" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "YT" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 8
@@ -9591,12 +9635,12 @@
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/east)
 "YU" = (
-/obj/effect/turf_decal/sandedge{
-	dir = 8
+/obj/effect/turf_decal/sandedge/corner2{
+	dir = 1
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/drought/alt,
-/area/campaign/tgmc_airfield/outside/desert/south)
+/area/campaign/tgmc_airfield/outside/desert/east)
 "YZ" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	pixel_x = -2;
@@ -9618,13 +9662,6 @@
 /obj/item/trash/crushed_bottle/boda,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
-"Zf" = (
-/obj/effect/turf_decal/sandedge{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/drought/alt,
-/area/campaign/tgmc_airfield/outside/desert/west)
 "Zg" = (
 /turf/closed/wall/urban,
 /area/campaign/tgmc_airfield/base/armory_workshop)
@@ -9670,6 +9707,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_airfield/outside/west_base)
+"Zt" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "Zv" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship/floor,
@@ -10108,7 +10149,7 @@ cm
 cm
 cm
 cm
-vB
+NZ
 cm
 cm
 cm
@@ -10129,7 +10170,7 @@ VI
 VI
 VI
 iW
-ze
+SS
 VI
 VI
 VI
@@ -10137,12 +10178,12 @@ NK
 AS
 BT
 iq
-ar
+Jl
 VI
 VI
 VI
 VI
-ze
+SS
 rl
 rl
 rl
@@ -10376,14 +10417,14 @@ if
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
@@ -10391,14 +10432,14 @@ oG
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 rl
 rl
 rl
@@ -10516,34 +10557,34 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 FQ
 VI
-ze
+SS
 VI
 VI
 VI
 FQ
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
@@ -10551,32 +10592,32 @@ VI
 VI
 VI
 VI
-ze
+SS
 ca
 vY
 cm
 cm
 cm
 cm
-vB
+NZ
 cm
 cm
 cm
 cm
 cm
-vB
+NZ
 cm
 cm
 cm
 cm
 cm
 cm
-vB
+NZ
 cm
 cm
 cm
 cm
-vB
+NZ
 cm
 cm
 cm
@@ -11032,7 +11073,7 @@ AA
 AA
 cm
 cm
-vB
+NZ
 AA
 AA
 LI
@@ -11059,13 +11100,13 @@ rl
 rl
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
-gQ
+uu
 WK
 VI
 VI
@@ -11073,19 +11114,19 @@ VI
 VI
 hF
 hJ
-ze
+SS
 NU
 BT
 BT
 iq
-ar
+Jl
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 rl
 rl
 VI
@@ -11148,7 +11189,7 @@ AA
 AA
 AA
 cm
-vB
+NZ
 cm
 AA
 AA
@@ -11264,7 +11305,7 @@ AA
 AA
 AA
 cm
-vB
+NZ
 cm
 AA
 AA
@@ -11273,12 +11314,12 @@ AA
 AA
 AA
 AA
-vB
+NZ
 cm
 cm
 cm
 cm
-vB
+NZ
 cm
 AA
 AA
@@ -11327,7 +11368,7 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
@@ -11492,13 +11533,13 @@ VI
 VI
 VI
 VI
-tj
+kq
 cm
 cm
 cm
 cm
 cm
-vB
+NZ
 AA
 AA
 AA
@@ -11682,51 +11723,51 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
-ze
-VI
-VI
-VI
-VI
-VI
-VI
-VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+VI
+SS
 VI
 VI
 VI
 VI
 VI
-ze
+VI
+SS
 VI
 VI
 VI
 VI
-ze
 VI
-ze
-VI
-VI
-VI
-ze
-VI
-VI
-VI
-ze
+SS
 VI
 VI
 VI
 VI
-ze
+SS
+VI
+SS
+VI
+VI
+VI
+SS
+VI
+VI
+VI
+SS
+VI
+VI
+VI
+VI
+SS
 AA
 AA
 cm
@@ -11787,7 +11828,7 @@ BT
 PP
 VI
 VI
-ze
+SS
 VI
 VI
 rl
@@ -11878,13 +11919,13 @@ rl
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 XO
 VI
-ze
+SS
 rl
 rl
 rl
@@ -11892,12 +11933,12 @@ rl
 rl
 rl
 VI
-ze
+SS
 VI
 VI
 VI
 VI
-ze
+SS
 NU
 BT
 BT
@@ -11905,7 +11946,7 @@ iq
 if
 VI
 VI
-ze
+SS
 VI
 rl
 rl
@@ -11966,7 +12007,7 @@ AA
 AA
 AA
 AA
-vB
+NZ
 cm
 cm
 AA
@@ -12009,7 +12050,7 @@ rl
 rl
 VI
 VI
-ze
+SS
 rl
 rl
 VI
@@ -12084,15 +12125,15 @@ AA
 AA
 AA
 cm
-vB
+NZ
 cm
 AA
 cm
-vB
+NZ
 cm
 cm
 cm
-vB
+NZ
 cm
 cm
 cm
@@ -12125,7 +12166,7 @@ rl
 rl
 rl
 FQ
-ze
+SS
 rl
 rl
 rl
@@ -12202,9 +12243,9 @@ AA
 AA
 AA
 cm
-vB
+NZ
 cm
-vB
+NZ
 AA
 cm
 cm
@@ -12263,14 +12304,14 @@ rl
 rl
 rl
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 rl
 rl
-ze
+SS
 VI
 VI
 VI
@@ -12278,14 +12319,14 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 rl
 rl
 rl
@@ -12710,13 +12751,13 @@ rl
 rl
 rl
 rl
-ze
+SS
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
@@ -12724,69 +12765,69 @@ NU
 BT
 iq
 if
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
-ze
-VI
-VI
-VI
+SS
 VI
 VI
 VI
-ze
+VI
+VI
+VI
+SS
 VI
 XO
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
-ze
-VI
-VI
-VI
-VI
-VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
+SS
 VI
 VI
 VI
-ze
+VI
+VI
+VI
+VI
+VI
+SS
 VI
 VI
 VI
 VI
 VI
 mj
-EG
+MT
 AA
 AA
 AA
@@ -12931,17 +12972,17 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
-ze
+SS
 rl
 rl
 rl
@@ -13020,7 +13061,7 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 mj
 rZ
@@ -13028,7 +13069,7 @@ rH
 cm
 cm
 cm
-vB
+NZ
 cm
 cm
 AA
@@ -13175,16 +13216,16 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
@@ -13192,14 +13233,14 @@ VI
 NU
 BT
 iq
-ar
+Jl
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 Qe
 rl
 rl
@@ -13715,14 +13756,14 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
@@ -13730,7 +13771,7 @@ VI
 oG
 VI
 VI
-ze
+SS
 VI
 VI
 VI
@@ -13750,26 +13791,26 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
-ze
+SS
 VI
 rl
 rl
@@ -13777,53 +13818,53 @@ VI
 NU
 BT
 BT
-Zf
+sy
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
-pC
+zV
 VI
 VI
-ze
-VI
-VI
-VI
-VI
-ze
+SS
 VI
 VI
 VI
 VI
+SS
 VI
 VI
 VI
 VI
 VI
-ze
+VI
+VI
+VI
+VI
+SS
 VI
 VI
 VI
 VI
 VI
 Qe
-ze
+SS
 VI
 VI
 oG
-ze
+SS
 VI
 VI
 VI
 VI
 VI
-pC
+zV
 VI
 VI
 VI
@@ -13832,7 +13873,7 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 rl
 rl
@@ -14408,7 +14449,7 @@ QB
 ef
 le
 RY
-yE
+aF
 RY
 RY
 RY
@@ -14417,14 +14458,14 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 pR
@@ -14435,7 +14476,7 @@ Ik
 HI
 HI
 HI
-JN
+dm
 HI
 qf
 jJ
@@ -14569,13 +14610,13 @@ QB
 OP
 nU
 Mx
-JN
+dm
 HI
 HI
 zv
 HI
 ku
-wU
+AY
 ib
 tG
 iU
@@ -14584,11 +14625,11 @@ VI
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
-ze
+SS
 VI
 VI
 VI
@@ -14596,7 +14637,7 @@ VI
 VI
 NU
 BT
-Vy
+cD
 iq
 if
 NS
@@ -14615,7 +14656,7 @@ HI
 HI
 Rq
 ur
-Jn
+sj
 Gl
 Kw
 Kw
@@ -14625,7 +14666,7 @@ Kw
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 co
 co
@@ -15309,12 +15350,12 @@ Kw
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
 eP
-GO
+Fn
 Kw
 Kw
 Kw
@@ -15324,17 +15365,17 @@ Kw
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
-GO
+Fn
 gk
 Oa
 Oa
 Oa
 GL
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
@@ -15344,7 +15385,7 @@ Kw
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
@@ -15462,7 +15503,7 @@ Kw
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
@@ -15470,17 +15511,17 @@ Kw
 Kw
 Kw
 Kw
-vO
+Ti
 iT
 iT
 iT
 HN
 iT
 iT
-vO
+Ti
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -15488,7 +15529,7 @@ nM
 cU
 ih
 me
-YU
+CH
 qs
 Nv
 Nv
@@ -15735,30 +15776,30 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 OL
-qH
+LP
 KD
 OL
 OL
-qH
+LP
 OL
-qH
+LP
 OL
 OL
 OL
-qH
+LP
 OL
 OL
 OL
 rA
-uE
+qq
 Ab
 Ab
 Ab
-uE
+qq
 Ab
 ui
 Kw
@@ -15766,7 +15807,7 @@ Kw
 Kw
 Kw
 Jk
-Hf
+DQ
 lP
 Kw
 Kw
@@ -15851,7 +15892,7 @@ EV
 (53,1,1) = {"
 vZ
 OL
-qH
+LP
 OL
 OL
 OL
@@ -15884,7 +15925,7 @@ Kw
 Ue
 RG
 lr
-GO
+Fn
 Kw
 Kw
 Kw
@@ -15894,7 +15935,7 @@ Kw
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
@@ -16029,7 +16070,7 @@ rY
 gc
 yN
 Oa
-Oa
+rW
 hS
 Ic
 Lr
@@ -16147,14 +16188,14 @@ aE
 Ic
 Lr
 Lr
-wT
+vN
 Ic
 Lr
 Ws
 Kw
 Kw
 Kw
-Kw
+Fn
 Kw
 IB
 IB
@@ -16479,14 +16520,14 @@ IB
 Kw
 Kw
 Kw
-GO
+Fn
 bo
 Ic
 oB
 nh
 hC
 Pf
-Ic
+TQ
 IB
 IB
 IB
@@ -16560,15 +16601,15 @@ jy
 OL
 OL
 OL
-qH
+LP
 OL
-qH
-OL
-OL
+LP
 OL
 OL
 OL
-qH
+OL
+OL
+LP
 OL
 OL
 OL
@@ -16577,7 +16618,7 @@ Kw
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
@@ -16585,7 +16626,7 @@ Jk
 HZ
 lr
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
@@ -16595,7 +16636,7 @@ Kw
 Kw
 Kw
 Kw
-GO
+Fn
 gk
 hS
 Ic
@@ -16632,7 +16673,7 @@ Kw
 jj
 WG
 QN
-GO
+Fn
 Kw
 Kw
 Kw
@@ -16640,7 +16681,7 @@ Kw
 Kw
 Kw
 Kw
-vO
+Ti
 iT
 iT
 iT
@@ -16650,7 +16691,7 @@ Nv
 Nv
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -16658,10 +16699,10 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
-vO
+Ti
 iT
 Nv
 Nv
@@ -16954,7 +16995,7 @@ jj
 WG
 uk
 Ic
-BW
+OK
 QN
 co
 jj
@@ -16962,11 +17003,11 @@ WG
 BW
 TL
 BW
-uk
+sX
 Lr
 OU
 Kw
-Kw
+Fn
 Kw
 Vv
 UY
@@ -17084,31 +17125,31 @@ BW
 Sv
 Kw
 IB
-Kw
+Fn
 jj
 QN
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
 Kw
 Kw
-ej
+TH
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
 Kw
-vO
+Ti
 iT
 iT
 Rf
@@ -17138,7 +17179,7 @@ EV
 (64,1,1) = {"
 vZ
 OL
-qH
+LP
 OL
 Je
 OL
@@ -17256,13 +17297,13 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 OL
 OL
 OL
-qH
+LP
 jy
 jy
 jy
@@ -17387,7 +17428,7 @@ jy
 jy
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -17396,7 +17437,7 @@ Kw
 Kw
 Kw
 Kw
-GO
+Fn
 Ue
 eJ
 Gn
@@ -17404,7 +17445,7 @@ lP
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
 eO
@@ -17414,7 +17455,7 @@ lr
 Kw
 Kw
 Kw
-GO
+Fn
 Kw
 Kw
 Kw
@@ -17427,10 +17468,10 @@ it
 Kw
 Kw
 Kw
+Fn
 Kw
 Kw
-Kw
-Rd
+Tn
 Kw
 Kw
 Kw
@@ -17693,7 +17734,7 @@ Kw
 Kw
 Kw
 Kw
-vO
+Ti
 iT
 iT
 iT
@@ -17703,7 +17744,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -17711,10 +17752,10 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
-vO
+Ti
 iT
 Nv
 Nv
@@ -17958,38 +17999,30 @@ EV
 aH
 Nr
 Nr
-BI
+Tr
 Nr
 Nr
 Nr
 Nr
-BI
-Nr
-Nr
-Nr
-Nr
-Nr
-BI
-Nr
-Nr
-BI
-Nr
-Nr
-BI
+Tr
 Nr
 Nr
 Nr
 Nr
 Nr
-BI
+Tr
+Nr
+Nr
+Tr
+Nr
+Nr
+Tr
 Nr
 Nr
 Nr
 Nr
 Nr
-Nr
-Nr
-BI
+Tr
 Nr
 Nr
 Nr
@@ -17997,22 +18030,7 @@ Nr
 Nr
 Nr
 Nr
-Nr
-Nr
-BI
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-Nr
-BI
-Nr
-Nr
-Nr
-Nr
-BI
+Tr
 Nr
 Nr
 Nr
@@ -18021,30 +18039,53 @@ Nr
 Nr
 Nr
 Nr
-BI
 Nr
-Nr
-Nr
-Nr
-BI
+Tr
 Nr
 Nr
 Nr
 Nr
 Nr
-VU
+Nr
+Nr
+Tr
+Nr
+Nr
+Nr
+Nr
+Tr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Tr
+Nr
+Nr
+Nr
+Nr
+Tr
+Nr
+Nr
+Nr
+Nr
+Nr
+MY
 Nr
 Nr
 Kw
 Ue
 Lh
 Lh
-jD
+Oc
 Lh
 Lh
 Ua
 Kw
-vO
+Ti
 iT
 iT
 iT
@@ -18629,7 +18670,7 @@ HZ
 HZ
 lr
 Kw
-vO
+Ti
 iT
 iT
 iT
@@ -18637,9 +18678,9 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
-vO
+Ti
 uw
 iT
 iT
@@ -18647,10 +18688,10 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
-vO
+Ti
 iT
 Nv
 Nv
@@ -18660,7 +18701,7 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -18671,27 +18712,27 @@ OL
 OL
 OL
 cu
-qH
+LP
 OL
 Ff
 sV
 cr
 gY
-jS
+hK
 cr
 cr
 YH
 iX
 MQ
-dj
+Ke
 Nr
 Nr
 Nr
-BI
+Tr
 Nr
 Nr
 Nr
-BI
+Tr
 Nr
 mW
 mW
@@ -18701,7 +18742,7 @@ yV
 Nr
 sD
 Nr
-BI
+Tr
 yV
 IV
 yV
@@ -18717,7 +18758,7 @@ Yr
 gL
 lL
 lL
-VT
+mO
 Yr
 ZP
 lL
@@ -18819,14 +18860,14 @@ Nr
 sD
 Nr
 Nr
-dj
+Ke
 yV
 yV
 GN
 lL
 lL
 yU
-nx
+kg
 yU
 lL
 lL
@@ -18845,13 +18886,13 @@ lL
 lL
 lL
 uQ
-dj
+Ke
 mA
 EH
 sn
 Nr
 Nr
-VU
+MY
 Nr
 Nr
 pb
@@ -19139,7 +19180,7 @@ OL
 yV
 yV
 yV
-dj
+Ke
 yV
 yV
 yV
@@ -19177,21 +19218,21 @@ Yr
 lL
 lL
 lL
-mM
+hT
 yU
 lL
 lL
 ag
-nx
+kg
 lL
-mM
+hT
 lL
 ag
 yU
 lL
 lL
 lL
-mM
+hT
 yU
 lL
 lL
@@ -19255,38 +19296,38 @@ OL
 OL
 yV
 yV
-dj
+Ke
 yV
 yV
 yV
 yV
 yV
 yV
-dj
+Ke
 yV
 yV
-dj
+Ke
 Hs
 Hs
-dj
+Ke
 yV
 yV
 IV
-dj
+Ke
 yV
 yV
 yV
-dj
+Ke
 IV
 yV
-dj
+Ke
 IV
 yV
 yV
 Nr
 sD
 Nr
-BI
+Tr
 yV
 yV
 IV
@@ -19443,7 +19484,7 @@ aP
 bZ
 Vr
 Vr
-BY
+zw
 va
 va
 eF
@@ -19700,10 +19741,10 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
-vO
+Ti
 iT
 iT
 Nv
@@ -19741,13 +19782,13 @@ EQ
 vt
 Zg
 Vh
-tQ
+kA
 qm
 By
-tQ
+kA
 Dk
 By
-tQ
+kA
 By
 pn
 AG
@@ -19771,35 +19812,35 @@ Hs
 Hs
 Hs
 Hs
-kP
+tP
 Hs
 Hs
 Hs
 MQ
-kP
+tP
 Hs
 Hs
 Hs
 mC
-kP
+tP
 Lu
 yo
 Hs
 Hs
 Hs
-kP
+tP
 Hs
 Hs
 Hs
 Hs
 Hs
 Hs
-kP
+tP
 yV
 yV
 yV
 yV
-pt
+JF
 LY
 iT
 iT
@@ -19807,7 +19848,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -19816,7 +19857,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 Nv
@@ -19840,24 +19881,24 @@ jy
 OL
 yV
 yV
-dj
+Ke
 MF
 fz
-QQ
+Ox
 rz
 Ec
 ai
 Ec
 MF
 yV
-dj
+Ke
 Hs
 PE
 By
-tQ
+kA
 JQ
 By
-tQ
+kA
 He
 Zg
 EQ
@@ -20105,24 +20146,24 @@ yM
 Nr
 sD
 Nr
-BI
+Tr
 yV
 yV
 Se
 yV
 jz
-nI
+fa
 Tv
-dN
+dk
 yV
 xY
 uG
-dj
+Ke
 Gy
 fx
 yV
 mu
-AW
+dn
 yV
 wA
 Av
@@ -20243,12 +20284,12 @@ cJ
 yV
 wA
 ED
-Cw
+Zt
 Oj
 up
 Oj
 wW
-YS
+Cn
 eK
 eK
 wW
@@ -20366,18 +20407,18 @@ kz
 OX
 Oj
 Oj
-Cw
+Zt
 Oj
 Oj
 Oj
 Oj
 Oj
-Ga
+AD
 Ex
 mZ
 Bb
 Hk
-Cw
+Zt
 Oj
 Xk
 Ex
@@ -20484,7 +20525,7 @@ Oj
 Oj
 Oj
 Gs
-Cw
+Zt
 Oj
 Oj
 Oj
@@ -20509,7 +20550,7 @@ Mm
 Mm
 Zb
 ih
-xu
+kW
 ih
 ih
 Iq
@@ -20518,11 +20559,11 @@ Mm
 Mm
 Mn
 iT
-vO
+Ti
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 Nv
@@ -20532,7 +20573,7 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -20542,21 +20583,21 @@ OL
 OL
 yV
 yV
-dj
+Ke
 MF
 qz
-QQ
+Ox
 rz
 rz
 qe
 kX
 MF
 yV
-dj
+Ke
 Hs
 Zg
 EQ
-RJ
+ri
 AZ
 By
 Qf
@@ -20566,7 +20607,7 @@ Hw
 Hw
 Hw
 Hw
-xI
+af
 Hw
 GU
 bW
@@ -20594,7 +20635,7 @@ Ao
 yV
 jK
 Oj
-Cw
+Zt
 Oj
 Oj
 tM
@@ -20606,19 +20647,19 @@ Oj
 Oj
 Oj
 Ex
-Cw
+Zt
 Oj
 Ir
 SO
 lO
-Cw
+Zt
 Oj
 Ex
 wE
 wE
 FM
 Bb
-pt
+JF
 LY
 Ov
 Fh
@@ -20663,7 +20704,7 @@ yV
 MF
 HC
 qz
-QQ
+Ox
 rz
 Lz
 rz
@@ -20781,7 +20822,7 @@ MF
 mX
 tb
 Pv
-QQ
+Ox
 Lz
 zx
 MF
@@ -20945,14 +20986,14 @@ yV
 yV
 wA
 Iz
-HH
+Op
 SK
 tE
 jk
 dc
 nr
 jr
-ao
+pE
 jr
 jr
 dc
@@ -20969,7 +21010,7 @@ Oj
 Oj
 ML
 Bb
-pt
+JF
 LY
 wx
 qs
@@ -20977,7 +21018,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -20986,7 +21027,7 @@ iT
 am
 iT
 iT
-vO
+Ti
 iT
 fA
 Nv
@@ -21053,12 +21094,12 @@ GB
 XG
 vC
 EX
-EE
+VE
 pg
 XU
 yV
 yV
-NO
+gx
 mR
 wA
 Mz
@@ -21075,11 +21116,11 @@ Oj
 tY
 Ex
 Oj
-Cw
+Zt
 Iy
 Hl
 Oj
-JR
+Eh
 Oj
 Oj
 Oj
@@ -21127,28 +21168,28 @@ OL
 OL
 yV
 yV
-dj
+Ke
 yV
 yV
 yV
 yV
-dj
+Ke
 Hs
 Hs
 Hs
 Hs
-kP
+tP
 Hs
 Hs
 Hs
-fp
+Ub
 yV
 yV
 yV
-dj
+Ke
 yV
 yV
-dj
+Ke
 RR
 yV
 yV
@@ -21164,7 +21205,7 @@ QX
 Qt
 XU
 TV
-Cq
+Sr
 XU
 XU
 XU
@@ -21250,7 +21291,7 @@ yV
 yV
 yV
 yV
-dj
+Ke
 yV
 yV
 Sm
@@ -21266,16 +21307,16 @@ IV
 yV
 oC
 yV
-dj
+Ke
 yV
-dj
+Ke
 yV
 yV
 yV
 Bd
 Bd
 Bd
-bU
+lH
 IV
 Hy
 eu
@@ -21400,7 +21441,7 @@ XU
 XU
 XU
 XU
-Cq
+Sr
 cX
 Kf
 Kf
@@ -21425,7 +21466,7 @@ Oj
 Oj
 Oj
 Oj
-Cw
+Zt
 Oj
 jC
 Bb
@@ -21543,18 +21584,18 @@ Oj
 Oj
 Oj
 Oj
-Cw
+Zt
 Iy
 JJ
 LY
-pt
+JF
 LY
 LY
 LY
 LY
 LY
 LY
-pt
+JF
 LY
 iT
 Nv
@@ -21730,13 +21771,13 @@ yV
 UM
 aA
 qN
-Ld
+Od
 UM
 SD
-Uy
+tr
 aA
 UM
-Ld
+Od
 qN
 aA
 UM
@@ -21756,7 +21797,7 @@ bh
 mT
 mT
 mT
-Cq
+Sr
 XU
 Qk
 yV
@@ -21877,7 +21918,7 @@ DR
 XU
 Hs
 Hs
-kP
+tP
 Hs
 TX
 Ee
@@ -21936,7 +21977,7 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -21946,7 +21987,7 @@ OL
 OL
 OL
 OL
-dj
+Ke
 yV
 pi
 wz
@@ -21960,69 +22001,69 @@ VX
 Hs
 Hs
 Hs
-kP
+tP
 XE
 Bj
 Zy
-JO
+tf
 Uc
 Uc
-gg
+mY
 OO
 Xe
-gg
+mY
 Uc
 Uc
 WX
 Nr
 sD
 Nr
-BI
+Tr
 Ud
-Cq
+Sr
 CF
 zd
 ml
-aZ
+cA
 Kf
-EE
+VE
 Kf
 Kf
 Kf
 gW
-Cq
+Sr
 Ud
 Hs
 yV
-dj
+Ke
 bG
 wA
 pS
-Cw
+Zt
 Oj
 Oj
 ds
 Oj
 Oj
 Oj
-MR
+BY
 Ex
 Ex
 Oj
 Oj
-Cw
+Zt
 Oj
 Ch
 wA
 LY
-pt
+JF
 iT
 iT
 iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -22147,7 +22188,7 @@ iT
 Ov
 fJ
 ih
-xu
+kW
 ih
 ih
 EL
@@ -22157,7 +22198,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 Nv
 Nv
 Nv
@@ -22315,13 +22356,13 @@ Hs
 UM
 Jw
 pm
-Ld
+Od
 UM
 px
-xV
+rv
 VD
 UM
-Ld
+Od
 Xr
 VD
 UM
@@ -22607,7 +22648,7 @@ iT
 iT
 iT
 CA
-vO
+Ti
 iT
 iT
 iT
@@ -22615,7 +22656,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -22625,7 +22666,7 @@ iT
 iT
 iT
 iT
-Ek
+qV
 iT
 iT
 Nv
@@ -22679,7 +22720,7 @@ UM
 Nr
 sD
 sG
-FN
+Qw
 yV
 yV
 yV
@@ -22687,16 +22728,16 @@ yV
 yV
 yV
 yV
-dj
+Ke
 yV
 yV
 yV
 yV
-dj
+Ke
 yV
 Zr
 yV
-dj
+Ke
 IV
 GJ
 GJ
@@ -23017,7 +23058,7 @@ wL
 wL
 wL
 wL
-un
+Bg
 wL
 wL
 wL
@@ -23106,7 +23147,7 @@ EV
 vZ
 OL
 OL
-qH
+LP
 wL
 wL
 wL
@@ -23116,38 +23157,38 @@ wL
 wL
 wL
 wL
-un
+Bg
 wL
 wL
 wL
 wL
 wL
 wL
-un
+Bg
 wL
 wL
 wL
 wL
 wL
 wL
-un
+Bg
 wL
 wL
-un
+Bg
 wL
 wL
 wL
-un
+Bg
 wL
 wL
-un
+Bg
 wL
 wL
 wL
 Nm
 GE
 aD
-FF
+yR
 aD
 aD
 aD
@@ -23155,7 +23196,7 @@ aD
 aD
 aD
 aD
-mx
+oQ
 aD
 aD
 aD
@@ -23164,7 +23205,7 @@ aD
 aD
 RP
 aD
-mx
+oQ
 aD
 aD
 aD
@@ -23175,17 +23216,17 @@ aD
 aD
 aD
 aD
-mx
+oQ
 aD
 aD
 aD
 gm
-mx
+oQ
 aD
 aD
 Og
 Og
-vO
+Ti
 iT
 iT
 Nv
@@ -23770,14 +23811,14 @@ aD
 Og
 Og
 Og
-YU
+CH
 sO
 dy
 Te
 Mn
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -23785,7 +23826,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -23795,7 +23836,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -23808,7 +23849,7 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -23818,7 +23859,7 @@ OL
 OL
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -23849,7 +23890,7 @@ Aw
 Ed
 es
 aD
-FF
+yR
 Sf
 TC
 TC
@@ -24069,7 +24110,7 @@ wL
 wL
 wL
 wL
-un
+Bg
 VG
 Ba
 bH
@@ -24169,12 +24210,12 @@ jy
 jy
 jy
 OL
-qH
+LP
 OL
 OL
 OL
 OL
-qH
+LP
 jy
 jy
 OL
@@ -24187,12 +24228,12 @@ wL
 wL
 wL
 wL
-un
+Bg
 wL
 wL
 wL
 wL
-un
+Bg
 sr
 sr
 Tb
@@ -24200,7 +24241,7 @@ ow
 Nm
 GE
 aD
-FF
+yR
 Og
 Og
 Og
@@ -24208,16 +24249,16 @@ Og
 Og
 Og
 zZ
-mx
+oQ
 aD
 aD
 aD
 aD
 sg
-mx
+oQ
 RP
 aD
-mx
+oQ
 aD
 aD
 aD
@@ -24292,7 +24333,7 @@ uX
 OL
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -24310,13 +24351,13 @@ wL
 wL
 wL
 mV
-un
+Bg
 sr
 sr
 sr
 Nm
 GE
-mx
+oQ
 iR
 UE
 Og
@@ -24451,7 +24492,7 @@ vn
 aD
 RP
 aD
-mx
+oQ
 aD
 aD
 aD
@@ -24462,24 +24503,24 @@ aD
 aD
 aD
 aD
-mx
+oQ
 Og
 Og
 Og
 PQ
-gU
+nV
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
 PQ
 PQ
 ST
-VL
+YU
 ih
 Te
 Mn
@@ -24487,7 +24528,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -24497,7 +24538,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 Nv
@@ -25095,24 +25136,24 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 cu
 OL
 OL
-qH
+LP
 OL
 wL
 wL
-un
+Bg
 wL
 wL
 wL
 wL
 wL
 wL
-un
+Bg
 wL
 wL
 wL
@@ -25122,7 +25163,7 @@ wL
 wL
 wL
 wL
-un
+Bg
 wL
 wL
 wL
@@ -25135,7 +25176,7 @@ wL
 wL
 Nm
 GE
-mx
+oQ
 iR
 aD
 aD
@@ -25228,7 +25269,7 @@ OL
 OL
 OL
 OL
-qH
+LP
 OL
 ix
 IX
@@ -25378,7 +25419,7 @@ ix
 ix
 ix
 ix
-zB
+ye
 aa
 aa
 aa
@@ -25387,10 +25428,10 @@ aa
 aa
 VA
 ix
-FA
+Nc
 ix
 ix
-FA
+Nc
 ix
 ix
 ix
@@ -25398,12 +25439,12 @@ ix
 bx
 ix
 PQ
-gU
+nV
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -25612,7 +25653,7 @@ Xp
 ke
 JB
 zU
-XR
+ct
 ke
 zU
 zU
@@ -25620,11 +25661,11 @@ zU
 zU
 zU
 DT
-TU
+Jt
 MG
 rs
 rs
-pU
+dH
 vz
 sA
 Xu
@@ -25637,19 +25678,19 @@ PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
-gU
+nV
 iT
 iT
 iT
@@ -25657,7 +25698,7 @@ iT
 iT
 iT
 iT
-vO
+Ti
 iT
 iT
 iT
@@ -25667,7 +25708,7 @@ iT
 iT
 iT
 uw
-PB
+FI
 sO
 dy
 ih
@@ -25803,7 +25844,7 @@ OL
 OL
 OL
 OL
-qH
+LP
 OL
 OL
 jy
@@ -25914,14 +25955,14 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 OL
 OL
 Nt
 OL
-UR
+lq
 OL
 OL
 OL
@@ -25930,7 +25971,7 @@ OL
 OL
 OL
 OL
-qH
+LP
 OL
 ix
 ix
@@ -26058,11 +26099,11 @@ Lv
 Lv
 Lv
 Lv
-Bx
+QP
 Lv
 Lv
 Lv
-Bx
+QP
 Lv
 Lv
 Lv
@@ -26071,7 +26112,7 @@ Lv
 Lv
 Lv
 aq
-Bx
+QP
 Lv
 ix
 ix
@@ -26080,7 +26121,7 @@ zU
 zU
 RS
 Ad
-XR
+ct
 zU
 LR
 Lw
@@ -26088,11 +26129,11 @@ BL
 zU
 zU
 DT
-Wf
+rw
 MG
 rs
 rs
-pU
+dH
 ed
 dC
 Xu
@@ -26326,7 +26367,7 @@ Xu
 ix
 ix
 ix
-FA
+Nc
 ix
 ix
 ix
@@ -26334,12 +26375,12 @@ ix
 bx
 ix
 PQ
-gU
+nV
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -26347,7 +26388,7 @@ PQ
 PQ
 PQ
 PQ
-gU
+nV
 ZG
 ZG
 ZG
@@ -26740,7 +26781,7 @@ OL
 OL
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -26749,7 +26790,7 @@ OL
 OL
 OL
 OL
-qH
+LP
 OL
 ix
 ix
@@ -26899,19 +26940,19 @@ ix
 ix
 ix
 bx
-zB
+ye
 ix
 ix
 bx
 ix
-FA
+Nc
 ix
 ix
 ix
 ix
 ix
 ix
-gU
+nV
 PQ
 PQ
 ZG
@@ -27041,7 +27082,7 @@ ZG
 ZG
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -27109,13 +27150,13 @@ PQ
 PQ
 zE
 CT
-NN
+Cf
 vo
 vo
 vK
 vo
 vo
-nc
+bA
 wi
 tV
 zE
@@ -27201,7 +27242,7 @@ EV
 vZ
 OL
 Ky
-qH
+LP
 OL
 XD
 OL
@@ -27491,7 +27532,7 @@ UC
 IK
 mt
 mt
-NC
+xI
 UC
 ix
 ix
@@ -27559,7 +27600,7 @@ Je
 OL
 OL
 OL
-qH
+LP
 PQ
 PQ
 PQ
@@ -27583,7 +27624,7 @@ QF
 iM
 nT
 uZ
-nc
+bA
 aB
 aB
 HW
@@ -27592,7 +27633,7 @@ aa
 YC
 YC
 Jz
-gy
+wu
 YC
 YC
 aa
@@ -27601,7 +27642,7 @@ bb
 bb
 bb
 Sk
-Ra
+GZ
 mt
 mt
 UC
@@ -27677,7 +27718,7 @@ OL
 OL
 OL
 OL
-gU
+nV
 PQ
 PQ
 PQ
@@ -27730,20 +27771,20 @@ UC
 ix
 ix
 ix
-gU
+nV
 PQ
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
-gU
-PQ
-PQ
+nV
 PQ
 PQ
-gU
+PQ
+PQ
+nV
 PQ
 PQ
 PQ
@@ -27861,16 +27902,16 @@ PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
-gU
+nV
 PQ
 ZG
 Nv
@@ -27952,14 +27993,14 @@ mt
 mt
 mt
 mt
-vA
+eD
 mt
 mt
 EY
 mt
-vA
+eD
 mt
-Jc
+lI
 UC
 ix
 ix
@@ -28073,9 +28114,9 @@ ki
 mt
 ki
 UC
-Jc
+lI
 JP
-vA
+eD
 nt
 UC
 ix
@@ -28153,7 +28194,7 @@ PQ
 PQ
 PQ
 QK
-gU
+nV
 PQ
 PQ
 PQ
@@ -28163,7 +28204,7 @@ Is
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -28171,13 +28212,13 @@ PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
 Lv
 aq
-Bx
+QP
 Lv
 ix
 aa
@@ -28605,7 +28646,7 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -28613,7 +28654,7 @@ OL
 OL
 OL
 OL
-gU
+nV
 PQ
 PQ
 PQ
@@ -28621,7 +28662,7 @@ PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -28753,43 +28794,43 @@ PQ
 PQ
 ZG
 ZG
-gU
+nV
 PQ
 ps
-gU
+nV
 PQ
 PQ
 PQ
 Lv
 aq
-Bx
+QP
 Lv
 Bc
 aT
 md
-Gv
+FG
 TD
 md
 xk
-zB
+ye
 ix
 PQ
 PQ
 PQ
 PQ
-ru
+vB
 PQ
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -28797,7 +28838,7 @@ PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -28806,7 +28847,7 @@ ZG
 ZG
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 Ct
@@ -28905,7 +28946,7 @@ PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -29323,7 +29364,7 @@ PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -29333,12 +29374,12 @@ PQ
 QK
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -29347,7 +29388,7 @@ PQ
 PQ
 pI
 JW
-Bx
+QP
 Lv
 Yh
 ix
@@ -29356,7 +29397,7 @@ ix
 ix
 ix
 bx
-FA
+Nc
 ix
 PQ
 PQ
@@ -29775,7 +29816,7 @@ EV
 vZ
 OL
 OL
-qH
+LP
 OL
 OL
 OL
@@ -29783,7 +29824,7 @@ OL
 OL
 OL
 OL
-gU
+nV
 PQ
 PQ
 PQ
@@ -29791,7 +29832,7 @@ PQ
 QK
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -29824,13 +29865,13 @@ PQ
 QK
 PQ
 wF
-gU
+nV
 PQ
 PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -29841,7 +29882,7 @@ ps
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -29850,7 +29891,7 @@ PQ
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 PQ
@@ -29859,7 +29900,7 @@ QK
 PQ
 PQ
 PQ
-gU
+nV
 PQ
 PQ
 iT
