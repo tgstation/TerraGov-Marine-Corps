@@ -49,6 +49,7 @@
 
 	// *** Minimap Icon *** //
 	minimap_icon = "xenoshrike"
+	doppelganger_color = "#ffee00"
 
 	// *** Abilities *** //
 	actions = list(

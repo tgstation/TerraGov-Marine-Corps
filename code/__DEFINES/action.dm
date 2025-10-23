@@ -54,6 +54,8 @@
 #define VREF_MUTABLE_CONQ_DASH_CHARGES "VREF_CONQDASH_CHARGES"
 // The extra reference for Conqueror's Dash ability if it uses the charge cooldown system. Shows how much time is left before a charge is restored.
 #define VREF_MUTABLE_CONQ_DASH_CHARGETIMER "VREF_CONQDASH_CHARGETIMER"
+// extra reference for jester's grapple toss stacks
+#define VREF_GRAPPLE_STACKS "VREF_GRAPPLE_STACKS"
 
 /// Actions that toggle on click/trigger
 #define ACTION_TOGGLE "toggle"
