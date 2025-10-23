@@ -411,6 +411,7 @@
 		SMOOTH_GROUP_WINDOW_FRAME,
 		SMOOTH_GROUP_ESCAPESHUTTLE,
 	)
+	minimap_color = MINIMAP_FENCE
 	///For perspective windows,so the window frame doesn't magically disappear.
 	var/window_frame
 

@@ -82,7 +82,7 @@
 
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, actual_crash_site, TRUE) // FALSE = instant arrival
-	addtimer(CALLBACK(src, PROC_REF(crash_shuttle), actual_crash_site), 10 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(crash_shuttle), actual_crash_site), CRASH_DELAY_TIME)
 
 
 /datum/game_mode/infestation/crash/post_setup()
