@@ -967,6 +967,14 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/hangar)
+"bnM" = (
+/obj/machinery/door/poddoor/four_tile_hor/secure,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "bnS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -1710,7 +1718,7 @@
 	outside = 0
 	})
 "cnX" = (
-/obj/machinery/door/poddoor/four_tile_ver,
+/obj/machinery/door/poddoor/four_tile_ver/secure,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/lv624/ground/caves{
 	ceiling = 2;
@@ -3862,6 +3870,14 @@
 	dir = 8
 	},
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
+"fbc" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "fbl" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -6764,7 +6780,8 @@
 	name = "CC Office"
 	})
 "jcT" = (
-/obj/effect/forcefield/fog,
+/obj/structure/xeno/pherotower,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/lv624/ground/caves{
 	ceiling = 2;
@@ -14117,6 +14134,15 @@
 "sWj" = (
 /turf/open/floor/wood,
 /area/mainship/hallways/ntf/dorm1)
+"sWK" = (
+/obj/alien/weeds/node/resting,
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "sYg" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile,
@@ -27842,7 +27868,7 @@ hKj
 "}
 (94,1,1) = {"
 hKj
-hKj
+xRz
 hKj
 hKj
 hKj
@@ -27949,7 +27975,7 @@ hKj
 "}
 (95,1,1) = {"
 hKj
-hKj
+xRz
 hKj
 hKj
 hKj
@@ -28056,8 +28082,8 @@ hKj
 "}
 (96,1,1) = {"
 hKj
-hKj
-hKj
+xRz
+oGw
 hKj
 hKj
 hKj
@@ -28163,8 +28189,8 @@ hKj
 "}
 (97,1,1) = {"
 hKj
-hKj
-hKj
+bnM
+oGw
 hKj
 hKj
 hKj
@@ -28269,10 +28295,10 @@ hKj
 hKj
 "}
 (98,1,1) = {"
-pVG
-jcT
-oGw
 hKj
+oGw
+oGw
+oGw
 hKj
 hKj
 hKj
@@ -28376,8 +28402,8 @@ hKj
 hKj
 "}
 (99,1,1) = {"
-pVG
-jcT
+hKj
+oGw
 oGw
 oGw
 oGw
@@ -28483,8 +28509,8 @@ hKj
 hKj
 "}
 (100,1,1) = {"
-pVG
-jcT
+hKj
+oGw
 oGw
 oGw
 oGw
@@ -28591,8 +28617,8 @@ hKj
 "}
 (101,1,1) = {"
 hKj
-hKj
-hKj
+xRz
+oGw
 oGw
 oGw
 oGw
@@ -28698,7 +28724,7 @@ hKj
 "}
 (102,1,1) = {"
 hKj
-hKj
+xRz
 hKj
 hKj
 hKj
@@ -28805,7 +28831,7 @@ hKj
 "}
 (103,1,1) = {"
 hKj
-hKj
+xRz
 hKj
 hKj
 hKj
@@ -30857,7 +30883,7 @@ hKj
 hKj
 hKj
 hyC
-mcR
+sWK
 oGw
 hKj
 hKj
@@ -30967,7 +30993,7 @@ oGw
 oGw
 oGw
 oGw
-aRY
+jcT
 hKj
 hKj
 hKj
@@ -31172,7 +31198,7 @@ oGw
 oGw
 hKj
 oGw
-oGw
+fbc
 oGw
 oGw
 oGw
@@ -31282,13 +31308,13 @@ hKj
 hKj
 oGw
 oGw
-mcR
+sWK
 oGw
 oGw
 oGw
 oGw
 oGw
-oGw
+fbc
 hKj
 hKj
 hKj
@@ -31392,7 +31418,7 @@ hKj
 hKj
 oGw
 oGw
-oGw
+fbc
 mcR
 oGw
 aRY
