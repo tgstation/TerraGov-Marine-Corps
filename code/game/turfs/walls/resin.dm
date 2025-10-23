@@ -19,6 +19,7 @@
 	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
 	allow_pass_flags = PASS_FIRE
+	minimap_color = MINIMAP_AREA_COLONY
 
 /turf/closed/wall/resin/add_debris_element()
 	AddElement(/datum/element/debris, null, -40, 8, 0.7)

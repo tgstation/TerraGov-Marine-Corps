@@ -88,10 +88,10 @@ SUBSYSTEM_DEF(minimaps)
 			var/turf/location = locate(xval,yval,level)
 			if(isspaceturf(location))
 				continue
-			if(location.density)
+			if(location.density && !isresinwall(location)) //if we don't check for resin walls, mazes will become visible
 				icon_gen.DrawBox(location.minimap_color, xval, yval)
 				continue
-			var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
+			var/atom/movable/alttarget = (locate(/obj/structure/window/framed) in location) || (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
 			if(alttarget)
 				icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
 				continue
