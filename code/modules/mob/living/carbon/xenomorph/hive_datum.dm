@@ -344,6 +344,8 @@
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
+	X.apply_melee_stat_buff()
+	X.apply_health_stat_buff()
 
 /datum/hive_status/proc/post_removal(mob/living/carbon/xenomorph/X)
 	X.color = null

@@ -183,9 +183,5 @@ SUBSYSTEM_DEF(monitor)
  * Will multiply every base health, regen and melee damage stat on all xeno by GLOB.xeno_stat_multiplicator_buff
  */
 /datum/controller/subsystem/monitor/proc/apply_balance_changes()
-	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
-		xeno.apply_health_stat_buff()
-	for(var/xeno_caste_typepath in GLOB.xeno_caste_datums)
-		for(var/upgrade in GLOB.xeno_caste_datums[xeno_caste_typepath])
-			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[xeno_caste_typepath][upgrade]
-			caste.melee_damage = initial(caste.melee_damage) * GLOB.xeno_stat_multiplicator_buff
+	GLOB.hive_datums[XENO_HIVE_NORMAL].set_health_multiplier(GLOB.xeno_stat_multiplicator_buff)
+	GLOB.hive_datums[XENO_HIVE_NORMAL].set_melee_multiplier(GLOB.xeno_stat_multiplicator_buff)

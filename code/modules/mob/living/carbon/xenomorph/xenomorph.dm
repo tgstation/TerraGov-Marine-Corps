@@ -120,7 +120,11 @@
 
 ///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.
 /mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
-	var/new_max_health = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
+	if(!hive)
+		return
+	var/new_max_health = max(xeno_caste.max_health * hive.health_mulitiplier, 10)
+	if(new_max_health == maxHealth)
+		return
 	var/needed_healing = 0
 
 	if(health < 0) //In crit. Death threshold below 0 doesn't change with stat buff, so we can just apply damage equal to the max health change
@@ -131,6 +135,9 @@
 		var/new_total_damage = new_max_health - new_health
 		var/current_total_damage = maxHealth - health
 		needed_healing = current_total_damage - new_total_damage
+
+	if(needed_healing == 0)
+		return
 
 	var/brute_healing = min(getBruteLoss(), needed_healing)
 	adjustBruteLoss(-brute_healing)

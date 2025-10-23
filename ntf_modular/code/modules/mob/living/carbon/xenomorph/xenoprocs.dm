@@ -1,3 +1,6 @@
+/mob/living/carbon/xenomorph/proc/apply_melee_stat_buff()
+	xeno_melee_damage_modifier += (hive.melee_multiplier - melee_multiplier_from_hive)
+	melee_multiplier_from_hive = hive.melee_multiplier
 
 /mob/living/carbon/xenomorph/verb/toggle_bump_attack_allies()
 	set name = "Toggle Bump Attack Allies"

@@ -111,6 +111,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\hunter\castedatum_hunter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hunter\hunter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\hive_datum.dm"
+#include "code\modules\mob\living\carbon\xenomorph\xeno_defines.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xenoprocs.dm"
 #include "code\modules\mob\living\emote.dm"
 #include "code\modules\mob\living\living_verbs.dm"
