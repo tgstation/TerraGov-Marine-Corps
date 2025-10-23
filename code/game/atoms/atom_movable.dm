@@ -1401,6 +1401,39 @@
 	return ..()
 
 
+///Change the direction of the atom to face away from the targeted atom
+/atom/movable/proc/face_away_from_atom(atom/A)
+	if(!A || !x || !y || !A.x || !A.y)
+		return
+	var/dx = A.x - x
+	var/dy = A.y - y
+	if(!dx && !dy)
+		if(A.pixel_y > 16)
+			setDir(SOUTH)
+		else if(A.pixel_y < -16)
+			setDir(NORTH)
+		else if(A.pixel_x > 16)
+			setDir(WEST)
+		else if(A.pixel_x < -16)
+			setDir(EAST)
+		return
+
+	if(abs(dx) < abs(dy))
+		if(dy > 0)
+			setDir(SOUTH)
+		else
+			setDir(NORTH)
+	else
+		if(dx > 0)
+			setDir(WEST)
+		else
+			setDir(EAST)
+
+/mob/face_away_from_atom(atom/A)
+	if(buckled || stat != CONSCIOUS)
+		return
+	return ..()
+
 /atom/movable/vv_edit_var(var_name, var_value)
 	switch(var_name)
 		if("x")

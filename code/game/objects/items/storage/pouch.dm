@@ -52,7 +52,7 @@
 
 /obj/item/storage/pouch/general/medium/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.storage_slots = 2
+	storage_datum.storage_slots = 4
 	storage_datum.sprite_slots = 2
 	storage_datum.draw_mode = FALSE
 
@@ -63,7 +63,7 @@
 /obj/item/storage/pouch/general/large/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.storage_slots = null
-	storage_datum.max_storage_space = 6
+	storage_datum.max_storage_space = 8
 	storage_datum.sprite_slots = 3
 	storage_datum.draw_mode = FALSE
 
@@ -385,6 +385,10 @@
 	fill_type = /obj/item/ammo_magazine/standard_lmg
 	fill_number = 3
 
+/obj/item/storage/pouch/magazine/large/pmc_sniper
+	fill_type = /obj/item/ammo_magazine/railgun/pmc
+	fill_number = 3
+
 /obj/item/storage/pouch/magazine/large/pmc_rifle
 	fill_type = /obj/item/ammo_magazine/rifle/ap
 	fill_number = 3
@@ -481,6 +485,10 @@
 
 /obj/item/storage/pouch/grenade/slightlyfull
 	fill_type = /obj/item/explosive/grenade
+	fill_number = 4
+
+/obj/item/storage/pouch/grenade/pmc/slightlyfull
+	fill_type = /obj/item/explosive/grenade/pmc
 	fill_number = 4
 
 /obj/item/storage/pouch/grenade/combat_patrol/PopulateContents()
@@ -596,6 +604,15 @@
 	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment. Made with traditional SOM leather."
 	icon_state = "medkit_som"
 
+/obj/item/storage/pouch/medkit/som/medic/PopulateContents()
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/reagent_containers/hypospray/advanced/quickclotplus_medkit(src)
+	new /obj/item/reagent_containers/hypospray/advanced/peridaxonplus_medkit(src)
+	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
+
 /obj/item/storage/pouch/medkit/som/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.sprite_slots = null
@@ -708,6 +725,17 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
+
+/obj/item/storage/pouch/medical_injectors/icc/medic/PopulateContents() //corpsman autoinjector pouch gets upgraded, but more general chems.
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+
 
 /obj/item/storage/pouch/med_lolipops
 	name = "medical lolipop pouch"
@@ -876,6 +904,11 @@
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool. Made with traditional SOM leather."
 	icon_state = "construction_som"
 
+/obj/item/storage/pouch/construction/som/full/PopulateContents()
+	new /obj/item/stack/sandbags_empty/half (src)
+	new /obj/item/stack/barbed_wire/small_stack (src)
+	new /obj/item/tool/shovel/etool (src)
+
 /obj/item/storage/pouch/construction/som/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.sprite_slots = null
@@ -984,7 +1017,7 @@
 
 
 			to_chat(user, span_notice("You start refilling [src] with [M]."))
-			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
 			for(var/x in 1 to (storage_datum.storage_slots - length(contents)))

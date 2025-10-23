@@ -50,6 +50,7 @@
 // ***************************************
 /datum/action/ability/activable/xeno/psychic_shield
 	name = "Psychic Shield"
+
 	action_icon_state = "psy_shield"
 	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
@@ -218,7 +219,7 @@
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE
+	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
 	max_integrity = 650
 	layer = ABOVE_MOB_LAYER
 	/// Who created the shield?
@@ -328,10 +329,10 @@
 	action_icon_state = "psy_crush"
 	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
+
 	ability_cost = 40
 	cooldown_duration = 12 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
-	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
 	)
@@ -369,7 +370,7 @@
 		return fail_activate()
 
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
-	if(!do_after(owner, 0.8 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 		return fail_activate()
 
@@ -460,8 +461,8 @@
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
-				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE, BRUTE, blocked = BOMB)
-				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE, BRUTE, blocked = BOMB, attacker = owner)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB, attacker = owner)
 				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
 				continue
@@ -566,6 +567,7 @@
 	action_icon_state = "psy_blast"
 	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
+
 	cooldown_duration = 6 SECONDS
 	ability_cost = 230
 	keybinding_signals = list(

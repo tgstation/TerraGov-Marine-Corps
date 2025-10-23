@@ -38,12 +38,15 @@
 		consumer.put_in_hands(new_trash)
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
-	return
+// Refreshes the taste of an food item based on new descriptions added.
+/obj/item/reagent_containers/food/snacks/proc/refresh_taste()
+	for(var/datum/reagent/consumable/nutriment/reagent_to_update in reagents.reagent_list)
+		reagent_to_update.change_taste(tastes.Copy())
 
-/obj/item/reagant_containers/food/snacks/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!CONFIG_GET(flag/fun_allowed))
-		return FALSE
+/obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
+	return attack(user, user)
+
+/obj/item/reagant_containers/food/snacks/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	attack_hand(xeno_attacker)
 
 /obj/item/reagent_containers/food/snacks/attack(mob/M, mob/user, def_zone)
@@ -60,7 +63,7 @@
 	if(iscarbon(M))
 		var/mob/living/carbon/carbon_mob = M
 		var/datum/reagent/consumable/nutriment/nutriment = reagents.get_reagent(/datum/reagent/consumable/nutriment)
-		var/bite_nutrition = nutriment.get_nutrition_gain((reagents.total_volume < bitesize) ? nutriment.volume : nutriment.volume / reagents.total_volume * bitesize)
+		var/bite_nutrition = 0 || nutriment?.get_nutrition_gain((reagents.total_volume < bitesize) ? nutriment.volume : nutriment.volume / reagents.total_volume * bitesize)
 		nutriment = carbon_mob.reagents.get_reagent(/datum/reagent/consumable/nutriment)
 		var/fullness = carbon_mob.nutrition + nutriment?.get_nutrition_gain() + bite_nutrition //adds our next bite to our total nutrition in body and stomach
 
@@ -89,8 +92,7 @@
 			else
 				carbon_mob.balloon_alert(user, "[carbon_mob.p_theyre()] full!")
 				return FALSE
-
-			if(!do_after(user, 3 SECONDS, NONE, carbon_mob, BUSY_ICON_FRIENDLY))
+			if(!do_mob(user, carbon_mob, 3 SECONDS, BUSY_ICON_FRIENDLY))
 				return
 
 			var/rgt_list_text = get_reagent_list_text()
@@ -219,6 +221,15 @@
 		if(prob(50))
 			balloon_alert_to_viewers("nibbles")
 		monuse.health = min(monuse.health + 1, monuse.maxHealth)
+
+/obj/item/reagent_containers/food/snacks/examine(mob/user)
+	. = ..()
+	if(user.stat == DEAD) // Let ghosts get a little taste too :)
+		. += span_notice("[user.taste(reagents, "statpanel")]")
+
+// Here to serve as a preview for how things taste in the character creator
+/obj/item/reagent_containers/food/snacks/proc/view_taste_message(mob/user, type)
+	user.taste(reagents, type)
 
 //////////////////////////////////////////////////
 ////////////////////////////////////////////Snacks
@@ -1329,7 +1340,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged_burrito
 	name = "Packaged Burrito"
-	desc = "A hard microwavable burrito. There's no time given for how long to cook it. Packaged by the Nanotrasen Corporation."
+	desc = "A hard microwavable burrito. There's no time given for how long to cook it. Packaged by the Ninetails Corporation."
 	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "burrito"
 	bitesize = 2
@@ -1347,7 +1358,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged_hdogs
 	name = "Packaged Hotdog"
-	desc = "A singular squishy, room temperature, hot dog. There's no time given for how long to cook it, so you assume its probably good to go. Packaged by the Nanotrasen Corporation."
+	desc = "A singular squishy, room temperature, hot dog. There's no time given for how long to cook it, so you assume its probably good to go. Packaged by the Ninetails Corporation."
 	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "hot_dogs"
 	bitesize = 2

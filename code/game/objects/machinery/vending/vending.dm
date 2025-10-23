@@ -148,7 +148,7 @@
 	///Last time we spoke our slogan
 	var/last_slogan = 0
 	///The interval between slogans.
-	var/slogan_delay = 1 MINUTES
+	var/slogan_delay = 15 MINUTES
 	///Icon state when successfuly vending
 	var/icon_vend
 	///Icon state when failing to vend, be it by no access or money.
@@ -281,7 +281,7 @@
 	for(var/season in seasonal_items)
 		products[seasonal_items[season]] += SSpersistence.season_items[season]
 
-/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -374,7 +374,7 @@
 		if(!wrenchable)
 			return
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -552,6 +552,10 @@
 	switch(faction)
 		if(FACTION_SOM)
 			ui_theme = "som"
+		if(FACTION_VSD)
+			ui_theme = "syndicate"
+		if(FACTION_CLF)
+			ui_theme = "xeno"
 		else
 			ui_theme = "main"
 	.["ui_theme"] = ui_theme

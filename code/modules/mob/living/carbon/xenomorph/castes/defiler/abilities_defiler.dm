@@ -28,6 +28,9 @@
 /particles/xeno_slash/ozelomelyn
 	color = "#CCB7C5"
 
+/particles/xeno_slash/aphrotoxin
+	color = "#ff02ab"
+
 /particles/xeno_smoke
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
@@ -58,14 +61,18 @@
 /particles/xeno_smoke/ozelomelyn
 	color = "#CCB7C5"
 
+/particles/xeno_smoke/aphrotoxin
+	color = "#ff02ab"
+
 // ***************************************
 // *********** Defile
 // ***************************************
 /datum/action/ability/activable/xeno/defile
 	name = "Defile"
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
 	action_icon_state = "defiler_sting"
-	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
+
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -112,8 +119,8 @@
 	playsound(living_target, pick('sound/voice/alien/drool1.ogg', 'sound/voice/alien/drool2.ogg'), 15, 1)
 	to_chat(xeno_owner, span_xenodanger("Our stinger successfully discharges accelerant into our victim."))
 	to_chat(living_target, span_danger("You feel horrible pain as something sharp forcibly pierces your thorax."))
-	living_target.apply_damage(50, STAMINA)
-	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE)
+	living_target.apply_damage(50, STAMINA, attacker = owner)
+	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE, attacker = owner)
 	living_target.emote("scream")
 
 	var/defile_strength_multiplier = 0.5
@@ -166,6 +173,7 @@
 	action_icon_state = "emit_neurogas"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
+
 	ability_cost = 200
 	cooldown_duration = 40 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
@@ -192,14 +200,14 @@
 	span_xenodanger("Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!"))
 	xeno_owner.balloon_alert(xeno_owner, "keep still...")
 
-	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Power Up"
+	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno_owner.is_a_rouny ? " rouny" : ""] Power Up"
 
 	if(!do_after(xeno_owner, DEFILER_GAS_CHANNEL_TIME, NONE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
 			to_chat(xeno_owner, span_xenodanger("We abort emitting fumes, our expended plasma resulting in nothing."))
-			xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+			xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno_owner.is_a_rouny ? " rouny" : ""] Running"
 			return fail_activate()
-	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno_owner.is_a_rouny ? " rouny" : ""] Running"
 
 	add_cooldown()
 	succeed_activate()
@@ -245,6 +253,8 @@
 					emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(xeno_owner)
 				else
 					emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn/light(xeno_owner)
+			if(/datum/reagent/toxin/xeno_aphrotoxin)
+				emitted_gas = new /datum/effect_system/smoke_spread/xeno/aphrotoxin(xeno_owner)
 
 	if(xeno_owner.IsStaggered()) //If we got staggered, return
 		to_chat(xeno_owner, span_xenowarning("We try to emit toxins but are staggered!"))
@@ -280,6 +290,8 @@
 			particle_holder = new(owner, /particles/xeno_smoke/transvitox)
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
 			particle_holder = new(owner, /particles/xeno_smoke/ozelomelyn)
+		if(/datum/reagent/toxin/xeno_aphrotoxin)
+			particle_holder = new(owner, /particles/xeno_smoke/aphrotoxin)
 	particle_holder.pixel_x = 16
 	particle_holder.pixel_y = 16
 
@@ -291,6 +303,7 @@
 	action_icon_state = "inject_egg"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
+
 	ability_cost = 100
 	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
@@ -346,6 +359,8 @@
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
 		if(/datum/reagent/toxin/xeno_transvitox)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/transvitox
+		if(/datum/reagent/toxin/xeno_aphrotoxin)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/aphrotoxin
 	qdel(alien_egg)
 
 	owner.record_war_crime()
@@ -359,7 +374,7 @@
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
-	desc = "Selects which reagent to use for reagent slash and noxious gas. Neuro causes increasing pain and stamina damage. Hemodile slows targets down, multiplied by each other xeno-based toxin. Transvitox converts burns to toxin, and causes additional toxin damage when they take brute damage, both effects multiplied by other xeno-based toxins. Ozelomelyn purges all medicines from their system rapidly and causes minor toxin damage."
+	desc = "Selects which reagent to use for reagent slash and noxious gas. Neuro causes increasing pain and stamina damage. Hemodile slows targets down, multiplied by each other xeno-based toxin. Transvitox converts burns to toxin, and causes additional toxin damage when they take brute damage, both effects multiplied by other xeno-based toxins. Ozelomelyn purges all medicines from their system rapidly and causes minor toxin damage. Aphrotoxin boosts larva growth in hosts and makes them stumble around."
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING|ABILITY_USE_STAGGERED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
@@ -397,11 +412,12 @@
 	// This is cursed, don't copy this code its the WRONG way to do this.
 	// TODO: generate this from GLOB.defiler_toxin_type_list
 	var/static/list/defiler_toxin_images_list = list(
-			DEFILER_NEUROTOXIN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_NEUROTOXIN),
-			DEFILER_HEMODILE = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_HEMODILE),
-			DEFILER_TRANSVITOX = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_TRANSVITOX),
-			DEFILER_OZELOMELYN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_OZELOMELYN),
-			)
+		DEFILER_NEUROTOXIN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_NEUROTOXIN),
+		DEFILER_HEMODILE = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_HEMODILE),
+		DEFILER_TRANSVITOX = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_TRANSVITOX),
+		DEFILER_OZELOMELYN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_OZELOMELYN),
+		DEFILER_APHROTOXIN = image('ntf_modular/icons/Xeno/actions.dmi', icon_state = DEFILER_APHROTOXIN),
+		)
 	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
 	if(!toxin_choice)
 		return
@@ -446,6 +462,7 @@
 
 /datum/action/ability/xeno_action/reagent_slash/action_activate()
 	. = ..()
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_DISARM_HUMAN, PROC_REF(reagent_slash))
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(reagent_slash))
 
 	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT //Set the number of slashes
@@ -461,6 +478,7 @@
 
 ///Called when the duration of reagent slash lapses
 /datum/action/ability/xeno_action/reagent_slash/proc/reagent_slash_deactivate(mob/living/carbon/xenomorph/X)
+	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_DISARM_HUMAN)
 	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING) //unregister the signals; party's over
 
 	reagent_slash_count = 0 //Zero out vars
@@ -515,6 +533,8 @@
 			particle_holder = new(owner, /particles/xeno_slash/transvitox)
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
 			particle_holder = new(owner, /particles/xeno_slash/ozelomelyn)
+		if(/datum/reagent/toxin/xeno_aphrotoxin)
+			particle_holder = new(owner, /particles/xeno_slash/aphrotoxin)
 	particle_holder.pixel_x = 16
 	particle_holder.pixel_y = 12
 
@@ -526,6 +546,7 @@
 	action_icon_state = "tail_attack"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Throw one of your tentacles forward to grab a tallhost or item."
+
 	cooldown_duration = 20 SECONDS
 	ability_cost = 175
 	keybinding_signals = list(
@@ -611,3 +632,4 @@
 #undef DEFILER_HEMODILE
 #undef DEFILER_TRANSVITOX
 #undef DEFILER_OZELOMELYN
+#undef DEFILER_APHROTOXIN

@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/runner
 	name = "Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
-	icon = 'icons/Xeno/castes/runner.dmi' //They are now like, 2x1 or something
+	icon = 'ntf_modular/icons/Xeno/castes/runner.dmi' //They are now like, 2x1 or something
 	icon_state = "Runner Walking"
 	bubble_icon = "alienleft"
 	health = 100
@@ -72,6 +72,8 @@
 	/// The amount of melting acid stacks to be applied.
 	var/applied_acid_stacks = 2
 
+	icon = 'icons/xeno/castes/runner.dmi' //NTF EDIT - no tiddies until someone sprites em in.
+
 /mob/living/carbon/xenomorph/runner/melter/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_attack_obj))
@@ -93,7 +95,7 @@
 /// Deals a second instance of melee damage to living beings. Damage type and armor type may vary.
 /mob/living/carbon/xenomorph/runner/melter/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
 	SIGNAL_HANDLER
-	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, second_damage_type, null, second_damage_armor)
+	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, second_damage_type, null, second_damage_armor, attacker = src)
 	var/datum/status_effect/stacking/melting_acid/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_ACID)
 	if(!debuff)
 		target.apply_status_effect(STATUS_EFFECT_MELTING_ACID, applied_acid_stacks)

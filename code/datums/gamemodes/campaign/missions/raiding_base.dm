@@ -9,7 +9,7 @@
 	hostile_faction_objective_description = "Major Victory: Prevent the enemy from activating an orbital beacon inside the facility."
 	intro_message = list(
 		MISSION_STARTING_FACTION = "Infiltrate the SOM base, then plant and defend an orbital beacon until we can drop the hammer on them from orbit!",
-		MISSION_HOSTILE_FACTION = "Stop TGMC forces from infiltrating the base. Prevent them from activating an orbital beacon at all costs!",
+		MISSION_HOSTILE_FACTION = "Stop NTF forces from infiltrating the base. Prevent them from activating an orbital beacon at all costs!",
 	)
 	mission_flags = MISSION_DISALLOW_DROPPODS
 	max_game_time = 12 MINUTES
@@ -37,11 +37,11 @@
 	Your unit has been tasked with ensuring the complete and utter destruction of this base and everything within it. \
 	Infiltrate the facility, then deploy one of the orbital beacons you have been supplied with. \
 	Defend the beacon until the TGS Horizon can secure a target lock and deploy a thermobaric bunker buster to wipe the outpost off the face of the planet."
-	hostile_faction_mission_brief = "Intelligence has picked up a TGMC plan to assault Raiding base Zulu. This base has been key to our sabotage and disruption efforts, significantly degrading TGMC supply lines. \
-	Intel suggests that the TGMC are seeking to infiltrate the base to deploy a orbital beacon, in order to call down an orbital strike. \
-	Prevent TGMC forces from entering the base, and destroy any orbital beacon they try to deploy."
+	hostile_faction_mission_brief = "Intelligence has picked up a NTF plan to assault Raiding base Zulu. This base has been key to our sabotage and disruption efforts, significantly degrading NTF supply lines. \
+	Intel suggests that the NTF are seeking to infiltrate the base to deploy a orbital beacon, in order to call down an orbital strike. \
+	Prevent NTF forces from entering the base, and destroy any orbital beacon they try to deploy."
 	starting_faction_additional_rewards = "Remove negative effects on our logistics"
-	hostile_faction_additional_rewards = "Allow us to continue degrading TGMC logistics"
+	hostile_faction_additional_rewards = "Allow us to continue degrading NTF logistics"
 	outro_message = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(
 			MISSION_STARTING_FACTION = "<u>Major victory</u><br> Confirming good hit. Successful destruction of target facility. Outstanding marines!",
@@ -222,7 +222,7 @@
 	qdel(beacon)
 
 /datum/campaign_mission/raiding_base/som
-	name = "TGMC Raiding Base"
+	name = "NTF Raiding Base"
 	map_name = "Jeneora Valley"
 	map_file = '_maps/map_files/Campaign maps/tgmc_raid_base/tgmc_raiding_base.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
@@ -230,12 +230,12 @@
 	starting_faction_objective_description = "Major Victory: Set and defend a bluespace beacon inside the facility until a bluespace strike can be called in."
 	hostile_faction_objective_description = "Major Victory: Prevent the enemy from activating a bluespace beacon inside the facility."
 	intro_message = list(
-		MISSION_STARTING_FACTION = "Infiltrate the TGMC base, then plant and defend a bluespace beacon until we can activate bluespace artillery!",
+		MISSION_STARTING_FACTION = "Infiltrate the NTF base, then plant and defend a bluespace beacon until we can activate bluespace artillery!",
 		MISSION_HOSTILE_FACTION = "Stop SOM forces from infiltrating the base. Prevent them from activating a bluespace beacon at all costs!",
 	)
 	mission_flags = MISSION_DISALLOW_TELEPORT
 
-	starting_faction_mission_brief = "We have finally been able to track down a hidden TGMC outpost which they have been using as a base of operations to raid our supply lines, wrecking havoc on our logistics. \
+	starting_faction_mission_brief = "We have finally been able to track down a hidden NTF outpost which they have been using as a base of operations to raid our supply lines, wrecking havoc on our logistics. \
 	Your unit has been tasked with ensuring the complete and utter destruction of this base and everything within it. \
 	Infiltrate the facility, then deploy one of the bluespace beacons you have been supplied with. \
 	Defend the beacon until our bluespace artillery can secure a lock, and wipe out the base for good from the inside."
@@ -250,7 +250,7 @@
 			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> We've lost Jeneora Valley, all remaining forces, fallback to exfil point Alpha, retreat!",
 		),
 		MISSION_OUTCOME_MAJOR_LOSS = list(
-			MISSION_STARTING_FACTION = "<u>Major loss</u><br> TGMC interceptors are inbound, all forces fallback, this operation is a loss.",
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> NTF interceptors are inbound, all forces fallback, this operation is a loss.",
 			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Reinforcements are almost here and enemy forces are falling back, you've done the Corp proud today marines.",
 		),
 	)

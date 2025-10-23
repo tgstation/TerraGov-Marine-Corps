@@ -129,7 +129,7 @@
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 100, 1)
 
 
-/obj/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(xeno_attacker.status_flags & INCORPOREAL) //Ghosts can't attack machines
 		return FALSE
@@ -150,7 +150,6 @@
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)
 	L.visible_message(span_danger("[L] nudges its head against [src]."), \
 	span_danger("You nudge your head against [src]."))
-
 
 ///the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.
 /obj/proc/deconstruct(disassembled = TRUE, mob/living/blame_mob)

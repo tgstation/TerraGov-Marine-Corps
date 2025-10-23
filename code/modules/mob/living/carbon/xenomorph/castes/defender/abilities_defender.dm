@@ -6,6 +6,7 @@
 	action_icon_state = "tail_sweep"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Hit all adjacent units around you, knocking them away and down."
+
 	ability_cost = 35
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_duration = 12 SECONDS
@@ -26,6 +27,8 @@
 
 /datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags, selecting)
 	. = ..()
+	if(!.)
+		return
 	if(xeno_owner.crest_defense && xeno_owner.plasma_stored < (ability_cost * 2))
 		to_chat(xeno_owner, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - xeno_owner.plasma_stored] more plasma!"))
 		return FALSE
@@ -33,12 +36,12 @@
 /datum/action/ability/xeno_action/tail_sweep/action_activate()
 	GLOB.round_statistics.defender_tail_sweeps++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
-	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] sweeps its tail in a wide circle!"), \
+	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] sweeps [xeno_owner.p_their()] tail in a wide circle!"), \
 	span_xenowarning("We sweep our tail in a wide circle!"))
 
 	xeno_owner.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
 	xeno_owner.spin(4, 1)
-	xeno_owner.enable_throw_parry(0.6 SECONDS)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
@@ -49,12 +52,12 @@
 			continue
 		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/datum, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
-		var/damage = xeno_owner.xeno_caste.melee_damage
+		var/damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
 		var/affecting = H.get_limb(ran_zone(null, 0))
 		if(!affecting) //Still nothing??
 			affecting = H.get_limb("chest") //Gotta have a torso?!
 		if(damage_multiplier > 0)
-			H.apply_damage(damage * damage_multiplier, damage_type, updating_health = TRUE)
+			H.apply_damage(damage * damage_multiplier, damage_type, updating_health = TRUE, attacker = owner)
 		if(knockback_distance >= 1)
 			H.knockback(xeno_owner, knockback_distance, 4)
 		if(stagger_duration)
@@ -101,6 +104,7 @@
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
+
 	cooldown_duration = 10 SECONDS
 	ability_cost = 80
 	use_state_flags = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
@@ -176,6 +180,7 @@
 	action_icon_state = "crest_defense"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
+
 	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
 	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
@@ -470,6 +475,7 @@
 	action_icon_state = "centrifugal_force"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
+
 	ability_cost = 15
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_duration = 30 SECONDS
@@ -486,6 +492,8 @@
 	if(spin_loop_timer)
 		return TRUE
 	. = ..()
+	if(!.)
+		return
 	if(xeno_owner.crest_defense && xeno_owner.plasma_stored < (ability_cost * 2))
 		to_chat(xeno_owner, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - xeno_owner.plasma_stored] more plasma!"))
 		return FALSE
@@ -496,13 +504,13 @@
 		return
 	if(!can_use_action(TRUE))
 		return fail_activate()
-	if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
-	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
+	owner.visible_message(span_xenowarning("\The [owner] starts swinging [owner.p_their()] tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
 	do_spin() //kick it off
 
-	spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), 5, TIMER_STOPPABLE)
+	spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), DEFENDER_REFLECT_TIME, TIMER_STOPPABLE)
 	add_cooldown()
 	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), PROC_REF(stop_spin))
 
@@ -510,7 +518,7 @@
 /datum/action/ability/xeno_action/centrifugal_force/proc/do_spin()
 	spin_loop_timer = null
 	xeno_owner.spin(4, 1)
-	xeno_owner.enable_throw_parry(0.6 SECONDS)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 	playsound(xeno_owner, pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, xeno_owner))
@@ -523,8 +531,8 @@
 		if(!affecting)
 			affecting = slapped.get_limb("chest")
 		slapped.knockback(xeno_owner, 1, 4)
-		slapped.apply_damage(damage, BRUTE, affecting, MELEE)
-		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
+		slapped.apply_damage(damage, BRUTE, affecting, MELEE, attacker = owner)
+		slapped.apply_damage(damage, STAMINA, updating_health = TRUE, attacker = owner)
 		slapped.Paralyze(0.3 SECONDS)
 		shake_camera(slapped, 2, 1)
 

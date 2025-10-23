@@ -11,7 +11,7 @@
 /datum/loadout_item/suit_store/main_gun/som_veteran/standard_rifle
 	name = "V-31"
 	desc = "Equipped with a red dot sight, extended barrel, vertical grip and integrated micro rail launcher. Also comes with light armor piercing ammunition. The V-31 is the principal ballistic weapon for the SOM. \
-	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many TGMC equivilents. \
+	It has good mobility and handling and a good rate of fire, but tends to favour closer range fighting compared to many NTF equivalents. \
 	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
 	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
 	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."

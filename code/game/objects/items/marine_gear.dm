@@ -20,7 +20,7 @@
 
 
 /obj/item/storage/box/tgmc_mre
-	name = "\improper TGMC meal ready to eat"
+	name = "\improper NTC meal ready to eat"
 	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\n\nOn the box is a picture of a shouting Squad Leader. \n\"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
 	icon_state = "mre1"
 
@@ -44,7 +44,7 @@
 		new picked(src)
 
 /obj/item/reagent_containers/food/snacks/protein_pack
-	name = "TGMC protein bar"
+	name = "NTC protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, comes in many flavors"
 	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "yummers"
@@ -57,26 +57,26 @@
 	///list of protein bar types
 	var/static/list/flavor_list = list(
 		FACTION_TERRAGOV = list(
-			list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",list("nutraloafed food" = 1)),
-			list("mint TGMC protein bar","A stale old protein bar, with an almost minty freshness to it, but not fresh enough.","#61b36e",list("minty protein" = 1)),
-			list("grape TGMC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",list("artifical grape" = 1)),
-			list("mystery TGMC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
-			list("dark chocolate TGMC protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",list("bitter dark chocolate" = 1)),
-			list("milk chocolate TGMC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
-			list("raspberry lime TGMC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066",list("sour raspberry and lime" = 1)),
-			list("chicken TGMC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list("powdered chicken" = 1)),
-			list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1)),
-			list("cement TGMC protein bar", "A gray bar that's allegedly made of cement. It seems to have hardened up. Perhaps it'll make you harden up, too.", "#B2B2B2", list("cement" = 1))
+			list("stale NTC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",list("nutraloafed food" = 1)),
+			list("mint NTC protein bar","A stale old protein bar, with an almost minty freshness to it, but not fresh enough.","#61b36e",list("minty protein" = 1)),
+			list("grape NTC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",list("artifical grape" = 1)),
+			list("mystery NTC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
+			list("dark chocolate NTC protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",list("bitter dark chocolate" = 1)),
+			list("milk chocolate NTC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
+			list("raspberry lime NTC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066",list("sour raspberry and lime" = 1)),
+			list("chicken NTC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list("powdered chicken" = 1)),
+			list("blueberry NTC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1)),
+			list("cement NTC protein bar", "A gray bar that's allegedly made of cement. It seems to have hardened up. Perhaps it'll make you harden up, too.", "#B2B2B2", list("cement" = 1))
 		),
 		FACTION_SOM = list(
 			list("stale SOM protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. Its supposedly made with real Martian soil for that patriotic flavour. It has a grainy, metallic taste.","#f37d43",list("rust" = 1)),
-			list("salted SOM protein bar","A satisfying protein bar, although quite salty. Made with real TGMC tears.","#86a9b8",list("salt" = 1)),
+			list("salted SOM protein bar","A satisfying protein bar, although quite salty. Made with real NTC tears.","#86a9b8",list("salt" = 1)),
 			list("grape SOM protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",list("artifical grape" = 1)),
-			list("mystery SOM protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
+			list("mystery SOM protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for Squad Operatives. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
 			list("dark chocolate SOM protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",list("bitter dark chocolate" = 1)),
 			list("milk chocolate SOM protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
 			list("beef SOM protein bar","A beef flavored protein bar, doesn't taste like any cow you've ever tried.","#ff0066",list("meat substitute" = 1)),
-			list("meat SOM protein bar","A surprisingly tasty protein bar made from an unspecified meat. Rumors claiming they're made from reconstituted TGMC personnel have been widely dismissed.","#a7576b",list("pork" = 1)),
+			list("meat SOM protein bar","A surprisingly tasty protein bar made from an unspecified meat. Rumors claiming they're made from reconstituted NTC personnel have been widely dismissed.","#a7576b",list("pork" = 1)),
 			list("chicken SOM protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list("powdered chicken" = 1)),
 			list("blueberry SOM protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1))
 		),
@@ -100,7 +100,7 @@
 	faction = FACTION_SOM
 
 /obj/item/reagent_containers/food/snacks/req_pizza
-	name = "\improper TGMC PFC Jim pizza"
+	name = "\improper NTC PFC Jim pizza"
 	desc = "You think that is a pizza. You definitely shouldn't eat this, but you can sell this for a PROFIT! While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it sat in the ASRS for a while? Oh well, time to sell it to some poor customer in space."
 	icon = 'icons/obj/items/food/pizzaspaghetti.dmi'
 	icon_state = "mushroompizza"
@@ -109,13 +109,13 @@
 
 /obj/item/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
-	//trash = /obj/item/trash/TGMCtray
+	//trash = /obj/item/trash/NTCtray
 	trash = null
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/food/mre.dmi'
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1
-	name = "\improper TGMC Prepared Meal (banana bread)"
+	name = "\improper NTC Prepared Meal (banana bread)"
 	desc = "A slice of banana bread with cream pie spread. A slippery combination."
 	icon_state = "MREa"
 	filling_color = "#ED1169"
@@ -124,7 +124,7 @@
 	tastes = list("something funny" = 2, "bread" = 4)
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal2
-	name = "\improper TGMC Prepared Meal (pork)"
+	name = "\improper NTC Prepared Meal (pork)"
 	desc = "It's hard to go wrong with rice and pork."
 	icon_state = "MREb"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
@@ -132,7 +132,7 @@
 	tastes = list("rice and pork" = 1)
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal3
-	name = "\improper TGMC Prepared Meal (spag)"
+	name = "\improper NTC Prepared Meal (spag)"
 	desc = "That's-a spicy meat-aball!"
 	icon_state = "MREc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
@@ -140,7 +140,7 @@
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4
-	name = "\improper TGMC Prepared Meal (pizza)"
+	name = "\improper NTC Prepared Meal (pizza)"
 	desc = "Aubergine, carrot and sweetcorn, all on a bed of cheese and tomato sauce."
 	icon_state = "MREd"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
@@ -148,7 +148,7 @@
 	bitesize = 1
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5
-	name = "\improper TGMC Prepared Meal (monkey)"
+	name = "\improper NTC Prepared Meal (monkey)"
 	desc = "Sopa de Macaco, Uma Delicia."
 	icon_state = "MREe"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
@@ -156,7 +156,7 @@
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal6
-	name = "\improper TGMC Prepared Meal (tofu)"
+	name = "\improper NTC Prepared Meal (tofu)"
 	desc = "BBQ sticky tofu in a bun, hand crafted by Hungarian children who believe in a galaxy with soldiers that kill people, not animals."
 	icon_state = "MREf"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
@@ -214,8 +214,8 @@
 	info = "In loving memory of Cub Johnson."
 
 /obj/item/storage/box/nt_mre
-	name = "\improper Nanotrasen brand MRE"
-	desc = "A prepackaged, long-lasting food box from Nanotrasen Industries.\nOn the box is the Nanotrasen logo, with a slogan surrounding it: \n<b>NANOTRASEN. BUILDING BETTER LUNCHES</b>"
+	name = "\improper Ninetails brand MRE"
+	desc = "A prepackaged, long-lasting food box from Ninetails Industries.\nOn the box is the Ninetails logo, with a slogan surrounding it: \n<b>NINETAILS. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
 	w_class = WEIGHT_CLASS_BULKY
 

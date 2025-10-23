@@ -227,7 +227,8 @@
 	update_icon_state()
 	rope.update_icon_state()
 	flick("rope_deploy", rope)
-	SSminimaps.add_marker(rope, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "rappel", MINIMAP_BLIPS_LAYER))
+	var/minimapflag = usr ? (GLOB.faction_to_minimap_flag[usr.faction] || MINIMAP_FLAG_MARINE) : MINIMAP_FLAG_MARINE
+	SSminimaps.add_marker(rope, minimapflag, image('icons/UI_icons/map_blips.dmi', null, "rappel, MINIMAP_BLIPS_LAYER"))
 	var/area/rappel_area = get_area(target)
 	if(!(rappel_area.area_flags & MARINE_BASE))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ)
@@ -356,7 +357,7 @@
 	light_system = STATIC_LIGHT
 	light_power = 0.5
 	light_range = 2
-	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE | DROPSHIP_IMMUNE //Things might implode if we allow these
+	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE | DROPSHIP_IMMUNE | BANISH_IMMUNE //Things might implode if we allow these
 	///The rappel system this rope originates from
 	var/obj/structure/dropship_equipment/shuttle/rappel_system/parent_system
 

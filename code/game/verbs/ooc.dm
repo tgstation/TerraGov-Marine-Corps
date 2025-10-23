@@ -1,12 +1,7 @@
-/client/verb/ooc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "OOC \"text\"") as null|text
-	ooc(message)
-
-
-/client/verb/ooc(msg as text)
+/client/verb/ooc(msg as null)
 	set name = "OOC"
 	set category = "OOC.Communication"
+	set desc = "Send an out-of-character message to all players.  Shows your key(byond username) and not your character's name."
 
 	if(!mob)
 		return
@@ -14,7 +9,10 @@
 		to_chat(src, "Guests may not use OOC.")
 		return
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all players.  Shows your key(byond username) and not your character's name.", "OOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -129,19 +127,10 @@
 		else
 			to_chat(recv_client, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
 
-
-/client/verb/xooc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "XOOC \"text\"") as null|text
-	xooc(message)
-
-
-/client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
+/client/verb/xooc(msg as null) // Same as MOOC, but for xenos.
 	set name = "XOOC"
 	set category = "OOC.Communication"
-
-	if(!msg)
-		return
+	set desc = "Send an out-of-character message to all xenos. Shows your character's name and not your key (byond username)."
 
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
@@ -157,7 +146,10 @@
 		to_chat(src, span_warning("You must be a xeno to use XOOC."))
 		return
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all xenos. Shows your character's name and not your key (byond username).", "XOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -238,16 +230,10 @@
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#a330a7'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-
-/client/verb/mooc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "MOOC \"text\"") as null|text
-	mooc(message)
-
-
-/client/verb/mooc(msg as text) // Same as XOOC, but for humans.
+/client/verb/mooc(msg as null) // Same as XOOC, but for humans.
 	set name = "MOOC"
 	set category = "OOC.Communication"
+	set desc = "Send an out-of-character message to all humans. Shows your character's name and not your key (byond username)."
 
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
@@ -263,7 +249,10 @@
 		to_chat(src, span_warning("You must be a human to use MOOC."))
 		return
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all humans. Shows your character's name and not your key (byond username).", "MOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -345,31 +334,133 @@
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#ca6200'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-/client/verb/looc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "LOOC \"text\"") as null|text
-	looc(message)
-
-/client/verb/looc(msg as text)
-	set name = "LOOC"
+/client/verb/xmooc(msg as null) // Combined XOOC & MOOC
+	set name = "XMOOC"
 	set category = "OOC.Communication"
+	set desc = "Send an out-of-character message to all humans and xenos. Shows your character's name and not your key (byond username)."
+
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
+
+	if(!mob)
+		return
+	if(IsGuestKey(key))
+		to_chat(src, "Guests may not use XMOOC.")
+		return
+	if(mob.stat == DEAD && !admin)
+		to_chat(src, span_warning("You must be alive to use XMOOC."))
+		return
+	if(!((mob in GLOB.human_mob_list) || (mob in GLOB.xeno_mob_list) || (mob in GLOB.ai_list)) && !admin)
+		to_chat(src, span_warning("You must be a human or xeno to use XMOOC."))
+		return
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all humans and xenos. Shows your character's name and not your key (byond username).", "XMOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
+	if(NON_ASCII_CHECK(msg))
+		return
+
+	msg = emoji_parse(msg)
+
+	if(!(prefs.toggles_chat & CHAT_OOC))
+		to_chat(src, span_warning("You have OOC muted."))
+		return
+
+	if(!check_rights(R_ADMIN, FALSE))
+		if(!GLOB.ooc_allowed)
+			to_chat(src, span_warning("OOC is globally muted"))
+			return
+		if(prefs.muted & MUTE_OOC)
+			to_chat(src, span_warning("You cannot use OOC (muted)."))
+			return
+		if(handle_spam_prevention(msg, MUTE_OOC))
+			return
+		if(findtext(msg, "byond://"))
+			to_chat(src, span_danger("Advertising other servers is not allowed."))
+			log_admin_private("[key_name(usr)] has attempted to advertise in OOC: [msg]")
+			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
+			return
+
+	if(is_banned_from(ckey, "OOC"))
+		to_chat(src, span_warning("You have been banned from OOC."))
+		return
+
+	var/list/filter_result = is_ooc_filtered(msg)
+	if(!CAN_BYPASS_FILTER(usr) && filter_result)
+		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		log_filter("XMOOC", msg, filter_result)
+		return
+
+	// Protect filter bypassers from themselves.
+	// Demote hard filter results to soft filter results if necessary due to the danger of accidentally speaking in OOC.
+	var/list/soft_filter_result = filter_result || is_soft_ooc_filtered(msg)
+
+	if(soft_filter_result)
+		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+
+	mob.log_talk(msg, LOG_MOOC)
+
+	// Send chat message to non-admins
+	for(var/client/recv_client AS in GLOB.clients)
+		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
+			continue
+		if(!(recv_client.mob in GLOB.human_mob_list) && !(recv_client.mob in GLOB.xeno_mob_list) && !(recv_client.mob in GLOB.observer_list) && !(recv_client.mob in GLOB.ai_list) || check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE)) // If the client is a human, a xeno, an observer, and not staff.
+			continue
+
+		// If the verb caller is an admin and not a human mob, use their key, or if they're stealthmode, hide their key instead.
+		var/display_name = mob.name
+		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
+		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
+			display_name = display_key
+
+		var/avoid_highlight = recv_client == src
+		to_chat(recv_client, "<font color='#c7594B'>[span_ooc("<span class='prefix'>XMOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+
+	// Send chat message to admins
+	for(var/client/recv_staff AS in GLOB.admins)
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE)) // Check if the client is still staff.
+			continue
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
+			continue
+		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
+			continue
+
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
+
+		var/avoid_highlight = recv_staff == src
+		to_chat(recv_staff, "<font color='#c7594B'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XMOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+
+/client/verb/looc(msg as null)
+	set name = "LOOC"
+	set category = "OOC.Communication"
+	set desc = "Send an out-of-character message to all characters suffiently close to your own. Shows your character's name and not your key (byond username)."
+
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
 
+/*
 	if(mob.stat == DEAD && !admin)
 		to_chat(src, span_warning("You must be alive to use LOOC."))
 		return
+*/
 
 	if(IsGuestKey(key))
 		to_chat(src, "Guests may not use LOOC.")
 		return
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		msg = tgui_input_text(usr, "Send an out-of-character message to all characters suffiently close to your own. Shows your character's name and not your key (byond username).", "LOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -423,10 +514,11 @@
 			to_chat(in_range_mob, message)
 	else
 		message = span_looc("[span_prefix("LOOC:")] [mob.name]: [span_message("[msg]")]")
-		for(var/mob/in_range_mob in range(mob))
-			to_chat(in_range_mob, message)
-			if(in_range_mob.client?.prefs?.chat_on_map)
-				in_range_mob.create_chat_message(mob, raw_message = "(LOOC: [msg])", runechat_flags = OOC_MESSAGE)
+		var/turf/speaker_turf = get_turf(mob)
+		for(var/mob/listener in GLOB.player_list)
+			var/turf/listener_turf = get_turf(listener)
+			if((listener in viewers(speaker_turf)) || (speaker_turf in view(listener_turf))) //can't see loocs through walls unless you can see through walls.  But being blind doesn't stop you seeing loocs.
+				to_chat(listener, message)
 
 	for(var/client/recv_staff AS in GLOB.admins)
 		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE))

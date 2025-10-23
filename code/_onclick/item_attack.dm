@@ -81,6 +81,9 @@
 /obj/item/proc/attack_obj(obj/target_object, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, target_object, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
+	if(isxeno(user))
+		to_chat(user, span_warning("We stare at \the [src] cluelessly."))
+		return FALSE
 	if(item_flags & NOBLUDGEON)
 		return
 	user.changeNext_move(attack_speed)
@@ -144,14 +147,14 @@
 
 	switch(attacking_item.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
+			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration, user)
 			if(is_sharp(attacking_item))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, FIRE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration))
+			if(apply_damage(power, BURN, user.zone_selected, FIRE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration, user))
 				attack_message_local = "[attack_message_local] It burns!"
 		if(STAMINA)
-			apply_damage(power, STAMINA, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
+			apply_damage(power, STAMINA, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration, user)
 
 	visible_message(span_danger("[attack_message]"),
 		span_userdanger("[attack_message_local]"), null, COMBAT_MESSAGE_RANGE)
@@ -163,7 +166,7 @@
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
 		user.ff_check(power, src)
-		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [attacking_item] in [AREACOORD(T)] (RAW DMG: [power]).")
+		log_ffattack("[logdetails(user)] attacked [logdetails(src)] with \the [logdetails(attacking_item)] (RAW DMG: [power]).")
 		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [attacking_item] in [ADMIN_VERBOSEJMP(T)] (RAW DMG: [power]).")
 
 	return TRUE
@@ -197,6 +200,10 @@
 
 	if(M.can_be_operated_on() && do_surgery(M, user, src)) //Checks if mob is lying down on table for surgery
 		return TRUE
+
+	if(isxeno(user))
+		to_chat(user, span_warning("We stare at \the [src] cluelessly."))
+		return FALSE
 
 	if(item_flags & NOBLUDGEON)
 		return FALSE
@@ -335,6 +342,10 @@
 	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK_ALTERNATE, M, src) & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
 
+	if(isxeno(user))
+		to_chat(user, span_warning("We stare at \the [src] cluelessly."))
+		return FALSE
+
 	if(item_flags & NOBLUDGEON)
 		return FALSE
 
@@ -374,9 +385,9 @@
 
 	switch(I.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration)
+			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration, user)
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, FIRE, I.sharp, I.edge, FALSE, I.penetration))
+			if(apply_damage(power, BURN, user.zone_selected, FIRE, I.sharp, I.edge, FALSE, I.penetration, user))
 				attack_message_local = "[attack_message_local] It burns!"
 
 	visible_message(span_danger("[attack_message]"),
@@ -389,7 +400,7 @@
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
 		user.ff_check(power, src)
-		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [I] in [AREACOORD(T)] (RAW DMG: [power]).")
+		log_ffattack("[logdetails(user)] attacked [logdetails(src)] with \the [logdetails(I)] (RAW DMG: [power]).")
 		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [I] in [ADMIN_VERBOSEJMP(T)] (RAW DMG: [power]).")
 
 	return TRUE

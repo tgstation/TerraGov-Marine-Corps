@@ -1,6 +1,6 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest, /obj/structure/bed/nest/wall, /turf/closed/wall/resin/membrane, /obj/structure/bed/nest/advanced))) //For sticky/acid spit
 
 /**
  * # The base ammo datum
@@ -91,6 +91,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/fire_burst_damage = 10
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
+	///Plasma drained from xenos on hit
+	var/plasma_drain = 0
 
 /datum/ammo/proc/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return
@@ -192,7 +194,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			continue
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_userdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
-		victim.apply_damage(proj.damage * airburst_multiplier, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE)
+		victim.apply_damage(proj.damage * airburst_multiplier, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE, attacker = proj.firer)
 
 ///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
 /datum/ammo/proc/deflagrate(atom/target, atom/movable/projectile/proj)
@@ -219,7 +221,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
 				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_userdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
-		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE)
+		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE, attacker = proj.firer)
 
 		staggerstun(victim, proj, 30, stagger = 0.5 SECONDS, slowdown = 0.5)
 		victim.adjust_fire_stacks(5)
@@ -356,4 +358,3 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 10
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 	barricade_clear_distance = 2
-

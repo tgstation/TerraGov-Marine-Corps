@@ -54,7 +54,7 @@
 	if(broken == 2 && isscrewdriver(I))
 		balloon_alert_to_viewers("fixing the microwave...")
 
-		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		balloon_alert_to_viewers("partially fixed")
@@ -63,7 +63,7 @@
 	else if(broken == 1 && iswrench(I))
 		balloon_alert_to_viewers("fixing the microwave...")
 
-		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		balloon_alert_to_viewers("fully fixed")
@@ -83,7 +83,7 @@
 
 		balloon_alert_to_viewers("starts cleaning...")
 
-		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		dirty = 0
@@ -145,7 +145,7 @@
 		to_chat(user, span_warning("They're too big to fit!"))
 		return
 	user.visible_message(span_danger("[user] starts to force [grabbed_mob] into [src]!"), span_notice("You start to force [grabbed_mob] into [src]!"))
-	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(microwave_victim), grabbed_mob)))
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(microwave_victim), grabbed_mob, user)))
 		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
 		return
 
@@ -154,8 +154,8 @@
 	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
 	return TRUE
 
-/obj/machinery/microwave/proc/microwave_victim(mob/living/victim)
-	victim.apply_damage(3, BURN, "head", ENERGY, updating_health = TRUE, penetration = 20)
+/obj/machinery/microwave/proc/microwave_victim(mob/living/victim, mob/living/user)
+	victim.apply_damage(3, BURN, "head", ENERGY, updating_health = TRUE, penetration = 20, attacker = user)
 	victim.jitter(5)
 	if(prob(10))
 		victim.emote("scream")

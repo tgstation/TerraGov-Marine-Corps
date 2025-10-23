@@ -48,6 +48,7 @@
 	action_icon_state = "petrify"
 	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -73,7 +74,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
 
-	if(!do_after(owner, PETRIFY_WINDUP_TIME, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 7, TIMER_CLIENT_TIME)
 		finish_charging()
@@ -159,6 +160,7 @@
 	action_icon_state = "off_guard"
 	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
+
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -215,6 +217,7 @@
 	action_icon_state = "shattering_roar"
 	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
+
 	ability_cost = 225
 	cooldown_duration = 45 SECONDS
 	target_flags = ABILITY_TURF_TARGET
@@ -235,7 +238,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT) //Vulnerable while charging up
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 
-	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		owner.balloon_alert(owner, "interrupted!")
 		finish_charging()
 		add_cooldown(10 SECONDS)
@@ -280,8 +283,8 @@
 			var/mob/living/carbon/carbon_victim = victim
 			if(carbon_victim.stat == DEAD || isxeno(carbon_victim))
 				continue
-			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE)
-			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA)
+			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE, attacker = owner)
+			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA, attacker = owner)
 			carbon_victim.adjust_stagger(6 SECONDS * severity)
 			carbon_victim.add_slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
@@ -418,7 +421,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 
-	if(!do_after(owner, ZEROFORM_CHARGE_TIME, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
@@ -512,7 +515,8 @@
 	action_icon_state = "stomp"
 	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
-	ability_cost = 900
+
+	ability_cost = 900 //uses all an young kings plasma
 	cooldown_duration = 10 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(

@@ -169,6 +169,7 @@
 	item_flags = TWOHANDED
 	force_activated = 75
 	attack_verb = list("attacks", "chops", "cleaves", "tears", "cuts")
+	attack_speed = 13
 
 /obj/item/weapon/twohanded/fireaxe/wield(mob/user)
 	. = ..()
@@ -198,7 +199,6 @@
 	force_activated = 80
 	penetration = 35
 	equip_slot_flags = ITEM_SLOT_BACK
-	attack_speed = 15
 	///Special attack action granted to users with the right trait
 	var/datum/action/ability/activable/weapon_skill/axe_sweep/special_attack
 
@@ -270,7 +270,7 @@
 		var/mob/living/carbon/human/human_victim = victim
 		if(human_victim.lying_angle)
 			continue
-		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration, attacker = owner)
 		human_victim.knockback(owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 		human_victim.adjust_stagger(1 SECONDS)
 		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
@@ -557,7 +557,7 @@
 		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 		return ..()
 
-	M.apply_damage(additional_damage, BRUTE, user.zone_selected, updating_health = TRUE)
+	M.apply_damage(additional_damage, BRUTE, user.zone_selected, updating_health = TRUE, attacker = user)
 	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("[user]'s rocket sledge smashes you!"))
 
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used * 2)

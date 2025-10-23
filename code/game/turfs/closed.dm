@@ -53,7 +53,7 @@
 				minimap_color = MINIMAP_SOLID
 			overlays += rock_side
 
-/turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(isxenobehemoth(xeno_attacker))
 		xeno_attacker.do_attack_animation(src)
@@ -81,7 +81,7 @@
 		return FALSE
 	if(!plasmacutter.start_cut(user, name, src))
 		return FALSE
-	if(!do_after(user, PLASMACUTTER_CUT_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, plasmacutter.calc_delay(user), NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 
 	plasmacutter.cut_apart(user, name, src)
@@ -1168,3 +1168,12 @@
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
+
+/turf/closed/banish_space //Brazil
+	plane = PLANE_SPACE
+	layer = SPACE_LAYER
+	icon = 'icons/turf/space.dmi'
+	name = "phantom zone"
+	icon_state = "0"
+	can_bloody = FALSE
+	light_power = 0.25
