@@ -726,6 +726,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"aVg" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/lv624/lazarus/armory)
 "aWb" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -2195,7 +2199,6 @@
 "cQZ" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical,
-/obj/item/storage/holster/belt/pistol/g22/tranq,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
@@ -10610,8 +10613,6 @@
 /obj/item/paper/jobs{
 	info = "We were sent here by the nearby hive's queen to assist the lone masters breed a new hive, we oughta find the xenomorph and assist it kidnapping colonists, Best keep things quiet, lest back up arrives. We need to first confirm this is the place by finding the lone xenomorphs before getting to work."
 	},
-/obj/item/explosive/grenade/smokebomb/sleep,
-/obj/item/explosive/grenade/smokebomb/sleep,
 /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
 /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
 /turf/open/floor/mainship/mono,
@@ -12998,6 +12999,7 @@
 /obj/structure/table/black,
 /obj/item/tool/surgery/scalpel/laser3,
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/lv624/lazarus/armory)
 "rqU" = (
@@ -34866,7 +34868,7 @@ npt
 npt
 npt
 hKj
-mCl
+aVg
 mCl
 mCl
 mCl

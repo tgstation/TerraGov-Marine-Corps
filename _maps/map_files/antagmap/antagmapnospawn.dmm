@@ -761,14 +761,6 @@
 /obj/item/weapon/butterfly/switchblade,
 /obj/item/weapon/butterfly/switchblade,
 /obj/structure/closet/secure_closet/guncabinet,
-/obj/item/weapon/gun/rifle/type71,
-/obj/item/weapon/gun/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
@@ -2062,31 +2054,8 @@
 /area/antag_ship/vsd/engi)
 "lN" = (
 /obj/structure/rack,
-/obj/item/clothing/head/helmet/gimmick,
-/obj/item/clothing/head/helmet/gimmick,
-/obj/item/clothing/head/helmet/gimmick,
-/obj/item/clothing/head/helmet/marine,
-/obj/item/clothing/head/helmet/marine,
-/obj/item/clothing/head/helmet/marine,
-/obj/item/clothing/head/helmet/marine,
-/obj/item/clothing/head/helmet/riot,
 /obj/item/facepaint/green,
 /obj/item/facepaint/brown,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/explosive/grenade/incendiary/molotov,
-/obj/item/explosive/grenade/incendiary/molotov,
-/obj/item/explosive/grenade/incendiary/molotov,
-/obj/item/explosive/grenade/incendiary/molotov,
-/obj/item/explosive/grenade/stick,
-/obj/item/explosive/grenade/stick,
-/obj/item/explosive/grenade/stick,
-/obj/item/explosive/grenade/stick,
-/obj/item/explosive/grenade/stick,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "lO" = (
@@ -3089,11 +3058,6 @@
 /obj/item/armor_module/storage/uniform/brown_vest,
 /obj/item/armor_module/storage/uniform/white_vest,
 /obj/item/armor_module/storage/uniform/white_vest,
-/obj/item/storage/backpack/lightpack,
-/obj/item/storage/backpack/lightpack,
-/obj/item/storage/backpack/lightpack,
-/obj/item/storage/backpack/lightpack,
-/obj/item/storage/backpack/lightpack,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "qg" = (
@@ -3752,13 +3716,6 @@
 /area/antag_ship/som/barracks)
 "tV" = (
 /obj/effect/ai_node,
-/obj/item/explosive/grenade/smokebomb/sleep,
-/obj/item/explosive/grenade/smokebomb/sleep,
-/obj/item/explosive/grenade/smokebomb/sleep,
-/obj/item/explosive/grenade/smokebomb/sleep,
-/obj/item/explosive/grenade/smokebomb/sleep,
-/obj/item/explosive/grenade/smokebomb/sleep,
-/obj/item/explosive/grenade/smokebomb/sleep,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "tY" = (
@@ -3954,10 +3911,6 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/port/spaceport)
 "va" = (
-/obj/item/storage/holster/belt/korovin/tranq,
-/obj/item/storage/holster/belt/pistol/g22/tranq,
-/obj/item/storage/box/stuns,
-/obj/item/storage/box/stuns,
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/zipcuffs,
 /turf/open/floor/plating/asteroidfloor,
@@ -6367,6 +6320,11 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/clf_base/techroom)
+"HP" = (
+/obj/structure/bed/nest,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/prison)
 "HS" = (
 /obj/structure/prop/mainship/suit_storage_prop,
 /obj/effect/turf_decal/warning_stripes/stripedsquare,
@@ -6762,8 +6720,6 @@
 /obj/item/ammo_magazine/shotgun/beanbag,
 /obj/structure/rack,
 /obj/item/storage/belt/shotgun/icc,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/weapon/gun/shotgun/combat,
 /obj/item/ammo_magazine/shotgun/beanbag,
 /obj/item/ammo_magazine/shotgun/beanbag,
 /turf/open/floor/plating/asteroidfloor,
@@ -7892,19 +7848,6 @@
 /area/antag_ship/clf_base/lounge)
 "PN" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/mpi_km/black,
-/obj/item/ammo_magazine/rifle/mpi_km/black,
-/obj/item/ammo_magazine/rifle/mpi_km/black,
-/obj/item/ammo_magazine/rifle/mpi_km/black,
-/obj/item/ammo_magazine/rifle/mpi_km/black,
-/obj/item/ammo_magazine/rifle/mpi_km/extended,
-/obj/item/ammo_magazine/rifle/mpi_km/extended,
-/obj/item/ammo_magazine/rifle/mpi_km/extended,
-/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
-/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
-/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
-/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
-/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
@@ -20620,7 +20563,7 @@ tT
 aF
 aF
 oV
-oV
+HP
 oV
 AE
 oV
