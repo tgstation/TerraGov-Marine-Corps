@@ -14,6 +14,8 @@
 	var/medical_rating = AI_MED_DEFAULT
 	///To what level they will handle engineering tasks like repairs
 	var/engineer_rating = AI_ENGIE_DEFAULT
+	///List of things the NPC will try to interact with, such as gear to pick up
+	var/list/atom/atoms_of_interest = list()
 	///Inventory datum so the mob_parent can manage its inventory
 	var/datum/managed_inventory/mob_inventory
 	///Chat lines when moving to a new target
@@ -40,12 +42,14 @@
 /datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	. = ..()
 	mob_inventory = new(mob_parent)
+	RegisterSignal(mob_parent, COMSIG_MOB_DROPPING_ITEM, PROC_REF(on_item_unequip)) //we do this on New because we want to know about items lost when dead
 
 /datum/ai_behavior/human/Destroy(force, ...)
 	gun = null
 	melee_weapon = null
 	hazard_list = null
 	heal_list = null
+	atoms_of_interest = null
 	QDEL_NULL(mob_inventory)
 	return ..()
 
@@ -129,9 +133,18 @@
 			action.action_activate()
 
 	if(human_ai_behavior_flags & HUMAN_AI_USE_WEAPONS)
-		if(grenade_process())
-			return
-		weapon_process()
+		if(!grenade_process())
+			weapon_process()
+
+	if(!combat_target && !interact_target && length(atoms_of_interest) && isturf(atoms_of_interest[1].loc))
+		for(var/atom/atom AS in atoms_of_interest)
+			if(atom.z != mob_parent.z)
+				continue
+			if(!isturf(atoms_of_interest[1].loc))
+				return
+			if(get_dist(mob_parent, atom) > AI_ESCORTING_BREAK_DISTANCE)
+				continue
+			set_interact_target(atom)
 
 /datum/ai_behavior/human/should_hold()
 	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION && COOLDOWN_FINISHED(src, ai_heal_after_dam_cooldown)) //Don't just stand there when taking damage
@@ -141,6 +154,8 @@
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_CLIMBING))
 		return TRUE
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_SHRAP_REMOVING))
+		return TRUE
+	if(HAS_TRAIT(mob_parent, TRAIT_IS_EQUIPPING_ITEM))
 		return TRUE
 	if(mob_parent.pulledby?.faction == mob_parent.faction)
 		return TRUE //lets players wrangle NPC's
@@ -184,8 +199,7 @@
 		return
 	if((current_action == MOVING_TO_ATOM) && (atom_to_walk_to == combat_target))
 		return //we generally want to keep fighting
-	var/mob/living/living_parent = mob_parent
-	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && !next_target && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth) && check_hazards())
+	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && !next_target && (mob_parent.health <= minimum_health * 2 * mob_parent.maxHealth) && check_hazards())
 		INVOKE_ASYNC(src, PROC_REF(try_heal))
 
 /datum/ai_behavior/human/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
@@ -217,6 +231,7 @@
 /datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
+	remove_atom_of_interest(old_target)
 
 	if(QDELETED(old_target)) //if they're deleted we need to ensure engineering and medical stuff is cleaned up properly
 		if(human_ai_state_flags & HUMAN_AI_HEALING)
@@ -254,56 +269,6 @@
 	if(m_intent == MOVE_INTENT_WALK)
 		COOLDOWN_START(src, ai_run_cooldown, 10 SECONDS) //give time for stam to regen
 
-///Tries to interact with something, usually nonharmfully
-/datum/ai_behavior/human/try_interact(atom/interactee)
-	if(ishuman(interactee))
-		var/mob/living/carbon/human/human = interactee
-		if(mob_parent.faction != human.faction)
-			return
-		INVOKE_ASYNC(src, PROC_REF(try_heal_other), human)
-		return TRUE
-	INVOKE_ASYNC(interactee, TYPE_PROC_REF(/atom, do_ai_interact), mob_parent, src)
-	return TRUE
-
-///Makes the mob attempt to interact with a specified atom
-/datum/ai_behavior/human/proc/interaction_designated(datum/source, atom/target)
-	SIGNAL_HANDLER
-	if(target?.z != mob_parent.z)
-		return
-	if(get_dist(target, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
-		return
-	if(isturf(target))
-		if(istype(target, /turf/closed/interior/tank/door))
-			set_interact_target(target) //todo: Other option might be redundant?
-			try_speak(pick(receive_order_chat))
-			return
-		set_atom_to_walk_to(target)
-		return
-	if(!ismovable(target))
-		return //the fuck did you click?
-	//todo: AM proc to check if we should react at all
-	var/atom/movable/movable_target = target
-	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
-		set_interact_target(movable_target)
-		try_speak(pick(receive_order_chat))
-		return
-	if(movable_target.faction != mob_parent.faction)
-		set_combat_target(movable_target)
-		return
-	if(isliving(movable_target))
-		var/mob/living/living_target = target
-		if(!living_target.stat)
-			set_escorted_atom(null, living_target)
-	set_interact_target(movable_target)
-	try_speak(pick(receive_order_chat))
-
-///Attempts to pickup an item
-/datum/ai_behavior/human/proc/pick_up_item(obj/item/new_item)
-	store_hands()
-	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item())
-		return
-	mob_parent.UnarmedAttack(new_item, TRUE)
-
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)
 	if(mob_parent.incapacitated())
@@ -311,7 +276,8 @@
 	if(!COOLDOWN_FINISHED(src, ai_chat_cooldown))
 		return
 	//maybe radio arg in the future for some things
-	mob_parent.say(message)
+	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), message)
+	//mob_parent.say(message)
 	COOLDOWN_START(src, ai_chat_cooldown, cooldown)
 
 ///Reacts if the mob is below the min health threshold
@@ -339,8 +305,7 @@
 	if((human_ai_state_flags & HUMAN_AI_BUSY_ACTION))
 		return
 
-	var/mob/living/living_mob = mob_parent
-	if(living_mob.health - damage > minimum_health * living_mob.maxHealth)
+	if(mob_parent.health - damage > minimum_health * mob_parent.maxHealth)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
