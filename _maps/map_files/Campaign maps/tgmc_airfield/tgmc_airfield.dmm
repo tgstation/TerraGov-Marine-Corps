@@ -228,7 +228,6 @@
 /area/campaign/tgmc_airfield/outside/west_base)
 "br" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/terragov{
 	dir = 1
@@ -599,8 +598,7 @@
 	},
 /obj/structure/prop/tdfcorpse/decap{
 	pixel_y = 8;
-	pixel_x = -5;
-	layer = 3.2
+	pixel_x = -5
 	},
 /obj/item/prop/organ/eyes,
 /obj/effect/decal/cleanable/blood/gibs/limb{
@@ -1227,7 +1225,7 @@
 /area/campaign/tgmc_airfield/outside/west_base)
 "gV" = (
 /obj/machinery/smartfridge,
-/turf/closed/wall/urban,
+/turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "gW" = (
 /obj/machinery/light{
@@ -2049,7 +2047,6 @@
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 8
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
@@ -5623,9 +5620,7 @@
 	},
 /area/campaign/tgmc_airfield/base/water_purification)
 "Dx" = (
-/obj/structure/prop/tdfcorpse/headshot{
-	layer = 3.2
-	},
+/obj/structure/prop/tdfcorpse/headshot,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/west)
 "Dy" = (
@@ -5658,11 +5653,6 @@
 /obj/effect/explosion_holder/campaign_objective/airbase_fuel,
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_north)
-"DD" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/water_purification)
 "DF" = (
 /obj/machinery/door/poddoor/shutters/mainship/hangar{
 	dir = 8;
@@ -7330,11 +7320,6 @@
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
-"MQ" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/west_base)
 "MT" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 1
@@ -8296,7 +8281,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "RX" = (
@@ -8551,8 +8535,7 @@
 /area/campaign/tgmc_airfield/outside/desert)
 "Tq" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall{
-	pixel_y = 22;
-	layer = 2.5
+	pixel_y = 22
 	},
 /obj/structure/rack,
 /obj/item/reagent_containers/food/drinks/milk,
@@ -8738,12 +8721,6 @@
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert)
-"Ub" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/urban/street/sidewalkfull,
-/area/campaign/tgmc_airfield/outside/west_base)
 "Uc" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue,
@@ -8958,11 +8935,6 @@
 /obj/structure/catwalk,
 /turf/open/space/basic,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
-"Vh" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/tile/blue,
-/area/campaign/tgmc_airfield/base/armory_workshop)
 "Vi" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
@@ -18723,7 +18695,7 @@ cr
 cr
 YH
 iX
-MQ
+Hs
 Ke
 Nr
 Nr
@@ -19781,7 +19753,7 @@ ko
 EQ
 vt
 Zg
-Vh
+By
 kA
 qm
 By
@@ -19816,7 +19788,7 @@ tP
 Hs
 Hs
 Hs
-MQ
+Hs
 tP
 Hs
 Hs
@@ -20831,7 +20803,7 @@ yV
 Hs
 Zg
 EQ
-Vh
+By
 By
 By
 bW
@@ -21182,7 +21154,7 @@ tP
 Hs
 Hs
 Hs
-Ub
+tP
 yV
 yV
 yV
@@ -26472,10 +26444,10 @@ UO
 zU
 zU
 zU
-DD
 Lw
 Lw
-DD
+Lw
+Lw
 gD
 Uu
 Uu
