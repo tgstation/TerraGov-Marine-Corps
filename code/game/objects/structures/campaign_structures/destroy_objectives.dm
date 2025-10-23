@@ -56,7 +56,7 @@
 
 ///Explodes on destruction
 /obj/structure/campaign_objective/destruction_objective/proc/do_explosion(turf/det_turf)
-	explosion(det_turf, 1, 2, 4)
+	explosion(det_turf, 0, 2, 4)
 
 ///Any special effects on disable if NOT deleted
 /obj/structure/campaign_objective/destruction_objective/proc/disable_effects()
@@ -77,6 +77,7 @@
 	icon_state = "howitzer_deployed"
 	pixel_x = -16
 	faction = FACTION_SOM
+	objective_flags = CAMPAIGN_OBJECTIVE_DEL_ON_DISABLE|CAMPAIGN_OBJECTIVE_EXPLODE_ON_DISABLE
 
 //MLRS
 /obj/effect/landmark/campaign_structure/mlrs
@@ -102,7 +103,7 @@
 	var/smoke_type = /particles/tank_wreck_smoke
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/do_explosion(turf/det_turf)
-	explosion(det_turf, 2, 3, 4)
+	explosion(det_turf, 2, 3, 5)
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/disable_effects()
 	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
