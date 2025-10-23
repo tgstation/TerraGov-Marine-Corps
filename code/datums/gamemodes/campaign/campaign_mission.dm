@@ -336,6 +336,9 @@
 	QDEL_LIST(GLOB.campaign_structures)
 	QDEL_LIST(GLOB.patrol_point_list) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
 	STOP_PROCESSING(SSslowprocess, src)
+
+	SSweather.remove_eligible(mission_z_level.z_value)
+
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome()
 	play_outro()
