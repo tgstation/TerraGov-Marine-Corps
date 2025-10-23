@@ -395,5 +395,5 @@
 	name = "airbase fueltank explosion holder"
 
 /obj/effect/explosion_holder/campaign_objective/airbase_fuel/detonate()
-	explosion(src, 5, 7, 8, flame_range = 10)
+	explosion(src, 7, 8, 9, 12, flame_range = 10)
 	qdel(src)
