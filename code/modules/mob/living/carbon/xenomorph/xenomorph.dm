@@ -134,12 +134,10 @@
 		var/current_total_damage = maxHealth - health
 		needed_healing = current_total_damage - new_total_damage
 
-	if(needed_healing == 0)
-		return
-
-	var/brute_healing = min(getBruteLoss(), needed_healing)
-	adjustBruteLoss(-brute_healing)
-	adjustFireLoss(-(needed_healing - brute_healing))
+	if(needed_healing)
+		var/brute_healing = min(getBruteLoss(), needed_healing)
+		adjustBruteLoss(-brute_healing)
+		adjustFireLoss(-(needed_healing - brute_healing))
 
 	maxHealth = new_max_health
 	updatehealth()
