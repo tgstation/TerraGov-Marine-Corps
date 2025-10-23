@@ -408,8 +408,8 @@
 	var/total_damage = xeno_owner.getFireLoss() + xeno_owner.getBruteLoss()
 	var/burn_percentile_damage = xeno_owner.getFireLoss() / total_damage
 	var/brute_percentile_damage = xeno_owner.getBruteLoss() / total_damage
-	xeno_owner.setBruteLoss((xeno_owner.xeno_caste.max_health - xeno_owner.get_crit_threshold() - 1) * brute_percentile_damage)
-	xeno_owner.setFireLoss((xeno_owner.xeno_caste.max_health - xeno_owner.get_crit_threshold() - 1) * burn_percentile_damage)
+	xeno_owner.setBruteLoss((xeno_owner.maxHealth - xeno_owner.get_crit_threshold() - 1) * brute_percentile_damage)
+	xeno_owner.setFireLoss((xeno_owner.maxHealth - xeno_owner.get_crit_threshold() - 1) * burn_percentile_damage)
 	to_chat(xeno_owner, span_userdanger("The last of the plasma drains from our body... We can no longer endure beyond our normal limits!"))
 
 ///Warns us when our health is critically low and tells us exactly how much more punishment we can take

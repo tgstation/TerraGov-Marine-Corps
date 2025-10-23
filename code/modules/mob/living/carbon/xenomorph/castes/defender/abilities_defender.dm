@@ -407,7 +407,7 @@
 	xeno_owner.do_jitter_animation(1000)
 	xeno_owner.set_sunder(0)
 	if(heal_multiplier)
-		var/health_to_heal = heal_multiplier * xeno_owner.xeno_caste.max_health
+		var/health_to_heal = heal_multiplier * xeno_owner.maxHealth
 		HEAL_XENO_DAMAGE(xeno_owner, health_to_heal, FALSE)
 		xeno_owner.updatehealth()
 	if(debuff_removal_amount)

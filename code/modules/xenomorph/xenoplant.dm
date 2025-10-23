@@ -89,7 +89,7 @@
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
-	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
+	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.maxHealth)
 	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
 	playsound(user, SFX_ALIEN_DROOL, 25)
 	balloon_alert(X, "Health restored")

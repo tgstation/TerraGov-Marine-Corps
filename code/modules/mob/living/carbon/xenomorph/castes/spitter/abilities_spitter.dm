@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		if(!health_loss_percentage_per_grenade || xeno_owner.selected_grenade == /obj/item/explosive/grenade/globadier/heal)
 			owner.balloon_alert(owner, "No grenades!")
 			return fail_activate()
-		var/health_to_lose = xeno_owner.xeno_caste.max_health * health_loss_percentage_per_grenade;
+		var/health_to_lose = xeno_owner.maxHealth * health_loss_percentage_per_grenade;
 		if(xeno_owner.health_threshold_crit > xeno_owner.health - health_to_lose) // Hugbox to stop them from suiciding into critical.
 			owner.balloon_alert(owner, "Not enough health!")
 			return fail_activate()
