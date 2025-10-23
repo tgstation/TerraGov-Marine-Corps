@@ -112,3 +112,8 @@
 2025-10-19:
   DrCrawler:
   - rscadd: The subtler input window now uses TGUI and allows multiline messages!
+2025-10-21:
+  Atropos:
+  - qol: Dylovene autoinjectors now inject 3 u by default
+  DaTruRiZZoB:
+  - bugfix: Fixed pointing while dead/incapacitated

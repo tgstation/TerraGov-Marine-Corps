@@ -31,12 +31,14 @@ SUBSYSTEM_DEF(job)
 	overflow_role = GetJobType(overflow_role)
 	return SS_INIT_SUCCESS
 
-
+///Clears jobs and resets all occupations
 /datum/controller/subsystem/job/proc/SetupOccupations()
-	occupations.Cut()
+	QDEL_LIST(occupations)
 	joinable_occupations.Cut()
 	GLOB.jobs_command.Cut()
 	squads.Cut()
+	type_occupations.Cut()
+	name_occupations.Cut()
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
 	if(!length(all_jobs))
