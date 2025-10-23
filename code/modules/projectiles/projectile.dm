@@ -798,8 +798,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	///Is the shooter a living mob. Defined before the check as used later as well
 	if(proj.firer)
+	/* NTF Edit - full accuracy friendly fire
 		if(proj.firer.faction == faction)
 			hit_chance = round(hit_chance*0.85) //You (presumably) aren't trying to shoot your friends
+	*/
 		var/obj/item/shot_source = proj.shot_from
 		if((!istype(shot_source) || !shot_source.zoom) && !line_of_sight(proj.starting_turf, src, 9)) //if you can't draw LOS within 9 tiles (to accomodate wide screen), AND the source was either not zoomed or not an item(like a xeno)
 			BULLET_DEBUG("Can't see target ([round(hit_chance*0.8)]).")
