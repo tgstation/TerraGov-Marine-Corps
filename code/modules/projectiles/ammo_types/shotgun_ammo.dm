@@ -304,9 +304,12 @@
 	max_range = 15
 	damage = 40
 	penetration = 30
+	bullet_color = LIGHT_COLOR_EMISSIVE_BLUE // The fluid it emits is glowing blue, the bullet should be as well
 
 /datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 60 SECONDS, 3 SECONDS)
+	if(isxeno(target_mob))
+		target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 20 SECONDS, 1 SECONDS)
+	return
 
 /datum/ammo/bullet/shotgun/tracker
 	name = "shotgun tracker shell"
@@ -317,9 +320,12 @@
 	max_range = 15
 	damage = 90
 	penetration = 10
+	bullet_color = LIGHT_COLOR_EMISSIVE_BLUE // The fluid it emits is glowing blue, the bullet should be as well
 
 /datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 60 SECONDS, 3 SECONDS)
+	if(isxeno(target_mob))
+		target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 20 SECONDS, 1 SECONDS)
+	return
 
 //I INSERT THE SHELLS IN AN UNKNOWN ORDER
 /datum/ammo/bullet/shotgun/blank

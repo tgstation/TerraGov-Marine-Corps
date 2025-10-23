@@ -301,6 +301,7 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_EMISSIVE_RED "#fa6464"
 #define LIGHT_COLOR_EMISSIVE_YELLOW "#f0fa64"
 #define LIGHT_COLOR_EMISSIVE_ORANGE "#faac64"
+#define LIGHT_COLOR_EMISSIVE_BLUE "#7bacc3"
 
 //Colors used by special resin walls.
 #define COLOR_WALL_BULLETPROOF "#ed99f6"
