@@ -121,6 +121,10 @@
 ///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.
 /mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
 	var/new_max_health = max(xeno_caste.max_health * hive.health_mulitiplier, 10)
+	var/new_endurance_health_max = new_max_health * 1.5
+	if(new_endurance_health_max != endurance_health_max)
+		endurance_health = endurance_health * new_endurance_health_max / endurance_health_max
+		endurance_health_max = new_endurance_health_max
 	if(new_max_health == maxHealth)
 		return
 	var/needed_healing = 0
