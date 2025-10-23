@@ -32,12 +32,21 @@
 /datum/beam/New(beam_origin,beam_target,beam_icon='icons/effects/beam.dmi',beam_icon_state="b_beam",time=INFINITY,maxdistance=INFINITY,btype = /obj/effect/ebeam)
 	origin = beam_origin
 	target = beam_target
+	RegisterSignal(origin, COMSIG_QDELETING, PROC_REF(on_ref_del))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_ref_del))
 	max_distance = maxdistance
 	icon = beam_icon
 	icon_state = beam_icon_state
 	beam_type = btype
 	if(time < INFINITY)
 		QDEL_IN(src, time)
+
+/datum/beam/Destroy()
+	target = null
+	origin = null
+	QDEL_LIST(elements)
+	QDEL_NULL(visuals)
+	return ..()
 
 /**
  * Proc called by the atom Beam() proc. Sets up signals, and draws the beam for the first time.
@@ -51,6 +60,10 @@
 	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 
+///qdels if our reference points are deleted
+/datum/beam/proc/on_ref_del(datum/source)
+	SIGNAL_HANDLER
+	qdel(src)
 /**
  * Triggered by signals set up when the beam is set up. If it's still sane to create a beam, it removes the old beam, creates a new one. Otherwise it kills the beam.
  *
@@ -66,16 +79,6 @@
 		Draw()
 	else
 		qdel(src)
-
-/datum/beam/Destroy()
-	QDEL_LIST(elements)
-	if(visuals)
-		QDEL_NULL(visuals)
-	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
-	target = null
-	origin = null
-	return ..()
 
 /**
  * Creates the beam effects and places them in a line from the origin to the target. Sets their rotation to make the beams face the target, too.
@@ -96,7 +99,6 @@
 		if(QDELETED(src))
 			break
 		var/obj/effect/ebeam/X = new beam_type(origin_turf)
-		X.owner = src
 		elements += X
 
 		//Assign our single visual ebeam to each ebeam's vis_contents
@@ -139,12 +141,6 @@
 /obj/effect/ebeam
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
-	var/datum/beam/owner
-
-/obj/effect/ebeam/Destroy()
-	owner = null
-	return ..()
-
 
 /**
  * This is what you use to start a beam. Example: origin.Beam(target, args). **Store the return of this proc if you don't set maxdist or time, you need it to delete the beam.**
