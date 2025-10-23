@@ -153,7 +153,7 @@
 			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against \the [src]!</big>"))
 			log_combat(user, grabbed_mob, "crushed", "", "against \the [src]")
 			grabbed_mob.Paralyze(2 SECONDS)
-	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
 	take_damage(damage * 2, BRUTE, MELEE)
 	return TRUE
 

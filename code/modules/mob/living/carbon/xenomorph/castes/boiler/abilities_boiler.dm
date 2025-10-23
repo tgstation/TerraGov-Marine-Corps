@@ -553,7 +553,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/datum/action/ability/xeno_action/steam_rush/steam_rush_ability = rusher.actions_by_path[/datum/action/ability/xeno_action/steam_rush]
 	var/mob/living/carbon/carbon_target = target
 
-	carbon_target.apply_damage(steam_damage, damagetype = BURN, blocked = ACID)
+	carbon_target.apply_damage(steam_damage, damagetype = BURN, blocked = ACID, attacker = owner)
 	playsound(carbon_target, 'sound/voice/alien/hiss2.ogg', 25)
 	to_chat(carbon_target, span_danger("You are burned by the hot steam!")) //I'm just going to operate under the assumption that xvx combat will never be a meaningful thing.
 

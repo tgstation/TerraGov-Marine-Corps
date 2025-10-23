@@ -98,7 +98,7 @@
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/human_victim = target
-	human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+	human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration, owner)
 	human_victim.adjust_stagger(1 SECONDS)
 	playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
 	shake_camera(human_victim, 2, 1)
