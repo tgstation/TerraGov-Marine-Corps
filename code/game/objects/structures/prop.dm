@@ -810,6 +810,7 @@
 	icon_state = "tdfcorpse"
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	anchored = FALSE
+	layer = ABOVE_OBJ_LAYER
 	max_integrity = 100
 	hit_sound = list('sound/effects/bone_break1.ogg','sound/weapons/wristblades_hit.ogg')
 	coverage = 0
