@@ -21,12 +21,12 @@
 
 	xeno_strings += "Name: '[xeno_caste.caste_name]'"
 	xeno_strings += "Tier: [GLOB.tier_as_number[tier]]"
-	xeno_strings += "Melee slash damage: [xeno_caste.melee_damage * xeno_melee_damage_modifier]"
+	xeno_strings += "Melee slash damage: [xeno_caste.melee_damage * xeno_melee_damage_modifier] ([xeno_caste.melee_damage] from caste, x[melee_multiplier_from_hive] multiplier from hive, x[xeno_melee_damage_modifier] total multiplier including temporary buffs.)"
 	if(TRAIT_CAN_TEAR_HOLE in xeno_caste.caste_traits)
 		xeno_strings += "Can smash walls: Yes"
 	else
 		xeno_strings += "Can smash walls: No"
-	xeno_strings += "Max health: [maxHealth]"
+	xeno_strings += "Max health: [maxHealth] [istype(hive) ? "([xeno_caste.max_health] from caste, x[hive.health_mulitiplier] multiplier from hive)" : ""]"
 	var/list/armor_in_list = soft_armor.getList()
 	for(var/armor_type in armor_in_list)
 		xeno_strings += "Soft [armor_type] armor: [armor_in_list[armor_type]]"
