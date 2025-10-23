@@ -344,8 +344,6 @@
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
-	X.apply_melee_stat_buff()
-	X.apply_health_stat_buff()
 
 /datum/hive_status/proc/post_removal(mob/living/carbon/xenomorph/X)
 	X.color = null
@@ -485,6 +483,8 @@
 	apply_minimap_hud()
 	add_abilities()
 	AddComponent(/datum/component/seethrough_mob)
+	apply_melee_stat_buff()
+	apply_health_stat_buff()
 
 /mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
 	. = ..()
@@ -712,6 +712,8 @@
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
 	dead_xenos -= X
 	add_to_lists(X)
+	X.apply_melee_stat_buff()
+	X.apply_health_stat_buff()
 	return TRUE
 
 

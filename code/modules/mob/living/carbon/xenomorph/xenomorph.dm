@@ -120,8 +120,6 @@
 
 ///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.
 /mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
-	if(!hive)
-		return
 	var/new_max_health = max(xeno_caste.max_health * hive.health_mulitiplier, 10)
 	if(new_max_health == maxHealth)
 		return
