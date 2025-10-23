@@ -91,7 +91,7 @@
 		if(EXPLODE_WEAK)
 			take_damage(100, BRUTE, BOMB)
 
-/obj/structure/xeno/lighttower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/lighttower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(issamexenohive(X)))
 		return ..()
 	if(X.a_intent == INTENT_HARM && (X.xeno_flags & XENO_DESTROY_OWN_STRUCTURES)) // If we're on harm intend and have the toggle on, destroy it.

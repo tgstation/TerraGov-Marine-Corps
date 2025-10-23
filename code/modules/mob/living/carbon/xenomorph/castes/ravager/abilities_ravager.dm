@@ -184,12 +184,12 @@
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack_living))
 	for(var/atom/movable/ravaged_atom AS in atoms_to_ravage)
 		if(ishitbox(ravaged_atom) || isvehicle(ravaged_atom))
-			ravaged_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage, armor_penetration = xeno_owner.xeno_caste.melee_ap + armor_penetration) // Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
+			ravaged_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, armor_penetration = xeno_owner.xeno_caste.melee_ap + armor_penetration) // Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
 			continue
 		if(!(ravaged_atom.resistance_flags & XENO_DAMAGEABLE))
 			continue
 		if(!ishuman(ravaged_atom))
-			ravaged_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage, armor_penetration = xeno_owner.xeno_caste.melee_ap + armor_penetration)
+			ravaged_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, armor_penetration = xeno_owner.xeno_caste.melee_ap + armor_penetration)
 			ravaged_atom.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 			continue
 		var/mob/living/carbon/human/ravaged_human = ravaged_atom

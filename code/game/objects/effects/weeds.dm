@@ -137,7 +137,7 @@
 /obj/alien/weeds/footstep_override(atom/movable/source, list/footstep_overrides)
 	footstep_overrides[FOOTSTEP_RESIN] = layer
 
-/obj/alien/weeds/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/alien/weeds/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(!issamexenohive(xeno_attacker) && (xeno_attacker.xeno_flags & XENO_DESTROY_WEEDS))
@@ -277,7 +277,7 @@
 		return ..()
 	return window.attackby(I, user, params)
 
-/obj/alien/weeds/weedwall/window/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/alien/weeds/weedwall/window/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	var/obj/structure/window = locate(window_type) in loc
 	if(!window)
 		return ..()
@@ -346,7 +346,7 @@
 	. = ..()
 	. += mutable_appearance(icon, node_icon + "[rand(0,5)]")
 
-/obj/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(!issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB)

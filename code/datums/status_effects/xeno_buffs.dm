@@ -358,11 +358,11 @@
 /// Toggles the buff on or off.
 /datum/status_effect/drone_enhancement/proc/toggle_buff(toggle)
 	if(!toggle)
-		buffed_xeno.xeno_melee_damage_modifier = initial(buffed_xeno.xeno_melee_damage_modifier)
+		buffed_xeno.xeno_melee_damage_modifier -= (enhancement_action.damage_multiplier - 1)
 		buffed_xeno.remove_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT)
 		toggle_particles(FALSE)
 		return
-	buffed_xeno.xeno_melee_damage_modifier = enhancement_action.damage_multiplier
+	buffed_xeno.xeno_melee_damage_modifier += (enhancement_action.damage_multiplier - 1)
 	buffed_xeno.add_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT, TRUE, 0, NONE, FALSE, enhancement_action.speed_addition)
 	toggle_particles(TRUE)
 

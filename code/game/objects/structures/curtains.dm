@@ -36,7 +36,7 @@
 	playsound(get_turf(loc), pick(possiblesounds), 15, 1, 6)
 	toggle()
 
-/obj/structure/curtain/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/curtain/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!do_after(xeno_attacker, XENO_CURTAIN_PULL_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)

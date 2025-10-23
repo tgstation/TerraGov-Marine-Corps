@@ -66,7 +66,7 @@
 	var/obj/item/storage/internal_bag = get_internal_item()
 	internal_bag?.storage_datum.open(user)
 
-/obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.a_intent != INTENT_HARM)
 		return drink_from_nozzle(xeno_attacker, TRUE)
 	return ..()

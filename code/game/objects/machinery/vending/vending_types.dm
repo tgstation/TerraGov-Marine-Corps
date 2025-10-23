@@ -619,7 +619,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 			break
 		random_product = (random_product % product_records.len) + 1
 
-/obj/machinery/vending/nanoammo/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/vending/nanoammo/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if (.)	// The parent proc does not allow vending machines to take integrity damage from slashes due to not calling the grandparent proc
 		attack_generic(xeno_attacker, damage_amount, damage_type, armor_type, FALSE, armor_penetration)

@@ -64,11 +64,11 @@
 	. = ..()
 	if(starting_turf)
 		if(dim_bonus_multiplier && starting_turf.get_lumcount() <= 0.2)
-			living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * dim_bonus_multiplier)
+			living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * dim_bonus_multiplier)
 		if(upclose_bonus_multiplier)
 			var/upclose_bonus_multiplier_final = max(0, upclose_bonus_multiplier - (get_dist(starting_turf, living_target) * upclose_bonus_multiplier/5))
 			if(upclose_bonus_multiplier_final)
-				living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * upclose_bonus_multiplier_final)
+				living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * upclose_bonus_multiplier_final)
 	if(!savage_activated)
 		return
 	if(!COOLDOWN_FINISHED(src, savage_cooldown))

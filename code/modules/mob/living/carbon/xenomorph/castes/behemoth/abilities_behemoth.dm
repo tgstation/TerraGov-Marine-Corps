@@ -1078,7 +1078,7 @@
 		set_toggle(FALSE)
 		QDEL_NULL(particle_holder)
 		decay_time = initial(decay_time)
-		xeno_owner.xeno_melee_damage_modifier = initial(xeno_owner.xeno_melee_damage_modifier)
+		xeno_owner.xeno_melee_damage_modifier -= (PRIMAL_WRATH_DAMAGE_MULTIPLIER - 1)
 		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH)
 		landslide_action?.change_maximum_charges(initial(landslide_action.maximum_charges))
 		if(earth_riser_action)
@@ -1095,7 +1095,7 @@
 	particle_holder = new(xeno_owner, /particles/primal_wrath)
 	particle_holder.pixel_x = 3
 	particle_holder.pixel_y = -20
-	xeno_owner.xeno_melee_damage_modifier = PRIMAL_WRATH_DAMAGE_MULTIPLIER
+	xeno_owner.xeno_melee_damage_modifier += (PRIMAL_WRATH_DAMAGE_MULTIPLIER - 1)
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH, TRUE, 0, NONE, TRUE, PRIMAL_WRATH_SPEED_BONUS)
 	landslide_action?.change_maximum_charges(PRIMAL_WRATH_LANDSLIDE_CHARGES)
 	landslide_action?.clear_cooldown()
@@ -1249,7 +1249,7 @@
 // Attacking an Earth Pillar as a xeno has a few possible interactions, based on intent:
 // - Harm intent will reduce a counter in this structure. When the counter hits zero, the structure is destroyed, meaning it is much easier to break it as a xeno.
 // - Help intent as a Behemoth will trigger an easter egg. Does nothing, just fluff.
-/obj/structure/earth_pillar/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/earth_pillar/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	var/current_turf = get_turf(src)
 	switch(xeno_attacker.a_intent)
 		if(INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
