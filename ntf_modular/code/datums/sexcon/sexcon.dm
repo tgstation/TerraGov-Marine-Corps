@@ -156,7 +156,10 @@
 				user.heal_overall_damage(rand(15, 30), rand(15, 30), TRUE, TRUE)
 			if(SEX_DRAIN_STYLE_DRAIN_STAMINA)
 				if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_STAMINA_DRAIN))
+					to_chat(user, span_warning("You feel weak as [blame_mob] drains your stamina through your orgasm."))
+					log_combat(blame_mob, user, "drained stamina from", "an orgasm")
 					blame_mob.heal_overall_damage(rand(20, 40), rand(20, 40), TRUE, TRUE)
+					to_chat(blame_mob, span_infoplain("You feel healthier as you drain [user]'s stamina through [user.p_their()] orgasm."))
 					if(isxeno(user))
 						var/mob/living/carbon/xenomorph/xeno_user = user
 						xeno_user.use_plasma(rand(80,160))
@@ -164,9 +167,12 @@
 						user.adjustStaminaLoss(rand(40,80))
 			if(SEX_DRAIN_STYLE_DRAIN_BLOOD)
 				if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_BLOOD_DRAIN))
+					to_chat(user, span_userdanger("You feel weak and dizzy as [blame_mob] drains your life force through your orgasm!"))
+					log_combat(blame_mob, user, "drained life from", "an orgasm")
 					blame_mob.heal_overall_damage(rand(40, 80), rand(40, 80), TRUE, TRUE)
 					blame_mob.adjustCloneLoss(-rand(5,15))
 					blame_mob.adjustStaminaLoss(-rand(10,40))
+					to_chat(blame_mob, span_infoplain("You feel healthier as you drain [user]'s life force through [user.p_their()] orgasm."))
 					if(isxeno(user))
 						user.adjustBruteLoss(115)
 					else
