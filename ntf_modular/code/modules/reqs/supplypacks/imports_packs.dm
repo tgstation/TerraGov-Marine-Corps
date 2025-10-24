@@ -19,39 +19,39 @@
 	cost = 15
 
 /datum/supply_packs/imports/halterex
-	name = "NT Halter extended mag crate (x4)"
-	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/extended, /obj/item/ammo_magazine/rifle/nt_halter/extended, /obj/item/ammo_magazine/rifle/nt_halter/extended, /obj/item/ammo_magazine/rifle/nt_halter/extended)
+	name = "NT Halter extended mag (x1)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/extended)
 	cost = 5
 
 /datum/supply_packs/imports/halterdrum
-	name = "NT Halter drum mag crate (x4)"
-	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/drum, /obj/item/ammo_magazine/rifle/nt_halter/drum, /obj/item/ammo_magazine/rifle/nt_halter/drum, /obj/item/ammo_magazine/rifle/nt_halter/drum)
-	cost = 15
+	name = "NT Halter drum mag (x1)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/drum)
+	cost = 25
 
 /datum/supply_packs/imports/halterexlaser
-	name = "NT Halter extended laser mag crate (x4)"
-	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/laser/extended, /obj/item/ammo_magazine/rifle/nt_halter/laser/extended, /obj/item/ammo_magazine/rifle/nt_halter/laser/extended, /obj/item/ammo_magazine/rifle/nt_halter/laser/extended)
-	cost = 10
+	name = "NT Halter extended laser mag (x1)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/laser/extended)
+	cost = 5
 
 /datum/supply_packs/imports/halterdrumlaser
-	name = "NT Halter drum laser mag crate (x4)"
-	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/laser/drum, /obj/item/ammo_magazine/rifle/nt_halter/laser/drum, /obj/item/ammo_magazine/rifle/nt_halter/laser/drum, /obj/item/ammo_magazine/rifle/nt_halter/laser/drum)
-	cost = 20
+	name = "NT Halter drum laser mag (x1)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/laser/drum)
+	cost = 25
 
 /datum/supply_packs/imports/haltercharged
-	name = "NT Halter charged mag crate (x2)"
-	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/charged, /obj/item/ammo_magazine/rifle/nt_halter/charged)
-	cost = 200
+	name = "NT Halter charged mag (x1)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/charged)
+	cost = 100
 
 /datum/supply_packs/imports/haltersmart
-	name = "NT Halter smart mag crate (x2)"
-	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/smart, /obj/item/ammo_magazine/rifle/nt_halter/smart)
-	cost = 50
+	name = "NT Halter smart mag crate (x1)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/smart)
+	cost = 25
 
 /datum/supply_packs/imports/halterfoxfire
-	name = "NT Halter foxfire mag crate (x2)"
-	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/foxfire, /obj/item/ammo_magazine/rifle/nt_halter/foxfire)
-	cost = 50
+	name = "NT Halter foxfire mag crate (x1)"
+	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/foxfire)
+	cost = 25
 
 /datum/supply_packs/imports/antienergyshield
 	name = "NTC Anti Energy Shield"
