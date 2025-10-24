@@ -211,8 +211,11 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
 "bn" = (
-/obj/structure/ship_ammo/cas/rocket/monarch,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "bo" = (
 /obj/effect/turf_decal/sandedge,
@@ -511,10 +514,14 @@
 	},
 /area/campaign/tgmc_airfield/base/barracks)
 "cZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/structure/table/reinforced,
-/obj/item/assembly/prox_sensor,
-/obj/item/weapon/gun/pistol/standard_pistol,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 1
+	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "dc" = (
 /obj/effect/turf_decal/stripes/white/line{
@@ -578,6 +585,7 @@
 	dir = 4
 	},
 /obj/item/storage/toolbox/electrical,
+/obj/structure/closet/toolcloset,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
 	},
@@ -618,7 +626,7 @@
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_coast,
 /area/campaign/tgmc_airfield/outside/desert)
 "dw" = (
-/obj/structure/ship_ammo/cas/minirocket/incendiary,
+/obj/structure/prop/casammo/incendiary_minirocket,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
@@ -861,14 +869,6 @@
 /obj/structure/flora/drought/tall_cactus,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert)
-"eR" = (
-/obj/effect/turf_decal/stripes/white/line,
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 8
-	},
-/obj/effect/urban/decal/dirt_2,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "eT" = (
 /obj/effect/urban/decal/road/lines1{
 	pixel_x = 13
@@ -883,9 +883,9 @@
 "eV" = (
 /obj/machinery/vending/tool/nopower,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 4
+	dir = 8
 	},
-/area/campaign/tgmc_airfield/outside/airstrip_south)
+/area/campaign/tgmc_airfield/base/hangar_bay)
 "eW" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	pixel_y = -1;
@@ -912,6 +912,10 @@
 "fb" = (
 /obj/effect/decal/cleanable/dirt/grime4,
 /obj/effect/ai_node,
+/obj/effect/turf_decal/stripes/white/line,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 5
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -943,6 +947,8 @@
 /area/campaign/tgmc_airfield/base/command_center)
 "fj" = (
 /obj/item/tool/wrench,
+/obj/structure/table/reinforced,
+/obj/item/assembly/igniter,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "fo" = (
@@ -1059,13 +1065,10 @@
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/south)
 "fM" = (
-/obj/structure/bed/roller{
-	pixel_x = -8;
-	pixel_y = 6
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 8
 	},
-/obj/structure/cable,
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "fO" = (
 /obj/structure/barricade/sandbags{
@@ -1201,8 +1204,9 @@
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert/west)
 "gO" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/welding,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -1332,6 +1336,8 @@
 "hD" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/item/tool/weldingtool,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -1363,7 +1369,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/west_base)
 "hP" = (
-/obj/structure/ship_ammo/cas/minirocket/incendiary,
+/obj/structure/prop/casammo/incendiary_minirocket,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "hQ" = (
@@ -1702,11 +1708,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
-"jw" = (
-/obj/structure/campaign_objective/destruction_objective/viper,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
 "jx" = (
 /obj/effect/urban/decal/road/road_stop{
 	pixel_x = 10
@@ -1729,7 +1730,7 @@
 /area/campaign/tgmc_airfield/base/storage)
 "jB" = (
 /obj/structure/table/reinforced,
-/obj/item/assembly/signaler,
+/obj/item/storage/toolbox/electrical,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
@@ -2044,10 +2045,8 @@
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay/generator)
 "li" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 8
-	},
-/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/item/weapon/gun/pistol/standard_pistol,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "lk" = (
@@ -2080,11 +2079,13 @@
 /turf/open/floor/plating/ground/drought/alt,
 /area/campaign/tgmc_airfield/outside/desert)
 "lt" = (
-/obj/effect/turf_decal/stripes/white/line,
 /obj/machinery/door_control{
 	dir = 8;
 	name = "East Hangar Shutters";
 	id = "easthangar"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
@@ -2581,7 +2582,7 @@
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "nR" = (
-/obj/structure/ship_ammo/cas/minirocket/incendiary,
+/obj/structure/prop/casammo/incendiary_minirocket,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
 	},
@@ -2871,8 +2872,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
 "pD" = (
-/obj/structure/table/reinforced,
-/obj/item/tool/weldpack,
+/obj/effect/decal/cleanable/dirt/grime3,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -2944,15 +2944,11 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "pS" = (
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = 15
-	},
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = -1
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 1
-	},
+/obj/effect/decal/cleanable/dirt/grime3,
+/obj/structure/table/reinforced,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/signaler,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "pX" = (
 /turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast{
@@ -2975,8 +2971,8 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "qc" = (
-/obj/structure/ship_ammo/cas/minirocket/incendiary,
 /obj/machinery/light,
+/obj/structure/prop/casammo/incendiary_minirocket,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "qe" = (
@@ -3310,10 +3306,10 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "rU" = (
-/obj/structure/ship_ammo/cas/laser_battery,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/prop/casammo/battery,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -4231,7 +4227,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/grime3,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
@@ -4272,12 +4271,8 @@
 /turf/closed/wall/urban,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "wE" = (
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = 12
-	},
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = -1
-	},
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "wF" = (
@@ -4539,8 +4534,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "xF" = (
-/obj/structure/ship_ammo/cas/minirocket,
 /obj/machinery/light,
+/obj/structure/prop/casammo/minirocket,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "xG" = (
@@ -4667,10 +4662,8 @@
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/west_base)
 "yp" = (
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = -1
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "yq" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -4846,13 +4839,8 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
 "zf" = (
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = 12
-	},
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = -1
-	},
 /obj/effect/urban/decal/dirt_2,
+/obj/structure/prop/casammo,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "zk" = (
@@ -5600,7 +5588,7 @@
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
 	},
-/obj/structure/closet/firecloset/full,
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 6
 	},
@@ -5745,11 +5733,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "Ee" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/ai_node,
+/obj/structure/campaign_objective/destruction_objective/viper,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "Eh" = (
@@ -6032,13 +6016,9 @@
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/desert/north)
 "FM" = (
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = 12
-	},
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = -1
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/white/line,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "FP" = (
 /obj/machinery/light,
@@ -6284,11 +6264,11 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
 "Hk" = (
-/obj/structure/ship_ammo/cas/laser_battery,
 /obj/machinery/door_control{
 	id = "ammostorage";
 	name = "Ammunition Storage Shutters"
 	},
+/obj/structure/prop/casammo/battery,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -6468,9 +6448,11 @@
 /area/campaign/tgmc_airfield/base/storage)
 "HY" = (
 /obj/structure/table/reinforced,
-/obj/item/assembly/infra,
-/obj/item/assembly/igniter,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/obj/item/tool/weldingtool,
+/obj/item/clothing/head/welding,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 8
+	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "HZ" = (
 /turf/open/floor/plating/ground/drought/alt,
@@ -6771,7 +6753,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "JK" = (
-/obj/structure/ship_ammo/cas/minirocket,
+/obj/structure/prop/casammo/minirocket,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "JL" = (
@@ -6885,7 +6867,7 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
 "Kt" = (
-/obj/structure/ship_ammo/cas/minirocket,
+/obj/structure/prop/casammo/minirocket,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
@@ -7185,9 +7167,14 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/campaign/tgmc_airfield/outside/desert/west)
 "Mg" = (
-/obj/structure/table/reinforced,
-/obj/item/assembly/infra,
-/obj/item/assembly/signaler,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/structure/bed/roller{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/tool/wrench,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "Mh" = (
@@ -7283,10 +7270,14 @@
 	},
 /area/campaign/tgmc_airfield/outside/dry_river)
 "MC" = (
-/obj/structure/ship_ammo/cas/heavygun{
-	pixel_y = 12
-	},
+/obj/structure/prop/casammo,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/campaign/tgmc_airfield/base/hangar_bay)
+"ME" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 1
+	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "MF" = (
 /obj/structure/window/framed/urban/reinforced,
@@ -7343,6 +7334,7 @@
 /obj/structure/sign/nosmoking_1{
 	dir = 8
 	},
+/obj/structure/closet/toolcloset,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
 	},
@@ -7698,15 +7690,8 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/dry_river)
 "OQ" = (
-/obj/structure/ship_ammo/cas/rocket/monarch,
+/obj/structure/prop/casammo/monarch,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/campaign/tgmc_airfield/base/hangar_bay)
-"OR" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 1
-	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "OS" = (
 /obj/structure/barricade/sandbags{
@@ -8588,6 +8573,7 @@
 /obj/effect/decal/cleanable/dirt/grime2{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
 	},
@@ -8803,6 +8789,8 @@
 /turf/open/liquid/water/river/desertdam/clean/shallow/dirty,
 /area/campaign/tgmc_airfield/base/water_purification)
 "Uv" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
 	},
@@ -8835,7 +8823,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "UF" = (
-/obj/structure/ship_ammo/cas/laser_battery,
+/obj/structure/prop/casammo/battery,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
 	},
@@ -8958,20 +8946,21 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/campaign/tgmc_airfield/outside/desert)
 "Vo" = (
-/obj/structure/table/reinforced,
-/obj/item/tool/weldingtool,
 /obj/structure/camera_assembly{
 	pixel_x = 12
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "Vq" = (
-/obj/effect/decal/cleanable/dirt/grime4,
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt/grime4,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
 "Vr" = (
@@ -9142,7 +9131,7 @@
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/storage)
 "Wq" = (
-/obj/structure/ship_ammo/cas/minirocket,
+/obj/structure/prop/casammo/minirocket,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 6
 	},
@@ -9273,7 +9262,6 @@
 /area/campaign/tgmc_airfield/base/armory)
 "WW" = (
 /obj/effect/decal/cleanable/dirt/grime3,
-/obj/structure/campaign_objective/destruction_objective/viper,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/campaign/tgmc_airfield/base/hangar_bay)
@@ -20157,7 +20145,7 @@ dW
 Bb
 UF
 xA
-xA
+nR
 nR
 nR
 nR
@@ -20395,7 +20383,7 @@ Oj
 Xk
 Ex
 Oj
-ML
+yp
 Bb
 LY
 LY
@@ -20500,19 +20488,19 @@ Gs
 Zt
 Oj
 Oj
-Oj
-Oj
+MC
+MC
 Oj
 Oj
 Ir
 ck
 lO
 Oj
-yp
+MC
 zf
 MC
-wE
-FM
+MC
+ML
 Bb
 LY
 LY
@@ -20626,10 +20614,10 @@ SO
 lO
 Zt
 Oj
-Ex
-wE
-wE
-FM
+zf
+MC
+MC
+ML
 Bb
 JF
 LY
@@ -20742,11 +20730,11 @@ Ir
 SO
 lO
 Oj
+Zt
 Oj
 Oj
 Oj
-Oj
-ML
+yp
 Bb
 LY
 LY
@@ -20863,7 +20851,7 @@ Ex
 OQ
 OQ
 OQ
-bn
+ML
 Bb
 LY
 LY
@@ -21097,7 +21085,7 @@ Oj
 Oj
 Oj
 Oj
-ML
+yp
 Bb
 LY
 LY
@@ -21543,14 +21531,14 @@ yV
 yV
 wA
 Uv
-xA
-xA
+HY
+eV
 dq
 MV
 TA
-xA
+fM
 yv
-Oj
+Al
 Oj
 Oj
 Oj
@@ -21662,12 +21650,12 @@ wA
 hD
 eK
 WW
-fM
 eK
 eK
-jw
 eK
 eK
+eK
+FM
 eK
 eK
 eK
@@ -21776,15 +21764,15 @@ yV
 yV
 zR
 wA
-ie
+cZ
 eK
-Oj
-DZ
+li
+pS
 fj
 Oj
-NY
-NY
 Oj
+OQ
+Al
 Oj
 Oj
 Oj
@@ -21893,15 +21881,15 @@ Hs
 tP
 Hs
 TX
-Ee
-li
-NA
-NA
-Vq
-NA
-NA
-NA
-eR
+Cn
+eK
+Oj
+Oj
+Xk
+Oj
+Oj
+Oj
+Al
 Ex
 Oj
 Oj
@@ -22010,11 +21998,11 @@ yV
 Ke
 bG
 wA
-pS
+oO
 Zt
 Oj
 Oj
-ds
+wE
 Oj
 Oj
 Oj
@@ -22128,14 +22116,14 @@ yV
 bG
 wA
 gO
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Al
+NA
+Vq
+bn
+NA
+NA
+NA
+bn
+NA
 Oj
 Ex
 Ex
@@ -22246,13 +22234,13 @@ yV
 wA
 pD
 Oj
+Ee
+DZ
+NY
 Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Al
+Ee
+NY
+NY
 Oj
 Oj
 Oj
@@ -22362,12 +22350,12 @@ yV
 yV
 wA
 Vo
-Oj
-HY
+jr
+jr
 Mg
-cZ
-Oj
-Oj
+jr
+jr
+jr
 wo
 lt
 Oj
@@ -22478,11 +22466,11 @@ yV
 yV
 yV
 wA
-OR
+ME
 Oj
 Oj
 Oj
-Oj
+Zt
 Oj
 ML
 wA
@@ -22597,7 +22585,7 @@ yV
 GJ
 Xn
 jB
-eV
+MK
 Ig
 MK
 pL

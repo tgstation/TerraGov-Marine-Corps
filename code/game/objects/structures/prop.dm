@@ -2486,6 +2486,44 @@
 	coverage = 30
 	max_integrity = 75
 
+/obj/structure/prop/casammo
+	name = "30mm ammo crate"
+	desc = "A crate full of 30mm bullets, standard issue for Terragov fighters. Unfortunately, it is welded to the floor and it doesn't look like you can move it."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "30mm_crate"
+	density = TRUE
+	anchored = TRUE
+	climbable = TRUE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	coverage = 30
+	max_integrity = 150
+
+/obj/structure/prop/casammo/incendiary_minirocket
+	name = "incendiary mini rocket stack"
+	desc = "A pack of laser guided incendiary mini rockets. Unfortunately, it's reaaaaaally heavy, so you can't lift it with a powerloader."
+	icon_state = "minirocket_inc"
+
+/obj/structure/prop/casammo/minirocket
+	name = "mini-rocket stack"
+	desc = "A pack of explosive, laser-guided mini-rockets. Unfortunately, these rockets have set into the ground below, and can't be moved with a powerloader."
+	icon_state = "minirocket"
+
+/obj/structure/prop/casammo/monarch
+
+	name = "\improper PHGM-7 'Monarch'"
+	desc = "The PHGM-7 'Monarch' is a well tried and tested dumb rocket design due to being a mere dumb rocket. Its payload is designed to devastate areas for cheap. Unfortunately, this missile is too slippery to be moved with a powerloader."
+	icon_state = "monarch"
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
+	bound_width = 64
+	bound_height = 32
+	coverage = 40
+	max_integrity = 300
+
+/obj/structure/prop/casammo/battery
+	name = "high-capacity laser battery"
+	icon_state = "laser_battery"
+	desc = "A high-capacity laser battery used to power laser beam weapons. Unfortunately, you're too dumb to know how to lift this, even if you were in a powerloader."
+
 /obj/prop/mainship/prop/news_tv
 	name = "TV"
 	desc = "Suprisingly still relevant, this one is set to the news channel."
