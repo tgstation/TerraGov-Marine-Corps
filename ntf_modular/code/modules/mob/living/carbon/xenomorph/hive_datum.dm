@@ -3,6 +3,7 @@
 	var/list/req_jelly_pods = list()
 	var/health_mulitiplier = 1
 	var/melee_multiplier = 1
+	var/aura_multiplier = 1
 
 /datum/hive_status/proc/set_health_multiplier(new_health_multiplier)
 	health_mulitiplier = new_health_multiplier
@@ -16,4 +17,5 @@
 
 /datum/hive_status/corrupted
 	health_mulitiplier = 0.8
+	aura_multiplier = 0.95
 	req_jelly_progress_required = 220 // 1100 seconds = 18.3 minutes per pod
