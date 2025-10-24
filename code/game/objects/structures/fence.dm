@@ -148,3 +148,6 @@
 /obj/structure/fence/dark
 	icon = 'icons/obj/smooth_objects/dark_fence.dmi'
 	destroyed_icon = 'icons/obj/smooth_objects/brokenfence_dark.dmi'
+
+/obj/structure/fence/dark/quality
+	chance_to_break = 15

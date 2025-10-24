@@ -432,7 +432,8 @@
 	icon_state = "fuelline1"
 	bound_height = 64
 	bound_width = 96
-	layer = BELOW_TABLE_LAYER
+	layer = ABOVE_WEEDS_LAYER
+	plane = FLOOR_PLANE
 
 
 /obj/structure/prop/urban/airport/refuelinghose2
@@ -442,7 +443,8 @@
 	icon_state = "fuelline2"
 	bound_height = 64
 	bound_width = 96
-	layer = BELOW_TABLE_LAYER
+	layer = ABOVE_WEEDS_LAYER
+	plane = FLOOR_PLANE
 
 // Pilot body
 
@@ -1109,45 +1111,90 @@
 	max_integrity = 200
 	anchored = TRUE
 	layer = 5
+	coverage = 50
+
+/obj/structure/prop/urban/misc/buildinggreeblies/dense
+	density = TRUE
 
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble1
 	icon_state = "buildingventbig2"
 
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble1/dense
+	density = TRUE
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble2
 	icon_state = "buildingventbig3"
+
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble2/dense
+	density = TRUE
 
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble3
 	icon_state = "buildingventbig4"
 
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble3/dense
+	density = TRUE
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble4
 	icon_state = "buildingventbig5"
+
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble4/dense
+	density = TRUE
 
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble5
 	icon_state = "buildingventbig6"
 
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble5/dense
+	density = TRUE
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble6
 	icon_state = "buildingventbig7"
+
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble6/dense
+	density = TRUE
 
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble7
 	icon_state = "buildingventbig8"
 
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble7/dense
+	density = TRUE
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble8
 	icon_state = "buildingventbig9"
+	bound_width = 32
+
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble8/dense
+	density = TRUE
 
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble9
 	icon_state = "buildingventbig10"
+	bound_width = 32
+
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble9/dense
+	density = TRUE
 
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble10
-	density = FALSE
 	icon_state = "buildingventbig11"
+	bound_width = 32
+	bound_height = 64
+
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble10/dense
+	density = TRUE
 
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble11
-	density = FALSE
 	icon_state = "buildingventbig12"
+	bound_width = 32
+	bound_height = 64
+
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble11/dense
+	density = TRUE
 
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble12
-	density = FALSE
 	icon_state = "buildingventbig13"
+	bound_width = 32
+	bound_height = 64
+
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble12/dense
+	density = TRUE
 
 /obj/structure/prop/urban/misc/buildinggreebliessmall
 	name = "wall vent"
