@@ -175,7 +175,7 @@
 
 	// *** Queen Abilities *** //
 	///Amount of leaders allowed
-	var/queen_leader_limit = 0
+	var/queen_leader_limit = 3
 
 	// *** Wraith Abilities *** //
 	//Banish - Values for the Wraith's Banish ability
