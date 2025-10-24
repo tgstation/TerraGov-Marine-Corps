@@ -117,3 +117,6 @@
   - qol: Dylovene autoinjectors now inject 3 u by default
   DaTruRiZZoB:
   - bugfix: Fixed pointing while dead/incapacitated
+2025-10-24:
+  Lumipharon:
+  - admin: Fixed the job panel breaking if the gamemode fails to start 1 or more times

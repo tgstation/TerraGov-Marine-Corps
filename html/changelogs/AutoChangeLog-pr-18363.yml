@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - admin: "Fixed the job panel breaking if the gamemode fails to start 1 or more times"
