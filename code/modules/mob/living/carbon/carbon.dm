@@ -397,6 +397,7 @@
 		adjust_blindness(-1)
 		disabilities &= ~DEAF
 
+/* NTF Edit - allow dragging unconscious people
 /mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
 	. = ..()
 	if(new_stat == UNCONSCIOUS)
@@ -404,6 +405,7 @@
 		return
 	if(. == UNCONSCIOUS)
 		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+*/
 
 /// Handles when the player clicks on themself with the grab item
 /mob/living/carbon/proc/grabbed_self_attack(mob/living/user)
