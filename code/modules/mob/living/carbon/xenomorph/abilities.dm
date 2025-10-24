@@ -1016,6 +1016,7 @@
 // ***************************************
 /datum/action/ability/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
+	desc = "Use your psychic powers to send a private message to an individual you can see."
 	action_icon_state = "psychic_whisper"
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	keybinding_signals = list(
@@ -1044,7 +1045,10 @@
 	if(!X.check_state())
 		return
 
-	var/msg = stripped_input("Message:", "Psychic Whisper")
+	var/msg = tgui_input_text(usr, desc, name, "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
+
 	if(!msg)
 		return
 
@@ -1058,6 +1062,7 @@
 // ***************************************
 /datum/action/ability/xeno_action/psychic_radiance
 	name = "Psychic Radiance"
+	desc = "Use your psychic powers to send a message to all humans you can see."
 	action_icon_state = "psychic_radiance"
 	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
 	keybinding_signals = list(
@@ -1081,7 +1086,10 @@
 	if(!X.check_state())
 		return
 
-	var/msg = stripped_input("Message:", "Psychic Radiance")
+	var/msg = tgui_input_text(usr, desc, name, "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
+
 	if(!msg)
 		return
 
@@ -1097,6 +1105,7 @@
 // ***************************************
 /datum/action/ability/xeno_action/psychic_influence
 	name = "Psychic Influence"
+	desc = "Use your psychic powers to plant a thought in the mind of an individual you can see."
 	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
 	action_icon_state = "psychic_whisper"
 	keybinding_signals = list(
@@ -1125,7 +1134,10 @@
 	if(!X.check_state())
 		return
 
-	var/msg = stripped_input("Message:", "Psychic Influence")
+	var/msg = tgui_input_text(usr, desc, name, "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
+
 	if(!msg)
 		return
 
