@@ -1022,7 +1022,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_WHISPER,
 	)
-	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING //Adjusted these flags temporarily, as ABILITY_USE_LYING does not work by itself.
+	use_state_flags = ABILITY_USE_INCAP|ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_BURROWED //ABILITY_USE_LYING does not work without ABILITY_USE_INCAP
 	target_flags = ABILITY_MOB_TARGET
 
 
@@ -1042,7 +1042,8 @@
 	if(!L)
 		return
 
-	if(!X.check_state())
+	if(X.stat)
+		to_chat(src, span_warning("We cannot do this while not conscious."))
 		return
 
 	var/msg = tgui_input_text(usr, desc, name, "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
@@ -1050,6 +1051,10 @@
 	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
+		return
+
+	if(X.stat)
+		to_chat(src, span_warning("We cannot do this while not conscious."))
 		return
 
 	log_directed_talk(X, L, msg, LOG_SAY, "psychic whisper")
@@ -1068,7 +1073,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_RADIANCE,
 	)
-	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING // Proudly copypasted from psychic whisper
+	use_state_flags = ABILITY_USE_INCAP|ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_BURROWED // Proudly copypasted from psychic whisper
 	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/xeno_action/psychic_radiance/action_activate()
@@ -1083,14 +1088,15 @@
 		to_chat(X, span_warning("There's nobody nearby to radiate to."))
 		return
 
-	if(!X.check_state())
-		return
-
 	var/msg = tgui_input_text(usr, desc, name, "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
+		return
+
+	if(X.stat)
+		to_chat(src, span_warning("We cannot do this while not conscious."))
 		return
 
 	for(var/mob/living/L in target_list)
@@ -1111,7 +1117,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_INFLUENCE,
 	)
-	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING
+	use_state_flags = ABILITY_USE_INCAP|ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_BURROWED
 	target_flags = ABILITY_MOB_TARGET
 
 
@@ -1131,7 +1137,8 @@
 	if(!L)
 		return
 
-	if(!X.check_state())
+	if(X.stat)
+		to_chat(src, span_warning("We cannot do this while not conscious."))
 		return
 
 	var/msg = tgui_input_text(usr, desc, name, "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
@@ -1139,6 +1146,10 @@
 	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
+		return
+
+	if(X.stat)
+		to_chat(src, span_warning("We cannot do this while not conscious."))
 		return
 
 	log_directed_talk(X, L, msg, LOG_SAY, "psychic influence")
