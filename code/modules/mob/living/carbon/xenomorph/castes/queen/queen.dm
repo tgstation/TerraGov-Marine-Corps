@@ -45,24 +45,26 @@
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
 	var/prefix = "[hive.prefix][xeno_caste.upgrade_name ? "[xeno_caste.upgrade_name] " : ""]"
 	if(!client?.prefs.show_xeno_rank || !client)
-		name = prefix + "Queen ([nicknumber])"
+		name = prefix + "Queen"
 		real_name = name
 		if(mind)
 			mind.name = name
 		return
 	switch(playtime_mins)
 		if(0 to 600)
-			name = prefix + "Young Queen ([nicknumber])"
+			name = prefix + "Young Queen"
 		if(601 to 1500)
-			name = prefix + "Mature Queen ([nicknumber])"
+			name = prefix + "Mature Queen"
 		if(1501 to 4200)
-			name = prefix + "Elder Empress ([nicknumber])"
+			name = prefix + "Elder Empress"
 		if(4201 to 10500)
-			name = prefix + "Ancient Empress ([nicknumber])"
+			name = prefix + "Ancient Empress"
 		if(10501 to INFINITY)
-			name = prefix + "Prime Empress ([nicknumber])"
+			name = prefix + "Prime Empress"
 		else
-			name = prefix + "Young Queen ([nicknumber])"
+			name = prefix + "Young Queen"
+
+	name = "[name][src == hive.living_xeno_ruler ? " Regnant" :""] ([nicknumber])"
 
 	real_name = name
 	if(mind)

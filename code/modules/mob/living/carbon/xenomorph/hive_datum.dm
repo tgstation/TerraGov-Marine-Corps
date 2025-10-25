@@ -751,16 +751,15 @@
 /// If the current ruler devolves or caste_swaps we want to properly handle it
 /datum/hive_status/proc/on_missing_ruler(mob/living/carbon/xenomorph/old_mob, mob/living/carbon/xenomorph/new_mob)
 	SIGNAL_HANDLER
-	if(old_mob == living_xeno_ruler)
-		living_xeno_ruler = null
+	if(living_xeno_ruler)
+		living_xeno_ruler.remove_ruler_abilities()
+		living_xeno_ruler.generate_name()
+	set_ruler(null)
 	update_leader_pheromones()
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
 		remove_leader(leader)
 		leader.hud_set_queen_overwatch()
 		leader.update_leader_icon(FALSE)
-	if(living_xeno_ruler)
-		living_xeno_ruler.remove_ruler_abilities()
-	set_ruler(null)
 	INVOKE_NEXT_TICK(src, PROC_REF(update_ruler))
 
 /// This proc attempts to find a new ruler to lead the hive.
@@ -800,6 +799,7 @@
 	if(living_xeno_ruler) /// Remove the old ruler if T4 or queen is taking over
 		living_xeno_ruler.remove_ruler_abilities()
 		living_xeno_ruler.update_leader_icon(FALSE)
+		living_xeno_ruler.generate_name()
 		UnregisterSignal(living_xeno_ruler, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 
 	var/mob/living/carbon/xenomorph/prev = living_xeno_ruler // ref to the ruler we're replacing
@@ -825,6 +825,8 @@
 		SSdirection.set_leader(hivenumber, successor)
 	living_xeno_ruler = successor
 	handle_ruler_timer()
+	if(istype(successor))
+		living_xeno_ruler.generate_name()
 
 
 /datum/hive_status/proc/handle_ruler_timer()

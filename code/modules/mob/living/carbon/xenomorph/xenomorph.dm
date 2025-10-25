@@ -182,7 +182,7 @@
 			rank_name = "Prime"
 		else
 			rank_name = "Young"
-	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
+	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name][src == hive.living_xeno_ruler ? " Regnant" :""] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
