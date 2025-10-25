@@ -64,6 +64,13 @@
 		return
 	if(target in grabbing)
 		return
+	if(ismonkey(target))
+		if(!buckle_mob(target))
+			return
+		target.visible_message(span_danger("Tentacles suddenly grab [target]'s legs and secure [target.p_them()] into [src]!"),
+		span_userdanger("Tentacles suddenly grab your legs and secure you into [src]!"),
+		span_notice("You hear squelching."))
+		return
 	COOLDOWN_START(src, tentacle_cooldown, 29.9 SECONDS)
 	target.visible_message(span_danger("Tentacles start grabbing at [target]'s legs to try to secure [target.p_them()] into [src]!"),
 		span_userdanger("Tentacles suddenly grab your legs to try to secure you into [src]!"),
