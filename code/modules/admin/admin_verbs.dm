@@ -328,11 +328,15 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 	return "<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 
 
-/client/proc/get_asay()
-	var/msg = input(src, null, "asay \"text\"") as text|null
-	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/asay, msg)
+/client/verb/get_asay(message as text)
+	set hidden = TRUE
+	set name = "asay"
+	if(!(holder))
+		to_chat(src, span_adminnotice("You lack the permissions to do this."))
+		return
+	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/asay, message)
 
-ADMIN_VERB(asay, R_ASAY, "asay", "Speak in the private admin channel", ADMIN_CATEGORY_MAIN, msg as null)
+ADMIN_VERB(asay, R_ASAY, " asay", "Speak in the private admin channel", ADMIN_CATEGORY_MAIN, msg as null)
 
 	if(!msg)
 		msg = tgui_input_text(usr, "Speak in the private admin channel", "asay", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
@@ -368,11 +372,15 @@ ADMIN_VERB(asay, R_ASAY, "asay", "Speak in the private admin channel", ADMIN_CAT
 				html = msg)
 
 
-/client/proc/get_msay()
-	var/msg = input(src, null, "msay \"text\"") as text|null
-	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/msay, msg)
+/client/verb/get_msay(message as text)
+	set hidden = TRUE
+	set name = "msay"
+	if(!(holder))
+		to_chat(src, span_adminnotice("You lack the permissions to do this."))
+		return
+	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/msay, message)
 
-ADMIN_VERB(msay, R_ADMIN|R_MENTOR, "msay", "Speak in the private mentor channel", ADMIN_CATEGORY_MAIN, msg as null)
+ADMIN_VERB(msay, R_ADMIN|R_MENTOR, " msay", "Speak in the private mentor channel", ADMIN_CATEGORY_MAIN, msg as null)
 
 	if(!msg)
 		msg = tgui_input_text(usr, "Speak in the private mentor channel", "msay", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
@@ -416,12 +424,19 @@ ADMIN_VERB(msay, R_ADMIN|R_MENTOR, "msay", "Speak in the private mentor channel"
 		window_flash(iter_admin_client)
 		SEND_SOUND(iter_admin_client.mob, sound('sound/misc/bloop.ogg'))
 
-/client/proc/get_dsay()
-	var/msg = input(src, null, "dsay \"text\"") as text|null
-	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/dsay, msg)
+/client/verb/get_dsay(message as text)
+	set hidden = TRUE
+	set name = "dsay"
+	if(!(holder))
+		to_chat(src, span_adminnotice("You lack the permissions to do this."))
+		return
+	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/dsay, message)
 
-ADMIN_VERB(dsay, R_ADMIN, "dsay", "Speak as an admin in deadchat.", ADMIN_CATEGORY_MAIN, msg as text)
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+ADMIN_VERB(dsay, R_ADMIN, " dsay", "Speak as an admin in deadchat.", ADMIN_CATEGORY_MAIN, msg as null)
+	if(!msg)
+		msg = tgui_input_text(usr, "Speak as an admin in deadchat.", "dsay", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = emoji_parse(copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN))
 
 	if(!msg)
 		return

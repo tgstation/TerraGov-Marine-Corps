@@ -1,5 +1,10 @@
-/client/verb/ooc(msg as null)
+/client/verb/ooc_wrapper(message as text)
+	set hidden = TRUE
 	set name = "OOC"
+	ooc(message)
+
+/client/verb/ooc(msg as null)
+	set name = " OOC"
 	set category = "OOC.Communication"
 	set desc = "Send an out-of-character message to all players.  Shows your key(byond username) and not your character's name."
 
@@ -127,8 +132,13 @@
 		else
 			to_chat(recv_client, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
 
-/client/verb/xooc(msg as null) // Same as MOOC, but for xenos.
+/client/verb/xooc_wrapper(message as text)
+	set hidden = TRUE
 	set name = "XOOC"
+	xooc(message)
+
+/client/verb/xooc(msg as null) // Same as MOOC, but for xenos.
+	set name = " XOOC"
 	set category = "OOC.Communication"
 	set desc = "Send an out-of-character message to all xenos. Shows your character's name and not your key (byond username)."
 
@@ -230,8 +240,13 @@
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#a330a7'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-/client/verb/mooc(msg as null) // Same as XOOC, but for humans.
+/client/verb/mooc_wrapper(message as text)
+	set hidden = TRUE
 	set name = "MOOC"
+	mooc(message)
+
+/client/verb/mooc(msg as null) // Same as XOOC, but for humans.
+	set name = " MOOC"
 	set category = "OOC.Communication"
 	set desc = "Send an out-of-character message to all humans. Shows your character's name and not your key (byond username)."
 
@@ -334,8 +349,13 @@
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#ca6200'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-/client/verb/xmooc(msg as null) // Combined XOOC & MOOC
+/client/verb/xmooc_wrapper(message as text)
+	set hidden = TRUE
 	set name = "XMOOC"
+	xmooc(message)
+
+/client/verb/xmooc(msg as null) // Combined XOOC & MOOC
+	set name = " XMOOC"
 	set category = "OOC.Communication"
 	set desc = "Send an out-of-character message to all humans and xenos. Shows your character's name and not your key (byond username)."
 
@@ -437,8 +457,13 @@
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#c7594B'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XMOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-/client/verb/looc(msg as null)
+/client/verb/looc_wrapper(message as text)
+	set hidden = TRUE
 	set name = "LOOC"
+	looc(message)
+
+/client/verb/looc(msg as null)
+	set name = " LOOC"
 	set category = "OOC.Communication"
 	set desc = "Send an out-of-character message to all characters suffiently close to your own. Shows your character's name and not your key (byond username)."
 

@@ -1,6 +1,11 @@
+/client/verb/pray_wrapper(message as text)
+	set hidden = TRUE
+	set name = "Pray"
+	pray(message)
+
 /client/verb/pray(msg as null)
 	set category = "IC"
-	set name = "Pray"
+	set name = " Pray"
 	set desc = "Send a message to admins without pinging them, for minor requests."
 
 	if(!msg)
