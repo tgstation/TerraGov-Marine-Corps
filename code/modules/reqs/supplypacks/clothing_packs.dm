@@ -110,3 +110,8 @@ CLOTHING
 	name = "Hypnotic goggles"
 	contains = list(/obj/item/clothing/glasses/hypno)
 	cost = 100
+
+/datum/supply_packs/clothing/insuls
+	name = "Insulated gloves"
+	contains = list(/obj/item/clothing/gloves/insulated)
+	cost = 100
