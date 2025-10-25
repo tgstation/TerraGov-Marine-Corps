@@ -475,7 +475,7 @@
 			/obj/item/jetpack_marine = 3,
 			/obj/item/weapon/gun/launcher/rocket/oneuse = 10,
 			/obj/item/storage/box/crate/sentry_sniper = 1,
-			/obj/item/storage/box/crate/sentry_shotgun = 2,
+			/obj/item/storage/box/crate/sentry_shotgun = 1,
 			/obj/item/storage/holster/backholster/rpg/full = 1,
 		),
 		"Attachments" = list(
@@ -557,7 +557,7 @@
 			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = 5,
 			/obj/item/plantable_flag = 10,
-			/obj/item/campaign_beacon/npc_beacon/tgmc = 2,
+			/obj/item/campaign_beacon/npc_beacon/tgmc = 1,
 			/obj/item/campaign_beacon/npc_beacon/tgmc/big = 1,
 		),
 	)
