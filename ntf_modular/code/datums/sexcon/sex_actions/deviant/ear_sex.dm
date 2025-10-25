@@ -37,7 +37,7 @@
 	else
 		user.sexcon.perform_sex_action(target, 2.4, 7, FALSE)
 		if(sc.force > SEX_FORCE_HIGH)
-			user.adjust_ear_damage(0.2)
+			target.adjust_ear_damage(0.2)
 		if(sc.force > SEX_FORCE_HIGH)
 			if(prob(15))
 				to_chat(user, span_warning("I feel something squish against my tip..."))
