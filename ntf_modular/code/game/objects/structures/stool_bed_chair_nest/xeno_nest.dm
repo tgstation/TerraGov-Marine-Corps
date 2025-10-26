@@ -60,6 +60,8 @@
 		return
 	if(issamexenohive(target))
 		return
+	if(target.stat == DEAD)
+		return
 	if(target.buckled)
 		return
 	if(target in grabbing)
