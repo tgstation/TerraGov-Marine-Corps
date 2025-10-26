@@ -69,6 +69,10 @@
 	var/list/mob/living/living_to_knockback = list()
 	var/list/obj/vehicle/hit_vehicles = list()
 	for(var/turf/affected_turf AS in affected_turfs)
+		if(istype(affected_turf, /turf/closed/wall/resin) && !xeno_owner.issamexenohive(affected_turf) )
+			var/turf/closed/wall/affected_wall = affected_turf
+			affected_wall.take_damage(get_damage(), BRUTE, MELEE, blame_mob = xeno_owner)
+			has_hit_anything = TRUE
 		for(var/atom/affected_atom AS in affected_turf)
 			if(isxeno(affected_atom))
 				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
@@ -90,7 +94,9 @@
 				continue
 			var/obj/affected_obj = affected_atom
 			if(ishitbox(affected_obj) || isvehicle(affected_obj))
-				has_hit_anything = handle_affected_vehicle(affected_obj, hit_vehicles)
+				has_hit_anything = handle_affected_vehicle(affected_obj, hit_vehicles) | has_hit_anything
+				continue
+			if(xeno_owner.issamexenohive(affected_obj) && (is_type_in_typecache(affected_obj.type,GLOB.xeno_object_list)))
 				continue
 			affected_obj.take_damage(get_damage(), BRUTE, MELEE, blame_mob = xeno_owner)
 			has_hit_anything = TRUE
@@ -288,8 +294,13 @@
 			if(ishitbox(affected_obj) || isvehicle(affected_obj))
 				handle_affected_vehicle(affected_obj, hit_vehicles)
 				continue
+			if(xeno_owner.issamexenohive(affected_obj) && (is_type_in_typecache(affected_obj.type,GLOB.xeno_object_list)))
+				continue
 			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 			continue
+		if(istype(affected_turf, /turf/closed/wall/resin) && !xeno_owner.issamexenohive(affected_turf) )
+			var/turf/closed/wall/affected_wall = affected_turf
+			affected_wall.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max)
 	succeed_activate()
@@ -638,8 +649,13 @@
 			if(ismecha(impacted_obj))
 				impacted_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner)
 				continue
+			if(xeno_owner.issamexenohive(impacted_obj) && (is_type_in_typecache(impacted_obj.type,GLOB.xeno_object_list)))
+				continue
 			impacted_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner)
 			continue
+		if(istype(impacted_turf, /turf/closed/wall/resin) && !xeno_owner.issamexenohive(impacted_turf) )
+			var/turf/closed/wall/impacted_wall = impacted_turf
+			impacted_wall.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 
 	// This is separate because it is possible for them to be pushed into an unprocessed turf which will then do the effects again, causing instant death (or more damage than desired).
 	for(var/mob/living/knockbacked_living AS in living_to_knockback)

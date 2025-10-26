@@ -73,6 +73,16 @@ GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 	/obj/alien/weeds/node/resting,
 )))
 
+//List of xeno objects immune friendly xeno attacks by default
+GLOBAL_LIST_INIT(xeno_object_list, typecacheof(list(
+	/obj/alien,
+	/obj/structure/xeno,
+	/obj/structure/mineral_door/resin,
+	/obj/structure/bed/nest,
+	/obj/structure/cocoon,
+	/obj/item/clothing/mask/facehugger,
+)))
+
 //List of weeds with probability of spawning
 GLOBAL_LIST_INIT(weed_prob_list, list(
 	/obj/alien/weeds/node = 39,

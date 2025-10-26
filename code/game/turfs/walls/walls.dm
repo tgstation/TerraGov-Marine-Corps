@@ -200,7 +200,7 @@
 	new /obj/effect/acid_hole(src)
 
 ///Applies damage to the wall
-/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, armour_penetration = 0)
+/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, armour_penetration = 0, mob/living/blame_mob)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
@@ -215,9 +215,9 @@
 	if(wall_integrity <= 0)
 		// Xenos used to be able to crawl through the wall, should suggest some structural damage to the girder
 		if (acided_hole)
-			dismantle_wall(1)
+			dismantle_wall(1, blame_mob = blame_mob)
 		else
-			dismantle_wall()
+			dismantle_wall(blame_mob = blame_mob)
 	else
 		update_icon()
 
@@ -239,19 +239,19 @@
 	update_icon()
 
 
-/turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
+/turf/closed/wall/proc/make_girder(destroyed_girder = FALSE, mob/living/blame_mob)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
 	G.update_icon()
 
 	if(destroyed_girder)
-		G.deconstruct(FALSE)
+		G.deconstruct(FALSE, blame_mob = blame_mob)
 
 
 
 // Devastated and Explode causes the wall to spawn a damaged girder
 // Walls no longer spawn a metal sheet when destroyed to reduce clutter and
 // improve visual readability.
-/turf/closed/wall/proc/dismantle_wall(devastated = 0, explode = 0)
+/turf/closed/wall/proc/dismantle_wall(devastated = 0, explode = 0, mob/living/blame_mob)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 	if(devastated)

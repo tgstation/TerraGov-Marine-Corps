@@ -55,9 +55,14 @@
 					continue
 				if(isarmoredvehicle(target))
 					dam_mult -= 0.5
-				obj_victim.take_damage(aoe_damage * dam_mult, BURN, ENERGY, TRUE, armour_penetration = penetration)
+				if(proj.firer.issamexenohive(target) && (is_type_in_typecache(target.type,GLOB.xeno_object_list)))
+					continue
+				obj_victim.take_damage(aoe_damage * dam_mult, BURN, ENERGY, TRUE, armour_penetration = penetration, blame_mob = proj.firer)
 			if(target.anchored)
 				continue
+		if(istype(target_turf, /turf/closed/wall/resin) && !proj.issamexenohive(target_turf))
+			var/turf/closed/wall/target_wall = target_turf
+			target_wall.take_damage(aoe_damage, BURN, ENERGY, penetration, blame_mob = proj.firer)
 
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 

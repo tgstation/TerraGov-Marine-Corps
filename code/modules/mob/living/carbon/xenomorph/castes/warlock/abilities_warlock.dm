@@ -656,7 +656,7 @@
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
-	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
+	if(!do_mob(xeno_owner, A, 1 SECONDS, BUSY_ICON_DANGER, ignore_flags = IGNORE_TARGET_LOC_CHANGE) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
 		return fail_activate()
