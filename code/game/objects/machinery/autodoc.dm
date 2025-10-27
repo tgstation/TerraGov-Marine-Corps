@@ -407,7 +407,7 @@
 	autodoc_scan(occupant)
 	if(automatic_mode)
 		say("Automatic mode engaged, initialising procedures.")
-		autostart_timer_id = addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
+		autostart_timer_id = addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /// Callback to start the surgery operation for automatic mode.
 /obj/machinery/autodoc/proc/auto_start()
@@ -1384,7 +1384,7 @@
 			connected.say("Automatic mode disengaged, awaiting manual inputs.")
 		if(connected.automatic_mode && !connected.autostart_timer_id)
 			connected.say("Automatic mode engaged, initialising procedures.")
-			connected.autostart_timer_id = addtimer(CALLBACK(connected, TYPE_PROC_REF(/obj/machinery/autodoc, auto_start)), 5 SECONDS)
+			connected.autostart_timer_id = addtimer(CALLBACK(connected, TYPE_PROC_REF(/obj/machinery/autodoc, auto_start)), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 
 	if(href_list["surgery"])
 		if(connected.occupant)

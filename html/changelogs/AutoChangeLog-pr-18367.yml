@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Ejecting out of an autodoc's automatic mode before it starts no longer runtimes / breaks."
