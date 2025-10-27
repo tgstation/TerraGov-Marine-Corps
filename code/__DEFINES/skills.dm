@@ -32,7 +32,7 @@
 #define SKILL_COMBAT_TRAINED 2
 
 ///Damage mod for having the weapon specific skill above 0
-#define COMBAT_SKILL_DAM_MOD 0.05
+#define COMBAT_SKILL_DAM_MOD 0
 
 ///Pistols skill; Increase accuracy, recoil, and damage of pistols and revolvers.
 #define SKILL_PISTOLS "pistols"

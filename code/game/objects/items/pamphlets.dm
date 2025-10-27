@@ -53,3 +53,15 @@
 	desc = "Operating tanks for dummies."
 	large_vehicle = 3
 	max_skills = list(SKILL_LARGE_VEHICLE = SKILL_LARGE_VEHICLE_VETERAN)
+
+/obj/item/pamphlet/pistoleer
+	name = "advanced pistol handling guide"
+	desc = "A pamphlet containing a detailed guide on how to best hold, draw and mitigate the recoil of various handguns. There's a chibi drawing of a cowboy on the free space of the last page."
+	pistols = 1
+	max_skills = list(SKILL_PISTOLS = SKILL_PISTOLS_TRAINED)
+
+/obj/item/pamphlet/rifleman
+	name = "advanced rifle handling guide"
+	desc = "A pamphlet containing a series of detailed guides and depictions on the subject of handling, operating, reloading and maintaining rifles. Features the popular \"C-clamp\" style of wielding."
+	rifles = 1
+	max_skills = list(SKILL_RIFLES = SKILL_RIFLES_TRAINED)

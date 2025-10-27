@@ -271,6 +271,9 @@
 /obj/item/weapon/gun/rifle/standard_dmr/marksman
 	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/angledgrip, /obj/item/attachable/extended_barrel)
 
+/obj/item/weapon/gun/rifle/standard_dmr/specialist
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/angledgrip, /obj/item/attachable/suppressor)
+
 /obj/item/weapon/gun/rifle/standard_dmr/beginner
 	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
