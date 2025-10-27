@@ -110,3 +110,7 @@
 2025-10-23:
   Lumipharon:
   - admin: Fixed the job panel breaking if the gamemode fails to start 1 or more times
+2025-10-27:
+  Runian:
+  - bugfix: Ejecting out of an autodoc's automatic mode before it starts no longer
+      runtimes / breaks.
