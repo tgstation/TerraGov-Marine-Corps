@@ -23,6 +23,12 @@
 			msg += "[src]/Core.exe has stopped responding! Searching for a solution to the problem..."
 
 		msg += "</span>"
+	if(pose)
+		msg += "\n[span_collapsible("Temporary Flavor Text", "[pose]")]"
+	if(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes)
+		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+	else if(user == src)
+		msg += "You have not set your OOC Notes yet! <a href='?src=\ref[src];ooc_notes=1'>\[Edit\]</a>"
 
 	msg += "</span>"
 

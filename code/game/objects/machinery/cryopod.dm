@@ -17,6 +17,7 @@
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	resistance_flags = RESIST_ALL
 	var/state = STATE_GUN
+	dir = 2
 
 /obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
@@ -278,7 +279,7 @@
 /obj/machinery/cryopod/Initialize(mapload)
 	. = ..()
 	radio = new(src)
-	radio.set_frequency(FREQ_COMMON)
+	radio.set_frequency(FREQ_CIV_GENERAL)
 	update_icon()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
@@ -343,7 +344,10 @@
 
 	GLOB.key_to_time_of_role_death[key] = world.time
 
+/* NTF EDIT
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
+*/
+	ghostize(FALSE, FALSE, TRUE) //NTF EDIT - We want to make sure they *are* kicked to lobby.
 
 	qdel(src)
 
@@ -451,16 +455,19 @@
 		span_notice("You start climbing into [src]."))
 
 	var/mob/initiator = helper ? helper : user
-	if(!do_after(initiator, 20, NONE, user, BUSY_ICON_GENERIC))
+	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
 
 	if(!QDELETED(occupant))
 		to_chat(initiator, span_warning("[src] is occupied."))
 		return FALSE
 
+/*
 	user.forceMove(src)
 	occupant = user
 	update_icon()
+*/
+	user.despawn()
 	return TRUE
 
 /obj/machinery/cryopod/proc/go_out()
@@ -477,7 +484,7 @@
 	occupant = null
 	update_icon()
 
-/obj/machinery/cryopod/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/cryopod/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
 		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return

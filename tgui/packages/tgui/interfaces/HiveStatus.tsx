@@ -24,6 +24,7 @@ type InputPack = {
   hive_larva_threshold: number;
   hive_larva_rate: number;
   hive_larva_burrowed: number;
+  hive_larva_debt: number;
   hive_strategic_psy_points: number;
   hive_tactical_psy_points: number;
   hive_orphan_collapse: number;
@@ -226,6 +227,7 @@ const GeneralInfo = (_props: any) => {
   const { data } = useBackend<InputPack>();
   const {
     hive_larva_burrowed,
+    hive_larva_debt,
     hive_strategic_psy_points,
     hive_tactical_psy_points,
     hive_orphan_collapse,
@@ -266,7 +268,11 @@ const GeneralInfo = (_props: any) => {
           </Box>
           | Burrowed Larva:
           <Box as="span" color={hive_larva_burrowed > 0 ? 'good' : 'bad'}>
-            {' ' + hive_larva_burrowed}
+            {' ' +
+              hive_larva_burrowed +
+              (hive_larva_debt > 0
+                ? '(+ debt of ' + hive_larva_debt + ')'
+                : '')}
           </Box>
         </Box>
         <Box as="span">

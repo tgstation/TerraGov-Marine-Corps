@@ -5,7 +5,7 @@
 	caste_desc = "A strange xeno that utilizes its psychic powers to move out of phase with reality."
 	base_strain_type = /mob/living/carbon/xenomorph/wraith
 	caste_type_path = /mob/living/carbon/xenomorph/wraith
-	tier = XENO_TIER_TWO
+	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "wraith" //used to match appropriate wound overlays
 
@@ -16,17 +16,16 @@
 	speed = -1.1
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 200
 	plasma_gain = 35
 
 	// *** Health *** //
 	max_health = 340
 
 	// *** Evolution *** //
-	evolution_threshold = 225
-	upgrade_threshold = TIER_TWO_THRESHOLD
+	upgrade_threshold = TIER_THREE_THRESHOLD
 
-	deevolves_to = /datum/xeno_caste/runner
+	deevolves_to = /datum/xeno_caste/hunter
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
@@ -42,10 +41,20 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/blink,
+		/datum/action/ability/activable/xeno/banish,
+		/datum/action/ability/xeno_action/recall,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/rewind,
 		/datum/action/ability/xeno_action/portal,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 /datum/xeno_caste/wraith/normal
@@ -59,10 +68,19 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/xeno_action/portal,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/blink,
+		/datum/action/ability/activable/xeno/banish,
+		/datum/action/ability/xeno_action/recall,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/rewind,
+		/datum/action/ability/xeno_action/portal,
 		/datum/action/ability/xeno_action/timestop,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
-

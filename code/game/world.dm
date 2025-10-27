@@ -166,6 +166,8 @@ GLOBAL_VAR(restart_counter)
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
 		var/realtime = world.realtime
+		if(world.byond_build > 1667  && world.byond_build < 1670)
+			realtime = world.timeofday // workaround for byond bug ID:2981407
 		var/texttime = time2text(realtime, "YYYY/MM/DD", TIMEZONE_UTC)
 		GLOB.log_directory = "data/logs/[texttime]/round-"
 		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD", TIMEZONE_UTC)]_"
@@ -347,22 +349,22 @@ GLOBAL_VAR(restart_counter)
 	// Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	// Current outputt should look like
 	/*
-	Something — Lost in space...	|	TerraGov Marine Corps — Sulaco
+	Something — Lost in space...	|	Nine Tailed Fox — Sulaco
 	Map: Loading...					|	Map: Icy Caves
 	Mode: Lobby						|	Mode: Crash
 	Round time: 0:0					|	Round time: 4:54
 	*/
 	var/discord_url = CONFIG_GET(string/discordurl)
-	var/webmap_host = CONFIG_GET(string/webmap_host)
+	//var/webmap_host = CONFIG_GET(string/webmap_host)
 	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
 	var/map_name = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
-	var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
+	//var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
 
 	var/new_status = ""
-	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] &#8212; [shipname]</a></b>"
-	new_status += "<br>Map: <a href='[webmap_host][ground_map_file]'><b>[map_name]</a></b>"
-	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
-	new_status += "<br>Round time: <b>[gameTimestamp("hh:mm")]</b>"
+	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] - [shipname]</a></b>"
+	new_status += "<br>Map: [map_name]"
+	new_status += "<br>Mode: [SSticker.mode ? SSticker.mode.name : "Lobby"]"
+	new_status += "<br>Round time: [duration2text(world.time - SSticker.round_start_time)]"
 
 	// Finally set the new status
 	status = new_status

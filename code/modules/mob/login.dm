@@ -37,6 +37,8 @@
 	enable_client_mobs_in_contents(client)
 
 	if(key != client.key)
+		if(key)
+			GLOB.mobs_by_ckey_list -= ckey(key)
 		key = client.key
 	reset_perspective(loc)
 
@@ -68,3 +70,4 @@
 	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)
 	client.init_verbs()
+	GLOB.mobs_by_ckey_list[ckey] = src

@@ -620,9 +620,9 @@
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
-	L.heal_overall_damage(7*effect_str, 7*effect_str)
+	L.heal_overall_damage(10*effect_str, 10*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
-	L.adjustCloneLoss(0.7*effect_str)
+	L.adjustCloneLoss(effect_str)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.setShock_Stage(min(C.shock_stage - 5*effect_str, 150)) //removes a target from deep paincrit instantly
@@ -1363,20 +1363,19 @@
 	custom_metabolism = 0
 	taste_description = "metal, followed by mild burning"
 	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
-	reagent_ui_priority = REAGENT_UI_UNIQUE
-	purge_list = list(
-		/datum/reagent/medicine/bicaridine,
-		/datum/reagent/medicine/kelotane,
-		/datum/reagent/medicine/tramadol,
-		/datum/reagent/medicine/oxycodone,
-		/datum/reagent/medicine/tricordrazine,
-		/datum/reagent/medicine/meralyne,
-		/datum/reagent/medicine/dermaline,
-		/datum/reagent/medicine/paracetamol,
-		/datum/reagent/medicine/russian_red,
-		/datum/reagent/consumable/doctor_delight,
-	)
-	purge_rate = 5
+//	purge_list = list(
+//		/datum/reagent/medicine/bicaridine,
+//		/datum/reagent/medicine/kelotane,
+//		/datum/reagent/medicine/tramadol,
+//		/datum/reagent/medicine/oxycodone,
+//		/datum/reagent/medicine/tricordrazine,
+//		/datum/reagent/medicine/meralyne,
+//		/datum/reagent/medicine/dermaline,
+//		/datum/reagent/medicine/paracetamol,
+//		/datum/reagent/medicine/russian_red,
+//		/datum/reagent/consumable/drink/doctor_delight,
+//	)
+//	purge_rate = 5
 
 /datum/reagent/medicalnanites/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("You feel like you should stay near medical help until this shot settles in."))

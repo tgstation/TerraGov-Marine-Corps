@@ -95,6 +95,8 @@
 	update_icon()
 	if(buckling_y)
 		buckled_bodybag.pixel_y = buckling_y
+	if(buckling_x)
+		buckled_bodybag.pixel_y = buckling_x
 	if(B.pulledby)
 		B.pulledby.stop_pulling()
 	if(pulledby)
@@ -347,7 +349,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	. = ..()
 	radio = new(src)
 
-/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(buckled_bodybag)
@@ -795,12 +797,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		return TRUE
 	return FALSE
 
-
 //bedroll
 /obj/structure/bed/bedroll
 	name = "unfolded bedroll"
-	desc = "Perfect for those long missions, when there's nowhere else to sleep, you remembered to bring at least one thing of comfort."
-	icon = 'icons/obj/rollerbed.dmi'
+	desc = "Perfect for those long missions, when there's nowhere else to sleep (or fuck)."
+	icon = 'icons/ntfcustom.dmi'
 	icon_state = "bedroll_o"
 	foldabletype = /obj/item/roller/bedroll
 	accepts_bodybag = FALSE
@@ -812,6 +813,19 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "bedroll"
 	rollertype = /obj/structure/bed/bedroll
+
+/obj/structure/bed/bedroll/sec
+	name = "deployed quik-clap bedroll"
+	desc = "Corpsec Standard issue bedroll for when you need to deliver surprise buttsex to criminals."
+	icon_state = "bedroll_sec_o"
+	foldabletype = /obj/item/roller/bedroll/sec
+
+/obj/item/roller/bedroll/sec
+	name = "folded quik-clap bedroll"
+	icon = 'icons/ntfcustom.dmi'
+	icon_state = "bedroll_sec"
+	desc = "Corpsec Standard issue bedroll to deliver express hole-gaping punishments with comfort of a bed for the slut/stud-curity."
+	rollertype = /obj/structure/bed/bedroll/sec
 
 //Hospital Rollers (non foldable)
 

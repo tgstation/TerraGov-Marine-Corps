@@ -1,0 +1,116 @@
+{
+	"polo":[
+		{
+		"type": "hyperscale",
+		"icon_state": "polo"
+		}
+	],
+	"shirt_white_long":[
+		{
+		"type": "hyperscale",
+		"icon_state": "shirt_white_long"
+		}
+	],
+	"tank_midriff":[
+		{
+		"type": "hyperscale",
+		"icon_state": "tank_midriff"
+		}
+	],
+	"tank_midriff_alt":[
+		{
+		"type": "hyperscale",
+		"icon_state": "tank_midriff_alt"
+		}
+	],
+	"longstripe":[
+		{
+		"type": "hyperscale",
+		"icon_state": "longstripe"
+		}
+	],
+	"one_arm":[
+		{
+		"type": "hyperscale",
+		"icon_state": "one_arm"
+		}
+	],
+	"turtleneck":[
+		{
+		"type": "hyperscale",
+		"icon_state": "turtleneck"
+		}
+	],
+	"turtleneck_smooth":[
+		{
+		"type": "hyperscale",
+		"icon_state": "turtleneck_smooth"
+		}
+	],
+	"turtleneck_sleeveless":[
+		{
+		"type": "hyperscale",
+		"icon_state": "turtleneck_sleeveless"
+		}
+	],
+	"leotard_turtleneck":[
+		{
+		"type": "hyperscale",
+		"icon_state": "leotard_turtleneck"
+		}
+	],
+	"leotard_turtleneck_sleeveless":[
+		{
+		"type": "hyperscale",
+		"icon_state": "leotard_turtleneck_sleeveless"
+		}
+	],
+	"buttondown":[
+		{
+		"type": "hyperscale",
+		"icon_state": "buttondown"
+		}
+	],
+	"buttondown_short":[
+		{
+		"type": "hyperscale",
+		"icon_state": "buttondown_short"
+		}
+	],
+	"babydoll":[
+		{
+		"type": "hyperscale",
+		"icon_state": "babydoll"
+		}
+	],
+	"shirt_white":[
+		{
+		"type": "hyperscale",
+		"icon_state": "shirt_white"
+		}
+	],
+	"whiteshortsleeve":[
+		{
+		"type": "hyperscale",
+		"icon_state": "whiteshortsleeve"
+		}
+	],
+	"tank_white":[
+		{
+		"type": "hyperscale",
+		"icon_state": "tank_white"
+		}
+	],
+	"whitetop":[
+		{
+		"type": "hyperscale",
+		"icon_state": "whitetop"
+		}
+	],
+	"whitepolo":[
+		{
+		"type": "hyperscale",
+		"icon_state": "whitepolo"
+		}
+	]
+}

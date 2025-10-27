@@ -30,7 +30,7 @@
 	record_generator_sabotages(user)
 	return TRUE
 
-/obj/machinery/power/port_gen/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/power/port_gen/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -285,8 +285,8 @@
 	base_icon = "portgen1"
 	circuit = /obj/item/circuitboard/machine/pacman/super
 	sheet_path = /obj/item/stack/sheet/mineral/uranium
-	power_gen = 15000
-	time_per_sheet = 85
+	power_gen = 30000
+	time_per_sheet = 600
 
 /obj/machinery/power/port_gen/pacman/super/overheat()
 	explosion(loc, 4, explosion_cause=src)

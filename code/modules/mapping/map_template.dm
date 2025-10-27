@@ -89,10 +89,16 @@
 	if(centered)
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
 	if(!T)
+		log_runtime("[src] ([type]) mappath: [mappath] missing turf")
+		stack_trace("missing turf")
 		return
 	if(T.x + width > world.maxx)
+		log_runtime("[src] ([type]) mappath: [mappath] too wide for map")
+		stack_trace("too wide for map")
 		return
 	if(T.y + height > world.maxy)
+		log_runtime("[src] ([type]) mappath: [mappath] too tall for map")
+		stack_trace("too tall for map")
 		return
 
 	// Accept cached maps, but don't save them automatically - we don't want
@@ -107,9 +113,13 @@
 		no_changeturf = (SSatoms.initialized == INITIALIZATION_INSSATOMS),
 		place_on_top = should_place_on_top,
 	))
+		log_runtime("[src] ([type]) mappath: [mappath] failed parsing")
+		stack_trace("failed parsing")
 		return
 	var/list/bounds = parsed.bounds
 	if(!bounds)
+		log_runtime("[src] ([type]) mappath: [mappath] missing bounds")
+		stack_trace("missing bounds")
 		return
 
 	//initialize things that are normally initialized after map load

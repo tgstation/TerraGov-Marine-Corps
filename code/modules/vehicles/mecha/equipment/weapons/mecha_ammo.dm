@@ -166,7 +166,7 @@
 
 /obj/item/mecha_ammo/vendable/rpg
 	name = "high explosive missile"
-	desc = "A TGMC mech missile. You probably shouldnt hit the pointy end with anything."
+	desc = "A NTC mech missile. You probably shouldnt hit the pointy end with anything."
 	icon_state = "rpg_ammo"
 	rounds = 10
 	ammo_type = MECHA_AMMO_RPG
@@ -197,7 +197,7 @@
 
 /obj/item/mecha_ammo/vendable/flamer
 	name = "flamer napalm tank"
-	desc = "A specialized fuel tank designed for refilling TGMC standard issue mech flamers."
+	desc = "A specialized fuel tank designed for refilling NTC standard issue mech flamers."
 	icon_state = "flamer_ammo"
 	rounds = 10
 	ammo_type = MECHA_AMMO_FLAMER

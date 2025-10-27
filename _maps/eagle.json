@@ -1,0 +1,6 @@
+{
+    "map_name": "Eagle",
+    "map_path": "map_files/Eagle",
+    "map_file": "Eagle.dmm",
+    "traits": [{"Marine Main Ship": true}, {"Marine Main Ship": true}]
+}

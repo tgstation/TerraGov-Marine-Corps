@@ -175,12 +175,18 @@
 		return ORDER_DESIGNATION_TYPE_FOLLOW
 	return ORDER_DESIGNATION_TYPE_ATTACK
 
-/obj/get_order_designation_type(mob/ordered) //todo:doesnt actually allow repairs at this level, but other procs refer to this level anyway
+/obj/get_order_designation_type(mob/ordered)
 	if(!faction || ordered.faction == faction)
 		return ORDER_DESIGNATION_TYPE_REPAIR
 	return ORDER_DESIGNATION_TYPE_ATTACK
 
 /obj/effect/build_designator/get_order_designation_type(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_INTERACT
+
+/obj/structure/patrol_point/get_order_designation_type(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_INTERACT
+
+/obj/machinery/button/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_INTERACT
 
 /obj/machinery/door/get_order_designation_type(mob/ordered)

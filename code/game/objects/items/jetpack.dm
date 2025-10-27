@@ -265,7 +265,7 @@
 	else
 		hit_mob.Knockdown(knockdown_duration)
 		human_user.forceMove(get_turf(hit_mob))
-	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE, attacker = human_user)
 	hit_mob.visible_message(span_danger("[human_user] slams into [hit_mob]!"))
 
 	human_user.set_throwing(FALSE)

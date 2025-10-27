@@ -115,6 +115,7 @@
 	icon_state = "smoke"
 	opacity = TRUE
 	explosion_block = INFINITY
+	var/allowed_hivenumbers = list(XENO_HIVE_NORMAL, XENO_HIVE_FORSAKEN)
 
 /obj/effect/forcefield/fog/Initialize(mapload)
 	. = ..()
@@ -131,7 +132,7 @@
 	return TRUE
 
 
-/obj/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	return attack_hand(xeno_attacker)
 
 
@@ -143,13 +144,18 @@
 	. = ..()
 	if(isobj(mover)) //No grenades/bullets should cross this
 		return FALSE
-	if(isxeno(mover))
+	if(mover.get_xeno_hivenumber() in allowed_hivenumbers)
 		return TRUE
 	if(ishuman(mover) && !issynth(mover))
 		var/mob/living/carbon/human/H = mover
+		if(iszombie(H))
+			return FALSE
 		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) // Allow pulled perma-dead humans to cross
 			return TRUE
 	return FALSE
+
+/obj/effect/forcefield/fog/zombie_spawn
+	allowed_hivenumbers = list(FACTION_ZOMBIE)
 
 /obj/effect/forcefield/fog/passable_fog
 	name = "fog"

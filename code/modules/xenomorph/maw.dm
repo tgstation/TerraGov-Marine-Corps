@@ -113,18 +113,23 @@
 	radial_icon_state = "hugger_ball"
 	cooldown_time = 10 MINUTES
 	impact_time = 12 SECONDS
+	/// rare hugger chance
+	var/rarechance = 15 //Acts akin to prob(15)
 	/// range_turfs that huggers will be dropped around the target
 	var/drop_range = 10
 	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
 	var/hugger_count = 60
 	///huggers to choose to spawn
 	var/list/hugger_options = list(
-		/obj/item/clothing/mask/facehugger,
 		/obj/item/clothing/mask/facehugger/combat/slash,
-		/obj/item/clothing/mask/facehugger/combat/acid,
-		/obj/item/clothing/mask/facehugger/combat/resin,
-		/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn,
+		/obj/item/clothing/mask/facehugger/combat/resin
 	)
+	//Adds support for rare hugger types.
+	var/list/hugger_options_rare = list(
+		/obj/item/clothing/mask/facehugger/combat/acid,
+		/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn,
+		/obj/item/clothing/mask/facehugger/combat/chem_injector/aphrotoxin,
+		/obj/item/clothing/mask/facehugger/combat/chem_injector/neuro)
 	/// used to track our spawned huggers for animations and stuff
 	var/list/spawned_huggers = list()
 
@@ -145,7 +150,11 @@
 				if(blocker.density)
 					continue assignturfs
 			hugger_count--
-			var/hugger_type = pick(hugger_options)
+			var/hugger_type
+			if(prob(rarechance))
+				hugger_type = pick(hugger_options_rare)
+			else
+				hugger_type = pick(hugger_options)
 			var/obj/item/clothing/mask/facehugger/paratrooper = new hugger_type(candidate)
 			paratrooper.go_idle()
 
@@ -289,7 +298,7 @@
 
 /obj/structure/xeno/acid_maw/Initialize(mapload, _hivenumber)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, minimap_icon, MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, GLOB.hivenumber_to_minimap_flag[hivenumber], image('icons/UI_icons/map_blips.dmi', null, minimap_icon, MINIMAP_LABELS_LAYER))
 	var/list/parsed_maw_options = list()
 	for(var/datum/maw_ammo/path AS in maw_options)
 		parsed_maw_options[path] = image(icon='icons/mob/radial.dmi', icon_state=path::radial_icon_state)
@@ -301,15 +310,25 @@
 	return ..()
 
 /obj/structure/xeno/acid_maw/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
-	. = ..()
+	if(!issamexenohive(xeno_attacker))
+		return ..()
+	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_HARM && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
+		span_xenonotice("We start to tear down \the [src]."))
+		if(!do_after(xeno_attacker, 10 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
+			return
+		if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the object already gone
+			return
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
+		span_xenonotice("We tear down \the [src]."))
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+		take_damage(max_integrity, silent=TRUE) // Ensure its destroyed
+		return
 	try_fire(xeno_attacker, src)
 
 /// Tries to fire the acid maw after going through various checks and player inputs.
 /obj/structure/xeno/acid_maw/proc/try_fire(mob/living/carbon/xenomorph/xeno_shooter, atom/radical_target, slient, leaders_only = TRUE, requires_adjacency = TRUE)
-	if(xeno_shooter.hivenumber != hivenumber)
-		if(!slient)
-			balloon_alert(xeno_shooter, "wrong hive")
-		return FALSE
 	if(leaders_only && xeno_shooter.tier != XENO_TIER_FOUR && !(xeno_shooter.xeno_flags & XENO_LEADER))
 		if(!slient)
 			balloon_alert(xeno_shooter, "must be leader")
@@ -330,7 +349,7 @@
 			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")
 		return FALSE
 
-	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
+	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, GLOB.hivenumber_to_minimap_flag[hivenumber])
 	xeno_shooter.client.screen += map
 	var/list/polled_coords = map.get_coords_from_click(xeno_shooter)
 	xeno_shooter?.client?.screen -= map

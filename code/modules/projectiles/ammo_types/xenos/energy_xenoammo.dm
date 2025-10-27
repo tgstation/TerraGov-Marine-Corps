@@ -31,7 +31,7 @@
 	///AOE damage amount
 	var/aoe_damage = 45
 
-/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, atom/movable/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, atom/movable/projectile/proj)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/effects/EMPulse.ogg', 50)
@@ -43,8 +43,8 @@
 				if(living_victim.stat == DEAD)
 					continue
 				if(!isxeno(living_victim))
-					living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration)
-					staggerstun(living_victim, P, 10, slowdown = 1)
+					living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration, attacker = proj.firer)
+					staggerstun(living_victim, proj, 10, slowdown = 1)
 					living_victim.do_jitter_animation(500)
 			else if(isobj(target))
 				var/obj/obj_victim = target
@@ -55,9 +55,14 @@
 					continue
 				if(isarmoredvehicle(target))
 					dam_mult -= 0.5
-				obj_victim.take_damage(aoe_damage * dam_mult, BURN, ENERGY, TRUE, armour_penetration = penetration)
+				if(proj.firer.issamexenohive(target) && (is_type_in_typecache(target.type,GLOB.xeno_object_list)))
+					continue
+				obj_victim.take_damage(aoe_damage * dam_mult, BURN, ENERGY, TRUE, armour_penetration = penetration, blame_mob = proj.firer)
 			if(target.anchored)
 				continue
+		if(istype(target_turf, /turf/closed/wall/resin) && !proj.issamexenohive(target_turf))
+			var/turf/closed/wall/target_wall = target_turf
+			target_wall.take_damage(aoe_damage, BURN, ENERGY, penetration, blame_mob = proj.firer)
 
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
@@ -112,8 +117,9 @@
 	damage_type = STAMINA
 	aoe_range = 1
 	aoe_damage = 31.5 // 45 * 0.7 = 31.5
+	plasma_drain = 7
 
-/datum/ammo/energy/xeno/psy_blast/psy_drain/drop_nade(turf/T, atom/movable/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/psy_drain/drop_nade(turf/T, atom/movable/projectile/proj)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/effects/portal_opening.ogg', 50)
@@ -122,8 +128,8 @@
 		for(var/mob/living/carbon/human/affected_human in target_turf)
 			if(affected_human.stat == DEAD)
 				continue
-			affected_human.apply_damage(aoe_damage, STAMINA, null, ENERGY, FALSE, FALSE, TRUE, penetration)
-			staggerstun(affected_human, P, 10, slowdown = 1)
+			affected_human.apply_damage(aoe_damage, STAMINA, null, ENERGY, FALSE, FALSE, TRUE, penetration, attacker = proj.firer)
+			staggerstun(affected_human, proj, 10, slowdown = 1)
 			affected_human.do_jitter_animation(500)
 			if(target_turf != T)
 				step_away(affected_human, T, 1)

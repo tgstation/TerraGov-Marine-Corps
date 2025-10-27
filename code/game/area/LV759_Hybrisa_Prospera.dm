@@ -116,7 +116,7 @@
 
 // Caves
 /area/lv759/indoors/nt_research_complex_entrance
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Main Entrance"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - North Main Entrance"
 	ceiling = CEILING_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
 
@@ -245,94 +245,94 @@
 	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/lv759/indoors/spaceport/hallway_northeast
-	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - Northeast"
+	name = "Ninetails Celestia Gateway Space-Port - Hallway - Northeast"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/hallway_north
-	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - North"
+	name = "Ninetails Celestia Gateway Space-Port - Hallway - North"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/hallway_northwest
-	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - Northwest"
+	name = "Ninetails Celestia Gateway Space-Port - Hallway - Northwest"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/hallway_east
-	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - East"
+	name = "Ninetails Celestia Gateway Space-Port - Hallway - East"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/heavyequip
-	name = "Nanotrasen Celestia Gateway Space-Port - Heavy Equipment Storage"
+	name = "Ninetails Celestia Gateway Space-Port - Heavy Equipment Storage"
 	icon_state = "WYSpaceport"
 
 /area/lv759/indoors/spaceport/engineering
-	name = "Nanotrasen Celestia Gateway Space-Port - Fuel Storage & Processing"
+	name = "Ninetails Celestia Gateway Space-Port - Fuel Storage & Processing"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv759/indoors/spaceport/janitor
-	name = "Nanotrasen Celestia Gateway Space-Port - Janitorial Storage Room"
+	name = "Ninetails Celestia Gateway Space-Port - Janitorial Storage Room"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/maintenance_east
-	name = "Nanotrasen Celestia Gateway Space-Port - Maintenance - East"
+	name = "Ninetails Celestia Gateway Space-Port - Maintenance - East"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/communications_office
-	name = "Nanotrasen Celestia Gateway Space-Port - Communications & Administration Office"
+	name = "Ninetails Celestia Gateway Space-Port - Communications & Administration Office"
 	icon_state = "WYSpaceportadmin"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv759/indoors/spaceport/flight_control_room
-	name = "Nanotrasen Celestia Gateway Space-Port - Flight Control Room"
+	name = "Ninetails Celestia Gateway Space-Port - Flight Control Room"
 	icon_state = "WYSpaceportadmin"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv759/indoors/spaceport/security
-	name = "Nanotrasen Celestia Gateway Space-Port - Security- Observation & Office"
+	name = "Ninetails Celestia Gateway Space-Port - Security- Observation & Office"
 	icon_state = "security_checkpoint"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv759/indoors/spaceport/security_office
-	name = "Nanotrasen Celestia Gateway Space-Port - Office"
+	name = "Ninetails Celestia Gateway Space-Port - Office"
 	icon_state = "security_checkpoint"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv759/indoors/spaceport/cargo
-	name = "Nanotrasen Celestia Gateway Space-Port - Cargo"
+	name = "Ninetails Celestia Gateway Space-Port - Cargo"
 	icon_state = "WYSpaceportcargo"
 	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv759/indoors/spaceport/cargo_maintenance
-	name = "Nanotrasen Celestia Gateway Space-Port - Cargo - Maintenance"
+	name = "Ninetails Celestia Gateway Space-Port - Cargo - Maintenance"
 	icon_state = "WYSpaceportcargo"
 	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv759/indoors/spaceport/baggagehandling
-	name = "Nanotrasen Celestia Gateway Space-Port - Baggage Storage & Handling"
+	name = "Ninetails Celestia Gateway Space-Port - Baggage Storage & Handling"
 	icon_state = "WYSpaceportbaggage"
 
 /area/lv759/indoors/spaceport/cuppajoes
-	name = "Nanotrasen Celestia Gateway Space-Port - Cuppa Joe's"
+	name = "Ninetails Celestia Gateway Space-Port - Cuppa Joe's"
 	icon_state = "cuppajoes"
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv759/indoors/spaceport/kitchen
-	name = "Nanotrasen Celestia Gateway Space-Port - Kitchen"
+	name = "Ninetails Celestia Gateway Space-Port - Kitchen"
 	icon_state = "WYSpaceportblue"
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv759/indoors/spaceport/docking_bay_2
-	name = "Nanotrasen Celestia Gateway Space-Port - Docking Bay: 2 - Refueling and Maintenance"
+	name = "Ninetails Celestia Gateway Space-Port - Docking Bay: 2 - Refueling and Maintenance"
 	icon_state = "WYSpaceportblue"
 
 /area/lv759/indoors/spaceport/docking_bay_1
-	name = "Nanotrasen Celestia Gateway Space-Port - Docking Bay: 1"
+	name = "Ninetails Celestia Gateway Space-Port - Docking Bay: 1"
 	icon_state = "WYSpaceport"
 
 /area/lv759/indoors/spaceport/starglider
@@ -464,28 +464,28 @@
 
 // Nanotrasen Offices
 /area/lv759/indoors/nt_office
-	name = "Nanotrasen Offices - Reception Hallway"
+	name = "Ninetails Offices - Reception Hallway"
 	icon_state = "wyoffice"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv759/indoors/nt_office/hallway
-	name = "Nanotrasen Offices - West Foyer"
+	name = "Ninetails Offices - West Foyer"
 	icon_state = "wyoffice"
 
 /area/lv759/indoors/nt_office/floor
-	name = "Nanotrasen Offices - Main Office Floor"
+	name = "Ninetails Offices - Main Office Floor"
 
 /area/lv759/indoors/nt_office/breakroom
-	name = "Nanotrasen Offices - Breakroom"
+	name = "Ninetails Offices - Breakroom"
 
 /area/lv759/indoors/nt_office/vip
-	name = "Nanotrasen Offices - Conference Room"
+	name = "Ninetails Offices - Conference Room"
 
 /area/lv759/indoors/nt_office/pressroom
-	name = "Nanotrasen Offices - Assembly Hall"
+	name = "Ninetails Offices - Assembly Hall"
 
 /area/lv759/indoors/nt_office/supervisor
-	name = "Nanotrasen Offices - Colony Supervisors Office"
+	name = "Ninetails Offices - Colony Supervisors Office"
 
 // Bar & Entertainment Complex
 /area/lv759/indoors/bar
@@ -645,46 +645,46 @@
 
 // Power-Plant (Engineering)
 /area/lv759/indoors/power_plant
-	name = "Nanotrasen DynaGrid Nexus - Central Hallway"
+	name = "Ninetails DynaGrid Nexus - Central Hallway"
 	icon_state = "power0"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv759/indoors/power_plant/south_hallway
-	name = "Nanotrasen DynaGrid Nexus - South Hallway"
+	name = "Ninetails DynaGrid Nexus - South Hallway"
 
 /area/lv759/indoors/power_plant/geothermal_generators
-	name = "Nanotrasen DynaGrid Nexus - Geothermal Generators Room"
+	name = "Ninetails DynaGrid Nexus - Geothermal Generators Room"
 
 /area/lv759/indoors/power_plant/power_storage
-	name = "Nanotrasen DynaGrid Nexus - Power Storage Room"
+	name = "Ninetails DynaGrid Nexus - Power Storage Room"
 
 /area/lv759/indoors/power_plant/transformers_north
-	name = "Nanotrasen DynaGrid Nexus - Transformers - North"
+	name = "Ninetails DynaGrid Nexus - Transformers - North"
 
 /area/lv759/indoors/power_plant/transformers_south
-	name = "Nanotrasen DynaGrid Nexus - Transformers - South"
+	name = "Ninetails DynaGrid Nexus - Transformers - South"
 
 /area/lv759/indoors/power_plant/gas_generators
-	name = "Nanotrasen DynaGrid Nexus - Gas Mixing & Storage "
+	name = "Ninetails DynaGrid Nexus - Gas Mixing & Storage "
 
 /area/lv759/indoors/power_plant/fusion_generators
-	name = "Nanotrasen DynaGrid Nexus - Control Center"
+	name = "Ninetails DynaGrid Nexus - Control Center"
 
 /area/lv759/indoors/power_plant/telecomms
 	icon_state = "comms_1"
-	name = "Nanotrasen DynaGrid Nexus - Telecommunications"
+	name = "Ninetails DynaGrid Nexus - Telecommunications"
 
 /area/lv759/indoors/power_plant/workers_canteen
-	name = "Nanotrasen DynaGrid Nexus - Worker's Canteen"
+	name = "Ninetails DynaGrid Nexus - Worker's Canteen"
 
 /area/lv759/indoors/power_plant/workers_canteen_kitchen
-	name = "Nanotrasen DynaGrid Nexus - Worker's Canteen - Kitchen"
+	name = "Ninetails DynaGrid Nexus - Worker's Canteen - Kitchen"
 
 /area/lv759/indoors/power_plant/equipment_east
-	name = "Nanotrasen DynaGrid Nexus - Equipment Storage Room - East"
+	name = "Ninetails DynaGrid Nexus - Equipment Storage Room - East"
 
 /area/lv759/indoors/power_plant/equipment_west
-	name = "Nanotrasen DynaGrid Nexus - Equipment Storage Room - West"
+	name = "Ninetails DynaGrid Nexus - Equipment Storage Room - West"
 
 // Marshalls
 /area/lv759/indoors/colonial_marshals
@@ -778,21 +778,21 @@
 
 //Nanotrasen - Resource Recovery Facility
 /area/lv759/indoors/recycling_plant
-	name = "Nanotrasen - Resource Recovery Facility"
+	name = "Ninetails - Resource Recovery Facility"
 	icon_state = "recycling"
 
 /area/lv759/indoors/recycling_plant/garage
-	name = "Nanotrasen - Resource Recovery Facility - Garage"
+	name = "Ninetails - Resource Recovery Facility - Garage"
 /area/lv759/indoors/recycling_plant/synthetic_storage
 	name = "Synthetic Storage"
 	icon_state = "synthetic"
 
 /area/lv759/indoors/recycling_plant_office
-	name = "Nanotrasen - Resource Recovery Facility - Office"
+	name = "Ninetails - Resource Recovery Facility - Office"
 	icon_state = "recycling"
 
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator
-	name = "Nanotrasen - Resource Recovery Facility - Waste Disposal Incinerating Room"
+	name = "Ninetails - Resource Recovery Facility - Waste Disposal Incinerating Room"
 	icon_state = "recycling"
 
 // Restrooms
@@ -858,23 +858,23 @@
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv759/indoors/nt_security/checkpoint_northeast
-	name = "Nanotrasen Security Checkpoint - North East"
+	name = "Ninetails Security Checkpoint - North East"
 	icon_state = "security_checkpoint_northeast"
 
 /area/lv759/indoors/nt_security/checkpoint_east
-	name = "Nanotrasen Security Checkpoint - East"
+	name = "Ninetails Security Checkpoint - East"
 	icon_state = "security_checkpoint_east"
 
 /area/lv759/indoors/nt_security/checkpoint_central
-	name = "Nanotrasen Security Checkpoint - Central"
+	name = "Ninetails Security Checkpoint - Central"
 	icon_state = "security_checkpoint_central"
 
 /area/lv759/indoors/nt_security/checkpoint_west
-	name = "Nanotrasen Security Checkpoint - West"
+	name = "Ninetails Security Checkpoint - West"
 	icon_state = "security_checkpoint_west"
 
 /area/lv759/indoors/nt_security/checkpoint_northwest
-	name = "Nanotrasen Security Checkpoint - North West"
+	name = "Ninetails Security Checkpoint - North West"
 	icon_state = "security_checkpoint_northwest"
 
 // Misc
@@ -887,117 +887,117 @@
 // Nanotrasen Advanced Bio-Genomic Research Complex
 
 /area/lv759/indoors/nt_research_complex
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex"
 	icon_state = "wylab"
 	minimap_color = MINIMAP_AREA_CAVES
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	ambience = list('sound/effects/urban/indoors/lab_ambience.ogg')
 
 /area/lv759/indoors/nt_research_complex/medical_annex
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Medical Annex Building"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Medical Annex Building"
 	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
 
 /area/lv759/indoors/nt_research_complex/reception
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Reception & Administration"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Reception & Administration"
 
 /area/lv759/indoors/nt_research_complex/cargo
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Requisitions & Cargo"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Requisitions & Cargo"
 	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 /area/lv759/indoors/nt_research_complex/researchanddevelopment
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/mainlabs
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Chemical Testing & Research Lab"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Advanced Chemical Testing & Research Lab"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/xenobiology
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Xenobiology Lab"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Advanced Xenobiology Lab"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 	ambience = list('sound/effects/urban/indoors/lab_ambience_2.ogg')
 
 /area/lv759/indoors/nt_research_complex/weaponresearchlab
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/weaponresearchlabtesting
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab - Weapons Testing Range"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab - Weapons Testing Range"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/xenoarcheology
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Xenoarcheology Research Lab"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Xenoarcheology Research Lab"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Vehicle Deployment & Maintenance Bay"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Vehicle Deployment & Maintenance Bay"
 	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 /area/lv759/indoors/nt_research_complex/janitor
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Janitorial Supplies Storage"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Janitorial Supplies Storage"
 	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/cafeteria
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Cafeteria"
 	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/cafeteriakitchen
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria - Kitchen"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Cafeteria - Kitchen"
 	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/dormsfoyer
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms Foyer"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Dorms Foyer"
 	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/dormsbedroom
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Dorms"
 	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/securitycommand
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Security Command Center & Deployment"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Security Command Center & Deployment"
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/lv759/indoors/nt_research_complex/securityarmory
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Armory"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Armory"
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/lv759/indoors/nt_research_complex/hangarbay
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Hangar Bay"
 	minimap_color = MINIMAP_AREA_ESCAPE_CAVE
 	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay - Nanotrasen PMC ERT Shuttle"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Hangar Bay - Nanotrasen PMC ERT Shuttle"
 	minimap_color = MINIMAP_AREA_ESCAPE_CAVE
 	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaynorth
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
 	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaynorthexit
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Hallway - Personnel Exit East"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - North Hallway - Personnel Exit East"
 	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwayeast
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hallway East"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Hallway East"
 	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaycentral
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Central Hallway"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Central Hallway"
 	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South West Hallway"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - South West Hallway"
 	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Hallway"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - South East Hallway"
 	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/southeastexit
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Maintenace & Emergency Exit"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - South East Maintenace & Emergency Exit"
 
 /area/lv759/indoors/nt_research_complex/changingroom
-	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Locker Room"
+	name = "Ninetails - Advanced Bio-Genomic Research Complex - Locker Room"
 	minimap_color = MINIMAP_AREA_LIVING_CAVE

@@ -336,8 +336,9 @@
 		return
 
 	if(stat == DEAD)
-		set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		set_invis_see(SEE_INVISIBLE_OBSERVER)
+		if(client && check_rights_for(client, R_ADMIN)) // no getting to know what you shouldn't unless you are an admin.
+			set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+			set_invis_see(SEE_INVISIBLE_OBSERVER)
 		return
 
 	var/new_sight = initial(sight)
@@ -380,6 +381,7 @@
 
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
 		lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+		see_in_dark = max(see_in_dark, 10)
 
 	set_sight(new_sight)
 	return ..()
@@ -395,6 +397,7 @@
 		adjust_blindness(-1)
 		disabilities &= ~DEAF
 
+/* NTF Edit - allow dragging unconscious people
 /mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
 	. = ..()
 	if(new_stat == UNCONSCIOUS)
@@ -402,6 +405,7 @@
 		return
 	if(. == UNCONSCIOUS)
 		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+*/
 
 /// Handles when the player clicks on themself with the grab item
 /mob/living/carbon/proc/grabbed_self_attack(mob/living/user)

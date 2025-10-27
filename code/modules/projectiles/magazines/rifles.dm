@@ -49,6 +49,12 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 36
 
+/obj/item/ammo_magazine/rifle/standard_carbine/rubber
+	name = "\improper AR-18 rubber magazine (10x24mm)"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "t18_r"
+	default_ammo = /datum/ammo/bullet/rifle/rubber
+
 /obj/item/ammo_magazine/rifle/standard_carbine/ap
 	name = "\improper AR-18 AP magazine (10x24mm)"
 	desc = "A 10mm assault carbine magazine, loaded with light armor piercing rounds."
@@ -69,6 +75,12 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/rubber
+	name = "\improper AR-12 rubber magazine (10x24mm)"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "t12_r"
+	default_ammo = /datum/ammo/bullet/rifle/rubber
 
 /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap
 	name = "\improper AR-12 AP magazine (10x24mm)"
@@ -132,16 +144,24 @@
 	wield_delay_mod = 0.1 SECONDS
 
 /obj/item/ammo_magazine/rifle/mpi_km/plum
+	name = "\improper plum MPi-KM magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an old plum finish."
 	icon_state = "ak_40_plum"
 	icon_state_mini = "mag_rifle_darkpurple"
 	bonus_overlay = "ak_40_plum"
 
 /obj/item/ammo_magazine/rifle/mpi_km/black
+	name = "\improper black MPi-KM magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an modern black polymer finish."
 	icon_state = "ak_40_black"
 	icon_state_mini = "mag_rifle"
 	bonus_overlay = "ak_40_black"
+
+/obj/item/ammo_magazine/rifle/mpi_km/rubber
+
+	name = "\improper MPi-KM rubber magazine (7.62x39mm)"
+	default_ammo = /datum/ammo/bullet/rifle/mpi_km/rubber
+	color = list(0,1.5,0,0, 1,0,0,0, 0,0,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
 
 /obj/item/ammo_magazine/rifle/mpi_km/carbine
 	name = "\improper V-34 magazine (7.62x39mm)"
@@ -161,6 +181,7 @@
 	bonus_overlay = "ak_30_plum"
 
 /obj/item/ammo_magazine/rifle/mpi_km/carbine/black
+	name = "\improper black V-34 magazine (7.62x39mm)"
 	desc = "A 30 round 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an modern black polymer finish."
 	icon_state = "ak_30_black"
 	icon_state_mini = "mag_rifle"
@@ -174,7 +195,7 @@
 	bonus_overlay = "ak47_ex"
 	max_rounds = 60
 	aim_speed_mod = 0.2
-	wield_delay_mod = 0.2
+	wield_delay_mod = 0.2 SECONDS
 
 // RPD
 
@@ -479,6 +500,11 @@
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 70
 
+/obj/item/ammo_magazine/rifle/tx11/rubber
+	name = "\improper AR-11 combat rifle rubber magazine"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "tx11_r"
+	default_ammo = /datum/ammo/bullet/rifle/hv/rubber
 //-------------------------------------------------------
 //AR-21
 /obj/item/ammo_magazine/rifle/standard_skirmishrifle
@@ -489,6 +515,12 @@
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 40
+
+/obj/item/ammo_magazine/rifle/standard_skirmishrifle/rubber
+	name = "\improper AR-21 skirmish rifle rubber magazine"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "t21_r"
+	default_ammo = /datum/ammo/bullet/rifle/heavy/rubber
 
 //ALF-51B
 
@@ -611,6 +643,12 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
 
+/obj/item/ammo_magazine/rifle/som/rubber
+	name = "\improper V-31 rubber magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the V-31, loaded with rubber rounds"
+	default_ammo = /datum/ammo/bullet/rifle/rubber
+	color = list(0,1,0,0, 0.5,0.5,0,0, 0,0,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
+
 /obj/item/ammo_magazine/rifle/som/ap
 	name = "\improper V-31 AP magazine (10x24mm)"
 	desc = "A 10mm rifle magazine designed for the V-31, loaded with armor piercing rounds."
@@ -618,7 +656,7 @@
 	icon_state = "v31_ap"
 	icon_state_mini = "mag_thin_green"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/hv
+	default_ammo = /datum/ammo/bullet/rifle/ap
 	max_rounds = 50
 
 /obj/item/ammo_magazine/rifle/som/incendiary
@@ -694,18 +732,24 @@
 	icon_state = "l15"
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 30
+	max_rounds = 40
 
 //-------------------------------------------------------
 //ML-12 Confrontation Rifle
 /obj/item/ammo_magazine/rifle/icc_confrontationrifle
-	name = "\improper ML-12 battlecarbine rifle magazine (10x28mm)"
+	name = "\improper ML-12 confrontation rifle magazine (10x28mm)"
 	desc = "A magazine filled with 10x28mm armor-piercing rifle rounds for the ML-12."
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "ml12"
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle
 	max_rounds = 25
+
+/obj/item/ammo_magazine/rifle/icc_confrontationrifle/rubber
+	name = "\improper ML-12 confrontation rifle rubber magazine (10x28mm)"
+	desc = "A magazine filled with 10x28mm rubber rifle rounds for the ML-12."
+	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle/rubber
+	color = list(1,0,0,0, 0,1,0,0, 0,1.5,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
 
 //-------------------------------------------------------
 //ML-41 Autoshotgun
@@ -717,6 +761,12 @@
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
 	max_rounds = 16
 	icon_state_mini = "mag_rifle"
+
+/obj/item/ammo_magazine/rifle/icc_autoshotgun/rubber
+	name = "\improper ML-41 Autoshotgun rubber pellet drum magazine (12G)"
+	desc = "A magazine filled with 12G rubber pellet shells for the ML-41."
+	default_ammo = /datum/ammo/bullet/shotgun/flechette/rubber
+	color = list(1,0,0,0, 0,1,0,0, 0,1.5,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
 
 /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag
 	name = "\improper ML-41 Autoshotgun frag drum magazine (12G)"
@@ -776,11 +826,11 @@
 
 // L26
 
-/obj/item/ammo_magazine/rifle/vsd_mg
+/obj/item/ammo_magazine/rifle/vsd_mg_main
 	name = "\improper L26 box mag (5.56x45mm)"
 	desc = "A 200 round box mag for the L26."
 	caliber = CALIBER_556X45
-	default_ammo = /datum/ammo/bullet/rifle
+	default_ammo = /datum/ammo/bullet/rifle/vsd_mg_main
 	icon_state = "l26"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum_big_long"
@@ -796,44 +846,59 @@
 	icon_state = "c550"
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	default_ammo = /datum/ammo/bullet/rifle/vsd_rifle
 	max_rounds = 30
 
 //CC/74
 
-/obj/item/ammo_magazine/rifle/vsd_mg_main
+/obj/item/ammo_magazine/rifle/vsd_mg
 	name = "\improper CC/74 box mag (7.62x39mm)"
-	desc = "A 150 round box mag for the CC/74."
+	desc = "A 100 round box mag for the CC/74."
 	caliber = CALIBER_762X39
-	default_ammo = /datum/ammo/bullet/rifle/heavy
+	default_ammo = /datum/ammo/bullet/rifle/vsd_mg
 	icon_state = "c74"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_gpmg"
 	bonus_overlay = "c74_100"
-	max_rounds = 150
+	max_rounds = 100
 
-//CC/67
+//CC/77
 
 /obj/item/ammo_magazine/rifle/vsd_carbine
-	name = "\improper CC/67 magazine (10x24mm)"
+	name = "\improper CC/77 magazine (10x24mm)"
 	desc = "A 10x27mm rifle magazine."
 	caliber = CALIBER_10X24_CASELESS
-	icon_state = "c67"
+	icon_state = "c77"
+	icon = 'ntf_modular/icons/obj/items/ammo/rifle.dmi'
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 45
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	max_rounds = 24
 
+/obj/item/ammo_magazine/rifle/vsd_carbine/rubber
+	name = "\improper CC/77 rubber magazine (10x24mm)"
+	default_ammo = /datum/ammo/bullet/rifle/heavy/rubber
+	color = list(1,0,0,0, 0,1,0,0, 0,1.5,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
 
+/obj/item/ammo_magazine/rifle/vsd_carbine/extended
+	name = "\improper CC/77 extended magazine (10x24mm)"
+	icon_state = "c77_ext"
+	max_rounds = 48
+
+/obj/item/ammo_magazine/rifle/vsd_carbine/ap
+	name = "\improper CC/77 armor-piercing magazine (10x24mm)"
+	icon_state = "c77_ap"
+	default_ammo = /datum/ammo/bullet/rifle/ap
 
 /obj/item/ammo_magazine/rifle/cb31
-	name = "\improper CC/B/31 breaching slug magazine (12 gauge)"
-	desc = "A magazine of 16 gauge slugs, for the SH-15."
+	name = "\improper CC/B/31 breaching slug magazine (16 gauge)"
+	desc = "A magazine of 16 gauge slugs, for the CC/B/31."
 	caliber = CALIBER_16G
 	icon_state = "cb31"
+	icon = 'ntf_modular/icons/obj/items/ammo/rifle.dmi'
 	icon_state_mini = "mag_tx15_slug"
 	default_ammo = /datum/ammo/bullet/shotgun/breaching
-	max_rounds = 25
+	max_rounds = 9
 	bonus_overlay = "cb31"
 
 //.410 autoshotgun ammo
