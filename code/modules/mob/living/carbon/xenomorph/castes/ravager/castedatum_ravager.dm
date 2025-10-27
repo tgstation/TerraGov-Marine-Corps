@@ -126,7 +126,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 500
-	plasma_gain = 0
+	plasma_regen_limit = 0
 	plasma_icon_state = "fury"
 
 	// *** Abilities *** //
