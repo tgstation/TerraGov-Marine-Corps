@@ -20,7 +20,7 @@
 			return
 	if(!line_of_sight(mob_parent, combat_target, 7))
 		return
-	if(!check_path(mob_parent, combat_target, PASS_THROW))
+	if(check_path(mob_parent, combat_target, PASS_THROW) != get_turf(combat_target))
 		return
 	if(!check_path_ff(mob_parent, combat_target))
 		return
