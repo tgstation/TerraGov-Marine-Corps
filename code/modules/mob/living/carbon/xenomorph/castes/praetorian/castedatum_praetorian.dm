@@ -119,7 +119,7 @@
 	caste_desc = "A giant melee monster. It looks pretty strong."
 
 	// +2 melee damage
-	melee_damage = 25
+//	melee_damage = 25
 
 	// +30 hp
 	max_health = 420
