@@ -483,9 +483,6 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		return
 	if(should_hold())
 		return
-	//This allows minions to be buckled to their atom_to_escort without disrupting the movement of atom_to_escort
-	if(current_action == ESCORTING_ATOM && (get_dist(mob_parent, atom_to_walk_to) <= 0)) //todo: Entirely remove this shitcode snowflake check for one specific interaction that doesn't specifically relate to ai_behavior
-		return
 	mob_parent.next_move_slowdown = 0
 	var/list/dir_options = find_next_dirs()
 	if(!length(dir_options))

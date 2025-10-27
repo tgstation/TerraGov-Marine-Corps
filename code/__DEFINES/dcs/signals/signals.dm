@@ -548,6 +548,9 @@
 // /obj/item/cell
 #define COMSIG_CELL_SELF_RECHARGE "cell_self_recharge"
 
+///SG goggles toggled on
+#define COMSIG_KTLD_ACTIVATED "ktld_activated"
+
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
 #define COMSIG_MOB_GUN_FIRE "mob_gun_fire"
@@ -749,6 +752,9 @@
 	#define ZIMPACT_NO_SPIN (1<<2)
 // From [/mob/living/updatehealth()]
 #define COMSIG_LIVING_UPDATE_HEALTH "living_update_health"
+
+// Sent when a /living is dealing with being on fire & is still on fire. From [/mob/living/proc/handle_fire]: ()
+#define COMSIG_LIVING_HANDLE_FIRE "living_handle_fire"
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)

@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "The crashed ship on Crash will show up on the minimap now"
+  - qol: "Windows appear on the minimap also"

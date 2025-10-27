@@ -82,7 +82,7 @@
 		return FALSE
 
 	if(is_wired)
-		balloon_alert(xeno_attacker, "Wire slices into us")
+		balloon_alert(xeno_attacker, "barbed wire slicing into you!")
 		xeno_attacker.apply_damage(15, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
 
 	return ..()
@@ -93,7 +93,7 @@
 		return
 
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return TRUE
 
 	if(!istype(I, /obj/item/stack/barbed_wire) || !can_wire)
@@ -101,12 +101,12 @@
 
 	var/obj/item/stack/barbed_wire/B = I
 
-	balloon_alert_to_viewers("Setting up wire...")
+	balloon_alert_to_viewers("setting up wire...")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD) || !can_wire)
 		return
 
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return TRUE
 
 	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
@@ -126,13 +126,13 @@
 	if(!is_wired || LAZYACCESS(user.do_actions, src))
 		return FALSE
 
-	balloon_alert_to_viewers("Removing wire...")
+	balloon_alert_to_viewers("removing wire...")
 
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-	balloon_alert_to_viewers("Removes the barbed wire")
+	balloon_alert_to_viewers("removed")
 	modify_max_integrity(max_integrity - 50)
 	can_wire = TRUE
 	is_wired = FALSE
@@ -227,7 +227,7 @@
 	set src in oview(1)
 
 	if(anchored)
-		balloon_alert(usr, "It's fastened to the floor")
+		balloon_alert(usr, "fastened to the floor")
 		return FALSE
 
 	setDir(turn(dir, 90))
@@ -238,7 +238,7 @@
 	set src in oview(1)
 
 	if(anchored)
-		balloon_alert(usr, "It's fastened to the floor")
+		balloon_alert(usr, "fastened to the floor")
 		return FALSE
 
 	setDir(turn(dir, 270))
@@ -246,7 +246,7 @@
 
 /obj/structure/barricade/attack_hand_alternate(mob/living/user)
 	if(anchored)
-		balloon_alert(usr, "It's fastened to the floor")
+		balloon_alert(usr, "fastened to the floor")
 		return FALSE
 
 	setDir(turn(dir, 270))
@@ -285,7 +285,7 @@
 		return
 
 	if(LAZYACCESS(user.do_actions, src))
-		balloon_alert(user, "Already shoveling")
+		balloon_alert(user, "already shoveling!")
 		return
 
 	user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
@@ -349,26 +349,26 @@
 		return
 
 	if(D.get_amount() < 1)
-		balloon_alert(user, "You need more wood")
+		balloon_alert(user, "need more wood!")
 		return
 
 	if(LAZYACCESS(user.do_actions, src))
 		return
 
-	balloon_alert_to_viewers("Repairing...")
+	balloon_alert_to_viewers("repairing...")
 
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 		return
 
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return TRUE
 
 	if(!D.use(1))
 		return
 
 	repair_damage(max_integrity, user)
-	balloon_alert_to_viewers("Repaired")
+	balloon_alert_to_viewers("repaired")
 	update_icon()
 
 
@@ -455,39 +455,39 @@
 		return attempt_barricade_upgrade(I, user, params)
 
 	if(metal_sheets.get_amount() < 2)
-		balloon_alert(user, "You need at least 2 metal")
+		balloon_alert(user, "2 metal sheets needed!")
 		return FALSE
 
 	if(LAZYACCESS(user.do_actions, src))
 		return
 
-	balloon_alert_to_viewers("Repairing base...")
+	balloon_alert_to_viewers("repairing base...")
 
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 		return FALSE
 
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return TRUE
 
 	if(!metal_sheets.use(2))
 		return FALSE
 
 	repair_damage(max_integrity * 0.3, user)
-	balloon_alert_to_viewers("Base repaired")
+	balloon_alert_to_viewers("base repaired")
 	update_icon()
 
 
 /obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
 	if(barricade_upgrade_type)
-		balloon_alert(user, "Already upgraded")
+		balloon_alert(user, "already upgraded!")
 		return FALSE
 	if(obj_integrity < max_integrity)
-		balloon_alert(user, "It needs to be at full health")
+		balloon_alert(user, "not at full health!")
 		return FALSE
 
 	if(metal_sheets.get_amount() < CADE_UPGRADE_REQUIRED_SHEETS)
-		balloon_alert(user, "You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal to upgrade")
+		balloon_alert(user, "[CADE_UPGRADE_REQUIRED_SHEETS] metal sheets required!")
 		return FALSE
 
 	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "burn_obj"))
@@ -497,16 +497,16 @@
 		return
 
 	if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
-		balloon_alert_to_viewers("fumbles")
+		balloon_alert(user, "fumbling...")
 		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
-	balloon_alert_to_viewers("attaching [choice]")
+	balloon_alert_to_viewers("attaching [choice]...")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(barricade_upgrade_type)
-		balloon_alert(user, "Already upgraded")
+		balloon_alert(user, "already upgraded!")
 		return FALSE
 
 	if(!metal_sheets.use(CADE_UPGRADE_REQUIRED_SHEETS))
@@ -545,7 +545,7 @@
 /obj/structure/barricade/solid/welder_act(mob/living/user, obj/item/I)
 	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, SKILL_ENGINEER_METAL, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
-		balloon_alert(user, "Too damaged. Use metal sheets.")
+		balloon_alert(user, "too damaged, need metal sheets!")
 
 
 /obj/structure/barricade/solid/screwdriver_act(mob/living/user, obj/item/I)
@@ -607,13 +607,13 @@
 
 			var/turf/mystery_turf = get_turf(src)
 			if(!isopenturf(mystery_turf))
-				balloon_alert(user, "can't anchor here")
+				balloon_alert(user, "can't anchor here!")
 				return TRUE
 
 			var/turf/open/T = mystery_turf
 			var/area/area = get_area(T)
 			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
-				balloon_alert(user, "can't anchor here")
+				balloon_alert(user, "can't anchor here!")
 				return TRUE
 
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
@@ -623,7 +623,7 @@
 
 			for(var/obj/structure/barricade/B in loc)
 				if(B != src && B.dir == dir)
-					balloon_alert(user, "already barricade here")
+					balloon_alert(user, "already a barricade here!")
 					return TRUE
 
 			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
@@ -662,7 +662,7 @@
 		if(BARRICADE_METAL_FIRM)
 
 			if(!barricade_upgrade_type) //Check to see if we actually have upgrades to remove.
-				balloon_alert(user, "no upgrades to remove")
+				balloon_alert(user, "no upgrades to remove!")
 				return TRUE
 
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
@@ -670,7 +670,7 @@
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
-			balloon_alert_to_viewers("removing armor plates")
+			balloon_alert_to_viewers("removing armor plates...")
 
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
@@ -787,7 +787,7 @@
 /obj/structure/barricade/folding/welder_act(mob/living/user, obj/item/I)
 	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, skilltype, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
-		balloon_alert(user, "Too damaged. Use [barricade_type] sheets.")
+		balloon_alert(user, "too damaged, need [barricade_type] sheets!")
 
 /obj/structure/barricade/folding/screwdriver_act(mob/living/user, obj/item/I)
 	if(!isscrewdriver(I))
@@ -810,7 +810,7 @@
 
 			for(var/obj/structure/barricade/B in loc)
 				if(B != src && B.dir == dir)
-					balloon_alert(user, "already a barricade here")
+					balloon_alert(user, "already a barricade here!")
 					return
 
 			if(!do_after(user, 1, NONE, src, BUSY_ICON_BUILD))
@@ -854,11 +854,11 @@
 				var/fumbling_time = 5 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
-			balloon_alert_to_viewers("disassembling")
+			balloon_alert_to_viewers("disassembling...")
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			busy = TRUE
 
-			if(!do_after(user, 50, NONE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				busy = FALSE
 				return
 
@@ -895,13 +895,13 @@
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
 			var/turf/mystery_turf = get_turf(src)
 			if(!isopenturf(mystery_turf))
-				balloon_alert(user, "can't anchor here")
+				balloon_alert(user, "can't anchor here!")
 				return
 
 			var/turf/open/T = mystery_turf
 			var/area/area = get_area(T)
 			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
-				balloon_alert(user, "can't anchor here")
+				balloon_alert(user, "can't anchor here!")
 				return
 
 			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
@@ -927,26 +927,26 @@
 		return
 
 	if(stack.get_amount() < 2)
-		balloon_alert(user, "You need at least 2 [barricade_type] sheets")
+		balloon_alert(user, "2 [barricade_type] sheets required!")
 		return
 
 	if(LAZYACCESS(user.do_actions, src))
 		return
 
-	balloon_alert_to_viewers("Repairing base...")
+	balloon_alert_to_viewers("repairing base...")
 
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 		return
 
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return TRUE
 
 	if(!stack.use(2))
 		return
 
 	repair_damage(max_integrity * 0.3, user)
-	balloon_alert_to_viewers("Base repaired")
+	balloon_alert_to_viewers("base repaired")
 	update_icon()
 
 /obj/structure/barricade/folding/attack_hand(mob/living/user)
@@ -1058,13 +1058,13 @@
 
 	if(istype(I, /obj/item/stack/sandbags))
 		if(obj_integrity == max_integrity)
-			balloon_alert(user, "Already repaired")
+			balloon_alert(user, "already repaired!")
 			return
 		var/obj/item/stack/sandbags/D = I
 		if(D.get_amount() < 1)
-			balloon_alert(user, "Not enough sandbags")
+			balloon_alert(user, "not enough sandbags!")
 			return
-		balloon_alert_to_viewers("Replacing sandbags...")
+		balloon_alert_to_viewers("replacing sandbags...")
 
 		if(LAZYACCESS(user.do_actions, src))
 			return
@@ -1073,14 +1073,14 @@
 			return
 
 		if(get_self_acid())
-			balloon_alert(user, "It's melting!")
+			balloon_alert(user, "it's melting!")
 			return
 
 		if(!D.use(1))
 			return
 
 		repair_damage(max_integrity * 0.2, user) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
-		balloon_alert_to_viewers("Repaired")
+		balloon_alert_to_viewers("repaired")
 		update_icon()
 
 /obj/structure/barricade/solid/deployable
