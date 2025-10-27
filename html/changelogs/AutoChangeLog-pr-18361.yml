@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added bloom effects to emissives"
+  - bugfix: "Vehicle lights can actually turn off and on"
+  - bugfix: "Stops floor emissives layering over things they shouldn't"
