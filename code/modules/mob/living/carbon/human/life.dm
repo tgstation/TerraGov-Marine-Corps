@@ -52,8 +52,7 @@
 		return
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
 	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
-	if(!istype(species, /datum/species/zombie))
-		SSmobs.stop_processing(src) //Last round of processing.
+	SSmobs.stop_processing(src) //Last round of processing.
 
 	if((SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) && job?.job_cost)
 		job.free_job_positions(1)
