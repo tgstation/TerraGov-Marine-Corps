@@ -58,23 +58,27 @@ ENGINEERING
 
 /datum/supply_packs/engineering/pacman
 	name = "P.A.C.M.A.N. Portable Generator"
+	notes = "Uses phoron sheets as fuel to produce power. Fuel not included, buy it separately."
 	contains = list(/obj/machinery/power/port_gen/pacman)
 	cost = 150
 	containertype = null
 
 /datum/supply_packs/engineering/phoron
 	name = "30 phoron sheets"
+	notes = "Fuel for the P.A.C.M.A.N. Portable Generator"
 	contains = list(/obj/item/stack/sheet/mineral/phoron/medium_stack)
 	cost = 200
 
 /datum/supply_packs/engineering/pacman_super
 	name = "S.U.P.E.R.P.A.C.M.A.N. Portable Generator"
+	notes = "Uses uranium sheets as fuel to produce power. Fuel not included, buy it separately."
 	contains = list(/obj/machinery/power/port_gen/pacman/super)
 	cost = 750
 	containertype = null
 
 /datum/supply_packs/engineering/uranium
 	name = "30 uranium sheets"
+	notes = "Fuel for the S.U.P.E.R.P.A.C.M.A.N. Portable Generator"
 	contains = list(/obj/item/stack/sheet/mineral/uranium/medium_stack)
 	cost = 775
 
