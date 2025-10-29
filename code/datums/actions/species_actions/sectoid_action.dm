@@ -31,12 +31,14 @@
 	return ..()
 
 /datum/action/ability/activable/sectoid/mindmeld/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/carbon_owner = owner
 	if(melded_mob)
 		return FALSE
 	if(HAS_TRAIT(carbon_owner, TRAIT_MINDMELDED))
 		return FALSE
-	return ..()
 
 /datum/action/ability/activable/sectoid/mindmeld/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -139,7 +141,7 @@
 	var/mob/living/carbon/carbon_target = target
 	carbon_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 10 SECONDS)
 	carbon_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
-	carbon_target.apply_damage(damage, BURN, updating_health = TRUE)
+	carbon_target.apply_damage(damage, BURN, updating_health = TRUE, attacker = owner)
 	carbon_target.log_message("has been mindfrayed by [owner]", LOG_ATTACK, color="pink")
 	carbon_target.balloon_alert_to_viewers("confused")
 	playsound(carbon_target, 'sound/effects/off_guard_ability.ogg', 50)
@@ -405,7 +407,7 @@
 		return fail_activate()
 
 	QDEL_NULL(particle_holder)
-	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
+	playsound(owner, 'sound/effects/magic.ogg', 10)
 
 	var/list/outcome = target.psi_act(psi_strength, owner)
 	if(!outcome)

@@ -109,6 +109,7 @@
 		traits += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
 	if(/datum/action/item_action/aim_mode in actions_types)
 		traits += "Can be aimed with to shoot past allies."
+		traits += "Time to start aiming: [aim_time / 10] seconds"
 		traits += "Time between aimed shots: [(fire_delay + aim_fire_delay) / 10] seconds"
 
 	traits += "<br>"
@@ -196,7 +197,7 @@
 	lore_text = "Traditional flamethrowers were developed in the 1st century and saw frequent use in the 20th century \
 		in the first two world wars on Terra. Thanks to their questionable purpose of burning people alive, rebel \
 		armies, militia groups and terrorist organizations make use of the weapon for centuries to come. It wasn't issued \
-		to inventory for the TerraGov Marine Corps along with lasguns until 2414, due to the xenomorph threat and its vulnerability to intense heat."
+		to inventory for the Nine Tailed Fox along with lasguns until 2414, due to the xenomorph threat and its vulnerability to intense heat."
 
 /datum/codex_entry/explosive_weapons
 	display_name = "explosive weapons"
@@ -212,7 +213,7 @@
 
 /datum/codex_entry/sniper_rifle
 	associated_paths = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	lore_text = "A rather strange gun in the TGMC's arsenal. The M42A \"Express\" originally was born out of it's younger brother the M42. Made by the same \
+	lore_text = "A rather strange gun in the NTC's arsenal. The M42A \"Express\" originally was born out of it's younger brother the M42. Made by the same \
 	company who eventually went on to design the HSG-102 smartgun system. Which the M42As specialized scope eventually adopted a modified IFF system similar to it's cousin the smartgun. <br><br>\
 	It was at first marketed to PMCs and civilians as an expensive accurate long range rifle but it failed due to the lack of need for such a thing for PMCs and the wide variety of options \
 	already available for civilians in a more affordable package. The company after the failure went onto design the HS-102 smartgun and succeeded there however. Which kept them afloat after the failure of the M42.<br><br>\
@@ -222,7 +223,7 @@
 
 /datum/codex_entry/battle_rifle
 	associated_paths = list(/obj/item/weapon/gun/rifle/tx8)
-	lore_text = "The M45A was born from a commission order from the TGMC to the company which made the M42A and HS-102 smartgun systems. <br><br>\
+	lore_text = "The M45A was born from the NTC which made the M42A and HS-102 smartgun systems. <br><br>\
 	The reason for this commission order resulted from complaints from light infantry and scout units about the poor accuracy of the new SR-26 \
 	carbine at longer ranges and the large size of the SG-29 making close combat uncomfortable eventually reached the higher ups, who kept getting \
 	the same complaints over and over. So they eventually reached out to a trusted company to do it.<br><br>\
@@ -234,18 +235,18 @@
 	ranges and at close range quite effectively.<br><br>\
 	After tests by the troops it was meant to be supplied to (light infantry and scout troops) it was rather well-liked \
 	and was met with limited adoption for light infantry and scout troops.<br><br>\
-	The TGMC gave it the designation of T-45 after adoption."
+	The NTC gave it the designation of T-45 after adoption."
 
 /datum/codex_entry/rocket_launcher
 	associated_paths = list(/obj/item/weapon/gun/launcher/rocket)
 	lore_text = "Nicknamed the \"SADAR\", which refers to the previous rocket launcher the SU-185 eventually replaced. <br><br>\
 	The SU-185 was designed with low weight to be easy to carry on one's back and still be able to carry rockets on the person who \
 	is carrying the weapon without making them weighed down too far. It's also created with short range application of rockets rather than long ranged.<br><br>\
-	It was designed after a possible announcement for the replacement to the heavy and aging T-151 SADAR (Non-TGMC name PF-1.), \
+	It was designed after a possible announcement for the replacement to the heavy and aging T-151 SADAR (Non-NTC name PF-1.), \
 	after the actual announcement of the trial participants to show their designs to the Corps where eventually the SU-185 won out \
 	the trials after a close last part on the trials with its competitors in the final round, winning out due to showing lower weight and better short-range accuracy than its peers. <br><br>\
 	After field-testing good reports from troops eventually, leading to its full adoption with the naming of \"RL-152\". <br><br>\
-	It's a rather rare sight due to the current doctrine adopted by the TGMC not using heavy explosives often, so it's a rather \
+	It's a rather rare sight due to the current doctrine adopted by the NTC not using heavy explosives often, so it's a rather \
 	rare sight outside of specialized users. and the rising prevalence of shipside combat making it dangerous to fire inside those \
 	spaces makes it even used less. Not that it makes it any less dangerous on an open field."
 
@@ -260,7 +261,7 @@
 
 /datum/codex_entry/standard_revolver
 	associated_paths = list(/obj/item/weapon/gun/revolver/standard_revolver)
-	lore_text = "The original RN-44 used to be the only standard issue sidearm of the TGMC. Though it was once going to \
+	lore_text = "The original RN-44 used to be the only standard issue sidearm of the NTC. Though it was once going to \
 	be fully replaced by the MG-27 once that was adopted, it was eventually decided to be kept due to complaints from \
 	troops of the power and accuracy of the new 9mm pistol to the old .44 so it was decided to keep both handguns and \
 	allow a choice between both. Then soon after a modernization came to the old RN-44 design. Eventually being updated to the R-44.<br><br>\
@@ -276,7 +277,7 @@
 	single misfire during the entire 1000 round firing.<br><br>\
 	After the trials the gun was slated to fully replace the R-44 as the TP-19 Pistol.<br><br>\
 	But certain troops complained that the MG-27 couldn't be as accurate out to further ranges and the power of the .44 round was more worthwhile \
-	to them than the 9mm round. Eventually it was decided that the TP019 would be adopted as the second sidearm of the TGMC instead of fully \
+	to them than the 9mm round. Eventually it was decided that the TP019 would be adopted as the second sidearm of the NTC instead of fully \
 	replacing the R-44 which would later eventually be modernized."
 
 /datum/codex_entry/standard_assaultrifle
@@ -316,7 +317,7 @@
 
 /datum/codex_entry/standard_tx11
 	associated_paths = list(/obj/item/weapon/gun/rifle/tx11)
-	lore_text = "The Keckler and Hoch 'M-11' was created out of a infamous bid called the 'Rifle of the future' project, created out of a need to replace aging weapon stocks in the TerraGov arsenal. \
+	lore_text = "The Keckler and Hoch 'M-11' was created out of a infamous bid called the 'Rifle of the future' project, created out of a need to replace aging weapon stocks in the Ninetails arsenal. \
 	The M-11 was created to be the ultimate weapon, being able to lay down fire like an MG with a high capacity, amazing burst fire capability, specialized scope for long range damage, it was tested and destroyed the competition.\
 	It did amazing in field tests, and was effectively the best rifle overall. Most concerns were ergonomical, however it was pushed aside for a need of a new rifle, and money was already spent in making the entire thing, so getting a new competition would be too bothersome.\
 	Eventually however, these ergonomic failures lead to constant troop complaints due to the unergonomic nature of the rifle, troops who swore by it loved it, troops who hated it called it a useless brick.\

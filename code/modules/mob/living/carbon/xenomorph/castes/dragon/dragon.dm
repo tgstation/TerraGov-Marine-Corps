@@ -10,6 +10,7 @@
 	maxHealth = 850
 	plasma_stored = 0
 	pixel_x = -48
+	footstep_type = FOOTSTEP_XENO_HEAVY
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6
 	tier = XENO_TIER_FOUR
@@ -40,7 +41,7 @@
 	return TRUE
 
 /// If they have plasma, reduces their damage accordingly by up to 50%. Ratio is 4 plasma per 1 damage.
-/mob/living/carbon/xenomorph/dragon/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+/mob/living/carbon/xenomorph/dragon/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/attacker)
 	if((status_flags & GODMODE) || damage <= 0)
 		return FALSE
 	if(damagetype != BRUTE && damagetype != BURN)

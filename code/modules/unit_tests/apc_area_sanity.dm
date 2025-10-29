@@ -1,7 +1,7 @@
 /datum/unit_test/area_apc_sanity
 
 /datum/unit_test/area_apc_sanity/Run()
-	var/list/relevant_z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND) + SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
+	var/list/relevant_z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND) + SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP) + SSmapping.levels_by_trait(ZTRAIT_ANTAG_MAIN_SHIP)
 	for(var/relevant_z_level in relevant_z_levels)
 		for(var/area/tested_area in SSmapping.areas_in_z["[relevant_z_level]"])
 			var/list/cached_apc_list = tested_area.get_apc_list()

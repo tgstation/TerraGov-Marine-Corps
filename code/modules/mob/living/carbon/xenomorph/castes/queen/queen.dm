@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/queen
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
-	icon = 'icons/Xeno/castes/queen.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/queen.dmi'
 	icon_state = "Queen Walking"
 	health = 300
 	maxHealth = 300
@@ -30,7 +30,7 @@
 
 /mob/living/carbon/xenomorph/queen/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Charging"
+		icon_state = "[xeno_caste.caste_name][(xeno_flags & is_a_rouny) ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 
@@ -43,26 +43,28 @@
 // ***************************************
 /mob/living/carbon/xenomorph/queen/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
-	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	var/prefix = "[hive.prefix][xeno_caste.upgrade_name ? "[xeno_caste.upgrade_name] " : ""]"
 	if(!client?.prefs.show_xeno_rank || !client)
-		name = prefix + "Queen ([nicknumber])"
+		name = prefix + "Queen"
 		real_name = name
 		if(mind)
 			mind.name = name
 		return
 	switch(playtime_mins)
 		if(0 to 600)
-			name = prefix + "Young Queen ([nicknumber])"
+			name = prefix + "Young Queen"
 		if(601 to 1500)
-			name = prefix + "Mature Queen ([nicknumber])"
+			name = prefix + "Mature Queen"
 		if(1501 to 4200)
-			name = prefix + "Elder Empress ([nicknumber])"
+			name = prefix + "Elder Empress"
 		if(4201 to 10500)
-			name = prefix + "Ancient Empress ([nicknumber])"
+			name = prefix + "Ancient Empress"
 		if(10501 to INFINITY)
-			name = prefix + "Prime Empress ([nicknumber])"
+			name = prefix + "Prime Empress"
 		else
-			name = prefix + "Young Queen ([nicknumber])"
+			name = prefix + "Young Queen"
+
+	name = "[name][src == hive.living_xeno_ruler ? " Regnant" :""] ([nicknumber])"
 
 	real_name = name
 	if(mind)

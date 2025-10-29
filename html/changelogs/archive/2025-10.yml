@@ -86,6 +86,10 @@
   blackdav123:
   - balance: Pyrogen now has higher plasma costs, but receives plasma when slashing
       marines or consuming firestacks with Fire Charge.
+2025-10-12:
+  DrCrawler:
+  - balance: The Chronos implant now HALVES the time it takes to perform do_after
+      actions, instead of reducing them by 20%
 2025-10-13:
   Lumipharon:
   - bugfix: fixed overhead do_after icons not appearing in many cases
@@ -102,12 +106,18 @@
   Runian:
   - bugfix: 'Mutations: Enhanced Strength now correctly sets/increases your Fling
       distance as Warrior.'
+2025-10-17:
+  DrCrawler:
+  - rscadd: Defiler's mutation, envenomed, now also triggers upon disarming someone.
+2025-10-19:
+  DrCrawler:
+  - rscadd: The subtler input window now uses TGUI and allows multiline messages!
 2025-10-21:
   Atropos:
   - qol: Dylovene autoinjectors now inject 3 u by default
   DaTruRiZZoB:
   - bugfix: Fixed pointing while dead/incapacitated
-2025-10-23:
+2025-10-24:
   Lumipharon:
   - admin: Fixed the job panel breaking if the gamemode fails to start 1 or more times
 2025-10-27:

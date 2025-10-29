@@ -8,6 +8,7 @@
 	icon_state = "chest"
 	worn_icon_state = "chest"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	shows_bottom_genital = TRUE
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -20,7 +21,10 @@
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/knight,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/absorbant/energy,
+		/obj/item/armor_module/module/eshield/absorbant/ballistic,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
 
@@ -61,6 +65,11 @@
 	name = "\improper Jaeger Ranger medium exoskeleton"
 	desc = "A Ranger-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a moderate amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	greyscale_config = /datum/greyscale_config/armor_mk2/ranger
+
+/obj/item/clothing/suit/modular/jaeger/hotaru
+	name = "\improper Style Pattern Hotaru medium exoskeleton"
+	desc = "A Ranger-pattern Hotaru combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a moderate amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	greyscale_config = /datum/greyscale_config/armor_mk2/hotaru
 
 // Light
 
@@ -146,6 +155,9 @@
 		/obj/item/armor_module/armor/visor/marine/traditional,
 		/obj/item/armor_module/armor/visor/marine/mjolnir_open,
 		/obj/item/armor_module/armor/visor/marine/trooper,
+		/obj/item/armor_module/armor/visor/marine/kabuto,
+		/obj/item/armor_module/armor/visor/marine/hotaru,
+		/obj/item/armor_module/armor/visor/marine/dashe,
 		/obj/item/armor_module/armor/visor/marine/fourvisor,
 		/obj/item/armor_module/armor/visor/marine/foureyevisor,
 		/obj/item/armor_module/armor/visor/marine/markonevisor,
@@ -223,6 +235,24 @@
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/trooper, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk2/trooper
 
+/obj/item/clothing/head/modular/marine/kabuto
+	name = "Style Pattern Kabuto Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Kabuto markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/kabuto, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/kabuto
+
+/obj/item/clothing/head/modular/marine/hotaru
+	name = "Style Pattern Hotaru Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Hotaru markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/hotaru, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru
+
+/obj/item/clothing/head/modular/marine/dashe
+	name = "Style Pattern Dashe Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Dashe markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/dashe, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
+
 /obj/item/clothing/head/modular/marine/mjolnir_open
 	name = "Jaeger Mk.I Pattern Open Mjolnir Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Mjolnir markings but explosing the lower jaw."
@@ -276,3 +306,20 @@
 	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt_two
 
 
+/obj/item/clothing/head/modular/marine/vsd_hardsuit
+	name = "Crasher MT/41 'Phobos' helmet"
+	desc = "Usually paired with the CrashCore MT/P modular exoskeleton. Can mount utility functions on the helmet hard points. Has 'Phobos' markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/phobos, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit
+
+/obj/item/clothing/head/modular/marine/vsd_hardsuit/clementia
+	name = "Crasher MT/41 'Clementia' helmet"
+	desc = "Usually paired with the CrashCore MT/P modular exoskeleton. Can mount utility functions on the helmet hard points. Has 'Clementia' markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/clementia, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt
+
+/obj/item/clothing/head/modular/marine/vsd_hardsuit/hephaestus
+	name = "Crasher MT/41 'Hephaestus' helmet"
+	desc = "Usually paired with the CrashCore MT/P modular exoskeleton. Can mount utility functions on the helmet hard points. Has 'Hephaestus' markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/hephaestus, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt_two

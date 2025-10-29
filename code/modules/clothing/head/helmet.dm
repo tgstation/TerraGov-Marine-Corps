@@ -118,7 +118,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "helmet"
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	max_integrity = 5
 	var/list/helmet_overlays
 	inventory_flags = BLOCKSHARPOBJ
@@ -209,6 +209,11 @@
 		M = mutable_appearance('icons/mob/modular/modular_helmet_storage.dmi', M.icon_state)
 		standing.overlays += M
 
+/obj/item/clothing/head/helmet/marine/stolen
+	name = "\improper stolen M10 pattern helmet"
+	desc = "A stolen M10 pattern marine helmet, likely from fallen colony-based marines or old battles. It has been painted black & repurposed for use by the Sons of Mars."
+	icon_state = "k_helmet"
+
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
@@ -259,7 +264,7 @@
 /obj/item/clothing/head/helmet/marine/mech_pilot
 	name = "\improper M12C pattern neurolink helmet"
 	icon_state = "mech_pilot_helmet"
-	desc = "A lightweight helmet with a small port in the back. Offers lower response times for TGMC mech pilots by integrating them directly into their mech suit's systems, though it certainly doesn't make them smarter."
+	desc = "A lightweight helmet with a small port in the back. Offers lower response times for NTC mech pilots by integrating them directly into their mech suit's systems, though it certainly doesn't make them smarter."
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/marine/assault_crewman
@@ -278,7 +283,7 @@
 	name = "M8 riot helmet"
 	desc = "It's a modified version of the widely used Riot Helmets for use against angry jarheads. Boasts high ballistic protection"
 	icon_state = "marine_riot"
-	soft_armor = list(MELEE = 65, BULLET = 110, LASER = 110, ENERGY = 5, BOMB = 50, BIO = 50, FIRE = 50, ACID = 30)
+	soft_armor = list(MELEE = 65, BULLET = 90, LASER = 110, ENERGY = 5, BOMB = 50, BIO = 50, FIRE = 50, ACID = 30)
 	inventory_flags = COVEREYES|BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	item_flags = SYNTH_RESTRICTED
@@ -308,22 +313,22 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard
 	name = "\improper M4 Legionary pattern PMC helmet"
-	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets."
+	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets."
 	icon_state = "pmc_helmet_standard"
 	soft_armor = list(MELEE = 65, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 50, FIRE = 65, ACID = 55)
 	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/stripes
-	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets. You like stripes, don't you?"
+	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets. You like stripes, don't you?"
 	icon_state = "pmc_helmet_standard_stripes"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/twoface
-	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets. You could say we're of two minds on the subject."
+	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets. You could say we're of two minds on the subject."
 	icon_state = "pmc_helmet_standard_twoface"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/mantis
-	desc = "Standard issue enclosed helmet, produced by Nanotrasen Armory Division for their mercenaries and security assets. You feel quite hungry."
+	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets. You feel quite hungry."
 	icon_state = "pmc_helmet_standard_mantis"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/leader
@@ -344,39 +349,39 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
 	name = "\improper M7-H Cathaphract pattern PMC helmet"
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat."
 	icon_state = "pmc_heavyhelmet"
 	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 50, FIRE = 65, ACID = 65)
 	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/skull
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. It's rattling time."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. It's rattling time."
 	icon_state = "pmc_heavyhelmet_skull"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/hunter
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. I've got you in my sights."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. I've got you in my sights."
 	icon_state = "pmc_heavyhelmet_hunter"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/joker
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You love seeing people smile."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You love seeing people smile."
 	icon_state = "pmc_heavyhelmet_joker"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/stripes
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You like stripes, don't you?"
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You like stripes, don't you?"
 	icon_state = "pmc_heavyhelmet_stripes"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/leader
 	name = "\improper M7-H Cathaphract pattern PMC officer helmet"
-	desc = "A newest generation of Nanotrasen Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. This particular helmet looks like it belongs to a high-ranking officer."
+	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. This particular helmet looks like it belongs to a high-ranking officer."
 	icon_state = "pmc_heavyhelmet_officer"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	name = "\improper PMC commando helmet"
-	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
+	desc = "A fully enclosed, armored helmet made for Corporate elite commandos."
 	icon_state = "commando_helmet"
 	armor_protection_flags = HEAD|FACE|EYES
-	soft_armor = list(MELEE = 95, BULLET = 120, LASER = 200, ENERGY = 200, BOMB = 90, BIO = 100, FIRE = 90, ACID = 95)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 90, BOMB = 90, BIO = 100, FIRE = 90, ACID = 90)
 	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	eye_protection = 2
@@ -416,7 +421,7 @@
 
 /obj/item/clothing/head/helmet/marine/freelancer/beret
 	name = "\improper Freelancer beret"
-	desc = "A white beret, with worned out TerraGov emblem. Not many people you can see wear such things, especially when they're not part of the TerraGov military. Additionally issued with armored platemask."
+	desc = "A white beret, with worn out Ninetails emblem. Not many people you can see wear such things, especially when they're not part of the Ninetails military. Additionally issued with armored platemask."
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "freelancer_beret"
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 70, BOMB = 60, BIO = 55, FIRE = 60, ACID = 65)
@@ -430,7 +435,7 @@
 
 /obj/item/clothing/head/helmet/marine/freelancer/medic
 	name = "\improper M3 pattern CBRN Freelancer helmet"
-	desc = "A sturdy freelancer's blue helmet with white stripe ontop and integrated mimir filtration system. Many years ago on the Terra, the sign of that helmet was inspiring hope, but now - only apathy."
+	desc = "A sturdy freelancer's blue helmet with white stripe on top and integrated mimir filtration system. Many years ago on the Terra, the sign of that helmet was inspiring hope, but now - only apathy."
 	icon_state = "freelancer_helmet_medic"
 	soft_armor = list(MELEE = 55, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 60, BIO = 70, FIRE = 65, ACID = 75)
 	attachments_by_slot = list(
@@ -518,7 +523,7 @@
 
 /obj/item/clothing/head/helmet/specrag
 	name = "specialist head-rag"
-	desc = "A hat worn by heavy-weapons operators to block sweat."
+	desc = "A hat worn by specialist operators to block sweat."
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
@@ -526,7 +531,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "spec"
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 10, BIO = 0, FIRE = 15, ACID = 15)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	inventory_flags = BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS
 
@@ -617,6 +622,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	worn_icon_state = "icc"
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 50)
 
 /obj/item/clothing/head/helmet/marine/icc/guard
@@ -624,6 +630,7 @@
 	desc = "A high-quality ICCGF helmet, mostly seen worn by the ICC's highest quality troops, better well known as 'Guardsmen'. Like most helmets of the ICC it is made to fit a utility and combat role with noticeably high resistance to explosions and bullets."
 	icon_state = "icc_guard"
 	worn_icon_state = "icc_guard"
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 80, BIO = 10, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/icc/guard/heavy
@@ -631,11 +638,12 @@
 	desc = "A high-quality ICCGF helmet, mostly seen worn by the ICC's highest quality troops, better well known as 'Guardsmen'. Like most helmets of the ICC it is made to fit a utility and combat role with noticeably high resistance to explosions and bullets, this one is heavily reinforced."
 	icon_state = "icc_guard_heavy"
 	worn_icon_state = "icc_guard_heavy"
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	soft_armor = list(MELEE = 65, BULLET = 70, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd
 	name = "\improper Crasher MT/43 ballistic helmet"
-	desc = "Vyacheslav Security Detail's quality helmet, designed with modular slots and combat readiness."
+	desc = "Kaizoku Corporation's quality helmet, designed with modular slots and combat readiness."
 	icon = 'icons/mob/clothing/headwear/ert_headwear.dmi'
 	icon_state = "vsd_main"
 	worn_icon_state = "vsd_main"
@@ -652,7 +660,7 @@
 
 /obj/item/clothing/head/helmet/marine/vsd/juggernaut
 	name = "\improper Crasher MT-H/43 'Ares' powered ballistic helmet"
-	desc = "Vyacheslav Security Detail's custom, modified helmet designed for the 'Ares' Juggernaut suit."
+	desc = "Kaizoku Corporation's custom, modified helmet designed for the 'Ares' Juggernaut suit."
 	icon_state = "vsd_juggernaut_ballistic"
 	worn_icon_state = "vsd_juggernaut_ballistic"
 	inv_hide_flags = HIDEALLHAIR|HIDEEARS|HIDEMASK
@@ -660,7 +668,7 @@
 
 /obj/item/clothing/head/helmet/marine/vsd/eod
 	name = "\improper Crasher MT-H/43 'Zeus' powered explosive-defensive helmet"
-	desc = "Vyacheslav Security Detail's custom, modified helmet designed for the 'Zeus' Juggernaut suit."
+	desc = "Kaizoku Corporation's custom, modified helmet designed for the 'Zeus' Juggernaut suit."
 	icon_state = "vsd_juggernaut_eod"
 	worn_icon_state = "vsd_juggernaut_eod"
 	inv_hide_flags = HIDEALLHAIR|HIDEEARS|HIDEMASK
@@ -668,8 +676,63 @@
 
 /obj/item/clothing/head/helmet/marine/vsd/flamer
 	name = "\improper Crasher MT-H/43 'Apollo' powered fire-protected helmet"
-	desc = "Vyacheslav Security Detail's custom, modified helmet designed for the 'Apollo' Juggernaut suit."
+	desc = "Kaizoku Corporation's custom, modified helmet designed for the 'Apollo' Juggernaut suit."
 	icon_state = "vsd_juggernaut_pyro"
 	worn_icon_state = "vsd_juggernaut_pyro"
 	inv_hide_flags = HIDEALLHAIR|HIDEEARS|HIDEMASK
 	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 80, ACID = 40)
+
+/obj/item/clothing/head/helmet/marine/vsd_two
+	name = "Crasher multi-threat ballistic helmet"
+	desc = "Kaizoku's grunt helmet, doesn't protect your chrome-dome much though."
+	icon = 'icons/mob/clothing/headwear/marine_helmets.dmi'
+	icon_state = "vsd_helmet"
+	worn_icon_state = "vsd_helmet"
+	worn_icon_list =  list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
+	)
+	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 20, ACID = 30)
+
+	icon_state_variants = list(
+		"urban",
+		"jungle",
+		"desert",
+		"snow",
+	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
+	current_variant = "urban"
+
+/obj/item/clothing/head/helmet/marine/usl_squad
+	name = "UL4 helmet"
+	desc = "A helmet designed for use with the UL/UM system."
+	icon = 'icons/mob/clothing/headwear/marine_helmets.dmi'
+	icon_state = "main_helmet"
+	worn_icon_state = "main_helmet"
+	worn_icon_list =  list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
+	)
+	soft_armor = list(MELEE = 70, BULLET = 55, LASER = 40, ENERGY = 35, BOMB = 35, BIO = 5, FIRE = 35, ACID = 35)
+
+	icon_state_variants = list(
+		"USL",
+		"urban",
+		"jungle",
+		"desert",
+		"snow",
+	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
+	current_variant = "USL"
+
+/obj/item/clothing/head/helmet/marine/usl_squad/marmor
+	name = "UM5 helmet"
+	desc = "A helmet designed for use with the UM/UH system."
+	icon_state = "marmor_helmet"
+	worn_icon_state = "marmor_helmet"
+	soft_armor = list(MELEE = 80, BULLET = 75, LASER = 60, ENERGY = 65, BOMB = 85, BIO = 5, FIRE = 65, ACID = 65)
+
+/obj/item/clothing/head/helmet/marine/usl_squad/harmor
+	name = "UH7 helmet"
+	desc = "A helmet designed for use with the UH system."
+	icon_state = "harmor_helmet"
+	worn_icon_state = "harmor_helmet"
+	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 60, ENERGY = 65, BOMB = 85, BIO = 5, FIRE = 65, ACID = 65)

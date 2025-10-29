@@ -5,6 +5,7 @@
 	baseturfs = /turf/open/floor/plating
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_OPEN_FLOOR)
 	canSmoothWith = list(SMOOTH_GROUP_OPEN_FLOOR, SMOOTH_GROUP_TURF_OPEN)
+	intact_tile = TRUE
 	///Number of icon state variation this turf has
 	var/icon_variants = 1
 	///If the turf has been physically damaged
@@ -166,7 +167,7 @@
 /turf/open/floor/proc/spawn_tile()
 	if(!has_tile())
 		return null
-	return new floor_tile(src)
+	return new floor_tile(src, 1, type)
 
 //todo: maybe redo this wet/dry stuff
 /turf/open/floor/wet_floor(wet_level = FLOOR_WET_WATER)

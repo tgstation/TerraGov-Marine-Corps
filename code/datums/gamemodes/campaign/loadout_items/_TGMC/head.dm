@@ -171,7 +171,7 @@
 
 /datum/loadout_item/helmet/staff_officer_cap
 	name = "Officer cap"
-	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	desc = "A hat usually worn by officers in the NTF. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	item_typepath = /obj/item/clothing/head/tgmccap/ro
 	jobs_supported = list(STAFF_OFFICER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE

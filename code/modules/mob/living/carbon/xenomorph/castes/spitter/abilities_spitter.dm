@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/spray_acid/line
 	name = "Spray Acid"
 	desc = "Spray a line of dangerous acid at your target."
+
 	ability_cost = 250
 	cooldown_duration = 30 SECONDS
 	/// If the owner makes use of and has this much stored globs, non-opaque gas is created along with the acid. Must be non-zero.
@@ -116,6 +117,7 @@
 	action_icon_state = "scatter_spit"
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
 	desc = "Spits a spread of acid projectiles that splatter on the ground."
+
 	ability_cost = 280
 	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
@@ -244,7 +246,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		if(!health_loss_percentage_per_grenade || xeno_owner.selected_grenade == /obj/item/explosive/grenade/globadier/heal)
 			owner.balloon_alert(owner, "No grenades!")
 			return fail_activate()
-		var/health_to_lose = xeno_owner.xeno_caste.max_health * health_loss_percentage_per_grenade;
+		var/health_to_lose = xeno_owner.maxHealth * health_loss_percentage_per_grenade;
 		if(xeno_owner.health_threshold_crit > xeno_owner.health - health_to_lose) // Hugbox to stop them from suiciding into critical.
 			owner.balloon_alert(owner, "Not enough health!")
 			return fail_activate()
@@ -491,6 +493,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /datum/action/ability/xeno_action/acid_mine/can_use_action(silent, override_flags, selecting)
 	. = ..()
+	if(!.)
+		return FALSE
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)

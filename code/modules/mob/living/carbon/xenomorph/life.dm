@@ -88,6 +88,8 @@
 		adjustBruteLoss(XENO_CRIT_DAMAGE * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD)
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE, seconds_per_tick = 2)
+	if(HAS_TRAIT(src, TRAIT_NOHEALTHREGEN))
+		return
 	var/amount = 1 + (maxHealth * 0.0375) // 1 damage + 3.75% max health, with scaling power.
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
@@ -158,17 +160,19 @@
 		if(leader_current_aura)
 			leader_current_aura.suppressed = TRUE
 
-	if(frenzy_aura != (received_auras[AURA_XENO_FRENZY] || 0))
-		set_frenzy_aura(received_auras[AURA_XENO_FRENZY] || 0)
+	var/new_frenzy_aura = (received_auras[AURA_XENO_FRENZY] || 0) * hive.aura_multiplier
+	if(frenzy_aura != new_frenzy_aura)
+		set_frenzy_aura(new_frenzy_aura)
 
-	if(warding_aura != (received_auras[AURA_XENO_WARDING] || 0))
+	var/new_warding_aura = (received_auras[AURA_XENO_WARDING] || 0) * hive.aura_multiplier
+	if(warding_aura != new_warding_aura)
 		if(warding_aura) //If either the new or old warding is 0, we can skip adjusting armor for it.
 			soft_armor = soft_armor.modifyAllRatings(-warding_aura * 2.5)
-		warding_aura = received_auras[AURA_XENO_WARDING] || 0
+		warding_aura = new_warding_aura
 		if(warding_aura)
 			soft_armor = soft_armor.modifyAllRatings(warding_aura * 2.5)
 
-	recovery_aura = received_auras[AURA_XENO_RECOVERY] || 0
+	recovery_aura = (received_auras[AURA_XENO_RECOVERY] || 0) * hive.aura_multiplier
 
 	hud_set_pheromone()
 	..()

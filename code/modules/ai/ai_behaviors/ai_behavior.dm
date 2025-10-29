@@ -39,7 +39,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///The standard ation of the AI, aka what it should do at the init or when going back to "normal" behavior
 	var/base_action = MOVING_TO_NODE
 	///Ref to the parent associated with this mind
-	var/mob/mob_parent //todo: why god is this mob level
+	var/mob/living/mob_parent
 	///An identifier associated with this behavior, used for accessing specific values of a node's weights
 	var/identifier
 	///How far will we look for targets
@@ -60,6 +60,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/list/ability_list = list()
 	///Count of how many times we've failed to form a path to our goal node
 	var/fail_goal_path_count = 0
+	///Will not look for targets to attack
+	var/non_aggressive = FALSE
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -407,6 +409,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Returns true if a combat target is no longer valid
 /datum/ai_behavior/proc/need_new_combat_target()
+	if(non_aggressive)
+		return FALSE
 	if(!combat_target)
 		return TRUE
 

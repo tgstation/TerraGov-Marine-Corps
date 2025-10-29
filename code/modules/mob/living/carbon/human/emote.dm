@@ -354,6 +354,11 @@
 	message = "moans!"
 	emote_type = EMOTE_TYPE_AUDIBLE
 
+/datum/emote/living/carbon/human/moan/get_sound(mob/living/user)
+	if(user.gender == FEMALE)
+		return pick('sound/voice/sexymoan_female1.ogg', 'sound/voice/sexymoan_female2.ogg', 'sound/voice/sexymoan_female3.ogg', 'sound/voice/sexymoan_female4.ogg', 'sound/voice/sexymoan_female5.ogg', 'sound/voice/sexymoan_female6.ogg', 'sound/voice/sexymoan_female7.ogg')
+	else
+		return pick('sound/voice/sexymoan_male1.ogg', 'sound/voice/sexymoan_male2.ogg', 'sound/voice/sexymoan_male3.ogg', 'sound/voice/sexymoan_male4.ogg', 'sound/voice/sexymoan_male5.ogg')
 
 /datum/emote/living/carbon/human/laugh
 	key = "laugh"
@@ -552,6 +557,8 @@
 /datum/emote/living/carbon/human/burstscream/get_sound(mob/living/carbon/human/user)
 	if(!user.species)
 		return
+	if(user.client?.prefs?.burst_screams_enabled == FALSE)
+		return
 	if(user.species.burstscreams[user.gender])
 		return user.species.burstscreams[user.gender]
 	if(user.species.burstscreams[NEUTER])
@@ -575,6 +582,8 @@
 	if(!.)
 		return
 	var/obj/item/I = user.get_active_held_item()
+	if(!I)
+		return FALSE
 	return I.can_do_trick(user)
 
 /datum/emote/living/carbon/human/trick/run_emote(mob/user, params, type_override, intentional, prefix)

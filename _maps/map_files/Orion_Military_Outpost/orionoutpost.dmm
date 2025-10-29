@@ -234,6 +234,7 @@
 /obj/effect/landmark/corpsespawner/marine,
 /obj/item/ammo_casing/bullet,
 /obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "bt" = (
@@ -443,6 +444,7 @@
 /area/orion_outpost/ground/underground/caveS)
 "ct" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/engineering)
 "cw" = (
@@ -3327,6 +3329,7 @@
 	},
 /area/orion_outpost/ground/outpostsw)
 "qg" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/orange/corner{
 	dir = 1
 	},
@@ -5116,6 +5119,7 @@
 	capacity = 1e+006;
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -5163,6 +5167,7 @@
 	capacity = 1e+006;
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -6146,6 +6151,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostw)
+"Dz" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/engineering)
 "DD" = (
 /turf/open/floor/mainship/blue{
 	dir = 6
@@ -6528,6 +6538,17 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
+"FG" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/engineering)
 "FH" = (
 /obj/structure/rack,
 /obj/structure/reagent_dispensers/beerkeg,
@@ -6780,6 +6801,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -7031,6 +7056,7 @@
 /area/orion_outpost/surface/building/nebuilding)
 "Ii" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -7567,6 +7593,11 @@
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/cargo)
+"KY" = (
+/obj/item/ammo_casing/bullet,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/engineering)
 "La" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -7833,6 +7864,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostw)
+"Mi" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/engineering)
 "Ml" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
@@ -8032,6 +8068,7 @@
 /area/orion_outpost/surface/building/administration)
 "Nd" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "Ne" = (
@@ -8177,6 +8214,13 @@
 	dir = 1
 	},
 /area/orion_outpost/ground/outpostse)
+"NH" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering{
+	dir = 2
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/engineering)
 "NI" = (
 /obj/structure/cargo_container/hd{
 	dir = 1
@@ -8684,6 +8728,13 @@
 	dir = 8
 	},
 /area/orion_outpost/surface/building/tadpolepad)
+"Qm" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/engineering)
 "Qn" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
@@ -9712,6 +9763,7 @@
 /area/orion_outpost/ground/outpostnw)
 "Vj" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange/corner{
 	dir = 4
 	},
@@ -9881,6 +9933,7 @@
 /area/orion_outpost/surface/building/breakroom)
 "VU" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/administration)
 "VV" = (
@@ -10522,6 +10575,7 @@
 /area/orion_outpost/surface/building/bunker)
 "Zb" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/brig)
 "Zc" = (
@@ -22210,7 +22264,7 @@ Xi
 JU
 jO
 nq
-nj
+KY
 Es
 sQ
 tN
@@ -22342,7 +22396,7 @@ Xi
 Xi
 Xi
 Eo
-vD
+NH
 Xi
 Xi
 Xi
@@ -22474,7 +22528,7 @@ ih
 Rz
 fw
 Le
-Eo
+Vp
 NT
 Oo
 tx
@@ -22606,7 +22660,7 @@ lu
 uj
 uj
 Ma
-Le
+Dz
 Eo
 Eo
 eN
@@ -22738,9 +22792,9 @@ fH
 FM
 iJ
 Eo
-Eo
-lu
-Eo
+Vp
+Mi
+Vp
 cP
 ih
 JL
@@ -23266,9 +23320,9 @@ Tm
 zo
 Xi
 GY
-Ja
-Eo
-Eo
+FG
+Qm
+Vp
 Eo
 Ja
 Io

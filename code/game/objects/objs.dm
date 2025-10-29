@@ -43,6 +43,8 @@
 	/// Map tag for something.  Tired of it being used on snowflake items.  Moved here for some semblance of a standard.
 	/// Next pr after the network fix will have me refactor door interactions, so help me god.
 	var/id_tag = null
+	///underlay icon file when holstered
+	var/holstered_underlay_icon = 'icons/obj/items/storage/holster.dmi'
 
 /obj/Initialize(mapload)
 	. = ..()
@@ -100,6 +102,8 @@
 		return // humans can check the codex for most of these- xenos should be able to know them "in the moment"
 	if(resistance_flags & CRUSHER_IMMUNE)
 		.[span_xenonotice("crusher-proof")] = "Charging Crushers can't damage this object."
+	if(resistance_flags & BANISH_IMMUNE)
+		.[span_xenonotice("banish immune")] = "Wraiths can't banish this object."
 	if(resistance_flags & PORTAL_IMMUNE)
 		.[span_xenonotice("portal immune")] = "Wraith portals can't teleport this object."
 	if(resistance_flags & XENO_DAMAGEABLE)
@@ -353,7 +357,7 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < skill_required)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 		span_notice("You fumble around figuring out how to repair [src]."))
-		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 	if(user.skills.getRating(SKILL_ENGINEER) > skill_required)
@@ -396,7 +400,7 @@
 		user.drop_held_item()
 	step_towards(grabbed_mob, src)
 	var/damage = base_damage + (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
-	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE, attacker = user)
 	user.visible_message(span_danger("[user] slams [grabbed_mob]'s face against [src]!"),
 	span_danger("You slam [grabbed_mob]'s face against [src]!"))
 	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")

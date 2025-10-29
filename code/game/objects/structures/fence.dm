@@ -40,7 +40,7 @@
 			user.visible_message(span_notice("[user] fumbles around figuring out how to fix [src]'s wiring."),
 			span_notice("You fumble around figuring out how to fix [src]'s wiring."))
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_CONSTRUCTION)
-			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		var/obj/item/stack/rods/R = I
@@ -56,7 +56,7 @@
 		"<span class='notice'>You start repairing [src] with [R]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 
-		if(!do_after(user, 30, NONE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
 
 		if(R.amount < amount_needed)
@@ -112,7 +112,7 @@
 			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against \the [src]!</big>"))
 			log_combat(user, grabbed_mob, "crushed", "", "against \the [src]")
 			grabbed_mob.Paralyze(2 SECONDS)
-	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
 	take_damage(damage * 2, BRUTE, MELEE)
 	return TRUE
 

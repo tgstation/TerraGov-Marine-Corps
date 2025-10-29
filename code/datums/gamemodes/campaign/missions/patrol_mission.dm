@@ -89,7 +89,7 @@
 		if(FACTION_TERRAGOV)
 			message = "SOM patrol confirmed in the AO! Secure those towers and neutralise all hostile forces. Move it marines!"
 		if(FACTION_SOM)
-			message = "TGMC patrol identified in the AO. Secure those towers and eliminate every Terran you see. For Mars!"
+			message = "NTF patrol identified in the AO. Secure those towers and eliminate every Terran you see. For Mars!"
 	return ..()
 
 /datum/campaign_mission/tdm/get_status_tab_items(mob/source, list/items)

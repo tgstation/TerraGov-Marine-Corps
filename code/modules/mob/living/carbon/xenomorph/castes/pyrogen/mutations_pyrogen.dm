@@ -3,8 +3,8 @@
 //*********************//
 /datum/mutation_upgrade/shell/flame_cloak
 	name = "Flame Cloak"
-	desc = "If you are ontop of fire, you gain 5/10/15 armor in all categories."
-	/// For each structure, the armor that is given for being ontop of any fire.
+	desc = "If you are on top of fire, you gain 5/10/15 armor in all categories."
+	/// For each structure, the armor that is given for being on top of any fire.
 	var/armor_per_structure = 5
 	/// The attached armor that been given, if any.
 	var/datum/armor/attached_armor
@@ -14,7 +14,7 @@
 /datum/mutation_upgrade/shell/flame_cloak/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "If you are ontop of fire, you gain [get_armor(new_amount)] in all categories."
+	return "If you are on top of fire, you gain [get_armor(new_amount)] in all categories."
 
 /datum/mutation_upgrade/shell/flame_cloak/on_mutation_enabled()
 	. = ..()

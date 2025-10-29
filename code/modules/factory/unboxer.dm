@@ -5,6 +5,8 @@
 	icon_state = "refillbox"
 	///Typepath for the output machine we want to be ejecting
 	var/obj/item/factory_part/refill_type = /obj/item/factory_part
+	///Alternative for SOM type refills
+	var/obj/item/factory_part/antag_refill_type = /obj/item/factory_part
 	///By how much we wan to refill the target machine
 	var/refill_amount = 30
 
@@ -176,6 +178,7 @@
 	name = "box of rounded metal plates (Pizza)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become 'Pizzas', once finished."
 	refill_type = /obj/item/factory_part/pizza
+	antag_refill_type = /obj/item/factory_part/pizza
 
 /obj/item/factory_refill/plastique_refill
 	name = "box of rounded polymer plates (C4)"
@@ -199,83 +202,97 @@
 	name = "box of rounded metal plates (SADAR WP)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become White Phosphorous SADAR rockets, once finished."
 	refill_type = /obj/item/factory_part/sadar_wp
+	antag_refill_type = /obj/item/factory_part/sadar_wp/som_incind
 	refill_amount = 15
 
 /obj/item/factory_refill/sadar_ap_refill
 	name = "box of rounded metal plates (SADAR AP)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Armor Piercing SADAR rockets, once finished."
 	refill_type = /obj/item/factory_part/sadar_ap
+	antag_refill_type = /obj/item/factory_part/sadar_ap/som_heat
 	refill_amount = 15
 
 /obj/item/factory_refill/sadar_he_refill
 	name = "box of rounded metal plates (SADAR HE)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become High Explosive SADAR rockets, once finished."
 	refill_type = /obj/item/factory_part/sadar_he
+	antag_refill_type = /obj/item/factory_part/sadar_he/som_he
 	refill_amount = 15
 
 /obj/item/factory_refill/sadar_he_unguided_refill
 	name = "box of rounded metal plates (SADAR HE Unguided)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These one become High Explosive Unguided SADAR rockets, once finished."
 	refill_type = /obj/item/factory_part/sadar_unguided
+	antag_refill_type = /obj/item/factory_part/sadar_he/som_he
 	refill_amount = 15
 
 /obj/item/factory_refill/light_rr_missile_refill
 	name = "box of rounded metal plates (LE RR shells)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Light Explosive Recoilless shells, once finished."
 	refill_type = /obj/item/factory_part/light_rr_missile
+	antag_refill_type = /obj/item/factory_part/light_rr_missile
 	refill_amount = 15
 
 /obj/item/factory_refill/normal_rr_missile_refill
 	name = "box of rounded metal plates (HE RR shells)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become High Explosive Recoilless shells, once finished."
 	refill_type = /obj/item/factory_part/normal_rr_missile
+	antag_refill_type = /obj/item/factory_part/normal_rr_missile
 	refill_amount = 15
 
 /obj/item/factory_refill/heat_rr_missile_refill
 	name = "box of rounded metal plates (HEAT RR shells)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become High Explosive Anti-Tank Recoilless shells, once finished."
 	refill_type = /obj/item/factory_part/heat_rr_missile
+	antag_refill_type = /obj/item/factory_part/heat_rr_missile
 	refill_amount = 15
 
 /obj/item/factory_refill/smoke_rr_missile_refill
 	name = "box of rounded metal plates (Smoke RR shells)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Smoke Recoilless shells, once finished."
 	refill_type = /obj/item/factory_part/smoke_rr_missile
+	antag_refill_type = /obj/item/factory_part/smoke_rr_missile
 	refill_amount = 15
 
 /obj/item/factory_refill/cloak_rr_missile_refill
 	name = "box of rounded metal plates (Cloak RR shells)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Cloak Recoilless shells, once finished."
 	refill_type = /obj/item/factory_part/cloak_rr_missile
+	antag_refill_type = /obj/item/factory_part/cloak_rr_missile
 	refill_amount = 15
 
 /obj/item/factory_refill/tfoot_rr_missile_refill
 	name = "box of rounded metal plates (Tanglefoot RR shells)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Tanglefoot Recoilless shells, once finished."
 	refill_type = /obj/item/factory_part/tfoot_rr_missile
+	antag_refill_type = /obj/item/factory_part/tfoot_rr_missile
 	refill_amount = 15
 
 /obj/item/factory_refill/claymore_refill
 	name = "box of rounded claymore plates"
 	desc = "A box with round claymore plates inside. Used to refill Unboxers. These will become M20 Claymore mines, once finished."
 	refill_type = /obj/item/factory_part/claymore
+	antag_refill_type = /obj/item/factory_part/claymore
 
 /obj/item/factory_refill/smartgunner_minigun_box_refill
 	name = "box of rounded metal plates (SG-85)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become SG-85 Smartgun ammo boxes, once finished."
 	refill_type = /obj/item/factory_part/smartgunner_minigun_box
+	antag_refill_type = /obj/item/factory_part/smartgunner_minigun_box
 	refill_amount = 10
 
 /obj/item/factory_refill/smartgunner_machinegun_magazine_refill
 	name = "box of rounded metal plates (SG-29)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become SG-29 Smartgun magazines, once finished."
 	refill_type = /obj/item/factory_part/smartgunner_machinegun_magazine
+	antag_refill_type = /obj/item/factory_part/smartgunner_machinegun_magazine
 	refill_amount = 10
 
 /obj/item/factory_refill/smartgunner_targetrifle_magazine_refill
 	name = "box of rounded metal plates (SG-62)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become SG-62 Target Rifle magazines, once finished."
 	refill_type = /obj/item/factory_part/smartgunner_targetrifle_magazine
+	antag_refill_type = /obj/item/factory_part/smartgunner_targetrifle_magazine
 	refill_amount = 20
 
 /obj/item/factory_refill/smartgunner_targetrifle_ammobin_refill
@@ -294,11 +311,13 @@
 	name = "box of rounded metal plates (SR-81)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These become produce SR-81 magazines, once finished."
 	refill_type = /obj/item/factory_part/auto_sniper_magazine
+	antag_refill_type = /obj/item/factory_part/auto_sniper_magazine
 
 /obj/item/factory_refill/scout_rifle_magazine_refill
 	name = "box of rounded metal plates (BR-8)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become BR-8 magazines, once finished."
 	refill_type = /obj/item/factory_part/scout_rifle_magazine
+	antag_refill_type = /obj/item/factory_part/scout_rifle_magazine
 	refill_amount = 20
 
 /obj/item/factory_refill/scout_rifle_incen_magazine_refill
@@ -317,11 +336,13 @@
 	name = "box of rounded metal plates (Mateba Speedloader)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Mateba Speedloaders, once finished."
 	refill_type = /obj/item/factory_part/mateba_speedloader
+	antag_refill_type = /obj/item/factory_part/mateba_speedloader
 
 /obj/item/factory_refill/railgun_magazine_refill
 	name = "box of rounded metal plates (Railgun Mag)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Railgun magazines, once finished."
 	refill_type = /obj/item/factory_part/railgun_magazine
+	antag_refill_type = /obj/item/factory_part/railgun_magazine
 	refill_amount = 20
 
 /obj/item/factory_refill/railgun_hvap_magazine_refill
@@ -340,6 +361,7 @@
 	name = "box of rounded metal plates (Minigun Pack)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Minigun Powerpacks, once finished."
 	refill_type = /obj/item/factory_part/minigun_powerpack
+	antag_refill_type = /obj/item/factory_part/minigun_powerpack
 	refill_amount = 10
 
 /obj/item/factory_refill/sniper_flak_magazine_refill
@@ -352,114 +374,133 @@
 	name = "box of rounded metal plates (AMR Mag)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become SR-26 AMR magazines, once finished."
 	refill_type = /obj/item/factory_part/amr_magazine
+	antag_refill_type = /obj/item/factory_part/amr_magazine
 	refill_amount = 20
 
 /obj/item/factory_refill/amr_magazine_incend_refill
 	name = "box of rounded metal plates (AMR Inc. Mag)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become SR-26 AMR Incendiary magazines, once finished."
 	refill_type = /obj/item/factory_part/amr_magazine_incend
+	antag_refill_type = /obj/item/factory_part/amr_magazine_incend
 	refill_amount = 20
 
 /obj/item/factory_refill/amr_magazine_flak_refill
 	name = "box of rounded metal plates (AMR Flak Mag)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become SR-26 AMR Flak magazines, once finished."
 	refill_type = /obj/item/factory_part/amr_magazine_flak
+	antag_refill_type = /obj/item/factory_part/amr_magazine_flak
 	refill_amount = 20
 
 /obj/item/factory_refill/howitzer_shell_he_refill
 	name = "box of rounded metal plates (Howitzer HE)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become High Explosive shells for a Howitzer, once finished."
 	refill_type = /obj/item/factory_part/howitzer_shell_he
+	antag_refill_type = /obj/item/factory_part/howitzer_shell_he
 	refill_amount = 30
 
 /obj/item/factory_refill/howitzer_shell_incen_refill
 	name = "box of rounded metal plates (Howitzer Inc.)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Incendiary shells for a howitzer, once finished."
 	refill_type = /obj/item/factory_part/howitzer_shell_incen
+	antag_refill_type = /obj/item/factory_part/howitzer_shell_incen
 	refill_amount = 30
 
 /obj/item/factory_refill/howitzer_shell_wp_refill
 	name = "box of rounded metal plates (Howitzer WP.)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become White Phosphorous shells for a howitzer, once finished."
 	refill_type = /obj/item/factory_part/howitzer_shell_wp
+	antag_refill_type = /obj/item/factory_part/howitzer_shell_wp
 	refill_amount = 30
 
 /obj/item/factory_refill/howitzer_shell_tfoot_refill
 	name = "box of rounded metal plates (Howitzer Tanglefoot)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Tanglefoot shells for a howitzer, once finished."
 	refill_type = /obj/item/factory_part/howitzer_shell_tfoot
+	antag_refill_type = /obj/item/factory_part/howitzer_shell_tfoot
 	refill_amount = 30
 
 /obj/item/factory_refill/swat_mask_refill
 	name = "box of rounded metal plates (SWAT Mask)"
 	desc = "A box of round metal plates inside. Used to refill Unboxers. These will become SWAT masks, once finished."
 	refill_type = /obj/item/factory_part/swat_mask
+	antag_refill_type = /obj/item/factory_part/swat_mask
 	refill_amount = 20
 
 /obj/item/factory_refill/module_valk_refill
 	name = "box of rounded metal plates (Valkyrie)"
 	desc = "A box of round metal plates inside. Used to refill Unboxers. These will become Valkyrie autodoc armor modules, once finished."
 	refill_type = /obj/item/factory_part/module_valk
+	antag_refill_type = /obj/item/factory_part/module_valk/apollo
 	refill_amount = 10
 
 /obj/item/factory_refill/module_mimir2_refill
 	name = "box of rounded metal plates (Mimir Mk2)"
 	desc = "A box of round metal plates inside. Used to refill Unboxers. These will become Mimir Mark 2 armor and helmet modules, once finished."
 	refill_type = /obj/item/factory_part/module_mimir2
+	antag_refill_type = /obj/item/factory_part/module_mimir2
 	refill_amount = 10
 
 /obj/item/factory_refill/module_tyr2_refill
 	name = "box of rounded metal plates (Tyr Mk2)"
 	desc = "A box of round metal plates inside. Used to refill Unboxers. These will become Tyr Mark 2 armor modules, once finished."
 	refill_type = /obj/item/factory_part/module_tyr2
+	antag_refill_type = /obj/item/factory_part/module_tyr2
 	refill_amount = 10
 
 /obj/item/factory_refill/module_hlin_refill
 	name = "box of rounded metal plates (Hlin)"
 	desc = "A box of round metal plates inside. Used to refill Unboxers. These will become Hlin armor modules, once finished."
 	refill_type = /obj/item/factory_part/module_hlin
+	antag_refill_type = /obj/item/factory_part/module_hlin
 	refill_amount = 10
 
 /obj/item/factory_refill/module_surt_refill
 	name = "box of rounded metal plates (Surt)"
 	desc = "A box of round metal plates inside. Used to refill Unboxers. These will become Surt armor and helmet modules, once finished."
 	refill_type = /obj/item/factory_part/module_surt
+	antag_refill_type = /obj/item/factory_part/module_surt/hades
 	refill_amount = 10
 
 /obj/item/factory_refill/mortar_shell_he_refill
 	name = "box of rounded metal plates (Mortar HE)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become High Explosive shells used in mortars, once finished."
 	refill_type = /obj/item/factory_part/mortar_shell_he
+	antag_refill_type = /obj/item/factory_part/mortar_shell_he
 	refill_amount = 30
 
 /obj/item/factory_refill/mortar_shell_incen_refill
 	name = "box of rounded metal plates (Mortar Inc.)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Incendiary shells used in mortars, once finished."
 	refill_type = /obj/item/factory_part/mortar_shell_incen
+	antag_refill_type = /obj/item/factory_part/mortar_shell_incen
 	refill_amount = 30
 
 /obj/item/factory_refill/mortar_shell_tfoot_refill
 	name = "box of rounded metal plates (Mortar Tanglefoot)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Tanglefoot smoke shells used in mortars, once finished."
 	refill_type = /obj/item/factory_part/mortar_shell_tfoot
+	antag_refill_type = /obj/item/factory_part/mortar_shell_tfoot
 	refill_amount = 30
 
 /obj/item/factory_refill/mortar_shell_flare_refill
 	name = "box of rounded metal plates (Mortar Flare)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Flare shells used in mortars or howitzers, once finished."
 	refill_type = /obj/item/factory_part/mortar_shell_flare
+	antag_refill_type = /obj/item/factory_part/mortar_shell_flare
 	refill_amount = 30
 
 /obj/item/factory_refill/mortar_shell_smoke_refill
 	name = "box of rounded metal plates (Mortar Smoke)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Smoke shells used in mortars, once finished."
 	refill_type = /obj/item/factory_part/mortar_shell_flare
+	antag_refill_type = /obj/item/factory_part/mortar_shell_flare
 	refill_amount = 30
 
 /obj/item/factory_refill/mlrs_rocket_refill
 	name = "box of rounded metal plates (MLRS HE Rocket)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become High Explosive rockets for an MLRS, once finished."
 	refill_type = /obj/item/factory_part/mlrs_rocket
+	antag_refill_type = /obj/item/factory_part/mlrs_rocket
 	refill_amount = 6
 
 /obj/item/factory_refill/mlrs_rocket_refill_gas
@@ -568,12 +609,14 @@
 	name = "box of rounded metal plates (RL-57 Rockets)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become RL-57 White Phosphorous rocket assemblies, once finished."
 	refill_type = /obj/item/factory_part/thermobaric_wp
+	antag_refill_type = /obj/item/factory_part/thermobaric_wp
 	refill_amount = 15
 
 /obj/item/factory_refill/drop_pod_refill
 	name = "box of rounded metal plates (Droppod)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Zeus Orbital Droppods, once finished."
 	refill_type = /obj/item/factory_part/drop_pod
+	antag_refill_type = /obj/item/factory_part/drop_pod
 	refill_amount = 6
 
 /obj/item/factory_refill/deployable_floodlight_refill

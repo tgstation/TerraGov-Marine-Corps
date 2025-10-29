@@ -93,7 +93,7 @@
 	user.visible_message(span_notice("[user] begins to cut down [src] with [I]."),span_notice("You begin to cut down [src] with [I]."), "You hear the sound of sawing.")
 	var/cut_force = min(1, I.force)
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
-	if(!do_after(user, cutting_time , NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] fells [src] with the [I]."),span_notice("You fell [src] with the [I]."), "You hear the sound of a tree falling.")

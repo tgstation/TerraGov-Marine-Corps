@@ -449,16 +449,16 @@
 // Pilot body
 
 /obj/structure/prop/urban/airport/deadpilot1
-	name = "decapitated Nanotrasen Pilot"
-	desc = "What remains of a Nanotrasen Pilot. Their entire head is missing. Where'd it roll off to?..."
+	name = "decapitated Ninetails Pilot"
+	desc = "What remains of a Ninetails Pilot. Their entire head is missing. Where'd it roll off to?..."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "pilotbody_decap1"
 	bound_height = 64
 	bound_width = 96
 
 /obj/structure/prop/urban/airport/deadpilot2
-	name = "decapitated Nanotrasen Pilot"
-	desc = "What remains of a Nanotrasen Pilot. Their entire head is missing. Where'd it roll off to?..."
+	name = "decapitated Ninetails Pilot"
+	desc = "What remains of a Ninetails Pilot. Their entire head is missing. Where'd it roll off to?..."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "pilotbody_decap2"
 	bound_height = 64
@@ -601,8 +601,8 @@
 // Misc
 
 /obj/structure/prop/urban/misc/commandosuitemptyprop
-	name = "\improper Nanotrasen 'Ape-Suit' Showcase"
-	desc = "A display model of the Nanotrasen 'Apesuit', shame it's only a model..."
+	name = "\improper Ninetails 'Ape-Suit' Showcase"
+	desc = "A display model of the Ninetails 'Apesuit', shame it's only a model..."
 	icon_state = "dogcatchersuitempty1"
 
 /obj/structure/prop/urban/misc/cabinet
@@ -612,12 +612,12 @@
 
 /obj/structure/prop/urban/misc/trash/green
 	name = "trash bin"
-	desc = "A Nanotrasen trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
+	desc = "A Ninetails trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
 	icon_state = "trashgreen"
 
 /obj/structure/prop/urban/misc/trash/blue
 	name = "trash bin"
-	desc = "A Nanotrasen trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
+	desc = "A Ninetails trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
 	icon_state = "trashblue"
 
 /obj/structure/prop/urban/misc/redmeter
@@ -644,7 +644,7 @@
 	layer = 3.2
 
 /obj/structure/prop/urban/misc/atm
-	name = "\improper NanoTrasen Automatic Teller Machine"
+	name = "\improper Ninetails Automatic Teller Machine"
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "atm"
@@ -956,35 +956,35 @@
 	icon_state = "redright"
 
 /obj/structure/prop/urban/containersextended/greywyleft
-	name = "\improper Nanotrasen cargo container"
+	name = "\improper Ninetails cargo container"
 	icon_state = "greywyleft"
 
 /obj/structure/prop/urban/containersextended/greywyright
-	name = "\improper Nanotrasen cargo container"
+	name = "\improper Ninetails cargo container"
 	icon_state = "greywyright"
 
 /obj/structure/prop/urban/containersextended/lightgreywyleft
-	name = "\improper Nanotrasen cargo container"
+	name = "\improper Ninetails cargo container"
 	icon_state = "lightgreywyleft"
 
 /obj/structure/prop/urban/containersextended/lightgreywyright
-	name = "\improper Nanotrasen cargo container"
+	name = "\improper Ninetails cargo container"
 	icon_state = "lightgreywyright"
 
 /obj/structure/prop/urban/containersextended/blackwyleft
-	name = "\improper Nanotrasen cargo container"
+	name = "\improper Ninetails cargo container"
 	icon_state = "blackwyleft"
 
 /obj/structure/prop/urban/containersextended/blackwyright
-	name = "\improper Nanotrasen cargo container"
+	name = "\improper Ninetails cargo container"
 	icon_state = "blackwyright"
 
 /obj/structure/prop/urban/containersextended/whitewyleft
-	name = "\improper Nanotrasen cargo container"
+	name = "\improper Ninetails cargo container"
 	icon_state = "whitewyleft"
 
 /obj/structure/prop/urban/containersextended/whitewyright
-	name = "\improper Nanotrasen cargo container"
+	name = "\improper Ninetails cargo container"
 	icon_state = "whitewyright"
 
 /obj/structure/prop/urban/containersextended/tanwywingsleft
@@ -1229,7 +1229,7 @@
 // MISC
 /obj/structure/prop/urban/misc/concretestatue
 	name = "concrete statue"
-	desc = "A decorative statue with the Nanotrasen 'Wings' adorned on it, A corporate brutalist piece of art."
+	desc = "A decorative statue with the Ninetails 'Wings' adorned on it, A corporate brutalist piece of art."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "concretesculpture"
 	bound_width = 64
