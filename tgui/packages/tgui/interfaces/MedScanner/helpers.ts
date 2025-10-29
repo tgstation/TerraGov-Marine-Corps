@@ -5,15 +5,16 @@ import {
   COLOR_ROBOTIC_LIMB,
   LIMB_DAMAGE_HSL as LIMB_HSL,
 } from './constants';
-import { LimbTypes, MedColors } from './data';
+import { BloodColors, LimbTypes } from './data';
 
 /**
  * Helper for getting the name color of a limb based on relevant factors
  * @param bruteDamage brute damage number
  * @param burnDamage burn damage number
  * @param maxHealth maximum health of this limb
- * @param limbType string limb type for determining if we should return robot colors
- * @returns an hsl color string
+ * @param roboticToBeginWith this means we're working with a robotic species and need to adjust the color to work with those themes
+ * @param limbType limb type for determining if we should return robot colors
+ * @returns string: a suitable hsl color
  */
 export function getLimbNameColor(
   bruteDamage: number,
@@ -35,8 +36,8 @@ export function getLimbNameColor(
 
 /**
  * Helper for the limb type tag getting its color based on limb type
- * @param limbType string limb type for determining the output color
- * @param roboticToBeginWith if the patient is under the robot umbrella
+ * @param limbType limb type for determining the output color
+ * @param roboticToBeginWith this means we're working with a robotic species and need to adjust the color to work with those themes
  * @param accessible accessible theme status
  * @returns string: a suitable color
  */
@@ -52,8 +53,15 @@ export function getLimbTypeColor(
   if (limbType === LimbTypes.Biotic) {
     return 'tan';
   }
-  return 'white'; // fallback (if we ever show that a limb is Normal lmfao)
+  return 'white'; // fallback (if we ever need to show that a limb is Normal lmfao)
 }
+
+/** `MedColors` but background and foreground use the blood color enums */
+type BloodColorData = {
+  background: BloodColors;
+  foreground: BloodColors;
+  darker: string;
+};
 
 /**
  * Helper for getting a color based on blood level
@@ -66,17 +74,25 @@ export function getBloodColor(
   volume: number,
   initial: number,
   internalBleeding: boolean,
-): MedColors {
+): BloodColorData {
   const percent = volume / initial;
   if (percent < 0.6 || internalBleeding) {
-    return { background: 'red', foreground: 'white', darker: COLOR_DARKER_RED };
+    return {
+      background: BloodColors.CritBG,
+      foreground: BloodColors.CritFG,
+      darker: COLOR_DARKER_RED,
+    };
   }
   if (percent < 0.9) {
     return {
-      background: 'yellow',
-      foreground: 'black',
+      background: BloodColors.WarnBG,
+      foreground: BloodColors.WarnFG,
       darker: COLOR_DARKER_YELLOW,
     };
   }
-  return { background: 'grey', foreground: 'white', darker: COLOR_MID_GREY }; // fallback
+  return {
+    background: BloodColors.FineBG,
+    foreground: BloodColors.FineFG,
+    darker: COLOR_MID_GREY,
+  };
 }

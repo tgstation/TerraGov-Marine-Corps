@@ -4,12 +4,6 @@ import { useBackend } from '../../backend';
 import { SPACING_PIXELS } from './constants';
 import { MedScannerData } from './data';
 
-/**
- * Guides users on how to treat a patient based on context.
- *
- * This should always go last. Advice is intended to *complement*
- * scan info and not get in the way for users who don't need it.
- */
 export function PatientAdvice() {
   const { data } = useBackend<MedScannerData>();
   const { advice, species, accessible_theme } = data;
@@ -27,11 +21,11 @@ export function PatientAdvice() {
                   name={advice.icon || 'triangle-exclamation'}
                   ml={0.2}
                   color={
-                    accessible_theme
+                    (accessible_theme
                       ? advice.color
                       : species.is_robotic_species
                         ? 'label'
-                        : advice.color
+                        : advice.color) || '#ff0000'
                   }
                 />
                 <Box inline width={SPACING_PIXELS} />

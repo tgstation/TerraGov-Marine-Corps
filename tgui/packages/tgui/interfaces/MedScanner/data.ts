@@ -1,9 +1,10 @@
-/** Used by color helpers */
+/** Used by most color helpers and lookup tables */
 export type MedColors = {
   background: string;
   foreground: string;
   darker?: string;
 };
+
 
 /** Enum of overheat tiers, tied to DM-side */
 export enum TempLevels {
@@ -13,7 +14,7 @@ export enum TempLevels {
   T3Heat,
 }
 
-/** Enum of blood colors, independent of DM-side */
+/** Enum of blood colors */
 export enum BloodColors {
   FineBG = 'grey',
   FineFG = 'white',

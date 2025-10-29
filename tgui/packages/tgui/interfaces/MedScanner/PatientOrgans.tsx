@@ -28,6 +28,7 @@ export function PatientOrgans() {
     <Section title="Organs Damaged">
       <Stack vertical>
         {Object.values(damaged_organs).map((organ) => {
+          // this will be accessed constantly, may aswell have this as a shorthand
           const colors = ORGAN_STATUSES_TO_COLORS[organ.status];
           return (
             <Stack.Item
