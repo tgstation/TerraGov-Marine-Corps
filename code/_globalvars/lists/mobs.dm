@@ -46,6 +46,7 @@ GLOBAL_LIST_EMPTY(all_species)
 GLOBAL_LIST_EMPTY(roundstart_species)
 
 GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_caste_list())
+GLOBAL_LIST_INIT_TYPED(xeno_ability_datums, /list/datum/action/ability, init_xeno_ability_list())
 
 /proc/init_xeno_caste_list()
 	. = list()
@@ -59,6 +60,12 @@ GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_cast
 	for(var/typepath in typelist)
 		var/datum/xeno_caste/caste = new typepath
 		.[get_base_caste_type(caste)][caste.upgrade] = caste
+
+/proc/init_xeno_ability_list()
+	. = list()
+	var/list/typelist = subtypesof(/datum/action/ability/xeno_action) + subtypesof(/datum/action/ability/activable/xeno)
+	for(var/datum/action/ability/typepath AS in typelist)
+		.[typepath] += new typepath
 
 GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/runner,
@@ -119,8 +126,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/shrike/primordial,
 	/mob/living/carbon/xenomorph/warlock,
 	/mob/living/carbon/xenomorph/warlock/primordial,
-	/mob/living/carbon/xenomorph/puppeteer,
-	/mob/living/carbon/xenomorph/puppeteer/primordial,
+	/mob/living/carbon/xenomorph/jester,
+	/mob/living/carbon/xenomorph/jester/primordial,
 	/mob/living/carbon/xenomorph/behemoth,
 	/mob/living/carbon/xenomorph/behemoth/primordial,
 	/mob/living/carbon/xenomorph/beetle,
@@ -135,7 +142,7 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	))
 
 GLOBAL_LIST_INIT(xeno_types_tier_one, list(/datum/xeno_caste/runner, /datum/xeno_caste/drone, /datum/xeno_caste/sentinel, /datum/xeno_caste/defender))
-GLOBAL_LIST_INIT(xeno_types_tier_two, list(/datum/xeno_caste/hunter, /datum/xeno_caste/warrior, /datum/xeno_caste/spitter, /datum/xeno_caste/hivelord, /datum/xeno_caste/carrier, /datum/xeno_caste/bull, /datum/xeno_caste/puppeteer, /datum/xeno_caste/pyrogen))
+GLOBAL_LIST_INIT(xeno_types_tier_two, list(/datum/xeno_caste/hunter, /datum/xeno_caste/warrior, /datum/xeno_caste/spitter, /datum/xeno_caste/hivelord, /datum/xeno_caste/carrier, /datum/xeno_caste/bull, /datum/xeno_caste/jester, /datum/xeno_caste/pyrogen))
 GLOBAL_LIST_INIT(xeno_types_tier_three, list(/datum/xeno_caste/gorger, /datum/xeno_caste/widow, /datum/xeno_caste/ravager, /datum/xeno_caste/praetorian, /datum/xeno_caste/boiler, /datum/xeno_caste/defiler, /datum/xeno_caste/crusher, /datum/xeno_caste/shrike, /datum/xeno_caste/behemoth, /datum/xeno_caste/warlock))
 GLOBAL_LIST_INIT(xeno_types_tier_four, list(/datum/xeno_caste/shrike, /datum/xeno_caste/queen, /datum/xeno_caste/king))
 

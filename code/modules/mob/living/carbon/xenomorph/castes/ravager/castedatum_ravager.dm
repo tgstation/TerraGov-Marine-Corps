@@ -56,6 +56,8 @@
 	///multiplier on plasma amount vs damage that is recieved on being attacked
 	var/plasma_damage_recieved_mult = 0.5
 
+	doppelganger_color = "#d61717"
+
 	mutations = list(
 		/datum/mutation_upgrade/shell/little_more,
 		/datum/mutation_upgrade/shell/keep_going,

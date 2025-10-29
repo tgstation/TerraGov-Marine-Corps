@@ -479,6 +479,7 @@
 	. = ..()
 	xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 10 SECONDS, xeno_owner.xeno_caste.carnage_plasma_gain, xeno_owner.maxHealth * GORGER_CARNAGE_HEAL, GORGER_CARNAGE_MOVEMENT)
 	add_cooldown()
+	succeed_activate()
 
 /datum/action/ability/activable/xeno/carnage/ai_should_use(atom/target)
 	if(!iscarbon(target))
@@ -506,6 +507,7 @@
 	)
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	use_state_flags = ABILITY_USE_STAGGERED
+	var/check_plasma_amount = TRUE
 
 /datum/action/ability/activable/xeno/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
@@ -513,7 +515,7 @@
 		return FALSE
 	if(xeno_owner.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return TRUE
-	if(xeno_owner.plasma_stored < xeno_owner.xeno_caste.feast_plasma_drain * 10)
+	if(xeno_owner.plasma_stored < xeno_owner.xeno_caste.feast_plasma_drain * 10 && check_plasma_amount)
 		if(!silent)
 			to_chat(xeno_owner, span_notice("Not enough to begin a feast. We need [xeno_owner.xeno_caste.feast_plasma_drain * 10] blood."))
 		return FALSE
@@ -529,6 +531,7 @@
 	xeno_owner.visible_message(xeno_owner, span_notice("[xeno_owner] begins to overflow with vitality!"))
 	xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_FEAST, GORGER_FEAST_DURATION, xeno_owner.xeno_caste.feast_plasma_drain)
 	TIMER_COOLDOWN_START(src, FEAST_MISCLICK_CD, 2 SECONDS)
+	succeed_activate()
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/feast/ai_should_use(atom/target)
@@ -544,3 +547,6 @@
 	return can_use_ability(target, TRUE)
 
 #undef FEAST_MISCLICK_CD
+
+/datum/action/ability/activable/xeno/feast/jester
+	check_plasma_amount = FALSE

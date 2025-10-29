@@ -77,6 +77,8 @@
 	// *** Pheromones *** //
 	aura_strength = 2.6 //It's .1 better than a carrier.
 
+	doppelganger_color = "#6706c2"
+
 /datum/xeno_caste/defiler/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

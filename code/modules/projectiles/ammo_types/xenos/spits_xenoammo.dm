@@ -460,3 +460,17 @@
 		human_victim.throw_at(throwlocation, 6, 1.5, src, TRUE)
 	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", pass_flags_checked = PASS_AIR|PASS_PROJECTILE))
 		xenomorph_spray(acid_tile, 5 SECONDS, 40, null, TRUE)
+
+
+///Jester: Patron of the stars
+/datum/ammo/xeno/star_shrapnel
+	name = "star shrapnel"
+	icon_state =  "rock_shard"
+	damage = 12
+	damage_type = BURN
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
+	max_range = 4
+	bullet_color = null
+	armor_type = ACID
+	shell_speed = 0.9
+

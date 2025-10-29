@@ -1540,7 +1540,7 @@
 	taste_description = "salt and spice"
 
 /datum/reagent/consumable/ethanol/tiltaellen //yoghurt, salt, vinegar
-	name = "Tiltällen"
+	name = "Titlällen"
 	description = "A lightly fermented yoghurt drink with salt and a light dash of vinegar. Has a distinct sour cheesy flavour."
 	boozepwr = 10
 	color = "#F4EFE2"
@@ -1548,7 +1548,7 @@
 
 /datum/reagent/consumable/ethanol/tich_toch
 	name = "Tich Toch"
-	description = "A mix of Tiltällen, Töchtaüse Syrup, and vodka. It's not exactly to everyones' tastes."
+	description = "A mix of Titlällen, Töchtaüse Syrup, and vodka. It's not exactly to everyones' tastes."
 	boozepwr = 75
 	color = "#b4abd0"
 	taste_description = "spicy sour cheesy yoghurt"

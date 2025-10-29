@@ -231,7 +231,7 @@
 
 	playsound(owner, 'sound/voice/alien/king_roar.ogg', 70, sound_range = 20)
 	if(istype(xeno_owner))
-		xeno_owner.icon_state = "King Screeching"
+		xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name] Screeching"
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT) //Vulnerable while charging up
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 
@@ -430,7 +430,7 @@
 	sound_loop.start(owner)
 	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
 	if(istype(xeno_owner))
-		xeno_owner.icon_state = "King Screeching"
+		xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name] Screeching"
 	execute_attack()
 
 /// recursive proc for firing the actual beam

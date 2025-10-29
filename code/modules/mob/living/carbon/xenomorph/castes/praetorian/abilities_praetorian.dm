@@ -15,7 +15,7 @@
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
-	if(!do_after(xeno_owner, 5, NONE, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno_owner, 0.5 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
@@ -24,7 +24,6 @@
 	GLOB.round_statistics.praetorian_acid_sprays++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_acid_sprays")
 
-	succeed_activate()
 
 	playsound(xeno_owner.loc, 'sound/effects/refill.ogg', 25, 1)
 	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] spews forth a wide cone of acid!"), \
@@ -34,6 +33,7 @@
 	start_acid_spray_cone(target, range)
 	add_cooldown()
 	addtimer(CALLBACK(src, PROC_REF(reset_speed)), rand(2 SECONDS, 3 SECONDS))
+	succeed_activate()
 
 /datum/action/ability/activable/xeno/spray_acid/cone/proc/reset_speed()
 	if(QDELETED(xeno_owner))
@@ -169,9 +169,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/item/explosive/grenade/sticky/xeno/acid/nade = new(owner.loc)
 	owner.put_in_hands(nade)
 	to_chat(owner, span_xenonotice("We vomit up a sticky lump.")) // Ewww...
+	nade.activate(owner)
 	add_cooldown()
 	succeed_activate()
-	nade.activate(owner)
 
 // ***************************************
 // *********** Acid dash

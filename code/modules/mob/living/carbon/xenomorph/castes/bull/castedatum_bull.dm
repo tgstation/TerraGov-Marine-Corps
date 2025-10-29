@@ -52,6 +52,7 @@
 		/datum/action/ability/activable/xeno/bull_charge/gore,
 		/datum/action/ability/xeno_action/toggle_long_range/bull,
 	)
+	doppelganger_color = "#911111"
 
 	mutations = list(
 		/datum/mutation_upgrade/shell/unstoppable,

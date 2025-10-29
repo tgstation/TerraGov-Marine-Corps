@@ -55,6 +55,8 @@
 		/datum/action/ability/activable/xeno/cresttoss,
 	)
 
+	doppelganger_color = "#3b1818"
+
 	mutations = list(
 		/datum/mutation_upgrade/shell/tough_rock,
 		/datum/mutation_upgrade/spur/earthquake,

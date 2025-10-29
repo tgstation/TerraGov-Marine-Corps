@@ -153,10 +153,6 @@
 	///amount of slowdown to apply when the crest defense is active. trading defense for speed. Positive numbers makes it slower.
 	var/crest_defense_slowdown = 0
 
-	// *** Puppeteer Abilities *** //
-	var/flay_plasma_gain = 0
-	var/max_puppets = 0
-
 	// *** Crusher Abilities *** //
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
@@ -209,8 +205,12 @@
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
 
+	///What color overlay this xeno produces as a doppelgänger to Jester
+	var/doppelganger_color = "#009900"
+
 	/// All mutations that this caste can view and potentially purchase.
 	var/list/datum/mutation_upgrade/mutations = list()
+
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -452,16 +452,15 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	COOLDOWN_DECLARE(xeno_unresting_cooldown)
 
 ///Called whenever a xeno slashes a human
-/mob/living/carbon/xenomorph/proc/onhithuman(attacker, target) //For globadiers lifesteal debuff
+/mob/living/carbon/xenomorph/proc/onhithuman(attacker, target, damage) //For globadiers lifesteal debuff
 	SIGNAL_HANDLER
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/victim = target
-	if(!victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
-		return
 	var/mob/living/carbon/xenomorph/xeno = attacker
-	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
-	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
+	if(victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
+		var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
+		HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
 
 /// Sets the xenomorph's selected reagent & sends a signal indicating that it happened.
 /mob/living/carbon/xenomorph/proc/set_selected_reagent(datum/reagent/new_reagent_typepath)

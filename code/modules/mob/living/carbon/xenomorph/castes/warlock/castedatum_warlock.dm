@@ -33,6 +33,8 @@
 		/datum/action/ability/xeno_action/psychic_whisper,
 	)
 
+	doppelganger_color = "#c01ff1"
+
 	mutations = list(
 		/datum/mutation_upgrade/shell/cautious_mind,
 		/datum/mutation_upgrade/spur/draining_blast,

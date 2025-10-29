@@ -51,6 +51,12 @@
 	/// Displays a HUD element that indicates the current combo, as well as what has been inputted so far.
 	var/atom/movable/screen/combo/combo_display
 
+	///Jester's UI elements
+	var/atom/movable/screen/jester_gamble_bar
+	var/atom/movable/screen/jester_call_button
+	var/atom/movable/screen/jester_hold_button
+	var/atom/movable/screen/jester_chips_display
+
 	var/list/atom/movable/screen/ammo_hud_list = list()
 
 	var/list/static_inventory = list() //the screen objects which are static
@@ -158,6 +164,10 @@
 	gun_run_icon = null
 
 	QDEL_NULL(combo_display)
+	QDEL_NULL(jester_gamble_bar)
+	QDEL_NULL(jester_call_button)
+	QDEL_NULL(jester_hold_button)
+	QDEL_NULL(jester_chips_display)
 
 	QDEL_LIST_ASSOC_VAL(master_groups)
 	QDEL_LIST_ASSOC_VAL(plane_master_controllers)

@@ -56,6 +56,7 @@
 		/datum/action/ability/xeno_action/toxic_slash,
 		/datum/action/ability/activable/xeno/drain_sting,
 	)
+	doppelganger_color = "#800538"
 
 	mutations = list(
 		/datum/mutation_upgrade/shell/comforting_acid,

@@ -617,3 +617,10 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+///Given a range, direction, and movable thing, throw the movable thing in the specificed direction for range number of tiles.
+/proc/fling(range = 1, dir, atom/movable/to_fling, throw_speed = 1, should_spin = TRUE)
+	var/throwlocation = to_fling.loc
+	for(var/x in 1 to range)
+		throwlocation = get_step(throwlocation, dir)
+	to_fling.throw_at(throwlocation, range, speed = throw_speed, spin = should_spin)

@@ -52,6 +52,7 @@
 		/datum/action/ability/xeno_action/tail_sweep,
 		/datum/action/ability/xeno_action/regenerate_skin,
 	)
+	doppelganger_color = "#1604bd"
 
 	mutations = list(
 		/datum/mutation_upgrade/shell/brittle_upclose,

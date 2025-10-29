@@ -41,6 +41,7 @@
 
 	// *** Minimap Icon *** //
 	minimap_icon = "pyrogen"
+	doppelganger_color = "#e00ba0"
 
 	// *** Abilities *** //
 	actions = list(

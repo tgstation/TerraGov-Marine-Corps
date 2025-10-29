@@ -26,7 +26,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 
-	deevolves_to = /datum/xeno_caste/puppeteer
+	deevolves_to = /datum/xeno_caste/hivelord
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER|CASTE_MUTATIONS_ALLOWED
@@ -49,6 +49,7 @@
 
 	// *** Abilities *** ///
 	resin_max_range = 1 // Widow can place resin structures from 1 tile away
+	doppelganger_color = "#921021"
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
