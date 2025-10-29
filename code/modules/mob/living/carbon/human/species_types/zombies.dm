@@ -151,11 +151,11 @@
 
 /datum/species/zombie/strong/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.color = COLOR_DARK_BROWN
+	H.add_atom_colour(COLOR_DARK_BROWN, FIXED_COLOR_PRIORITY)
 
 /datum/species/zombie/strong/post_species_loss(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.color = null
+	H.remove_atom_colour(COLOR_DARK_BROWN, FIXED_COLOR_PRIORITY)
 
 /datum/species/zombie/psi_zombie
 	name = "Psi zombie" //reanimated by psionic ability
