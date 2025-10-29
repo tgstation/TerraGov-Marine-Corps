@@ -308,12 +308,14 @@
 /obj/item/fuel_cell/random,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
+"bk" = (
+/obj/machinery/power/smes/preset,
+/obj/structure/cable,
+/turf/open/floor/mainship/tcomms,
+/area/shuttle/canterbury)
 "bl" = (
 /obj/structure/cable,
-/obj/machinery/power/smes/preset{
-	input_level = 200000;
-	output_level = 200000
-	},
+/obj/machinery/power/smes/preset,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "bm" = (
@@ -1193,7 +1195,7 @@ bU
 ab
 aS
 bj
-bl
+bk
 ap
 av
 aq
