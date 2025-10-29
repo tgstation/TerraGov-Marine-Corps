@@ -12,6 +12,7 @@
 	icon_state_mini = "mag_revolver_bronze"
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 6
+	magazine_flags = parent_type::magazine_flags | MAGAZINE_REQUIRES_EMPTY_GUN
 
 /obj/item/ammo_magazine/revolver/marksman
 	name = "\improper R-44 marksman speed loader (.44)"
