@@ -114,10 +114,10 @@
 		return
 
 /datum/species/zombie/can_revive_to_crit(mob/living/carbon/human/human)
-    if(human.on_fire || !human.has_working_organs())
-        stop_reanimation(human)
-        return FALSE
-    return TRUE
+	if(human.on_fire || !human.has_working_organs())
+		stop_reanimation(human)
+		return FALSE
+	return TRUE
 
 /// We start fading out the human and qdel them in set time
 /datum/species/zombie/proc/fade_out_and_qdel_in(mob/living/carbon/human/H, time = 5 SECONDS)
