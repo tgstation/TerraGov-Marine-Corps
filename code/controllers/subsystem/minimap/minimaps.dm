@@ -362,11 +362,13 @@ SUBSYSTEM_DEF(minimaps)
 ///Redraws the minimap for a specified z level
 /datum/controller/subsystem/minimaps/proc/redraw_map(zlevel)
 	SIGNAL_HANDLER
-	var/datum/space_level/updated = SSmapping.z_list[zlevel]
-	if(!updated)
-		return //what the fuck
-	QDEL_NULL(minimaps_by_z["[updated]"])
+	var/list/old_images_assoc = minimaps_by_z["[zlevel]"].images_assoc
+	var/list/old_images_raw = minimaps_by_z["[zlevel]"].images_raw
+
+	QDEL_NULL(minimaps_by_z["[zlevel]"])
 	load_new_z(null, SSmapping.z_list[zlevel])
+	minimaps_by_z["[zlevel]"].images_assoc = old_images_assoc
+	minimaps_by_z["[zlevel]"].images_raw = old_images_raw
 
 	for(var/hash in hashed_minimaps)
 		var/atom/movable/screen/minimap/existing = hashed_minimaps[hash]
@@ -374,7 +376,6 @@ SUBSYSTEM_DEF(minimaps)
 			continue
 		hashed_minimaps -= hash
 		qdel(existing)
-
 
 ///fetches the drawing icon for a minimap flag and returns it, creating it if needed. assumes minimap_flag is ONE flag
 /datum/controller/subsystem/minimaps/proc/get_drawing_image(zlevel, minimap_flag)
