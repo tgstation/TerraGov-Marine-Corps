@@ -383,7 +383,9 @@
 
 ///Revive the huamn up to X health points
 /mob/living/carbon/human/proc/revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
-	if(health > 0 || !species.can_revive_to_crit(src))
+	if(!species.can_revive_to_crit(src))
+		return
+	if(health > 0)
 		return
 	var/mob/dead/observer/ghost = get_ghost()
 	if(istype(ghost))
