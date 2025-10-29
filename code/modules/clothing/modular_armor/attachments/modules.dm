@@ -507,7 +507,7 @@
 
 /obj/item/armor_module/module/mirage/activate(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, mirage_cooldown))
-		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, mirage_cooldown)*0.1] seconds")
+		balloon_alert(user, "wait [COOLDOWN_TIMELEFT(src, mirage_cooldown)*0.1] seconds!")
 		return
 	var/alpha_mod = user.alpha * 0.95
 	user.alpha -= alpha_mod
@@ -550,7 +550,7 @@
 
 /obj/item/armor_module/module/armorlock/activate(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, armorlock_cooldown))
-		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, armorlock_cooldown)*0.1] seconds")
+		balloon_alert(user, "wait [COOLDOWN_TIMELEFT(src, armorlock_cooldown)*0.1] seconds!")
 		return
 
 	user.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
@@ -788,7 +788,7 @@
 		return
 	if(comms_setup == COMMS_SETUP)
 		var/turf/location = get_turf(user)
-		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_TYPE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
 
 ///Begins the startup sequence.
@@ -802,7 +802,7 @@
 ///Finishes startup, rendering the module effective.
 /obj/item/armor_module/module/antenna/proc/finish_startup(mob/living/user)
 	comms_setup = COMMS_SETUP
-	user.show_message(span_notice("[src] beeps twice and states: \"Antenna configuration complete. Relay system active.\""), EMOTE_AUDIBLE, span_notice("[src] vibrates twice."))
+	user.show_message(span_notice("[src] beeps twice and states: \"Antenna configuration complete. Relay system active.\""), EMOTE_TYPE_AUDIBLE, span_notice("[src] vibrates twice."))
 	startup_timer_id = null
 
 

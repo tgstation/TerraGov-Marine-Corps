@@ -394,7 +394,7 @@
 		if(!(L.status_flags & CANPUSH))
 			return
 
-	if(ismovableatom(A))
+	if(ismovable(A))
 		if(isxeno(src) && ishuman(A))
 			var/mob/living/carbon/human/H = A
 			if(!COOLDOWN_FINISHED(H,  xeno_push_delay))

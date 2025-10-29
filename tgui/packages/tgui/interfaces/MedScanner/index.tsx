@@ -127,7 +127,7 @@ function PatientBasics() {
           Patient has been implanted with an alien embryo!
         </NoticeBox>
       )}
-      {!!ssd && <NoticeBox warning>{ssd}</NoticeBox>}
+      {!!ssd && <NoticeBox>{ssd}</NoticeBox>}
       <LabeledList>
         <LabeledList.Item
           label="Health"

@@ -121,16 +121,16 @@
 			var/datum/job/job = human.job
 			serialized["nickname"] = human.real_name
 
+			if(human.assigned_squad) //you can't be in a squad without a correct job
+				serialized["icon"] = lowertext(human.assigned_squad.name) + "_" + job.minimap_icon
+				serialized["job"] = human.assigned_squad.name + " " + job.title
+			else if(job)
+				serialized["icon"] = job.minimap_icon
+				serialized["job"] = job.title
+
 			if(ismarinejob(human.job))
-				if(human.assigned_squad)
-					serialized["icon"] = lowertext(human.assigned_squad.name) + "_" + job.minimap_icon
-					serialized["job"] = human.assigned_squad.name + " " + job.title
 				marines += list(serialized)
 				continue
-
-			serialized["icon"] = job.minimap_icon
-			serialized["job"] = job.title
-
 			if(issommarinejob(human.job))
 				som += list(serialized)
 				continue
