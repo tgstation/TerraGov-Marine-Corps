@@ -43,7 +43,7 @@
 
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/effect/ai_node/spawner/zombie(i)
-	addtimer(CALLBACK(balance_scales()), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(balance_scales)), 1 SECONDS)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(check_finished))
 
 /datum/game_mode/infestation/crash/zombie/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)

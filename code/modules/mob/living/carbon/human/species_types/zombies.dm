@@ -105,13 +105,12 @@
 		return
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
-/datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
-	. = ..()
-	for(var/datum/limb/limb AS in organless_human.limbs)
-		if(!istype(limb, /datum/limb/head))
-			continue
-		limb.vital = FALSE
-		return
+/datum/species/zombie/can_revive_to_crit(mob/living/carbon/human/human)
+    if(human.on_fire || !human.has_working_organs())
+        stop_reanimation(human)
+        return FALSE
+    return TRUE
+
 /// We start fading out the human and qdel them in set time
 /datum/species/zombie/proc/fade_out_and_qdel_in(mob/living/carbon/human/H, time = 5 SECONDS)
 	fade_out(H)

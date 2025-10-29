@@ -281,6 +281,11 @@
 /datum/species/proc/handle_death(mob/living/carbon/human/H)
 	return
 
+/datum/species/proc/can_revive_to_crit(mob/living/carbon/human/H)
+	if(H.has_working_organs())
+		return TRUE
+	return FALSE
+
 ///Called on Life(), used for special behavior when the carbon human with this species is alive
 /datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
 	return
