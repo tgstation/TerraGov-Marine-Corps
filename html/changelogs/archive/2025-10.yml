@@ -124,3 +124,12 @@
   Runian:
   - bugfix: Ejecting out of an autodoc's automatic mode before it starts no longer
       runtimes / breaks.
+2025-10-28:
+  Lumipharon:
+  - bugfix: fixed NPC's throwing grenades when they don't have a clear path
+  - bugfix: weather doesnt run on old campaign mission z levels
+  - qol: The crashed ship on Crash will show up on the minimap now
+  - qol: Windows appear on the minimap also
+  - rscadd: Added bloom effects to emissives
+  - bugfix: Vehicle lights can actually turn off and on
+  - bugfix: Stops floor emissives layering over things they shouldn't

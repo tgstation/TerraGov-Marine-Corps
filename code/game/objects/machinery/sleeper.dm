@@ -135,8 +135,8 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper"
 	density = TRUE
-	light_range = 1
-	light_power = 0.5
+	light_range = 3
+	light_power = 1
 	light_color = LIGHT_COLOR_BLUE
 	dir = EAST
 	var/mob/living/carbon/human/occupant = null
@@ -154,7 +154,7 @@
 /obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/sleeper/proc/shuttle_crush()
 	SIGNAL_HANDLER

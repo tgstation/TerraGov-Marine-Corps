@@ -211,6 +211,58 @@
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway/edge
 	icon_state = "shallow_water_cave_waterway_edge"
 
+// desert dam turf that doesnt make you sink when ya step on it
+ww
+/turf/open/liquid/water/river/desertdam/notliquid
+	name = "shallow river"
+	desc = "It looks shallow enough to walk in with ease."
+	icon = 'icons/turf/desertdam_map.dmi'
+	mob_liquid_height = 0
+	mob_liquid_depth = 0
+	slowdown_multiplier = 0.25
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow
+	icon_state = "shallow_water_clean"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow/dirty
+	icon_state = "shallow_water_dirty"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge
+	icon_state = "shallow_to_deep_clean_water"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge/corner
+	icon_state = "shallowcorner1"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge/corner2
+	icon_state = "shallowcorner2"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge/alt
+	icon_state = "shallow_to_deep_clean_water1"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/deep_water_clean
+	icon_state = "deep_water_clean"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_coast
+	icon_state = "shallow_water_desert_coast"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_coast/edge
+	icon_state = "shallow_water_desert_coast_edge"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_waterway
+	icon_state = "desert_waterway"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_waterway/edge
+	icon_state = "desert_waterway_edge"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast
+	icon_state = "shallow_water_cave_coast"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_waterway
+	icon_state = "shallow_water_cave_waterway"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_waterway/edge
+	icon_state = "shallow_water_cave_waterway_edge"
+
 // LAVA
 /turf/open/liquid/lava
 	name = "lava"

@@ -292,24 +292,12 @@
 		change_status(BLUESPACE_CORE_BROKEN)
 
 //airbase
-/obj/structure/prop/som_fighter
-	name = "harbinger"
-	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
-	icon = 'icons/obj/structures/prop/mainship_96.dmi'
-	icon_state = "SOM_fighter"
-	pixel_x = -33
-	pixel_y = -10
-	density = TRUE
-	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
-	allow_pass_flags = PASS_AIR
-
 /obj/effect/landmark/campaign_structure/harbinger
 	name = "harbinger"
 	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
-	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	mission_types = list(/datum/campaign_mission/destroy_mission/airbase)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/harbinger
 
@@ -320,10 +308,11 @@
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
-	bound_height = 2
-	bound_width = 3
+	bound_height = 64
+	bound_width = 96
 	bound_x = -32
-	layer = ABOVE_MOB_LAYER
+	allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	faction = FACTION_SOM
 
 /obj/effect/landmark/campaign_structure/viper
@@ -342,7 +331,70 @@
 	icon_state = "fighter_loaded"
 	pixel_x = -33
 	pixel_y = -10
-	bound_height = 2
-	bound_width = 3
+	bound_height = 64
+	bound_width = 96
 	bound_x = -32
-	layer = ABOVE_MOB_LAYER
+	allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
+
+/obj/effect/landmark/campaign_structure/underground_fuel_tank
+	name = "fuel access point"
+	desc = "A fuel access point for the large underground fuel tanks beneath the airstrip. No smoking within 15 meters."
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "manhole"
+	mission_types = list(/datum/campaign_mission/destroy_mission/airbase/som)
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/underground_fuel_tank
+
+/obj/structure/campaign_objective/destruction_objective/underground_fuel_tank
+	name = "fuel access point"
+	desc = "A fuel access point for the large underground fuel tanks beneath the airstrip. No smoking within 15 meters."
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "manhole"
+	density = FALSE
+
+/obj/structure/campaign_objective/destruction_objective/underground_fuel_tank/Initialize(mapload)
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/campaign_objective/destruction_objective/underground_fuel_tank/LateInitialize()
+	. = ..()
+	for(var/obj/effect/explosion_holder/campaign_objective/det in GLOB.campaign_structures)
+		det.linked_objective = src
+
+
+/obj/effect/explosion_holder
+	name = "explosion holder"
+
+///Explodes
+/obj/effect/explosion_holder/proc/detonate()
+	explosion(src, 3, 4, 5)
+	qdel(src)
+
+/obj/effect/explosion_holder/campaign_objective
+	///The trigger object that will cause src to detonate
+	var/linked_objective
+
+/obj/effect/explosion_holder/campaign_objective/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, PROC_REF(on_objective_destruction))
+	GLOB.campaign_structures += src
+
+/obj/effect/explosion_holder/campaign_objective/Destroy()
+	linked_objective = null
+	GLOB.campaign_structures -= src
+	return ..()
+
+///Detonates if our linked objective is destroyed
+/obj/effect/explosion_holder/campaign_objective/proc/on_objective_destruction(datum/source, obj/structure/campaign_objective/destruction_objective/destroyed)
+	SIGNAL_HANDLER
+	if(destroyed != linked_objective)
+		return
+	addtimer(CALLBACK(src, PROC_REF(detonate)), rand(0.2 SECONDS, 2.5 SECONDS))
+	linked_objective = null
+
+/obj/effect/explosion_holder/campaign_objective/airbase_fuel
+	name = "airbase fueltank explosion holder"
+
+/obj/effect/explosion_holder/campaign_objective/airbase_fuel/detonate()
+	explosion(src, 7, 8, 9, 12, flame_range = 10)
+	qdel(src)

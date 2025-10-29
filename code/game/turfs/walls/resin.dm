@@ -35,6 +35,16 @@
 		add_filter("hive_color", 10, outline_filter(2, hive.color))
 	return INITIALIZE_HINT_LATELOAD
 
+/turf/closed/wall/resin/AfterChange(flags)
+	. = ..()
+	//This exists solely so mazes don't show up on the minimap if the map is redrawn
+	var/turf/under_turf
+	if(islist(baseturfs))
+		under_turf = baseturfs[length(baseturfs)]
+	else
+		under_turf = baseturfs
+	minimap_color = under_turf::minimap_color
+
 /turf/closed/wall/resin/get_mechanics_info()
 	. += ..()
 	var/list/list = list()

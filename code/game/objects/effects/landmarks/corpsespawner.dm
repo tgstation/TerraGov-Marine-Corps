@@ -548,6 +548,16 @@
 /obj/effect/landmark/corpsespawner/marine/corpsman/regular
 	death_type = REGULAR_DEATH
 
+/obj/effect/landmark/corpsespawner/tdf
+	name = "TDF Marine"
+	corpseuniform = /obj/item/clothing/under/tdf
+	corpsesuit = /obj/item/clothing/suit/modular/tdf
+	corpsemask = /obj/item/clothing/mask/rebreather
+	corpsehelmet = /obj/item/clothing/head/modular/tdf
+	corpsegloves = /obj/item/clothing/gloves/marine/specialist/tdf
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsepocket1 = /obj/item/tool/lighter/zippo
+
 /obj/effect/landmark/corpsespawner/assistant
 	name = "Assistant"
 	corpseuniform = /obj/item/clothing/under/color/grey

@@ -56,9 +56,6 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
-	light_range = 0.1
-	light_power = 0.1
-	light_color = LIGHT_COLOR_ORANGE
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Max resin wall penetration in tiles.
@@ -123,10 +120,8 @@
 		return
 	if(light)
 		ENABLE_BITFIELD(flamer_features_flags, FLAMER_IS_LIT)
-		turn_light(null, TRUE)
 	else
 		DISABLE_BITFIELD(flamer_features_flags, FLAMER_IS_LIT)
-		turn_light(null, FALSE)
 	playsound(src, CHECK_BITFIELD(flamer_features_flags, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
 
 	if(CHECK_BITFIELD(flamer_features_flags, FLAMER_NO_LIT_OVERLAY))
@@ -143,12 +138,6 @@
 	lit_overlay.pixel_w += lit_overlay_offset_x
 	lit_overlay.pixel_z += lit_overlay_offset_y
 	. += lit_overlay
-
-/obj/item/weapon/gun/flamer/turn_light(mob/user, toggle_on)
-	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-	set_light_on(toggle_on)
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
