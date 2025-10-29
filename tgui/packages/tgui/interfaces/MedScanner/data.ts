@@ -5,7 +5,6 @@ export type MedColors = {
   darker?: string;
 };
 
-
 /** Enum of overheat tiers, tied to DM-side */
 export enum TempLevels {
   OK,
