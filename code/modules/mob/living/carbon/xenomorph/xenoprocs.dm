@@ -76,7 +76,22 @@
 		if(xeno_user.hive)
 			hive = xeno_user.hive
 	else
-		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		var/isadmin = check_other_rights(user.client, R_ADMIN, FALSE)
+		var/list/hives_by_name = list()
+		var/list/hivenames = list()
+		for(var/hivenumber in GLOB.hive_datums)
+
+			if(!isadmin && !LAZYLEN(GLOB.alive_xeno_list_hive[hivenumber]))
+				var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
+				if(!xeno_job.total_positions)
+					continue
+			hive = GLOB.hive_datums[hivenumber]
+			hivenames |= hive.name
+			hives_by_name[hive.name] = hive
+		if(!length(hivenames))
+			to_chat(user, span_warning("There are no active hives"))
+			return
+		hive = hives_by_name[tgui_input_list(user, "Which hive?", "Check Hive Status", hivenames, hivenames[1])]
 
 	hive.interact(user)
 
