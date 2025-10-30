@@ -58,7 +58,7 @@
 	if(can_jump)
 		H.set_jump_component(cost = 0)
 
-	var/datum/action/minimap/mini = new
+	var/datum/action/minimap/lone/mini = new
 	mini.give_action(H)
 
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/H)
