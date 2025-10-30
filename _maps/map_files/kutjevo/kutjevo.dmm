@@ -3456,6 +3456,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 6
 	},
@@ -8214,6 +8215,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 6
 	},
@@ -8302,6 +8304,7 @@
 	dir = 2;
 	id = "sw_disk_lockdown"
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 6
 	},
@@ -9502,6 +9505,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power/comms)
 "koF" = (
@@ -10055,6 +10059,7 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 1
 	},
@@ -10994,6 +10999,7 @@
 "lPK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/lz_dunes)
 "lPR" = (
@@ -14829,6 +14835,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 1
 	},
@@ -17339,6 +17346,7 @@
 /obj/machinery/door_control{
 	id = "sw_disk_lockdown"
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/filtration)
 "spd" = (
@@ -19018,6 +19026,7 @@
 "uaV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 6
 	},
@@ -20917,6 +20926,7 @@
 "vSA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_dunes)
 "vSE" = (
@@ -21528,6 +21538,7 @@
 /obj/structure/stairs/seamless,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/interior/power/comms)
 "wyp" = (
@@ -21904,6 +21915,16 @@
 	},
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/complex/botany)
+"wUe" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/filtration)
 "wVt" = (
 /obj/item/stack/cable_coil,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -22985,6 +23006,7 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/lz_dunes)
 "ybV" = (
@@ -23055,6 +23077,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/kutjevo/interior/filtration)
 "ygL" = (
@@ -28296,7 +28319,7 @@ cLn
 qAk
 vhQ
 xWg
-lnS
+wUe
 pMg
 slD
 peV
