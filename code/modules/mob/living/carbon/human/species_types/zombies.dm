@@ -54,6 +54,9 @@
 	var/datum/action/set_agressivity/set_zombie_behaviour = new
 	set_zombie_behaviour.give_action(H)
 
+	var/datum/action/minimap/mini = new
+	mini.give_action(H)
+
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]

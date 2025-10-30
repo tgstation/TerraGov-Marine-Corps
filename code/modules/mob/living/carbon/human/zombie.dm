@@ -65,7 +65,7 @@
 	target.balloon_alert_to_viewers("prying open [target]...")
 	if(!do_after(user, 4 SECONDS, IGNORE_HELD_ITEM, target))
 		return
-	var/obj/machinery/door/airlock/door = target
+	var/obj/machinery/door/door = target
 	playsound(user.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	if(door.locked)
 		to_chat(user, span_warning("\The [target] is bolted down tight."))
@@ -131,16 +131,16 @@
 	return TRUE
 
 /datum/action/ability/emit_gas/ai_should_use(atom/target)
-	var/mob/living/living_owner = owner
 	if(!iscarbon(target))
 		return FALSE
-	if(target.faction == living_owner.faction)
+	var/mob/living/carbon/carbon_target = target
+	if(carbon_target.faction == owner.faction)
 		return FALSE
-	if(get_dist(target, owner) > 2)
+	if(get_dist(carbon_target, owner) > 2)
 		return FALSE
 	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
-	if(!line_of_sight(owner, target))
+	if(!line_of_sight(owner, carbon_target))
 		return FALSE
 	return TRUE
 
