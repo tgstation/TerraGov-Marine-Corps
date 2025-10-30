@@ -138,3 +138,28 @@
 	color_override = "red")
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 	balance_scales()
+
+/datum/game_mode/infestation/crash/zombie/end_round_fluff()
+	. = ..()
+	if(round_finished == MODE_INFESTATION_M_MAJOR  || round_finished == MODE_INFESTATION_M_MINOR || round_finished == MODE_INFESTATION_DRAW_DEATH)
+		message_admins("AAAA")
+		return
+
+	var/sound/human_track = sound('sound/theme/zombies_loss.ogg')
+	var/sound/zombie_track = sound('sound/theme/neutral_melancholy2.ogg')//my favourite and thematic in my opinion
+	var/sound/ghost_track = zombie_track
+
+	zombie_track.channel = CHANNEL_CINEMATIC
+	human_track.channel = CHANNEL_CINEMATIC
+	ghost_track.channel = CHANNEL_CINEMATIC
+
+	for(var/mob/hearer AS in GLOB.player_list)
+		if(hearer.client?.prefs?.toggles_sound & SOUND_NOENDOFROUND)
+			continue
+		switch(hearer.faction)
+			if(FACTION_ZOMBIE)
+				SEND_SOUND(hearer, zombie_track)
+			if(FACTION_TERRAGOV)
+				SEND_SOUND(hearer, human_track)
+			else
+				SEND_SOUND(hearer, ghost_track)
