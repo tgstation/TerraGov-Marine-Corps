@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "NPC's will fight back when attacked while healing or doing similar tasks"
-  - code_imp: "mob attackers are properly tracked through the damage procs"
