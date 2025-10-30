@@ -3,7 +3,6 @@
 /obj/structure/campaign_objective/destruction_objective
 	name = "GENERIC CAMPAIGN DESTRUCTION OBJECTIVE"
 	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
-	faction = FACTION_TERRAGOV
 	allow_pass_flags = PASSABLE|PASS_WALKOVER
 	///explosion smoke particle holder
 	var/obj/effect/abstract/particle_holder/explosion_smoke
@@ -48,7 +47,6 @@
 	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	pixel_x = -16
-	faction = FACTION_SOM
 
 //MLRS
 /obj/effect/landmark/campaign_structure/mlrs
@@ -200,7 +198,6 @@
 	icon_state = "phoron_stack"
 	bound_height = 32
 	bound_width = 64
-	faction = FACTION_SOM
 
 //NT base
 /obj/effect/landmark/campaign_structure/nt_pod
@@ -246,7 +243,7 @@
 	bound_width = 64
 	pixel_y = -18
 	pixel_x = -16
-	faction = FACTION_SOM
+	///Current status of the core
 	var/status = BLUESPACE_CORE_OK
 
 /obj/structure/campaign_objective/destruction_objective/bluespace_core/Initialize(mapload)
@@ -312,7 +309,6 @@
 	bound_x = -32
 	allow_pass_flags = PASSABLE
 	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
-	faction = FACTION_SOM
 
 /obj/effect/landmark/campaign_structure/viper
 	name = "\improper Viper"
