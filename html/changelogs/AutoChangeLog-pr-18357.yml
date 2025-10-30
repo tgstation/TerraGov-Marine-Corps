@@ -1,0 +1,4 @@
+author: "DaTruRiZZoB"
+delete-after: True
+changes:
+  - qol: "Sets SMES input/output to max by default"
