@@ -133,3 +133,7 @@
   - rscadd: Added bloom effects to emissives
   - bugfix: Vehicle lights can actually turn off and on
   - bugfix: Stops floor emissives layering over things they shouldn't
+2025-10-30:
+  Joe13413, Lumipharon, harusha:
+  - rscadd: Added a new campaign mission, TGMC airfield. SoM must assault an airbase
+      defended by the TGMC, and destroy the fighters and the airstrip itself.
