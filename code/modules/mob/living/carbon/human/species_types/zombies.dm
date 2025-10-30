@@ -70,9 +70,9 @@
 		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
 			limb.remove_limb_flags(LIMB_DESTROYED)
 			if(istype(limb, /datum/limb/hand/l_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
+				H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
 			else if (istype(limb, /datum/limb/hand/r_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
+				H.equip_to_slot_or_del(new claw_type, SLOT_R_HAND)
 			H.update_body()
 		else if(limb.limb_status & LIMB_BROKEN && prob(20))
 			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
@@ -141,22 +141,28 @@
 /datum/species/zombie/tank
 	name = "Tank zombie"
 	slowdown = 1
-	heal_rate = 20
-	total_health = 250
+	heal_rate = 30
+	total_health = 350
+	claw_type = /obj/item/weapon/zombie_claw/tank
 
 /datum/species/zombie/tank/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.transform = matrix().Scale(1.2, 1.2)
+	ADD_TRAIT(H, TRAIT_STUNIMMUNE, ZOMBIE_TRAIT)
+	H.move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 
 /datum/species/zombie/tank/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.transform = matrix().Scale(1/(1.2), 1/(1.2))
+	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, ZOMBIE_TRAIT)
+	H.move_resist = initial(H.move_resist)
 
 /datum/species/zombie/strong
 	name = "Strong zombie" //These are zombies created from marines, they are stronger, but of course rarer
 	slowdown = -0.5
 	heal_rate = 20
 	total_health = 200
+	claw_type = /obj/item/weapon/zombie_claw/strong
 
 /datum/species/zombie/strong/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -199,8 +205,3 @@
 	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
 	rotation = 0
 	spin = generator(GEN_NUM, 10, 20)
-
-/datum/species/zombie/smoker/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	var/datum/action/ability/emit_gas/emit_gas = new
-	emit_gas.give_action(H)

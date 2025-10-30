@@ -76,6 +76,13 @@
 	if(door.density) //Make sure it's still closed
 		door.open(TRUE)
 
+/obj/item/weapon/zombie_claw/strong
+	force = 30
+
+/obj/item/weapon/zombie_claw/tank
+	attack_speed = 12
+	force = 40
+
 /obj/item/weapon/zombie_claw/no_zombium
 	zombium_per_hit = 0
 
