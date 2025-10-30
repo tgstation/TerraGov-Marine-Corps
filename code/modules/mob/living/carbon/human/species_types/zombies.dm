@@ -131,10 +131,12 @@
 /datum/species/zombie/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.transform = matrix().Scale(0.8, 0.8)
+	H.set_jump_component(cost = 0)
 
 /datum/species/zombie/fast/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.transform = matrix().Scale(1/(0.8), 1/(0.8))
+	H.set_jump_component()
 
 /datum/species/zombie/tank
 	name = "Tank zombie"
