@@ -3,6 +3,9 @@
 	base_action = ESCORTING_ATOM
 	sidestep_prob = 10
 
+/datum/ai_behavior/xeno/zombie/should_start_ai()
+	return TRUE
+
 /datum/ai_behavior/xeno/zombie/process()
 	. = ..()
 	var/mob/living/living_parent = mob_parent

@@ -408,12 +408,10 @@
 			offer_mob()
 			addtimer(CALLBACK(src, PROC_REF(finish_revive_to_crit), FALSE, should_zombify), 10 SECONDS)
 			return
-		if(should_zombify && !istype(species, /datum/species/zombie))// Duplicating the component breaks the AI
-			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling, src)
-			a_intent = INTENT_HARM
 	if(should_zombify)
-		set_species("Strong zombie")
-		faction = FACTION_ZOMBIE
+		if(!iszombie(src))
+			set_species("Strong zombie")
+		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling)
 	heal_limbs(-health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)

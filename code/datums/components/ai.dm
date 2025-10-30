@@ -69,7 +69,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	if(!ai_behavior || QDELETED(parent))
 		return
 	var/mob/living/living_parent = parent
-	if(living_parent.stat == DEAD)
+	if(!ai_behavior.should_start_ai())
 		return
 	if(living_parent.client)
 		return
