@@ -57,6 +57,8 @@
 		/obj/item/mortal_shell/smoke/aphrotox,
 		/obj/item/mortal_shell/smoke/neuro,
 		/obj/item/mortal_shell/smoke/sleep,
+		/obj/item/mortal_shell/razorburn,
+		/obj/item/mortal_shell/metalfoam,
 	)
 
 	use_power = NO_POWER_USE

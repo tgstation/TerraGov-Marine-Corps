@@ -38,6 +38,54 @@
 /datum/ammo/mortar/smoke/neuro
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
 
+
+/obj/item/mortal_shell/razorburn
+	name = "\improper 80mm razorburn mortar shell"
+	desc = "An 80mm mortar shell, loaded with synthesized concentrated razorburn foam dispersal agents."
+	//icon = 'ntf_modular/icons/obj/ammo/artillery.dmi' // uncommant and put icon in this file if adding a new one
+	icon_state = "mortar_he" //could use its own icon
+	color = list( //recolor to keep it distinguishable from HE
+		1,1,0,0,
+		1,0,0,0,
+		0,0,1,0,
+		0,0,0,1,
+		0,0,0,0,
+	)
+	ammo_type = /datum/ammo/mortar/razorburn
+
+/datum/ammo/mortar/razorburn
+	var/obj/item/reagent_containers/glass/beaker/large/B1
+	var/obj/item/reagent_containers/glass/beaker/large/B2
+	var/B1_chems = list(/datum/reagent/toxin/nanites = 30)
+	var/B2_chems = list(/datum/reagent/foaming_agent = 30)
+
+/datum/ammo/mortar/razorburn/New()
+	B1 = new()
+	B2 = new()
+
+/datum/ammo/mortar/razorburn/drop_nade(turf/T)
+	B1.reagents.add_reagent_list(B1_chems)
+	B2.reagents.add_reagent_list(B2_chems)
+	chem_splash(T, 7, list(B1.reagents, B2.reagents), 10, 1)
+
+/obj/item/mortal_shell/metalfoam
+	name = "\improper 80mm metal foam mortar shell"
+	desc = "An 80mm mortar shell, loaded with synthesized concentrated metal foam dispersal agents."
+	//icon = 'ntf_modular/icons/obj/ammo/artillery.dmi' // uncommant and put icon in this file if adding a new one
+	icon_state = "mortar_he" //could use its own icon
+	color = list( //recolor to keep it distinguishable from HE
+		1,  1,0,0,
+		0,0.5,0,0,
+		0,  0,1,0,
+		0,  0,0,1,
+		0,  0,0,0,
+	)
+	ammo_type = /datum/ammo/mortar/razorburn/metalfoam
+
+/datum/ammo/mortar/razorburn/metalfoam
+	B1_chems = list(/datum/reagent/aluminum = 90)
+	B2_chems = list(/datum/reagent/foaming_agent = 30, /datum/reagent/toxin/acid/polyacid = 30)
+
 /obj/item/mortal_shell/rocket/mlrs/neuro
 	name = "\improper 60mm Neurotoxin rocket"
 	desc = "A 60mm rocket loaded with incapacitating neurotoxin gas."

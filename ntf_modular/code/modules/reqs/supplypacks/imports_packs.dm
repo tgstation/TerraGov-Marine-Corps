@@ -18,6 +18,16 @@
 	contains = list(/obj/item/mortal_shell/smoke/neuro, /obj/item/mortal_shell/smoke/neuro)
 	cost = 15
 
+/datum/supply_packs/explosives/mortar_ammo_razor
+	name = "T-50S mortar razorburn shell (x2)"
+	contains = list(/obj/item/mortal_shell/razorburn, /obj/item/mortal_shell/razorburn)
+	cost = 20
+
+/datum/supply_packs/explosives/mortar_ammo_metal
+	name = "T-50S mortar metal foam shell (x2)"
+	contains = list(/obj/item/mortal_shell/metalfoam, /obj/item/mortal_shell/metalfoam)
+	cost = 20
+
 /datum/supply_packs/explosives/mlrs_rockets_neuro
 	name = "TA-40L Neurotoxin MLRS Rocket Pack (x16)"
 	contains = list(/obj/item/storage/box/mlrs_rockets/neuro)
