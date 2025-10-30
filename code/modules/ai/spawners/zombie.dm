@@ -10,6 +10,7 @@
 		/mob/living/carbon/human/species/zombie/ai/fast/patrol = 5,
 		/mob/living/carbon/human/species/zombie/ai/tank/patrol = 5,
 		/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 5,
+		/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 5,
 		/mob/living/carbon/human/species/zombie/ai/strong/patrol = 5,
 		/mob/living/carbon/human/species/zombie/ai/stay = 10 // defenders, and lets player zombies build hordes from a central location
 	)

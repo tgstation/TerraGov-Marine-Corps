@@ -26,6 +26,8 @@
 	var/heal_rate = 10
 	var/faction = FACTION_ZOMBIE
 	var/claw_type = /obj/item/weapon/zombie_claw
+	///Whether this zombie type can jump
+	var/can_jump = FALSE
 
 /datum/species/zombie/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -53,6 +55,8 @@
 	rally_zombie.give_action(H)
 	var/datum/action/set_agressivity/set_zombie_behaviour = new
 	set_zombie_behaviour.give_action(H)
+	if(can_jump)
+		H.set_jump_component(cost = 0)
 
 	var/datum/action/minimap/mini = new
 	mini.give_action(H)
@@ -65,6 +69,8 @@
 	qdel(H.l_hand)
 	for(var/datum/action/action AS in H.actions)
 		action.remove_action(H)
+	if(can_jump)
+		H.set_jump_component()
 
 /datum/species/zombie/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(10))
@@ -130,16 +136,15 @@
 /datum/species/zombie/fast
 	name = "Fast zombie"
 	slowdown = 0
+	can_jump = TRUE
 
 /datum/species/zombie/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.transform = matrix().Scale(0.8, 0.8)
-	H.set_jump_component(cost = 0)
 
 /datum/species/zombie/fast/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.transform = matrix().Scale(1/(0.8), 1/(0.8))
-	H.set_jump_component()
 
 /datum/species/zombie/tank
 	name = "Tank zombie"
@@ -208,3 +213,20 @@
 	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
 	rotation = 0
 	spin = generator(GEN_NUM, 10, 20)
+
+/datum/species/zombie/hunter
+	name = "Hunter zombie"
+	total_health = 175
+	slowdown = 0
+	can_jump = TRUE
+	claw_type = /obj/item/weapon/zombie_claw/strong
+
+/datum/species/zombie/hunter/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	var/datum/action/ability/activable/pounce/pounce = new
+	pounce.give_action(H)
+	H.add_atom_colour(COLOR_ALMOST_BLACK, FIXED_COLOR_PRIORITY)
+
+/datum/species/zombie/hunter/post_species_loss(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.remove_atom_colour(COLOR_ALMOST_BLACK, FIXED_COLOR_PRIORITY)
