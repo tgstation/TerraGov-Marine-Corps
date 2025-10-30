@@ -131,10 +131,12 @@
 	return TRUE
 
 /datum/action/ability/emit_gas/ai_should_use(atom/target)
-	var/mob/living/L = owner
+	var/mob/living/living_owner = owner
 	if(!iscarbon(target))
 		return FALSE
-	if(get_dist(target, owner) > 2 && L.health > 50)
+	if(target.faction == living_owner.faction)
+		return FALSE
+	if(get_dist(target, owner) > 2)
 		return FALSE
 	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
