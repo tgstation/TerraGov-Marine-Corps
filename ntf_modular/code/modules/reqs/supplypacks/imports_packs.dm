@@ -18,6 +18,21 @@
 	contains = list(/obj/item/mortal_shell/smoke/neuro, /obj/item/mortal_shell/smoke/neuro)
 	cost = 15
 
+/datum/supply_packs/explosives/mlrs_rockets_neuro
+	name = "TA-40L Neurotoxin MLRS Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rockets/neuro)
+	cost = 100
+
+/datum/supply_packs/explosives/mlrs_rockets_aphro
+	name = "TA-40L Aphrotoxin MLRS Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rockets/aphro)
+	cost = 100
+
+/datum/supply_packs/explosives/mlrs_rockets_sleep
+	name = "TA-40L Knock-Out MLRS Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rockets/sleep)
+	cost = 100
+
 /datum/supply_packs/imports/halterex
 	name = "NT Halter extended mag (x1)"
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/extended)

@@ -37,3 +37,93 @@
 
 /datum/ammo/mortar/smoke/neuro
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
+
+/obj/item/mortal_shell/rocket/mlrs/neuro
+	name = "\improper 60mm Neurotoxin rocket"
+	desc = "A 60mm rocket loaded with incapacitating neurotoxin gas."
+	icon_state = "mlrs_gas"
+	ammo_type = /datum/ammo/mortar/rocket/smoke/mlrs/neuro
+
+/datum/ammo/mortar/rocket/smoke/mlrs/neuro
+	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
+
+/obj/item/storage/box/mlrs_rockets/neuro
+	name = "\improper TA-40L Neurotoxin rocket crate"
+
+/obj/item/storage/box/mlrs_rockets/neuro/PopulateContents()
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/neuro(src)
+
+/obj/item/mortal_shell/rocket/mlrs/aphro
+	name = "\improper 60mm Neurotoxin rocket"
+	desc = "A 60mm rocket loaded with aphrotoxin gas."
+	icon_state = "mlrs_gas"
+	ammo_type = /datum/ammo/mortar/rocket/smoke/mlrs/aphro
+
+/datum/ammo/mortar/rocket/smoke/mlrs/aphro
+	smoketype = /datum/effect_system/smoke_spread/xeno/aphrotoxin
+
+/obj/item/storage/box/mlrs_rockets/aphro
+	name = "\improper TA-40L Aphrotoxin rocket crate"
+
+/obj/item/storage/box/mlrs_rockets/aphro/PopulateContents()
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+	new /obj/item/mortal_shell/rocket/mlrs/aphro(src)
+
+/obj/item/mortal_shell/rocket/mlrs/sleep
+	name = "\improper 60mm Knock-Out rocket"
+	desc = "A 60mm rocket loaded with soporific gas."
+	icon_state = "mlrs_gas"
+	ammo_type = /datum/ammo/mortar/rocket/smoke/mlrs/sleep
+
+/datum/ammo/mortar/rocket/smoke/mlrs/sleep
+	smoketype = /datum/effect_system/smoke_spread/sleepy
+
+/obj/item/storage/box/mlrs_rockets/sleep
+	name = "\improper TA-40L Knock-Out rocket crate"
+
+/obj/item/storage/box/mlrs_rockets/sleep/PopulateContents()
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
+	new /obj/item/mortal_shell/rocket/mlrs/sleep(src)
