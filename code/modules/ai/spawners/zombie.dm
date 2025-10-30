@@ -49,7 +49,6 @@
 /obj/effect/ai_node/spawner/zombie/HasProximity(atom/movable/hostile)
 	if(!COOLDOWN_FINISHED(src, proxy_alert_cooldown) || iszombie(hostile))
 		return
-	message_admins("SPAWN, [ZOMBIE_DEFENDER_AMOUNT]")
 	spawn_defenders()
 
 	COOLDOWN_START(src, proxy_alert_cooldown, ZOMBIE_STRUCTURE_DETECTION_COOLDOWN)
