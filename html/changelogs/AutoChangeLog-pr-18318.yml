@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Hover bike sounds at a higher pitch than the hovertank"
-  - bugfix: "fixed the hover tank being silent"

@@ -325,7 +325,7 @@
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/ability/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage)
+/datum/action/ability/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage, mob/living/attacker)
 	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()

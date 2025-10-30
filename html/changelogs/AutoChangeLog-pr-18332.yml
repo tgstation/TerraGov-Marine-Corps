@@ -1,0 +1,4 @@
+author: "Joe13413, Lumipharon, harusha"
+delete-after: True
+changes:
+  - rscadd: "Added a new campaign mission, TGMC airfield. SoM must assault an airbase defended by the TGMC, and destroy the fighters and the airstrip itself."

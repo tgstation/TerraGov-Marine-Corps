@@ -1,4 +1,4 @@
 author: "Lumipharon"
 delete-after: True
 changes:
-  - soundadd: "Better hit sounds for flora"
+  - bugfix: "fixed an autofire runtime"

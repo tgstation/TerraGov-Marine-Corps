@@ -137,7 +137,7 @@
 				hit_report += "(KO)"
 
 			damage += attack.damage
-			apply_damage(damage, BRUTE, target_zone, MELEE, attack.sharp, attack.edge, updating_health = TRUE)
+			apply_damage(damage, BRUTE, target_zone, MELEE, attack.sharp, attack.edge, updating_health = TRUE, attacker = user)
 
 			hit_report += "(RAW DMG: [damage])"
 

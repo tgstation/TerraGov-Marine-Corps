@@ -177,7 +177,7 @@
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
 	if(!isopenturf(T))
-		balloon_alert(src, "Can't teleport into a wall")
+		balloon_alert(src, "can't teleport into a wall!")
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM * 2)
 	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation_reverse", src)
@@ -187,7 +187,7 @@
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
 	if(!check_weeds(T, TRUE))
-		balloon_alert(src, "No weeds in destination")
+		balloon_alert(src, "no weeds in destination!")
 		return
 	forceMove(T)
 	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation", src)
@@ -228,7 +228,7 @@
 /// Jump hivemind's camera to the passed xeno, if they are on/near weeds
 /mob/living/carbon/xenomorph/hivemind/proc/jump(mob/living/carbon/xenomorph/xeno)
 	if(!check_weeds(get_turf(xeno), TRUE))
-		balloon_alert(src, "No nearby weeds")
+		balloon_alert(src, "no nearby weeds!")
 		return
 	if(!(status_flags & INCORPOREAL))
 		start_teleport(get_turf(xeno))

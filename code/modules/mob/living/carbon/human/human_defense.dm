@@ -156,7 +156,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(weapon_sharp)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 
-	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
+	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE, attacker = user)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
@@ -431,15 +431,15 @@ Contains most of the procs that are called when a mob is attacked by something
 		return TRUE
 
 	if(!(affecting.limb_status & LIMB_ROBOT))
-		balloon_alert(user, "Limb not robotic")
+		balloon_alert(user, "limb not robotic!")
 		return TRUE
 
 	if(!affecting.brute_dam)
-		balloon_alert(user, "Nothing to fix!")
+		balloon_alert(user, "nothing to fix!")
 		return TRUE
 
 	if(user.do_actions)
-		balloon_alert(user, "Already busy!")
+		balloon_alert(user, "busy!")
 		return TRUE
 
 	if(!I.tool_use_check(user, 2))
@@ -470,6 +470,6 @@ Contains most of the procs that are called when a mob is attacked by something
 				affecting = checked_limb
 				break
 			if(previous_limb == affecting)
-				balloon_alert(user, "Dents fully repaired.")
+				balloon_alert(user, "dents fully repaired")
 				break
 	return TRUE

@@ -14437,10 +14437,6 @@
 	dir = 1
 	},
 /area/bluemoon/outside/building/cargo/shop)
-"qPS" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "qQc" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -23364,7 +23360,7 @@ sGJ
 sGJ
 sGJ
 sGJ
-qPS
+sGJ
 sGJ
 sGJ
 sGJ

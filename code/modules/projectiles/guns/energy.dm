@@ -539,10 +539,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	equip_slot_flags = ITEM_SLOT_BELT
 	gun_skill_category = SKILL_PISTOLS
-	max_shots = 30 //codex stuff
+	max_shots = 20 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_level_icon = null
-	rounds_per_shot = 20
+	rounds_per_shot = 30
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
@@ -580,7 +580,7 @@
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /datum/lasrifle/energy_pistol_mode/standard
-	rounds_per_shot = 20
+	rounds_per_shot = 30
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	fire_delay = 0.15 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
@@ -1053,7 +1053,6 @@
 	damage_falloff_mult = 0.9
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
-	light_color = LIGHT_COLOR_ORANGE
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()

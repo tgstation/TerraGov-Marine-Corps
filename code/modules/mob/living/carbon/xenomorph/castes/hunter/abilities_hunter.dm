@@ -210,7 +210,7 @@
 	cancel_stealth()
 
 ///Breaks stealth if sufficient damage taken
-/datum/action/ability/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
+/datum/action/ability/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken, mob/living/attacker)
 	SIGNAL_HANDLER
 	total_damage_taken += damage_taken
 	var/mob/living/carbon/xenomorph/xenoowner = owner
@@ -305,7 +305,7 @@
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
-	owner.balloon_alert(owner, "Pounce ready")
+	owner.balloon_alert(owner, "pounce ready")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 

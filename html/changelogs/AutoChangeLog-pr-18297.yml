@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "If NPC's cannot path to a goal node after repeated attempts, they will now simply ignore it instead of getting stuck in place"

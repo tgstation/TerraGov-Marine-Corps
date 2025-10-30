@@ -43,8 +43,8 @@
 			damage += base_damage * 2
 			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against [src]!</big>"))
 			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
-	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
-	apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
+	apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
 	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
 	return TRUE
 
@@ -184,6 +184,7 @@
 		fire_stacks = min(0, fire_stacks)//So we dry ourselves back to default, nonflammable.
 	if(!on_fire)
 		return 1
+	SEND_SIGNAL(src, COMSIG_LIVING_HANDLE_FIRE)
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-1) //the fire is consumed slowly
 

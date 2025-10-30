@@ -71,10 +71,9 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'), 75, 0),
 	FOOTSTEP_VEGETATION = list(list(
-		'sound/effects/footstep/grass1.ogg',
-		'sound/effects/footstep/grass2.ogg',
-		'sound/effects/footstep/grass3.ogg',
-		'sound/effects/footstep/grass4.ogg'), 75, 0),
+		'sound/effects/natural/vegetation_walk_0.ogg',
+		'sound/effects/natural/vegetation_walk_1.ogg',
+		'sound/effects/natural/vegetation_walk_2.ogg'), 75, 0),
 	FOOTSTEP_WET = list(list(
 		'sound/effects/footstep/waterstep1.ogg',
 		'sound/effects/footstep/waterstep2.ogg',
@@ -188,6 +187,10 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'), 75, 0),
+	FOOTSTEP_VEGETATION = list(list(
+		'sound/effects/natural/vegetation_walk_0.ogg',
+		'sound/effects/natural/vegetation_walk_1.ogg',
+		'sound/effects/natural/vegetation_walk_2.ogg'), 75, 0),
 	FOOTSTEP_WET = list(list(
 		'sound/effects/footstep/waterstep1.ogg',
 		'sound/effects/footstep/waterstep2.ogg',
@@ -302,6 +305,10 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'), 65, 1),
+	FOOTSTEP_VEGETATION = list(list(
+		'sound/effects/natural/vegetation_walk_0.ogg',
+		'sound/effects/natural/vegetation_walk_1.ogg',
+		'sound/effects/natural/vegetation_walk_2.ogg'), 65, 0),
 	FOOTSTEP_WET = list(list(
 		'sound/effects/footstep/waterstep1.ogg',
 		'sound/effects/footstep/waterstep2.ogg',
@@ -414,6 +421,10 @@ GLOBAL_LIST_INIT(xenoheavystep, list(
 		'sound/effects/footstep/heavy1.ogg',
 		'sound/effects/footstep/heavy2.ogg',
 		'sound/effects/footstep/heavy3.ogg'), 100, 2),
+	FOOTSTEP_VEGETATION = list(list(
+		'sound/effects/natural/vegetation_walk_0.ogg',
+		'sound/effects/natural/vegetation_walk_1.ogg',
+		'sound/effects/natural/vegetation_walk_2.ogg'), 100, 2),
 	FOOTSTEP_WET = list(list(
 		'sound/effects/footstep/waterstep1.ogg',
 		'sound/effects/footstep/waterstep2.ogg',

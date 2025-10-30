@@ -180,7 +180,7 @@
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage == 0)
-		M.emote("me", EMOTE_VISIBLE, "[M.friendly] [src]")
+		M.emote("me", EMOTE_TYPE_VISIBLE, "[M.friendly] [src]")
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
@@ -188,7 +188,7 @@
 		log_combat(M, src, "attacked")
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		dam_zone = ran_zone(dam_zone)
-		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE)
+		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE, attacker = M)
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
