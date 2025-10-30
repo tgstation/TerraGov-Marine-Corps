@@ -3,20 +3,16 @@
 	/// If set
 	var/ai_type
 
-/mob/living/carbon/human/species/zombie/ai/Initialize(mapload)
+/mob/living/carbon/human/species/zombie/ai/Initialize(mapload, atom_to_escort)
 	. = ..()
 	if(ai_type)
-		AddComponent(/datum/component/ai_controller, ai_type, null)
+		AddComponent(/datum/component/ai_controller, ai_type, atom_to_escort)
 
 /mob/living/carbon/human/species/zombie/ai/stay
 	ai_type = /datum/ai_behavior/xeno/zombie/idle
 
 /mob/living/carbon/human/species/zombie/ai/patrol
 	ai_type = /datum/ai_behavior/xeno/zombie/patrolling
-
-/mob/living/carbon/human/species/zombie/ai/follower/Initialize(mapload, atom_to_escort)
-	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie, atom_to_escort)
 
 /mob/living/carbon/human/species/zombie/ai/fast
 	race = "Fast zombie"
@@ -54,12 +50,29 @@
 /mob/living/carbon/human/species/zombie/ai/smoker/patrol
 	ai_type = /datum/ai_behavior/xeno/zombie/patrolling
 
-/obj/effect/zombie_basic_pack
-	name = "Template for 6 basic zombies, plus a leader"
 
-/obj/effect/zombie_basic_pack/Initialize(mapload)
+/obj/effect/zombie_pack
+	name = "spawns a pack of zombies, plus a leader"
+	///Leader zombie typepath
+	var/leader_type = /mob/living/carbon/human/species/zombie/ai/patrol
+	///Minion zombie typepath
+	var/minion_type = /mob/living/carbon/human/species/zombie/ai/patrol
+	///Number of minion zombies
+	var/minion_number = 6
+
+/obj/effect/zombie_pack/Initialize(mapload)
 	. = ..()
-	var/leader = new /mob/living/carbon/human/species/zombie/ai/patrol(loc)
-	for(var/i in 1 to 6)
-		new /mob/living/carbon/human/species/zombie/ai/follower(loc, leader)
+	var/leader = new leader_type(loc)
+	for(var/i in 1 to minion_number)
+		new minion_type(loc, leader)
 	qdel(src)
+
+/obj/effect/zombie_pack/tank
+	leader_type = /mob/living/carbon/human/species/zombie/ai/tank/patrol
+
+/obj/effect/zombie_pack/smoker
+	leader_type = /mob/living/carbon/human/species/zombie/ai/smoker/patrol
+
+/obj/effect/zombie_pack/fast_pack
+	leader_type = /mob/living/carbon/human/species/zombie/ai/fast/patrol
+	minion_type = /mob/living/carbon/human/species/zombie/ai/fast/patrol
