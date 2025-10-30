@@ -73,7 +73,7 @@ ADMIN_VERB(hive_status, R_FUN, "Check Hive Status", "Check the status of the hiv
 	if(!SSticker)
 		return
 
-	check_hive_status(user.mob)
+	check_hive_status(user.mob, force_choose_hive = TRUE)
 
 	log_admin("[key_name(user)] checked the hive status.")
 	message_admins("[key_name_admin(user)] checked the hive status.")

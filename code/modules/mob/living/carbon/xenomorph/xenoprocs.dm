@@ -66,12 +66,12 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
-/proc/check_hive_status(mob/user)
+/proc/check_hive_status(mob/user, force_choose_hive)
 	if(!SSticker)
 		return
 
 	var/datum/hive_status/hive
-	if(isxeno(user))
+	if(isxeno(user) && !force_choose_hive)
 		var/mob/living/carbon/xenomorph/xeno_user = user
 		if(xeno_user.hive)
 			hive = xeno_user.hive
@@ -89,10 +89,13 @@
 			hivenames |= hive.name
 			hives_by_name[hive.name] = hive
 		if(!length(hivenames))
-			to_chat(user, span_warning("There are no active hives"))
+			to_chat(user, span_warning("There are no active hives."))
 			return
 		hive = hives_by_name[tgui_input_list(user, "Which hive?", "Check Hive Status", hivenames, hivenames[1])]
 
+	if(!hive)
+		to_chat(user, span_warning("Valid hive not selected."))
+		return
 	hive.interact(user)
 
 	return
