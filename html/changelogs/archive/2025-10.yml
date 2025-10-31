@@ -134,6 +134,13 @@
   - bugfix: Vehicle lights can actually turn off and on
   - bugfix: Stops floor emissives layering over things they shouldn't
 2025-10-30:
+  DaTruRiZZoB:
+  - qol: Sets SMES input/output to max by default
   Joe13413, Lumipharon, harusha:
   - rscadd: Added a new campaign mission, TGMC airfield. SoM must assault an airbase
       defended by the TGMC, and destroy the fighters and the airstrip itself.
+  Lumipharon:
+  - bugfix: fixed minimap trackers not updating when a minimap is redrawn
+  - bugfix: NPC's will fight back when attacked while healing or doing similar tasks
+  - code_imp: mob attackers are properly tracked through the damage procs
+  - bugfix: fixed an autofire runtime
