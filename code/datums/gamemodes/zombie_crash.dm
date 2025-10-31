@@ -6,7 +6,7 @@
 	required_players = 1
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/terragov/squad/engineer = 1,
+		/datum/job/terragov/squad/engineer = 3,
 		/datum/job/terragov/squad/corpsman = 1,
 		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
