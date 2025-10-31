@@ -1,5 +1,5 @@
 
-#define MAXIMUM_DEFAULT_SPAWN 120
+#define MAXIMUM_DEFAULT_SPAWN 400
 
 SUBSYSTEM_DEF(spawning)
 	name = "Spawning"
