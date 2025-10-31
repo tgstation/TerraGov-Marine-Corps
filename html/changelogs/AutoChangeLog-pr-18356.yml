@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Bike mounted weapons can be unequipped by dropping them"
