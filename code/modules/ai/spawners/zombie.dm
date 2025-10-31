@@ -18,14 +18,16 @@
 	spawnamount = 2
 	spawndelay = 8 SECONDS
 	maxamount = 15
+	var/threat_warning = FALSE
 
 	var/datum/proximity_monitor/proximity_monitor
 	COOLDOWN_DECLARE(proxy_alert_cooldown)
+	COOLDOWN_DECLARE(defender_spawn_cooldown)
 
 /obj/effect/ai_node/spawner/zombie/Initialize(mapload)
 	. = ..()
 	GLOB.zombie_spawners += src
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "zombie_spawner"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "zombie_spawner_clear"))
 	proximity_monitor = new(src, ZOMBIE_STRUCTURE_DETECTION_RANGE)
 
 /obj/effect/ai_node/spawner/zombie/Destroy()
@@ -50,8 +52,32 @@
 		new spawntype(loc)
 
 /obj/effect/ai_node/spawner/zombie/HasProximity(atom/movable/hostile)
-	if(!COOLDOWN_FINISHED(src, proxy_alert_cooldown) || iszombie(hostile))
+	if(iszombie(hostile))
 		return
-	spawn_defenders()
 
-	COOLDOWN_START(src, proxy_alert_cooldown, ZOMBIE_STRUCTURE_DETECTION_COOLDOWN)
+	if(!iscarbon(hostile) && !isvehicle(hostile))
+		return
+
+	if(iscarbon(hostile))
+		var/mob/living/carbon/carbon_triggerer = hostile
+		if(carbon_triggerer.stat == DEAD)
+			return
+
+	if(COOLDOWN_FINISHED(src, proxy_alert_cooldown))
+		threat_warning = TRUE
+		addtimer(CALLBACK(src, PROC_REF(clear_warning)), ZOMBIE_STRUCTURE_DETECTION_COOLDOWN)
+		update_minimap_icon()
+
+	if(COOLDOWN_FINISHED(src, defender_spawn_cooldown))
+		spawn_defenders()
+		COOLDOWN_START(src, defender_spawn_cooldown, ZOMBIE_STRUCTURE_DEFENDER_COOLDOWN)
+
+///Clears any threat warnings
+/obj/effect/ai_node/spawner/zombie/proc/clear_warning()
+	threat_warning = FALSE
+	update_minimap_icon()
+
+///Updates minimap icon when a threat is detected
+/obj/effect/ai_node/spawner/zombie/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "zombie_spawner[threat_warning ? "_warn" : "_clear"]"))
