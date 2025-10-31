@@ -55,8 +55,7 @@
 	var/num_zombies = 0
 
 	for(var/z in z_levels)
-		for(var/i in GLOB.humans_by_zlevel["[z]"])
-			var/mob/living/carbon/human/H = i
+		for(var/mob/living/carbon/human/H  in GLOB.humans_by_zlevel["[z]"])
 			if(!istype(H)) // Small fix?
 				continue
 			if(H.faction == FACTION_ZOMBIE)
@@ -143,7 +142,6 @@
 /datum/game_mode/infestation/crash/zombie/end_round_fluff()
 	. = ..()
 	if(round_finished == MODE_INFESTATION_M_MAJOR  || round_finished == MODE_INFESTATION_M_MINOR || round_finished == MODE_INFESTATION_DRAW_DEATH)
-		message_admins("AAAA")
 		return
 
 	var/sound/human_track = sound('sound/theme/zombies_loss.ogg')
