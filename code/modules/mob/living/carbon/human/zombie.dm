@@ -57,7 +57,7 @@
 	. = ..()
 	if(!has_proximity)
 		return
-	if(!istype(target, /obj/machinery/door/airlock))
+	if(!istype(target, /obj/machinery/door))
 		return
 	if(user.do_actions)
 		return
