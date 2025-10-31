@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "NPCs will shoot xeno turrets"
+  - bugfix: "fixed facehuggers not properly registering as hazards to NPCs"
