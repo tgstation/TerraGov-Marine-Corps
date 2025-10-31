@@ -59,6 +59,14 @@
 /mob/living/carbon/human/species/zombie/ai/hunter/patrol
 	ai_type = /datum/ai_behavior/xeno/zombie/patrolling
 
+/mob/living/carbon/human/species/zombie/ai/boomer
+	race = "Boomer zombie"
+
+/mob/living/carbon/human/species/zombie/ai/boomer/stay
+	ai_type = /datum/ai_behavior/xeno/zombie/idle
+
+/mob/living/carbon/human/species/zombie/ai/boomer/patrol
+	ai_type = /datum/ai_behavior/xeno/zombie/patrolling
 
 /obj/effect/zombie_pack
 	name = "spawns a pack of zombies, plus a leader"
@@ -84,6 +92,9 @@
 
 /obj/effect/zombie_pack/hunter
 	leader_type = /mob/living/carbon/human/species/zombie/ai/hunter/patrol
+
+/obj/effect/zombie_pack/boomer
+	leader_type = /mob/living/carbon/human/species/zombie/ai/boomer/patrol
 
 /obj/effect/zombie_pack/fast_pack
 	leader_type = /mob/living/carbon/human/species/zombie/ai/fast/patrol
