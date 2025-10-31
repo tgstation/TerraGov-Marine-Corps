@@ -231,3 +231,20 @@
 /datum/species/zombie/hunter/post_species_loss(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.remove_atom_colour(COLOR_ALMOST_BLACK, FIXED_COLOR_PRIORITY)
+
+/datum/species/zombie/boomer
+	name = "Boomer zombie"
+	heal_rate = 20
+	total_health = 250
+
+/datum/species/zombie/boomer/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	var/datum/action/ability/boomer_explode/explode = new
+	explode.give_action(H)
+	var/datum/action/ability/activable/bile_spit/bile = new
+	bile.give_action(H)
+	H.add_atom_colour(COLOR_TOXIN_HUSKPOWDER, FIXED_COLOR_PRIORITY)
+
+/datum/species/zombie/boomer/post_species_loss(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.remove_atom_colour(COLOR_TOXIN_HUSKPOWDER, FIXED_COLOR_PRIORITY)
