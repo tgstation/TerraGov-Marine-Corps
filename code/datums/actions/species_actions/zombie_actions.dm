@@ -198,20 +198,16 @@
 
 /datum/action/ability/boomer_explode/action_activate()
 	. = ..()
-	handle_smoke(ability = TRUE)
+	handle_smoke()
 	owner.record_tactical_unalive()
 	owner.death(TRUE)
 
 /// This proc defines, and sets up and then lastly starts the smoke, if ability is false we divide range by 4.
-/datum/action/ability/boomer_explode/proc/handle_smoke(datum/source, ability = FALSE)
+/datum/action/ability/boomer_explode/proc/handle_smoke(datum/source)
 	SIGNAL_HANDLER
 	var/turf/own_turf = get_turf(owner)
-	var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium(own_turf)
-	var/smoke_range = 4
-	/// If this proc is triggered by signal(so death), we want to divide range by 2
-	if(!ability)
-		smoke_range = smoke_range / 2
-	smoke.set_up(smoke_range, own_turf, 4)
+	var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread/xeno/neuro(own_turf)
+	smoke.set_up(3, own_turf, 4)
 	playsound(own_turf, 'sound/effects/blobattack.ogg', 25)
 	smoke.start()
 
@@ -256,7 +252,7 @@
 	return ..()
 
 /datum/action/ability/activable/bile_spit/use_ability(atom/A)
-	owner.do_jitter_animation(500, 1 SECONDS)
+	owner.do_jitter_animation(1000)
 	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE, ABILITY_IGNORE_SELECTED_ABILITY) || !(A in range(get_screen_size(TRUE), owner)))
 		fail_activate()
 		return

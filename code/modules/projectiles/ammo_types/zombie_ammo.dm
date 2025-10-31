@@ -35,6 +35,6 @@
 /datum/ammo/bile_spit/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing/smoke_system = new
 	smoke_system.strength = 1.5
-	smoke_system.lifetime = 1
+	smoke_system.lifetime = 2
 	smoke_system.set_up(3, T)
 	smoke_system.start()

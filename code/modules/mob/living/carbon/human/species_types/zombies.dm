@@ -28,6 +28,8 @@
 	var/claw_type = /obj/item/weapon/zombie_claw
 	///Whether this zombie type can jump
 	var/can_jump = FALSE
+	///List of special actions given by this species
+	var/list/action_list
 
 /datum/species/zombie/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -60,6 +62,10 @@
 
 	var/datum/action/minimap/lone/mini = new
 	mini.give_action(H)
+
+	for(var/action_type in action_list)
+		var/datum/action/action = new action_type()
+		action.give_action(H)
 
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
@@ -191,11 +197,7 @@
 
 /datum/species/zombie/smoker
 	name = "Smoker zombie"
-
-/datum/species/zombie/smoker/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	var/datum/action/ability/emit_gas/emit_gas = new
-	emit_gas.give_action(H)
+	action_list = list(/datum/action/ability/emit_gas)
 
 /particles/smoker_zombie
 	icon = 'icons/effects/particles/smoke.dmi'
@@ -221,11 +223,10 @@
 	slowdown = 0
 	can_jump = TRUE
 	claw_type = /obj/item/weapon/zombie_claw/strong
+	action_list = list(/datum/action/ability/activable/pounce)
 
 /datum/species/zombie/hunter/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	var/datum/action/ability/activable/pounce/pounce = new
-	pounce.give_action(H)
 	H.add_atom_colour(COLOR_ALMOST_BLACK, FIXED_COLOR_PRIORITY)
 
 /datum/species/zombie/hunter/post_species_loss(mob/living/carbon/human/H, datum/species/old_species)
@@ -236,13 +237,13 @@
 	name = "Boomer zombie"
 	heal_rate = 20
 	total_health = 250
+	action_list = list(
+		/datum/action/ability/activable/bile_spit,
+		/datum/action/ability/boomer_explode,
+	)
 
 /datum/species/zombie/boomer/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	var/datum/action/ability/boomer_explode/explode = new
-	explode.give_action(H)
-	var/datum/action/ability/activable/bile_spit/bile = new
-	bile.give_action(H)
 	H.add_atom_colour(COLOR_TOXIN_HUSKPOWDER, FIXED_COLOR_PRIORITY)
 
 /datum/species/zombie/boomer/post_species_loss(mob/living/carbon/human/H, datum/species/old_species)
