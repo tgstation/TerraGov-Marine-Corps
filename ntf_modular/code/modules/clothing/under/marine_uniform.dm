@@ -38,12 +38,12 @@
 /obj/item/clothing/under/cheerleader/yellow
 	name = "yellow cheerleader outfit"
 	desc = "A yellow cheerleader's outfit."
-	icon_state = "white_cheer"
+	icon_state = "yellow_cheer"
 
 /obj/item/clothing/under/cheerleader/purple
 	name = "purple cheerleader outfit"
 	desc = "A pueple cheerleader's outfit."
-	icon_state = "white_cheer"
+	icon_state = "purple_cheer"
 
 /obj/item/clothing/under/dress/bridesmaid
 	name = "bridesmaid's dress"
