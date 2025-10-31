@@ -104,6 +104,7 @@
 		return
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
+///Called when can_revive_to_crit() fails for zombies, stops zombies from reanimating by permenantly killing and deleting them
 /datum/species/zombie/proc/stop_reanimation(mob/living/carbon/human/H)
 	if(H.on_fire)
 		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 20 SECONDS)

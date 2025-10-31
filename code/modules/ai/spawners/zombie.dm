@@ -42,6 +42,7 @@
 	. = ..()
 	. += span_notice("It seems like you could collapse it with a plastique explosive.")
 
+///Called by a proximity alert, spawns defenders when a threat is detected
 /obj/effect/ai_node/spawner/zombie/proc/spawn_defenders()
 	for(var/i in 1 to ZOMBIE_DEFENDER_AMOUNT)
 		var/spawntype = pickweight(spawntypes)

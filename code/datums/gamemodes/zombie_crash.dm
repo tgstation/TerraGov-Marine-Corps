@@ -49,6 +49,7 @@
 /datum/game_mode/infestation/crash/zombie/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	return
 
+///Counts humans and zombies not in valhalla
 /datum/game_mode/infestation/crash/zombie/proc/count_humans_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	var/num_humans = 0
 	var/num_zombies = 0
