@@ -122,10 +122,10 @@
 	chassis.log_message("Toggled zoom mode.", LOG_MECHA)
 	to_chat(owner, "<font color='[chassis.zoom_mode?"blue":"red"]'>Zoom mode [chassis.zoom_mode?"en":"dis"]abled.</font>")
 	if(chassis.zoom_mode)
-		owner.client.view_size.add(3)
+		owner.client.view_size.add(5)
 		SEND_SOUND(owner, sound('sound/mecha/imag_enh.ogg', volume=50))
 	else
-		owner.client.view_size.add(-3)
+		owner.client.view_size.add(-5)
 	update_button_icon()
 
 /datum/action/vehicle/sealed/armored/zoom/remove_action(mob/M)

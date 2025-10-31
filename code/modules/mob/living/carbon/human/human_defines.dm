@@ -4,7 +4,7 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
-	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM, ORDER_HUD, PAIN_HUD, XENO_DEBUFF_HUD, HEART_STATUS_HUD)
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM, SQUAD_HUD_CLF, SQUAD_HUD_VSD, SQUAD_HUD_ICC, MACHINE_HEALTH_HUD, ORDER_HUD, PAIN_HUD, XENO_DEBUFF_HUD, HEART_STATUS_HUD)
 	health_threshold_crit = -50
 	melee_damage = 5
 	m_intent = MOVE_INTENT_WALK
@@ -57,10 +57,12 @@
 	/// Which body type to use
 	var/physique = MALE
 
+	/*MTF removal
 	///Which underwear the player wants
 	var/underwear = 1
 	///Which undershirt the player wants.
 	var/undershirt = 0
+	*/
 
 	//The character's citizenship. Fluff.
 	var/citizenship = ""
@@ -110,6 +112,8 @@
 	var/gen_record = ""
 	///This human's custom exploit record. Fluff.
 	var/exploit_record = ""
+	var/profile_pic = ""
+	var/nsfwprofile_pic = ""
 
 
 	//Life variables
@@ -155,8 +159,10 @@
 
 ///copies over clothing preferences like underwear to another human
 /mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)
+	/*NTF Removal
 	destination.underwear = underwear
 	destination.undershirt = undershirt
+	*/
 
 /mob/living/carbon/human/replace_by_ai()
 	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))

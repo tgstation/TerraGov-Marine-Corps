@@ -10,7 +10,7 @@
 
 /datum/loadout_item/suit_store/main_gun/engineer/carbine
 	name = "AR-18"
-	desc = "Equipped with mag harness, extended barrel and vertical grip. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	desc = "Equipped with mag harness, extended barrel and vertical grip. The AR-18 is the main weapon of the NTF, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. Uses 10x24mm caseless ammunition."
 	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/engineer
@@ -18,14 +18,14 @@
 
 /datum/loadout_item/suit_store/main_gun/engineer/carbine/enhanced
 	name = "AR-18+"
-	desc = "Equipped with mag harness, extended barrel and vertical grip. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
+	desc = "Equipped with mag harness, extended barrel and vertical grip. The AR-18 is the main weapon of the NTF, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. It uses a mix of standard and AP 10x24mm caseless ammunition."
 	loadout_item_flags = NONE
 	secondary_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine/ap
 
 /datum/loadout_item/suit_store/main_gun/engineer/assault_rifle
 	name = "AR-12"
-	desc = "Equipped with mag harness, extended barrel and miniflamer. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
+	desc = "Equipped with mag harness, extended barrel and miniflamer. The AR-12 is the former main weapon of the NTF before it was superseded by the AR-18 for general issue. \
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses 10x24mm caseless ammunition."
 	ui_icon = "t12"
@@ -40,7 +40,7 @@
 
 /datum/loadout_item/suit_store/main_gun/engineer/assault_rifle/enhanced
 	name = "AR-12+"
-	desc = "Equipped with mag harness, extended barrel and miniflamer. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
+	desc = "Equipped with mag harness, extended barrel and miniflamer. The AR-12 is the former main weapon of the NTF before it was superseded by the AR-18 for general issue. \
 	A jack of all trades weapon, effect at close and long range, with good capacity and handling, making it a reliable all-rounder. \
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses a mix of standard and AP 10x24mm caseless ammunition."
 	loadout_item_flags = NONE
@@ -64,7 +64,7 @@
 
 /datum/loadout_item/suit_store/main_gun/engineer/combat_rifle
 	name = "AR-11"
-	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the TGMC, but is now a relatively uncommon sight. \
+	desc = "Equipped with a red dot sight and laser sight. The AR-11 is an old rifle of the NTF, but is now a relatively uncommon sight. \
 	It has a very large magazine capacity, and can inflict incredible damage at long range with its HV ammo, making it particularly effective at well armored targets. \
 	However it suffers from relatively poor handling and mobility, and lacks any underbarrel weapon attachments, making it an effective but less flexible weapon. It uses 4.92×34mm caseless HV ammunition."
 	ui_icon = "tx11"
@@ -72,8 +72,8 @@
 
 /datum/loadout_item/suit_store/main_gun/engineer/laser_carbine
 	name = "Laser carbine"
-	desc = "Equipped with a red dot sight and gyroscopic stabilizer. The TerraGov laser carbine is the high tech equivilent to the AR-18, with extremely good mobility and handling, and powerful medium range damage. \
-	Variable firemodes gives it additional flexibility over its ballistic counterpart. Uses TE power cells that are shared across all TGMC laser weaponry."
+	desc = "Equipped with a red dot sight and gyroscopic stabilizer. The Ninetails laser carbine is the high tech equivilent to the AR-18, with extremely good mobility and handling, and powerful medium range damage. \
+	Variable firemodes gives it additional flexibility over its ballistic counterpart. Uses TE power cells that are shared across all NTF laser weaponry."
 	ui_icon = "tec"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/gyro
 

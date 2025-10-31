@@ -83,23 +83,25 @@
 //Supply drop boxes
 /obj/item/loot_box/supply_drop
 	name = "supply drop"
-	desc = "A TGMC-marked box full of valuable military tactical equipment."
+	desc = "A NTC-marked box full of valuable military tactical equipment."
 	icon = 'icons/obj/items/items.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	slowdown = 1 //You won't be running off with this
 	rolls = 4
-	weight_list = list(rare_list = 20, uncommon_list = 30, common_list = 40)
+	weight_list = list(legendary_list = 1, rare_list = 10, uncommon_list = 50, common_list = 300)
 
-	rare_list = list(
+	legendary_list = list(
 		/obj/effect/supply_drop/heavy_armor,
 		/obj/effect/supply_drop/grenadier,
 		/obj/effect/supply_drop/minigun,
 		/obj/effect/supply_drop/zx_shotgun,
 	)
-	uncommon_list = list(
-		/obj/effect/supply_drop/marine_sentry,
+	rare_list = list(
 		/obj/effect/supply_drop/recoilless_rifle,
 		/obj/effect/supply_drop/scout,
+	)
+	uncommon_list = list(
+		/obj/effect/supply_drop/marine_sentry,
 		/obj/effect/supply_drop/oicw,
 		/obj/item/storage/belt/lifesaver/quick,
 		/obj/item/storage/belt/rig/medical,
@@ -125,21 +127,23 @@
 	w_class = WEIGHT_CLASS_GIGANTIC
 	rolls = 4
 
-	rare_list = list(
+	legendary_list = list(
 		/obj/effect/supply_drop/culverin,
-		/obj/effect/supply_drop/caliver,
-		/obj/effect/supply_drop/som_shotgun_burst,
 		/obj/effect/supply_drop/blink_kit,
 	)
-	uncommon_list = list(
+	rare_list = list(
+		/obj/effect/supply_drop/caliver,
+		/obj/effect/supply_drop/som_shotgun_burst,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope,
-		/obj/effect/supply_drop/som_rifle_ap,
-		/obj/effect/supply_drop/som_smg_ap,
 		/obj/effect/supply_drop/som_rpg,
+	)
+	uncommon_list = list(
+		/obj/effect/supply_drop/som_rifle_ap,
 		/obj/effect/supply_drop/som_flamer,
 		/obj/item/storage/belt/lifesaver/som/quick,
 		/obj/item/storage/belt/rig/medical,
 		/obj/effect/supply_drop/charger,
+		/obj/effect/supply_drop/som_rifle,
 	)
 	common_list = list(
 		/obj/effect/supply_drop/som_armor_upgrades,
@@ -147,7 +151,6 @@
 		/obj/item/storage/pouch/firstaid/som/combat_patrol,
 		/obj/item/storage/pouch/medical_injectors/som/firstaid,
 		/obj/item/storage/pouch/medical_injectors/som/medic,
-		/obj/effect/supply_drop/som_rifle,
 		/obj/effect/supply_drop/som_smg,
 		/obj/effect/supply_drop/som_shotgun,
 		/obj/effect/supply_drop/som_mg,
@@ -406,13 +409,14 @@
 
 // 150 to 200 points of value packs, spend 100 points get 150 to 200 in value, basically. Ideally, commons are variety packs, uncommons maybe shake up the round a bit, rares a bit more. Legendaries make the round go wacko. You get a crate of stuff dropped on spawn.
 /obj/item/loot_box/tgmclootbox
-	name = "TGMC pack box"
-	desc = "A box of gear sent over by the TGMC on request, nobody knows what's in it. You just know it'll probably be good."
+	name = "NTC pack box"
+	desc = "A box of gear sent over by the NTC on request, nobody knows what's in it. You just know it'll probably be good."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lootbox"
 	worn_icon_state = "lootbox"
 
 	legendary_list = list(
+		/obj/item/storage/box/crate/loot/m25e_pack,
 		/obj/item/storage/box/crate/loot/operator_pack,
 		/obj/item/storage/box/crate/loot/heavy_pack,
 		/obj/item/storage/box/crate/loot/b18classic_pack,
@@ -452,8 +456,6 @@
 	storage_datum.max_storage_space = 100
 	storage_datum.max_w_class = 0 //1 way storage
 
-/obj/item/storage/box/crate/loot/PopulateContents()
-	new /obj/item/weapon/banhammer(src)
 
 // Crate for lootboxes. Use for large items.
 
@@ -465,8 +467,8 @@
 	icon_opened = "open_basic"
 	icon_closed = "closed_basic"
 
-/obj/structure/closet/crate/loot/PopulateContents()
-	new /obj/item/weapon/banhammer(src)
+/obj/structure/closet/crate/loot/Initialize(mapload)
+	. = ..()
 
 // Common
 
@@ -488,6 +490,231 @@
 	new /obj/item/ammo_magazine/rifle/autosniper(src)
 	new /obj/item/ammo_magazine/rifle/autosniper(src)
 	new /obj/item/ammo_magazine/rifle/autosniper(src) //180 total and common, fine considering 3 autos is really strong.
+	new /obj/item/ammo_magazine/packet/autosniper(src)
+
+/obj/item/storage/box/crate/loot/autosniper_lethal_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/standard_autosniper(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
+	new /obj/item/clothing/glasses/thermal/m64_thermal_goggles(src)
+	new /obj/item/storage/box/explosive_mines(src)
+	new /obj/item/storage/box/explosive_mines(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/packet/autosniper(src)
+	new /obj/item/ammo_magazine/packet/autosniper(src)
+	new /obj/item/ammo_magazine/packet/autosniper(src)
+	new /obj/item/ammo_magazine/packet/autosniper(src)
+
+/obj/item/storage/box/crate/loot/moonbeam_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/chambered/nonlethal(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
+	new /obj/item/clothing/glasses/thermal/m64_thermal_goggles(src)
+	new /obj/item/storage/box/explosive_mines(src)
+	new /obj/item/storage/box/explosive_mines(src)
+	new /obj/item/storage/box/zipcuffs(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/tranq(src)
+	new /obj/item/ammo_magazine/packet/p86x70mm/tranq(src)
+
+/obj/item/storage/box/crate/loot/smartpistol_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+
+/obj/item/storage/box/crate/loot/infiltration_tback_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+	new /obj/item/clothing/gloves/marine/insulated(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+		new /obj/item/bodybag/tarp/snow(src)
+	else
+		new /obj/item/bodybag/tarp(src)
+	new /obj/item/storage/box/stuns(src)
+	new /obj/item/weapon/gun/pistol/g22/tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/assembly/signaler (src)
+	new /obj/item/storage/box/zipcuffs(src)
+	new /obj/item/detpack(src)
+	new /obj/item/fulton_extraction_pack(src)
+	new /obj/item/roller(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/clothing/head/headband/snake(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+	new /obj/item/tweezers_advanced(src)
+	new /obj/item/storage/pouch/medkit/firstaid(src)
+	new /obj/item/roller/medevac(src)
+	new /obj/item/medevac_beacon(src)
+	new /obj/item/clothing/shoes/marine/sneakingboots(src)
+	new /obj/item/clothing/under/spec_operative/tback(src)
+
+/obj/item/storage/box/crate/loot/infiltration_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+	new /obj/item/clothing/gloves/marine/insulated(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+		new /obj/item/bodybag/tarp/snow(src)
+	else
+		new /obj/item/bodybag/tarp(src)
+	new /obj/item/storage/box/stuns(src)
+	new /obj/item/storage/holster/belt/pistol/g22/tranq(src)
+	new /obj/item/storage/box/zipcuffs(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/assembly/signaler (src)
+	new /obj/item/detpack(src)
+	new /obj/item/fulton_extraction_pack(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+	new /obj/item/roller/medevac(src)
+	new /obj/item/medevac_beacon(src)
+	new /obj/item/clothing/shoes/marine/sneakingboots(src)
+	new /obj/item/clothing/under/marine/spec_operative(src)
+
+/obj/item/storage/box/crate/loot/infiltration_lethal_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/storage/holster/belt/pistol/m4a3/specops(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+	new /obj/item/clothing/gloves/marine/insulated(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+		new /obj/item/bodybag/tarp/snow(src)
+	else
+		new /obj/item/bodybag/tarp(src)
+	new /obj/item/storage/box/explosive_mines(src)
+	new /obj/item/assembly/signaler (src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/polyacid(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/polyacid(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/polyacid(src)
+	new /obj/item/clothing/shoes/marine/sneakingboots(src)
+	new /obj/item/clothing/under/marine/spec_operative(src)
+
+/obj/item/storage/box/crate/loot/infiltration_lethal_tback_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/storage/holster/belt/pistol/m4a3/specops(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+	new /obj/item/clothing/gloves/marine/insulated(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+		new /obj/item/bodybag/tarp/snow(src)
+	else
+		new /obj/item/bodybag/tarp(src)
+	new /obj/item/storage/box/explosive_mines(src)
+	new /obj/item/assembly/signaler (src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/polyacid(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/polyacid(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/polyacid(src)
+	new /obj/item/clothing/shoes/marine/sneakingboots(src)
+	new /obj/item/clothing/under/spec_operative/tback(src)
+
+/obj/item/storage/box/crate/loot/targetrifle_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/standard_smarttargetrifle(src)
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle (src)
+	new /obj/item/ammo_magazine/rifle/standard_spottingrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_spottingrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_spottingrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact(src)
+	new /obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber(src)
+	new /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten(src)
+	new /obj/item/ammo_magazine/rifle/standard_spottingrifle/flak(src)
+	new /obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss(src)
+	new /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary(src)
 
 /obj/item/storage/box/crate/loot/thermobaric_pack
 	icon_state = "rocket_case"
@@ -508,13 +735,36 @@
 	new /obj/item/ammo_magazine/rocket/m57a4(src)
 	new /obj/item/ammo_magazine/rocket/m57a4(src) // three launchers and 10 arrays. Common. 200.
 
-/obj/item/storage/box/crate/loot/tesla_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/thermobaric_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/launcher/rocket/m57a4/t57(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src) // three launchers and 10 arrays. Common. 200.
+
+/obj/item/storage/box/crate/loot/tesla_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/tesla(src)
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/tesla(src)
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/tesla(src) // 180 and nothing else. Have fun.
 
-/obj/item/storage/box/crate/loot/tx54_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/tx54_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/tx54(src)
 	new /obj/item/weapon/gun/rifle/tx54(src)
@@ -534,7 +784,7 @@
 
 // Uncommon
 
-/obj/item/storage/box/crate/loot/materials_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/materials_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/stack/sheet/plasteel/large_stack(src)
 	new /obj/item/stack/sheet/plasteel/large_stack(src)
@@ -566,7 +816,60 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
 
-/obj/item/storage/box/crate/loot/railgun_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/recoilless_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/storage/holster/backholster/rpg/full(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/smoke(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/smoke(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/smoke(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/smoke(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/smoke(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/smoke(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/cloak(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/cloak(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/cloak(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/cloak(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/cloak(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/cloak(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+
+
+/obj/item/storage/box/crate/loot/railgun_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/railgun(src)
 	new /obj/item/weapon/gun/rifle/railgun(src)
@@ -596,17 +899,41 @@
 	new /obj/item/ammo_magazine/packet/scout_rifle(src)
 	new /obj/item/ammo_magazine/packet/scout_rifle(src)
 	new /obj/item/ammo_magazine/packet/scout_rifle(src)
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
 
+/obj/item/storage/box/crate/loot/scoutrifle_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/tx8(src)
+	new /obj/item/ammo_magazine/packet/scout_rifle(src)
+	new /obj/item/storage/belt/marine/tx8(src)
+	new /obj/item/storage/pouch/magazine/large/tx8full(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/clothing/glasses/thermal/m64_thermal_goggles(src)
+	new /obj/item/storage/box/explosive_mines(src)
+	new /obj/item/storage/box/explosive_mines(src)
 
 // Rares
 
-/obj/item/storage/box/crate/loot/mortar_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/mortar_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/mortar_kit(src)
 	new /obj/item/mortar_kit(src)
@@ -614,7 +941,7 @@
 	new /obj/item/mortar_kit(src)
 	new /obj/item/mortar_kit(src)
 
-/obj/structure/closet/crate/loot/howitzer_pack/PopulateContents()
+/obj/structure/closet/crate/loot/howitzer_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/mortar_kit/howitzer(src)
 	new /obj/item/mortar_kit/howitzer(src)
@@ -631,12 +958,12 @@
 	new /obj/item/mortal_shell/howitzer/white_phos(src)
 	new /obj/item/mortal_shell/howitzer/white_phos(src)
 
-/obj/item/storage/box/crate/loot/hsg_102_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/hsg_102_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/box/hsg_102(src)
 	new /obj/item/storage/box/hsg_102(src)
 
-/obj/item/storage/box/crate/loot/agl_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/agl_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/standard_agls(src)
 	new /obj/item/ammo_magazine/standard_agls(src)
@@ -660,16 +987,54 @@
 
 // Legendaries
 
-/obj/item/storage/box/crate/loot/operator_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/m25e_pack/Initialize(mapload)
 	. = ..()
-	new /obj/item/weapon/gun/rifle/m412/elite
-	new /obj/item/ammo_magazine/rifle
-	new /obj/item/ammo_magazine/rifle
-	new /obj/item/ammo_magazine/rifle
-	new /obj/item/ammo_magazine/rifle
-	new /obj/item/clothing/glasses/night/tx8
+	new /obj/item/weapon/gun/smg/m25/elite/suppressed(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/ap(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/ammo_magazine/smg/m25/extended(src)
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
 
-/obj/item/storage/box/crate/loot/b18classic_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/operator_pack/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/m412/elite(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/extended(src)
+	new /obj/item/ammo_magazine/rifle/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/incendiary(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+
+/obj/item/storage/box/crate/loot/b18classic_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/specialist(src)
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
@@ -678,7 +1043,7 @@
 	new /obj/item/ammo_magazine/minigun_powerpack(src)
 	new /obj/item/ammo_magazine/minigun_powerpack(src)
 
-/obj/item/storage/box/crate/loot/heavy_pack/PopulateContents()
+/obj/item/storage/box/crate/loot/heavy_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/minigun(src)
 	new /obj/item/weapon/gun/minigun(src)

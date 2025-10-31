@@ -30,10 +30,13 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 	. = ..()
 	if(!.)
 		return
-	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
+	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_BEGINNER
 
 /datum/action/ability/activable/build_designator/can_use_action(silent, override_flags, selecting)
-	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_TRAINED
+	. = ..()
+	if(!.)
+		return
+	return owner.skills.getRating(SKILL_LEADERSHIP) >= SKILL_LEAD_BEGINNER
 
 /datum/action/ability/activable/build_designator/on_selection()
 	activate_mode(designator_mode)

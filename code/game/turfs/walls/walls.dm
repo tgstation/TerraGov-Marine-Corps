@@ -114,7 +114,7 @@
 	..()
 
 
-/turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(acided_hole && HAS_TRAIT(xeno_attacker, TRAIT_CAN_TEAR_HOLE)) //Strong and/or big xenos can tear open acided walls
@@ -200,7 +200,7 @@
 	new /obj/effect/acid_hole(src)
 
 ///Applies damage to the wall
-/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, armour_penetration = 0)
+/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, armour_penetration = 0, mob/living/blame_mob)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
@@ -215,9 +215,9 @@
 	if(wall_integrity <= 0)
 		// Xenos used to be able to crawl through the wall, should suggest some structural damage to the girder
 		if (acided_hole)
-			dismantle_wall(1)
+			dismantle_wall(1, blame_mob = blame_mob)
 		else
-			dismantle_wall()
+			dismantle_wall(blame_mob = blame_mob)
 	else
 		update_icon()
 
@@ -239,19 +239,19 @@
 	update_icon()
 
 
-/turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
+/turf/closed/wall/proc/make_girder(destroyed_girder = FALSE, mob/living/blame_mob)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
 	G.update_icon()
 
 	if(destroyed_girder)
-		G.deconstruct(FALSE)
+		G.deconstruct(FALSE, blame_mob = blame_mob)
 
 
 
 // Devastated and Explode causes the wall to spawn a damaged girder
 // Walls no longer spawn a metal sheet when destroyed to reduce clutter and
 // improve visual readability.
-/turf/closed/wall/proc/dismantle_wall(devastated = 0, explode = 0)
+/turf/closed/wall/proc/dismantle_wall(devastated = 0, explode = 0, mob/living/blame_mob)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 	if(devastated)
@@ -374,7 +374,7 @@
 					span_notice("You begin removing the support lines."))
 					playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -404,7 +404,7 @@
 					span_notice("You struggle to pry off the cover."))
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -419,7 +419,7 @@
 					span_notice("You start loosening the anchoring bolts securing the support rods."))
 					playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -434,7 +434,7 @@
 					span_notice("You begin uncrimping the hydraulic lines."))
 					playsound(src, 'sound/items/wirecutter.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -449,7 +449,7 @@
 					span_notice("You struggle to pry off the inner sheath."))
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))

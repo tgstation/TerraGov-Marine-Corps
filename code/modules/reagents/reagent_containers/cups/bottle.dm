@@ -304,9 +304,7 @@
 	//Finally, smash the bottle. This kills (del) the bottle.
 	smash(target, user)
 
-/obj/item/reagent_containers/food/drinks/bottle/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!CONFIG_GET(flag/fun_allowed))
-		return FALSE
+/obj/item/reagent_containers/food/drinks/bottle/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	attack_hand(xeno_attacker)
 
 /obj/item/reagent_containers/food/drinks/bottle/gin
@@ -324,7 +322,7 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/specialwhiskey
-	name = "\improper Nanotrasen 'Space-Aged' 60-Year Old Whiskey"
+	name = "\improper Ninetails 'Space-Aged' 60-Year Old Whiskey"
 	desc = "This exquisite brand of whiskey has been aged in the hull of a colony ship since 2378. It's worth more than what you make in several months- and bold enough to state this fact on the bottle."
 	icon_state = "specialwhiskeybottle"
 	center_of_mass = list("x"=16, "y"=3)

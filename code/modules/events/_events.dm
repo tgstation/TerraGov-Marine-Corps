@@ -13,14 +13,14 @@
 	var/weight = 10
 
 	///The earliest world.time that an event can start (round-duration in deciseconds) default: 20 mins
-	var/earliest_start = 20 MINUTES
+	var/earliest_start = 5 MINUTES
 	///The minimum amount of alive, non-AFK human players on server required to start the event.
 	var/min_players = 0
 
 	///How many times this event has occured
 	var/occurrences = 0
 	//The maximum number of times this event can occur (naturally), it can still be forced.By setting this to 0 you can effectively disable an event.
-	var/max_occurrences = 20
+	var/max_occurrences = INFINITY
 
 	//should we let the ghosts and admins know this event is firing? Disable on events that fire a lot
 	var/alert_observers = TRUE
@@ -34,7 +34,9 @@
 	var/triggering
 
 /// Checks if the event can be spawned. Used by event controller. Admin-created events override this.
-/datum/round_event_control/proc/can_spawn_event(players_amt, gamemode)
+/datum/round_event_control/proc/can_spawn_event(players_amt, gamemode, force = FALSE)
+	if(force)
+		return TRUE
 	if(occurrences >= max_occurrences)
 		return FALSE
 	if(earliest_start >= world.time-SSticker.round_start_time)
@@ -187,6 +189,10 @@
 /datum/round_event/proc/kill()
 	SSevents.running -= src
 
+/datum/round_event/Destroy(force, ...)
+	. = ..()
+	processing = FALSE
+	kill()
 
 //Sets up the event then adds the event to the the list of running events
 /datum/round_event/New(my_processing = TRUE)

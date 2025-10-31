@@ -1,6 +1,6 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest, /obj/structure/bed/nest/wall, /turf/closed/wall/resin/membrane, /obj/structure/bed/nest/advanced))) //For sticky/acid spit
 
 /**
  * # The base ammo datum
@@ -91,6 +91,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/fire_burst_damage = 10
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
+	///Plasma drained from xenos on hit
+	var/plasma_drain = 0
 
 /datum/ammo/proc/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return
@@ -356,4 +358,3 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 10
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 	barricade_clear_distance = 2
-

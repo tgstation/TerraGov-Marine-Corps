@@ -206,7 +206,7 @@
 		icon_state = icon_opened
 
 
-/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(opened)
@@ -377,7 +377,7 @@
 
 /obj/item/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp (folded)"
-	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+	desc = "A tarp carried by NTC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
 	w_class = WEIGHT_CLASS_SMALL
@@ -413,7 +413,7 @@
 /obj/structure/closet/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp"
 	bag_name = "V1 thermal-dampening tarp"
-	desc = "An active camo tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
+	desc = "An active camo tarp carried by NTC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"

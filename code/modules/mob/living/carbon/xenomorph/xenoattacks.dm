@@ -69,7 +69,7 @@
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
-/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(status_flags & INCORPOREAL || xeno_attacker.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack or be attacked
 		return
 
@@ -88,7 +88,7 @@
 						span_notice("We extinguished the fire on [src]."), null, 5)
 					ExtinguishMob()
 				return TRUE
-			xeno_attacker.visible_message(span_notice("\The [xeno_attacker] caresses \the [src] with its scythe-like arm."), \
+			xeno_attacker.visible_message(span_notice("\The [xeno_attacker] caresses \the [src] with[ p_their()] scythe-like arm."), \
 			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
 			return TRUE
 		if(INTENT_GRAB)

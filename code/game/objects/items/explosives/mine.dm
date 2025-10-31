@@ -12,7 +12,7 @@ Stepping directly on the mine will also blow it up
 */
 /obj/item/explosive/mine
 	name = "\improper M20 Claymore anti-personnel mine"
-	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
+	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the Nine Tailed Fox."
 	icon = 'icons/obj/items/mines.dmi'
 	icon_state = "m20"
 	force = 5
@@ -66,17 +66,18 @@ Stepping directly on the mine will also blow it up
 
 /// attack_self is used to arm the mine
 /obj/item/explosive/mine/attack_self(mob/living/user)
-	if(!user.loc || user.loc.density)
+	var/turf/turf_loc = user.loc
+	if(!istype(turf_loc) || turf_loc.density)
 		to_chat(user, span_warning("You can't plant a mine here."))
 		return
 
-	if(locate(/obj/item/explosive/mine) in get_turf(src))
+	if(locate(/obj/item/explosive/mine) in turf_loc)
 		to_chat(user, span_warning("There already is a mine at this position!"))
 		return
 
 	if(armed)
 		return
-	if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
 		user.visible_message(span_notice("[user] stops deploying [src]."), \
 	span_notice("You stop deploying \the [src]."))
 		return
@@ -123,7 +124,7 @@ Stepping directly on the mine will also blow it up
 	user.visible_message(span_notice("[user] starts disarming [src]."), \
 	span_notice("You start disarming [src]."))
 
-	if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 8 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 		"<span class='warning'>You stop disarming [src].")
 		return
@@ -183,7 +184,7 @@ Stepping directly on the mine will also blow it up
 	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(triggered) //Mine is already set to go off
@@ -248,12 +249,12 @@ Stepping directly on the mine will also blow it up
 /// PMC specific mine, with IFF for PMC units
 /obj/item/explosive/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
+	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the Nine Tailed Fox. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
 
 /obj/item/explosive/mine/anti_tank
 	name = "\improper M92 Valiant anti-tank mine"
-	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the TerraGov Marine Corps against heavy armour, both tanks and mechs."
+	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the Nine Tailed Fox against heavy armour, both tanks and mechs."
 	icon_state = "m92"
 	target_mode = MINE_VEHICLE_ONLY
 

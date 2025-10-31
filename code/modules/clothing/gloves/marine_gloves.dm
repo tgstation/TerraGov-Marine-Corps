@@ -4,7 +4,7 @@
 //marine gloves
 
 /obj/item/clothing/gloves/marine
-	name = "marine combat gloves"
+	name = "operative combat gloves"
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine"
 	siemens_coefficient = 0.6
@@ -17,19 +17,19 @@
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 
 /obj/item/clothing/gloves/marine/black
-	name = "black marine combat gloves"
+	name = "black operative combat gloves"
 	desc = "Standard issue marine tactical gloves but black! It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine_black"
 	worn_icon_state = "black"
 
 /obj/item/clothing/gloves/marine/fingerless
-	name = "fingerless marine combat gloves"
+	name = "fingerless operative combat gloves"
 	desc = "Standard issue marine tactical gloves but fingerless! It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine_fingerless"
 	worn_icon_state = "fingerless"
 
 /obj/item/clothing/gloves/marine/hyperscale
-	name = "\improper 8E Chameleon TGMC combat gloves"
+	name = "\improper 8E Chameleon NTC combat gloves"
 	desc = "Standard issue marine tactical gloves BUT colorable with a facepaint! It reads: 'knit by Marine Widows Association'."
 	icon_state = "hyperscale_glove_inhand"
 	worn_icon_state = "hyperscale_glove_mob"
@@ -48,7 +48,7 @@
 	human.regenerate_icons()
 
 /obj/item/clothing/gloves/marine/insulated
-	name = "insulated marine combat gloves"
+	name = "insulated operative combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
 	icon_state = "gloves_marine_insulated"
 	siemens_coefficient = 0
@@ -77,7 +77,7 @@
 	permeability_coefficient = 0.01
 
 /obj/item/clothing/gloves/marine/techofficer/captain
-	name = "captain's gloves"
+	name = "Commander's gloves"
 	desc = "You may like these gloves, but THEY think you are unworthy of them."
 	icon_state = "captain"
 
@@ -102,7 +102,7 @@
 
 /obj/item/clothing/gloves/marine/veteran/pmc_elite
 	name = "PMC elite gloves"
-	desc = "A pair of black gloves armored with pure white plates, used by Nanotrasen PMC contractors."
+	desc = "A pair of black gloves armored with pure white plates, used by Ninetails PMC contractors."
 	icon_state = "armored_pmc"
 	siemens_coefficient = 0
 	item_flags = SYNTH_RESTRICTED
@@ -151,6 +151,11 @@
 	desc = "Tough looking tactical gloves."
 	icon_state = "icc_guard"
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 15, ENERGY = 20, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
+
+/obj/item/clothing/gloves/marine/icc/som_guard
+	name = "\improper stolen ICCGF gloves"
+	desc = "Tough looking tactical gloves."
+	icon_state = "icc_guard"
 
 /obj/item/clothing/gloves/marine/commissar
 	name = "\improper commissar gloves"

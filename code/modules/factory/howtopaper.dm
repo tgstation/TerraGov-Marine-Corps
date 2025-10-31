@@ -1,6 +1,6 @@
 /obj/item/paper/factoryhowto
 	name = "Factory instructional pamphlet"
-	info = {"Greetings, future Nanotrasen affiliate! This paper intends to be your manual for your brand new purchased Nanotrasen Field Factory system. <br>
+	info = {"Greetings, future Ninetails affiliate! This paper intends to be your manual for your brand new purchased Ninetails Field Factory system. <br>
 	<br>
 	Step one is to aquire conveyors and a conveyor switch to turn them on in the autolathe. You can link these together by clicking on the conveyor stack with the switch,
 	after which you can place both items on the ground by clicking with them. Remove them from the ground by using a crowbar.<br>

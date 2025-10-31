@@ -5,11 +5,16 @@
 	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
+		/turf/closed/wall/resin/membrane,
+		/obj/alien/resin/sticky,
+		/obj/structure/mineral_door/resin/thick,
+		/obj/structure/bed/nest,
+		/obj/structure/bed/nest/wall,
+		/obj/structure/xeno/lighttower,
 		/turf/closed/wall/resin/regenerating/special/bulletproof,
 		/turf/closed/wall/resin/regenerating/special/fireproof,
 		/turf/closed/wall/resin/regenerating/special/hardy,
-		/obj/alien/resin/sticky,
-		/obj/structure/mineral_door/resin/thick,
+		/obj/structure/bed/nest/advanced,
 	)
 
 // ***************************************
@@ -59,7 +64,6 @@
 	if(!do_after(xeno_owner, 1 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 		return fail_activate()
 	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
-	leash_ball.hivenumber = xeno_owner.hivenumber
 	var/atom/movable/projectile/newspit = new (get_turf(xeno_owner))
 
 	newspit.generate_bullet(leash_ball)
@@ -125,7 +129,7 @@
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /// This is so that xenos can remove leash balls
-/obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(HAS_TRAIT(xeno_attacker, TRAIT_WEB_PULLER))
@@ -366,7 +370,7 @@
 	///the attached spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/attached_spiderlings = list()
 	///how many times we attempt to attach adjacent spiderligns
-	var/attach_attempts = 5
+	var/attach_attempts = 8
 
 /datum/action/ability/xeno_action/attach_spiderlings/action_activate()
 	. = ..()

@@ -66,7 +66,7 @@
 	var/obj/item/storage/internal_bag = get_internal_item()
 	internal_bag?.storage_datum.open(user)
 
-/obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.a_intent != INTENT_HARM)
 		return drink_from_nozzle(xeno_attacker, TRUE)
 	return ..()
@@ -80,7 +80,7 @@
 		if(!is_xeno)
 			//Everyone will be made aware of your nasty habits!
 			visible_message(span_alert("[user] is putting [user.p_their()] mouth on [src]'s nozzle. Gross!"))
-		if(!do_after(user, 0.5 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER))
+		if(!do_after(user, 0.5 SECONDS, FALSE, src, BUSY_ICON_DANGER))
 			return FALSE
 		if(is_xeno)
 			visible_message(span_alert("[user] sips from [src]'s nozzle. Adorable."))

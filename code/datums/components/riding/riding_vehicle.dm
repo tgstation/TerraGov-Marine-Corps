@@ -132,7 +132,7 @@
 
 /datum/component/riding/vehicle/bicycle
 	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
-	vehicle_move_delay = 0
+	vehicle_move_delay = 1
 
 /datum/component/riding/vehicle/bicycle/handle_specials()
 	. = ..()
@@ -191,7 +191,7 @@
 	vehicle_move_delay = 5
 
 /datum/component/riding/vehicle/motorbike
-	vehicle_move_delay = 2
+	vehicle_move_delay = 1
 	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
 
 /datum/component/riding/vehicle/motorbike/handle_specials()
