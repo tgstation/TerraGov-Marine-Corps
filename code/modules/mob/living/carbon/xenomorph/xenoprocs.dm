@@ -617,3 +617,10 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+/// Verb that gives a yes/no popup to xenomorphs in the same hive to end the round. If it passes, it ends the round.
+/mob/living/carbon/xenomorph/proc/vote_to_forfeit()
+	set name = "Vote to Forfeit"
+	set desc = "Calls for a vote to forfeit, ending the round. Requires 100% agreement to pass."
+	set category = "Alien"
+	hive.xeno_forfeit_vote.try_call_vote(src)

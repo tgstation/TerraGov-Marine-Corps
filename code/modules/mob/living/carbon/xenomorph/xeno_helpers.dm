@@ -69,7 +69,8 @@
 	if(!actions_by_path[/datum/action/ability/xeno_action/rally_minion])
 		var/datum/action/ability/xeno_action/rally_minion/minion = new /datum/action/ability/xeno_action/rally_minion
 		minion.give_action(src)
-
+	if(!(/mob/living/carbon/xenomorph/proc/vote_to_forfeit in verbs))
+		add_verb(src, /mob/living/carbon/xenomorph/proc/vote_to_forfeit)
 
 ///Helper proc for removing ruler abilities
 /mob/living/carbon/xenomorph/proc/remove_ruler_abilities()
@@ -88,7 +89,8 @@
 	var/datum/action/ability/xeno_action/rally_minion/minion = actions_by_path[/datum/action/ability/xeno_action/rally_minion]
 	if(minion)
 		minion.remove_action(src)
-
+	if(/mob/living/carbon/xenomorph/proc/vote_to_forfeit in verbs)
+		remove_verb(src, /mob/living/carbon/xenomorph/proc/vote_to_forfeit)
 
 /**
  * This handles checking for a xenomorph's potential IFF signals carried by components

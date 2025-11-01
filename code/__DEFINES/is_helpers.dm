@@ -334,6 +334,7 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define isainode(O) (istype(O, /obj/effect/ai_node))
 
 //Gamemode
+#define isnuclearwargamemode(O) (istype(O, /datum/game_mode/infestation/nuclear_war))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 #define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 #define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/hvh/combat_patrol))
