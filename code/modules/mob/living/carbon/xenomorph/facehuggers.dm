@@ -561,6 +561,8 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 			catch_chance  *= 0.8
 		if(hugged.get_active_held_item())
 			catch_chance *= 0.65
+		if(implanted_embryos)
+			catch_chance = 100 * (catch_chance*3 / (catch_chance*2 + 100))
 
 		if(prob(catch_chance))
 			hugged.visible_message("<span class='notice'>[hugged] snatches [src] out of the air and [pickweight(list("clobbers" = 30, "kills" = 30, "squashes" = 25, "dunks" = 10, "dribbles" = 5))] it!")
