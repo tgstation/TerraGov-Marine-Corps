@@ -122,13 +122,6 @@
 
 	return target_location_feedback
 
-/**
- * Sends a signal to enable throw parrying for the handed duration, provided the throw_parry component is attached. Otherwise, has no real effect.
- * For more information on parries, see throw_parry.dm
-**/
-/mob/living/proc/enable_throw_parry(duration)
-	SEND_SIGNAL(src, COMSIG_PARRY_TRIGGER, duration)
-
 ///Proc to check for a mob's ghost.
 /mob/living/proc/get_ghost(bypass_client_check = FALSE)
 	if(client) //We don't need to get a ghost for someone who's still under player control
