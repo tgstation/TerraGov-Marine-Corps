@@ -140,6 +140,13 @@
 		return
 	behavior_datum.pick_up_item(src)
 
+/obj/item/clothing/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	. = ..()
+	if(loc == interactor && ishuman(interactor))
+		var/mob/living/carbon/human/human_interactor = interactor
+		human_interactor.do_quick_equip()
+		//do_quick_equip(interactor)
+
 /obj/item/tool/weldingtool/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	. = ..()
 	if(interactor.get_active_held_item() != src && interactor.get_inactive_held_item() != src)
