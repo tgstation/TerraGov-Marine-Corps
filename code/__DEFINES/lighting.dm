@@ -112,6 +112,9 @@ do { \
 		0, 0, 0, 1           \
 	)                        \
 
+/// Weight of overlay lighting, in percentage of contribution towards total light
+#define OVERLAY_LIGHTING_WEIGHT 0.4
+
 #define LIGHTING_NO_UPDATE 0
 #define LIGHTING_VIS_UPDATE 1
 #define LIGHTING_CHECK_UPDATE 2

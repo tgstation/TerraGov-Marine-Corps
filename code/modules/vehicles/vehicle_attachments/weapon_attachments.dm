@@ -17,13 +17,9 @@
 	mounted_gun.gun_fire_angle = firing_angle
 	action_icon = mounted_gun.icon
 	action_icon_state = mounted_gun.icon_state
-	//NODROP so that you can't just drop the gun or have someone take it off your hands
-	ADD_TRAIT(mounted_gun, TRAIT_NODROP, MOUNTED_TRAIT)
-	RegisterSignal(mounted_gun, COMSIG_ITEM_DROPPED, PROC_REF(on_weapon_drop))
 
 /obj/item/vehicle_module/mounted_gun/Destroy()
-	if(mounted_gun)
-		QDEL_NULL(mounted_gun)
+	QDEL_NULL(mounted_gun)
 	return ..()
 
 /obj/item/vehicle_module/mounted_gun/on_unbuckle(datum/source, mob/living/unbuckled_mob, force = FALSE)
@@ -31,19 +27,35 @@
 		unbuckled_mob.dropItemToGround(mounted_gun, TRUE)
 	return ..()
 
-///Handles the weapon being dropped. The only way this should happen is if they unbuckle, and this makes sure they can't just take the gun and run off with it.
-/obj/item/vehicle_module/mounted_gun/proc/on_weapon_drop(obj/item/dropped, mob/user)
-	SIGNAL_HANDLER
-	dropped.forceMove(src)
-
 /obj/item/vehicle_module/mounted_gun/activate(mob/living/user)
 	if(mounted_gun.loc == user)
-		user.dropItemToGround(mounted_gun, TRUE)
+		on_weapon_equipped(null, user)
 		return FALSE
 	if(!user.put_in_active_hand(mounted_gun) && !user.put_in_inactive_hand(mounted_gun))
 		to_chat(user, span_warning("Could not equip weapon! Click [parent] with a free hand to equip."))
 		return FALSE
+	RegisterSignal(mounted_gun, COMSIG_MOVABLE_MOVED, PROC_REF(on_weapon_moved))
+	RegisterSignal(mounted_gun, COMSIG_ITEM_EQUIPPED, PROC_REF(on_weapon_equipped))
 	return TRUE
+
+///Handles the weapon being moved
+/obj/item/vehicle_module/mounted_gun/proc/on_weapon_moved(obj/item/source)
+	SIGNAL_HANDLER
+	if(ismob(mounted_gun.loc)) //we have to handle it after its fully equipped or it becomes cursed
+		return
+	reequip_weapon()
+
+///Handles the weapon being put into an equip slot
+/obj/item/vehicle_module/mounted_gun/proc/on_weapon_equipped(obj/item/source, mob/user)
+	SIGNAL_HANDLER
+	user.dropItemToGround(mounted_gun, TRUE)
+	reequip_weapon()
+
+///Safely puts the weapon back into storage
+/obj/item/vehicle_module/mounted_gun/proc/reequip_weapon()
+	UnregisterSignal(mounted_gun, list(COMSIG_MOVABLE_MOVED, COMSIG_ITEM_EQUIPPED))
+	mounted_gun.forceMove(src)
+
 
 /obj/item/vehicle_module/mounted_gun/volkite
 	name = "mounted Demi-Culverin"

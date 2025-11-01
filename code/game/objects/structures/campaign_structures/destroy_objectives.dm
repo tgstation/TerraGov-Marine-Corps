@@ -5,6 +5,7 @@
 	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
 	faction = FACTION_TERRAGOV
 	allow_pass_flags = PASSABLE|PASS_WALKOVER
+	objective_flags = CAMPAIGN_OBJECTIVE_DEL_ON_DISABLE
 	///explosion smoke particle holder
 	var/obj/effect/abstract/particle_holder/explosion_smoke
 
@@ -20,6 +21,25 @@
 	QDEL_NULL(explosion_smoke)
 	return ..()
 
+/obj/structure/campaign_objective/destruction_objective/update_icon_state()
+	. = ..()
+	if(objective_flags & CAMPAIGN_OBJECTIVE_DISABLED)
+		icon_state = "[initial(icon_state)]_broken"
+	else
+		icon_state = initial(icon_state)
+
+/obj/structure/campaign_objective/destruction_objective/disable()
+	. = ..()
+	if(!.)
+		return
+	if((objective_flags & CAMPAIGN_OBJECTIVE_EXPLODE_ON_DISABLE))
+		var/turf/det_turf = pick(locs)
+		do_explosion(det_turf)
+	if(objective_flags & CAMPAIGN_OBJECTIVE_DEL_ON_DISABLE)
+		qdel(src)
+		return
+	disable_effects()
+
 /obj/structure/campaign_objective/destruction_objective/can_plastique(mob/user, obj/plastique)
 	if(user.faction == faction)
 		to_chat(user, "[span_warning("You're meant to protect this!")]")
@@ -30,10 +50,18 @@
 	if(plastique_user && plastique_user.ckey)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
 		personal_statistics.mission_objective_destroyed += (faction != plastique_user.faction ? 1 : -1)
-	qdel(src)
+	disable()
 
 /obj/structure/campaign_objective/destruction_objective/plastique_time_mod(time)
 	return max(time, 30)
+
+///Explodes on destruction
+/obj/structure/campaign_objective/destruction_objective/proc/do_explosion(turf/det_turf)
+	explosion(det_turf, 0, 2, 4)
+
+///Any special effects on disable if NOT deleted
+/obj/structure/campaign_objective/destruction_objective/proc/disable_effects()
+	update_icon()
 
 //Howitzer
 /obj/effect/landmark/campaign_structure/howitzer_objective
@@ -50,6 +78,7 @@
 	icon_state = "howitzer_deployed"
 	pixel_x = -16
 	faction = FACTION_SOM
+	objective_flags = CAMPAIGN_OBJECTIVE_DEL_ON_DISABLE|CAMPAIGN_OBJECTIVE_EXPLODE_ON_DISABLE
 
 //MLRS
 /obj/effect/landmark/campaign_structure/mlrs
@@ -70,34 +99,18 @@
 	bound_width = 128
 	pixel_y = -15
 	coverage = 100
-	///intact or not
-	var/destroyed_state = FALSE
+	objective_flags = CAMPAIGN_OBJECTIVE_EXPLODE_ON_DISABLE
 	///destroyed vehicle smoke effect
 	var/smoke_type = /particles/tank_wreck_smoke
 
-/obj/structure/campaign_objective/destruction_objective/mlrs/update_icon_state()
-	. = ..()
-	if(destroyed_state)
-		icon_state = "[initial(icon_state)]_broken"
-	else
-		icon_state = initial(icon_state)
+/obj/structure/campaign_objective/destruction_objective/mlrs/do_explosion(turf/det_turf)
+	explosion(det_turf, 2, 3, 5)
 
-/obj/structure/campaign_objective/destruction_objective/mlrs/plastique_act(mob/living/plastique_user)
-	if(plastique_user && plastique_user.ckey)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[plastique_user.ckey]
-		personal_statistics.mission_objective_destroyed += (faction != plastique_user.faction ? 1 : -1)
-	disable()
-
-/obj/structure/campaign_objective/destruction_objective/mlrs/disable()
-	if(destroyed_state)
-		return
-	if(!QDELETED(src))
-		destroyed_state = TRUE
-		var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
-		explosion.pixel_x = 56
-		explosion_smoke = new(src, smoke_type)
-		update_icon()
-	return ..()
+/obj/structure/campaign_objective/destruction_objective/mlrs/disable_effects()
+	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
+	explosion.pixel_x = 56
+	explosion_smoke = new(src, smoke_type)
+	update_icon()
 
 /particles/tank_wreck_smoke
 	icon = 'icons/effects/96x96.dmi'

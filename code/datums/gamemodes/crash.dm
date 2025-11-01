@@ -231,6 +231,10 @@
 
 /datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags = COUNT_IGNORE_HUMAN_SSD)
 	. = 0
+	var/round_duration = round((world.time - SSticker.round_start_time))
+	var/time_bonus = max(floor(round_duration / (10 MINUTES)) - 6, 0) //time bonus starts after 60 minutes
+	if(time_bonus)
+		. += (time_bonus * LARVA_POINTS_REGULAR)
 
 	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
 		if(!H.job)

@@ -169,6 +169,20 @@
 				continue
 			nearest_target = nearby_xeno
 			shorter_distance = get_dist(source, nearby_xeno)
+
+		for(var/hive in GLOB.xeno_resin_turrets_by_hive) //we could check all xeno structures, but most of them are not shootable
+			for(var/obj/structure/xeno/xeno_turret/xeno_structure AS in GLOB.xeno_resin_turrets_by_hive[hive])
+				if(xeno_structure.z != source.z)
+					continue
+				if(attacker_hive == xeno_structure.get_xeno_hivenumber())
+					continue
+				if(get_dist(source, xeno_structure) >= shorter_distance)
+					continue
+				if(need_los && !line_of_sight(source, xeno_structure))
+					continue
+				nearest_target = xeno_structure
+				shorter_distance = get_dist(source, xeno_structure)
+
 	if(target_flags & TARGET_HUMAN_TURRETS)
 		for(var/obj/machinery/deployable/mounted/sentry/nearby_turret AS in GLOB.marine_turrets)
 			if(source.issamexenohive(nearby_turret))
