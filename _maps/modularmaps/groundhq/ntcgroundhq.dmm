@@ -10216,7 +10216,6 @@
 /obj/item/roller,
 /obj/item/tweezers,
 /obj/item/tweezers,
-/obj/item/tweezers,
 /turf/open/floor/mainship/sterile{
 	dir = 8
 	},
@@ -18430,7 +18429,6 @@
 	},
 /obj/item/tweezers,
 /obj/item/tweezers,
-/obj/item/tweezers,
 /obj/item/storage/box/rxglasses,
 /obj/item/storage/box/rxglasses,
 /turf/open/floor/mainship/sterile,
@@ -20562,7 +20560,6 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/light,
-/obj/item/tweezers,
 /obj/item/tweezers,
 /obj/item/tweezers,
 /obj/item/storage/box/rxglasses,
