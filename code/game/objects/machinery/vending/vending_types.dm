@@ -366,6 +366,7 @@
 		/obj/item/stack/medical/heal_pack/ointment = 2,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
+		/obj/item/tweezers = 1,
 	)
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
@@ -417,6 +418,7 @@
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 5,
 			/obj/item/healthanalyzer = 1,
 			/obj/item/stack/medical/splint = 1,
+			/obj/item/tweezers = 1,
 		),
 	)
 

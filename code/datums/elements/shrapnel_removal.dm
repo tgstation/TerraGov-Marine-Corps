@@ -20,9 +20,10 @@
 
 /datum/element/shrapnel_removal/proc/on_attack(datum/source, mob/living/M, mob/living/user)
 	SIGNAL_HANDLER
-	ADD_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(source))
-	INVOKE_ASYNC(src, PROC_REF(attempt_remove), source, M, user)
-	return COMPONENT_ITEM_NO_ATTACK
+	if(user.a_intent == INTENT_HELP)
+		ADD_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(source))
+		INVOKE_ASYNC(src, PROC_REF(attempt_remove), source, M, user)
+		return COMPONENT_ITEM_NO_ATTACK
 
 /datum/element/shrapnel_removal/proc/attempt_remove(obj/item/removaltool, mob/living/M, mob/living/user)
 	if(!ishuman(M))

@@ -1114,6 +1114,7 @@
 			/obj/item/stack/nanopaste = 15,
 		),
 		"Misc" = list(
+			/obj/item/tweezers = 25 //a shaped piece of metal is nothin innit.
 			/obj/item/defibrillator = 8,
 			/obj/item/healthanalyzer = 16,
 			/obj/item/bodybag/cryobag = 24,
