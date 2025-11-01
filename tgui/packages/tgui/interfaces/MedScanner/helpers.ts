@@ -49,8 +49,7 @@ export function getLimbTypeColor(
   if (limbType === LimbTypes.Robotic) {
     if (roboticToBeginWith) return accessible ? 'lime' : 'label';
     else return COLOR_ROBOTIC_LIMB;
-  }
-  if (limbType === LimbTypes.Biotic) {
+  } else if (limbType === LimbTypes.Biotic) {
     return 'tan';
   }
   return 'white'; // fallback (if we ever need to show that a limb is Normal lmfao)

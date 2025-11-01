@@ -102,7 +102,7 @@
 /datum/health_scan/proc/autoupdate_checks(mob/living/user, mob/living/patient)
 	if(!track_distance) // checking being disabled should go first
 		return FALSE
-	if(patient == user)
+	if(patient == user) // this is also quite common
 		return FALSE
 	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return FALSE
@@ -218,9 +218,9 @@
 	var/level = 0
 	if(patient.bodytemperature > patient.species?.heat_level_1)
 		level = 1
-	else if(patient.bodytemperature > patient.species?.heat_level_2)
+	if(patient.bodytemperature > patient.species?.heat_level_2)
 		level = 2
-	else if(patient.bodytemperature > patient.species?.heat_level_3)
+	if(patient.bodytemperature > patient.species?.heat_level_3)
 		level = 3
 	data["body_temperature"] = list(
 		"current" = "[round(patient.bodytemperature*1.8-459.67, 0.1)]°F ([round(patient.bodytemperature-T0C, 0.1)]°C)",
