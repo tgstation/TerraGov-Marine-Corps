@@ -1,0 +1,8 @@
+2025-11-01:
+  Lumipharon:
+  - balance: 'Campaign: Some objectives explode violently on destruction'
+  - balance: Focus order slightly reduces scatter
+  - rscadd: Improved overlay lighting
+  - qol: Bike mounted weapons can be unequipped by dropping them
+  - rscadd: NPCs will shoot xeno turrets
+  - bugfix: fixed facehuggers not properly registering as hazards to NPCs
