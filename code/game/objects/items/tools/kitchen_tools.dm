@@ -141,6 +141,11 @@
 	throw_range = 6
 	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 
+/obj/item/tool/kitchen/knife/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/scalping)
+	AddElement(/datum/element/shrapnel_removal, 15 SECONDS)
+
 /obj/item/tool/kitchen/knife/suicide_act(mob/user)
 	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
 							span_danger("[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \

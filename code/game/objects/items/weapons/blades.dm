@@ -96,6 +96,11 @@
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts", "hooks")
 
+/obj/item/weapon/karambit/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/scalping)
+	AddElement(/datum/element/shrapnel_removal, 15 SECONDS)
+
 /obj/item/weapon/karambit/fade
 	icon_state = "karambit_fade"
 	worn_icon_state = "karambit_fade"

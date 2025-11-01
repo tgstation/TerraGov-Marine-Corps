@@ -97,6 +97,11 @@
 	attack_verb = list("pats", "taps")
 	attack_speed = 4
 
+/obj/item/weapon/butterfly/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/scalping)
+	AddElement(/datum/element/shrapnel_removal, 15 SECONDS)
+
 /obj/item/weapon/butterfly/attack_self(mob/user)
 	active = !active
 	if(active)
