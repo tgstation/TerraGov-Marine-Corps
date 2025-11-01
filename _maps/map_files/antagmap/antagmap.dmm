@@ -4390,10 +4390,6 @@
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/adv,
 /obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "wR" = (

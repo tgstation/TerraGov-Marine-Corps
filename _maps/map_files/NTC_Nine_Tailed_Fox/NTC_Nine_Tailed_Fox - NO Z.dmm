@@ -10441,9 +10441,6 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,
-/obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
 /obj/machinery/light{
 	dir = 8
 	},
