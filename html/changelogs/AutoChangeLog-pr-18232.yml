@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Xenomorph variant of tactical smoke."
+  - rscadd: "6 more mutations for Hunter."
+  - code_imp: "Atoms can now track where and how their alpha is changed; xenomorphs are the only ones that do this right now."
