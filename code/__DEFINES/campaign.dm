@@ -64,3 +64,10 @@
 
 ///Pauses campaign mission timer
 #define CAMPAIGN_MISSION_TIMER_PAUSED "campaign_mission_timer_paused"
+
+///Objective is disabled
+#define CAMPAIGN_OBJECTIVE_DISABLED (1<<0)
+///qdels when disabled
+#define CAMPAIGN_OBJECTIVE_DEL_ON_DISABLE (1<<1)
+///Explodes when disabled
+#define CAMPAIGN_OBJECTIVE_EXPLODE_ON_DISABLE (1<<2)

@@ -394,6 +394,9 @@
 /obj/machinery/air_alarm,
 /obj/machinery/chem_dispenser,
 /obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "by" = (
@@ -577,15 +580,11 @@
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
 "cs" = (
-/obj/structure/table/reinforced,
 /obj/machinery/power/apc{
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/reagentgrinder,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
+/obj/machinery/sleeper,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "cv" = (
@@ -748,6 +747,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"qK" = (
+/obj/structure/cable,
+/obj/machinery/computer/sleep_console,
+/turf/open/floor/mainship/sterile,
+/area/shuttle/canterbury/medical)
 "vY" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
@@ -758,6 +762,10 @@
 /obj/machinery/shower{
 	dir = 1
 	},
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
+"yh" = (
+/obj/machinery/reagentgrinder,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "zE" = (
@@ -875,9 +883,9 @@ bC
 bj
 bo
 aC
-bT
+qK
 bH
-cJ
+yh
 ca
 ce
 bo
