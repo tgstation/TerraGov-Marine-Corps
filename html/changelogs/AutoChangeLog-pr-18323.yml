@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Campaign: fixed destroy objectives on a couple of missions having the wrong faction"
