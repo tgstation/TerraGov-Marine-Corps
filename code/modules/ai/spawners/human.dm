@@ -24,6 +24,8 @@
 			var/obj/item/radio/headset/mainship/worn_headset = dude.wear_ear
 			worn_headset.update_minimap_icon()
 
+	return mob_list
+
 /obj/effect/ai_node/spawner/human
 	name = "AI human spawner node"
 	use_postspawn = TRUE //Gotta equip those AI you know

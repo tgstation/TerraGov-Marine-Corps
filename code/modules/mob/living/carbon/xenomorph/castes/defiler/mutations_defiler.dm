@@ -86,6 +86,7 @@
 		qdel(slash_ability)
 	RegisterSignal(xenomorph_owner, COMSIG_XENO_SELECTED_REAGENT_CHANGED, PROC_REF(on_selected_reagent))
 	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack_living))
+	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_DISARM_HUMAN, PROC_REF(on_attack_living))
 	on_selected_reagent(null, null, xenomorph_owner.selected_reagent) // Got to get our particles.
 	return ..()
 

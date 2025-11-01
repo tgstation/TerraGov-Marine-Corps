@@ -23,21 +23,22 @@
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_UPDATE_ICONS, state_change)
 	if(state_change)
 		if(stat == DEAD)
-			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
 		else if(HAS_TRAIT(src, TRAIT_BURROWED))
-			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Burrowed"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
 		else if(lying_angle)
 			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
 			else
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
 		else if(!handle_special_state())
 			if(m_intent == MOVE_INTENT_RUN)
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
 			else
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
-	update_fire() //all 3 overlays depends on the xeno's stance, so we update them.
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
+	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
+	update_xeno_gender()
 	update_snowflake_overlays()
 
 	hud_set_sunder()
@@ -160,15 +161,15 @@
 		return
 	var/obj/item/storage/backpack/marine/duffelbag/xenosaddle/saddle = back
 	if(stat == DEAD)
-		backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
+		backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""] Dead"
 		return
 	if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-			backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
+			backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""] Sleeping"
 			return
-		backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
+		backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""] Knocked Down"
 		return
-	backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""]"
+	backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""]"
 
 /mob/living/carbon/xenomorph/update_transform()
 	..()
@@ -181,6 +182,17 @@
 	icon = 'icons/Xeno/saddles/runnersaddle.dmi' //this should probally be something more generic if saddles r ever added to anything other than rounies
 	///The xeno this overlay belongs to
 	var/mob/living/carbon/xenomorph/owner
+
+/atom/movable/vis_obj/xeno_wounds/genital_overlay
+	layer = ABOVE_MOB_LAYER
+	icon = null
+	var/mob/living/carbon/xenomorph/owner
+
+/atom/movable/vis_obj/xeno_wounds/genital_overlay/Initialize(mapload, new_owner)
+	owner = new_owner
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
+	return ..()
 
 /atom/movable/vis_obj/xeno_wounds
 	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID|VIS_INHERIT_PLANE
@@ -244,5 +256,3 @@
 	else
 		set_light_range_power_color(intensity, 0.5, LIGHT_COLOR_FIRE)
 		set_light_on(TRUE)
-
-

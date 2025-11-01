@@ -69,6 +69,10 @@
 	var/list/mob/living/living_to_knockback = list()
 	var/list/obj/vehicle/hit_vehicles = list()
 	for(var/turf/affected_turf AS in affected_turfs)
+		if(istype(affected_turf, /turf/closed/wall/resin) && !xeno_owner.issamexenohive(affected_turf) )
+			var/turf/closed/wall/affected_wall = affected_turf
+			affected_wall.take_damage(get_damage(), BRUTE, MELEE, blame_mob = xeno_owner)
+			has_hit_anything = TRUE
 		for(var/atom/affected_atom AS in affected_turf)
 			if(isxeno(affected_atom))
 				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
@@ -90,7 +94,9 @@
 				continue
 			var/obj/affected_obj = affected_atom
 			if(ishitbox(affected_obj) || isvehicle(affected_obj))
-				has_hit_anything = handle_affected_vehicle(affected_obj, hit_vehicles)
+				has_hit_anything = handle_affected_vehicle(affected_obj, hit_vehicles) | has_hit_anything
+				continue
+			if(xeno_owner.issamexenohive(affected_obj) && (is_type_in_typecache(affected_obj.type,GLOB.xeno_object_list)))
 				continue
 			affected_obj.take_damage(get_damage(), BRUTE, MELEE, blame_mob = xeno_owner)
 			has_hit_anything = TRUE
@@ -163,7 +169,7 @@
 	action_icon_state = "fly"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a long cast time, fly into the air. If you're already flying, land with a delay. Landing causes nearby marines to take lots of damage with vehicles taking up to 3x as much."
-	cooldown_duration = 120 SECONDS
+	cooldown_duration = 90 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLY,
 	)
@@ -177,23 +183,9 @@
 			if(!silent)
 				xeno_owner.balloon_alert(xeno_owner, "already landing!")
 			return FALSE
-		var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
-		var/found_los_xenos = FALSE
-		for(var/mob/living/carbon/xenomorph/nearby_xeno AS in nearby_xenos)
-			if(nearby_xeno == xeno_owner)
-				continue
-			if(!xeno_owner.issamexenohive(nearby_xeno))
-				continue
-			if(line_of_sight(xeno_owner, nearby_xeno, 7))
-				found_los_xenos = TRUE
-				break
-		var/weeds_found = locate(/obj/alien/weeds) in xeno_owner.loc
-		if(!weeds_found && !found_los_xenos)
-			if(!silent)
-				if(nearby_xenos.len > 1)
-					xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight!")
-				else
-					xeno_owner.balloon_alert(xeno_owner, "no weeds!")
+	if(xeno_owner.eaten_mob)
+		if(!silent)
+			to_chat(xeno_owner, span_warning("Can't take off with someone inside!"))
 			return FALSE
 	if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 		if(!silent)
@@ -302,8 +294,13 @@
 			if(ishitbox(affected_obj) || isvehicle(affected_obj))
 				handle_affected_vehicle(affected_obj, hit_vehicles)
 				continue
+			if(xeno_owner.issamexenohive(affected_obj) && (is_type_in_typecache(affected_obj.type,GLOB.xeno_object_list)))
+				continue
 			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 			continue
+		if(istype(affected_turf, /turf/closed/wall/resin) && !xeno_owner.issamexenohive(affected_turf) )
+			var/turf/closed/wall/affected_wall = affected_turf
+			affected_wall.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max)
 	succeed_activate()
@@ -339,6 +336,10 @@
 	if(isclosedturf(newloc) && !istype(newloc, /turf/closed/wall/resin))
 		return
 	for(var/atom/atom_on_turf AS in newloc.contents)
+		if(istype(atom_on_turf, /obj/structure/mineral_door/resin) && xeno_owner.issamexenohive(atom_on_turf))
+			continue
+		if(istype(atom_on_turf, /turf/closed/wall/resin) && xeno_owner.issamexenohive(atom_on_turf))
+			continue
 		if(atom_on_turf.CanPass(xeno_owner, newloc))
 			continue
 		if((atom_on_turf.resistance_flags & RESIST_ALL)) // This prevents them from going off into space during hijack.
@@ -419,7 +420,7 @@
 		xeno_owner.stop_pulling()
 		grabbed_human.emote("scream")
 		grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
-		xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right ontop of [grabbed_human]!"))
+		xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right on top of [grabbed_human]!"))
 		playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50, 1)
 		var/obj/effect/temp_visual/dragon/grab_fire/visual_grab_fire = new(get_turf(grabbed_human))
 		var/obj/effect/temp_visual/xeno_fireball_explosion/visual_fireball_explosion = new(get_turf(grabbed_human))
@@ -648,8 +649,13 @@
 			if(ismecha(impacted_obj))
 				impacted_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner)
 				continue
+			if(xeno_owner.issamexenohive(impacted_obj) && (is_type_in_typecache(impacted_obj.type,GLOB.xeno_object_list)))
+				continue
 			impacted_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner)
 			continue
+		if(istype(impacted_turf, /turf/closed/wall/resin) && !xeno_owner.issamexenohive(impacted_turf) )
+			var/turf/closed/wall/impacted_wall = impacted_turf
+			impacted_wall.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 
 	// This is separate because it is possible for them to be pushed into an unprocessed turf which will then do the effects again, causing instant death (or more damage than desired).
 	for(var/mob/living/knockbacked_living AS in living_to_knockback)
@@ -747,10 +753,10 @@
 	if(QDELETED(thrown_human) || thrown_human.stat == DEAD || !xeno_owner.Adjacent(thrown_human))
 		end_grabbing()
 		return
-	if(!xeno_owner.start_pulling(thrown_human) || !xeno_owner.get_active_held_item())
+	thrown_human.set_throwing(FALSE) //ENSURE to stop the throw state here so grabs succeed
+	if(!xeno_owner.start_pulling(thrown_human) || !isgrabitem(xeno_owner.get_active_held_item()))
 		end_grabbing()
 		return
-
 	grabbing_item = xeno_owner.get_active_held_item()
 	if(!grabbing_item)
 		end_grabbing()
@@ -767,7 +773,15 @@
 	new /obj/effect/temp_visual/dragon/grab(get_turf(grabbed_human))
 	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
-/// Cleans up everything associated with the grabbing and ends the ability.
+/// Cleans up everything associated with a failed grab and ends the ability.
+/datum/action/ability/activable/xeno/grab/proc/failed_to_grab()
+	if(grabbed_human)
+		REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+	grabbed_human = null
+	succeed_activate()
+	add_cooldown()
+
+/// Cleans up everything associated with a (successful) grab and ends the ability.
 /datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, no_cooldown = FALSE)
 	SIGNAL_HANDLER
 	if(grabbed_human)

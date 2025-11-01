@@ -107,13 +107,13 @@
 				span_userdanger("[user] punches you!"))
 		return ..()
 	if(M == user)
-		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE, attacker = user)
+		user.apply_damage(force * setting + (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD), BRUTE, user.zone_selected, MELEE, attacker = user)
 		to_chat(user, span_userdanger("You punch yourself!"))
 		playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 		playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 		cell.charge -= powerused
 		return ..()
-	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE, attacker = user)
+	M.apply_damage(force * setting + (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD), BRUTE, user.zone_selected, MELEE, attacker = user)
 	M.visible_message(span_danger("[user]'s powerfist shudders as they punch [M.name], flinging them away!"), \
 		span_userdanger("[user]'s punch flings you backwards!"))
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)

@@ -257,7 +257,7 @@
 
 /turf/open/floor/glass/plasma
 	name = "plasma glass floor"
-	desc = "Studies by the Nanotrasen Materials Safety Division have not yet determined if this is safe to jump on, do so at your own risk."
+	desc = "Studies by the Ninetails Materials Safety Division have not yet determined if this is safe to jump on, do so at your own risk."
 	icon = 'icons/turf/floors/plasma_glass.dmi'
 	icon_state = "plasma_glass-0"
 	base_icon_state = "plasma_glass"

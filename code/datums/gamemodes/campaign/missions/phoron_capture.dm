@@ -64,7 +64,7 @@
 		if(FACTION_TERRAGOV)
 			message = "We've caught the SOM with their pants down marines. Move in and secure all the phoron you can find!"
 		if(FACTION_SOM)
-			message = "TGMC fast movers are closing in! Secure all our phoron stores before those thieves can take it!"
+			message = "NTF fast movers are closing in! Secure all our phoron stores before those thieves can take it!"
 	return ..()
 
 /datum/campaign_mission/capture_mission/phoron_capture/apply_major_victory()

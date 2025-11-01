@@ -57,7 +57,7 @@
 /datum/loadout_item/back/som_shotgun
 	name = "V-51"
 	desc = "Equipped with a mag harness, bayonet and undebarrel flashlight. The V-51 is the main shotgun utilised by the Sons of Mars. \
-	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the TGMC, but makes up for it with a superior rate of fire. \
+	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the NTF, but makes up for it with a superior rate of fire. \
 	Uses 12 gauge shells."
 	ui_icon = "v51"
 	purchase_cost = 25

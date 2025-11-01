@@ -18,3 +18,6 @@
 	set_afk_status(MOB_CONNECTED)
 
 	update_fov_client()
+	spawn(1)
+		if(stat == CONSCIOUS && !(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes))
+			to_chat(src, span_infoplain("You have not set your OOC Notes yet! <a href='?src=\ref[src];ooc_notes=1'>\[Edit\]</a>"))

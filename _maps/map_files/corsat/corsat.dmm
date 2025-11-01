@@ -2604,6 +2604,7 @@
 "blT" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/corsat/sigma/dorms)
@@ -5079,6 +5080,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/corsat/gamma/residential/east)
 "cph" = (
@@ -7479,6 +7481,7 @@
 /area/corsat/gamma/hangar/checkpoint)
 "dpU" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/turf_decal/tile/corsatcorner/lighpurple{
 	dir = 4
 	},
@@ -7972,6 +7975,7 @@
 /area/corsat/omega/hangar/office)
 "dBL" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/residential/east)
 "dBN" = (
@@ -11001,6 +11005,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/corsat/gamma/residential/east)
 "eUi" = (
@@ -11089,6 +11094,7 @@
 /area/corsat/omega/complex)
 "eWu" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
@@ -11211,6 +11217,7 @@
 /area/corsat/gamma/sigmaremote)
 "faZ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -12701,6 +12708,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -12984,6 +12992,7 @@
 /area/corsat/omega/hallways)
 "fOH" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -18197,6 +18206,7 @@
 /area/corsat/sigma/dorms)
 "iiO" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -19245,6 +19255,7 @@
 "iJg" = (
 /obj/structure/bed/chair/comfy/beige,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/carpet,
 /area/corsat/gamma/residential/lounge)
 "iJr" = (
@@ -21311,6 +21322,7 @@
 /area/corsat/sigma/cargo)
 "jEs" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/sigmaremote)
@@ -24691,6 +24703,7 @@
 /area/corsat/gamma/cargo/disposal)
 "lah" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/turf_decal/tile/corsatstraight/brown,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/cargo/disposal)
@@ -25183,6 +25196,7 @@
 /area/corsat/gamma/cargo/disposal)
 "llg" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/corsat/gamma/residential/showers)
@@ -30536,6 +30550,7 @@
 /area/corsat/emergency_access)
 "nwi" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/theta/airlock/east)
 "nwt" = (
@@ -30736,6 +30751,7 @@
 /area/corsat/omega/complex)
 "nAm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/corsat/gamma/residential/lavatory)
 "nAD" = (
@@ -37844,6 +37860,7 @@
 /area/corsat/gamma/engineering)
 "qFe" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering)
@@ -38299,6 +38316,7 @@
 /area/corsat/sigma/south/engineering)
 "qPb" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/airlock/north)
 "qPM" = (
@@ -38334,6 +38352,7 @@
 /area/corsat/sigma/cargo)
 "qQv" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/medbay)
 "qQz" = (
@@ -39422,6 +39441,7 @@
 /area/corsat/sigma/hangar/monorail)
 "rrX" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/southeast/datalab)
 "rse" = (
@@ -43132,6 +43152,7 @@
 /area/corsat/sigma/southeast/datalab)
 "sUT" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/canteen)
 "sUX" = (
@@ -46617,6 +46638,7 @@
 /area/corsat/theta/airlock/east/id)
 "unK" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/southeast/dataoffice)
 "unX" = (

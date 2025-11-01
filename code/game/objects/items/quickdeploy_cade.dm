@@ -13,7 +13,7 @@
 
 /obj/item/quikdeploy/attack_self(mob/user)
 	balloon_alert_to_viewers("deploying barricade...")
-	if(!do_after(user, delay, NONE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
 		balloon_alert(user, "stopped deploying")
 		return
 	if(can_place(user)) //can_place() handles sending the error and success messages to the user

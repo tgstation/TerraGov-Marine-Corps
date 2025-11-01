@@ -223,7 +223,7 @@
 	icon_state = "30mm_crate"
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/heavygun
-	travelling_time = 6 SECONDS
+	travelling_time = 4 SECONDS
 	ammo_count = 2000
 	max_ammo_count = 2000
 	transferable_ammo = TRUE
@@ -490,7 +490,7 @@
 //The fatty is well.. Fat.
 /obj/structure/ship_ammo/cas/rocket/fatty
 	name = "\improper PHGM-17 'Fatty'"
-	desc = "The PHGM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
+	desc = "The PHGM-17 'Fatty' is the most devestating rocket in NTC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, NTF recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
 	point_cost = 300

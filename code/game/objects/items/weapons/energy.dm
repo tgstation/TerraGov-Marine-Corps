@@ -152,3 +152,26 @@
 	. = ..()
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
 	standing.overlays.Add(emissive_overlay)
+
+/obj/item/weapon/energy/sword/ntc
+	name = "NTC Energy blade"
+	icon_state = "sword"
+	desc = "A NTC energy sword, it should cut through anything."
+	force_activated = 50
+	sword_color = "red"
+
+/obj/item/weapon/energy/sword/ntc/Initialize(mapload)
+	. = ..()
+	set_light_range_power_color(2, 0.5, COLOR_RED)
+
+/obj/item/weapon/energy/sword/ntc/switch_state(datum/source, mob/living/user)
+	. = ..()
+	if(active)
+		set_light_on(TRUE)
+	else
+		set_light_on(FALSE)
+
+/obj/item/weapon/energy/sword/ntc/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
+	standing.overlays.Add(emissive_overlay)

@@ -78,10 +78,10 @@
 	var/ff_limit = CONFIG_GET(number/ff_damage_threshold)
 	if(friendly_fire[FF_DAMAGE_OUTGOING] < ff_limit)
 		return
-	send2adminchat("FF ALERT", "[key_name(src)] was kicked for excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds")
-	create_message("note", ckey(client.key), "SYSTEM", "Autokicked due to excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage within [ff_cooldown / 10] seconds.", null, null, FALSE, FALSE, null, FALSE, "Minor")
-	ghostize(FALSE) // make them a ghost (so they can't return to the round)
-	qdel(client) // Disconnect the client
+	send2adminchat("FF ALERT", "[key_name(src)] caused excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds")
+	create_message("note", ckey(client.key), "SYSTEM", "caused excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage within [ff_cooldown / 10] seconds.", null, null, FALSE, FALSE, null, FALSE, "Minor")
+	//ghostize(FALSE) // make them a ghost (so they can't return to the round)
+	//qdel(client) // Disconnect the client
 
 	// Heal everyone involved
 	for(var/i in friendly_fire[FF_VICTIM_LIST])
@@ -122,13 +122,6 @@
 
 	return target_location_feedback
 
-/**
- * Sends a signal to enable throw parrying for the handed duration, provided the throw_parry component is attached. Otherwise, has no real effect.
- * For more information on parries, see throw_parry.dm
-**/
-/mob/living/proc/enable_throw_parry(duration)
-	SEND_SIGNAL(src, COMSIG_PARRY_TRIGGER, duration)
-
 ///Proc to check for a mob's ghost.
 /mob/living/proc/get_ghost(bypass_client_check = FALSE)
 	if(client) //We don't need to get a ghost for someone who's still under player control
@@ -138,8 +131,19 @@
 			continue
 		if(isnull(ghost.can_reenter_corpse))
 			continue
-		if(ghost.can_reenter_corpse.resolve() != src)
+		if(ghost.can_reenter_corpse?.resolve() != src)
 			continue
 		if(ghost.client || bypass_client_check)
 			return ghost
 	return null
+
+/mob/living/proc/get_opposite_dir()
+	switch(src.dir)
+		if(NORTH)
+			return SOUTH
+		if(WEST)
+			return EAST
+		if(EAST)
+			return WEST
+		if(SOUTH)
+			return NORTH

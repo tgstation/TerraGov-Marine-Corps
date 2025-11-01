@@ -366,7 +366,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(xeno_owner, get_sfx(SFX_ALIEN_TAIL_ATTACK), 30, TRUE)
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently spears \the [target_atom] with their tail!"))
 	if(!ishuman(target_atom))
-		target_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage * DANCER_NONHUMAN_IMPALE_MULT)
+		target_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * DANCER_NONHUMAN_IMPALE_MULT)
 
 	else
 		var/mob/living/carbon/human/human_victim = target_atom
@@ -435,9 +435,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/temp_visual/tail_swing/swing = new
 	xeno_owner.vis_contents += swing
 
-	xeno_owner.spin(0.6 SECONDS, 1)
+	xeno_owner.spin(DEFENDER_REFLECT_TIME, 1)
 	xeno_owner.emote("tail")
-	xeno_owner.enable_throw_parry(0.6 SECONDS)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps its tail in a low circle!"))
 
@@ -469,7 +469,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			else
 				living_target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, melting_fire_stacks)
 
-	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "dancer_tail_trip"), 0.6 SECONDS)
+	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "dancer_tail_trip"), DEFENDER_REFLECT_TIME)
 	addtimer(CALLBACK(src, PROC_REF(remove_swing), swing), 3 SECONDS)
 	succeed_activate()
 	add_cooldown()
@@ -515,7 +515,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/temp_visual/tail_hook/hook = new
 	xeno_owner.vis_contents += hook
 	xeno_owner.spin(0.8 SECONDS, 1)
-	xeno_owner.enable_throw_parry(0.6 SECONDS)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] swings the hook on its tail through the air!"))

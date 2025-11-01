@@ -85,7 +85,8 @@
 		/datum/reagent/medicine/dylovene = list(NAME = "Dylovene", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0.5, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/synaptizine = list(NAME = "Synaptizine", REQ = 1, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 1, STAM_REG_AMP = 0.1, SPEED_BOOST = 0),
 		/datum/reagent/medicine/neuraline = list(NAME = "Neuraline", REQ = 2, BRUTE_AMP = 1, BURN_AMP = 1, TOX_HEAL = -3, STAM_REG_AMP = 0, SPEED_BOOST = -0.3),
-		/datum/reagent/toxin/xeno_neurotoxin = list(NAME = "Neurotoxin", REQ = 3, BRUTE_AMP = -0.1, BURN_AMP = -0.1, TOX_HEAL = -0.1, STAM_REG_AMP = -0.2, SPEED_BOOST = 0),
+		/datum/reagent/toxin/xeno_neurotoxin = list(NAME = "Neurotoxin", REQ = 3, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0.1, STAM_REG_AMP = -0.3, SPEED_BOOST = -0.3),
+		/datum/reagent/toxin/xeno_aphrotoxin = list(NAME = "Aphrotoxin", REQ = 5, BRUTE_AMP = 0.2, BURN_AMP = 0.2, TOX_HEAL = 0.1, STAM_REG_AMP = -0.5, SPEED_BOOST = -0.5),
 		/datum/reagent/toxin/xeno_hemodile = list(NAME = "Hemodile", REQ = 3, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = -0.2, SPEED_BOOST = 0.2),
 		/datum/reagent/toxin/xeno_transvitox = list(NAME = "Transvitox", REQ = 3, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = -0.3, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/toxin/xeno_sanguinal = list(NAME = "Sanguinal", REQ = 3, BRUTE_AMP = -0.3, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
@@ -351,7 +352,7 @@
 
 	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT, TRUE, 0, NONE, TRUE, 4)
 	wearer.balloon_alert(wearer, "connecting...")
-	if(!do_after(wearer, 1 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_mob(wearer, held_item, 1 SECONDS, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_flags = IGNORE_USER_LOC_CHANGE))
 		wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
 		wearer.balloon_alert(wearer, "disrupted!")
 		return
@@ -421,7 +422,7 @@
 		return
 
 	wearer.balloon_alert(wearer, "filling...")
-	if(!do_after(wearer, 1 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_mob(wearer, held_item, 1 SECONDS, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
 	update_resource(-volume)
@@ -455,7 +456,7 @@
 	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume) //Pills should never be empty so we don't worry about loading into them
 		var/pick = tgui_input_list(wearer, "Unload internal reagent storage into held container:", "Vali system", list("Yes", "No"))
 		if(pick == "Yes")
-			if(!do_after(wearer, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+			if(!do_mob(wearer, held_item, 0.5 SECONDS, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_flags = IGNORE_USER_LOC_CHANGE))
 				return
 			meds_beaker.reagents.trans_to(held_beaker, 30)
 			to_chat(wearer, get_meds_beaker_contents())
@@ -465,7 +466,7 @@
 		wearer.balloon_alert(wearer, "system reagent storage is full!")
 		return
 
-	if(!do_after(wearer, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_mob(wearer, held_item, 0.5 SECONDS, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_flags = IGNORE_USER_LOC_CHANGE))
 		return
 
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)

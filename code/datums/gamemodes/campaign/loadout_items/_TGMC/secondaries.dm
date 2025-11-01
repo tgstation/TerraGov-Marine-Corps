@@ -29,7 +29,7 @@
 
 /datum/loadout_item/secondary/gun/marine/so_pistol
 	name = "RT-3 pistol"
-	desc = "TAn RT-3 target pistol, a common sight throughout the bubble and the standard sidearm for noncombat roles in the TGMC. Uses 9mm caseless ammunition."
+	desc = "TAn RT-3 target pistol, a common sight throughout the bubble and the standard sidearm for noncombat roles in the NTF. Uses 9mm caseless ammunition."
 	ui_icon = "rt3"
 	item_typepath = /obj/item/weapon/gun/pistol/rt3
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -37,7 +37,7 @@
 
 /datum/loadout_item/secondary/gun/marine/smart_pistol
 	name = "SP-13 pistol"
-	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. Has good damage, penetration and magazine capacity. \
+	desc = "The SP-13 is a IFF-capable sidearm used by the Nine-Tailed Fox. Has good damage, penetration and magazine capacity. \
 	Expensive to manufacture, this sophisticated pistol is only occassionally used by smartgunners, or some higher ranking officers who have the skills to use it. Uses 9x19mm Parabellum ammunition."
 	ui_icon = "sp13"
 	item_typepath = /obj/item/weapon/gun/pistol/smart_pistol
@@ -76,7 +76,7 @@
 
 /datum/loadout_item/secondary/gun/marine/laser_pistol
 	name = "TE-P"
-	desc = "A TerraGov standard issue laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. \
+	desc = "A Ninetails standard issue laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. \
 	Uses standard Terra Experimental (abbreviated as TE) power cells. \
 	As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	ui_icon = "default"
@@ -85,7 +85,7 @@
 
 /datum/loadout_item/secondary/gun/marine/standard_machinepistol
 	name = "MP-19"
-	desc = "Equipped with a motion sensor. The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. \
+	desc = "Equipped with a motion sensor. The MP-19 is the Nine-Tailed Fox standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. \
 	It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	ui_icon = "t19"
 	item_typepath = /obj/item/weapon/gun/smg/standard_machinepistol/scanner
@@ -134,7 +134,7 @@
 
 /datum/loadout_item/secondary/gun/marine/db_shotgun
 	name = "SH-34 shotgun"
-	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC, loaded with buckshot. Uncommonly seen as a powerful secondary weapon when serious stopping power is required."
+	desc = "A double barreled shotgun of archaic, but sturdy design used by the NTF, loaded with buckshot. Uncommonly seen as a powerful secondary weapon when serious stopping power is required."
 	ui_icon = "tx34"
 	item_typepath = /obj/item/weapon/gun/shotgun/double/marine
 	item_whitelist = list(/obj/item/storage/holster/belt/ts34 = ITEM_SLOT_BELT)
@@ -149,7 +149,7 @@
 //non-standard
 /datum/loadout_item/secondary/machete
 	name = "Machete"
-	desc = "Latest issue of the TGMC Machete. Great for clearing out jungle or brush on outlying colonies, or cutting open heads. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	desc = "Latest issue of the NTF Machete. Great for clearing out jungle or brush on outlying colonies, or cutting open heads. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	ui_icon = "machete"
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER)
 	item_typepath = /obj/item/weapon/sword/machete

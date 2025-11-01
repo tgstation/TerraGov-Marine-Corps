@@ -47,11 +47,14 @@
 	if(chargesleft >= maxcharges)
 		return PROCESS_KILL
 
-/obj/structure/xeno/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/xeno/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if((xeno_attacker.a_intent == INTENT_HARM && isxenohivelord(xeno_attacker)) || xeno_attacker.hivenumber != hivenumber)
+	if(!issamexenohive(xeno_attacker))
+		return ..()
+
+	if(xeno_attacker.a_intent == INTENT_HARM && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		balloon_alert(xeno_attacker, "Destroying...")
 		if(do_after(xeno_attacker, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
@@ -62,7 +65,20 @@
 		to_chat(xeno_attacker, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
 	balloon_alert(xeno_attacker, "Retrieved jelly")
-	new /obj/item/resin_jelly(loc)
+	new /obj/item/resin_jelly(loc, hivenumber)
+	chargesleft--
+	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
+		START_PROCESSING(SSslowprocess, src)
+
+/obj/structure/xeno/resin_jelly_pod/attack_hand(mob/living/user)
+	if(!issamexenohive(user)) // No longer exportable, so humans don't need to steal it
+		return ..()
+	if(!chargesleft)
+		balloon_alert(user, "No jelly remaining")
+		to_chat(user, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
+		return
+	balloon_alert(user, "Retrieved jelly")
+	new /obj/item/resin_jelly(loc, hivenumber)
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)
