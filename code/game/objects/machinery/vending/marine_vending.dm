@@ -1626,7 +1626,6 @@
 			/obj/item/clothing/under/wedding/bride_red = -1,
 			/obj/item/clothing/under/wedding/bride_white = -1,
 			/obj/item/clothing/under/dress/black_tango = -1,
-			/obj/item/clothing/under/dress/bridesmaid = -1,
 			/obj/item/clothing/under/sundress = -1,
 			/obj/item/clothing/under/cheerleader = -1,
 			/obj/item/clothing/under/cheerleader/yellow = -1,
