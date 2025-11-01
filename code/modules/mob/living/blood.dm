@@ -68,7 +68,7 @@
 		var/datum/limb/temp = l
 		if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
 			continue
-		blood_max += temp.brute_dam / 60
+		blood_max += LIMB_FLOW_RATE(temp.brute_dam)
 		if(temp.surgery_open_stage && !(temp.limb_wound_status & LIMB_WOUND_CLAMPED))
 			blood_max += 0.6  //Yer stomach is cut open
 

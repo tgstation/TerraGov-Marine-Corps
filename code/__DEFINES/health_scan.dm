@@ -22,20 +22,20 @@
 /// Ditto: some chems react negatively with others and medics
 /// should be made aware of this as fast as possible
 #define ADVICE_PRIORITY_CHEM_MIX -1
+/// Priority override for critical condition
+#define ADVICE_PRIORITY_CRIT 1
 /// This override is a relic from the old advice system.
 /// This was the very first advice to be handled then so it'll be that way here too.
 /// *(this is planned to be reworked in the future along with species advice)*
-#define ADVICE_PRIORITY_MAX_HEALTH 1
+#define ADVICE_PRIORITY_MAX_HEALTH 2
 /// This override is a relic from the old advice system.
 /// This was the very second advice to be handled then so it'll be that way here too.
 /// *(this is planned to be reworked in the future along with health advice)*
-#define ADVICE_PRIORITY_SPECIES 2
+#define ADVICE_PRIORITY_SPECIES 3
 /// Priority override for revival tips
-#define ADVICE_PRIORITY_REVIVAL 3
+#define ADVICE_PRIORITY_REVIVAL 4
 /// Priority override for damage treatment
-#define ADVICE_PRIORITY_DAMAGE 4
-/// Priority override for critical condition
-#define ADVICE_PRIORITY_CRIT 5
+#define ADVICE_PRIORITY_DAMAGE 5
 /// Priority override for pain advice
 #define ADVICE_PRIORITY_SHOCK 6
 /// Priority override for limb advice
