@@ -552,13 +552,15 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		X.dropItemToGround(src)
 		X.update_icons()
 
-	if(hugged.in_throw_mode && hugged.dir != dir && !hugged.incapacitated() && !hugged.get_active_held_item())
-		var/catch_chance = 50
+	if(hugged.dir != dir && !hugged.incapacitated())
+		var/catch_chance = 80
 		if(hugged.dir == REVERSE_DIR(dir))
 			catch_chance += 20
-		catch_chance -= hugged.shock_stage * 0.3
+		catch_chance -= max(hugged.shock_stage * 0.3, hugged.getStaminaLoss() * 0.25)
 		if(hugged.get_inactive_held_item())
-			catch_chance  -= 25
+			catch_chance  *= 0.8
+		if(hugged.get_active_held_item())
+			catch_chance *= 0.65
 
 		if(prob(catch_chance))
 			hugged.visible_message("<span class='notice'>[hugged] snatches [src] out of the air and [pickweight(list("clobbers" = 30, "kills" = 30, "squashes" = 25, "dunks" = 10, "dribbles" = 5))] it!")
@@ -673,7 +675,6 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	else
 		user.emote("scream")
 		user.ParalyzeNoChain(3 SECONDS)
-		user.SetConfused(8 SECONDS)
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(try_impregnate), user), IMPREGNATION_TIME)
