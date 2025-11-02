@@ -166,7 +166,7 @@
 	return
 
 /mob/living/carbon/xenomorph/med_hud_set_status()
-	hud_set_pheromone()
+	update_aura_overlay()
 
 /mob/living/carbon/human/med_hud_set_status()
 	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
@@ -521,26 +521,6 @@
 	var/wrath_amount = xeno_caste.wrath_max? round(wrath_stored * 100 / xeno_caste.wrath_max, 10) : 0
 	holder.overlays += "wrath[wrath_amount]"
 
-/mob/living/carbon/xenomorph/proc/hud_set_pheromone()
-	var/image/holder = hud_list[PHEROMONE_HUD]
-	if(!holder)
-		return
-	holder.icon_state = ""
-	if(stat != DEAD)
-		var/tempname = ""
-		if(frenzy_aura)
-			tempname += AURA_XENO_FRENZY
-		if(warding_aura)
-			tempname += AURA_XENO_WARDING
-		if(recovery_aura)
-			tempname += AURA_XENO_RECOVERY
-		if(tempname)
-			holder.icon = 'icons/mob/hud/aura.dmi'
-			holder.icon_state = "[tempname]"
-
-	hud_list[PHEROMONE_HUD] = holder
-
-//Only called when an aura is added or removed
 /mob/living/carbon/xenomorph/update_aura_overlay()
 	var/image/holder = hud_list[PHEROMONE_HUD]
 	if(!holder)
@@ -548,9 +528,30 @@
 	holder.overlays.Cut()
 	if(stat == DEAD)
 		return
+
+	var/list/pheromone_strengths_by_type = list(AURA_XENO_FRENZY = frenzy_aura, AURA_XENO_WARDING = warding_aura, AURA_XENO_RECOVERY = recovery_aura)
 	for(var/aura_type in GLOB.pheromone_images_list)
 		if(emitted_auras.Find(aura_type))
 			holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]_aura")
+
+		var/phero_strength = pheromone_strengths_by_type[aura_type]
+		if(!phero_strength)
+			continue
+
+		var/phero_label
+		switch(phero_strength)
+			if(-INFINITY to 1.0)
+				phero_label = "vweak"
+			if(1.1 to 2.0)
+				phero_label = "weak"
+			if(2.1 to 2.9)
+				phero_label = "medium"
+			if(3.0 to 3.9)
+				phero_label = "strong"
+			if(4.0 to INFINITY)
+				phero_label = "vstrong"
+
+		holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]_[phero_label]")
 
 /mob/living/carbon/xenomorph/proc/hud_set_queen_overwatch()
 	var/image/holder = hud_list[QUEEN_OVERWATCH_HUD]

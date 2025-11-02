@@ -251,7 +251,7 @@
 		for(var/mob/living/carbon/xenomorph/X in tile)
 			if(X.stat == DEAD || isxenohunter(X) || X.alpha != 255) //We don't mess with xenos capable of going stealth by themselves
 				continue
-			X.alpha = HUNTER_STEALTH_RUN_ALPHA
+			X.set_alpha_source(ALPHA_SOURCE_NIGHTSHADE, HUNTER_STEALTH_RUN_ALPHA)
 			new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(X))
 			balloon_alert(X, "We now blend in")
 			to_chat(X, span_xenowarning("The pollen from [src] reacts with our scales, we are blending with our surroundings!"))
@@ -268,6 +268,6 @@
 ///Reveals all xenos hidden by veil()
 /obj/structure/xeno/plant/stealth_plant/proc/unveil()
 	for(var/mob/living/carbon/xenomorph/X AS in camouflaged_xenos)
-		X.alpha = initial(X.alpha)
+		X.remove_alpha_source(ALPHA_SOURCE_NIGHTSHADE)
 		balloon_alert(X, "Effect wears off")
 		to_chat(X, span_xenowarning("The effect of [src] wears off!"))

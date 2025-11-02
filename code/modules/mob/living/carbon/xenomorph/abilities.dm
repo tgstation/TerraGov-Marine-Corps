@@ -466,7 +466,7 @@
 		QDEL_NULL(X.current_aura)
 		if(X.hive?.living_xeno_ruler == X)
 			X.hive?.update_leader_pheromones()
-		X.hud_set_pheromone()
+		X.update_aura_overlay()
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
 	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + (X.xeno_caste.aura_strength * 2) + bonus_flat_range, X.xeno_caste.aura_strength + bonus_flat_strength, -1, X.faction, X.hivenumber)
@@ -475,7 +475,7 @@
 
 	if(X.hive?.living_xeno_ruler == X)
 		X.hive?.update_leader_pheromones()
-	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
+	X.update_aura_overlay() //Visual feedback that the xeno has immediately started emitting pheromones
 	succeed_activate()
 
 /datum/action/ability/xeno_action/pheromones/action_activate()

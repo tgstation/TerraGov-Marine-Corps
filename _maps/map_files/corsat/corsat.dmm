@@ -20175,7 +20175,7 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/medbay/morgue)
 "jfh" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/machinery/computer/code_generator/nuke/blue,
 /turf/open/floor/grayscale/darkred,
 /area/corsat/gamma/rnr/arcade)
 "jft" = (
@@ -26392,7 +26392,7 @@
 /area/corsat/theta/airlock/east/id)
 "lKl" = (
 /obj/effect/turf_decal/tile/corsatstraight/lightpurple,
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/machinery/computer/code_generator/nuke/green,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/sigma/south/complex)
 "lKn" = (
@@ -26699,7 +26699,7 @@
 /obj/effect/turf_decal/tile/corsatsemi/lightpurple{
 	dir = 8
 	},
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/machinery/computer/code_generator/nuke/red,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/omega/complex)
 "lQB" = (

@@ -1235,6 +1235,7 @@
 #include "code\game\objects\machinery\computer\camera.dm"
 #include "code\game\objects\machinery\computer\camera_advanced.dm"
 #include "code\game\objects\machinery\computer\camera_console.dm"
+#include "code\game\objects\machinery\computer\code_generator.dm"
 #include "code\game\objects\machinery\computer\communications.dm"
 #include "code\game\objects\machinery\computer\computer.dm"
 #include "code\game\objects\machinery\computer\crew.dm"

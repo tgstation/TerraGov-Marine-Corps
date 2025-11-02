@@ -8,6 +8,17 @@ Contains most of the procs that are called when a xeno is attacked by something
 /mob/living/carbon/xenomorph/has_smoke_protection()
 	return TRUE
 
+/mob/living/carbon/xenomorph/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!((S.smoke_traits & SMOKE_CAMO) && (S.smoke_traits & SMOKE_XENO)))
+		return
+	if(!.)
+		if(has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING))
+			remove_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING)
+		return
+	if(!has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING))
+		apply_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING)
+
 /mob/living/carbon/xenomorph
 	COOLDOWN_DECLARE(tanglefoot_stun_cooldown)
 

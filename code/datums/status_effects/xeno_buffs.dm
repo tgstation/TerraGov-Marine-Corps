@@ -1039,3 +1039,21 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_melee_damage_modifier -= damage_modifier
 	xeno_owner.remove_filter("[id]_outline")
+
+// ***************************************
+// *********** Cloaking
+// ***************************************
+/datum/status_effect/xenomorph_cloaking
+	id = "xenomorph_cloaking"
+	alert_type = null
+
+/datum/status_effect/xenomorph_cloaking/on_apply()
+	. = ..()
+	if(!isxeno(owner))
+		return FALSE
+	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
+	xenomorph_owner.set_alpha_source(ALPHA_SOURCE_XENOMORPH_CLOAKING, HUNTER_STEALTH_STILL_ALPHA)
+
+/datum/status_effect/xenomorph_cloaking/on_remove()
+	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
+	xenomorph_owner.remove_alpha_source(ALPHA_SOURCE_XENOMORPH_CLOAKING)

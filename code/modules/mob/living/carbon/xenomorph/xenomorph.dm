@@ -376,7 +376,7 @@
 	//updating all the mob's hud images
 	med_hud_set_health()
 	hud_set_plasma()
-	hud_set_pheromone()
+	update_aura_overlay()
 	//and display them
 	add_to_all_mob_huds()
 

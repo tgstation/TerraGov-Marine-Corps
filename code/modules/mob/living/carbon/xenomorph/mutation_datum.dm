@@ -136,3 +136,11 @@
 	xenomorph_purchaser.do_jitter_animation(500)
 	new mutation_typepath(xenomorph_purchaser) // Everything else in handled during the mutation's New().
 	return TRUE
+
+/// Called when a disk is printed.
+/datum/mutation_datum/proc/on_disk_printed(datum/source, obj/machinery/computer/code_generator/nuke/printing_computer)
+	SIGNAL_HANDLER
+	var/disk_color = printing_computer.key_color
+	if(!disk_color || (disk_color in completed_disk_colors))
+		return
+	completed_disk_colors += disk_color
