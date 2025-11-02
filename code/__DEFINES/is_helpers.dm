@@ -198,8 +198,6 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 #define isfood(A) (istype(A, /obj/item/reagent_containers/food))
 
-#define isweapon(A) (istype(A, /obj/item/weapon))
-
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
 #define isammomagazine(A) (istype(A, /obj/item/ammo_magazine))

@@ -17,14 +17,13 @@
 		return
 	if(isturf(target))
 		if(istype(target, /turf/closed/interior/tank/door))
-			set_interact_target(target) //todo: Other option might be redundant?
+			set_interact_target(target)
 			try_speak(pick(receive_order_chat))
 			return
 		set_atom_to_walk_to(target)
 		return
 	if(!ismovable(target))
 		return //the fuck did you click?
-	//todo: AM proc to check if we should react at all
 	var/atom/movable/movable_target = target
 	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
 		set_interact_target(movable_target)
@@ -55,7 +54,7 @@
 ///If an item is considered important, we add it to the list to pick up later
 /datum/ai_behavior/human/proc/on_item_unequip(mob/living/source, obj/item/dropped)
 	SIGNAL_HANDLER
-	if(QDELETED(dropped) || !dropped.npc_item_of_interest())
+	if(QDELETED(dropped) || !dropped.is_npc_item_of_interest())
 		return
 	add_atom_of_interest(dropped)
 
@@ -74,17 +73,17 @@
 
 
 ///Returns TRUE if an NPC should record this as an item of interest for later pickup/interaction
-/obj/item/proc/npc_item_of_interest()
+/obj/item/proc/is_npc_item_of_interest()
 	return TRUE
 
-/obj/item/explosive/grenade/npc_item_of_interest()
+/obj/item/explosive/grenade/is_npc_item_of_interest()
 	return !active //don't try pick up a primed nade pls
 
-/obj/item/ammo_magazine/npc_item_of_interest()
+/obj/item/ammo_magazine/is_npc_item_of_interest()
 	return current_rounds
 
-/obj/item/cell/npc_item_of_interest()
+/obj/item/cell/is_npc_item_of_interest()
 	return charge >= (maxcharge * 0.1) //ignore cells with trace power left since eguns and such might not empty them entirely
 
-/obj/item/reagent_containers/npc_item_of_interest()
+/obj/item/reagent_containers/is_npc_item_of_interest()
 	return reagents?.total_volume

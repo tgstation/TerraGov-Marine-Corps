@@ -49,7 +49,7 @@
 
 ///Removes self after duration is up
 /datum/component/throw_parry/proc/remove_self(atom/reflector)
-	reflector.remove_component(/datum/component/throw_parry)
+	qdel(src)
 
 /**
  * Any special behavior when this atom parries something

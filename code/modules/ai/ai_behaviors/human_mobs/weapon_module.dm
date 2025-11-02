@@ -27,8 +27,6 @@
 	if(!gun)
 		return
 
-	//gun.ai_use(null, mob_parent) //place holder, should be handled by flags
-
 	var/fire_result = can_shoot_target(combat_target)
 	if(human_ai_state_flags & HUMAN_AI_FIRING)
 		if(fire_result != AI_FIRE_CAN_HIT)
