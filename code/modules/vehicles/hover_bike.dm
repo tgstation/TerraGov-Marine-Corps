@@ -30,6 +30,7 @@
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	update_icon()
 	animate_hover()
+	RegisterSignal(src, COMSIG_MOVABLE_PATROL_DEPLOYED, PROC_REF(animate_hover))
 
 /obj/vehicle/ridden/hover_bike/examine(mob/user)
 	. = ..()

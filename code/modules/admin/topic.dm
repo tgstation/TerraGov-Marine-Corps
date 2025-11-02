@@ -2221,8 +2221,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_SOUND))
 			return
 
+		var/credit = href_list["credit"]
 		var/link_url = href_list["play_internet"]
 		if(!link_url)
 			return
 
-		web_sound(usr, link_url)
+		web_sound(usr, link_url, credit)
