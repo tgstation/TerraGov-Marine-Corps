@@ -7,6 +7,7 @@
 
 // non destructively tastes a reagent container
 /mob/proc/taste(datum/reagents/from, type = "chat")
+	SHOULD_NOT_SLEEP(TRUE)
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TASTE))
 		return
 
@@ -57,4 +58,5 @@
 			var/datum/browser/popup = new(src, "taste_preview", "<div align='center'>Taste Preview.</div>")
 			var/dat = "<div>[text_output]</div>"
 			popup.set_content(dat)
-			popup.open()
+			ASYNC
+				popup.open()
