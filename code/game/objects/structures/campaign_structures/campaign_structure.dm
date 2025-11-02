@@ -18,6 +18,8 @@
 	if(current_mission.type in mission_types)
 		var/obj/objective = new spawn_object(loc)
 		objective.dir = dir
+		if(isdestroobjective(objective))
+			objective.faction = current_mission.defending_faction
 	qdel(src)
 
 
@@ -29,7 +31,8 @@
 	allow_pass_flags = PASSABLE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 	icon = 'icons/obj/structures/campaign_structures.dmi'
-
+	///Special behavior flags
+	var/objective_flags = NONE
 	///overhead timer
 	var/obj/effect/countdown/campaign_objective/countdown
 
@@ -39,7 +42,8 @@
 	update_icon()
 
 /obj/structure/campaign_objective/Destroy()
-	disable()
+	GLOB.campaign_objectives -= src
+	SSminimaps.remove_marker(src)
 	return ..()
 
 /obj/structure/campaign_objective/update_icon()
@@ -51,9 +55,14 @@
 
 ///Handles the objective being destroyed, disabled or otherwise completed
 /obj/structure/campaign_objective/proc/disable()
+	SHOULD_CALL_PARENT(TRUE)
+	if(objective_flags & CAMPAIGN_OBJECTIVE_DISABLED)
+		return FALSE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, src)
+	objective_flags |= CAMPAIGN_OBJECTIVE_DISABLED
 	GLOB.campaign_objectives -= src
 	SSminimaps.remove_marker(src)
+	return TRUE
 
 ///Update the minimap blips to show who is controlling this objective
 /obj/structure/campaign_objective/proc/update_control_minimap_icon()

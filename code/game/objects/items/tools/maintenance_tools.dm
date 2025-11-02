@@ -111,6 +111,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_WELDER
 
+	light_range = 2
+	light_power = 0.6
+	light_color = LIGHT_COLOR_FIRE
+
 	//blowtorch specific stuff
 	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
@@ -259,7 +263,7 @@
 		if(get_fuel() > 0)
 			playsound(loc, 'sound/items/weldingtool_on.ogg', 25)
 			welding = 1
-			set_light(1, LIGHTER_LUMINOSITY)
+			set_light_on(TRUE)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = BURN
@@ -286,7 +290,7 @@
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
 				M.update_inv_l_hand()
-		set_light(0)
+		set_light_on(FALSE)
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)

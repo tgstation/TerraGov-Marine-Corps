@@ -112,8 +112,8 @@
 	playsound(living_target, pick('sound/voice/alien/drool1.ogg', 'sound/voice/alien/drool2.ogg'), 15, 1)
 	to_chat(xeno_owner, span_xenodanger("Our stinger successfully discharges accelerant into our victim."))
 	to_chat(living_target, span_danger("You feel horrible pain as something sharp forcibly pierces your thorax."))
-	living_target.apply_damage(50, STAMINA)
-	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE)
+	living_target.apply_damage(50, STAMINA, attacker = owner)
+	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE, attacker = owner)
 	living_target.emote("scream")
 
 	var/defile_strength_multiplier = 0.5

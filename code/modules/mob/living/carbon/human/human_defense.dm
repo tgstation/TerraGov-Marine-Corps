@@ -79,7 +79,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	. = ..()
 	if(!.)
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+	if((S.smoke_traits & SMOKE_CAMO) && !(S.smoke_traits & SMOKE_XENO))
 		smokecloak_on()
 
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
@@ -156,7 +156,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(weapon_sharp)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 
-	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
+	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE, attacker = user)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
