@@ -83,7 +83,7 @@
 	user.visible_message(span_danger("[user] processes [grabbed_mob]!"), span_notice("You process [grabbed_mob]!"), "You hear churning.")
 	log_combat(user, grabbed_mob, "food processed")
 	playsound(loc, 'sound/machines/blender.ogg', 25, 1)
-	grabbed_mob.apply_damage(80, BRUTE, "head", MELEE, TRUE, updating_health = TRUE)
+	grabbed_mob.apply_damage(80, BRUTE, "head", MELEE, TRUE, updating_health = TRUE, attacker = user)
 	return TRUE
 
 /obj/machinery/processor/attack_hand(mob/living/user)

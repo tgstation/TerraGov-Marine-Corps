@@ -125,9 +125,9 @@
 	return TRUE
 
 /// Called when a disk is printed.
-/datum/mutation_datum/proc/on_disk_printed(datum/source, obj/machinery/computer/nuke_disk_generator/printing_computer)
+/datum/mutation_datum/proc/on_disk_printed(datum/source, obj/machinery/computer/code_generator/nuke/printing_computer)
 	SIGNAL_HANDLER
-	var/disk_color = printing_computer.disk_color
+	var/disk_color = printing_computer.key_color
 	if(!disk_color || (disk_color in completed_disk_colors))
 		return
 	completed_disk_colors += disk_color

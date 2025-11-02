@@ -23,9 +23,15 @@
 /turf/closed/wall/resin/add_debris_element()
 	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
-/turf/closed/wall/resin/Initialize(mapload)
+/turf/closed/wall/resin/AfterChange(flags)
 	. = ..()
-	return INITIALIZE_HINT_LATELOAD
+	//This exists solely so mazes don't show up on the minimap if the map is redrawn
+	var/turf/under_turf
+	if(islist(baseturfs))
+		under_turf = baseturfs[length(baseturfs)]
+	else
+		under_turf = baseturfs
+	minimap_color = under_turf::minimap_color
 
 /turf/closed/wall/resin/get_mechanics_info()
 	. += ..()

@@ -59,7 +59,7 @@
 
 	apply_damages(ex_damage * 0.5, ex_damage * 0.5, blocked = BOMB, updating_health = TRUE)
 
-/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/attacker)
 	if(status_flags & GODMODE)
 		return
 	if(damagetype != BRUTE && damagetype != BURN)
@@ -75,7 +75,7 @@
 	if(damage > 12) //Light damage won't splash.
 		check_blood_splash(damage, damagetype, 0, 1, sharp, edge)
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_TAKING_DAMAGE, damage)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_TAKING_DAMAGE, damage, attacker)
 
 	if(stat == DEAD)
 		return FALSE
