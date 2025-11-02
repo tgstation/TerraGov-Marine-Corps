@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Crash: After 60 minutes, the marine player count is effectively increased by 1 every 10 minutes, for larva gen calculations"

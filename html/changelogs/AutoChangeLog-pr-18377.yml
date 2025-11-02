@@ -1,5 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - bugfix: "fixed music requests not showing who requested music"
-  - admin: "Music request is now purple colored (from cyan)"

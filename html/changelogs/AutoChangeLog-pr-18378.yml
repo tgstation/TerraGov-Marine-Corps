@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - bugfix: "CIC spotlights now say how much time they last"

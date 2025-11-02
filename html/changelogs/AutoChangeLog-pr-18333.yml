@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - rscadd: "Pheromone HUD indicators now change depending on the strength of each pheromone"

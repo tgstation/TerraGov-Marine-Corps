@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed some visual issues with HvH deploy points"
-  - bugfix: "Mobs riding vehicles as they deploy in HvH get spawn protection as well."
