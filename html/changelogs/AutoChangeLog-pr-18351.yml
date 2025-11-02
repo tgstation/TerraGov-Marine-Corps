@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Baseball bats can bounce back thrown things"
+  - bugfix: "fixed defender and praetorian reflect abilities"
