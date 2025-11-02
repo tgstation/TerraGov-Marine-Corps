@@ -340,6 +340,8 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/hvh/combat_patrol))
 #define issensorcapturegamemode(O) (istype(O, /datum/game_mode/hvh/combat_patrol/sensor_capture))
 #define iscampaigngamemode(O) (istype(O, /datum/game_mode/hvh/campaign))
+///is a campaign destruction objective
+#define isdestroobjective(O) (istype(O, /obj/structure/campaign_objective/destruction_objective))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 

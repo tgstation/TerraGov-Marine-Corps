@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		//This is meant to fail extremely loud every single time it occurs in any environment in any context, and it falsely alarms when this unit test iterates it. Let's not spawn it in.
 		/obj/merge_conflict_marker,
 		///Base type with no disk type
-		/obj/machinery/computer/nuke_disk_generator,
+		/obj/machinery/computer/code_generator/nuke,
 		///Single use case holder atom requiring a user
 		/atom/movable/looking_holder,
 	)
