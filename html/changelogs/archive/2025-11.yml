@@ -6,3 +6,9 @@
   - qol: Bike mounted weapons can be unequipped by dropping them
   - rscadd: NPCs will shoot xeno turrets
   - bugfix: fixed facehuggers not properly registering as hazards to NPCs
+2025-11-02:
+  Lumipharon:
+  - balance: 'Crash: After 60 minutes, the marine player count is effectively increased
+      by 1 every 10 minutes, for larva gen calculations'
+  Scav:
+  - rscadd: Added a sleeper to Canterbury medical
