@@ -13,6 +13,7 @@
 	var/image/cockpit
 	/// Whether CAS is usable or not.
 	var/cas_usable = CAS_USABLE
+	var/home_dock = SHUTTLE_CAS_DOCK
 
 /obj/structure/caspart/caschair/Initialize(mapload)
 	. = ..()
@@ -29,10 +30,10 @@
 	QDEL_NULL(cockpit)
 	return ..()
 
-/obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+/obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser, for_faction = FACTION_TERRAGOV)
 	SIGNAL_HANDLER
 	playsound(src, 'sound/effects/binoctarget.ogg', 15)
-	if(occupant)
+	if(occupant && occupant.faction == for_faction)
 		to_chat(occupant, span_notice("CAS laser detected, [incoming_laser.name] [CAS_JUMP_LINK(incoming_laser)]"))
 
 /obj/structure/caspart/caschair/proc/cas_usable(datum/source)
@@ -84,7 +85,7 @@
 				return
 
 			to_chat(user, span_notice("You start climbing into the cockpit..."))
-			if(!do_after(user, 2 SECONDS, NONE, src))
+			if(!do_after(user, 2 SECONDS, TRUE, src))
 				return
 
 			user.visible_message(span_notice("[user] climbs into the plane cockpit!"), span_notice("You get in the seat!"))
@@ -135,7 +136,7 @@
 			to_chat(occupant, span_notice("Getting out of the cockpit while flying seems like a bad idea to you."))
 			return
 		to_chat(occupant, span_notice("You start getting out of the cockpit."))
-		if(!do_after(occupant, 2 SECONDS, NONE, src))
+		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return
 	set_cockpit_overlay("cockpit_opening")
 	addtimer(CALLBACK(src, PROC_REF(set_cockpit_overlay), "cockpit_open"), 7)
@@ -144,7 +145,7 @@
 	occupant.forceMove(get_step(loc, WEST))
 	occupant = null
 
-/obj/structure/caspart/caschair/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/caspart/caschair/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
 		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
@@ -216,7 +217,7 @@
 		if("land")
 			if(owner.state != PLANE_STATE_FLYING)
 				return
-			SSshuttle.moveShuttle(owner.id, SHUTTLE_CAS_DOCK, TRUE)
+			SSshuttle.moveShuttle(owner.id, home_dock, TRUE)
 			owner.end_cas_mission(usr)
 			owner.currently_returning = TRUE
 		if("deploy")

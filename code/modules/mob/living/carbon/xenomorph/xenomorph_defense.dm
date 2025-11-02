@@ -19,6 +19,9 @@ Contains most of the procs that are called when a xeno is attacked by something
 	if(!has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING))
 		apply_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING)
 
+/mob/living/carbon/xenomorph
+	COOLDOWN_DECLARE(tanglefoot_stun_cooldown)
+
 /mob/living/carbon/xenomorph/smoke_contact(obj/effect/particle_effect/smoke/S)
 	var/protection = max(1 - get_permeability_protection() * S.bio_protection) //0.2 by default
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
@@ -26,7 +29,12 @@ Contains most of the procs that are called when a xeno is attacked by something
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		adjustFireLoss(12 * (protection + 0.6))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS) && !CHECK_BITFIELD(xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
-		use_plasma(0.2 * xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
+		var/plasma_to_use = 0.2 * xeno_caste.plasma_max * xeno_caste.plasma_regen_limit
+		if(COOLDOWN_FINISHED(src, tanglefoot_stun_cooldown))
+			COOLDOWN_START(src, tanglefoot_stun_cooldown, 20 SECONDS)
+		else
+			plasma_to_use = min(plasma_to_use, plasma_stored)
+		use_plasma(plasma_to_use)
 		apply_status_effect(/datum/status_effect/noplasmaregen, 5 SECONDS)
 		if(prob(25))
 			to_chat(src, span_xenowarning("We feel our plasma reserves being drained as we pass through the smoke."))

@@ -46,7 +46,7 @@
 	attack_verb = list("jabs","stabs","rips")
 
 /obj/item/weapon/baseballbat
-	name = "\improper wooden baseball bat"
+	name = "wooden baseball bat"
 	desc = "A large wooden baseball bat. Commonly used in colony recreation, but also used as a means of self defense. Often carried by thugs and ruffians."
 	icon_state = "woodbat"
 	worn_icon_state = "woodbat"
@@ -60,8 +60,20 @@
 	attack_verb = list("smashes", "beats", "slams", "strikes", "smashes", "batters", "cracks")
 	hitsound = 'sound/weapons/genhit3.ogg'
 
+/obj/item/weapon/baseballbat/equipped(mob/user, slot)
+	. = ..()
+	user.AddComponent(/datum/component/throw_parry, null, TRUE, src)
+
+/obj/item/weapon/baseballbat/dropped(mob/user)
+	. = ..()
+	user.remove_component(/datum/component/throw_parry)
+
+/obj/item/weapon/baseballbat/on_parry_throw(atom/reflector, atom/movable/thrown)
+	reflector.visible_message(span_warning("[reflector] smashes [thrown] with [src]!"))
+	playsound(src, 'sound/weapons/base_ball_bat_hit.ogg', 60, 1, 10)
+
 /obj/item/weapon/baseballbat/metal
-	name = "\improper metal baseball bat"
+	name = "metal baseball bat"
 	desc = "A large metal baseball bat. Compared to its wooden cousin, the metal bat offers a bit more more force. Often carried by thugs and ruffians."
 	icon_state = "metalbat"
 	worn_icon_state = "metalbat"
@@ -84,6 +96,11 @@
 	throwforce = 7
 	attack_verb = list("pats", "taps")
 	attack_speed = 4
+
+/obj/item/weapon/butterfly/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/scalping)
+	AddElement(/datum/element/shrapnel_removal, 15 SECONDS)
 
 /obj/item/weapon/butterfly/attack_self(mob/user)
 	active = !active

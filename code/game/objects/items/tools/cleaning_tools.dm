@@ -41,7 +41,7 @@
 		var/turf/T = get_turf(A)
 		user.visible_message(span_warning("[user] begins to clean \the [T]."))
 
-		if(do_after(user, 40, NONE, T, BUSY_ICON_GENERIC))
+		if(do_after(user, 40, TRUE, T, BUSY_ICON_GENERIC))
 			T.clean(src)
 			balloon_alert(user, "finished")
 
@@ -116,7 +116,7 @@
 		return
 
 /obj/item/tool/soap/nanotrasen
-	desc = "A Nanotrasen brand bar of soap. Smells of phoron."
+	desc = "A Ninetails brand bar of soap. Smells of phoron."
 	icon_state = "soapnt"
 
 /obj/item/tool/soap/deluxe

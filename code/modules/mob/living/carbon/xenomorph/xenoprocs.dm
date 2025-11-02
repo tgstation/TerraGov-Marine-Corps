@@ -66,18 +66,36 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
-/proc/check_hive_status(mob/user)
+/proc/check_hive_status(mob/user, force_choose_hive)
 	if(!SSticker)
 		return
 
 	var/datum/hive_status/hive
-	if(isxeno(user))
+	if(isxeno(user) && !force_choose_hive)
 		var/mob/living/carbon/xenomorph/xeno_user = user
 		if(xeno_user.hive)
 			hive = xeno_user.hive
 	else
-		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		var/isadmin = check_other_rights(user.client, R_ADMIN, FALSE)
+		var/list/hives_by_name = list()
+		var/list/hivenames = list()
+		for(var/hivenumber in GLOB.hive_datums)
 
+			if(!isadmin && !LAZYLEN(GLOB.alive_xeno_list_hive[hivenumber]))
+				var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
+				if(!xeno_job.total_positions)
+					continue
+			hive = GLOB.hive_datums[hivenumber]
+			hivenames |= hive.name
+			hives_by_name[hive.name] = hive
+		if(!length(hivenames))
+			to_chat(user, span_warning("There are no active hives."))
+			return
+		hive = hives_by_name[tgui_input_list(user, "Which hive?", "Check Hive Status", hivenames, hivenames[1])]
+
+	if(!hive)
+		to_chat(user, span_warning("Valid hive not selected."))
+		return
 	hive.interact(user)
 
 	return
@@ -159,6 +177,9 @@
 
 	. += "Health: [health]/[maxHealth][overheal ? " + [overheal]": ""]" //Changes with balance scalar, can't just use the caste
 
+	if(xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED)
+		. += "Biomass: [!isnull(SSpoints.xeno_biomass_points_by_hive[hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[hivenumber] : 0]/[MUTATION_BIOMASS_MAXIMUM]"
+
 	if(xeno_caste.plasma_max > 0)
 		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
 
@@ -235,7 +256,10 @@
 	hud_set_plasma()
 
 /mob/living/carbon/xenomorph/proc/use_plasma(value, update_plasma = TRUE)
-	plasma_stored = max(plasma_stored - value, 0)
+	plasma_stored = plasma_stored - value
+	if(plasma_stored < 0)
+		plasma_stored = 0
+		Paralyze(15 SECONDS) // 3 seconds after xeno paralyze resistance applied
 	update_action_button_icons()
 	if(!update_plasma)
 		return
@@ -274,7 +298,7 @@
 
 /mob/living/carbon/xenomorph/proc/update_progression(seconds_per_tick)
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	upgrade_stored += (1 + (stored_larva/6) + hive.get_upgrade_boost()) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Do this regardless of whether we can upgrade so age accrues at primo
 	if(!upgrade_possible())
@@ -293,7 +317,7 @@
 		return
 
 	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
 	var/evolution_points_lag = evolution_points * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
@@ -348,6 +372,18 @@
 			new_sight = SEE_MOBS|SEE_OBJS|SEE_TURFS
 		if(LIGHTING_CUTOFF_VISIBLE)
 			new_sight = SEE_MOBS
+	var/datum/game_mode/mode = SSticker.mode
+	switch(new_lighting_cutoff)
+		if(LIGHTING_CUTOFF_FULLBRIGHT, LIGHTING_CUTOFF_HIGH, LIGHTING_CUTOFF_MEDIUM)
+			if(!(mode.round_type_flags & MODE_SURVIVAL))
+				ENABLE_BITFIELD(sight, SEE_MOBS)
+			ENABLE_BITFIELD(sight, SEE_OBJS)
+			ENABLE_BITFIELD(sight, SEE_TURFS)
+		if(LIGHTING_CUTOFF_VISIBLE)
+			if(!(mode.round_type_flags & MODE_SURVIVAL))
+				ENABLE_BITFIELD(sight, SEE_MOBS)
+			DISABLE_BITFIELD(sight, SEE_OBJS)
+			DISABLE_BITFIELD(sight, SEE_TURFS)
 
 	lighting_cutoff = new_lighting_cutoff
 
@@ -501,11 +537,28 @@
 		H.remove_hud_from(src)
 	to_chat(src, span_notice("You have [(xeno_flags & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
 
-
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4, datum/effect_system/smoke_spread/gas_type, gas_range)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, list/toxin = list(/datum/reagent/toxin/xeno_neurotoxin), channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4, datum/effect_system/smoke_spread/gas_type, gas_range, no_overdose = FALSE) //NTF edit - multiple chemicals in one injection
 	if(!C?.can_sting() || !toxin)
 		return FALSE
-	if(!do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+	if(!length(toxin) && islist(toxin))
+		return FALSE
+	if(!islist(toxin))
+		toxin = list(toxin)
+	var/chemical_string = ""
+	// populate the string and fill the assoc list transfer amounts
+	for(var/chem in toxin)
+		var/datum/reagent/chemical = chem
+		toxin[chemical] = transfer_amount
+		var/string_append = ", "
+		// use and if we're before the last chemical
+		var/last_chem = toxin[length(toxin)]
+		var/last_chem_index = toxin.Find(last_chem)
+		if(length(toxin) > 1 && chem == toxin[last_chem_index - 1])
+			string_append = " and "
+		else if(chem == toxin[last_chem_index])
+			string_append = ""
+		chemical_string += "[initial(chemical.name)][string_append]"
+	if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(gas_type && gas_range)
 		var/datum/effect_system/smoke_spread/smoke_system = new gas_type()
@@ -513,7 +566,7 @@
 		smoke_system.start()
 	var/i = 1
 	to_chat(C, span_danger("You feel a tiny prick."))
-	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
+	to_chat(src, span_xenowarning("Our stinger injects our victim with [chemical_string]!"))
 	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 	playsound(C, SFX_ALIEN_DROOL, 15, TRUE)
 	do
@@ -521,8 +574,8 @@
 		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
-		C.reagents.add_reagent(toxin, transfer_amount)
-	while(i++ < count && do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+		C.reagents.add_reagent_list(toxin, transfer_amount, no_overdose = no_overdose)
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 /atom/proc/can_sting()
@@ -605,7 +658,7 @@
 	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER)
 	if(makeleader)
 		blip.overlays += image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, blip)
+	SSminimaps.add_marker(src, GLOB.hivenumber_to_minimap_flag[hivenumber], blip)
 
 ///updates the xeno's glow, based on the ability being used
 /mob/living/carbon/xenomorph/proc/update_glow(range, power, color)
@@ -617,3 +670,4 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+

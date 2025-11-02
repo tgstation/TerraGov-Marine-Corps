@@ -25,6 +25,7 @@
 	var/deactivation_animation = null
 	///icon to set while active
 	var/active_icon_state = null
+	var/turning_around = FALSE
 
 /obj/machinery/bot/Initialize(mapload)
 	. = ..()
@@ -33,7 +34,7 @@
 		if(!todays_voice)
 			todays_voice = pick(SStts.available_speakers)
 		voice = todays_voice
-	RegisterSignal(src, COMSIG_AREA_EXITED, PROC_REF(turn_around))
+	RegisterSignal(src, COMSIG_EXIT_AREA, PROC_REF(turn_around))
 	update_icon()
 	if(is_active)
 		start_processing()
@@ -41,13 +42,16 @@
 ///Turns the bot around when it leaves an area to make sure it doesnt wander off
 /obj/machinery/bot/proc/turn_around(datum/target)
 	SIGNAL_HANDLER
-	visible_message(span_warning("\The [src] beeps angrily as it is moved out of it's designated area!"))
-	step_to(src, get_step(src,REVERSE_DIR(dir)))
+	if(!turning_around)
+		turning_around = TRUE
+		visible_message(span_warning("\The [src] beeps angrily as it is moved out of it's designated area!"))
+		step_to(src, get_step(src,REVERSE_DIR(dir)))
 
 /obj/machinery/bot/process()
 	var/list/dirs = CARDINAL_DIRS - REVERSE_DIR(dir)
 	var/turf/selection
 	var/newdir
+	turning_around = FALSE
 	for(var/i=1 to length(dirs))
 		newdir = pick_n_take(dirs)
 		selection = get_step(src, newdir)
@@ -74,8 +78,9 @@
 
 /obj/machinery/bot/Bump(atom/A)
 	. = ..()
-	if(++stuck_counter <= 3)
-		step_to(src, get_step(src, turn(dir, pick(90, -90))))
+	var/turnamount = prob(50) ? 90 : -90
+	if(++stuck_counter <= 4)
+		step_to(src, get_step(src, turn(dir, turnamount)))
 		return
 	visible_message(span_warning("\The [src] beeps angrily as it gets stuck!"))
 	stop_processing()

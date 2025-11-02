@@ -8,14 +8,17 @@
 	var/list/access = list() //Which special access do we grant them
 
 	var/current_positions = list(
+		SQUAD_SLUT = 0,
 		SQUAD_MARINE = 0,
 		SQUAD_ENGINEER = 0,
 		SQUAD_CORPSMAN = 0,
 		SQUAD_SMARTGUNNER = 0,
+		SQUAD_SPECIALIST = 0,
 		SQUAD_LEADER = 0,
 		SQUAD_ROBOT = 0, //for campaign
 	)
 	var/max_positions = list(
+		SQUAD_SLUT = -1,
 		SQUAD_MARINE = -1,
 		SQUAD_LEADER = 1)
 
@@ -72,6 +75,7 @@
 	radio_freq = FREQ_ZULU
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -79,6 +83,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -91,6 +96,7 @@
 	radio_freq = FREQ_YANKEE
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -98,6 +104,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -110,6 +117,7 @@
 	radio_freq = FREQ_XRAY
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -117,6 +125,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -129,6 +138,7 @@
 	radio_freq = FREQ_WHISKEY
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -136,6 +146,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -151,7 +162,7 @@
 	tracking_id = SSdirection.init_squad(name, squad_leader)
 
 	for(var/state in GLOB.playable_squad_icons)
-		var/icon/top = icon('icons/UI_icons/map_blips.dmi', state, frame = 1)
+		var/icon/top = icon('ntf_modular/icons/UI_icons/map_blips_job.dmi', state, frame = 1)
 		top.Blend(color, ICON_MULTIPLY)
 		var/icon/bottom = icon('icons/UI_icons/map_blips.dmi', "squad_underlay", frame = 1)
 		top.Blend(bottom, ICON_UNDERLAY)
@@ -410,7 +421,7 @@
 	if(faction == FACTION_SOM)
 		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad_som)
 	else
-		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad) //TGMC and rebels use the same squads
+		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad) //NTC and rebels use the same squads
 	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))
 		return TRUE
 	if(strict)

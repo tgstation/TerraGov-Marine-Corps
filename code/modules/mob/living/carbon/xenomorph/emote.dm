@@ -103,7 +103,6 @@
 	key = "roar6"
 	sound = 'sound/voice/alien/roar6.ogg'
 
-
 /datum/emote/living/carbon/xenomorph/tail
 	key = "tail"
 	key_third_person = "tailsweeps"

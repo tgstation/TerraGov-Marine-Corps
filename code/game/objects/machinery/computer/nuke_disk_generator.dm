@@ -19,12 +19,14 @@
 		"Booting up terminal-  -Terminal running",
 		"Establishing link to offsite mainframe- Link established",
 		"WARNING, DIRECTORY CORRUPTED, running search algorithms- nuke_fission_timing.exe found",
-		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
+		"Invalid credentials, upgrading permissions through NTC military override- Permissions upgraded, nuke_fission_timing.exe available",
 		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, getting ready to print",
 		"Program downloaded to disk. Have a nice day."
 	)
 	///The type of disk we're printing
 	var/disk_type
+	obj_integrity = 1500
+	integrity_failure = 1000
 
 /obj/machinery/computer/code_generator/nuke/Initialize(mapload)
 	. = ..()
@@ -38,7 +40,8 @@
 
 /obj/machinery/computer/code_generator/nuke/Destroy()
 	GLOB.nuke_disk_generators -= src
-	return ..()
+	. = ..()
+	stack_trace("Nuke disk generator destroyed!")
 
 /obj/machinery/computer/code_generator/nuke/complete_segment()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
@@ -70,8 +73,10 @@
 	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
 	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
 
-	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
-	SSpoints.dropship_points += disk_cycle_reward/10
+	if(!faction)
+		return
+	SSpoints.add_supply_points(faction, disk_cycle_reward)
+	SSpoints.add_dropship_points(faction, disk_cycle_reward/10)
 	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
 
 	say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")
@@ -89,6 +94,37 @@
 	visible_message(span_notice("[src] beeps, and spits out a [key_color] floppy disk!"))
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_GENERATED, src)
 	busy = FALSE
+
+/obj/machinery/computer/code_generator/nuke/set_broken()
+	set_disabled()
+
+/obj/machinery/computer/code_generator/nuke/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			set_disabled()
+			return
+		if(EXPLODE_HEAVY)
+			if (prob(50))
+				set_disabled()
+				return
+		if(EXPLODE_LIGHT)
+			if (prob(25))
+				set_disabled()
+				return
+		if(EXPLODE_WEAK)
+			if (prob(15))
+				set_disabled()
+				return
+
+/obj/machinery/computer/code_generator/nuke/obj_break(damage_flag)
+	obj_integrity = max_integrity
+	. = ..()
+	set_disabled()
+
+/obj/machinery/computer/code_generator/nuke/do_acid_melt()
+	visible_message(span_xenodanger("[src] is disabled by the acid!"))
+	playsound(src, SFX_ACID_HIT, 25)
+	set_disabled()
 
 /obj/machinery/computer/code_generator/nuke/red
 	name = "red nuke disk generator"

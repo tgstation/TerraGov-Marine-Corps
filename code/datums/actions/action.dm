@@ -110,6 +110,8 @@ KEYBINDINGS
 /datum/action/proc/update_button_icon()
 	if(!button)
 		return
+	if(QDELETED(owner))
+		return FALSE
 	button.name = name
 	button.desc = desc
 	if(action_icon && action_icon_state)
@@ -225,6 +227,9 @@ KEYBINDINGS
 
 ///This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen)
+	if(QDELETED(src))
+		return // this proc causes a bunch of runtimes on QDELing mobs and skipping it shouldn't really matter, the players' next mob can handle it.
+
 	if(!hud_used || !client)
 		return
 

@@ -111,12 +111,12 @@
 	user.status_flags &= ~GODMODE
 
 /obj/effect/landmark/patrol_point/tgmc_11
-	name = "TGMC exit point 1"
+	name = "NTF exit point 1"
 	id = "TGMC_1"
 	icon_state = "blue_1"
 
 /obj/effect/landmark/patrol_point/tgmc_21
-	name = "TGMC exit point 2"
+	name = "NTF exit point 2"
 	id = "TGMC_2"
 	icon_state = "blue_2"
 	minimap_icon = "patrol_2"

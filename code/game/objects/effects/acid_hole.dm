@@ -61,9 +61,11 @@
 		return
 
 	playsound(src, 'sound/effects/metal_creaking.ogg', 25, 1)
-	if(do_after(user, 60, IGNORE_HELD_ITEM, holed_wall, BUSY_ICON_HOSTILE) && !QDELETED(src) && !user.lying_angle)
+	while(do_after(user,60, FALSE, holed_wall, BUSY_ICON_HOSTILE) && !QDELETED(src) && !user.lying_angle)
 		holed_wall.take_damage(rand(2000,3500))
 		user.emote("roar")
+		if(QDELETED(src))
+			return
 
 /obj/effect/acid_hole/proc/use_wall_hole(mob/user)
 	// todo this should be an allow trait
@@ -105,7 +107,7 @@
 
 	to_chat(user, span_notice("You start crawling through the hole."))
 
-	if(do_after(user, 15, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE) && !T.density && !user.lying_angle && !user.buckled)
+	if(do_after(user, 15, FALSE, src, BUSY_ICON_HOSTILE) && !T.density && !user.lying_angle && !user.buckled)
 		for(var/obj/O in T)
 			if(!O.CanPass(user, user.loc))
 				return
@@ -146,7 +148,7 @@
 
 		to_chat(user, span_notice("You take the position to throw [G]."))
 
-		if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE) || !T || T.density)
+		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE) || !T || T.density)
 			return
 
 		user.visible_message(span_warning("[user] throws [G] through [src]!"), \
@@ -168,7 +170,7 @@
 
 		to_chat(user, span_notice("You take the position to throw [F]."))
 
-		if(!do_after(user, 10, NONE, src, BUSY_ICON_GENERIC) || !T || T.density)
+		if(!do_after(user,10, TRUE, src, BUSY_ICON_GENERIC) || !T || T.density)
 			return
 
 		user.visible_message(span_warning("[user] throws [F] through [src]!"), \

@@ -652,6 +652,7 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."
 	max_integrity = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
+	resistance_flags = BANISH_IMMUNE
 	icon_state = "window-invincible"
 
 /obj/structure/window/framed/prison/reinforced/hull/Initialize(mapload)

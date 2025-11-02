@@ -1,8 +1,17 @@
-/client/verb/pray(msg as text)
-	set category = "IC"
+/client/verb/pray_wrapper(message as text)
+	set hidden = TRUE
 	set name = "Pray"
+	pray(message)
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+/client/verb/pray(msg as null)
+	set category = "IC"
+	set name = " Pray"
+	set desc = "Send a message to admins without pinging them, for minor requests."
+
+	if(!msg)
+		msg = tgui_input_text(usr, "Send a message to admins without pinging them, for minor requests.", "Pray", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -37,7 +46,7 @@
 				html = mentor_msg)
 
 	if(liaison)
-		to_chat(usr, "Your corporate overlords at Nanotrasen have received your message.")
+		to_chat(usr, "Your corporate overlords at Ninetails have received your message.")
 	else
 		to_chat(usr, "Your prayers have been received by the gods.")
 
@@ -47,5 +56,5 @@
 	var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, span_notice("<b><font color='purple'>TGMC:</font>[ADMIN_FULLMONTY(usr)] (<a href='byond://?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(sender)]'>REPLY</a>): [text]</b>"))
+			to_chat(C, span_notice("<b><font color='purple'>NTF:</font>[ADMIN_FULLMONTY(usr)] (<a href='byond://?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(sender)]'>REPLY</a>): [text]</b>"))
 			SEND_SOUND(C, S)

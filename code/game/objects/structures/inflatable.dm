@@ -11,7 +11,7 @@
 /obj/item/inflatable/attack_self(mob/user)
 	. = ..()
 	balloon_alert(user, "inflating...")
-	if(!do_after(user, 3 SECONDS, NONE, src))
+	if(!do_after(user, 3 SECONDS, TRUE, src))
 		balloon_alert(user, "interrupted!")
 		return
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
@@ -79,7 +79,7 @@
 		visible_message(span_danger("[user] pierces [src] with [I]!"))
 		deflate(TRUE)
 
-/obj/structure/inflatable/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/inflatable/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!do_after(xeno_attacker, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)

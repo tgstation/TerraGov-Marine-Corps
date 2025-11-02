@@ -261,19 +261,44 @@
 	opacity = FALSE
 
 /turf/closed/wall/indestructible/splashscreen
-	name = "Space Station 13"
-	plane = SPLASHSCREEN_PLANE
-	icon_state = ""
+	name = "NTF vs Alien"
+	icon = 'icons/misc/title.dmi'
+	icon_state = "title_painting0"
+//	icon_state = "title_holiday"
+	layer = FLY_LAYER
 	pixel_x = -64
+	//random title as starting point so it isnt choking every time you see it.
+	var/list/total_titles
+	///Gets the current title number. It sets itself with the proc below, no need to touch.
+	var/current_title
 
-INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
-/turf/closed/wall/indestructible/splashscreen/Initialize(mapload, ...)
-	. = ..()
-	var/prefix = "icons/misc/lobby_art/"
-	var/list/lobby_art = flist(prefix)
-	if(!length(lobby_art))
-		return
-	icon = icon("[prefix]" + pick(lobby_art))
+/turf/closed/wall/indestructible/splashscreen/New()
+	..()
+	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), 1 MINUTES)
+	total_titles = icon_states(icon)
+	if(islist(total_titles))
+		if(length(total_titles))
+			current_title = pick(icon_states(icon)) //randomly picks a starting screen.
+			icon_state = current_title
+		else
+			log_message("icon_states('[icon]') is an empty list!", LOG_CATEGORY_RUNTIME)
+	else
+		log_message("icon_states('[icon]') is not a list!", LOG_CATEGORY_RUNTIME)
+
+//timer above triggers this to change the image.
+/turf/closed/wall/indestructible/splashscreen/proc/next_splashscreen()
+	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), 1 MINUTES)
+	if((!islist(total_titles)) || (!length(total_titles)))
+		total_titles = icon_states(icon)
+	if(islist(total_titles))
+		if(length(total_titles))
+			current_title = next_in_list(current_title, total_titles)
+			icon_state = current_title //sets the title to the current_title here
+		else
+			log_message("icon_states('[icon]') is an empty list!", LOG_CATEGORY_RUNTIME)
+	else
+		log_message("icon_states('[icon]') is not a list!", LOG_CATEGORY_RUNTIME)
+
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"

@@ -93,7 +93,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	to_chat(user, span_warning("[src] flashes a warning sign indicating unauthorized use!"))
 
 /obj/item/weapon/gun/proc/do_wield(mob/user, wdelay) //*shrugs*
-	if(wield_time > 0 && !do_after(user, wdelay, IGNORE_LOC_CHANGE, user, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, CALLBACK(src, PROC_REF(is_wielded))))
+	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, IGNORE_LOC_CHANGE, CALLBACK(src, PROC_REF(is_wielded))))
 		return FALSE
 	item_flags |= FULLY_WIELDED
 	setup_bullet_accuracy()
@@ -132,7 +132,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	to_chat(user, span_notice("You start a tactical reload."))
 	if(length(chamber_items))
 		unload(user)
-	if(!do_after(user, max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating(SKILL_COMBAT) * 5), IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
+	if(!do_mob(user, new_magazine, max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating(SKILL_COMBAT) * 5), ignore_flags = IGNORE_USER_LOC_CHANGE) && loc == user)
 		return
 	if(new_magazine.item_flags & IN_STORAGE)
 		var/obj/item/storage/S = new_magazine.loc

@@ -530,7 +530,7 @@
 	if(jab_damage_multiplier)
 		living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * jab_damage_multiplier, BRUTE, xeno_owner.get_limb(xeno_owner.zone_selected), MELEE, TRUE, TRUE, TRUE, CONQUEROR_WILL_JAB_PENETRATION, owner)
 	if(jab_heal_percentage)
-		var/health_to_heal = xeno_owner.xeno_caste.max_health * jab_heal_percentage
+		var/health_to_heal = xeno_owner.maxHealth * jab_heal_percentage
 		HEAL_XENO_DAMAGE(xeno_owner, health_to_heal, FALSE)
 	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "pain")
 
@@ -657,7 +657,7 @@
 
 /datum/action/ability/xeno_action/conqueror_endurance/give_action(mob/living/L)
 	. = ..()
-	xeno_owner.endurance_health_max = xeno_owner.xeno_caste.max_health * 1.5
+	xeno_owner.endurance_health_max = xeno_owner.maxHealth * 1.5
 	xeno_owner.endurance_health = xeno_owner.endurance_health_max
 	START_PROCESSING(SSprocessing, src)
 	particle_holder = new(xeno_owner, /particles/conqueror_endurance)
@@ -712,9 +712,9 @@
 		return
 	if(!xeno_owner.loc_weeds_type && !HAS_TRAIT(xeno_owner, TRAIT_INNATE_HEALING))
 		return
-	var/regen_amount = 1 + (xeno_owner.xeno_caste.max_health * 0.0375)
+	var/regen_amount = 1 + (xeno_owner.maxHealth * 0.0375)
 	if(xeno_owner.recovery_aura)
-		regen_amount += (xeno_owner.recovery_aura * xeno_owner.xeno_caste.max_health * 0.01)
+		regen_amount += (xeno_owner.recovery_aura * xeno_owner.maxHealth * 0.01)
 	if(xeno_owner.regen_power < 0)
 		return
 	regen_amount *= xeno_owner.regen_power

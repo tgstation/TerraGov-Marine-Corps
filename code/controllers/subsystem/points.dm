@@ -1,21 +1,28 @@
 // points per minute
-#define DROPSHIP_POINT_RATE 18 * ((6 - GLOB.current_orbit)/3)
-#define SUPPLY_POINT_RATE 20 * (GLOB.current_orbit/3)
+#define DROPSHIP_POINT_RATE 5 * (GLOB.current_orbit/3)
+#define SUPPLY_POINT_RATE 5 * (GLOB.current_orbit/3)
+#define HUMAN_FACTION_MAX_POINTS 15000
+#define HUMAN_FACTION_ABSOLUTE_MAX_POINTS 30000
+#define HUMAN_FACTION_MAX_DROPSHIP_POINTS 15000
+#define HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS 30000
+#define XENO_FACTION_MAX_POINTS 5000
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
 
 	priority = FIRE_PRIORITY_POINTS
-	flags = SS_KEEP_TIMING
+	flags = SS_KEEP_TIMING|SS_NO_FIRE
 
-	wait = 10 SECONDS
-	var/dropship_points = 0
+	//wait = 10 SECONDS
+	var/dropship_points = list()
 	///Assoc list of supply points
 	var/supply_points = list()
 	///Assoc list of xeno strategic points: xeno_strategic_points_by_hive["hivenum"]
 	var/list/xeno_strategic_points_by_hive = list()
 	///Assoc list of xeno tactical points: xeno_tactical_points_by_hive["hivenum"]
 	var/list/xeno_tactical_points_by_hive = list()
+	/// Association list of xeno biomass points: xeno_biomass_points_by_hive["hivenum"]
+	var/list/xeno_biomass_points_by_hive = list()
 
 	var/ordernum = 1					//order number given to next order
 
@@ -69,10 +76,11 @@ SUBSYSTEM_DEF(points)
 				containsname[path]["count"]++
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
-	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
+	for(var/key in dropship_points)
+		add_dropship_points(key, DROPSHIP_POINT_RATE / (1 MINUTES / wait))
 
 	for(var/key in supply_points)
-		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
+		add_supply_points(key, SUPPLY_POINT_RATE / (1 MINUTES / wait))
 
 ///Add amount of strategic psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_strategic_psy_points(hivenumber, amount)
@@ -85,6 +93,12 @@ SUBSYSTEM_DEF(points)
 	if(!CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_PSY_POINTS))
 		return
 	xeno_tactical_points_by_hive[hivenumber] += amount
+
+/// Add amount of biomass to the selected hive only if the gamemode support biomass.
+/datum/controller/subsystem/points/proc/add_biomass_points(hivenumber, amount)
+	if(!CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_BIOMASS_POINTS))
+		return
+	xeno_biomass_points_by_hive[hivenumber] = min(xeno_biomass_points_by_hive[hivenumber] + amount, MUTATION_BIOMASS_MAXIMUM)
 
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/living/user)
 	var/cost = 0
@@ -190,3 +204,53 @@ SUBSYSTEM_DEF(points)
 		orders[i].reason = reason
 		requestlist["[orders[i].id]"] = orders[i]
 	ckey_shopping_cart.Cut()
+
+/datum/controller/subsystem/points/proc/add_supply_points(faction, amount, new_faction = FALSE)
+	if(!new_faction && !(faction in supply_points))
+		stack_trace("adding [faction] to supply_points via add_supply_points without new_faction set")
+		message_admins("added new faction \"[faction]\" to supply points list.  This is okay if you meant to do that but might be a bug.  This faction will now be eligible to recive points from supply point increase events.")
+	var/startingsupplypoints = supply_points[faction]
+	if(startingsupplypoints > HUMAN_FACTION_ABSOLUTE_MAX_POINTS)
+		return
+	var/simplenewamount1 = startingsupplypoints + amount
+	var/countoverflowfrom = max(HUMAN_FACTION_MAX_POINTS, startingsupplypoints)
+	var/overflowamount1 = simplenewamount1 - countoverflowfrom
+	if(overflowamount1 > 0)
+		supply_points[faction] = countoverflowfrom
+		overflowamount1 *= 0.15
+		var/simplenewamount2 = countoverflowfrom + overflowamount1
+		var/overflowamount2 = simplenewamount2 - HUMAN_FACTION_ABSOLUTE_MAX_POINTS
+		if(overflowamount2 > 0)
+			supply_points[faction] = HUMAN_FACTION_ABSOLUTE_MAX_POINTS
+			minor_announce("Operational requisitions budget exceeded absolute maximum capacity, 100% of points over [HUMAN_FACTION_ABSOLUTE_MAX_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+		else
+			supply_points[faction] = simplenewamount2
+			if(startingsupplypoints < HUMAN_FACTION_MAX_POINTS)
+				minor_announce("Operational requisitions budget exceeded normal maximum capacity, 85% of points over [HUMAN_FACTION_MAX_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+	else
+		supply_points[faction] = simplenewamount1
+
+/datum/controller/subsystem/points/proc/add_dropship_points(faction, amount, new_faction = FALSE)
+	if(!new_faction && !(faction in dropship_points))
+		stack_trace("adding [faction] to dropship_points via add_dropship_points without new_faction set")
+		message_admins("added new faction \"[faction]\" to dropship points list.  This is okay if you meant to do that but might be a bug.")
+	var/startingdropshippoints = dropship_points[faction]
+	if(startingdropshippoints > HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS)
+		return
+	var/simplenewamount1 = startingdropshippoints + amount
+	var/countoverflowfrom = max(HUMAN_FACTION_MAX_DROPSHIP_POINTS, startingdropshippoints)
+	var/overflowamount1 = simplenewamount1 - countoverflowfrom
+	if(overflowamount1 > 0)
+		dropship_points[faction] = countoverflowfrom
+		overflowamount1 *= 0.15
+		var/simplenewamount2 = countoverflowfrom + overflowamount1
+		var/overflowamount2 = simplenewamount2 - HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS
+		if(overflowamount2 > 0)
+			dropship_points[faction] = HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS
+			minor_announce("Operational dropship budget exceeded absolute maximum capacity, 100% of points over [HUMAN_FACTION_ABSOLUTE_MAX_DROPSHIP_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+		else
+			dropship_points[faction] = simplenewamount2
+			if(startingdropshippoints < HUMAN_FACTION_MAX_DROPSHIP_POINTS)
+				minor_announce("Operational dropship budget exceeded normal maximum capacity, 85% of points over [HUMAN_FACTION_MAX_DROPSHIP_POINTS] goes towards factional goals.", title = "[faction] accounting division")
+	else
+		dropship_points[faction] = simplenewamount1

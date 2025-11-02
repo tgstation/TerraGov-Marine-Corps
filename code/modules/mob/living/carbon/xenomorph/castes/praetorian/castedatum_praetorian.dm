@@ -37,7 +37,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/toxin/aphrotoxin/heavy, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 25
@@ -56,16 +56,23 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/spray_acid/cone,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 	mutations = list(
@@ -85,12 +92,17 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/spray_acid/cone,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/sticky_grenade,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
@@ -107,7 +119,7 @@
 	caste_desc = "A giant melee monster. It looks pretty strong."
 
 	// +2 melee damage
-	melee_damage = 25
+//	melee_damage = 25
 
 	// +30 hp
 	max_health = 420
@@ -121,12 +133,18 @@
 	// Loses ranged spit abilities for close combat combo abilities.
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/dodge,
 		/datum/action/ability/activable/xeno/tail_hook,
 		/datum/action/ability/activable/xeno/tail_trip,
 		/datum/action/ability/activable/xeno/impale,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -150,12 +168,19 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/devour, // Primo Dancer can devour, as a treat.
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/dodge,
 		/datum/action/ability/activable/xeno/tail_hook,
 		/datum/action/ability/activable/xeno/tail_trip,
 		/datum/action/ability/activable/xeno/impale,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/baton_pass,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
@@ -179,6 +204,10 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
@@ -210,6 +239,10 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
@@ -223,4 +256,6 @@
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)

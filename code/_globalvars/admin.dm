@@ -3,7 +3,7 @@ GLOBAL_VAR_INIT(dooc_allowed, TRUE)
 GLOBAL_VAR_INIT(dsay_allowed, TRUE)
 GLOBAL_VAR_INIT(enter_allowed, TRUE)
 GLOBAL_VAR_INIT(respawn_allowed, TRUE)
-GLOBAL_VAR_INIT(valhalla_allowed, TRUE)
+GLOBAL_VAR_INIT(valhalla_allowed, FALSE)
 GLOBAL_VAR_INIT(ssd_posses_allowed, TRUE)
 GLOBAL_VAR_INIT(xeno_enter_allowed, TRUE)
 
@@ -51,3 +51,5 @@ GLOBAL_LIST_INIT(vv_special_lists, init_special_list_names())
 		if(isnull(locate(REF(value))))
 			output += varname
 	return output
+
+GLOBAL_VAR_INIT(observer_freedom, FALSE)
