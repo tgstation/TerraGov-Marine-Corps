@@ -4,14 +4,15 @@
 	supervisors = "the acting captain"
 	exp_type_department = EXP_TYPE_COMMAND
 
+	shadow_languages = list(/datum/language/xenocommon)
 
 //Captain
 /datum/job/terragov/command/captain
 	title = CAPTAIN
 	req_admin_notify = TRUE
-	paygrade = "O6"
-	comm_title = "CPT"
-	supervisors = "TGMC high command"
+	paygrade = "COL"
+	comm_title = "CMMDR"
+	supervisors = "NTC high command"
 	selection_color = "#ccccff"
 	total_positions = 1
 	skills_type = /datum/skills/captain
@@ -35,23 +36,22 @@
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
-		<b>You answer to</b> TGMC High Command<br /><br />
+		<b>You answer to</b> NTC High Command<br /><br />
 		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Lead the TGMC platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
+		<b>Duty</b>: Lead the NTF platoon and complete your mission. Support the marines and communicate with your command staff, execute orders. Coordinate with Operations officer.
 	"}
 	minimap_icon = "captain"
 
 /datum/job/terragov/command/captain/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"As the Captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
-While you may support Nanotrasen, you report to TGMC High Command, not the company.
-Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the Marines.
+	. += {"As the Captain and Commander of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently. you report to NTC Management.
+Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the Operatives.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
-You should not be voluntarily leaving your vessel under any circumstances. <b>A Captain goes down with their ship.</b>
+You should not be voluntarily leaving your vessel under any circumstances.
 If you require any help, use <b>Mentorhelp</b> to ask mentors about what you're supposed to do.
-Godspeed, Captain! And remember, you are not above the law."}
+Godspeed, Commander! And remember, you are not above the law."}
 
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
@@ -62,17 +62,12 @@ Godspeed, Captain! And remember, you are not above the law."}
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600) // starting
-			new_human.wear_id.paygrade = "O6"
-		if(601 to 1500) // 10hrs
-			new_human.wear_id.paygrade = "O7"
-		if(1501 to 6000) // 25 hrs
-			new_human.wear_id.paygrade = "O8"
-		if(6001 to 18000) // 100 hrs
-			new_human.wear_id.paygrade = "O9"
-		if(18001 to INFINITY) // 300 hrs
-			new_human.wear_id.paygrade = "10"
-	new_human.wear_id.update_label()
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "COL"
+		if(1501 to 7500) // 25hrs
+			new_human.wear_id.paygrade = "MGEN"
+		if(7501 to INFINITY) //125 hrs
+			new_human.wear_id.paygrade = "GEN"
 
 /datum/job/terragov/command/captain/campaign
 	outfit = /datum/outfit/job/command/captain_campaign
@@ -108,7 +103,7 @@ Godspeed, Captain! And remember, you are not above the law."}
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> Captain<br /><br />
-		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assist the captain if available.
 	"}
@@ -118,9 +113,9 @@ Godspeed, Captain! And remember, you are not above the law."}
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
-Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
+Your duties are to ensure operatives hold when ordered, and push when they are cowering behind barricades.
 Do not ask your men to do anything you would not do side by side with them.
-Make the TGMC proud!"}
+Make the NTC proud!"}
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -157,7 +152,7 @@ Make the TGMC proud!"}
 	paygrade = "O1"
 	comm_title = "SO"
 	total_positions = 4
-	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
+	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/so
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
@@ -179,7 +174,7 @@ Make the TGMC proud!"}
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Captain<br /><br />
-		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Take charge of one of the four squads, be their eyes and ears providing intel and additional shipside support via Orbital Bombardments.
 	"}
@@ -224,7 +219,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	paygrade = "WO"
 	comm_title = "TO"
 	total_positions = 1
-	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
+	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO)
 	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/transportofficer
 	display_order = JOB_DISPLAY_ORDER_TRANSPORT_OFFICER
@@ -277,9 +272,9 @@ Try to ensure the Tadpole's survival. In the case of its destruction, you may re
 	title = PILOT_OFFICER
 	paygrade = "O1"
 	comm_title = "PO"
-	total_positions = 1
-	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
-	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	total_positions = 2
+	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
@@ -325,7 +320,7 @@ Try to ensure the Tadpole's survival. In the case of its destruction, you may re
 /datum/job/terragov/command/pilot/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"Your job is to support marines with close air support via the Condor.
+	. += {"Your job is to support opreatives with close air support via the Condor.
 You are expected to use the Condor as the Alamo is able to be ran automatically, though at some points you will be required to take control of the Alamo for the operation's success, though highly unlikely.
 Though you are an officer, your authority is limited to the dropship and the Condor, where you have authority over the enlisted personnel."}
 
@@ -334,12 +329,12 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/command/mech_pilot
 	title = MECH_PILOT
 	req_admin_notify = TRUE
-	paygrade = "E3"
+	paygrade = "WO"
 	comm_title = "MCH"
 	total_positions = 0
 	skills_type = /datum/skills/mech_pilot
-	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
-	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
 	outfit = /datum/outfit/job/command/mech_pilot
 	exp_requirements = XP_REQ_EXPERT
@@ -363,6 +358,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += "You are the operator of a very expensive and valuable Mech, and are trained and expected to use it in the field of combat. You can serve your Division in a variety of roles, so choose carefully."
 
+/* NTF removal
 /datum/job/terragov/command/mech_pilot/on_pre_setup()
 	if(total_positions)
 		return
@@ -370,6 +366,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	if(client_count >= NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED)
 		client_count = 1 + FLOOR((client_count - NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED) / NUCLEAR_WAR_MECH_INTERVAL_PER_SLOT, 1)
 		add_job_positions(client_count)
+*/
 
 /datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -401,8 +398,8 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	total_positions = 0
 	max_positions = 2
 	skills_type = /datum/skills/assault_crewman
-	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC)
-	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_PILOT, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO)
+	minimal_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
 	outfit = /datum/outfit/job/command/assault_crewman
 	multiple_outfits = TRUE
@@ -413,7 +410,9 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+/* NTF removal
 	job_points_needed = 35
+*/
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -436,7 +435,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/command/assault_crewman/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += "You are an Assault Crewman. You operate the TGMC's armored assault vehicles along with your partner, and in some cases a \"willing\" loader. Make sure that you work as a team to advance the front!"
+	. += "You are an Assault Crewman. You operate the NTF's armored assault vehicles along with your partner, and in some cases a \"willing\" loader. Make sure that you work as a team to advance the front!"
 
 /datum/job/terragov/command/assault_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -468,8 +467,8 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	comm_title = "TC"
 	total_positions = 1
 	skills_type = /datum/skills/transport_crewman
-	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC)
-	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_PILOT)
+	minimal_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
 	outfit = /datum/outfit/job/command/transport_crewman
 	exp_requirements = XP_REQ_EXPERT
@@ -491,7 +490,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/command/transport_crewman/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += "You are a Transport Crewman. You operate the TGMC's transport vehciles to ensure that marines and equipment gets to the front in a timely and safe manner."
+	. += "You are a Transport Crewman. You operate the NTF's transport vehciles to ensure that marines and equipment gets to the front in a timely and safe manner."
 
 /datum/job/terragov/command/transport_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -519,7 +518,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING
 	selection_color = "#fff5cc"
-	supervisors = "the acting captain"
+	supervisors = "the acting captain, Archercorp."
 	exp_type_department = EXP_TYPE_ENGINEERING
 
 
@@ -530,7 +529,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
 	total_positions = 1
-	access = list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PREP)
+	access = list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/ce
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
@@ -547,7 +546,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Supervise the engineers and technicians on duty. Overview the ship’s engine. Teach what’s right and what’s wrong about engineering, cut corners and find places in any FOB that can easily be destroyed.
 	"}
@@ -588,8 +587,8 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	comm_title = "ST"
 	paygrade = "PO3"
 	total_positions = 5
-	supervisors = "the chief ship engineer and the requisitions officer"
-	access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
+	supervisors = "the chief ship engineer and the requisitions officer, Archercorp."
+	access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	skills_type = /datum/skills/st
 	display_order = JOB_DISPLAY_ORDER_SHIP_TECH
@@ -640,7 +639,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 /datum/job/terragov/requisitions
 	job_category = JOB_CAT_REQUISITIONS
 	selection_color = "#BAAFD9"
-	supervisors = "the acting captain"
+	supervisors = "the acting captain, TRANSCO."
 	exp_type_department = EXP_TYPE_REQUISITIONS
 
 
@@ -674,7 +673,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 1 hour playtime (any role)<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more points. Supply the marines with deluxe equipment to ensure success.
 	"}
@@ -723,7 +722,7 @@ A happy ship is a well-functioning ship."}
 	comm_title = "CMO"
 	paygrade = "SP"
 	total_positions = 1
-	supervisors = "the acting captain"
+	supervisors = "the acting captain, Novamed."
 	selection_color = "#99FF99"
 	access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
@@ -747,7 +746,7 @@ A happy ship is a well-functioning ship."}
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
@@ -788,7 +787,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	comm_title = "MD"
 	paygrade = "MS"
 	total_positions = 4
-	supervisors = "the chief medical officer"
+	supervisors = "the chief medical officer, Novamed."
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
@@ -849,7 +848,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	comm_title = "Rsr"
 	paygrade = "RSRA"
 	total_positions = 2
-	supervisors = "the NT corporate office"
+	supervisors = "Novamed."
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/researcher
@@ -869,10 +868,10 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
-		<b>You answer to the</b> Nanotrasen Corporate Office<br /><br />
+		<b>You answer to the</b> Ninetails Corporate Office<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Nanotrasen/TerraGov, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
+		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Ninetails/NTF, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
 	"}
 	minimap_icon = "researcher"
 
@@ -880,8 +879,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 /datum/job/terragov/medical/researcher/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"You are a civilian, working for the Nanotrasen Corporation, but you are still subject to the military chain of command.
-You are tasked with deploying with the marines and researching the remains of the colony to get funding for Requisitions.
+	. += {"You are a civilian, working for the Ninetails Corporation.
+You are tasked with deploying with the operatives and researching the remains of the colony to get funding for Requisitions.
 You are free to use any new technology you discover as you want, or give them out to the marines.
 If shipside medbay is unstaffed, you should consider working as a regular doctor until someone else is available to take over.
 It is also recommended that you gear up like a regular marine, or your 'internship' might be ending early..."}
@@ -917,15 +916,16 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 /datum/job/terragov/civilian/liaison
 	title = CORPORATE_LIAISON
 	paygrade = "NT1"
-	comm_title = "CL"
-	supervisors = "the NT corporate office"
+	comm_title = "OO"
+	supervisors = "the NT corporate office, and the corporate council."
 	total_positions = 1
-	access = list(ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
-	minimal_access = list(ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
+	shadow_languages = list(/datum/language/xenocommon)
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	outfit = /datum/outfit/job/civilian/liaison
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -934,10 +934,10 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Nanotrasen Corporate Office<br /><br />
+		<b>You answer to the</b> Ninetails Corporate Office, the CEO.<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage relations between Nanotrasen and TerraGov Marine Corps. Report your findings via faxes. Reply if you’re called.
+		<b>Duty</b>: Manage the operations along with command, do paperwork, Reply if you’re called.
 	"}
 	minimap_icon = "cl"
 
@@ -966,10 +966,10 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 /datum/job/terragov/civilian/liaison/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"As a representative of Nanotrasen Corporation you are expected to stay professional and loyal to the corporation at all times.
-You are not required to follow military orders; however, you cannot give military orders.
-Your primary job is to observe and report back your findings to Nanotrasen. Follow regular game rules unless told otherwise by your superiors.
-Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff are absent or otherwise busy), and this is normal."}
+	. += {"As a representative of Ninetails Corporation you are expected to stay professional and loyal to the corporation at all times.
+You are expected to make sure the NTF is functioning as intended for Ninetails Corp's interests and good outlook. Running miners while at peace is usually more profitable than warring and wasting resources, but that does not mean you should submit your rightful resources to hostile forces.
+Your primary job is to observe and report back your findings to Ninetails. Follow regular game rules unless told otherwise by your superiors.
+Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff is absent or otherwise busy), and this is normal."}
 
 /datum/job/terragov/silicon
 	job_category = JOB_CAT_SILICON
@@ -982,7 +982,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	req_admin_notify = TRUE
 	comm_title = "Syn"
 	paygrade = "Mk.I"
-	supervisors = "the acting captain"
+	supervisors = "the acting captain, Ninetails."
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
 	access = ALL_ACCESS
@@ -992,7 +992,9 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+/* NTF removal
 	job_points_needed = 40
+*/
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -1001,9 +1003,9 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	html_description = {"
 		<b>Difficulty</b>: Soul Crushing<br /><br />
 		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
-		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
+		<b>Duty</b>: Support and assist in every department of the Nine Tailed Fox, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
 	"}
 	minimap_icon = "synth"
 
@@ -1044,7 +1046,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 /datum/job/terragov/silicon/synthetic/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += "Your primary job is to support and assist all TGMC departments and personnel on-board. \
+	. += "Your primary job is to support and assist all NTC departments and personnel on-board. \
 		In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."
 
 /datum/job/terragov/silicon/ai
@@ -1054,7 +1056,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	comm_title = "AI"
 	total_positions = 1
 	selection_color = "#92c255"
-	supervisors = "your laws and the human crew"
+	supervisors = "your laws and the human crew."
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
@@ -1070,7 +1072,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />
 		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
-		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Assist the crew whenever you’re needed, be the doorknob of the ship. Recon the areas for threats via cameras, report your findings to the crew at various communication channels. Follow your laws.
 	"}
@@ -1086,7 +1088,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 /datum/job/terragov/silicon/ai/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"Your primary job is to support and assist all TGMC departments and personnel on-board.
+	. += {"Your primary job is to support and assist all NTC departments and personnel on-board.
 However, your vision is limited through cameras from the ship or to marines groundside.
 Recon any threats and report findings at various communication channels.
 If you require any help, use <b>Mentorhelp</b> to ask mentors about what you're supposed to do."}

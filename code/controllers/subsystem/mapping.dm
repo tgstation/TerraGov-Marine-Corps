@@ -326,6 +326,10 @@ SUBSYSTEM_DEF(mapping)
 	SSblackbox.record_feedback("text", "ship_map", 1, ship_map.map_name)
 	#endif
 
+	var/datum/map_config/antag_map = configs[ANTAG_MAP]
+	INIT_ANNOUNCE("Loading [antag_map.map_name]...")
+	LoadGroup(FailedZs, antag_map.map_name, antag_map.map_path, antag_map.map_file, antag_map.traits, ZTRAITS_ANTAG_SHIP)
+
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"
 			UPDATE [format_table_name("round")] SET map_name = :map_name WHERE id = :round_id
@@ -356,10 +360,19 @@ SUBSYSTEM_DEF(mapping)
 	else if(maptype == SHIP_MAP)
 		if(!VM.MakeNextMap(maptype))
 			next_map_configs[SHIP_MAP] = load_map_configs(list(maptype), default = TRUE)
-			message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
+			message_admins("Failed to set new map with next_ship.json for [VM.map_name]! Using default as backup!")
 			return
 
 		next_map_configs[SHIP_MAP] = VM
+		return TRUE
+
+	else if(maptype == ANTAG_MAP)
+		if(!VM.MakeNextMap(maptype))
+			next_map_configs[ANTAG_MAP] = load_map_configs(list(maptype), default = TRUE)
+			message_admins("Failed to set new map with next_antag.json for [VM.map_name]! Using default as backup!")
+			return
+
+		next_map_configs[ANTAG_MAP] = VM
 		return TRUE
 
 /datum/controller/subsystem/mapping/proc/preloadTemplates(path = "_maps/templates/") //see master controller setup

@@ -37,7 +37,7 @@
 		header += span_faction_alert_subtitle(subtitle)
 
 	alert_strings += span_alert_header(header)
-	alert_strings += span_faction_alert_text(message)
+	alert_strings += span_faction_alert_text(parse_pencode(message, user = usr, apply_font = FALSE, blocked_tags = list("field")))
 
 	if(color_override)
 		finalized_alert = faction_alert_colored_span(color_override, jointext(alert_strings, ""))

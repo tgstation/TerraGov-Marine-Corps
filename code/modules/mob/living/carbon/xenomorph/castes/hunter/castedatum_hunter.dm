@@ -18,15 +18,15 @@
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -1.4
-	weeds_speed_mod = -0.1
+	speed = -1.5
+	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 20
+	plasma_max = 600
+	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 310
+	max_health = 300
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -51,14 +51,22 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/silence,
 		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/xenohide,
 		/datum/action/ability/xeno_action/stealth,
 		/datum/action/ability/activable/xeno/hunter_mark,
 		/datum/action/ability/xeno_action/psychic_trace,
 		/datum/action/ability/xeno_action/mirage,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 	// *** Vent Crawl Parameters *** //
@@ -81,6 +89,9 @@
 /datum/xeno_caste/hunter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
+/datum/xeno_caste/hunter/assassin/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
 /datum/xeno_caste/hunter/primordial
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_PRIMO
@@ -89,15 +100,23 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/silence,
 		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/xenohide,
 		/datum/action/ability/xeno_action/stealth,
 		/datum/action/ability/xeno_action/stealth/disguise,
 		/datum/action/ability/activable/xeno/hunter_mark,
 		/datum/action/ability/xeno_action/psychic_trace,
 		/datum/action/ability/xeno_action/mirage,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)
 
 
@@ -141,8 +160,14 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/xeno_action/xenohide,
 		/datum/action/ability/activable/xeno/silence,
 		/datum/action/ability/activable/xeno/pounce,
 		/datum/action/ability/xeno_action/stealth,
@@ -150,4 +175,6 @@
 		/datum/action/ability/activable/xeno/hunter_mark,
 		/datum/action/ability/xeno_action/psychic_trace,
 		/datum/action/ability/xeno_action/mirage,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)

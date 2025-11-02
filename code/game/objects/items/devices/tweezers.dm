@@ -9,7 +9,7 @@
 
 /obj/item/tweezers/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/shrapnel_removal, 10 SECONDS)
+	AddElement(/datum/element/shrapnel_removal, 12 SECONDS)
 
 /obj/item/tweezers_advanced
 	name = "\improper ESR-12"

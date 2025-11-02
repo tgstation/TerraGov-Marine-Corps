@@ -54,7 +54,7 @@
 	if(broken == 2 && isscrewdriver(I))
 		balloon_alert_to_viewers("fixing the microwave...")
 
-		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		balloon_alert_to_viewers("partially fixed")
@@ -63,7 +63,7 @@
 	else if(broken == 1 && iswrench(I))
 		balloon_alert_to_viewers("fixing the microwave...")
 
-		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		balloon_alert_to_viewers("fully fixed")
@@ -83,7 +83,7 @@
 
 		balloon_alert_to_viewers("starts cleaning...")
 
-		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		dirty = 0

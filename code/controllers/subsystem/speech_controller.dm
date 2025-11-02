@@ -16,13 +16,13 @@ SUBSYSTEM_DEF(speech_controller)
 	var/list/queued_says_to_execute = list()
 
 ///queues mob_to_queue into our process list so they say(message) near the start of the next tick
-/datum/controller/subsystem/speech_controller/proc/queue_say_for_mob(mob/mob_to_queue, message, message_type)
+/datum/controller/subsystem/speech_controller/proc/queue_say_for_mob(mob/mob_to_queue, message, message_type, range, ghost_visible)
 
 	if(!TICK_CHECK || FOR_ADMINS_IF_BROKE_immediately_execute_all_speech)
-		process_single_say(mob_to_queue, message, message_type)
+		process_single_say(mob_to_queue, message, message_type, range, ghost_visible)
 		return TRUE
 
-	queued_says_to_execute += list(list(mob_to_queue, message, message_type))
+	queued_says_to_execute += list(list(mob_to_queue, message, message_type, range, ghost_visible))
 
 	return TRUE
 
@@ -34,23 +34,26 @@ SUBSYSTEM_DEF(speech_controller)
 
 	for(var/list/say_to_process AS in says_to_process)
 
-		var/mob/mob_to_speak = say_to_process[MOB_INDEX]//index 1 is the mob, 2 is the message, 3 is the message category
+		var/mob/mob_to_speak = say_to_process[MOB_INDEX]//index 1 is the mob, 2 is the message, 3 is the message category, 4 is the range of the message
 		var/message = say_to_process[MESSAGE_INDEX_SPEECH]
 		var/message_category = say_to_process[CATEGORY_INDEX]
+		var/range = say_to_process[RANGE]
+		var/ghost_visible = say_to_process[GHOST_VISIBLE]
 
-		process_single_say(mob_to_speak, message, message_category)
+		process_single_say(mob_to_speak, message, message_category, range, ghost_visible)
 
 ///used in fire() to process a single mobs message through the relevant proc.
 ///only exists so that sleeps in the message pipeline dont cause the whole queue to wait
-/datum/controller/subsystem/speech_controller/proc/process_single_say(mob/mob_to_speak, message, message_category)
+/datum/controller/subsystem/speech_controller/proc/process_single_say(mob/mob_to_speak, message, message_category, range, ghost_visible)
 	set waitfor = FALSE
 
 	switch(message_category)
 		if(SPEECH_CONTROLLER_QUEUE_SAY_VERB)
-			mob_to_speak.say(message)
+			mob_to_speak.say(message, range)
 
 		if(SPEECH_CONTROLLER_QUEUE_WHISPER_VERB)
 			mob_to_speak.whisper(message)
 
 		if(SPEECH_CONTROLLER_QUEUE_EMOTE_VERB)
-			mob_to_speak.emote("me", EMOTE_TYPE_VISIBLE, message, TRUE)
+			mob_to_speak.emote("me", EMOTE_TYPE_VISIBLE, message, TRUE, range, ghost_visible)
+

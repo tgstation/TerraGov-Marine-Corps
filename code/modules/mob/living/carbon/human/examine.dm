@@ -492,9 +492,7 @@
 
 	if(chestburst == CARBON_CHEST_BURSTED)
 		if(isxeno(user))
-			msg += "[span_xenowarning("A larva escaped from [t_him]!")]\n"
-		else
-			msg += "[span_boldwarning("[t_He] [t_has] a giant hole in [t_his] chest!")]\n"
+			msg += "[span_xenowarning("A larva was born from [t_him]!")]\n"
 
 	for(var/i in embedded_objects)
 		msg += EXAMINE_SECTION_BREAK
@@ -503,9 +501,9 @@
 			continue
 		msg += "[span_boldwarning("[t_He] [t_has] \a [embedded] sticking out of [t_his] flesh!")]\n"
 
-	if(flavor_text)
+	/*if(flavor_text)
 		msg += separator_hr("Flavor Text")
-		msg += flavor_text
+		msg += "</span>[flavor_text]<span class='info'>"*/
 
 	if(hasHUD(user,"security"))
 		msg += separator_hr("Security HUD")
@@ -549,18 +547,48 @@
 			if(assigned_squad == H.assigned_squad) //same squad
 				msg += "<a href='byond://?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
+	msg += "\n[span_collapsible("Flavor Text", "[flavor_text]")]"
+	if(pose)
+		msg += "\n[span_collapsible("Temporary Flavor Text", "[pose]")]"
+	if(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes)
+		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+	else if(user == src)
+		msg += "You have not set your OOC Notes yet! <a href='?src=\ref[src];ooc_notes=1'>\[Edit\]</a>"
+	if(profile_pic && (w_uniform || !nsfwprofile_pic)) //should appear when wearing suit and when no nsfw pic but not wearing suit.
+		msg += "<span class='info'><img src=[profile_pic] width=300 height=350/></span>"
+	if(nsfwprofile_pic && !w_uniform)
+		msg += "<span class='info'><img src=[nsfwprofile_pic] width=300 height=350/></span>"
+
+// removed hollow examine from humans
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))
 		if(isxeno(user))
-			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] hollow. Useless.</span>\n"
-		else
-			msg += "[span_deadsay("<b>[t_He] [t_is] hollowed out!</b>")]\n"
+			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] was hollowed before. Useless.</span>\n"
+//		else
+//			msg += "[span_warning("<b>[t_He] [t_is] hollowed out!</b>")]\n"
 
 	if(isxeno(user))
+		var/embryocount
+		for(var/obj/item/alien_embryo/implanted in contents)
+			embryocount ++
+			if(!implanted)
+				break
 		msg += separator_hr("Xeno Info")
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] [t_is] not organic.")]\n"
 		if(status_flags & XENO_HOST)
-			msg += "[t_He] [t_is] impregnated.\n"
+			msg += "[t_He] [t_is] impregnated with [embryocount] larva(s) and [t_he] [t_is][reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : " not"] inoculated with Larval Accelerant.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)] doses of Tricordrazine [t_is] still inside the infected host, healing this one slowly.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)] doses of Inaprovaline [t_is] still inside the infected host, keeping this one stabilized for now.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/dexalin))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/dexalin)] doses of Dexalin [t_is] still inside the infected host, making this one breathe easier.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)] doses of Spaceacillin [t_is] still inside the infected host, curing infections on this one.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly)] doses of Growth toxin [t_is] still inside the infected host, making the little one within grow faster.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/acid))
+			msg += "[reagents.get_reagent_amount(/datum/reagent/toxin/acid)] doses of acid in their bloodstream, melting this one from within.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin)]u): Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
@@ -571,6 +599,11 @@
 			msg += "Ozelomelyn([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn)]u): Rapidly purges all medicine in the body, causes toxin damage capped at 40. Metabolizes very quickly.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
 			msg += "Sanguinal([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)]u): Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin))
+			msg += "Aphrotoxin([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin)]u): A strong aphrodisiac and larval growth toxin, will cause legs to go weak and boost larva growth.\n"
+		if(embryocount < 1)
+			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+				msg += "Growth toxin: Makes the little ones grow faster while affected, but the host has no little ones inside..\n"
 
 //defiler specific examine info
 		if(istype(user, /mob/living/carbon/xenomorph/defiler))

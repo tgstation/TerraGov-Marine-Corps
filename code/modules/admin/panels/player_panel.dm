@@ -236,7 +236,7 @@ ADMIN_VERB(player_panel, R_ADMIN, "Player Panel", "View the player panel", ADMIN
 				M_job = "Living"
 
 		else if(istype(M,/mob/new_player))
-			M_job = "New player"
+			M_job = "In Lobby"
 
 		else if(isobserver(M))
 			M_job = "Ghost"
@@ -244,7 +244,7 @@ ADMIN_VERB(player_panel, R_ADMIN, "Player Panel", "View the player panel", ADMIN
 		M_job = html_encode(M_job)
 		var/M_name = html_encode(M.name)
 		var/M_rname = html_encode(M.real_name)
-		var/M_key = html_encode(M.key)
+		var/M_key = html_encode(key_name(M, include_link = FALSE, include_name = FALSE))
 		var/M_cid = html_encode(M.computer_id)
 		var/M_ip = html_encode(M.ip_address)
 
@@ -297,19 +297,20 @@ ADMIN_VERB(player_panel, R_ADMIN, "Player Panel", "View the player panel", ADMIN
 ADMIN_VERB(player_panel_extended, R_ADMIN, "Player Panel Extended", "View the extended player panel", ADMIN_CATEGORY_MAIN)
 	var/ref = "[REF(user.holder)];[HrefToken()]"
 	var/dat = "<table border=0 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
+	dat = "<a href='byond://?src=[ref];playerpanelextended=1'>Refresh</a><br>[dat]"
 
 	for(var/mob/M in sortmobs())
 		if(!M.ckey)
 			continue
 
-		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
+		dat += "<tr><td>[key_name(M, include_link = FALSE, include_name = FALSE)]</td>"
 		dat += "<td><a href='byond://?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>AI</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/new_player))
-			dat += "<td>New Player</td>"
+			dat += "<td>In Lobby</td>"
 		else if(isobserver(M))
 			dat += "<td>Ghost</td>"
 		else if(ismonkey(M))
@@ -349,9 +350,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 	var/body
 
 	body += "<b>[M.name]</b>"
-
+	body += " played by <b>[key_name(M, include_link = FALSE, include_name = FALSE)]</b> "
 	if(M.client)
-		body += " played by <b>[M.client]</b> "
 		body += " <a href='byond://?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key];close=1'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
 	if(isnewplayer(M))
@@ -506,6 +506,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 				body += "<a href='byond://?src=[ref];rankequip=[REF(M)]'>Rank and Equipment</a> | "
 				body += "<a href='byond://?src=[ref];editappearance=[REF(M)]'>Edit Appearance</a> | "
 				body += "<a href='byond://?src=[ref];randomname=[REF(M)]'>Randomize Name</a>"
+			if(isxeno(M))
+				body += "<br>"
+				body += "<a href='?src=[ref];togglerouny=[REF(M)]'>Toggle Rouny Sprites</a>"
+
 
 	log_admin("[key_name(user)] opened the player panel of [key_name(M)].")
 

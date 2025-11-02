@@ -48,6 +48,8 @@
 			icon_state = "traphugger"
 		if(TRAP_SMOKE_NEURO)
 			icon_state = "trapneurogas"
+		if(TRAP_SMOKE_APHRO)
+			icon_state = "trapaphrogas"
 		if(TRAP_SMOKE_ACID)
 			icon_state = "trapacidgas"
 		if(TRAP_ACID_WEAK)
@@ -86,6 +88,8 @@
 			. += hugger_amount == 1 ? "There's a little one inside." : "There's [hugger_amount] little ones inside."
 		if(TRAP_SMOKE_NEURO)
 			. += "There's pressurized neurotoxin inside."
+		if(TRAP_SMOKE_APHRO)
+			. += "There's pressurized aphrotoxin inside."
 		if(TRAP_SMOKE_ACID)
 			. += "There's pressurized acid gas inside."
 		if(TRAP_ACID_WEAK)
@@ -109,7 +113,7 @@
 	SIGNAL_HANDLER
 	if(!trap_type)
 		return
-	if(AM && (hivenumber == AM.get_xeno_hivenumber()))
+	if(issamexenohive(AM))
 		return
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	if(iscarbon(AM))
@@ -132,7 +136,7 @@
 			if(!could_be_hugged)
 				return
 			drop_huggers()
-		if(TRAP_SMOKE_NEURO, TRAP_SMOKE_ACID)
+		if(TRAP_SMOKE_NEURO, TRAP_SMOKE_APHRO, TRAP_SMOKE_ACID)
 			smoke.start()
 		if(TRAP_ACID_WEAK)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
@@ -155,10 +159,12 @@
 	huggers.Cut()
 	set_trap_type(null)
 
-/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
+	if(!issamexenohive(xeno_attacker))
+		return ..()
 	if(xeno_attacker.a_intent == INTENT_HARM)
 		return ..()
 	if(trap_type == TRAP_HUGGER)
@@ -213,6 +219,10 @@
 		if(length(huggers) >= hugger_limit)
 			balloon_alert(user, "Already full")
 			return
+
+	if(hugger.stat == DEAD || !issamexenohive(hugger))
+		balloon_alert(user, "Cannot insert facehugger")
+		return
 
 	user.transferItemToLoc(hugger, src)
 	hugger.go_idle(TRUE)

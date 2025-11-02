@@ -20,7 +20,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!mature && isxeno(user))
+	if(!mature && issamexenohive(user))
 		balloon_alert(user, "Not fully grown")
 		return FALSE
 
@@ -46,11 +46,14 @@
 		return ..()
 	return on_use(user)
 
-/obj/structure/xeno/plant/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/xeno/plant/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if((xeno_attacker.status_flags & INCORPOREAL))
 		return FALSE
 
-	if(xeno_attacker.a_intent == INTENT_HARM && isxenodrone(xeno_attacker))
+	if(!issamexenohive(xeno_attacker))
+		return ..()
+
+	if(xeno_attacker.a_intent == INTENT_HARM && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		balloon_alert(xeno_attacker, "Uprooted the plant")
 		xeno_attacker.do_attack_animation(src)
 		deconstruct(TRUE)
@@ -86,7 +89,7 @@
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
-	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
+	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.maxHealth)
 	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
 	playsound(user, SFX_ALIEN_DROOL, 25)
 	balloon_alert(X, "Health restored")
@@ -225,7 +228,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(ishuman(user))
+	if(ishuman(user) && !issamexenohive(user))
 		balloon_alert(user, "Nothing happens")
 		to_chat(user, span_notice("You caress [src]'s petals, nothing happens."))
 		return FALSE

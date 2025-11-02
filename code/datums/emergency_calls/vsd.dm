@@ -1,13 +1,13 @@
 // VSD
 /datum/emergency_call/vsd
-	name = "Vyacheslav Security Detail PMCs"
+	name = ""+FACTION_VSD+" PMCs"
 	base_probability = 26
 	alignement_factor = 0
 
 /datum/emergency_call/vsd/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>You are a member of the Syndicate's personal guns. The Vyacheslav Security Detail. You are here to take down this corporate scum by any means necessary. Kill anything in your path.</b>")
-	to_chat(H, "<B>You are equipped with Ballistic Armor to counter some of TerraGov's weaponry. Jaeger's armor has a weakness, aim for the head and just below that chest plate. Jaeger has a weakness to 5.56.</b>")
-	to_chat(H, "<B>A TerraGov vessel has entered Syndicate and I.C.C. airspace. You're here to take down the ship. Goodluck.</b>")
+	to_chat(H, "<B>You are a member of the Syndicate's personal guns. The "+FACTION_VSD+". You are here to take down this corporate scum by any means necessary. Kill anything in your path.</b>")
+	to_chat(H, "<B>You are equipped with Ballistic Armor to counter some of Ninetails's weaponry. Jaeger's armor has a weakness, aim for the head and just below that chest plate. Jaeger has a weakness to 5.56.</b>")
+	to_chat(H, "<B>A Ninetails vessel has entered Syndicate and I.C.C. airspace. You're here to take down the ship. Goodluck.</b>")
 	to_chat(H, "")
 
 /datum/emergency_call/vsd/create_member(datum/mind/M)
@@ -30,7 +30,7 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/vsd/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the leader of the Vyacheslav 'Death Squad' group. Lead your men to victory, leave no trace. Hoorah!</notice></p>")
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the leader of the Kaizoku 'Death Squad' group. Lead your men to victory, leave no trace. Hoorah!</notice></p>")
 		return
 
 	if(medics < max_medics)
@@ -49,4 +49,4 @@
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/vsd/standard)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a trained Vyacheslav operative. You are no disposable. You are trained in every way possible to counter TGMC's weaponries. We will not accept any casualties here. Good luck grunt, Hoorah!</notice></p>")
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a trained Kaizoku operative. You are no disposable. You are trained in every way possible to counter NTF's weaponries. We will not accept any casualties here. Good luck grunt, Hoorah!</notice></p>")

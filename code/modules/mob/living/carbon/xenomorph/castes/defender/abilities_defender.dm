@@ -6,6 +6,7 @@
 	action_icon_state = "tail_sweep"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Hit all adjacent units around you, knocking them away and down."
+
 	ability_cost = 35
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_duration = 12 SECONDS
@@ -26,6 +27,8 @@
 
 /datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags, selecting)
 	. = ..()
+	if(!.)
+		return
 	if(xeno_owner.crest_defense && xeno_owner.plasma_stored < (ability_cost * 2))
 		to_chat(xeno_owner, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - xeno_owner.plasma_stored] more plasma!"))
 		return FALSE
@@ -33,7 +36,7 @@
 /datum/action/ability/xeno_action/tail_sweep/action_activate()
 	GLOB.round_statistics.defender_tail_sweeps++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
-	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] sweeps its tail in a wide circle!"), \
+	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] sweeps [xeno_owner.p_their()] tail in a wide circle!"), \
 	span_xenowarning("We sweep our tail in a wide circle!"))
 
 	xeno_owner.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
@@ -49,7 +52,7 @@
 			continue
 		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/datum, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
-		var/damage = xeno_owner.xeno_caste.melee_damage
+		var/damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
 		var/affecting = H.get_limb(ran_zone(null, 0))
 		if(!affecting) //Still nothing??
 			affecting = H.get_limb("chest") //Gotta have a torso?!
@@ -101,6 +104,7 @@
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
+
 	cooldown_duration = 10 SECONDS
 	ability_cost = 80
 	use_state_flags = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
@@ -176,6 +180,7 @@
 	action_icon_state = "crest_defense"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
+
 	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
 	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
@@ -402,7 +407,7 @@
 	xeno_owner.do_jitter_animation(1000)
 	xeno_owner.set_sunder(0)
 	if(heal_multiplier)
-		var/health_to_heal = heal_multiplier * xeno_owner.xeno_caste.max_health
+		var/health_to_heal = heal_multiplier * xeno_owner.maxHealth
 		HEAL_XENO_DAMAGE(xeno_owner, health_to_heal, FALSE)
 		xeno_owner.updatehealth()
 	if(debuff_removal_amount)
@@ -470,6 +475,7 @@
 	action_icon_state = "centrifugal_force"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
+
 	ability_cost = 15
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_duration = 30 SECONDS
@@ -486,6 +492,8 @@
 	if(spin_loop_timer)
 		return TRUE
 	. = ..()
+	if(!.)
+		return
 	if(xeno_owner.crest_defense && xeno_owner.plasma_stored < (ability_cost * 2))
 		to_chat(xeno_owner, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - xeno_owner.plasma_stored] more plasma!"))
 		return FALSE
@@ -496,9 +504,9 @@
 		return
 	if(!can_use_action(TRUE))
 		return fail_activate()
-	if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
-	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
+	owner.visible_message(span_xenowarning("\The [owner] starts swinging [owner.p_their()] tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
 	do_spin() //kick it off
 

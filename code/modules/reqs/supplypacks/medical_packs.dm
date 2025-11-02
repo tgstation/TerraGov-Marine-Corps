@@ -34,7 +34,7 @@ MEDICAL
 	cost = 20
 
 /datum/supply_packs/medical/medical
-	name = "Pills and chemicals"
+	name = "Pills and Chemicals"
 	contains = list(
 		/obj/item/storage/box/autoinjectors,
 		/obj/item/storage/box/syringes,
@@ -89,14 +89,14 @@ MEDICAL
 /datum/supply_packs/medical/hypospray
 	name = "Advanced hypospray"
 	contains = list(/obj/item/reagent_containers/hypospray/advanced)
-	cost = 50
+	cost = 25
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
 /datum/supply_packs/medical/hypospray
 	name = "Advanced big hypospray"
 	contains = list(/obj/item/reagent_containers/hypospray/advanced/big)
-	cost = 120 //just a little over the regular hypo.
+	cost = 100 //just a little over the regular hypo.
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
@@ -116,29 +116,25 @@ MEDICAL
 	contains = list(
 		/obj/item/reagent_containers/glass/bottle/lemoline/doctor,
 	)
-	cost = 80
+	cost = 50
+
+/datum/supply_packs/medical/aphrotoxin
+	name = "Aphrotoxin bottle"
+	notes = "Contains 1 bottle of aphrotoxin with 60 units each."
+	contains = list(
+		/obj/item/reagent_containers/glass/bottle/aphrotoxin
+	)
+	cost = 50
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
-	notes = "Contains 5 advanced packs of each type and 5 splints."
+	notes = "Contains 1 stack of 40 advanced packs of each type and 1 stack of 5 splints."
 	contains = list(
 		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
 		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
 		/obj/item/stack/medical/splint,
 	)
-	cost = 100 //you have ALMOST infinite ones in medbay if you need this crate you fucked up. but no reason to make the price too high either
+	cost = 20 //you have ALMOST infinite ones in medbay if you need this crate you fucked up. but no reason to make the price too high either
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
@@ -147,5 +143,48 @@ MEDICAL
 	notes = "contains a pair of tweezers."
 	contains = list(/obj/item/tweezers)
 	cost = 200  //shouldn't be easy to get
+	containertype = /obj/structure/closet/crate/secure/surgery
+	access = ACCESS_MARINE_MEDBAY
+
+/datum/supply_packs/medical/random_bloodpack
+	name = "Random Bloodpack"
+	notes = "A random selection from the bloodpack assortment"
+	contains = list(/obj/item/reagent_containers/blood/random)
+	cost = 100
+	containertype = /obj/structure/closet/crate/secure/surgery
+	access = ACCESS_MARINE_MEDBAY
+
+/datum/supply_packs/medical/bloodpack_assortment
+	name = "Bloodpack Assortment"
+	notes = "A total of 26 packs, in proportion to their rarity"
+	contains = list(
+		/obj/item/reagent_containers/blood/APlus,
+		/obj/item/reagent_containers/blood/APlus,
+		/obj/item/reagent_containers/blood/APlus,
+		/obj/item/reagent_containers/blood/APlus,
+		/obj/item/reagent_containers/blood/APlus,
+		/obj/item/reagent_containers/blood/AMinus,
+		/obj/item/reagent_containers/blood/AMinus,
+		/obj/item/reagent_containers/blood/AMinus,
+		/obj/item/reagent_containers/blood/AMinus,
+		/obj/item/reagent_containers/blood/AMinus,
+		/obj/item/reagent_containers/blood/BPlus,
+		/obj/item/reagent_containers/blood/BPlus,
+		/obj/item/reagent_containers/blood/BPlus,
+		/obj/item/reagent_containers/blood/BPlus,
+		/obj/item/reagent_containers/blood/BPlus,
+		/obj/item/reagent_containers/blood/BMinus,
+		/obj/item/reagent_containers/blood/BMinus,
+		/obj/item/reagent_containers/blood/BMinus,
+		/obj/item/reagent_containers/blood/BMinus,
+		/obj/item/reagent_containers/blood/BMinus,
+		/obj/item/reagent_containers/blood/OPlus,
+		/obj/item/reagent_containers/blood/OPlus,
+		/obj/item/reagent_containers/blood/OPlus,
+		/obj/item/reagent_containers/blood/OPlus,
+		/obj/item/reagent_containers/blood/OPlus,
+		/obj/item/reagent_containers/blood/OMinus,
+	)
+	cost = 2600
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY

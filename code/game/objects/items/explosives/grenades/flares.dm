@@ -1,7 +1,7 @@
 #define FLARE_FIRE_STACKS 5
 /obj/item/explosive/grenade/flare
 	name = "\improper M40 FLDP grenade"
-	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
+	desc = "A NTF standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
 	icon_state = "flare_grenade"
 	worn_icon_state = "flare_grenade"
 	det_time = 0
@@ -133,7 +133,7 @@
 
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"
-	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand. When activated, provides a target for CAS pilots."
+	desc = "A NTF signal flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand. When activated, provides a target for CAS pilots."
 	icon_state = "cas_flare_grenade"
 	worn_icon_state = "cas_flare_grenade"
 	hud_state = "grenade_frag"
@@ -148,17 +148,19 @@
 	. = ..()
 	if(user.assigned_squad)
 		user_squad = user.assigned_squad
+	if(user.faction)
+		faction = user.faction
 	var/turf/TU = get_turf(src)
 	if(!istype(TU))
 		return
 	if(is_ground_level(TU.z))
-		target = new(src, null, name, user_squad)//da lazer is stored in the grenade
+		target = new(src, null, name, user_squad, faction)//da lazer is stored in the grenade
 
 /obj/item/explosive/grenade/flare/cas/process()
 	. = ..()
 	var/turf/TU = get_turf(src)
 	if(is_ground_level(TU.z))
-		if(!target && active)
+		if((!target || QDELING(target)) && active)
 			target = new(src, null, name, user_squad)
 
 /obj/item/explosive/grenade/flare/cas/turn_off()

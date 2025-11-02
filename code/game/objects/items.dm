@@ -15,7 +15,9 @@
 
 	///Icon state for mob worn overlays, if null the normal icon_state will be used.
 	var/worn_icon_state = null
-	///The icon state used to represent this image in "icons/obj/items/items_mini.dmi" Used in /obj/item/storage/box/visual to display tiny items in the box
+	/// the file containing the mini icon for icon_state_mini. Used in /obj/item/storage/box/visual to display tiny items in the box.
+	var/icon_mini = 'icons/obj/items/items_mini.dmi'
+	///The icon state used to represent this image in icon_mini. Used in /obj/item/storage/box/visual to display tiny items in the box.
 	var/icon_state_mini = "item"
 	///Byond tick delay between left click attacks
 	var/attack_speed = 11
@@ -544,12 +546,12 @@
 	if(H.species.hud?.equip_slots)
 		mob_equip = H.species.hud.equip_slots
 
-	if(!H.has_limb_for_slot(slot))
-		return FALSE
-
 	if(bitslot)
 		var/old_slot = slot
 		slot = slotbit2slotdefine(old_slot)
+
+	if(!H.has_limb_for_slot(slot))
+		return FALSE
 
 	if(H.species && !(slot in mob_equip))
 		return FALSE
@@ -620,6 +622,23 @@
 			equip_to_slot = TRUE
 		if(SLOT_WEAR_ID)
 			if(H.wear_id)
+				return FALSE
+			equip_to_slot = TRUE
+		// NTF EDIT START
+		if(SLOT_UNDERWEAR)
+			if(H.w_underwear)
+				return FALSE
+			equip_to_slot = TRUE
+		if(SLOT_SOCKS)
+			if(H.w_socks)
+				return FALSE
+			equip_to_slot = TRUE
+		if(SLOT_SHIRT)
+			if(H.w_undershirt)
+				return FALSE
+			equip_to_slot = TRUE
+		if(SLOT_BRA)
+			if(H.bra)
 				return FALSE
 			equip_to_slot = TRUE
 
@@ -1039,7 +1058,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/item/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/item/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.a_intent != INTENT_HARM)
+		attack_hand(xeno_attacker)
 	return FALSE
 
 
@@ -1161,7 +1182,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		// Create a callback with checks that would be called every tick by do_after.
 		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
-		if(!do_after(user, delay, target = target, extra_checks = tool_check, user_display=user_display))
+		if(!do_after(user, delay, target=target, extra_checks=tool_check))
 			return
 
 	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
@@ -1247,7 +1268,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[iconfile2use], Worn State:[state2use], Worn Layer:[layer2use]")
 
-	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
+	var/mutable_appearance/standing = mutable_appearance(null, null, layer2use)
+	var/mutable_appearance/standing_colored = mutable_appearance(iconfile2use, state2use, layer2use)
+	standing_colored.color = color
+	standing.overlays += standing_colored
 
 	//Apply any special features
 	apply_custom(standing, inhands, iconfile2use, state2use) //image overrideable proc to customize the onmob icon.
@@ -1261,7 +1285,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	standing.pixel_w += inhands ? inhand_x_offset : worn_x_offset
 	standing.pixel_z += inhands ? inhand_y_offset : worn_y_offset
 	standing.alpha = alpha
-	standing.color = color
 
 	//Return our icon
 	return standing
@@ -1465,7 +1488,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(!variant)
 				return
 
-			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
 			current_variant = variant
@@ -1489,7 +1512,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(COLOR_WHEEL)
 			new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!new_color || !do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
 	set_greyscale_colors(new_color)

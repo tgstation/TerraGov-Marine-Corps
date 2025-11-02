@@ -23,18 +23,27 @@
 	item_flags = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
-		/obj/item/weapon/gun,
-		/obj/item/instrument,
+		/obj/item/weapon,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/storage/holster/belt/pistol/m4a3,
+		/obj/item/storage/holster/belt/m44,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/sword,
 		/obj/item/storage/holster/belt,
-		/obj/item/storage/belt/knifepouch,
-		/obj/item/weapon/twohanded,
-		/obj/item/tool/pickaxe/plasmacutter,
-		/obj/item/tool/shovel/etool,
 		/obj/item/weapon/energy/sword,
 	)
+
 	equip_slot_flags = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
 	equip_delay_self = 2 SECONDS
@@ -93,6 +102,18 @@
 		/obj/item/armor_module/armor/legs/marine/ranger,
 		/obj/item/armor_module/armor/arms/marine/ranger,
 
+		/obj/item/armor_module/armor/chest/marine/kabuto,
+		/obj/item/armor_module/armor/legs/marine/kabuto,
+		/obj/item/armor_module/armor/arms/marine/kabuto,
+
+		/obj/item/armor_module/armor/chest/marine/hotaru,
+		/obj/item/armor_module/armor/legs/marine/hotaru,
+		/obj/item/armor_module/armor/arms/marine/hotaru,
+
+		/obj/item/armor_module/armor/chest/marine/dashe,
+		/obj/item/armor_module/armor/arms/marine/dashe,
+		/obj/item/armor_module/armor/legs/marine/dashe,
+
 		/obj/item/armor_module/armor/chest/marine/mjolnir,
 		/obj/item/armor_module/armor/legs/marine/mjolnir,
 		/obj/item/armor_module/armor/arms/marine/mjolnir,
@@ -107,7 +128,10 @@
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/knight,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/absorbant/energy,
+		/obj/item/armor_module/module/eshield/absorbant/ballistic,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
 
@@ -126,7 +150,10 @@
 	light_range = 5
 
 	///Uniform type that is allowed to be worn with this.
-	var/allowed_uniform_type = /obj/item/clothing/under/marine
+	var/allowed_uniform_type = /obj/item/clothing/under
+
+	shows_bottom_genital = TRUE
+	shows_top_genital = TRUE
 
 /obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	if(inhands)
@@ -215,6 +242,7 @@
 	icon_state = "rownin_skeleton"
 	worn_icon_state = "rownin_skeleton"
 	allowed_uniform_type = /obj/item/clothing/under
+	slowdown = -0.5
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
@@ -227,8 +255,11 @@
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/absorbant/energy,
+		/obj/item/armor_module/module/eshield/absorbant/ballistic,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
+		/obj/item/armor_module/module/knight,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -286,6 +317,8 @@
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/absorbant/energy,
+		/obj/item/armor_module/module/eshield/absorbant/ballistic,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
 
@@ -337,6 +370,8 @@
 		/obj/item/armor_module/module/eshield,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
+		/obj/item/armor_module/module/eshield/absorbant/energy,
+		/obj/item/armor_module/module/eshield/absorbant/ballistic,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -454,5 +489,3 @@
 
 	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
-
-

@@ -1,6 +1,6 @@
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/captain
-	name = "captain's locker"
+	name = "Commander's locker"
 	req_access = list(ACCESS_MARINE_CAPTAIN)
 	icon_state = "secure_locked_commander"
 	icon_closed = "secure_unlocked_commander"
@@ -24,7 +24,7 @@
 	new /obj/item/storage/holster/belt/mateba/officer/full(src)
 
 /obj/structure/closet/secure_closet/securecom
-	name = "captain's secure box"
+	name = "Commander's secure box"
 	req_access = list(ACCESS_MARINE_CAPTAIN)
 	desc = "You could probably get court-marshaled just by looking at this..."
 	icon_state = "commander_safe"

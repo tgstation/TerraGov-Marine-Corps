@@ -1,0 +1,116 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_som_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "vehicle_som_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+"b" = (
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_som_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+"l" = (
+/obj/docking_port/mobile/supply/vehicle/som,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+"m" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "vehicle_som_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+"n" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_som_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+"p" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "vehicle_som_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+"q" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "vehicle_som_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "vehicle_som_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+"s" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_som_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_som_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+"v" = (
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_som_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "vehicle_som_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+"C" = (
+/turf/open/floor/plating,
+/area/shuttle/vehicle_supply/som)
+"F" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply/som)
+
+(1,1,1) = {"
+a
+p
+p
+p
+q
+"}
+(2,1,1) = {"
+n
+C
+F
+C
+m
+"}
+(3,1,1) = {"
+n
+F
+l
+F
+m
+"}
+(4,1,1) = {"
+n
+C
+F
+C
+m
+"}
+(5,1,1) = {"
+s
+b
+b
+b
+v
+"}

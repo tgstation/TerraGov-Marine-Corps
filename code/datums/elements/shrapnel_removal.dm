@@ -20,9 +20,10 @@
 
 /datum/element/shrapnel_removal/proc/on_attack(datum/source, mob/living/M, mob/living/user)
 	SIGNAL_HANDLER
-	ADD_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(source))
-	INVOKE_ASYNC(src, PROC_REF(attempt_remove), source, M, user)
-	return COMPONENT_ITEM_NO_ATTACK
+	if(user.a_intent == INTENT_HELP)
+		ADD_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(source))
+		INVOKE_ASYNC(src, PROC_REF(attempt_remove), source, M, user)
+		return COMPONENT_ITEM_NO_ATTACK
 
 /datum/element/shrapnel_removal/proc/attempt_remove(obj/item/removaltool, mob/living/M, mob/living/user)
 	if(!ishuman(M))
@@ -42,7 +43,7 @@
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around with the [removaltool]."),
 		span_notice("You fumble around figuring out how to use [removaltool]."))
-		if(!do_after(user, fumble_duration * (SKILL_MEDICAL_PRACTICED - skill), NONE, target, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumble_duration * (SKILL_MEDICAL_PRACTICED - skill), TRUE, target, BUSY_ICON_UNSKILLED))
 			REMOVE_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(removaltool))
 			return
 	user.visible_message(span_green("[user] starts searching for shrapnel in [target] with the [removaltool]."), span_green("You start searching for shrapnel in [target] with the [removaltool]."))
@@ -80,8 +81,8 @@
 			personal_statistics.mission_shrapnel_removed ++
 		if(skill < SKILL_MEDICAL_PRACTICED)
 			user.visible_message(span_alert("[user] violently rips out [embedded] from [target]!"), span_alert("You violently rip out [embedded] from [target]!"))
-			targetlimb.take_damage_limb(30 * (SKILL_MEDICAL_PRACTICED - skill), 0, FALSE, FALSE)
+			targetlimb.take_damage_limb(15 * (SKILL_MEDICAL_PRACTICED - skill), 0, FALSE, FALSE)
 		else
 			user.visible_message(span_green("[user] pulls out [embedded] from [target]."), span_green("You pull out [embedded] from [target]."))
-			targetlimb.take_damage_limb(15, 0, FALSE, FALSE)
+			targetlimb.take_damage_limb(8, 0, FALSE, FALSE)
 		break

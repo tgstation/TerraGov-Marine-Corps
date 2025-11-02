@@ -3,6 +3,7 @@
 	icon = 'icons/turf/ground_map.dmi'
 	can_bloody = FALSE
 	allow_construction = FALSE
+	intact_tile = FALSE
 	///Multiplier on any slowdown applied to a mob moving through this turf
 	var/slowdown_multiplier = 1
 	///How high up on the mob water overlays sit
@@ -26,6 +27,11 @@
 	baseturfs = type
 
 /turf/open/liquid/is_weedable()
+	return FALSE
+
+/turf/open/liquid/can_have_cabling()
+	if(locate(/obj/structure/catwalk, src))
+		return TRUE
 	return FALSE
 
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -332,13 +338,18 @@ ww
 	icon_state = "lavacatwalk"
 
 /turf/open/liquid/lava/catwalk/Initialize(mapload)
+	var/obj/structure/catwalk/my_catwalk = new(src)
+	if(!(my_catwalk.atom_flags & INITIALIZED))
+		my_catwalk.Initialize(mapload)
 	. = ..()
 	icon_state = "full"
-	new /obj/structure/catwalk(src)
 
 /turf/open/liquid/lava/autosmoothing/catwalk
 	icon_state = "lavacatwalk"
 
 /turf/open/liquid/lava/autosmoothing/catwalk/Initialize(mapload)
+	var/obj/structure/catwalk/my_catwalk = new(src)
+	if(!(my_catwalk.atom_flags & INITIALIZED))
+		my_catwalk.Initialize(mapload)
 	. = ..()
-	new /obj/structure/catwalk(src)
+

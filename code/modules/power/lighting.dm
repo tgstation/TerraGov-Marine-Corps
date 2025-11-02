@@ -219,7 +219,7 @@
 	qdel(src)
 	return TRUE
 
-/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(status == LIGHT_BROKEN)
@@ -340,8 +340,41 @@
 	var/area/A = get_area(src)
 	return A.lightswitch && A.power_light
 
-///flicker lights on and off
-/obj/machinery/light/proc/flicker(toggle_flicker = FALSE)
+///Flickers the lights for a set amount of time and flicker delays.
+/obj/machinery/light/proc/set_flicker(amount, flicker_time_lower = 1, flicker_time_upper = 2, flicker_delay = 0.3 SECONDS, ignore_flickering = TRUE)
+	if(status != LIGHT_OK)
+		return
+	if(!has_power())
+		return
+	///Timer id for flickering.
+	var/theflicker
+	if(!ignore_flickering && flickering) //is it flickering when set_flicker-ed
+		//get rid of the stuff to start over so we dont mess stuff up.
+		deltimer(theflicker)
+		resetflickers()
+	random_flicker = TRUE
+	flickering = TRUE
+	if(flicker_time_lower)
+		flicker_time_lower_min = flicker_time_lower
+	if(flicker_time_upper)
+		flicker_time_upper_max = flicker_time_upper
+	flicker(FALSE, FALSE, flicker_delay)
+	theflicker = addtimer(CALLBACK(src, PROC_REF(resetflickers), amount))
+
+///sets values as they were for the light, before set_flicker.
+/obj/machinery/light/proc/resetflickers()
+	flicker_time_lower_min = initial(flicker_time_lower_min)
+	flicker_time_upper_max = initial(flicker_time_upper_max)
+	random_flicker = initial(random_flicker)
+	flickering = FALSE
+	if(!has_power())
+		lightambient.stop(src)
+		return
+	if(status == LIGHT_OK)
+		lightambient.start(src)
+
+///flicker lights on and off. longer_off_time var makes the lights be off more than they are on, the default behavior for this proc.
+/obj/machinery/light/proc/flicker(toggle_flicker = FALSE, longer_off_time = TRUE, flicker_delay = 0.3 SECONDS)
 	if(!has_power())
 		lightambient.stop(src)
 		return
@@ -365,11 +398,12 @@
 	if(!light_flicker_state)
 		flick("[base_icon_state]_flick_off", src)
 		//delay the power change long enough to get the flick() animation off
-		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), flicker_delay)
 	else
 		flick("[base_icon_state]_flick_on", src)
-		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
-		flicker_time = flicker_time * 2 //for effect it's best if the amount of time we spend off is more than the time we spend on
+		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), flicker_delay)
+		if(longer_off_time)
+			flicker_time = flicker_time * 2 //for effect it's best if the amount of time we spend off is more than the time we spend on
 	if(!flickering)
 		return
 	addtimer(CALLBACK(src, PROC_REF(flicker)), flicker_time)

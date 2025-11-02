@@ -125,6 +125,7 @@
 /area/kutjevo/exterior/Northwest_Colony)
 "aiw" = (
 /obj/machinery/power/smes/buildable/empty,
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "aiH" = (
@@ -818,6 +819,10 @@
 /obj/machinery/colony_floodlight_switch,
 /turf/closed/wall/r_wall/kutjevo,
 /area/kutjevo/interior/power/comms)
+"aXX" = (
+/obj/structure/cable,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power_pt2_electric_boogaloo)
 "aYi" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/kutjevo/colors/orange,
@@ -3451,6 +3456,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 6
 	},
@@ -8209,6 +8215,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 6
 	},
@@ -8297,6 +8304,7 @@
 	dir = 2;
 	id = "sw_disk_lockdown"
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 6
 	},
@@ -9106,6 +9114,7 @@
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power_pt2_electric_boogaloo)
 "jSQ" = (
@@ -9496,6 +9505,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power/comms)
 "koF" = (
@@ -10049,6 +10059,7 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 1
 	},
@@ -10988,6 +10999,7 @@
 "lPK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/lz_dunes)
 "lPR" = (
@@ -12891,6 +12903,11 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med/cells)
+"nII" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power_pt2_electric_boogaloo)
 "nJa" = (
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction)
@@ -13235,10 +13252,10 @@
 	},
 /area/kutjevo/interior/complex/med/locks)
 "nXX" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "nYb" = (
@@ -14818,6 +14835,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 1
 	},
@@ -15904,6 +15922,12 @@
 	},
 /obj/structure/platform/metalplatform,
 /turf/open/floor/plating/kutjevo,
+/area/kutjevo/interior/power)
+"qOm" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/power/smes/buildable/empty,
+/obj/structure/cable,
+/turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "qOq" = (
 /obj/effect/decal/cleanable/dirt,
@@ -17322,6 +17346,7 @@
 /obj/machinery/door_control{
 	id = "sw_disk_lockdown"
 	},
+/obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/filtration)
 "spd" = (
@@ -17743,6 +17768,7 @@
 /area/kutjevo/exterior/colony_S_East)
 "sNp" = (
 /obj/machinery/power/smes/buildable/empty,
+/obj/structure/cable,
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "sNZ" = (
@@ -19000,6 +19026,7 @@
 "uaV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles{
 	dir = 6
 	},
@@ -20899,6 +20926,7 @@
 "vSA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_dunes)
 "vSE" = (
@@ -21510,6 +21538,7 @@
 /obj/structure/stairs/seamless,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/interior/power/comms)
 "wyp" = (
@@ -21886,6 +21915,16 @@
 	},
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/complex/botany)
+"wUe" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/filtration)
 "wVt" = (
 /obj/item/stack/cable_coil,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -22567,10 +22606,10 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/colony_South/power2)
 "xGI" = (
-/obj/machinery/power/terminal{
-	dir = 4
-	},
 /obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "xGT" = (
@@ -22967,6 +23006,7 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/lz_dunes)
 "ybV" = (
@@ -23037,6 +23077,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/kutjevo/interior/filtration)
 "ygL" = (
@@ -28278,7 +28319,7 @@ cLn
 qAk
 vhQ
 xWg
-lnS
+wUe
 pMg
 slD
 peV
@@ -30131,7 +30172,7 @@ ceG
 ceG
 pyp
 pyp
-sNp
+wIG
 pyp
 hGH
 upQ
@@ -30465,7 +30506,7 @@ xpk
 xpk
 vin
 pBV
-wIG
+sNp
 vOD
 aQP
 twv
@@ -30966,7 +31007,7 @@ use
 xpk
 vin
 pBV
-tez
+qOm
 xzB
 qvP
 kdY
@@ -31300,7 +31341,7 @@ awv
 dyU
 pyp
 pyp
-sNp
+wIG
 pyp
 wEn
 xjY
@@ -42772,7 +42813,7 @@ kHm
 kHm
 xDY
 per
-kHm
+aXX
 jSi
 jSi
 oQc
@@ -42939,7 +42980,7 @@ lah
 npr
 kHm
 xeS
-npr
+nII
 rkX
 xlD
 oQc

@@ -72,15 +72,21 @@
 /obj/item/frame/table/nometal
 	deconstruct_type = null
 
+/obj/item/frame/table/black
+	icon_state = "black_table_parts"
+	table_type = /obj/structure/table/black
+
 /*
 * Mainship Table Parts
 */
 
 /obj/item/frame/table/mainship
+	icon_state = "table_parts"
 	table_type = /obj/structure/table/mainship
 
 /obj/item/frame/table/mainship/nometal
 	deconstruct_type = null
+	icon_state = "table_parts"
 	table_type = /obj/structure/table/mainship/nometal
 
 /*
@@ -123,9 +129,11 @@
 
 /obj/item/frame/table/fancywood
 	icon_state = "fwood_tableparts"
+	table_type = /obj/structure/table/wood/fancy
 
 /obj/item/frame/table/rusticwood
 	icon_state = "pwood_tableparts"
+	table_type = /obj/structure/table/wood/rustic
 
 /*
 * Gambling Table Parts

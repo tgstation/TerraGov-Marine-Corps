@@ -64,3 +64,42 @@
 			take_damage(300, BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(100, BRUTE, BOMB)
+
+/obj/structure/xeno/lighttower
+	name = "Light tower"
+	desc = "A resin formation that looks like a small pillar. It just provides light, not much more."
+	icon = 'ntf_modular/icons/Xeno/1x1building.dmi'
+	icon_state = "lighttower"
+	bound_width = 32
+	bound_height = 32
+	obj_integrity = 200
+	max_integrity = 200
+
+/obj/structure/xeno/lighttower/Initialize(mapload)
+	. = ..()
+	set_light(5, 4, LIGHT_COLOR_BLUE)
+	playsound(src, "alien_drool", 25)
+
+/obj/structure/xeno/lighttower/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(500, BRUTE, BOMB)
+		if(EXPLODE_HEAVY)
+			take_damage(300, BRUTE, BOMB)
+		if(EXPLODE_LIGHT)
+			take_damage(200, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(100, BRUTE, BOMB)
+
+/obj/structure/xeno/lighttower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!(issamexenohive(X)))
+		return ..()
+	if(X.a_intent == INTENT_HARM && (X.xeno_flags & XENO_DESTROY_OWN_STRUCTURES)) // If we're on harm intend and have the toggle on, destroy it.
+		balloon_alert(X, "Removing...")
+		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
+			balloon_alert(X, "Stopped removing")
+			return
+		playsound(src, "alien_resin_break", 25)
+		deconstruct(TRUE, X)
+		return
+	return ..()

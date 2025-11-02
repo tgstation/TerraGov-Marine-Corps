@@ -392,13 +392,13 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 		return
 	var/track_link
 	if (source && action == NOTIFY_ORBIT)
-		track_link = " <a href='byond://?src=[REF(ghost)];track=[REF(source)]'>(Follow)</a>"
+		track_link = " <a href='byond://?_src_=usr;[track_href(source)]'>(Follow)</a>"
 	if (source && action == NOTIFY_JUMP)
 		var/turf/T = get_turf(source)
-		track_link = " <a href='byond://?src=[REF(ghost)];jump=1;x=[T.x];y=[T.y];z=[T.z]'>(Jump)</a>"
+		track_link = " <a href='byond://?_src_=usr;jump=1;x=[T.x];y=[T.y];z=[T.z]'>(Jump)</a>"
 	var/full_enter_link
 	if (enter_link)
-		full_enter_link = "<a href='byond://?src=[REF(ghost)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
+		full_enter_link = "<a href='byond://?_src_=usr;[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
 	to_chat(ghost, "[(extra_large) ? "<br><hr>" : ""][span_deadsay("[message][(enter_link) ? " [full_enter_link]" : ""][track_link]")][(extra_large) ? "<hr><br>" : ""]")
 	if(ghost_sound)
 		SEND_SOUND(ghost, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))

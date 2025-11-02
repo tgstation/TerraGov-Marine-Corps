@@ -177,11 +177,13 @@
 	var/static/image/neurotox_image = image('icons/mob/hud/human.dmi', icon_state = "neurotoxin")
 	var/static/image/hemodile_image = image('icons/mob/hud/human.dmi', icon_state = "hemodile")
 	var/static/image/transvitox_image = image('icons/mob/hud/human.dmi', icon_state = "transvitox")
+	var/static/image/aphrotoxin_image = image('ntf_modular/icons/mob/hud/human.dmi', icon_state = "aphrotoxin")
 	var/static/image/sanguinal_image = image('icons/mob/hud/human.dmi', icon_state = "sanguinal")
 	var/static/image/ozelomelyn_image = image('icons/mob/hud/human.dmi', icon_state = "ozelomelyn")
 	var/static/image/neurotox_high_image = image('icons/mob/hud/human.dmi', icon_state = "neurotoxin_high")
 	var/static/image/hemodile_high_image = image('icons/mob/hud/human.dmi', icon_state = "hemodile_high")
 	var/static/image/transvitox_high_image = image('icons/mob/hud/human.dmi', icon_state = "transvitox_high")
+	var/static/image/aphrotoxin_high_image = image('ntf_modular/icons/mob/hud/human.dmi', icon_state = "aphrotoxin_high")
 	var/static/image/sanguinal_high_image = image('icons/mob/hud/human.dmi', icon_state = "sanguinal_high")
 	var/static/image/intoxicated_image = image('icons/mob/hud/intoxicated.dmi', icon_state = "intoxicated")
 	var/static/image/intoxicated_amount_image = image('icons/mob/hud/intoxicated.dmi', icon_state = "intoxicated_amount0")
@@ -199,6 +201,7 @@
 		var/transvitox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
 		var/sanguinal_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)
 		var/ozelomelyn_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn)
+		var/aphrotoxin_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin)
 
 		if(neurotox_amount > 10) //Blinking image for particularly high concentrations
 			xeno_reagent.overlays += neurotox_high_image
@@ -212,6 +215,11 @@
 			xeno_reagent.overlays += hemodile_high_image
 		else if(hemodile_amount > 0)
 			xeno_reagent.overlays += hemodile_image
+
+		if(aphrotoxin_amount > 15)
+			xeno_reagent.overlays += aphrotoxin_high_image
+		else if(aphrotoxin_amount > 0)
+			xeno_reagent.overlays += aphrotoxin_image
 
 		if(transvitox_amount > 10)
 			xeno_reagent.overlays += transvitox_high_image
@@ -602,19 +610,25 @@
 /datum/atom_hud/squad_som
 	hud_icons = list(SQUAD_HUD_SOM, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
+/datum/atom_hud/squad_clf
+	hud_icons = list(SQUAD_HUD_CLF, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+
+/datum/atom_hud/squad_vsd
+	hud_icons = list(SQUAD_HUD_VSD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+
+/datum/atom_hud/squad_icc
+	hud_icons = list(SQUAD_HUD_ICC, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+
 /mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
 	return
 
 /mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
-	var/hud_type
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			hud_type = SQUAD_HUD_TERRAGOV
-		if(FACTION_SOM)
-			hud_type = SQUAD_HUD_SOM
-		else
-			return
+	var/hud_type = GLOB.faction_to_squad_hud[faction]
+	if(!hud_type)
+		return
 	var/image/holder = hud_list[hud_type]
+	if(!holder)
+		return
 	holder.icon_state = ""
 	holder.overlays.Cut()
 

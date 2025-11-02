@@ -14,7 +14,7 @@
 	///The the max of the flashbang
 	var/max_range = 7
 	///Whether this grenade requires skill to use
-	var/mp_only = TRUE
+	var/mp_only = FALSE
 
 /obj/item/explosive/grenade/flashbang/attack_self(mob/user)
 	if(mp_only && (user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_MP))

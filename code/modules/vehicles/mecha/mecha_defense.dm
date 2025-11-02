@@ -136,7 +136,7 @@
 	. = ..()
 	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
 	use_power((cell.maxcharge * 0.4) / (severity))
-	take_damage(600 / severity, BURN, ENERGY)
+	take_damage(400 / severity, BURN, ENERGY)
 
 	for(var/mob/living/living_occupant AS in occupants)
 		living_occupant.Stagger((8 - severity) SECONDS)

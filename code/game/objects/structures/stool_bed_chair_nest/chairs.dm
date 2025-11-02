@@ -87,7 +87,7 @@
 //Chair types
 /obj/structure/bed/chair/reinforced
 	name = "reinforced chair"
-	desc = "Some say that the TGMC shouldn't spent this much money on reinforced chairs, but the documents from briefing riots prove otherwise."
+	desc = "Some say that the NTC shouldn't spent this much money on reinforced chairs, but the documents from briefing riots prove otherwise."
 	buildstackamount = 2
 
 
@@ -368,7 +368,7 @@
 	return // no
 
 
-/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
@@ -388,7 +388,7 @@
 				span_warning("You begin loosening the bolts on \the [src]."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] loosens the bolts on \the [src], folding it into the decking."),
@@ -400,7 +400,7 @@
 				span_warning("You begin unfolding \the [src]."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] unfolds \the [src] from the floor and tightens the bolts."),
