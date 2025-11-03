@@ -31,3 +31,8 @@
   breadhunt:
   - rscadd: Pheromone HUD indicators now change depending on the strength of each
       pheromone
+2025-11-03:
+  Lumipharon:
+  - rscadd: Baseball bats can bounce back thrown things
+  - bugfix: fixed defender and praetorian reflect abilities
+  - imageadd: Ported TG light sprites

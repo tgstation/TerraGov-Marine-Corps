@@ -32,7 +32,7 @@
 	desc = "A replacement light tube."
 	icon_state = "ltube"
 	base_icon_state = "ltube"
-	worn_icon_state = "c_tube"
+	worn_icon_state = "ltube"
 	brightness = 8
 
 /obj/item/light_bulb/tube/blue
@@ -79,12 +79,15 @@
 		if(LIGHT_OK)
 			icon_state = base_icon_state
 			desc = "A replacement [name]."
+			worn_icon_state = "ltube"
 		if(LIGHT_BURNED)
 			icon_state = "[base_icon_state]_burned"
 			desc = "A burnt-out [name]."
+			worn_icon_state = "ltube-burned"
 		if(LIGHT_BROKEN)
 			icon_state = "[base_icon_state]_broken"
 			desc = "A broken [name]."
+			worn_icon_state = "ltube-broken"
 
 
 /obj/item/light_bulb/Initialize(mapload)
