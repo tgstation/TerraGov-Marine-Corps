@@ -1077,7 +1077,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
 	if (isxeno(source))
 		var/mob/living/carbon/xenomorph/xeno = source
-		if(xeno.hivenumber != XENO_HIVE_NORMAL)
+		if(xeno.get_xeno_hivenumber() != XENO_HIVE_NORMAL)
 			return // Don't show for non-normal hives
 	var/rulerless_countdown = get_hivemind_collapse_countdown()
 	if(rulerless_countdown)

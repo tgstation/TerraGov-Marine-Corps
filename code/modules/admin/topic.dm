@@ -2067,7 +2067,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(href_list["xeno"])
 			if("hive")
-				previous = X.hivenumber
+				previous = X.get_xeno_hivenumber()
 
 				var/newhive = input("Select a hive.", "Xeno Panel") as null|anything in GLOB.hive_datums
 				if(!newhive)
@@ -2079,7 +2079,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(previous == change)
 					return
 
-				if(!istype(X) || X.hivenumber != previous)
+				if(!istype(X) || X.get_xeno_hivenumber() != previous)
 					to_chat(usr, span_warning("Target is no longer valid."))
 					return
 

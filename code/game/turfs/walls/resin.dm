@@ -162,7 +162,7 @@
 		take_damage(damage_amount, damage_type, armor_type, effects, get_dir(src, xeno_attacker), armor_penetration, xeno_attacker)
 		return TRUE
 	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
+		SSresinshaping.quickbuild_points_by_hive[xeno_attacker.get_xeno_hivenumber()]++
 		take_damage(max_integrity) // Ensure its destroyed
 		return
 	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \

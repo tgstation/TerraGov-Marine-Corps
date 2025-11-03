@@ -167,7 +167,7 @@
 
 	new_xeno = new(loc)
 
-	new_xeno.hivenumber = XENO_HIVE_NORMAL
+	new_xeno.transfer_to_hive(XENO_HIVE_NORMAL)
 	new_xeno.update_icons()
 
 	//If we have a candidate, transfer it over.

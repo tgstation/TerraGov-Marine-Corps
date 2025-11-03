@@ -947,7 +947,7 @@
 /datum/action/ability/xeno_action/primal_wrath/process()
 	if(!owner)
 		return PROCESS_KILL
-	if(xeno_owner.hivenumber == XENO_HIVE_FALLEN)
+	if(xeno_owner.get_xeno_hivenumber() == XENO_HIVE_FALLEN)
 		if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max)
 			xeno_owner.wrath_stored = xeno_owner.xeno_caste.wrath_max
 		return
@@ -966,13 +966,13 @@
 	decay_amount = round(decay_amount * PRIMAL_WRATH_DECAY_MULTIPLIER)
 
 /datum/action/ability/xeno_action/primal_wrath/action_activate()
-	if(xeno_owner.hivenumber != XENO_HIVE_FALLEN)
+	if(xeno_owner.get_xeno_hivenumber() != XENO_HIVE_FALLEN)
 		if(ability_active || currently_roaring)
 			return
 		if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max - (xeno_owner.xeno_caste.wrath_max * 0.2))
 			xeno_owner.balloon_alert(xeno_owner, "not enough wrath!")
 			return
-	else if(xeno_owner.hivenumber == XENO_HIVE_FALLEN && ability_active)
+	else if(ability_active)
 		toggle_buff(FALSE)
 		return
 	toggle_buff(TRUE)

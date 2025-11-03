@@ -602,7 +602,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	for (var/mob/living/carbon/xenomorph/xeno_target in orange(1, xeno_owner))
 		if(xeno_target.stat == DEAD)
 			continue
-		if(xeno_target.hivenumber != xeno_owner.hivenumber)
+		if(!xeno_owner.issamexenohive(xeno_target))
 			continue
 		xeno_target.apply_status_effect(STATUS_EFFECT_XENO_BATONPASS)
 

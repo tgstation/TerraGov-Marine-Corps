@@ -61,7 +61,7 @@
 	var/datum/action/minimap/zombie/mini = new
 	mini.give_action(H)
 	SSminimaps.add_marker(H, MINIMAP_FLAG_ZOMBIE, image('icons/UI_icons/map_blips.dmi', null, "pmc2", MINIMAP_BLIPS_LAYER))
-	H.hivenumber = FACTION_ZOMBIE
+	H.transfer_to_hive(FACTION_ZOMBIE)
 
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/H)
 	. = ..()

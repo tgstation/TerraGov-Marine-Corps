@@ -108,9 +108,10 @@
 		QDEL_NULL(recovery_aura)
 	if(!new_amount)
 		return
-	frenzy_aura = SSaura.add_emitter(xenomorph_owner, AURA_XENO_FRENZY, get_radius(new_amount), get_power(new_amount), -1, FACTION_XENO, xenomorph_owner.hivenumber)
-	warding_aura = SSaura.add_emitter(xenomorph_owner, AURA_XENO_WARDING, get_radius(new_amount), get_power(new_amount), -1, FACTION_XENO, xenomorph_owner.hivenumber)
-	recovery_aura = SSaura.add_emitter(xenomorph_owner, AURA_XENO_RECOVERY, get_radius(new_amount), get_power(new_amount), -1, FACTION_XENO, xenomorph_owner.hivenumber)
+	var/hivenumber = xenomorph_owner.get_xeno_hivenumber()
+	frenzy_aura = SSaura.add_emitter(xenomorph_owner, AURA_XENO_FRENZY, get_radius(new_amount), get_power(new_amount), -1, FACTION_XENO, hivenumber)
+	warding_aura = SSaura.add_emitter(xenomorph_owner, AURA_XENO_WARDING, get_radius(new_amount), get_power(new_amount), -1, FACTION_XENO, hivenumber)
+	recovery_aura = SSaura.add_emitter(xenomorph_owner, AURA_XENO_RECOVERY, get_radius(new_amount), get_power(new_amount), -1, FACTION_XENO, hivenumber)
 
 /// Returns the power of the aura(s).
 /datum/mutation_upgrade/veil/benevolence/proc/get_power(structure_count)

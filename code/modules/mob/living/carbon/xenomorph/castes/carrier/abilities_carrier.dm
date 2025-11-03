@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		F.facehugger_register_source(xeno_owner) //Set us as the source
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		if(fake_hugger_gradiant_percentage > 0 && !istype(F, /obj/item/clothing/mask/facehugger/combat/harmless))
-			var/obj/item/clothing/mask/facehugger/combat/harmless/fake = new(get_turf(xeno_owner), xeno_owner.hivenumber, xeno_owner)
+			var/obj/item/clothing/mask/facehugger/combat/harmless/fake = new(get_turf(xeno_owner), xeno_owner.get_xeno_hivenumber(), xeno_owner)
 			fake.set_fire_immunity(F.fire_immune)
 			fake.impact_time = F.impact_time
 			fake.activate_time = F.activate_time
@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	xeno_owner.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_owner]!"))
 	while(xeno_owner.huggers > 0)
-		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_owner), xeno_owner.hivenumber, xeno_owner)
+		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_owner), xeno_owner.get_xeno_hivenumber(), xeno_owner)
 		step_away(new_hugger, xeno_owner, 1)
 		addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
 		xeno_owner.huggers--
@@ -377,7 +377,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!T.check_alien_construction(owner, silent, /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(owner))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.get_xeno_hivenumber()])
 		if(get_dist(turret, owner) < 6)
 			if(!silent)
 				to_chat(owner, span_xenowarning("Another turret is too close!"))
@@ -390,7 +390,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!can_use_action())
 		return FALSE
 
-	new /obj/structure/xeno/xeno_turret/hugger_turret(get_turf(owner), xeno_owner.hivenumber, GLOB.ammo_list[GLOB.hugger_to_ammo[xeno_owner.selected_hugger_type]])
+	new /obj/structure/xeno/xeno_turret/hugger_turret(get_turf(owner), xeno_owner.get_xeno_hivenumber(), GLOB.ammo_list[GLOB.hugger_to_ammo[xeno_owner.selected_hugger_type]])
 	succeed_activate()
 	add_cooldown()
 

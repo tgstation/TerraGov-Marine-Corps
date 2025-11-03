@@ -336,7 +336,7 @@
 		return ..()
 	our_parent.playsound_local(our_parent, SFX_ALIEN_HELP, 30, TRUE)
 	to_chat(our_parent, span_xenouserdanger("Your core has been destroyed!"))
-	xeno_message("A sudden tremor ripples through the hive... \the [our_parent] has been slain!", "xenoannounce", 5, our_parent.hivenumber)
+	xeno_message("A sudden tremor ripples through the hive... \the [our_parent] has been slain!", "xenoannounce", 5, our_parent.get_xeno_hivenumber())
 	GLOB.key_to_time_of_role_death[our_parent.key] = world.time
 	GLOB.key_to_time_of_death[our_parent.key] = world.time
 	our_parent.ghostize()
@@ -396,8 +396,7 @@
 			return
 
 	if(isxeno(hostile))
-		var/mob/living/carbon/xenomorph/X = hostile
-		if(X.hivenumber == hivenumber) //Trigger proxy alert only for hostile xenos
+		if(issamexenohive(hostile)) //Trigger proxy alert only for hostile xenos
 			return
 
 	to_chat(get_parent(), span_xenoannounce("Our [src.name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y])."))

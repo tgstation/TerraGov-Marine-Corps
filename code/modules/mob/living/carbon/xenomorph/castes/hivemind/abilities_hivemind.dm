@@ -159,7 +159,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber])
+	if(!GLOB.xeno_acid_jaws_by_hive[xeno_owner.get_xeno_hivenumber()])
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "no xeno artillery found!")
 		return FALSE
@@ -184,17 +184,18 @@
 	waiting_on_player_input = FALSE
 
 /datum/action/ability/activable/xeno/shoot_xeno_artillery/alternate_action_activate()
-	if(!GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber] || waiting_on_player_input)
+	var/hivenumber = xeno_owner.get_xeno_hivenumber()
+	if(!GLOB.xeno_acid_jaws_by_hive[hivenumber] || waiting_on_player_input)
 		return
-	if(length(GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber]) == 1)
-		selected_artillery = GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber][1]
+	if(length(GLOB.xeno_acid_jaws_by_hive[hivenumber]) == 1)
+		selected_artillery = GLOB.xeno_acid_jaws_by_hive[hivenumber][1]
 		xeno_owner.balloon_alert(xeno_owner, "artillery selected")
 		update_button_icon()
 		return
 	INVOKE_ASYNC(src, PROC_REF(select_artillery_from_input_list))
 
 /datum/action/ability/activable/xeno/shoot_xeno_artillery/proc/select_artillery_from_input_list()
-	selected_artillery = tgui_input_list(xeno_owner, "Which artillery to use?", "Artillery List",  GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber])
+	selected_artillery = tgui_input_list(xeno_owner, "Which artillery to use?", "Artillery List",  GLOB.xeno_acid_jaws_by_hive[xeno_owner.get_xeno_hivenumber()])
 	if(!selected_artillery)
 		return
 	xeno_owner.balloon_alert(xeno_owner, "artillery selected")

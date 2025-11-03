@@ -349,7 +349,7 @@
 	succeed_activate()
 	add_cooldown()
 
-	var/obj/alien/egg/gas/newegg = new(A.loc, xeno_owner.hivenumber)
+	var/obj/alien/egg/gas/newegg = new(A.loc, xeno_owner.get_xeno_hivenumber())
 	switch(xeno_owner.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium

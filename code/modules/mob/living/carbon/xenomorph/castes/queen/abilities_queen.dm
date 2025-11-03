@@ -189,7 +189,7 @@
 	if(prob(chancebunch)) //Queen has a higher chance to lay in batches.
 		for(var/lcount=0, lcount<larvalbunch, lcount++)
 			var/obj/item/alien_embryo/larba = new(A)
-			larba.hivenumber = X.hivenumber
+			larba.hivenumber = X.get_xeno_hivenumber()
 			larba.emerge_target_flavor = victimhole
 		to_chat(owner, span_danger("You lay multiple larva at once!"))
 		to_chat(A, span_danger("You feel multiple larva being inserted at once!"))
@@ -197,7 +197,7 @@
 			A.apply_damage(larvalbunch*10, CLONE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 	else
 		var/obj/item/alien_embryo/embryo = new(A)
-		embryo.hivenumber = X.hivenumber
+		embryo.hivenumber = X.get_xeno_hivenumber()
 		embryo.emerge_target_flavor = victimhole
 		GLOB.round_statistics.now_pregnant++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant") //Only counts once to give Xenomorphs a fair chance.

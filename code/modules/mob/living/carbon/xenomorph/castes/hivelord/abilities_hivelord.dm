@@ -266,7 +266,7 @@
 
 	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
 
-	xeno_message("[xeno_owner.name] has built a new tunnel at [newt.tunnel_desc]!", "xenoannounce", 5, xeno_owner.hivenumber)
+	xeno_message("[xeno_owner.name] has built a new tunnel at [newt.tunnel_desc]!", "xenoannounce", 5, xeno_owner.get_xeno_hivenumber())
 
 	if(LAZYLEN(xeno_owner.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/xeno/tunnel/old_tunnel = xeno_owner.tunnels[1]
@@ -352,7 +352,7 @@
 		return FALSE
 
 /datum/action/ability/xeno_action/create_jelly/action_activate()
-	var/obj/item/resin_jelly/jelly = new(owner.loc, xeno_owner.hivenumber)
+	var/obj/item/resin_jelly/jelly = new(owner.loc, xeno_owner.get_xeno_hivenumber())
 	owner.put_in_hands(jelly)
 	to_chat(owner, span_xenonotice("We create a globule of resin from our ovipositor.")) // Ewww...
 	add_cooldown()
@@ -550,7 +550,7 @@
 		if(!silent)
 			current_turf.balloon_alert(owner, "nearby recovery pylon already!")
 		return FALSE
-	if(LAZYLEN(GLOB.hive_datums[xeno_owner.hivenumber].recovery_pylons) >= HIVELORD_RECOVERY_PYLON_SET_LIMIT)
+	if(LAZYLEN(GLOB.hive_datums[xeno_owner.get_xeno_hivenumber()].recovery_pylons) >= HIVELORD_RECOVERY_PYLON_SET_LIMIT)
 		if(!silent)
 			current_turf.balloon_alert(owner, "maximum recovery pylons made!")
 		return FALSE

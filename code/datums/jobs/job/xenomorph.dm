@@ -56,7 +56,7 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 
 /datum/job/xenomorph/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
 	. = ..()
-	SSminimaps.add_marker(xeno, GLOB.hivenumber_to_minimap_flag[xeno.hivenumber], image('icons/UI_icons/map_blips.dmi', null, xeno.xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
+	SSminimaps.add_marker(xeno, GLOB.hivenumber_to_minimap_flag[xeno.get_xeno_hivenumber()], image('icons/UI_icons/map_blips.dmi', null, xeno.xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
 
 /datum/job/xenomorph/remove_job_positions(amount)
 	if(src == SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber]))

@@ -64,7 +64,7 @@
 /datum/mutation_upgrade/shell/hugger_overflow/proc/on_staggered(datum/source, amount, ignore_canstun)
 	if(get_threshold(get_total_structures()) > xenomorph_owner.huggers)
 		return
-	var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xenomorph_owner), xenomorph_owner.hivenumber, xenomorph_owner)
+	var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xenomorph_owner), xenomorph_owner.get_xeno_hivenumber(), xenomorph_owner)
 	step_away(new_hugger, xenomorph_owner, 1)
 	addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
 	xenomorph_owner.huggers--

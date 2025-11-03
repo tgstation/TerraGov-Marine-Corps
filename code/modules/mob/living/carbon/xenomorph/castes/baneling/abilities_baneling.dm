@@ -154,7 +154,7 @@
 /datum/action/ability/xeno_action/spawn_pod/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	the_pod = new /obj/structure/xeno/baneling_pod(get_turf(X.loc), X.hivenumber, X, src)
+	the_pod = new /obj/structure/xeno/baneling_pod(get_turf(X.loc), X.get_xeno_hivenumber(), X, src)
 	RegisterSignal(the_pod, COMSIG_QDELETING, PROC_REF(notify_owner))
 	succeed_activate()
 

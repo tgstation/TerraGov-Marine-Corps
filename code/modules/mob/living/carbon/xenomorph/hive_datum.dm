@@ -349,7 +349,7 @@
 	X.color = null
 
 // for clean transfers between hives
-/mob/living/carbon/xenomorph/proc/transfer_to_hive(hivenumber)
+/mob/living/carbon/xenomorph/transfer_to_hive(hivenumber)
 	if (hive.hivenumber == hivenumber)
 		return // If we are in that hive already
 	if(!GLOB.hive_datums[hivenumber])
@@ -960,7 +960,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	orphan_hud_timer = new(null, null, get_all_xenos(), D.orphan_hive_timer, "Orphan Hivemind Collapse: ${timer}", 150, -80)
 
 /datum/hive_status/burrow_larva(mob/living/carbon/xenomorph/larva/L)
-	if(!is_ground_level(L.z) && !L.hivenumber == XENO_HIVE_CORRUPTED)
+	if(!is_ground_level(L.z) && !L.get_xeno_hivenumber() == XENO_HIVE_CORRUPTED)
 		return
 	L.visible_message(span_xenodanger("[L] quickly burrows into the ground."))
 	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
@@ -1718,14 +1718,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	return hivenumber
 
 /mob/living
-	var/hivenumber = FALSE
+	VAR_PROTECTED/hivenumber
 
 /mob/living/get_xeno_hivenumber()
 	return hivenumber
 
 /mob/illusion/xeno/get_xeno_hivenumber()
 	var/mob/living/carbon/xenomorph/original_xeno = original_mob
-	return original_xeno.hivenumber
+	return original_xeno.get_xeno_hivenumber()
 
 /obj/structure/xeno/get_xeno_hivenumber()
 	if(hivenumber)

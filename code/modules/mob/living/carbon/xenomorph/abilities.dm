@@ -415,7 +415,7 @@
 
 /datum/action/ability/activable/xeno/secrete_resin/proc/can_build_here(turf/T, silent = FALSE)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/is_valid = is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin, X.hivenumber)
+	var/is_valid = is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin, X.get_xeno_hivenumber())
 	if(is_valid != NO_ERROR && silent)
 		return FALSE
 	switch(is_valid)
@@ -469,7 +469,7 @@
 		X.update_aura_overlay()
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
-	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + (X.xeno_caste.aura_strength * 2) + bonus_flat_range, X.xeno_caste.aura_strength + bonus_flat_strength, -1, X.faction, X.hivenumber)
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + (X.xeno_caste.aura_strength * 2) + bonus_flat_range, X.xeno_caste.aura_strength + bonus_flat_strength, -1, X.faction, X.get_xeno_hivenumber())
 	X.balloon_alert(X, "[lowertext(phero_choice)]")
 	playsound(X.loc, SFX_ALIEN_DROOL, 25)
 
@@ -1361,7 +1361,7 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null, hand_attach_time_multiplier)
+	new /obj/alien/egg/hugger(current_turf, xeno.get_xeno_hivenumber(), use_selected_hugger ? xeno_owner.selected_hugger_type : null, hand_attach_time_multiplier)
 
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
@@ -1390,7 +1390,7 @@
 /datum/action/ability/xeno_action/rally_hive/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien/distantroar_3.ogg',TRUE,null,/atom/movable/screen/arrow/leader_tracker_arrow)
+	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.get_xeno_hivenumber(), FALSE, X, 'sound/voice/alien/distantroar_3.ogg',TRUE,null,/atom/movable/screen/arrow/leader_tracker_arrow)
 	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", source = X, action = NOTIFY_JUMP)
 
 	succeed_activate()
@@ -1540,7 +1540,7 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
-	SSpoints.add_biomass_points(X.hivenumber, MUTATION_BIOMASS_PER_PSYDRAIN)
+	SSpoints.add_biomass_points(X.get_xeno_hivenumber(), MUTATION_BIOMASS_PER_PSYDRAIN)
 	GLOB.round_statistics.biomass_from_psydrains += MUTATION_BIOMASS_PER_PSYDRAIN
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
@@ -1550,18 +1550,19 @@
 	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
 	GLOB.round_statistics.strategic_psypoints_from_psydrains += psy_points_reward
 	GLOB.round_statistics.psydrains++
+	var/hivenumber = X.get_xeno_hivenumber()
 	if(HAS_TRAIT(victim, TRAIT_HIVE_TARGET))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, X, victim)
 		GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards += 4*psy_points_reward
 		psy_points_reward = psy_points_reward * 5
 		GLOB.round_statistics.hive_target_rewards++
 		GLOB.round_statistics.biomass_from_hive_target_rewards += MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD
-		SSpoints.add_biomass_points(X.hivenumber, MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD)
-	SSpoints.add_strategic_psy_points(X.hivenumber, psy_points_reward)
-	SSpoints.add_tactical_psy_points(X.hivenumber, psy_points_reward*0.25)
-	if(X.hivenumber != XENO_HIVE_NORMAL)
+		SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD)
+	SSpoints.add_strategic_psy_points(hivenumber, psy_points_reward)
+	SSpoints.add_tactical_psy_points(hivenumber, psy_points_reward*0.25)
+	if(hivenumber != XENO_HIVE_NORMAL)
 		return
-	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[owner.get_xeno_hivenumber()])
+	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 	xeno_job.add_job_points(larva_point_reward)
 	X.hive.update_tier_limits()
 	GLOB.round_statistics.larva_from_psydrain += larva_point_reward / xeno_job.job_points_needed

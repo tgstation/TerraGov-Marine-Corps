@@ -155,7 +155,7 @@
 
 	if(xeno_attacker.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
 		if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
-			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
+			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.get_xeno_hivenumber()]++
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, SFX_ALIEN_RESIN_BREAK, 25) //SFX
 		deconstruct(TRUE)
@@ -248,7 +248,7 @@
 		try_toggle_state(xeno_attacker)
 		return TRUE
 	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
+		SSresinshaping.quickbuild_points_by_hive[xeno_attacker.get_xeno_hivenumber()]++
 		qdel(src)
 		return TRUE
 

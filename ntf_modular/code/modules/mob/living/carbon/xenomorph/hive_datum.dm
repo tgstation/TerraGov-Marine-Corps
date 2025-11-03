@@ -19,3 +19,6 @@
 	health_mulitiplier = 0.8
 	aura_multiplier = 0.95
 	req_jelly_progress_required = 220 // 1100 seconds = 18.3 minutes per pod
+
+/mob/living/proc/transfer_to_hive(_hivenumber)
+	hivenumber = _hivenumber

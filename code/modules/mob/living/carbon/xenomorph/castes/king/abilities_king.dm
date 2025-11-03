@@ -553,7 +553,7 @@ GLOBAL_LIST_EMPTY(active_summons)
 /datum/action/ability/xeno_action/psychic_summon/action_activate()
 
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
-	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = xeno_owner.hivenumber)
+	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = xeno_owner.get_xeno_hivenumber())
 	var/list/allxenos = xeno_owner.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		if(minions_only && sister.tier != XENO_TIER_MINION)

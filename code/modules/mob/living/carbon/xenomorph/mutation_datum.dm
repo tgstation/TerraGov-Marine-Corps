@@ -19,7 +19,7 @@
 	.["shell_chambers"] = length(xenomorph_user.hive.shell_chambers)
 	.["spur_chambers"] = length(xenomorph_user.hive.spur_chambers)
 	.["veil_chambers"] = length(xenomorph_user.hive.veil_chambers)
-	.["biomass"] = !isnull(SSpoints.xeno_biomass_points_by_hive[xenomorph_user.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xenomorph_user.hivenumber] : 0
+	.["biomass"] = !isnull(SSpoints.xeno_biomass_points_by_hive[xenomorph_user.get_xeno_hivenumber()]) ? SSpoints.xeno_biomass_points_by_hive[xenomorph_user.get_xeno_hivenumber()] : 0
 
 /datum/mutation_datum/ui_static_data(mob/user)
 	. = ..()
@@ -113,7 +113,7 @@
 		return FALSE
 
 	var/upgrade_price = get_mutation_cost(xenomorph_purchaser)
-	var/current_biomass = !isnull(SSpoints.xeno_biomass_points_by_hive[xenomorph_purchaser.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xenomorph_purchaser.hivenumber] : 0
+	var/current_biomass = !isnull(SSpoints.xeno_biomass_points_by_hive[xenomorph_purchaser.get_xeno_hivenumber()]) ? SSpoints.xeno_biomass_points_by_hive[xenomorph_purchaser.get_xeno_hivenumber()] : 0
 	if(current_biomass < get_mutation_cost(xenomorph_purchaser))
 		to_chat(xenomorph_purchaser, span_warning("The hive does not have enough biomass! [upgrade_price - current_biomass] more biomass is needed!"))
 		return FALSE
