@@ -70,7 +70,8 @@
 	. = ..()
 	update_alpha()
 
-/obj/machinery/atmospherics/pipe/proc/update_alpha()
+/// Sets our alpha to a pre-determined amount.
+/obj/machinery/atmospherics/pipe/update_alpha()
 	alpha = invisibility ? 64 : 255
 
 /obj/machinery/atmospherics/pipe/proc/update_node_icon()
