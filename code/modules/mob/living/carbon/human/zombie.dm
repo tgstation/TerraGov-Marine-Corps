@@ -45,14 +45,6 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
-/obj/item/weapon/zombie_claw/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/zombie_claw/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
 /obj/item/weapon/zombie_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
