@@ -433,7 +433,7 @@
 	boozepwr = 55
 
 /datum/reagent/consumable/ethanol/bloody_mary/on_mob_life(mob/living/L, metabolism)
-	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
+	if(L.get_blood_volume() < BLOOD_VOLUME_NORMAL)
 		L.adjust_blood_volume(0.3) //Bloody Mary slowly restores blood loss.
 	return ..()
 

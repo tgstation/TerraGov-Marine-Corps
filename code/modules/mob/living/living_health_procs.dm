@@ -214,6 +214,13 @@
 
 	blood_volume = clamp(amount, 0, BLOOD_VOLUME_MAXIMUM)
 
+///returns blood voluem
+/mob/living/proc/get_blood_volume()
+	return blood_volume
+
+/mob/living/proc/get_regular_blood_volume()
+	return initial(src.blood_volume)
+
 
 // heal ONE limb, organ gets randomly selected from damaged ones.
 /mob/living/proc/heal_limb_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)

@@ -306,7 +306,7 @@
 	taste_description = "salty water"
 
 /datum/reagent/medicine/saline_glucose/on_mob_life(mob/living/L, metabolism)
-	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
+	if(L.get_blood_volume() < BLOOD_VOLUME_NORMAL)
 		L.adjust_blood_volume(1.2)
 	return ..()
 
@@ -907,9 +907,10 @@
 	L.adjust_blood_volume(2.4)
 	L.adjustToxLoss(effect_str)
 	L.adjustStaminaLoss(6*effect_str)
-	if(L.blood_volume < BLOOD_VOLUME_OKAY)
+	var/blood_volume = L.get_blood_volume()
+	if(blood_volume < BLOOD_VOLUME_OKAY)
 		L.adjust_blood_volume(2.4)
-	if(L.blood_volume < BLOOD_VOLUME_BAD)
+	if(blood_volume < BLOOD_VOLUME_BAD)
 		L.set_blood_volume(BLOOD_VOLUME_BAD+1)
 		L.reagents.add_reagent(/datum/reagent/toxin/scannable,25)
 		L.AdjustSleeping(10 SECONDS)

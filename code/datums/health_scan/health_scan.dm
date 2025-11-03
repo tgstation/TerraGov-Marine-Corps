@@ -197,8 +197,8 @@
 		"clone" = round(patient.getCloneLoss()),
 
 		"blood_type" = patient.blood_type,
-		"blood_amount" = patient.blood_volume,
-		"regular_blood_amount" = initial(patient.blood_volume),
+		"blood_amount" = patient.get_blood_volume(),
+		"regular_blood_amount" = patient.get_regular_blood_volume(),
 
 		"hugged" = !!(patient.status_flags & XENO_HOST),
 

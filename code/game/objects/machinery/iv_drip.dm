@@ -145,7 +145,7 @@
 			return
 
 		// If the human is losing too much blood, beep.
-		if(T.blood_volume < BLOOD_VOLUME_SAFE && TIMER_COOLDOWN_FINISHED(src, COOLDOWN_IV_PING))
+		if(T.get_blood_volume() < BLOOD_VOLUME_SAFE && TIMER_COOLDOWN_FINISHED(src, COOLDOWN_IV_PING))
 			visible_message("\The [src] beeps loudly.")
 			TIMER_COOLDOWN_START(src, COOLDOWN_IV_PING, 2 SECONDS)
 

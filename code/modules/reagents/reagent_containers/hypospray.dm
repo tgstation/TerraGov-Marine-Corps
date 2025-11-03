@@ -152,7 +152,7 @@
 	if(!C.blood_type)
 		balloon_alert(user, "Can't locate blood.")
 		return
-	if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
+	if(C.get_blood_volume() <= BLOOD_VOLUME_SURVIVE)
 		balloon_alert(user, "No blood to draw.")
 		return
 	if(ishuman(C))

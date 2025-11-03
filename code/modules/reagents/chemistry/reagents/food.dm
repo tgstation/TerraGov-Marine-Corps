@@ -47,7 +47,7 @@
 		L.heal_limb_damage(brute_heal, burn_heal)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
+		if(C.get_blood_volume() < BLOOD_VOLUME_NORMAL)
 			C.adjust_blood_volume(blood_gain)
 
 	return ..()

@@ -167,7 +167,7 @@
 			visible_message("[src] whirrs and gurgles as the dialysis module operates.")
 			to_chat(occupant, span_info("You feel slightly better."))
 	if(blood_transfer)
-		if(connected && occupant.blood_volume < BLOOD_VOLUME_NORMAL)
+		if(connected && occupant.get_blood_volume() < BLOOD_VOLUME_NORMAL)
 			if(connected.blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
 				connected.blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor" = null,"blood_DNA" = null,"blood_type" = "O-"))
 				say("Blood reserves depleted, switching to fresh bag.")
@@ -546,7 +546,7 @@
 			break
 	if(overdosing)
 		surgery_list += new /datum/autodoc_surgery(null, operated_organ, SURGERY_CATEGORY_EXTERNAL, SURGERY_PROCEDURE_EXTERNAL_DIALYSIS)
-	if(operated_human.blood_volume < BLOOD_VOLUME_NORMAL)
+	if(operated_human.get_blood_volume() < BLOOD_VOLUME_NORMAL)
 		surgery_list += new /datum/autodoc_surgery(null, operated_organ, SURGERY_CATEGORY_EXTERNAL, SURGERY_PROCEDURE_EXTERNAL_BLOOD)
 	return surgery_list
 
