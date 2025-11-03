@@ -22,6 +22,7 @@
 	RegisterSignal(parent, ATOM_RECALCULATE_STORAGE_SPACE, PROC_REF(recalculate_storage_space))
 	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(update_verbs))
 	RegisterSignal(parent, COMSIG_ITEM_QUICK_EQUIP, PROC_REF(on_quick_equip_request))
+	RegisterSignal(parent, COMSIG_ATOM_INITIALIZED_ON, PROC_REF(item_init_in_parent))
 
 //Reason for this override is due to conflict signal from modules, which detach on ALT+CLICK
 /datum/storage/internal/unregister_storage_signals(atom/parent)
@@ -44,6 +45,7 @@
 		COMSIG_ITEM_EQUIPPED,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_QUICK_EQUIP,
+		COMSIG_ATOM_INITIALIZED_ON,
 	))
 
 /datum/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
@@ -81,15 +83,12 @@
 /datum/storage/internal/webbing/New(atom/parent)
 	. = ..()
 	set_holdable(
-		can_hold_list = list(
+		cant_hold_list = list(
+			/obj/item/cell/lasgun/volkite/powerpack,
 			/obj/item/stack/razorwire,
 			/obj/item/stack/sheet,
 			/obj/item/stack/sandbags,
 			/obj/item/stack/snow,
-			/obj/item/cell/lasgun/plasma,
-		),
-		cant_hold_list = list(
-			/obj/item/cell/lasgun/volkite/powerpack
 		),
 		storage_type_limits_list = list(
 			/obj/item/ammo_magazine/rifle,
@@ -261,7 +260,7 @@
 	. = ..()
 	set_holdable(can_hold_list = list(
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
@@ -275,6 +274,11 @@
 		/obj/item/explosive/mine,
 		/obj/item/reagent_containers/food/snacks,
 	))
+
+/datum/storage/internal/satchel
+	storage_slots = null
+	max_storage_space = 15
+	max_w_class = WEIGHT_CLASS_NORMAL
 
 /datum/storage/internal/engineering
 	max_storage_space = 15
@@ -383,8 +387,8 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/shotgun/double/derringer,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/stack/throwing_knife,
 		/obj/item/storage/box/MRE,
 	))
@@ -440,6 +444,7 @@
 	RegisterSignal(parent, ATOM_RECALCULATE_STORAGE_SPACE, PROC_REF(recalculate_storage_space))
 	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(update_verbs))
 	RegisterSignal(parent, COMSIG_ITEM_QUICK_EQUIP, PROC_REF(on_quick_equip_request))
+	RegisterSignal(parent, COMSIG_ATOM_INITIALIZED_ON, PROC_REF(item_init_in_parent))
 
 //Reason for this override is due to conflict controls from deployables
 /datum/storage/internal/ammo_rack/unregister_storage_signals(atom/parent)
@@ -458,6 +463,7 @@
 		COMSIG_ITEM_EQUIPPED,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_QUICK_EQUIP,
+		COMSIG_ATOM_INITIALIZED_ON,
 	))
 
 // Special override to reload our gun if it's empty before putting extra shells into storage

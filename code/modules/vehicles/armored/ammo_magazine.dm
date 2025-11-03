@@ -5,6 +5,8 @@
 	magazine_flags = NONE
 	///loading sound to play when
 	var/loading_sound
+	///callout name for when user loads ("HE, Up!")
+	var/callout_name
 
 /obj/item/ammo_magazine/tank/ltb_cannon
 	name = "LTB HE shell (105mm)"
@@ -15,27 +17,38 @@
 	default_ammo = /datum/ammo/rocket/ltb
 	max_rounds = 1
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+	callout_name = "HE"
 
 /obj/item/ammo_magazine/tank/ltb_cannon/heavy
 	name = "LTB HE+ shell (105mm)"
 	desc = "A 105mm high explosive shell filled with an incredibly explosive payload."
 	default_ammo = /datum/ammo/rocket/ltb/heavy
 	magazine_flags = MAGAZINE_NOT_FABRICABLE
+	callout_name = "HE"
 
 /obj/item/ammo_magazine/tank/ltb_cannon/apfds
 	name = "LTB APFDS round (105mm)"
 	desc = "A 105mm armor piercing shell with exceptional velocity and penetrating characteristics. Will pierce through walls and targets."
 	icon_state = "ltb_apfds"
 	default_ammo = /datum/ammo/bullet/tank_apfds
+	callout_name = "Sabot"
 
 /obj/item/ammo_magazine/tank/ltb_cannon/canister
 	name = "LTB Canister round (105mm)"
 	desc = "A 105mm canister shell for demolishing soft targets. The payload of hundreds of small metal balls imitates a shotgun blast in trajectory."
 	icon_state = "ltb_canister"
-	default_ammo = /datum/ammo/tx54/tank_cannister
+	default_ammo = /datum/ammo/tx54/tank_canister
+	callout_name = "Canister"
+
+/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary
+	name = "LTB Incendiary Canister round (105mm)"
+	desc = "A 105mm canister shell for demolishing soft targets. The payload of incendiary shrapnel imitates a shotgun blast in trajectory."
+	icon_state = "ltb_canister_incend"
+	default_ammo = /datum/ammo/tx54/tank_canister/incendiary
+	callout_name = "Incendiary"
 
 /obj/item/ammo_magazine/tank/ltaap_chaingun
-	name = "\improper LTA-AP chaingun Magazine"
+	name = "\improper LTA-AP chaingun magazine"
 	desc = "A primary armament chaingun magazine."
 	caliber = CALIBER_762X51
 	icon_state = "ltaap"
@@ -44,6 +57,30 @@
 	max_rounds = 150
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 
+/obj/item/ammo_magazine/tank/ltaap_chaingun/hv
+	name = "\improper LTA-AP HV chaingun Magazine"
+	desc = "A primary armament chaingun magazine. Loaded with high velocity, non-IFF rounds."
+	icon_state = "ltaap_hv"
+	default_ammo = /datum/ammo/bullet/minigun/ltaap/hv
+	max_rounds = 200
+	magazine_flags = MAGAZINE_REFILLABLE|MAGAZINE_NOT_FABRICABLE
+
+/obj/item/ammo_magazine/tank/autocannon
+	name = "Bushwhacker Autocannon APDS Box (30mm)"
+	desc = "A 100 round box for an autocannon. Loaded with Armor Piercing rounds."
+	caliber = CALIBER_30X17MM
+	icon_state = "tank_autocannon_ap"
+	max_rounds = 50
+	default_ammo = /datum/ammo/bullet/tank_autocannon_ap
+	loading_sound = 'sound/vehicles/weapons/tank_autocannon_reload.ogg'
+	callout_name = "Sabot"
+
+/obj/item/ammo_magazine/tank/autocannon/high_explosive
+	name = "Bushwhacker Autocannon High Explosive Box (30mm)"
+	desc = "A 100 round box for an autocannon. Loaded with High Explosive rounds."
+	icon_state = "tank_autocannon_he"
+	default_ammo = /datum/ammo/rocket/tank_autocannon_he
+	callout_name = "HE"
 
 /obj/item/ammo_magazine/tank/flamer
 	name = "Flamer Magazine"
@@ -54,16 +91,6 @@
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/flamethrower/tank_flamer
 	max_rounds = 120
-
-/obj/item/ammo_magazine/tank/towlauncher
-	name = "TOW Launcher Magazine"
-	desc = "A secondary armament rocket magazine"
-	caliber = CALIBER_68MM
-	icon_state = "quad_rocket"
-	icon = 'icons/obj/items/ammo/rocket.dmi'
-	w_class = WEIGHT_CLASS_GIGANTIC
-	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
-	max_rounds = 5
 
 /obj/item/ammo_magazine/tank/secondary_cupola
 	name = "HSG-102 Cupola Magazine"
@@ -187,3 +214,32 @@
 	max_rounds = 1
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
+/obj/item/ammo_magazine/tank/tow_missile
+	name = "\improper TOW-III missile"
+	desc = "A TOw-III homing missile for the secondary TOW launcher."
+	caliber = CALIBER_68MM
+	icon_state = "seekerammo"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/homing/tow
+	max_rounds = 1
+	loading_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+
+/obj/item/ammo_magazine/tank/microrocket_rack
+	name = "microrocket pod rack"
+	desc = "A 3x2 rack containing high explosive homing microrockets."
+	caliber = CALIBER_32MM
+	icon_state = "secondary_rocketpod"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/homing/microrocket
+	max_rounds = 6
+	loading_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+
+/obj/item/ammo_magazine/tank/bfg
+	name = "\improper BFG antimatter container"
+	desc = "An antimatter containment chamber containing antimatter for a BFG glob. Do not open at threat of exploding."
+	icon_state = "bfg"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	caliber = CALIBER_ANTIMATTER
+	default_ammo = /datum/ammo/energy/bfg
+	max_rounds = 1
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'

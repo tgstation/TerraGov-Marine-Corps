@@ -70,7 +70,7 @@
 
 /obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(0)
 
 	var/mob/living/carbon/user = usr
@@ -116,24 +116,18 @@
 
 		user.visible_message(span_notice("[user] begins welding down \the [src]."),
 		span_notice("You begin welding down \the [src]."))
-		add_overlay(GLOB.welding_sparks)
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
-			cut_overlay(GLOB.welding_sparks)
-			to_chat(user, span_warning("You need to stand still!"))
+		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_FRIENDLY))
 			return
 		user.visible_message(span_notice("[user] welds down \the [src]."),
 		span_notice("You weld down \the [src]."))
-		cut_overlay(GLOB.welding_sparks)
 		if(buildstacktype && dropmetal)
 			new buildstacktype(loc, buildstackamount)
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		qdel(src)
 
 
 /obj/structure/bed/chair/wood
 	buildstacktype = /obj/item/stack/sheet/wood
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 
 /obj/structure/bed/chair/wood/normal
 	icon_state = "wooden_chair"
@@ -269,9 +263,9 @@
 	var/def_zone = ran_zone()
 	var/armor_modifier = occupant.modify_by_armor(1, MELEE, 0, def_zone)
 	occupant.throw_at(A, 3, propelled)
-	occupant.apply_effect(6 SECONDS * armor_modifier, STUN)
-	occupant.apply_effect(6 SECONDS * armor_modifier, WEAKEN)
-	occupant.apply_effect(6 SECONDS * armor_modifier, STUTTER)
+	occupant.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUN)
+	occupant.apply_effect(6 SECONDS * armor_modifier, EFFECT_PARALYZE)
+	occupant.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUTTER)
 	occupant.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 	UPDATEHEALTH(occupant)
 	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
@@ -279,9 +273,9 @@
 		var/mob/living/victim = A
 		def_zone = ran_zone()
 		armor_modifier = victim.modify_by_armor(1, MELEE, 0, def_zone)
-		victim.apply_effect(6 SECONDS * armor_modifier, STUN)
-		victim.apply_effect(6 SECONDS * armor_modifier, WEAKEN)
-		victim.apply_effect(6 SECONDS * armor_modifier, STUTTER)
+		victim.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUN)
+		victim.apply_effect(6 SECONDS * armor_modifier, EFFECT_PARALYZE)
+		victim.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUTTER)
 		victim.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 		UPDATEHEALTH(victim)
 	occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
@@ -422,12 +416,9 @@
 		if(!C.remove_fuel(0, user))
 			return
 
-		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
-		add_overlay(GLOB.welding_sparks)
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
-			cut_overlay(GLOB.welding_sparks)
+		if(!I.use_tool(src, user, 2 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_warning("[user] repairs \the [src]."),
@@ -452,7 +443,7 @@
 
 /obj/structure/bed/chair/dropship/doublewide/welder_act(mob/living/user, obj/item/I)
 	if(LAZYLEN(buckled_mobs))
-		balloon_alert_to_viewers("You cannot repair this chair while someone is sitting in it")
+		balloon_alert(user, "someone's sitting in it!")
 		return
 	welder_repair_act(user, I, 130, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
 	chair_state = DROPSHIP_CHAIR_UNBUCKLED
@@ -471,14 +462,14 @@
 	. = ..()
 	if(LAZYLEN(buckled_mobs) && chair_state == DROPSHIP_CHAIR_BROKEN)
 		unbuckle_mob(buckled_mobs[1])
-		balloon_alert_to_viewers("This chair is too damaged to stay sitting in")
+		balloon_alert_to_viewers("it's too damaged!")
 
 /obj/structure/bed/chair/dropship/doublewide/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(chair_state == DROPSHIP_CHAIR_BROKEN)
-		balloon_alert_to_viewers("This chair is too damaged to sit in")
+		balloon_alert_to_viewers("it's too damaged!")
 		return FALSE
 	if(leader_chair && buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
-		balloon_alert(buckling_mob, "You don't feel worthy enough to sit in this chair")
+		balloon_alert(buckling_mob, "you're not a leader!")
 		return FALSE
 	if(buckling_x)
 		src.pixel_x = buckling_x

@@ -54,6 +54,10 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle)
+"dJ" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/campaign/jungle_outpost/outpost/medbay)
 "dV" = (
 /obj/structure/table,
 /obj/structure/flora/pottedplant/two,
@@ -77,6 +81,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/campaign/jungle_outpost/outpost/medbay)
 "eS" = (
@@ -165,8 +170,17 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
+"kc" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whiteblue,
+/area/campaign/jungle_outpost/outpost/medbay)
 "kg" = (
 /turf/open/floor/mainship/mono,
+/area/campaign/jungle_outpost/outpost/medbay)
+"ko" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay)
 "kB" = (
 /turf/open/liquid/water/river,
@@ -369,6 +383,7 @@
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay)
 "wk" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "xY" = (
@@ -502,6 +517,10 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
+"Hm" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/medbay)
 "Hq" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/tile/blue/whiteblue{
@@ -527,6 +546,12 @@
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay)
 "Jc" = (
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/medbay)
+"Ji" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 8
 	},
@@ -716,6 +741,13 @@
 "RN" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 9
+	},
+/area/campaign/jungle_outpost/outpost/medbay)
+"RQ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
 "Sc" = (
@@ -918,7 +950,7 @@ eD
 kg
 kg
 kg
-kg
+dJ
 Ok
 eS
 rT
@@ -947,11 +979,11 @@ uf
 kg
 Ok
 au
+Hm
 rT
 rT
 rT
-rT
-TL
+kc
 Ok
 Ga
 rT
@@ -981,7 +1013,7 @@ TL
 Ok
 oc
 rT
-Jc
+Ji
 Fu
 QD
 fa
@@ -990,13 +1022,13 @@ fa
 pn
 hP
 rT
-rT
+Hm
 rT
 rT
 SS
 Jc
 Kc
-rT
+Hm
 Ok
 Ok
 Zp
@@ -1056,10 +1088,10 @@ rT
 rT
 rT
 uZ
-uZ
+ko
 uZ
 rT
-TL
+kc
 Zp
 Ax
 jf
@@ -1074,14 +1106,14 @@ RN
 fW
 WZ
 rT
+Hm
 rT
 rT
 rT
 rT
+Hm
 rT
-rT
-rT
-uZ
+ko
 rT
 Pc
 rT
@@ -1159,7 +1191,7 @@ mc
 mc
 XO
 Zy
-Ls
+RQ
 rT
 PL
 Ok

@@ -31,12 +31,14 @@ SUBSYSTEM_DEF(job)
 	overflow_role = GetJobType(overflow_role)
 	return SS_INIT_SUCCESS
 
-
+///Clears jobs and resets all occupations
 /datum/controller/subsystem/job/proc/SetupOccupations()
-	occupations.Cut()
+	QDEL_LIST(occupations)
 	joinable_occupations.Cut()
 	GLOB.jobs_command.Cut()
 	squads.Cut()
+	type_occupations.Cut()
+	name_occupations.Cut()
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
 	if(!length(all_jobs))
@@ -52,7 +54,8 @@ SUBSYSTEM_DEF(job)
 		if(!job.map_check())
 			continue
 		occupations += job
-		name_occupations[job.title] = job
+		if(!name_occupations[job.title]) //we have multiple jobs with the same title, such as vatborn
+			name_occupations[job.title] = job
 		type_occupations[J] = job
 	sortTim(occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
 
@@ -259,6 +262,7 @@ SUBSYSTEM_DEF(job)
 
 //Gives the player the stuff they should have with their rank.
 /datum/controller/subsystem/job/proc/spawn_character(mob/new_player/player, joined_late = FALSE)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	var/mob/living/new_character = player.new_character
 	var/datum/job/job = player.assigned_role
 
@@ -273,7 +277,7 @@ SUBSYSTEM_DEF(job)
 	else
 		SendToLateJoin(new_character, job)
 
-	job.radio_help_message(player)
+	to_chat(player, fieldset_block("[span_role_header("You are the [job.title].")]", span_role_body(jointext(job.get_spawn_message_information(player), "")), "boxed_message blue_box"))
 
 	job.after_spawn(new_character, player, joined_late) // note: this happens before new_character has a key!
 

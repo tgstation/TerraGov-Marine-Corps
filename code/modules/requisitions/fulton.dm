@@ -15,7 +15,7 @@
 	var/atom/movable/vis_obj/fulton_balloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
 	/// How many times you can use the fulton before it goes poof
-	var/uses = 3
+	var/uses = 6
 
 /obj/item/fulton_extraction_pack/examine(mob/user)
 	. = ..()
@@ -194,7 +194,7 @@
 
 
 /obj/item/fulton_extraction_pack/adminbus/preattack(mob/user, atom/target)
-	if(!isturf(target.loc) || !ismovableatom(target))
+	if(!isturf(target.loc) || !ismovable(target))
 		return FALSE
 	if(active)
 		balloon_alert(user, "Fulton not ready")

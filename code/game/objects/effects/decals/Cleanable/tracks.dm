@@ -149,7 +149,6 @@
 
 /obj/effect/decal/cleanable/blood/tracks/wheels
 	name = "wet tracks"
-	desc = "Whoops..."
 	coming_state = "wheels"
 	going_state = ""
 	desc = "They look like tracks left by wheels."

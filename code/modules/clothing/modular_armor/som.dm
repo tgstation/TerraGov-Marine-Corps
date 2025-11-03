@@ -1,8 +1,8 @@
 //SOM modular armour
 
 /obj/item/clothing/suit/modular/som
-	name = "\improper SOM light battle armor"
-	desc = "The M-21 battle armor is typically used by SOM light infantry, or other specialists that require more mobility at the cost of some protection. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	name = "\improper SOM medium battle armor"
+	desc = "The M-21 battle armor is typically used by SOM infantry. It utilizes special light-weight alloys that provides good protection with only minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 55, ACID = 50)
 	icon = 'icons/mob/modular/som_armor.dmi'
 	worn_icon_list = list(
@@ -53,6 +53,12 @@
 	starting_attachments = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/storage/general/som,
+	)
+
+/obj/item/clothing/suit/modular/som/medstorage
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical/som,
 	)
 
 /obj/item/clothing/suit/modular/som/shield
@@ -136,6 +142,12 @@
 	starting_attachments = list(
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/storage/medical/som,
+	)
+
+/obj/item/clothing/suit/modular/som/heavy/pyro/genstorage
+	starting_attachments = list(
+		/obj/item/armor_module/module/fire_proof/som,
+		/obj/item/armor_module/storage/general/som,
 	)
 
 /obj/item/clothing/suit/modular/som/heavy/lorica
@@ -283,7 +295,7 @@
 	desc = "A helmet paired with the 'Hades' armor module, designed for significantly improved protection from fire, without compromising normal durability."
 	icon_state = "som_helmet_light"
 	worn_icon_state = "som_helmet_light"
-	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 90, ACID = 50)
+	soft_armor = list(MELEE = 35, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 95, ACID = 40)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,

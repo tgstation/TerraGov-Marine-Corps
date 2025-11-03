@@ -16,7 +16,7 @@
 	///List of the attachment overlay images. This is so that we can easily swap overlays in and out.
 	var/list/attachable_overlays
 
-/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
+/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list(), spawn_empty = FALSE)
 	. = ..()
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -34,6 +34,9 @@
 	var/obj/parent_object = parent
 	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachments)
+			if(ispath(starting_attachment_type, /obj/item/weapon/gun))
+				attach_without_user(attachment = new starting_attachment_type(parent_object, spawn_empty))
+				continue
 			attach_without_user(attachment = new starting_attachment_type(parent_object))
 
 	update_parent_overlay()
@@ -257,8 +260,8 @@
 	if(!do_after(user, detach_delay, NONE, parent, do_after_icon_type))
 		return
 
-	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),
-	span_notice("You detach [attachment_to_remove] to [parent]."), null, 4)
+	user.visible_message(span_notice("[user] detaches [attachment_to_remove] from [parent]."),
+	span_notice("You detach [attachment_to_remove] from [parent]."), null, 4)
 	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
 
 	finish_detach(attachment_to_remove, attachment_data, user)
@@ -366,13 +369,13 @@
 			else
 				icon = attachment_data[OVERLAY_ICON]
 				suffix = attachment.icon == icon ? "_a" : ""
-		var/mutable_appearance/new_overlay = mutable_appearance(icon, icon_state + suffix, -attachment_data[ATTACHMENT_LAYER])
+		var/mutable_appearance/new_overlay = mutable_appearance(icon, icon_state + suffix, attachment_data[ATTACHMENT_LAYER])
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			new_overlay.overlays += attachment.overlays
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
-			new_overlay.pixel_x += attachment_data[MOB_PIXEL_SHIFT_X]
+			new_overlay.pixel_w += attachment_data[MOB_PIXEL_SHIFT_X]
 		if(attachment_data[MOB_PIXEL_SHIFT_Y])
-			new_overlay.pixel_y += attachment_data[MOB_PIXEL_SHIFT_Y]
+			new_overlay.pixel_z += attachment_data[MOB_PIXEL_SHIFT_Y]
 		if(!attachment_data[ATTACHMENT_LAYER])
 			standing.overlays += new_overlay
 			continue

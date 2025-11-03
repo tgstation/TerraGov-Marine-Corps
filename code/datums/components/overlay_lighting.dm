@@ -52,12 +52,12 @@
 	var/atom/movable/current_holder
 
 
-/datum/component/overlay_lighting/Initialize(_range, _power, _color, starts_on)
+/datum/component/overlay_lighting/Initialize(_range, _power, _color, starts_on, force)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	var/atom/movable/movable_parent = parent
-	if(movable_parent.light_system != MOVABLE_LIGHT)
+	if(!force &&  movable_parent.light_system != MOVABLE_LIGHT)
 		stack_trace("[type] added to [parent], with [movable_parent.light_system] value for the light_system var. Use [MOVABLE_LIGHT] instead.")
 		return COMPONENT_INCOMPATIBLE
 
@@ -66,9 +66,10 @@
 	visible_mask = image('icons/effects/light_overlays/light_32.dmi', icon_state = "light")
 	visible_mask.pixel_x = movable_parent.light_pixel_x
 	visible_mask.pixel_y = movable_parent.light_pixel_y
-	visible_mask.plane = O_LIGHTING_VISUAL_PLANE
+	SET_PLANE_EXPLICIT(visible_mask, O_LIGHTING_VISUAL_PLANE, movable_parent)
 	visible_mask.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 	visible_mask.alpha = 0
+	visible_mask.blend_mode = BLEND_ADD
 	if(!isnull(_range))
 		movable_parent.set_light_range(_range)
 	set_range(parent, movable_parent.light_range)
@@ -89,6 +90,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_POWER, PROC_REF(set_power))
 	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_COLOR, PROC_REF(set_color))
 	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_ON, PROC_REF(on_toggle))
+	RegisterSignal(parent, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_move))
 	var/atom/movable/movable_parent = parent
 	if(movable_parent.light_on)
 		turn_on()
@@ -100,6 +102,7 @@
 	clean_old_turfs()
 	UnregisterSignal(parent, list(
 		COMSIG_MOVABLE_MOVED,
+		COMSIG_MOVABLE_Z_CHANGED,
 		COMSIG_ATOM_SET_LIGHT_RANGE,
 		COMSIG_ATOM_SET_LIGHT_POWER,
 		COMSIG_ATOM_SET_LIGHT_COLOR,
@@ -215,6 +218,17 @@
 		return
 	make_luminosity_update()
 
+/datum/component/overlay_lighting/proc/on_z_move(atom/source)
+	SIGNAL_HANDLER
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays -= visible_mask
+//		current_holder.underlays -= cone
+	SET_PLANE_EXPLICIT(visible_mask, O_LIGHTING_VISUAL_PLANE, source)
+//	if(cone)
+//		SET_PLANE_EXPLICIT(cone, O_LIGHTING_VISUAL_PLANE, source)
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays += visible_mask
+//		current_holder.underlays += cone
 
 ///Changes the range which the light reaches. 0 means no light, 6 is the maximum value.
 /datum/component/overlay_lighting/proc/set_range(atom/source, new_range)
@@ -247,6 +261,7 @@
 	SIGNAL_HANDLER
 	set_lum_power(new_power >= 0 ? 0.5 : -0.5)
 	set_alpha = min(230, (abs(new_power) * 120) + 30)
+	visible_mask.blend_mode = new_power > 0 ? BLEND_ADD : BLEND_SUBTRACT
 	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
 		current_holder.underlays -= visible_mask
 	visible_mask.alpha = set_alpha

@@ -9,7 +9,7 @@
 /obj/machinery/portable_atmospherics/scrubber/attack_hand(mob/living/user)
 	. = ..()
 	on = !on
-	balloon_alert(user, "You turn [src] [on ? "on" : "off"]")
+	balloon_alert(user, "turned [on ? "on" : "off"]")
 	update_icon()
 
 /obj/machinery/portable_atmospherics/scrubber/update_icon_state()
@@ -19,11 +19,10 @@
 /obj/machinery/portable_atmospherics/scrubber/update_overlays()
 	. = ..()
 
-	cut_overlays()
 	if(holding)
-		add_overlay("scrubber-open")
+		. += "scrubber-open"
 	if(connected_port)
-		add_overlay("scrubber-connector")
+		. += "scrubber-connector"
 
 /obj/machinery/portable_atmospherics/scrubber/emp_act(severity)
 	. = ..()

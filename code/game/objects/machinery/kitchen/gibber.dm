@@ -79,7 +79,7 @@
 	return TRUE
 
 /obj/machinery/gibber/verb/eject()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Empty Gibber"
 	set src in oview(1)
 
@@ -93,7 +93,7 @@
 	for(var/obj/O in src)
 		O.loc = loc
 	if (occupant.client)
-		occupant.client.eye = occupant.client.mob
+		occupant.client.set_eye(occupant.client.mob)
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = loc
 	occupant = null
@@ -105,10 +105,10 @@
 	if(operating)
 		return
 	if(!occupant)
-		visible_message(span_warning(" You hear a loud metallic grinding sound."))
+		visible_message(span_warning("You hear a loud metallic grinding sound."))
 		return
 	use_power(active_power_usage)
-	visible_message(span_warning(" You hear a loud squelchy grinding sound."))
+	visible_message(span_warning("You hear a loud squelchy grinding sound."))
 	playsound(loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	operating = TRUE
 	update_icon()
@@ -218,11 +218,11 @@
 	if(internal_beaker)
 		return
 	if(!istype(I, /obj/item/reagent_containers/glass/beaker))
-		balloon_alert(user, "Cannot insert")
+		balloon_alert(user, "not a beaker!")
 		return
 	user.transferItemToLoc(I, src)
 	internal_beaker = I
-	balloon_alert(user, "Adds beaker")
+	balloon_alert(user, "beaker added")
 
 /obj/machinery/gibber/apc/interact(mob/user)
 	. = ..()
@@ -239,6 +239,6 @@
 
 /obj/machinery/gibber/apc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	if(HAS_TRAIT(grab.grabbed_thing, TRAIT_MAPSPAWNED))
-		balloon_alert(user, "bad meat")
+		balloon_alert(user, "bad meat!")
 		return FALSE
 	return ..()

@@ -1,0 +1,38 @@
+2025-11-01:
+  Lumipharon:
+  - balance: 'Campaign: Some objectives explode violently on destruction'
+  - balance: Focus order slightly reduces scatter
+  - rscadd: Improved overlay lighting
+  - qol: Bike mounted weapons can be unequipped by dropping them
+  - rscadd: NPCs will shoot xeno turrets
+  - bugfix: fixed facehuggers not properly registering as hazards to NPCs
+2025-11-02:
+  Atropos:
+  - bugfix: fixed music requests not showing who requested music
+  - admin: Music request is now purple colored (from cyan)
+  - bugfix: CIC spotlights now say how much time they last
+  GregorMN:
+  - imageadd: Updated zombie sprites
+  Lumipharon:
+  - bugfix: fixed some visual issues with HvH deploy points
+  - bugfix: Mobs riding vehicles as they deploy in HvH get spawn protection as well.
+  - refactor: refactored nuke disk and NT access computer code into a single type
+  - bugfix: 'Campaign: fixed destroy objectives on a couple of missions having the
+      wrong faction'
+  - balance: 'Crash: After 60 minutes, the marine player count is effectively increased
+      by 1 every 10 minutes, for larva gen calculations'
+  Runian:
+  - rscadd: Xenomorph variant of tactical smoke.
+  - rscadd: 6 more mutations for Hunter.
+  - code_imp: Atoms can now track where and how their alpha is changed; xenomorphs
+      are the only ones that do this right now.
+  Scav:
+  - rscadd: Added a sleeper to Canterbury medical
+  breadhunt:
+  - rscadd: Pheromone HUD indicators now change depending on the strength of each
+      pheromone
+2025-11-03:
+  Lumipharon:
+  - rscadd: Baseball bats can bounce back thrown things
+  - bugfix: fixed defender and praetorian reflect abilities
+  - imageadd: Ported TG light sprites

@@ -75,7 +75,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_ADMIN))
 			return
 		var/mob/M = locate(href_list["playerpanel"])
-		show_player_panel(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, M)
 
 	else if(href_list["showrelatedacc"])
 		if(!check_rights(R_ADMIN))
@@ -92,7 +92,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
 		dat += thing_to_check
 
-		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
+		var/datum/browser/browser = new(usr, "related_[C]", "[C.ckey] Related Accounts", 420, 300)
+		browser.set_content(dat.Join("<br>"))
+		browser.open()
 
 	else if(href_list["centcomlookup"])
 		if(!check_rights(R_ADMIN))
@@ -151,7 +153,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 	else if(href_list["subtlemessage"])
 		var/mob/M = locate(href_list["subtlemessage"])
-		subtle_message(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/subtle_message, M)
 
 	else if(href_list["imginaryfriend"])
 		var/mob/M = locate(href_list["imginaryfriend"])
@@ -175,7 +177,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/message
 		if(!isobserver(usr))
-			admin_ghost()
+			SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/aghost)
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
@@ -191,7 +193,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/atom/movable/AM = locate(href_list["observefollow"])
 		var/client/C = usr.client
 
-		if(!ismovableatom(AM))
+		if(!ismovable(AM))
 			return
 
 		if(isnewplayer(C.mob) || isnewplayer(AM))
@@ -199,7 +201,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/message
 		if(!isobserver(C.mob))
-			admin_ghost()
+			SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/aghost)
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
@@ -219,7 +221,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/message
 		if(!isobserver(usr))
-			admin_ghost()
+			SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/aghost)
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
@@ -262,28 +264,28 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("gethumans")
 				log_admin("[key_name(usr)] mass-teleported all humans.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all humans.")
-				to_chat(GLOB.alive_human_list, span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all humans."))
+				to_chat(GLOB.alive_human_list, span_userdanger("[key_name_admin(usr, FALSE)] mass-teleported all humans."))
 				for(var/i in GLOB.alive_human_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("getxenos")
 				log_admin("[key_name(usr)] mass-teleported all Xenos.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all Xenos.")
-				to_chat(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
+				to_chat(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], span_userdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
 				for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 					var/mob/M = i
 					M.forceMove(T)
 			if("getall")
 				log_admin("[key_name(usr)] mass-teleported everyone.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported everyone.")
-				to_chat(GLOB.mob_living_list, span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported everyone."))
+				to_chat(GLOB.mob_living_list, span_userdanger("[key_name_admin(usr, FALSE)] mass-teleported everyone."))
 				for(var/i in GLOB.mob_living_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("rejuvall")
 				log_admin("[key_name(usr)] mass-rejuvenated cliented mobs.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-rejuvenated cliented mobs.")
-				to_chat(GLOB.mob_living_list, span_highdanger("[key_name_admin(usr, FALSE)] mass-rejuvenated everyone."))
+				to_chat(GLOB.mob_living_list, span_userdanger("[key_name_admin(usr, FALSE)] mass-rejuvenated everyone."))
 				for(var/i in GLOB.mob_living_list)
 					var/mob/living/L = i
 					if(!L.client)
@@ -442,6 +444,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
 			if("king")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/king, location, null, delmob)
+			if("dragon")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/dragon, location, null, delmob)
 			if("wraith")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/wraith, location, null, delmob)
 			if("puppeteer")
@@ -468,6 +472,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/skeleton, location, null, delmob)
 			if("monkey")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/monkey, location, null, delmob, "Monkey") //todo doublecheck this
+			if("prototype_supersoldier")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/prototype_supersoldier, location, null, delmob) //todo doublecheck this
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/moth, location, null, delmob, "Moth")
 			if("zombie")
@@ -475,7 +481,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("ai")
 				newmob = M.change_mob_type(/mob/living/silicon/ai, location, null, delmob)
 
-		C.holder.show_player_panel(newmob)
+		SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/show_player_panel, newmob)
 
 		log_admin("[key_name(oldusr)] has transformed [key_name(newmob ? newmob : M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
 		message_admins("[delmob ? key_name_admin(oldusr) : ADMIN_TPMONTY(oldusr)] has transformed [newmob ? ADMIN_TPMONTY(newmob) : ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
@@ -604,7 +610,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
 
-		usr.client.smite(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/aghost)
 
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN))
@@ -819,7 +825,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
-				var/area/A = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
+				var/area/A = input("Pick an area.", "Pick an area") as null|anything in get_sorted_areas()
 				if(!A || !M)
 					return
 				target = pick(get_area_turfs(A))
@@ -861,8 +867,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/dat = "<html><head><title>Fax Message: [F.title]</title></head>"
 		dat += "<body>[F.message]</body></html>"
 
-		usr << browse(dat, "window=fax")
-
+		var/datum/browser/browser = new(usr, "fax", "Fax")
+		browser.set_content(dat)
+		browser.open()
 
 	else if(href_list["faxmark"])
 		if(!check_rights(R_ADMIN|R_MENTOR))
@@ -988,10 +995,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!fax_message)
 					return
 
-		usr << browse(fax_message, "window=faxpreview;size=600x600")
+		var/datum/browser/browser = new(usr, "faxpreview", "New Fax", 600, 600)
+		browser.set_content(fax_message)
+		browser.open()
 
 		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
-			usr << browse(null, "window=faxpreview")
+			browser.close()
 			return
 
 		send_fax(usr, null, dep, subject, fax_message, TRUE)
@@ -1025,6 +1034,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		return usr.client.holder.create_mob(usr)
 
+	else if(href_list["dupe_marked_datum"])
+		if(!check_rights(R_SPAWN))
+			return
+		return duplicate_object(marked_datum, spawning_location = get_turf(usr))
 
 	else if(href_list["modemenu"])
 		if(!check_rights(R_SERVER))
@@ -1032,7 +1045,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/dat = "<b>What mode do you wish to play?</b><br>"
 		for(var/datum/game_mode/mode AS in config.modes)
-			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[mode.name]</a><br>"
+			dat += "<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[mode.name]</a><br>"
 		dat += "<br>"
 		dat += "Now: [GLOB.master_mode]<br>"
 		dat += "Next Round: [trim(file2text("data/mode.txt"))]"
@@ -1410,6 +1423,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 
 	else if(href_list["showmessageckeylinkless"])
+		if(!check_rights(R_BAN))
+			return
 		var/target = href_list["showmessageckeylinkless"]
 		browse_messages(target_ckey = target, linkless = TRUE)
 
@@ -1511,7 +1526,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		job.add_job_positions(1)
 
-		usr.client?.holder.job_slots()
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/job_slots)
 
 		log_admin("[key_name(src)] has added a [slot] job slot.")
 		message_admins("[ADMIN_TPMONTY(usr)] has added a [slot] job slot.")
@@ -1529,7 +1544,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		J.occupy_job_positions(1)
 
-		usr.client.holder.job_slots()
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/job_slots)
 
 		log_admin("[key_name(src)] has filled a [slot] job slot.")
 		message_admins("[ADMIN_TPMONTY(usr)] has filled a [slot] job slot.")
@@ -1547,7 +1562,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		J.free_job_positions(1)
 
-		usr.client.holder.job_slots()
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/job_slots)
 
 		log_admin("[key_name(src)] has freed a [slot] job slot.")
 		message_admins("[ADMIN_TPMONTY(usr)] has freed a [slot] job slot.")
@@ -1568,7 +1583,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		job.remove_job_positions(1)
 
-		usr.client.holder.job_slots()
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/job_slots)
 
 		log_admin("[key_name(src)] has removed a [slot] job slot.")
 		message_admins("[ADMIN_TPMONTY(usr)] has removed a [slot] job slot.")
@@ -1586,7 +1601,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		job.set_job_positions(0)
 
-		usr.client.holder.job_slots()
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/job_slots)
 
 		log_admin("[key_name(src)] has cleared the [slot] job.")
 		message_admins("[ADMIN_TPMONTY(usr)] has cleared the [slot] job.")
@@ -1602,7 +1617,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				continue
 			job.set_job_positions(0)
 
-		usr.client.holder.job_slots()
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/job_slots)
 
 		log_admin("[key_name(src)] has cleared all job slots.")
 		message_admins("[ADMIN_TPMONTY(usr)] has cleared all job slots.")
@@ -1620,7 +1635,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		job.set_job_positions(-1)
 
-		usr.client.holder.job_slots()
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/job_slots)
 
 		log_admin("[key_name(src)] has unlimited the [slot] job.")
 		message_admins("[ADMIN_TPMONTY(usr)] has unlimited the [slot] job.")
@@ -1635,7 +1650,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/datum/job/J = SSjob.name_occupations[slot]
 		J.set_job_positions(J.current_positions)
 
-		usr.client.holder.job_slots()
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/job_slots)
 
 		log_admin("[key_name(src)] has limited the [slot] job.")
 		message_admins("[ADMIN_TPMONTY(usr)] has limited the [slot] job.")
@@ -1652,7 +1667,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("false")
 				SSjob.ssjob_flags &= ~(SSJOB_OVERRIDE_JOBS_START)
 
-		usr.client.holder.job_slots()
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/job_slots)
 
 		log_admin("[key_name(src)] has set the roundstart job override value to [override].")
 		message_admins("[ADMIN_TPMONTY(usr)] has set the roundstart job override value to [override].")
@@ -1668,7 +1683,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, span_warning("Target is no longer valid."))
 			return
 
-		usr.client.holder.rank_and_equipment(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/rank_and_equipment, H)
 
 
 	else if(href_list["editappearance"])
@@ -1681,7 +1696,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, span_warning("Target is no longer valid."))
 			return
 
-		usr.client.holder.edit_appearance(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/edit_appearance, H)
 
 
 	else if(href_list["sleep"])
@@ -1693,9 +1708,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!istype(L))
 			to_chat(usr, span_warning("Target is no longer valid."))
 			return
-
-		usr.client.holder.toggle_sleep(L)
-
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/toggle_sleep, L)
 
 	else if(href_list["offer"])
 		if(!check_rights(R_ADMIN))
@@ -1706,8 +1719,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!istype(L))
 			to_chat(usr, span_warning("Target is no longer valid."))
 			return
-
-		usr.client.holder.offer(L)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/offer, L)
 
 
 	else if(href_list["give"])
@@ -1720,11 +1732,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, span_warning("Target is no longer valid."))
 			return
 
-		usr.client.holder.give_mob(L)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_mob, L)
 
 
 	else if(href_list["playtime"])
-		if(!check_rights(R_ADMIN))
+		if(!check_rights(R_ADMIN|R_MENTOR))
 			return
 
 		var/mob/M = locate(href_list["playtime"]) in GLOB.mob_list
@@ -1852,6 +1864,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				previous = H.gender
 				H.gender = change
+			if("physique")
+				change = input("Select the physique.", "Edit Appearance") as null|anything in list(MALE, FEMALE)
+				if(!change || !istype(H))
+					return
+				previous = H.physique
+				H.physique = change
 			if("ethnicity")
 				change = input("Select the ethnicity.", "Edit Appearance") as null|anything in sortList(GLOB.ethnicities_list)
 				if(!change || !istype(H))
@@ -1868,7 +1886,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		H.update_hair()
 		H.update_body()
 		H.regenerate_icons()
-		usr.client.holder.edit_appearance(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/edit_appearance, H)
 
 		log_admin("[key_name(usr)] updated the [href_list["appearance"]] from [previous] to [change] of [key_name(H)].")
 		message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["appearance"]] from [previous] to [change] of [ADMIN_TPMONTY(H)].")
@@ -1978,9 +1996,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/list/job_outfits = list()
 				for(var/path in job_paths)
 					var/datum/outfit/O = path
-					if(initial(O.can_be_admin_equipped))
-						var/outfit_name = initial(O.name)
-						job_outfits[outfit_name] = path
+					job_outfits[initial(O.name)] = path
 
 				var/list/picker = sortList(job_outfits)
 				picker.Insert(1, "{Naked}")
@@ -2002,7 +2018,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				H.regenerate_icons()
 				change = istype(O) ?  O.name : dresscode
 
-		usr.client.holder.rank_and_equipment(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/rank_and_equipment, H)
 
 		if(change)
 			log_admin("[key_name(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change][addition] of [key_name(H)].")
@@ -2079,7 +2095,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					X.upgrade_stored = previous_maturity.upgrade_threshold
 
 		DIRECT_OUTPUT(usr, browse(null, "window=xeno_panel_[old_keyname]"))
-		usr.client.holder.xeno_panel(X)
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/xeno_panel, X)
 
 		log_admin("[key_name(usr)] changed [href_list["xeno"]] of [X] from [previous] to [change].")
 		message_admins("[ADMIN_TPMONTY(usr)] changed [href_list["xeno"]] of [ADMIN_TPMONTY(X)] from [previous] to [change].")
@@ -2173,7 +2189,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 	else if(href_list["show_tags"])
 		if(!check_rights(R_ADMIN))
 			return
-		return display_tags()
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/display_tags)
 
 	else if(href_list["mark_datum"])
 		if(!check_rights(R_ADMIN))
@@ -2182,3 +2198,32 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!datum_to_mark)
 			return
 		return usr.client?.mark_datum(datum_to_mark)
+
+	else if(href_list["kick_all_from_lobby"])
+		if(!check_rights(R_ADMIN))
+			return
+		if(!SSticker.IsRoundInProgress())
+			to_chat(usr, "You may only use this when the game is running.", confidential = TRUE)
+			return
+		var/afkonly = text2num(href_list["afkonly"])
+		if(tgui_alert(usr,"Are you sure you want to kick all [afkonly ? "AFK" : ""] clients from the lobby?", "Message", list("Yes", "No")) != "Yes")
+			to_chat(usr, "Kick clients from lobby aborted", confidential = TRUE)
+			return
+		var/list/listkicked = kick_clients_in_lobby(span_danger("You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"]."), afkonly)
+
+		var/strkicked = ""
+		for(var/name in listkicked)
+			strkicked += "[name], "
+		message_admins("[key_name_admin(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
+		log_admin("[key_name(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
+
+	else if(href_list["play_internet"])
+		if(!check_rights(R_SOUND))
+			return
+
+		var/credit = href_list["credit"]
+		var/link_url = href_list["play_internet"]
+		if(!link_url)
+			return
+
+		web_sound(usr, link_url, credit)

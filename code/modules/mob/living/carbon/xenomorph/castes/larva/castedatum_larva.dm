@@ -3,6 +3,7 @@
 	display_name = "Bloody Larva"
 	upgrade_name = ""
 	caste_desc = "D'awwwww, so cute!"
+	base_strain_type = /mob/living/carbon/xenomorph/larva
 	caste_type_path = /mob/living/carbon/xenomorph/larva
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -28,9 +29,9 @@
 	evolution_threshold = 50
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_INNATE_HEALING
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_RIDE_CRUSHER
-	caste_traits = list(TRAIT_CAN_VENTCRAWL)
+	caste_flags = CASTE_EVOLUTION_ALLOWED
+	can_flags = CASTE_CAN_RIDE_CRUSHER
+	caste_traits = list(TRAIT_CAN_VENTCRAWL, TRAIT_INNATE_HEALING)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)

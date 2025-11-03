@@ -65,11 +65,6 @@
 
 ///Make the user fly toward the target atom
 /obj/item/jetpack_marine/proc/use_jetpack(atom/A, mob/living/carbon/human/human_user)
-	if(human_user.buckled)
-		balloon_alert(human_user, "Cannot fly while buckled")
-		return FALSE
-	if(human_user.do_actions)
-		return FALSE
 	if(!do_after(human_user, 0.3 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, A))
 		return FALSE
 	S_TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, cooldown_time)
@@ -136,7 +131,7 @@
 		return ..()
 	var/obj/structure/reagent_dispensers/fueltank/FT = target
 	if(FT.reagents.total_volume == 0)
-		balloon_alert(user, "No fuel")
+		balloon_alert(user, "no fuel!")
 		return
 
 	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
@@ -146,7 +141,7 @@
 	change_fuel_indicator()
 	update_icon()
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-	balloon_alert(user, "Refilled")
+	balloon_alert(user, "refilled")
 
 /obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -156,7 +151,7 @@
 		return
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
 	if(FT.current_rounds == 0)
-		balloon_alert(user, "No fuel")
+		balloon_alert(user, "no fuel!")
 		return
 
 	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
@@ -165,7 +160,7 @@
 	fuel_indicator = FUEL_INDICATOR_FULL
 	change_fuel_indicator()
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	balloon_alert(user, "Refilled")
+	balloon_alert(user, "refilled")
 	update_icon()
 
 /datum/action/ability/activable/item_toggle/jetpack
@@ -180,15 +175,35 @@
 	var/obj/item/jetpack_marine/jetpack = Target
 	cooldown_duration = jetpack.cooldown_time
 
-/datum/action/ability/activable/item_toggle/jetpack/can_use_ability(silent, override_flags, selecting)
+/datum/action/ability/activable/item_toggle/jetpack/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE
+	if(carbon_owner.do_actions)
+		return FALSE
 	var/obj/item/jetpack_marine/jetpack = holder_item
 	if(jetpack.fuel_left < FUEL_USE)
-		carbon_owner.balloon_alert(carbon_owner, "No fuel")
+		carbon_owner.balloon_alert(carbon_owner, "no fuel!")
 		return
 	return ..()
+
+/datum/action/ability/activable/item_toggle/jetpack/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/activable/item_toggle/jetpack/ai_should_use(atom/target)
+	if(!(isliving(target) || ismecha(target) || isarmoredvehicle(target)))
+		return FALSE
+	var/atom/movable/movable_target = target
+	if(movable_target.faction == owner.faction)
+		return FALSE
+	if(!can_use_ability(movable_target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	var/obj/item/jetpack_marine/jetpack_parent = src.target
+	if(jetpack_parent.fuel_left < FUEL_USE)
+		return FALSE
+	if(!line_of_sight(owner, movable_target, jetpack_parent.calculate_range(owner)))
+		return FALSE
+	return TRUE
 
 /obj/item/jetpack_marine/heavy
 	name = "heavy lift jetpack"
@@ -212,8 +227,10 @@
 	. = ..()
 	if(!.)
 		return
+	if(!human_user.throwing) //if we instantly run into something, the throw is already over
+		return
 	if(human_user.a_intent != INTENT_HELP)
-		human_user.pass_flags &= ~PASS_MOB //we explicitly want to hit people
+		human_user.remove_pass_flags(PASS_MOB, THROW_TRAIT) //we explicitly want to hit people
 	RegisterSignal(human_user, COMSIG_MOVABLE_PREBUMP_MOVABLE, PROC_REF(mob_hit))
 
 /obj/item/jetpack_marine/heavy/reset_flame(mob/living/carbon/human/human_user)
@@ -248,7 +265,7 @@
 	else
 		hit_mob.Knockdown(knockdown_duration)
 		human_user.forceMove(get_turf(hit_mob))
-	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE, attacker = human_user)
 	hit_mob.visible_message(span_danger("[human_user] slams into [hit_mob]!"))
 
 	human_user.set_throwing(FALSE)

@@ -132,10 +132,10 @@
 
 	if(is_cut(wire))
 		cut_wires -= wire
-		on_cut(wire, mend = TRUE)
+		on_cut(wire, TRUE, user)
 	else
 		cut_wires += wire
-		on_cut(wire, mend = FALSE)
+		on_cut(wire, FALSE, user)
 
 
 /datum/wires/proc/cut_color(color, mob/user)
@@ -214,7 +214,7 @@
 	return
 
 
-/datum/wires/proc/on_cut(wire, mend = FALSE)
+/datum/wires/proc/on_cut(wire, mend = FALSE, mob/user)
 	return
 
 
@@ -288,7 +288,7 @@
 				cut_color(target_wire)
 				. = TRUE
 			else
-				holder.balloon_alert(L, "You need wirecutters!")
+				holder.balloon_alert(L, "need wirecutters!")
 		if("pulse")
 			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
 			if(I || IsAdminGhost(usr))
@@ -297,7 +297,7 @@
 				pulse_color(target_wire, L)
 				. = TRUE
 			else
-				holder.balloon_alert(L, "You need a multitool!")
+				holder.balloon_alert(L, "need a multitool!")
 		if("attach")
 			if(is_attached(target_wire))
 				I = detach_assembly(target_wire)
@@ -315,6 +315,6 @@
 							A.forceMove(L.drop_location())
 						. = TRUE
 					else
-						holder.balloon_alert(L, "You need an attachable assembly!")
+						holder.balloon_alert(L, "need an attachable assembly!")
 
 #undef MAXIMUM_EMP_WIRES

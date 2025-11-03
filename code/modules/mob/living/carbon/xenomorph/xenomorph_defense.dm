@@ -2,11 +2,22 @@
 Contains most of the procs that are called when a xeno is attacked by something
 */
 
-/mob/living/carbon/xenomorph/screech_act(mob/living/carbon/xenomorph/queen/Q)
+/mob/living/carbon/xenomorph/screech_act(distance, screech_range = WORLD_VIEW_NUM, within_sight = TRUE)
 	return
 
 /mob/living/carbon/xenomorph/has_smoke_protection()
 	return TRUE
+
+/mob/living/carbon/xenomorph/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!((S.smoke_traits & SMOKE_CAMO) && (S.smoke_traits & SMOKE_XENO)))
+		return
+	if(!.)
+		if(has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING))
+			remove_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING)
+		return
+	if(!has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING))
+		apply_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING)
 
 /mob/living/carbon/xenomorph/smoke_contact(obj/effect/particle_effect/smoke/S)
 	var/protection = max(1 - get_permeability_protection() * S.bio_protection) //0.2 by default

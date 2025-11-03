@@ -7,7 +7,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 7
 	throw_range = 15
-	attack_verb = list("banned")
+	attack_verb = list("bans")
 
 /obj/item/weapon/banhammer/attack(mob/M as mob, mob/user as mob)
 	to_chat(M, "<font color='red'><b> You have been banned FOR NO REISIN by [user]<b></font>")
@@ -43,10 +43,10 @@
 	force = 20
 	throwforce = 15
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("jabbed","stabbed","ripped")
+	attack_verb = list("jabs","stabs","rips")
 
 /obj/item/weapon/baseballbat
-	name = "\improper wooden baseball bat"
+	name = "wooden baseball bat"
 	desc = "A large wooden baseball bat. Commonly used in colony recreation, but also used as a means of self defense. Often carried by thugs and ruffians."
 	icon_state = "woodbat"
 	worn_icon_state = "woodbat"
@@ -57,11 +57,23 @@
 	throw_speed = 3
 	throw_range = 7
 	throwforce = 7
-	attack_verb = list("smashed", "beaten", "slammed", "struck", "smashed", "battered", "cracked")
+	attack_verb = list("smashes", "beats", "slams", "strikes", "smashes", "batters", "cracks")
 	hitsound = 'sound/weapons/genhit3.ogg'
 
+/obj/item/weapon/baseballbat/equipped(mob/user, slot)
+	. = ..()
+	user.AddComponent(/datum/component/throw_parry, null, TRUE, src)
+
+/obj/item/weapon/baseballbat/dropped(mob/user)
+	. = ..()
+	user.remove_component(/datum/component/throw_parry)
+
+/obj/item/weapon/baseballbat/on_parry_throw(atom/reflector, atom/movable/thrown)
+	reflector.visible_message(span_warning("[reflector] smashes [thrown] with [src]!"))
+	playsound(src, 'sound/weapons/base_ball_bat_hit.ogg', 60, 1, 10)
+
 /obj/item/weapon/baseballbat/metal
-	name = "\improper metal baseball bat"
+	name = "metal baseball bat"
 	desc = "A large metal baseball bat. Compared to its wooden cousin, the metal bat offers a bit more more force. Often carried by thugs and ruffians."
 	icon_state = "metalbat"
 	worn_icon_state = "metalbat"
@@ -82,7 +94,7 @@
 	throw_speed = 3
 	throw_range = 4
 	throwforce = 7
-	attack_verb = list("patted", "tapped")
+	attack_verb = list("pats", "taps")
 	attack_speed = 4
 
 /obj/item/weapon/butterfly/attack_self(mob/user)
@@ -97,7 +109,7 @@
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = WEIGHT_CLASS_NORMAL
-		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 		return
 	to_chat(user, span_notice("The [src] can now be concealed."))
 	force = initial(force)
@@ -123,7 +135,7 @@
 	force = 8
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
+	attack_verb = list("hits", "bludgeons", "whacks", "bonks")
 
 /obj/item/weapon/wirerod/attackby(obj/item/I, mob/user, params)
 	. = ..()

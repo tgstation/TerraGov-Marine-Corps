@@ -5,17 +5,17 @@
 */
 
 /datum/ammo/xeno/boiler_gas
-	name = "glob of gas"
-	icon_state = "boiler_gas2"
+	name = "glob of neurotoxin"
+	icon_state = "boiler_neurotoxin"
 	ping = "ping_x"
 	///Key used for icon stuff during bombard ammo selection.
-	var/icon_key = BOILER_GLOB_NEURO
+	var/icon_key = BOILER_GLOB_NEUROTOXIN
 	///This text will show up when a boiler selects this ammo. Span proc should be applied when this var is used.
 	var/select_text = "We will now fire neurotoxic gas. This is nonlethal."
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
 	var/danger_message = span_danger("A glob of acid lands with a splat and explodes into noxious fumes!")
 	armor_type = BIO
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 16
 	damage = 50
 	damage_type = STAMINA
@@ -36,7 +36,7 @@
 	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
 	var/datum/effect_system/smoke_spread/xeno/trail_spread_system
 
-/datum/ammo/xeno/boiler_gas/on_leave_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
 	if(isxeno(proj.firer))
 		var/mob/living/carbon/xenomorph/X = proj.firer
 		trail_spread_system.strength = X.xeno_caste.bomb_strength
@@ -73,7 +73,7 @@
 /datum/ammo/xeno/boiler_gas/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
-/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob), proj.firer)
 	if(target_mob.stat == DEAD || !ishuman(target_mob))
 		return
@@ -92,16 +92,16 @@
 
 	human_victim.reagents.add_reagent_list(spit_reagents)
 
-/datum/ammo/xeno/boiler_gas/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	if(ismecha(target_obj))
 		proj.damage *= 7 //Globs deal much higher damage to mechs.
 	var/turf/target_turf = get_turf(target_obj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_turf, proj.firer)
 
-/datum/ammo/xeno/boiler_gas/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
-/datum/ammo/xeno/boiler_gas/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj.firer)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
@@ -120,10 +120,10 @@
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
-	icon_state = "boiler_gas"
+	icon_state = "boiler_corrosive"
 	sound_hit = SFX_ACID_HIT
 	sound_bounce = SFX_ACID_BOUNCE
-	icon_key = BOILER_GLOB_ACID
+	icon_key = BOILER_GLOB_CORROSIVE
 	select_text = "We will now fire corrosive acid. This is lethal!"
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
 	armor_type = ACID
@@ -145,15 +145,80 @@
 	trap.smoke.set_up(1, get_turf(trap))
 	return TRUE
 
-/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/target_mob, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/target_mob, atom/movable/projectile/proj)
 	airburst(target_mob, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid/opaque()
 
+/datum/ammo/xeno/boiler_gas/ozelomelyn
+	name = "glob of ozelomelyn"
+	icon_state = "boiler_ozelomelyn"
+	sound_hit = SFX_ACID_HIT
+	sound_bounce = SFX_ACID_BOUNCE
+	icon_key = BOILER_GLOB_OZELOMELYN
+	select_text = "We will now fire ozelomelyn gas."
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
+	danger_message = span_danger("A glob of ozelomelyn lands with a splat and explodes into noxious fumes!")
+	damage_type = TOXIC
+	bullet_color = BOILER_LUMINOSITY_AMMO_OZELOMELYN_COLOR
+
+/datum/ammo/xeno/boiler_gas/ozelomelyn/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/ozelomelyn()
+
+/datum/ammo/xeno/boiler_gas/hemodile
+	name = "glob of hemodile"
+	icon_state = "boiler_hemodile"
+	sound_hit = SFX_ACID_HIT
+	sound_bounce = SFX_ACID_BOUNCE
+	icon_key = BOILER_GLOB_HEMODILE
+	select_text = "We will now fire hemodile gas."
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
+	danger_message = span_danger("A glob of hemodile lands with a splat and explodes into noxious fumes!")
+	damage_type = TOXIC
+	bullet_color = BOILER_LUMINOSITY_AMMO_HEMODILE_COLOR
+
+/datum/ammo/xeno/boiler_gas/hemodile/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/hemodile()
+
+/datum/ammo/xeno/boiler_gas/sanguinal
+	name = "glob of sanguinal"
+	icon_state = "boiler_sanguinal"
+	sound_hit = SFX_ACID_HIT
+	sound_bounce = SFX_ACID_BOUNCE
+	icon_key = BOILER_GLOB_SANGUINAL
+	select_text = "We will now fire sanguinal gas."
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
+	danger_message = span_danger("A glob of sanguinal lands with a splat and explodes into noxious fumes!")
+	damage_type = TOXIC
+	bullet_color = BOILER_LUMINOSITY_AMMO_SANGUINAL_COLOR
+
+/datum/ammo/xeno/boiler_gas/sanguinal/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/sanguinal()
+
+/datum/ammo/xeno/boiler_gas/fast
+	name = "fast glob of neurotoxin"
+	icon_key = BOILER_GLOB_NEUROTOXIN_FAST
+	select_text = "We will now fire fast neurotoxic gas. This is nonlethal."
+	fixed_spread_range = 2
+	shell_speed = 2
+
+/datum/ammo/xeno/boiler_gas/fast/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro/light/fast()
+
+/datum/ammo/xeno/boiler_gas/corrosive/fast
+	name = "fast glob of acid"
+	icon_key = BOILER_GLOB_CORROSIVE_FAST
+	select_text = "We will now fire fast corrosive acid. This is lethal!"
+	fixed_spread_range = 2
+	shell_speed = 2
+
+/datum/ammo/xeno/boiler_gas/corrosive/fast/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid/fast()
+
 /datum/ammo/xeno/boiler_gas/lance
 	name = "pressurized glob of gas"
-	icon_key = BOILER_GLOB_NEURO_LANCE
+	icon_key = BOILER_GLOB_NEUROTOXIN_LANCE
 	select_text = "We will now fire a pressurized neurotoxic lance. This is barely nonlethal."
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF
@@ -173,7 +238,7 @@
 
 /datum/ammo/xeno/boiler_gas/corrosive/lance
 	name = "pressurized glob of acid"
-	icon_key = BOILER_GLOB_ACID_LANCE
+	icon_key = BOILER_GLOB_CORROSIVE_LANCE
 	select_text = "We will now fire a pressurized corrosive lance. This lethal!"
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF

@@ -85,7 +85,7 @@
 				set_broken()
 
 
-/obj/machinery/computer/bullet_act(obj/projectile/proj)
+/obj/machinery/computer/bullet_act(atom/movable/projectile/proj)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		visible_message("[proj] ricochets off [src]!")
 		return 0
@@ -115,7 +115,7 @@
 		return
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/computer/proc/set_broken()

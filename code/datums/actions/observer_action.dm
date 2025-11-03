@@ -1,4 +1,4 @@
-/datum/action/observer_action/can_use_action()
+/datum/action/observer_action/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -65,11 +65,6 @@
 		return FALSE
 	if(tgui_alert(owner, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)) != "Yes")
 		return
-	if(isxeno(new_mob))
-		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
-		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(owner))
-			XENODEATHTIME_MESSAGE(owner)
-			return
 
 	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
 		to_chat(owner, span_warning("That mob is currently possessing a different mob."))
@@ -92,17 +87,24 @@
 		log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
 		new_mob.transfer_mob(owner)
 		return
-	if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(owner.client.prefs.real_name))
+
+	if((!(owner.client?.prefs?.be_special & BE_SSD_RANDOM_NAME)) && (CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(owner.client.prefs.real_name)))
 		to_chat(usr, span_warning("Someone has already joined the round with this character name. Please pick another."))
 		return
+
 	message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
 	log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
-	new_mob.transfer_mob(owner)
-	var/mob/living/carbon/human/H = new_mob
-	var/datum/job/j = H.job
+	var/mob/living/carbon/human/new_human = new_mob
+	var/datum/job/j = new_human.job
 	var/datum/outfit/job/o = j.outfit
-	H.on_transformation()
-	o.handle_id(H)
+	if(owner.client?.prefs?.be_special & BE_SSD_RANDOM_NAME)
+		new_human.fully_replace_character_name(new_human.real_name, new_human.species.random_name(new_human.gender))
+		o.handle_id(new_human)
+		new_human.transfer_mob(owner)
+		return
+	new_human.transfer_mob(owner)
+	new_human.on_transformation()
+	o.handle_id(new_human)
 
 //respawn button for campaign gamemode
 /datum/action/observer_action/campaign_respawn

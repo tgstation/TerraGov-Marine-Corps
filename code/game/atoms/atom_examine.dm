@@ -7,6 +7,9 @@
 	/// Text that appears preceding the name in [/atom/proc/examine_title].
 	/// Don't include spaces after this, since that proc adds a space on its own.
 	var/examine_thats = "That's"
+	/// Boxed message style when examining this atom.
+	/// Must be `boxed_message` or `boxed_message [red/green/blue/purple]_box`.
+	var/boxed_message_style = "boxed_message"
 
 /mob/living/carbon/human
 	examine_thats = "This is"
@@ -41,7 +44,7 @@
 		. += "[p_they(TRUE)] [p_are()] [tag_string]."
 	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
 		. += EXAMINE_SECTION_BREAK
-		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
+		. += span_notice("The codex has <a href='byond://?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
 
 	if((get_dist(user,src) <= 2) && reagents)
 		. += EXAMINE_SECTION_BREAK
@@ -62,7 +65,7 @@
 		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 			if(isxeno(user))
 				return
-			if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
+			if((user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE) || isobserver(usr))
 				. += "It contains these reagents:"
 				if(length(reagents.reagent_list))
 					for(var/datum/reagent/R in reagents.reagent_list)

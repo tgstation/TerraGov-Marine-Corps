@@ -32,7 +32,7 @@
 	force = 20
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
-	attack_verb = list("clawed", "slashed", "torn", "ripped", "diced", "cut", "bit")
+	attack_verb = list("claws", "slashes", "tears", "rips", "dices", "cuts", "bites")
 	item_flags = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
@@ -60,7 +60,7 @@
 	if(user.do_actions)
 		return
 
-	target.balloon_alert_to_viewers("[user] starts to open [target]", "You start to pry open [target]")
+	target.balloon_alert_to_viewers("prying open [target]...")
 	if(!do_after(user, 4 SECONDS, IGNORE_HELD_ITEM, target))
 		return
 	var/obj/machinery/door/airlock/door = target

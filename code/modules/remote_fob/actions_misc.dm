@@ -60,7 +60,7 @@
 	if(!do_after(fobdrone, 1.5 SECONDS, IGNORE_HELD_ITEM, buildplace, BUSY_ICON_BUILD))
 		return
 	console.metal_remaining -= 4
-	cade = new /obj/structure/barricade/metal(buildplace)
+	cade = new /obj/structure/barricade/solid(buildplace)
 	cade.setDir(fobdrone.dir)
 	if(console.do_wiring)
 		if(!console.metal_remaining)
@@ -75,7 +75,7 @@
 /datum/action/innate/remote_fob/plast_cade
 	name = "Place Plasteel Barricade"
 	action_icon = 'icons/obj/structures/barricades/plasteel.dmi'
-	action_icon_state = "plasteel_0"
+	action_icon_state = "folding_plasteel_0"
 
 /datum/action/innate/remote_fob/plast_cade/Activate()
 	. = ..()
@@ -101,10 +101,8 @@
 	if(!do_after(fobdrone, 1.5 SECONDS, IGNORE_HELD_ITEM, buildplace, BUSY_ICON_BUILD))
 		return
 	console.plasteel_remaining -= 5
-	cade = new /obj/structure/barricade/plasteel(buildplace)
+	cade = new /obj/structure/barricade/folding(buildplace)
 	cade.setDir(fobdrone.dir)
-	cade.closed = FALSE
-	cade.density = TRUE
 	cade.update_icon()
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)

@@ -1,4 +1,3 @@
-import { useBackend, useLocalState } from '../../backend';
 import {
   Button,
   LabeledList,
@@ -6,7 +5,9 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../../backend';
 import { Window } from '../../layouts';
 import { IndividualLoadouts } from './IndividualLoadouts';
 import { IndividualPerks } from './IndividualPerks';
@@ -98,7 +99,7 @@ export const IndividualStats = (props) => {
       width={980}
       height={790}
     >
-      <Window.Content>
+      <Window.Content overflowY="auto">
         {unlockedPerk ? (
           <Modal width="500px">
             <Section

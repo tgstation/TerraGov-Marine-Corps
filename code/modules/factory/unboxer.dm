@@ -51,7 +51,7 @@
 
 /obj/machinery/unboxer/screwdriver_act(mob/living/user, obj/item/I)
 	setDir(turn(dir, 90))
-	balloon_alert(user, "Facing [dir2text(dir)]")
+	balloon_alert(user, "facing [dir2text(dir)]")
 
 /obj/machinery/unboxer/update_icon_state()
 	. = ..()
@@ -62,7 +62,7 @@
 
 /obj/machinery/unboxer/attack_hand(mob/living/user)
 	if(!anchored)
-		balloon_alert(user, "Must be anchored!")
+		balloon_alert(user, "must be anchored!")
 		return
 	change_state()
 
@@ -93,7 +93,7 @@
 	var/obj/item/factory_refill/refill = I
 	if(refill.refill_type != production_type)
 		if(production_amount_left)
-			balloon_alert(user, "Filler incompatible")
+			balloon_alert(user, "filler incompatible!")
 			return
 		production_type = refill.refill_type
 	var/to_refill = min(max_fill_amount - production_amount_left, refill.refill_amount)
@@ -125,7 +125,7 @@
 	refill_amount = 50
 
 /obj/item/factory_refill/phosnade_refill
-	name = "box of rounded metal plates (WP Grenade)"
+	name = "box of white phosphorous grenade plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become White Phosphorous Grenades, once finished."
 	refill_type = /obj/item/factory_part/phosnade
 	refill_amount = 50
@@ -282,6 +282,12 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/smartgunner_targetrifle_ammobin
+	refill_amount = 10
+
+/obj/item/factory_refill/smartgunner_spottingrifle_ammobin_refill
+	name = "box of rounded metal plates (SG-153)"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/smartgunner_spottingrifle_ammobin
 	refill_amount = 10
 
 /obj/item/factory_refill/auto_sniper_magazine_refill

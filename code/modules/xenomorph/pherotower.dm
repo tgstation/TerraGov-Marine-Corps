@@ -4,8 +4,6 @@
 	desc = "A resin formation that looks like a small pillar. A faint, weird smell can be perceived from it."
 	icon = 'icons/Xeno/1x1building.dmi'
 	icon_state = "recoverytower"
-	bound_width = 32
-	bound_height = 32
 	obj_integrity = 400
 	max_integrity = 400
 	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL
@@ -18,7 +16,7 @@
 
 /obj/structure/xeno/pherotower/Initialize(mapload, _hivenumber)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "phero", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "phero", MINIMAP_LABELS_LAYER))
 	GLOB.hive_datums[hivenumber].pherotowers += src
 
 //Pheromone towers start off with recovery.

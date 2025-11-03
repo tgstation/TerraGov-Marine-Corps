@@ -69,9 +69,11 @@
 /datum/component/riding/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(vehicle_turned))
+	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, PROC_REF(vehicle_mob_buckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
 	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, PROC_REF(vehicle_bump))
+	RegisterSignal(parent, COMSIG_BUCKLED_CAN_Z_MOVE, PROC_REF(riding_can_z_move))
 
 /**
  * This proc handles all of the proc calls to things like set_vehicle_dir_layer() that a type of riding datum needs to call on creation
@@ -82,6 +84,12 @@
  */
 /datum/component/riding/proc/handle_specials()
 	return
+
+/// This proc is called when a rider buckles
+/datum/component/riding/proc/vehicle_mob_buckle(datum/source, mob/living/rider)
+	SIGNAL_HANDLER
+	var/atom/movable/movable_parent = parent
+	handle_vehicle_offsets(movable_parent.dir)
 
 /// This proc is called when a rider unbuckles, whether they chose to or not. If there's no more riders, this will be the riding component's death knell.
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/rider, force = FALSE)
@@ -121,8 +129,8 @@
 		ride_check(buckled_mob)
 	if(QDELETED(src))
 		return // runtimed with piggy's without this, look into this more
-	handle_vehicle_offsets(dir)
 	handle_vehicle_layer(dir)
+	handle_vehicle_offsets(dir)
 
 /// Turning is like moving
 /datum/component/riding/proc/vehicle_turned(datum/source, _old_dir, new_dir)
@@ -149,9 +157,9 @@
 			for(var/offsetdir in offsets)
 				if(offsetdir == AM_dir)
 					var/list/diroffsets = offsets[offsetdir]
-					buckled_mob.pixel_x = diroffsets[1]
+					buckled_mob.pixel_w = diroffsets[1]
 					if(length(diroffsets) >= 2)
-						buckled_mob.pixel_y = diroffsets[2]
+						buckled_mob.pixel_z = diroffsets[2]
 					if(length(diroffsets) == 3)
 						buckled_mob.layer = diroffsets[3]
 					break dir_loop
@@ -190,8 +198,8 @@
 //BUCKLE HOOKS
 /datum/component/riding/proc/restore_position(mob/living/buckled_mob)
 	if(buckled_mob)
-		buckled_mob.pixel_x = initial(buckled_mob.pixel_x)//buckled_mob.base_pixel_x
-		buckled_mob.pixel_y = initial(buckled_mob.pixel_y)//buckled_mob.base_pixel_y
+		buckled_mob.pixel_w = initial(buckled_mob.pixel_w)//buckled_mob.base_pixel_w
+		buckled_mob.pixel_z = initial(buckled_mob.pixel_z)//buckled_mob.base_pixel_z
 		if(buckled_mob.client)
 			buckled_mob.client.view_size.reset_to_default()
 
@@ -223,6 +231,11 @@
 
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
 	addtimer(CALLBACK(parent, TYPE_PROC_REF(/atom/movable, unbuckle_mob), M), 0, TIMER_UNIQUE)
+
+/// Extra checks before buckled.can_z_move can be called in mob/living/can_z_move()
+/datum/component/riding/proc/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	SIGNAL_HANDLER
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
 /// currently replicated from ridable because we need this behavior here too, see if we can deal with that
 /datum/component/riding/proc/unequip_buckle_inhands(mob/living/carbon/user)

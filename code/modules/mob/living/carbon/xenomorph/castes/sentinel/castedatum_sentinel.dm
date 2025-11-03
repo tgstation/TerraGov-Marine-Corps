@@ -3,6 +3,7 @@
 	display_name = "Sentinel"
 	upgrade_name = ""
 	caste_desc = "A weak ranged combat alien."
+	base_strain_type = /mob/living/carbon/xenomorph/sentinel
 	caste_type_path = /mob/living/carbon/xenomorph/sentinel
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -11,7 +12,7 @@
 	gib_flick = "gibbed-a-small"
 
 	// *** Melee Attacks *** //
-	melee_damage = 16
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = -0.9
@@ -21,19 +22,19 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 370
 
 	// *** Evolution *** //
 	evolution_threshold = 100
 	upgrade_threshold = TIER_ONE_THRESHOLD
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 25, FIRE = 26, ACID = 25)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 10, BIO = 30, FIRE = 30, ACID = 30)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.0 SECONDS
@@ -54,6 +55,18 @@
 		/datum/action/ability/activable/xeno/xeno_spit/toxic_spit,
 		/datum/action/ability/xeno_action/toxic_slash,
 		/datum/action/ability/activable/xeno/drain_sting,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/comforting_acid,
+		/datum/mutation_upgrade/shell/healing_sting,
+		/datum/mutation_upgrade/shell/constant_surge,
+		/datum/mutation_upgrade/spur/acidic_slasher,
+		/datum/mutation_upgrade/spur/far_sting,
+		/datum/mutation_upgrade/spur/imbued_claws,
+		/datum/mutation_upgrade/veil/toxic_compatibility,
+		/datum/mutation_upgrade/veil/toxic_blood,
+		/datum/mutation_upgrade/veil/automatic_sting,
 	)
 
 /datum/xeno_caste/sentinel/normal
@@ -98,6 +111,12 @@
 		/datum/action/ability/activable/xeno/corrosive_acid/drone,
 		/datum/action/ability/activable/xeno/neurotox_sting,
 		/datum/action/ability/activable/xeno/xeno_spit,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/gaseous_blood,
+		/datum/mutation_upgrade/spur/toxic_claws,
+		/datum/mutation_upgrade/veil/toxic_spillage
 	)
 
 /datum/xeno_caste/sentinel/retrograde/primordial

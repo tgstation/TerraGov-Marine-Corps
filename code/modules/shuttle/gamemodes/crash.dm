@@ -11,18 +11,6 @@
 	dheight = 15
 	hidden = TRUE  //To make them not block landings during distress
 
-// Big explosions
-
-/*	explosion(front, 3, 4, 7, 0)
-	explosion(rear, 3, 4, 7, 0)
-	explosion(left, 3, 4, 7, 0)
-	explosion(right, 3, 4, 7, 0)
-
-	explosion(front_right, 4, 6, 10, 0)
-	explosion(front_left, 4, 6, 10, 0)
-	explosion(rear_right, 4, 6, 10, 0)
-	explosion(rear_left, 3, 4, 7, 0)
-*/
 
 // -- Shuttles
 
@@ -34,7 +22,7 @@
 	dwidth = 7
 	dheight = 12
 
-	callTime = 10 MINUTES
+	callTime = CRASH_DELAY_TIME
 	ignitionTime = 5 SECONDS
 	prearrivalTime = 12 SECONDS
 
@@ -52,7 +40,15 @@
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction != FACTION_TERRAGOV)
 			return
-		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] █:█<br>" + "Black Ops Platoon<br>" + "[human.job.title], ████", /atom/movable/screen/text/screen_text/picture/blackop)
+		var/initiate_title = op_name
+		var/initiate_screen_message = "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] █:█<br>" + "Black Ops Platoon<br>" + "[human.job.title], ████"
+		human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(initiate_title, initiate_screen_message, LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/blackop)
+
+/obj/docking_port/mobile/crashmode/initiate_docking(obj/docking_port/stationary/new_dock, movement_direction, force=FALSE)
+	. = ..()
+	if(. != DOCKING_SUCCESS)
+		return
+	SSminimaps.redraw_map(z)
 
 /obj/docking_port/stationary/crashmode/hangar
 	name = "Hangar Pad One"

@@ -187,6 +187,10 @@
 /obj/item/clothing/glasses/welding,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
+"is" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
 "ix" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering/east)
@@ -1146,13 +1150,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"Zh" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "Zo" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -1179,7 +1176,7 @@
 /area/bigredv2/outside/engineering)
 
 (1,1,1) = {"
-Zh
+lU
 uU
 YJ
 QT
@@ -1678,7 +1675,7 @@ HK
 KP
 ho
 UM
-nV
+is
 Yk
 nV
 nV

@@ -194,7 +194,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aA" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -205,21 +205,19 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aC" = (
-/obj/machinery/computer/body_scanconsole,
-/obj/structure/prop/holidays/stocking{
-	pixel_x = 11;
-	pixel_y = 26
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
-	},
+/obj/machinery/chem_master,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aD" = (
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aF" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -408,16 +406,15 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bw" = (
-/obj/machinery/bodyscanner,
-/obj/machinery/air_alarm{
-	dir = 4
-	},
+/obj/machinery/air_alarm,
+/obj/machinery/chem_dispenser,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "by" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/robotic_cradle,
 /obj/structure/prop/holidays/stocking{
 	pixel_x = -10;
@@ -430,22 +427,20 @@
 /area/shuttle/canterbury/medical)
 "bz" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
-/obj/item/defibrillator,
-/obj/item/storage/firstaid/adv,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/o2,
+/obj/machinery/vending/nanomed/nopower,
 /obj/item/storage/box/bodybags,
-/obj/item/roller,
-/obj/item/roller,
-/obj/machinery/firealarm,
+/obj/item/storage/firstaid/o2{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/adv,
+/obj/machinery/recharger,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/glass/beaker/cryomix,
-/obj/machinery/vending/nanomed,
-/obj/structure/prop/holidays/stocking{
-	pixel_x = -19;
-	pixel_y = 26
+/obj/item/defibrillator,
+/obj/item/bodybag/cryobag,
+/obj/item/reagent_containers/glass/beaker/cryomix{
+	name = "cryo beaker"
 	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
@@ -491,10 +486,7 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bG" = (
-/obj/machinery/autodoc,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
+/obj/machinery/autodoc/crash,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bH" = (
@@ -528,24 +520,14 @@
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
-"bS" = (
-/obj/structure/bed/chair/dropship/passenger,
-/turf/open/floor/mainship/sterile/dark,
-/area/shuttle/canterbury/medical)
 "bT" = (
-/obj/machinery/power/apc/mainship{
-	dir = 1
-	},
 /obj/structure/cable,
-/obj/effect/landmark/start/job/crash/medicalofficer,
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bU" = (
-/obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/mainship/sterile/dark,
+/obj/effect/landmark/start/job/crash/medicalofficer,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bV" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -573,7 +555,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cb" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cc" = (
@@ -585,9 +567,7 @@
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "cd" = (
-/obj/machinery/shower{
-	dir = 8
-	},
+/obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ce" = (
@@ -597,15 +577,15 @@
 /obj/structure/sink{
 	dir = 1
 	},
-/turf/open/floor/mainship/sterile/dark,
-/area/shuttle/canterbury/medical)
-"cf" = (
-/obj/machinery/computer/crew,
+/obj/machinery/light,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cg" = (
-/obj/machinery/vending/MarineMed,
-/turf/open/floor/mainship/sterile,
+/obj/machinery/vending/MarineMed/Blood,
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cl" = (
 /obj/structure/shuttle/engine/propulsion/burst/left,
@@ -630,10 +610,12 @@
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
 "cs" = (
-/obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 2
+/obj/machinery/power/apc{
+	dir = 4
 	},
-/turf/open/floor/mainship/sterile/dark,
+/obj/structure/cable,
+/obj/machinery/sleeper,
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "cv" = (
 /obj/structure/cable,
@@ -765,18 +747,18 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "cZ" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "da" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/machinery/door_control{
 	dir = 8;
 	id = "aft_engine_podlock"
@@ -793,27 +775,15 @@
 	},
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
-"ey" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 10
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury)
-"hk" = (
-/obj/structure/prop/holidays/string_lights/corner{
+"fI" = (
+/obj/machinery/computer/camera_advanced/overwatch/medical,
+/obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury)
-"mY" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/canterbury/cic)
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
 "nN" = (
-/obj/machinery/quick_vendor/beginner,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "pY" = (
@@ -822,110 +792,27 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"qd" = (
-/obj/structure/window/framed/mainship/white/canterbury,
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/open/floor/plating,
+"qK" = (
+/obj/structure/cable,
+/obj/machinery/computer/sleep_console,
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
-"sn" = (
-/obj/structure/prop/holidays/string_lights/corner,
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury/cic)
-"tx" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/canterbury/cic)
-"tG" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury/cic)
 "vY" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"wh" = (
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury/cic)
-"wp" = (
-/obj/effect/spawner/random/food_or_drink/christmas_food{
-	pixel_x = -3;
-	pixel_y = -4
+"xB" = (
+/obj/machinery/shower{
+	dir = 1
 	},
-/obj/effect/spawner/random/food_or_drink/christmas_food{
-	pixel_x = 1;
-	pixel_y = 1
-	},
-/obj/effect/spawner/random/food_or_drink/christmas_food{
-	pixel_x = -3
-	},
-/obj/effect/spawner/random/misc/present{
-	pixel_y = 8
-	},
-/obj/effect/spawner/random/misc/present{
-	pixel_x = 7;
-	pixel_y = 5
-	},
-/obj/effect/spawner/random/misc/present{
-	pixel_x = 9;
-	pixel_y = -3
-	},
-/obj/effect/spawner/random/misc/present{
-	pixel_y = -3
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"xH" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury)
-"xN" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 10
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury/cic)
-"xT" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury)
-"yp" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury)
-"yR" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/misc/present{
-	pixel_x = -6;
-	pixel_y = -6
-	},
-/obj/structure/flora/tree/pine/xmas/presents,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
+"yh" = (
+/obj/machinery/reagentgrinder,
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
 "zE" = (
 /obj/structure/window/framed/mainship/canterbury,
 /obj/structure/cable,
@@ -1084,11 +971,11 @@ aZ
 bi
 bo
 bw
+cs
 bG
-bK
-bR
+fI
 bZ
-cf
+bR
 bo
 cl
 "}
@@ -1107,9 +994,9 @@ bC
 bj
 bo
 aC
+qK
 bH
-bK
-bS
+yh
 ca
 ce
 bo
@@ -1130,11 +1017,11 @@ bb
 zE
 bo
 by
+bT
 bI
-cs
 cJ
 YI
-cd
+xB
 bo
 cm
 "}
@@ -1153,10 +1040,10 @@ cv
 aT
 bo
 bz
-SL
-bK
 bU
+bI
 cb
+cd
 cg
 bo
 cn
@@ -1177,10 +1064,10 @@ bl
 bo
 bA
 bT
+bI
+bK
+bK
 cI
-qd
-qd
-qd
 bo
 an
 "}
@@ -1200,7 +1087,7 @@ aD
 bV
 aD
 bO
-bV
+aD
 bV
 bV
 bV

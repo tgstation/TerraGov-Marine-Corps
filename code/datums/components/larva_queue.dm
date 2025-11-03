@@ -50,7 +50,7 @@
 
 /mob/living/carbon/xenomorph/can_wait_in_larva_queue()
 	. = FALSE
-	if (xeno_caste.tier == XENO_TIER_MINION)
+	if (xeno_caste.tier == XENO_TIER_MINION || get_xeno_hivenumber() == XENO_HIVE_FALLEN)
 		return TRUE
 
 /**
@@ -108,7 +108,7 @@
 	action_icon_state = "larva_queue"
 	action_type = ACTION_TOGGLE
 
-/datum/action/join_larva_queue/can_use_action()
+/datum/action/join_larva_queue/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE

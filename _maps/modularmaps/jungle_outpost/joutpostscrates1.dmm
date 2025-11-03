@@ -131,6 +131,11 @@
 /obj/structure/flora/jungle/large_bush,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
+"H" = (
+/obj/effect/turf_decal/grassdecal,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
 "K" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 4
@@ -172,6 +177,10 @@
 	dir = 1
 	},
 /obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"S" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
 "T" = (
@@ -258,9 +267,9 @@ a
 a
 X
 a
+S
 a
-a
-a
+S
 p
 "}
 (4,1,1) = {"
@@ -312,19 +321,19 @@ a
 p
 "}
 (7,1,1) = {"
-Z
+H
 a
 a
 l
 a
+S
 a
 a
 a
 a
 a
 a
-a
-a
+S
 p
 "}
 (8,1,1) = {"
@@ -380,6 +389,7 @@ Z
 T
 a
 l
+S
 a
 a
 a
@@ -387,8 +397,7 @@ a
 a
 a
 a
-a
-a
+S
 p
 "}
 (12,1,1) = {"

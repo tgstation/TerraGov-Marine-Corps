@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(tts)
 	var/datum/http_request/request = new()
 	var/list/headers = list()
 	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-voices", "", headers)
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-voices", "", headers, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	request.begin_async()
 	UNTIL(request.is_complete())
 	var/datum/http_response/response = request.into_response()
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(tts)
 	var/datum/http_request/request_pitch = new()
 	var/list/headers_pitch = list()
 	headers_pitch["Authorization"] = CONFIG_GET(string/tts_http_token)
-	request_pitch.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/pitch-available", "", headers_pitch)
+	request_pitch.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/pitch-available", "", headers_pitch, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	request_pitch.begin_async()
 	UNTIL(request_pitch.is_complete())
 	pitch_enabled = TRUE
@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(tts)
 		var/audio_to_use = (tts_pref == TTS_SOUND_BLIPS) ? audio_blips : audio
 		if(!holder.has_language(language))
 			continue
-		listening_mob.playsound_local(get_turf(listening_mob), soundin = audio_to_use, vol = volume_to_play_at, channel = channel)
+		listening_mob.playsound_local(null, soundin = audio_to_use, vol = volume_to_play_at, channel = channel)
 
 // Need to wait for all HTTP requests to complete here because of a rustg crash bug that causes crashes when dd restarts whilst HTTP requests are ongoing.
 /datum/controller/subsystem/tts/Shutdown()
@@ -256,7 +256,7 @@ SUBSYSTEM_DEF(tts)
 			else if(current_target.when_to_play < world.time)
 				audio_file = new(current_target.audio_file)
 				audio_file_blips = new(current_target.audio_file_blips)
-				play_tts(tts_target, current_target.listeners, audio_file, audio_file_blips, current_target.language, current_target.message_range, current_target.volume_offset, current_target.directionality)
+				play_tts(tts_target, current_target.listeners, audio_file, audio_file_blips, current_target.language, current_target.message_range, current_target.volume_offset, directionality = current_target.directionality)
 				if(length(data) != 1)
 					var/datum/tts_request/next_target = data[2]
 					next_target.when_to_play = world.time + current_target.audio_length
@@ -299,8 +299,8 @@ SUBSYSTEM_DEF(tts)
 	var/datum/http_request/request_blips = new()
 	var/file_name = "tmp/tts/[identifier].ogg"
 	var/file_name_blips = "tmp/tts/[identifier]_blips.ogg"
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name)
-	request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_blips)
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
+	request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_blips, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	var/datum/tts_request/current_request = new /datum/tts_request(identifier, request, request_blips, shell_scrubbed_input, target, local, language, message_range, volume_offset, listeners, pitch, directionality)
 	var/list/player_queued_tts_messages = queued_tts_messages[target]
 	if(!player_queued_tts_messages)
@@ -356,7 +356,7 @@ SUBSYSTEM_DEF(tts)
 	/// If false, play at full volume to each listener, regardless of distance
 	var/directionality = TRUE
 
-/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch)
+/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch, directionality)
 	. = ..()
 	src.identifier = identifier
 	src.request = request
@@ -426,3 +426,50 @@ SUBSYSTEM_DEF(tts)
 			return request.is_complete()
 	else
 		return request.is_complete() && request_blips.is_complete()
+
+/*
+* Returns a list of valid listeners for a remote tts message
+* radio_frequency: If specified, TTS will play if relevant RADIO_TTS_SQUAD or RADIO_TTS_SL are enabled
+* tts_flags: TTS bitflags. TTS will play if listeners have ANY matching bitflags in tts_pref. The two radio flags above do not need to be specified here
+**/
+/proc/filter_tts_listeners(atom/movable/speaker, list/listeners, radio_frequency = null, tts_flags = null)
+	if(!SStts.tts_enabled || !speaker || !speaker.voice || !listeners)
+		return
+	if(ismob(speaker))
+		var/mob/potential_user = speaker
+		if(is_banned_from(potential_user.ckey, "TTS") || potential_user.client?.prefs.muted & MUTE_TTS)
+			return
+
+	if(ismob(listeners))
+		listeners = list(listeners)
+	var/list/filtered_listeners = list()
+
+	for(var/movable in listeners)
+		if(!ismob(movable)) //todo: Radio code includes non mob AM's in its listener list, but its not entirely clear if this is required
+			continue
+		var/mob/listener = movable
+		if(!(listener.client?.prefs.sound_tts != TTS_SOUND_OFF))
+			continue
+		if(isliving(listener) && (listener.stat >= UNCONSCIOUS || isdeaf(listener)))
+			continue
+		var/listener_prefs = listener?.client?.prefs?.radio_tts_flags
+		if(!listener_prefs)
+			continue
+		if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_ALL))
+			filtered_listeners += listener
+			continue
+		if(CHECK_BITFIELD(tts_flags, listener_prefs))
+			filtered_listeners += listener
+			continue
+		if(radio_frequency && ishuman(listener))
+			var/mob/living/carbon/human/human_listener = listener
+			if(human_listener.assigned_squad?.radio_freq != radio_frequency)
+				continue
+			if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SQUAD))
+				filtered_listeners += listener
+				continue
+			if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SL) && human_listener.assigned_squad?.squad_leader == speaker)
+				filtered_listeners += listener
+				continue
+
+	return filtered_listeners

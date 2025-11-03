@@ -6,20 +6,21 @@
 	desc = "It controls doors, remotely."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl0"
-	desc = "A remote control-switch for a door."
 	power_channel = ENVIRON
+	anchored = TRUE
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 2
+	active_power_usage = 4
+	layer = ABOVE_OBJ_LAYER
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+	var/pressed = FALSE
 	var/id = null
 	var/range = 10
 	var/normaldoorcontrol = CONTROL_POD_DOORS
 	var/desiredstate = 0 // Zero is closed, 1 is open.
 	var/specialfunctions = 1
 	var/directional = TRUE //if true we apply directional offsets, if not the door control is free floating
-	anchored = TRUE
-	var/pressed = FALSE
-	use_power = IDLE_POWER_USE
-	idle_power_usage = 2
-	active_power_usage = 4
-	layer = ABOVE_OBJ_LAYER
 
 /obj/machinery/door_control/unmeltable
 	resistance_flags = RESIST_ALL
@@ -81,6 +82,7 @@
 					D.safe = 1
 
 /obj/machinery/door_control/proc/handle_pod()
+	SIGNAL_HANDLER
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			if(M.density)
@@ -347,3 +349,10 @@
 
 /obj/machinery/door_control/old/unmeltable
 	resistance_flags = RESIST_ALL
+
+/obj/machinery/door_control/minidropship
+	id = "minidropship_podlock"
+
+/obj/machinery/door_control/minidropship/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_SHUTTER, PROC_REF(handle_pod))

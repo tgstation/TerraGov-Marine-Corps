@@ -13,6 +13,7 @@
 
 /turf/open/liquid/Initialize(mapload)
 	AddElement(/datum/element/submerge) //added first so it loads all the contents correctly
+	RegisterSignals(src, list(COMSIG_TURF_JUMP_ENDED_HERE, COMSIG_TURF_THROW_ENDED_HERE), PROC_REF(atom_entered))
 	return ..()
 
 /turf/open/liquid/Destroy(force)
@@ -29,31 +30,47 @@
 
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
-		return FALSE
-	. = TRUE
-
-	if(!isliving(arrived) || arrived.throwing)
-		return
-	if(HAS_TRAIT(arrived, TRAIT_NOSUBMERGE))
-		return
-	var/mob/living/arrived_mob = arrived
-	arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
+	return atom_entered(src, arrived)
 
 /turf/open/liquid/get_submerge_height(turf_only = FALSE)
 	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+	if(is_covered())
 		return
 	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 		return
 	. += mob_liquid_height
 
 /turf/open/liquid/get_submerge_depth()
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+	if(is_covered())
 		return 0
 	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 		return 0
 	return mob_liquid_depth
+
+///Effects applied to anything that lands in the liquid
+/turf/open/liquid/proc/atom_entered(datum/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+	if(!check_submerge(arrived))
+		return FALSE
+	entry_effects(arrived)
+	return TRUE
+
+///Returns TRUE if the AM is actually in the liquid instead of above it
+/turf/open/liquid/proc/check_submerge(atom/movable/submergee)
+	if(is_covered())
+		return FALSE
+	if(submergee.throwing)
+		return FALSE
+	if(HAS_TRAIT(submergee, TRAIT_NOSUBMERGE))
+		return FALSE
+	return TRUE
+
+///Applies liquid effects to an AM
+/turf/open/liquid/proc/entry_effects(atom/movable/target)
+	if(!isliving(target))
+		return
+	var/mob/living_target = target
+	living_target.next_move_slowdown += (living_target.get_liquid_slowdown() * slowdown_multiplier)
 
 /turf/open/liquid/water
 	name = "river"
@@ -188,6 +205,58 @@
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway/edge
 	icon_state = "shallow_water_cave_waterway_edge"
 
+// desert dam turf that doesnt make you sink when ya step on it
+ww
+/turf/open/liquid/water/river/desertdam/notliquid
+	name = "shallow river"
+	desc = "It looks shallow enough to walk in with ease."
+	icon = 'icons/turf/desertdam_map.dmi'
+	mob_liquid_height = 0
+	mob_liquid_depth = 0
+	slowdown_multiplier = 0.25
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow
+	icon_state = "shallow_water_clean"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow/dirty
+	icon_state = "shallow_water_dirty"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge
+	icon_state = "shallow_to_deep_clean_water"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge/corner
+	icon_state = "shallowcorner1"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge/corner2
+	icon_state = "shallowcorner2"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge/alt
+	icon_state = "shallow_to_deep_clean_water1"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/deep_water_clean
+	icon_state = "deep_water_clean"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_coast
+	icon_state = "shallow_water_desert_coast"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_coast/edge
+	icon_state = "shallow_water_desert_coast_edge"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_waterway
+	icon_state = "desert_waterway"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_waterway/edge
+	icon_state = "desert_waterway_edge"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast
+	icon_state = "shallow_water_cave_coast"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_waterway
+	icon_state = "shallow_water_cave_waterway"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_waterway/edge
+	icon_state = "shallow_water_cave_waterway_edge"
+
 // LAVA
 /turf/open/liquid/lava
 	name = "lava"
@@ -200,13 +269,6 @@
 	minimap_color = MINIMAP_LAVA
 	slowdown_multiplier = 1.5
 
-/turf/open/liquid/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
-		return
-	if(burn_stuff(arrived))
-		START_PROCESSING(SSobj, src)
-
 /turf/open/liquid/lava/Exited(atom/movable/leaver, direction)
 	. = ..()
 	if(isliving(leaver))
@@ -217,6 +279,11 @@
 /turf/open/liquid/lava/process()
 	if(!burn_stuff())
 		STOP_PROCESSING(SSobj, src)
+
+/turf/open/liquid/lava/entry_effects(atom/movable/target)
+	. = ..()
+	if(burn_stuff(target))
+		START_PROCESSING(SSobj, src)
 
 ///Handles burning turf contents or an entering AM. Returns true to keep processing
 /turf/open/liquid/lava/proc/burn_stuff(AM)

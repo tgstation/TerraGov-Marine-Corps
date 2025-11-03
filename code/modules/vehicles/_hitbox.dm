@@ -48,6 +48,8 @@
 /obj/hitbox/Destroy(force)
 	if(!force) // only when the parent is deleted
 		return QDEL_HINT_LETMELIVE
+	for(var/atom/movable/desant AS in tank_desants)
+		remove_desant(desant)
 	root?.hitbox = null
 	root = null
 	return ..()
@@ -71,7 +73,7 @@
 		return FALSE
 	if(vehicle_length != vehicle_width)
 		return TRUE //handled by child types
-	for(var/mob/living/desant AS in tank_desants)
+	for(var/atom/movable/desant AS in tank_desants)
 		if(desant.loc == root.loc)
 			continue
 		var/turf/new_pos
@@ -93,10 +95,18 @@
 		return
 	ADD_TRAIT(new_desant, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
 	new_desant.add_nosubmerge_trait(VEHICLE_TRAIT)
-	LAZYSET(tank_desants, new_desant, new_desant.layer)
+	LAZYSET(tank_desants, new_desant, PLANE_TO_TRUE(new_desant.plane))
+	SET_PLANE_IMPLICIT(new_desant, ABOVE_GAME_PLANE)
 	RegisterSignal(new_desant, COMSIG_QDELETING, PROC_REF(on_desant_del))
-	new_desant.layer = ABOVE_MOB_PLATFORM_LAYER
 	root.add_desant(new_desant)
+
+///Removes a desant
+/obj/hitbox/proc/remove_desant(atom/movable/desant)
+	SET_PLANE_IMPLICIT(desant, LAZYACCESS(tank_desants, desant))
+	desant.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
+	LAZYREMOVE(tank_desants, desant)
+	UnregisterSignal(desant, COMSIG_QDELETING)
+	root.remove_desant(desant)
 
 ///signal handler when someone jumping lands on us
 /obj/hitbox/proc/on_jump_landed(datum/source, atom/movable/lander)
@@ -106,8 +116,6 @@
 ///signal handler when something thrown lands on us
 /obj/hitbox/proc/on_stop_throw(datum/source, atom/movable/thrown_movable)
 	SIGNAL_HANDLER
-	if(!isliving(thrown_movable)) //TODO: Make desants properly work for all AM's instead of mobs
-		return
 	add_desant(thrown_movable)
 
 ///signal handler when we leave a turf under the hitbox
@@ -117,18 +125,11 @@
 		return
 	if(AM.loc in locs)
 		return
-	AM.layer = LAZYACCESS(tank_desants, AM)
-	LAZYREMOVE(tank_desants, AM)
-	UnregisterSignal(AM, COMSIG_QDELETING)
-	root.remove_desant(AM)
+	remove_desant(AM)
+
 	var/obj/hitbox/new_hitbox = locate(/obj/hitbox) in AM.loc //walking onto another vehicle
-	if(!new_hitbox)
-		AM.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
-		return
-	LAZYSET(new_hitbox.tank_desants, AM, AM.layer)
-	new_hitbox.RegisterSignal(AM, COMSIG_QDELETING, PROC_REF(on_desant_del))
-	AM.layer = ABOVE_MOB_PLATFORM_LAYER //we set it separately so the original layer is recorded
-	new_hitbox.root.add_desant(AM)
+	if(new_hitbox)
+		new_hitbox.add_desant(AM)
 
 ///cleanup riders on deletion
 /obj/hitbox/proc/on_desant_del(datum/source)
@@ -148,22 +149,32 @@
 	var/move_dist = get_dist(oldloc, mover)
 	forceMove(mover.loc)
 	var/new_z = (z != oldloc.z)
-	for(var/mob/living/tank_desant AS in tank_desants)
+	for(var/atom/movable/tank_desant AS in tank_desants)
 		tank_desant.set_glide_size(root.glide_size)
 		if(new_z)
 			tank_desant.abstract_move(loc) //todo: have some better code to actually preserve their location
 		else
 			tank_desant.forceMove(get_step(tank_desant, direction))
-		if(isxeno(tank_desant))
-			continue
 		if(move_dist > 1)
 			continue
-		if(!tank_desant.l_hand || !tank_desant.r_hand)
+		var/throw_dist = 2
+		if(isobj(tank_desant) && !isitem(tank_desant))
 			continue
-		balloon_alert(tank_desant, "poor grip!")
+		if(ismob(tank_desant))
+			if(!isliving(tank_desant))
+				continue
+			var/mob/living/living_rider = tank_desant
+			if(!living_rider.stat)
+				if(isxeno(tank_desant))
+					continue
+				if(!living_rider.l_hand || !living_rider.r_hand)
+					continue
+			balloon_alert(living_rider, "poor grip!")
+			throw_dist = 3
+
 		var/away_dir = REVERSE_DIR(get_dir(tank_desant, root) || pick(GLOB.alldirs))
-		var/turf/target = get_ranged_target_turf(tank_desant, away_dir, 3)
-		tank_desant.throw_at(target, 3, 3, root)
+		var/turf/target = get_ranged_target_turf(tank_desant, away_dir, throw_dist)
+		tank_desant.throw_at(target, throw_dist, 3, root)
 
 ///called when the tank is off movement cooldown and someone tries to move it
 /obj/hitbox/proc/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
@@ -181,7 +192,6 @@
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
 	else if(!is_strafing) //we turn
-		armor?.play_engine_sound()
 		root.setDir(direction)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	///
@@ -213,12 +223,12 @@
 	if((allow_pass_flags & PASS_TANK) && (mover.pass_flags & PASS_TANK))
 		return TRUE
 
-/obj/hitbox/projectile_hit(obj/projectile/proj)
+/obj/hitbox/projectile_hit(atom/movable/projectile/proj)
 	if(proj.shot_from == root)
 		return FALSE
 	return root.projectile_hit(arglist(args))
 
-/obj/hitbox/bullet_act(obj/projectile/proj)
+/obj/hitbox/bullet_act(atom/movable/projectile/proj)
 	SHOULD_CALL_PARENT(FALSE) // this is an abstract object: we have to avoid everything on parent
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
 	return root.bullet_act(proj)
@@ -265,7 +275,6 @@
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
 	else if(!is_strafing) //we turn
-		armor?.play_engine_sound()
 		root.setDir(direction)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	///////////////////////////
@@ -347,7 +356,7 @@
 			angle_change = 90
 		if(270)
 			angle_change = -90
-	for(var/mob/living/desant AS in tank_desants)
+	for(var/atom/movable/desant AS in tank_desants)
 		if(desant.loc == root.loc)
 			continue
 		var/new_x
@@ -376,8 +385,7 @@
 				break
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
-	else if(isarmoredvehicle(root) && !is_strafing) //we turn
-		armor.play_engine_sound()
+
 
 	/////////////////////////////
 	var/turf/centerturf = get_turf(root)

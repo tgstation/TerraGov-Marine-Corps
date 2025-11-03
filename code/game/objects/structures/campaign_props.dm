@@ -5,12 +5,32 @@
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
+	bound_height = 64
+	bound_width = 96
 	density = TRUE
-	allow_pass_flags = PASS_AIR
+	allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 
 /obj/structure/prop/som_fighter/empty
 	icon_state = "SOM_fighter_empty"
 	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, this one seems to be unarmed currently."
+
+/obj/structure/prop/tgmc_fighter
+	name = "viper"
+	desc = "A viper MK.III fightcraft. Effective in atmosphere and space, the viper has been a reliable and versatile workhorse in the TerraGov navy for decades."
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
+	icon_state = "fighter_loaded"
+	pixel_x = -33
+	pixel_y = -10
+	bound_height = 64
+	bound_width = 96
+	density = TRUE
+	allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
+
+/obj/structure/prop/tgmc_fighter/empty
+	icon_state = "fighter"
+	desc = "A viper MK.III fightcraft. Effective in atmosphere and space, the viper has been a reliable and versatile workhorse in the TerraGov navy for decades. This one seems to be unarmed currently."
 
 /obj/structure/prop/train
 	name = "locomotive"
@@ -20,15 +40,6 @@
 	density = TRUE
 	allow_pass_flags = PASS_AIR
 	bound_width = 128
-
-/obj/structure/prop/train/Initialize(mapload)
-	. = ..()
-	update_icon()
-
-/obj/structure/prop/train/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
 
 /obj/structure/prop/train/carriage
 	name = "rail carriage"
@@ -85,6 +96,13 @@
 	icon_state = "empty"
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
+/obj/structure/prop/train/empty/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/structure/prop/nt_computer
 	name = "server rack"
 	desc = "A server rack. Who knows what's on it?."
@@ -95,6 +113,7 @@
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_FLARE
+	var/use_emissive = TRUE
 
 /obj/structure/prop/nt_computer/Initialize(mapload)
 	. = ..()
@@ -102,12 +121,14 @@
 
 /obj/structure/prop/nt_computer/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	if(use_emissive)
+		. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /obj/structure/prop/nt_computer/rack
 	name = "control rack"
 	desc = "A system control rack. Who knows what's on it?."
 	icon_state = "recorder_on"
+	use_emissive = FALSE
 
 /obj/structure/prop/nt_computer/recorder
 	name = "backup recorder"
@@ -123,7 +144,7 @@
 	icon_state = "gauss_cannon"
 	density = TRUE
 	anchored = TRUE
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
@@ -139,4 +160,4 @@
 
 /obj/structure/gauss_cannon/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)

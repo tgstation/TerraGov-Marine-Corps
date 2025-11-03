@@ -42,7 +42,7 @@
 		/obj/item/flashlight,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/holster/blade
 	)
 

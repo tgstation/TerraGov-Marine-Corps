@@ -109,14 +109,14 @@ FLOOR SAFES
 		return
 
 	var/dat = "<center>"
-	dat += "<a href='?src=[text_ref(src)];open=1'>[open ? "Close" : "Open"] [src]</a><br>"
-	dat += "Dial 1: <a href='?src=[text_ref(src)];decrement=1'>-</a> [tumbler_1_pos] <a href='?src=[text_ref(src)];increment=1'>+</a><br>"
-	dat += "Dial 2: <a href='?src=[text_ref(src)];decrement2=1'>-</a> [tumbler_2_pos] <a href='?src=[text_ref(src)];increment2=1'>+</a><br>"
+	dat += "<a href='byond://?src=[text_ref(src)];open=1'>[open ? "Close" : "Open"] [src]</a><br>"
+	dat += "Dial 1: <a href='byond://?src=[text_ref(src)];decrement=1'>-</a> [tumbler_1_pos] <a href='byond://?src=[text_ref(src)];increment=1'>+</a><br>"
+	dat += "Dial 2: <a href='byond://?src=[text_ref(src)];decrement2=1'>-</a> [tumbler_2_pos] <a href='byond://?src=[text_ref(src)];increment2=1'>+</a><br>"
 	if(open)
 		dat += "<table>"
 		for(var/i = length(contents), i>=1, i--)
 			var/obj/item/P = contents[i]
-			dat += "<tr><td><a href='?src=[text_ref(src)];retrieve=[text_ref(P)]'>[P.name]</a></td></tr>"
+			dat += "<tr><td><a href='byond://?src=[text_ref(src)];retrieve=[text_ref(P)]'>[P.name]</a></td></tr>"
 		dat += "</table></center>"
 
 	var/datum/browser/popup = new(user, "safe", "<div align='center'>[src]</div>", 350, 300)
@@ -203,7 +203,7 @@ FLOOR SAFES
 	icon_state = "floorsafe"
 	density = FALSE
 	level = 1	//underfloor
-	layer = UNDERFLOOR_OBJ_LAYER
+	layer = LOW_OBJ_LAYER
 
 
 /obj/structure/safe/floor/Initialize(mapload)

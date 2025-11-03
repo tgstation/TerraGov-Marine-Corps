@@ -1,3 +1,69 @@
+
+/atom/movable/screen/maptable_extras
+	/// minimap action this extra button is owned by
+	var/obj/machinery/cic_maptable/maptable
+
+/atom/movable/screen/maptable_extras/Destroy()
+	maptable = null
+	return ..()
+
+/atom/movable/screen/maptable_extras/minimap_z_indicator
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "zindicator"
+	screen_loc = ui_ai_floor_indicator
+
+///sets the currently indicated relative floor
+/atom/movable/screen/maptable_extras/minimap_z_indicator/proc/set_indicated_z(newz)
+	if(!newz)
+		return
+	var/list/linked_zs = SSmapping.get_connected_levels(newz)
+	if(!length(linked_zs))
+		return
+	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
+	var/relativez = linked_zs.Find(newz)
+	var/text = "Floor<br/>[relativez]"
+	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
+
+/atom/movable/screen/maptable_extras/minimap_z_up
+	name = "go up"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "up"
+	mouse_over_pointer = MOUSE_HAND_POINTER
+	screen_loc = ui_ai_godownup
+
+/atom/movable/screen/maptable_extras/minimap_z_up/Click(location,control,params)
+	flick("uppressed",src)
+	var/currentz = maptable.targetted_zlevel
+	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
+	if(!length(linked_zs))
+		return
+	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
+	var/relativez = linked_zs.Find(currentz)
+	if(relativez == length(linked_zs))
+		return //topmost z with nothing above. we still play effects just dont do anything
+	maptable.change_targeted_z(null, ++currentz)
+
+
+/atom/movable/screen/maptable_extras/minimap_z_down
+	name = "go down"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "down"
+	mouse_over_pointer = MOUSE_HAND_POINTER
+	screen_loc = ui_ai_godownup
+
+/atom/movable/screen/maptable_extras/minimap_z_down/Click(location,control,params)
+	flick("downpressed",src)
+	var/currentz = maptable.targetted_zlevel
+	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
+	if(!length(linked_zs))
+		return
+	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
+	var/relativez = linked_zs.Find(currentz)
+	if(relativez == 1)
+		return //bottommost z with nothing below. we still play effects just dont do anything
+	maptable.change_targeted_z(null, --currentz)
+
+
 /obj/machinery/cic_maptable
 	name = "map table"
 	desc = "A table that displays a map of the current target location"
@@ -17,16 +83,31 @@
 	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
 	var/atom/movable/screen/minimap/map
+	///button granted when you're on a multiz level that lets you check above and below you
+	var/atom/movable/screen/maptable_extras/minimap_z_indicator/z_indicator
+	///button granted when you're on a multiz level that lets you check above and below you
+	var/atom/movable/screen/maptable_extras/minimap_z_up/z_up
+	///button granted when you're on a multiz level that lets you check above and below you
+	var/atom/movable/screen/maptable_extras/minimap_z_down/z_down
 	///List of currently interacting mobs
 	var/list/mob/interactees = list()
 
 /obj/machinery/cic_maptable/Initialize(mapload)
 	. = ..()
+	z_indicator = new
+	z_indicator.maptable = src
+	z_up = new
+	z_up.maptable = src
+	z_down = new
+	z_down.maptable = src
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/cic_maptable/Destroy()
 	map = null
+	QDEL_NULL(z_indicator)
+	QDEL_NULL(z_up)
+	QDEL_NULL(z_down)
 	return ..()
 
 /obj/machinery/cic_maptable/update_icon()
@@ -40,7 +121,7 @@
 	. = ..()
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/cic_maptable/interact(mob/user)
@@ -52,6 +133,11 @@
 	if(!map)
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
 	user.client.screen += map
+	if(length(SSmapping.get_connected_levels(targetted_zlevel)) > 1)
+		user.client.screen += z_indicator
+		user.client.screen += z_up
+		user.client.screen += z_down
+		z_indicator.set_indicated_z(targetted_zlevel)
 	interactees += user
 	if(isobserver(user))
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
@@ -76,15 +162,22 @@
 	SIGNAL_HANDLER
 	if(!isnum(new_z))
 		return
-	for(var/mob/user AS in interactees)
+	var/list/old_interactors = interactees.Copy()
+	for(var/mob/user AS in old_interactors)
 		on_unset_interaction(user)
 	map = null
 	targetted_zlevel = new_z
+	z_indicator.set_indicated_z(targetted_zlevel)
+	for(var/mob/user AS in old_interactors)
+		interact(user)
 
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
 	. = ..()
 	interactees -= user
 	user?.client?.screen -= map
+	user?.client?.screen -= z_indicator
+	user?.client?.screen -= z_up
+	user?.client?.screen -= z_down
 
 /obj/machinery/cic_maptable/attack_ai(mob/living/silicon/ai/user)
 	if(!(user in interactees))
@@ -130,7 +223,7 @@
 
 	var/list/atom/movable/screen/actions = list()
 	for(var/path in drawing_tools)
-		actions += new path(null, targetted_zlevel, minimap_flag)
+		actions += new path(null, null, targetted_zlevel, minimap_flag)
 	drawing_tools = actions
 
 /obj/machinery/cic_maptable/drawable/Destroy()

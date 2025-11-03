@@ -22,7 +22,7 @@
 /obj/item/reagent_containers/glass/reagent_canister/proc/get_examine_info(mob/user)
 	if(isxeno(user))
 		return
-	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
+	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE) && !isobserver(usr)) //Failed skill check
 		return span_notice("You don't know what's in it.")
 	if(!reagents.total_volume)
 		return span_notice("[src] is empty!")
@@ -146,10 +146,10 @@
 ///Fills the hypo that gets stored in the pouch from the internal storage tank. Returns FALSE if you fail to refill your injector
 /obj/item/storage/pouch/pressurized_reagent_pouch/proc/fill_autoinjector(obj/item/reagent_containers/hypospray/autoinjector, mob/user)
 	if(!inner)
-		user.balloon_alert(user, "No container")
+		user.balloon_alert(user, "no container!")
 		return FALSE
 	if(!inner.reagents.total_volume)
-		user.balloon_alert(user, "No reagent left")
+		user.balloon_alert(user, "no reagent left!")
 		return FALSE
 	inner.reagents.trans_to(autoinjector, autoinjector.volume)
 	playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
@@ -164,7 +164,7 @@
 /obj/item/storage/pouch/pressurized_reagent_pouch/proc/get_display_contents(mob/user)
 	if(isxeno(user))
 		return
-	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
+	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE) && !isobserver(usr)) //Failed skill check
 		return span_notice("You don't know what's in it.")
 	if(!inner)
 		return span_notice("[src] has no container inside!")

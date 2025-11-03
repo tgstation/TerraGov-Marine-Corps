@@ -28,13 +28,6 @@
 /obj/item/tool/lighter/random,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"bS" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "ck" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -967,6 +960,10 @@
 "VL" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
+"VN" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
 "Wi" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -1058,7 +1055,7 @@
 /area/bigredv2/outside/engineering)
 
 (1,1,1) = {"
-bS
+Wo
 Jc
 uD
 MD
@@ -1557,7 +1554,7 @@ Sv
 pX
 Wi
 Ao
-ib
+VN
 At
 ib
 ib

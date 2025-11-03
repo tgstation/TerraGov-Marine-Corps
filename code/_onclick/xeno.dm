@@ -2,7 +2,7 @@
 	if(lying_angle)
 		return FALSE
 	if(isclosedturf(get_turf(src)) && !iswallturf(A))	//If we are on a closed turf (e.g. in a wall) we can't attack anything, except walls (or well, resin walls really) so we can't make ourselves be stuck.
-		balloon_alert(src, "Cannot reach")
+		balloon_alert(src, "unreachable!")
 		return FALSE
 	if(!(isopenturf(A) || istype(A, /obj/alien/weeds))) //We don't care about open turfs; they don't trigger our melee click cooldown
 		changeNext_move(xeno_caste ? xeno_caste.attack_delay : CLICK_CD_MELEE)
@@ -18,6 +18,8 @@
 /atom/proc/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	return
 
+/turf/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_ATTACK_TURF, xeno_attacker)
 
 /mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, has_proximity, modifiers)
 	if(lying_angle)

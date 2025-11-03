@@ -385,11 +385,11 @@
 /obj/effect/landmark/corpsespawner/pmc
 	name = "Unknown PMC"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/jackboots
-	corpsesuit = /obj/item/clothing/suit/armor/vest/security
-	corpseback = /obj/item/storage/backpack/satchel
+	corpseshoes = /obj/item/clothing/shoes/marine/pmc
+	corpseback = /obj/item/storage/backpack/satchel/pmc
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/big
 	corpsebelt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc_elite
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	corpsemask = /obj/item/clothing/mask/gas/pmc/damaged
 	corpseradio = /obj/item/radio/headset/survivor
@@ -471,11 +471,12 @@
 	name = "Private Security Officer"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
-	corpseglasses = /obj/item/clothing/glasses/sunglasses
+	corpseback = /obj/item/storage/backpack/satchel/pmc
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/big
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/marine/pmc
+	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
@@ -541,6 +542,16 @@
 
 /obj/effect/landmark/corpsespawner/marine/corpsman/regular
 	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/tdf
+	name = "TDF Marine"
+	corpseuniform = /obj/item/clothing/under/tdf
+	corpsesuit = /obj/item/clothing/suit/modular/tdf
+	corpsemask = /obj/item/clothing/mask/rebreather
+	corpsehelmet = /obj/item/clothing/head/modular/tdf
+	corpsegloves = /obj/item/clothing/gloves/marine/specialist/tdf
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsepocket1 = /obj/item/tool/lighter/zippo
 
 /obj/effect/landmark/corpsespawner/assistant
 	name = "Assistant"
@@ -615,8 +626,8 @@
 
 /obj/effect/landmark/corpsespawner/vsd_command
 	name = "Vyacheslav officer"
-	corpseuniform = /obj/item/clothing/under/vsd/webbing
-	corpsesuit = /obj/item/clothing/suit/storage/marine/vsd/desert
+	corpseuniform = /obj/item/clothing/under/vsd/officer/webbing
+	corpsesuit = /obj/item/clothing/suit/storage/marine/vsd/alt
 	corpsemask = /obj/item/clothing/mask/gas/vsd
 	corpsehelmet = /obj/item/clothing/head/vsd/beret
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
@@ -636,20 +647,20 @@
 /obj/effect/landmark/corpsespawner/freelancer
 	name = "Freelancer mercenary"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
-	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
-	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/frelancer
+	corpsesuit = /obj/item/clothing/suit/storage/marine/freelancer
+	corpsemask = /obj/item/clothing/mask/gas/tactical/freelancer
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/freelancer
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/marine
+	corpseshoes = /obj/item/clothing/shoes/marine/brown
 
 /obj/effect/landmark/corpsespawner/freelancer_officer
 	name = "Freelancer mercenary"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
-	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
-	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/frelancer/beret
+	corpsesuit = /obj/item/clothing/suit/storage/marine/freelancer/heavy
+	corpsemask = /obj/item/clothing/mask/gas/tactical/freelancer
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/freelancer/beret
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/marine
+	corpseshoes = /obj/item/clothing/shoes/marine/brown
 
 #undef REGULAR_DEATH
 #undef COCOONED_DEATH

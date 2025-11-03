@@ -1,7 +1,5 @@
 #define in_range(source, user) (get_dist(source, user) <= 1 && (get_step(source, 0)?:z) == (get_step(user, 0)?:z))
 
-#define ismovableatom(A) ismovable(A)
-
 #define isatom(A) (isloc(A))
 
 #define isclient(A) (istype(A, /client))
@@ -30,6 +28,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
+#define isplatingturf(A) (istype(A, /turf/open/floor/plating))
+
 #define islava(A) (istype(A, /turf/open/liquid/lava))
 
 #define iswater(A) (istype(A, /turf/open/liquid/water))
@@ -44,7 +44,29 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isrwallturf(A) (istype(A, /turf/closed/wall/r_wall))
 
+#define isresinwall(A) (istype(A, /turf/closed/wall/resin))
+
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
+
+#define istransparentturf(A) (HAS_TRAIT(A, TURF_Z_TRANSPARENT_TRAIT))
+
+GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
+	/turf/open/space,
+	/turf/open/liquid/lava,
+	/turf/open/liquid/water,
+	/turf/open/openspace,
+	)))
+
+#define isgroundlessturf(A) (is_type_in_typecache(A, GLOB.turfs_without_ground))
+
+
+GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
+	/turf/open/openspace,
+	)))
+
+#define isopenspaceturf(A) (is_type_in_typecache(A, GLOB.turfs_openspace))
+
+#define is_space_or_openspace(A) (isopenspaceturf(A) || isspaceturf(A))
 
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
@@ -77,6 +99,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
 #define isterragovjob(J) (istype(J, /datum/job/terragov))
+#define isspatialagentjob(J) (istype(J, /datum/job/spatial_agent))
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
 #define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
 #define ismarinejob(J) (istype(J, /datum/job/terragov/squad))
@@ -123,6 +146,9 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isxenowarlock(A) (istype(A, /mob/living/carbon/xenomorph/warlock))
 #define isxenoking(A) (istype(A, /mob/living/carbon/xenomorph/king))
 #define isxenobehemoth(A) (istype(A, /mob/living/carbon/xenomorph/behemoth))
+#define isxenodragon(A) (istype(A, /mob/living/carbon/xenomorph/dragon))
+#define isxenopyrogen(A) (istype(A, /mob/living/carbon/xenomorph/pyrogen))
+#define isxenomelter(A) (istype(A, /mob/living/carbon/xenomorph/runner/melter))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -236,6 +262,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isstructure(A) (istype(A, /obj/structure))
 
+#define isxenostructure(A) (istype(A, /obj/structure/xeno))
+
 #define iscable(A) (istype(A, /obj/structure/cable))
 
 #define isladder(A) (istype(A, /obj/structure/ladder))
@@ -246,11 +274,15 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isAPC(A) (istype(A, /obj/machinery/power/apc))
 
-#define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
+#define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/decal/cleanable/rune)) //if something is cleanable
 
 #define isvehicle(A) (istype(A, /obj/vehicle))
 
+#define issealedvehicle(A) (istype(A, /obj/vehicle/sealed))
+
 #define ismecha(A) (istype(A, /obj/vehicle/sealed/mecha))
+
+#define isgreyscalemecha(A) (istype(A, /obj/vehicle/sealed/mecha/combat/greyscale))
 
 #define isarmoredvehicle(A) (istype(A, /obj/vehicle/sealed/armored))
 
@@ -279,6 +311,11 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
 #define isimplant(A) (istype(A, /obj/item/implant))
+
+#define isresinjelly(A) (istype(A, /obj/item/resin_jelly))
+
+#define isfacehugger(A) (istype(A, /obj/item/clothing/mask/facehugger))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 
@@ -302,6 +339,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/hvh/combat_patrol))
 #define issensorcapturegamemode(O) (istype(O, /datum/game_mode/hvh/combat_patrol/sensor_capture))
 #define iscampaigngamemode(O) (istype(O, /datum/game_mode/hvh/campaign))
+///is a campaign destruction objective
+#define isdestroobjective(O) (istype(O, /obj/structure/campaign_objective/destruction_objective))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 

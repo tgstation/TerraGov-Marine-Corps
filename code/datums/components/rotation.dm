@@ -15,7 +15,7 @@
 
 
 /datum/component/simple_rotation/Initialize(rotation_flags = NONE, can_user_rotate, can_be_rotated, after_rotation)
-	if(!ismovableatom(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	//throw if no rotation direction is specificed ?
@@ -154,12 +154,12 @@
 
 
 /datum/component/simple_rotation/proc/default_after_rotation(mob/user, rotation_type)
-	user.balloon_alert(user, "[rotation_type == ROTATION_FLIP ? "flipped" : "rotated"] [parent].")
+	user.balloon_alert(user, "[rotation_type == ROTATION_FLIP ? "flipped" : "rotated"]")
 
 
 /atom/movable/proc/simple_rotate_clockwise()
 	set name = "Rotate Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
 	if(rotcomp)
@@ -168,7 +168,7 @@
 
 /atom/movable/proc/simple_rotate_counterclockwise()
 	set name = "Rotate Counter-Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
 	if(rotcomp)
@@ -177,7 +177,7 @@
 
 /atom/movable/proc/simple_rotate_flip()
 	set name = "Flip"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
 	if(rotcomp)

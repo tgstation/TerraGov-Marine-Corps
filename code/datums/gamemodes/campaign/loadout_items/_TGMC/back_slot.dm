@@ -89,7 +89,7 @@
 	Uses 12 gauge shells."
 	ui_icon = "t35"
 	purchase_cost = 25
-	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
+	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/back_slot
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 	loadout_item_flags = NONE
 
@@ -153,7 +153,7 @@
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/back/tgmc_rocket_bag
 	name = "Rocket bag"
@@ -173,7 +173,7 @@
 
 /datum/loadout_item/back/tech_backpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)

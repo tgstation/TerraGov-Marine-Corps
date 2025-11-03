@@ -4,6 +4,7 @@
 
 #define COMSIG_KB_ACTIVATED (1<<0)
 #define COMSIG_KB_NOT_ACTIVATED (1<<1) //used in unique action
+//carbon
 #define COMSIG_KB_CARBON_HOLDRUNMOVEINTENT_DOWN "keybinding_carbon_holdrunmoveintent_down"
 #define COMSIG_KB_CARBON_TOGGLETHROWMODE_DOWN "keybinding_carbon_togglethrowmode_down"
 #define COMSIG_KB_CARBON_TOGGLEREST_DOWN "kebinding_carbon_togglerest_down"
@@ -11,9 +12,12 @@
 #define COMSIG_KB_CARBON_SELECTDISARMINTENT_DOWN "keybinding_carbon_selectdisarmintent_down"
 #define COMSIG_KB_CARBON_SELECTGRABINTENT_DOWN "keybinding_carbon_selectgrabintent_down"
 #define COMSIG_KB_CARBON_SELECTHARMINTENT_DOWN "keybinding_carbon_selectharmintent_down"
+
+//client
 #define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
+#define COMSIG_KB_CLIENT_FULLSCREEN_DOWN "keybinding_client_fullscreen_down"
 #define COMSIG_KB_CLIENT_SAY_DOWN "keybinding_client_say_down"
 #define COMSIG_KB_CLIENT_RADIO_DOWN "keybinding_client_radio_down"
 #define COMSIG_KB_CLIENT_ME_DOWN "keybinding_client_me_down"
@@ -21,13 +25,15 @@
 #define COMSIG_KB_CLIENT_XOOC_DOWN "keybinding_client_xooc_down"
 #define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
+
+//living
 #define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
 #define COMSIG_KB_LIVING_JUMP_DOWN "keybind_living_jump_down"
 #define COMSIG_KB_LIVING_JUMP_UP "keybind_living_jump_up"
-#define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"
-#define COMSIG_KB_MOB_FACEEAST_DOWN "keybinding_mob_faceeast_down"
-#define COMSIG_KB_MOB_FACESOUTH_DOWN "keybinding_mob_facesouth_down"
-#define COMSIG_KB_MOB_FACEWEST_DOWN "keybinding_mob_facewest_down"
+#define COMSIG_KB_LIVING_LOOKUP_DOWN "keybinding_living_lookup_down"
+#define COMSIG_KB_LIVING_LOOKDOWN_DOWN "keybinding_living_lookdown_down"
+
+//mob
 #define COMSIG_KB_MOB_STOPPULLING_DOWN "keybinding_mob_stoppulling_down"
 #define COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN "keybinding_mob_cycleintentright_down"
 #define COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN "keybinding_mob_cycleintentleft_down"
@@ -43,10 +49,15 @@
 #define COMSIG_KB_MOB_TARGETRIGHTLEG_DOWN "keybinding_mob_targetrightleg_down"
 #define COMSIG_KB_MOB_TARGETBODYGROIN_DOWN "keybinding_mob_targetbodygroin_down"
 #define COMSIG_KB_MOB_TARGETLEFTLEG_DOWN "keybinding_mob_targetleftleg_down"
+
+//movement
 #define COMSIG_KB_MOVEMENT_NORTH_DOWN "keybinding_movement_north_down"
 #define COMSIG_KB_MOVEMENT_SOUTH_DOWN "keybinding_movement_south_down"
 #define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
 #define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
+#define COMSIG_KB_MOB_BLOCKMOVEMENT_DOWN "keybinding_mob_blockmovement_down"
+#define COMSIG_KB_MOVEMENT_ZLEVEL_MOVEUP_DOWN "keybinding_mob_zlevel_moveup_down"
+#define COMSIG_KB_MOVEMENT_ZLEVEL_MOVEDOWN_DOWN "keybinding_mob_zlevel_movedown_down"
 
 //Admin
 #define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
@@ -62,6 +73,7 @@
 #define COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP "toggle_external_minimap"
 #define COMSIG_KB_SELFHARM "keybind_selfharm"
 #define COMSIG_KB_INTERACTIVE_EMOTE "keybinding_interactive_emote"
+#define COMSIG_KB_MOB_TOGGLE_CLICKDRAG "keybinding_mob_toggle_clickdrag"
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
@@ -74,9 +86,12 @@
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
 #define COMSIG_KB_AUTOEJECT "keybind_autoeject"
+#define COMSIG_KB_HUMAN_INTERACT_OTHER_HAND "keybinding_human_interact_other_hand"
 #define COMSIG_KB_GIVE "keybind_give"
 #define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
+#define COMSIG_KB_ARMORMODULE "keybinding_armormodule"
 #define COMSIG_KB_ROBOT_AUTOREPAIR "keybinding_robot_autorepair"
+#define COMSIG_KB_STIMS "keybinding_stims_menu"
 #define COMSIG_KB_SUITLIGHT "keybinding_suitlight"
 #define COMSIG_KB_MOVEORDER "keybind_moveorder"
 #define COMSIG_KB_HOLDORDER "keybind_holdorder"
@@ -91,10 +106,12 @@
 //Item toggle keybinds
 #define COMSIG_ITEM_TOGGLE_JETPACK "item_toggle_jetpack"
 #define COMSIG_ITEM_TOGGLE_BLINKDRIVE "item_toggle_blinkdrive"
+#define COMSIG_ITEM_TOGGLE_STRAP "item_toggle_strap"
 
 //Weapon related ability keybinds
 #define COMSIG_WEAPONABILITY_AXESWEEP "weaponability_axesweep"
 #define COMSIG_WEAPONABILITY_SWORDLUNGE "weaponability_swordlunge"
+#define COMSIG_WEAPONABILITY_SHIELDBASH "weaponability_shieldbash"
 
 //Implant abilities
 #define COMSIG_IMPLANT_ABILITY_SANDEVISTAN "implant_ability_sandevistan"
@@ -115,12 +132,21 @@
 #define COMSIG_MECHABILITY_VIEW_STATS "mechability_view_stats"
 #define COMSIG_MECHABILITY_SMOKE "mechability_smoke"
 #define COMSIG_MECHABILITY_TOGGLE_ZOOM "mechability_toggle_zoom"
+#define COMSIG_MECHABILITY_ASSAULT_ARMOR "mechability_assault_armor"
 #define COMSIG_MECHABILITY_SKYFALL "mechability_skyfall"
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
 #define COMSIG_MECHABILITY_RELOAD "mechability_reload"
+#define COMSIG_MECHABILITY_REPAIRPACK "mechability_repairpack"
+#define COMSIG_MECHABILITY_SWAPWEAPONS "mechability_swapweapons"
 #define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
+#define COMSIG_MECHABILITY_CLOAK "mechability_cloak"
+#define COMSIG_MECHABILITY_OVERBOOST "mechability_overboost"
+#define COMSIG_MECHABILITY_PULSE_ARMOR "mechability_pulse_armor"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
+
+#define COMSIG_ABILITY_PLACE_HOLOGRAM "ability_place_hologram"
+#define COMSIG_ABILITY_SELECT_BUILDTYPE "ability_select_buildtype"
 
 //---- XENO ABILITY KEYBINDS
 
@@ -142,9 +168,13 @@
 #define COMSIG_XENOABILITY_CORROSIVE_ACID "xenoability_corrosive_acid"
 #define COMSIG_XENOABILITY_SPRAY_ACID "xenoability_spray_acid"
 #define COMSIG_XENOABILITY_ACID_DASH "xenoability_acid_dash"
+#define COMSIG_XENOABILITY_ACID_DASH_MELTER "xenoability_acid_dash_melter"
+#define COMSIG_XENOABILITY_ACIDIC_MISSILE "xenoability_acidic_missile"
 #define COMSIG_XENOABILITY_DODGE "xenoability_dodge"
 #define COMSIG_XENOABILITY_IMPALE "xenoability_impale"
 #define COMSIG_XENOABILITY_TAIL_TRIP "xenoability_tail_trip"
+#define COMSIG_XENOABILITY_TAILHOOK "xenoability_tailhook"
+#define COMSIG_XENOABILITY_BATONPASS "xenoability_batonpass"
 #define COMSIG_XENOABILITY_XENO_SPIT "xenoability_xeno_spit"
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
@@ -154,6 +184,8 @@
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 #define COMSIG_XENOABILITY_SILENCE "xenoability_silence"
+#define COMSIG_XENOABILITY_PLACE_PATTERN "xenoability_place_pattern"
+#define COMSIG_XENOABILITY_SELECT_PATTERN "xenoability_select_pattern"
 
 #define COMSIG_XENOABILITY_TOXIC_SPIT "xenoability_toxic_spit"
 #define COMSIG_XENOABILITY_TOXIC_SLASH "xenoability_toxic_slash"
@@ -171,7 +203,11 @@
 #define COMSIG_XENOABILITY_CREATE_BOMB "xenoability_create_bomb"
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 #define COMSIG_XENOABILITY_ACID_SHROUD "xenoability_acid_shroud"
+#define COMSIG_XENOABILITY_ACID_SHROUD_MELTER "xenoability_acid_shroud_melter"
 #define COMSIG_XENOABILITY_ACID_SHROUD_SELECT "xenoability_acid_shroud_select"
+#define COMSIG_XENOABILITY_SMOKESCREEN_SPIT "xenoability_smokescreen_spit"
+#define COMSIG_XENOABILITY_STEAM_RUSH "xenoability_steam_rush"
+#define COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT "xenoability_high_pressure_spit"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
 #define COMSIG_XENOABILITY_CALL_YOUNGER "xenoability_call_younger"
@@ -216,6 +252,7 @@
 #define COMSIG_XENOABILITY_RESIN_WALKER "xenoability_resin_walker"
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
 #define COMSIG_XENOABILITY_PLACE_JELLY_POD "xenoability_place_jelly_pod"
+#define COMSIG_XENOABILITY_PLACE_RECOVERY_PYLON "xenoability_place_recovery_pylon"
 #define COMSIG_XENOABILITY_CREATE_JELLY "xenoability_create_jelly"
 #define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
 #define COMSIG_XENOABILITY_RECYCLE "xenoability_recycle"
@@ -233,6 +270,7 @@
 #define COMSIG_XENOABILITY_XENO_LEADERS "xenoability_xeno_leaders"
 #define COMSIG_XENOABILITY_QUEEN_HEAL "xenoability_queen_heal"
 #define COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA "xenoability_queen_give_plasma"
+#define COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_QUICKCAST  "xenoability_queen_give_plasma_quickcast"
 #define COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE "xenoability_queen_hive_message"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 #define COMSIG_XENOABILITY_QUEEN_BULWARK "xenoability_queen_bulwark"
@@ -253,6 +291,7 @@
 #define COMSIG_XENOABILITY_ENDURE "xenoability_endure"
 #define COMSIG_XENOABILITY_RAGE "xenoability_rage"
 #define COMSIG_XENOABILITY_VAMPIRISM "xenoability_vampirism"
+#define COMSIG_XENOABILITY_DEATHMARK "xenoability_deathmark"
 
 #define COMSIG_XENOABILITY_RUNNER_POUNCE "xenoability_runner_pounce"
 #define COMSIG_XENOABILITY_HUNTER_POUNCE "xenoability_hunter_pounce"
@@ -272,9 +311,6 @@
 
 #define COMSIG_XENOABILITY_PORTAL "xenoablity_portal"
 #define COMSIG_XENOABILITY_PORTAL_ALTERNATE "xenoability_portal_alternate"
-#define COMSIG_XENOABILITY_BLINK "xenoability_blink"
-#define COMSIG_XENOABILITY_BANISH "xenoability_banish"
-#define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 #define COMSIG_XENOABILITY_TIMESTOP "xenoability_timestop"
 #define COMSIG_XENOABILITY_REWIND "xenoability_rewind"
 
@@ -285,7 +321,22 @@
 #define COMSIG_XENOABILITY_ZEROFORMBEAM "xenoability_zeroformbeam"
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"
 
+#define COMSIG_XENOABILITY_CONQUEROR_DASH "xenoability_conqueror_dash"
+#define COMSIG_XENOABILITY_CONQUEROR_WILL "xenoability_conqueror_will"
+#define COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_HOLD "xenoability_conqueror_endurance_hold"
+	#define COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_UP "xenoability_conqueror_endurance_up"
+#define COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_TOGGLE "xenoability_conqueror_endurance_toggle"
+#define COMSIG_XENOABILITY_CONQUEROR_DOMINATION "xenoability_conqueror_domination"
+#define COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_HOLD "xenoability_conqueror_obliteration_hold"
+	#define COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_UP "xenoability_conqueror_obliteration_up"
+#define COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_TOGGLE "xenoability_conqueror_obliteration_toggle"
+
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
+#define COMSIG_XENOABILITY_TOSS_GRENADE "xenoability_toss_grenade"
+#define COMSIG_XENOABILITY_PICK_GRENADE "xenoability_pick_grenade"
+#define COMSIG_XENOABILITY_ACID_MINE "xenoability_acid_mine"
+#define COMSIG_XENOABILITY_GAS_MINE "xenoability_gas_mine"
+#define COMSIG_XENOABILITY_ACID_ROCKET "xenoability_acid_rocket"
 
 #define COMSIG_XENOABILITY_WEB_SPIT "xenoability_web_spit"
 #define COMSIG_XENOABILITY_BURROW "xenoability_burrow"
@@ -305,7 +356,8 @@
 #define COMSIG_XENOABILITY_FIRECHARGE "xenoability_firecharge"
 #define COMSIG_XENOABILITY_FIRENADO "xenoability_firenado"
 #define COMSIG_XENOABILITY_FIREBALL "xenoability_fireball"
-#define COMSIG_XENOABILITY_HEATRAY "xenoability_heatray"
+#define COMSIG_XENOABILITY_INFERNO "xenoability_inferno"
+#define COMSIG_XENOABILITY_INFERNAL_TRIGGER "xenoability_infernal_trigger"
 
 #define COMSIG_XENOABILITY_TENDRILS "xenoability_tendrils"
 #define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"
@@ -329,3 +381,17 @@
 #define COMSIG_XENOABILITY_EARTH_PILLAR_THROW "xenoability_earth_pillar_throw"
 #define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
 #define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
+
+#define COMSIG_XENOABILITY_ABDUCT "xenoability_abduct"
+#define COMSIG_XENOABILITY_DISLOCATE "xenoability_dislocate"
+#define COMSIG_XENOABILITY_ITEM_THROW "xenoability_item_throw"
+#define COMSIG_XENOABILITY_TAIL_LASH "xenoability_tail_lash"
+#define COMSIG_XENOABILITY_TAIL_LASH_SELECT "xenoability_tail_lash_select"
+#define COMSIG_XENOABILITY_ADVANCE_OPPRESSOR "xenoability_advance_oppressor"
+
+#define COMSIG_XENOABILITY_BACKHAND "xenoability_backhand"
+#define COMSIG_XENOABILITY_FLY "xenoability_fly"
+#define COMSIG_XENOABILITY_DRAGON_BREATH "xenoability_dragon_breath"
+#define COMSIG_XENOABILITY_WIND_CURRENT "xenoability_wind_current"
+#define COMSIG_XENOABILITY_GRAB "xenoability_grab"
+#define COMSIG_XENOABILITY_SCORCHED_LAND "xenoability_scorched_land"

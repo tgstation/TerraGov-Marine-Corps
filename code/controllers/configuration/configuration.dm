@@ -59,8 +59,8 @@
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
 		return
-	log_admin("[key_name(usr)] has forcefully reloaded the configuration from disk.")
-	message_admins("[ADMIN_TPMONTY(usr)] has forcefully reloaded the configuration from disk.")
+	log_admin("[key_name_admin(usr)] has forcefully reloaded the configuration from disk.")
+	message_admins("[key_name_admin(usr)] has forcefully reloaded the configuration from disk.")
 	full_wipe()
 	Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
@@ -82,6 +82,10 @@
 				for(var/J in legacy_configs)
 					LoadEntries(J)
 				break
+	if (fexists("[directory]/dev_overrides.txt"))
+		LoadEntries("dev_overrides.txt")
+	if (fexists("[directory]/ezdb.txt"))
+		LoadEntries("ezdb.txt")
 	loadmaplist(CONFIG_GROUND_MAPS_FILE, GROUND_MAP)
 	loadmaplist(CONFIG_SHIP_MAPS_FILE, SHIP_MAP)
 	LoadMOTD()

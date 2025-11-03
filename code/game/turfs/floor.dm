@@ -3,6 +3,8 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 	baseturfs = /turf/open/floor/plating
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_OPEN_FLOOR)
+	canSmoothWith = list(SMOOTH_GROUP_OPEN_FLOOR, SMOOTH_GROUP_TURF_OPEN)
 	///Number of icon state variation this turf has
 	var/icon_variants = 1
 	///If the turf has been physically damaged
@@ -98,7 +100,7 @@
 	update_icon()
 
 ///Burns the turf
-/turf/open/floor/proc/burn_tile()
+/turf/open/floor/burn_tile()
 	if(!burnable_tile || hull_floor)
 		return
 	if(burnt)
@@ -134,7 +136,7 @@
 	P.attackby(T, user, params)
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
-	if(floor_tile && pry_tile(I, user))
+	if(floor_tile && !hull_floor && pry_tile(I, user))
 		return TRUE
 
 ///Removes the floor tile from the turf via a tool

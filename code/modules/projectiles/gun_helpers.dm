@@ -16,7 +16,8 @@
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)
 	. = ..()
 	if(!active_attachable)
-		return toggle_gun_safety()
+		balloon_alert(user, "no attachment to unload")
+		return
 
 	var/mob/living/living_user = user
 	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
@@ -61,7 +62,7 @@
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
-	unwield(user)
+	//unwield(user) //shouldnt need this, just causes unequips when you fail to even unequip
 	return ..()
 
 
@@ -129,12 +130,9 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
 	to_chat(user, span_notice("You start a tactical reload."))
-	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating(SKILL_COMBAT) * 5)
 	if(length(chamber_items))
-		if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
-			return
 		unload(user)
-	if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
+	if(!do_after(user, max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating(SKILL_COMBAT) * 5), IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
 		return
 	if(new_magazine.item_flags & IN_STORAGE)
 		var/obj/item/storage/S = new_magazine.loc
@@ -183,11 +181,11 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
 		if(-50 to 15)
-			attack_verb = list("struck", "hit", "bashed") //Unlikely to ever be -50, but just to be safe.
+			attack_verb = list("strikes", "hits", "bashes") //Unlikely to ever be -50, but just to be safe.
 		if(16 to 35)
-			attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
+			attack_verb = list("smashes", "strikes", "whacks", "beats", "cracks")
 		else
-			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
+			attack_verb = list("slashes", "stabs", "spears", "tears", "punctures", "pierces", "gores") //Greater than 35
 
 
 /proc/get_active_firearm(mob/user)
@@ -365,7 +363,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 // todo destroy all verbs
 /mob/living/carbon/human/verb/empty_mag()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
@@ -384,7 +382,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/use_unique_action()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
@@ -403,7 +401,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/toggle_gun_safety()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
 
@@ -427,7 +425,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/activate_attachment_verb()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 
@@ -473,7 +471,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/toggle_rail_attachment()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
 
@@ -506,12 +504,37 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	set name = "Toggle Automatic Magazine Ejection (Weapon)"
 	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
 
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+	var/acceptable_guns = list()
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+		acceptable_guns += src
+
+	for(slot in attachments_by_slot)
+		if(!isgun(attachments_by_slot[slot]))
+			continue
+		var/obj/item/weapon/gun/attached_gun = attachments_by_slot[slot]
+		if(CHECK_BITFIELD(attached_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+			continue
+		acceptable_guns += attached_gun
+
+	if(!length(acceptable_guns))
 		balloon_alert(usr, "Cannot toggle ejection")
 		return
 
-	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
-	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
+	if(length(acceptable_guns) == 1)
+		var/obj/item/weapon/gun/chosen_gun = acceptable_guns[1]
+		TOGGLE_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
+		balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
+		return
+
+	INVOKE_ASYNC(src, PROC_REF(handle_auto_eject_async), usr, acceptable_guns)
+
+/// Offers a list to choose from. The selected weapon will have their auto ejection toggled.
+/obj/item/weapon/gun/proc/handle_auto_eject_async(user, list/obj/item/weapon/gun/acceptable_guns)
+	var/obj/item/weapon/gun/chosen_gun = tgui_input_list(user, "Choose an weapon", "Choose weapon", acceptable_guns)
+	if(!chosen_gun)
+		return
+	TOGGLE_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
+	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(item_flags, IS_DEPLOYED))

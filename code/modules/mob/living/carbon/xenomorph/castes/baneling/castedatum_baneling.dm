@@ -3,6 +3,7 @@
 	display_name = "Baneling"
 	upgrade_name = ""
 	caste_desc = "Gross, cute, bloated and ready to explode!"
+	base_strain_type = /mob/living/carbon/xenomorph/baneling
 	caste_type_path = /mob/living/carbon/xenomorph/baneling
 
 	tier = XENO_TIER_MINION
@@ -25,7 +26,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED
+	can_flags = NONE
 	caste_traits = null
 
 	// *** Defense *** //

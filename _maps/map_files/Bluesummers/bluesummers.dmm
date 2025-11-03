@@ -48,12 +48,6 @@
 	dir = 4
 	},
 /area/bluesummers/inside/luxury)
-"acu" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/obj/machinery/light,
-/turf/open/floor/plating,
-/area/bluesummers/inside/engineering/plant)
 "acB" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
@@ -189,6 +183,15 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/bluesummers/caves/cryostorage/north)
+"ahX" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/bluesummers/inside/engineering/plant)
 "aig" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/computercircuit,
@@ -1316,7 +1319,7 @@
 	},
 /area/bluesummers/inside/engineering/office)
 "bfT" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast)
@@ -1335,7 +1338,7 @@
 	},
 /area/bluesummers/inside/engineering)
 "bhh" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/east)
 "bhJ" = (
@@ -1365,7 +1368,7 @@
 	},
 /area/bluesummers/caves/cryostorage/bridge)
 "bih" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/mining/south)
@@ -1545,7 +1548,7 @@
 /turf/open/floor/plating,
 /area/bluesummers/inside/space_port)
 "bqq" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/cryostorage/south)
 "bqu" = (
@@ -1709,7 +1712,7 @@
 /turf/open/floor/plating,
 /area/bluesummers/inside/space_port)
 "byx" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast)
 "byF" = (
@@ -1770,6 +1773,11 @@
 	dir = 1
 	},
 /area/bluesummers/inside/food_processing/east)
+"bCm" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/bluesummers/inside/engineering/plant)
 "bCq" = (
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest)
@@ -1807,7 +1815,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "bEy" = (
 /obj/structure/cable,
@@ -1820,7 +1828,7 @@
 	},
 /area/bluesummers/caves/cryostorage/north)
 "bFr" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/north/garbledradio)
@@ -2475,6 +2483,12 @@
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant/control)
+"coY" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bluesummers/inside/engineering/plant)
 "cpb" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/packaged_burrito,
@@ -2581,7 +2595,7 @@
 	},
 /area/bluesummers/caves/mining)
 "ctV" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast/garbledradio)
@@ -2910,10 +2924,6 @@
 	dir = 9
 	},
 /area/bluesummers/inside/engineering)
-"cMY" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating,
-/area/bluesummers/inside/engineering/plant)
 "cNx" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/dmg1,
@@ -2983,7 +2993,7 @@
 	},
 /area/bluesummers/inside/robotics)
 "cPL" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/west)
@@ -3323,7 +3333,7 @@
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/inside/chapel/office)
 "dek" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/dorms)
 "deB" = (
@@ -3539,7 +3549,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/turf/open/floor/plating,
+/turf/open/shuttle/escapepod/plain/buildable,
 /area/bluesummers/inside/engineering/plant)
 "doe" = (
 /obj/structure/cryofeed,
@@ -4045,6 +4055,14 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/cryostorage/tcomms)
+"dIW" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/mainship/floor,
+/area/bluesummers/inside/engineering/plant)
 "dJb" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/drought/cave,
@@ -4460,6 +4478,12 @@
 	dir = 9
 	},
 /area/bluesummers/inside/luxury)
+"ebg" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
+	},
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bluesummers/inside/engineering/plant)
 "ecs" = (
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/caves/cryostorage/gravity)
@@ -4467,9 +4491,6 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/cryostorage/south)
-"edg" = (
-/turf/closed/wall/mineral/gold,
-/area/bluesummers/inside/engineering/plant)
 "edE" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -4541,7 +4562,7 @@
 	},
 /area/bluesummers/inside/engineering)
 "egP" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest)
 "egT" = (
@@ -4676,7 +4697,7 @@
 /turf/open/floor/mainship/orange/full,
 /area/bluesummers/inside/engineering)
 "emJ" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest/indoor)
 "emM" = (
@@ -4715,7 +4736,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "eoG" = (
 /turf/open/floor/plating,
@@ -4964,6 +4985,12 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating,
 /area/bluesummers/outside/southeast)
+"eDQ" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/bluesummers/inside/engineering/plant)
 "eEt" = (
 /obj/machinery/door_control{
 	id = "Vehicle Storage";
@@ -5203,7 +5230,7 @@
 /area/bluesummers/inside/hydroponics)
 "eNc" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
+/turf/open/shuttle/escapepod/plain/buildable,
 /area/bluesummers/inside/engineering/plant)
 "eNB" = (
 /obj/structure/table/wood/fancy,
@@ -5758,7 +5785,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "fgu" = (
 /obj/structure/rack,
@@ -5904,7 +5931,7 @@
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/chapel)
 "fpw" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/north)
@@ -6089,6 +6116,14 @@
 /obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/outside/northeast/roofed)
+"fyh" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/mainship/floor,
+/area/bluesummers/inside/engineering/plant)
 "fzd" = (
 /obj/structure/table/mainship,
 /obj/machinery/prop/computer{
@@ -6244,6 +6279,13 @@
 "fEu" = (
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast/indoor)
+"fEA" = (
+/obj/structure/cryofeed,
+/obj/structure/platform_decoration{
+	dir = 4
+	},
+/turf/open/liquid/water,
+/area/bluesummers/inside/engineering/plant)
 "fEG" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/freezer,
@@ -6296,7 +6338,7 @@
 /turf/open/floor/tile/dark2,
 /area/bluesummers/inside/recreation)
 "fHz" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/north)
@@ -6978,7 +7020,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "gpC" = (
 /obj/effect/urban/decal/trash/six,
@@ -8019,7 +8061,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "hnJ" = (
 /obj/effect/spawner/random/misc/shard,
@@ -9279,6 +9321,10 @@
 	dir = 1
 	},
 /area/bluesummers/inside/engineering)
+"ioa" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bluesummers/inside/engineering/plant)
 "iod" = (
 /obj/machinery/light{
 	dir = 4
@@ -9654,7 +9700,7 @@
 "iEG" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "iEZ" = (
 /obj/effect/urban/decal/trash/two{
@@ -9664,7 +9710,7 @@
 /turf/open/floor/mainship,
 /area/bluesummers/outside/northeast/roofed)
 "iFb" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast)
@@ -10196,7 +10242,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/shuttle/escapepod/plain/buildable,
 /area/bluesummers/inside/engineering/plant)
 "jbJ" = (
 /turf/closed/wall/mainship,
@@ -10250,7 +10296,7 @@
 /turf/open/floor/mainship/green,
 /area/bluesummers/inside/biodome)
 "jee" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/drought/cave,
@@ -10306,7 +10352,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "jfH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -10815,7 +10861,7 @@
 	name = "Core Power Monitoring"
 	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "jDH" = (
 /obj/machinery/science/pathogenic_incubator,
@@ -11800,7 +11846,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/mining)
 "kkH" = (
@@ -11826,7 +11872,7 @@
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/northeast)
 "kmA" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest)
@@ -12098,7 +12144,7 @@
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/southwest)
 "kxi" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/mining/south)
 "kxk" = (
@@ -12143,7 +12189,7 @@
 	},
 /area/bluesummers/caves/cloning)
 "kAu" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/cryostorage/north)
 "kAC" = (
@@ -12310,6 +12356,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/southeast/roofed)
+"kGU" = (
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/inside/engineering/plant/control)
 "kHv" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/weapon,
@@ -12724,13 +12773,13 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "laK" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/shuttle/escapepod/plain/buildable,
 /area/bluesummers/inside/engineering/plant)
 "laR" = (
 /obj/effect/landmark/corpsespawner/roboticist/regular,
@@ -13326,7 +13375,7 @@
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/dorms)
 "lxd" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest/indoor)
@@ -14110,7 +14159,13 @@
 	name = "Electrical Plant Shutters";
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bluesummers/inside/engineering/plant)
+"lZG" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "lZT" = (
 /obj/effect/ai_node,
@@ -14696,7 +14751,7 @@
 /turf/open/floor/tile/dark2,
 /area/bluesummers/inside/food_processing)
 "myj" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/east)
@@ -14776,7 +14831,7 @@
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/space_port)
 "mBN" = (
-/obj/item/attachable/bayonetknife,
+/obj/item/attachable/bayonet,
 /turf/open/floor/mainship/emerald{
 	dir = 1
 	},
@@ -14807,11 +14862,6 @@
 	dir = 1
 	},
 /area/bluesummers/inside/food_processing)
-"mCM" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bluesummers/inside/engineering/plant)
 "mCO" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/green{
@@ -15295,7 +15345,7 @@
 /turf/open/floor/carpet/purple,
 /area/bluesummers/inside/luxury)
 "mWo" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast)
@@ -15600,6 +15650,12 @@
 	dir = 4
 	},
 /area/bluesummers/caves/mining)
+"njF" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/bluesummers/inside/engineering/plant)
 "njI" = (
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/caves/west)
@@ -15960,6 +16016,14 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/garage)
+"nyN" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/mainship/floor,
+/area/bluesummers/inside/engineering/plant)
 "nzc" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/tile/dark2,
@@ -16169,6 +16233,12 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/tile/white,
 /area/bluesummers/inside/luxury)
+"nIo" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
+	},
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bluesummers/inside/engineering/plant)
 "nIB" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/powerloader_wreckage,
@@ -16177,7 +16247,7 @@
 	},
 /area/bluesummers/inside/industrial)
 "nIU" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/mining)
@@ -16327,7 +16397,7 @@
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/eva)
 "nSQ" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest/garbledradio)
@@ -16339,6 +16409,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/hydroponics/south)
+"nTv" = (
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bluesummers/inside/engineering/plant)
 "nTB" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -16660,7 +16733,7 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "ogZ" = (
 /obj/structure/table/mainship,
@@ -17123,7 +17196,7 @@
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "ozO" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest/garbledradio)
@@ -18005,7 +18078,7 @@
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/engineering)
 "pkV" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest/garbledradio)
 "pkZ" = (
@@ -18421,7 +18494,7 @@
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/southeast)
 "pAN" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/north/garbledradio)
 "pBw" = (
@@ -18632,6 +18705,13 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/outside/northwest)
+"pJE" = (
+/obj/structure/cryofeed,
+/obj/structure/platform_decoration{
+	dir = 1
+	},
+/turf/open/liquid/water,
+/area/bluesummers/inside/engineering/plant)
 "pLm" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/silver/full,
@@ -18903,7 +18983,7 @@
 /turf/open/floor/plating,
 /area/bluesummers/caves/cryostorage/north)
 "pUz" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/north)
 "pUQ" = (
@@ -19108,6 +19188,11 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/bluesummers/inside/recreation)
+"qeQ" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bluesummers/inside/engineering/plant)
 "qeY" = (
 /obj/structure/prop/mainship/sensor_computer2/black,
 /turf/open/floor/mainship/floor,
@@ -19321,7 +19406,7 @@
 	dir = 2
 	},
 /obj/effect/ai_node,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "qni" = (
 /obj/structure/bed/chair/sofa/corsat/verticaltop,
@@ -19595,7 +19680,7 @@
 /area/bluesummers/caves/cryostorage/north)
 "qwj" = (
 /obj/structure/disposalpipe/junction/yjunc,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "qwn" = (
 /obj/structure/cable,
@@ -19673,7 +19758,7 @@
 /turf/open/floor/plating,
 /area/bluesummers/caves/northeast/garbledradio)
 "qzA" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/north)
@@ -19922,7 +20007,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "qJg" = (
 /obj/machinery/light,
@@ -20654,7 +20739,7 @@
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/caves/west)
 "rqd" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest/garbledradio/indoor)
 "rqf" = (
@@ -20690,6 +20775,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/outside/northeast/roofed)
+"rqE" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating,
+/area/bluesummers/caves/north)
 "rqI" = (
 /obj/structure/prop/mainship/sensor_computer3/black,
 /turf/open/floor/plating/plating_catwalk,
@@ -20745,6 +20834,10 @@
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering)
+"rum" = (
+/obj/structure/cable,
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bluesummers/inside/engineering/plant)
 "ruQ" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -20756,7 +20849,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "rvG" = (
 /obj/structure/closet/wardrobe/green,
@@ -20826,6 +20919,14 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/biodome)
+"rwZ" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/mainship/floor,
+/area/bluesummers/inside/engineering/plant)
 "rxn" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/structure/cable,
@@ -21107,7 +21208,7 @@
 	},
 /area/bluesummers/caves/cryostorage/bridge)
 "rLW" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/southeast)
 "rMa" = (
@@ -21170,7 +21271,7 @@
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/caves/northwest/garbledradio)
 "rNG" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/southeast)
@@ -22021,6 +22122,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/caves/cryostorage/bridge)
+"sys" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
+	},
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bluesummers/inside/engineering/plant)
 "syv" = (
 /obj/structure/bed/chair/pew{
 	dir = 9
@@ -22143,7 +22250,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bluesummers/inside/food_processing/east)
 "sCL" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/mining)
 "sCS" = (
@@ -22306,7 +22413,7 @@
 	},
 /area/bluesummers/caves/cloning)
 "sMN" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/east)
@@ -22388,7 +22495,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "sRh" = (
 /obj/effect/turf_decal/mining,
@@ -22582,6 +22689,10 @@
 /obj/item/clothing/gloves/black,
 /turf/open/floor/plating/mainship,
 /area/bluesummers/caves/mining/drill)
+"taU" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/inside/engineering)
 "tbF" = (
 /obj/structure/table/mainship,
 /obj/structure/prop/mainship/weapon_recharger,
@@ -23133,7 +23244,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cryostorage/south)
 "tyi" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/north/garbledradio)
@@ -23440,6 +23551,10 @@
 "tMM" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cryostorage/bridge)
+"tNf" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating/plating_catwalk,
+/area/bluesummers/inside/engineering/plant)
 "tNS" = (
 /obj/structure/table/mainship,
 /obj/item/paper{
@@ -23668,7 +23783,7 @@
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/chapel)
 "tVS" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/southeast)
@@ -23873,6 +23988,11 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/caves/mining)
+"udR" = (
+/obj/structure/cryofeed/right,
+/obj/structure/platform_decoration,
+/turf/open/liquid/water,
+/area/bluesummers/inside/engineering/plant)
 "uei" = (
 /obj/structure/flora/drought/grass,
 /obj/effect/ai_node,
@@ -23990,6 +24110,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/observation_deck)
+"ujF" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating,
+/area/bluesummers/inside/engineering/plant)
 "ujG" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /obj/effect/decal/cleanable/blood,
@@ -24765,6 +24889,11 @@
 "uPz" = (
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/caves/northeast/garbledradio/indoor)
+"uPP" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg1,
+/area/bluesummers/caves/north)
 "uQn" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/broken{
@@ -24991,6 +25120,7 @@
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/northeast)
 "vac" = (
+/obj/structure/cable,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/inside/engineering/plant/control)
 "vag" = (
@@ -25036,7 +25166,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/plating,
+/turf/open/shuttle/escapepod/plain/buildable,
 /area/bluesummers/inside/engineering/plant)
 "vbo" = (
 /obj/machinery/door/airlock/hatch,
@@ -25527,10 +25657,6 @@
 	dir = 4
 	},
 /area/bluesummers/inside/robotics)
-"vCA" = (
-/obj/structure/cable,
-/turf/open/liquid/water,
-/area/bluesummers/inside/engineering/plant)
 "vCE" = (
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/caves/mining/south)
@@ -26265,6 +26391,14 @@
 /obj/structure/closet/crate/freezer,
 /turf/open/floor/freezer,
 /area/bluesummers/inside/luxury)
+"wjx" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/mainship/floor,
+/area/bluesummers/inside/engineering/plant)
 "wjF" = (
 /obj/effect/urban/decal/trash/three{
 	pixel_x = -8;
@@ -26324,7 +26458,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
+/turf/open/shuttle/escapepod/plain/buildable,
 /area/bluesummers/inside/engineering/plant)
 "wmC" = (
 /obj/effect/urban/decal/trash/three,
@@ -26371,7 +26505,7 @@
 /area/bluesummers/inside/industrial)
 "wqv" = (
 /obj/structure/disposalpipe/trunk,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
 "wqC" = (
 /turf/open/floor/plating/dmg3,
@@ -26732,6 +26866,12 @@
 	dir = 8
 	},
 /area/bluesummers/inside/engineering)
+"wEY" = (
+/obj/structure/cable,
+/obj/structure/platform,
+/obj/machinery/power/geothermal,
+/turf/open/floor/mainship/floor,
+/area/bluesummers/inside/engineering/plant)
 "wEZ" = (
 /obj/effect/urban/decal/trash/two,
 /obj/structure/cable,
@@ -26891,6 +27031,14 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/eva)
+"wPw" = (
+/obj/structure/cable,
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/machinery/power/geothermal,
+/turf/open/floor/mainship/floor,
+/area/bluesummers/inside/engineering/plant)
 "wPE" = (
 /obj/structure/closet/crate/miningcar/stripe,
 /turf/open/floor/tile/dark/yellow2{
@@ -27321,7 +27469,7 @@
 /turf/open/floor/tile/dark2,
 /area/bluesummers/inside/recreation)
 "xoJ" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/west)
 "xoZ" = (
@@ -27383,6 +27531,14 @@
 	},
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/garage)
+"xrp" = (
+/obj/structure/cable,
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/machinery/power/geothermal,
+/turf/open/floor/mainship/floor,
+/area/bluesummers/inside/engineering/plant)
 "xrO" = (
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/plating/mainship,
@@ -27430,6 +27586,13 @@
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
 /area/bluesummers/inside/luxury)
+"xtT" = (
+/obj/structure/cryofeed/right,
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/open/liquid/water,
+/area/bluesummers/inside/engineering/plant)
 "xtU" = (
 /obj/machinery/light{
 	dir = 8
@@ -27529,11 +27692,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bluesummers/inside/biodome)
-"xzI" = (
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/bluesummers/inside/engineering/plant)
 "xzQ" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -27724,10 +27882,9 @@
 /turf/open/floor/plating/mainship,
 /area/bluesummers/caves/mining/drill)
 "xID" = (
-/obj/structure/disposalpipe/water_pipe{
-	dir = 1
-	},
-/turf/open/liquid/water,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "xIN" = (
 /obj/structure/lattice,
@@ -27933,7 +28090,7 @@
 /turf/open/floor/carpet/blue,
 /area/bluesummers/inside/luxury)
 "xTB" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/southwest)
 "xTE" = (
@@ -27946,6 +28103,12 @@
 /obj/machinery/science/isolation_centerfuge/on/closed/spin,
 /turf/open/floor/mainship/emerald/full,
 /area/bluesummers/caves/cloning)
+"xUD" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/bluesummers/inside/engineering/plant)
 "xVu" = (
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 4
@@ -27959,7 +28122,7 @@
 /turf/open/floor/plating,
 /area/bluesummers/inside/garage)
 "xXo" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/south)
 "xXp" = (
@@ -27994,14 +28157,6 @@
 	dir = 8
 	},
 /area/bluesummers/inside/robotics)
-"xYL" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bluesummers/inside/engineering/plant)
 "xYO" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate/freezer,
@@ -28038,7 +28193,7 @@
 /turf/open/floor/mainship/cargo,
 /area/bluesummers/caves/cryostorage/south)
 "xZs" = (
-/obj/structure/rock/variable/stalagmite,
+/obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast/garbledradio)
 "yab" = (
@@ -28262,7 +28417,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/shuttle/escapepod/plain/buildable,
 /area/bluesummers/inside/engineering/plant)
 "yjW" = (
 /obj/structure/prop/mainship/vat/broken{
@@ -43077,7 +43232,7 @@ tsh
 lPy
 qRE
 pyj
-eUV
+rqE
 lPy
 duD
 rOc
@@ -43258,7 +43413,7 @@ tMr
 fFU
 lPy
 pyj
-reD
+uPP
 hTx
 rOc
 duD
@@ -47495,11 +47650,11 @@ rOc
 gLa
 gLa
 gLa
-him
+eDQ
 oyP
 cLT
 oyP
-qgj
+xUD
 gLa
 rOc
 rOc
@@ -47675,13 +47830,13 @@ rOc
 rOc
 rOc
 gLa
-him
-srR
-bRQ
+eDQ
+tNf
+lZG
 jvw
 xHT
 jvw
-dnP
+njF
 uQn
 ykV
 rOc
@@ -47864,7 +48019,7 @@ oeK
 oeK
 gYn
 cFN
-him
+eDQ
 vMM
 gLa
 gLa
@@ -48041,14 +48196,14 @@ him
 srR
 mbJ
 tfH
-cFN
+hXq
 hXq
 mMr
 hXq
 wqv
 bRQ
 qmC
-qgj
+xUD
 jDw
 gLa
 llD
@@ -48225,10 +48380,10 @@ cFN
 hXq
 nVs
 hXq
-vCA
 lxG
 lxG
-xzI
+lxG
+bCm
 tfH
 fgm
 laJ
@@ -48400,20 +48555,20 @@ dQD
 dQD
 dQD
 gLa
-him
-bRQ
-him
+ebg
+nIo
+ebg
 yjC
-hXq
-qos
+nTv
+udR
 qos
 gYh
 qos
-qos
-lxG
-cFN
+xtT
+rum
+nTv
 dnP
-iEG
+qeQ
 lZq
 jwf
 jwf
@@ -48582,20 +48737,20 @@ dQD
 dQD
 dQD
 gLa
-fgm
+coY
 eNc
-fgm
-hXq
-hXq
+coY
+nTv
+nTv
 eYf
-mCM
-mCM
-mCM
+fyh
+wPw
+dIW
 eYf
-lxG
-lxG
-cFN
-oeK
+rum
+rum
+nTv
+rum
 wlY
 qKD
 emF
@@ -48770,10 +48925,10 @@ qwj
 nqV
 tYg
 xMM
-acu
-edg
-xYL
-xMM
+wjx
+gLa
+wEY
+xID
 xID
 jfD
 iEG
@@ -48784,7 +48939,7 @@ bpn
 yaI
 bmb
 bnV
-hsf
+taU
 aEB
 oNO
 aho
@@ -48947,19 +49102,19 @@ pAN
 dQD
 gLa
 laK
-srR
-bRQ
-hXq
-nVs
+ioa
+nIo
+nTv
+eNc
 qos
-mCM
-mCM
-mCM
+nyN
+xrp
+rwZ
 qos
-hXq
-hXq
-cFN
-cFN
+nTv
+nTv
+nTv
+nTv
 vbi
 qKD
 pDc
@@ -49129,19 +49284,19 @@ dQD
 dQD
 gLa
 dnP
-qgj
-cFN
-cFN
-hXq
+sys
+nTv
+nTv
+nTv
+pJE
 eYf
 eYf
 eYf
-eYf
-eYf
-hXq
-cFN
+fEA
+nTv
+nTv
 eNc
-him
+ebg
 jbF
 jwf
 jwf
@@ -49311,18 +49466,18 @@ dQD
 rOc
 gLa
 gLa
-oFA
+ahX
 tfH
 cFN
 hXq
 hXq
 hXq
-xMM
+hXq
 hXq
 sSH
-cMY
+ujF
 ykV
-cFN
+hXq
 fgm
 gLa
 jwf
@@ -49504,8 +49659,8 @@ nVs
 wqv
 srR
 wGg
-srR
-bRQ
+tNf
+lZG
 gLa
 rOc
 rOc
@@ -49865,9 +50020,9 @@ qIY
 cFN
 vLy
 cFN
-him
+eDQ
 sQw
-bRQ
+lZG
 gLa
 rOc
 rOc
@@ -50043,11 +50198,11 @@ mle
 mle
 mle
 mle
-dnP
-srR
+njF
+tNf
 ogX
-srR
-bRQ
+tNf
+lZG
 mle
 mle
 mle
@@ -50587,7 +50742,7 @@ rOc
 mle
 uhe
 ymb
-vac
+kGU
 sug
 mle
 wiU

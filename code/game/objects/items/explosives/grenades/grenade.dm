@@ -29,7 +29,8 @@
 	var/light_impact_range = 4
 	///Weak impact range when exploding
 	var/weak_impact_range = 0
-
+	///The actual timer for the grenade
+	var/det_timer
 
 /obj/item/explosive/grenade/Initialize(mapload)
 	. = ..()
@@ -40,18 +41,17 @@
 		return
 
 	if(!user.dextrous)
-		balloon_alert(user, "not enough dexterity")
+		balloon_alert(user, "not enough dexterity!")
 		return
 
 	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		balloon_alert(user, "can't, against your programming")
+		balloon_alert(user, "against your programming!")
 		return
 	if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		balloon_alert(user, "Can't do this")
 		return
 	activate(user)
 
-	balloon_alert_to_viewers("primes grenade")
 	if(initial(dangerous) && ishumanbasic(user))
 		var/nade_sound = user.gender == FEMALE ? SFX_FEMALE_FRAGOUT : SFX_MALE_FRAGOUT
 
@@ -71,7 +71,7 @@
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()
 	if(active && dangerous)
-		. += new /obj/effect/overlay/danger
+		. += mutable_appearance('icons/obj/items/grenade.dmi', "danger", ABOVE_ALL_MOB_LAYER, src)
 
 /obj/item/explosive/grenade/fire_act(burn_level)
 	activate()
@@ -81,7 +81,7 @@
 	if(active)
 		return
 
-	if(user)
+	if(user?.client)
 		log_bomber(user, "primed", src)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.grenades_primed ++
@@ -94,10 +94,11 @@
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
-	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
+	det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
+	notify_ai_hazard()
 	return TRUE
 
-///Detonation effects
+///Detonation effects TODO MAKE THIS PASS THE USER TO EXPLOSION FOR LOGGING
 /obj/item/explosive/grenade/proc/prime()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/idiot = loc
@@ -114,7 +115,7 @@
 			idiot.emote("scream")
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[idiot.ckey]
 			personal_statistics.grenade_hand_delimbs ++
-	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
+	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range, explosion_cause=src)
 	qdel(src)
 
 ///Adjusts det time, used for grenade launchers

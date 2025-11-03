@@ -1,7 +1,6 @@
 /obj/effect/landmark/campaign/vehicle_spawner
 	icon = 'icons/effects/campaign_effects.dmi'
-	///Faction associated with this spawner
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	///Mech type for this spawner
 	var/vehicle_type
 
@@ -81,9 +80,9 @@
 	var/list/equipment_list = list(
 		/obj/item/armored_weapon = 1,
 		/obj/item/armored_weapon/secondary_weapon = 1,
-		/obj/item/ammo_magazine/tank/ltb_cannon/heavy = 15,
-		/obj/item/ammo_magazine/tank/ltb_cannon/apfds = 10,
-		/obj/item/ammo_magazine/tank/ltb_cannon/canister = 5,
+		/obj/item/ammo_magazine/tank/ltb_cannon/heavy = 18,
+		/obj/item/ammo_magazine/tank/ltb_cannon/apfds = 12,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary = 5,
 		/obj/item/ammo_magazine/tank/secondary_cupola = 10,
 	)
 
@@ -122,7 +121,7 @@
 	equipment_list = list(
 		/obj/item/armored_weapon/ltaap = 1,
 		/obj/item/armored_weapon/secondary_weapon = 1,
-		/obj/item/ammo_magazine/tank/ltaap_chaingun = 20,
+		/obj/item/ammo_magazine/tank/ltaap_chaingun/hv = 20,
 		/obj/item/ammo_magazine/tank/secondary_cupola = 10,
 	)
 

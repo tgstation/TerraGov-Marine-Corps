@@ -109,6 +109,7 @@
 	icon_state = "autoinjector-1"
 	list_reagents = list(/datum/reagent/medicine/dylovene = 30)
 	description_overlay = "Dy"
+	amount_per_transfer_from_this = 3
 
 /obj/item/reagent_containers/hypospray/autoinjector/tramadol
 	name = "tramadol autoinjector"
@@ -356,3 +357,13 @@
 		/datum/reagent/medicine/arithrazine = 7.5,
 	)
 	description_overlay = "Tx4"
+
+/obj/item/reagent_containers/hypospray/autoinjector/regrow
+	name = "Re-Grow autoinjector"
+	desc = "An auto-injector loaded with Re-Grow - able to rapidly regrow missing limbs."
+	icon_state = "AngelLight"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/regrow = 30,
+	)
+	description_overlay = "Grw"

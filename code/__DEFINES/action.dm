@@ -38,7 +38,22 @@
 #define VREF_MUTABLE_CORROSIVEGLOB_COUNTER "VREF_CORROSIVEGLOB_COUNTER"
 // extra reference for how many boiler acid globs we have
 #define VREF_MUTABLE_AMMO_COUNTER "VREF_AMMO_COUNTER"
-
+// extra reference for how many globadier acid mines we have
+#define VREF_MUTABLE_ACID_MINES_COUNTER "VREF_ACIDMINE_COUNTER"
+// extra reference for how many globadier grenades we have
+#define VREF_MUTABLE_GLOB_GRENADES_COUNTER "VREF_GLOBGRENADE_COUNTER"
+// extra reference for how many globadier gas mines we have
+#define VREF_MUTABLE_GAS_MINES_COUNTER "VREF_GASMINE_COUNTER"
+// extra reference for how long untill we recharge a new globadier grenade
+#define VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER "VREF_GLOBGRENADE_CHARGETIMER"
+// extra reference for how long untill we recharge a new acid mine
+#define VREF_MUTABLE_GAS_MINE_TIMER "VREF_GASMINE_CHARGETIMER"
+// extra reference for how long untill we recharge a new gas mine
+#define VREF_MUTABLE_ACID_MINE_TIMER "VREF_ACIDMINE_CHARGETIMER"
+// The extra reference for Conqueror's Dash ability if it uses the charge cooldown system. Shows how many charges are available.
+#define VREF_MUTABLE_CONQ_DASH_CHARGES "VREF_CONQDASH_CHARGES"
+// The extra reference for Conqueror's Dash ability if it uses the charge cooldown system. Shows how much time is left before a charge is restored.
+#define VREF_MUTABLE_CONQ_DASH_CHARGETIMER "VREF_CONQDASH_CHARGETIMER"
 
 /// Actions that toggle on click/trigger
 #define ACTION_TOGGLE "toggle"
