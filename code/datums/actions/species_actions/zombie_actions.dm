@@ -198,9 +198,8 @@
 
 /datum/action/ability/boomer_explode/action_activate()
 	. = ..()
-	handle_smoke()
 	owner.record_tactical_unalive()
-	owner.death(TRUE)
+	handle_smoke()
 
 /// This proc defines, and sets up and then lastly starts the smoke, if ability is false we divide range by 4.
 /datum/action/ability/boomer_explode/proc/handle_smoke(datum/source)
@@ -212,6 +211,7 @@
 	smoke.start()
 
 	owner.record_war_crime()
+	owner.death(TRUE)
 
 /datum/action/ability/boomer_explode/ai_should_start_consider()
 	return TRUE
