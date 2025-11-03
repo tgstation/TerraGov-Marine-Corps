@@ -212,7 +212,7 @@
 	smoke.start()
 
 	owner.record_war_crime()
-	owner.death(TRUE)
+	INVOKE_NEXT_TICK(owner, TYPE_PROC_REF(/mob/living, death), TRUE)
 
 /datum/action/ability/boomer_explode/ai_should_start_consider()
 	return TRUE
