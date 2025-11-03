@@ -6,7 +6,7 @@
 	action_icon_state = "emit_neurogas"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Use to emit a cloud of blinding smoke."
-	cooldown_duration = 40 SECONDS
+	cooldown_duration = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
@@ -18,7 +18,7 @@
 	///radius this smoke grenade will encompass
 	var/smokeradius = 4
 	///The duration of the smoke in 2 second ticks
-	var/smoke_duration = 9
+	var/smoke_duration = 5
 
 /datum/action/ability/emit_gas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
