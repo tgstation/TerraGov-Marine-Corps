@@ -73,8 +73,7 @@
 	var/datum/hive_status/hive
 	if(isxeno(user) && !force_choose_hive)
 		var/mob/living/carbon/xenomorph/xeno_user = user
-		if(xeno_user.hive)
-			hive = xeno_user.hive
+		hive = xeno_user.get_hive()
 	else
 		var/isadmin = check_other_rights(user.client, R_ADMIN, FALSE)
 		var/list/hives_by_name = list()

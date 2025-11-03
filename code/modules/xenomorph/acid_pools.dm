@@ -31,6 +31,6 @@
 				continue
 			if(!xeno.lying_angle)
 				continue
-			if(GLOB.hive_datums[hivenumber] != xeno.hive)
+			if(hivenumber != xeno.get_xeno_hivenumber())
 				continue
 			xeno.adjust_sunder(-1)

@@ -99,13 +99,14 @@
 /datum/mutation_upgrade/proc/get_total_structures()
 	if(!xenomorph_owner || !required_structure)
 		return 0
+	var/datum/hive_status/hive = xenomorph_owner.get_hive()
 	switch(required_structure)
 		if(MUTATION_SHELL)
-			return clamp(length(xenomorph_owner.hive.shell_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
+			return clamp(length(hive.shell_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
 		if(MUTATION_SPUR)
-			return clamp(length(xenomorph_owner.hive.spur_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
+			return clamp(length(hive.spur_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
 		if(MUTATION_VEIL)
-			return clamp(length(xenomorph_owner.hive.veil_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
+			return clamp(length(hive.veil_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
 
 /**
  * Shell

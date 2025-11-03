@@ -971,10 +971,8 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		return FALSE
 	if(!isliving(M))
 		return FALSE
-	if(isxeno(M))
-		var/mob/living/carbon/xenomorph/X = M
-		if(hivenumber == X.hive.hivenumber) //No friendly fire
-			return FALSE
+	if(issamexenohive(M)) //No friendly fire
+		return FALSE
 
 	return TRUE
 

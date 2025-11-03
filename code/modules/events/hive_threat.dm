@@ -67,7 +67,7 @@
 	var/message = "[drainer] has gleaned the secrets from the mind of [hive_target], helping ensure the future of the hive. Our hive is empowered by our success!"
 	if(drainer.get_xeno_hivenumber() == XENO_HIVE_NORMAL)
 		message = "[drainer] has gleaned the secrets from the mind of [hive_target], helping ensure the future of the hive. The Queen Mother empowers us for our success!"
-	drainer.hive.xeno_message(message, force = TRUE)
+	drainer.get_hive().xeno_message(message, force = TRUE)
 	log_combat(drainer, drained, "obtained a hive target reward from")
 	bless_hive(drainer)
 	REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
@@ -85,7 +85,7 @@
 			receiving_xeno.evolution_stored = receiving_xeno.xeno_caste.evolution_threshold
 			receiving_xeno.upgrade_stored += 1000
 		SEND_SOUND(receiving_xeno, sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
-	addtimer(CALLBACK(src, PROC_REF(remove_blessing), drainer.hive), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(remove_blessing), drainer.get_hive()), 2 MINUTES)
 
 ///debuffs the hive when the blessing expires
 /datum/round_event/hive_threat/proc/remove_blessing(var/datum/hive_status/hive)

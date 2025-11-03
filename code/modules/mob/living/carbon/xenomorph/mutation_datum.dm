@@ -16,10 +16,11 @@
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/xenomorph_user = user
-	.["shell_chambers"] = length(xenomorph_user.hive.shell_chambers)
-	.["spur_chambers"] = length(xenomorph_user.hive.spur_chambers)
-	.["veil_chambers"] = length(xenomorph_user.hive.veil_chambers)
-	.["biomass"] = !isnull(SSpoints.xeno_biomass_points_by_hive[xenomorph_user.get_xeno_hivenumber()]) ? SSpoints.xeno_biomass_points_by_hive[xenomorph_user.get_xeno_hivenumber()] : 0
+	var/datum/hive_status/hive = xenomorph_user.get_hive()
+	.["shell_chambers"] = length(hive.shell_chambers)
+	.["spur_chambers"] = length(hive.spur_chambers)
+	.["veil_chambers"] = length(hive.veil_chambers)
+	.["biomass"] = !isnull(SSpoints.xeno_biomass_points_by_hive[hive.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[hive.hivenumber] : 0
 
 /datum/mutation_datum/ui_static_data(mob/user)
 	. = ..()
@@ -101,7 +102,8 @@
 
 /// Tries to purchase a mutation based on its typepath. Returns TRUE if the mutation was successfully purchased.
 /datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xenomorph_purchaser, datum/mutation_upgrade/mutation_typepath)
-	if(!xenomorph_purchaser.hive || !mutation_typepath)
+	var/datum/hive_status/hive = xenomorph_purchaser.get_hive()
+	if(!hive || !mutation_typepath)
 		return FALSE
 	if(!(xenomorph_purchaser.xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED))
 		return FALSE
@@ -123,7 +125,7 @@
 	if(has_any_mutation_in_category(xenomorph_purchaser, mutation_typepath.category))
 		to_chat(xenomorph_purchaser, span_warning("You already have a mutation in this category!"))
 		return FALSE
-	if(!xenomorph_purchaser.hive.has_any_mutation_structures_in_category(mutation_typepath.required_structure))
+	if(!hive.has_any_mutation_structures_in_category(mutation_typepath.required_structure))
 		to_chat(xenomorph_purchaser, span_warning("This mutation requires a [mutation_typepath.required_structure] chamber to exist!"))
 		return FALSE
 	for(var/datum/mutation_upgrade/owned_mutation AS in xenomorph_purchaser.owned_mutations)

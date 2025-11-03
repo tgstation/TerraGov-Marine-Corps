@@ -571,7 +571,7 @@
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode //Minor QOL, any xeno can check the console after a leader hijacks
 	if(!(xeno_attacker.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) && (infestation_mode.round_stage != INFESTATION_MARINE_CRASHING))
 		return
-	if(xeno_attacker.hive.living_xeno_ruler != xeno_attacker) //If we aren't the actual hive leader, prevent us from controling alamo
+	if(xeno_attacker.get_hive().living_xeno_ruler != xeno_attacker) //If we aren't the actual hive leader, prevent us from controling alamo
 		to_chat(xeno_attacker, span_xenowarning("We must be the hive leader!"))
 		return
 	#ifndef TESTING
@@ -767,7 +767,7 @@
 				to_chat(usr, span_warning("Hijacking is not possible."))
 				return
 			var/mob/living/carbon/xenomorph/xeno = usr
-			if(!(xeno.hive.hive_flags & HIVE_CAN_HIJACK))
+			if(!(xeno.get_hive().hive_flags & HIVE_CAN_HIJACK))
 				to_chat(xeno, span_warning("Our hive lacks the psychic prowess to hijack the bird."))
 				return
 			if(shuttle.mode == SHUTTLE_RECHARGING)
@@ -823,7 +823,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)
 	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely.", title = "Critical Dropship Alert", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/hijack.ogg', color_override = "red")
 	to_chat(user, span_danger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
-	user.hive.on_shuttle_hijack(crashing_dropship)
+	user.get_hive().on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	crashing_dropship.silicon_lock_airlocks(TRUE)
 	SSevacuation.scuttle_flags &= ~FLAGS_SDEVAC_TIMELOCK

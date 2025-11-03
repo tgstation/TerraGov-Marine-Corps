@@ -460,12 +460,13 @@
 
 /datum/action/ability/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/hive_status/X_hive = X.get_hive()
 
 	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
 		X.balloon_alert(X, "no longer emitting")
 		QDEL_NULL(X.current_aura)
-		if(X.hive?.living_xeno_ruler == X)
-			X.hive?.update_leader_pheromones()
+		if(X_hive?.living_xeno_ruler == X)
+			X_hive?.update_leader_pheromones()
 		X.update_aura_overlay()
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
@@ -473,8 +474,8 @@
 	X.balloon_alert(X, "[lowertext(phero_choice)]")
 	playsound(X.loc, SFX_ALIEN_DROOL, 25)
 
-	if(X.hive?.living_xeno_ruler == X)
-		X.hive?.update_leader_pheromones()
+	if(X_hive?.living_xeno_ruler == X)
+		X_hive?.update_leader_pheromones()
 	X.update_aura_overlay() //Visual feedback that the xeno has immediately started emitting pheromones
 	succeed_activate()
 
@@ -1564,7 +1565,7 @@
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 	xeno_job.add_job_points(larva_point_reward)
-	X.hive.update_tier_limits()
+	GLOB.hive_datums[hivenumber].update_tier_limits()
 	GLOB.round_statistics.larva_from_psydrain += larva_point_reward / xeno_job.job_points_needed
 
 	if(owner.client)
@@ -1767,7 +1768,7 @@
 
 /datum/action/ability/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.hive.purchases.interact(X)
+	X.get_hive().purchases.interact(X)
 	return succeed_activate()
 
 // ***************************************

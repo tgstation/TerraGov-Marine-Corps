@@ -543,7 +543,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(length(xeno_owner.hive.get_all_xenos()) <= 1)
+	if(length(xeno_owner.get_hive().get_all_xenos()) <= 1)
 		if(!silent)
 			owner.balloon_alert(owner, "noone to call")
 		return FALSE
@@ -554,7 +554,8 @@ GLOBAL_LIST_EMPTY(active_summons)
 
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = xeno_owner.get_xeno_hivenumber())
-	var/list/allxenos = xeno_owner.hive.get_all_xenos()
+	var/datum/hive_status/hive = xeno_owner.get_hive()
+	var/list/allxenos = hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		if(minions_only && sister.tier != XENO_TIER_MINION)
 			continue
@@ -572,7 +573,7 @@ GLOBAL_LIST_EMPTY(active_summons)
 			sister.remove_filter("summonoutline")
 		return fail_activate()
 
-	allxenos = xeno_owner.hive.get_all_xenos() //refresh the list to account for any changes during the channel
+	allxenos = hive.get_all_xenos() //refresh the list to account for any changes during the channel
 	var/sisters_teleported = 0
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		if(minions_only && sister.tier != XENO_TIER_MINION)

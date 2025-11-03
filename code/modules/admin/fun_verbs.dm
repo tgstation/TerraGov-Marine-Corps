@@ -641,7 +641,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(xeno_panel, R_FUN, "Xeno Panel", mob/living/carbon/
 
 	var/dat = "<br>"
 
-	dat += "Hive: [X.hive.hivenumber] <a href='byond://?src=[REF(user.holder)];[HrefToken()];xeno=hive;mob=[REF(X)]'>Edit</a><br>"
+	dat += "Hive: [X.get_xeno_hivenumber()] <a href='byond://?src=[REF(user.holder)];[HrefToken()];xeno=hive;mob=[REF(X)]'>Edit</a><br>"
 	dat += "Nicknumber: [X.nicknumber] <a href='byond://?src=[REF(user.holder)];[HrefToken()];xeno=nicknumber;mob=[REF(X)]'>Edit</a><br>"
 	dat += "Upgrade Tier: [X.xeno_caste.upgrade_name] <a href='byond://?src=[REF(user.holder)];[HrefToken()];xeno=upgrade;mob=[REF(X)]'>Edit</a><br>"
 
