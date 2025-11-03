@@ -456,6 +456,7 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/add_to_hive(datum/hive_status/HS, force=FALSE, prevent_ruler=FALSE)
+	PROTECTED_PROC(TRUE)
 	if(!force && hivenumber != XENO_HIVE_NONE)
 		CRASH("trying to do a dirty add_to_hive")
 
@@ -508,6 +509,7 @@
 	hive_core.color = HS.color
 
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE, prevent_ruler=FALSE) // helper function to add by given hivenumber
+	PRIVATE_PROC(TRUE)
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
@@ -516,6 +518,7 @@
 
 // This is a special proc called only when a xeno is first created to set their hive and name properly
 /mob/living/carbon/xenomorph/proc/set_initial_hivenumber(prevent_ruler=FALSE)
+	PRIVATE_PROC(TRUE)
 	add_to_hive_by_hivenumber(hivenumber, force=TRUE, prevent_ruler=prevent_ruler)
 
 // ***************************************
@@ -563,6 +566,7 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/remove_from_hive()
+	PROTECTED_PROC(TRUE)
 	if(!istype(hive))
 		CRASH("tried to remove a xeno from a hive that didnt have a hive to be removed from")
 
@@ -1112,7 +1116,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		if(isxenohivemind(boarder))
 			continue
-		boarder.add_to_hive_by_hivenumber(XENO_HIVE_FORSAKEN)
+		boarder.transfer_to_hive(XENO_HIVE_FORSAKEN)
 		if(boarder.xeno_caste.tier == XENO_TIER_MINION)
 			continue
 		left_behind++
