@@ -15,14 +15,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 	///if FALSE, broadcasting and listening dont matter and this radio shouldnt do anything
-	var/on = TRUE
+	VAR_PROTECTED/on = TRUE
 	///the "default" radio frequency this radio is set to, listens and transmits to this frequency by default. wont work if the channel is encrypted
-	var/frequency = FREQ_CIV_GENERAL
+	VAR_PROTECTED/frequency = FREQ_CIV_GENERAL
 
 	/// Whether the radio will transmit dialogue it hears nearby into its radio channel.
-	var/broadcasting = FALSE
+	VAR_PROTECTED/broadcasting = FALSE
 	/// Whether the radio is currently receiving radio messages from its radio frequencies.
-	var/listening = TRUE
+	VAR_PROTECTED/listening = TRUE
 
 	//the below three vars are used to track listening and broadcasting should they be forced off for whatever reason but "supposed" to be active
 	//eg player sets the radio to listening, but an emp or whatever turns it off, its still supposed to be activated but was forced off,
@@ -88,6 +88,9 @@
 	SEND_SIGNAL(src, COMSIG_RADIO_NEW_FREQUENCY, args)
 	remove_radio(src, frequency)
 	frequency = add_radio(src, new_frequency)
+
+/obj/item/radio/proc/get_initial_frequency()
+	return initial(src.frequency)
 
 ///simple getter for the on variable. necessary due to VAR_PROTECTED
 /obj/item/radio/proc/is_on()

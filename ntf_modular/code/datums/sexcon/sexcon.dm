@@ -289,7 +289,7 @@
 	else
 		action_target.adjustOxyLoss(oxyloss_amt)
 		// Indicate someone is choking through sex
-		if(action_target.oxyloss >= 50 && prob(33))
+		if(action_target.getOxyLoss() >= 50 && prob(33))
 			action_target.emote(pick(list("gag", "choke", "choke")))
 	//To show that they are choking
 	var/choke_message = pick("gasps for air!", "chokes!")

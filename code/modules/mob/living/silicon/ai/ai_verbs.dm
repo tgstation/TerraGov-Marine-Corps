@@ -289,7 +289,7 @@
 
 	if(chan == "Default")
 		radiomod = ";"
-		chan += " ([radio.frequency])"
+		chan += " ([radio.get_frequency()])"
 	else if(chan == "None")
 		radiomod = ""
 	else

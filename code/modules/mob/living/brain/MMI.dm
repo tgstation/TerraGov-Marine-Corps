@@ -97,7 +97,7 @@
 /obj/item/mmi/radio_enabled/Initialize(mapload)
 	. = ..()
 	radio = new(src)//Spawns a radio inside the MMI.
-	radio.broadcasting = 1//So it's broadcasting from the start.
+	radio.set_broadcasting(TRUE)//So it's broadcasting from the start.
 
 /obj/item/mmi/radio_enabled/verb/Toggle_Broadcasting()
 	set name = "Toggle Broadcasting"
@@ -109,8 +109,8 @@
 	if(brainmob.stat)//Only the brainmob will trigger these so no further check is necessary.
 		to_chat(brainmob, "Can't do that while incapacitated or dead.")
 
-	radio.broadcasting = radio.broadcasting==1 ? 0 : 1
-	to_chat(brainmob, span_notice("Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting."))
+	radio.set_broadcasting(!radio.get_broadcasting())
+	to_chat(brainmob, span_notice("Radio is [radio.get_broadcasting() ? "now" : "no longer"] broadcasting."))
 
 /obj/item/mmi/radio_enabled/verb/Toggle_Listening()
 	set name = "Toggle Listening"
@@ -122,8 +122,8 @@
 	if(brainmob.stat)
 		to_chat(brainmob, "Can't do that while incapacitated or dead.")
 
-	radio.listening = radio.listening==1 ? 0 : 1
-	to_chat(brainmob, span_notice("Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast."))
+	radio.set_listening(!radio.get_listening())
+	to_chat(brainmob, span_notice("Radio is [radio.get_listening() ? "now" : "no longer"] receiving broadcast."))
 
 /obj/item/mmi/emp_act(severity)
 	if(!brainmob)

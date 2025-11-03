@@ -49,7 +49,7 @@
 	if(oldloc == stamina_holder.loc)
 		return
 	stamina_holder.adjustStaminaLoss(1 * drain_modifier * stim_drain_modifier)
-	if(stamina_holder.staminaloss >= 0)
+	if(stamina_holder.getStaminaLoss() >= 0)
 		stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
 
 

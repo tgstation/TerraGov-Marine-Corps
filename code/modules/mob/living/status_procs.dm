@@ -592,6 +592,15 @@
 /mob/living/proc/dizzy(amount)
 	return // For the time being, only carbons get dizzy.
 
+/mob/living/proc/druggy(amount)
+	druggy = max(druggy, amount)
+
+/mob/living/proc/get_druggy()
+	return druggy
+
+/mob/living/proc/adjust_druggy(amount)
+	druggy = clamp(druggy + amount, 0, 1000)
+
 /mob/living/proc/blind_eyes(amount)
 	if(amount>0)
 		var/old_eye_blind = eye_blind
@@ -648,6 +657,9 @@
 	eye_blurry = max(amount, 0)
 	update_eye_blur()
 
+/mob/living/proc/get_blurriness()
+	return eye_blurry
+
 // todo replace this shit with tg's style status effect for this
 /mob/living/proc/update_eye_blur()
 	if(!client)
@@ -670,6 +682,12 @@
 		ear_damage = damage
 	if(!isnull(deaf))
 		ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
+
+/mob/living/proc/get_ear_damage()
+	return ear_damage
+
+/mob/living/proc/get_ear_deaf()
+	return ear_damage
 
 ///Modify mob's drugginess in either direction, minimum zero. Adds or removes druggy overlay as appropriate.
 /mob/living/proc/adjust_drugginess(amount)

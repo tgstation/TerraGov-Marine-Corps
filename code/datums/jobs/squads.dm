@@ -269,7 +269,7 @@
 	var/obj/item/radio/headset/mainship/headset = leaving_squaddie.wear_ear
 	if(istype(headset))
 		headset.remove_minimap()
-		headset.set_frequency(initial(headset.frequency))
+		headset.set_frequency(headset.get_initial_frequency())
 
 	for(var/datum/data/record/sheet AS in GLOB.datacore.general)
 		if(sheet.fields["name"] == leaving_squaddie.real_name)

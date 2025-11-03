@@ -23,38 +23,38 @@
 
 	/* Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS */
 	/// Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
-	var/bruteloss = 0
+	VAR_PROTECTED/bruteloss = 0
 	/// Burn damage caused by being way too hot, too cold or burnt.
-	var/fireloss = 0
+	VAR_PROTECTED/fireloss = 0
 	/// Oxygen depravation damage (no air in lungs)
-	var/oxyloss = 0
+	VAR_PROTECTED/oxyloss = 0
 	/// Toxic damage caused by being poisoned or radiation
-	var/toxloss = 0
+	VAR_PROTECTED/toxloss = 0
 	/// Stamina damage caused by running to much, or specific toxins
-	var/staminaloss = 0
+	VAR_PROTECTED/staminaloss = 0
 	/// Damage caused by being cloned or ejected from the cloner early
-	var/cloneloss = 0
+	VAR_PROTECTED/cloneloss = 0
 	/// Brain damage caused by someone hitting you in the head with a bible or being infected with brainrot.
-	var/brainloss = 0
+	VAR_PROTECTED/brainloss = 0
 	/// Drowsyness amount. Reduces movespeed and if inhaling smoke with a sleep trait [/mob/living/carbon/inhale_smoke] will cause them to fall asleep.
-	var/drowsyness = 0
+	VAR_PROTECTED/drowsyness = 0
 
-	var/last_staminaloss_dmg = 0
+	VAR_PROTECTED/last_staminaloss_dmg = 0
 	/// Maximum amount of stamina a mob can have. Different from the stamina buffer because stamina has a positive and negative part
 	var/max_stamina = 0
 	/// How much stamina can you regen
 	var/max_stamina_buffer = 0
 	/// How fast does a mob regen its stamina. Shouldn't go below 0.
-	var/stamina_regen_multiplier = 1
+	VAR_PROTECTED/stamina_regen_multiplier = 1
 	/// Maps modifiers by name to a value, applied additively to stamina_regen_multiplier
-	var/list/stamina_regen_modifiers = list()
-	var/is_dizzy = FALSE
-	var/druggy = 0
+	VAR_PROTECTED/list/stamina_regen_modifiers = list()
+	VAR_PROTECTED/is_dizzy = FALSE
+	VAR_PROTECTED/druggy = 0
 
-	var/eye_blind = 0
-	var/eye_blurry = 0
-	var/ear_deaf = 0
-	var/ear_damage = 0
+	VAR_PROTECTED/eye_blind = 0
+	VAR_PROTECTED/eye_blurry = 0
+	VAR_PROTECTED/ear_deaf = 0
+	VAR_PROTECTED/ear_damage = 0
 
 	var/dizziness = 0
 	var/jitteriness = 0

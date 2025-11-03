@@ -48,7 +48,7 @@
 	L.Unconscious(40 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/L, metabolism)
-	L.setDrowsyness(L.drowsyness, 20)
+	L.drowsy(20)
 	if(ishuman(L)) //Critical overdose causes total blackout and heart damage. Too much stimulant
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
@@ -233,7 +233,7 @@
 		L.Unconscious(5 SECONDS)
 
 /datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/L, metabolism)
-	L.drowsyness = max(L.drowsyness, 30)
+	L.drowsy(30)
 
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"

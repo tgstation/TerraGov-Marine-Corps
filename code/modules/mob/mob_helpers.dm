@@ -1,14 +1,17 @@
 /proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
-		return M.ear_deaf || M.disabilities & DEAF
+		return M.get_ear_deaf() || M.disabilities & DEAF
 	return FALSE
 
 /proc/is_blind(A)
 	if(isliving(A))
 		var/mob/living/M = A
-		return M.eye_blind
+		return M.isBlind()
 	return FALSE
+
+/mob/living/proc/isBlind()
+	return eye_blind
 
 /mob/proc/can_use_hands()
 	return

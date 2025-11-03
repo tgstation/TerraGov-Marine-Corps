@@ -167,7 +167,7 @@
 	L.jitter(5)
 	if(prob(10) && !L.stat)
 		L.Unconscious(10 SECONDS)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowsy(30)
 
 //Reagents used for plant fertilizers.
 /datum/reagent/toxin/fertilizer
@@ -236,10 +236,10 @@
 			if(prob(10))
 				L.emote("yawn")
 				L.KnockdownNoChain(10 SECONDS)
-			L.drowsyness = max(L.drowsyness, 20)
+			L.drowsy(20)
 		if(11 to 80)
 			L.Sleeping(30 SECONDS) //previously knockdown, no good for a soporific.
-			L.drowsyness = max(L.drowsyness, 30)
+			L.drowsy(30)
 		if(81 to INFINITY)
 			L.adjustDrowsyness(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
@@ -519,7 +519,7 @@
 
 	L.adjust_drugginess(1.1) //Move this to stage 2 and 3 so it's not so obnoxious
 
-	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
+	if(L.get_blurriness() < 30) //So we don't have the visual acuity of Mister Magoo forever
 		L.adjust_blurriness(1.3)
 
 	return ..()
@@ -896,7 +896,7 @@
 		if(prob(min(current_cycle - 5,30)))
 			L.emote("me", 1, "gasps for air!")
 			L.Losebreath(4)
-		if(L.eye_blurry < 30)
+		if(L.get_blurriness() < 30)
 			L.adjust_blurriness(1.3)
 	else
 		L.adjustStaminaLoss(0.5*effect_str)

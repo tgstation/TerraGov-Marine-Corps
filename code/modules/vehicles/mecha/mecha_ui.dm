@@ -96,9 +96,9 @@
 	data["mech_view"] = ui_view.assigned_map
 	if(radio)
 		data["mech_electronics"] = list(
-			"microphone" = radio.broadcasting,
-			"speaker" = radio.listening,
-			"frequency" = radio.frequency,
+			"microphone" = radio.get_broadcasting(),
+			"speaker" = radio.get_listening(),
+			"frequency" = radio.get_frequency(),
 		)
 	if(equip_by_category[MECHA_L_ARM])
 		var/obj/item/mecha_parts/mecha_equipment/l_gun = equip_by_category[MECHA_L_ARM]
@@ -282,9 +282,9 @@
 		if("toggle_id_panel")
 			mecha_flags ^= ADDING_ACCESS_POSSIBLE
 		if("toggle_microphone")
-			radio.broadcasting = !radio.broadcasting
+			radio.set_broadcasting(!radio.get_broadcasting())
 		if("toggle_speaker")
-			radio.listening = !radio.listening
+			radio.set_listening(!radio.get_listening())
 		if("set_frequency")
 			radio.set_frequency(sanitize_frequency(params["new_frequency"], radio.freerange))
 		if("repair_int_damage")

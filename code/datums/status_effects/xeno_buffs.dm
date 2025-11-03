@@ -745,7 +745,7 @@
 		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
 
 	//Healing pool has been calculated; now to decrement it
-	var/brute_amount = min(patient.bruteloss, total_heal_amount)
+	var/brute_amount = min(patient.getBruteLoss(), total_heal_amount)
 	if(brute_amount)
 		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
 		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
@@ -753,7 +753,7 @@
 	if(!total_heal_amount) //no healing left, no need to continue
 		return
 
-	var/burn_amount = min(patient.fireloss, total_heal_amount)
+	var/burn_amount = min(patient.getFireLoss(), total_heal_amount)
 	if(burn_amount)
 		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
 

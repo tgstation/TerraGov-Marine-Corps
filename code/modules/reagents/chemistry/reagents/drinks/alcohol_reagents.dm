@@ -313,7 +313,7 @@
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
 			L.dizzy(4)
-			L.druggy = max(L.druggy, 60)
+			L.druggy(60)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
 			if(prob(30))
@@ -330,7 +330,7 @@
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
 			L.dizzy(4)
-			L.druggy = max(L.druggy, 60)
+			L.druggy(60)
 			if(ishuman(L) && prob(10))
 				var/mob/living/carbon/human/H = L
 				var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)

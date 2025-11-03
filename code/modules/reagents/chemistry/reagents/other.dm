@@ -162,13 +162,13 @@
 
 /datum/reagent/serotrotium/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.3, TOX)
-	L.setDrowsyness(max(L.drowsyness, 5))
+	L.drowsy(5)
 
 /datum/reagent/serotrotium/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.7, TOX)
 	if(prob(10) && !L.stat)
 		L.Sleeping(1 MINUTES)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowsy(30)
 
 /datum/reagent/oxygen
 	name = "Oxygen"
@@ -519,7 +519,7 @@
 	if(prob(80))
 		L.adjustBrainLoss(effect_str, TRUE)
 	if(prob(50))
-		L.setDrowsyness(max(L.drowsyness, 3))
+		L.drowsy(3)
 	if(prob(10))
 		L.emote("drool")
 	return ..()

@@ -65,14 +65,14 @@
 /obj/item/explosive/grenade/flashbang/proc/base_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(M.flash_act())
 		M.apply_effects(stun = 4 SECONDS, paralyze = 2 SECONDS)
-	if(M.ear_damage >= 15)
+	if(M.get_ear_damage() >= 15)
 		to_chat(M, span_warning("Your ears start to ring badly!"))
 		if(!banglet)
-			if (prob(M.ear_damage - 10 + 5))
+			if (prob(M.get_ear_damage() - 10 + 5))
 				to_chat(M, span_warning("You can't hear anything!"))
 				M.disabilities |= DEAF
 	else
-		if(M.ear_damage >= 5)
+		if(M.get_ear_damage() >= 5)
 			to_chat(M, span_warning("Your ears start to ring!"))
 
 ///The effects applied to mobs in the inner_range
@@ -109,13 +109,13 @@
 	mp_only = FALSE
 
 /obj/item/explosive/grenade/flashbang/stun/base_effect(turf/T , mob/living/carbon/M, ear_safety)
-	if(M.ear_damage >= 15)
+	if(M.get_ear_damage() >= 15)
 		to_chat(M, span_warning("Your ears start to ring badly!"))
-		if(prob(M.ear_damage - 15)) //You have to eat a lot of stun grenades to risk permanently deafening you
+		if(prob(M.get_ear_damage() - 15)) //You have to eat a lot of stun grenades to risk permanently deafening you
 			to_chat(M, span_warning("You can't hear anything!"))
 			M.disabilities |= DEAF
 	else
-		if(M.ear_damage >= 5)
+		if(M.get_ear_damage() >= 5)
 			to_chat(M, span_warning("Your ears start to ring!"))
 
 /obj/item/explosive/grenade/flashbang/stun/inner_effect(turf/T , mob/living/carbon/M, ear_safety)

@@ -43,7 +43,7 @@
 					sound_strength = "hear a weak"
 					switch(body_part)
 						if("chest")
-							if(M.oxyloss < 50)
+							if(M.getOxyLoss() < 50)
 								sound_strength = "hear a healthy"
 							sound = "pulse and respiration"
 						if("eyes","mouth")

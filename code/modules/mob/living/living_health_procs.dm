@@ -174,10 +174,18 @@
 /mob/living/proc/set_Losebreath(amount, forced = FALSE)
 	return
 
+/mob/living/proc/getDrowsyness()
+	return drowsyness
+
+/mob/living/proc/drowsy(amount)
+	if(status_flags & GODMODE)
+		return FALSE
+	setDrowsyness(max(getDrowsyness(), amount))
+
 /mob/living/proc/adjustDrowsyness(amount)
 	if(status_flags & GODMODE)
 		return FALSE
-	setDrowsyness(max(drowsyness + amount, 0))
+	setDrowsyness(max(getDrowsyness() + amount, 0))
 
 /mob/living/proc/setDrowsyness(amount)
 	if(status_flags & GODMODE)

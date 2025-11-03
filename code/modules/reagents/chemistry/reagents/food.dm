@@ -289,7 +289,7 @@
 	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/consumable/psilocybin/on_mob_life(mob/living/L, metabolism)
-	L.druggy = max(L.druggy, 30)
+	L.druggy(30)
 	switch(current_cycle)
 		if(1 to 5)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
@@ -321,7 +321,7 @@
 	L.apply_damage(2, TOX)
 	if(prob(60))
 		L.Unconscious(6 SECONDS)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowsy(30)
 
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"

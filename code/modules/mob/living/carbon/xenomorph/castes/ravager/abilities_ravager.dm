@@ -693,8 +693,8 @@
 		return
 	if(timeleft(timer_ref) > 0)
 		return
-	xeno_owner.adjustBruteLoss(-xeno_owner.bruteloss * 0.125)
-	xeno_owner.adjustFireLoss(-xeno_owner.fireloss * 0.125)
+	xeno_owner.adjustBruteLoss(-xeno_owner.getBruteLoss() * 0.125)
+	xeno_owner.adjustFireLoss(-xeno_owner.getFireLoss() * 0.125)
 	particle_holder = new(xeno_owner, /particles/xeno_slash/vampirism)
 	particle_holder.pixel_y = 18
 	particle_holder.pixel_x = 18
