@@ -687,7 +687,7 @@
 	return ear_damage
 
 /mob/living/proc/get_ear_deaf()
-	return ear_damage
+	return ear_deaf
 
 ///Modify mob's drugginess in either direction, minimum zero. Adds or removes druggy overlay as appropriate.
 /mob/living/proc/adjust_drugginess(amount)

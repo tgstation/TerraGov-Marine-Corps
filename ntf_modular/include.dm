@@ -6,6 +6,7 @@
 #include "code\_onclick\hud\fullscreen.dm"
 #include "code\datums\gamemodes\_game_mode.dm"
 #include "code\datums\genital_menu.dm"
+#include "code\datums\health_scan\advice\damage_types.dm"
 #include "code\datums\jobs\job\mothellian.dm"
 #include "code\datums\jobs\job\shipside.dm"
 #include "code\datums\jobs\job\survivor.dm"
