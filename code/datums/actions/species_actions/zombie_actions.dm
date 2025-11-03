@@ -204,6 +204,7 @@
 /// This proc defines, and sets up and then lastly starts the smoke, if ability is false we divide range by 4.
 /datum/action/ability/boomer_explode/proc/handle_smoke(datum/source)
 	SIGNAL_HANDLER
+	UnregisterSignal(owner, COMSIG_MOB_PRE_DEATH)
 	var/turf/own_turf = get_turf(owner)
 	var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread/xeno/neuro(own_turf)
 	smoke.set_up(3, own_turf, 4)
