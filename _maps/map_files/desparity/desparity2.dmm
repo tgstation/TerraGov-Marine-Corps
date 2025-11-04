@@ -4694,7 +4694,6 @@
 /area/lv624/ground/jungle9)
 "ww" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/hydroponics)
 "wx" = (
@@ -6697,17 +6696,14 @@
 /area/lv624/lazarus/sleep_male)
 "FQ" = (
 /obj/structure/largecrate/random/mini{
-	layer = 4;
 	pixel_x = 10;
 	pixel_y = 16
 	},
 /obj/structure/largecrate/random/mini{
-	layer = 3.1;
 	pixel_x = -7;
 	pixel_y = -7
 	},
 /obj/structure/largecrate/random/mini{
-	layer = 4;
 	pixel_x = -7;
 	pixel_y = 16
 	},

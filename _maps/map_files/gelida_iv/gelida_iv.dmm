@@ -20607,14 +20607,6 @@
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_street)
-"nTM" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/gelida/powergen)
 "nTN" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/paperbin{
@@ -53904,7 +53896,7 @@ lID
 lID
 oXa
 ogl
-nTM
+djv
 ogl
 oTT
 fPM
