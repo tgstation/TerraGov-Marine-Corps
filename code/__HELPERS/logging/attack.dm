@@ -6,7 +6,7 @@
 /proc/log_ffattack(text, list/data)
 	logger.Log(LOG_CATEGORY_ATTACK_FF, text)
 
-/proc/hp(var/atom/subject)
+/proc/hp(atom/subject)
 	var/mob/living/living_subject = subject
 	var/obj/obj_subject = subject
 
@@ -15,7 +15,7 @@
 	else if(isobj(obj_subject) && obj_subject.max_integrity)
 		return "(New integrity: [obj_subject.obj_integrity]/[obj_subject.max_integrity])"
 
-/proc/logdetails(var/atom/subject)
+/proc/logdetails(atom/subject)
 	if(!subject)
 		return "*NULL*"
 	if(isdatum(subject))

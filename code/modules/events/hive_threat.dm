@@ -88,7 +88,7 @@
 	addtimer(CALLBACK(src, PROC_REF(remove_blessing), drainer.get_hive()), 2 MINUTES)
 
 ///debuffs the hive when the blessing expires
-/datum/round_event/hive_threat/proc/remove_blessing(var/datum/hive_status/hive)
+/datum/round_event/hive_threat/proc/remove_blessing(datum/hive_status/hive)
 	var/message = "We feel the hive target blessing fade"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
 		message = "We feel the Queen Mother's blessing fade"

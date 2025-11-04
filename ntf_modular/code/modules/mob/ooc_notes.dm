@@ -26,7 +26,7 @@
 	mob.ooc_notes_window(usr)
 	return
 
-/mob/proc/set_metainfo_panel(var/mob/user, var/reopen = TRUE)
+/mob/proc/set_metainfo_panel(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	var/new_metadata = tgui_input_text(user, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the OOC notes panel! Use shift+enter to start a new line.", "Game Preference" , html_decode(ooc_notes), multiline = TRUE, encode = TRUE, timeout = 0)
@@ -39,7 +39,7 @@
 		if(reopen)
 			ooc_notes_window(user)
 
-/mob/proc/set_metainfo_favs(var/mob/user, var/reopen = TRUE)
+/mob/proc/set_metainfo_favs(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	var/new_metadata = tgui_input_text(user, "Enter any information you'd like others to see relating to your FAVOURITE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty. Use shift+enter to start a new line.", "Game Preference" , html_decode(ooc_notes_favs), multiline = TRUE, encode = TRUE, timeout = 0)
@@ -54,7 +54,7 @@
 		if(reopen)
 			ooc_notes_window(user)
 
-/mob/proc/set_metainfo_likes(var/mob/user, var/reopen = TRUE)
+/mob/proc/set_metainfo_likes(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	var/new_metadata = tgui_input_text(user, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty. Use shift+enter to start a new line.", "Game Preference" , html_decode(ooc_notes_likes), multiline = TRUE, encode = TRUE, timeout = 0)
@@ -69,7 +69,7 @@
 		if(reopen)
 			ooc_notes_window(user)
 
-/mob/proc/set_metainfo_maybes(var/mob/user, var/reopen = TRUE)
+/mob/proc/set_metainfo_maybes(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	var/new_metadata = tgui_input_text(user, "Enter any information you'd like others to see relating to your MAYBE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty. Use shift+enter to start a new line.", "Game Preference" , html_decode(ooc_notes_maybes), multiline = TRUE, encode = TRUE, timeout = 0)
@@ -84,7 +84,7 @@
 		if(reopen)
 			ooc_notes_window(user)
 
-/mob/proc/set_metainfo_dislikes(var/mob/user, var/reopen = TRUE)
+/mob/proc/set_metainfo_dislikes(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	var/new_metadata = tgui_input_text(user, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty. Use shift+enter to start a new line.", "Game Preference" , html_decode(ooc_notes_dislikes), multiline = TRUE, encode = TRUE, timeout = 0)
@@ -99,7 +99,7 @@
 		if(reopen)
 			ooc_notes_window(user)
 
-/mob/proc/set_metainfo_ooc_style(var/mob/user, var/reopen = TRUE)
+/mob/proc/set_metainfo_ooc_style(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	ooc_notes_style = !ooc_notes_style
@@ -107,7 +107,7 @@
 	if(reopen)
 		ooc_notes_window(user)
 
-/mob/proc/save_ooc_panel(var/mob/user)
+/mob/proc/save_ooc_panel(mob/user)
 	if(user != src)
 		return
 	if(client.prefs.real_name != real_name && !isxeno(src) && !isnewplayer(src))
@@ -116,7 +116,7 @@
 	if(client.prefs.save_character())
 		to_chat(user, span_infoplain("Character preferences saved."))
 
-/mob/proc/print_ooc_notes_to_chat(var/mob/user)
+/mob/proc/print_ooc_notes_to_chat(mob/user)
 	var/msg = ooc_notes
 	if(ooc_notes_favs)
 		msg += "<br><br><b>[span_blue("FAVOURITES")]</b><br>[ooc_notes_favs]"

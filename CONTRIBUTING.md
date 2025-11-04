@@ -639,7 +639,7 @@ Bad:
 Good:
 
 ```dm
-/obj/machine/update_overlays(var/blah)
+/obj/machine/update_overlays(blah)
 	var/static/on_overlay
 	var/static/off_overlay
 	var/static/broken_overlay
@@ -682,8 +682,8 @@ Good:
 #define OUR_ON_OVERLAY 1
 #define OUR_OFF_OVERLAY 2
 #define OUR_BROKEN_OVERLAY 3
-/obj/machine/update_overlays(var/blah
-	var/static/our_overlays
+/obj/machine/update_overlays(blah
+	static/our_overlays
 	if(isnull(our_overlays)
 		our_overlays = list(iconstate2appearance(overlay_icon, "on"), iconstate2appearance(overlay_icon, "off"), iconstate2appearance(overlay_icon, "broken"))
 	if (stat & broken)

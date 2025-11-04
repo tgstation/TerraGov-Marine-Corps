@@ -102,7 +102,7 @@
 				var/obj/item/tape/P = new tape_type(cur)
 				P.icon_state = "[P.icon_base]_[dir]"
 			cur = get_step_towards(cur,end)
-	//is_blocked_turf(var/turf/T)
+	//is_blocked_turf(turf/T)
 		to_chat(usr, span_notice("You finish placing the [src].")	)
 
 /obj/item/tool/taperoll/afterattack(atom/A, mob/user as mob, proximity)

@@ -211,7 +211,7 @@
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
 
 /obj/machinery/shower/proc/handle_mist()
-    // check if there's no mist, if the shower is on and if it's not freezing
+	// check if there's no mist, if the shower is on and if it's not freezing
 	// if so, add a 5 second timer to make mist
 	if(!mymist && on && watertemp != "freezing")
 		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS)

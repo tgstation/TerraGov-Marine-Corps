@@ -288,7 +288,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	mini.give_action(wearer)
 	INVOKE_NEXT_TICK(src, PROC_REF(update_minimap_icon)) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 
-/obj/item/radio/headset/mainship/proc/disable_locator(var/time)
+/obj/item/radio/headset/mainship/proc/disable_locator(time)
 	if(wearer)
 		SSminimaps.remove_marker(wearer)
 	if(locator_disabled_timer)
