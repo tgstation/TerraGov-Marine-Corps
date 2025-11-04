@@ -126,6 +126,14 @@ MEDICAL
 	)
 	cost = 50
 
+/datum/supply_packs/medical/earmuffs
+	name = "Earmuffs"
+	notes = "Good for ear damage."
+	contains = list(
+		/obj/item/clothing/ears/earmuffs
+	)
+	cost = 50
+
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
 	notes = "Contains 1 stack of 40 advanced packs of each type and 1 stack of 5 splints."
