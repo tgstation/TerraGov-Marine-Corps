@@ -36,3 +36,7 @@
   - rscadd: Baseball bats can bounce back thrown things
   - bugfix: fixed defender and praetorian reflect abilities
   - imageadd: Ported TG light sprites
+2025-11-04:
+  Neocloudy:
+  - qol: The zombie revive sound now uses the same alert noise as being defibrillated,
+      rather than reusing an admin sound.
