@@ -20,7 +20,8 @@
 	icon_state = "skullmarker"
 	///type of victim death, used for determining what kind of overlays and effects a corpse should have
 	var/death_type = COCOONED_DEATH
-	var/can_be_zombie = TRUE //Prevent zombies from spawning where they shouldnt
+	///Prevents zombies from spawning where they shouldnt
+	var/can_be_zombie = TRUE
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
 	var/corpseuniform = null //Set this to an object path to have the slot filled with said object on the corpse.
 	var/corpsesuit = null
