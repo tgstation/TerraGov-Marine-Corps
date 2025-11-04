@@ -77,12 +77,12 @@
 	var/list/living_player_list = count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	var/num_zombies = living_player_list[2]
-	if(num_zombies * 0.125 >= num_humans) // if there's too much zombies, don't spawn even more
+	if(num_zombies * 0.1 >= num_humans) // if there's too much zombies, don't spawn even more
 		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
 			SSspawning.spawnerdata[spawner].max_allowed_mobs = 0
 		return
 	for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-		SSspawning.spawnerdata[spawner].max_allowed_mobs = round(num_humans * 8 / length(GLOB.zombie_spawners))
+		SSspawning.spawnerdata[spawner].max_allowed_mobs = round(num_humans * 10 / length(GLOB.zombie_spawners))
 
 /datum/game_mode/infestation/crash/zombie/get_adjusted_jobworth_list(list/jobworth_list)
 	return jobworth_list
