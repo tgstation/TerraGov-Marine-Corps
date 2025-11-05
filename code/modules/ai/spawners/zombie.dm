@@ -16,7 +16,7 @@
 		/mob/living/carbon/human/species/zombie/ai/stay = 10 // defenders, and lets player zombies build hordes from a central location
 	)
 	spawnamount = 2
-	spawndelay = 12 SECONDS
+	spawndelay = 15 SECONDS
 	maxamount = 50
 	var/threat_warning = FALSE
 
