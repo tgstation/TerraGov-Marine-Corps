@@ -111,6 +111,22 @@
 	. = ..()
 	if(.)
 		return
+	if(istype(I, /obj/item/weapon/zombie_claw) || ispath(I, /obj/item/weapon/zombie_claw))
+		if(user.status_flags & INCORPOREAL)
+			return FALSE
+
+		if(!timer_enabled)
+			to_chat(user, span_warning("\The [name] isn't active."))
+			return
+
+		user.visible_message(span_boldwarning("[user.name] begins to slash at the nuke."),
+		"Starts slashing at the nuke.")
+		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+			return
+		user.visible_message(span_boldwarning("[user.name] disabled the nuke"),
+		"You disabled the nuke.")
+		disable(key_name(user))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, user.name)
 	if(!extended)
 		return
 	if(!istype(I, /obj/item/disk/nuclear))
