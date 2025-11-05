@@ -56,6 +56,8 @@
 	say("Program run has concluded! Standing by...")
 
 	if(iscrashgamemode(SSticker.mode))
+		if(iszombiecrashgamemode(SSticker.mode))
+			global_rally_zombies(src, TRUE)
 		for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
 			if(!human.job)
 				continue
@@ -65,9 +67,6 @@
 			for(var/i in user_id.marine_points)
 				user_id.marine_points[i] += 2
 		return
-
-	if(iszombiecrashgamemode(SSticker.mode))
-		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, src)
 
 	// Requisitions points bonus per cycle.
 	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))

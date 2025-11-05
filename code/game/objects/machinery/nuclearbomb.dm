@@ -67,7 +67,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 	log_game("[reason] has enabled the nuke at [AREACOORD(src)]")
 	message_admins("[reason] has enabled the nuke at [ADMIN_VERBOSEJMP(src)]")
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, src)
+	global_rally_zombies(src, TRUE)
 
 ///Disables nuke timer
 /obj/machinery/nuclearbomb/proc/disable(reason)
