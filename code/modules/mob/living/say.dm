@@ -332,9 +332,6 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		return FALSE
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno channels
-	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
-		return FALSE
-
 	if(!IsVocal())
 		return FALSE
 
