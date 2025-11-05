@@ -323,9 +323,6 @@
 /obj/effect/landmark/corpsespawner/engineer/regular
 	death_type = REGULAR_DEATH
 
-/obj/effect/landmark/corpsespawner/engineer/regular/notZombie
-	can_be_zombie = FALSE
-
 /obj/effect/landmark/corpsespawner/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
 	corpsemask = /obj/item/clothing/mask/breath
@@ -557,6 +554,9 @@
 
 /obj/effect/landmark/corpsespawner/marine/engineer/regular
 	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/marine/engineer/regular/notZombie
+	can_be_zombie = FALSE
 
 /obj/effect/landmark/corpsespawner/marine/corpsman
 	name = "Marine Corpsman"
