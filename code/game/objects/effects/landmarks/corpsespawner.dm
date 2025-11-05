@@ -271,6 +271,9 @@
 /obj/effect/landmark/corpsespawner/prisoner/regular
 	death_type = REGULAR_DEATH
 
+/obj/effect/landmark/corpsespawner/prisoner/regular/notZombie
+	can_be_zombie = FALSE
+
 /obj/effect/landmark/corpsespawner/chef
 	name = "Chef"
 	corpseuniform = /obj/item/clothing/under/rank/chef
@@ -288,6 +291,9 @@
 /obj/effect/landmark/corpsespawner/chef/regular
 	death_type = REGULAR_DEATH
 
+/obj/effect/landmark/corpsespawner/chef/regular/notZombie
+	can_be_zombie = FALSE
+
 /obj/effect/landmark/corpsespawner/doctor
 	name = "Doctor"
 	corpseuniform = /obj/item/clothing/under/colonist
@@ -304,6 +310,9 @@
 
 /obj/effect/landmark/corpsespawner/doctor/regular
 	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/doctor/regular/notZombie
+	can_be_zombie = FALSE
 
 /obj/effect/landmark/corpsespawner/engineer
 	name = "Engineer"
@@ -474,6 +483,9 @@
 /obj/effect/landmark/corpsespawner/bridgeofficer/regular
 	death_type = REGULAR_DEATH
 
+/obj/effect/landmark/corpsespawner/bridgeofficer/regular/notZombie
+	can_be_zombie = FALSE
+
 /obj/effect/landmark/corpsespawner/commander
 	name = "Commander"
 	corpseuniform = /obj/item/clothing/under/rank/centcom_commander
@@ -534,8 +546,14 @@
 /obj/effect/landmark/corpsespawner/marine/burst
 	death_type = CHESTBURST_DEATH
 
+/obj/effect/landmark/corpsespawner/marine/burst/notZombie
+	can_be_zombie = FALSE
+
 /obj/effect/landmark/corpsespawner/marine/regular
 	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/marine/regular/notZombie
+	can_be_zombie = FALSE
 
 /obj/effect/landmark/corpsespawner/marine/engineer
 	name = "Marine Engineer"
@@ -554,6 +572,9 @@
 
 /obj/effect/landmark/corpsespawner/marine/engineer/regular
 	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/marine/engineer/regular/notZombie
+	can_be_zombie = FALSE
 
 /obj/effect/landmark/corpsespawner/marine/corpsman
 	name = "Marine Corpsman"

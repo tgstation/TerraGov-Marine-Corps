@@ -2205,7 +2205,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "cLD" = (
-/obj/effect/landmark/corpsespawner/engineer/regular,
+/obj/effect/landmark/corpsespawner/engineer/regular/notZombie,
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/gun/revolver/standard_revolver,
 /obj/item/ammo_casing/bullet{
@@ -3861,7 +3861,7 @@
 "eLt" = (
 /obj/item/stool,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/corpsespawner/prisoner/regular,
+/obj/effect/landmark/corpsespawner/prisoner/regular/notZombie,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "eLM" = (
@@ -4147,7 +4147,7 @@
 /turf/open/floor/mainship/hexagon,
 /area/mainship/engineering/engine_core)
 "fcu" = (
-/obj/effect/landmark/corpsespawner/chef/regular,
+/obj/effect/landmark/corpsespawner/chef/regular/notZombie,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "fdf" = (
@@ -5343,7 +5343,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 8
 	},
-/obj/effect/landmark/corpsespawner/bridgeofficer/regular,
+/obj/effect/landmark/corpsespawner/bridgeofficer/regular/notZombie,
 /obj/effect/decal/cleanable/blood,
 /obj/item/toy/katana,
 /turf/open/floor/mainship/sterile/white,
@@ -8188,7 +8188,7 @@
 	dir = 4
 	},
 /obj/item/tool/surgery/scalpel,
-/obj/effect/landmark/corpsespawner/doctor/regular,
+/obj/effect/landmark/corpsespawner/doctor/regular/notZombie,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/floor,
 /area/mainship/medical/upper_medical)
@@ -8274,7 +8274,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/mechpilotquarters)
 "kyB" = (
-/obj/effect/landmark/corpsespawner/engineer/regular,
+/obj/effect/landmark/corpsespawner/engineer/regular/notZombie,
 /turf/open/floor/mainship_hull,
 /area/space)
 "kyE" = (
@@ -13406,7 +13406,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 8
 	},
-/obj/effect/landmark/corpsespawner/engineer/regular,
+/obj/effect/landmark/corpsespawner/engineer/regular/notZombie,
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/gun/revolver/standard_revolver,
 /obj/item/ammo_casing/bullet{
@@ -14108,7 +14108,7 @@
 /obj/item/tool/kitchen/knife/ritual,
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/rune,
-/obj/effect/landmark/corpsespawner/marine/burst,
+/obj/effect/landmark/corpsespawner/marine/burst/notZombie,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/corporateliaison)
 "rrZ" = (
@@ -16661,7 +16661,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "uDd" = (
-/obj/effect/landmark/corpsespawner/marine/burst,
+/obj/effect/landmark/corpsespawner/marine/burst/notZombie,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
@@ -17404,7 +17404,7 @@
 "vzt" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
-/obj/effect/landmark/corpsespawner/marine/regular,
+/obj/effect/landmark/corpsespawner/marine/regular/notZombie,
 /obj/effect/landmark/start/job/staffofficer,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
@@ -19334,7 +19334,7 @@
 /area/medical/morgue)
 "xSi" = (
 /obj/structure/toilet,
-/obj/effect/landmark/corpsespawner/marine/burst,
+/obj/effect/landmark/corpsespawner/marine/burst/notZombie,
 /obj/effect/decal/cleanable/blood,
 /obj/item/organ/brain,
 /obj/item/weapon/gun/rifle/standard_autoshotgun,
