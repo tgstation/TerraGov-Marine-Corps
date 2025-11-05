@@ -30,7 +30,7 @@
 ///Rallies the zombie to a target
 /datum/ai_behavior/xeno/zombie/proc/rally_zombie(datum/source, atom/atom_to_escort, global_rally = FALSE)
 	SIGNAL_HANDLER
-	if(QDELETED(atom_to_escort) || mob_parent.ckey)
+	if(QDELETED(atom_to_escort) || mob_parent.ckey || atom_to_escort.z != mob_parent.z)
 		return
 	if(get_dist(atom_to_escort, mob_parent) <= target_distance)
 		set_escorted_atom(source, atom_to_escort)
@@ -38,7 +38,7 @@
 	if(!global_rally)
 		return
 	set_goal_node(new_goal_node = find_closest_node(atom_to_escort))
-	if(current_action = IDLE) ///Turns on passive zombies also
+	if(current_action == IDLE) ///Turns on passive zombies also
 		look_for_next_node()
 
 /datum/ai_behavior/xeno/zombie/patrolling
