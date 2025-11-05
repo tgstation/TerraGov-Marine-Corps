@@ -144,8 +144,8 @@
 	if(round_finished == MODE_INFESTATION_M_MAJOR  || round_finished == MODE_INFESTATION_M_MINOR || round_finished == MODE_INFESTATION_DRAW_DEATH)
 		return
 
-	var/sound/human_track = sound('sound/theme/zombies_loss.ogg')
-	var/sound/zombie_track = sound('sound/theme/neutral_melancholy2.ogg')//my favourite and thematic in my opinion
+	var/sound/human_track = sound(pick('sound/theme/zombies_loss.ogg', 'sound/theme/sad_loss2.ogg'))
+	var/sound/zombie_track = sound(pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg'))
 	var/sound/ghost_track = zombie_track
 
 	zombie_track.channel = CHANNEL_CINEMATIC
