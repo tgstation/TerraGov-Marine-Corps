@@ -121,8 +121,8 @@
 /datum/species/zombie/can_revive_to_crit(mob/living/carbon/human/human)
 	var/turf/a = get_turf(human)
 	if(human.on_fire || !human.has_working_organs() || istype(a, /turf/open/space) || ispath(a, /turf/open/space))
-		SSmobs.stop_processing(H)
-		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 20 SECONDS)
+		SSmobs.stop_processing(human)
+		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), human), 20 SECONDS)
 		return FALSE
 	return TRUE
 
