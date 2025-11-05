@@ -150,7 +150,6 @@
 	desc = "Someone should clean that up."
 	density = FALSE
 	anchored = TRUE
-	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dirt"
 	mouse_opacity = 0

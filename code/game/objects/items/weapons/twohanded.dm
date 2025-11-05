@@ -424,7 +424,7 @@
 /obj/item/weapon/twohanded/spear/candycane/elf
 	desc = "Too large and hardened to be eaten by children, the elves first resorted to using candy canes as impromptu battering weapons during a union strike in '95 and have never looked back."
 	force = 70
-	force_wielded = 90
+	force_activated = 90
 	reach = 2
 
 /obj/item/weapon/twohanded/spear/candycane/elf/Initialize(mapload)

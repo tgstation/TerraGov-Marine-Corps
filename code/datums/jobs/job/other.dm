@@ -93,8 +93,8 @@
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	head = /obj/item/clothing/head/helmet/space/elf/special
 	glasses = /obj/item/clothing/glasses/welding
-	l_store = /obj/item/storage/pouch/construction/equippedengineer
-	r_store = /obj/item/storage/pouch/tools/full
+	l_pocket = /obj/item/storage/pouch/construction/equippedengineer
+	r_pocket = /obj/item/storage/pouch/tools/full
 	back = /obj/item/storage/backpack/industrial
 	suit_store = /obj/item/weapon/gun/pistol/vp70
 	r_hand = /obj/item/weapon/twohanded/spear/candycane/elf
@@ -112,8 +112,8 @@
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	head = /obj/item/clothing/head/helmet/space/elf/special
 	glasses = /obj/item/clothing/glasses/welding
-	l_store = /obj/item/storage/pouch/medkit/medic
-	r_store = /obj/item/storage/pouch/pistol/vp70
+	l_pocket = /obj/item/storage/pouch/medkit/medic
+	r_pocket = /obj/item/storage/pouch/pistol/vp70
 	back = /obj/item/storage/backpack/industrial
 	suit_store = /obj/item/weapon/gun/pistol/vp70
 	r_hand = /obj/item/weapon/twohanded/spear/candycane/elf
@@ -131,8 +131,8 @@
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	head = /obj/item/clothing/head/helmet/space/elf/special
 	glasses = /obj/item/clothing/glasses/welding/elf
-	l_store = /obj/item/storage/pouch/medkit/medic
-	r_store = /obj/item/storage/pouch/pistol/vp70
+	l_pocket = /obj/item/storage/pouch/medkit/medic
+	r_pocket = /obj/item/storage/pouch/pistol/vp70
 	back = /obj/item/storage/backpack/industrial
 	suit_store = /obj/item/weapon/gun/pistol/vp70
 	r_hand = /obj/item/weapon/twohanded/spear/candycane/elf
@@ -176,8 +176,8 @@
 	mask = /obj/item/clothing/mask/gas/swat/santa
 	head = /obj/item/clothing/head/helmet/space/santahat/special
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch //santa lost one of his eyes in a vicious reindeer accident circa '32
-	r_store = /obj/item/storage/pouch/magazine/pistol/large
-	l_store = /obj/item/storage/pouch/medkit/firstaid
+	r_pocket = /obj/item/storage/pouch/magazine/pistol/large
+	l_pocket = /obj/item/storage/pouch/medkit/firstaid
 	back = /obj/item/storage/backpack/santabag
 	suit_store = /obj/item/weapon/gun/launcher/rocket/m57a4
 
@@ -249,8 +249,8 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc/commando/santa
 	mask = /obj/item/clothing/mask/gas/swat/santa/eventspawn
 	head = /obj/item/clothing/head/helmet/space/santahat/special
-	r_store = /obj/item/storage/pouch/magazine/large/pmc_m25
-	l_store = /obj/item/storage/pouch/santaspouch
+	r_pocket = /obj/item/storage/pouch/magazine/large/pmc_m25
+	l_pocket = /obj/item/storage/pouch/santaspouch
 	back = /obj/item/storage/backpack/santabag
 	suit_store = /obj/item/weapon/gun/smg/m25/elite
 
@@ -345,8 +345,8 @@
 	shoes = /obj/item/clothing/shoes/galoshes
 	wear_suit = /obj/item/clothing/suit/space/grinch
 	gloves = /obj/item/clothing/gloves/insulated
-	r_store = /obj/item/storage/pouch/tools/full
-	l_store = /obj/item/storage/pouch/construction/full
+	r_pocket = /obj/item/storage/pouch/tools/full
+	l_pocket = /obj/item/storage/pouch/construction/full
 	back = /obj/item/storage/backpack/santabag
 	glasses = /obj/item/clothing/glasses/welding/superior
 
