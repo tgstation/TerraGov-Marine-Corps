@@ -110,11 +110,6 @@
 		return
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
-///Called when can_revive_to_crit() fails for zombies, stops zombies from reanimating by permenantly killing and deleting them
-/datum/species/zombie/proc/stop_reanimation(mob/living/carbon/human/H)
-	SSmobs.stop_processing(H)
-	addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 20 SECONDS)
-
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
 	. = ..()
 	for(var/datum/limb/limb AS in organless_human.limbs)
@@ -126,7 +121,8 @@
 /datum/species/zombie/can_revive_to_crit(mob/living/carbon/human/human)
 	var/turf/a = get_turf(human)
 	if(human.on_fire || !human.has_working_organs() || istype(a, /turf/open/space) || ispath(a, /turf/open/space))
-		stop_reanimation(human)
+		SSmobs.stop_processing(H)
+		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 20 SECONDS)
 		return FALSE
 	return TRUE
 
