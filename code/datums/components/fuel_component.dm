@@ -46,11 +46,15 @@
 		return return_list[1]
 	return DEFAULT_FUEL_TYPE
 
+/obj/item/ammo_magazine/flamer_tank/get_fueltype()
+	return fuel_type
+
 /obj/item/proc/do_refuel(atom/refueler, fuel_type, mob/user)
 	if(reagents?.total_volume == reagents?.maximum_volume)
 		return FALSE
-	if(fuel_type != get_fueltype())
-		return
+	if(fuel_type != get_fueltype()) //should this be in the component proc?
+		return FALSE
+
 	refueler.reagents.trans_to(src, reagents.maximum_volume)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 	to_chat(user, span_notice("[src] refilled!"))
@@ -63,7 +67,7 @@
 	return ..()
 
 /obj/item/ammo_magazine/flamer_tank/do_refuel(atom/refueler, fuel_type, mob/user)
-	if(fuel_type != src.fuel_type)
+	if(fuel_type != get_fueltype())
 		to_chat(user, span_warning("Not the right kind of fuel!"))
 		return FALSE
 	if(current_rounds == max_rounds)
@@ -85,6 +89,7 @@
 	SIGNAL_HANDLER
 	//todo: stop this sig from causing storing of attacking
 	if(!fuel_tank.total_volume)
+		user?.balloon_alert(user, "no fuel!")
 		return
 	attacking.do_refuel(parent, fuel_type, user)
 	return COMPONENT_NO_AFTERATTACK

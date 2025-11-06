@@ -14,31 +14,15 @@
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
 	magazine_flags = NONE
 	icon_state_mini = "tank_light"
-
 	default_ammo = /datum/ammo/flamethrower
-
+	///The type of fuel we refuel with
 	var/fuel_type = DEFAULT_FUEL_TYPE
-
-	var/dispenser_type = /obj/structure/reagent_dispensers/fueltank
-
-/obj/item/ammo_magazine/flamer_tank/mini
-	name = "mini incinerator tank"
-	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the underail incinerator unit. Handle with care."
-	icon_state = "flametank_mini"
-	reload_delay = 0 SECONDS
-	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 25
-	max_rounds = 25
-	icon_state_mini = "tank_orange_mini"
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
 
 	if(!istype(target, /obj/structure/reagent_dispensers) || get_dist(user, target) > 1)
 		return ..()
-	if(!dispenser_type)
-		to_chat(user, span_warning("This isn't refillable!"))
-		return ..()
-	if(!istype(target, dispenser_type))
+	if(target.reagents.get_reagent_amount(fuel_type) != target.reagents.total_volume)
 		to_chat(user, span_warning("Not the right kind of tank!"))
 		return ..()
 	if(current_rounds >= max_rounds)
@@ -56,6 +40,16 @@
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 	to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
 	update_icon()
+
+/obj/item/ammo_magazine/flamer_tank/mini
+	name = "mini incinerator tank"
+	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the underail incinerator unit. Handle with care."
+	icon_state = "flametank_mini"
+	reload_delay = 0 SECONDS
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 25
+	max_rounds = 25
+	icon_state_mini = "tank_orange_mini"
 
 /obj/item/ammo_magazine/flamer_tank/large	// Extra thicc tank
 	name = "large flamerthrower tank"
@@ -82,7 +76,6 @@
 	default_ammo = /datum/ammo/flamethrower/blue
 	fuel_type = /datum/reagent/fuel/xfuel
 	icon_state_mini = "tank_blue"
-	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
 /obj/item/ammo_magazine/flamer_tank/large/X/som
 	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
@@ -117,7 +110,6 @@
 	icon_state = "x_flamethrower_tank"
 	default_ammo = /datum/ammo/flamethrower/blue
 	fuel_type = /datum/reagent/fuel/xfuel
-	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
 /obj/item/ammo_magazine/flamer_tank/water
 	name = "pressurized water tank"
@@ -132,7 +124,6 @@
 	icon_state_mini = "tank_water"
 
 	default_ammo = /datum/ammo/water
-	dispenser_type = /obj/structure/reagent_dispensers/watertank
 
 //The engineer pyro bag internal fuel tank
 /obj/item/ammo_magazine/flamer_tank/internal
@@ -153,5 +144,3 @@
 	default_ammo = /datum/ammo/flamethrower/blue
 	fuel_type = /datum/reagent/fuel/xfuel
 	icon_state_mini = "tank_blue"
-	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
-
