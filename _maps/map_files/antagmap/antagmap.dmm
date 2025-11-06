@@ -770,11 +770,6 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/antag_ship/som/office/commander)
-"eO" = (
-/obj/structure/window/framed/mainship/gray/toughened/hull,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/antag_ship/som/requisition)
 "eQ" = (
 /obj/item/weapon/butterfly/switchblade,
 /obj/item/weapon/butterfly/switchblade,
@@ -13935,7 +13930,7 @@ rm
 aG
 nj
 do
-eO
+py
 CN
 CN
 CN
