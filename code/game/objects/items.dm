@@ -1271,6 +1271,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/mutable_appearance/standing = mutable_appearance(null, null, layer2use)
 	var/mutable_appearance/standing_colored = mutable_appearance(iconfile2use, state2use, layer2use)
 	standing_colored.color = color
+	standing_colored.filter_data = filter_data
+	standing_colored.update_filters()
 	standing.overlays += standing_colored
 
 	//Apply any special features

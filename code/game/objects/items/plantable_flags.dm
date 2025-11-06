@@ -33,8 +33,11 @@
 	var/datum/aura_bearer/current_aura
 	///Start point for it to return to when called
 	var/turf/origin_point
+	var/filtercolor
 
 /obj/item/plantable_flag/Initialize(mapload)
+	current_aura = SSaura.add_emitter(src, AURA_HUMAN_FLAG, FLAG_AURA_RANGE, FLAG_AURA_STRENGTH, -1, faction)
+	add_filter("base_color", -10, color_matrix_filter(filtercolor))
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
 	origin_point = get_turf(src)
@@ -42,7 +45,6 @@
 		item_flags |= DEPLOY_ON_INITIALIZE
 	AddComponent(/datum/component/deployable_item, /obj/structure/plantable_flag, 1 SECONDS, 3 SECONDS)
 	AddComponent(/datum/component/shield, SHIELD_PURE_BLOCKING, list(MELEE = 35, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
-	current_aura = SSaura.add_emitter(src, AURA_HUMAN_FLAG, FLAG_AURA_RANGE, FLAG_AURA_STRENGTH, -1, faction)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/plantable_flag/LateInitialize()
@@ -101,16 +103,21 @@
 	current_aura.range = item_flags & IS_DEPLOYED ? FLAG_AURA_DEPLOYED_RANGE : FLAG_AURA_RANGE
 	if(isturf(loc))
 		current_aura.strength = LOST_FLAG_AURA_STRENGTH
+	else if(!isliving(loc))
 		return
-	if(!isliving(loc))
-		return
-	var/mob/living/living_holder = loc
-	if(living_holder.faction == faction)
-		current_aura.strength = FLAG_AURA_STRENGTH
 	else
-		current_aura.strength = LOST_FLAG_AURA_STRENGTH //this explicitly lets enemies deploy it for the extended debuff range
-	if(current_aura.strength == LOST_FLAG_AURA_STRENGTH)
+		var/mob/living/living_holder = loc
+		if(living_holder.faction == faction)
+			current_aura.strength = FLAG_AURA_STRENGTH
+		else
+			current_aura.strength = LOST_FLAG_AURA_STRENGTH //this explicitly lets enemies deploy it for the extended debuff range
+	if(current_aura.strength < 0)
 		current_aura.range *= 3
+		add_filter("flag aura", 20, outline_filter(1, COLOR_RED))
+	else if(current_aura.strength > 0)
+		add_filter("flag aura", 20, outline_filter(1, COLOR_VIBRANT_LIME))
+	else
+		remove_filter("flag aura")
 
 ///Waves the flag around heroically
 /obj/item/plantable_flag/proc/lift_flag(mob/user)
@@ -179,7 +186,7 @@
 	icon = new_internal_item.icon
 	soft_armor = new_internal_item.soft_armor
 	hard_armor = new_internal_item.hard_armor
-	color = new_internal_item.color
+	add_filter("base_color", -10, color_matrix_filter(new_internal_item.filtercolor))
 	update_appearance(UPDATE_ICON_STATE)
 	if(deployer)
 		new_internal_item.lift_flag(deployer)
@@ -201,8 +208,14 @@
 	internal_item = null
 
 /obj/structure/plantable_flag/update_icon_state()
-	var/obj/item/current_internal_item = get_internal_item()
+	var/obj/item/plantable_flag/current_internal_item = get_internal_item()
 	icon_state = "[current_internal_item.icon_state]_planted"
+	if(current_internal_item.current_aura?.strength < 0)
+		add_filter("flag aura", 20, outline_filter(1, COLOR_RED))
+	else if(current_internal_item.current_aura?.strength > 0)
+		add_filter("flag aura", 20, outline_filter(1, COLOR_VIBRANT_LIME))
+	else
+		remove_filter("flag aura")
 
 /obj/structure/plantable_flag/ex_act(severity)
 	switch(severity)
@@ -235,31 +248,31 @@
 	desc = "A flag bearing the symbol of the "+ FACTION_VSD + ". It flutters in the breeze heroically. This one looks ready to be planted into the ground."
 	icon_state = "flag_tgmc"
 	faction = FACTION_VSD
-	color = list(0,  -1, 0, 0,
-				 2, 4.5, 2, 0,
-				-1,  -2,-2, 0,
-				 0,   0, 0, 1,
-				 0,-0.5, 0, 0)
+	filtercolor = list(0,  -1, 0, 0,
+					0002, 4.5, 2, 0,
+					-001,  -2,-2, 0,
+					0000,   0, 0, 1,
+					0000,-0.5, 0, 0)
 
 /obj/item/plantable_flag/icc
 	name = "\improper " + FACTION_ICC + " flag"
 	desc = "A flag bearing the symbol of the "+ FACTION_ICC + ". It flutters in the breeze heroically. This one looks ready to be planted into the ground."
 	icon_state = "flag_tgmc"
 	faction = FACTION_ICC
-	color = list( 0,   0, 1, 0,
-				2.2, 1.2, 1, 0,
-				 -1,   0, 1, 0,
-				  0,   0, 0, 1,
-				  0,   0,-2, 0)
+	filtercolor = list( 0,   0, 1, 0,
+					002.2, 1.2, 1, 0,
+					-0001,   0, 1, 0,
+						0,   0, 0, 1,
+						0,   0,-2, 0)
 
 /obj/item/plantable_flag/clf
 	name = "\improper " + FACTION_CLF + " flag"
 	desc = "A flag bearing the symbol of the "+ FACTION_CLF + ". It flutters in the breeze heroically. This one looks ready to be planted into the ground."
 	icon_state = "flag_tgmc"
 	faction = FACTION_CLF
-	color = list(0.5, 1,-3, 0,
-				 1.2, 0, 0, 0,
-				 0.8, 0, 3, 0,
-				   0, 0, 0, 1,
-				  -1, 0, 0, 0)
+	filtercolor = list(0.5, 1,-3, 0,
+					0001.2, 0, 0, 0,
+					0000.8, 0, 3, 0,
+						00, 0, 0, 1,
+						-1, 0, 0, 0)
 
