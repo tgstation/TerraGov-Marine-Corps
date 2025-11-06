@@ -6,8 +6,8 @@ mode Crash
 endmode
 
 mode Nuclear War
-	requiredplayers 10
-	votable 0
+	requiredplayers 8
+	votable 1
 endmode
 
 mode Extended
@@ -36,8 +36,8 @@ mode Extended - Survivor-Heavy
 endmode
 
 mode Zombie Crash
-	requiredplayers 2
-	votable 0
+	requiredplayers 1
+	votable 1
 endmode
 
 mode Combat Patrol
