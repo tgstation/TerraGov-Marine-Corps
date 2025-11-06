@@ -67,7 +67,7 @@ type BloodColorData = {
  * @param volume current blood level
  * @param initial initial blood level
  * @param internalBleeding internal bleeding status: overrides blood level and always returns red
- * @returns MedColorTuple: `0` is background color, `1` is foreground color, `2` is a darker color
+ * @returns BloodColorData: background, foreground, darker as keys
  */
 export function getBloodColor(
   volume: number,
