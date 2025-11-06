@@ -264,15 +264,15 @@
 
 /// Extra handling for adding the action for draggin functionality (for instant building)
 /datum/action/ability/activable/xeno/secrete_resin/give_action(mob/living/L)
-	. = ..()
 	if(!CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) || !SSresinshaping.active)
-		return
+		return ..()
 
 	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
 	build_maptext.pixel_x = 12
 	build_maptext.pixel_y = -5
 	build_maptext.maptext = MAPTEXT(SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
 	visual_references[VREF_MUTABLE_BUILDING_COUNTER] = build_maptext
+	. = ..()
 
 	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_resin_drag))
 	RegisterSignal(owner, COMSIG_MOB_MOUSEDRAG, PROC_REF(preshutter_resin_drag))

@@ -104,7 +104,7 @@
 
 ///Updates the wound overlays on the xeno
 /mob/living/carbon/xenomorph/proc/update_wounds()
-	if(QDELETED(src))
+	if(QDELETED(src) || !wound_overlay)
 		return
 
 	remove_overlay(WOUND_LAYER)

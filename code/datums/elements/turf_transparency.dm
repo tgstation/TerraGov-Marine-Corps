@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(pillars_by_z)
 /// We do not need to do this for non transparent holders, because they will have their abstract object cleared
 /// When a transparent holder comes back.
 /datum/z_pillar/proc/parent_cleared(turf/visual, turf/current_holder)
-	addtimer(CALLBACK(src, PROC_REF(refresh_orphan), visual, current_holder))
+	INVOKE_NEXT_TICK(CALLBACK(src, PROC_REF(refresh_orphan), visual, current_holder))
 
 /// Runs the actual refresh of some formerly orphaned via vis_loc deletiong turf
 /// We'll only reup if we either have no souece, or if the source is a transparent turf
