@@ -416,6 +416,9 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/obj/item/organ/heart/heart = new
 	heart.die()
 	user.put_in_hands(heart)
+	if(iszombie(src))
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_out), heart), 9.5 SECONDS)
+		QDEL_IN(heart, 10 SECONDS)
 	chestburst = CARBON_CHEST_BURSTED
 	update_burst()
 

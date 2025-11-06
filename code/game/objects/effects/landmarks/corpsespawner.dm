@@ -20,6 +20,8 @@
 	icon_state = "skullmarker"
 	///type of victim death, used for determining what kind of overlays and effects a corpse should have
 	var/death_type = COCOONED_DEATH
+	///Prevents zombies from spawning where they shouldnt
+	var/can_be_zombie = TRUE
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
 	var/corpseuniform = null //Set this to an object path to have the slot filled with said object on the corpse.
 	var/corpsesuit = null
@@ -78,7 +80,29 @@
 			victim.update_headbite()
 	qdel(src)
 
-
+/// Create the zombie and delete the corpse spawner
+/obj/effect/landmark/corpsespawner/proc/create_zombie()
+	if(!can_be_zombie)
+		create_mob()
+		return
+	var/spawntype = pickweight(list(
+		/mob/living/carbon/human/species/zombie/ai/stay = 60,
+		/mob/living/carbon/human/species/zombie/ai/patrol = 20,
+		/mob/living/carbon/human/species/zombie/ai/fast/patrol = 1,
+		/mob/living/carbon/human/species/zombie/ai/fast/stay = 4,
+		/mob/living/carbon/human/species/zombie/ai/tank/patrol = 1,
+		/mob/living/carbon/human/species/zombie/ai/tank/stay = 4,
+		/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 1,
+		/mob/living/carbon/human/species/zombie/ai/smoker/stay = 4,
+		/mob/living/carbon/human/species/zombie/ai/strong/patrol = 1,
+		/mob/living/carbon/human/species/zombie/ai/strong/stay = 4,
+	))
+	var/mob/living/carbon/human/victim = new spawntype(loc)
+	SSspawning.totalspawned++
+	victim.real_name = name
+	victim.med_hud_set_status()
+	equip_items_to_mob(victim)
+	qdel(src)
 
 /obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
 	if(corpseuniform)
@@ -412,6 +436,9 @@
 /obj/effect/landmark/corpsespawner/colonist/regular
 	death_type = REGULAR_DEATH
 
+/obj/effect/landmark/corpsespawner/colonist/valhalla
+	can_be_zombie = FALSE
+
 /obj/effect/landmark/corpsespawner/roboticist
 	name = "Roboticist"
 	corpseuniform = /obj/item/clothing/under/rank/roboticist
@@ -488,6 +515,9 @@
 /obj/effect/landmark/corpsespawner/PMC/regular
 	death_type = REGULAR_DEATH
 
+/obj/effect/landmark/corpsespawner/PMC/valhalla
+	can_be_zombie = FALSE
+
 /////////////////Marine//////////////////////
 
 /obj/effect/landmark/corpsespawner/marine
@@ -524,6 +554,9 @@
 
 /obj/effect/landmark/corpsespawner/marine/engineer/regular
 	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/marine/engineer/regular/notZombie
+	can_be_zombie = FALSE
 
 /obj/effect/landmark/corpsespawner/marine/corpsman
 	name = "Marine Corpsman"
