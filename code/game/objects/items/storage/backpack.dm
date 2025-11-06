@@ -748,9 +748,17 @@
 	///how much fuel we can hold
 	var/max_fuel = 260
 
+	var/fuel_type = DEFAULT_FUEL_TYPE
+
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
-	AddComponent(/datum/component/fuel_storage, max_fuel)
+	AddComponent(/datum/component/fuel_storage, max_fuel, fuel_type)
+
+//TEST ONLY, REMOVE BEFORE MERGE
+/obj/item/storage/backpack/marine/engineerpack/xfuel
+	name = "xfuel bag"
+	fuel_type = /datum/reagent/fuel/xfuel
+//
 
 /obj/item/storage/backpack/marine/engineerpack/som
 	name = "\improper SOM technician welderpack"

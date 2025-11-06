@@ -1,21 +1,23 @@
 /*!
- * Component for making something capable of tactical reload via right click.
+ * Component for fuel storage objects
  */
-
-// HEY, LISTEN. This component pre-dates the storage refactor so it may not be up to standards.
-// I would love it if someone were to go ahead and give this a look for me, otherwise I'll get to it eventually... maybe
 
 /datum/component/fuel_storage
 	var/datum/reagents/fuel_tank
 
-/datum/component/fuel_storage/Initialize(_max_fuel)
+	var/fuel_type
+
+/datum/component/fuel_storage/Initialize(_max_fuel, _fuel_type = DEFAULT_FUEL_TYPE)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/obj/obj_parent = parent
 	if(obj_parent.reagents)
 		return COMPONENT_INCOMPATIBLE
 
-	obj_parent.create_reagents(_max_fuel, init_reagents = list(/datum/reagent/fuel = _max_fuel))
+	fuel_type = _fuel_type
+	var/list/test = list(fuel_type)
+	test[fuel_type] = _max_fuel
+	obj_parent.create_reagents(_max_fuel, init_reagents = test)
 	fuel_tank = obj_parent.reagents
 
 /datum/component/fuel_storage/Destroy(force, silent)
@@ -24,57 +26,69 @@
 	return ..()
 
 /datum/component/fuel_storage/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
+	RegisterSignals(parent, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOUSEDROPPED_ONTO), PROC_REF(attempt_refuel))
 	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_afterattack))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_OBJ_GET_FUELTYPE, PROC_REF(return_fueltype))
 
 /datum/component/fuel_storage/UnregisterFromParent()
 	UnregisterSignal(parent, list(
 		COMSIG_ATOM_ATTACKBY,
 		COMSIG_ITEM_AFTERATTACK,
 		COMSIG_ATOM_EXAMINE,
+		COMSIG_OBJ_GET_FUELTYPE,
 	))
 
-/obj/item/proc/do_refuel(atom/refueler, mob/user)
+/obj/item/proc/get_fueltype()
+	var/list/return_list = list()
+	SEND_SIGNAL(src, COMSIG_OBJ_GET_FUELTYPE, return_list)
+	if(length(return_list))
+		return return_list[1]
+	return DEFAULT_FUEL_TYPE
+
+/obj/item/proc/do_refuel(atom/refueler, fuel_type, mob/user)
 	if(reagents?.total_volume == reagents?.maximum_volume)
 		return FALSE
+	if(fuel_type != get_fueltype())
+		return
 	refueler.reagents.trans_to(src, reagents.maximum_volume)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 	to_chat(user, span_notice("[src] refilled!"))
 	return TRUE
 
-/obj/item/tool/weldingtool/do_refuel(atom/refueler, mob/user)
+/obj/item/tool/weldingtool/do_refuel(atom/refueler, fuel_type, mob/user)
 	if(welding)
 		to_chat(user, span_warning("That was close! However you realized you had the welder on and prevented disaster."))
 		return FALSE
 	return ..()
 
-/obj/item/ammo_magazine/flamer_tank/do_refuel(atom/refueler, mob/user)
-	if(default_ammo != /datum/ammo/flamethrower)
+/obj/item/ammo_magazine/flamer_tank/do_refuel(atom/refueler, fuel_type, mob/user)
+	if(fuel_type != src.fuel_type)
 		to_chat(user, span_warning("Not the right kind of fuel!"))
 		return FALSE
 	if(current_rounds == max_rounds)
 		return FALSE
 
 	var/fuel_transfer_amount = min(refueler.reagents.total_volume, (max_rounds - current_rounds))
-	refueler.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+	refueler.reagents.remove_reagent(fuel_type, fuel_transfer_amount)
 	current_rounds += fuel_transfer_amount
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 	caliber = CALIBER_FUEL
 	to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
 	update_appearance(UPDATE_ICON)
 
+/datum/component/fuel_storage/proc/return_fueltype(obj/source, list/return_list)
+	SIGNAL_HANDLER
+	return_list += fuel_type
 
-//if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, attacking_item, user, params) & COMPONENT_NO_AFTERATTACK)
-/datum/component/fuel_storage/proc/on_attackby(obj/item/source, obj/item/attacking, mob/user, params)
+/datum/component/fuel_storage/proc/attempt_refuel(obj/item/source, obj/item/attacking, mob/user)
 	SIGNAL_HANDLER
 	//todo: stop this sig from causing storing of attacking
 	if(!fuel_tank.total_volume)
 		return
-	attacking.do_refuel(parent, user)
+	attacking.do_refuel(parent, fuel_type, user)
 	return COMPONENT_NO_AFTERATTACK
 
-//SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, has_proximity, click_parameters)
 /datum/component/fuel_storage/proc/on_afterattack(obj/item/source, atom/target, mob/user, proximity, click_params)
 	SIGNAL_HANDLER
 	if(!proximity)
@@ -84,7 +98,7 @@
 		return
 	if(!istype(target, /obj/structure/reagent_dispensers/fueltank))
 		return
-	if(target.reagents.get_reagent_amount(/datum/reagent/fuel) != target.reagents.total_volume)
+	if(target.reagents.get_reagent_amount(fuel_type) != target.reagents.total_volume)
 		user?.balloon_alert(user, "wrong fuel!")
 		return
 

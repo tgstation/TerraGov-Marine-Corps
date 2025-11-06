@@ -17,6 +17,8 @@
 
 	default_ammo = /datum/ammo/flamethrower
 
+	var/fuel_type = DEFAULT_FUEL_TYPE
+
 	var/dispenser_type = /obj/structure/reagent_dispensers/fueltank
 
 /obj/item/ammo_magazine/flamer_tank/mini
@@ -78,6 +80,7 @@
 	desc = "A large fuel tank of ultra thick napthal fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the FL-84 flamethrower. Handle with care."
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue
+	fuel_type = /datum/reagent/fuel/xfuel
 	icon_state_mini = "tank_blue"
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
@@ -113,6 +116,7 @@
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."
 	icon_state = "x_flamethrower_tank"
 	default_ammo = /datum/ammo/flamethrower/blue
+	fuel_type = /datum/reagent/fuel/xfuel
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
 /obj/item/ammo_magazine/flamer_tank/water
@@ -147,6 +151,7 @@
 	current_rounds = 150
 	reload_delay = 4 SECONDS
 	default_ammo = /datum/ammo/flamethrower/blue
+	fuel_type = /datum/reagent/fuel/xfuel
 	icon_state_mini = "tank_blue"
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
