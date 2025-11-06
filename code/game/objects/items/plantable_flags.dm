@@ -260,7 +260,7 @@
 	icon_state = "flag_tgmc"
 	faction = FACTION_ICC
 	filtercolor = list( 0,   0, 1, 0,
-					002.2, 1.2, 1, 0,
+					  2.2, 1.2, 1, 0,
 					-0001,   0, 1, 0,
 						0,   0, 0, 1,
 						0,   0,-2, 0)
@@ -271,8 +271,8 @@
 	icon_state = "flag_tgmc"
 	faction = FACTION_CLF
 	filtercolor = list(0.5, 1,-3, 0,
-					0001.2, 0, 0, 0,
-					0000.8, 0, 3, 0,
+					   1.2, 0, 0, 0,
+					   0.8, 0, 3, 0,
 						00, 0, 0, 1,
 						-1, 0, 0, 0)
 
