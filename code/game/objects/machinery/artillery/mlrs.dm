@@ -22,6 +22,9 @@
 		/obj/item/mortal_shell/rocket/mlrs/gas,
 		/obj/item/mortal_shell/rocket/mlrs/incendiary,
 		/obj/item/mortal_shell/rocket/mlrs/cloak,
+		/obj/item/mortal_shell/rocket/mlrs/aphro,
+		/obj/item/mortal_shell/rocket/mlrs/neuro,
+		/obj/item/mortal_shell/rocket/mlrs/sleep,
 	)
 	tally_type = TALLY_ROCKET_ARTY
 	cool_off_time = 80 SECONDS
