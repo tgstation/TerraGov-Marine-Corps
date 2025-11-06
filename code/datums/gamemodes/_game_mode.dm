@@ -628,6 +628,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(H.faction == FACTION_XENO)
 				continue
+			if(H.faction == FACTION_ZOMBIE)
+				continue
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++

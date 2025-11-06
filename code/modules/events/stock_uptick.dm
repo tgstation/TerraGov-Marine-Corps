@@ -5,7 +5,7 @@
 	earliest_start = 30 MINUTES
 	max_occurrences = 10
 
-	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign")
+	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign", "Zombie Crash")
 	/// the faction for the next event to activate
 	var/faction = null
 

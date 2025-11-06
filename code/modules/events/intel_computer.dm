@@ -3,10 +3,9 @@
 	typepath = /datum/round_event/intel_computer
 	weight = 25
 
-	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign")
+	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign", "Zombie Crash")
 	/// the intel computer for the next event to activate
 	var/obj/machinery/computer/intel_computer/intel_computer
-
 
 /datum/round_event_control/intel_computer/can_spawn_event(players_amt, gamemode, force = FALSE)
 	. = ..()

@@ -1204,7 +1204,7 @@
 	},
 /area/centcom/valhalla)
 "bsY" = (
-/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist/valhalla,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
 "bur" = (
@@ -3505,7 +3505,7 @@
 /area/centcom/valhalla)
 "eAt" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
-/obj/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/corpsespawner/PMC/valhalla,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "eAE" = (

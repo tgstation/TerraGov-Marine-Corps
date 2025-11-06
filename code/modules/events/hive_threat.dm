@@ -5,7 +5,7 @@
 	weight = 10
 	earliest_start = 30 MINUTES
 
-	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign")
+	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign", "Zombie Crash")
 
 	///The human target for the next instance of this event
 	var/mob/living/carbon/human/hive_target

@@ -878,6 +878,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if((wear_id?.iff_signal & proj.iff_signal))
 		proj.damage -= proj.damage*proj.damage_marine_falloff
 		return FALSE
+	if((proj.ammo.ammo_behavior_flags & AMMO_SKIPS_ZOMBIE) && iszombie(src))
+		return FALSE
 	return ..()
 
 

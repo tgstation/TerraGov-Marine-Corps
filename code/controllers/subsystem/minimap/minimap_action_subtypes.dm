@@ -48,6 +48,9 @@
 	minimap_flags = MINIMAP_FLAG_ZOMBIE
 	marker_flags = MINIMAP_FLAG_ZOMBIE
 
+/datum/action/minimap/lone
+	minimap_flags = MINIMAP_FLAG_LONE
+
 /datum/action/minimap/observer
 	minimap_flags = MINIMAP_FLAG_ALL
 	marker_flags = NONE

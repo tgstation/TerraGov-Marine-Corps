@@ -185,8 +185,8 @@
 	if(get_organ_slot(ORGAN_SLOT_BRAIN))
 		var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(brain && istype(brain))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /mob/living/carbon/human/has_eyes()
 	if(get_organ_slot(ORGAN_SLOT_EYES))

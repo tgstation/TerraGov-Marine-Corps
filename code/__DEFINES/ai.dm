@@ -354,3 +354,5 @@ GLOBAL_LIST_INIT(ai_squad_presets, list(
 		/datum/job/terragov/squad/smartgunner/npc,
 	),
 ))
+
+GLOBAL_LIST_EMPTY(zombie_spawners)

@@ -85,6 +85,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	interact_target = null
 	return ..()
 
+///Whether this ai behavior should start
+/datum/ai_behavior/proc/should_start_ai()
+	if(mob_parent.stat == DEAD)
+		return FALSE
+	return TRUE
+
 ///Register ai behaviours
 /datum/ai_behavior/proc/start_ai()
 	START_PROCESSING(SSprocessing, src)
