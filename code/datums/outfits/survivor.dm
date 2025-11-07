@@ -404,7 +404,8 @@
 	backpack_contents = list(
 		/obj/item/stack/sheet/metal/medium_stack = 1,
 		/obj/item/stack/sheet/plasteel/small_stack = 1,
-		/obj/item/attachable/buildasentry = 1,
+		/obj/item/deployable_vehicle/tiny = 1,
+		/obj/item/unmanned_vehicle_remote = 1,
 		/obj/item/cell/high = 1,
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 1,
