@@ -1197,7 +1197,8 @@
 			return
 		cycle(user, FALSE)
 		update_icon()
-		playsound(src, cocked_sound, 25, 1)
+		if(cocked_sound)
+			playsound(src, cocked_sound, 25, 1)
 		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && casings_to_eject)
 			make_casing()
 			casings_to_eject = 0
@@ -1210,7 +1211,8 @@
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		cycle(user, FALSE)
 		update_icon()
-		playsound(src, cocked_sound, 25, 1)
+		if(cocked_sound)
+			playsound(src, cocked_sound, 25, 1)
 		return
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)) //We want to open it.
 		DISABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
@@ -1263,7 +1265,8 @@
 			casings_to_eject = 0
 	else
 		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
-		playsound(src, cocked_sound, 25, 1)
+		if(cocked_sound)
+			playsound(src, cocked_sound, 25, 1)
 		if(chamber_closed_message)
 			to_chat(user, span_notice(chamber_closed_message))
 		cycle(user, FALSE)
@@ -1529,7 +1532,8 @@
 		new_in_chamber = null
 	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 		if(!after_fire && in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS))
-			playsound(src, cocked_sound, 25, 1)
+			if(cocked_sound)
+				playsound(src, cocked_sound, 25, 1)
 			if(cocked_message)
 				to_chat(user, span_notice(cocked_message))
 			var/atom/movable/projectile/projectile_in_chamber = in_chamber

@@ -625,7 +625,7 @@ The alternative is scattering them everywhere under their respective objects whi
 	if(victim.ckey)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[victim.ckey]
 		personal_statistics.internal_injuries++
-	if(attacker?.ckey)
+	if(istype(attacker) && attacker?.ckey)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[attacker.ckey]
 		personal_statistics.internal_injuries_inflicted++
 	return TRUE
