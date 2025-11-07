@@ -237,10 +237,12 @@
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
+	///The type of fuel this carries
+	var/fuel_type = DEFAULT_FUEL_TYPE
 
 /obj/item/storage/holster/backholster/flamer/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/fuel_storage, 280)
+	AddComponent(/datum/component/fuel_storage, 280, fuel_type)
 	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/holster/backholster/flamer/full/PopulateContents()
