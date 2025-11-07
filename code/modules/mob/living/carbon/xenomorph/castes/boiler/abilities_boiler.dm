@@ -736,6 +736,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
 	)
+	paralyze_duration = 0 // Although we don't do anything related to paralyze, it is nice to have this zeroed out.
 	charge_range = BOILER_CHARGEDISTANCE
 	///Can we use the ability again
 	var/recast_available = FALSE
