@@ -72,8 +72,7 @@
 	name = "Shrapnel"
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 5
-	accuracy_var_high = 5
+	accuracy_variation = 5
 	damage = 20
 	penetration = 20
 	sundering = 3
@@ -130,7 +129,7 @@
 	var/explosion_range = 2
 
 ///handles the actual bomblet detonation
-/datum/ammo/micro_rail_cluster/proc/detonate(turf/T, atom/movable/projectile/P)
+/datum/ammo/micro_rail_cluster/proc/detonate(turf/T, atom/movable/projectile/proj)
 	playsound(T, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(0, T, rand(1,2))
@@ -143,8 +142,8 @@
 				var/mob/living/living_target = target
 				living_target.visible_message(span_danger("[living_target] is hit by the bomblet blast!"),
 					isxeno(living_target) ? span_xenodanger("We are hit by the bomblet blast!") : span_userdanger("you are hit by the bomblet blast!"))
-				living_target.apply_damages(explosion_damage * 0.5, explosion_damage * 0.5, 0, 0, 0, blocked = BOMB, updating_health = TRUE)
-				staggerstun(living_target, P, stagger = stagger_amount, slowdown = slow_amount)
+				living_target.apply_damages(explosion_damage * 0.5, explosion_damage * 0.5, 0, 0, 0, blocked = BOMB, updating_health = TRUE, attacker = proj.firer)
+				staggerstun(living_target, proj, stagger = stagger_amount, slowdown = slow_amount)
 			else if(isobj(target))
 				var/obj/obj_victim = target
 				obj_victim.take_damage(explosion_damage, BRUTE, BOMB)

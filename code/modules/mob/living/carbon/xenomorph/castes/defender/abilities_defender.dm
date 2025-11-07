@@ -38,7 +38,7 @@
 
 	xeno_owner.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
 	xeno_owner.spin(4, 1)
-	xeno_owner.enable_throw_parry(0.6 SECONDS)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
@@ -54,7 +54,7 @@
 		if(!affecting) //Still nothing??
 			affecting = H.get_limb("chest") //Gotta have a torso?!
 		if(damage_multiplier > 0)
-			H.apply_damage(damage * damage_multiplier, damage_type, updating_health = TRUE)
+			H.apply_damage(damage * damage_multiplier, damage_type, updating_health = TRUE, attacker = owner)
 		if(knockback_distance >= 1)
 			H.knockback(xeno_owner, knockback_distance, 4)
 		if(stagger_duration)
@@ -107,6 +107,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
 	)
+	paralyze_duration = 4 SECONDS
 	charge_range = DEFENDER_CHARGE_RANGE
 	/// How long is the windup before charging?
 	var/windup_time = 0.5 SECONDS
@@ -150,7 +151,8 @@
 	var/target_turf = get_ranged_target_turf(carbon_victim, get_dir(src, carbon_victim), rand(1, 2)) //we blast our victim behind us
 	target_turf = get_step_rand(target_turf) //Scatter
 	carbon_victim.throw_at(get_turf(target_turf), charge_range, 5, src)
-	carbon_victim.Paralyze(4 SECONDS)
+	if(paralyze_duration)
+		carbon_victim.Paralyze(paralyze_duration)
 	GLOB.round_statistics.defender_charge_victims++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_charge_victims")
 
@@ -500,7 +502,7 @@
 		span_xenowarning("We start swinging our tail in a wide circle!"))
 	do_spin() //kick it off
 
-	spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), 5, TIMER_STOPPABLE)
+	spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), DEFENDER_REFLECT_TIME, TIMER_STOPPABLE)
 	add_cooldown()
 	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), PROC_REF(stop_spin))
 
@@ -508,7 +510,7 @@
 /datum/action/ability/xeno_action/centrifugal_force/proc/do_spin()
 	spin_loop_timer = null
 	xeno_owner.spin(4, 1)
-	xeno_owner.enable_throw_parry(0.6 SECONDS)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 	playsound(xeno_owner, pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, xeno_owner))
@@ -521,8 +523,8 @@
 		if(!affecting)
 			affecting = slapped.get_limb("chest")
 		slapped.knockback(xeno_owner, 1, 4)
-		slapped.apply_damage(damage, BRUTE, affecting, MELEE)
-		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
+		slapped.apply_damage(damage, BRUTE, affecting, MELEE, attacker = owner)
+		slapped.apply_damage(damage, STAMINA, updating_health = TRUE, attacker = owner)
 		slapped.Paralyze(0.3 SECONDS)
 		shake_camera(slapped, 2, 1)
 

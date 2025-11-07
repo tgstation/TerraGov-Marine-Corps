@@ -95,6 +95,20 @@
 			nearest_target = nearby_human
 			shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
 	if(target_flags & TARGET_XENO)
+		for(var/obj/item/clothing/mask/facehugger/hugger AS in GLOB.alive_hugger_list)
+			if(hugger.z != source.z)
+				continue
+			if(!isturf(hugger.loc))
+				continue
+			if(attacker_hive == hugger.get_xeno_hivenumber())
+				continue
+			if(get_dist(source, hugger) >= shorter_distance)
+				continue
+			if(need_los && !line_of_sight(source, hugger))
+				continue
+			nearest_target = hugger
+			shorter_distance = get_dist(source, hugger)
+
 		nearby_xeno_list = cheap_get_xenos_near(source, shorter_distance - 1)
 		for(var/mob/nearby_xeno AS in nearby_xeno_list)
 			if(attacker_hive == nearby_xeno.get_xeno_hivenumber())
@@ -109,6 +123,20 @@
 				continue
 			nearest_target = nearby_xeno
 			shorter_distance = get_dist(source, nearby_xeno)
+
+		for(var/hive in GLOB.xeno_resin_turrets_by_hive) //we could check all xeno structures, but most of them are not shootable
+			for(var/obj/structure/xeno/xeno_turret/xeno_structure AS in GLOB.xeno_resin_turrets_by_hive[hive])
+				if(xeno_structure.z != source.z)
+					continue
+				if(attacker_hive == xeno_structure.get_xeno_hivenumber())
+					continue
+				if(get_dist(source, xeno_structure) >= shorter_distance)
+					continue
+				if(need_los && !line_of_sight(source, xeno_structure))
+					continue
+				nearest_target = xeno_structure
+				shorter_distance = get_dist(source, xeno_structure)
+
 	if(target_flags & TARGET_HUMAN_TURRETS)
 		for(var/obj/machinery/deployable/mounted/sentry/nearby_turret AS in GLOB.marine_turrets)
 			if(source.z != nearby_turret.z)

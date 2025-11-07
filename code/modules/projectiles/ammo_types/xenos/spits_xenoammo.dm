@@ -16,8 +16,7 @@
 	accuracy = 40
 	accurate_range = 15
 	max_range = 15
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	bullet_color = COLOR_LIME
 	///List of reagents transferred upon spit impact if any
 	var/list/datum/reagent/spit_reagents
@@ -42,8 +41,7 @@
 	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	damage = 40
 	stagger_duration = 1.1 SECONDS
 	slowdown_stacks = 1.5

@@ -98,27 +98,27 @@
 		return
 
 	if(!isreagentcontainer(cont))
-		user.balloon_alert(user, "incompatible")
+		user.balloon_alert(user, "incompatible!")
 		return
 
 	var/obj/item/reagent_containers/container = cont
 
 	if(!container.reagents.total_volume)
-		user.balloon_alert(user, "empty")
+		user.balloon_alert(user, "empty!")
 		return
 
 	if(length(container.reagents.reagent_list) > 1)
-		user.balloon_alert(user, "homogeneous mixture required")
+		user.balloon_alert(user, "homogeneous mixture required!")
 		return
 
 	var/datum/reagent/reagent_to_load = container.reagents.reagent_list[1].type
 
 	if(!loadable_reagents[reagent_to_load])
-		user.balloon_alert(user, "incompatible reagent, check description")
+		user.balloon_alert(user, "incompatible reagent—check description!")
 		return
 
 	if(loaded_reagents[reagent_to_load] >= max_loadable_reagent_amount)
-		user.balloon_alert(user, "full")
+		user.balloon_alert(user, "full!")
 		return
 
 	user.balloon_alert(user, "filling up...")
@@ -140,17 +140,17 @@
 ///Handles behavior when activating the weapon
 /datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)
 	if(loaded_reagent)
-		user.balloon_alert(user, "[initial(loaded_reagent.name)]")
+		user.balloon_alert(user, "[lowertext(loaded_reagent::name)]")
 		return
 
 	if(!selected_reagent)
-		user.balloon_alert(user, "no reagent")
+		user.balloon_alert(user, "no reagent!")
 		return
 
 	var/use_amount = loadable_reagents[selected_reagent]
 
 	if(loaded_reagents[selected_reagent] < use_amount)
-		user.balloon_alert(user, "insufficient liquid")
+		user.balloon_alert(user, "insufficient liquid!")
 		return
 
 	if(user.do_actions)
@@ -222,22 +222,22 @@
 			INVOKE_ASYNC(src, PROC_REF(attack_bicaridine), source, target, user, weapon)
 
 		if(/datum/reagent/medicine/kelotane)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected, attacker = user)
 			target.adjust_fire_stacks(5)
 			target.IgniteMob()
 
 		if(/datum/reagent/medicine/tramadol)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected, attacker = user)
 			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/tricordrazine)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected, attacker = user)
 			target.adjust_sunder(7.5) //Same amount as a shotgun slug
 			target.apply_status_effect(/datum/status_effect/shatter, 3 SECONDS)
 
 	if(!loaded_reagents[loaded_reagent])
 		update_selected_reagent(null)
-		user.balloon_alert(user, "[initial(loaded_reagent.name)]: empty")
+		user.balloon_alert(user, "[lowertext(loaded_reagent::name)]: empty")
 	loaded_reagent = null
 
 	var/obj/item/item_parent = parent
@@ -251,7 +251,7 @@
 /datum/component/harvester/proc/attack_bicaridine(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
 	if(user.a_intent != INTENT_HELP) //Self-heal on attacking
 		new /obj/effect/temp_visual/telekinesis(get_turf(user))
-		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected, attacker = user)
 		user.adjustStaminaLoss(-30)
 		user.heal_overall_damage(5, 0, updating_health = TRUE)
 		return
@@ -271,7 +271,7 @@
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 
-	if(do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER)) //Channeled heal on help intent
+	if(do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, target, BUSY_ICON_DANGER)) //Channeled heal on help intent
 		var/skill_heal_amt = user.skills.getRating(SKILL_MEDICAL) * 5
 		target.heal_overall_damage(10 + skill_heal_amt, 0, updating_health = TRUE) //5u of Bica will normally heal 25 damage. Medics get this full amount
 	else

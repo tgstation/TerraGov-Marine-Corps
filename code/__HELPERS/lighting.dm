@@ -1,15 +1,28 @@
+#define TOPDOWN_TO_EMISSIVE_LAYER(layer) LERP(FLOOR_EMISSIVE_START_LAYER, FLOOR_EMISSIVE_END_LAYER, (layer - (TOPDOWN_LAYER + 1)) / TOPDOWN_LAYER_COUNT)
+
 /// Produces a mutable appearance glued to the [EMISSIVE_PLANE] dyed to be the [EMISSIVE_COLOR].
-/proc/emissive_appearance(icon, icon_state = "", atom/offset_spokesman, layer = FLOAT_LAYER, alpha = 255, appearance_flags = NONE, offset_const, reset_transform = TRUE)
+/proc/emissive_appearance(icon, icon_state = "", atom/offset_spokesman, layer = FLOAT_LAYER, alpha = 255, appearance_flags = NONE, offset_const, apply_bloom = TRUE, reset_transform = TRUE)
+	if((isnull(layer) || layer == FLOAT_LAYER) && IS_TOPDOWN_PLANE(offset_spokesman.plane))
+		layer = TOPDOWN_TO_EMISSIVE_LAYER(offset_spokesman.layer)
+	else if(isnull(layer))
+		layer = FLOAT_LAYER
+
 	var/mutable_appearance/appearance
 	if(reset_transform)
 		appearance = mutable_appearance(icon, icon_state, layer, offset_spokesman, EMISSIVE_PLANE, 255, appearance_flags | EMISSIVE_APPEARANCE_FLAGS, offset_const)
 	else
 		appearance = mutable_appearance(icon, icon_state, layer, offset_spokesman, EMISSIVE_PLANE, 255, appearance_flags | EMISSIVE_APPEARANCE_TRANSFORM_FLAGS, offset_const)
 	if(alpha == 255)
-		appearance.color = GLOB.emissive_color
+		if (apply_bloom)
+			appearance.color = GLOB.emissive_color
+		else
+			appearance.color = GLOB.emissive_color_no_bloom
 	else
 		var/alpha_ratio = alpha/255
-		appearance.color = _EMISSIVE_COLOR(alpha_ratio)
+		if (apply_bloom)
+			appearance.color = _EMISSIVE_COLOR(alpha_ratio)
+		else
+			appearance.color = _EMISSIVE_COLOR_NO_BLOOM(alpha_ratio)
 
 	//Test to make sure emissives with broken or missing icon states are created
 	if(PERFORM_ALL_TESTS(focus_only/invalid_emissives))
@@ -25,6 +38,10 @@
 	blocker.icon = make_blocker.icon
 	blocker.icon_state = make_blocker.icon_state
 	// blocker.layer = FLOAT_LAYER // Implied, FLOAT_LAYER is default for appearances
+	// If we keep this on a FLOAT_LAYER on a topdown object it'll render ontop of everything
+	// So we need to force it to render at a saner layer
+	if(IS_TOPDOWN_PLANE(make_blocker.plane))
+		blocker.layer = TOPDOWN_TO_EMISSIVE_LAYER(make_blocker.layer)
 	blocker.appearance_flags |= make_blocker.appearance_flags | EMISSIVE_APPEARANCE_FLAGS
 	blocker.dir = make_blocker.dir
 	if(make_blocker.alpha == 255)
@@ -39,7 +56,12 @@
 	return blocker
 
 /// Produces a mutable appearance glued to the [EMISSIVE_PLANE] dyed to be the [EM_BLOCK_COLOR].
-/proc/emissive_blocker(icon, icon_state = "", atom/offset_spokesman, layer = FLOAT_LAYER, alpha = 255, appearance_flags = NONE, offset_const)
+/proc/emissive_blocker(icon, icon_state = "", atom/offset_spokesman, layer, alpha = 255, appearance_flags = NONE, offset_const)
+	if (isnull(layer))
+		if(IS_TOPDOWN_PLANE(offset_spokesman.plane))
+			layer = TOPDOWN_TO_EMISSIVE_LAYER(offset_spokesman.layer)
+		else
+			layer = FLOAT_LAYER
 	var/mutable_appearance/appearance = mutable_appearance(icon, icon_state, layer, offset_spokesman, EMISSIVE_PLANE, alpha, appearance_flags | EMISSIVE_APPEARANCE_FLAGS, offset_const)
 	if(alpha == 255)
 		appearance.color = GLOB.em_block_color
@@ -88,3 +110,5 @@
 	var/atom/movable/vis_cast = make_blocker
 	vis_cast.vis_contents += hand_back
 	return hand_back
+
+#undef TOPDOWN_TO_EMISSIVE_LAYER

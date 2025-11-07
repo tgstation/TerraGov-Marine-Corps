@@ -1204,7 +1204,7 @@
 	},
 /area/centcom/valhalla)
 "bsY" = (
-/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist/valhalla,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
 "bur" = (
@@ -3507,7 +3507,7 @@
 /area/centcom/valhalla)
 "eAt" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
-/obj/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/corpsespawner/PMC/valhalla,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "eAE" = (
@@ -4816,6 +4816,10 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
+/area/centcom/valhalla)
+"gzA" = (
+/obj/effect/ai_node,
+/turf/open/floor/engine,
 /area/centcom/valhalla)
 "gzS" = (
 /obj/machinery/marine_selector/clothes/valhalla,
@@ -27008,7 +27012,7 @@ pVV
 bSp
 vaS
 vJz
-acu
+bve
 pVV
 box
 box
@@ -27266,7 +27270,7 @@ box
 vcW
 vKE
 wFe
-pVV
+gzA
 mMK
 wIw
 wDv

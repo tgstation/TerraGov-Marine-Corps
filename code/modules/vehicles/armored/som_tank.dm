@@ -40,6 +40,7 @@
 	. = ..()
 	add_filter("shadow", 2, drop_shadow_filter(0, SOM_TANK_HOVER_HEIGHT, 1))
 	animate_hover()
+	RegisterSignal(src, COMSIG_MOVABLE_PATROL_DEPLOYED, PROC_REF(animate_hover))
 	var/obj/item/tank_module/module = new /obj/item/tank_module/ability/smoke_launcher()
 	module.on_equip(src)
 
@@ -74,8 +75,8 @@
 		if(stop_hover)
 			animate(atom)
 			continue
-		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_y = 3)
-		animate(time = 1.2 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_y = -3)
+		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_z = 3)
+		animate(time = 1.2 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_z = -3)
 
 /obj/vehicle/sealed/armored/multitile/som_tank/add_desant(mob/living/new_desant)
 	. = ..()

@@ -906,6 +906,12 @@
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 	hotkey_keys = list("N")
 
+/datum/keybinding/xeno/queen_give_plasma_quickcast
+	name = "queen_give_plasma_quickcast"
+	full_name = "Queen: Give Plasma (Quickcast)"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_QUICKCAST
+
 /datum/keybinding/xeno/queen_hive_message
 	name = "queen_hive_message"
 	full_name = "Queen: Hive Message"

@@ -108,7 +108,7 @@
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
 	. = welder_repair_act(user, I, max_integrity * 0.15, 4 SECONDS, integrity_failure / max_integrity, SKILL_ENGINEER_METAL)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
-		balloon_alert(user, "Too damaged. Use metal sheets.")
+		balloon_alert(user, "too damaged—metal sheets needed!")
 
 
 /obj/item/weapon/shield/riot/marine
@@ -253,7 +253,7 @@
 		if((victim.lying_angle))
 			continue
 		hit_something = TRUE
-		victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+		victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration, owner)
 		playsound(victim, 'sound/weapons/heavyhit.ogg', 30, 1)
 		if(victim.mob_size > carbon_owner.mob_size)
 			carbon_owner.do_attack_animation(victim, ATTACK_EFFECT_PUNCH)

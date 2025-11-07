@@ -119,10 +119,10 @@
 
 	if(!xeno_owner.issamexenohive(A)) //xenos should be able to fling xenos into xeno passable areas!
 		for(var/obj/effect/forcefield/fog/fog in throw_origin)
-			A.balloon_alert(xeno_owner, "Cannot, fog")
+			A.balloon_alert(xeno_owner, "there's fog there!")
 			return fail_activate()
 	if(A.move_resist >= MOVE_FORCE_OVERPOWERING)
-		A.balloon_alert(xeno_owner, "Too heavy!")
+		A.balloon_alert(xeno_owner, "too heavy!")
 		return fail_activate()
 	if(isliving(A))
 		var/mob/living/L = A

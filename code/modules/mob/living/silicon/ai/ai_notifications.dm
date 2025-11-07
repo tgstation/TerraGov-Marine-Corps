@@ -55,7 +55,7 @@
 	notify_ai(src, "<b> Telemetry from our mini dropship reports that the controls have become nonfunctional! </b>", ai_sound = 'sound/voice/alien/4_xeno_roars.ogg', source = ruinedtad, action = NOTIFY_AI_ALERT, notify_volume = 15)
 
 ///Receive notifications about disks being generated
-/mob/living/silicon/ai/proc/show_disk_complete(datum/source, obj/machinery/computer/nuke_disk_generator/generatingcomputer)
+/mob/living/silicon/ai/proc/show_disk_complete(datum/source, obj/machinery/computer/code_generator/nuke/generatingcomputer)
 	SIGNAL_HANDLER
 	var/area/A = get_area(generatingcomputer)
 	to_chat(src, span_notice("A new disk has been generated at [A]!"))

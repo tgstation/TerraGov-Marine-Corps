@@ -149,7 +149,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN|R_MENTOR, "Subtle Message", AD
 	else
 		msg = sanitize(msg)
 
-	M.balloon_alert(M, "You hear a voice")
+	M.balloon_alert(M, "you hear a voice")
 	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
 
 	admin_ticket_log(M, "[key_name_admin(user)] used Subtle Message: [sanitize(msg)]")
@@ -864,19 +864,9 @@ ADMIN_VERB(ai_squad, R_FUN, "Spawn AI squad", "Spawns a AI squad of your choice"
 	var/turf/spawn_loc = get_turf(user.mob)
 	if(!spawn_loc)
 		return
-	var/list/mob_list = list()
-	for(var/i = 1 to quantity)
-		var/mob/living/carbon/human/new_human = new()
-		mob_list += new_human
-		var/datum/job/new_job = SSjob.GetJob(GLOB.ai_squad_presets[squad_choice][i])
-		var/squad_to_insert_into
-		if(ismarinejob(new_job) || issommarinejob(new_job))
-			squad_to_insert_into = pick(SSjob.active_squads[new_job.faction])
-		new_human.apply_assigned_role_to_spawn(new_job, new_human.client, squad_to_insert_into, admin_action = TRUE)
-		stoplag()
-	for(var/mob/living/carbon/human/dude AS in mob_list)
-		dude.forceMove(spawn_loc)
-		dude.AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
+	var/list/spawn_list = GLOB.ai_squad_presets[squad_choice]
+	spawn_list = spawn_list.Copy(1, quantity + 1)
+	spawn_npc_squad(spawn_loc, spawn_list)
 
 	message_admins("[key_name_admin(user)] spawned a [quantity] man [squad_choice] of AI humans in [AREACOORD(spawn_loc)].")
 	log_admin("[key_name(user)] spawned a [quantity] man [squad_choice] of AI humans in [AREACOORD(spawn_loc)].")

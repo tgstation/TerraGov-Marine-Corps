@@ -316,6 +316,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			soundin = pick('sound/weapons/guns/fire/silenced_shot1.ogg','sound/weapons/guns/fire/silenced_shot2.ogg')
 		if(SFX_GUN_SMARTGUN)
 			soundin = pick('sound/weapons/guns/fire/smartgun1.ogg', 'sound/weapons/guns/fire/smartgun2.ogg', 'sound/weapons/guns/fire/smartgun3.ogg')
+		if(SFX_GUN_SMARTGPMG)
+			soundin = pick ('sound/weapons/guns/fire/sg60_1.ogg', 'sound/weapons/guns/fire/sg60_2.ogg')
 		if(SFX_GUN_FLAMETHROWER)
 			soundin = pick('sound/weapons/guns/fire/flamethrower1.ogg', 'sound/weapons/guns/fire/flamethrower2.ogg', 'sound/weapons/guns/fire/flamethrower3.ogg')
 		if(SFX_GUN_AR12)
@@ -441,6 +443,4 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if(SFX_ROBOT_WARCRY)
 			soundin = pick('sound/voice/robot/robot_warcry1.ogg', 'sound/voice/robot/robot_warcry2.ogg', 'sound/voice/robot/robot_warcry3.ogg')
 
-		if(SFX_HOVER_TANK)
-			soundin = pick('sound/vehicles/hover_tank/hover_1.ogg', 'sound/vehicles/hover_tank/hover_2.ogg', 'sound/vehicles/hover_tank/hover_3.ogg', 'sound/vehicles/hover_tank/hover_4.ogg')
 	return soundin

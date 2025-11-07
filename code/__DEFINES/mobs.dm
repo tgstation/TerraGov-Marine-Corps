@@ -634,6 +634,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN 10 //bonus AP
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY 2 SECONDS
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
+#define HUNTER_MIRAGE_ILLUSION_LIFETIME 10 SECONDS
 #define HUNTER_SILENCE_STAGGER_DURATION 1 SECONDS //Silence imposes this much stagger
 #define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
 #define HUNTER_SILENCE_MUTE_DURATION 10 SECONDS //Silence imposes this many seconds of the mute status effect.
@@ -809,6 +810,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Defender defines
 #define DEFENDER_CHARGE_RANGE 4
+#define DEFENDER_REFLECT_TIME 0.6 SECONDS
 
 //Baneling defines
 /// Not specified in seconds because it causes smoke to last almost four times as long if done so
