@@ -239,6 +239,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(!T)
 			return
 
+		if(!(check_other_rights(usr.client, R_ADMIN, FALSE)))
+			if(!GLOB.observer_freedom)
+				to_chat(usr, span_warning("Can only teleport to your own faction."))
+				return
 		var/mob/dead/observer/A = usr
 		A.abstract_move(T)
 		return
